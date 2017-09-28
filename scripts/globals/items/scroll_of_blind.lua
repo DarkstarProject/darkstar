@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4862
---    Scroll of Blind
---    Teaches the black magic Blind
+-- ID: 4862
+-- Scroll of Blind
+-- Teaches the black magic Blind
 -----------------------------------------
 
 -----------------------------------------

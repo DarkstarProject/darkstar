@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4724
---    Scroll of Enaero II
---    Teaches the white magic Enaero II
+-- ID: 4724
+-- Scroll of Enaero II
+-- Teaches the white magic Enaero II
 -----------------------------------------
 
 -----------------------------------------

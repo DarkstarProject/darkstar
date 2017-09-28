@@ -56,7 +56,7 @@ namespace charutils
     uint32	GetExpNEXTLevel(uint8 charlvl);
     uint32	GetRealExp(uint8 charlvl, uint8 moblvl);
 
-    void	DelExperiencePoints(CCharEntity* PChar, float retainpct);
+    void	DelExperiencePoints(CCharEntity* PChar, float retainpct, uint16 forcedXpLoss);
     void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
     void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
     void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp = 0, bool isexpchain = false);
@@ -171,11 +171,14 @@ namespace charutils
     void	ClearTempItems(CCharEntity* PChar);
     void	ReloadParty(CCharEntity* PChar);
 
+    bool    IsAidBlocked(CCharEntity* PInitiator, CCharEntity* PTarget);
+
     void    AddPoints(CCharEntity* PChar, const char* type, int32 amount, int32 max = INT32_MAX);
     void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
     int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
+    void    HomePoint(CCharEntity* PChar);
     void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
     int32   GetVar(CCharEntity* PChar, const char* var);

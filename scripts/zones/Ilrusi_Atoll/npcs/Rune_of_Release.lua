@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: 
+-- Area:
 -- NPC:  rune of release
 -- @zone illrusi atoll
--- @pos
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -27,17 +27,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
- 
+
   local npcID = npc:getID();
  -- print(npcID);
   if (npcID==17002655) then
     player:startEvent(0x0064,4);
-    
 
-  
+
+
   end
-  
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
   local npcID;
   for npcID=17002505,17002516,1 do
    GetNPCByID(npcID):setStatus(0);
-   GetNPCByID(npcID):setAnimation(90);   
+   GetNPCByID(npcID):setAnimation(90);
   end
   GetNPCByID(17002654):setStatus(2); --despawn Ancient_Lockbox
   ------------------------------------------------------
@@ -71,18 +71,18 @@ function onEventFinish(player,csid,option)
   SetServerVariable("correctcoffer",correctcoffer);
   printf("corect_golden_salvage_coffer: %u",correctcoffer);
   ---------------------------------------------------
-     if (player:hasCompletedMission(ASSAULT,GOLDEN_SALVAGE)) then 
-          if (player:hasKeyItem(ASSAULT_ARMBAND)) then 
+     if (player:hasCompletedMission(ASSAULT,GOLDEN_SALVAGE)) then
+          if (player:hasKeyItem(ASSAULT_ARMBAND)) then
           player:delKeyItem(ASSAULT_ARMBAND);
           point =1100;
-          end      
+          end
         player:addAssaultPoint(ILRUSI_ASSAULT_POINT,point);
         player:delMission(ASSAULT,GOLDEN_SALVAGE);
         player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
     print(point);
      end
-  
- 
+
+
  player:setPos(28,-7,620,138,54);
  end
 end;

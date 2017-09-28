@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4967
---    Scroll of Yurin: Ichi
---    Teaches the ninjutsu Yurin: Ichi
+-- ID: 4967
+-- Scroll of Yurin: Ichi
+-- Teaches the ninjutsu Yurin: Ichi
 -----------------------------------------
 
 -----------------------------------------

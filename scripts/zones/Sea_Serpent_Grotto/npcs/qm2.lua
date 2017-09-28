@@ -2,7 +2,7 @@
 -- Area: Sea Serpent Grotto
 -- NPC:  ??? Used for Norg quest "The Sahagin's Stash"
 -- @zone 176
--- @pos 295.276 27.129 213.043
+-- !pos 295.276 27.129 213.043
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -24,14 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     SahaginStash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
-    
+
     if (SahaginStash == QUEST_ACCEPTED and player:hasKeyItem(296) == false) then
         player:startEvent(0x0001);
     end
-end; 
-        
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

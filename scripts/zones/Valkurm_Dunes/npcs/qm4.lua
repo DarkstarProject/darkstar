@@ -2,7 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  qm4 (???)
 -- Involved in quest: Pirate's Chart
--- @pos -160 4 -131 103
+-- !pos -160 4 -131 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------

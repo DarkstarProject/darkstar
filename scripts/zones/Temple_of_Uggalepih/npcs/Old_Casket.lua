@@ -2,7 +2,7 @@
 -- Area: Temple of Uggalepih
 -- NPC:  Old casket
 -- Obtaining 'Paintbrush of Souls'
--- @pos 61 0 17 159
+-- !pos 61 0 17 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
@@ -15,14 +15,14 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(OLD_RUSTY_KEY)) then
         player:startEvent(0x0040,OLD_RUSTY_KEY);
     elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS)) then
@@ -30,8 +30,8 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(THE_BOX_IS_LOCKED);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -49,11 +49,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0040 and option == 1) then
         player:delKeyItem(OLD_RUSTY_KEY);
         player:addKeyItem(PAINTBRUSH_OF_SOULS);
         player:messageSpecial(KEYITEM_OBTAINED,PAINTBRUSH_OF_SOULS);
     end
-    
+
 end;

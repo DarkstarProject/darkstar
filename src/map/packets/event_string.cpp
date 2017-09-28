@@ -32,10 +32,10 @@
 CEventStringPacket::CEventStringPacket(
 	CCharEntity* PChar,
 	uint16 EventID, 
-    string_t string0,
-    string_t string1,
-    string_t string2,
-    string_t string3,
+    const std::string& string0,
+    const std::string& string1,
+    const std::string& string2,
+    const std::string& string3,
 	uint32 param0,
 	uint32 param1,
 	uint32 param2,
@@ -52,7 +52,7 @@ CEventStringPacket::CEventStringPacket(
 	WBUFW(data,(0x08)) = PChar->m_TargID;
     WBUFW(data,(0x0A)) = PChar->getZone();
 	WBUFW(data,(0x0C)) = EventID;
-	WBUFB(data,(0x0E)) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу
+	WBUFB(data,(0x0E)) = 8; // camera "jumps" behind the character if < 8 params
 
     memcpy(data+(0x10), string0.c_str(), string0.size());
     memcpy(data+(0x20), string1.c_str(), string1.size());

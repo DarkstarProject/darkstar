@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4834
---    Scroll of Poisonga II
---    Teaches the black magic Poisonga II
+-- ID: 4834
+-- Scroll of Poisonga II
+-- Teaches the black magic Poisonga II
 -----------------------------------------
 
 -----------------------------------------

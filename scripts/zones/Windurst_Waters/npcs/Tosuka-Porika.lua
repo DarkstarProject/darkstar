@@ -4,7 +4,7 @@
 --  Starts Quests: Early Bird Catches the Bookworm, Chasing Tales
 -- Involved in Quests: Hat in Hand, Past Reflections, Blessed Radiance
 --  Involved in Missions: Windurst 2-1, Windurst 7-1, Windurst 8-2, CoP 3-3
--- @pos -26 -6 103 238
+-- !pos -26 -6 103 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
         player:startEvent(0x0321);
-    
+
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==10) then
         player:startEvent(0x036B); -- COP event
 

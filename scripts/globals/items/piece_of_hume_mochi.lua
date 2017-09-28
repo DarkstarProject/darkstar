@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5203
---    Piece of Hume Mochi
---    Enchantment: 60Min, Costume - Hume child (male)
+-- ID: 5203
+-- Piece of Hume Mochi
+-- Enchantment: 60Min, Costume - Hume child (male)
 -----------------------------------------
 
 require("scripts/globals/status");

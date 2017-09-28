@@ -142,7 +142,7 @@ struct GearSetMod_t
 class CBasicPacket;
 class CLinkshell;
 class CMeritPoints;
-class CRecastContainer;
+class CCharRecastContainer;
 class CLatentEffectContainer;
 class CTradeContainer;
 class CItemContainer;
@@ -193,6 +193,7 @@ public:
     campaignlog_t			m_campaignLog;					// список campaing миссий
     uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
     PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
+    void					setPetZoningInfo();				// set pet zoning info (when zoning and logging out)
     void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
     uint8					m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
 
@@ -223,15 +224,13 @@ public:
     PacketList_t      getPacketList();              // returns a COPY of packet list
     size_t            getPacketCount();
     void              erasePackets(uint8 num);      // erase num elements from front of packet list
-    virtual void      HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override;
+    virtual void      HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override;
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2
     CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
     CMeritPoints*     PMeritPoints;                 //
     bool			  MeritMode;					//If true then player is meriting
-
-    CRecastContainer* PRecastContainer;             //
 
     CLatentEffectContainer* PLatentEffectContainer;
 
@@ -288,6 +287,8 @@ public:
     void			  setWeaponSkillKill(bool isWeaponSkillKill);
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
+    bool              getBlockingAid();
+    void              setBlockingAid(bool isBlockingAid);
 
     bool              m_EquipSwap;					// true if equipment was recently changed
     bool              m_EffectsChanged;
@@ -322,10 +323,10 @@ public:
     void Raise();
 
     /* State callbacks */
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool OnAttackError(CAttackState&) override;
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
@@ -363,6 +364,7 @@ private:
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;
+    bool            m_isBlockingAid;
     bool			m_reloadParty;
 
     PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу

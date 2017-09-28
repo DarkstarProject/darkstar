@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4109
---    Water Cluster
---    Turn into a stack of water crystals
+-- ID: 4109
+-- Water Cluster
+-- Turn into a stack of water crystals
 -----------------------------------------
 
 -----------------------------------------

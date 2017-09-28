@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSConnect-server", "DSConnect-server\DSConnect-server.vcxproj", "{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSConnect-server", "vcxproj\DSConnect-server.vcxproj", "{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSGame-server", "DSGame-server\DSGame-server.vcxproj", "{89A19910-84DB-454D-9C7F-0A47A293867B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSGame-server", "vcxproj\DSGame-server.vcxproj", "{89A19910-84DB-454D-9C7F-0A47A293867B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSSearch-server", "DSSearch-server\DSSearch-server.vcxproj", "{5C763F9B-F332-434F-9EE6-B64B15E1E520}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSSearch-server", "vcxproj\DSSearch-server.vcxproj", "{5C763F9B-F332-434F-9EE6-B64B15E1E520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,5 +44,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {028CF459-E5F3-46BE-994B-4185ADE2361C}
 	EndGlobalSection
 EndGlobal

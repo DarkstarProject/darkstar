@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Jeanvirgaud
 -- Outpost Teleporter NPC
--- @pos 45.559 -0.199 26.300 231
+-- !pos 45.559 -0.199 26.300 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -64,6 +64,6 @@ function onEventFinish(player,csid,option)
         if (player:getCP()>=cpCost) then
             player:delCP(cpCost);
             toOutpost(player,option-1024);
-            end        
+            end
     end
 end;

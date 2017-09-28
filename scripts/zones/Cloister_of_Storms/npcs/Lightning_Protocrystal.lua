@@ -2,7 +2,7 @@
 -- Area: Cloister of Storms
 -- NPC:  Lightning Protocrystal
 -- Involved in Quests: Trial by Lightning
--- @pos 534.5 -13 492 202
+-- !pos 534.5 -13 492 202
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -------------------------------------
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);            
+        player:messageSpecial(PROTOCRYSTAL);
     end
 end;
 

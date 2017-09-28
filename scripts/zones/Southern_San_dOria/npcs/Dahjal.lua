@@ -3,7 +3,7 @@
 -- NPC:  Dahjal
 -- first in conquest Npc
 -- @zone 230
--- @pos 
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -31,7 +31,7 @@ end;
 
 function onTrigger(player,npc)
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

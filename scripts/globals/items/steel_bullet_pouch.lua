@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5416
---    Steel Bullet Pouch
---    When used, you will obtain one stack of Steel Bullets
+-- ID: 5416
+-- Steel Bullet Pouch
+-- When used, you will obtain one stack of Steel Bullets
 -----------------------------------------
 
 -----------------------------------------

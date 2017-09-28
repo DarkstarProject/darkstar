@@ -3,8 +3,8 @@
 --   NPC: Kocco Ehllek
 --  Type: Quest Giver
 -- @zone 94
--- @pos -41.465 -2.125 -163.018
--- 
+-- !pos -41.465 -2.125 -163.018
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

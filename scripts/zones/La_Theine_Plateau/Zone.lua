@@ -124,7 +124,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local fallenEgg = GetNPCByID(17195583);
+    local fallenEgg = GetNPCByID(17195584);
     local newPosition = npcUtil.pickNewPosition(fallenEgg:getID(), fallenEggPositions);
 
     fallenEgg:setPos(newPosition.x, newPosition.y, newPosition.z);

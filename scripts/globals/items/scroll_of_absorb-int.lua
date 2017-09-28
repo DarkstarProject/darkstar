@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4878
---    Scroll of Absorb-INT
---    Teaches the black magic Absorb-INT
+-- ID: 4878
+-- Scroll of Absorb-INT
+-- Teaches the black magic Absorb-INT
 -----------------------------------------
 
 -----------------------------------------

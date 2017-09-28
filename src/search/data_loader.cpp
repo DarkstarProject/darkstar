@@ -36,11 +36,11 @@ CDataLoader::CDataLoader()
     SqlHandle = Sql_Malloc();
 
     //	ShowStatus("sqlhandle is allocating\n");
-    if (Sql_Connect(SqlHandle, search_config.mysql_login,
-        search_config.mysql_password,
-        search_config.mysql_host,
+    if (Sql_Connect(SqlHandle, search_config.mysql_login.c_str(),
+        search_config.mysql_password.c_str(),
+        search_config.mysql_host.c_str(),
         search_config.mysql_port,
-        search_config.mysql_database) == SQL_ERROR)
+        search_config.mysql_database.c_str()) == SQL_ERROR)
     {
         ShowError("cant connect\n");
     }
@@ -461,11 +461,11 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 void CDataLoader::ExpireAHItems()
 {
 	Sql_t* sqlH2 = Sql_Malloc();
-	Sql_Connect(sqlH2, search_config.mysql_login,
-		search_config.mysql_password,
-		search_config.mysql_host,
+	Sql_Connect(sqlH2, search_config.mysql_login.c_str(),
+		search_config.mysql_password.c_str(),
+		search_config.mysql_host.c_str(),
 		search_config.mysql_port,
-		search_config.mysql_database);
+		search_config.mysql_database.c_str());
 
 	std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
 					   		T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";

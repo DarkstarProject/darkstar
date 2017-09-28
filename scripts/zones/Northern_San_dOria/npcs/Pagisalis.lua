@@ -3,7 +3,7 @@
 -- NPC:  Pagisalis
 -- Involved In Quest: Enveloped in Darkness
 -- @zone 231
--- @pos 
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -25,13 +25,13 @@ function onTrade(player,npc,trade)
             player:startEvent(0x0233);
         end
     end
-            
-    if (player:hasKeyItem(OLD_POCKET_WATCH) and player:hasKeyItem(OLD_BOOTS) == false) then 
+
+    if (player:hasKeyItem(OLD_POCKET_WATCH) and player:hasKeyItem(OLD_BOOTS) == false) then
         if (trade:hasItemQty(828,1) and trade:getItemCount() == 1) then -- Trade Velvet Cloth
             player:startEvent(0x0025);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0234)
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0232 and option == 0) then
         player:addQuest(SANDORIA,UNDYING_FLAMES);
     elseif (csid == 0x0233) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
         else
             player:tradeComplete();
@@ -94,5 +94,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(OLD_BOOTS);
         player:messageSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
     end
-    
+
 end;

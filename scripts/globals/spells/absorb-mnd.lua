@@ -21,7 +21,13 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(75); -- no effect
     else        
         local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-        local resist = applyResistance(caster,spell,target,dINT,37,0);
+        local params = {};
+        params.diff = nil;
+        params.attribute = MOD_INT;
+        params.skillType = 37;
+        params.bonus = 0;
+        params.effect = nil;
+        resist = applyResistance(caster, target, spell, params);
         if (resist <= 0.125) then
             spell:setMsg(85);
         else

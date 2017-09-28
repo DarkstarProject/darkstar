@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Numaaf
 -- Type: Cooking Normal/Adv. Image Support
--- @pos 54.966 -7 8.328 48
+-- !pos 54.966 -7 8.328 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

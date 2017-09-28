@@ -80,16 +80,16 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
-    local Gasponia_Offset = 16806299;
+    local Gasponia_Offset = 16806327;
 
     if (region:GetRegionID() <= 30) then
     -- TODO: Gasponia's shouldn't "always" poison you. However, in retail regions constantly reapply themselves without having to re-enter the region. In DSP that doesn't happen so I'm leaving it as-is for now.
         for i = 0, 30, 1 do
             if (region:GetRegionID() == i) then
-            local Gasponia_Offset = Gasponia_Offset + (i -1);
+                Gasponia_Offset = Gasponia_Offset + (i -1);
                 GetNPCByID(Gasponia_Offset):openDoor(3);
                 -- print("i is "..i);
-            -- printf("Player is: %s | Flower ID is: %i",player:getName(), Gasponia_Offset);
+                -- printf("Player is: %s | Flower ID is: %i",player:getName(), Gasponia_Offset);
             end
         end
 

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4662
---    Scroll of Stoneskin
---    Teaches the white magic Stoneskin
+-- ID: 4662
+-- Scroll of Stoneskin
+-- Teaches the white magic Stoneskin
 -----------------------------------------
 
 -----------------------------------------

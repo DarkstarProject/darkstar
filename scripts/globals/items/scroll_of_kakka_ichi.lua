@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4968
---    Scroll of Kakka: Ichi
---    Teaches the ninjutsu Kakka: Ichi
+-- ID: 4968
+-- Scroll of Kakka: Ichi
+-- Teaches the ninjutsu Kakka: Ichi
 -----------------------------------------
 
 -----------------------------------------

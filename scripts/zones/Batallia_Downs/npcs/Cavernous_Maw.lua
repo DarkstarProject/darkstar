@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Batallia Downs
 --  NPC: Cavernous Maw
--- @pos -48 0.1 435 105
+-- !pos -48 0.1 435 105
 -- Teleports Players to Batallia Downs [S]
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 501) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
-        player:addTitle(CAIT_SITHS_ASSISTANT);    
+        player:addTitle(CAIT_SITHS_ASSISTANT);
         toMaw(player,1);
     end;
 end;

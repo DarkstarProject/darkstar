@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? 
+-- NPC:  ???
 -- Notes: Involved in Missions: San dOria 8-2
--- @pos -13 -17 -151 159
+-- !pos -13 -17 -151 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

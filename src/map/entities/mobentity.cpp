@@ -546,9 +546,14 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
+    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance && !isCharmed)
+    {
+        return true;
+    }
+
     if (targetFlags & TARGET_NPC)
     {
-        if (allegiance == PInitiator->allegiance && !(m_Behaviour & BEHAVIOUR_NOHELP))
+        if (allegiance == PInitiator->allegiance && !(m_Behaviour & BEHAVIOUR_NOHELP) && !isCharmed)
         {
             return true;
         }
@@ -649,9 +654,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    if (objtype == TYPE_PET && (
-        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON ||
-        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR))
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR)
         action.actiontype = ACTION_PET_MOBABILITY_FINISH;
     else if (PSkill->getID() < 256)
         action.actiontype = ACTION_WEAPONSKILL_FINISH;
@@ -717,12 +720,15 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 
         if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
         {
-            target.animation = PSkill->getPetAnimationID();
+            if(static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR || static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_WYVERN)
+            {
+                target.animation = PSkill->getPetAnimationID();
+            }
             target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
         }
         else
         {
-            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill);
+            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill, &action);
         }
 
         if (msg == 0)
@@ -752,12 +758,12 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.speceffect = SPECEFFECT_RECOIL;
             target.knockback = PSkill->getKnockback();
-            if (first && (PSkill->getSkillchain() != 0))
+            if (first && (PSkill->getPrimarySkillchain() != 0))
             {
-                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getSkillchain());
-                if (PWeaponSkill)
+                if (PSkill->getPrimarySkillchain())
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PSkill->getPrimarySkillchain()),
+                        static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain())) } );
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
@@ -923,12 +929,12 @@ void CMobEntity::DropItems()
 }
 
 
-bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto skill_list_id {getMobMod(MOBMOD_ATTACK_SKILL_LIST)};
     if (skill_list_id)
     {
-        auto attack_range {m_ModelSize};
+        auto attack_range {GetMeleeRange()};
         auto skillList {battleutils::GetMobSkillList(skill_list_id)};
         if (!skillList.empty())
         {
@@ -938,7 +944,8 @@ bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasic
                 attack_range = skill->getDistance();
             }
         }
-        if (distance(loc.p, PTarget->loc.p) > attack_range || !PAI->GetController()->IsAutoAttackEnabled())
+        if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > attack_range ||
+            !PAI->GetController()->IsAutoAttackEnabled())
         {
             return false;
         }

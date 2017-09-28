@@ -1,10 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters
 -- NPC:  Foi-Mui
---  Involved in Quest: Making the Grade
--- Working 100% 
---  @zone = 238
--- @pos = 126 -6 162
+-- Involved in Quest: Making the Grade
+-- !pos 126 -6 162 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x01ae); -- Standard conversation
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

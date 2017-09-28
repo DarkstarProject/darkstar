@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4881
---    Scroll of Sleepga
---    Teaches the black magic Sleepga
+-- ID: 4881
+-- Scroll of Sleepga
+-- Teaches the black magic Sleepga
 -----------------------------------------
 
 -----------------------------------------

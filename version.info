@@ -1,7 +1,10 @@
 #DarkStar Version Info
 
 #Expected Client version (wrong version cannot log in)
-CLIENT_VER: 30170204_1
+CLIENT_VER: 30170905_5
+
+#true to prevent clients not matching CLIENT_VER from logging in 
+ENABLE_VER_LOCK: true
 
 #Current Server Version. Not the same thing as source revision.
 #DSP_VER: Unused because we aren't even close to a "release" yet.

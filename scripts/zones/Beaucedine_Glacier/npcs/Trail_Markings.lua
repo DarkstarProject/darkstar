@@ -2,7 +2,7 @@
 -- Area: Beaucedine Glacier
 --  NPC: Trail Markings
 -- Dynamis-Beaucedine Enter
--- @pos -284 -39 -422 111
+-- !pos -284 -39 -422 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
@@ -26,10 +26,8 @@ end;
 function onTrigger(player,npc)
     if (player:getVar("DynaBeaucedine_Win") == 1) then
         player:startEvent(0x0086,HYDRA_CORPS_INSIGNIA); -- Win CS
-    elseif (player:hasKeyItem(HYDRA_CORPS_COMMAND_SCEPTER) and
-        player:hasKeyItem(HYDRA_CORPS_EYEGLASS) and
-        player:hasKeyItem(HYDRA_CORPS_LANTERN) and
-        player:hasKeyItem(HYDRA_CORPS_TACTICAL_MAP)) then
+    elseif (player:hasKeyItem(VIAL_OF_SHROUDED_SAND) and player:hasKeyItem(HYDRA_CORPS_COMMAND_SCEPTER) and
+            player:hasKeyItem(HYDRA_CORPS_EYEGLASS) and player:hasKeyItem(HYDRA_CORPS_LANTERN) and player:hasKeyItem(HYDRA_CORPS_TACTICAL_MAP)) then
         local firstDyna = 0;
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");

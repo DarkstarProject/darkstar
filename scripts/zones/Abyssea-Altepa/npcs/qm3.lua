@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm3 (???)
 -- Spawns Shaula
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

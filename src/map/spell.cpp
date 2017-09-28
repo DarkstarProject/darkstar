@@ -34,27 +34,9 @@
 #include "items/item_weapon.h"
 
 
-CSpell::CSpell(uint16 id)
+CSpell::CSpell(SpellID id)
 {
     m_ID = id;
-
-    m_radius            = 0;
-    m_mpCost            = 0;
-    m_castTime          = 0;
-    m_recastTime        = 0;
-    m_animation         = 0;
-    m_AOE               = 0;
-    m_animationTime     = 0;
-    m_skillType         = 0;
-    m_zoneMisc          = 0;
-    m_message           = 0;
-    m_MagicBurstMessage = 0;
-    m_element           = 0;
-    m_spellGroup        = SPELLGROUP_NONE;
-    m_meritId           = 0;
-    m_requirements      = 0;
-
-    memset(m_job, 0, sizeof(m_job));
 }
 
   std::unique_ptr<CSpell> CSpell::clone()
@@ -73,12 +55,12 @@ uint16 CSpell::getTotalTargets()
     return m_totalTargets;
 }
 
-void CSpell::setID(uint16 id)
+void CSpell::setID(SpellID id)
 {
     m_ID = id;
 }
 
-uint16 CSpell::getID()
+SpellID CSpell::getID()
 {
     return m_ID;
 }
@@ -164,23 +146,23 @@ bool CSpell::hasMPCost()
 
 bool CSpell::isHeal()
 {
-    return (getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA || m_ID == 549 || m_ID == 578 || m_ID == 581 || m_ID == 593;
+    return (getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
 }
 
 
 bool CSpell::isCure()
 {
-    return ((m_ID >= 1 && m_ID <= 11) || m_ID == 93 || m_ID == 474 || m_ID == 475);
+    return ((static_cast<uint16>(m_ID) >= 1 && static_cast<uint16>(m_ID) <= 11) || m_ID == SpellID::Cura || m_ID == SpellID::Cura_II || m_ID == SpellID::Cura_III);
 }
 
 bool CSpell::isNa()
 {
-    return (m_ID >= 14 && m_ID <= 20) || m_ID == 143;
+    return (static_cast<uint16>(m_ID) >= 14 && static_cast<uint16>(m_ID) <= 20) || m_ID == SpellID::Erase;
 }
 
 bool CSpell::canHitShadow()
 {
-    return m_ID != 244 && canTargetEnemy();
+    return m_ID != SpellID::Meteor_II && canTargetEnemy();
 }
 
 bool CSpell::dealsDamage()
@@ -437,7 +419,7 @@ namespace spell
             {
                 int8* contentTag;
                 CSpell* PSpell = nullptr;
-                uint16 id = Sql_GetUIntData(SqlHandle,0);
+                SpellID id = (SpellID)Sql_GetUIntData(SqlHandle,0);
 
                 if ((SPELLGROUP)Sql_GetIntData(SqlHandle, 3) == SPELLGROUP_BLUE)
                 {
@@ -480,7 +462,7 @@ namespace spell
                     PSpell->setRadius(10);
                 }
 
-                PSpellList[PSpell->getID()] = PSpell;
+                PSpellList[static_cast<uint16>(PSpell->getID())] = PSpell;
             }
         }
 
@@ -572,12 +554,12 @@ namespace spell
     }
 
     //Get Spell By ID
-    CSpell* GetSpell(uint16 SpellID)
+    CSpell* GetSpell(SpellID SpellID)
     {
-        return PSpellList[SpellID];
+        return PSpellList[static_cast<size_t>(SpellID)];
     }
 
-    bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
+    bool CanUseSpell(CBattleEntity* PCaster, SpellID SpellID)
     {
         CSpell* spell = GetSpell(SpellID);
         return CanUseSpell(PCaster, spell);
@@ -594,7 +576,7 @@ namespace spell
             uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
             uint8 requirements = spell->getRequirements();
 
-            if (PCaster->objtype == TYPE_MOB)
+            if (PCaster->objtype == TYPE_MOB || (PCaster->objtype == TYPE_PET && static_cast<CPetEntity*>(PCaster)->getPetType() == PETTYPE_AUTOMATON))
             {
                 // cant cast cause im hidden or untargetable
                 if (PCaster->IsNameHidden() || static_cast<CMobEntity*>(PCaster)->IsUntargetable())
@@ -695,11 +677,11 @@ namespace spell
 
     // This is a utility method for mobutils, when we want to work out if we can give monsters a spell
     // but they are on an odd job (e.g. PLDs getting -ga3)
-    bool CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level)
+    bool CanUseSpellWith(SpellID spellId, JOBTYPE job, uint8 level)
     {
         if (GetSpell(spellId) != nullptr)
         {
-            uint8 jobMLevel = PSpellList[spellId]->getJob(job);
+            uint8 jobMLevel = PSpellList[static_cast<size_t>(spellId)]->getJob(job);
 
             return level > jobMLevel;
         }

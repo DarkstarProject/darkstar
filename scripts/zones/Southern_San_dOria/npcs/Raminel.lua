@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC:  Raminel
 -- Involved in Quests: Riding on the Clouds
--- @pos -56 2 -21 230
+-- !pos -56 2 -21 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

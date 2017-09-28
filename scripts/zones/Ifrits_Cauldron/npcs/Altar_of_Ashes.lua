@@ -2,7 +2,7 @@
 -- Area: Ifrit's Cauldron
 -- NPC: Altar of Ashes
 -- Involved in Quest: Greetings to the Guardian
--- @pos 16 .1 -58 205
+-- !pos 16 .1 -58 205
 -----------------------------------
 
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
@@ -15,7 +15,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
-    
+
     if (Guardian == QUEST_ACCEPTED and trade:hasItemQty(4596,1)) then
         player:messageSpecial(ALTAR_OFFERING,0,4596);
         player:setVar("PamamaVar",1); --Set variable to reflect first completion of quest
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
         player:setVar("PamamaVar",2); --Set variable to reflect repeat of quest, not first time
         player:tradeComplete();
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
     local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
-    
+
     if (Guardian == QUEST_ACCEPTED and player:getVar("PamamaVar") == 1 or player:getVar("PamamaVar") == 2) then
         player:messageSpecial(ALTAR_COMPLETED);
     elseif (Guardian == QUEST_ACCEPTED and player:getVar("PamamaVar") == 0) then

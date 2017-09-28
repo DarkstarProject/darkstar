@@ -3,8 +3,8 @@
 --   NPC: Romaa Mihgo
 --  Type: Standard NPC
 -- @zone 94
--- @pos -1.967 -3 -26.337
--- 
+-- !pos -1.967 -3 -26.337
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

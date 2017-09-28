@@ -3,7 +3,7 @@
 --   NPC: Dohhel
 --  Type: Event Scene Replayer
 -- @zone 246
--- @pos -156.031 -2 6.051
+-- !pos -156.031 -2 6.051
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

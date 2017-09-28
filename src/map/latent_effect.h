@@ -34,23 +34,23 @@ enum LATENT
     LATENT_HP_OVER_PERCENT          = 1,  //hp more than % - PARAM: HP PERCENT
     LATENT_HP_UNDER_TP_UNDER_100    = 2,  //hp less than or equal to %, tp under 100 - PARAM: HP PERCENT
     LATENT_HP_OVER_TP_UNDER_100     = 3,  //hp more than %, tp over 100 - PARAM: HP PERCENT
-    LATENT_HP_OVER_VISIBLE_GEAR     = 46, //hp more than or equal to %, calculated using HP bonuses from visible gear only 
     LATENT_MP_UNDER_PERCENT         = 4,  //mp less than or equal to % - PARAM: MP PERCENT
     LATENT_MP_UNDER                 = 5,  //mp less than # - PARAM: MP #
-    LATENT_MP_OVER                  = 55, //mp greater than # - PARAM: MP #
-    LATENT_WEAPON_DRAWN_MP_OVER     = 56, //while weapon is drawn and mp greater than # - PARAM: MP #
-    LATENT_MP_UNDER_VISIBLE_GEAR    = 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
     LATENT_TP_UNDER                 = 6,  //tp under # and during WS - PARAM: TP VALUE
     LATENT_TP_OVER                  = 7,  //tp over # - PARAM: TP VALUE
     LATENT_SUBJOB                   = 8,  //subjob - PARAM: JOBTYPE
     LATENT_PET_ID                   = 9,  //pettype - PARAM: PETID
     LATENT_WEAPON_DRAWN             = 10, //weapon drawn
     LATENT_WEAPON_SHEATHED          = 11, //weapon sheathed
+    //                              = 12  //Unused
     LATENT_STATUS_EFFECT_ACTIVE     = 13, //status effect on player - PARAM: EFFECTID
-    LATENT_FOOD_ACTIVE              = 49, //food effect (foodId) active - PARAM: FOOD ITEMID
     LATENT_NO_FOOD_ACTIVE           = 14, //no food effects active on player
     LATENT_PARTY_MEMBERS            = 15, //party size # - PARAM: # OF MEMBERS
     LATENT_PARTY_MEMBERS_IN_ZONE    = 16, //party size # and members in zone - PARAM: # OF MEMBERS
+    //                              = 17  //Unused
+    //                              = 18  //Unused
+    //                              = 19  //Unused
+    //                              = 20  //Unused
     LATENT_AVATAR_IN_PARTY          = 21, //party has a specific avatar - PARAM: same as globals/pets.lua (21 for any avatar)
     LATENT_JOB_IN_PARTY             = 22, //party has job - PARAM: JOBTYPE
     LATENT_ZONE                     = 23, //in zone - PARAM: zoneid
@@ -73,13 +73,19 @@ enum LATENT
     LATENT_JOB_LEVEL_ODD            = 41,
     LATENT_JOB_LEVEL_EVEN           = 42,
     LATENT_WEAPON_DRAWN_HP_UNDER    = 43, //PARAM: HP PERCENT
+    //                              = 44  //Unused
+    LATENT_MP_UNDER_VISIBLE_GEAR    = 45, //mp less than or equal to %, calculated using MP bonuses from visible gear only
+    LATENT_HP_OVER_VISIBLE_GEAR     = 46, //hp more than or equal to %, calculated using HP bonuses from visible gear only 
     LATENT_WEAPON_BROKEN            = 47,
     LATENT_IN_DYNAMIS               = 48,
+    LATENT_FOOD_ACTIVE              = 49, //food effect (foodId) active - PARAM: FOOD ITEMID
     LATENT_JOB_LEVEL_BELOW          = 50, //PARAM: level
     LATENT_JOB_LEVEL_ABOVE          = 51, //PARAM: level
     LATENT_WEATHER_ELEMENT          = 52, //PARAM: 0: NONE, 1: FIRE, 2: EARTH, 3: WATER, 4: WIND, 5: ICE, 6: THUNDER, 7: LIGHT, 8: DARK
     LATENT_NATION_CONTROL           = 53, //checks if player region is under nation's control - PARAM: 0: Under own nation's control, 1: Outside own nation's control
-    LATENT_ZONE_HOME_NATION         = 54  //in zone and citizen of nation (aketons)
+    LATENT_ZONE_HOME_NATION         = 54 , //in zone and citizen of nation (aketons)
+    LATENT_MP_OVER                  = 55, //mp greater than # - PARAM: MP #
+    LATENT_WEAPON_DRAWN_MP_OVER     = 56 //while weapon is drawn and mp greater than # - PARAM: MP #
 };
 
 #define MAX_LATENTEFFECTID    57

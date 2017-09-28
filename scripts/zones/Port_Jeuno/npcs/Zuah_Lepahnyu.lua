@@ -2,7 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: ZuahLepahnyu
 -- Title Change NPC
--- @pos 0 0 8 246
+-- !pos 0 0 8 246
 -----------------------------------
 
 require("scripts/globals/titles");

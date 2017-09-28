@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Wall of Banishing
 -- Used In Quest: Whence Blows the Wind
--- @pos 181 0.1 -218 149
+-- !pos 181 0.1 -218 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (npc:getAnimation() == 9) then
         if (player:hasKeyItem(CRIMSON_ORB)) then
             player:startEvent(0x002a);
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
             player:messageSpecial(MAY_BE_SOME_WAY_TO_BREAK);
             player:setVar("miniQuestForORB_CS",99);
         end
-    end    
+    end
 end;
 
 -----------------------------------

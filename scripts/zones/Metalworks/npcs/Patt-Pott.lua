@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Patt-Pott
 -- Type: Consulate Representative
--- @pos 23 -17 42 237
+-- !pos 23 -17 42 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -14,13 +14,13 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK and player:getVar("MissionStatus") == 5) then
         if (trade:hasItemQty(599,1) and trade:getItemCount() == 1) then -- Trade Mythril Sand
             player:startEvent(0x00ff);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -28,10 +28,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     currentMission = player:getCurrentMission(WINDURST);
     MissionStatus = player:getVar("MissionStatus");
-    
+
     if (currentMission == THE_THREE_KINGDOMS) then
         if (MissionStatus == 1) then
             player:startEvent(0x00fe);
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x00fa);
     end
-    
+
 end;
 
 -----------------------------------
@@ -70,7 +70,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x00fe) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_BASTOK);
         player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
@@ -88,5 +88,5 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",7);
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
     end
-    
+
 end;

@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Illeuse
 -- @zone 80
--- @pos -44.203 2 -36.216
+-- !pos -44.203 2 -36.216
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -49,5 +49,5 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         local mask = player:getVar("GiftsOfGriffonPlumes");
         player:setMaskBit(mask,"GiftsOfGriffonPlumes",2,true);
-    end    
+    end
 end;

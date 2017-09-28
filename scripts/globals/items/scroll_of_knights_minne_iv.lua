@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5000
---    Scroll of Knights Minne IV
---    Teaches the song Mages Ballad IV
+-- ID: 5000
+-- Scroll of Knights Minne IV
+-- Teaches the song Mages Ballad IV
 -----------------------------------------
 
 -----------------------------------------

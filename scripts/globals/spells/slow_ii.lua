@@ -18,35 +18,44 @@ end;
 
 function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local merits = caster:getMerit(MERIT_SLOW_II);
 
-    local potency = 230 + math.floor(dMND * 1.6);
+    local potency = 244 + math.floor(dMND * 116/75);
 
-    -- ([230] + [y * 10] + [floor(dMND * 1.6)])/1024
-
-    if (potency > 350) then
-        potency = 350;
+    if (potency > 360) then
+        potency = 360;
     end
     
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (potency < 128) then
+        potency = 128;
+    end
+    
+    if (merits > 1) then
+        potency = potency + ((merits - 1) * 10);
+    end;
+    
+    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         potency = potency * 2;
     end
 
-    local merits = caster:getMerit(MERIT_SLOW_II);
-
-    --Power.
-    local power = (potency  + (merits * 10));
-
     --Duration, including resistance.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dMND,35,merits*2,EFFECT_SLOW);
+    local duration = 180;
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_MND;
+    params.skillType = 35;
+    params.bonus = merits*2;
+    params.effect = EFFECT_SLOW;
+    duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then --Do it!
     
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
-        if (target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
+        if (target:addStatusEffect(EFFECT_SLOW,potency,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);

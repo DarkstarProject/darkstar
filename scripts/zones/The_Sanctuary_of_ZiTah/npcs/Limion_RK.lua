@@ -2,7 +2,7 @@
 -- Area: The Sanctuary of Zi'Tah
 --  NPC: Limion, R.K.
 -- Border Conquest Guards
--- @pos -252.454 -1.958 624.366 121
+-- !pos -252.454 -1.958 624.366 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4901
---    Water Spirit Pact
---    Teaches the summoning magic Water Spirit
+-- ID: 4901
+-- Water Spirit Pact
+-- Teaches the summoning magic Water Spirit
 -----------------------------------------
 
 -----------------------------------------

@@ -2,7 +2,7 @@
 -- Area: Metalworks
 --  NPC: Ghemp
 -- Type: Smithing Guild Master
--- @pos -109 2 27 237
+-- !pos -109 2 27 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

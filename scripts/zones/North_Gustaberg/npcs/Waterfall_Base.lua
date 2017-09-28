@@ -2,7 +2,7 @@
 -- Area: North Gustaberg
 -- NPC:  Waterfall Base
 -- Involved In Quest: Drachenfall
--- @pos -217.594 98.644 464.722 106
+-- !pos -217.594 98.644 464.722 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------

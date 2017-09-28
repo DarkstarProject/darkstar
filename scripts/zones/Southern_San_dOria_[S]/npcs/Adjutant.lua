@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Adjutant
 -- @zone 80
--- @pos -197 -1 39
+-- !pos -197 -1 39
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5051
---    Scroll of Water Carol
---    Teaches the song Water Carol
+-- ID: 5051
+-- Scroll of Water Carol
+-- Teaches the song Water Carol
 -----------------------------------------
 
 -----------------------------------------

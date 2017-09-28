@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC:  Lih Pituu
 -- Type: Bonecraft Adv. Image Support
--- @pos -5.471 -6.25 -141.211 241
+-- !pos -5.471 -6.25 -141.211 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

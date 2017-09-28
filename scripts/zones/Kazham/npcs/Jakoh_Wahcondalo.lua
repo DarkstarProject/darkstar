@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Kazham
 -- NPC:  Jakoh Wahcondalo
--- @pos 101 -16 -115 250
+-- !pos 101 -16 -115 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getCurrentMission(ZILART) == KAZAMS_CHIEFTAINESS) then
         player:startEvent(0x0072);
     elseif (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0071);
     end
-    
+
 end;
 
 -----------------------------------
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0072) then
         player:addKeyItem(SACRIFICIAL_CHAMBER_KEY);
         player:messageSpecial(KEYITEM_OBTAINED,SACRIFICIAL_CHAMBER_KEY);
@@ -59,5 +59,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0109) then
         player:setVar("MissionStatus",3);
     end
-    
+
 end;

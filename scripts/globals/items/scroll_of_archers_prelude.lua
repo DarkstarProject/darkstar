@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5010
---    Scroll of Archers Prelude
---    Teaches the song Archers Prelude
+-- ID: 5010
+-- Scroll of Archers Prelude
+-- Teaches the song Archers Prelude
 -----------------------------------------
 
 -----------------------------------------

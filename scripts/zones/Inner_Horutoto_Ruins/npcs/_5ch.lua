@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
 -- NPC:  _5ch (Gate of Thunder)
--- @pos -331 0 139 192
+-- !pos -331 0 139 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -20,12 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     player:messageSpecial(DOOR_FIRMLY_CLOSED);
     return 1;
-    
-end; 
-        
+
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

@@ -42,14 +42,14 @@ class CLatentEffectContainer
 {
 public:
 
-	void CheckLatentsHP(int32 hp);
-	void CheckLatentsTP(int16 tp);
-	void CheckLatentsMP(int32 mp);
+	void CheckLatentsHP();
+	void CheckLatentsTP();
+	void CheckLatentsMP();
 	void CheckLatentsEquip(uint8 slot);
 	void CheckLatentsWeaponDraw(bool drawn);
 	void CheckLatentsStatusEffect();
 	void CheckLatentsFoodEffect();
-	void CheckLatentsRollSong(bool active);
+	void CheckLatentsRollSong();
 	void CheckLatentsDay();
 	void CheckLatentsMoonPhase();
 	void CheckLatentsHours();
@@ -58,16 +58,16 @@ public:
 	void CheckLatentsPartyJobs();
 	void CheckLatentsPartyAvatar();
 	void CheckLatentsJobLevel();
-	void CheckLatentsPetType(uint8 petID);
+	void CheckLatentsPetType();
 	void CheckLatentsTime();
 	void CheckLatentsWeaponBreak(uint8 slot);
 	void CheckLatentsZone();
+    void CheckLatentsWeather();
+    void CheckLatentsWeather(uint16 weather);
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);
 	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot);
-	void DelLatentEffects(uint8 reqLvl, uint8 slot);   
-
-    CLatentEffect* GetLatentEffect(uint8 slot, uint16 modId);
+	void DelLatentEffects(uint8 reqLvl, uint8 slot);
 
 	 CLatentEffectContainer(CCharEntity* PEntity);
 	~CLatentEffectContainer();
@@ -75,8 +75,11 @@ public:
 private:
 
 	CCharEntity* m_POwner;
-
 	std::vector<CLatentEffect*>	m_LatentEffectList;
+
+    void ProcessLatentEffects(std::function <void(CLatentEffect*)> logic);
+    void ProcessLatentEffect(CLatentEffect* latentEffect);
+    void ApplyLatentEffect(CLatentEffect* effect, bool expression);
 };
 
 #endif

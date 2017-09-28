@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5100
---    Scroll of Boost-CHR
---    Teaches the white magic Boost-CHR
+-- ID: 5100
+-- Scroll of Boost-CHR
+-- Teaches the white magic Boost-CHR
 -----------------------------------------
 
 -----------------------------------------

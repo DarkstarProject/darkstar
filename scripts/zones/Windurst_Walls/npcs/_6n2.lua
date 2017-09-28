@@ -3,16 +3,16 @@
 -- Door: House of the Hero
 -- Involved in Mission 2-1
 -- Involved In Quest: Know One's Onions, Onion Rings, The Puppet Master, Class Reunion
--- @pos -26 -13 260 239
+-- !pos -26 -13 260 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Walls/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -34,19 +34,25 @@ function onTrigger(player,npc)
         player:startEvent(0x0151);
     else
         ----------------------------------------------------
-        -- Carbuncle Debacle
-        if (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
-            player:startEvent(0x019f); -- Carby begs for your help
+        -- SMN unlock quest
+        if (player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_AVAILABLE and player:getMainLvl() >= 30 and player:hasItem(1125)) then
+            player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
+        elseif (player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+            player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
         ----------------------------------------------------
-        -- Class Reunion
-        elseif (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
-            player:startEvent(0x019d); -- Carby asks for your help again.
-        ----------------------------------------------------
-        -- The Puppet Master
-        elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster ~= QUEST_ACCEPTED and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
+        -- The Puppet Master (AF weapon)
+        elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_AVAILABLE and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
             player:startEvent(0x0192); -- Carby asks for your help, visit Juroro
         elseif (player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getVar("ThePuppetMasterProgress") == 1) then
             player:startEvent(0x0193); -- reminder to visit Juroro
+        ----------------------------------------------------
+        -- Class Reunion (AF pants)
+        elseif (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
+            player:startEvent(0x019d); -- Carby asks for your help again.
+        ----------------------------------------------------
+        -- Carbuncle Debacle (AF head)
+        elseif (player:getMainLvl() >= AF3_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
+            player:startEvent(0x019f); -- Carby begs for your help
         ----------------------------------------------------
         elseif (player:hasKeyItem(JOKER_CARD)) then
             player:startEvent(0x0183,0,JOKER_CARD);
@@ -56,10 +62,6 @@ function onTrigger(player,npc)
             player:startEvent(0x0121);
         elseif (player:getVar("KnowOnesOnions") == 1) then
             player:startEvent(0x0120,0,4387);
-        elseif (player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_AVAILABLE and player:getMainLvl() >= 30 and player:hasItem(1125)) then
-            player:startEvent(0x0180,1125,1125,1125,1125,1125,1125,1125,1125);
-        elseif (player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
-            player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
         else
             player:messageSpecial(DOORS_SEALED_SHUT); -- "The doors are firmly sealed shut."
         end;

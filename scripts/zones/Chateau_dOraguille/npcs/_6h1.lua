@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- Door: Prince Regent's Rm
 -- Starts and Finishes Quest: Prelude of Black and White (Start), Pieuje's Decision (Start)
--- @pos -37 -3 31 233
+-- !pos -37 -3 31 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -24,11 +24,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     messengerFromBeyond = player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND);
     preludeOfBandW = player:getQuestStatus(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
     pieujesDecision = player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION);
-    
+
     if (player:getMainJob() == JOBS.WHM and player:getMainLvl() >= AF2_QUEST_LEVEL) then
         if (messengerFromBeyond == QUEST_COMPLETED and preludeOfBandW == QUEST_AVAILABLE) then
             player:startEvent(0x0227); -- Start Quest "Prelude of Black and White"
@@ -40,9 +40,9 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x020b);
     end
-    
+
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -61,7 +61,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0227) then
         player:addQuest(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
     elseif (csid == 0x0228) then
@@ -69,5 +69,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x004A) then
         player:setVar("Cutscenes_8-2",2);
     end
-    
+
 end;

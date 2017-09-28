@@ -195,7 +195,7 @@ namespace battleutils
         // Load all mob skills
         const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
+        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback, primary_sc, secondary_sc, tertiary_sc \
         FROM mob_skills;";
 
         int32 ret = Sql_Query(SqlHandle, specialQuery);
@@ -215,6 +215,9 @@ namespace battleutils
                 PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
                 PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
                 PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
+                PMobSkill->setPrimarySkillchain(Sql_GetUIntData(SqlHandle, 11));
+                PMobSkill->setSecondarySkillchain(Sql_GetUIntData(SqlHandle, 12));
+                PMobSkill->setTertiarySkillchain(Sql_GetUIntData(SqlHandle, 13));
                 PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
                 g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
             }
@@ -508,7 +511,7 @@ namespace battleutils
             case JOB_SAM: id = 474; break;
             case JOB_NIN: id = 475; break;
             case JOB_DRG: id = 476; break;
-            case JOB_SMN: id = 2000; break;  // alt 2000
+            case JOB_SMN: id = 2000; break;  // alt 478
                 // case JOB_BLU: id = 1933; break; // alt 2001
                 // case JOB_COR: id = 1934; break; // alt 2002
                 // case JOB_PUP: id = 1935; break; // alt 2003
@@ -796,6 +799,9 @@ namespace battleutils
                     break;
             }
 
+            // Check for status effect proc. Todo: move to scripts soon™ after item additionalEffect refactor Teo is working on
+            HandleSpikesStatusEffect(PAttacker, PDefender, Action);
+
             if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
             {
                 ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
@@ -864,6 +870,9 @@ namespace battleutils
                 PAttacker->addHP(-Action->spikesParam);
             }
 
+            // Temp till moved to script.
+            HandleSpikesStatusEffect(PAttacker, PDefender, Action);
+
             return true;
         }
 
@@ -877,14 +886,17 @@ namespace battleutils
         {
             lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
         }
+
         switch (Action->spikesEffect)
         {
             case SUBEFFECT_CURSE_SPIKES:
+            {
                 if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CURSE, EFFECT_CURSE, 15, 0, 180));
                 }
                 break;
+            }
             case SUBEFFECT_ICE_SPIKES:
             {
                 if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
@@ -968,7 +980,8 @@ namespace battleutils
         }
 
         // Enspell overwrites weapon effects
-        if (PAttacker->getMod(Mod::ENSPELL) > 0)
+        if (PAttacker->getMod(Mod::ENSPELL) > 0 && (PAttacker->getMod(Mod::ENSPELL_CHANCE) == 0 ||
+            PAttacker->getMod(Mod::ENSPELL_CHANCE) > dsprand::GetRandomNumber(100)))
         {
             SUBEFFECT subeffects[8] = { SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE, SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
                 SUBEFFECT_WATER_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_LIGHTNING_DAMAGE };
@@ -1043,7 +1056,18 @@ namespace battleutils
         }
         //check weapon for additional effects
         else if (PAttacker->objtype == TYPE_PC && battleutils::GetScaledItemModifier(PAttacker, weapon, Mod::ADDITIONAL_EFFECT) > 0 &&
-                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+        {
+            if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
+            {
+                Action->addEffectMessage = 384;
+            }
+        }
+        //check script for grip if main failed
+        else if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB) &&
+            weapon == PAttacker->m_Weapons[SLOT_MAIN] && static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB))->getSkillType() == SKILL_NON &&
+            battleutils::GetScaledItemModifier(PAttacker, static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB), Mod::ADDITIONAL_EFFECT) > 0 &&
+            luautils::OnAdditionalEffect(PAttacker, PDefender, static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB)), Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
@@ -1053,6 +1077,10 @@ namespace battleutils
         else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
         {
             luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+            if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
+            {
+                Action->addEffectMessage = 384;
+            }
         }
         else
         {
@@ -1692,6 +1720,15 @@ namespace battleutils
             if (PMob->m_EcoSystem != SYSTEM_UNDEAD && PMob->m_EcoSystem != SYSTEM_BEASTMEN)
                 return 0;
         }
+        else if (PDefender->objtype == TYPE_PET && static_cast<CPetEntity*>(PDefender)->getPetType() == PETTYPE_AUTOMATON && PDefender->GetMJob() == JOB_PLD)
+        {
+            float skillmodifier = (PDefender->GetSkill(SKILL_AME) - attackskill) * 0.215f;
+            base = PDefender->getMod(Mod::SHIELDBLOCKRATE);
+            if (base <= 0)
+                return 0;
+            else
+                return base + (int32)skillmodifier;
+        }
         else
             return 0;
 
@@ -1866,6 +1903,19 @@ namespace battleutils
                         //Shield Mastery
                         if ((dsp_max(damage - (PDefender->getMod(Mod::PHALANX) + PDefender->getMod(Mod::STONESKIN)), 0) > 0)
                             && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
+                        {
+                            // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
+                            // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
+                            PDefender->addTP(PDefender->getMod(Mod::SHIELD_MASTERY_TP));
+                        }
+                    }
+                    else if (PDefender->objtype == TYPE_PET)
+                    {
+                        absorb = 50;
+
+                        //Shield Mastery
+                        if ((dsp_max(damage - (PDefender->getMod(Mod::PHALANX) + PDefender->getMod(Mod::STONESKIN)), 0) > 0)
+                            && (PDefender->getMod(Mod::SHIELD_MASTERY_TP)))
                         {
                             // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
                             // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
@@ -2070,9 +2120,18 @@ namespace battleutils
 
         if (PDefender->objtype == TYPE_MOB)
         {
-            PDefender->m_OwnerID.id = PChar->id;
-            PDefender->m_OwnerID.targid = PChar->targid;
-            PDefender->updatemask |= UPDATE_STATUS;
+            if (PChar->PMaster != nullptr)
+            {
+                PDefender->m_OwnerID.id = PChar->PMaster->id;
+                PDefender->m_OwnerID.targid = PChar->PMaster->targid;
+                PDefender->updatemask |= UPDATE_STATUS;
+            }
+            else
+            {
+                PDefender->m_OwnerID.id = PChar->id;
+                PDefender->m_OwnerID.targid = PChar->targid;
+                PDefender->updatemask |= UPDATE_STATUS;
+            }
         }
 
         if (damage > 0)
@@ -2803,7 +2862,7 @@ namespace battleutils
         return SC_NONE;
     }
 
-    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
+    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, uint32 id, std::initializer_list<SKILLCHAIN_ELEMENT> skillProperties)
     {
         CStatusEffect* PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
         CStatusEffect* PCBEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_CHAINBOUND, 0);
@@ -2812,16 +2871,11 @@ namespace battleutils
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 10, 0, 0, 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
         {
-            std::list<SKILLCHAIN_ELEMENT> skillProperties;
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
-
             std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
 
             // Chainbound active on target
@@ -2847,7 +2901,7 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 10, 0, 0, 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
 
@@ -2855,13 +2909,13 @@ namespace battleutils
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower() && !PSCEffect->GetSubPower());
+                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower())
+                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
                     {
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
@@ -2869,7 +2923,7 @@ namespace battleutils
                     }
                     else
                     {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PSCEffect->GetPower()));
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
                     }
@@ -2899,7 +2953,7 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetPower(PWeaponSkill->getID());
+            PSCEffect->SetPower(id);
             PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;
@@ -2915,7 +2969,7 @@ namespace battleutils
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, 0, 0, 10, 0, PSpell->getID(), 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, static_cast<uint16>(PSpell->getID()), 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
@@ -2949,20 +3003,20 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, 0, 0, 10, 0, PSpell->getID(), 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, static_cast<uint16>(PSpell->getID()), 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
             }
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower() && !PSCEffect->GetSubPower());
+                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower())
+                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
                     {
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
@@ -2970,7 +3024,7 @@ namespace battleutils
                     }
                     else
                     {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PSCEffect->GetPower()));
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
                     }
@@ -2999,8 +3053,8 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetSubPower(PSpell->getID());
-            PSCEffect->SetPower(0);
+            PSCEffect->SetPower(static_cast<uint16>(PSpell->getID()));
+            PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;
         }
@@ -3393,9 +3447,9 @@ namespace battleutils
 
             float xoffset = cos(angle) / 2;
             float zoffset = sin(angle) / 2;
-            float maxXpoint = taUserX + xoffset;
+            float maxXpoint = taUserX - xoffset;
             float maxZpoint = taUserZ + zoffset;
-            float minXpoint = taUserX - xoffset;
+            float minXpoint = taUserX + xoffset;
             float minZpoint = taUserZ - zoffset;
             maxSlope = (maxZpoint - mobZ) / (maxXpoint - mobX);
             minSlope = (minZpoint - mobZ) / (minXpoint - mobX);
@@ -3411,31 +3465,23 @@ namespace battleutils
                         CBattleEntity* member = taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
                         if (taUser->id != member->id && distance(member->loc.p, PMob->loc.p) <= distance(taUser->loc.p, PMob->loc.p))
                         {
+                            float memberXdif = member->loc.p.x - mobX;
+                            float memberZdif = member->loc.p.z - mobZ;
                             if (zDependent)
                             {
-                                //is member between taUser and PMob on x line?
-                                if ((member->loc.p.x <= taUserX && member->loc.p.x >= mobX) ||
-                                    (member->loc.p.x >= taUserX && member->loc.p.x <= mobX))
+                                if ((memberZdif <= memberXdif * maxSlope) &&
+                                    (memberZdif >= memberXdif * minSlope))
                                 {
-                                    if ((member->loc.p.z - mobZ <= (member->loc.p.x - mobX)*maxSlope) &&
-                                        (member->loc.p.z - mobZ >= (member->loc.p.x - mobX)*minSlope))
-                                    {
-                                        //finally found a TA partner
-                                        return member;
-                                    }
+                                    //finally found a TA partner
+                                    return member;
                                 }
                             }
                             else {
-                                //is member between taUser and PMob on z line?
-                                if ((member->loc.p.z <= taUserZ && member->loc.p.z >= mobZ) ||
-                                    (member->loc.p.z >= taUserZ && member->loc.p.z <= mobZ))
+                                if ((memberXdif <= memberZdif * maxSlope) &&
+                                    (memberXdif >= memberZdif * minSlope))
                                 {
-                                    if ((member->loc.p.x - mobX <= (member->loc.p.z - mobZ)*maxSlope) &&
-                                        (member->loc.p.x - mobX >= (member->loc.p.z - mobZ)*minSlope))
-                                    {
-                                        //finally found a TA partner
-                                        return member;
-                                    }
+                                    //finally found a TA partner
+                                    return member;
                                 }
                             }
                         }
@@ -3448,31 +3494,23 @@ namespace battleutils
                     CBattleEntity* member = taUser->PParty->members.at(i);
                     if (member->id != taUser->id && distance(member->loc.p, PMob->loc.p) <= distance(taUser->loc.p, PMob->loc.p))
                     {
+                        float memberXdif = member->loc.p.x - mobX;
+                        float memberZdif = member->loc.p.z - mobZ;
                         if (zDependent)
                         {
-                            //is member between taUser and PMob on x line?
-                            if ((member->loc.p.x <= taUserX && member->loc.p.x >= mobX) ||
-                                (member->loc.p.x >= taUserX && member->loc.p.x <= mobX))
+                            if ((memberZdif <= memberXdif * maxSlope) &&
+                                (memberZdif >= memberXdif * minSlope))
                             {
-                                if ((member->loc.p.z - mobZ <= (member->loc.p.x - mobX)*maxSlope) &&
-                                    (member->loc.p.z - mobZ >= (member->loc.p.x - mobX)*minSlope))
-                                {
-                                    //finally found a TA partner
-                                    return member;
-                                }
+                                //finally found a TA partner
+                                return member;
                             }
                         }
                         else {
-                            //is member between taUser and PMob on z line?
-                            if ((member->loc.p.z <= taUserZ && member->loc.p.z >= mobZ) ||
-                                (member->loc.p.z >= taUserZ && member->loc.p.z <= mobZ))
+                            if ((memberXdif <= memberZdif * maxSlope) &&
+                                (memberXdif >= memberZdif * minSlope))
                             {
-                                if ((member->loc.p.x - mobX <= (member->loc.p.z - mobZ)*maxSlope) &&
-                                    (member->loc.p.x - mobX >= (member->loc.p.z - mobZ)*minSlope))
-                                {
-                                    //finally found a TA partner
-                                    return member;
-                                }
+                                //finally found a TA partner
+                                return member;
                             }
                         }
                     }
@@ -4502,8 +4540,7 @@ namespace battleutils
             else if (PlayerToAssist->GetBattleTargetID() != 0)
             {
                 // lock on to the new target!
-                auto PTarget {static_cast<CBattleEntity*>(PChar->GetEntity(TargID))};
-                PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
+                PChar->pushPacket(new CLockOnPacket(PChar, PlayerToAssist->GetBattleTarget()));
             }
         }
     }
@@ -4539,8 +4576,12 @@ namespace battleutils
         return PSpell->getAOE();
     }
 
-
     WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
+    {
+        return GetWeather(PEntity, ignoreScholar, zoneutils::GetZone(PEntity->getZone())->GetWeather());
+    }
+
+    WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather)
     {
         WEATHER scholarSpell = WEATHER_NONE;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_FIRESTORM))
@@ -4559,10 +4600,9 @@ namespace battleutils
             scholarSpell = WEATHER_AURORAS;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VOIDSTORM))
             scholarSpell = WEATHER_GLOOM;
-        WEATHER zoneWeather = zoneutils::GetZone(PEntity->getZone())->GetWeather();
 
         if (ignoreScholar || scholarSpell == WEATHER_NONE || zoneWeather == (scholarSpell + 1)) // Strong weather overwrites scholar spell weak weather
-            return zoneWeather;
+            return (WEATHER)zoneWeather;
         else if (scholarSpell == zoneWeather)
             return (WEATHER)(zoneWeather + 1); // Storm spells stack with weather
         else
@@ -4680,7 +4720,7 @@ namespace battleutils
             return false;
         }
 
-        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
+        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->GetMeleeRange() * 2);
 
         std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
         {
@@ -5089,7 +5129,7 @@ namespace battleutils
 
         bool applyArts = true;
         uint16 base = PSpell->getMPCost();
-        if (PSpell->getID() == 478 || PSpell->getID() == 502) //Embrava/Kaustra
+        if (PSpell->getID() == SpellID::Embrava || PSpell->getID() == SpellID::Kaustra) //Embrava/Kaustra
         {
             base = PEntity->health.maxmp * 0.2;
         }
@@ -5164,11 +5204,11 @@ namespace battleutils
             // ShowDebug("Recast before reduction: %u\n", recast);
             if (PEntity->objtype == TYPE_PC)
             {
-                if (PSpell->getID() == 462) // apply Finale recast merits
+                if (PSpell->getID() == SpellID::Magic_Finale) // apply Finale recast merits
                 {
                     recast -= ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_FINALE_RECAST, (CCharEntity*)PEntity) * 1000;
                 }
-                if (PSpell->getID() == 376 || PSpell->getID() == 377 || PSpell->getID() == 463 || PSpell->getID() == 471) // apply Lullaby recast merits
+                if (PSpell->getID() == SpellID::Foe_Lullaby || PSpell->getID() == SpellID::Foe_Lullaby_II || PSpell->getID() == SpellID::Horde_Lullaby || PSpell->getID() == SpellID::Horde_Lullaby_II) // apply Lullaby recast merits
                 {
                     recast -= ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_LULLABY_RECAST, (CCharEntity*)PEntity) * 1000;
                 }

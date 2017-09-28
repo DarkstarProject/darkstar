@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4875
---    Scroll of Absorb-DEX
---    Teaches the black magic Absorb-DEX
+-- ID: 4875
+-- Scroll of Absorb-DEX
+-- Teaches the black magic Absorb-DEX
 -----------------------------------------
 
 -----------------------------------------

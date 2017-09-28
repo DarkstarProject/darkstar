@@ -2,7 +2,7 @@
 -- Area: Heaven's Tower
 -- NPC:  Chumimi
 -- Starts and Finishes Quest: The Three Magi, Recollections
--- @pos 0.1 30 21 242
+-- !pos 0.1 30 21 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4627
---    Scroll of Viruna
---    Teaches the white magic Viruna
+-- ID: 4627
+-- Scroll of Viruna
+-- Teaches the white magic Viruna
 -----------------------------------------
 
 -----------------------------------------

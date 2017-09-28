@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4641
---    Scroll of Diaga
---    Teaches the white magic Diaga
+-- ID: 4641
+-- Scroll of Diaga
+-- Teaches the white magic Diaga
 -----------------------------------------
 
 -----------------------------------------

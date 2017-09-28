@@ -112,11 +112,8 @@ namespace battlefieldutils {
                             if (strcmp(PMob->GetName(), "Maat") == 0) {
                                 mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
-                                // disable players subjob
-                                battlefield->disableSubJob();
-
                                 // disallow subjob, this will enable for later
-                                battlefield->m_RuleMask &= ~(1 << RULES_ALLOW_SUBJOBS);
+                                battlefield->m_RuleMask &= ~RULES_ALLOW_SUBJOBS;
 
                             }
                             PMob->Spawn();
@@ -135,6 +132,11 @@ namespace battlefieldutils {
                 else {
                     ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);
                 }
+            }
+            if (!(battlefield->m_RuleMask & RULES_ALLOW_SUBJOBS))
+            {
+                // disable players subjob
+                battlefield->disableSubJob();
             }
             return true;
         }
@@ -208,7 +210,7 @@ namespace battlefieldutils {
         //after the tick initially due to threading
         if (tick > battlefield->getStartTime() && (tick - battlefield->getStartTime()) > battlefield->getTimeLimit()) {
             ShowDebug("BCNM %i inst:%i - You have exceeded your time limit!\n", battlefield->getID(),
-                battlefield->getBattlefieldNumber(), tick, battlefield->getStartTime(), battlefield->getTimeLimit());
+                battlefield->getBattlefieldNumber());
             return true;
         }
 

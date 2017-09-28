@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5002
---    Scroll of Valor Minuet
---    Teaches the song Valor Minuet
+-- ID: 5002
+-- Scroll of Valor Minuet
+-- Teaches the song Valor Minuet
 -----------------------------------------
 
 -----------------------------------------

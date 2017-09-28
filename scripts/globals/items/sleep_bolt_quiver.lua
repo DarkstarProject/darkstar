@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5337
---    Sleep Bolt Quiver
---    When used, you will obtain one stack of Sleep Bolts
+-- ID: 5337
+-- Sleep Bolt Quiver
+-- When used, you will obtain one stack of Sleep Bolts
 -----------------------------------------
 
 -----------------------------------------

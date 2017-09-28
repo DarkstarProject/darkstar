@@ -34,9 +34,11 @@ This file is part of DarkStar-server source code.
 #include "entities/charentity.h"
 
 #include "packets/message_standard.h"
+#include "packets/message_system.h"
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
+#include "utils/charutils.h"
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
 #include "items/item_linkshell.h"
@@ -201,6 +203,18 @@ namespace message
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     return;
                 }
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    // Target is blocking assistance
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    break;
+                }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
@@ -282,14 +296,27 @@ namespace message
         }
         case MSG_PT_RELOAD:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
-            if (PChar)
+            if (extra->size() == 8)
             {
-                PChar->ForAlliance([](CBattleEntity* PMember)
+                CCharEntity* PChar = zoneutils::GetCharToUpdate(RBUFL(extra->data(), 4), RBUFL(extra->data(), 0));
+                if (PChar)
                 {
-                    ((CCharEntity*)PMember)->ReloadPartyInc();
-                });
+                    PChar->ReloadPartyInc();
+                    break;
+                }
             }
+            else
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                if (PChar)
+                {
+                    PChar->ForAlliance([](CBattleEntity* PMember)
+                    {
+                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                    });
+                }
+            }
+
             break;
         }
         case MSG_PT_DISBAND:
@@ -345,6 +372,66 @@ namespace message
                 {
                     PChar->PLinkshell1->RemoveMemberByName((int8*)extra->data() + 4);
                 }
+            }
+            else if (PChar && PChar->PLinkshell2 && PChar->PLinkshell2->getID() == RBUFL(extra->data(), 24))
+            {
+                uint8 kickerRank = RBUFB(extra->data(), 28);
+                CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
+                if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
+                {
+                    PChar->PLinkshell2->RemoveMemberByName((int8*)extra->data() + 4);
+                }
+            }
+            break;
+        }
+        case MSG_SEND_TO_ZONE:
+        {
+            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+
+            if (PChar && PChar->loc.zone)
+            {
+                uint32 requester = RBUFL(extra->data(), 4);
+
+                if (requester != 0)
+                {
+                    char buf[30];
+                    memset(&buf[0], 0, sizeof(buf));
+
+                    WBUFL(&buf, 0) = requester;
+                    WBUFW(&buf, 8) = PChar->getZone();
+                    WBUFF(&buf, 10) = PChar->loc.p.x;
+                    WBUFF(&buf, 14) = PChar->loc.p.y;
+                    WBUFF(&buf, 18) = PChar->loc.p.z;
+                    WBUFB(&buf, 22) = PChar->loc.p.rotation;
+                    WBUFL(&buf, 23) = PChar->m_moghouseID;
+
+                    message::send(MSG_SEND_TO_ZONE, &buf, sizeof(buf), nullptr);
+                    break;
+                }
+
+                uint16 zoneId = RBUFW(extra->data(), 8);
+                float x = RBUFF(extra->data(), 10);
+                float y = RBUFF(extra->data(), 14);
+                float z = RBUFF(extra->data(), 18);
+                uint8 rot = RBUFB(extra->data(), 22);
+                uint32 moghouseID = RBUFL(extra->data(), 23);
+
+                PChar->updatemask = 0;
+
+                PChar->m_moghouseID = 0;
+
+                PChar->loc.p.x = x;
+                PChar->loc.p.y = y;
+                PChar->loc.p.z = z;
+                PChar->loc.p.rotation = rot;
+                PChar->loc.destination = zoneId;
+                PChar->m_moghouseID = moghouseID;
+                PChar->loc.boundary = 0;
+                PChar->status = STATUS_DISAPPEAR;
+                PChar->animation = ANIMATION_NONE;
+                PChar->clearPacketList();
+
+                charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(zoneId));
             }
             break;
         }
@@ -407,11 +494,11 @@ namespace message
     {
         SqlHandle = Sql_Malloc();
 
-        if (Sql_Connect(SqlHandle, map_config.mysql_login,
-            map_config.mysql_password,
-            map_config.mysql_host,
+        if (Sql_Connect(SqlHandle, map_config.mysql_login.c_str(),
+            map_config.mysql_password.c_str(),
+            map_config.mysql_host.c_str(),
             map_config.mysql_port,
-            map_config.mysql_database) == SQL_ERROR)
+            map_config.mysql_database.c_str()) == SQL_ERROR)
         {
             exit(EXIT_FAILURE);
         }

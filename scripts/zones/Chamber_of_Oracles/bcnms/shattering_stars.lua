@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- Name: Shattering stars - Maat Fight
--- @pos -221 -24 19 206
+-- !pos -221 -24 19 206
 -----------------------------------
 package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         local maatsCap = player:getVar("maatsCap")
         if (bit.band(maatsCap, bit.lshift(1, (pjob -1))) ~= 1) then
             player:setVar("maatsCap",bit.bor(maatsCap, bit.lshift(1, (pjob -1))))
-        end        
+        end
         player:addTitle(MAAT_MASHER);
     end
 

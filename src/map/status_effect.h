@@ -316,7 +316,7 @@ enum EFFECT
     EFFECT_DEDICATION               = 249,
     EFFECT_EF_BADGE                 = 250,
     EFFECT_FOOD                     = 251,
-    EFFECT_CHOCOBO                  = 252,
+    EFFECT_MOUNTED                  = 252,
     EFFECT_SIGNET                   = 253,
     EFFECT_BATTLEFIELD              = 254,
     EFFECT_NONE                     = 255,

@@ -2,7 +2,7 @@
 -- Area: Eastern Altepa Desert
 --  NPC: Variko-Njariko, W.W.
 -- Outpost Conquest Guards
--- @pos -258.041 7.473 -254.527 114
+-- !pos -258.041 7.473 -254.527 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

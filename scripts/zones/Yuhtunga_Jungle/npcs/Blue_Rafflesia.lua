@@ -2,7 +2,7 @@
 -- Area: Yuhtunga Jungle
 -- NPC: Blue Rafflesia
 -- Used in quest Even More Gullible Travels
--- @pos -468.876 -1 220.247 123 <many>
+-- !pos -468.876 -1 220.247 123 <many>
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     local currentDay = VanadielDayOfTheYear();
     local scentReady = ((scentDay < currentDay) or (scentDay > currentDay and player:getVar("RafflesiaScentYear") < VanadielYear()));
     local npcId = npc:getID();
-    
+
     if (npcId == 17281586) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Player is on quest, first time.
             player:startEvent(0x0015);

@@ -2,7 +2,7 @@
 -- Area: Caedarva Mire
 --  NPC: Jazaraat's Headstone
 -- Involved in mission: The Lost Kingdom (TOAUM 13)
--- @pos -389 6 -570 79
+-- !pos -389 6 -570 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------

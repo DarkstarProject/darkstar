@@ -89,7 +89,10 @@ enum MSGSERVTYPE : uint8
     MSG_PT_DISBAND,
     MSG_DIRECT,
     MSG_LINKSHELL_RANK_CHANGE,
-    MSG_LINKSHELL_REMOVE
+    MSG_LINKSHELL_REMOVE,
+
+    // gm commands
+    MSG_SEND_TO_ZONE,
 };
 
 typedef std::string string_t;

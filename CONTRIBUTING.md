@@ -2,7 +2,7 @@
 
 * Issues will be closed without being looked into if the following information is missing (unless its not applicable).
 * Client version (type `/ver` in game)
-* Darkstar revision (type `@revision` in game)
+* Darkstar revision (type `!revision` in game)
 * Branch name \(such as [stable](https://github.com/DarkstarProject/darkstar/tree/stable) or [master](https://github.com/DarkstarProject/darkstar/tree/master))
 
 

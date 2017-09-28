@@ -262,7 +262,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
     {
         CCharEntity* PChar = (CCharEntity*)it->second;
 
-        PChar->PLatentEffectContainer->CheckLatentsZone();
+        PChar->PLatentEffectContainer->CheckLatentsWeather(weather);
         PChar->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PChar, static_cast<int>(weather), element);
     }
 }
@@ -959,6 +959,7 @@ void CZoneEntities::ZoneServer(time_point tick)
         PMob->StatusEffectContainer->CheckEffects(tick);
         PMob->PAI->Tick(tick);
         PMob->StatusEffectContainer->CheckRegen(tick);
+        PMob->PRecastContainer->Check();
     }
 
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
@@ -975,6 +976,7 @@ void CZoneEntities::ZoneServer(time_point tick)
         PPet->StatusEffectContainer->CheckEffects(tick);
         PPet->PAI->Tick(tick);
         PPet->StatusEffectContainer->CheckRegen(tick);
+        PPet->PRecastContainer->Check();
         if (PPet->status == STATUS_DISAPPEAR)
         {
             for (auto PMobIt : m_mobList)
@@ -982,7 +984,7 @@ void CZoneEntities::ZoneServer(time_point tick)
                 CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
                 PCurrentMob->PEnmityContainer->Clear(PPet->id);
             }
-            if (PPet->getPetType() != PETTYPE_AUTOMATON)
+            if (PPet->getPetType() != PETTYPE_AUTOMATON || !PPet->PMaster)
             {
                 delete pit->second;
             }

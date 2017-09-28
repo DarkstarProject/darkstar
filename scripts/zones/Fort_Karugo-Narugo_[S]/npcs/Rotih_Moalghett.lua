@@ -3,7 +3,7 @@
 --  NPC: Rotih_Moalghett
 --  Type: Quest
 --  @zone 96
--- @pos 280 -20 85
+-- !pos 280 -20 85
 --
 -----------------------------------
 
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
         if (player:getVar("TigressStrikesProg") == 1) then
         player:startEvent(0x0065);

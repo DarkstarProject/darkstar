@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RaKaznar_Inner_Court
 -- NPC:  HomePoint#1
--- @pos 757 120 17.5 276
+-- !pos 757 120 17.5 276
 -----------------------------------
 
 package.loaded["scripts/zones/RaKaznar_Inner_Court/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21fc, 116);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21fc) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

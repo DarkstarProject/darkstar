@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Uleguerand
 --  NPC: qm5 (???)
--- Spawns Blanga
--- @pos ? ? ? 253
+-- Spawns Koghatu
+-- !pos ? ? ? 253
 -----------------------------------
 require("scripts/globals/status");
 
@@ -12,9 +12,9 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(3248,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(17813930) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(17813930):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+    if (trade:hasItemQty(3250,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+        if (GetMobAction(17813933) == ACTION_NONE) then -- Mob not already spawned from this
+            SpawnMob(17813933):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
         end
     end
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 3248); -- Inform player what items they need.
+    player:startEvent(1010, 3250); -- Inform player what items they need.
 end;
 
 -----------------------------------

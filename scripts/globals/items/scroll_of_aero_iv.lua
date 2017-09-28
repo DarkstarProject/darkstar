@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4765
---    Scroll of Aero IV
---    Teaches the black magic Aero IV
+-- ID: 4765
+-- Scroll of Aero IV
+-- Teaches the black magic Aero IV
 -----------------------------------------
 
 -----------------------------------------

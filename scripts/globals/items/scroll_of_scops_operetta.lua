@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5017
---    Scroll of Scops Operetta
---    Teaches the song Scops Operetta
+-- ID: 5017
+-- Scroll of Scops Operetta
+-- Teaches the song Scops Operetta
 -----------------------------------------
 
 -----------------------------------------

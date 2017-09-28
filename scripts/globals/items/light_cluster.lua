@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4110
---    Light Cluster
---    Turn into a stack of light crystals
+-- ID: 4110
+-- Light Cluster
+-- Turn into a stack of light crystals
 -----------------------------------------
 
 -----------------------------------------

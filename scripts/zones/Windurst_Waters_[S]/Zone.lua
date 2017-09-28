@@ -22,8 +22,14 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-39.996,-7.64,235,64);
+    -- MOG HOUSE EXIT
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        position = math.random(1,5) + 157;
+        player:setPos(position,-5,-62,192);
+        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+            cs = 0x7534;
+        end
+        player:setVar("PlayerMainJob",0);
     end
     return cs;
 end;

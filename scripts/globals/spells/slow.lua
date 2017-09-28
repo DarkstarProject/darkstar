@@ -1,7 +1,7 @@
 -----------------------------------------
 -- Spell: Slow
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- Slow's potency is calculated with the formula (150 + dMND*2)/1024, and caps at 300/1024 (~29.3%).
+-- Slow's potency is calculated with the formula (187.5 + dMND*1.5)/1024, and caps at 300/1024 (~29.3%).
 -- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
 
@@ -20,20 +20,31 @@ function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
     --Power.
-    local power = 150 + dMND * 2;
+    local power = math.floor(187.5 + dMND * 1.5);
     if (power > 300) then
         power = 300;
     end
     
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (power < 75) then
+        power = 75;
+    end
+    
+    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         power = power * 2;
     end
 
     --Duration, including resistance.
-    local duration = 120 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SLOW);
+    local duration = 120;
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_MND;
+    params.skillType = 35;
+    params.bonus = 0;
+    params.effect = EFFECT_SLOW;
+    duration = duration * applyResistanceEffect(caster, target, spell, params);
     if (duration >= 60) then --Do it!
     
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);

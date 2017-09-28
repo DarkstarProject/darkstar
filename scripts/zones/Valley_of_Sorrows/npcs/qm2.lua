@@ -2,7 +2,7 @@
 -- Area: Valley of Sorrows
 --  NPC: qm2 (???)
 -- Note: Used to rank 9.1 San d'oria
--- @pos 91 -3 -16 128
+-- !pos 91 -3 -16 128
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------

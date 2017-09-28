@@ -22,10 +22,8 @@ This file is part of DarkStar-server source code.
 */
 
 #include "../common/blowfish.h"
-#include "../common/malloc.h"
 #include "../common/md52.h"
 #include "../common/showmsg.h"
-#include "../common/strlib.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
 #include "../common/version.h"
@@ -60,6 +58,7 @@ This file is part of DarkStar-server source code.
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "utils/mobutils.h"
+#include "ai/controllers/automaton_controller.h"
 
 #include "lua/luautils.h"
 
@@ -116,7 +115,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     map_session_data_t* map_session_data = new map_session_data_t;
     memset(map_session_data, 0, sizeof(map_session_data_t));
 
-    CREATE(map_session_data->server_packet_data, int8, map_config.buffer_size + 20);
+    map_session_data->server_packet_data = new int8[map_config.buffer_size + 20];
 
     map_session_data->last_update = time(nullptr);
     map_session_data->client_addr = ip;
@@ -127,16 +126,16 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
-	const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
+    const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
 
-	if (ret == SQL_ERROR ||
-		Sql_NumRows(SqlHandle) == 0)
-	{
-		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
-		return nullptr;
-	}
+    if (ret == SQL_ERROR ||
+        Sql_NumRows(SqlHandle) == 0)
+    {
+        ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
+        return nullptr;
+    }
     return map_session_data;
 }
 
@@ -176,11 +175,11 @@ int32 do_init(int32 argc, int8** argv)
     SqlHandle = Sql_Malloc();
 
     ShowStatus("do_init: sqlhandle is allocating");
-    if (Sql_Connect(SqlHandle, map_config.mysql_login,
-        map_config.mysql_password,
-        map_config.mysql_host,
+    if (Sql_Connect(SqlHandle, map_config.mysql_login.c_str(),
+        map_config.mysql_password.c_str(),
+        map_config.mysql_host.c_str(),
         map_config.mysql_port,
-        map_config.mysql_database) == SQL_ERROR)
+        map_config.mysql_database.c_str()) == SQL_ERROR)
     {
         do_final(EXIT_FAILURE);
     }
@@ -188,14 +187,14 @@ int32 do_init(int32 argc, int8** argv)
 
     // отчищаем таблицу сессий при старте сервера (временное решение, т.к. в кластере это не будет работать)
     Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);",
-        map_ip, map_port, map_ip, map_port);
+        map_ip.s_addr, map_port, map_ip.s_addr, map_port);
 
     ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
     ShowStatus("do_init: zlib is reading");
     zlib_init();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
-    messageThread = std::thread(message::init, map_config.msg_server_ip, map_config.msg_server_port);
+    messageThread = std::thread(message::init, map_config.msg_server_ip.c_str(), map_config.msg_server_port);
 
     ShowStatus("do_init: loading items");
     itemutils::Initialize();
@@ -207,6 +206,7 @@ int32 do_init(int32 argc, int8** argv)
     ShowStatus("do_init: loading spells");
     spell::LoadSpellList();
     mobSpellList::LoadMobSpellList();
+    autoSpell::LoadAutomatonSpellList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     guildutils::Initialize();
@@ -242,8 +242,8 @@ int32 do_init(int32 argc, int8** argv)
     CTaskMgr::getInstance()->AddTask("map_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5s);
     CTaskMgr::getInstance()->AddTask("garbage_collect", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15min);
 
-    CREATE(g_PBuff, int8, map_config.buffer_size + 20);
-    CREATE(PTempBuff, int8, map_config.buffer_size + 20);
+    g_PBuff = new int8[map_config.buffer_size + 20];
+    PTempBuff = new int8[map_config.buffer_size + 20];
 
     ShowStatus("The map-server is " CL_GREEN"ready" CL_RESET" to work...\n");
     ShowMessage("=======================================================================\n");
@@ -258,11 +258,8 @@ int32 do_init(int32 argc, int8** argv)
 
 void do_final(int code)
 {
-    aFree(g_PBuff);
-    aFree(PTempBuff);
-
-    aFree((void*)map_config.mysql_host);
-    aFree((void*)map_config.mysql_database);
+    delete[] g_PBuff;
+    delete[] PTempBuff;
 
     itemutils::FreeItemList();
     battleutils::FreeWeaponSkillsList();
@@ -284,7 +281,6 @@ void do_final(int code)
 
     timer_final();
     socket_final();
-    malloc_final();
 
     exit(code);
 }
@@ -365,7 +361,7 @@ int32 do_sockets(fd_set* rfd, duration next)
                 map_session_data = mapsession_createsession(ip, ntohs(from.sin_port));
                 if (map_session_data == nullptr)
                 {
-					map_session_list.erase(ipp);
+                    map_session_list.erase(ipp);
                     return -1;
                 }
             }
@@ -534,20 +530,18 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         // reading data size
         uint32 PacketDataSize = RBUFL(buff, *buffsize - sizeof(int32) - 16);
         // creating buffer for decompress data
-        int8* PacketDataBuff = nullptr;
-        CREATE(PacketDataBuff, int8, map_config.buffer_size);
+        auto PacketDataBuff = std::make_unique<int8[]>(map_config.buffer_size);
         // it's decompressing data and getting new size
         PacketDataSize = zlib_decompress(buff + FFXI_HEADER_SIZE,
             PacketDataSize,
-            PacketDataBuff,
+            PacketDataBuff.get(),
             map_config.buffer_size);
 
         // it's making result buff
         // don't need memcpy header
-        memcpy(buff + FFXI_HEADER_SIZE, PacketDataBuff, PacketDataSize);
+        memcpy(buff + FFXI_HEADER_SIZE, PacketDataBuff.get(), PacketDataSize);
         *buffsize = FFXI_HEADER_SIZE + PacketDataSize;
 
-        aFree(PacketDataBuff);
         return 0;
     }
     return -1;
@@ -658,33 +652,57 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     uint32 PacketCount = PChar->getPacketCount();
     uint8 packets = 0;
 
-    while (PacketSize > 1300 - FFXI_HEADER_SIZE - 16) //max size for client to accept
-    {
-        *buffsize = FFXI_HEADER_SIZE;
-        PacketList_t packetList = PChar->getPacketList();
-        packets = 0;
+    do {
+        do {
+            *buffsize = FFXI_HEADER_SIZE;
+            PacketList_t packetList = PChar->getPacketList();
+            packets = 0;
 
-        while (!packetList.empty() && *buffsize + packetList.front()->length() < map_config.buffer_size &&
-            packets < PacketCount)
+            while (!packetList.empty() && *buffsize + packetList.front()->length() < map_config.buffer_size &&
+                packets < PacketCount)
+            {
+                PSmallPacket = packetList.front();
+
+                PSmallPacket->sequence(map_session_data->server_packet_id);
+                memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->length());
+
+                *buffsize += PSmallPacket->length();
+                packetList.pop_front();
+                packets++;
+            }
+
+            PacketCount /= 2;
+
+            //Сжимаем данные без учета заголовка
+            //Возвращаемый размер в 8 раз больше реальных данных
+            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, map_config.buffer_size);
+
+            // handle compression error
+            if (PacketSize == static_cast<uint32>(-1))
+            {
+                continue;
+            }
+
+            WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
+
+            PacketSize = zlib_compressed_size(PacketSize) + 4;
+
+        } while (PacketCount > 0 && PacketSize > 1300 - FFXI_HEADER_SIZE - 16); //max size for client to accept
+
+        if (PacketSize == static_cast<uint32>(-1))
         {
-            PSmallPacket = packetList.front();
-
-            PSmallPacket->sequence(map_session_data->server_packet_id);
-            memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->length());
-
-            *buffsize += PSmallPacket->length();
-            packetList.pop_front();
-            packets++;
+            if (PChar->getPacketCount() > 0)
+            {
+                PChar->erasePackets(1);
+                PacketCount = PChar->getPacketCount();
+            }
+            else
+            {
+                *buffsize = 0;
+                return -1;
+            }
         }
-        //Сжимаем данные без учета заголовка
-        //Возвращаемый размер в 8 раз больше реальных данных
-        PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize);
-        WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
-
-        PacketSize = zlib_compressed_size(PacketSize) + 4;
-
-        PacketCount /= 2;
-    }
+    } while (PacketSize == static_cast<uint32>(-1));
     PChar->erasePackets(packets);
 
     //Запись размера данных без учета заголовка
@@ -749,7 +767,7 @@ int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
 
         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(map_session_data->shuttingDown == 1);
 
-        aFree(map_session_data->server_packet_data);
+        delete[] map_session_data->server_packet_data;
         delete map_session_data->PChar;
         delete map_session_data;
         map_session_data = nullptr;
@@ -834,7 +852,7 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
                         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(true);
                         Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u;", map_session_data->PChar->id);
 
-                        aFree(map_session_data->server_packet_data);
+                        delete[] map_session_data->server_packet_data;
                         delete map_session_data->PChar;
                         delete map_session_data;
                         map_session_data = nullptr;
@@ -851,7 +869,7 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
                     const int8* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
                     Sql_Query(SqlHandle, Query, map_session_data->client_addr, map_session_data->client_port);
 
-                    aFree(map_session_data->server_packet_data);
+                    delete[] map_session_data->server_packet_data;
                     map_session_list.erase(it++);
                     delete map_session_data;
                     continue;
@@ -940,6 +958,7 @@ int32 map_config_default()
     map_config.exp_retain = 0.0f;
     map_config.exp_loss_level = 4;
     map_config.level_sync_enable = 0;
+    map_config.disable_gear_scaling = 0;
     map_config.all_jobs_widescan = 1;
     map_config.speed_mod = 0;
     map_config.mob_speed_mod = 0;
@@ -1034,7 +1053,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmpi(w1, "console_silent") == 0)
         {
-            ShowInfo("Console Silent Setting: %d", atoi(w2));
+            //ShowInfo("Console Silent Setting: %d", atoi(w2));
             msg_silent = atoi(w2);
         }
         else if (strcmpi(w1, "map_port") == 0)
@@ -1092,10 +1111,6 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "exp_party_gap_penalties") == 0)
         {
             map_config.exp_party_gap_penalties = atof(w2);
-        }
-        else if (strcmp(w1, "fov_party_gap_penalties") == 0)
-        {
-            map_config.fov_party_gap_penalties = atof(w2);
         }
         else if (strcmp(w1, "fov_allow_alliance") == 0)
         {
@@ -1177,6 +1192,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.level_sync_enable = atoi(w2);
         }
+        else if (strcmp(w1, "disable_gear_scaling") == 0)
+        {
+            map_config.disable_gear_scaling = atoi(w2);
+        }
         else if (strcmp(w1, "all_jobs_widescan") == 0)
         {
             map_config.all_jobs_widescan = atoi(w2);
@@ -1219,15 +1238,15 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "mysql_host") == 0)
         {
-            map_config.mysql_host = aStrdup(w2);
+            map_config.mysql_host = std::string(w2);
         }
         else if (strcmp(w1, "mysql_login") == 0)
         {
-            map_config.mysql_login = aStrdup(w2);
+            map_config.mysql_login = std::string(w2);
         }
         else if (strcmp(w1, "mysql_password") == 0)
         {
-            map_config.mysql_password = aStrdup(w2);
+            map_config.mysql_password = std::string(w2);
         }
         else if (strcmp(w1, "mysql_port") == 0)
         {
@@ -1235,7 +1254,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "mysql_database") == 0)
         {
-            map_config.mysql_database = aStrdup(w2);
+            map_config.mysql_database = std::string(w2);
         }
         else if (strcmpi(w1, "import") == 0)
         {
@@ -1295,7 +1314,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "msg_server_ip") == 0)
         {
-            map_config.msg_server_ip = aStrdup(w2);
+            map_config.msg_server_ip = std::string(w2);
         }
         else if (strcmp(w1, "mob_no_despawn") == 0)
         {

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm6 (???)
 -- Spawns Sharabha
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Waughroon Shrine
 -- Name: Shattering stars - Maat Fight
--- @pos -345 104 -260 144
+-- !pos -345 104 -260 144
 -----------------------------------
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
 -----------------------------------

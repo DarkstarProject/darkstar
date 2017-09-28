@@ -3,8 +3,8 @@
 --   NPC: Churacoco
 --  Type: Standard NPC
 -- @zone 94
--- @pos -76.139 -4.499 20.986
--- 
+-- !pos -76.139 -4.499 20.986
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

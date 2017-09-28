@@ -31,14 +31,16 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local typeEffect = EFFECT_DEFENSE_DOWN;
-    local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.effect = EFFECT_DEFENSE_DOWN;
+    local resist = applyResistance(caster, target, spell, params);
     local duration = 60 * resist;
     local power = 10;
     
     if (resist > 0.5) then -- Do it!
-        if (target:addStatusEffect(typeEffect,power,0,duration)) then
+        if (target:addStatusEffect(params.effect,power,0,duration)) then
             spell:setMsg(236);
         else
             spell:setMsg(75);
@@ -47,5 +49,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(85);
     end;
 
-    return typeEffect;
+    return params.effect;
 end;

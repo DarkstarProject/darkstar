@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
 --  NPC: Miah Riyuh
--- @pos 5.323 -2 37.462 94
+-- !pos 5.323 -2 37.462 94
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------

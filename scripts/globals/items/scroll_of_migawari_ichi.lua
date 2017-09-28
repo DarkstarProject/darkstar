@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4969
---    Scroll of Migawari: Ichi
---    Teaches the ninjutsu Migawari: Ichi
+-- ID: 4969
+-- Scroll of Migawari: Ichi
+-- Teaches the ninjutsu Migawari: Ichi
 -----------------------------------------
 
 -----------------------------------------

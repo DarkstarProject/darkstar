@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
 --  NPC: qm4 (???)
--- Spawns Kharon
--- @pos ? ? ? 215
+-- Spawns Gaizkin
+-- !pos ? ? ? 215
 -----------------------------------
 require("scripts/globals/status");
 
@@ -12,9 +12,9 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(3076,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(17658265) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(17658265):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+    if (trade:hasItemQty(3075,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+        if (GetMobAction(17658264) == ACTION_NONE) then -- Mob not already spawned from this
+            SpawnMob(17658264):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
         end
     end
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 3076); -- Inform player what items they need.
+    player:startEvent(1010, 3075); -- Inform player what items they need.
 end;
 
 -----------------------------------

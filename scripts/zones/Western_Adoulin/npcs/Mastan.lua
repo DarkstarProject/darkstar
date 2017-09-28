@@ -3,9 +3,9 @@
 --  NPC: Virsaint
 --  Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'Order Up'
---                        'The Curious Case of Melvien' 
+--                        'The Curious Case of Melvien'
 --  @zone 256
--- @pos -9 0 67
+-- !pos -9 0 67
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -53,7 +53,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     if (csid == 0x0046) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 11, true);

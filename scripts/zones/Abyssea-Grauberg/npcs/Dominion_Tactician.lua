@@ -130,16 +130,20 @@ function onEventFinish(player,csid,option)
 
     if (option > 256 and option < 2818) then
         if (player:getDominionNotes() > Price) then
-            if (player:getFreeSlotsCount() >= 1) then
-                player:messageSpecial(ITEM_OBTAINED,ItemID);
-                if (TempItem == true) then
-                    player:addTempItem(ItemID,1);
+            if (TempItem == true) then
+                if (player:addTempItem(ItemID,1)) then
+                    player:delCurrency("dominion_note",Price);
+                    player:messageSpecial(ITEM_OBTAINED,ItemID);
                 else
-                    player:addItem(ItemID,1,a1,v1,a2,v2,a3,v3,a4,v4);
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID);
                 end
-                player:delDominionNotes(Price);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID);
+                if (player:addItem(ItemID,1,a1,v1,a2,v2,a3,v3,a4,v4)) then
+                    player:delCurrency("dominion_note",Price);
+                    player:messageSpecial(ITEM_OBTAINED,ItemID);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID);
+                end
             end
         end
     end

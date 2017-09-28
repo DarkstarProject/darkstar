@@ -55,7 +55,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
     damage = damage * WEAPON_SKILL_POWER
 
-    damage = takeWeaponskillDamage(target, player, {}, primary, damage, SLOT_MAIN, tpHits, 0, nil)
+    damage = takeWeaponskillDamage(target, player, {}, primary, damage, SLOT_MAIN, tpHits, 0, 0, 0, action, nil)
 
     return tpHits, 0, false, damage;
 

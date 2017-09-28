@@ -393,7 +393,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 //check for latents
                 PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
                 PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
-                PChar->PLatentEffectContainer->CheckLatentsRollSong(PStatusEffect->GetFlag() & (EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
+                PChar->PLatentEffectContainer->CheckLatentsRollSong();
                 PChar->UpdateHealth();
             }
             PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -446,7 +446,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
         //check for latents
         PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
         PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
-        PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
+        PChar->PLatentEffectContainer->CheckLatentsRollSong();
         PChar->UpdateHealth();
 
         PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -560,7 +560,9 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
     {
         if (m_StatusEffectList.at(i)->GetIcon() == IconID)
         {
-            RemoveStatusEffect(i--);
+            // think this covers all the removable effects
+            if (!(m_StatusEffectList.at(i)->GetFlag() & (EFFECTFLAG_CONFRONTATION | EFFECTFLAG_FOOD | EFFECTFLAG_ERASABLE)))
+                RemoveStatusEffect(i--);
         }
     }
 }
@@ -1286,7 +1288,17 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
             }
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
-            uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+            uint32 duration = 0;
+            
+            if (PStatusEffect->GetDuration() > 0)
+            {
+                auto seconds = std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+
+                if (seconds > 0)
+                    duration = seconds;
+                else
+                    continue;
+            }
 
             Sql_Query(SqlHandle, Query,
                 m_POwner->id,

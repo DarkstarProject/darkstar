@@ -20,7 +20,14 @@ function onSpellCast(caster,target,spell)
     local power = 50; -- 50% reduction
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 120 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_WEIGHT);
+    local duration = 120;
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 35;
+    params.bonus = 0;
+    params.effect = EFFECT_WEIGHT;
+    duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 30) then --Do it!
     

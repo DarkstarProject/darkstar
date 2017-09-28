@@ -3,7 +3,7 @@
 -- NPC:  Kupipi
 -- Involved in Mission 2-3
 -- Involved in Quest: Riding on the Clouds
--- @pos 2 0.1 30 242
+-- !pos 2 0.1 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Heavens_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 8) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
@@ -41,11 +41,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local pNation = player:getNation();
     local currentMission = player:getCurrentMission(pNation);
     local MissionStatus = player:getVar("MissionStatus");
-    
+
     if (pNation == NATION_SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if (currentMission == JOURNEY_TO_WINDURST) then
@@ -112,11 +112,11 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x00fb);
         end
-    
+
     else
         player:startEvent(0x00fb);
     end
-    
+
 end;
 
 -----------------------------------
@@ -135,7 +135,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x00ee) then
         if (player:getNation() == NATION_BASTOK) then
             player:setVar("MissionStatus",4);
@@ -176,5 +176,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0146) then
         player:setVar("MissionStatus",4);
     end
-    
+
 end;

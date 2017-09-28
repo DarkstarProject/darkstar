@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Thubu Parohren
 -- Type: Fishing Guild Master
--- @pos -182.230 -3.835 61.373 240
+-- !pos -182.230 -3.835 61.373 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,6 @@
 -- Area: Jugner Forest
 --  MOB: King Arthro
 -----------------------------------
-
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -31,4 +30,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    SetServerVariable("[POP]King_Arthro",0);
 end;

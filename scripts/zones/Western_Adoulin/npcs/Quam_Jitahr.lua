@@ -3,7 +3,7 @@
 --  NPC: Quam Jitahr
 --  Type: Standard NPC
 --  @zone 256
---  @pos -43 0 -105 256
+--  !pos -43 0 -105 256
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

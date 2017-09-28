@@ -1,6 +1,6 @@
 -----------------------------------------
---    ID: 14790
---    Reraise Earring
+-- ID: 14790
+-- Reraise Earring
 --  This earring functions in the same way as the spell Reraise.
 -----------------------------------------
 

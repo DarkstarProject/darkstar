@@ -23,10 +23,16 @@ function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
     --Duration, including resistance.  May need more research.
-    local duration = 180;
+    local duration = 120;
 
     --Resist
-    local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_MND;
+    params.skillType = 35;
+    params.bonus = 0;
+    params.effect = EFFECT_SILENCE;
+    resist = applyResistanceEffect(caster, target, spell, params);
         
     if (resist >= 0.5) then --Do it!
         if (target:addStatusEffect(effectType,1,0,duration * resist)) then

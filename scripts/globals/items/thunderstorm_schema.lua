@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6051
---    Thunderstorm Schema
---    Teaches the white magic Thunderstorm
+-- ID: 6051
+-- Thunderstorm Schema
+-- Teaches the white magic Thunderstorm
 -----------------------------------------
 
 -----------------------------------------

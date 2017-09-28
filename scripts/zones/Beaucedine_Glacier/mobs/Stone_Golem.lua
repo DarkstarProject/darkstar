@@ -23,12 +23,12 @@ function onMobDespawn(mob)
     if (Gargantua_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Gargantua");
-        if (ToD <= os.time(t) and GetMobAction(Gargantua) == 0) then
+        if (ToD <= os.time() and GetMobAction(Gargantua) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Gargantua);
                 GetMobByID(Gargantua):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Gargantua", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

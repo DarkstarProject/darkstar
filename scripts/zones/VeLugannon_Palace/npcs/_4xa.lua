@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: VeLugannon Palace
 -- NPC:  Door (Blue)
--- @pos -340.000 -2.974 240.000 177
+-- !pos -340.000 -2.974 240.000 177
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: Attohwa Chasm
 --  NPC:  Jakaka
 --  Type: ENM
--- @pos -144.711 6.246 -250.309 7
+-- !pos -144.711 6.246 -250.309 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -----------------------------------
@@ -34,9 +34,9 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(MIASMA_FILTER)) then
         player:startEvent(11);
     else
-        if (MiasmaFilterCD >= os.time(t)) then
+        if (MiasmaFilterCD >= os.time()) then
             -- Both Vanadiel time and unix timestamps are based on seconds. Add the difference to the event.
-            player:startEvent(14, VanadielTime()+(MiasmaFilterCD-os.time(t)));
+            player:startEvent(14, VanadielTime()+(MiasmaFilterCD-os.time()));
         else
             if (player:hasItem(1778)==true or player:hasItem(1777)==true) then -- Parradamo Stones, Flaxen Pouch
                 player:startEvent(15);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 12) then
         player:addKeyItem(MIASMA_FILTER);
         player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
-        player:setVar("[ENM]MiasmaFilter",os.time(t)+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
+        player:setVar("[ENM]MiasmaFilter",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch

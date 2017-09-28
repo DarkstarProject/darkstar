@@ -3,7 +3,7 @@
 --  NPC: Volgoi
 --  Type: Standard NPC
 --  @zone 256
--- @pos -154 4 -22
+-- !pos -154 4 -22
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

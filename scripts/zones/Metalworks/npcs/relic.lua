@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Metalworks
 -- NPC:  <this space intentionally left blank>
--- @pos -20 -11 33 237
+-- !pos -20 -11 33 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

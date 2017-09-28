@@ -3,7 +3,7 @@
 -- NPC: Apairemant
 -- Only sells when San d'Oria controls Gustaberg Region
 -- @zone 230
--- @pos 72 2 0
+-- !pos 72 2 0
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     -- "Flyers for Regine" conditional script
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
         if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
@@ -38,12 +38,12 @@ function onTrigger(player,npc)
             player:showText(npc,APAIREMANT_CLOSED_DIALOG);
     else
             player:showText(npc,APAIREMANT_OPEN_DIALOG);
-           
+
             local stock = {0x0454,703,    -- Sulfur
                              0x026b,43,             -- Popoto
                              0x0263,36,             -- Rye Flour
                              0x1124,40}             -- Eggplant
-                             
+
             showShop(player,SANDORIA,stock);
     end
 

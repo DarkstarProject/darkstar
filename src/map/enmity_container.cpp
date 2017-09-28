@@ -128,6 +128,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
 
     if (enmity_obj != m_EnmityList.end())
     {
+        if (enmity_obj->second.PEnmityOwner == nullptr) enmity_obj->second.PEnmityOwner = PEntity;
         float bonus = CalculateEnmityBonus(PEntity);
 
         int newCE = enmity_obj->second.CE + ((CE > 0) ? CE * bonus : CE);
@@ -272,6 +273,40 @@ uint16 CEnmityContainer::GetVE(CBattleEntity* PEntity)
 {
     auto PEnmity = m_EnmityList.find(PEntity->id);
     return PEnmity != m_EnmityList.end() ? PEnmity->second.VE : 0;
+}
+
+/************************************************************************
+*                                                                       *
+*    Sets the CE or VE for the current entity                           *
+*                                                                       *
+************************************************************************/
+
+void CEnmityContainer::SetCE(CBattleEntity* PEntity, uint16 amount)
+{
+    auto PEnmity = m_EnmityList.find(PEntity->id);
+    if (PEnmity != m_EnmityList.end())
+    {
+        PEnmity->second.CE = amount;
+    }
+    else
+    {
+        AddBaseEnmity(PEntity);
+        SetCE(PEntity, amount);
+    }
+}
+
+void CEnmityContainer::SetVE(CBattleEntity* PEntity, uint16 amount)
+{
+    auto PEnmity = m_EnmityList.find(PEntity->id);
+    if (PEnmity != m_EnmityList.end())
+    {
+        PEnmity->second.VE = amount;
+    }
+    else
+    {
+        AddBaseEnmity(PEntity);
+        SetVE(PEntity, amount);
+    }
 }
 
 /************************************************************************

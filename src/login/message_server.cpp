@@ -109,7 +109,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_PT_DISBAND:
     {
         int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
-                      							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_sessions WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
+                      							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
         uint32 partyid = RBUFL(extra->data(), 0);
         ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
         break;
@@ -138,6 +138,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_PT_INVITE:
     case MSG_PT_INV_RES:
     case MSG_DIRECT:
+    case MSG_SEND_TO_ZONE:
     {
         int8* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
         ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
@@ -237,11 +238,11 @@ void message_server_init()
 {
     ChatSqlHandle = Sql_Malloc();
 
-    if (Sql_Connect(ChatSqlHandle, login_config.mysql_login,
-        login_config.mysql_password,
-        login_config.mysql_host,
+    if (Sql_Connect(ChatSqlHandle, login_config.mysql_login.c_str(),
+        login_config.mysql_password.c_str(),
+        login_config.mysql_host.c_str(),
         login_config.mysql_port,
-        login_config.mysql_database) == SQL_ERROR)
+        login_config.mysql_database.c_str()) == SQL_ERROR)
     {
         exit(EXIT_FAILURE);
     }

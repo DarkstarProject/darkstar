@@ -247,6 +247,35 @@ CCharEntity* GetChar(uint32 charid)
     return nullptr;
 }
 
+
+CCharEntity* GetCharToUpdate(uint32 primary, uint32 ternary)
+{
+    CCharEntity* PPrimary = nullptr;
+    CCharEntity* PSecondary = nullptr;
+    CCharEntity* PTernary = nullptr;
+    
+    for (auto PZone : g_PZoneList)
+    {
+        PZone.second->ForEachChar([primary, ternary, &PPrimary, &PSecondary, &PTernary](CCharEntity* PChar)
+        {
+            if (!PPrimary)
+            {
+                if (PChar->id == primary)
+                    PPrimary = PChar;
+                else if (PChar->PParty && PChar->PParty->GetPartyID() == primary)
+                    PSecondary = PChar;
+                else if (PChar->id == ternary)
+                    PTernary = PChar;
+            }
+        });
+        if (PPrimary)
+            return PPrimary;
+    }
+    if (PSecondary)
+        return PSecondary;
+            
+    return PTernary;
+}
 /************************************************************************
 *                                                                       *
 *  Загружаем список NPC в указанную зону                                *
@@ -279,7 +308,7 @@ void LoadNPCList()
         ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    int32 ret = Sql_Query(SqlHandle, Query, map_ip, inet_ntoa(map_ip), map_port);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -371,7 +400,7 @@ void LoadMOBList()
             WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
             AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
-    int32 ret = Sql_Query(SqlHandle, Query, map_ip, inet_ntoa(map_ip), map_port);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -419,7 +448,7 @@ void LoadMOBList()
                 PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 22);
                 PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 23);
                 PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 24);
-                PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle, 25);
+                PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 25);
 
                 PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 26);
                 PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 26);
@@ -542,7 +571,7 @@ void LoadMOBList()
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    ret = Sql_Query(SqlHandle, PetQuery, map_ip, inet_ntoa(map_ip), map_port);
+    ret = Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -626,7 +655,7 @@ void LoadZoneList()
     std::vector<uint16> zones;
     const int8* query = "SELECT zoneid FROM zone_settings WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    int ret = Sql_Query(SqlHandle, query, map_ip, inet_ntoa(map_ip), map_port);
+    int ret = Sql_Query(SqlHandle, query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -1043,6 +1072,17 @@ uint64 GetZoneIPP(uint16 zoneID)
         ShowFatalError(CL_RED"zoneutils::GetZoneIPP: Cannot find zone %u\n" CL_RESET, zoneID);
     }
     return ipp;
+}
+
+/************************************************************************
+*                                                                       *
+*  Checks whether or not the zone is a residential area                 *
+*                                                                       *
+************************************************************************/
+
+bool IsResidentialArea(CCharEntity* PChar)
+{
+    return PChar->m_moghouseID != 0;
 }
 
 }; // namespace zoneutils

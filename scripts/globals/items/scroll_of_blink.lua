@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4661
---    Scroll of Blink
---    Teaches the white magic Blink
+-- ID: 4661
+-- Scroll of Blink
+-- Teaches the white magic Blink
 -----------------------------------------
 
 -----------------------------------------

@@ -2,7 +2,7 @@
 -- Area: Kazham
 -- NPC: Eron-Tomaron
 -- Title Change NPC
--- @pos -22 -4 -24 250
+-- !pos -22 -4 -24 250
 -----------------------------------
 
 require("scripts/globals/titles");

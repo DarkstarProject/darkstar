@@ -2,7 +2,7 @@
 -- Area: Behemoth's Dominion
 -- NPC:  ???
 -- Involved In Quest: The Talekeeper's Gift
--- @pos 211 4 -79 127
+-- !pos 211 4 -79 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getVar("theTalekeeperGiftCS") == 3 and player:getVar("theTalekeepersGiftKilledNM") < 3) then
         player:messageSpecial(SENSE_OF_FOREBODING);
         SpawnMob(17297446):updateClaim(player);
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-    
+
 end;
 
 -----------------------------------

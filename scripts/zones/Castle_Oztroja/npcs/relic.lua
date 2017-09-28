@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Castle Oztroja
 -- NPC:  <this space intentionally left blank>
--- @pos -104 -73 85 151
+-- !pos -104 -73 85 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

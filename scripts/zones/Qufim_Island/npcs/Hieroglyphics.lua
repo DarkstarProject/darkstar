@@ -2,7 +2,7 @@
 -- Area: Qufim_Island
 -- NPC:  Hieroglyphics
 -- Dynamis Qufim Entrance
--- @pos 16 -19 162 126
+-- !pos 16 -19 162 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)  
+function onTrigger(player,npc)
 
-    if (player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) then
+    if ((player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
         local dynaUniqueID = GetServerVariable("[DynaQufim]UniqueID");
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(MYSTERIOUS_VOICE);
     end
-    
+
 end;
 
 -----------------------------------
@@ -63,7 +63,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("finishRESULT: %u",option);
-    
+
     if (csid == 0x0016) then
         if (checkFirstDyna(player,9)) then
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),512));

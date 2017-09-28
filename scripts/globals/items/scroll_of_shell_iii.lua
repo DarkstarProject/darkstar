@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4658
---    Scroll of Shell III
---    Teaches the white magic Shell III
+-- ID: 4658
+-- Scroll of Shell III
+-- Teaches the white magic Shell III
 -----------------------------------------
 
 -----------------------------------------

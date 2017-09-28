@@ -3,7 +3,7 @@
 -- NPC:  Tahrongi Cacti
 -- Involved in Quest: Say It with Flowers
 --
--- @pos -308.721 7.477 264.454
+-- !pos -308.721 7.477 264.454
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -----------------------------------

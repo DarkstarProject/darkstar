@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Lageegee
 --  Type: Assault Mission Giver
--- @pos 120.808 0.161 -30.435
+-- !pos 120.808 0.161 -30.435
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -27,13 +27,13 @@ function onTrigger(player,npc)
     local rank = getMercenaryRank(player);
     local haveimperialIDtag;
     local assaultPoints = player:getAssaultPoint(PERIQIA_ASSAULT_POINT);
-    
+
     if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
         haveimperialIDtag = 1;
     else
         haveimperialIDtag = 0;
     end
-    
+
 --[[    if (rank > 0) then
         player:startEvent(276,rank,haveimperialIDtag,assaultPoints,player:getCurrentAssault());
     else]]
@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
             local item = bit.rshift(option,14);
             local itemID = 0;
             local price = 0;
-            
+
             -- Copy/pasted from Famad, TODO: fill in the actual IDs/prices for Lageegee
             --[[if (item == 1) then
                 itemID = 15972;
@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
             else
                 return;
             end
-            
+
             player:addItem(itemID);
             player:messageSpecial(ITEM_OBTAINED,itemID);
             player:delAssaultPoint(LEBROS_ASSAULT_POINT,price);]]

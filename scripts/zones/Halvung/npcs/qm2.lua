@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Halvung
 --  NPC: ??? (Spawn Dextrose(ZNM T2))
--- @pos -144 11 464 62
+-- !pos -144 11 464 62
 -----------------------------------
 package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
 -----------------------------------

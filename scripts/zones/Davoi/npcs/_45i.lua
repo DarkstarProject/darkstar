@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Wailing Pond
 -- Used In Quest: Whence Blows the Wind
--- @pos 380 0.1 -181 149
+-- !pos 380 0.1 -181 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -44,9 +44,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x0034 and player:getVar("miniQuestForORB_CS") == 1) then
-        
+
         local c = player:getVar("countRedPoolForORB");
-        
+
         if (c == 0) then
             player:setVar("countRedPoolForORB", c + 2);
             player:delKeyItem(WHITE_ORB);
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(PINK_ORB);
             player:addKeyItem(RED_ORB);
             player:messageSpecial(KEYITEM_OBTAINED, RED_ORB);
-        elseif (c == 5 or c == 9 or c == 12) then 
+        elseif (c == 5 or c == 9 or c == 12) then
             player:setVar("countRedPoolForORB", c + 2);
             player:delKeyItem(RED_ORB);
             player:addKeyItem(BLOOD_ORB);

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4947
---    Scroll of Utsusemi: Ni
---    Teaches the ninjutsu Utsusemi: Ni
+-- ID: 4947
+-- Scroll of Utsusemi: Ni
+-- Teaches the ninjutsu Utsusemi: Ni
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4617
---    Scroll of Curaga III
---    Teaches the white magic Curaga III
+-- ID: 4617
+-- Scroll of Curaga III
+-- Teaches the white magic Curaga III
 -----------------------------------------
 
 -----------------------------------------

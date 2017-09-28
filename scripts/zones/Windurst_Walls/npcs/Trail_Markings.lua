@@ -2,7 +2,7 @@
 -- Area: Windurst Walls
 -- NPC:  Trail Markings
 -- Dynamis-Windurst Enter
--- @pos -216 0 -94 239
+-- !pos -216 0 -94 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -17,14 +17,14 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if bit.band(player:getVar("Dynamis_Status"),1) == 1 then
         player:startEvent(0x01c7); -- cs with Cornelia
     elseif (player:getVar("DynaWindurst_Win") == 1) then
@@ -34,11 +34,11 @@ function onTrigger(player,npc)
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
         local dynaUniqueID = GetServerVariable("[DynaWindurst]UniqueID");
-        
+
         if (checkFirstDyna(player,3)) then  -- First Dyna-Windurst => CS
-            firstDyna = 1; 
+            firstDyna = 1;
         end
-        
+
         if (player:getMainLvl() < DYNA_LEVEL_MIN) then
             player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(STRANDS_OF_GRASS_HERE);
     end
-    
+
 end;
 
 -----------------------------------
@@ -69,7 +69,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("finishRESULT: %u",option);
-    
+
     if (csid == 0x01c7) then
         player:addKeyItem(VIAL_OF_SHROUDED_SAND);
         player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);

@@ -1,10 +1,10 @@
 -----------------------------------------
---    ID: 4358
---    Hare Meat
---    5 Minutes, food effect, Galka Only
+-- ID: 4358
+-- Hare Meat
+-- 5 Minutes, food effect, Galka Only
 -----------------------------------------
---    Strength +1
---    Intelligence -3
+-- Strength +1
+-- Intelligence -3
 -----------------------------------------
 
 require("scripts/globals/status");

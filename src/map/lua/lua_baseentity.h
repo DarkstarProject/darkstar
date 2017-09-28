@@ -50,12 +50,14 @@ public:
 
     int32 warp(lua_State*);                 // Returns Character to home point
     int32 leavegame(lua_State*);            // Character leaving game
-
+    int32 bringPlayer(lua_State*);          // warps target to self
+    int32 gotoPlayer(lua_State*);           // warps self to target player
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
     int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
     int32 getPool(lua_State *L);            // Returns a mobs pool ID. If entity is not a mob, returns nil.
     int32 getName(lua_State *L);            // Gets Entity Name
+    int32 getModelSize(lua_State *L);       // Gets model size
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
     int32 getHP(lua_State*);                // Returns Entity Health
@@ -206,6 +208,8 @@ public:
     int32 startEvent(lua_State*);           // Begins Event
     int32 startEventString(lua_State*);     // Begins Event with string param (0x33 packet)
     int32 updateEvent(lua_State*);          // Updates event
+    int32 updateEventString(lua_State*);    // (string, string, string, string, uint32, ...)
+
     int32 getEventTarget(lua_State*);       //
     int32 openSendBox(lua_State*);          // Opens send box (to deliver items)
 
@@ -306,6 +310,8 @@ public:
     int32 transferEnmity(lua_State*);
     int32 getCE(lua_State*);                //gets current CE the mob has towards the player
     int32 getVE(lua_State*);                //gets current VE the mob has towards the player
+    int32 setCE(lua_State*);                //sets current CE the mob has towards the player
+    int32 setVE(lua_State*);                //sets current VE the mob has towards the player
 
     int32 hasImmunity(lua_State*);          // Check if the mob has immunity for a type of spell (list at mobentity.h)
     int32 getBattleTime(lua_State*);        // Get the time in second of the battle
@@ -319,6 +325,7 @@ public:
     int32 addStatusEffectEx(lua_State*);      // Adds status effect to character
     int32 hasStatusEffect(lua_State*);        // Checks to see if character has specified effect
     int32 hasStatusEffectByFlag(lua_State*);  // Checks to see if a character has an effect with the specified flag
+    int32 countEffect(lua_State*);            // Gets the number of effects of a specific type on the player
     int32 hasBustEffect(lua_State*);          // Checks to see if a character has a specified busted corsair roll
     int32 numBustEffects(lua_State*);         // Gets the number of bust effects on the player
     int32 canGainStatusEffect(lua_State*);    // Returns true if the effect can be added
@@ -453,11 +460,9 @@ public:
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
 
     int32 checkDistance(lua_State*);           // Check Distacnce and returns distance number
-    int32 getBaseExp(lua_State*);
+    int32 checkValorCredit(lua_State*);
     int32 checkSoloPartyAlliance(lua_State*);  // Check if Player is in Party or Alliance 0=Solo 1=Party 2=Alliance
-    int32 checkExpPoints(lua_State*);          // Exp points penalty for Player vs Max High Player Gap in party
     int32 checkFovAllianceAllowed(lua_State*); // checks the map config, 1 if alliance is allowed to farm Fov pages
-    int32 checkFovDistancePenalty(lua_State*); // Checks whether FoV distance from mob penalty applies.
 
     int32 getObjType(lua_State*);
 

@@ -2,7 +2,7 @@
 -- Area: Tavnazian Safehold
 -- NPC: Quelveuiat
 -- Standard Info NPC
--- @pos -3.177 -22.750 -25.970 26
+-- !pos -3.177 -22.750 -25.970 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

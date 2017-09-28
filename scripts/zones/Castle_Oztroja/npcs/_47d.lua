@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area:  Castle Oztroja
 -- NPC:   _47d
--- @pos 20.000 24.168 -25.000 151
+-- !pos 20.000 24.168 -25.000 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     end
     if (npc:getAnimation() == 9) then
         npc:openDoor();
-    end    
+    end
 end;
 
 -----------------------------------

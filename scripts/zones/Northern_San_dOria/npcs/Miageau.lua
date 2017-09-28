@@ -3,7 +3,7 @@
 --   NPC: Miageau
 --  Type: Quest Giver NPC
 -- @zone 231
--- @pos 115 0 108
+-- !pos 115 0 108
 --
 -- Starts and Finishes: Waters of Cheval
 -----------------------------------
@@ -25,13 +25,13 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
     if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
         if (trade:getItemCount() == 1 and trade:hasItemQty(603, 1)) then
             player:startEvent(0x0203);
         end;
     end;
-    
+
 end;
 
 -----------------------------------
@@ -39,7 +39,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     watersOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
     if (watersOfTheCheval == QUEST_ACCEPTED) then
         if (player:hasItem(602) == true) then
@@ -52,8 +52,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0205);
     end;
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x0203) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13183);
         else
             player:tradeComplete();
@@ -86,5 +86,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01f8) then
         player:addQuest(SANDORIA, WATER_OF_THE_CHEVAL);
     end;
-    
+
 end;

@@ -30,6 +30,7 @@
 #include "../utils/battleutils.h"
 #include "../items/item_weapon.h"
 #include "../status_effect_container.h"
+#include "../recast_container.h"
 #include "../ai/ai_container.h"
 #include "../ai/states/attack_state.h"
 #include "../ai/states/magic_state.h"
@@ -43,11 +44,12 @@
 #include "../weapon_skill.h"
 #include "../packets/action.h"
 #include "../utils/petutils.h"
+#include "../utils/puppetutils.h"
 
 CBattleEntity::CBattleEntity()
 {
     m_OwnerID.clean();
-    m_ModelSize = 3; // неправильная инициализация, она приведет к тому, что заклинания станут читаться на 3 дальше
+    m_ModelSize = 0;
     m_mlvl = 0;
     m_slvl = 0;
 
@@ -71,7 +73,8 @@ CBattleEntity::CBattleEntity()
     PParty = nullptr;
     PMaster = nullptr;
 
-    StatusEffectContainer = new CStatusEffectContainer(this);
+    StatusEffectContainer = std::make_unique<CStatusEffectContainer>(this);
+    PRecastContainer = std::make_unique<CRecastContainer>(this);
 
     m_modStat[Mod::SLASHRES] = 1000;
     m_modStat[Mod::PIERCERES] = 1000;
@@ -85,7 +88,6 @@ CBattleEntity::CBattleEntity()
 
 CBattleEntity::~CBattleEntity()
 {
-    delete StatusEffectContainer;
 }
 
 bool CBattleEntity::isDead()
@@ -258,6 +260,11 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     return WeaponDelay;
 }
 
+uint8 CBattleEntity::GetMeleeRange()
+{
+    return m_ModelSize + 3;
+}
+
 int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
 {
     CItemWeapon* PRange = (CItemWeapon*)m_Weapons[SLOT_RANGED];
@@ -427,7 +434,10 @@ int16 CBattleEntity::addTP(int16 tp)
         }
         else if (objtype == TYPE_PET)
         {
-            TPMulti = map_config.mob_tp_multiplier * 3;
+            if (static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_AUTOMATON || !this->PMaster)
+                TPMulti = map_config.mob_tp_multiplier * 3;
+            else
+                TPMulti = map_config.player_tp_multiplier;
         }
 
         tp = tp * TPMulti;
@@ -539,21 +549,21 @@ uint16 CBattleEntity::ATT()
     {
         ATT += (STR() * 3) / 4;
     }
-    else {
+    else
+    {
         ATT += (STR()) / 2;
     }
 
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
         ATT += this->getMod(Mod::ENSPELL_DMG);
 
-    if (this->objtype & TYPE_PC) {
+    if (this->objtype & TYPE_PC)
+    {
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        ATT += PMaster->GetSkill(SKILL_AME);
-        return ATT + (ATT * (m_modStat[Mod::ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
+        ATT += this->GetSkill(SKILL_AME);
     }
     return ATT + (ATT * m_modStat[Mod::ATTP] / 100) +
         dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
@@ -567,13 +577,6 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
         return 0;
     }
     int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
-
-    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
-        return ATT + (ATT * (m_modStat[Mod::ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
-    }
-
     return ATT + (ATT * m_modStat[Mod::RATTP] / 100) +
         dsp_min((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
 }
@@ -594,11 +597,6 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
     acc += getMod(Mod::RACC);
     acc += battleutils::GetRangedAccuracyBonuses(this);
     acc += AGI() / 2;
-    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
-        acc += ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
-    }
-
     return acc + dsp_min(((100 + getMod(Mod::FOOD_RACCP)) * acc) / 100, getMod(Mod::FOOD_RACC_CAP));
 }
 
@@ -643,10 +641,10 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        int16 ACC = PMaster->GetSkill(SKILL_AME);
+        int16 ACC = this->GetSkill(SKILL_AME);
         ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
         ACC += DEX() * 0.5;
-        ACC += m_modStat[Mod::ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
+        ACC += m_modStat[Mod::ACC] + offsetAccuracy;
         ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
         return dsp_max(0, ACC);
     }
@@ -996,31 +994,34 @@ int16 CBattleEntity::getMod(Mod modID)
 
 void CBattleEntity::addPetModifier(Mod type, PetModType petmod, int16 amount)
 {
-    m_petMod[type] += amount;
+    m_petMod[petmod][type] += amount;
 
     if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->addModifier(type, amount);
+        PPet->UpdateHealth();
     }
 }
 
 void CBattleEntity::setPetModifier(Mod type, PetModType petmod, int16 amount)
 {
-    m_petMod[type] = amount;
+    m_petMod[petmod][type] = amount;
 
     if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->setModifier(type, amount);
+        PPet->UpdateHealth();
     }
 }
 
 void CBattleEntity::delPetModifier(Mod type, PetModType petmod, int16 amount)
 {
-    m_petMod[type] -= amount;
+    m_petMod[petmod][type] -= amount;
 
     if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->delModifier(type, amount);
+        PPet->UpdateHealth();
     }
 }
 
@@ -1042,18 +1043,32 @@ void CBattleEntity::delPetModifiers(std::vector<CPetModifier*> *modList)
 
 void CBattleEntity::applyPetModifiers(CPetEntity* PPet)
 {
-    for (auto mod : m_petMod)
+    for (auto modtype : m_petMod)
     {
-        PPet->addModifier(mod.first, mod.second);
+        if (petutils::CheckPetModType(PPet, modtype.first))
+        {
+            for (auto mod : modtype.second)
+            {
+                PPet->addModifier(mod.first, mod.second);
+                PPet->UpdateHealth();
+            }
+        }
     }
 }
 
 
 void CBattleEntity::removePetModifiers(CPetEntity* PPet)
 {
-    for (auto mod : m_petMod)
+    for (auto modtype : m_petMod)
     {
-        PPet->delModifier(mod.first, mod.second);
+        if (petutils::CheckPetModType(PPet, modtype.first))
+        {
+            for (auto mod : modtype.second)
+            {
+                PPet->delModifier(mod.first, mod.second);
+                PPet->UpdateHealth();
+            }
+        }
     }
 }
 
@@ -1096,12 +1111,8 @@ bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
             }
         }
     }
-    if ((targetFlags & TARGET_SELF) &&
-        this == PInitiator)
-    {
-        return true;
-    }
-    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
+    if ((targetFlags & TARGET_SELF) && (this == PInitiator || (PInitiator->objtype == TYPE_PET &&
+        static_cast<CPetEntity*>(PInitiator)->getPetType() == PETTYPE_AUTOMATON && this == PInitiator->PMaster)))
     {
         return true;
     }
@@ -1191,7 +1202,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
 
     action.id = id;
     action.actiontype = ACTION_MAGIC_FINISH;
-    action.actionid = PSpell->getID();
+    action.actionid = static_cast<uint16>(PSpell->getID());
     action.recast = state.GetRecast();
     action.spellgroup = PSpell->getSpellGroup();
 
@@ -1285,7 +1296,7 @@ void CBattleEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGB
     {
         action.id = id;
         action.actiontype = ACTION_MAGIC_INTERRUPT;
-        action.actionid = PSpell->getID();
+        action.actionid = static_cast<uint16>(PSpell->getID());
         action.spellgroup = PSpell->getSpellGroup();
 
         actionList_t& actionList = action.getNewActionList();
@@ -1308,9 +1319,10 @@ void CBattleEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& ac
     action.actionid = PWeaponskill->getID();
 }
 
-bool CBattleEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+bool CBattleEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
-    if (distance(loc.p, PTarget->loc.p) > m_ModelSize || !PAI->GetController()->IsAutoAttackEnabled())
+    if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > GetMeleeRange() ||
+        !PAI->GetController()->IsAutoAttackEnabled())
     {
         return false;
     }
@@ -1441,6 +1453,11 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                         {
                             uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
                             charutils::TrySkillUP((CCharEntity*)PTarget, (SKILLTYPE)skilltype, GetMLevel());
+                        } // In case the Automaton can counter
+                        else if (PTarget->objtype == TYPE_PET && PTarget->PMaster && PTarget->PMaster->objtype == TYPE_PC &&
+                            static_cast<CPetEntity*>(PTarget)->getPetType() == PETTYPE_AUTOMATON)
+                        {
+                            puppetutils::TrySkillUP((CAutomatonEntity*)PTarget, SKILL_AME, GetMLevel());
                         }
                     }
                 }
@@ -1590,7 +1607,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 }
 
 
-CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto PTarget = PAI->TargetFind->getValidTarget(targid, validTargetFlags);
 

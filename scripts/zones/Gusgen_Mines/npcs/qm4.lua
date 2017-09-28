@@ -2,7 +2,7 @@
 -- Area: Gusgen Mines
 -- NPC:  qm4 (???)
 -- Involved In Quest: Ghosts of the Past
--- @pos -174 0 369 196
+-- !pos -174 0 369 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -16,14 +16,14 @@ require("scripts/zones/Gusgen_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED and player:hasItem(13122) == false) then
         if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade Pickaxe
             player:tradeComplete();
             SpawnMob(17580337,300):updateClaim(player);
         end
     end
-    
+
 end;
 
 -----------------------------------

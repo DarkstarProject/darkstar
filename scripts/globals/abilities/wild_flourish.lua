@@ -6,10 +6,10 @@
 -- Recast Time: 0:30
 -- Duration: 0:05
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -17,10 +17,10 @@ require("scripts/globals/weaponskills");
 
 function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
-        return MSGBASIC_REQUIRES_COMBAT,0;
+        return msgBasic.REQUIRES_COMBAT,0;
     else
         if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
-            return MSGBASIC_NO_FINISHINGMOVES,0;
+            return msgBasic.NO_FINISHINGMOVES,0;
         elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
             player:delStatusEffect(EFFECT_FINISHING_MOVE_2);
             return 0,0;
@@ -35,9 +35,9 @@ function onAbilityCheck(player,target,ability)
         elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
             player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_5);
             player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);
-            return 0,0;        
-        else    
-            return MSGBASIC_NO_FINISHINGMOVES,0;
+            return 0,0;
+        else
+            return msgBasic.NO_FINISHINGMOVES,0;
         end
     end
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 -- Door: Runic Seal
--- @pos 125 -2 20 72
+-- !pos 125 -2 20 72
 -----------------------------------
 
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;

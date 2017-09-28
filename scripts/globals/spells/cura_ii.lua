@@ -6,10 +6,10 @@
 -- Modeled after our cure_ii.lua, which was modeled after the below reference
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------------
 -- OnSpellCast
@@ -17,7 +17,7 @@ require("scripts/globals/magic");
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:getID() ~= target:getID()) then
-        return MSGBASIC_CANNOT_PERFORM_TARG;
+        return msgBasic.CANNOT_PERFORM_TARG;
     else
         return 0;
     end;
@@ -84,31 +84,31 @@ function onSpellCast(caster,target,spell)
             caster:setLocalVar("Misery_Power", caster:getMod(MOD_AFFLATUS_MISERY));
         end;
         local misery = caster:getLocalVar("Misery_Power");
-        
+
         --THIS IS LARELY SEMI-EDUCATED GUESSWORK. THERE IS NOT A
         --LOT OF CONCRETE INFO OUT THERE ON CURA THAT I COULD FIND
-        
+
         --Not very much documentation for Cura II known at all.
         --As with Cura, the Afflatus Misery bonus can boost this spell up
         --to roughly the level of a Curaga 3. For Cura I vs Curaga II,
         --this is document at ~175HP, 15HP less than the cap of 190HP. So
         --for Cura II, i'll go with 15 less than the cap of Curaga III (390): 375
         --So with lack of available formula documentation, I'll go with that.
-        
+
         --printf("BEFORE AFFLATUS MISERY BONUS: %d", basecure);
-        
+
         basecure = basecure + misery;
-        
+
         if (basecure > 375) then
             basecure = 375;
         end
-        
+
         --printf("AFTER AFFLATUS MISERY BONUS: %d", basecure);
-        
+
         --Afflatus Misery Mod Gets Used Up
         caster:setMod(MOD_AFFLATUS_MISERY, 0);
     end
-    
+
     final = getCureFinal(caster,spell,basecure,minCure,false);
     final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
 
@@ -118,10 +118,10 @@ function onSpellCast(caster,target,spell)
     target:addHP(final);
 
     target:wakeUp();
-    
+
     --Enmity for Cura is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
-    
+
     spell:setMsg(367);
-    
+
     return final;
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4940
---    Scroll of Raiton: Ichi
---    Teaches the ninjutsu Raiton: Ichi
+-- ID: 4940
+-- Scroll of Raiton: Ichi
+-- Teaches the ninjutsu Raiton: Ichi
 -----------------------------------------
 
 -----------------------------------------

@@ -3,7 +3,7 @@
 -- NPC:  Yin Pocanakhu
 -- Involved in Quest: Borghertz's Hands (1st quest only)
 -- @zone 245
--- @pos 35 4 -43
+-- !pos 35 4 -43
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -15,21 +15,21 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getVar("BorghertzHandsFirstTime") == 2) then
         player:startEvent(0x00dc);
     else
         player:startEvent(0x00d1);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

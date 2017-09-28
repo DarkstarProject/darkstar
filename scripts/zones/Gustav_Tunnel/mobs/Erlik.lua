@@ -26,12 +26,12 @@ function onMobDespawn(mob)
 
     if (Baobhan_Sith_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Baobhan_Sith");
-        if (ToD <= os.time(t) and GetMobAction(Baobhan_Sith) == 0) then
+        if (ToD <= os.time() and GetMobAction(Baobhan_Sith) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Baobhan_Sith);
                 GetMobByID(Baobhan_Sith):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Baobhan_Sith", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

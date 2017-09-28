@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qufim_Island
 -- NPC:  Beastmen_s_Banner
--- @pos 0.348 -20.126 73.479 126
+-- !pos 0.348 -20.126 73.479 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
@@ -12,7 +12,7 @@ require("scripts/zones/Qufim_Island/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

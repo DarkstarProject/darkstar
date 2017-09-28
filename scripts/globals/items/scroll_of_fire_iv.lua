@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4755
---    Scroll of Fire IV
---    Teaches the black magic Fire IV
+-- ID: 4755
+-- Scroll of Fire IV
+-- Teaches the black magic Fire IV
 -----------------------------------------
 
 -----------------------------------------

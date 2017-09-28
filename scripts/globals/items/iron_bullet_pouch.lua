@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5353
---    Iron Bullet Pouch
---    When used, you will obtain one stack of Iron Bullets
+-- ID: 5353
+-- Iron Bullet Pouch
+-- When used, you will obtain one stack of Iron Bullets
 -----------------------------------------
 
 -----------------------------------------

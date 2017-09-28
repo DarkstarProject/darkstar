@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5029 
---    Scroll of Battlefield Elegy
---    Teaches the song Battlefield Elegy
+-- ID: 5029
+-- Scroll of Battlefield Elegy
+-- Teaches the song Battlefield Elegy
 -----------------------------------------
 
 -----------------------------------------

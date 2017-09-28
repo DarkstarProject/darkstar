@@ -452,6 +452,7 @@ class CAttackState;
 class CWeaponSkillState;
 class CMagicState;
 class CDespawnState;
+class CRecastContainer;
 struct action_t;
 
 class CBattleEntity : public CBaseEntity
@@ -499,6 +500,7 @@ public:
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
     int16			GetWeaponDelay(bool tp);		//returns delay of combined weapons
+    uint8           GetMeleeRange();                //returns the distance considered to be within melee range of the entity
     int16			GetRangedWeaponDelay(bool tp);	//returns delay of ranged weapon + ammo where applicable
     int16			GetAmmoDelay();			        //returns delay of ammo (for cooldown between shots)
     uint16			GetMainWeaponDmg();				//returns total main hand DMG
@@ -589,8 +591,8 @@ public:
     virtual bool OnAttack(CAttackState&, action_t&);
     virtual bool OnAttackError(CAttackState&) { return false; }
     /* Returns whether to call Attack or not (which includes error messages) */
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg);
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg);
     virtual void OnEngage(CAttackState&);
     virtual void OnDisengage(CAttackState&);
     /* Casting */
@@ -637,7 +639,9 @@ public:
     CBattleEntity*	PPet;					    // питомец сущности
     CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
-    CStatusEffectContainer* StatusEffectContainer;
+    std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
+    std::unique_ptr<CRecastContainer> PRecastContainer;         //
+
 
 
 private:
@@ -651,7 +655,7 @@ private:
 
     std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
     std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
-    std::unordered_map<Mod, int16, EnumClassHash>       m_petMod;
+    std::unordered_map<PetModType, std::unordered_map<Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
 };
 
 #endif

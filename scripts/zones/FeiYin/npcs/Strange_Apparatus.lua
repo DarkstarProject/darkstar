@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: FeiYin
 -- NPC:  Strange Apparatus
--- @pos -94 -15 220 204
+-- !pos -94 -15 220 204
 -----------------------------------
 
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;

@@ -61,96 +61,107 @@ CAIContainer::CAIContainer(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _
 {
 }
 
-void CAIContainer::Cast(uint16 targid, uint16 spellid)
+bool CAIContainer::Cast(uint16 targid, SpellID spellid)
 {
     if (Controller)
     {
-        Controller->Cast(targid, spellid);
+        return Controller->Cast(targid, spellid);
     }
+    return false;
 }
 
-void CAIContainer::Engage(uint16 targid)
+bool CAIContainer::Engage(uint16 targid)
 {
     if (Controller)
     {
-        Controller->Engage(targid);
+        return Controller->Engage(targid);
     }
+    return false;
 }
 
-void CAIContainer::ChangeTarget(uint16 targid)
+bool CAIContainer::ChangeTarget(uint16 targid)
 {
     if (Controller)
     {
-        Controller->ChangeTarget(targid);
+        return Controller->ChangeTarget(targid);
     }
+    return false;
 }
 
-void CAIContainer::Disengage()
+bool CAIContainer::Disengage()
 {
     if (Controller)
     {
-        Controller->Disengage();
+        return Controller->Disengage();
     }
+    return false;
 }
 
-void CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
+bool CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
 {
     if (Controller)
     {
-        Controller->WeaponSkill(targid, wsid);
+        return Controller->WeaponSkill(targid, wsid);
     }
+    return false;
 }
 
-void CAIContainer::MobSkill(uint16 targid, uint16 wsid)
+bool CAIContainer::MobSkill(uint16 targid, uint16 wsid)
 {
     auto AIController = dynamic_cast<CMobController*>(Controller.get());
     if (AIController)
     {
-        AIController->MobSkill(targid, wsid);
+        return AIController->MobSkill(targid, wsid);
     }
+    return false;
 }
 
-void CAIContainer::Ability(uint16 targid, uint16 abilityid)
+bool CAIContainer::Ability(uint16 targid, uint16 abilityid)
 {
     if (Controller)
     {
-        Controller->Ability(targid, abilityid);
+        return Controller->Ability(targid, abilityid);
     }
+    return false;
 }
 
-void CAIContainer::RangedAttack(uint16 targid)
+bool CAIContainer::RangedAttack(uint16 targid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(Controller.get());
     if (PlayerController)
     {
-        PlayerController->RangedAttack(targid);
+        return PlayerController->RangedAttack(targid);
     }
+    return false;
 }
 
-void CAIContainer::Trigger(uint16 targID)
+bool CAIContainer::Trigger(uint16 targID)
 {
     if (CanChangeState())
     {
-        ChangeState<CTriggerState>(PEntity, targID);
+        auto ret = ChangeState<CTriggerState>(PEntity, targID);
         if (PathFind)
         {
             PathFind->Clear(); //#TODO: pause/resume after?
         }
+        return ret;
     }
+    return false;
 }
 
-void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
+bool CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(PEntity->PAI->GetController());
     if (PlayerController)
     {
-        PlayerController->UseItem(targid, loc, slotid);
+        return PlayerController->UseItem(targid, loc, slotid);
     }
+    return false;
 }
 
-void CAIContainer::Inactive(duration _duration, bool canChangeState)
+bool CAIContainer::Inactive(duration _duration, bool canChangeState)
 {
-    ForceChangeState<CInactiveState>(PEntity, _duration, canChangeState);
+    return ForceChangeState<CInactiveState>(PEntity, _duration, canChangeState);
 }
 
 bool CAIContainer::Internal_Engage(uint16 targetid)
@@ -183,7 +194,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     return false;
 }
 
-bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
+bool CAIContainer::Internal_Cast(uint16 targetid, SpellID spellid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -191,23 +202,33 @@ bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
     return false;
 }
 
-void CAIContainer::Internal_ChangeTarget(uint16 targetid)
+bool CAIContainer::Internal_ChangeTarget(uint16 targetid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
     {
-        if (IsEngaged() || targetid == 0)
+        if(IsEngaged() || targetid == 0)
+        {
             entity->SetBattleTargetID(targetid);
+            return true;
+        }
         else
-            Engage(targetid);
+        {
+            return Engage(targetid);
+        }
     }
+    return false;
 }
 
-void CAIContainer::Internal_Disengage()
+bool CAIContainer::Internal_Disengage()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
-    if (entity)
+    if(entity)
+    {
         entity->SetBattleTargetID(0);
+        return true;
+    }
+    return false;
 }
 
 bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
@@ -242,25 +263,28 @@ bool CAIContainer::Internal_RangedAttack(uint16 targetid)
     return false;
 }
 
-void CAIContainer::Internal_Die(duration deathTime)
+bool CAIContainer::Internal_Die(duration deathTime)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
-        ChangeState<CDeathState>(entity, deathTime);
+        return ChangeState<CDeathState>(entity, deathTime);
+    return false;
 }
 
-void CAIContainer::Internal_Raise()
+bool CAIContainer::Internal_Raise()
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
-        ForceChangeState<CRaiseState>(entity);
+        return ForceChangeState<CRaiseState>(entity);
+    return false;
 }
 
-void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
+bool CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
 {
     auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)
-        ChangeState<CItemState>(entity, targetid, loc, slotid);
+        return ChangeState<CItemState>(entity, targetid, loc, slotid);
+    return false;
 }
 
 CState* CAIContainer::GetCurrentState()
@@ -416,20 +440,22 @@ bool CAIContainer::QueueEmpty()
     return ActionQueue.isEmpty();
 }
 
-void CAIContainer::Internal_Despawn()
+bool CAIContainer::Internal_Despawn()
 {
     if (!IsCurrentState<CDespawnState>())
     {
-        ForceChangeState<CDespawnState>(PEntity);
+        return ForceChangeState<CDespawnState>(PEntity);
     }
+    return false;
 }
 
-void CAIContainer::Internal_Respawn(duration _duration)
+bool CAIContainer::Internal_Respawn(duration _duration)
 {
     if (!IsCurrentState<CRespawnState>())
     {
-        ForceChangeState<CRespawnState>(PEntity, _duration);
+        return ForceChangeState<CRespawnState>(PEntity, _duration);
     }
+    return false;
 
 }
 

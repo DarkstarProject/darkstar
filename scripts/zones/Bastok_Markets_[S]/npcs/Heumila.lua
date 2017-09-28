@@ -1,13 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets (S)
---   NPC: Heumila
---  Type: Past Event Watcher
--- @zone 87
--- @pos 
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- Area: Bastok Markets (S)
+--  NPC: Heumila
+-- Type: Past Event Watcher
+-- !zone 87
+-- !pos
 -----------------------------------
 
 -----------------------------------
@@ -42,4 +38,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

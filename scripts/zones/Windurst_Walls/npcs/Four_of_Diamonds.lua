@@ -3,7 +3,7 @@
 --   NPC: Four of Diamonds
 --  Type: Standard NPC
 -- @zone 239
--- @pos -187.184 -3.545 151.092
+-- !pos -187.184 -3.545 151.092
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

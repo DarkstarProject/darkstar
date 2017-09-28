@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Peshi Yohnts
 -- Type: Bonecraft Guild Master
--- @pos -6.175 -6.249 -144.667 241
+-- !pos -6.175 -6.249 -144.667 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

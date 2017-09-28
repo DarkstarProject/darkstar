@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4762
---    Scroll of Aero
---    Teaches the black magic Aero
+-- ID: 4762
+-- Scroll of Aero
+-- Teaches the black magic Aero
 -----------------------------------------
 
 -----------------------------------------

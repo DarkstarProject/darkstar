@@ -2,7 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  Marble Door
 -- Involved In Windurst Mission 7-1
--- @pos 132 12 -19 169
+-- !pos 132 12 -19 169
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             player:startEvent(0x0046,0,0,0,2);
         else
             -- at least one hinge oil is alive
-            player:startEvent(0x0046,0,0,0,1); 
+            player:startEvent(0x0046,0,0,0,1);
         end
     else
         player:startEvent(0x0046);

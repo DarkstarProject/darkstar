@@ -79,6 +79,7 @@
 #include "../ai/states/ability_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../ai/states/magic_state.h"
+#include <optional>
 
 namespace luautils
 {
@@ -141,7 +142,7 @@ namespace luautils
         lua_register(LuaHandle, "UpdateServerMessage", luautils::UpdateServerMessage);
         lua_register(LuaHandle, "UpdateTreasureSpawnPoint", luautils::UpdateTreasureSpawnPoint);
         lua_register(LuaHandle, "GetMobRespawnTime", luautils::GetMobRespawnTime);
-        lua_register(LuaHandle, "DeterMob", luautils::DeterMob);
+        lua_register(LuaHandle, "DisallowRespawn", luautils::DisallowRespawn);
         lua_register(LuaHandle, "UpdateNMSpawnPoint", luautils::UpdateNMSpawnPoint);
         lua_register(LuaHandle, "SetDropRate", luautils::SetDropRate);
         lua_register(LuaHandle, "NearLocation", luautils::nearLocation);
@@ -1628,12 +1629,6 @@ namespace luautils
 
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
-        //#TODO: move this to BCNM stuff when it's rewritten
-        // 32003 is the run away event
-        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 && result == 4)))
-        {
-            PChar->PBCNM->delPlayerFromBcnm(PChar);
-        }
         int32 oldtop = lua_gettop(LuaHandle);
 
         lua_pushnil(LuaHandle);
@@ -2229,7 +2224,7 @@ namespace luautils
         return 0;
     }
 
-    int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
+    std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
     {
         DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
 
@@ -2237,7 +2232,7 @@ namespace luautils
 
         if (prepFile(File, "onMonsterMagicPrepare"))
         {
-            return -1;
+            return {};
         }
 
         CLuaBaseEntity LuaMobEntity(PCaster);
@@ -2247,26 +2242,19 @@ namespace luautils
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 2, 1, 0))
         {
             ShowError("luautils::onMonsterMagicPrepare: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns < 1)
-        {
-            ShowError("luautils::onMonsterMagicPrepare (%s): 1 return expected, got %d\n", File, returns);
-            return 0;
+            return {};
         }
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
-        if (returns > 1)
+        if (retVal > 0)
         {
-            ShowError("luautils::onMonsterMagicPrepare (%s): 1 return expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns - 1);
+            return static_cast<SpellID>(retVal);
         }
-        return retVal;
+        return {};
     }
 
     /************************************************************************
@@ -3137,7 +3125,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
+    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action)
     {
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -3152,7 +3140,10 @@ namespace luautils
             CLuaMobSkill LuaMobSkill(PMobSkill);
             Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
 
-            if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+            CLuaAction LuaAction(action);
+            Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
+
+            if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
             {
                 ShowError("luautils::onMobWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
                 lua_pop(LuaHandle, 1);
@@ -4173,7 +4164,7 @@ namespace luautils
     * Set SpawnType of mob to scripted (128) or normal (0) usind mob id     *
     *                                                                       *
     ************************************************************************/
-    int32 DeterMob(lua_State* L)
+    int32 DisallowRespawn(lua_State* L)
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
@@ -4184,25 +4175,18 @@ namespace luautils
             {
                 if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
                 {
-                    if (lua_toboolean(L, 2) == 0)
-                    {
-                        PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
-                    }
-                    else
-                    {
-                        PMob->m_AllowRespawn = false; // Deter the mob, do not allow mob to respawn
-                    }
-                    //ShowDebug(CL_RED"DeterMob: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
+                    PMob->m_AllowRespawn = !lua_toboolean(L, 2);
+                    //ShowDebug(CL_RED"DisallowRespawn: Mob <%u> DisallowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
                     return 1;
                 }
                 else
                 {
-                    ShowDebug(CL_RED"DeterMob: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
+                    ShowDebug(CL_RED"DisallowRespawn: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
                 }
             }
             else
             {
-                ShowDebug(CL_RED"DeterMob: mob <%u> not found\n" CL_RESET, mobid);
+                ShowDebug(CL_RED"DisallowRespawn: mob <%u> not found\n" CL_RESET, mobid);
             }
             return 0;
         }
@@ -4367,7 +4351,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CSpell* PSpell = spell::GetSpell(lua_tointeger(L, 1));
+            CSpell* PSpell = spell::GetSpell(static_cast<SpellID>(lua_tointeger(L, 1)));
 
             lua_getglobal(L, CLuaSpell::className);
             lua_pushstring(L, "new");

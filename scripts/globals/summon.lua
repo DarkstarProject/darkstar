@@ -1,14 +1,9 @@
 
 require("scripts/globals/common");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 SUMMONING_MAGIC_SKILL = 38
-
-MSG_NONE = 0; -- display nothing
-MSG_NO_EFFECT = 189;
-MSG_DAMAGE = 185; -- player uses, target takes 10 damage. DEFAULT
-MSG_MISS = 188;
-MSG_RESIST = 85;
 
 function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgmodsubsequent,tpeffect,mtp100,mtp200,mtp300)
     returninfo = {};
@@ -123,7 +118,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     if (hitslanded == 0 or finaldmg == 0) then
         finaldmg = 0;
         hitslanded = 0;
-        skill:setMsg(MSG_MISS);
+        skill:setMsg(msgBasic.MISS);
     end
 
     if finaldmg > 0 then
@@ -174,7 +169,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(MSG_DAMAGE);
+    skill:setMsg(msgBasic.DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -302,7 +297,7 @@ end;
 -- used to stop tp move status effects
 function AvatarPhysicalHit(skill, dmg)
     -- if message is not the default. Then there was a miss, shadow taken etc
-    return skill:getMsg() == MSG_DAMAGE;
+    return skill:getMsg() == msgBasic.DAMAGE;
 end;
 
 function avatarFTP(tp,ftp1,ftp2,ftp3)

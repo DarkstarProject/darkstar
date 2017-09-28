@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Soni-Muni
 -- Starts & Finishes Quest: The Amazin' Scorpio
--- @pos -17.073 1.749 -59.327 241
+-- !pos -17.073 1.749 -59.327 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 function onTrade(player,npc,trade)
 
     local AmazinScorpio = player:getQuestStatus(WINDURST,THE_AMAZIN_SCORPIO);
-    
+
     if (AmazinScorpio == QUEST_ACCEPTED) then
         local count = trade:getItemCount();
         local ScorpionStinger = trade:hasItemQty(1017,1);
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x01e4);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     local AmazinScorpio = player:getQuestStatus(WINDURST,THE_AMAZIN_SCORPIO);
     local Fame = player:getFameLevel(WINDURST);
     local WildcatWindurst = player:getVar("WildcatWindurst");
-    
+
     if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,0) == false) then
         player:startEvent(0x02df);
     elseif (AmazinScorpio == QUEST_COMPLETED) then
@@ -53,7 +53,7 @@ function onTrigger(player,npc)
         player:startEvent(0x01a5);
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x02df) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",0,true);
     end
-    
+
 end;
 
 

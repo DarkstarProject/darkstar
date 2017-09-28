@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4106
---    Wind Cluster
---    Turn into a stack of wind crystals
+-- ID: 4106
+-- Wind Cluster
+-- Turn into a stack of wind crystals
 -----------------------------------------
 
 -----------------------------------------

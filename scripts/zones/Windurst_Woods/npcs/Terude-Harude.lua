@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Terude-Harude
 -- Type: Clothcraft Adv. Image Support
--- @pos -32.350 -2.679 -116.450 241
+-- !pos -32.350 -2.679 -116.450 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

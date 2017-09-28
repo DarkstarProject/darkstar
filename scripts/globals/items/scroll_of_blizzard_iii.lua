@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4759
---    Scroll of Blizzard III
---    Teaches the black magic Blizzard III
+-- ID: 4759
+-- Scroll of Blizzard III
+-- Teaches the black magic Blizzard III
 -----------------------------------------
 
 -----------------------------------------

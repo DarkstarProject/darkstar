@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4681
---    Scroll of Barpoison
---    Teaches the white magic Barpoison
+-- ID: 4681
+-- Scroll of Barpoison
+-- Teaches the white magic Barpoison
 -----------------------------------------
 
 -----------------------------------------

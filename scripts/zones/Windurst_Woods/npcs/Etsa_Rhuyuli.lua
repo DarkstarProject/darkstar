@@ -2,7 +2,7 @@
 --  Area: Windurst Woods
 --  NPC:  Etsa Rhuyuli
 --  Type: Standard NPC
--- @pos 62.482 -8.499 -139.836 241
+-- !pos 62.482 -8.499 -139.836 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -29,8 +29,8 @@ function onTrigger(player,npc)
         player:startEvent(0x02de);
     else
         player:startEvent(0x01a6);
-    end    
-    
+    end
+
 end;
 
 -----------------------------------
@@ -49,10 +49,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x02de) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",1,true);
     end
-    
+
 end;
 

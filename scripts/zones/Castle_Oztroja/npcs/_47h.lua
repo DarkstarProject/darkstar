@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _47h (Handle)
 -- Notes: Opens door _471
--- @pos -182 -15 -19 151
+-- !pos -182 -15 -19 151
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -14,7 +14,7 @@ require("scripts/globals/settings");
 function onTrigger(player,npc)
 
 -- To be implemented
-    
+
 end;
 
 -----------------------------------

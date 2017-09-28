@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6050
---    Rainstorm Schema
---    Teaches the white magic Rainstorm
+-- ID: 6050
+-- Rainstorm Schema
+-- Teaches the white magic Rainstorm
 -----------------------------------------
 
 -----------------------------------------

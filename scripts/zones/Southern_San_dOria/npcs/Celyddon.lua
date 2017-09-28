@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC: Celyddon
 --  General Info NPC
--- @zone 230 
--- @pos -129 -6 90 
+-- @zone 230
+-- !pos -129 -6 90
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -11,9 +11,9 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
@@ -28,14 +28,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
+-- onTrigger Action
+-----------------------------------
+
 function onTrigger(player,npc)
- 
+
     ASquiresTest = player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST)
-    
+
     if ASquiresTest == (QUEST_AVAILABLE) then
         player:startEvent(0x26A); -- im looking for the examiner
     elseif ASquiresTest == (QUEST_ACCEPTED) then
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x026c) -- says i needs a revival tree root
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

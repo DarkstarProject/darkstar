@@ -22,12 +22,12 @@ function onMobDespawn(mob)
     if (Hoo_Mjuu_the_Torrent_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Hoo_Mjuu_the_Torrent");
-        if (ToD <= os.time(t) and GetMobAction(Hoo_Mjuu_the_Torrent) == 0) then
+        if (ToD <= os.time() and GetMobAction(Hoo_Mjuu_the_Torrent) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Hoo_Mjuu_the_Torrent);
                 GetMobByID(Hoo_Mjuu_the_Torrent):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Hoo_Mjuu_the_Torrent", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

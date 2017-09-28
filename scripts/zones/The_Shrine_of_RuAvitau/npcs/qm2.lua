@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
 -- NPC:  ??? (Spawn Kirin)
--- @pos -81 32 2 178
+-- !pos -81 32 2 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(17506670) == 0 and trade:hasItemQty(1404, 1) and trade:hasItemQty(1405, 1) and trade:hasItemQty(1406, 1) and trade:hasItemQty(1407, 1) and trade:getItemCount() == 4) then
         -- Complete the trade..
         player:tradeComplete();
-            
+
         -- Spawn Kirin..
         local mob = SpawnMob(17506670, 180);
         player:showText(npc, KIRIN_OFFSET);

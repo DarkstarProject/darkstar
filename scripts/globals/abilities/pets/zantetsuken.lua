@@ -1,12 +1,11 @@
 ---------------------------------------------------
 -- Zantetsuken
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 require("scripts/globals/magic");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onAbilityCheck(player, target, ability)
@@ -31,7 +30,7 @@ function onPetAbility(target, pet, skill, master)
     else
         local chance = (100 * power) / skill:getTotalTargets();
         if math.random(0,99) < chance and target:getAnimation() ~= 33 then
-            skill:setMsg(MSG_ENFEEB_IS);
+            skill:setMsg(msgBasic.ENFEEB_IS);
             target:delHP(target:getHP());
             return EFFECT_KO;
         else

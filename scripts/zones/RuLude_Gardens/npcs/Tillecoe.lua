@@ -3,7 +3,7 @@
 --   NPC: Tillecoe
 --  Type: Standard NPC
 -- @zone 243
--- @pos 38.528 -0.997 -6.363
+-- !pos 38.528 -0.997 -6.363
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

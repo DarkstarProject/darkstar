@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4912
---    Scroll of Distract
---    Teaches the black magic Distract
+-- ID: 4912
+-- Scroll of Distract
+-- Teaches the black magic Distract
 -----------------------------------------
 
 -----------------------------------------

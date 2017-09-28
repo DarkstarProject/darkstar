@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: VeLugannon Palace
 -- NPC:  Monolith
--- @pos <many>
+-- !pos <many>
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------
@@ -20,10 +20,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local npcID = npc:getID();
     local Door_Offset = 17502608; -- _4x0
-    
+
     if (npcID == Door_Offset+34 or npcID == Door_Offset+32 or npcID == Door_Offset+30 or npcID == Door_Offset+28 or npcID == Door_Offset+26) then
         GetNPCByID(Door_Offset+14):setAnimation(8);--blue door
         GetNPCByID(Door_Offset+13):setAnimation(8);

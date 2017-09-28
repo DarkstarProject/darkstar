@@ -33,7 +33,13 @@ function onSpellCast(caster,target,spell)
 
     local typeEffect = EFFECT_SLOW
     local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.bonus = 0;
+    params.effect = typeEffect;
+    resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 90 * resist;
     local power = 256;
     

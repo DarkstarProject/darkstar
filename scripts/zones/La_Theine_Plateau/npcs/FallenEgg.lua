@@ -1,13 +1,13 @@
 -----------------------------------
---  Area: La Theine Plateau
---  NPC:  FallenEgg
---  Spawns NM
+-- Area: La Theine Plateau
+--  NPC: FallenEgg
+-- Spawns Nihniknoovi randomly at multiple pos, default listed below
+-- !pos 211.066 24.147 257.961
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/npc_util");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
+require("scripts/globals/npc_util");
 
 -----------------------------------
 -- onTrigger
@@ -16,7 +16,6 @@ require("scripts/zones/La_Theine_Plateau/TextIDs");
 function onTrigger(player,npc)
     local random = math.random(1,100);
     local Nihniknoovi = 17195475;
-
     local X = npc:getXPos();
     local Y = npc:getYPos();
     local Z = npc:getZPos();
@@ -44,5 +43,5 @@ function onTrigger(player,npc)
         -- this is executed on purpose whether the item is obtained or not, to counter abuse with a full inv
         npc:hideNPC(300); -- Hide for 5mins
         npc:setPos(newPosition.x, newPosition.y,newPosition.z);
-   end
+    end
 end;

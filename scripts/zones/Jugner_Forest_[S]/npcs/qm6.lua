@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  ???
 --  Type: Quest NPC
--- @pos 68 -0.5 324 82
+-- !pos 68 -0.5 324 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x00C9) then
         player:setVar("ClawsOfGriffonProg",2);
     elseif (csid == 0x00CA) then
@@ -65,5 +65,5 @@ function onEventFinish(player,csid,option)
         player:completeQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
         player:setVar("ClawsOfGriffonProg",0);
     end
-    
+
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4219
---    Stone Quiver
---    When used, you will obtain one stack of Stone Arrows
+-- ID: 4219
+-- Stone Quiver
+-- When used, you will obtain one stack of Stone Arrows
 -----------------------------------------
 
 -----------------------------------------

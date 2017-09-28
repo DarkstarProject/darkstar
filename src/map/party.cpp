@@ -377,6 +377,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
             }
         }
     }
+    this->ReloadParty();
 }
 
 void CParty::PopMember(CBattleEntity* PEntity)
@@ -527,13 +528,19 @@ void CParty::AddMember(uint32 id)
     if (m_PartyType == PARTY_PCS)
     {
         uint32 allianceid = 0;
+        uint16 Flags = 0;
         if (m_PAlliance)
         {
             allianceid = m_PAlliance->m_AllianceID;
+            if (this->m_PartyNumber == 1)
+                Flags = PARTY_SECOND;
+            else if (this->m_PartyNumber == 2)
+                Flags = PARTY_THIRD;
         }
-        Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, 0);
-        uint8 data[4] {};
+        Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, Flags);
+        uint8 data[8] {};
         WBUFL(data, 0) = m_PartyID;
+        WBUFL(data, 4) = id;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
         /*if (PChar->nameflags.flags & FLAG_INVITE)
@@ -960,6 +967,8 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                         member->loc.zone->PushPacket(member, CHAR_INRANGE, new CCharSyncPacket(member));
                     }
                 }
+                Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_SYNC, m_PartyID, PARTY_SYNC);
+                Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE partyid = %u AND charid = '%u';", PARTY_SYNC, m_PartyID, PChar->id);
             }
         }
         else
@@ -986,6 +995,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                 }
             }
             m_PSyncTarget = nullptr;
+            Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", PARTY_SYNC, m_PartyID, PARTY_SYNC);
         }
     }
 }
@@ -1163,6 +1173,22 @@ void CParty::RefreshFlags(std::vector<partyInfo_t>& info)
                 if (!found)
                 {
                     m_PQuaterMaster = nullptr;
+                }
+            }
+            if (memberinfo.flags & PARTY_SYNC)
+            {
+                bool found = false;
+                for (auto member : members)
+                {
+                    if (member->id == memberinfo.id)
+                    {
+                        m_PSyncTarget = member;
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    m_PSyncTarget = nullptr;
                 }
             }
             if (memberinfo.flags & ALLIANCE_LEADER && m_PAlliance)

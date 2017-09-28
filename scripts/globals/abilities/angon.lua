@@ -10,6 +10,7 @@
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -20,7 +21,7 @@ function onAbilityCheck(player,target,ability)
     if (id == 18259) then
         return 0,0;
     else
-        return MSGBASIC_UNABLE_TO_USE_JA,0;
+        return msgBasic.UNABLE_TO_USE_JA,0;
     end
 end;
 

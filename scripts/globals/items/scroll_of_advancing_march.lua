@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5027
---    Scroll of Advancing March
---    Teaches the song Advancing March
+-- ID: 5027
+-- Scroll of Advancing March
+-- Teaches the song Advancing March
 -----------------------------------------
 
 -----------------------------------------

@@ -33,7 +33,13 @@ function onSpellCast(caster,target,spell)
 
     local typeEffect = EFFECT_SLEEP_I;
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.bonus = 0;
+    params.effect = typeEffect;
+    resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 60 * resist;
     
     if (resist > 0.5) then -- Do it!

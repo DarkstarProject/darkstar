@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Dragon's Aery
 -- NPC:  <this space intentionally left blank>
--- @pos -20 -2 61 154
+-- !pos -20 -2 61 154
 -----------------------------------
 package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------

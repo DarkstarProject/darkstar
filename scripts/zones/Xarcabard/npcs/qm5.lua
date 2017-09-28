@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  qm5 (???)
 -- Involved in Quests: Breaking Barriers
--- @pos 179 -33 82 112
+-- !pos 179 -33 82 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
 end;
 
 -----------------------------------

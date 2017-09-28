@@ -19,5 +19,5 @@ function onMobDespawn(mob)
     -- Set Orcish Panzer's respawn time to be 60-70 min from now.
     GetMobByID(OrcPanzer):setRespawnTime(math.random(3600,4200));
     -- Set Chariotbuster Byakzak's next respawn time respawn time (21-24 hours)
-    SetServerVariable("Chariotbuster_Byakzak", (os.time(t) + math.random(75600,86400)));
+    SetServerVariable("Chariotbuster_Byakzak", (os.time() + math.random(75600,86400)));
 end;

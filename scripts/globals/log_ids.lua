@@ -219,3 +219,34 @@ ROV =
     ['full_name'] = "Rhapsodies of Vana'diel",
     ['mission_log']= 13
 };
+
+QUEST_LOGS = {
+    [0] = "SANDORIA",
+    [1] = "BASTOK",
+    [2] = "WINDURST",
+    [3] = "JEUNO",
+    [4] = "OTHER_AREAS",
+    [5] = "OUTLANDS",
+    [6] = "TOAU",
+    [7] = "WOTG",
+    [8] = "ABYSSEA",
+    [9] = "SOA",
+    [10] = "COALITION",
+};
+
+MISSION_LOGS = {
+    [0] = "SANDORIA",
+    [1] = "BASTOK",
+    [2] = "WINDURST",
+    [3] = "ZILART",
+    [4] = "TOAU",
+    [5] = "WOTG",
+    [6] = "COP",
+    [7] = "ASSAULT",
+    [8] = "CAMPAIGN",
+    [9] = "ACP",
+    [10] = "AMK",
+    [11] = "ASA",
+    [12] = "SOA",
+    [13] = "ROV",
+};

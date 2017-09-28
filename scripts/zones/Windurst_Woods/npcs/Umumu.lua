@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 -- NPC:  Umumu
 --  Involved In Quest: Making Headlines
--- @pos 32.575 -5.250 141.372 241
+-- !pos 32.575 -5.250 141.372 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    
+
     local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
@@ -42,16 +42,16 @@ function onTrigger(player,npc)
         -- 8 = Umumu
         -- 16 = Mahogany Door
         if (testflag(tonumber(prog),16) == true) then
-            player:startEvent(0x017f); -- Advised to go to Naiko        
+            player:startEvent(0x017f); -- Advised to go to Naiko
         elseif (testflag(tonumber(prog),8) == false) then
             player:startEvent(0x017d); -- Get scoop and asked to validate
-        else 
+        else
             player:startEvent(0x017e); -- Reminded to validate
         end
     elseif (MakingHeadlines == 2) then
-    
+
         local rand = math.random(1,3);
-        
+
         if (rand == 1) then
             player:startEvent(0x0181); -- Conversation after quest completed
         elseif (rand == 2) then
@@ -62,7 +62,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x019e); -- Standard Conversation
     end
-end;     
+end;
 
 -----------------------------------
 -- onEventUpdate

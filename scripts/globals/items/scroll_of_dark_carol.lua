@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5053
---    Scroll of Dark Carol
---    Teaches the song Dark Carol
+-- ID: 5053
+-- Scroll of Dark Carol
+-- Teaches the song Dark Carol
 -----------------------------------------
 
 -----------------------------------------

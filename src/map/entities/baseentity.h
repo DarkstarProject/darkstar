@@ -56,14 +56,17 @@ enum ANIMATIONTYPE
 {
     ANIMATION_NONE               = 0,
     ANIMATION_ATTACK             = 1,
+    // Death                        = 2,
     ANIMATION_DEATH              = 3,
     ANIMATION_CHOCOBO            = 5,
     ANIMATION_FISHING            = 6,
-    //healing 7
+    // Healing                      = 7,
     ANIMATION_OPEN_DOOR          = 8,
     ANIMATION_CLOSE_DOOR         = 9,
     ANIMATION_ELEVATOR_UP        = 10,
     ANIMATION_ELEVATOR_DOWN      = 11,
+    // seems to be WALLHACK                     = 28,
+    // seems to be WALLHACK also..              = 31,
     ANIMATION_HEALING            = 33,
     ANIMATION_FISHING_FISH       = 38,
     ANIMATION_FISHING_CAUGHT     = 39,
@@ -75,7 +78,30 @@ enum ANIMATIONTYPE
     ANIMATION_SIT                = 47,
     ANIMATION_RANGED             = 48,
     ANIMATION_FISHING_START_OLD  = 50,
-    ANIMATION_FISHING_START      = 56
+    ANIMATION_FISHING_START      = 56,
+    // 63 through 72 are used with /sitchair
+    // 73 through 83 sitting on air (guessing future use for more chairs..)
+    ANIMATION_MOUNT              = 85,
+    // ANIMATION_TRUST              = 90 // This is the animation for a trust NPC spawning in.
+};
+
+enum MOUNTTYPE
+{
+    MOUNT_CHOCOBO    = 0,
+    MOUNT_RAPTOR     = 1,
+    MOUNT_TIGER      = 2,
+    MOUNT_CRAB       = 3,
+    MOUNT_RED_CRAB   = 4,
+    MOUNT_BOMB       = 5,
+    MOUNT_RAM        = 6,
+    MOUNT_MORBOL     = 7,
+    MOUNT_CRAWLER    = 8,
+    MOUNT_FENRIR     = 9,
+    MOUNT_BEETLE     = 10,
+    MOUNT_MOOGLE     = 11,
+    MOUNT_MAGIC_POT  = 12,
+    MOUNT_TULFAIRE   = 13,
+    MOUNT_WARMACHINE = 14
 };
 
 enum ALLEGIANCETYPE
@@ -178,7 +204,7 @@ public:
     void            SetModelId(uint16 modelId);     // Set new modelid
     uint16          GetModelId();                   // Get the modelid
 
-    virtual void    HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) {};
+    virtual void    HandleErrorMessage(std::unique_ptr<CBasicPacket>&) {};
 
     uint32			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне

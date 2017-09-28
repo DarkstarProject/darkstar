@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4707
---    Scroll of Endark
---    Teaches the white magic Endark
+-- ID: 4707
+-- Scroll of Endark
+-- Teaches the white magic Endark
 -----------------------------------------
 
 -----------------------------------------

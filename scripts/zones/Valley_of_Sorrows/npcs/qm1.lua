@@ -2,7 +2,7 @@
 -- Area: Valley of Sorrows
 --  NPC: qm1 (???)
 -- Spawns Adamantoise or Aspidochelone
--- @pos 0 0 -37 59
+-- !pos 0 0 -37 59
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------

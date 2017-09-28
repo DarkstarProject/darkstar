@@ -34,7 +34,13 @@ function onSpellCast(caster,target,spell)
 
     local typeEffect = EFFECT_FLASH;
     local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL, 150);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.bonus =  150;
+    params.effect = nil;
+    resist = applyResistance(caster, target, spell, params);
     local duration = 20 * resist;
     local power = 200;
 

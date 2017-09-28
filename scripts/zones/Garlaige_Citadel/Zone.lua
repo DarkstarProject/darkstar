@@ -5,10 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Garlaige_Citadel/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 banishing_gates_base = 17596761; -- _5k0 (First banishing gate)
 

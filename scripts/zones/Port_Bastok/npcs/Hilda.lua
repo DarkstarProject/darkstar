@@ -3,7 +3,7 @@
 -- NPC:  Hilda
 -- Involved in Quest: Cid's Secret, Riding on the Clouds
 -- Starts & Finishes: The Usual
--- @pos -163 -8 13 236
+-- !pos -163 -8 13 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

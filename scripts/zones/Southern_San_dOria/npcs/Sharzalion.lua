@@ -4,7 +4,7 @@
 -- Starts and Finishes Quest: The Crimson Trial
 -- Involved in Quest: Peace for the Spirit
 -- @zone 230
--- @pos 95 0 111
+-- !pos 95 0 111
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     theCrimsonTrial = player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL);
     envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
     peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
@@ -58,8 +58,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x000F);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -77,7 +77,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0046 or csid == 0x0047) then
         if (csid == 0x0046 and option == 0) then
             player:setVar("has_seen_rdmaf1_quest_already",1);
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
             player:setVar("has_seen_rdmaf1_quest_already",0);
         end
     elseif (csid == 0x004B) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
         else
             player:delKeyItem(ORCISH_DRIED_FOOD);
@@ -100,5 +100,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0042) then
         player:setVar("peaceForTheSpiritCS",3);
     end
-    
+
 end;

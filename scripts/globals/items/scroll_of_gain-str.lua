@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5087
---    Scroll of Gain-STR
---    Teaches the white magic Gain-STR
+-- ID: 5087
+-- Scroll of Gain-STR
+-- Teaches the white magic Gain-STR
 -----------------------------------------
 
 -----------------------------------------

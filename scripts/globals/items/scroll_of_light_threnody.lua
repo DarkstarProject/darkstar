@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5068
---    Scroll of Light Threnody
---    Teaches the song Light Threnody
+-- ID: 5068
+-- Scroll of Light Threnody
+-- Teaches the song Light Threnody
 -----------------------------------------
 
 -----------------------------------------

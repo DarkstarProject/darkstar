@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  MOB: Claret
--- @pos 501 -9 53
+-- !pos 501 -9 53
 -- Spawned with Pectin: @additem 2591
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Claret
 -----------------------------------

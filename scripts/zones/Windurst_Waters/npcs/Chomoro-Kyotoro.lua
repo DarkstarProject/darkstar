@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters
 -- NPC: Chomoro-Kyotoro
---  Involved in Quest: Making the Grade
---  @zone = 238
--- @pos = 133 -5 167
+-- Involved in Quest: Making the Grade
+-- !pos 133 -5 167 238
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -34,10 +33,10 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x01cd);
         end
-    else 
+    else
         player:startEvent(0x01b0);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

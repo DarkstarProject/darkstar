@@ -2,7 +2,7 @@
 --  Area: Rolanberry Fields
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos 362.479 -34.894 -398.994 110
+-- !pos 362.479 -34.894 -398.994 110
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------

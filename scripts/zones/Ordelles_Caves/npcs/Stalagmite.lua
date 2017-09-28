@@ -2,7 +2,7 @@
 -- Area: Ordelles Caves
 -- NPC:  Stalagmite
 -- Involved In Quest: Sharpening the Sword
--- @pos -51 0.1 3 193
+-- !pos -51 0.1 3 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         local spawnTime = player:getVar("Polevik_Spawned");
         local canSpawn = (os.time() - spawnTime) > 30;
         local PolevikKilled = player:getVar("PolevikKilled");
-        
+
         if (PolevikKilled == 1) then
             if ((os.time() - player:getVar("Polevik_Timer") < 30) or (NMDespawned and (os.time() - spawnTime) < 30)) then
                 player:addKeyItem(ORDELLE_WHETSTONE);
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-    
+
 end;
 
 -----------------------------------

@@ -37,6 +37,7 @@
 #include "../packets/menu_raisetractor.h"
 #include "../packets/char_health.h"
 #include "../packets/char_appearance.h"
+#include "../packets/message_system.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
@@ -64,7 +65,7 @@
 #include "../items/item_usable.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
-#include "../recast_container.h"
+#include "../char_recast_container.h"
 #include "../latent_effect_container.h"
 #include "../status_effect_container.h"
 #include "../treasure_pool.h"
@@ -167,6 +168,7 @@ CCharEntity::CCharEntity()
 
     m_isWeaponSkillKill = false;
     m_isStyleLocked = false;
+    m_isBlockingAid = false;
 
     BazaarID.clean();
     TradePending.clean();
@@ -178,8 +180,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
-
-    PRecastContainer = new CRecastContainer(this);
+    PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
     petZoningInfo.respawnPet = false;
@@ -215,7 +216,6 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
-    delete PRecastContainer;
 }
 
 uint8 CCharEntity::GetGender()
@@ -275,11 +275,32 @@ void CCharEntity::erasePackets(uint8 num)
     }
 }
 
+void CCharEntity::setPetZoningInfo()
+{
+    if (PPet->objtype == TYPE_PET)
+    {
+        switch (((CPetEntity*)PPet)->getPetType())
+        {
+        case PETTYPE_JUG_PET:
+        case PETTYPE_AUTOMATON:
+        case PETTYPE_WYVERN:
+            petZoningInfo.petHP = PPet->health.hp;
+            petZoningInfo.petTP = PPet->health.tp;
+            petZoningInfo.petMP = PPet->health.mp;
+            petZoningInfo.petType = ((CPetEntity*)PPet)->getPetType();
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 void CCharEntity::resetPetZoningInfo()
 {
     // reset the petZoning info
     petZoningInfo.petHP = 0;
     petZoningInfo.petTP = 0;
+    petZoningInfo.petMP = 0;
     petZoningInfo.respawnPet = false;
     petZoningInfo.petType = PETTYPE_AVATAR;
 }
@@ -342,7 +363,7 @@ int16 CCharEntity::addTP(int16 tp)
     tp = CBattleEntity::addTP(tp);
     //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
     //	{
-    PLatentEffectContainer->CheckLatentsTP(health.tp);
+    PLatentEffectContainer->CheckLatentsTP();
     //	}
     return abs(tp);
 }
@@ -350,7 +371,7 @@ int16 CCharEntity::addTP(int16 tp)
 int32 CCharEntity::addHP(int32 hp)
 {
     hp = CBattleEntity::addHP(hp);
-    PLatentEffectContainer->CheckLatentsHP(health.hp);
+    PLatentEffectContainer->CheckLatentsHP();
 
     return abs(hp);
 }
@@ -358,7 +379,7 @@ int32 CCharEntity::addHP(int32 hp)
 int32 CCharEntity::addMP(int32 mp)
 {
     mp = CBattleEntity::addMP(mp);
-    PLatentEffectContainer->CheckLatentsMP(health.mp);
+    PLatentEffectContainer->CheckLatentsMP();
 
     return abs(mp);
 }
@@ -381,6 +402,16 @@ bool CCharEntity::getStyleLocked()
 void CCharEntity::setStyleLocked(bool isStyleLocked)
 {
     m_isStyleLocked = isStyleLocked;
+}
+
+bool CCharEntity::getBlockingAid()
+{
+    return m_isBlockingAid;
+}
+
+void CCharEntity::setBlockingAid(bool isBlockingAid)
+{
+    m_isBlockingAid = isBlockingAid;
 }
 
 void CCharEntity::SetPlayTime(uint32 playTime)
@@ -507,6 +538,12 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
             return false;
         }
     }
+
+    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
+    {
+        return true;
+    }
+
     if (CBattleEntity::ValidTarget(PInitiator, targetFlags))
     {
         return true;
@@ -525,8 +562,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 
 bool CCharEntity::CanUseSpell(CSpell* PSpell)
 {
-    return charutils::hasSpell(this, PSpell->getID()) && CBattleEntity::CanUseSpell(PSpell) &&
-        !PRecastContainer->Has(RECAST_MAGIC, PSpell->getID());
+    return charutils::hasSpell(this, static_cast<uint16>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
+        !PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()));
 }
 
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
@@ -544,7 +581,7 @@ void CCharEntity::OnDisengage(CAttackState& state)
     PLatentEffectContainer->CheckLatentsWeaponDraw(false);
 }
 
-bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
     float dist = distance(loc.p, PTarget->loc.p);
 
@@ -566,7 +603,7 @@ bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasi
         errMsg = std::make_unique<CMessageBasicPacket>(this, PTarget, 0, 0, MSGBASIC_UNABLE_TO_SEE_TARG);
         return false;
     }
-    else if (dist > PTarget->m_ModelSize)
+    else if ((dist - PTarget->m_ModelSize) > GetMeleeRange())
     {
         errMsg = std::make_unique<CMessageBasicPacket>(this, PTarget, 0, 0, MSGBASIC_TARG_OUT_OF_RANGE);
         return false;
@@ -592,7 +629,7 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
                     isFaceing(this->loc.p, PPotentialTarget.second->loc.p, 64) &&
                     distance(this->loc.p, PPotentialTarget.second->loc.p) <= 10)
                 {
-                    std::unique_ptr<CMessageBasicPacket> errMsg;
+                    std::unique_ptr<CBasicPacket> errMsg;
                     if (IsValidTarget(PPotentialTarget.second->targid, TARGET_ENEMY, errMsg))
                     {
                         controller->ChangeTarget(PPotentialTarget.second->targid);
@@ -611,7 +648,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
 
     for (auto&& actionList : action.actionLists)
     {
@@ -686,10 +723,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     int16 tp = state.GetSpentTP();
     tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
 
-    PLatentEffectContainer->CheckLatentsTP(this->health.tp);
+    PLatentEffectContainer->CheckLatentsTP();
 
     SLOTTYPE damslot = SLOT_MAIN;
-    if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize < PWeaponSkill->getRange())
+    if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize <= PWeaponSkill->getRange())
     {
         if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
         {
@@ -728,25 +765,9 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
-                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                actionTarget.speceffect = (SPECEFFECT)((damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE) | actionTarget.speceffect);
-
-                if (actionTarget.reaction == REACTION_EVADE)
-                    actionTarget.messageID = primary ? 188 : 282; //but misses
-                else if (damage < 0)
+                if (primary && PBattleTarget->objtype == TYPE_MOB)
                 {
-                    actionTarget.param = -damage;
-                    actionTarget.messageID = primary ? 238 : 263; //absorbed ws
-                }
-                else
-                {
-                    actionTarget.param = damage;
-                    actionTarget.messageID = primary ? 185 : 264; //damage ws
-
-                    if (primary && PBattleTarget->objtype == TYPE_MOB)
-                    {
-                        luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
-                    }
+                    luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
                 }
             }
             else
@@ -790,7 +811,8 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     {
                         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getID(),
+                        { static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getPrimarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getTertiarySkillchain()) });
                         if (effect != SUBEFFECT_NONE)
                         {
                             actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);
@@ -836,7 +858,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         return;
     }
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
-    std::unique_ptr<CMessageBasicPacket> errMsg;
+    std::unique_ptr<CBasicPacket> errMsg;
     if (IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
     {
         if (this != PTarget && distance(this->loc.p, PTarget->loc.p) > PAbility->getRange())
@@ -992,7 +1014,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.speceffect = SPECEFFECT_NONE;
                 actionTarget.animation = PAbility->getAnimationID();
                 actionTarget.messageID = PAbility->getMessage();
-                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
 
                 if (msg == 0) {
                     msg = PAbility->getMessage();
@@ -1008,6 +1029,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 }
 
                 actionTarget.messageID = msg;
+                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
             }
         }
         else
@@ -1351,7 +1373,7 @@ bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)
     return found;
 }
 
-void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
+void CCharEntity::HandleErrorMessage(std::unique_ptr<CBasicPacket>& msg)
 {
     if (msg && !isCharmed)
         pushPacket(msg.release());
@@ -1359,7 +1381,7 @@ void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
 
 void CCharEntity::OnDeathTimer()
 {
-    //home point
+    charutils::HomePoint(this);
 }
 
 void CCharEntity::OnRaise()
@@ -1507,12 +1529,19 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     }
 }
 
-CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)
     {
-        if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
+        if (PTarget->objtype == TYPE_PC && charutils::IsAidBlocked(this, static_cast<CCharEntity*>(PTarget)))
+        {
+            // Target is blocking assistance
+            errMsg = std::make_unique<CMessageSystemPacket>(0, 0, 225);
+            // Interaction was blocked
+            static_cast<CCharEntity*>(PTarget)->pushPacket(new CMessageSystemPacket(0, 0, 226));
+        }
+        else if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
         {
             return PTarget;
         }
@@ -1544,11 +1573,13 @@ void CCharEntity::Die()
     m_DeathCounter = 0;
     m_DeathTimestamp = (uint32)time(nullptr);
 
+    setBlockingAid(false);
+
     //influence for conquest system
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain);
+        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
 }
 
 void CCharEntity::Die(duration _duration)

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
 -- Door: Runic Seal
--- @pos 486 -23 -500 79
+-- !pos 486 -23 -500 79
 -----------------------------------
 
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
@@ -50,7 +50,7 @@ function onEventUpdate(player,csid,option,target)
     -- printf("RESULT: %u",option);
 
     local assaultid = player:getCurrentAssault();
-    
+
     local cap = bit.band(option, 0x03);
     if (cap == 0) then
         cap = 99;
@@ -61,11 +61,11 @@ function onEventUpdate(player,csid,option,target)
     else
         cap = 50;
     end
-    
+
     player:setVar("AssaultCap", cap);
 
     local party = player:getParty();
-    
+
     if (party ~= nil) then
         for i,v in ipairs(party) do
             if (not (v:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
@@ -79,9 +79,9 @@ function onEventUpdate(player,csid,option,target)
             end
         end
     end
-    
+
     player:createInstance(player:getCurrentAssault(), 69);
-    
+
 end;
 
 -----------------------------------
@@ -91,7 +91,7 @@ end;
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
- 
+
     if (csid == 0x82 or (csid == 0x8C and option == 4)) then
         player:setPos(0,0,0,0,69);
     end

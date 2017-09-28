@@ -3,7 +3,7 @@
 -- NPC: Afdeen
 -- Standard Merchant NPC
 -- @zone 244
--- @pos 1.462 0.000 21.627
+-- !pos 1.462 0.000 21.627
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x00b3);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

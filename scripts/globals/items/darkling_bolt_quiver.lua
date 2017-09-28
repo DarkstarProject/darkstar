@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5820
---    Darkling Bolt Quiver
---    When used, you will obtain one stack of Darkling Bolts
+-- ID: 5820
+-- Darkling Bolt Quiver
+-- When used, you will obtain one stack of Darkling Bolts
 -----------------------------------------
 
 -----------------------------------------

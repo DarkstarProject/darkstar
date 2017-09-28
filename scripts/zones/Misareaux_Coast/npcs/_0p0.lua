@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Misareaux Coast
 --  NPC: Dilapidated Gate
--- @pos 260 9 -435 25
+-- !pos 260 9 -435 25
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -----------------------------------

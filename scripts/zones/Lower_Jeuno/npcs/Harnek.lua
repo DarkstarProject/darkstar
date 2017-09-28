@@ -3,7 +3,7 @@
 -- NPC:  Harnek
 -- Starts and Finishes Quest: The Tenshodo Showdown (finish)
 -- @zone 245
--- @pos 44 0 -19
+-- !pos 44 0 -19
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -18,14 +18,14 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(LETTER_FROM_THE_TENSHODO)) then
         player:startEvent(0x2725,0,LETTER_FROM_THE_TENSHODO); -- During Quest "The Tenshodo Showdown"
     elseif (player:hasKeyItem(SIGNED_ENVELOPE)) then
@@ -33,10 +33,10 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x00d9); -- Standard dialog
     end
-    
-end; 
 
--- 0x000c  0x000d  0x0009  0x000a  0x0014  0x00d9  0x009f  0x2725  0x2726 
+end;
+
+-- 0x000c  0x000d  0x0009  0x000a  0x0014  0x00d9  0x009f  0x2725  0x2726
 
 -----------------------------------
 -- onEventUpdate
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(TENSHODO_ENVELOPE);
         player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_ENVELOPE);
     elseif (csid == 0x2726) then
-        if (player:getFreeSlotsCount() == 0 or player:hasItem(16764)) then 
+        if (player:getFreeSlotsCount() == 0 or player:hasItem(16764)) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16764); -- Marauder's Knife
         else
             player:delKeyItem(SIGNED_ENVELOPE);

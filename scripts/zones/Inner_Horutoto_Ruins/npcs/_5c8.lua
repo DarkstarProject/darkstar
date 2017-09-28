@@ -4,7 +4,7 @@
 -- Involved in Quest: Making the Grade
 -- Door should open when Whm+Blm+Rdm stand in correct regions (see \Inner_Horutoto_Ruins\zone.lua),
 -- or if player has the KeyItem "portal charm".
--- @pos -259 -1 -20 192
+-- !pos -259 -1 -20 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------

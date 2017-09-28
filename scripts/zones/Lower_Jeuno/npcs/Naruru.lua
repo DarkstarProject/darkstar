@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Naruru
 -- Starts and Finishes Quests: Cook's Pride
--- @pos -56 0.1 -138 245
+-- !pos -56 0.1 -138 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -32,18 +32,18 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,13) == false) then
         player:startEvent(10053);
-    elseif (TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then 
+    elseif (TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then
         if (player:getVar("CooksPrideVar") == 0) then
             player:startEvent(0x00BD); -- Start quest "Cook's pride" Long CS
          else
             player:startEvent(0x00BC); -- Start quest "Cook's pride" Short CS
         end
-    elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(SUPER_SOUP_POT) == false) then 
+    elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(SUPER_SOUP_POT) == false) then
         player:startEvent(0x00BA); -- During quest "Cook's pride"
-    elseif (player:hasKeyItem(SUPER_SOUP_POT) == true) then 
+    elseif (player:hasKeyItem(SUPER_SOUP_POT) == true) then
         player:startEvent(0x00BB); -- Finish quest "Cook's pride"
-    elseif (CooksPride == QUEST_COMPLETED and TheKindCardian == QUEST_AVAILABLE) then 
-        if (player:getVar("theLostCardianVar") == 0) then 
+    elseif (CooksPride == QUEST_COMPLETED and TheKindCardian == QUEST_AVAILABLE) then
+        if (player:getVar("theLostCardianVar") == 0) then
             player:startEvent(0x001f); -- During quests "The lost cardian"
         else
             player:startEvent(0x0047); -- During quests "The lost cardian"
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0062); -- Standard dialog
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -73,11 +73,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ((csid == 0x00BD or csid == 0x00BC) and option == 0) then 
+    if ((csid == 0x00BD or csid == 0x00BC) and option == 0) then
         player:addQuest(JEUNO,COOK_S_PRIDE);
-    elseif (csid == 0x00BD and option == 1) then 
+    elseif (csid == 0x00BD and option == 1) then
         player:setVar("CooksPrideVar",1);
-    elseif (csid == 0x00BB) then 
+    elseif (csid == 0x00BB) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
         else

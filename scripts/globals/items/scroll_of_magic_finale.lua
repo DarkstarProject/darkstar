@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5070
---    Scroll of Magic Finale
---    Teaches the song Magic Finale
+-- ID: 5070
+-- Scroll of Magic Finale
+-- Teaches the song Magic Finale
 -----------------------------------------
 
 -----------------------------------------
