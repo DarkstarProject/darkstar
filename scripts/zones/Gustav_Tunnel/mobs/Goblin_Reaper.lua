@@ -27,12 +27,15 @@ function onMobDespawn(mob)
 
     if (Goblinsavior_Heronox_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Goblinsavior_Heronox");
+        local checkPH = GetServerVariable("[PH]Goblinsavior_Heronox");
         if (ToD <= os.time() and GetMobAction(Goblinsavior_Heronox) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Goblinsavior_Heronox);
                 GetMobByID(Goblinsavior_Heronox):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Goblinsavior_Heronox", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Goblinsavior_Heronox", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

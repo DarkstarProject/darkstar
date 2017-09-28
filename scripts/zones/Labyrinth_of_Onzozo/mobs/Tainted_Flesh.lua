@@ -15,12 +15,15 @@ function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
     if (Hellion_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Hellion");
+        local checkPH = GetServerVariable("[PH]Hellion");
         if (ToD <= os.time() and GetMobAction(Hellion) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Hellion);
                 GetMobByID(Hellion):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Hellion", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Hellion", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

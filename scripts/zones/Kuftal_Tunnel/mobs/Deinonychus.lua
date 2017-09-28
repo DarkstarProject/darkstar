@@ -26,12 +26,15 @@ function onMobDespawn(mob)
 
     if (Yowie_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Yowie");
+        local checkPH = GetServerVariable("[PH]Yowie");
         if (ToD <= os.time() and GetMobAction(Yowie) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Yowie);
                 GetMobByID(Yowie):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Yowie", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Yowie", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

@@ -22,12 +22,15 @@ function onMobDespawn(mob)
     if (Moo_Ouzi_the_Swiftblade_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Moo_Ouzi_the_Swiftblade");
+        local checkPH = GetServerVariable("[PH]Moo_Ouzi_the_Swiftblade");
         if (ToD <= os.time() and GetMobAction(Moo_Ouzi_the_Swiftblade) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Moo_Ouzi_the_Swiftblade);
                 GetMobByID(Moo_Ouzi_the_Swiftblade):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Moo_Ouzi_the_Swiftblade", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Moo_Ouzi_the_Swiftblade", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

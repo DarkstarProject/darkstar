@@ -28,12 +28,15 @@ function onMobDespawn(mob)
 
     if (Taxim_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Taxim");
+        local checkPH = GetServerVariable("[PH]Taxim");
         if (ToD <= os.time() and GetMobAction(Taxim) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Taxim);
                 GetMobByID(Taxim):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Taxim", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Taxim", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

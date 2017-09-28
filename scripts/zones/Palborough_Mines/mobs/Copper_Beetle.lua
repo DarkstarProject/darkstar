@@ -22,12 +22,14 @@ function onMobDespawn(mob)
         local checkPH = GetServerVariable("[PH]Bu_Ghi_Howlblade");
         if (ToD <= os.time() and GetMobByID(Bu_Ghi_Howlblade):isDead()) then
             -- Set ToD, DisallowRespawn PH repop, set NM respawn time
-            if (math.random(1,10) == 5 and checkPH == 0) then
+            if (math.random(1,10) == 5) then
                 DisallowRespawn(Bu_Ghi_Howlblade, false);
                 UpdateNMSpawnPoint(Bu_Ghi_Howlblade);
                 GetMobByID(Bu_Ghi_Howlblade):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Bu_Ghi_Howlblade", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Bu_Ghi_Howlblade", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

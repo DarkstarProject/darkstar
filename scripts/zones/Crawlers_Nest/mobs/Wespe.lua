@@ -25,12 +25,15 @@ function onMobDespawn(mob)
 
     if (Demonic_Tiphia_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Demonic_Tiphia");
+        local checkPH = GetServerVariable("[PH]Demonic_Tiphia");
         if (ToD <= os.time() and GetMobAction(Demonic_Tiphia) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Demonic_Tiphia);
                 GetMobByID(Demonic_Tiphia):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Demonic_Tiphia", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Demonic_Tiphia", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

@@ -26,12 +26,15 @@ function onMobDespawn(mob)
 
     if (Ungur_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Ungur");
+        local checkPH = GetServerVariable("[PH]Ungur");
         if (ToD <= os.time() and GetMobAction(Ungur) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Ungur);
                 GetMobByID(Ungur):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Ungur", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Ungur", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

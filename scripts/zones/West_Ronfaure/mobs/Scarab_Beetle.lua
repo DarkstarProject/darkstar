@@ -26,12 +26,15 @@ function onMobDespawn(mob)
 
     if (Fungus_Beetle_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Fungus_Beetle");
+        local checkPH = GetServerVariable("[PH]Fungus_Beetle");
         if (ToD <= os.time() and GetMobAction(Fungus_Beetle) == 0) then
             if (math.random(1,10) == 5) then
                 UpdateNMSpawnPoint(Fungus_Beetle);
                 GetMobByID(Fungus_Beetle):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Fungus_Beetle", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Fungus_Beetle", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

@@ -26,7 +26,8 @@ function onMobDespawn(mob)
     if (Energetic_Eruca_PH[mobID] ~= nil) then
         -- printf("%u is a PH",mobID);
         -- Get EnE's previous ToD
-        EnE_ToD = GetServerVariable("[POP]Energetic_Eruca");
+        local EnE_ToD = GetServerVariable("[POP]Energetic_Eruca");
+        local checkPH = GetServerVariable("[PH]Energetic_Eruca");
 
         -- Check if EnE window is open, and there is not an EnE popped already(ACTION_NONE = 0)
         if (EnE_ToD <= os.time() and GetMobAction(Energetic_Eruca) == 0) then
@@ -36,8 +37,10 @@ function onMobDespawn(mob)
                 -- printf("EnE will pop");
                 UpdateNMSpawnPoint(Energetic_Eruca);
                 GetMobByID(Energetic_Eruca):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Energetic_Eruca", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Energetic_Eruca", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

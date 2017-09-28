@@ -26,12 +26,15 @@ function onMobDespawn(mob)
 
     if (Amikiri_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Amikiri");
+        local checkPH = GetServerVariable("[PH]Amikiri");
         if (ToD <= os.time() and GetMobAction(Amikiri) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Amikiri);
                 GetMobByID(Amikiri):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Amikiri", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Amikiri", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
