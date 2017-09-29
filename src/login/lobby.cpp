@@ -131,9 +131,9 @@ int32 lobbydata_parse(int32 fd)
             CharList[0] = 0xE0; CharList[1] = 0x08;
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
-            const int8 *contentIDQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
-            int32 contentIDRet = Sql_Query(SqlHandle, contentIDQuery, sd->accid);
-            if (contentIDRet == SQL_SUCCESS && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            const int8 *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
+            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 CharList[28] = Sql_GetUIntData(SqlHandle, 0);
             }
@@ -143,7 +143,7 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            const char *pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
+            pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
 												 race, face, head, body, hands, legs, feet, main, sub,\
 												 war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
 												 sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
@@ -154,7 +154,7 @@ int32 lobbydata_parse(int32 fd)
 										  WHERE accid = %i \
 										  LIMIT %u;";
 
-            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid, CharList[28]);
+            ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid, CharList[28]);
             if (ret == SQL_ERROR)
             {
                 do_close_lobbydata(sd, fd);
