@@ -446,8 +446,9 @@ namespace luautils
 
             if (PMob != nullptr &&
                 PMob->isDead() &&
-                !(PMob->m_Type & MOBTYPE_NOTORIOUS) &&
-                (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 &&
+                !PMob->PAI->IsSpawned() && // exclude mobs that haven't yet despawned
+                PMob->m_Type == MOBTYPE_BATTLEFIELD && // exclude NMs and pets
+                (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 && // exclude Replicas and Ahrimans
                 PMob->GetMJob() == mobJob)
             {
                 lua_pushinteger(L, PMob->id);
