@@ -410,7 +410,7 @@ void CBattlefield::onTick(time_point time)
     {
         //todo : bcnm - update tick, fight tick, end if time is up
         m_Tick = time;
-        m_FightTick = m_Status == BATTLEFIELD_STATUS_LOCKED ? time : m_FightTick;
+        m_FightTick = m_Status == BATTLEFIELD_STATUS_LOCKED ? m_FightTick : time;
         m_FinishTime = m_Status >= BATTLEFIELD_STATUS_WON ? m_FightTick - m_StartTime : m_FinishTime;
 
         // remove the char if they zone out
@@ -471,7 +471,7 @@ void CBattlefield::Cleanup()
 
     if (GetStatus() == BATTLEFIELD_STATUS_WON && GetRecord().time > m_FinishTime)
     {
-        SetRecord(const_cast<int8*>(m_Initiator.name.c_str()), m_FinishTime, m_Record.partySize);
+        SetRecord(m_Initiator.name, m_FinishTime, m_Record.partySize);
     }
     // wipe enmity from all mobs in list if needed
     ForEachRequiredEnemy([&](CMobEntity* PMob)

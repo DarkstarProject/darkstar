@@ -58,12 +58,14 @@ public:
     int32 getAllies(lua_State*);
     int32 getRecord(lua_State*);
     int32 getStatus(lua_State*);
+    int32 getLocalVar(lua_State*);
 
     int32 setTimeLimit(lua_State*);
     int32 setFightTick(lua_State*);
     int32 setWipeTime(lua_State*);
     int32 setRecord(lua_State*);
     int32 setStatus(lua_State*);
+    int32 setLocalVar(lua_State*);
     int32 loadMobs(lua_State*);
     int32 insertEntity(lua_State*);
     int32 cleanup(lua_State*);

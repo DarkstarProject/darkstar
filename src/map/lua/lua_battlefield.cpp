@@ -274,6 +274,26 @@ inline int32 CLuaBattlefield::getStatus(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBattlefield::getLocalVar(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    lua_pushinteger(L, m_PLuaBattlefield->GetLocalVar(lua_tostring(L, 1)));
+    return 1;
+}
+
+inline int32 CLuaBattlefield::setLocalVar(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    m_PLuaBattlefield->SetLocalVar(lua_tostring(L, 1), lua_tointeger(L, 2));
+    return 0;
+}
+
+
 inline int32 CLuaBattlefield::setWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
@@ -381,6 +401,8 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getAllies),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getRecord),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getStatus),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,getLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,setLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setWipeTime),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setRecord),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setStatus),

@@ -53,6 +53,7 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside)
     local status = battlefield:getStatus();
     local leavecode = -1;
     local players = battlefield:getPlayers();
+    local tickShit = battlefield:getLocalVar("timer")
 
     print("shit")
 
@@ -63,11 +64,12 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside)
     end;
 
     if leavecode ~= -1 then
-        for _, player in pairs(players) do
-            player:leaveBattlefield(leavecode);
-        end;
-        if #players == 0 then
-            battlefield:cleanup(true);
+        battlefield:setLocalVar("timer", tickShit + 1)
+        if tickShit == 15 then
+            for _, player in pairs(players) do
+                player:leaveBattlefield(leavecode)
+            end
+            battlefield:cleanup(true)
         end
         return;
     end;
