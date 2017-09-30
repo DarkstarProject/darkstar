@@ -263,7 +263,7 @@ inline int32 CLuaBattlefield::getRecord(lua_State* L)
     lua_pushstring(L, record.name.c_str());
     lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(record.time).count());
     lua_pushinteger(L, record.partySize);
-    return 1;
+    return 3;
 }
 
 inline int32 CLuaBattlefield::getStatus(lua_State* L)

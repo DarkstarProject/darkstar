@@ -75,7 +75,7 @@ void CBattlefieldHandler::HandleBattlefields(time_point tick)
         {
             PBattlefield->Cleanup();
             it = m_Battlefields.erase(it);
-            ShowDebug("[CBattlefieldHandler]HandleBattlefields cleaned up Battlefield %s", PBattlefield->GetName().c_str());
+            ShowDebug("[CBattlefieldHandler]HandleBattlefields cleaned up Battlefield %s\n", PBattlefield->GetName().c_str());
             delete PBattlefield;
         }
         else
@@ -147,6 +147,7 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
             {
                 PBattlefield->SetStatus(BATTLEFIELD_STATUS_LOST);
                 PBattlefield->CanCleanup(true);
+                PBattlefield->Cleanup();
                 ShowDebug("battlefield loading failed\n");
                 return BATTLEFIELD_RETURN_CODE_WAIT;
             }
@@ -198,7 +199,7 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
     else if (PChar->PBattlefield)
     {
         // todo: fuck you entering multiple battlefields
-        ShowDebug("%s tried to enter another fuckin battlefield", PChar->GetName());
+        ShowDebug("%s tried to enter another fuckin battlefield\n", PChar->GetName());
         return false;
     }
     return LoadBattlefield(PChar, battlefield, area);

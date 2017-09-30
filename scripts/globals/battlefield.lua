@@ -66,7 +66,9 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside)
         for _, player in pairs(players) do
             player:leaveBattlefield(leavecode);
         end;
-        battlefield:cleanup(true);
+        if #players == 0 then
+            battlefield:cleanup(true);
+        end
         return;
     end;
 
@@ -81,6 +83,7 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside)
     g_Battlefield.HandleTimePrompts(battlefield);
     print("fuck")
     if killedallmobs then
+        print("dicks")
         battlefield:setStatus(g_Battlefield.Status.WON);
     end
 end;
@@ -102,9 +105,12 @@ function g_Battlefield.HandleTimePrompts(battlefield)
         end;
     end;
 
-    if status ~= g_Battlefield.Status.WON and remainingTime <= 0 then
-        battlefield:setStatus(g_Battlefield.Status.LOST);
-    end;
+    if remainingTime <= 0 then
+        if status ~= g_Battlefield.Status.WON then
+            battlefield:setStatus(g_Battlefield.Status.LOST);
+        end
+        battlefield:cleanup(true)
+    end
 end;
 
 function g_Battlefield.HandleWipe(battlefield)

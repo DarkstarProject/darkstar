@@ -209,19 +209,9 @@ void CBattlefield::SetArea(uint8 area)
 
 void CBattlefield::SetRecord(const std::string& name, duration time, uint8 partySize)
 {
-    time = std::chrono::duration_cast<std::chrono::seconds>(time);
-
     m_Record.name = !name.empty() ? name : m_Initiator.name;
-    m_Record.time = std::chrono::duration_cast<std::chrono::seconds>(time).count() ? time : m_FinishTime;
+    m_Record.time = time;
     m_Record.partySize = partySize;
-
-    const int8* query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u";
-    auto timeThing = std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
-
-    if (Sql_Query(SqlHandle, query, name.c_str(), timeThing, partySize, this->GetID(), GetZoneID()) == SQL_ERROR)
-    {
-        ShowError("Battlefield::SetRecord() unable to find battlefield %u \n", this->GetID());
-    }
 }
 
 void CBattlefield::SetStatus(uint8 status)
@@ -365,12 +355,12 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 
     if (PEntity->objtype == TYPE_PC)
     {
-        auto check = [PEntity, &found](auto entity) { if (PEntity->targid == entity) { found = true; return found; } return false; };
+        auto check = [PEntity, &found](auto entity) { if (PEntity->id == entity) { found = true; return found; } return false; };
         m_PlayerList.erase(std::remove_if(m_PlayerList.begin(), m_PlayerList.end(), check), m_PlayerList.end());
 
         if (leavecode != 255)
         {
-            luautils::OnBattlefieldLeave(static_cast<CCharEntity*>(PEntity), this, static_cast<BATTLEFIELD_LEAVE_CODE>(leavecode));
+            luautils::OnBattlefieldLeave(static_cast<CCharEntity*>(PEntity), this, leavecode);
         }
     }
     else if (PEntity->objtype == TYPE_NPC)
@@ -407,6 +397,10 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         ClearEnmityForEntity(entity);
     }
     PEntity->PBattlefield = nullptr;
+
+    if (m_PlayerList.size() == 0)
+        CanCleanup(true);
+
     return found;
 }
 
@@ -443,7 +437,6 @@ void CBattlefield::onTick(time_point time)
         // been here too long, gtfo
         if (GetTimeInside() >= GetTimeLimit())
             CanCleanup(true);
-
     }
 }
 
@@ -478,7 +471,7 @@ void CBattlefield::Cleanup()
 
     if (GetStatus() == BATTLEFIELD_STATUS_WON && GetRecord().time > m_FinishTime)
     {
-        SetRecord(const_cast<int8*>(m_Initiator.name.c_str()), m_FinishTime, m_PlayerList.size());
+        SetRecord(const_cast<int8*>(m_Initiator.name.c_str()), m_FinishTime, m_Record.partySize);
     }
     // wipe enmity from all mobs in list if needed
     ForEachRequiredEnemy([&](CMobEntity* PMob)
@@ -506,6 +499,14 @@ void CBattlefield::Cleanup()
     {
         RemoveEntity(PNpc);
     });
+
+    if (m_Status == BATTLEFIELD_STATUS_WON)
+    {
+        const int8* query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u";
+        auto timeThing = std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
+
+        Sql_Query(SqlHandle, query, m_Record.name.c_str(), timeThing, m_Record.partySize, this->GetID(), GetZoneID());
+    }
 }
 
 bool CBattlefield::LoadMobs()

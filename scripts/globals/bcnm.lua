@@ -180,49 +180,42 @@ function EventUpdateBCNM(player, csid, option, entrance)
         local zone = player:getZoneID();
         local battlefieldIndex = bit.rshift(option, 4) + 1
         local battlefieldId = battlefield_bitmask_map[zone][battlefieldIndex]
-        local mask = GetBattleBitmask(battlefieldId, zone, 1);
         local effect = player:getStatusEffect(EFFECT_BATTLEFIELD);
         local skip = CutsceneSkip(player);
         local area = player:getLocalVar("[battlefield]area");
         local id = battlefieldId or player:getBattlefieldID()
 
-        if option ~= 255 then
-            local clearTime, name, partySize, cap, tick = 0
+        if option == 255 then
+
+        else
+            local clearTime, name, partySize = 1
             local canRegister = true
             if skip ~= 1 and not checkNonTradeBCNM(player, npc, 1, id) then
-                print("cunt")
                 canRegister = false
             end 
 
             local result = g_Battlefield.ReturnCode.REQS_NOT_MET
             
             if canRegister then
-                player:registerBattlefield(id, area + 1);
+                result = player:registerBattlefield(id, area + 1);
             end
             
-            if result ~= 2 then
+            if result ~= g_Battlefield.ReturnCode.CUTSCENE then
                 player:setLocalVar("[battlefield]area", area + 1)
             else
                 if id ~= -1 then
                     local battlefield = player:getBattlefield()
                     if battlefield then
                         name, clearTime, partySize = battlefield:getRecord()
-                        cap = battlefield:getMaxPlayers();
                         mask = battlefield:getID();
-                        print("batturfierduuu")
                     end
                 end
             end
-
-                print("fuck")
-                -- params(result, battlefieldindex, ?, recordTime, recordPartySize, skip);
-                player:updateEvent(result, mask, 0, clearTime, partySize, skip);
-                -- params(name, name, name, name, ? (possibly bitmask?), ?, ?, ?, ?, ?, ?, ?, ?);
-                player:updateEventString(name);
-            
-        elseif option == 255 then
-            print("ass")
-            -- player:updateEvent(1, 3, 0, 0, 1, 0);
+            if partySize == 0 then
+                partySize = 69
+            end
+            player:updateEvent(result, battlefieldIndex - 1, 0, clearTime, partySize, skip);
+            player:updateEventString(name);
         end
     end
    return true
@@ -320,7 +313,7 @@ function GetBattleBitmask(id, zone, mode)
                 if mode == 1 then
                     ret = mask + bit.lshift(index + 1, 2);
                 else
-                    ret = mask + index;
+                    return index;
                 end
             end
         end
@@ -548,7 +541,7 @@ function checkNonTradeBCNM(player, npc, mode, battlefieldId)
         if mode == 2 then
             if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
                 mask = mask + GetBattleBitmask(keyid, Zone, mode);
-                if battlefieldId then
+                if battlefieldId == keyid then
                     canEnter = true
                     return mask
                 end
