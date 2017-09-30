@@ -84,6 +84,11 @@ function onEventFinish(player,csid,option)
                 lampsRemaining = lampsRemaining - 1;
             end
         end
-        player:messageSpecial(7241,lampsRemaining);
+
+        if lampsRemaining == 0 then
+            player:messageSpecial(LAMP_MSG_OFFSET);
+        else
+            player:messageSpecial(LAMP_MSG_OFFSET+1,lampsRemaining);
+        end
     end
 end;

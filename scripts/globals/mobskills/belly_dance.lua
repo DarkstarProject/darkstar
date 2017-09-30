@@ -7,11 +7,10 @@
 --  Range: 15' radial
 --  Notes: Used only by Lamia NM's, particularly in Besieged.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -32,13 +31,13 @@ function onMobWeaponSkill(target, mob, skill)
     resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod);
     if (resist > 0.2) then
         if (target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(MSG_ENFEEB_IS);
+            skill:setMsg(msgBasic.ENFEEB_IS);
             target:addStatusEffect(typeEffect,power,tic,duration);
         else
-            skill:setMsg(MSG_NO_EFFECT);
+            skill:setMsg(msgBasic.NO_EFFECT);
         end
     else
-        skill:setMsg(MSG_MISS);
+        skill:setMsg(msgBasic.MISS);
     end
     return typeEffect;
     ]]

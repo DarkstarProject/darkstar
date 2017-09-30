@@ -28,7 +28,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Gargantua);
                 GetMobByID(Gargantua):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Gargantua", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

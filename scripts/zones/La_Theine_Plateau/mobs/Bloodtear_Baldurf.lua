@@ -47,10 +47,10 @@ function onMobDespawn(mob)
     if (chanceForLambert > 95 and GetMobAction(Battering_Ram) == ACTION_NONE and GetMobAction(Lumbering_Lambert) == ACTION_NONE) then
         UpdateNMSpawnPoint(Lumbering_Lambert);
         GetMobByID(Lumbering_Lambert):setRespawnTime(GetMobRespawnTime(Battering_Ram));
-        DeterMob(mobID, true);
+        DisallowRespawn(mobID, true);
     else
         GetMobByID(Battering_Ram):setRespawnTime(GetMobRespawnTime(Battering_Ram));
-        DeterMob(mobID, true);
+        DisallowRespawn(mobID, true);
     end
 
     SetServerVariable("[POP]Bloodtear_Baldurf", os.time() + math.random(75600, 86400)); -- 21-24hours repop

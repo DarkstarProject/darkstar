@@ -28,7 +28,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Hovering_Hotpot);
                 GetMobByID(Hovering_Hotpot):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Hovering_Hotpot", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

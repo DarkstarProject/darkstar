@@ -5,13 +5,12 @@
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Dispels shadows
 --  Range: Single target
---  Notes: 
+--  Notes:
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -24,11 +23,11 @@ function onMobWeaponSkill(target, mob, skill)
     local msg; -- to be set later
 
     if (dispel == 0) then
-        msg = MSG_NO_EFFECT; -- no effect
+        msg = msgBasic.NO_EFFECT; -- no effect
     else
-        msg = MSG_DISAPPEAR_NUM;
+        msg = msgBasic.DISAPPEAR_NUM;
     end
-    
+
     skill:setMsg(msg);
 
     return dispel;

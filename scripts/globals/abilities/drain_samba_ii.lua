@@ -6,22 +6,22 @@
 -- Recast Time: 1:00
 -- Duration: 1:30
 -----------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
 -----------------------------------
- 
+
 function onAbilityCheck(player,target,ability)
     if (player:hasStatusEffect(EFFECT_FAN_DANCE)) then
-        return MSGBASIC_UNABLE_TO_USE_JA2, 0;
+        return msgBasic.UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
         return 0,0;
     elseif (player:getTP() < 250) then
-        return MSGBASIC_NOT_ENOUGH_TP,0;
+        return msgBasic.NOT_ENOUGH_TP,0;
     else
         return 0,0;
     end;

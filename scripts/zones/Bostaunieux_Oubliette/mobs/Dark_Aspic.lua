@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Sewer_Syrup);
                 GetMobByID(Sewer_Syrup):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Sewer_Syrup", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

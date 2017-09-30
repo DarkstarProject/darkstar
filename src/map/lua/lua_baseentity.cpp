@@ -25,7 +25,6 @@
 #include "../../common/timer.h"
 #include "../../common/utils.h"
 #include "../../common/kernel.h"
-#include"../message.h"
 #include <math.h>
 
 #include "lua_baseentity.h"
@@ -59,6 +58,7 @@
 #include "../packets/event.h"
 #include "../packets/event_string.h"
 #include "../packets/event_update.h"
+#include "../packets/event_update_string.h"
 #include "../packets/guild_menu.h"
 #include "../packets/guild_menu_buy.h"
 #include "../packets/instance_entry.h"
@@ -133,6 +133,7 @@
 #include "../transport.h"
 #include "../treasure_pool.h"
 #include "../mob_modifier.h"
+#include "../message.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -165,6 +166,67 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
     charutils::SendToZone((CCharEntity*)m_PBaseEntity, 1, 0);
 
     return 0;
+}
+
+inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    bool found = false;
+
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        const int8* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, std::string(lua_tostring(L, 1)).c_str());
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            char buf[30];
+            memset(&buf[0], 0, sizeof(buf));
+
+            WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
+            WBUFW(&buf, 4) = 0; // wanting to bring target char here so wont give our id
+            WBUFW(&buf, 8) = m_PBaseEntity->getZone();
+            WBUFW(&buf, 10) = m_PBaseEntity->loc.p.x;
+            WBUFW(&buf, 14) = m_PBaseEntity->loc.p.y;
+            WBUFW(&buf, 18) = m_PBaseEntity->loc.p.z;
+            WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
+            
+            if (m_PBaseEntity->objtype == TYPE_PC)
+                WBUFL(&buf, 23) = ((CCharEntity*)m_PBaseEntity)->m_moghouseID;
+
+            message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
+            found = true;
+        }
+    }
+    lua_pushboolean(L, found);
+    return 1;
+}
+
+int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    bool found = false;
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        const int8* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, std::string(lua_tostring(L, 1)).c_str());
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            char buf[30];
+            memset(&buf[0], 0, sizeof(buf));
+
+            WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
+            WBUFW(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
+            
+            message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
+            found = true;
+        }
+    }
+    lua_pushboolean(L, found);
+    return 1;
 }
 
 //==========================================================//
@@ -2935,7 +2997,63 @@ inline int32 CLuaBaseEntity::updateEvent(lua_State *L)
             param5,
             param6,
             param7));
+    return 0;
+}
 
+inline int32 CLuaBaseEntity::updateEventString(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    std::string string0 = "";
+    std::string string1 = "";
+    std::string string2 = "";
+    std::string string3 = "";
+
+    uint32 param0 = 0;
+    uint32 param1 = 0;
+    uint32 param2 = 0;
+    uint32 param3 = 0;
+    uint32 param4 = 0;
+    uint32 param5 = 0;
+    uint32 param6 = 0;
+    uint32 param7 = 0;
+    uint32 param8 = 0;
+
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+        string0 = std::string(lua_tostring(L, 1));
+    if (!lua_isnil(L, 2) && lua_isstring(L, 2))
+        string1 = std::string(lua_tostring(L, 2));
+    if (!lua_isnil(L, 3) && lua_isstring(L, 3))
+        string2 = std::string(lua_tostring(L, 3));
+    if (!lua_isnil(L, 4) && lua_isstring(L, 4))
+        string3 = std::string(lua_tostring(L, 4));
+
+
+    if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
+        param0 = (uint32)lua_tointeger(L, 5);
+    if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
+        param1 = (uint32)lua_tointeger(L, 6);
+    if (!lua_isnil(L, 7) && lua_isnumber(L, 7))
+        param2 = (uint32)lua_tointeger(L, 7);
+    if (!lua_isnil(L, 8) && lua_isnumber(L, 8))
+        param3 = (uint32)lua_tointeger(L, 8);
+    if (!lua_isnil(L, 9) && lua_isnumber(L, 9))
+        param4 = (uint32)lua_tointeger(L, 9);
+    if (!lua_isnil(L, 10) && lua_isnumber(L, 10))
+        param5 = (uint32)lua_tointeger(L, 10);
+    if (!lua_isnil(L, 11) && lua_isnumber(L, 11))
+        param6 = (uint32)lua_tointeger(L, 11);
+    if (!lua_isnil(L, 12) && lua_isnumber(L, 12))
+        param7 = (uint32)lua_tointeger(L, 12);
+
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+        new CEventUpdateStringPacket(
+            string0, string1, string2, string3,
+            param0, param1, param2, param3, param4,
+            param5, param6, param7, param8
+        )
+    );
     return 0;
 }
 
@@ -7463,9 +7581,9 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L)
 
     if (ZoneID > 184 && ZoneID < 189 || ZoneID > 133 && ZoneID < 136 || ZoneID > 38 && ZoneID < 43)
     {
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS))
         {
-            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS, 0)->GetPower();
+            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS)->GetPower();
             if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
             {
                 lua_pushinteger(L, 1);
@@ -7477,7 +7595,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L)
     {
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
         {
-            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD, 0)->GetPower();
+            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
             if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
             {
                 lua_pushinteger(L, 1);
@@ -7508,7 +7626,7 @@ inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L)
 
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
     {
-        uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD, 0)->GetPower();
+        uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
         uint8 typeOfExit = lua_tointeger(L, 1);
         if (typeOfExit == 1 && PChar->loc.zone->m_BattlefieldHandler->leaveBcnm(effect_bcnmid, PChar))
         {
@@ -9396,21 +9514,15 @@ inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
 
 inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
-    CHAT_MESSAGE_TYPE messageType = (!lua_isnil(L, 2) && lua_isnumber(L, 2) ? (CHAT_MESSAGE_TYPE)lua_tointeger(L, 2) : MESSAGE_SYSTEM_1);
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, messageType, (char*)lua_tostring(L, 1)));
-    return 0;
-}
 
-inline int32 CLuaBaseEntity::PrintToServer(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == NULL);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
-    CHAT_MESSAGE_TYPE messageType = (!lua_isnil(L, 2) && lua_isnumber(L, 2) ? (CHAT_MESSAGE_TYPE)lua_tointeger(L, 2) : MESSAGE_SYSTEM_1);
-    message::send(MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket((CCharEntity*)m_PBaseEntity, messageType, (char*)lua_tostring(L, 1)));
+
+    CHAT_MESSAGE_TYPE messageType = (lua_isnil(L, 2) || !lua_isnumber(L, 2)) ? MESSAGE_SYSTEM_1 : (CHAT_MESSAGE_TYPE)lua_tointeger(L, 2);
+    std::string name = (lua_isnil(L, 3) || !lua_isstring(L, 3)) ? std::string() : lua_tostring(L, 3);
+
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, messageType, (char*)lua_tostring(L, 1), name));
     return 0;
 }
 /*
@@ -9731,13 +9843,23 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    if (m_PBaseEntity->PBCNM)
+    CBattlefield* PBattlefield = m_PBaseEntity->PBCNM;
+    if (m_PBaseEntity->loc.zone && m_PBaseEntity->loc.zone->m_BattlefieldHandler)
+    {
+        auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+        CStatusEffect* PStatusEffect = nullptr;
+
+        if (PChar && (PStatusEffect = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)))
+            PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->getBattlefield(PChar->loc.zone->GetCharByID(PStatusEffect->GetSubID()));
+    }
+
+    if (PBattlefield)
     {
         lua_getglobal(L, CLuaBattlefield::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
         lua_insert(L, -2);
-        lua_pushlightuserdata(L, (void*)m_PBaseEntity->PBCNM);
+        lua_pushlightuserdata(L, (void*)PBattlefield);
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
@@ -11120,6 +11242,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,ChangeMusic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCursorTarget),
@@ -11243,6 +11367,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEventString),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEventString),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
@@ -11507,7 +11632,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMHidden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMHidden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,PrintToPlayer),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity, PrintToServer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathThrough),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),

@@ -4,9 +4,10 @@
 --  Description: Restores HP.
 --
 ---------------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -22,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     potency = potency - math.random(0, potency/4);
 
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
 
     return MobHealMove(mob, mob:getMaxHP() * potency / 100);
 end;

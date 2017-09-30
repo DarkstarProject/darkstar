@@ -3,9 +3,9 @@
 -- Item: Kikoku
 -- Additional Effect: Paralysis
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -17,6 +17,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_PARALYSIS, 17, 0, 30); -- Power needs verification/adjustment.
-        return SUBEFFECT_PARALYSIS, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
     end
 end;

@@ -28,7 +28,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Zoraal_Ja_s_Pkuucha);
                 GetMobByID(Zoraal_Ja_s_Pkuucha):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Zoraal_Ja_s_Pkuucha", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
 

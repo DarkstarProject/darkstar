@@ -2,10 +2,10 @@
 -- Area: Attohwa Chasm
 --  NM:  Sekhmet
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -50,7 +50,7 @@ function onAdditionalEffect(mob, target, damage)
         else
             target:delMP(mp);
             mob:addMP(mp);
-            return SUBEFFECT_MP_DRAIN, MSGBASIC_ADD_EFFECT_MP_DRAIN, mp;
+            return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, mp;
         end
     end
 end;

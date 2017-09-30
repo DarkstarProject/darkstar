@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Lord_of_Onzozo);
                 GetMobByID(Lord_of_Onzozo):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Lord_of_Onzozo", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     elseif (Peg_Powler_PH[mobID] ~= nil) then
@@ -41,7 +41,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Peg_Powler);
                 GetMobByID(Peg_Powler):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Peg_Powler", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

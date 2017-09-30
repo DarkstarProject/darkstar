@@ -50,7 +50,8 @@ public:
 
     int32 warp(lua_State*);                 // Returns Character to home point
     int32 leavegame(lua_State*);            // Character leaving game
-
+    int32 bringPlayer(lua_State*);          // warps target to self
+    int32 gotoPlayer(lua_State*);           // warps self to target player
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
     int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
@@ -207,6 +208,8 @@ public:
     int32 startEvent(lua_State*);           // Begins Event
     int32 startEventString(lua_State*);     // Begins Event with string param (0x33 packet)
     int32 updateEvent(lua_State*);          // Updates event
+    int32 updateEventString(lua_State*);    // (string, string, string, string, uint32, ...)
+
     int32 getEventTarget(lua_State*);       //
     int32 openSendBox(lua_State*);          // Opens send box (to deliver items)
 

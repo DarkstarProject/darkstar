@@ -320,8 +320,8 @@ INSERT INTO `zone_settings` VALUES (271,6,'127.0.0.1',54230,'Cirdas_Caverns_U',6
 INSERT INTO `zone_settings` VALUES (272,3,'127.0.0.1',54230,'Dho_Gates',0,0,57,57,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (273,3,'127.0.0.1',54230,'Woh_Gates',0,0,57,57,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (274,3,'127.0.0.1',54230,'Outer_RaKaznar',73,73,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (275,0,'127.0.0.1',54230,'Outer_RaKaznar_U',0,0,0,0,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (276,0,'127.0.0.1',54230,'RaKaznar_Inner_Court',0,0,0,0,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (275,0,'127.0.0.1',54230,'Outer_RaKaznar_U',62,62,62,62,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (276,0,'127.0.0.1',54230,'RaKaznar_Inner_Court',73,73,57,57,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (277,0,'127.0.0.1',54230,'RaKaznar_Turris',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (278,0,'127.0.0.1',0,'278',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (279,0,'127.0.0.1',0,'279',0,0,0,0,0,0.00,0);

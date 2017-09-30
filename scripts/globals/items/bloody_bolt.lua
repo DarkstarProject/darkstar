@@ -4,6 +4,7 @@
 -- Additional Effect: Drains HP
 -----------------------------------------
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -32,6 +33,6 @@ function onAdditionalEffect(player,target,damage)
             drain = 0
         end
         drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
-        return SUBEFFECT_HP_DRAIN, MSGBASIC_ADD_EFFECT_HP_DRAIN,player:addHP(drain);
+        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN,player:addHP(drain);
     end
 end;

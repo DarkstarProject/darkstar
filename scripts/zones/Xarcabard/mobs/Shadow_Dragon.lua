@@ -27,7 +27,7 @@ function onMobDespawn(mob)
             SpawnMob(mob:getID()+1);
             GetMobByID(mob:getID()+1):setPos(X,Y,Z);
             GetMobByID(mob:getID()+1):setSpawn(X,Y,Z);
-            DeterMob(mob:getID(), true);
+            DisallowRespawn(mob:getID(), true);
         end
     end
 end;

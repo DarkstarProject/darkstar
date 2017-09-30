@@ -4,12 +4,12 @@
 --  Description: Reduces an enemy's TP. Additional effect: Blindness and "Bind".
 --  Type: Magical (Light)
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobGazeMove(mob, target, EFFECT_BIND, 1, 0, 30);
 
-    skill:setMsg(MSG_TP_REDUCED);
+    skill:setMsg(msgBasic.TP_REDUCED);
 
     return tpReduced;
 end;

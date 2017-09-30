@@ -5,6 +5,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -41,7 +42,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_ASTRAL_FLOW;
-    skill:setMsg(MSG_USES);
+    skill:setMsg(msgBasic.USES);
 
     -- Find proper pet skill
     local pet = mob:getPet();

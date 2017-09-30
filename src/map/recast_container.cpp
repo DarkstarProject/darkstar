@@ -260,9 +260,9 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
 
 void CRecastContainer::Check()
 {
-    for (uint8 type = 0; type < MAX_RECASTTPE_SIZE; ++type)
+    for (auto type : {RECAST_MAGIC, RECAST_ABILITY})
     {
-        RecastList_t* PRecastList = GetRecastList((RECASTTYPE)type);
+        RecastList_t* PRecastList = GetRecastList(type);
 
         for (uint16 i = 0; i < PRecastList->size(); ++i)
         {
@@ -270,7 +270,7 @@ void CRecastContainer::Check()
 
             if (time(nullptr) >= (recast->TimeStamp + recast->RecastTime))
             {
-                if (type == RECAST_ITEM || type == RECAST_MAGIC || type == RECAST_LOOT)
+                if (type == RECAST_MAGIC)
                 {
                     PRecastList->erase(PRecastList->begin() + i--);
                 }

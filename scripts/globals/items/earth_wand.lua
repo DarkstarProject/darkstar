@@ -3,9 +3,9 @@
 -- Item: Earth Wand
 -- Additional Effect: Earth Damage
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -26,9 +26,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_EARTH);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_EARTH,dmg);
 
-        local message = MSGBASIC_ADD_EFFECT_DMG;
+        local message = msgBasic.ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = MSGBASIC_ADD_EFFECT_HEAL;
+            message = msgBasic.ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_EARTH_DAMAGE,message,dmg;

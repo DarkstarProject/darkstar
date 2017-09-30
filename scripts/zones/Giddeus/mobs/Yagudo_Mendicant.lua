@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Hoo_Mjuu_the_Torrent);
                 GetMobByID(Hoo_Mjuu_the_Torrent):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Hoo_Mjuu_the_Torrent", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

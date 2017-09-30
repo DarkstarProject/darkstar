@@ -32,7 +32,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Wyvernpoacher_Drachlox);
                 GetMobByID(Wyvernpoacher_Drachlox):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Wyvernpoacher_Drachlox", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

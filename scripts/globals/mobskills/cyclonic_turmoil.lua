@@ -7,6 +7,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -34,7 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
     if (total == 0) then
         return dmg;
     else
-        skill:setMsg(MSG_DISAPPEAR_NUM);
+        skill:setMsg(msgBasic.DISAPPEAR_NUM);
         return total;
     end
 end;

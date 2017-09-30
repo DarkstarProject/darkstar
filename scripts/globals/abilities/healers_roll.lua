@@ -23,10 +23,10 @@
 --
 -- Note that this roll will increase potency of cures received, not the potency of the caster's spells
 -----------------------------------
-
 require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/ability");
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -36,9 +36,9 @@ function onAbilityCheck(player,target,ability)
     local effectID = EFFECT_HEALERS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
-        return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+        return msgBasic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
-        return MSGBASIC_CANNOT_PERFORM,0;
+        return msgBasic.CANNOT_PERFORM,0;
     else
         return 0,0;
     end

@@ -35,7 +35,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Northern_Shadow);
                 GetMobByID(Northern_Shadow):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Northern_Shadow", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
@@ -53,7 +53,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Eastern_Shadow);
                 GetMobByID(Eastern_Shadow):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Eastern_Shadow", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
@@ -71,7 +71,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Southern_Shadow);
                 GetMobByID(Southern_Shadow):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Southern_Shadow", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
@@ -89,7 +89,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Western_Shadow);
                 GetMobByID(Western_Shadow):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Western_Shadow", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

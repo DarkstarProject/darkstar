@@ -272,7 +272,7 @@ function CharCreate(player)
 
    ----- settings.lua Perks -----  -- SET JOB To 6,20 instead of 6,22 to avoid GEO AND RUN -- 
     if (ADVANCED_JOB_LEVEL == 0) then
-       for i = 6,17 - 19,20 do
+       for i = 6,20 do
           player:unlockJob(i);
        end
     end

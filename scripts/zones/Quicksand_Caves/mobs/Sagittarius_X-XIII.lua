@@ -26,11 +26,11 @@ end;
 function onMobDespawn(mob)
     -- set cooldown
     SetServerVariable("[POP]Sagittarius_X_XIII", os.time() + 14400); -- 4 hours
-    DeterMob(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
 
     -- make PH spawn in place of NM
     local PH = GetServerVariable("[PH]Sagittarius_X_XIII");
     SetServerVariable("[PH]Sagittarius_X_XIII", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 end;

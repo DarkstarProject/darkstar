@@ -1,11 +1,10 @@
 ---------------------------------------------------
 -- Blood Weapon
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -24,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
         duration = skill:getParam();
     end
     MobBuffMove(mob, typeEffect, 1, 0, duration);
-    
-    skill:setMsg(MSG_USES);
+
+    skill:setMsg(msgBasic.USES);
     return typeEffect;
 end;

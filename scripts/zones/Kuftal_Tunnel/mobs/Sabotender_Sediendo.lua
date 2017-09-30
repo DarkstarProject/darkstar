@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Sabotender_Mariachi);
                 GetMobByID(Sabotender_Mariachi):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Sabotender_Mariachi", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

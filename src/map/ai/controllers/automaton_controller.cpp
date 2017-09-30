@@ -649,27 +649,49 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             if (maneuvers.dark) // Dark -> Bio
             {
                 castPriority.push_back(SpellID::Bio_II);
-                castPriority.push_back(SpellID::Bio);
             }
             else
             {
                 defaultPriority.push_back(SpellID::Bio_II);
+            }
+        }
+
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
+        {
+            if (maneuvers.light)
+            {
+                castPriority.push_back(SpellID::Dia_II);
+            }
+            else
+            {
+                defaultPriority.push_back(SpellID::Dia_II);
+            }
+        }
+
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
+        {
+            if (maneuvers.dark) // Dark -> Bio
+            {
+                castPriority.push_back(SpellID::Bio);
+            }
+            else
+            {
                 defaultPriority.push_back(SpellID::Bio);
             }
         }
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            if (maneuvers.light >= 2) // 2 Light -> Dia II
-            {
-                castPriority.push_back(SpellID::Dia_II);
-            }
-
-            if (maneuvers.light) // Light -> Dia
+            if (maneuvers.light)
             {
                 castPriority.push_back(SpellID::Dia);
             }
+            else
+            {
+                defaultPriority.push_back(SpellID::Dia);
+            }
         }
+
 
         if (maneuvers.water) // Water -> Poison
         {
@@ -729,7 +751,6 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
                 defaultPriority.push_back(SpellID::Bio_II);
-                defaultPriority.push_back(SpellID::Bio);
             }
 
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
@@ -737,7 +758,26 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
                 if (maneuvers.light >= 2) // 2 Light -> Dia
                 {
                     castPriority.push_back(SpellID::Dia_II);
+                }
+                else
+                {
+                    defaultPriority.push_back(SpellID::Dia_II);
+                }
+            }
+            if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
+            {
+                defaultPriority.push_back(SpellID::Bio);
+            }
+
+            if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
+            {
+                if (maneuvers.light >= 2) // 2 Light -> Dia
+                {
                     castPriority.push_back(SpellID::Dia);
+                }
+                else
+                {
+                    defaultPriority.push_back(SpellID::Dia);
                 }
             }
 
@@ -799,7 +839,6 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
                 castPriority.push_back(SpellID::Bio_II);
-                castPriority.push_back(SpellID::Bio);
             }
         }
         else
@@ -808,21 +847,41 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
                 defaultPriority.push_back(SpellID::Bio_II);
+            }
+        }
+
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
+        {
+            if (maneuvers.light) // Light -> Dia
+            {
+                castPriority.push_back(SpellID::Dia_II);
+            }
+            else
+            {
+                defaultPriority.push_back(SpellID::Dia_II);
+            }
+        }
+
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
+        {
+            if (maneuvers.dark) // Dark -> Blind > Bio
+            {
+                castPriority.push_back(SpellID::Bio);
+            }
+            else
+            {
                 defaultPriority.push_back(SpellID::Bio);
             }
         }
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            // This is probably wrong
             if (maneuvers.light) // Light -> Dia
             {
-                castPriority.push_back(SpellID::Dia_II);
                 castPriority.push_back(SpellID::Dia);
             }
             else
             {
-                defaultPriority.push_back(SpellID::Dia_II);
                 defaultPriority.push_back(SpellID::Dia);
             }
         }

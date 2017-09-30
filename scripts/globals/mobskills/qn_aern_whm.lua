@@ -2,11 +2,10 @@
 -- Benediction
 -- Meant for Qn'aern (WHM) with Ix'Aern encounter
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -22,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:eraseAllStatusEffect();
     target:addHP(maxHeal);
     target:wakeUp();
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
 
     return maxHeal;
 end;

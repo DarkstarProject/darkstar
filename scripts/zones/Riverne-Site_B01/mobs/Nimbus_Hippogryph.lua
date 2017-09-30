@@ -37,7 +37,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Imdugud);
                 GetMobByID(Imdugud):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Imdugud", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

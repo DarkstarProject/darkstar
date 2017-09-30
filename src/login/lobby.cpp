@@ -178,7 +178,6 @@ int32 lobbydata_parse(int32 fd)
                 uint32 CharID = Sql_GetIntData(SqlHandle, 0);
 
                 uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
-                uint16 prevzone = (uint16)Sql_GetIntData(SqlHandle, 3);
 
                 uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
                 uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
@@ -207,8 +206,8 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
                 WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
-                // todo: cap login packet for zones > 255
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);      // если персонаж в MogHouse
+                WBUFB(CharList, 72 + 32 + i * 140) = zone;
+                WBUFW(CharList, 78 + 32 + i * 140) = zone;
                 ///////////////////////////////////////////////////
                 ++i;
             }
@@ -257,7 +256,7 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 32);
+            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \

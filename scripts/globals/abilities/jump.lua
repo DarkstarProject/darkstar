@@ -5,10 +5,10 @@
 -- Recast Time: 1:00
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -37,7 +37,7 @@ function onUseAbility(player,target,ability,action)
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = (player:getMod(MOD_JUMP_ATT_BONUS) + 100) / 100
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
-    
+
     local taChar = player:getTrickAttackChar(target);
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params);
@@ -54,7 +54,7 @@ function onUseAbility(player,target,ability,action)
         end
         action:speceffect(target:getID(), 32)
     else
-        ability:setMsg(MSGBASIC_USES_BUT_MISSES)
+        ability:setMsg(msgBasic.USES_BUT_MISSES)
         action:speceffect(target:getID(), 0)
     end
 

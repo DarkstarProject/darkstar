@@ -36,7 +36,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Sagittarius_X_XIII);
                 GetMobByID(Sagittarius_X_XIII):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Sagittarius_X_XIII", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

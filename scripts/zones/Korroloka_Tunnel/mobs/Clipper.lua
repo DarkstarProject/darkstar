@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Cargo_Crab_Colin);
                 GetMobByID(Cargo_Crab_Colin):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Cargo_Crab_Colin", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

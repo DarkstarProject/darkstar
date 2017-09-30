@@ -5,6 +5,7 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/pets");
+require("scripts/globals/msg");
 
 -----------------------------------------
 -- OnSpellCast
@@ -12,9 +13,9 @@ require("scripts/globals/pets");
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:getPet() ~= nil) then
-        return MSGBASIC_ALREADY_HAS_A_PET;
+        return msgBasic.ALREADY_HAS_A_PET;
     elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
-        return MSGBASIC_THAT_SOMEONES_PET;
+        return msgBasic.THAT_SOMEONES_PET;
     end
 
     -- Per wiki, Virelai wipes all shadows even if it resists or the target is immune to charm

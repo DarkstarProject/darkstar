@@ -13,6 +13,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -27,7 +28,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     mob:eraseStatusEffect();
     -- Didn't see any msg for the erase in youtube vids.
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
     -- Assuming its a 4-6% heal based on its max HP and numbers quoted on wiki.
     return MobHealMove(mob, mob:getMaxHP() * (math.random(4,6) * 0.01));
 end;

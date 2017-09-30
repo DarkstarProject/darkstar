@@ -1,10 +1,10 @@
 ---------------------------------------------------
 -- Healing Breath II
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
+require("scripts/globals/msg");
 
 ---------------------------------------------------
 
@@ -38,7 +38,7 @@ function onUseAbility(pet, target, skill, action)
    if (target:getHP()+base > target:getMaxHP()) then
       base = target:getMaxHP() - target:getHP(); --cap it
    end
-   skill:setMsg(MSGBASIC_USES_RECOVERS_HP);
+   skill:setMsg(msgBasic.USES_RECOVERS_HP);
    target:addHP(base);
    return base;
 end

@@ -30,12 +30,12 @@ function onMobDespawn(mob)
             UpdateNMSpawnPoint(Charybdis);
             GetMobByID(Charybdis):setRespawnTime(GetMobRespawnTime(mobID));
             SetServerVariable("[PH]Charybdis", mobID);
-            DeterMob(mobID, true);
+            DisallowRespawn(mobID, true);
         else
             local r = math.random(1,2);
             if (mobID ~= Charybdis_PH[r]) then -- what is this?
-                DeterMob(mobID, true);
-                DeterMob(Charybdis_PH[r], false);
+                DisallowRespawn(mobID, true);
+                DisallowRespawn(Charybdis_PH[r], false);
                 GetMobByID(Charybdis_PH[r]):setRespawnTime(GetMobRespawnTime(mobID));
             end
         end

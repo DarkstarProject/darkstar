@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Ungur);
                 GetMobByID(Ungur):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Ungur", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
