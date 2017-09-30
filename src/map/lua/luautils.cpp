@@ -4178,7 +4178,7 @@ namespace luautils
                 {
                     PMob->m_AllowRespawn = !lua_toboolean(L, 2);
                     //ShowDebug(CL_RED"DisallowRespawn: Mob <%u> DisallowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
-                    return 1;
+                    return 0;
                 }
                 else
                 {

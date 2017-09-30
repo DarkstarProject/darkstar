@@ -7868,6 +7868,26 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 
     return 0;
 }
+
+int32 CLuaBaseEntity::getRespawnTime(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+
+    if (PMob->m_AllowRespawn)
+    {
+        lua_pushinteger(L, PMob->m_RespawnTime);
+        return 1;
+    }
+    else
+    {
+        lua_pushinteger(L, 0);
+        return 1;
+    }
+}
+
 inline int32 CLuaBaseEntity::addPlayerToSpecialBattlefield(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11643,6 +11663,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRespawnTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateHealth),
