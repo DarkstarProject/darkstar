@@ -152,7 +152,7 @@ function EventTriggerBCNM(player, npc)
     player:setVar("trade_itemid", 0)
 
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-        if (player:isInBattlefieldList() == 1) then
+        if player:isInBattlefieldList() then
             player:startEvent(0x7d03) -- Run Away or Stay menu
         else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
             status = player:getStatusEffect(EFFECT_BATTLEFIELD)
@@ -228,7 +228,7 @@ function EventFinishBCNM(player, csid, option)
         player:getBattlefield():cleanup(true);
     end;
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
+    if not player:hasStatusEffect(EFFECT_BATTLEFIELD) then -- Temp condition for normal bcnm (started with onTrigger)
         return false
     else
         local id = player:getLocalVar("trade_bcnmid")
@@ -238,12 +238,6 @@ function EventFinishBCNM(player, csid, option)
             player:tradeComplete() -- Removes the item
         elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
             player:createWornItem(item)
-        end
-
-        if csid == 0x7d03 and option == 4 then
-            if player:getBattlefield() then
-                player:bcnmLeave(1);
-            end
         end
         return true
     end

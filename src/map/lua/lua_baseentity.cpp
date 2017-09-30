@@ -7561,8 +7561,7 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 inline int32 CLuaBaseEntity::isInBattlefieldList(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-
+    
     lua_pushboolean(L, (m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity) != nullptr));
     return 1;
 }
