@@ -2,7 +2,7 @@ require("scripts/globals/status")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/quests")
-
+require("scripts/globals/battlefield")
 -- NEW SYSTEM BCNM NOTES
 -- The "core" functions TradeBCNM EventUpdateBCNM EventTriggerBCNM EventFinishBCNM all return TRUE if the action performed is covered by the function.
 -- This means all the old code will still be executed if the new functions don't support it. This means that there is effectively 'backwards compatibility' with the old system.
@@ -152,7 +152,7 @@ function EventTriggerBCNM(player, npc)
     player:setVar("trade_itemid", 0)
 
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-        if (player:isInBcnm() == 1) then
+        if (player:isInBattlefieldList() == 1) then
             player:startEvent(0x7d03) -- Run Away or Stay menu
         else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
             status = player:getStatusEffect(EFFECT_BATTLEFIELD)
@@ -176,123 +176,70 @@ function EventTriggerBCNM(player, npc)
 end
 
 function EventUpdateBCNM(player, csid, option, entrance)
-    -- return false
-    local id = player:getVar("trade_bcnmid") -- this is 0 if the bcnm isnt handled by new functions
-    local skip = CutsceneSkip(player, npc)
+    if csid == 0x7d00 then
+        local zone = player:getZoneID();
+        local battlefieldIndex = bit.rshift(option, 4) + 1
+        local battlefieldId = battlefield_bitmask_map[zone][battlefieldIndex]
+        local mask = GetBattleBitmask(battlefieldId, zone, 1);
+        local effect = player:getStatusEffect(EFFECT_BATTLEFIELD);
+        local skip = CutsceneSkip(player);
+        local area = player:getLocalVar("[battlefield]area");
+        local id = battlefieldId or player:getBattlefieldID()
 
-    print("UPDATE csid "..csid.." option "..option)
-    -- seen: option 2, 3, 0 in that order
-    if (csid == 0x7d03 and option == 2) then -- leaving a BCNM the player is currently in.
-        player:updateEvent(3)
-        return true
-    elseif (csid == 0x7d03 and option == 3) then -- leaving a BCNM the player is currently in.
-        player:updateEvent(0)
-        return true
-    end
-    if (option == 255 and csid == 0x7d00) then -- Clicked yes, try to register bcnmid
-        if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-            -- You're entering a bcnm but you already had the battlefield effect, so you want to go to the
-            -- instance that your battlefield effect represents.
-            player:setVar("bcnm_instanceid_tick", 0)
-            player:setVar("bcnm_instanceid", player:getBattlefieldID()) -- returns 255 if non-existent.
-            return true
-        end
+        if option ~= 255 then
+            local clearTime, name, partySize, cap, tick = 0
+            local canRegister = true
+            if skip ~= 1 and not checkNonTradeBCNM(player, npc, 1, id) then
+                print("cunt")
+                canRegister = false
+            end 
 
-        inst = player:bcnmRegister(id)
-        if (inst > 0) then
-            player:setVar("bcnm_instanceid", inst)
-            player:setVar("bcnm_instanceid_tick", 0)
-            player:updateEvent(0, GetBattleBitmask(id, player:getZoneID(), 1), 0, 0, 5, 0)
-
-            if (entrance ~= nil and player:getBattlefield() ~= nil) then
-                player:getBattlefield():setEntrance(entrance)
-            end
-            -- player:tradeComplete()
-        else
-            -- no free battlefields at the moment!
-            print("no free instances")
-            player:setVar("bcnm_instanceid", 255)
-            player:setVar("bcnm_instanceid_tick", 0)
-        end
-    elseif (option == 0 and csid == 0x7d00) then -- Requesting an Instance
-        -- Increment the instance ticker.
-        -- The client will send a total of THREE EventUpdate packets for each one of the free instances.
-        -- If the first instance is free, it should respond to the first packet
-        -- If the second instance is free, it should respond to the second packet, etc
-        local instance = player:getVar("bcnm_instanceid_tick")
-        instance = instance + 1
-        player:setVar("bcnm_instanceid_tick", instance)
-
-        if (instance == player:getVar("bcnm_instanceid")) then
-            -- respond to this packet
-            local mask = GetBattleBitmask(id, player:getZoneID(), 2)
-            local status = player:getStatusEffect(EFFECT_BATTLEFIELD)
-            local playerbcnmid = status:getPower()
-            local battlefield = player:getBattlefield()
-            local name = 'Meme';
-            local partySize = 5;
-            local clearTime = 260;
+            local result = g_Battlefield.ReturnCode.REQS_NOT_MET
             
-            if battlefield then
-                local record = battlefield:getRecord()
-                name = record.name
-                partySize = record.partySize
-                clearTime = record.clearTime
+            if canRegister then
+                player:registerBattlefield(id, area + 1);
             end
-            print("aaaaaaaaaaaaaaaaasssssssssssss " ..partySize)
-            print("shiiiiiiiiiiiiiiiiiiiiiiiiiiit "..clearTime)
-            if (mask < playerbcnmid) then
-                mask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+            
+            if result ~= 2 then
+                player:setLocalVar("[battlefield]area", area + 1)
+            else
+                if id ~= -1 then
+                    local battlefield = player:getBattlefield()
+                    if battlefield then
+                        name, clearTime, partySize = battlefield:getRecord()
+                        cap = battlefield:getMaxPlayers();
+                        mask = battlefield:getID();
+                        print("batturfierduuu")
+                    end
+                end
+            end
+
+                print("fuck")
+                -- params(result, battlefieldindex, ?, recordTime, recordPartySize, skip);
+                player:updateEvent(result, mask, 0, clearTime, partySize, skip);
+                -- params(name, name, name, name, ? (possibly bitmask?), ?, ?, ?, ?, ?, ?, ?, ?);
                 player:updateEventString(name);
-                player:bcnmEnter(id)
-                player:setVar("bcnm_instanceid_tick", 0)
-                -- print("mask is "..mask)
-                -- print("playerbcnmid is "..playerbcnmid)
-
-            elseif (mask >= playerbcnmid) then
-                mask = GetBattleBitmask(id, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
-                player:updateEventString(name);
-                player:bcnmEnter(id)
-                player:setVar("bcnm_instanceid_tick", 0)
-                -- print("mask2 is "..mask)
-                -- print("playerbcnmid2 is "..playerbcnmid)
-            end
-
-            if (entrance ~= nil and player:getBattlefield() ~= nil) then
-                player:getBattlefield():setEntrance(entrance)
-            end
-
-        elseif (player:getVar("bcnm_instanceid") == 255) then -- none free
-            -- print("nfa")
-            -- player:updateEvent(2, 5, 0, 0, 1, 0)  -- @cs 32000 0 0 0 0 0 0 0 2
-            -- param1
-            -- 2=generic enter cs
-            -- 3=spam increment instance requests
-            -- 4=cleared to enter but cant while ppl engaged
-            -- 5=dont meet req, access denied.
-            -- 6=room max cap
-            -- param2 alters the eventfinish option (offset)
-            -- param7/8 = does nothing??
+            
+        elseif option == 255 then
+            print("ass")
+            -- player:updateEvent(1, 3, 0, 0, 1, 0);
         end
-        -- !pos -517 159 -209
-        -- !pos -316 112 -103
-        -- player:updateEvent(msgid, bcnmFight, 0, record, numadventurers, skip) skip=1 to skip anim
-        -- msgid 1=wait a little longer, 2=enters
     end
-
-    return true
+   return true
 end
 
 function EventFinishBCNM(player, csid, option)
     print("FINISH csid "..csid.." option "..option)
 
+    if (csid == 0x7d03 and option == 4 ) or (csid == 0x7d02 and player:getBattlefield() and #(player:getBattlefield():getPlayers()) == 1) then
+        player:getBattlefield():cleanup(true);
+    end;
+
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
         return false
     else
-        local id = player:getVar("trade_bcnmid")
-        local item = player:getVar("trade_itemid")
+        local id = player:getLocalVar("trade_bcnmid")
+        local item = player:getLocalVar("trade_itemid")
 
         if (id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
             player:tradeComplete() -- Removes the item
@@ -307,7 +254,6 @@ function EventFinishBCNM(player, csid, option)
         end
         return true
     end
-
 end
 
 -- Returns TRUE if you're trying to do a maat fight, regardless of outcome e.g. if you trade testimony on wrong job, this will return true in order to prevent further execution of TradeBCNM. Returns FALSE if you're not doing a maat fight (in other words, not trading a testimony!!)
@@ -445,7 +391,7 @@ end
 -- E.g. mission checks go here, you must know the right bcnmid for the mission you want to code.
 --      You also need to know the bitmask (event param) which should be put in bcnmid_param_map
 
-function checkNonTradeBCNM(player, npc, mode)
+function checkNonTradeBCNM(player, npc, mode, battlefieldId)
     local mask = 0
     local Zone = player:getZoneID()
     mode = mode or 2;
@@ -595,18 +541,23 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
     }
     
+    -- canEnter is only used to check party members
+    local canEnter = false
+
     for keyid, condition in pairs(checks[Zone]) do
-        if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
-            mask = mask + GetBattleBitmask(keyid, Zone, mode);
-            if mode == 2 then
-                player:setVar("trade_bcnmid", keyid);
-            end
-            -- todo: multiple choice bcnms
-            break;
-        end;
+        if mode == 2 then
+            if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
+                mask = mask + GetBattleBitmask(keyid, Zone, mode);
+                if battlefieldId then
+                    canEnter = true
+                    return mask
+                end
+            end;
+        end
     end;
     
     if mode == 2 then
+        player:setVar("trade_bcnmid", mask);
         player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0);
     end
     return mask;

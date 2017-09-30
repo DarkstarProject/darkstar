@@ -52,6 +52,7 @@ This file is part of DarkStar-server source code.
 #include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "utils/synthutils.h"
+#include "battlefield.h"
 
 CZoneEntities::CZoneEntities(CZone* zone)
 {
@@ -304,53 +305,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         }
     }
 
-    //remove bcnm status
-    if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
-    {
-        if (m_zone->m_BattlefieldHandler->disconnectFromBcnm(PChar)) {
-            ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n", PChar->GetName());
-        }
-
-        if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
-            //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
-            battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (pos != nullptr) {
-                PChar->loc.p.x = pos[0];
-                PChar->loc.p.y = pos[1];
-                PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
-                PChar->updatemask |= UPDATE_POS;
-                charutils::SaveCharPosition(PChar);
-            }
-            else {
-                ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n", PChar->GetName());
-            }
-        }
-    }
-    else if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
-    {
-        if (m_zone->m_BattlefieldHandler->disconnectFromDynamis(PChar)) {
-            ShowDebug("Removed %s from the BCNM they were in as they have left the zone.\n", PChar->GetName());
-        }
-
-        if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
-            //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
-            battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (!(pos[0] == 0 && pos[1] == 0 && pos[2] == 0 && pos[3] == 0)) {
-                PChar->loc.p.x = pos[0];
-                PChar->loc.p.y = pos[1];
-                PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
-                PChar->updatemask |= UPDATE_POS;
-                charutils::SaveCharPosition(PChar);
-            }
-            else {
-                ShowWarning("%s has disconnected from the BCNM but cannot move them to the lobby as the lobby position is unknown!\n", PChar->GetName());
-            }
-        }
-    }
+    m_zone->m_BattlefieldHandler->RemoveFromBattlefield(PChar, PChar->PBattlefield, BATTLEFIELD_LEAVE_CODE_WARPDC);
 
     for (auto PMobIt : m_mobList)
     {
@@ -951,7 +906,7 @@ void CZoneEntities::ZoneServer(time_point tick)
     {
         CMobEntity* PMob = (CMobEntity*)it->second;
 
-        if (PMob->PBCNM && PMob->PBCNM->cleared())
+        if (PMob->PBattlefield && PMob->PBattlefield->CanCleanup())
         {
             continue;
         }

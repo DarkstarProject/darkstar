@@ -230,11 +230,16 @@ namespace luautils
 
     int32 OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind
 
-    int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);                 //triggers when enter a bcnm
-    int32 OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, uint8 LeaveCode);    //triggers when leaving a bcnm
-                                                                                    //Code 1=via Circle 2=warp/dc 3=win 4=lose
-    int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield);                   //triggers when successfully registered a bcnm
-    int32 OnBcnmDestroy(CBattlefield* PBattlefield);                            // triggers when BCNM is destroyed
+    int32 OnBattlefieldHandlerInitialise(CZone* PZone);
+    int32 OnBattlefieldInitialise(CBattlefield* PBattlefield);                    // what to do when initialising battlefield, battlefield:setLocalVar("lootId") here for any which have loot
+    int32 OnBattlefieldTick(CBattlefield* PBattlefield);
+    int32 OnBattlefieldStatusChange(CBattlefield* PBattlefield);
+    
+    int32 OnBattlefieldEnter(CCharEntity* PChar, CBattlefield* PBattlefield);        // triggers when enter a bcnm
+    int32 OnBattlefieldLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode); // see battlefield.h BATTLEFIELD_LEAVE_CODE
+
+    int32 OnBattlefieldRegister(CCharEntity* PChar, CBattlefield* PBattlefield);    // triggers when successfully registered a bcnm
+    int32 OnBattlefieldDestroy(CBattlefield* PBattlefield);							// triggers when BCNM is destroyed
 
     int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action);                            // triggers when mob weapon skill is used
     int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);                             // triggers before mob weapon skill is used, returns 0 if the move is valid
@@ -246,7 +251,7 @@ namespace luautils
     int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action);         // triggers when job ability is used
 
     int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance
-    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask);           // triggers after a character is registered and zoned into an instance (the first time)
+    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask);       // triggers after a character is registered and zoned into an instance (the first time)
     int32 OnInstanceLoadFailed(CZone* PZone);                                   // triggers when an instance load is failed (ie. instance no longer exists)
     int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);// triggers every second for an instance
     int32 OnInstanceFailure(CInstance* PInstance);                              // triggers when an instance is failed
