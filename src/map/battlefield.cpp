@@ -275,7 +275,9 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool inBattlefield, BATTLE
     }
     else if (PEntity->objtype == TYPE_NPC)
     {
-        PEntity->Spawn();
+        PEntity->status = STATUS_NORMAL;
+        PEntity->animation = 0;
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB));
         m_NpcList.push_back(static_cast<CNpcEntity*>(PEntity));
     }
     else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
@@ -435,6 +437,7 @@ void CBattlefield::onTick(time_point time)
             }
             ++charid;
         }
+        CheckInProgress();
         luautils::OnBattlefieldTick(this);
 
         // been here too long, gtfo
@@ -487,9 +490,11 @@ void CBattlefield::Cleanup()
         RemoveEntity(PMob);
     });
 
+    uint8 leavecode = m_Status == BATTLEFIELD_STATUS_WON ? BATTLEFIELD_LEAVE_CODE_WIN : BATTLEFIELD_LEAVE_CODE_LOSE;
+
     ForEachPlayer([&](CCharEntity* PChar)
     {
-        RemoveEntity(PChar, -1);
+        RemoveEntity(PChar, leavecode);
     });
 
     ForEachAlly([&](CMobEntity* PAlly)
@@ -567,7 +572,7 @@ bool CBattlefield::SpawnLoot()
         {
             auto npcId = Sql_GetUIntData(SqlHandle, 0);
             auto PEntity = zoneutils::GetEntity(npcId);
-
+            SetLocalVar("lootSpawned", 1);
             return InsertEntity(PEntity, true);
         }
     }

@@ -68,20 +68,15 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
         if status == g_Battlefield.Status.WON then
             canLeave = battlefield:getLocalVar("loot") == 0
 
-            if battlefield:getLocalVar("lootSpawned") == 0 and not battlefield:spawnLoot() then
+            if battlefield:getLocalVar("lootSpawned") == 0 and battlefield:spawnLoot() then
                 canLeave = false
-            elseif battlefield:getLocalVar("lootSeen") then
+            elseif battlefield:getLocalVar("lootSeen") == 1 then
                 canLeave = true
             end
         end
         if canLeave and cutsceneTimer >= 15 then
-            for _, player in pairs(players) do
-                player:leaveBattlefield(leavecode)
-            end
             battlefield:cleanup(true)
         end
-
-        return
     end
 
     for _, mob in pairs(mobs) do
@@ -174,12 +169,12 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
     players = players or battlefield:getPlayers()
     local lootGroup = lootTable[math.random(1, #lootTable)]
 
-    if battlefield.getStatus() == g_Battlefield.Status.WON and battlefield:getLocalVar("lootSeen") == 0 then
+    if battlefield:getStatus() == g_Battlefield.Status.WON and battlefield:getLocalVar("lootSeen") == 0 then
         if npc then
-            npc:openDoor(1)
+            npc:openDoor(69)
         end
         if lootGroup then
-            for _, entry in pairs(group) do
+            for _, entry in pairs(lootGroup) do
                 local roll = entry.roll / 1000
                 local watashiNoChansu = math.random()
 
@@ -190,6 +185,7 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
         else
             printf("fuckin loot groups")
         end
+        battlefield:setLocalVar("cutsceneTimer", 10)
         battlefield:setLocalVar("lootSeen", 1)
     end
 end
