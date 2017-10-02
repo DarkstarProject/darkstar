@@ -3,6 +3,7 @@
 --  NPC: Halver
 -- Involved in Mission 2-3, 3-3, 5-1, 5-2, 8-1
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
+-- Involved in Quest #2: A Timely Visit
 -- !pos 2 0.1 0.1 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
@@ -37,6 +38,8 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(pNation);
     local WildcatSandy = player:getVar("WildcatSandy");
     local MissionStatus = player:getVar("MissionStatus");
+    
+    -- printf("ATV %d, ATVP %d\n", player:getQuestStatus(SANDORIA, A_TIMELY_VISIT), player:getVar("ATimelyVisitProgress"));
 
     -- Lure of the Wildcat San d'Oria
     if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,16) == false) then
@@ -46,6 +49,9 @@ function onTrigger(player,npc)
         player:startEvent(549);
         player:setVar("BlackMailQuest",1);
         player:delKeyItem(SUSPICIOUS_ENVELOPE);
+    -- A Timely Visit quest
+    elseif (player:getQuestStatus(SANDORIA, A_TIMELY_VISIT) == 1 and player:getVar("ATimelyVisitProgress") == 4) then
+        player:startEvent(0x0070);
     -- San D'Oria Flag check
     elseif (player:getVar("Flagsando") == 1) then
         if (player:getFreeSlotsCount() == 0) then
@@ -165,7 +171,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 501) then
+    if (csid == 0x0070) then
+        player:setVar("ATimelyVisitProgress",6);
+    elseif (csid == 501) then
         player:addMission(BASTOK,THE_EMISSARY_SANDORIA);
         player:setVar("MissionStatus",4);
     elseif (csid == 503) then
