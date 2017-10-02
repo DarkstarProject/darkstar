@@ -2,12 +2,14 @@
 -- Area: La Theine Plateau
 -- NPC:  Narvecaint
 -- Involved in Mission: The Rescue Drill
+-- Involved in Quest: A Timely Visit
 -- !pos -263 22 129 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/globals/quests");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
@@ -23,6 +25,10 @@ end;
 
 function onTrigger(player,npc)
 
+    local ATimelyVisit = player:getQuestStatus(SANDORIA, A_TIMELY_VISIT);
+    local ATimelyVisitProgress = player:getVar("ATimelyVisitProgress");
+    -- printf("ATV %d, ATVP %d\n", ATimelyVisit, ATimelyVisitProgress);
+
     if (player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
         local MissionStatus = player:getVar("MissionStatus");
 
@@ -37,6 +43,12 @@ function onTrigger(player,npc)
         else
             player:showText(npc, RESCUE_DRILL);
         end
+
+    elseif ((ATimelyVisit == QUEST_ACCEPTED) and (ATimelyVisitProgress == 2)) then
+        player:startEvent(0x0000);
+    elseif ((ATimelyVisit == QUEST_ACCEPTED) and (ATimelyVisitProgress == 12)) then
+        player:startEvent(0x0001);
+
     else
         player:showText(npc, RESCUE_DRILL);
     end
@@ -62,6 +74,10 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x006b) then
         player:setVar("MissionStatus",7);
+    elseif (csid == 0x0000) then
+        player:setVar("ATimelyVisitProgress",3);
+    elseif (csid == 0x0001) then
+        player:setVar("ATimelyVisitProgress",13);
     end
 
 end;
