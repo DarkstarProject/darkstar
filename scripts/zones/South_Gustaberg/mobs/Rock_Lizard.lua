@@ -35,7 +35,7 @@ function onMobDespawn(mob)
         if ToD <= os.time() and nm:isSpawned() == false and nm:getRespawnTime() == 0 then
             -- printf("LL window open");
             -- Give Rock_Lizard 5 percent chance to pop LL
-            --if (math.random(1,20) == 5) then
+            if (math.random(1,20) == 5) then
                 -- printf("LL will pop");
                 UpdateNMSpawnPoint(nmID)
                 nm:setRespawnTime(GetMobRespawnTime(mobID))
@@ -52,6 +52,6 @@ function onMobDespawn(mob)
                 end)
                 DisallowRespawn(mobID, true)
             end
-        --end
+        end
     end
 end;
