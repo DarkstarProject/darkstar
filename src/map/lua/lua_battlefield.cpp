@@ -293,6 +293,14 @@ inline int32 CLuaBattlefield::setLocalVar(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBattlefield::setTimeLimit(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    m_PLuaBattlefield->SetTimeLimit(std::chrono::seconds(lua_tointeger(L, 1)));
+    return 0;
+}
 
 inline int32 CLuaBattlefield::setWipeTime(lua_State* L)
 {
@@ -332,6 +340,13 @@ inline int32 CLuaBattlefield::loadMobs(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
     m_PLuaBattlefield->LoadMobs();
     return 0;
+}
+
+inline int32 CLuaBattlefield::spawnLoot(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+    lua_pushboolean(L, m_PLuaBattlefield->SpawnLoot());
+    return 1;
 }
 
 inline int32 CLuaBattlefield::insertEntity(lua_State* L)
@@ -403,10 +418,12 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getStatus),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,setTimeLimit),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setWipeTime),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setRecord),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setStatus),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,loadMobs),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,spawnLoot),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,insertEntity),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,cleanup),
     { nullptr,nullptr }

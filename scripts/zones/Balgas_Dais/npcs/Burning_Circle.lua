@@ -62,10 +62,7 @@ function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
-
+    return EventUpdateBCNM(player,csid,option)
 end;
 
 -----------------------------------

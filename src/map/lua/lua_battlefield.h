@@ -67,6 +67,7 @@ public:
     int32 setStatus(lua_State*);
     int32 setLocalVar(lua_State*);
     int32 loadMobs(lua_State*);
+    int32 spawnLoot(lua_State*);
     int32 insertEntity(lua_State*);
     int32 cleanup(lua_State*);
 };

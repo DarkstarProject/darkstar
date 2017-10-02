@@ -11212,7 +11212,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,initNpcAi),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNM),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnkillable),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNewPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNewPlayer),

@@ -9,24 +9,24 @@ local MaxAreas =
     -- dynamis
     {Max = 1, Zones = {39, 40, 41, 42, 134, 135, 185, 186, 187, 188,
                                 140}}, -- ghelsba
-};
+}
 
 function onBattlefieldHandlerInitialise(zone)
-    local id = zone:getID();
-    local default = 3;
+    local id = zone:getID()
+    local default = 3
     for _, battlefield in pairs(MaxAreas) do
         for _, zoneid in pairs(battlefield.Zones) do
             if id == zoneid then
-                return battlefield.Max;
-             end;
+                return battlefield.Max
+             end
         end
-    end;
-    return default;
-end;
+    end
+    return default
+end
 
 
 
-g_Battlefield = {};
+g_Battlefield = {}
 
 g_Battlefield.Status =
 {
@@ -34,7 +34,7 @@ g_Battlefield.Status =
     LOCKED   = 1,
     WON      = 2,
     LOST     = 3,
-};
+}
 
 g_Battlefield.ReturnCode =
 {
@@ -46,132 +46,150 @@ g_Battlefield.ReturnCode =
     BATTLEFIELD_FULL  = 6
 }
 
-function g_Battlefield.onBattlefieldTick(battlefield, timeinside)
-    -- local tick = battlefield:getTick();
-    local killedallmobs = true;
-    local mobs = battlefield:getMobs(true, true);
-    local status = battlefield:getStatus();
-    local leavecode = -1;
-    local players = battlefield:getPlayers();
-    local tickShit = battlefield:getLocalVar("timer")
+function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
+    local killedallmobs = true
+    local mobs = battlefield:getMobs(true, true)
+    local status = battlefield:getStatus()
+    local leavecode = -1
+    local players = battlefield:getPlayers()
 
-    print("shit")
+    local cutsceneTimer = battlefield:getLocalVar("cutsceneTimer")
 
     if status == g_Battlefield.Status.LOST then
-        leavecode = 4;
+        leavecode = 4
     elseif status == g_Battlefield.Status.WON then
-        leavecode = 2;
-    end;
-
+        leavecode = 2
+    end
+    print("fuck")
     if leavecode ~= -1 then
-        battlefield:setLocalVar("timer", tickShit + 1)
-        if tickShit == 15 then
+        battlefield:setLocalVar("cutsceneTimer", cutsceneTimer + 1)
+
+        local canLeave = true
+        if status == g_Battlefield.Status.WON then
+            canLeave = battlefield:getLocalVar("loot") == 0
+
+            if battlefield:getLocalVar("lootSpawned") == 0 and not battlefield:spawnLoot() then
+                canLeave = false
+            elseif battlefield:getLocalVar("lootSeen") then
+                canLeave = true
+            end
+        end
+        if canLeave and cutsceneTimer >= 15 then
             for _, player in pairs(players) do
                 player:leaveBattlefield(leavecode)
             end
             battlefield:cleanup(true)
         end
-        return;
-    end;
+
+        return
+    end
 
     for _, mob in pairs(mobs) do
         if mob:getHP() > 0 then
-            killedallmobs = false;
-            break;
-        end;
-    end;
-
-    g_Battlefield.HandleWipe(battlefield);
-    g_Battlefield.HandleTimePrompts(battlefield);
-    print("fuck")
-    if killedallmobs then
-        print("dicks")
-        battlefield:setStatus(g_Battlefield.Status.WON);
-    end
-end;
-
-function g_Battlefield.HandleTimePrompts(battlefield)
-    local tick = battlefield:getTimeInside();
-    local status = battlefield:getStatus();
-    local players = battlefield:getPlayers();
-    local remainingTime = battlefield:getRemainingTime();
-
-    if tick % 60 == 0 then
-        for _, player in pairs(players) do
-            if remainingTime > 0 then
-                 player:messageBasic(202, remainingTime);
-            else
-                --player:messageSpecial(ID, PARAM);
-                battlefield:setStatus(g_Battlefield.Status.LOST);
-            end;
-        end;
-    end;
-
-    if remainingTime <= 0 then
-        if status ~= g_Battlefield.Status.WON then
-            battlefield:setStatus(g_Battlefield.Status.LOST);
+            killedallmobs = false
+            break
         end
+    end
+
+    g_Battlefield.HandleWipe(battlefield, players)
+
+    -- if we cant send anymore time prompts theyre out of time
+    if not g_Battlefield.SendTimePrompts(battlefield, players) then
         battlefield:cleanup(true)
     end
-end;
 
-function g_Battlefield.HandleWipe(battlefield)
-    local rekt = true;
+    if killedallmobs then
+        battlefield:setStatus(g_Battlefield.Status.WON)
+    end
+end
 
-    local players = battlefield:getPlayers();
-    local totalrekt = 0;
-    local wipeTime = battlefield:getWipeTime();
-    local elapsed = battlefield:getTimeInside();
+-- returns false if out of time
+function g_Battlefield.SendTimePrompts(battlefield, players)
+    local tick = battlefield:getTimeInside()
+    local status = battlefield:getStatus()
+    local remainingTime = battlefield:getRemainingTime()
 
+    players = players or battlefield:getPlayers()
+
+    if tick % 60 == 0 and tick < remainingTime then
+        for _, player in pairs(players) do
+            if remainingTime > 0 then
+                 player:messageBasic(202, remainingTime)
+            end
+        end
+    end
+
+    if remainingTime <= 0 then
+        return false
+    end
+    return true
+end
+
+function g_Battlefield.HandleWipe(battlefield, players)
+    local rekt = true
+    local wipeTime = battlefield:getWipeTime()
+    local elapsed = battlefield:getTimeInside()
+
+    players = players or battlefield:getPlayers()
 
     -- pure stolen from instance.lua
-    if (wipeTime == 0) then
-        for i,v in pairs(players) do
-            if v:getHP() ~= 0 then
-                rekt = false;
-                break;
+    if wipeTime == 0 then
+        for _, player in pairs(players) do
+            if player:getHP() ~= 0 then
+                rekt = false
+                break
             end
         end
         if rekt then
-            for i,v in pairs(players) do
-                -- v:messageSpecial(ID, 3);
+            for _, player in pairs(players) do
+                -- v:messageSpecial(ID, 3)
             end
-            battlefield:setWipeTime(elapsed);
+            battlefield:setWipeTime(elapsed)
         end
     else
         if (elapsed - wipeTime) > 180 then
-            battlefield:setStatus(g_Battlefield.Status.LOST);
+            battlefield:setStatus(g_Battlefield.Status.LOST)
         else
-            for i,v in pairs(players) do
-                if v:getHP() ~= 0 then
-                    battlefield:setWipeTime(0);
-                    rekt = false;
-                    break;
+            for _, player in pairs(players) do
+                if player:getHP() ~= 0 then
+                    battlefield:setWipeTime(0)
+                    rekt = false
+                    break
                 end
             end
 
             if rekt then
-                battlefield:setStatus(g_Battlefield.Status.LOST);
-            end;
+                battlefield:setStatus(g_Battlefield.Status.LOST)
+            end
         end
     end
+end
 
-end;
 
+function g_Battlefield.onBattlefieldStatusChange(battlefield, players, status)
 
-function g_Battlefield.onBattlefieldStatusChange(battlefield, status)
-    if status == g_Battlefield.Status.WON then
-        if battlefield:getLocalVar("LootID") and battlefield:getLocalVar("LootSpawned") then
-        -- todo: spawn loot
+end
+
+function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
+    players = players or battlefield:getPlayers()
+    local lootGroup = lootTable[math.random(1, #lootTable)]
+
+    if battlefield.getStatus() == g_Battlefield.Status.WON and battlefield:getLocalVar("lootSeen") == 0 then
+        if npc then
+            npc:openDoor(1)
         end
-        local players = battlefield:getPlayers();
-        return;
-    end;
-end;
+        if lootGroup then
+            for _, entry in pairs(group) do
+                local roll = entry.roll / 1000
+                local watashiNoChansu = math.random()
 
-function g_Battlefield.HandleLootRolls(battlefield, lootTable)
-    lootTable = lootTable or nil;
-
-    local players = battlefield:getPlayers();
-
-end;
+                if watashiNoChansu <= roll then
+                    players[1]:addTreasure(entry.itemid)
+                end
+            end
+        else
+            printf("fuckin loot groups")
+        end
+        battlefield:setLocalVar("lootSeen", 1)
+    end
+end

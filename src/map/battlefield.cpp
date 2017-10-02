@@ -177,11 +177,6 @@ uint8 CBattlefield::GetLevelCap() const
     return m_LevelCap;
 }
 
-uint16 CBattlefield::GetLootID() const
-{
-    return m_LootID;
-}
-
 void CBattlefield::SetName(const std::string& name)
 {
     m_Name = name;
@@ -209,9 +204,12 @@ void CBattlefield::SetArea(uint8 area)
 
 void CBattlefield::SetRecord(const std::string& name, duration time, uint8 partySize)
 {
-    m_Record.name = !name.empty() ? name : m_Initiator.name;
-    m_Record.time = time;
-    m_Record.partySize = partySize;
+    if (time < GetTimeLimit())
+    {
+        m_Record.name = !name.empty() ? name : m_Initiator.name;
+        m_Record.time = time;
+        m_Record.partySize = partySize;
+    }
 }
 
 void CBattlefield::SetStatus(uint8 status)
@@ -277,6 +275,7 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool inBattlefield, BATTLE
     }
     else if (PEntity->objtype == TYPE_NPC)
     {
+        PEntity->Spawn();
         m_NpcList.push_back(static_cast<CNpcEntity*>(PEntity));
     }
     else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
@@ -351,11 +350,9 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         return false;
 
     auto found = false;
-    auto check = [PEntity, &found](auto entity) { if (PEntity == entity) { found = true; return found; } return false; };
-
     if (PEntity->objtype == TYPE_PC)
     {
-        auto check = [PEntity, &found](auto entity) { if (PEntity->id == entity) { found = true; return found; } return false; };
+        auto check = [PEntity, &found](auto charid) { if (PEntity->id == charid) { found = true; return found; } return false; };
         m_PlayerList.erase(std::remove_if(m_PlayerList.begin(), m_PlayerList.end(), check), m_PlayerList.end());
 
         if (leavecode != 255)
@@ -363,30 +360,36 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
             luautils::OnBattlefieldLeave(static_cast<CCharEntity*>(PEntity), this, leavecode);
         }
     }
-    else if (PEntity->objtype == TYPE_NPC)
+    else
     {
-        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityAnimationPacket(PEntity, CEntityAnimationPacket::Fade_Out));
-        m_NpcList.erase(std::remove_if(m_NpcList.begin(), m_NpcList.end(), check), m_NpcList.end());
-    }
-    else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
-    {
-        // allies targid >= 0x700
-        if (PEntity->targid >= 0x700)
-        {
-            if (static_cast<CPetEntity*>(PEntity)->isAlive() && PEntity->PAI->IsSpawned())
-                static_cast<CPetEntity*>(PEntity)->Die();
+        auto check = [PEntity, &found](auto entity) { if (PEntity == entity) { found = true; return found; } return false; };
 
-            m_AllyList.erase(std::remove_if(m_AllyList.begin(), m_AllyList.end(), check), m_AllyList.end());
-            GetZone()->DeletePET(PEntity);
-            delete PEntity;
-            return found;
-        }
-        else
+        if (PEntity->objtype == TYPE_NPC)
         {
-            auto check = [PEntity, &found](auto entity) { if (entity.PMob == PEntity) { found = true; return found; } return false; };
-            m_RequiredEnemyList.erase(std::remove_if(m_RequiredEnemyList.begin(), m_RequiredEnemyList.end(), check), m_RequiredEnemyList.end());
-            m_AdditionalEnemyList.erase(std::remove_if(m_AdditionalEnemyList.begin(), m_AdditionalEnemyList.end(), check), m_AdditionalEnemyList.end());
+            PEntity->FadeOut();
+            m_NpcList.erase(std::remove_if(m_NpcList.begin(), m_NpcList.end(), check), m_NpcList.end());
         }
+        else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
+        {
+            // allies targid >= 0x700
+            if (PEntity->targid >= 0x700)
+            {
+                if (static_cast<CPetEntity*>(PEntity)->isAlive() && PEntity->PAI->IsSpawned())
+                    static_cast<CPetEntity*>(PEntity)->Die();
+
+                m_AllyList.erase(std::remove_if(m_AllyList.begin(), m_AllyList.end(), check), m_AllyList.end());
+                GetZone()->DeletePET(PEntity);
+                delete PEntity;
+                return found;
+            }
+            else
+            {
+                auto check = [PEntity, &found](auto entity) { if (entity.PMob == PEntity) { found = true; return found; } return false; };
+                m_RequiredEnemyList.erase(std::remove_if(m_RequiredEnemyList.begin(), m_RequiredEnemyList.end(), check), m_RequiredEnemyList.end());
+                m_AdditionalEnemyList.erase(std::remove_if(m_AdditionalEnemyList.begin(), m_AdditionalEnemyList.end(), check), m_AdditionalEnemyList.end());
+            }
+        }
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityAnimationPacket(PEntity, CEntityAnimationPacket::Fade_Out));
     }
     // assume its either a player or ally and remove any enmity
     if (PEntity->objtype != TYPE_NPC)
@@ -500,7 +503,7 @@ void CBattlefield::Cleanup()
         RemoveEntity(PNpc);
     });
 
-    if (m_Status == BATTLEFIELD_STATUS_WON)
+    if (m_Attacked && m_Status == BATTLEFIELD_STATUS_WON)
     {
         const int8* query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u";
         auto timeThing = std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
@@ -546,6 +549,31 @@ bool CBattlefield::LoadMobs()
     return true;
 }
 
+bool CBattlefield::SpawnLoot()
+{
+    auto fmtQuery = "SELECT npcId FROM bcnm_treasure_chests WHERE bcnmId = %u AND battlefieldNumber = %u;";
+    auto ret = Sql_Query(SqlHandle, fmtQuery, this->GetID(), this->GetArea());
+
+    if (ret == SQL_ERROR ||
+        Sql_NumRows(SqlHandle) == 0)
+    {
+        ShowError("Battlefield::SpawnLoot() : Cannot find treasure chest for battlefield %i area %i \n",
+            this->GetID(), this->GetArea());
+        return false;
+    }
+    else
+    {
+        if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            auto npcId = Sql_GetUIntData(SqlHandle, 0);
+            auto PEntity = zoneutils::GetEntity(npcId);
+
+            return InsertEntity(PEntity, true);
+        }
+    }
+    return true;
+}
+
 void CBattlefield::ClearEnmityForEntity(CBattleEntity* PEntity)
 {
     auto func = [&](auto mob) { if (PEntity->PPet) mob->PEnmityContainer->Clear(PEntity->PPet->id);
@@ -555,15 +583,15 @@ void CBattlefield::ClearEnmityForEntity(CBattleEntity* PEntity)
     ForEachAdditionalEnemy(func);
 }
 
-bool CBattlefield::InProgress()
+bool CBattlefield::CheckInProgress()
 {
     ForEachEnemy([&](CMobEntity* PMob)
     {
-        if (m_Attacked = PMob->PEnmityContainer->GetEnmityList()->size())
+        if (PMob->PEnmityContainer->GetEnmityList()->size())
         {
             if (m_Status == BATTLEFIELD_STATUS_OPEN)
                 SetStatus(BATTLEFIELD_STATUS_LOCKED);
-
+            m_Attacked = true;
             return true;
         }
     });

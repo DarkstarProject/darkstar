@@ -129,7 +129,6 @@ namespace luautils
     int32 SendEntityVisualPacket(lua_State*);                                    // временное решение для работы гейзеров в Dangruf_Wadi
     int32 GetNPCByID(lua_State*);                                               // Returns NPC By Id
     int32 GetMobByID(lua_State*);                                               // Returns Mob By Id
-    int32 GetMobIDByJob(lua_State*);                                            // Return mobid by job
     int32 WeekUpdateConquest(lua_State*);
     int32 GetRegionOwner(lua_State*);                                           // узнаем страну, владеющую текущим регионом
     int32 GetRegionInfluence(lua_State*);                                       // Return influence graphics

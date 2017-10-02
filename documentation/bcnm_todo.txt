@@ -1,0 +1,851 @@
+-- limbus                      lootID,ItemID,Roll,lootgroup
+-- SE Appollyon first floor
+[110] = {itemid = 1875, roll = 1000, lootGroupId = 0},  -- ancient beastcoin*4
+[110] = {itemid = 1875, roll = 1000, lootGroupId = 1},  
+[110] = {itemid = 1875, roll = 1000, lootGroupId = 2},  
+[110] = {itemid = 1875, roll = 1000, lootGroupId = 3},  
+[110] = {itemid = 1939, roll = 350, lootGroupId = 4},  --  RDM,
+[110] = {itemid = 1941, roll = 278, lootGroupId = 4},  --  THF,
+[110] = {itemid = 1959, roll = 174, lootGroupId = 4},  --   SMN,
+[110] = {itemid = 1949, roll = 200, lootGroupId = 4},   --  BRD
+[110] = {itemid = 1945, roll = 47, lootGroupId = 5},   --  DRK,
+[110] = {itemid = 1951, roll = 49, lootGroupId = 5},   --  RNG,
+[110] = {itemid = 1955, roll = 200, lootGroupId = 5},   --  NIN,
+[110] = {itemid = 2659, roll = 62, lootGroupId = 5},   --  COR,
+[110] = {itemid = 2715, roll = 407, lootGroupId = 5},   --  DNC
+-- -------------------------------------
+-- SE Appollyon Second floor
+-- -------------------------------------
+[111] = {itemid = 1875, roll = 1000, lootGroupId = 0},  -- ancient beastcoin*4
+[111] = {itemid = 1875, roll = 1000, lootGroupId = 1},  
+[111] = {itemid = 1875, roll = 1000, lootGroupId = 2},  
+[111] = {itemid = 1875, roll = 1000, lootGroupId = 3},  
+[111] = {itemid = 1959, roll = 47, lootGroupId = 4},  --   SMN,
+[111] = {itemid = 1949, roll = 30, lootGroupId = 4},   --  BRD
+[111] = {itemid = 1943, roll = 200, lootGroupId = 4},  -- PLD,
+[111] = {itemid = 1947, roll = 460, lootGroupId = 4},  --  BST,
+[111] = {itemid = 2661, roll = 400, lootGroupId = 4},  --  PUP
+[111] = {itemid = 1951, roll = 20, lootGroupId = 5},   --  RNG,
+[111] = {itemid = 1955, roll = 80, lootGroupId = 5},   --  NIN,
+[111] = {itemid = 1945, roll = 90, lootGroupId = 5},   --  DRK,
+[111] = {itemid = 2659, roll = 100, lootGroupId = 5},   --  COR,
+[111] = {itemid = 2715, roll = 120, lootGroupId = 5},   --  DNC
+-- SE Appollyon Third floor
+-- -------------------------------------
+[112] = {itemid = 1875, roll = 1000, lootGroupId = 0},  -- ancient beastcoin*4
+[112] = {itemid = 1875, roll = 1000, lootGroupId = 1},  
+[112] = {itemid = 1875, roll = 1000, lootGroupId = 2},  
+[112] = {itemid = 1875, roll = 1000, lootGroupId = 3},  
+[112] = {itemid = 1955, roll = 59, lootGroupId = 4},   --  NIN,
+[112] = {itemid = 1959, roll = 139, lootGroupId = 4},  --   SMN,
+[112] = {itemid = 1949, roll = 39, lootGroupId = 4},   --  BRD
+[112] = {itemid = 1681, roll = 39, lootGroupId = 4},  --   Light Steel 
+[112] = {itemid = 645, roll = 39, lootGroupId = 4},   --  Darksteel Ore
+[112] = {itemid = 1933, roll = 627, lootGroupId = 4},  --  MNK,
+[112] = {itemid = 1945, roll = 159, lootGroupId = 5},   --  DRK,
+[112] = {itemid = 1951, roll = 139, lootGroupId = 5},   --  RNG,
+[112] = {itemid = 2659, roll = 39, lootGroupId = 5},   --  COR,
+[112] = {itemid = 664, roll = 20, lootGroupId = 5},   --  Darksteel Sheet
+[112] = {itemid = 646, roll = 20, lootGroupId = 5},   --   Adaman Ore
+[112] = {itemid = 1931, roll = 200, lootGroupId = 5},  --  WAR,
+-- ---SE Appollyon fourth floor-------------------------
+[113] = {itemid = 1875, roll = 1000, lootGroupId = 0},  -- ancient beastcoin*5
+[113] = {itemid = 1875, roll = 1000, lootGroupId = 1},  
+[113] = {itemid = 1875, roll = 1000, lootGroupId = 2},  
+[113] = {itemid = 1875, roll = 1000, lootGroupId = 3},  
+[113] = {itemid = 1875, roll = 1000, lootGroupId = 4},  
+[113] = {itemid = 1935, roll = 220, lootGroupId = 5},  --  WHM,
+[113] = {itemid = 1937, roll = 300, lootGroupId = 5},  -- BLM, 
+[113] = {itemid = 1957, roll = 260, lootGroupId = 5},  --  DRG, 
+[113] = {itemid = 1953, roll = 340, lootGroupId = 5},   --  SAM,
+[113] = {itemid = 2657, roll = 220, lootGroupId = 6},   --  BLU,
+[113] = {itemid = 2717, roll = 180, lootGroupId = 6},   --  SCH
+[113] = {itemid = 1931, roll = 300, lootGroupId = 6},   -- WAR,
+[113] = {itemid = 1909, roll = 1000, lootGroupId = 7},  --  Smalt Chip,
+[113] = {itemid = 2127, roll = 59, lootGroupId = 8},   --  metal chip
+[113] = {itemid = 1875, roll = 100, lootGroupId = 8},  
+--  ----NE APOLLYON FIRST FLOOR ----------------------------
+[114] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[114] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[114] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[114] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+
+[114] = {itemid = 1953, roll = 304, lootGroupId = 4},  -- SAM,
+[114] = {itemid = 1943, roll = 18, lootGroupId = 4},  --  PLD,
+[114] = {itemid = 1941, roll = 200, lootGroupId = 4},  -- THF,
+[114] = {itemid = 2715, roll = 200, lootGroupId = 4},  -- DNC
+[114] = {itemid = 2661, roll = 36, lootGroupId = 4},  -- PUP
+
+[114] = {itemid = 1933, roll = 18, lootGroupId = 5},  -- MNK, 
+[114] = {itemid = 1939, roll = 36, lootGroupId = 5},  -- RDM,
+[114] = {itemid = 1935, roll = 411, lootGroupId = 5},  -- WHM,
+[114] = {itemid = 2717, roll = 482, lootGroupId = 5},  --  SCH,
+[114] = {itemid = 1947, roll = 18, lootGroupId = 5},  -- BST,
+
+--  ----NE APOLLYON SECOND FLOOR ----------------------------
+[115] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[115] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[115] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[115] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+
+[115] = {itemid = 1947, roll = 26, lootGroupId = 4},  -- BST,
+[115] = {itemid = 1933, roll = 53, lootGroupId = 4},  -- MNK, 
+[115] = {itemid = 1943, roll = 26, lootGroupId = 4},  -- PLD,
+[115] = {itemid = 2661, roll = 26, lootGroupId = 4},  -- PUP
+[115] = {itemid = 1937, roll = 395, lootGroupId = 4},  -- BLM
+
+[115] = {itemid = 1957, roll = 289, lootGroupId = 5},  -- DRG,
+[115] = {itemid = 1941, roll = 53, lootGroupId = 5},  -- THF,
+[115] = {itemid = 1939, roll = 112, lootGroupId = 5},  -- RDM
+[115] = {itemid = 2657, roll = 477, lootGroupId = 5},  -- BLU,
+
+--  ----NE APOLLYON THIRd FLOOR ----------------------------
+[116] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[116] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[116] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[116] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+
+[116] = {itemid = 1931, roll = 788, lootGroupId = 4},  -- WAR,
+[116] = {itemid = 1939, roll = 30, lootGroupId = 4},  -- RDM,
+[116] = {itemid = 1953, roll = 130, lootGroupId = 4},  -- SAM,
+[116] = {itemid = 1957, roll = 100, lootGroupId = 4},  --  DRG
+[116] = {itemid = 1947, roll = 90, lootGroupId = 4},  -- BST,
+
+[116] = {itemid = 1933, roll = 30, lootGroupId = 5},  -- MNK,
+[116] = {itemid = 1941, roll = 99, lootGroupId = 5},  -- THF
+[116] = {itemid = 2661, roll = 61, lootGroupId = 5},  -- PUP
+[116] = {itemid = 2715, roll = 30, lootGroupId = 5},  -- DNC
+[116] = {itemid = 1943, roll = 160, lootGroupId = 5},  -- PLD
+
+[116] = {itemid = 1633, roll = 30, lootGroupId = 6},  -- Clot Plasma
+[116] = {itemid = 821, roll = 40, lootGroupId = 6},  -- Rainbow Thread
+
+[116] = {itemid = 1311, roll = 50, lootGroupId = 7},  -- Oxblood
+[116] = {itemid = 1883, roll = 40, lootGroupId = 7},  -- Shell Powder
+[116] = {itemid = 2004, roll = 20, lootGroupId = 7},  -- Carapace Powder
+
+--  ----NE APOLLYON FOURTH FLOOR ----------------------------
+[117] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[117] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[117] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[117] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[117] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[117] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+
+[117] = {itemid = 1949, roll = 326, lootGroupId = 6},  -- BRD
+[117] = {itemid = 1945, roll = 256, lootGroupId = 6},  -- DRK
+[117] = {itemid = 1951, roll = 395, lootGroupId = 6},  -- RNG
+
+[117] = {itemid = 1959, roll = 279, lootGroupId = 7},  -- SMN
+[117] = {itemid = 1955, roll = 256, lootGroupId = 7},  -- NIN
+[117] = {itemid = 2659, roll = 326, lootGroupId = 7},  -- COR
+
+--  ----NE APOLLYON FIVE FLOOR ----------------------------
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[118] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[118] = {itemid = 1875, roll = 100, lootGroupId = 7}, 
+[118] = {itemid = 2127, roll = 59, lootGroupId = 7},  -- Metal Chip. 
+[118] = {itemid = 1910, roll = 1000, lootGroupId = 8},  -- Smoky Chip.
+
+--  ----SW APOLLYON FIRST FLOOR ----------------------------
+[119] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[119] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[119] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[119] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+
+[119] = {itemid = 1949, roll = 464, lootGroupId = 4}, -- BRD
+[119] = {itemid = 1945, roll = 250, lootGroupId = 4}, -- DRK 
+[119] = {itemid = 1953, roll = 110, lootGroupId = 4}, -- SAM 
+[119] = {itemid = 1937, roll = 71, lootGroupId = 4}, -- BLM 
+
+[119] = {itemid = 1931, roll = 180, lootGroupId = 5}, -- WAR
+[119] = {itemid = 2657, roll = 210, lootGroupId = 5}, -- BLU
+[119] = {itemid = 2717, roll = 111, lootGroupId = 5}, -- SCH
+[119] = {itemid = 1935, roll = 107, lootGroupId = 5}, -- WHM
+
+--  ----SW APOLLYON SECOND FLOOR ----------------------------
+[120] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[120] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[120] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[120] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+
+[120] = {itemid = 1951, roll = 154, lootGroupId = 4}, -- RNG
+[120] = {itemid = 1935, roll = 95, lootGroupId = 4}, -- WHM
+[120] = {itemid = 1959, roll = 269, lootGroupId = 4}, -- SMN
+
+[120] = {itemid = 1937, roll = 106, lootGroupId = 5}, -- BLM
+[120] = {itemid = 1931, roll = 77, lootGroupId = 5}, -- WAR
+[120] = {itemid = 2659, roll = 423, lootGroupId = 5}, -- COR
+[120] = {itemid = 1957, roll = 110, lootGroupId = 5}, -- DRG
+
+--  ----SW APOLLYON THIRD FLOOR ----------------------------
+[121] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[121] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[121] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[121] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+
+
+[121] = {itemid = 1955, roll = 595, lootGroupId = 4}, -- NIN
+[121] = {itemid = 1957, roll = 100, lootGroupId = 4}, -- DRG
+[121] = {itemid = 1937, roll = 24, lootGroupId = 4}, -- BLM
+[121] = {itemid = 1953, roll = 48, lootGroupId = 4}, -- SAM
+
+[121] = {itemid = 1931, roll = 120, lootGroupId = 5}, -- WAR
+[121] = {itemid = 1953, roll = 48, lootGroupId = 5}, -- SAM
+[121] = {itemid = 1935, roll = 24, lootGroupId = 5}, -- WHM
+[121] = {itemid = 2657, roll = 24, lootGroupId = 5}, -- BLU
+[121] = {itemid = 2717, roll = 71, lootGroupId = 5}, -- SCH
+
+[121] = {itemid = 1311, roll = 32, lootGroupId = 6}, -- Oxblood
+[121] = {itemid = 1883, roll = 40, lootGroupId = 6}, -- Shell Powder
+[121] = {itemid = 1681, roll = 31, lootGroupId = 6}, -- Light Steel
+[121] = {itemid = 1633, roll = 71, lootGroupId = 6}, -- Clot Plasma
+[121] = {itemid = 645, roll = 31, lootGroupId = 6}, -- Darksteel Ore
+[121] = {itemid = 664, roll = 63, lootGroupId = 6}, -- Darksteel Sheet
+[121] = {itemid = 646, roll = 31, lootGroupId = 6}, -- Adaman Ore
+[121] = {itemid = 821, roll = 63, lootGroupId = 6}, -- Rainbow Thread
+
+--  ----SW APOLLYON Fourth FLOOR ----------------------------
+[122] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[122] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[122] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[122] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[122] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+
+[122] = {itemid = 1941, roll = 468, lootGroupId = 5}, -- THF
+[122] = {itemid = 1947, roll = 340, lootGroupId = 5}, -- BST 
+[122] = {itemid = 1933, roll = 255, lootGroupId = 5}, -- MNK
+[122] = {itemid = 1939, roll = 191, lootGroupId = 5}, -- RDM
+
+[122] = {itemid = 1943, roll = 170, lootGroupId = 6}, -- PLD 
+[122] = {itemid = 2661, roll = 340, lootGroupId = 6}, -- PUP
+[122] = {itemid = 2715, roll = 170, lootGroupId = 6}, -- DNC
+
+[122] = {itemid = 1987, roll = 1000, lootGroupId = 7}, -- Charcoal Chip
+[122] = {itemid = 2127, roll = 59, lootGroupId = 8}, -- Metal Chip
+[122] = {itemid = 1875, roll = 100, lootGroupId = 8}, 
+--  ----NW APOLLYON FIRST FLOOR ----------------------------
+[123] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[123] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[123] = {itemid = 1937, roll = 25, lootGroupId = 2}, --  BLM,
+[123] = {itemid = 2657, roll = 175, lootGroupId = 2}, --  BLU,
+[123] = {itemid = 1957, roll = 100, lootGroupId = 2}, --  DRG,
+[123] = {itemid = 1943, roll = 25, lootGroupId = 2}, --  PLD,
+[123] = {itemid = 1953, roll = 250, lootGroupId = 2}, --  SAM,
+[123] = {itemid = 2717, roll = 75, lootGroupId = 2}, --  SCH,
+[123] = {itemid = 1931, roll = 225, lootGroupId = 2}, --  WAR,
+[123] = {itemid = 1935, roll = 50, lootGroupId = 2}, --  WHM
+--  ----NW APOLLYON SECOND FLOOR ----------------------------
+[124] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[124] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[124] = {itemid = 1943, roll = 235, lootGroupId = 2}, --  BRD,
+[124] = {itemid = 2659, roll = 59, lootGroupId = 2}, --  COR,
+[124] = {itemid = 1945, roll = 235, lootGroupId = 2}, --  DRK,
+[124] = {itemid = 1955, roll = 147, lootGroupId = 2}, --  NIN,
+[124] = {itemid = 1951, roll = 118, lootGroupId = 2}, --  RNG,
+[124] = {itemid = 1959, roll = 176, lootGroupId = 2}, --  SMN,
+[124] = {itemid = 1935, roll = 110, lootGroupId = 2}, --  WHM 
+--  ----NW APOLLYON THIRD FLOOR ----------------------------
+[125] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[125] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[125] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[125] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[125] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[125] = {itemid = 1947, roll = 133, lootGroupId = 5}, --  BST,
+[125] = {itemid = 1933, roll = 133, lootGroupId = 5}, --  MNK,
+[125] = {itemid = 1943, roll = 133, lootGroupId = 5}, --  PLD,
+[125] = {itemid = 2661, roll = 133, lootGroupId = 5}, --  PUP,
+[125] = {itemid = 1939, roll = 110, lootGroupId = 5}, --  RDM,
+[125] = {itemid = 1941, roll = 400, lootGroupId = 5}, --  THF,
+[125] = {itemid = 646, roll = 50, lootGroupId = 6}, --  Adaman Ore,
+[125] = {itemid = 1633, roll = 50, lootGroupId = 6}, --  Clot Plasma,
+[125] = {itemid = 664, roll = 50, lootGroupId = 6}, --  Darksteel Sheet,
+[125] = {itemid = 645, roll = 50, lootGroupId = 6}, --  Darksteel Ore,
+[125] = {itemid = 1311, roll = 50, lootGroupId = 6}, --  Oxblood,
+[125] = {itemid = 1681, roll = 50, lootGroupId = 6}, --  Light Steel,
+[125] = {itemid = 821, roll = 50, lootGroupId = 6}, --  Rainbow Thread,
+[125] = {itemid = 1883, roll = 50, lootGroupId = 6}, --  Shell Powder
+--  ----NW APOLLYON FOURTH FLOOR ----------------------------
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[126] = {itemid = 1875, roll = 1000, lootGroupId = 7}, 
+[126] = {itemid = 1937, roll = 80, lootGroupId = 8}, --  BLM,
+[126] = {itemid = 2657, roll = 70, lootGroupId = 8}, --  BLU,
+[126] = {itemid = 1949, roll = 48, lootGroupId = 8}, --  BRD
+[126] = {itemid = 1947, roll = 30, lootGroupId = 8}, --  BST,
+[126] = {itemid = 2659, roll = 25, lootGroupId = 8}, --  COR,
+[126] = {itemid = 1957, roll = 19, lootGroupId = 8}, --  DRG,
+[126] = {itemid = 1945, roll = 48, lootGroupId = 8}, --  DRK,
+[126] = {itemid = 1933, roll = 90, lootGroupId = 8}, --  MNK,
+[126] = {itemid = 1955, roll = 00, lootGroupId = 8}, --  NIN,
+[126] = {itemid = 2661, roll = 48, lootGroupId = 8}, --  PUP,
+[126] = {itemid = 1939, roll = 136, lootGroupId = 8}, --  RDM,
+[126] = {itemid = 1951, roll = 80, lootGroupId = 8}, --  RNG,
+[126] = {itemid = 1953, roll = 110, lootGroupId = 8}, --  SAM,
+[126] = {itemid = 1959, roll = 95, lootGroupId = 8}, --  SMN,
+[126] = {itemid = 2715, roll = 123, lootGroupId = 8}, --  DNC,
+[126] = {itemid = 1935, roll = 48, lootGroupId = 8}, --  WHM
+--  ----NW APOLLYON FIfth FLOOR ----------------------------
+[127] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[127] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[127] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[127] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[127] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[127] = {itemid = 1937, roll = 109, lootGroupId = 5}, --  BLM,
+[127] = {itemid = 2657, roll = 152, lootGroupId = 5}, --  BLU,
+[127] = {itemid = 1949, roll = 283, lootGroupId = 5}, --  BRD,
+[127] = {itemid = 1947, roll = 109, lootGroupId = 5}, --  BST,
+[127] = {itemid = 2659, roll = 65, lootGroupId = 5}, --  COR,
+[127] = {itemid = 2715, roll = 130, lootGroupId = 5}, --  DNC,
+[127] = {itemid = 1957, roll = 65, lootGroupId = 6}, --  DRG,
+[127] = {itemid = 1945, roll = 174, lootGroupId = 6}, --  DRK,
+[127] = {itemid = 1933, roll = 130, lootGroupId = 6}, --  MNK,
+[127] = {itemid = 1955, roll = 196, lootGroupId = 6}, --  NIN,
+[127] = {itemid = 1943, roll = 174, lootGroupId = 6}, --  PLD,
+[127] = {itemid = 2661, roll = 174, lootGroupId = 6}, --  PUP,
+[127] = {itemid = 1939, roll = 109, lootGroupId = 6}, --  RDM
+[127] = {itemid = 1951, roll = 130, lootGroupId = 7}, --  RNG,
+[127] = {itemid = 1953, roll = 304, lootGroupId = 7}, --  SAM,
+[127] = {itemid = 2717, roll = 87, lootGroupId = 7}, --  SCH,
+[127] = {itemid = 1959, roll = 217, lootGroupId = 7}, --  SMN,
+[127] = {itemid = 1941, roll = 174, lootGroupId = 7}, --  THF,
+[127] = {itemid = 1931, roll = 130, lootGroupId = 7}, --  WAR,
+[127] = {itemid = 1935, roll = 109, lootGroupId = 7}, --  WHM
+[127] = {itemid = 1988, roll = 1000, lootGroupId = 8}, -- magenta-chip
+[127] = {itemid = 2127, roll = 59, lootGroupId = 9}, -- Metal Chip
+[127] = {itemid = 1875, roll = 100, lootGroupId = 9}, 
+-- ----------  CENTRAL APOLLYON --------------------------------
+
+[128] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[128] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[128] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[128] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[128] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[128] = {itemid = 1925, roll = 659, lootGroupId = 5},  -- Omega's Eye
+[128] = {itemid = 1927, roll = 394, lootGroupId = 5},  -- Omega's Foreleg
+[128] = {itemid = 1928, roll = 388, lootGroupId = 5},  -- Omega's Hind Leg
+[128] = {itemid = 1929, roll = 404, lootGroupId = 5},  -- Omega's Tail
+
+[128] = {itemid = 1928, roll = 394, lootGroupId = 6},  -- Omega's Hind Leg
+[128] = {itemid = 1929, roll = 402, lootGroupId = 6},  -- Omega's Tail
+[128] = {itemid = 1925, roll = 659, lootGroupId = 6},  -- Omega's Eye
+[128] = {itemid = 1927, roll = 383, lootGroupId = 6},  -- Omega's Foreleg
+
+[128] = {itemid = 1926, roll = 265, lootGroupId = 7},  -- Omega's Heart
+[128] = {itemid = 1875, roll = 100, lootGroupId = 7}, 
+-- -----------------------------------------------------------------
+
+[129] = {itemid = 1933, roll = 9, lootGroupId = 0},  -- Ancient Brass (MNK)(0%)
+[129] = {itemid = 1931, roll = 53, lootGroupId = 0},  -- Argyro Rivet (WAR)(5.3%)
+[129] = {itemid = 1959, roll = 6, lootGroupId = 0},  -- Astral Leather (SMN)(0.6%)
+[129] = {itemid = 1935, roll = 12, lootGroupId = 0},  -- Benedict Yarn (WHM)(1.2%)
+[129] = {itemid = 1945, roll = 29, lootGroupId = 0},  -- Black Rivet (DRK)(2.9%)
+[129] = {itemid = 1957, roll = 12, lootGroupId = 0},  -- Blue Rivet (DRG)(1.2%)
+[129] = {itemid = 1949, roll = 35, lootGroupId = 0},  -- Brown Doeskin (BRD)(3.5%)
+[129] = {itemid = 2659, roll = 35, lootGroupId = 0},  -- Canvas Toile (COR)(3.5%)
+[129] = {itemid = 1939, roll = 12, lootGroupId = 0},  -- Cardinal Cloth (RDM) (1.2%)
+[129] = {itemid = 1951, roll = 12, lootGroupId = 0},  -- Charcoal Cotton (RNG) (1.2%)
+[129] = {itemid = 2661, roll = 12, lootGroupId = 0},  -- Corduroy Cloth (PUP) (1.2%)
+[129] = {itemid = 1937, roll = 18, lootGroupId = 0},  -- Diabolic Yarn (BLM)(1.8%)
+[129] = {itemid = 1955, roll = 29, lootGroupId = 0},  -- Ebony Lacquer (NIN) (2.9%)
+[129] = {itemid = 2717, roll = 12, lootGroupId = 0},  -- Electrum Stud (SCH)(1.2%)
+[129] = {itemid = 1947, roll = 12, lootGroupId = 0},  -- Fetid Lanolin (BST)(1.2%)
+[129] = {itemid = 2657, roll = 18, lootGroupId = 0},  -- Flameshun Cloth (BLU)(1.8%)
+[129] = {itemid = 2715, roll = 5, lootGroupId = 0},  -- Gold Stud (DNC) (0%)
+[129] = {itemid = 1953, roll = 35, lootGroupId = 0},  -- Kurogane (SAM)(3.5%)
+[129] = {itemid = 1941, roll = 41, lootGroupId = 0},  -- Light Filament (THF)(4.1%)
+[129] = {itemid = 1943, roll = 18, lootGroupId = 0},  -- White Rivet (PLD)(1.8%)
+[129] = {itemid = 1987, roll = 53, lootGroupId = 0},  -- Charcoal Chip (5.3%)
+[129] = {itemid = 1988, roll = 76, lootGroupId = 0},  -- Magenta Chip (7.6%)
+[129] = {itemid = 1909, roll = 64, lootGroupId = 0},  -- Smalt Chip (6.4%)
+[129] = {itemid = 1910, roll = 41, lootGroupId = 0},  -- Smoky Chip (4.1%)
+[129] = {itemid = 646, roll = 50, lootGroupId = 1}, --  Adaman Ore,
+[129] = {itemid = 1633, roll = 50, lootGroupId = 1}, --  Clot Plasma,
+[129] = {itemid = 664, roll = 50, lootGroupId = 1}, --  Darksteel Sheet,
+[129] = {itemid = 645, roll = 50, lootGroupId = 1}, --  Darksteel Ore,
+[129] = {itemid = 1311, roll = 50, lootGroupId = 1}, --  Oxblood,
+[129] = {itemid = 1681, roll = 50, lootGroupId = 1}, --  Light Steel,
+[129] = {itemid = 821, roll = 50, lootGroupId = 1}, --  Rainbow Thread,
+[129] = {itemid = 1883, roll = 50, lootGroupId = 1}, --  Shell Powder
+
+-- ------------------------------------------------------------------------------------
+
+
+
+-- Temenos_Northern_Tower --------------------------------------------------------------
+-- F1
+[130] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[130] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[130] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[130] = {itemid = 1954, roll = 159, lootGroupId = 3},  -- NIN 
+[130] = {itemid = 1940, roll = 146, lootGroupId = 3},  -- THF
+[130] = {itemid = 1932, roll = 85, lootGroupId = 3},  -- MNK
+[130] = {itemid = 1956, roll = 171, lootGroupId = 3},  -- DRG
+[130] = {itemid = 1934, roll = 110, lootGroupId = 3},  -- WHM
+[130] = {itemid = 2658, roll = 220, lootGroupId = 3},  -- COR 
+[130] = {itemid = 2716, roll = 98, lootGroupId = 3},  -- SCH
+
+-- F2
+[131] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[131] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[131] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[131] = {itemid = 1932, roll = 333, lootGroupId = 3},  -- MNK
+[131] = {itemid = 1954, roll = 200, lootGroupId = 3},  -- NIN
+[131] = {itemid = 1950, roll = 100, lootGroupId = 3},  -- RNG
+[131] = {itemid = 1940, roll = 90, lootGroupId = 3},  -- THF
+[131] = {itemid = 1942, roll = 70, lootGroupId = 3},  -- PLD
+[131] = {itemid = 1934, roll = 90, lootGroupId = 3},  -- WHM
+[131] = {itemid = 1936, roll = 100, lootGroupId = 3},  -- BLM
+[131] = {itemid = 1958, roll = 90, lootGroupId = 3},  -- SMN
+[131] = {itemid = 2656, roll = 67, lootGroupId = 3},  -- BLU
+[131] = {itemid = 1956, roll = 167, lootGroupId = 3},  -- DRG
+
+-- F3
+[132] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[132] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[132] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[132] = {itemid = 1956, roll = 27, lootGroupId = 3},  -- DRG
+[132] = {itemid = 1932, roll = 324, lootGroupId = 3},  -- MNK
+[132] = {itemid = 1950, roll = 80, lootGroupId = 3},  -- RNG
+[132] = {itemid = 1934, roll = 189, lootGroupId = 3},  -- WHM
+[132] = {itemid = 1930, roll = 50, lootGroupId = 3},  -- WAR
+[132] = {itemid = 1940, roll = 27, lootGroupId = 4},  -- THF
+[132] = {itemid = 1936, roll = 81, lootGroupId = 4},  -- BLM
+[132] = {itemid = 1944, roll = 80, lootGroupId = 4},  -- DRK
+[132] = {itemid = 1958, roll = 81, lootGroupId = 4},  -- SMN
+[132] = {itemid = 2658, roll = 270, lootGroupId = 4},  -- COR
+[132] = {itemid = 2714, roll = 108, lootGroupId = 4},  -- DNC
+
+-- F4
+[133] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[133] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[133] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[133] = {itemid = 1942, roll = 90, lootGroupId = 3},  -- PLD
+[133] = {itemid = 1934, roll = 435, lootGroupId = 3},  -- WHM
+[133] = {itemid = 1956, roll = 80, lootGroupId = 3},  -- DRG
+[133] = {itemid = 1940, roll = 174, lootGroupId = 3},  -- THF
+[133] = {itemid = 1958, roll = 87, lootGroupId = 3},  -- SMN
+[133] = {itemid = 1954, roll = 90, lootGroupId = 3},  -- NIN
+[133] = {itemid = 1936, roll = 87, lootGroupId = 3},  -- BLM 
+[133] = {itemid = 1930, roll = 43, lootGroupId = 3},  -- WAR
+[133] = {itemid = 2656, roll = 27, lootGroupId = 3},  -- BLU
+[133] = {itemid = 2658, roll = 261, lootGroupId = 3},  -- COR
+
+-- F5
+[134] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[134] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[134] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[134] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[134] = {itemid = 1954, roll = 67, lootGroupId = 4},  -- NIN
+[134] = {itemid = 1940, roll = 353, lootGroupId = 4},  -- THF
+[134] = {itemid = 1936, roll = 87, lootGroupId = 4},  -- BLM
+[134] = {itemid = 1956, roll = 110, lootGroupId = 4},  -- DRG 
+[134] = {itemid = 1958, roll = 87, lootGroupId = 4},  -- SMN
+[134] = {itemid = 1942, roll = 50, lootGroupId = 4},  -- PLD
+[134] = {itemid = 1950, roll = 60, lootGroupId = 4},  -- RNG
+[134] = {itemid = 1932, roll = 59, lootGroupId = 4},  -- MNK
+[134] = {itemid = 2716, roll = 100, lootGroupId = 4},  -- SCH
+[134] = {itemid = 2714, roll = 110, lootGroupId = 4},  -- DNC
+
+-- F6
+[135] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[135] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[135] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[135] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[135] = {itemid = 1954, roll = 263, lootGroupId = 4},  -- NIN
+[135] = {itemid = 1932, roll = 59, lootGroupId = 4},  -- MNK
+[135] = {itemid = 1942, roll = 53, lootGroupId = 4},  -- PLD
+[135] = {itemid = 1934, roll = 60, lootGroupId = 4},  -- WHM
+[135] = {itemid = 1956, roll = 526, lootGroupId = 4},  -- DRG
+[135] = {itemid = 1930, roll = 60, lootGroupId = 5},  -- WAR
+[135] = {itemid = 1936, roll = 53, lootGroupId = 5},  -- BLM
+[135] = {itemid = 1950, roll = 158, lootGroupId = 5},  -- RNG
+[135] = {itemid = 2716, roll = 105, lootGroupId = 5},  -- SCH
+
+-- F7
+[136] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[136] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[136] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[136] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[136] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[136] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[136] = {itemid = 1956, roll = 240, lootGroupId = 6},  -- DRG
+[136] = {itemid = 1932, roll = 120, lootGroupId = 6},  -- MNK
+[136] = {itemid = 1940, roll = 200, lootGroupId = 6},  -- THF
+[136] = {itemid = 1934, roll = 40, lootGroupId = 7},  -- WHM
+[136] = {itemid = 1954, roll = 120, lootGroupId = 7},  -- NIN
+[136] = {itemid = 2658, roll = 200, lootGroupId = 7},  -- COR
+[136] = {itemid = 2716, roll = 80, lootGroupId = 7},  -- SCH 
+[136] = {itemid = 1875, roll = 100, lootGroupId = 8}, 
+[136] = {itemid = 2127, roll = 55, lootGroupId = 8},  -- Metal Chip
+[136] = {itemid = 1904, roll = 1000, lootGroupId = 9},  -- Ivory Chip
+
+-- Temenos_Western_Tower --------------------------------------------------------------
+-- F1
+[137] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[137] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[137] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[137] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[137] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[137] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[137] = {itemid = 1948, roll = 172, lootGroupId = 6},  -- BRD 
+[137] = {itemid = 1938, roll = 138, lootGroupId = 6},  -- RDM
+[137] = {itemid = 1952, roll = 138, lootGroupId = 6},  -- SAM
+[137] = {itemid = 1958, roll = 207, lootGroupId = 6},  -- SMN
+[137] = {itemid = 1930, roll = 241, lootGroupId = 6},  -- WAR
+[137] = {itemid = 2656, roll = 172, lootGroupId = 6},  -- BLU
+
+
+-- F2
+[138] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[138] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[138] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[138] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[138] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[138] = {itemid = 1948, roll = 179, lootGroupId = 5},  -- BRD
+[138] = {itemid = 1938, roll = 571, lootGroupId = 5},  -- RDM
+[138] = {itemid = 1944, roll = 71, lootGroupId = 5},  -- DRK
+[138] = {itemid = 1952, roll = 179, lootGroupId = 5},  -- SAM
+[138] = {itemid = 1946, roll = 120, lootGroupId = 6},  -- BST
+[138] = {itemid = 1934, roll = 71, lootGroupId = 6},  -- WHM
+[138] = {itemid = 1930, roll = 143, lootGroupId = 6},  -- WAR
+[138] = {itemid = 2660, roll = 143, lootGroupId = 6},  -- PUP
+
+
+-- F3
+[139] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[139] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[139] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[139] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[139] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[139] = {itemid = 1948, roll = 536, lootGroupId = 5},  -- BRD
+[139] = {itemid = 1952, roll = 107, lootGroupId = 5},  -- SAM
+[139] = {itemid = 1938, roll = 60, lootGroupId = 5},  -- RDM
+[139] = {itemid = 1934, roll = 110, lootGroupId = 5},  -- WHM
+[139] = {itemid = 1930, roll = 80, lootGroupId = 5},  -- WAR
+[139] = {itemid = 2660, roll = 90, lootGroupId = 5},  -- PUP
+[139] = {itemid = 1946, roll = 71, lootGroupId = 6},  -- BST
+[139] = {itemid = 1944, roll = 103, lootGroupId = 6},  -- DRK
+[139] = {itemid = 1958, roll = 160, lootGroupId = 6},  -- SMN
+[139] = {itemid = 1954, roll = 36, lootGroupId = 6},  -- NIN
+[139] = {itemid = 2656, roll = 250, lootGroupId = 6},  -- BLU
+[139] = {itemid = 2716, roll = 350, lootGroupId = 6},  -- SCH
+-- F4
+[140] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[140] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[140] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[140] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[140] = {itemid = 1952, roll = 533, lootGroupId = 4},  -- SAM
+[140] = {itemid = 1946, roll = 90, lootGroupId = 4},  -- BST
+[140] = {itemid = 1938, roll = 133, lootGroupId = 4},  -- RDM
+[140] = {itemid = 1932, roll = 90, lootGroupId = 4},  -- MNK
+[140] = {itemid = 1958, roll = 10, lootGroupId = 5},  -- SMN
+[140] = {itemid = 1954, roll = 133, lootGroupId = 5},  -- NIN
+[140] = {itemid = 1944, roll = 133, lootGroupId = 5},  -- DRK
+[140] = {itemid = 1930, roll = 133, lootGroupId = 5},  -- WAR
+[140] = {itemid = 2660, roll = 33, lootGroupId = 5},  -- PUP
+
+
+-- F5
+[141] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[141] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[141] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[141] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[141] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[141] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[141] = {itemid = 1954, roll = 59, lootGroupId = 6},  -- NIN
+[141] = {itemid = 1930, roll = 294, lootGroupId = 6},  -- WAR
+[141] = {itemid = 1946, roll = 59, lootGroupId = 6},  -- BST
+[141] = {itemid = 1934, roll = 78, lootGroupId = 6},  --  WHM
+[141] = {itemid = 2716, roll = 59, lootGroupId = 6},  -- SCH
+[141] = {itemid = 1958, roll = 176, lootGroupId = 7},  -- SMN
+[141] = {itemid = 1938, roll = 59, lootGroupId = 7},  -- RDM
+[141] = {itemid = 1948, roll = 25, lootGroupId = 7},  -- BRD
+[141] = {itemid = 1932, roll = 118, lootGroupId = 7},  -- MNK
+[141] = {itemid = 2656, roll = 294, lootGroupId = 7},  -- BLU
+
+-- F6
+[142] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[142] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[142] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[142] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[142] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[142] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[142] = {itemid = 1954, roll = 200, lootGroupId = 6},  -- NIN
+[142] = {itemid = 1958, roll = 400, lootGroupId = 6},  -- SMN
+[142] = {itemid = 1948, roll = 100, lootGroupId = 6},  -- BRD
+[142] = {itemid = 1934, roll = 150, lootGroupId = 6},  -- WHM
+[142] = {itemid = 1932, roll = 50, lootGroupId = 7},  -- MNK
+[142] = {itemid = 1930, roll = 60, lootGroupId = 7},  -- WAR
+[142] = {itemid = 1938, roll = 200, lootGroupId = 7},  -- RDM
+[142] = {itemid = 1944, roll = 60, lootGroupId = 7},  -- DRK
+[142] = {itemid = 1952, roll = 200, lootGroupId = 7},  -- SAM
+
+-- F7
+[143] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[143] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[143] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[143] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[143] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[143] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[143] = {itemid = 1948, roll = 36, lootGroupId = 6},  -- BRD
+[143] = {itemid = 1952, roll = 143, lootGroupId = 6},  -- SAM
+[143] = {itemid = 1930, roll = 143, lootGroupId = 6},  -- WAR
+[143] = {itemid = 1958, roll = 214, lootGroupId = 6},  -- SMN
+[143] = {itemid = 1938, roll = 71, lootGroupId = 6},  -- RDM
+[143] = {itemid = 2656, roll = 321, lootGroupId = 6},  -- BLU
+[143] = {itemid = 1875, roll = 100, lootGroupId = 7}, 
+[143] = {itemid = 2127, roll = 55, lootGroupId = 7},  -- Metal Chip
+[143] = {itemid = 1906, roll = 1000, lootGroupId = 8},  -- Emerald Chip
+-- Temenos_Eastern_Tower --------------------------------------------------------------
+
+-- F1
+[144] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[144] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[144] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[144] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[144] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[144] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[144] = {itemid = 1944, roll = 65, lootGroupId = 6},  -- DRK
+[144] = {itemid = 1936, roll = 97, lootGroupId = 6},  -- BLM
+[144] = {itemid = 1946, roll = 40, lootGroupId = 6},  -- BST
+[144] = {itemid = 1942, roll = 95, lootGroupId = 6},  -- PLD
+[144] = {itemid = 2660, roll = 194, lootGroupId = 6},  -- PUP
+[144] = {itemid = 2714, roll = 32, lootGroupId = 6},  -- DNC
+[144] = {itemid = 1950, roll = 161, lootGroupId = 6},  -- RNG
+[144] = {itemid = 2716, roll = 190, lootGroupId = 6},  -- SCH
+[144] = {itemid = 2656, roll = 210, lootGroupId = 6},  -- BLU
+-- F2
+[145] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[145] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[145] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[145] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[145] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[145] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[145] = {itemid = 1936, roll = 367, lootGroupId = 6},  -- BLM
+[145] = {itemid = 1952, roll = 70, lootGroupId = 6},  -- SAM
+[145] = {itemid = 1950, roll = 40, lootGroupId = 6},  -- RNG
+[145] = {itemid = 1942, roll = 333, lootGroupId = 6},  -- PLD
+[145] = {itemid = 1958, roll = 20, lootGroupId = 6},  -- SMN 
+[145] = {itemid = 1956, roll = 106, lootGroupId = 7},  -- DRG
+[145] = {itemid = 1938, roll = 33, lootGroupId = 7},  -- RDM
+[145] = {itemid = 1944, roll = 76, lootGroupId = 7},  -- DRK
+[145] = {itemid = 1948, roll = 95, lootGroupId = 7},  -- BRD
+[145] = {itemid = 2658, roll = 67, lootGroupId = 7},  -- COR
+[145] = {itemid = 1946, roll = 133, lootGroupId = 7},  -- BST
+
+-- F3
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[146] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[146] = {itemid = 1942, roll = 625, lootGroupId = 7},  -- PLD
+[146] = {itemid = 1944, roll = 102, lootGroupId = 7},  -- DRK
+[146] = {itemid = 1950, roll = 42, lootGroupId = 7},  -- RNG
+[146] = {itemid = 1952, roll = 83, lootGroupId = 7},  -- SAM
+[146] = {itemid = 1946, roll = 50, lootGroupId = 7},  -- BST
+[146] = {itemid = 1940, roll = 83, lootGroupId = 8},  -- THF
+[146] = {itemid = 1936, roll = 70, lootGroupId = 8},  -- BLM
+[146] = {itemid = 1938, roll = 42, lootGroupId = 8},  -- RDM
+[146] = {itemid = 1948, roll = 42, lootGroupId = 8},  -- BRD
+[146] = {itemid = 2660, roll = 292, lootGroupId = 8},  -- PUP
+
+-- F4
+[147] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[147] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[147] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[147] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[147] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[147] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[147] = {itemid = 1950, roll = 417, lootGroupId = 6},  -- RNG
+[147] = {itemid = 1956, roll = 75, lootGroupId = 6},  -- DRG
+[147] = {itemid = 1944, roll = 208, lootGroupId = 6},  -- DRK
+[147] = {itemid = 1940, roll = 167, lootGroupId = 6},  -- THF
+[147] = {itemid = 1946, roll = 62, lootGroupId = 7},  -- BST
+[147] = {itemid = 1936, roll = 69, lootGroupId = 7},  -- BLM
+[147] = {itemid = 2660, roll = 208, lootGroupId = 7},  -- PUP
+[147] = {itemid = 1952, roll = 42, lootGroupId = 7},  -- SAM
+[147] = {itemid = 2658, roll = 83, lootGroupId = 7},  -- COR
+
+-- F5
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[148] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[148] = {itemid = 1944, roll = 208, lootGroupId = 7},  -- DRK
+[148] = {itemid = 1938, roll = 42, lootGroupId = 7},  -- RDM
+[148] = {itemid = 1946, roll = 36, lootGroupId = 7},  -- BST
+[148] = {itemid = 1940, roll = 83, lootGroupId = 7},  -- THF
+[148] = {itemid = 1942, roll = 20, lootGroupId = 7},  -- PLD
+[148] = {itemid = 1952, roll = 94, lootGroupId = 8},  -- SAM
+[148] = {itemid = 1956, roll = 42, lootGroupId = 8},  -- DRG
+[148] = {itemid = 1936, roll = 49, lootGroupId = 8},  -- BLM
+[148] = {itemid = 1950, roll = 167, lootGroupId = 8},  -- RNG
+[148] = {itemid = 2714, roll = 458, lootGroupId = 8},  -- DNC
+
+-- F6
+[149] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[149] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[149] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[149] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[149] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[149] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[149] = {itemid = 1942, roll = 68, lootGroupId = 6},  -- PLD
+[149] = {itemid = 1948, roll = 74, lootGroupId = 6},  -- BRD
+[149] = {itemid = 1936, roll = 259, lootGroupId = 6},  -- BLM
+[149] = {itemid = 1940, roll = 74, lootGroupId = 6},  -- THF
+[149] = {itemid = 1956, roll = 74, lootGroupId = 6},  -- DRG
+[149] = {itemid = 1950, roll = 62, lootGroupId = 6},  -- RNG
+[149] = {itemid = 2656, roll = 150, lootGroupId = 7},  -- BLU
+[149] = {itemid = 1938, roll = 76, lootGroupId = 7},  -- RDM
+[149] = {itemid = 1952, roll = 53, lootGroupId = 7},  -- SAM
+[149] = {itemid = 2658, roll = 111, lootGroupId = 7},  -- COR
+[149] = {itemid = 2714, roll = 370, lootGroupId = 7},  -- DNC
+[149] = {itemid = 1946, roll = 333, lootGroupId = 7},  -- BST
+
+-- F7
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[150] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[150] = {itemid = 1942, roll = 38, lootGroupId = 7},  -- PLD
+[150] = {itemid = 1950, roll = 67, lootGroupId = 7},  -- RNG
+[150] = {itemid = 1944, roll = 100, lootGroupId = 7},  -- DRK
+[150] = {itemid = 1936, roll = 233, lootGroupId = 7},  -- BLM
+[150] = {itemid = 1946, roll = 80, lootGroupId = 7},  -- BST
+[150] = {itemid = 2660, roll = 333, lootGroupId = 7},  -- PUP
+[150] = {itemid = 2714, roll = 67, lootGroupId = 7},  -- DNC 
+[150] = {itemid = 1875, roll = 100, lootGroupId = 8}, 
+[150] = {itemid = 2127, roll = 55, lootGroupId = 8},  -- Metal Chip
+[150] = {itemid = 1905, roll = 1000, lootGroupId = 9},  -- Scarlet Chip,
+
+-- Central_Temenos_1st_Floor --------------------------------------------------------------
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[151] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[151] = {itemid = 1930, roll = 265, lootGroupId = 7},  -- WAR
+[151] = {itemid = 1938, roll = 118, lootGroupId = 7},  -- RDM
+[151] = {itemid = 1948, roll = 147, lootGroupId = 7},  -- BRD
+[151] = {itemid = 1958, roll = 147, lootGroupId = 7},  -- SMN
+[151] = {itemid = 1952, roll = 118, lootGroupId = 7},  -- SAM
+[151] = {itemid = 2656, roll = 235, lootGroupId = 7},  -- BLU
+[151] = {itemid = 1986, roll = 1000, lootGroupId = 8},  -- Orchid Chip
+
+-- Central_Temenos_2nd_Floor --------------------------------------------------------------
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[152] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[152] = {itemid = 1944, roll = 250, lootGroupId = 7},  -- DRK
+[152] = {itemid = 1936, roll = 94, lootGroupId = 7},  -- BLM
+[152] = {itemid = 1950, roll = 63, lootGroupId = 7},  -- RNG
+[152] = {itemid = 1942, roll = 125, lootGroupId = 7},  -- PLD
+[152] = {itemid = 1946, roll = 63, lootGroupId = 7},  -- BST
+[152] = {itemid = 2660, roll = 281, lootGroupId = 7},  -- PUP
+[152] = {itemid = 2714, roll = 125, lootGroupId = 7},  -- DNC
+[152] = {itemid = 1908, roll = 1000, lootGroupId = 8},  -- Cerulean Chip
+
+-- Central_Temenos_3rd_Floor --------------------------------------------------------------
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[153] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[153] = {itemid = 1934, roll = 53, lootGroupId = 7},  -- WHM
+[153] = {itemid = 1940, roll = 132, lootGroupId = 7},  -- THF
+[153] = {itemid = 1954, roll = 105, lootGroupId = 7},  -- NIN
+[153] = {itemid = 1932, roll = 211, lootGroupId = 7},  -- MNK 
+[153] = {itemid = 1956, roll = 211, lootGroupId = 7},  -- DRG
+[153] = {itemid = 1930, roll = 100, lootGroupId = 7},  -- WAR
+[153] = {itemid = 2658, roll = 211, lootGroupId = 7},  -- COR
+[153] = {itemid = 2716, roll = 105, lootGroupId = 7},  -- SCH
+[153] = {itemid = 1907, roll = 1000, lootGroupId = 8},  -- Silver Chip
+-- Central_Temenos_4th_Floor --------------------------------------------------------------
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[154] = {itemid = 1875, roll = 1000, lootGroupId = 6}, 
+[154] = {itemid = 1920, roll = 659, lootGroupId = 7},  -- Ultima's Cerebrum 
+[154] = {itemid = 1924, roll = 394, lootGroupId = 7},  -- Ultima's Tail
+[154] = {itemid = 1923, roll = 388, lootGroupId = 7},  -- ultimas-leg
+[154] = {itemid = 1922, roll = 404, lootGroupId = 7},  -- Ultima's Claw
+[154] = {itemid = 1924, roll = 394, lootGroupId = 8},  -- Ultima's Tail
+[154] = {itemid = 1922, roll = 402, lootGroupId = 8},  -- Ultima's Claw
+[154] = {itemid = 1920, roll = 659, lootGroupId = 8},  -- Ultima's Cerebrum 
+[154] = {itemid = 1923, roll = 383, lootGroupId = 8},  -- ultimas-leg
+[154] = {itemid = 1921, roll = 265, lootGroupId = 9},  -- Ultima's Heart
+[154] = {itemid = 1875, roll = 100, lootGroupId = 9}, 
+
+[155] = {itemid = 1875, roll = 1000, lootGroupId = 0}, 
+[155] = {itemid = 1875, roll = 1000, lootGroupId = 1}, 
+[155] = {itemid = 1875, roll = 1000, lootGroupId = 2}, 
+[155] = {itemid = 1875, roll = 1000, lootGroupId = 3}, 
+[155] = {itemid = 1875, roll = 1000, lootGroupId = 4}, 
+[155] = {itemid = 1875, roll = 1000, lootGroupId = 5}, 
+[155] = {itemid = 1934, roll = 200, lootGroupId = 6},  -- WHM
+[155] = {itemid = 1930, roll = 200, lootGroupId = 6},  -- WAR
+[155] = {itemid = 1958, roll = 200, lootGroupId = 6},  -- SMN
+[155] = {itemid = 2658, roll = 400, lootGroupId = 6},  -- COR
+[155] = {itemid = 1940, roll = 200, lootGroupId = 6},  -- THF
+
+
+-- ENM Like the Wind
+[179] = {itemid = 1763, roll = 30, lootGroupId = 1},  
+[179] = {itemid = 1769, roll = 30, lootGroupId = 1},  
+[179] = {itemid = 1764, roll = 30, lootGroupId = 1}, 
+[179] = {itemid = 1842, roll = 100, lootGroupId = 0}, 
+[179] = {itemid = 17946, roll = 100, lootGroupId = 2}, 
+[179] = {itemid = 18358, roll = 100, lootGroupId = 2}, 
+[179] = {itemid = 16976, roll = 100, lootGroupId = 2}, 
+[179] = {itemid = 4990, roll = 230, lootGroupId = 2}, 
+[179] = {itemid = 17946, roll = 100, lootGroupId = 3}, 
+[179] = {itemid = 18358, roll = 100, lootGroupId = 3}, 
+[179] = {itemid = 16976, roll = 100, lootGroupId = 3}, 
+[179] = {itemid = 4990, roll = 230, lootGroupId = 3}, 
+
+-- ENM Brothers
+[180] = {itemid = 1767, roll = 271, lootGroupId = 0}, 
+[180] = {itemid = 1762, roll = 340, lootGroupId = 0}, 
+[180] = {itemid = 1771, roll = 330, lootGroupId = 0}, 
+[180] = {itemid = 1842, roll = 44, lootGroupId = 0}, 
+[180] = {itemid = 15302, roll = 123, lootGroupId = 1}, 
+[180] = {itemid = 17277, roll = 163, lootGroupId = 1}, 
+[180] = {itemid = 17707, roll = 167, lootGroupId = 1}, 
+[180] = {itemid = 18098, roll = 148, lootGroupId = 1}, 
+[180] = {itemid = 4748, roll = 281, lootGroupId = 1}, 
+[180] = {itemid = 15302, roll = 128, lootGroupId = 2}, 
+[180] = {itemid = 17277, roll = 163, lootGroupId = 2}, 
+[180] = {itemid = 17707, roll = 167, lootGroupId = 2}, 
+[180] = {itemid = 18098, roll = 153, lootGroupId = 2}, 
+[180] = {itemid = 4748, roll = 271, lootGroupId = 2}, 

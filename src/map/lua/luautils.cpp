@@ -106,7 +106,6 @@ namespace luautils
         lua_register(LuaHandle, "print", luautils::print);
         lua_register(LuaHandle, "GetNPCByID", luautils::GetNPCByID);
         lua_register(LuaHandle, "GetMobByID", luautils::GetMobByID);
-        lua_register(LuaHandle, "GetMobIDByJob", luautils::GetMobIDByJob);
         lua_register(LuaHandle, "WeekUpdateConquest", luautils::WeekUpdateConquest);
         lua_register(LuaHandle, "GetRegionOwner", luautils::GetRegionOwner);
         lua_register(LuaHandle, "GetRegionInfluence", luautils::GetRegionInfluence);
@@ -427,37 +426,6 @@ namespace luautils
         return 1;
     }
 
-    /************************************************************************
-    * GetMobIDByJob                                                         *
-    * Get a mobid by his job (used in dynamis)                              *
-    * GetMobIDByJob(mobid_min,mobid_max,mobjob)                             *
-    ************************************************************************/
-
-    int32 GetMobIDByJob(lua_State *L)
-    {
-        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1) || lua_isnil(L, 2) || !lua_isnumber(L, 2) || lua_isnil(L, 3) || !lua_isnumber(L, 3));
-
-        uint32 id_min = (uint32)lua_tointeger(L, 1);
-        uint32 id_max = (uint32)lua_tointeger(L, 2);
-        JOBTYPE mobJob = (JOBTYPE)lua_tointeger(L, 3);
-
-        for (uint32 mobid = id_min; mobid <= id_max; mobid++)
-        {
-            CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-
-            if (PMob != nullptr &&
-                PMob->isDead() &&
-                !(PMob->m_Type & MOBTYPE_NOTORIOUS) &&
-                (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 &&
-                PMob->GetMJob() == mobJob)
-            {
-                lua_pushinteger(L, PMob->id);
-                return 1;
-            }
-        }
-        lua_pushnil(L);
-        return 1;
-    }
 
     /************************************************************************
     *                                                                       *
@@ -1564,6 +1532,7 @@ namespace luautils
         lua_setglobal(LuaHandle, "onEventUpdate");
 
         auto loadResult = LoadEventScript(PChar, "onEventUpdate");
+        uint8 updatePosition = 1;
 
         if (!loadResult)
         {
@@ -1586,7 +1555,24 @@ namespace luautils
             lua_pop(LuaHandle, 1);
             return -1;
         }
-        return 0;
+
+        int32 returns = lua_gettop(LuaHandle) - oldtop;
+        if (returns > 1)
+        {
+            ShowError("luautils::onEventUpdate (%s): 1 return expected, got %d\n", lua_tostring(LuaHandle, -1), returns);
+            lua_pop(LuaHandle, returns);
+        }
+        if (returns < 1)
+        {
+            //ShowError("luautils::onEventUpdate (%s): 1 return expected, got %d\n", lua_tostring(LuaHandle, -1), returns);
+            lua_pop(LuaHandle, returns);
+        }
+        else
+        {
+            updatePosition = lua_tointeger(LuaHandle, -1);
+            lua_pop(LuaHandle, 1);
+        }
+        return updatePosition;
     }
 
     int32 OnEventUpdate(CCharEntity* PChar, int8* string)
@@ -2557,9 +2543,7 @@ namespace luautils
 
         if (prepFile(File, "onBattlefieldTick"))
         {
-            lua_prepscript("scripts/globals/battlefield.lua");
-            if (prepFile(File, "g_Battlefield.onBattlefieldTick"))
-                return -1;
+            return -1;
         }
 
         CLuaBattlefield LuaBattlefield(PBattlefield);
@@ -2591,9 +2575,7 @@ namespace luautils
 
         if (prepFile(File, "onBattlefieldStatusChange"))
         {
-            lua_prepscript("scripts/globals/battlefield.lua");
-            if (prepFile(File, "g_Battlefield.onBattlefieldStatusChange"))
-                return -1;
+            return -1;
         }
 
         CLuaBattlefield LuaBattlefield(PBattlefield);

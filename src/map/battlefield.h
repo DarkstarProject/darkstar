@@ -34,44 +34,44 @@ This file is part of DarkStar-server source code.
 
 enum BCRULES : uint8
 {
-    RULES_ALLOW_SUBJOBS         = 0x01,
-    RULES_LOSE_EXP              = 0x02,
-    RULES_REMOVE_3MIN           = 0x04,
+    RULES_ALLOW_SUBJOBS = 0x01,
+    RULES_LOSE_EXP = 0x02,
+    RULES_REMOVE_3MIN = 0x04,
     RULES_SPAWN_TREASURE_ON_WIN = 0x08,
-    RULES_MAAT                  = 0x10
+    RULES_MAAT = 0x10
 };
 
 enum BATTLEFIELDMOBCONDITION : uint8
 {
-    CONDITION_NONE             = 0x00,
+    CONDITION_NONE = 0x00,
     CONDITION_SPAWNED_AT_START = 0x01,
-    CONDITION_WIN_REQUIREMENT  = 0x02
+    CONDITION_WIN_REQUIREMENT = 0x02
 };
 
 enum BATTLEFIELD_LEAVE_CODE : uint8
 {
-    BATTLEFIELD_LEAVE_CODE_EXIT   = 1,
-    BATTLEFIELD_LEAVE_CODE_WIN    = 2,
+    BATTLEFIELD_LEAVE_CODE_EXIT = 1,
+    BATTLEFIELD_LEAVE_CODE_WIN = 2,
     BATTLEFIELD_LEAVE_CODE_WARPDC = 3,
-    BATTLEFIELD_LEAVE_CODE_LOSE   = 4
+    BATTLEFIELD_LEAVE_CODE_LOSE = 4
 };
 
 enum BATTLEFIELD_STATUS : uint8
 {
-    BATTLEFIELD_STATUS_OPEN   = 0,
+    BATTLEFIELD_STATUS_OPEN = 0,
     BATTLEFIELD_STATUS_LOCKED = 1,
-    BATTLEFIELD_STATUS_WON    = 2,
-    BATTLEFIELD_STATUS_LOST   = 3
+    BATTLEFIELD_STATUS_WON = 2,
+    BATTLEFIELD_STATUS_LOST = 3
 };
 
 enum BATTLEFIELD_RETURN_CODE : uint8
 {
-    BATTLEFIELD_RETURN_CODE_WAIT              = 1,
-    BATTLEFIELD_RETURN_CODE_CUTSCENE          = 2,
+    BATTLEFIELD_RETURN_CODE_WAIT = 1,
+    BATTLEFIELD_RETURN_CODE_CUTSCENE = 2,
     BATTLEFIELD_RETURN_CODE_INCREMENT_REQUEST = 3,
-    BATTLEFIELD_RETURN_CODE_LOCKED            = 4,
-    BATTLEFIELD_RETURN_CODE_REQS_NOT_MET      = 5,
-    BATTLEFIELD_RETURN_CODE_BATTLEFIELD_FULL  = 6
+    BATTLEFIELD_RETURN_CODE_LOCKED = 4,
+    BATTLEFIELD_RETURN_CODE_REQS_NOT_MET = 5,
+    BATTLEFIELD_RETURN_CODE_BATTLEFIELD_FULL = 6
 };
 
 class CNpcEntity;
@@ -127,13 +127,12 @@ public:
     uint8                  GetMaxParticipants() const;
     uint8                  GetPlayerCount() const;
     uint8                  GetLevelCap() const;
-    uint16                 GetLootID() const;
     duration               GetFinishTime() const;
     duration               GetRemainingTime() const;
     duration               GetLastTimeUpdate() const;
     uint64_t               GetLocalVar(const std::string& name) const;
 
-    bool                   InProgress();
+    bool                   CheckInProgress();
     bool                   IsOccupied() const;
 
     void                   ForEachPlayer(std::function<void(CCharEntity*)> func);
@@ -167,6 +166,7 @@ public:
     bool                   CanCleanup(bool cleanup = false);
     void                   Cleanup();
     bool                   LoadMobs();
+    bool                   SpawnLoot();
 
     std::vector<uint32>           m_PlayerList;
     std::vector<CNpcEntity*>      m_NpcList;
@@ -177,7 +177,7 @@ public:
 private:
     uint16                 m_ID;
     uint16                 m_ZoneID;
-    string_t               m_Name;
+    std::string            m_Name;
     BattlefieldInitiator_t m_Initiator;
     uint8                  m_Area;
     BattlefieldRecord_t    m_Record;
@@ -192,7 +192,6 @@ private:
     duration               m_LastPromptTime;
     uint8                  m_MaxParticipants;
     uint8                  m_LevelCap;
-    uint32                 m_LootID;
 
     bool                   m_Cleanup{ false };
     bool                   m_Attacked{ false };

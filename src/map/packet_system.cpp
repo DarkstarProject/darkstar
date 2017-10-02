@@ -2636,24 +2636,29 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PrintPacket(data);
     if (PChar->m_event.EventID == EventID)
     {
-        PChar->loc.p.x = RBUFF(data, (0x04));
-        PChar->loc.p.y = RBUFF(data, (0x08));
-        PChar->loc.p.z = RBUFF(data, (0x0C));
-        PChar->loc.p.rotation = RBUFB(data, (0x1F));
+        bool updatePosition = false;
 
         if (RBUFB(data, (0x1E)) != 0)
         {
-            luautils::OnEventUpdate(PChar, EventID, Result);
+            updatePosition = luautils::OnEventUpdate(PChar, EventID, Result) == 1;
         }
         else
         {
-            luautils::OnEventFinish(PChar, EventID, Result);
+            updatePosition = luautils::OnEventFinish(PChar, EventID, Result) == 1;
             if (PChar->m_event.EventID == EventID)
             {
                 PChar->m_event.reset();
             }
         }
 
+        if (updatePosition)
+        {
+            PChar->loc.p.x = RBUFF(data, (0x04));
+            PChar->loc.p.y = RBUFF(data, (0x08));
+            PChar->loc.p.z = RBUFF(data, (0x0C));
+            PChar->loc.p.rotation = RBUFB(data, (0x1F));
+        }
+        
         PChar->pushPacket(new CCSPositionPacket(PChar));
         PChar->pushPacket(new CPositionPacket(PChar));
     }

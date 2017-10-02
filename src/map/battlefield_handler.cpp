@@ -105,7 +105,7 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
 
         auto fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, fastestPartySize, timeLimit, levelCap, lootDropId, rules, partySize, \
                             zoneId \
-						    FROM bcnm_info \
+						    FROM bcnm_info i\
 							WHERE bcnmId = %u";
 
         auto  ret = Sql_Query(SqlHandle, fmtQuery, battlefieldID);
@@ -139,7 +139,6 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
 
             PBattlefield->SetMaxParticipants(maxplayers);
             PBattlefield->SetRuleMask(rulemask);
-            PBattlefield->InsertEntity(PChar, true);
 
             m_Battlefields.insert(std::make_pair(PBattlefield->GetArea(), PBattlefield));
 
@@ -151,6 +150,12 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
                 ShowDebug("battlefield loading failed\n");
                 return BATTLEFIELD_RETURN_CODE_WAIT;
             }
+
+            PBattlefield->InsertEntity(PChar, true);
+
+            if (lootid != 0)
+                PBattlefield->SetLocalVar("loot", lootid);
+
             luautils::OnBattlefieldInitialise(PBattlefield);
             return BATTLEFIELD_RETURN_CODE_CUTSCENE;
         }
@@ -185,7 +190,7 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
     if (PBattlefield && PBattlefield->GetID() == battlefield && PBattlefield->GetArea() == area && PBattlefield->GetInitiator().id == initiator &&
         !PChar->PBattlefield)
     {
-        if (!PBattlefield->InProgress())
+        if (!PBattlefield->CheckInProgress())
         {
             // players havent started fighting yet, try entering
             return PBattlefield->InsertEntity(PChar, true) ? BATTLEFIELD_RETURN_CODE_CUTSCENE : BATTLEFIELD_RETURN_CODE_BATTLEFIELD_FULL;

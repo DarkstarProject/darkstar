@@ -129,28 +129,21 @@ function TradeBCNM(player, zone, trade, npc)
         player:setVar("trade_itemid", 0)
         return false
     else -- a valid BCNM with this item, start it.
-        mask = GetBattleBitmask(id, zone, 1)
-
-        if (mask == -1) then -- Cannot resolve this BCNMID to an event number, edit bcnmid_param_map!
-            print("Item is for a valid BCNM but cannot find the event parameter to display to client.")
-            player:setVar("trade_bcnmid", 0)
-            player:setVar("trade_itemid", 0)
-            return false
-        end
-        if (player:isBcnmsFull() == 1) then -- temp measure, this will precheck the instances
+        local mode = 1
+        local mask = GetBattleBitmask(id, player:getZoneID(), mode)
+        --[[
+            if (player:isBcnmsFull() == 1) then -- temp measure, this will precheck the instances
             print("all bcnm instances are currently occupied.")
             npc:messageBasic(246, 0, 0) -- this wont look right in other languages!
             return true
         end
+        ]]
         player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0)
         return true
     end
 end
 
 function EventTriggerBCNM(player, npc)
-    player:setVar("trade_bcnmid", 0)
-    player:setVar("trade_itemid", 0)
-
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
         if player:isInBattlefieldList() then
             player:startEvent(0x7d03) -- Run Away or Stay menu
@@ -185,21 +178,19 @@ function EventUpdateBCNM(player, csid, option, entrance)
         local area = player:getLocalVar("[battlefield]area");
         local id = battlefieldId or player:getBattlefieldID()
 
-        if option == 255 then
-
-        else
+        if option ~= 255 then
             local clearTime, name, partySize = 1
             local canRegister = true
             if skip ~= 1 and not checkNonTradeBCNM(player, npc, 1, id) then
                 canRegister = false
-            end 
+            end
 
             local result = g_Battlefield.ReturnCode.REQS_NOT_MET
-            
+
             if canRegister then
-                result = player:registerBattlefield(id, area + 1);
+                result = player:registerBattlefield(id, area + 1)
             end
-            
+
             if result ~= g_Battlefield.ReturnCode.CUTSCENE then
                 player:setLocalVar("[battlefield]area", area + 1)
             else
@@ -207,15 +198,19 @@ function EventUpdateBCNM(player, csid, option, entrance)
                     local battlefield = player:getBattlefield()
                     if battlefield then
                         name, clearTime, partySize = battlefield:getRecord()
-                        mask = battlefield:getID();
+                        mask = battlefield:getID()
                     end
                 end
             end
             if partySize == 0 then
                 partySize = 69
             end
-            player:updateEvent(result, battlefieldIndex - 1, 0, clearTime, partySize, skip);
-            player:updateEventString(name);
+            player:updateEvent(result, battlefieldIndex - 1, 0, clearTime, partySize, skip)
+            player:updateEventString(name)
+
+            if result >= g_Battlefield.Status.LOCKED then
+                return false
+            end
         end
     end
    return true
@@ -296,7 +291,7 @@ end
 
 function GetBattleBitmask(id, zone, mode)
     -- normal sweep for NON MAAT FIGHTS
-    local ret = -1;
+    local ret = 0;
     local mask = 0;
 
     local battlefieldlist = battlefield_bitmask_map[zone]
@@ -305,7 +300,7 @@ function GetBattleBitmask(id, zone, mode)
         for index, battlefield in ipairs(battlefield_bitmask_map[zone]) do
             if id == battlefield then
                 if mode == 1 then
-                    ret = mask + bit.lshift(index + 1, 2);
+                    ret = mask + bit.lshift(1, index - 1);
                 else
                     return index;
                 end
@@ -314,7 +309,7 @@ function GetBattleBitmask(id, zone, mode)
     else
         printf("[bcnm] unable to get bitmask for battlefield: %u, zone: %u", id, zone);
     end
-    
+
     return ret
 end
 
@@ -364,6 +359,7 @@ function ItemToBCNMID(player, zone, trade)
                     if (questTimelineOK == 1) then
                         player:setVar("trade_bcnmid", itemid_bcnmid_map[zoneindex+1][bcnmindex+1])
                         player:setVar("trade_itemid", itemid_bcnmid_map[zoneindex+1][bcnmindex])
+                        print(itemid_bcnmid_map[zoneindex+1][bcnmindex+1])
                         return itemid_bcnmid_map[zoneindex+1][bcnmindex+1]
                     end
 
@@ -375,15 +371,13 @@ function ItemToBCNMID(player, zone, trade)
 end
 
 
--- E.g. mission checks go here, you must know the right bcnmid for the mission you want to code.
---      You also need to know the bitmask (event param) which should be put in bcnmid_param_map
-
+-- checks = { [zone] = { [bcnmid] = function() return (this return must evaluate to true for entry) end,} }
 function checkNonTradeBCNM(player, npc, mode, battlefieldId)
     local mask = 0
     local Zone = player:getZoneID()
     mode = mode or 2;
 
-    local checks = 
+    local checks =
     {
         [6] =   {
                     [640] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6)  end, -- flames_for_the_dead
@@ -445,7 +439,7 @@ function checkNonTradeBCNM(player, npc, mode, battlefieldId)
                 },
         [139] = {
                     [0] = function()
-                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
                                   player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9)
                           end, -- Mission 2-3
                     [3] = function() return (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2)  end,
@@ -509,7 +503,7 @@ function checkNonTradeBCNM(player, npc, mode, battlefieldId)
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
                     [516] = function() return (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
-                --[[ 
+                --[[
                     Temp disabled pending BCNM mob fixes
                     [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED))  end, -- ACP Mission 7
                 ]]
@@ -527,22 +521,19 @@ function checkNonTradeBCNM(player, npc, mode, battlefieldId)
                     [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_CERULEAN_SEAL))  end,
                 },
     }
-    
-    -- canEnter is only used to check party members
-    local canEnter = false
 
     for keyid, condition in pairs(checks[Zone]) do
         if mode == 2 then
             if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
                 mask = mask + GetBattleBitmask(keyid, Zone, mode);
+                -- we only get battlefieldId param passed if running from eventupdate
                 if battlefieldId == keyid then
-                    canEnter = true
                     return mask
                 end
             end;
         end
     end;
-    
+
     if mode == 2 then
         player:setVar("trade_bcnmid", mask);
         player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0);
@@ -552,7 +543,7 @@ end
 
 function CutsceneSkip(player, npc)
 
-    local skip = 0
+    local skip = false
     local Zone = player:getZoneID()
 
     if (Zone == 6) then -- Bearclaw Pinnacle
