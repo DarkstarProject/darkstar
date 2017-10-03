@@ -7561,7 +7561,8 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 inline int32 CLuaBaseEntity::isInBattlefieldList(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
     lua_pushboolean(L, (m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity) != nullptr));
     return 1;
 }
@@ -11212,6 +11213,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,initNpcAi),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNM),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnkillable),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNewPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNewPlayer),

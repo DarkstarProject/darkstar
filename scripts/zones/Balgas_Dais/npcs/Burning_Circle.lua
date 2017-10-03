@@ -63,7 +63,7 @@ function onEventUpdate(player,csid,option)
     -- printf("onUpdate RESULT: %u",option);
 
     return EventUpdateBCNM(player,csid,option)
-end;
+end
 
 -----------------------------------
 -- onEventFinish Action

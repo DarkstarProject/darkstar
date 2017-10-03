@@ -177,6 +177,16 @@ CBattlefield* CBattlefieldHandler::GetBattlefield(CBaseEntity* PEntity)
     return nullptr;
 }
 
+CBattlefield* CBattlefieldHandler::GetBattlefieldByInitiator(uint32 charID)
+{
+    for (auto& battlefield : m_Battlefields)
+    {
+        if (battlefield.second->GetInitiator().id == charID)
+            return battlefield.second;
+    }
+    return nullptr;
+}
+
 uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battlefield, uint8 area, uint32 initiator)
 {
     // attempt to add to an existing battlefield

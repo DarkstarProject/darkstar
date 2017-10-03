@@ -171,14 +171,14 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
 
     if battlefield:getStatus() == g_Battlefield.Status.WON and battlefield:getLocalVar("lootSeen") == 0 then
         if npc then
-            npc:openDoor(69)
+            npc:openDoor(2)
         end
         if lootGroup then
             for _, entry in pairs(lootGroup) do
-                local roll = entry.roll / 1000
+                local chansu = entry.droprate / 1000
                 local watashiNoChansu = math.random()
 
-                if watashiNoChansu <= roll then
+                if watashiNoChansu <= chansu then
                     players[1]:addTreasure(entry.itemid)
                 end
             end
