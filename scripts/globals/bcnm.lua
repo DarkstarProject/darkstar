@@ -71,8 +71,6 @@ initiator_checks =
     trade = {},
 }
 
-
-
 function GetBattleBitmask(id, zone, mode)
     local ret = 0;
     local mask = 0;
@@ -95,11 +93,6 @@ function GetBattleBitmask(id, zone, mode)
 
     return ret
 end
-
---elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or
--- item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
---    player:createWornItem(item)
---end
 
 -- Call this onTrade for burning circles
 function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
@@ -237,6 +230,8 @@ function EventTriggerBCNM(player, npc)
         if player:isInBattlefieldList() then
             player:startEvent(0x7d03) -- Run Away or Stay menu
         else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
+            -- fuck thinking
+            -- todo: max make this halal for party members
             status = player:getStatusEffect(EFFECT_BATTLEFIELD)
             playerbcnmid = status:getPower()
             playermask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 1)
@@ -441,7 +436,7 @@ local function CompleteTrade(player)
     local battlefieldId = player:getBattlefieldID()
     local info = initiator_checks[player:getZoneID()][battlefieldId]
     local tradeType = info.tradeType
-    local dun = player:hasItem(info.itemid)
+    local dun = player:hasItem(info.itemid) and not player:hasWornItem(info.itemid)
 
     if tradeType == battlefield_trade_type.CONFIRM then
         player:delItem(info.itemid)
@@ -461,7 +456,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         local battlefieldIndex = bit.rshift(option, 4) + 1
         local battlefieldId = battlefield_bitmask_map[zone][battlefieldIndex]
         local effect = player:getStatusEffect(EFFECT_BATTLEFIELD);
-        local skip = CutsceneSkip(player);
+        local skip = CutsceneSkip(player, battlefieldId);
         local area = player:getLocalVar("[battlefield]area");
         local id = battlefieldId or player:getBattlefieldID()
 
@@ -486,7 +481,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
                 else
                     canRegister = true
                     for _, member in pairs(player:getAlliance()) do
-                        if member:getZoneId() == player:getZoneId() and not member:getBattlefield() then
+                        if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
                             member:addStatusEffect(effect)
                         end
                     end
@@ -495,7 +490,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
 
             if player:getLocalVar("[battlefield]initiated") == 1 then
                 print("ass")
-                canRegister = CompleteTrade(player) or (skip or CheckNonTradeBCNM(player, nil, 1, battlefieldId))
+                canRegister = CompleteTrade(player) or (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
             end
 
             local result = g_Battlefield.ReturnCode.REQS_NOT_MET
