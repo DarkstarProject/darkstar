@@ -103,21 +103,31 @@ function g_Battlefield.SendTimePrompts(battlefield, players)
     local tick = battlefield:getTimeInside()
     local status = battlefield:getStatus()
     local remainingTime = battlefield:getRemainingTime()
+    local message = 0
+    local lastTimeUpdate = battlefield:getLastTimeUpdate()
 
     players = players or battlefield:getPlayers()
 
-    if tick % 60 == 0 and tick < remainingTime then
-        for _, player in pairs(players) do
-            if remainingTime > 0 then
-                 player:messageBasic(202, remainingTime)
-            end
-        end
+    if lastTimeUpdate == 0 and remainingTime < 600 then
+        message = 600;
+    elseif lastTimeUpdate == 600 and remainingTime < 300 then
+        message = 300;
+    elseif lastTimeUpdate == 300 and remainingTime < 60 then
+        message = 60;
+    elseif lastTimeUpdate == 60 and remainingTime < 30 then
+        message = 30;
+    elseif lastTimeUpdate == 30 and remainingTime < 10 then
+        message = 10;
     end
 
-    if remainingTime <= 0 then
-        return false
+    if message ~= 0 then
+        for i,v in pairs(players) do
+            player:messageBasic(202, remainingTime)
+        end
+        instance:setLastTimeUpdate(message)
     end
-    return true
+
+    return remainingTime >= 0
 end
 
 function g_Battlefield.HandleWipe(battlefield, players)

@@ -218,6 +218,7 @@ function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
                 return mask
             end
             player:setLocalVar("[battlefield]traded", mask)
+            player:setLocalVar("[battlefield]initiated", 1)
         end
     end
 
@@ -432,9 +433,8 @@ function CheckNonTradeBCNM(player, npc, mode, battlefieldId)
     return mask;
 end
 
-local function CompleteTrade(player)
-    local battlefieldId = player:getBattlefieldID()
-    local info = initiator_checks[player:getZoneID()][battlefieldId]
+local function CompleteTrade(player, battlefieldId)
+    local info = initiator_checks.trade[player:getZoneID()][battlefieldId]
     local tradeType = info.tradeType
     local dun = player:hasItem(info.itemid) and not player:hasWornItem(info.itemid)
 
@@ -446,7 +446,6 @@ local function CompleteTrade(player)
 
     player:setLocalVar("[battlefield]traded", 0)
     player:setLocalVar("[battlefield]trade_id", battlefieldId)
-    player:getBattlefield():setLocalVar("trade_id", player:getLocalVar("[battlefield]trade_id"))
     return dun
 end
 
@@ -485,12 +484,15 @@ function EventUpdateBCNM(player, csid, option, entrance)
                             member:addStatusEffect(effect)
                         end
                     end
+                    player:getBattlefield():setLocalVar("trade_id", player:getLocalVar("[battlefield]trade_id"))
                 end
-            end
+            else
 
             if player:getLocalVar("[battlefield]initiated") == 1 then
                 print("ass")
-                canRegister = CompleteTrade(player) or (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
+                canRegister = CompleteTrade(player, battlefieldId) or (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
+            end
+
             end
 
             local result = g_Battlefield.ReturnCode.REQS_NOT_MET

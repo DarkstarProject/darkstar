@@ -156,6 +156,7 @@ public:
     void                   SetMaxParticipants(uint8 max);
     void                   SetLevelCap(uint8 cap);
     void                   SetLocalVar(const std::string& name, uint64_t value);
+    void                   SetLastTimeUpdate(duration time);
 
     void                   ApplyLevelCap(CCharEntity* PChar) const;
     void                   ClearEnmityForEntity(CBattleEntity* PEntity);

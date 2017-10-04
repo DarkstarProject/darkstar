@@ -238,6 +238,11 @@ void CBattlefield::SetLocalVar(const std::string& name, uint64_t value)
     m_LocalVars[name] = value;
 }
 
+void CBattlefield::SetLastTimeUpdate(duration time)
+{
+    m_LastPromptTime = time;
+}
+
 void CBattlefield::ApplyLevelCap(CCharEntity* PChar) const
 {
     //adjust player's level to the appropriate cap and remove buffs
@@ -359,6 +364,13 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 
         if (leavecode != 255)
         {
+            // todo: probably shouldnt hardcode this
+            if (leavecode == BATTLEFIELD_LEAVE_CODE_WARPDC)
+            {
+                PEntity->loc.p.x = 0;
+                PEntity->loc.p.y = 0;
+                PEntity->loc.p.z = 0;
+            }
             luautils::OnBattlefieldLeave(static_cast<CCharEntity*>(PEntity), this, leavecode);
         }
     }
@@ -469,15 +481,9 @@ void CBattlefield::Cleanup()
             mob.PMob->PAI->Despawn();
     }
 
-    for (const auto& npc : m_NpcList)
-    {
-        if (npc->PAI->IsSpawned())
-            npc->PAI->Despawn();
-    }
-
     if (GetStatus() == BATTLEFIELD_STATUS_WON && GetRecord().time > m_FinishTime)
     {
-        SetRecord(m_Initiator.name, m_FinishTime, m_Record.partySize);
+        SetRecord(m_Initiator.name, m_FinishTime, m_PlayerList.size());
     }
     // wipe enmity from all mobs in list if needed
     ForEachRequiredEnemy([&](CMobEntity* PMob)

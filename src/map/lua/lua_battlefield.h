@@ -59,7 +59,9 @@ public:
     int32 getRecord(lua_State*);
     int32 getStatus(lua_State*);
     int32 getLocalVar(lua_State*);
+    int32 getLastTimeUpdate(lua_State*);
 
+    int32 setLastTimeUpdate(lua_State*);
     int32 setTimeLimit(lua_State*);
     int32 setFightTick(lua_State*);
     int32 setWipeTime(lua_State*);
