@@ -60,10 +60,11 @@ CBattlefield::CBattlefield(uint16 id, CZone* PZone, uint8 area, CCharEntity* PIn
     m_Initiator.name = PInitiator->name;
     m_Record = BattlefieldRecord_t();
     m_Record.name = "Meme";
-    m_Record.time = 260s;
+    m_Record.time = 24h;
     m_Record.partySize = 69;
     m_StartTime = server_clock::now();
     m_Tick = m_StartTime;
+    m_LastPromptTime = 0s;
 }
 
 CBattlefield::~CBattlefield()
@@ -380,7 +381,9 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 
         if (PEntity->objtype == TYPE_NPC)
         {
-            PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityAnimationPacket(PEntity, CEntityAnimationPacket::Fade_Out));
+            PEntity->status = STATUS_DISAPPEAR;
+            PEntity->animation = ANIMATION_CLOSE_DOOR;
+            PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_DESPAWN, UPDATE_ALL_MOB));
             m_NpcList.erase(std::remove_if(m_NpcList.begin(), m_NpcList.end(), check), m_NpcList.end());
         }
         else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
@@ -430,25 +433,6 @@ void CBattlefield::onTick(time_point time)
         m_FightTick = m_Status == BATTLEFIELD_STATUS_LOCKED ? m_FightTick : time;
         m_FinishTime = m_Status >= BATTLEFIELD_STATUS_WON ? m_FightTick - m_StartTime : m_FinishTime;
 
-        // remove the char if they zone out
-        for (auto charid = m_PlayerList.begin(); charid != m_PlayerList.end();)
-        {
-            auto PChar = GetZone()->GetCharByID(*charid);
-
-            if (!PChar)
-            {
-                if (charid != m_PlayerList.end())
-                {
-                    charid = m_PlayerList.erase(charid);
-                    continue;
-                }
-            }
-            else if (PChar->getZone() != GetZoneID())
-            {
-                RemoveEntity(PChar, -1);
-            }
-            ++charid;
-        }
         CheckInProgress();
         luautils::OnBattlefieldTick(this);
 
@@ -516,7 +500,7 @@ void CBattlefield::Cleanup()
 
     if (m_Attacked && m_Status == BATTLEFIELD_STATUS_WON)
     {
-        const int8* query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u";
+        const int8* query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u AND zoneid = %u";
         auto timeThing = std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
 
         Sql_Query(SqlHandle, query, m_Record.name.c_str(), timeThing, m_Record.partySize, this->GetID(), GetZoneID());

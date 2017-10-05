@@ -41,10 +41,6 @@ namespace battlefieldutils
     void getLosePosition(CBattlefield* battlefield, int(&pPosition)[4]);		// returns x y z rot in that order
     void getWinPosition(CBattlefield* battlefield, int(&pPosition)[4]);		// returns x y z rot in that order
     void getStartPosition(uint16 zoneid, int(&pPosition)[4]);			// returns lobby position
-
-    uint8 getMaxLootGroups(CBattlefield* battlefield);						// returns maximum number of loot groups for a BCNM battlefield
-    uint16 getRollsPerGroup(CBattlefield* battlefield, uint8 groupID);		// returns the maximum number of "rolls" in a given group
-    void getChestItems(CBattlefield* battlefield);
 };
 
 #endif

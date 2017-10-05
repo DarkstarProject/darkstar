@@ -1560,15 +1560,18 @@ namespace luautils
         if (returns > 1)
         {
             ShowError("luautils::onEventUpdate (%s): 1 return expected, got %d\n", lua_tostring(LuaHandle, -1), returns);
-            lua_pop(LuaHandle, returns - 1);
+            lua_pop(LuaHandle, returns);
         }
         if (returns < 1)
         {
             //ShowError("luautils::onEventUpdate (%s): 1 return expected, got %d\n", lua_tostring(LuaHandle, -1), returns);
-            return 1;
+            lua_pop(LuaHandle, returns);
         }
-        updatePosition = lua_tointeger(LuaHandle, -1);
-        lua_pop(LuaHandle, 1);
+        else
+        {
+            updatePosition = lua_tointeger(LuaHandle, -1);
+            lua_pop(LuaHandle, 1);
+        }
 
         return updatePosition;
     }

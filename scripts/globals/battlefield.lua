@@ -28,7 +28,7 @@ end
 
 g_Battlefield = {}
 
-g_Battlefield.Status =
+g_Battlefield.STATUS =
 {
     OPEN     = 0,
     LOCKED   = 1,
@@ -36,7 +36,7 @@ g_Battlefield.Status =
     LOST     = 3,
 }
 
-g_Battlefield.ReturnCode =
+g_Battlefield.RETURNCODE =
 {
     WAIT              = 1,
     CUTSCENE          = 2,
@@ -44,6 +44,14 @@ g_Battlefield.ReturnCode =
     LOCKED            = 4,
     REQS_NOT_MET      = 5,
     BATTLEFIELD_FULL  = 6
+}
+
+g_Battlefield.LEAVECODE =
+{
+    EXIT = 1,
+    WON = 2,
+    WARPDC = 3,
+    LOST = 4
 }
 
 function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
@@ -55,17 +63,17 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
 
     local cutsceneTimer = battlefield:getLocalVar("cutsceneTimer")
 
-    if status == g_Battlefield.Status.LOST then
+    if status == g_Battlefield.STATUS.LOST then
         leavecode = 4
-    elseif status == g_Battlefield.Status.WON then
+    elseif status == g_Battlefield.STATUS.WON then
         leavecode = 2
     end
-    print("fuck")
+
     if leavecode ~= -1 then
         battlefield:setLocalVar("cutsceneTimer", cutsceneTimer + 1)
 
         local canLeave = true
-        if status == g_Battlefield.Status.WON then
+        if status == g_Battlefield.STATUS.WON then
             canLeave = battlefield:getLocalVar("loot") == 0
 
             if battlefield:getLocalVar("lootSpawned") == 0 and battlefield:spawnLoot() then
@@ -94,7 +102,7 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
     end
 
     if killedallmobs then
-        battlefield:setStatus(g_Battlefield.Status.WON)
+        battlefield:setStatus(g_Battlefield.STATUS.WON)
     end
 end
 
@@ -121,7 +129,7 @@ function g_Battlefield.SendTimePrompts(battlefield, players)
     end
 
     if message ~= 0 then
-        for i,v in pairs(players) do
+        for i, player in pairs(players) do
             player:messageBasic(202, remainingTime)
         end
         instance:setLastTimeUpdate(message)
@@ -153,7 +161,7 @@ function g_Battlefield.HandleWipe(battlefield, players)
         end
     else
         if (elapsed - wipeTime) > 180 then
-            battlefield:setStatus(g_Battlefield.Status.LOST)
+            battlefield:setStatus(g_Battlefield.STATUS.LOST)
         else
             for _, player in pairs(players) do
                 if player:getHP() ~= 0 then
@@ -164,7 +172,7 @@ function g_Battlefield.HandleWipe(battlefield, players)
             end
 
             if rekt then
-                battlefield:setStatus(g_Battlefield.Status.LOST)
+                battlefield:setStatus(g_Battlefield.STATUS.LOST)
             end
         end
     end
@@ -179,9 +187,9 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
     players = players or battlefield:getPlayers()
     local lootGroup = lootTable[math.random(1, #lootTable)]
 
-    if battlefield:getStatus() == g_Battlefield.Status.WON and battlefield:getLocalVar("lootSeen") == 0 then
+    if battlefield:getStatus() == g_Battlefield.STATUS.WON and battlefield:getLocalVar("lootSeen") == 0 then
         if npc then
-            npc:openDoor(2)
+            npc:setAnimation(8)
         end
         if lootGroup then
             for _, entry in pairs(lootGroup) do

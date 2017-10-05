@@ -71,7 +71,35 @@ initiator_checks =
     trade = {},
 }
 
-function GetBattleBitmask(id, zone, mode)
+local orbs =
+{
+    moon = 1130,
+    star = 1131,
+    clotho = 1175,
+    comet = 1177,
+    lachesis = 1178,
+    atropos = 1180,
+    cloudy = 1551,
+    sky = 1552,
+    themis = 1553,
+    monarchs = 2108,
+    oxblood = 2743,
+    angel_skin = 2744,
+    phobos = 3351,
+    deimos = 3352,
+    zelos = 3454,
+    bia = 3455,
+    athena = 3557,
+    microcosmic = 4062,
+    macrocosmic = 4063,
+    maliyakaleya = 8720,
+    cyan = 9256,
+    ravagers = 19253,
+    focal = 21345,
+    sapience = 22252,
+}
+
+function GetCutsceneParam(id, zone, getBitmask)
     local ret = 0;
     local mask = 0;
 
@@ -80,7 +108,7 @@ function GetBattleBitmask(id, zone, mode)
     if battlefieldlist then
         for index, battlefield in ipairs(battlefield_bitmask_map[zone]) do
             if id == battlefield then
-                if mode == 1 then
+                if getBitmask == 1 then
                     ret = mask + bit.lshift(1, index - 1);
                 else
                     return index;
@@ -95,32 +123,27 @@ function GetBattleBitmask(id, zone, mode)
 end
 
 -- Call this onTrade for burning circles
-function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
-    mode = mode or 1
-    if not trade then
-        print("TradeBCNM was sent a nil trade!\n\t Player: "..player:getName().."\n\t zone: "..Zone.."\n")
-        return false
-    end
-
+function TradeBCNM(player, Zone, trade, npc, battlefieldId, completeTrade)
+    local getBitmask = 1
     local mainJob = player:getMainJob()
 
     initiator_checks.trade =
     {
         [139] = {
-                    [4]  = {check = function() return trade:hasItemQty(1177, 1) end, itemid = 1177, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [4]  = {check = function() return trade:hasItemQty(orbs.comet, 1) end, itemid = orbs.comet, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [5]  = {check = function() return trade:hasItemQty(1426, 1) and mainJob == JOBS.WAR end, itemid = 1426, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [6]  = {check = function() return trade:hasItemQty(1429, 1) and mainJob == JOBS.BLM end, itemid = 1429, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [7]  = {check = function() return trade:hasItemQty(1436, 1) and mainJob == JOBS.RNG end, itemid = 1436, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [10] = {check = function() return trade:hasItemQty(1552, 1) end, itemid = 1552, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [11] = {check = function() return trade:hasItemQty(1553, 1) end, itemid = 1553, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [12] = {check = function() return trade:hasItemQty(1131, 1) end, itemid = 1131, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [15] = {check = function() return trade:hasItemQty(1175, 1) end, itemid = 1175, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [17] = {check = function() return trade:hasItemQty(1180, 1) end, itemid = 1180, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},-- Horlais Peak
+                    [10] = {check = function() return trade:hasItemQty(orbs.sky, 1) end, itemid = orbs.sky, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [11] = {check = function() return trade:hasItemQty(orbs.themis, 1) end, itemid = orbs.themis, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [12] = {check = function() return trade:hasItemQty(orbs.star, 1) end, itemid = orbs.star, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [15] = {check = function() return trade:hasItemQty(orbs.clotho, 1) end, itemid = orbs.clotho, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [17] = {check = function() return trade:hasItemQty(orbs.atropos, 1) end, itemid = orbs.atropos, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},-- Horlais Peak
                 },
         [140] = {
-                    [34] = {check = function() return trade:hasItemQty(1551, 1) end, itemid = 1551, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [35] = {check = function() return trade:hasItemQty(1552, 1) end, itemid = 1552, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [36] = {check = function() return trade:hasItemQty(1552, 1) end, itemid = 1552, tradeType = battlefield_trade_type.CREATE_WORN_ITEM}, -- Ghelsba Outpost
+                    [34] = {check = function() return trade:hasItemQty(orbs.cloudy, 1) end, itemid = orbs.cloudy, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [35] = {check = function() return trade:hasItemQty(orbs.sky, 1) end, itemid = orbs.sky, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [36] = {check = function() return trade:hasItemQty(orbs.sky, 1) end, itemid = orbs.sky, tradeType = battlefield_trade_type.CREATE_WORN_ITEM}, -- Ghelsba Outpost
                 },
         [144] = {
                     [68] = {check = function() return trade:hasItemQty(1166, 1) and player:getVar("aThiefinNorgCS") == 6 end,
@@ -130,23 +153,23 @@ function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
                     [71] = {check = function() return trade:hasItemQty(1431, 1) and mainJob == JOBS.THF end, itemid = 1431, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [72] = {check = function() return trade:hasItemQty(1434, 1) and mainJob == JOBS.BST end, itemid = 1434, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},   -- Waughroon Shrine [RDM THF BST]
 
-                    [73] = {check = function() return trade:hasItemQty(1552, 1) end, itemid = 1552, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [76] = {check = function() return trade:hasItemQty(1553, 1) end, itemid = 1553, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [79] = {check = function() return trade:hasItemQty(1130, 1) end, itemid = 1130, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [81] = {check = function() return trade:hasItemQty(1178, 1) end, itemid = 1178, tradeType = battlefield_trade_type.CREATE_WORN_ITEM}, -- Waughroon Shrine
-                    [82] = {check = function() return trade:hasItemQty(1180, 1) end, itemid = 1180, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [73] = {check = function() return trade:hasItemQty(orbs.sky, 1) end, itemid = orbs.sky, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [76] = {check = function() return trade:hasItemQty(orbs.themis, 1) end, itemid = orbs.themis, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [79] = {check = function() return trade:hasItemQty(orbs.moon, 1) end, itemid = orbs.moon, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [81] = {check = function() return trade:hasItemQty(orbs.lachesis, 1) end, itemid = orbs.lachesis, tradeType = battlefield_trade_type.CREATE_WORN_ITEM}, -- Waughroon Shrine
+                    [82] = {check = function() return trade:hasItemQty(orbs.atropos, 1) end, itemid = orbs.atropos, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                 },
         [146] = {
-                    [100] = {check = function() return trade:hasItemQty(1177, 1) end, itemid = 1551, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [100] = {check = function() return trade:hasItemQty(orbs.comet, 1) end, itemid = orbs.cloudy, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [101] = {check = function() return trade:hasItemQty(1427, 1) and mainJob == JOBS.MNK end, itemid = 1427, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [102] = {check = function() return trade:hasItemQty(1428, 1) and mainJob == JOBS.WHM end, itemid = 1428, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                     [103] = {check = function() return trade:hasItemQty(1440, 1) and mainJob == JOBS.SMN end, itemid = 1429, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},-- Balga's Dais [MNK WHM SMN]
-                    [105] = {check = function() return trade:hasItemQty(1551, 1) end, itemid = 1551, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [107] = {check = function() return trade:hasItemQty(1553, 1) end, itemid = 1553, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [105] = {check = function() return trade:hasItemQty(orbs.cloudy, 1) end, itemid = orbs.cloudy, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [107] = {check = function() return trade:hasItemQty(orbs.themis, 1) end, itemid = orbs.themis, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
                 },
         [163] = {
-                    [129] = {check = function() return trade:hasItemQty(1130, 1) end, itemid = 1130, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
-                    [130] = {check = function() return trade:hasItemQty(1130, 1) end, itemid = 1130, tradeType = battlefield_trade_type.CREATE_WORN_ITEM}, -- Sacrificial Chamber
+                    [129] = {check = function() return trade:hasItemQty(orbs.moon, 1) end, itemid = orbs.moon, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
+                    [130] = {check = function() return trade:hasItemQty(orbs.moon, 1) end, itemid = orbs.moon, tradeType = battlefield_trade_type.CREATE_WORN_ITEM}, -- Sacrificial Chamber
                 },
         [168] = {
                     [194] = {check = function() return trade:hasItemQty(1437, 1) and mainJob == JOBS.SAM end, itemid = 1437, tradeType = battlefield_trade_type.CREATE_WORN_ITEM},
@@ -198,6 +221,16 @@ function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
                                 itemid = 1549, tradeType = battlefield_trade_type.CONFIRM},
                 },
     }
+    -- complete trade
+    if completeTrade then
+        print("turaaaaaaaaaydooooooo")
+        return CompleteTrade(player, battlefieldId, info)
+    end
+
+    if not trade then
+        print("TradeBCNM was sent a nil trade!\n\t Player: "..player:getName().."\n\t zone: "..Zone.."\n")
+        return false
+    end
 
     if not battlefieldId then
         if player:hasStatusEffect(EFFECT_BATTLEFIELD) then -- cant start a new bc
@@ -211,8 +244,8 @@ function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
 
     local mask = 0
     for keyid, condition in pairs(initiator_checks.trade[Zone]) do
-        if condition.check() and GetBattleBitmask(keyid, Zone, mode) then
-            mask = mask + GetBattleBitmask(keyid, Zone, mode)
+        if condition.check() and GetCutsceneParam(keyid, Zone, getBitmask) then
+            mask = mask + GetCutsceneParam(keyid, Zone, getBitmask)
             -- we only get battlefieldId param passed if running from eventupdate
             if battlefieldId == keyid then
                 return mask
@@ -227,18 +260,23 @@ function TradeBCNM(player, Zone, trade, npc, battlefieldId, mode)
 end
 
 function EventTriggerBCNM(player, npc)
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+    if player:hasStatusEffect(EFFECT_BATTLEFIELD) then
         if player:isInBattlefieldList() then
+            -- todo: this should maybe be bounds check in case initiator disconnects while party enters
             player:startEvent(0x7d03) -- Run Away or Stay menu
         else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
+
             -- fuck thinking
             -- todo: max make this halal for party members
-            status = player:getStatusEffect(EFFECT_BATTLEFIELD)
-            playerbcnmid = status:getPower()
-            playermask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 1)
-            if (playermask ~= -1) then
+            local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
+            local battlefieldId = status:getPower()
+            local mask = GetCutsceneParam(battlefieldId, player:getZoneID(), 1)
+            -- todo: someone other than me make this legit
+            -- todo: bit shit to unset battlefields player does not meet requirements for
+            local playerMask = CheckPartyMemberRequirements(player, battlefieldId, nil)
+            if mask then
                 -- This gives players who did not trade to go in the option of entering the fight
-                player:startEvent(0x7d00, 0, 0, 0, playermask, 0, 0, 0, 0)
+                player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0)
             else
                 player:messageBasic(94, 0, 0)
             end
@@ -254,10 +292,10 @@ function EventTriggerBCNM(player, npc)
 end
 
 -- checks = { [zone] = { [bcnmid] = function() return (this return must evaluate to true for entry) end,} }
-function CheckNonTradeBCNM(player, npc, mode, battlefieldId)
+function CheckNonTradeBCNM(player, npc, getBitmask, battlefieldId)
     local mask = 0
     local Zone = player:getZoneID()
-    mode = mode or 1;
+    getBitmask = getBitmask or 1;
 
     initiator_checks.trigger =
     {
@@ -419,8 +457,8 @@ function CheckNonTradeBCNM(player, npc, mode, battlefieldId)
                 },
     }
     for keyid, condition in pairs(initiator_checks.trigger[Zone]) do
-        if condition() and GetBattleBitmask(keyid, Zone, mode) then
-            mask = mask + GetBattleBitmask(keyid, Zone, mode)
+        if condition() and GetCutsceneParam(keyid, Zone, getBitmask) then
+            mask = mask + GetCutsceneParam(keyid, Zone, getBitmask)
             -- we only get battlefieldId param passed if running from eventupdate
             player:setLocalVar("[battlefield]initiated", 1)
             if battlefieldId == keyid then
@@ -433,19 +471,22 @@ function CheckNonTradeBCNM(player, npc, mode, battlefieldId)
     return mask;
 end
 
-local function CompleteTrade(player, battlefieldId)
-    local info = initiator_checks.trade[player:getZoneID()][battlefieldId]
+local function CompleteTrade(player, battlefieldId, info)
     local tradeType = info.tradeType
     local dun = player:hasItem(info.itemid) and not player:hasWornItem(info.itemid)
 
-    if tradeType == battlefield_trade_type.CONFIRM then
-        player:delItem(info.itemid)
-    elseif tradeType == battlefield_trade_type.CREATE_WORN_ITEM then
-        player:createWornItem(info.itemid)
-    end
+    if dun then
+        if tradeType == battlefield_trade_type.CONFIRM then
+            player:delItem(info.itemid)
+        elseif tradeType == battlefield_trade_type.CREATE_WORN_ITEM then
+            player:createWornItem(info.itemid)
+        end
 
-    player:setLocalVar("[battlefield]traded", 0)
-    player:setLocalVar("[battlefield]trade_id", battlefieldId)
+        player:setLocalVar("[battlefield]traded", 0)
+        player:setLocalVar("[battlefield]trade_id", battlefieldId)
+    else
+        printf("bcnm.lua CompleteTrade() %s tried to enter battlefield %u without item %u in possession", player:getName(), battlefieldId, info.itemid)
+    end
     return dun
 end
 
@@ -466,17 +507,8 @@ function EventUpdateBCNM(player, csid, option, entrance)
             -- is this a party member or initiator
             if effect then
                 if not player:isInBattlefieldList() then
-                    local battlefield = player:getZone():getBattlefieldByInitiator(effect:getSubType())
-                    if battlefield then
-                        -- todo: actual checks for non traders
-                        -- traded, fuck checking anything else
-                        if battlefield:getLocalVar("trade_id") ~= 0 then
-                            canRegister = true
-                        else
-                        -- check party member crap
-
-                        end
-                    end
+                    -- todo: actual checks for party members
+                    canRegister = CheckPartyMemberRequirements(player, battlefieldId, true, true)
                 else
                     canRegister = true
                     for _, member in pairs(player:getAlliance()) do
@@ -488,35 +520,34 @@ function EventUpdateBCNM(player, csid, option, entrance)
                 end
             else
 
-            if player:getLocalVar("[battlefield]initiated") == 1 then
-                print("ass")
-                canRegister = CompleteTrade(player, battlefieldId) or (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
-            end
+                if player:getLocalVar("[battlefield]initiated") == 1 then
+                    print("ass")
+                    canRegister = TradeBCNM(player, zone, nil, nil, battlefieldId, true) or
+                                    (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
+                end
 
             end
 
-            local result = g_Battlefield.ReturnCode.REQS_NOT_MET
+            local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
 
             if canRegister then
                 result = player:registerBattlefield(id, area + 1)
             end
 
-            if result ~= g_Battlefield.ReturnCode.CUTSCENE then
+            if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
                 player:setLocalVar("[battlefield]area", area + 1)
             else
-                if id ~= -1 then
-                    local battlefield = player:getBattlefield()
-                    if battlefield then
-                        name, clearTime, partySize = battlefield:getRecord()
-                        mask = battlefield:getID()
-                    end
+                local battlefield = player:getBattlefield()
+                if battlefield then
+                    name, clearTime, partySize = battlefield:getRecord()
+                    mask = battlefield:getID()
                 end
             end
 
             player:updateEvent(result, battlefieldIndex - 1, 0, clearTime, partySize, skip)
             player:updateEventString(name)
 
-            if result >= g_Battlefield.Status.LOCKED or result >= g_Battlefield.ReturnCode.LOCKED or not canRegister then
+            if (result >= g_Battlefield.STATUS.LOCKED) or (result >= g_Battlefield.RETURNCODE.LOCKED) or not canRegister then
                 print("hemorrhoids")
                 return 0
             end
@@ -525,14 +556,35 @@ function EventUpdateBCNM(player, csid, option, entrance)
    return true
 end
 
+local function CheckPartyMemberRequirements(player, battlefieldId, isUpdate, isTrade)
+    -- todo: this is actually retarded, perform actual checks for entry
+
+    if isUpdate then
+        local battlefield = player:getZone():getBattlefieldByInitiator(effect:getSubType())
+        if not battlefield then
+            -- battlefield doesnt exist or initiator left zone before i can enter
+            return false
+        end
+    end
+    -- trade
+    if isTrade then
+        return true
+    else
+        -- todo: check member requirements
+    end
+    return false
+end
+
 function EventFinishBCNM(player, csid, option)
     print("FINISH csid "..csid.." option "..option)
 
     if csid == 0x7d00 then
         player:setLocalVar("[battlefield]area", 0)
         player:setLocalVar("[battlefield]initiated", 0)
+    elseif csid == 0x7d03 and option == 4 then
+        player:leaveBattlefield(g_Battlefield.LEAVECODE.EXIT)
     end
-
+    player:setLocalVar("[battlefield]trade_id", 0)
     if not player:hasStatusEffect(EFFECT_BATTLEFIELD) then -- Temp condition for normal bcnm (started with onTrigger)
         return false
     end
