@@ -7491,7 +7491,7 @@ inline int32 CLuaBaseEntity::getBattlefieldID(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
 
-    uint8 inst = 255;
+    int16 inst = -1;
 
     if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
     {
@@ -7561,10 +7561,8 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 inline int32 CLuaBaseEntity::isInBattlefieldList(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr)
-
-    lua_pushboolean(L, (m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity) != nullptr));
+    
+    lua_pushboolean(L, m_PBaseEntity->PBattlefield != nullptr);
     return 1;
 }
 
@@ -9386,7 +9384,7 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
     uint8 area = 0;
     uint32 initiator = 0;
 
-    if (PEffect && lua_isnil(L, 1) && lua_isnil(L, 2) && lua_isnil(L, 3))
+    if (PEffect && (lua_isnil(L, 1) || !lua_isuserdata(L, 1)) && lua_isnil(L, 2) && lua_isnil(L, 3))
     {
         battlefield = PEffect->GetPower();
         area = PEffect->GetSubPower();

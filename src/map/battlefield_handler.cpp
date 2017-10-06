@@ -133,12 +133,12 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
             auto PBattlefield = new CBattlefield(battlefieldID, m_PZone, area, PChar);
 
             PBattlefield->SetName(name);
-            PBattlefield->SetRecord(recordholder, recordtime, recordPartySize);
             PBattlefield->SetTimeLimit(timelimit);
             PBattlefield->SetLevelCap(levelcap);
 
             PBattlefield->SetMaxParticipants(maxplayers);
             PBattlefield->SetRuleMask(rulemask);
+            PBattlefield->SetRecord(recordholder, recordtime, recordPartySize);
 
             m_Battlefields.insert(std::make_pair(PBattlefield->GetArea(), PBattlefield));
 

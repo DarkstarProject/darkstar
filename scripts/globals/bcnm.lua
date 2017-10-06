@@ -122,6 +122,50 @@ function GetCutsceneParam(id, zone, getBitmask)
     return ret
 end
 
+function CompleteTrade(player, battlefieldId, info)
+    local tradeType = info.tradeType
+    local dun = false
+
+    if player:hasItem(info.itemid) and not player:hasWornItem(info.itemid) then
+        dun = true
+    end
+
+    if dun then
+        if tradeType == battlefield_trade_type.CONFIRM then
+            player:delItem(info.itemid)
+        elseif tradeType == battlefield_trade_type.CREATE_WORN_ITEM then
+            player:createWornItem(info.itemid)
+        end
+
+        player:setLocalVar("[battlefield]traded", 0)
+        player:setLocalVar("[battlefield]trade_id", battlefieldId)
+    else
+        printf("bcnm.lua CompleteTrade() %s tried to enter battlefield %u without item %u in possession", player:getName(), battlefieldId, info.itemid)
+    end
+    return dun
+end
+
+function CheckPartyMemberRequirements(player, battlefieldId, isUpdate, isTrade)
+    -- todo: this is actually retarded, perform actual checks for entry
+
+    if isUpdate then
+        local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
+        local battlefield = player:getZone():getBattlefieldByInitiator(effect:getSubType())
+        if not battlefield then
+            -- battlefield doesnt exist or initiator left zone before i could enter
+            return false
+        end
+    end
+    -- trade
+    if isTrade then
+        return true
+    else
+        -- todo: check member requirements
+    end
+    return bit.lshift(1, 11)
+end
+
+
 -- Call this onTrade for burning circles
 function TradeBCNM(player, Zone, trade, npc, battlefieldId, completeTrade)
     local getBitmask = 1
@@ -224,7 +268,7 @@ function TradeBCNM(player, Zone, trade, npc, battlefieldId, completeTrade)
     -- complete trade
     if completeTrade then
         print("turaaaaaaaaaydooooooo")
-        return CompleteTrade(player, battlefieldId, info)
+        return CompleteTrade(player, battlefieldId, initiator_checks.trade[Zone][battlefieldId])
     end
 
     if not trade then
@@ -269,11 +313,9 @@ function EventTriggerBCNM(player, npc)
             -- fuck thinking
             -- todo: max make this halal for party members
             local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
-            local battlefieldId = status:getPower()
-            local mask = GetCutsceneParam(battlefieldId, player:getZoneID(), 1)
-            -- todo: someone other than me make this legit
+            local battlefieldId = effect:getPower()
             -- todo: bit shit to unset battlefields player does not meet requirements for
-            local playerMask = CheckPartyMemberRequirements(player, battlefieldId, nil)
+            local mask = CheckPartyMemberRequirements(player, battlefieldId, nil)
             if mask then
                 -- This gives players who did not trade to go in the option of entering the fight
                 player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0)
@@ -380,29 +422,23 @@ function CheckNonTradeBCNM(player, npc, getBitmask, battlefieldId)
         [146] = {
                     [96] = function() return (player:hasKeyItem(DARK_KEY))  end, -- Mission 2-3
                     [99] = function() return ((player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) and (player:getVar("MissionStatus") == 1))  end, -- Mission 6-2
-
                 },
         [163] = {
                     [128] = function() return (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH)  end, -- Zilart Mission 4
-
                 },
         [165] = {
                     [160] = function() return (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3)  end, -- Mission 5-2
                     [161] = function() return (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1)  end, -- bastok 9-2
-
                 },
         [168] = {
                     [192] = function() return (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES)  end, -- Zilart Mission 6
-
                 },
         [170] = {
                     [224] = function() return (player:hasKeyItem(MOON_BAUBLE))  end, -- The Moonlit Path
                     [225] = function() return ((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("WINDURST92") == 2)  end, -- Moon reading
-
                 },
         [179] = {
                     [256] = function() return (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3)  end, -- Zilart Mission 8
-
                 },
         [180] = {
                     [288] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514791 and player:hasKeyItem(SHARD_OF_APATHY) == false)  end, -- Hume, Ark Angels 1
@@ -410,26 +446,21 @@ function CheckNonTradeBCNM(player, npc, getBitmask, battlefieldId)
                     [290] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514793 and player:hasKeyItem(SHARD_OF_ENVY) == false)  end, -- Mithra, Ark Angels 3
                     [291] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514794 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false)  end, -- Elvaan, Ark Angels 4
                     [292] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514795 and player:hasKeyItem(SHARD_OF_RAGE) == false)  end, -- Galka, Ark Angels 5
-
                 },
         [181] = {
                     [320] = function() return (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS)  end, -- Zilart Mission 16
-
                 },
         [201] = {
                     [416] = function() return (player:hasKeyItem(TUNING_FORK_OF_WIND))  end, -- Trial by Wind
                     [420] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_EMERALD_SEAL))  end,
-
                 },
         [202] = {
                     [448] = function() return (player:hasKeyItem(TUNING_FORK_OF_LIGHTNING))  end, -- Trial by Lightning
                     [452] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_VIOLET_SEAL))  end,
-
                 },
         [203] = {
                     [480] = function() return (player:hasKeyItem(TUNING_FORK_OF_ICE))  end, -- Trial by Ice
                     [484] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AZURE_SEAL))  end,
-
                 },
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
@@ -438,22 +469,18 @@ function CheckNonTradeBCNM(player, npc, getBitmask, battlefieldId)
                     --Temp disabled pending BCNM mob fixes
                     [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED))  end, -- ACP Mission 7
                     --]]
-
                 },
         [207] = {
                     [544] = function() return (player:hasKeyItem(TUNING_FORK_OF_FIRE))  end, -- Trial by Fire
                     [547] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_SCARLET_SEAL))  end,
-
                 },
         [209] = {
                     [576] = function() return (player:hasKeyItem(TUNING_FORK_OF_EARTH))  end, -- Trial by Earth
                     [580] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AMBER_SEAL))  end,
-
                 },
         [211] = {
                     [608] = function() return (player:hasKeyItem(TUNING_FORK_OF_WATER))  end, -- Trial by Water
                     [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_CERULEAN_SEAL))  end,
-
                 },
     }
     for keyid, condition in pairs(initiator_checks.trigger[Zone]) do
@@ -471,25 +498,6 @@ function CheckNonTradeBCNM(player, npc, getBitmask, battlefieldId)
     return mask;
 end
 
-local function CompleteTrade(player, battlefieldId, info)
-    local tradeType = info.tradeType
-    local dun = player:hasItem(info.itemid) and not player:hasWornItem(info.itemid)
-
-    if dun then
-        if tradeType == battlefield_trade_type.CONFIRM then
-            player:delItem(info.itemid)
-        elseif tradeType == battlefield_trade_type.CREATE_WORN_ITEM then
-            player:createWornItem(info.itemid)
-        end
-
-        player:setLocalVar("[battlefield]traded", 0)
-        player:setLocalVar("[battlefield]trade_id", battlefieldId)
-    else
-        printf("bcnm.lua CompleteTrade() %s tried to enter battlefield %u without item %u in possession", player:getName(), battlefieldId, info.itemid)
-    end
-    return dun
-end
-
 function EventUpdateBCNM(player, csid, option, entrance)
     if csid == 0x7d00 then
         local zone = player:getZoneID();
@@ -499,6 +507,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         local skip = CutsceneSkip(player, battlefieldId);
         local area = player:getLocalVar("[battlefield]area");
         local id = battlefieldId or player:getBattlefieldID()
+        local isInitiator = player:getLocalVar("[battlefield]initiated")
 
         if option ~= 255 then
             local clearTime, name, partySize = 1
@@ -509,29 +518,23 @@ function EventUpdateBCNM(player, csid, option, entrance)
                 if not player:isInBattlefieldList() then
                     -- todo: actual checks for party members
                     canRegister = CheckPartyMemberRequirements(player, battlefieldId, true, true)
-                else
-                    canRegister = true
-                    for _, member in pairs(player:getAlliance()) do
-                        if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
-                            member:addStatusEffect(effect)
-                        end
-                    end
-                    player:getBattlefield():setLocalVar("trade_id", player:getLocalVar("[battlefield]trade_id"))
                 end
             else
-
-                if player:getLocalVar("[battlefield]initiated") == 1 then
+                if isInitiator == 1 then
                     print("ass")
                     canRegister = TradeBCNM(player, zone, nil, nil, battlefieldId, true) or
                                     (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
                 end
-
             end
 
             local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
 
             if canRegister then
-                result = player:registerBattlefield(id, area + 1)
+                if isInitiator then
+                    result = player:registerBattlefield(id, area + 1)
+                else
+                    result = player:registerBattlefield()
+                end
             end
 
             if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
@@ -541,6 +544,16 @@ function EventUpdateBCNM(player, csid, option, entrance)
                 if battlefield then
                     name, clearTime, partySize = battlefield:getRecord()
                     mask = battlefield:getID()
+                end
+                -- register party members
+                if isInitiator == 1 then
+                    effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
+                    for _, member in pairs(player:getAlliance()) do
+                        if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
+                            member:addStatusEffect(effect)
+                        end
+                    end
+                    player:getBattlefield():setLocalVar("trade_id", player:getLocalVar("[battlefield]trade_id"))
                 end
             end
 
@@ -553,26 +566,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
             end
         end
     end
-   return true
-end
-
-local function CheckPartyMemberRequirements(player, battlefieldId, isUpdate, isTrade)
-    -- todo: this is actually retarded, perform actual checks for entry
-
-    if isUpdate then
-        local battlefield = player:getZone():getBattlefieldByInitiator(effect:getSubType())
-        if not battlefield then
-            -- battlefield doesnt exist or initiator left zone before i can enter
-            return false
-        end
-    end
-    -- trade
-    if isTrade then
-        return true
-    else
-        -- todo: check member requirements
-    end
-    return false
+   return 1
 end
 
 function EventFinishBCNM(player, csid, option)
