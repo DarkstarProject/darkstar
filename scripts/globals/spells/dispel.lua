@@ -1,18 +1,20 @@
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 -----------------------------------------
 -- Spell: Dispel
---
 -----------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------------
--- OnSpellCast
+-- onMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
+
+-----------------------------------------
+-- onSpellCast
+-----------------------------------------
 
 function onSpellCast(caster,target,spell)
     local params = {};
