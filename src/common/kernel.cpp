@@ -22,7 +22,6 @@
 */
 
 #include "../common/kernel.h"
-#include "../common/malloc.h"
 #include "../common/showmsg.h"
 #include "../common/socket.h"
 #include "../common/taskmgr.h"
@@ -33,6 +32,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <cstring>
+#include "fmt/printf.h"
 
 #ifndef _WIN32
 	#include <unistd.h>
@@ -213,8 +213,8 @@ const char* get_git_revision(void)
 {
     FILE *fp = NULL;
 
-    // Pull lastest fetch version from FETCH_HEAD..
-    if ((fp = fopen(".git/FETCH_HEAD", "r")) != NULL)
+    // GIT_VER was copied in to working dir post-build
+    if ((fp = fopen("GIT_VER", "r")) != NULL)
     {
         int8 line[1024], w1[1024], w2[1024];
 
@@ -284,7 +284,6 @@ int main (int argc, char **argv)
 	}
 
     log_init(argc, argv);
-	malloc_init();
 	set_server_type();
 	display_title();
 	usercheck();

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm3 (???)
 -- Spawns Megantereon
--- @pos ? ? ? 132
+-- !pos ? ? ? 132
 -----------------------------------
 require("scripts/globals/status");
 

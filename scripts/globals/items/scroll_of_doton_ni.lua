@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4938
---    Scroll of Doton: ni
---    Teaches the ninjutsu Doton: ni
+-- ID: 4938
+-- Scroll of Doton: ni
+-- Teaches the ninjutsu Doton: ni
 -----------------------------------------
 
 -----------------------------------------

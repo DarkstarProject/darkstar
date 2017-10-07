@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Mhaura
 -- NPC: Yabby Tanmikey
---  Guild Merchant NPC: Goldsmithing Guild 
--- @pos -36.459 -16.000 76.840 249
+--  Guild Merchant NPC: Goldsmithing Guild
+-- !pos -36.459 -16.000 76.840 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

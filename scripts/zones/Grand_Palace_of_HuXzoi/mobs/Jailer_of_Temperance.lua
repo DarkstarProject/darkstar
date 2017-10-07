@@ -115,9 +115,9 @@ end;
 function onMobDespawn(mob)
     -- Set PH back to normal, then set respawn time
     local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
-    DeterMob(mob:getID(), true);
-    DeterMob(PH, false);
-    SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time(t) + 900); -- 15 mins
+    DisallowRespawn(mob:getID(), true);
+    DisallowRespawn(PH, false);
+    SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time() + 900); -- 15 mins
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
     SetServerVariable("[SEA]Jailer_of_Temperance_PH", 0);
 end;

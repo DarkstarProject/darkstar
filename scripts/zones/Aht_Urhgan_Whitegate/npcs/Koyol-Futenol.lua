@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC: Koyol-Futenol
 -- Title Change NPC
--- @pos -129 2 -20 50
+-- !pos -129 2 -20 50
 -----------------------------------
 
 require("scripts/globals/titles");

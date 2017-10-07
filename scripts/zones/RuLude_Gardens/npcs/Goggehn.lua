@@ -3,7 +3,7 @@
 -- NPC:  Goggehn
 -- Involved in Mission: Bastok 3-3, 4-1
 -- @zone 243
--- @pos 3 9 -76
+-- !pos 3 9 -76
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -19,18 +19,18 @@ require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     pNation = player:getNation();
     currentMission = player:getCurrentMission(BASTOK);
     missionStatus = player:getVar("MissionStatus");
-    
+
     if (currentMission == JEUNO_MISSION and missionStatus == 1) then
         player:startEvent(0x0029);
     elseif (currentMission == JEUNO_MISSION and missionStatus == 2) then
@@ -58,7 +58,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0065);
     end
-    
+
 end;
 
 -----------------------------------
@@ -77,7 +77,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0029) then
         player:setVar("MissionStatus",2);
         player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
@@ -90,5 +90,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0026 or csid == 0x0023) then
         finishMissionTimeline(player,1,csid,option);
     end
-    
+
 end;

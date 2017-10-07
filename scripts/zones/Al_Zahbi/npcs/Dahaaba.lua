@@ -2,12 +2,11 @@
 -- Area: Al Zahbi
 --  NPC: Dahaaba
 -- Type: Chocobo Renter
--- @pos -65.309 -1 -39.585
+-- !pos -65.309 -1 -39.585
 -----------------------------------
-
-require("scripts/globals/chocobo");
-require("scripts/globals/keyitems");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/chocobo");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -61,7 +60,7 @@ function onEventFinish(player,csid,option)
 
             local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
 
-            player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,duration,true);
+            player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,duration,true);
 
             player:setPos(610,-24,356,0x80,0x33);
         end

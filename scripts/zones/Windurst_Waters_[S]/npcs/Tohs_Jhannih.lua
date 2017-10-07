@@ -3,8 +3,8 @@
 --   NPC: Tohs Jhannih
 --  Type: Standard NPC
 -- @zone 94
--- @pos -46.492 -4.5 70.828
--- 
+-- !pos -46.492 -4.5 70.828
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 13688
---    Hi-Potion Tank
---    When used, you will obtain one Hi-Potion
+-- ID: 13688
+-- Hi-Potion Tank
+-- When used, you will obtain one Hi-Potion
 -----------------------------------------
 
 -----------------------------------------

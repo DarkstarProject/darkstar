@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4883
---    Scroll of Absorb-TP
---    Teaches the black magic Absorb-TP
+-- ID: 4883
+-- Scroll of Absorb-TP
+-- Teaches the black magic Absorb-TP
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- Name: Mission Rank 7
--- @pos -509 158 -211 139
+-- !pos -509 158 -211 139
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
@@ -13,13 +13,13 @@ require("scripts/zones/Horlais_Peak/TextIDs");
 -----------------------------------
 -- Maat Battle in Horlais Peak
 -- EXAMPLE SCRIPT
--- 
+--
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -41,7 +41,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(SANDORIA,THE_SECRET_WEAPON)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,1);
@@ -51,16 +51,16 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
         if (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON) then
             player:addKeyItem(CRYSTAL_DOWSER);
@@ -68,5 +68,5 @@ function onEventFinish(player,csid,option)
             player:setVar("SecretWeaponStatus",3)
         end
     end
-    
+
 end;

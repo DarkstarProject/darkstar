@@ -235,7 +235,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
             SLOTTYPE slot = SLOT_LINK1;
             int lsNum = 1;
 
-            if (PItemLinkshell->GetLSID() != this->getID())
+            if (!PItemLinkshell || (PItemLinkshell->GetLSID() != this->getID()))
             {
                 PItemLinkshell = (CItemLinkshell*)PMember->getEquip(SLOT_LINK2);
                 slot = SLOT_LINK2;

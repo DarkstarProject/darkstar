@@ -1,15 +1,11 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Ominous Cloud
---  Type: Traveling Merchant NPC
--- @zone 241
--- @pos -20.632 -3.939 -40.554
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Windurst Woods
+--  NPC: Ominous Cloud
+-- Type: Traveling Merchant NPC
+-- !pos -20.632 -3.939 -40.554 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -18,27 +14,27 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    local wijinruit     =    trade:getItemQty(951)
-    local uchitake     =     (trade:getItemQty(1161) / 99)
-    local tsurara     =     (trade:getItemQty(1164) / 99)
-    local kawahori     =     (trade:getItemQty(1167) / 99)
-    local makibishi     =     (trade:getItemQty(1170) / 99)
-    local hiraishin     =     (trade:getItemQty(1173) / 99)
-    local mizu         =     (trade:getItemQty(1176) / 99)
-    local shihei         =     (trade:getItemQty(1179) / 99)
-    local jusatsu     =    (trade:getItemQty(1182) / 99)
-    local kaginawa    =    (trade:getItemQty(1185) / 99)
-    local sairui         =    (trade:getItemQty(1188) / 99)
-    local kodoku         =    (trade:getItemQty(1191) / 99)
-    local shinobi     =    (trade:getItemQty(1194) / 99)
-    local sanjaku        =    (trade:getItemQty(2553) / 99)
-    local soushi         =    (trade:getItemQty(2555) / 99)
-    local kabenro     =     (trade:getItemQty(2642) / 99)
-    local jinko         =     (trade:getItemQty(2643) / 99)
-    local mokujin     =     (trade:getItemQty(2970) / 99)
-    local inoshi         =     (trade:getItemQty(2971) / 99)
-    local shikan         =     (trade:getItemQty(2972) / 99)
-    local chono         =     (trade:getItemQty(2973) / 99)
+    local wijinruit = trade:getItemQty(951)
+    local uchitake  = (trade:getItemQty(1161) / 99)
+    local tsurara   = (trade:getItemQty(1164) / 99)
+    local kawahori  = (trade:getItemQty(1167) / 99)
+    local makibishi = (trade:getItemQty(1170) / 99)
+    local hiraishin = (trade:getItemQty(1173) / 99)
+    local mizu      = (trade:getItemQty(1176) / 99)
+    local shihei    = (trade:getItemQty(1179) / 99)
+    local jusatsu   = (trade:getItemQty(1182) / 99)
+    local kaginawa  = (trade:getItemQty(1185) / 99)
+    local sairui    = (trade:getItemQty(1188) / 99)
+    local kodoku    = (trade:getItemQty(1191) / 99)
+    local shinobi   = (trade:getItemQty(1194) / 99)
+    local sanjaku   = (trade:getItemQty(2553) / 99)
+    local soushi    = (trade:getItemQty(2555) / 99)
+    local kabenro   = (trade:getItemQty(2642) / 99)
+    local jinko     = (trade:getItemQty(2643) / 99)
+    local mokujin   = (trade:getItemQty(2970) / 99)
+    local inoshi    = (trade:getItemQty(2971) / 99)
+    local shikan    = (trade:getItemQty(2972) / 99)
+    local chono     = (trade:getItemQty(2973) / 99)
     local tools = (uchitake + tsurara + kawahori + makibishi + hiraishin + mizu + shihei + jusatsu + kaginawa + sairui + kodoku + shinobi + sanjaku + soushi + kabenro + jinko + mokujin + inoshi + shikan + chono)
     if (((tools * 99) + wijinruit) == trade:getItemCount()) then
         if ((tools == math.floor(tools)) and (tools == wijinruit) and (player:getFreeSlotsCount() >= wijinruit)) then
@@ -125,7 +121,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
--- 951     Wijinruit        
+-- 951     Wijinruit
 -- 1161    Uchitake        5308
 -- 1164    Tsurara            5309
 -- 1167    Kawahori-ogi    5310
@@ -173,4 +169,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

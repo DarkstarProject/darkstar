@@ -3,7 +3,7 @@
 -- NPC: Rumoie
 --  Type: Map Marker NPC
 --  @zone 230
--- @pos 149.696 -2.000 151.631
+-- !pos 149.696 -2.000 151.631
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -11,9 +11,9 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
@@ -28,13 +28,13 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
     player:startEvent(0x035f);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

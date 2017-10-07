@@ -63,14 +63,14 @@ struct map_config_t
     uint16 usMapPort;               // port of map server      -> xxxxx
     uint32 uiMapIp;                 // ip of map server        -> INADDR_ANY
 
-    const int8 *mysql_host;         // mysql addr     -> localhost:3306
+    std::string mysql_host;         // mysql addr     -> localhost:3306
     uint16 mysql_port;              // mysql port     -> 3306
-    const int8 *mysql_login;        // mysql login    -> default root
-    const int8 *mysql_password;     // mysql pass     -> default nullptr
-    const int8 *mysql_database;     // mysql database -> default dspdb
+    std::string mysql_login;        // mysql login    -> default root
+    std::string mysql_password;     // mysql pass     -> default nullptr
+    std::string mysql_database;     // mysql database -> default dspdb
 
-    string_t server_message;
-    string_t server_message_fr;
+    std::string server_message;
+    std::string server_message_fr;
 
     uint32 max_time_lastupdate;       // max interval wait of last update player char
     int32  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
@@ -85,11 +85,11 @@ struct map_config_t
     float  exp_rate;                  // множитель получаемого опыта
     float  exp_loss_rate;             // same as exp rate but applies when player dies
     uint8  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
-    uint8  fov_party_gap_penalties;   // 1 if FOV Pages level and distance gap penalties apply
     uint8  fov_allow_alliance;        // if 1 allow alliance to farm fov pages
     float  exp_retain;                // percentage of normally lost experience to retain upon death
     int8   exp_loss_level;            // Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;         // Enable/disable Level Sync
+    bool   disable_gear_scaling;      // Disables ability to equip higher level gear when level cap/sync effect is on player.
     bool   all_jobs_widescan;         // Enable/disable jobs other than BST and RNG having widescan.
     int8   speed_mod;                 // Modifier to add to player speed
     int8   mob_speed_mod;             // Modifier to add to monster speed
@@ -132,7 +132,7 @@ struct map_config_t
     bool   audit_party;
     uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
-    const char* msg_server_ip;        // central message server IP
+    std::string msg_server_ip;        // central message server IP
 };
 
 /************************************************************************

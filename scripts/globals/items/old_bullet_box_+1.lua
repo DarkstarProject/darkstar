@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5285
---    Old Bullet Box +1
---    When used, you will obtain one partial stack of Antique Bullets +1
+-- ID: 5285
+-- Old Bullet Box +1
+-- When used, you will obtain one partial stack of Antique Bullets +1
 -----------------------------------------
 
 -----------------------------------------
@@ -22,7 +22,5 @@ end;
 
 function onItemUse(target)
     local quantity = math.random(99);
-    quantity = math.random(99);
-    quantity = math.random(99);
     target:addItem(17276,quantity);
 end;

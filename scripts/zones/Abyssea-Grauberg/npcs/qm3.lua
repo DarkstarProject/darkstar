@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Grauberg
 --  NPC: qm3 (???)
 -- Spawns Teugghia
--- @pos ? ? ? 254
+-- !pos ? ? ? 254
 -----------------------------------
 require("scripts/globals/status");
 

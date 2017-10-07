@@ -3,8 +3,8 @@
 --   NPC: Rhea Myuliah
 --  Type: Standard NPC
 -- @zone 244
--- @pos -56.220 -1 101.805
--- 
+-- !pos -56.220 -1 101.805
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
     local lakeProg = player:getVar("Lakeside_Minuet_Progress");
     if (lakeProg >= 3) then
-        player:startEvent(0x2784); 
+        player:startEvent(0x2784);
     elseif (lakeProg == 2) then
         player:startEvent(0x2783); -- You danced! Here's your hint
         player:setVar("Lakeside_Minuet_Progress",3);
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     --Dancer AF: Comeback Queen
     elseif (player:getVar("comebackQueenCS") == 1) then
         player:startEvent(0x27A1);
-    elseif (player:getVar("comebackQueenCS") == 3) then 
+    elseif (player:getVar("comebackQueenCS") == 3) then
         player:startEvent(0x27A5); -- dance practice
     elseif (player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
         player:startEvent(0x27AB);

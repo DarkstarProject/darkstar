@@ -18,8 +18,8 @@ function onMobRoam(mob)
         if (Rose_Garden_PH_Table[Rose_Garden_PH] ~= nil) then
             if (GetMobAction(Rose_Garden) == 0) then
                 SetServerVariable("Rose_Garden_PH", Rose_Garden_PH_Table[Rose_Garden_PH]);
-                DeterMob(Rose_Garden_PH_Table[Rose_Garden_PH], true);
-                DeterMob(Rose_Garden, false);
+                DisallowRespawn(Rose_Garden_PH_Table[Rose_Garden_PH], true);
+                DisallowRespawn(Rose_Garden, false);
                 DespawnMob(Rose_Garden_PH_Table[Rose_Garden_PH]);
                 SpawnMob(Rose_Garden, "", 0);
             end

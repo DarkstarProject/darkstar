@@ -3,7 +3,7 @@
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
 --  @zone 247
--- @pos TODO
+-- !pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -11,7 +11,7 @@ package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 require("scripts/zones/Rabao/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
-local e = 
+local e =
 {
     TALK_EVENT_ID       =   136,
     STORE_EVENT_ID      =   137,

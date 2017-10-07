@@ -42,7 +42,14 @@ function onSpellCast(caster,target,spell)
     end
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,merits*2,EFFECT_BLINDNESS);
+    local duration = 180;
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 35;
+    params.bonus = merits*2;
+    params.effect = EFFECT_BLINDNESS;
+    duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 90) then --Do it!
     

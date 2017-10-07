@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5096
---    Scroll of Boost-VIT
---    Teaches the white magic Boost-VIT
+-- ID: 5096
+-- Scroll of Boost-VIT
+-- Teaches the white magic Boost-VIT
 -----------------------------------------
 
 -----------------------------------------

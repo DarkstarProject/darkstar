@@ -1,14 +1,13 @@
 -----------------------------------
 -- Area: Beadeaux
--- NPC:  Treasure Chest
--- @zone 147
+--  NPC: Treasure Chest
+-- !zone 147
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Beadeaux/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;
@@ -24,9 +23,9 @@ function onTrade(player,npc,trade)
     --trade:hasItemQty(1023,1);            -- Living Key
     --trade:hasItemQty(1022,1);            -- Thief's Tools
     local questItemNeeded = 0;
-    
+
     -- Player traded a key.
-    if ((trade:hasItemQty(1034,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+    if ((trade:hasItemQty(1034,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
         local success = 0;
@@ -43,8 +42,8 @@ function onTrade(player,npc,trade)
             if (math.random() <= success) then
                 -- Succeded to open the coffer
                 player:messageSpecial(CHEST_UNLOCKED);
-                player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
-                    
+                player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
+
                 local loot = chestLoot(zone,npc);
                     -- print("loot array: "); -- debug
                     -- print("[1]", loot[1]); -- debug
@@ -71,7 +70,7 @@ end;
 
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1034);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
 -- NPC: Blank (TOAU-20 Cutscene, TOAU-27 Cutscene)
--- @pos -298 36 -38 68
+-- !pos -298 36 -38 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(TOAU) == MISPLACED_NOBILITY) then
         player:startEvent(12);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5033
---    Scroll of Dextrous Etude
---    Teaches the song Dextrous Etude
+-- ID: 5033
+-- Scroll of Dextrous Etude
+-- Teaches the song Dextrous Etude
 -----------------------------------------
 
 -----------------------------------------

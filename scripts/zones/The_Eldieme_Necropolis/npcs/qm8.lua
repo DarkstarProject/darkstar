@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis
 --  NPC: qm8 (??? - Ancient Papyrus Shreds)
 -- Involved in Quest: In Defiant Challenge
--- @pos 105.275 -32 92.551 195
+-- !pos 105.275 -32 92.551 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4778
---    Scroll of Water II
---    Teaches the black magic Water II
+-- ID: 4778
+-- Scroll of Water II
+-- Teaches the black magic Water II
 -----------------------------------------
 
 -----------------------------------------

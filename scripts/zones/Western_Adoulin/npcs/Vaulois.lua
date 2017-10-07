@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest Giver
 --  Starts, Involved with, and Finishes Quest: 'Transporting'
 --  @zone 256
---  @pos 20 0 85 256
+--  !pos 20 0 85 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0A1F);
     elseif ((Transporting == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 2)) then
         -- Starts Quest: 'Transporting'
-        player:startEvent(0x0A1E);  
+        player:startEvent(0x0A1E);
     else
         -- Standard dialogue
         player:startEvent(0x0208);

@@ -3,7 +3,7 @@
 --  NPC: Cheupirudaux
 -- Type: Woodworking Guildmaster NPC
 -- Involved in Quest: It's Raining Mannequins!
--- @pos -138 12 250 231
+-- !pos -138 12 250 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

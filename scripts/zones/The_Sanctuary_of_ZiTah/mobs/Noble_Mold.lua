@@ -27,8 +27,8 @@ function onMobDespawn(mob)
 
     GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
     SetServerVariable("Noble_Mold_PH", 0);
-    DeterMob(Noble_Mold, true);
-    DeterMob(Noble_Mold_PH, false);
+    DisallowRespawn(Noble_Mold, true);
+    DisallowRespawn(Noble_Mold_PH, false);
     SpawnMob(Noble_Mold_PH, "", GetMobRespawnTime(Noble_Mold_PH));
 
 end;

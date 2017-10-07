@@ -2,9 +2,9 @@
 --  Area: Uleguerand Range
 --  NPC:  Fissure
 --  Teleports players from underground to surface
--- @pos 380.267 34.859 -179.655 5
--- @pos 460.339 -29.137 220.311 5
--- @pos 180.207 -77.147 500.276 5
+-- !pos 380.267 34.859 -179.655 5
+-- !pos 460.339 -29.137 220.311 5
+-- !pos 180.207 -77.147 500.276 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5333
---    Sleep Quiver
---    When used, you will obtain one stack of Sleep Arrows
+-- ID: 5333
+-- Sleep Quiver
+-- When used, you will obtain one stack of Sleep Arrows
 -----------------------------------------
 
 -----------------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Serukoko
 --  Type: Standard NPC
 -- @zone 238
--- @pos -54.916 -7.499 114.855
+-- !pos -54.916 -7.499 114.855
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

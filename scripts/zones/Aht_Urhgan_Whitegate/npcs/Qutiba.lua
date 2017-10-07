@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Qutiba
 -- Type: Standard NPC
--- @pos 92.341 -7.5 -129.980 50
+-- !pos 92.341 -7.5 -129.980 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local vanishProg = player:getVar("vanishingactCS");    
+    local vanishProg = player:getVar("vanishingactCS");
     if (player:getVar("deliveringTheGoodsCS") == 1) then
        player:startEvent(0x0028);
     elseif (player:getQuestStatus(AHT_URHGAN,DELIVERING_THE_GOODS) == QUEST_COMPLETED and vanishProg == 1) then

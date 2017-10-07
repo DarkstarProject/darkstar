@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4664
---    Scroll of Slow
---    Teaches the white magic Slow
+-- ID: 4664
+-- Scroll of Slow
+-- Teaches the white magic Slow
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Abyssea - Uleguerand
 --  NPC: Cavernous Maw
--- @pos -246.000, -40.600, -520.000 253
+-- !pos -246.000, -40.600, -520.000 253
 -- Notes: Teleports Players to Xarcabard
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Uleguerand/TextIDs"] = nil;

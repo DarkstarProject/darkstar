@@ -6,6 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------------
 -- OnSpellCast
@@ -40,7 +41,7 @@ function onSpellCast(caster,target,spell)
     if (target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
         spell:setMsg(230);
     else
-        spell:setMsg(MMSG_BUFF_FAIL);
+        spell:setMsg(msgBasic.BUFF_FAIL);
     end
 
     return EFFECT_STONESKIN;

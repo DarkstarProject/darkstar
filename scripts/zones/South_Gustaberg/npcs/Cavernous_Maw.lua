@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: South Gustaberg
 --  NPC: Cavernous Maw
--- @pos 340 -0.5 -680
+-- !pos 340 -0.5 -680
 -- Teleports Players to Abyssea - Altepa
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;

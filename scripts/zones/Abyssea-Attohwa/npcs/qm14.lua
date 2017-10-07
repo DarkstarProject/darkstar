@@ -1,32 +1,26 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
 --  NPC: qm14 (???)
--- Spawns Gaizkin
--- @pos ? ? ? 215
+-- Spawns Smok
+-- !pos ? ? ? 215
 -----------------------------------
+require("scripts/globals/keyitems");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
---[[
-    if (trade:hasItemQty(3075,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(17658264) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(17658264):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-            player:tradeComplete();
-        end
-    end
-]]
-end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 3075); -- Inform player what items they need.
+--[[
+    if (GetMobAction(17658274) == ACTION_NONE) then -- NM not already spawned from this
+        if (player:hasKeyItem(HOLLOW_DRAGON_EYE)) then
+            player:startEvent(1022, HOLLOW_DRAGON_EYE); -- Ask if player wants to use KIs
+        else
+            player:startEvent(1023, HOLLOW_DRAGON_EYE); -- Do not ask, because player is missing at least 1.
+        end
+    end
+]]
 end;
 
 -----------------------------------
@@ -34,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -45,4 +39,8 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+    if (csid == 1022 and option == 1) then
+        SpawnMob(17658274):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+        player:delKeyItem(HOLLOW_DRAGON_EYE);
+    end
 end;

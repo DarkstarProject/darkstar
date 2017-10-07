@@ -43,11 +43,11 @@ end;
 function onMobDespawn(mob)
     SetServerVariable("[POP]Percipient_Zoraal_Ja", 0 );
 
-    SetServerVariable("[POP]Zoraal_Ja_s_Pkuucha", os.time(t) + math.random(1800, 43200)); -- 30min to 12h
-    DeterMob(mob:getID(), true);
+    SetServerVariable("[POP]Zoraal_Ja_s_Pkuucha", os.time() + math.random(1800, 43200)); -- 30min to 12h
+    DisallowRespawn(mob:getID(), true);
 
     local PH = GetServerVariable("[PH]Zoraal_Ja_s_Pkuucha");
     SetServerVariable("[PH]Zoraal_Ja_s_Pkuucha", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 end;

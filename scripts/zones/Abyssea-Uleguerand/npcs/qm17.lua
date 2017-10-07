@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Uleguerand
 --  NPC: qm17 (???)
 -- Spawns Isgebind
--- @pos ? ? ? 253
+-- !pos ? ? ? 253
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

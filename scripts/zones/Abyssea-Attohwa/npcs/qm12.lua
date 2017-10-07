@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
 --  NPC: qm12 (???)
--- Spawns Mielikki
--- @pos ? ? ? 215
+-- Spawns Wherwetrice
+-- !pos ? ? ? 215
 -----------------------------------
 require("scripts/globals/status");
 
@@ -12,9 +12,9 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(3084,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(17658273) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(17658273):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+    if (trade:hasItemQty(3083,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+        if (GetMobAction(17658272) == ACTION_NONE) then -- Mob not already spawned from this
+            SpawnMob(17658272):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
         end
     end
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 3084); -- Inform player what items they need.
+    player:startEvent(1010, 3083); -- Inform player what items they need.
 end;
 
 -----------------------------------

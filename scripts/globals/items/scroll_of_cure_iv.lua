@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4612
---    Scroll of Cure IV
---    Teaches the white magic Cure IV
+-- ID: 4612
+-- Scroll of Cure IV
+-- Teaches the white magic Cure IV
 -----------------------------------------
 
 -----------------------------------------

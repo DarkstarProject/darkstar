@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5075
---    Scroll of Raptor Mazurka
---    Teaches the song Raptor Mazurka
+-- ID: 5075
+-- Scroll of Raptor Mazurka
+-- Teaches the song Raptor Mazurka
 -----------------------------------------
 
 -----------------------------------------

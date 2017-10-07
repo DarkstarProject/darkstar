@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
 -- NPC:  HomePoint#2
--- @pos  -130 0.001 -16 50
+-- !pos  -130 0.001 -16 50
 -----------------------------------
 
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21fd, 106);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21fd) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

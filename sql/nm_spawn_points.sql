@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1988,6 +1988,7 @@ INSERT INTO `nm_spawn_points` VALUES (17596507,46,-140.154,0.000,240.837);
 INSERT INTO `nm_spawn_points` VALUES (17596507,47,-132.983,0.000,178.993);
 INSERT INTO `nm_spawn_points` VALUES (17596507,48,-140.219,0.000,170.706);
 INSERT INTO `nm_spawn_points` VALUES (17596507,49,-92.879,0.000,218.895);
+INSERT INTO `nm_spawn_points` VALUES (17596628,0,158,0,20); -- Hovering Hotpot, need aditional spawn positions
 INSERT INTO `nm_spawn_points` VALUES (17596720,0,-155.000,19.000,244.000);
 INSERT INTO `nm_spawn_points` VALUES (17596720,1,-123.968,19.123,196.309);
 INSERT INTO `nm_spawn_points` VALUES (17596720,2,-159.937,19.034,237.676);
@@ -5178,6 +5179,7 @@ INSERT INTO `nm_spawn_points` VALUES (16896107,46,641.520,20.508,666.251);
 INSERT INTO `nm_spawn_points` VALUES (16896107,47,635.831,20.273,674.376);
 INSERT INTO `nm_spawn_points` VALUES (16896107,48,643.327,20.000,679.882);
 INSERT INTO `nm_spawn_points` VALUES (16896107,49,653.482,20.489,681.112);
+INSERT INTO `nm_spawn_points` VALUES (16998742,0,-228.367,-4.690,342.671);
 INSERT INTO `nm_spawn_points` VALUES (16990376,0,53.502,-36.250,643.045);
 INSERT INTO `nm_spawn_points` VALUES (16990376,1,54.380,-36.334,636.165);
 INSERT INTO `nm_spawn_points` VALUES (16990376,2,55.477,-34.969,627.564);
@@ -6284,6 +6286,13 @@ INSERT INTO `nm_spawn_points` VALUES (17363080,47,128.000,-15.000,249.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,48,121.000,-15.000,245.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,49,115.000,-15.000,246.000);
 
+-- Bu'Ghi Howlblade
+INSERT INTO `nm_spawn_points` VALUES (17363181,0,170,-15,179);
+INSERT INTO `nm_spawn_points` VALUES (17363181,1,170,-16,165);
+INSERT INTO `nm_spawn_points` VALUES (17363181,2,166,-16,135);
+INSERT INTO `nm_spawn_points` VALUES (17363181,3,167.207,-18.027,159.374);
+INSERT INTO `nm_spawn_points` VALUES (17363181,4,185.502,-31.864,175.730);
+
 -- 16806117 Sargas - Pos data needs correction, had nothing to go on except wiki saying sw corner of G-9.
 -- INSERT INTO `nm_spawn_points` VALUES (16806117,0,-247.000,2.750,-128.000);
 
@@ -6435,7 +6444,7 @@ INSERT INTO `nm_spawn_points` VALUES (17248588,2,-405.000, -29.000, 381.000);
 INSERT INTO `nm_spawn_points` VALUES (17248588,3,-433.000, -28.000, 332.000);
 
 -- Argus
-INSERT INTO `nm_spawn_points` VALUES (17588674,0,213.000, 19.000, -70.000);
+INSERT INTO `nm_spawn_points` VALUES (17588674,0,220.000, 18.800, -64.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,1,221.000, 20.000, -112.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,2,244.000, 20.000, -79.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,3,272.000, 20.000, -79.000);

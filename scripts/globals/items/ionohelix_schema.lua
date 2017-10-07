@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6043
---    Ionohelix Schema
---    Teaches the black magic Ionohelix
+-- ID: 6043
+-- Ionohelix Schema
+-- Teaches the black magic Ionohelix
 -----------------------------------------
 
 -----------------------------------------

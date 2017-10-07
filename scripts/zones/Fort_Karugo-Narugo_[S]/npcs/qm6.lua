@@ -3,7 +3,7 @@
 --  NPC: ???
 --  Type: Quest
 --  @zone 96
--- @pos -63 -75 4
+-- !pos -63 -75 4
 --
 -----------------------------------
 
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
         if (player:getVar("TigressStrikesProg") == 1) then
         player:startEvent(0x0066);
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-        
+
     end
 end;
 

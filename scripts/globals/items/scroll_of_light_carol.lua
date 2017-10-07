@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5052
---    Scroll of Light Carol
---    Teaches the song Light Carol
+-- ID: 5052
+-- Scroll of Light Carol
+-- Teaches the song Light Carol
 -----------------------------------------
 
 -----------------------------------------

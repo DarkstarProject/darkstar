@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4876
---    Scroll of Absorb-VIT
---    Teaches the black magic Absorb-VIT
+-- ID: 4876
+-- Scroll of Absorb-VIT
+-- Teaches the black magic Absorb-VIT
 -----------------------------------------
 
 -----------------------------------------

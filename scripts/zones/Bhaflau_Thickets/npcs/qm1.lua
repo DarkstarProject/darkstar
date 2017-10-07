@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 --  NPC: ??? (Spawn Lividroot Amooshah(ZNM T2))
--- @pos 334 -10 184 52
+-- !pos 334 -10 184 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------

@@ -1,26 +1,32 @@
 -----------------------------------
 -- Zone: Abyssea-Uleguerand
 --  NPC: qm3 (???)
--- Spawns Apademak
--- @pos ? ? ? 253
+-- Spawns Blanga
+-- !pos ? ? ? 253
 -----------------------------------
-require("scripts/globals/keyitems");
 require("scripts/globals/status");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
+function onTrade(player,npc,trade)
+--[[
+    if (trade:hasItemQty(3248,1) and trade:hasItemQty(3257,1) and trade:getItemCount() == 2) then -- Player has all the required items.
+        if (GetMobAction(17813930) == ACTION_NONE) then -- Mob not already spawned from this
+            SpawnMob(17813930):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+            player:tradeComplete();
+        end
+    end
+]]
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
---[[
-    if (GetMobAction(17813911) == ACTION_NONE) then -- NM not already spawned from this
-        if (player:hasKeyItem(TORN_KHIMAIRA_WING)) then
-            player:startEvent(1020, TORN_KHIMAIRA_WING); -- Ask if player wants to use KIs
-        else
-            player:startEvent(1025, TORN_KHIMAIRA_WING); -- Do not ask, because player is missing at least 1.
-        end
-    end
-]]
+    player:startEvent(1010, 3248, 3257); -- Inform player what items they need.
 end;
 
 -----------------------------------
@@ -28,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,8 +45,4 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 1020 and option == 1) then
-        SpawnMob(17813911, 300):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-        player:delKeyItem(TORN_KHIMAIRA_WING);
-    end
 end;

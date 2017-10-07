@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4789
---    Scroll of Blizzaga III
---    Teaches the black magic Blizzaga III
+-- ID: 4789
+-- Scroll of Blizzaga III
+-- Teaches the black magic Blizzaga III
 -----------------------------------------
 
 -----------------------------------------

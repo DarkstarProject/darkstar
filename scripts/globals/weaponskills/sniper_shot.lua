@@ -30,7 +30,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.agi_wsc = 0.7;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary, action);
 
     if (damage > 0 and target:hasStatusEffect(EFFECT_INT_DOWN) == false) then
         target:addStatusEffect(EFFECT_INT_DOWN, 10, 0, 140);

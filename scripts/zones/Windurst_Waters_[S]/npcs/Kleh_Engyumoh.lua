@@ -3,8 +3,8 @@
 --   NPC: Kleh Engyumoh
 --  Type: Standard NPC
 -- @zone 94
--- @pos -54.962 -4.5 57.701
--- 
+-- !pos -54.962 -4.5 57.701
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

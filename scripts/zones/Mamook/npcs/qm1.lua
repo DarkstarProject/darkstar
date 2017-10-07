@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mamook
 --  NPC: ??? (Spawn Chamrosh(ZNM T1))
--- @pos 206 14 -285 65
+-- !pos 206 14 -285 65
 -----------------------------------
 package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
 -----------------------------------

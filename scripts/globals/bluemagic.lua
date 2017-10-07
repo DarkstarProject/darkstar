@@ -70,7 +70,7 @@ MND_BASED = 3;
 --      .agi_wsc - Same as above.
 function BluePhysicalSpell(caster, target, spell, params)
     -- store related values
-    local magicskill = caster:getSkillLevel(BLUE_SKILL) + caster:getMod(79 + BLUE_SKILL); -- Base skill + equip mods
+    local magicskill = caster:getSkillLevel(BLUE_SKILL); -- skill + merits + equip bonuses
     -- TODO: Under Chain affinity?
     -- TODO: Under Efflux?
     -- TODO: Merits.
@@ -218,7 +218,12 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,dStat,BLUE_SKILL,0));
+    
+    local rparams = {};
+    rparams.diff = dStat;
+    rparams.skillType = BLUE_SKILL;
+    magicAttack = math.floor(magicAttack * applyResistance(caster, target, spell, rparams));
+    
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
     caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);

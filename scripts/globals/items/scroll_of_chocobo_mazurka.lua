@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5073
---    Scroll of Chocobo Mazurka
---    Teaches the song Chocobo Mazurka
+-- ID: 5073
+-- Scroll of Chocobo Mazurka
+-- Teaches the song Chocobo Mazurka
 -----------------------------------------
 
 -----------------------------------------

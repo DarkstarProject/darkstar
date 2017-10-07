@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Crawlers Nest [S]
 --  NPC: Kalsu-Kalasu
--- @pos 304.768 -33.519 -19.168 171
+-- !pos 304.768 -33.519 -19.168 171
 -- Notes: Gives Green Letter required to start "Snake on the plains"
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;

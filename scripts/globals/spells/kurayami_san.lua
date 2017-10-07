@@ -18,7 +18,12 @@ function onSpellCast(caster,target,spell)
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation
-    local duration = 420 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local duration = 420;
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = NINJUTSU_SKILL;
+    params.bonus = 0;
+    duration = duration * applyResistance(caster, target, spell, params);
     --Kurayami base power is 30 and is not affected by resistaces.
     local power = 30;
 

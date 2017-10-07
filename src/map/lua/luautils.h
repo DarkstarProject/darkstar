@@ -24,9 +24,11 @@
 #ifndef _LUAUTILS_H
 #define _LUAUTILS_H
 
+#include <optional>
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 #include "../../common/taskmgr.h"
+#include "../spell.h"
 #include "lua_ability.h"
 #include "lua_baseentity.h"
 #include "lua_mobskill.h"
@@ -209,7 +211,7 @@ namespace luautils
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);    // triggers when a player attempts to cast a spell
     int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);      // triggered when casting a spell
     int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);                           // triggered just before casting a spell
-    int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
+    std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       // triggered when spell cast on monster
     int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
@@ -234,7 +236,7 @@ namespace luautils
     int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield);                   //triggers when successfully registered a bcnm
     int32 OnBcnmDestroy(CBattlefield* PBattlefield);                            // triggers when BCNM is destroyed
 
-    int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);                            // triggers when mob weapon skill is used
+    int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action);                            // triggers when mob weapon skill is used
     int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);                             // triggers before mob weapon skill is used, returns 0 if the move is valid
     int32 OnMobAutomatonSkillCheck(CBaseEntity* PChar, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill);
 
@@ -255,7 +257,7 @@ namespace luautils
     int32 OnInstanceComplete(CInstance* PInstance);                             // triggers when an instance is completed
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
-    int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
+    int32 DisallowRespawn(lua_State* L);                                               // Allow or prevent a mob from spawning
     int32 UpdateNMSpawnPoint(lua_State* L);                                     // Update the spawn point of an NM
     int32 SetDropRate(lua_State*);                                              // Set drop rate of a mob setDropRate(dropid,itemid,newrate)
     int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure

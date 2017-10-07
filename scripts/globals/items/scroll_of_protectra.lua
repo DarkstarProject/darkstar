@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4733
---    Scroll of Protectra
---    Teaches the white magic Protectra
+-- ID: 4733
+-- Scroll of Protectra
+-- Teaches the white magic Protectra
 -----------------------------------------
 
 -----------------------------------------

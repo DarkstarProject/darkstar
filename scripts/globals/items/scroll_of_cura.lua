@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4701
---    Scroll of Cura
---    Teaches the white magic Cura
+-- ID: 4701
+-- Scroll of Cura
+-- Teaches the white magic Cura
 -----------------------------------------
 
 -----------------------------------------

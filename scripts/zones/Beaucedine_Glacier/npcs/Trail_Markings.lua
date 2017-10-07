@@ -2,7 +2,7 @@
 -- Area: Beaucedine Glacier
 --  NPC: Trail Markings
 -- Dynamis-Beaucedine Enter
--- @pos -284 -39 -422 111
+-- !pos -284 -39 -422 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4674
---    Scroll of Barfira
---    Teaches the white magic Barfira
+-- ID: 4674
+-- Scroll of Barfira
+-- Teaches the white magic Barfira
 -----------------------------------------
 
 -----------------------------------------

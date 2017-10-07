@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Grauberg
 --  NPC: qm2 (???)
 -- Spawns Ningishzida
--- @pos ? ? ? 254
+-- !pos ? ? ? 254
 -----------------------------------
 require("scripts/globals/status");
 

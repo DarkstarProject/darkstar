@@ -24,12 +24,12 @@ function onMobDespawn(mob)
 
     if (Frostmane_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Frostmane");
-        if (ToD <= os.time(t) and GetMobAction(Frostmane) == 0) then
+        if (ToD <= os.time() and GetMobAction(Frostmane) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Frostmane);
                 GetMobByID(Frostmane):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Frostmane", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

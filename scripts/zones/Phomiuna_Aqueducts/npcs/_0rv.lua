@@ -2,7 +2,7 @@
 -- Area: Phomiuna_Aqueducts
 -- NPC:  _0rv (Oil lamp)
 -- Notes: Opens north door at J-9 from inside.
--- @pos -63.703 -26.227 37.000 27
+-- !pos -63.703 -26.227 37.000 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     local DoorOffset = npc:getID() - 1;
-   
+
     if (GetNPCByID(DoorOffset):getAnimation() == 9) then
         if (player:getZPos() > 36) then
             npc:openDoor(7); -- lamp animation
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         end
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

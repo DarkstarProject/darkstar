@@ -2,7 +2,7 @@
 -- Area: Jugner Forest
 --  NPC: Takamoto, I.M.
 -- Outpost Conquest Guards
--- @pos 60.087 -0.602 -11.847 104
+-- !pos 60.087 -0.602 -11.847 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------

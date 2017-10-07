@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC: Tehf Kimasnahya
 --  Type: Standard NPC
--- @pos -89.897 -1 6.199 50
+-- !pos -89.897 -1 6.199 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
        player:needToZone(true);
     elseif (csid == 0x021b) then
        player:setVar("gotitallCS",8);
-       
+
     elseif (csid == 0x0210) then
         if (player:getFreeSlotsCount() == 0) then
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18257);
@@ -88,9 +88,9 @@ function onEventFinish(player,csid,option)
            player:addItem(18257); -- Bibiki Seashell
            player:messageSpecial(ITEM_OBTAINED,18257);
            player:completeQuest(AHT_URHGAN,GOT_IT_ALL);
-        end    
+        end
     elseif (csid == 0x034b and option == 1) then
-        player:setVar("threemenandaclosetCS",6);    
+        player:setVar("threemenandaclosetCS",6);
     end
 end;
 

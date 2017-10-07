@@ -32,8 +32,7 @@ CChangeMusicPacket::CChangeMusicPacket(uint8 BlockID, uint8 MusicTrackID)
     // 1 Background Music (Night time, 18:00 -> 7:00)
     // 2 SoloBattle Music
     // 3 Party Battle Music
-    // 4 Chocobo Music
-    // More types likely exist
+    // 4 Chocobo/Mount Music
 
     this->type = 0x5F;
     this->size = 0x04;

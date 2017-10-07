@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
 --  MOB: Hydra
--- @pos -282 -24 -1 51
+-- !pos -282 -24 -1 51
 -----------------------------------
 
 require("scripts/globals/titles");

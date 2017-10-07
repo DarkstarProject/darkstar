@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Garlaige Citadel
 -- NPC:  _5ki (Banishing Gate #3)
--- @pos -100 -3.008 359 200
+-- !pos -100 -3.008 359 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         return 1;
     else
         local DoorID = npc:getID();
-        
+
         for i = DoorID,DoorID+4,1 do
             GetNPCByID(i):openDoor(30);
         end

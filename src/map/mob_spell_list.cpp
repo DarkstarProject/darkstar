@@ -34,7 +34,7 @@ CMobSpellList::CMobSpellList()
 
 }
 
-void CMobSpellList::AddSpell(uint16 spellId, uint16 minLvl, uint16 maxLvl)
+void CMobSpellList::AddSpell(SpellID spellId, uint16 minLvl, uint16 maxLvl)
 {
   MobSpell_t Mob_Spell = {spellId, minLvl, maxLvl};
 
@@ -66,7 +66,7 @@ namespace mobSpellList
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
+                SpellID spellId = (SpellID)Sql_GetIntData(SqlHandle,1);
                 uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
                 uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
 

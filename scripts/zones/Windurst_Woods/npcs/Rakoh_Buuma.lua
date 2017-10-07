@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 -- NPC:  Rakoh Buuma
 -- Starts Windurst Missions
--- @pos 106 -5 -23 241
+-- !pos 106 -5 -23 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -19,7 +19,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getNation() ~= NATION_WINDURST) then
         player:startEvent(0x0069); -- for other nation
     else
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         MissionStatus = player:getVar("MissionStatus");
         pRank = player:getRank();
         cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
-        
+
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
@@ -49,7 +49,7 @@ function onTrigger(player,npc)
             player:startEvent(0x0072,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -68,14 +68,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     finishMissionTimeline(player,1,csid,option);
-    
+
     if (csid == 0x0079 and option == 1) then
         player:addTitle(NEW_BUUMAS_BOOMERS_RECRUIT);
     elseif (csid == 0x0072 and (option == 12 or option == 15)) then
         player:addKeyItem(STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
     end
-    
+
 end;

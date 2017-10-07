@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Northern San d'Oria
---  NPC: Olbergieut 
+--  NPC: Olbergieut
 -- Type: Quest NPC
 -- @zone 231
--- @pos 91 0 121
+-- !pos 91 0 121
 --
 -- Starts and Finishes Quest: Gates of Paradise
 -----------------------------------
@@ -38,8 +38,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0264);
     end;
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x026b and option == 0) then 
+    if (csid == 0x026b and option == 0) then
         player:addQuest(SANDORIA, GATES_TO_PARADISE);
         player:addKeyItem(SCRIPTURE_OF_WIND);
         player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WIND);
@@ -74,5 +74,5 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,13584);
         end;
     end;
-    
+
 end;

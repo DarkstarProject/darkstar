@@ -1,10 +1,10 @@
 -----------------------------------------
---    ID: 4368
---    Two-Leaf Mandragora Bud
+-- ID: 4368
+-- Two-Leaf Mandragora Bud
 --  5 Minutes, food effect, All Races
 -----------------------------------------
---    Agility  +2
---    Vitality -4
+-- Agility  +2
+-- Vitality -4
 -----------------------------------------
 
 require("scripts/globals/status");

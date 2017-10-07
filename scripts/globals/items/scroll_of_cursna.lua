@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4628
---    Scroll of Cursna
---    Teaches the white magic Cursna
+-- ID: 4628
+-- Scroll of Cursna
+-- Teaches the white magic Cursna
 -----------------------------------------
 
 -----------------------------------------

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm18 (???)
 -- Spawns Hadhayosh
--- @pos ? ? ? 132
+-- !pos ? ? ? 132
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

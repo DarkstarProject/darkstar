@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC:  Thunder Hawk
 -- Starts and Finishes Quest: The Rescue
--- @pos -58 -10 6 248
+-- !pos -58 -10 6 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
     local TheRescue = player:getQuestStatus(OTHER_AREAS,THE_RESCUE);
     local SelbiFame = math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2); -- Selbina Fame
-    
+
     if (TheRescue == QUEST_AVAILABLE and SelbiFame >= 1) then
         player:startEvent(0x0050); -- Start quest "The rescue"
     elseif (TheRescue == QUEST_ACCEPTED and player:hasKeyItem(TRADERS_SACK) == false) then

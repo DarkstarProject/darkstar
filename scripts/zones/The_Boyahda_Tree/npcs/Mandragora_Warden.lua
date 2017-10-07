@@ -2,7 +2,7 @@
 --  Area: The Boyahda Tree
 --  NPC:  Mandragora Warden
 --  Type: Mission NPC
--- @pos 81.981 7.593 139.556 153
+-- !pos 81.981 7.593 139.556 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 local MissionStatus = player:getVar("MissionStatus");
 
     if (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and (MissionStatus == 4 or MissionStatus == 5)) then
-        if (trade:hasItemQty(1181,1) == true) and (trade:getItemCount() == 1) then 
+        if (trade:hasItemQty(1181,1) == true) and (trade:getItemCount() == 1) then
             player:startEvent(0x000D);
         end
     end
@@ -44,7 +44,7 @@ local dialog = player:getVar ("mandialog");
             player:PrintToPlayer("Seems like he wants some Gobbu Hummus");
         end
     end
-        
+
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4722
---    Scroll of Enfire II
---    Teaches the white magic Enfire II
+-- ID: 4722
+-- Scroll of Enfire II
+-- Teaches the white magic Enfire II
 -----------------------------------------
 
 -----------------------------------------

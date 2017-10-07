@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm6 (???)
 -- Spawns Grandgousier
--- @pos ? ? ? 132
+-- !pos ? ? ? 132
 -----------------------------------
 require("scripts/globals/status");
 

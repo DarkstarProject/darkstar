@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5014
---    Scroll of Herb Pastoral
---    Teaches the song Herb Pastoral
+-- ID: 5014
+-- Scroll of Herb Pastoral
+-- Teaches the song Herb Pastoral
 -----------------------------------------
 
 -----------------------------------------

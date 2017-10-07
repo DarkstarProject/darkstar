@@ -21,7 +21,6 @@
 ===========================================================================
 */
 
-#include "../common/malloc.h"
 #include "../common/showmsg.h"
 
 #include <string.h>

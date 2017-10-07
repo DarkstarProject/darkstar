@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'Dont Ever Leaf Me'
 --  @zone 256
---  @pos -101 3 14 256
+--  !pos -101 3 14 256
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

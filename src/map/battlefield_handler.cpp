@@ -196,7 +196,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                         }
                     }
                     //handle lose conditions
-                    else if (battlefieldutils::meetsLosingConditions(PBattlefield, tick) && !PBattlefield->cleared()) {
+                    else if (!PBattlefield->cleared() && battlefieldutils::meetsLosingConditions(PBattlefield, tick)) {
                         ShowDebug("BCNM %i battlefield %i : Losing conditions met. Exiting battlefield.\n", PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
                         PBattlefield->loseBcnm();
                     }
@@ -226,7 +226,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warp
     if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
         return false;
     
-    uint16 effectid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD, 0)->GetPower();
+    uint16 effectid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
 
     for (int i = 0; i < m_MaxBattlefields; i++)
     {
@@ -250,6 +250,7 @@ bool CBattlefieldHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar) {
             if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
                 if (m_Battlefields[i] == PChar->PBCNM) {
                     luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_EXIT);
+                    m_Battlefields[i]->delPlayerFromBcnm(PChar);
                     return true;
                 }
             }

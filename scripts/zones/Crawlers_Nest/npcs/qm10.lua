@@ -2,7 +2,7 @@
 -- Area: Crawlers' Nest
 --  NPC: qm10 (??? - Exoray Mold Crumbs)
 -- Involved in Quest: In Defiant Challenge
--- @pos -83.391 -8.222 79.065 197
+-- !pos -83.391 -8.222 79.065 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1089);
             end
         end
-        
+
         if (player:hasItem(1089)) then
             player:delKeyItem(EXORAY_MOLD_CRUMB1);
             player:delKeyItem(EXORAY_MOLD_CRUMB2);

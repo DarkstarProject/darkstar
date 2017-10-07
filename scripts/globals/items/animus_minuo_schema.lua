@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6060
---    Item: Animus Minuo Schema
---    Teaches the white magic Animus Minuo
+-- ID: 6060
+-- Item: Animus Minuo Schema
+-- Teaches the white magic Animus Minuo
 -----------------------------------------
 
 -----------------------------------------

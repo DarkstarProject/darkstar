@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4690
---    Scroll of Baramnesia
---    Teaches the white magic Baramnesia
+-- ID: 4690
+-- Scroll of Baramnesia
+-- Teaches the white magic Baramnesia
 -----------------------------------------
 
 -----------------------------------------

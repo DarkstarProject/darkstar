@@ -32,13 +32,13 @@ function onMobDespawn(mob)
 
     -- Set Mee_Deggi_the_Punisher's Window Open Time
     local wait = math.random(3600,10800);
-    SetServerVariable("[POP]Mee_Deggi_the_Punisher", os.time(t) + wait); -- 1-3 hours
-    DeterMob(mob:getID(), true);
+    SetServerVariable("[POP]Mee_Deggi_the_Punisher", os.time() + wait); -- 1-3 hours
+    DisallowRespawn(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
     local PH = GetServerVariable("[PH]Mee_Deggi_the_Punisher");
     SetServerVariable("[PH]Mee_Deggi_the_Punisher", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

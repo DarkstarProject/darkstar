@@ -2,7 +2,7 @@
 -- Area: Wajaom Woodlands
 -- NPC:  Leypoint
 -- Teleport point, Quest -- NAVIGATING THE UNFRIENDLY SEAS RELATED --
--- @pos -200.027 -8.500 80.058 51
+-- !pos -200.027 -8.500 80.058 51
 -----------------------------------
 
 require("scripts/zones/Wajaom_Woodlands/TextIDs");

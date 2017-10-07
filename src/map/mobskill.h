@@ -44,33 +44,35 @@ public:
 
     CMobSkill(uint16 id);
 
-    bool        hasMissMsg();
-    bool        isAoE();
-    bool        isConal();
-    bool        isSingle();
-    bool        isTwoHour();
-    bool        isSpecial();
-    bool        isTpSkill();
+    bool        hasMissMsg() const;
+    bool        isAoE() const;
+    bool        isConal() const;
+    bool        isSingle() const;
+    bool        isTwoHour() const;
+    bool        isSpecial() const;
+    bool        isTpSkill() const;
 
-    uint16      getID();
-    uint16      getAnimationID();
-    uint16      getPetAnimationID();
-    uint8       getAoe();
-    float       getDistance();
-    uint8       getFlag();
-    uint16      getAnimationTime();
-    uint16      getActivationTime();
-    uint16      getMsg();
-    uint16      getAoEMsg();
-    uint16      getValidTargets();
-    int16       getTP();
-    uint8       getHPP();
-    uint16      getTotalTargets();
-    uint16      getMsgForAction();
-    float       getRadius();
-    int16       getParam();
-    uint8       getKnockback();
-    uint8       getSkillchain();
+    uint16      getID() const;
+    uint16      getAnimationID() const;
+    uint16      getPetAnimationID() const;
+    uint8       getAoe() const;
+    float       getDistance() const;
+    uint8       getFlag() const;
+    uint16      getAnimationTime() const;
+    uint16      getActivationTime() const;
+    uint16      getMsg() const;
+    uint16      getAoEMsg() const;
+    uint16      getValidTargets() const;
+    int16       getTP() const;
+    uint8       getHPP() const;
+    uint16      getTotalTargets() const;
+    uint16      getMsgForAction() const;
+    float       getRadius() const;
+    int16       getParam() const;
+    uint8       getKnockback() const;
+    uint8       getPrimarySkillchain() const;
+    uint8       getSecondarySkillchain() const;
+    uint8       getTertiarySkillchain() const;
 
     bool        isDamageMsg();
 
@@ -88,9 +90,11 @@ public:
     void        setTotalTargets(uint16 targets);
     void        setParam(int16 value);
     void        setKnockback(uint8 knockback);
-    void        setSkillchain(uint8 skillchain);
+    void        setPrimarySkillchain(uint8 skillchain);
+    void        setSecondarySkillchain(uint8 skillchain);
+    void        setTertiarySkillchain(uint8 skillchain);
 
-    const int8* getName();
+    const int8* getName() const;
     void        setName(int8* name);
 
 private:
@@ -109,7 +113,9 @@ private:
     int16       m_TP;               //the tp at the time of finish readying (for scripts)
     uint8       m_HPP;              // HPP at the time of using mob skill (for scripts)
     uint8       m_knockback;        //knockback value (0-7)
-    uint8       m_skillchain;       //weaponskill ID of skillchain properties
+    uint8       m_primarySkillchain;       //weaponskill ID of skillchain properties
+    uint8       m_secondarySkillchain;
+    uint8       m_tertiarySkillchain;
 
     string_t    m_name;
 };

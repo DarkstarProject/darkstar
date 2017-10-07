@@ -3,11 +3,10 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 #include "../common/timer.h"
-#include "../common/malloc.h"
 #include "../common/showmsg.h"
-#include "../common/strlib.h"
 #include "../common/taskmgr.h"
 #include "../common/kernel.h"
+#include "../common/utils.h"
 
 #include "socket.h"
 
@@ -153,7 +152,7 @@ time_t last_tick;
 time_t tick_time;
 time_t stall_time = 60;
 
-uint32 addr_[16];   // ip addresses of local host (host byte order)
+uint32 g_addr_[16];   // ip addresses of local host (host byte order)
 
 int32 naddr_;   // # of ip addresses
 
@@ -356,7 +355,7 @@ bool _vsocket_init(void)
 #endif
 
 	// Get initial local ips
-	naddr_ = socket_getips(addr_,16);
+	naddr_ = socket_getips(g_addr_,16);
 
 	sFD_ZERO(&readfds);
 
@@ -434,11 +433,9 @@ enum _aco {
 	ACO_MUTUAL_FAILURE
 };
 
-static AccessControl *access_allow = NULL;
-static AccessControl *access_deny  = NULL;
+static std::vector<AccessControl> access_allow;
+static std::vector<AccessControl> access_deny;
 static int access_order = ACO_DENY_ALLOW;
-static int access_allownum = 0;
-static int access_denynum  = 0;
 static int access_debug    = 0;
 //--
 static int ddos_count      = 10;
@@ -475,7 +472,7 @@ static int connect_check_(uint32 ip)
 	int connect_ok = 0;
 
 	// Search the allow list
-	for( i=0; i < access_allownum; ++i ){
+	for( i=0; i < access_allow.size(); ++i ){
 		if( (ip & access_allow[i].mask) == (access_allow[i].ip & access_allow[i].mask) ){
 			if( access_debug ){
 				ShowInfo("connect_check: Found match from allow list:%d.%d.%d.%d IP:%d.%d.%d.%d Mask:%d.%d.%d.%d\n",
@@ -488,7 +485,7 @@ static int connect_check_(uint32 ip)
 		}
 	}
 	// Search the deny list
-	for( i=0; i < access_denynum; ++i ){
+	for( i=0; i < access_deny.size(); ++i ){
 		if( (ip & access_deny[i].mask) == (access_deny[i].ip & access_deny[i].mask) ){
 			if( access_debug ){
 				ShowInfo("connect_check: Found match from deny list:%d.%d.%d.%d IP:%d.%d.%d.%d Mask:%d.%d.%d.%d\n",
@@ -557,8 +554,7 @@ static int connect_check_(uint32 ip)
 		hist = hist->next;
 	}
 	// IP not found, add to history
-	CREATE(hist, ConnectHistory, 1);
-	memset(hist, 0, sizeof(ConnectHistory));
+	hist = new ConnectHistory{};
 	hist->ip   = ip;
     hist->tick = server_clock::now();
 	hist->next = connect_history[ip&0xFFFF];
@@ -585,7 +581,7 @@ static int connect_check_clear(time_point tick,CTaskMgr::CTask* PTask)
 					(hist->ddos && (tick - hist->tick) > ddos_autoreset) )
 			{// Remove connection history
 				prev_hist->next = hist->next;
-				aFree(hist);
+				delete hist;
 				hist = prev_hist->next;
 				clear++;
 			} else {
@@ -658,7 +654,9 @@ int recv_to_fifo(int fd)
 	if( !session_isActive(fd) )
 		return -1;
 
-	len = sRecv(fd, (char *) session[fd]->rdata + session[fd]->rdata_size, (int)RFIFOSPACE(fd), 0);
+    auto prev_length = session[fd]->rdata.size();
+    session[fd]->rdata.resize(prev_length + 0x7FF);
+	len = sRecv(fd, (char *) session[fd]->rdata.data() + prev_length, session[fd]->rdata.capacity() - prev_length, 0);
 
 	if( len == SOCKET_ERROR )
 	{//An exception has occured
@@ -675,7 +673,7 @@ int recv_to_fifo(int fd)
 		return 0;
 	}
 
-	session[fd]->rdata_size += len;
+    session[fd]->rdata.resize(prev_length + len);
 	session[fd]->rdata_tick = last_tick;
 	return 0;
 }
@@ -687,16 +685,16 @@ int send_from_fifo(int fd)
 	if( !session_isValid(fd) )
 		return -1;
 
-	if( session[fd]->wdata_size == 0 )
+	if( session[fd]->wdata.empty() )
 		return 0; // nothing to send
 
-	len = sSend(fd, (const char *) session[fd]->wdata, (int)session[fd]->wdata_size, 0);
+	len = sSend(fd, session[fd]->wdata.data(), (int)session[fd]->wdata.size(), 0);
 
 	if( len == SOCKET_ERROR )
 	{//An exception has occured
 		if( sErrno != S_EWOULDBLOCK ) {
 			//ShowDebug("send_from_fifo: error %d, ending connection #%d\n", sErrno, fd);
-			session[fd]->wdata_size = 0; //Clear the send queue as we can't send anymore. [Skotlex]
+			session[fd]->wdata.clear(); //Clear the send queue as we can't send anymore. [Skotlex]
 			set_eof(fd);
 		}
 		return 0;
@@ -706,10 +704,10 @@ int send_from_fifo(int fd)
 	{
 		// some data could not be transferred?
 		// shift unsent data to the beginning of the queue
-		if( (size_t)len < session[fd]->wdata_size )
-			memmove(session[fd]->wdata, session[fd]->wdata + len, session[fd]->wdata_size - len);
-
-		session[fd]->wdata_size -= len;
+        if((size_t)len < session[fd]->wdata.size())
+            session[fd]->wdata.erase(0, len);
+        else
+            session[fd]->wdata.clear();
 	}
 
 	return 0;
@@ -724,8 +722,7 @@ int null_parse(int fd) { return 0; }
 
 ParseFunc default_func_parse = null_parse;
 
-
-socket_data* session[FD_SETSIZE];
+std::array<std::unique_ptr<socket_data>, FD_SETSIZE> session;
 
 bool session_isValid(int fd)
 {
@@ -847,94 +844,7 @@ int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
 
 	return fd;
 }
-int32 realloc_fifo(int32 fd, uint32 rfifo_size, uint32 wfifo_size)
-{
-	if( !session_isValid(fd) )
-		return 0;
 
-	if( session[fd]->max_rdata != rfifo_size && session[fd]->rdata_size < rfifo_size) {
-		RECREATE(session[fd]->rdata, char, rfifo_size);
-		session[fd]->max_rdata  = rfifo_size;
-	}
-
-	if( session[fd]->max_wdata != wfifo_size && session[fd]->wdata_size < wfifo_size) {
-		RECREATE(session[fd]->wdata, char, wfifo_size);
-		session[fd]->max_wdata  = wfifo_size;
-	}
-	return 0;
-}
-int32 realloc_writefifo(int32 fd, size_t addition)
-{
-	size_t newsize;
-
-	if( !session_isValid(fd) ) // might not happen
-		return 0;
-
-	if( session[fd]->wdata_size + addition  > session[fd]->max_wdata )
-	{	// grow rule; grow in multiples of WFIFO_SIZE
-		newsize = WFIFO_SIZE;
-		while( session[fd]->wdata_size + addition > newsize ) newsize += newsize;
-	}
-	else
-	if( session[fd]->max_wdata >= (size_t)2*(session[fd]->flag.server?FIFOSIZE_SERVERLINK:WFIFO_SIZE)
-		&& (session[fd]->wdata_size+addition)*4 < session[fd]->max_wdata )
-	{	// shrink rule, shrink by 2 when only a quarter of the fifo is used, don't shrink below nominal size.
-		newsize = session[fd]->max_wdata / 2;
-	}
-	else // no change
-		return 0;
-
-	RECREATE(session[fd]->wdata, char, newsize);
-	session[fd]->max_wdata  = newsize;
-
-	return 0;
-}
-int32 WFIFOSET(int32 fd, size_t len)
-{
-	size_t newreserve;
-	struct socket_data* s = session[fd];
-
-	if( !session_isValid(fd) || s->wdata == NULL )
-		return 0;
-
-	// we have written len bytes to the buffer already before calling WFIFOSET
-	if(s->wdata_size+len > s->max_wdata)
-	{	// actually there was a buffer overflow already
-		uint32 ip = s->client_addr;
-		ShowFatalError("WFIFOSET: Write Buffer Overflow. Connection %d (%d.%d.%d.%d) has written %u bytes on a %u/%u bytes buffer.\n", fd, CONVIP(ip), (unsigned int)len, (unsigned int)s->wdata_size, (unsigned int)s->max_wdata);
-		ShowDebug("Likely command that caused it: 0x%x\n", (*(uint16*)(s->wdata + s->wdata_size)));
-		// no other chance, make a better fifo model
-        do_final(EXIT_FAILURE);
-	}
-
-	if( len > 0xFFFF )
-	{
-		// dynamic packets allow up to UINT16_MAX bytes (<packet_id>.W <packet_len>.W ...)
-		// all known fixed-size packets are within this limit, so use the same limit
-		ShowFatalError("WFIFOSET: Packet 0x%x is too big. (len=%u, max=%u)\n", (*(uint16*)(s->wdata + s->wdata_size)), (unsigned int)len, 0xFFFF);
-        do_final(EXIT_FAILURE);
-	}
-
-	if( !s->flag.server && s->wdata_size+len > WFIFO_MAX )
-	{// reached maximum write fifo size
-		set_eof(fd);
-		return 0;
-	}
-
-	s->wdata_size += len;
-	//If the interserver has 200% of its normal size full, flush the data.
-	if( s->flag.server && s->wdata_size >= 2*FIFOSIZE_SERVERLINK )
-		flush_fifo(fd);
-
-	// always keep a WFIFO_SIZE reserve in the buffer
-	// For inter-server connections, let the reserve be 1/4th of the link size.
-	newreserve = s->wdata_size + ( s->flag.server ? FIFOSIZE_SERVERLINK / 4 : WFIFO_SIZE);
-
-	// readjust the buffer to the newly chosen size
-	realloc_writefifo(fd, newreserve);
-
-	return 0;
-}
 int32 RFIFOSKIP(int32 fd, size_t len)
 {
 	  struct socket_data *s;
@@ -942,9 +852,9 @@ int32 RFIFOSKIP(int32 fd, size_t len)
 	if ( !session_isActive(fd) )
 		return 0;
 
-	s = session[fd];
+	s = session[fd].get();
 
-	if ( s->rdata_size < s->rdata_pos + len ) {
+	if ( s->rdata.size() < s->rdata_pos + len ) {
 		ShowError("RFIFOSKIP: skipped past end of read buffer! Adjusting from %d to %d (session #%d)\n", len, RFIFOREST(fd), fd);
 		len = RFIFOREST(fd);
 	}
@@ -991,15 +901,15 @@ int socket_config_read(const char* cfgName)
 			else if (!strcmpi(w2, "mutual-failure"))
 				access_order = ACO_MUTUAL_FAILURE;
 		} else if (!strcmpi(w1, "allow")) {
-			RECREATE(access_allow, AccessControl, access_allownum+1);
-			if (access_ipmask(w2, &access_allow[access_allownum]))
-				++access_allownum;
+            AccessControl acc{};
+            if (access_ipmask(w2, &acc))
+                access_allow.push_back(acc);
 			else
 				ShowError("socket_config_read: Invalid ip or ip range '%s'!\n", line);
 		} else if (!strcmpi(w1, "deny")) {
-			RECREATE(access_deny, AccessControl, access_denynum+1);
-			if (access_ipmask(w2, &access_deny[access_denynum]))
-				++access_denynum;
+            AccessControl acc{};
+            if (access_ipmask(w2, &acc))
+                access_deny.push_back(acc);
 			else
 				ShowError("socket_config_read: Invalid ip or ip range '%s'!\n", line);
 		}
@@ -1052,23 +962,15 @@ void socket_final_tcp(void)
 		hist = connect_history[i];
 		while( hist ){
 			next_hist = hist->next;
-			aFree(hist);
+			delete hist;
 			hist = next_hist;
 		}
 	}
-	if( access_allow )
-		aFree(access_allow);
-	if( access_deny )
-		aFree(access_deny);
 #endif
 
 	for( i = 1; i < fd_max; i++ )
 		if(session[i])
 			do_close_tcp(i);
-
-	aFree(session[0]->rdata);
-	aFree(session[0]->wdata);
-	aFree(session[0]);
 }
 void flush_fifo(int32 fd)
 {
@@ -1098,12 +1000,9 @@ void set_eof(int32 fd)
 }
 int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse)
 {
-	CREATE(session[fd], struct socket_data, 1);
-	CREATE(session[fd]->rdata, char, RFIFO_SIZE);
-	CREATE(session[fd]->wdata, char, WFIFO_SIZE);
-
-	session[fd]->max_rdata  = RFIFO_SIZE;
-	session[fd]->max_wdata  = WFIFO_SIZE;
+	session[fd] = std::make_unique<socket_data>();
+    session[fd]->rdata.reserve(RFIFO_SIZE);
+    session[fd]->wdata.reserve(WFIFO_SIZE);
 
 	session[fd]->func_recv  = func_recv;
 	session[fd]->func_send  = func_send;
@@ -1116,12 +1015,6 @@ int delete_session(int fd)
 {
 	if (fd <= 0 || fd >= FD_SETSIZE)
 		return -1;
-	if (session[fd]) {
-		aFree(session[fd]->rdata);
-		aFree(session[fd]->wdata);
-		aFree(session[fd]);
-		session[fd] = NULL;
-	}
 	return 0;
 }
 

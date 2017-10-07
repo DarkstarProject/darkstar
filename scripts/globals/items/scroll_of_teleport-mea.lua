@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4732
---    Scroll of Teleport-Mea
---    Teaches the white magic Teleport-Mea
+-- ID: 4732
+-- Scroll of Teleport-Mea
+-- Teaches the white magic Teleport-Mea
 -----------------------------------------
 
 -----------------------------------------

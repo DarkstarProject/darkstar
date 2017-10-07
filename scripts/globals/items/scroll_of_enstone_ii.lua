@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4725
---    Scroll of Enstone II
---    Teaches the white magic Enstone II
+-- ID: 4725
+-- Scroll of Enstone II
+-- Teaches the white magic Enstone II
 -----------------------------------------
 
 -----------------------------------------

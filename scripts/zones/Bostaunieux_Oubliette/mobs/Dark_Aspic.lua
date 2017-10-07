@@ -25,12 +25,12 @@ function onMobDespawn(mob)
 
     if (Sewer_Syrup_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Sewer_Syrup");
-        if (ToD <= os.time(t) and GetMobAction(Sewer_Syrup) == 0) then
+        if (ToD <= os.time() and GetMobAction(Sewer_Syrup) == 0) then
             if (math.random(1,10) == 5) then
                 UpdateNMSpawnPoint(Sewer_Syrup);
                 GetMobByID(Sewer_Syrup):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Sewer_Syrup", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

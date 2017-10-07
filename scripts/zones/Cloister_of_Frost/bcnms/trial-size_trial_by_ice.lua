@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Cloister of Frost
 -- BCNM: Trial-size Trial by Ice
--- @pos 558 0.1 596 203
+-- !pos 558 0.1 596 203
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -------------------------------------
@@ -30,23 +30,23 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
     elseif (leavecode == 4) then
         player:setVar("TrialSizeIce_date",tonumber(os.date("%j"))); -- If you loose, you need to wait 1 real day
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
         if (player:hasSpell(302) == false) then
             player:addSpell(302); -- Shiva
@@ -60,5 +60,5 @@ function onEventFinish(player,csid,option)
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
     end
-    
+
 end;

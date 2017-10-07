@@ -1,14 +1,14 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
 -- NPC:  _0ra (Iron Gate)
--- @pos 180.000 -25.500 71.400 27
+-- !pos 180.000 -25.500 71.400 27
 -----------------------------------
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
         npc:openDoor();
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

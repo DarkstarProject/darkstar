@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5091
---    Scroll of Gain-INT
---    Teaches the white magic Gain-INT
+-- ID: 5091
+-- Scroll of Gain-INT
+-- Teaches the white magic Gain-INT
 -----------------------------------------
 
 -----------------------------------------

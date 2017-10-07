@@ -2,7 +2,7 @@
 -- Area: Yuhtunga Jungle
 --  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Fire Fragment)
--- @pos 491 20 301 123
+-- !pos 491 20 301 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------

@@ -5,7 +5,7 @@
 -- Start Quest: Lovers in the Dusk
 -- Involved in Quest: The Siren's Tear
 -- @zone 236
--- @pos -146.476 -7.48 -10.889
+-- !pos -146.476 -7.48 -10.889
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -16,7 +16,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 
 -----------------------------------
@@ -64,7 +64,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x00b6);
     end
-end; 
+end;
 
 
 -----------------------------------
@@ -94,9 +94,9 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(CARMELOS_SONG_SHEET);
         player:messageSpecial(KEYITEM_OBTAINED,CARMELOS_SONG_SHEET);
     elseif (csid == 0x00ba) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17356);
-        else 
+        else
             player:setVar("LoveAndIceProgress",0);
             player:needToZone(true);
             player:addTitle(SORROW_DROWNER);

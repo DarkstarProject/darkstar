@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4614
---    Scroll of Cure VI
---    Teaches the white magic Cure VI
+-- ID: 4614
+-- Scroll of Cure VI
+-- Teaches the white magic Cure VI
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4708
---    Scroll of Enfire
---    Teaches the white magic Enfire
+-- ID: 4708
+-- Scroll of Enfire
+-- Teaches the white magic Enfire
 -----------------------------------------
 
 -----------------------------------------

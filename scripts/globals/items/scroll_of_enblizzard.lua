@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4709
---    Scroll of Enblizzard
---    Teaches the white magic Enblizzard
+-- ID: 4709
+-- Scroll of Enblizzard
+-- Teaches the white magic Enblizzard
 -----------------------------------------
 
 -----------------------------------------

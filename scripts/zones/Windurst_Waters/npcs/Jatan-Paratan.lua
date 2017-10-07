@@ -2,17 +2,15 @@
 -- Area: Windurst Waters
 --  NPC: Jatan-Paratan
 -- Starts and Finished Quest: Wondering Minstrel
---    Working 100%
---  @zone = 238
--- @pos = -59 -4 22
+-- !pos -59 -4 22 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Waters/TextIDs");
-require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action

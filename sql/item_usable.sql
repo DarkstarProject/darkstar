@@ -1812,6 +1812,7 @@ INSERT INTO `item_usable` VALUES (10271,'dune_gilet_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10293,'chocobo_shirt',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (10383,'dream_mittens_+1',1,6,24,0,1,30,7200,0);
 INSERT INTO `item_usable` VALUES (10875,'snowman_cap',1,1,0,0,1,30,3600,0);
+INSERT INTO `item_usable` VALUES (11002,'dragon_tank',1,1,55,0,5,30,60,0);
 INSERT INTO `item_usable` VALUES (11273,'custom_gilet_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11274,'custom_top_+1',1,8,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (11275,'magna_gilet_+1',1,8,0,0,1,30,72000,0);

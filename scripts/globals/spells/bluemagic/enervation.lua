@@ -33,7 +33,12 @@ function onSpellCast(caster,target,spell)
 
     local typeEffectOne = EFFECT_DEFENSE_DOWN;
     local typeEffectTwo = EFFECT_MAGIC_DEF_DOWN;
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
+    local params = {};
+    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.bonus = 1.0;
+    resist = applyResistance(caster, target, spell, params);
     local duration = 30 * resist;
     local returnEffect = typeEffectOne;
 

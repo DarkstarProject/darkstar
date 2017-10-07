@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5065
---    Scroll of Earth Threnody
---    Teaches the song Earth Threnody
+-- ID: 5065
+-- Scroll of Earth Threnody
+-- Teaches the song Earth Threnody
 -----------------------------------------
 
 -----------------------------------------

@@ -1,19 +1,13 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Ciqala
---  Type: Merchant
--- @zone 235
--- @pos -283.147 -11.319 -143.680
---
--- Auto-Script: Requires Verification
---
--- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
+-- Area: Bastok Markets
+--  NPC: Ciqala
+-- Type: Merchant
+-- !pos -283.147 -11.319 -143.680 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/shop");
 require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action
@@ -29,7 +23,8 @@ end;
 function onTrigger(player,npc)
     player:showText(npc, CIQALA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
         0x4006,   224,3,     --Bronze Knuckles
         0x4007,   828,3,     --Brass Knuckles
         0x4001,   129,3,     --Cesti

@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Kemha Flasehp
 -- Type: Fishing Normal/Adv. Image Support
--- @pos -28.4 -6 -98 50
+-- !pos -28.4 -6 -98 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

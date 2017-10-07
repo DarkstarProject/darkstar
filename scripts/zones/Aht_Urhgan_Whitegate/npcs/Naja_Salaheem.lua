@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Naja Salaheem
 -- Type: Standard NPC
--- @pos 22.700 -8.804 -45.591 50
+-- !pos 22.700 -8.804 -45.591 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 

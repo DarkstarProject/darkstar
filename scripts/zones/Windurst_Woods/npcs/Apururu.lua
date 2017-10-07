@@ -3,7 +3,7 @@
 -- NPC:  Apururu
 -- Involved in Quests: The Kind Cardian, Can Cardians Cry?
 -- @zone 241
--- @pos -11 -2 13
+-- !pos -11 -2 13
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -28,22 +28,22 @@ function onTrade(player,npc,trade)
 local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
 
-    
+
     -- The Kind Cardian
-    if (TKC == QUEST_ACCEPTED) then 
-        if (trade:hasItemQty(969,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then 
+    if (TKC == QUEST_ACCEPTED) then
+        if (trade:hasItemQty(969,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
             player:startEvent(0x018d);
         end
-        
+
     -- Can Cardians Cry?
     elseif (C3 == QUEST_ACCEPTED) then
         count = trade:getItemCount();
         if (trade:hasItemQty(551,1) and count == 1) then
-            player:startEvent(0x0145,0,6000,5000); -- finish C3
+            player:startEvent(0x0145,0,20000,5000); -- finish C3
         end
-    
+
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000); -- previous quest in line
 local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
 local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
-local MissionStatus = player:getVar("MissionStatus");    
+local MissionStatus = player:getVar("MissionStatus");
 
     -- Windurst Mission 8-2
     if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING) then
@@ -71,7 +71,7 @@ local MissionStatus = player:getVar("MissionStatus");
         elseif (MissionStatus == 10) then
             player:startEvent(0x0261);
         end
-        
+
         --Windurst Mission 9-1-2
     elseif (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD) then
         if (MissionStatus == 0) then
@@ -81,7 +81,7 @@ local MissionStatus = player:getVar("MissionStatus");
         elseif (MissionStatus == 6) then --need to change satus
             player:startEvent(0x026D);
         end
-        
+
     -- Windurst Mission 1-2
     elseif (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
         if (MissionStatus == 0) then
@@ -95,28 +95,28 @@ local MissionStatus = player:getVar("MissionStatus");
             -- Mission's over - Good end (you came back with the orbs)
             player:startEvent(0x0091);
         end
-    
+
     -- The Kind Cardian
-    elseif (TKC == QUEST_ACCEPTED) then 
-            if (player:getVar("theKindCardianVar") == 0) then 
+    elseif (TKC == QUEST_ACCEPTED) then
+            if (player:getVar("theKindCardianVar") == 0) then
                 player:startEvent(0x0188);
-            elseif (player:getVar("theKindCardianVar") == 1) then 
+            elseif (player:getVar("theKindCardianVar") == 1) then
                 player:startEvent(0x0189);
-            elseif (player:getVar("theKindCardianVar") == 2) then 
+            elseif (player:getVar("theKindCardianVar") == 2) then
                 player:startEvent(0x018e);
             end
-        
+
     -- Can Cardians Cry?
     elseif (ANC3K == QUEST_COMPLETED and C3 == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 5) then
-        player:startEvent(0x013F,0,6000); -- start C3
+        player:startEvent(0x013F,0,20000); -- start C3
     elseif (C3 == QUEST_ACCEPTED) then
-        player:startEvent(0x0140,0,6000); -- C3 reminder
+        player:startEvent(0x0140,0,20000); -- C3 reminder
     elseif (C3 == QUEST_COMPLETED) then
         player:startEvent(0x014A); -- new dialog after C3
-    
+
     -- standard dialog
     else
-            player:startEvent(0x0112); 
+            player:startEvent(0x0112);
     end
 end;
 
@@ -136,25 +136,25 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     -- Windurst mission 1-2 start
-    if (csid == 0x0089) then 
+    if (csid == 0x0089) then
         player:setVar("MissionStatus",1);
-        
+
         player:addKeyItem(FIRST_DARK_MANA_ORB);    -- Give the player the key items
         player:addKeyItem(SECOND_DARK_MANA_ORB);
         player:addKeyItem(THIRD_DARK_MANA_ORB);
         player:addKeyItem(FOURTH_DARK_MANA_ORB);
         player:addKeyItem(FIFTH_DARK_MANA_ORB);
         player:addKeyItem(SIXTH_DARK_MANA_ORB);
-        
+
         player:messageSpecial(KEYITEM_OBTAINED,FIRST_DARK_MANA_ORB);    -- Display the key item messages
         player:messageSpecial(KEYITEM_OBTAINED,SECOND_DARK_MANA_ORB);
         player:messageSpecial(KEYITEM_OBTAINED,THIRD_DARK_MANA_ORB);
         player:messageSpecial(KEYITEM_OBTAINED,FOURTH_DARK_MANA_ORB);
         player:messageSpecial(KEYITEM_OBTAINED,FIFTH_DARK_MANA_ORB);
         player:messageSpecial(KEYITEM_OBTAINED,SIXTH_DARK_MANA_ORB);
-        
+
         player:setVar("MissionStatus_orb1",1);    -- Set the orb variables; 1 = not handled; 2 = handled;
         player:setVar("MissionStatus_orb2",1);
         player:setVar("MissionStatus_orb3",1);
@@ -162,33 +162,33 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus_orb5",1);
         player:setVar("MissionStatus_orb6",1);
     elseif (csid == 0x008f or csid == 0x0091) then
-        
+
         finishMissionTimeline(player,1,csid,option);
-        
+
         player:setVar("MissionStatus_orb1",0);
         player:setVar("MissionStatus_orb2",0);
         player:setVar("MissionStatus_orb3",0);
         player:setVar("MissionStatus_orb4",0);
         player:setVar("MissionStatus_orb5",0);
         player:setVar("MissionStatus_orb6",0);
-        
-        
+
+
         player:delKeyItem(FIRST_GLOWING_MANA_ORB);    -- Remove the glowing orb key items
         player:delKeyItem(SECOND_GLOWING_MANA_ORB);
         player:delKeyItem(THIRD_GLOWING_MANA_ORB);
         player:delKeyItem(FOURTH_GLOWING_MANA_ORB);
         player:delKeyItem(FIFTH_GLOWING_MANA_ORB);
         player:delKeyItem(SIXTH_GLOWING_MANA_ORB);
-    
+
     -- The Kind Cardian
-    elseif (csid == 0x0188 and option == 1) then 
+    elseif (csid == 0x0188 and option == 1) then
         player:setVar("theKindCardianVar",1);
-    elseif (csid == 0x018d) then 
+    elseif (csid == 0x018d) then
         player:delKeyItem(TWO_OF_SWORDS);
         player:setVar("theKindCardianVar",2);
         player:addFame(WINDURST,30);
         player:tradeComplete();
-        
+
     -- Windurst 8-2
     elseif (csid == 0x024C) then
         player:setVar("MissionStatus",1);
@@ -202,7 +202,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0261) then
         player:setVar("ShantottoCS",1)
         finishMissionTimeline(player,3,csid,option);
-    
+
     --Windurst 9-1
     elseif (csid == 0x026B) then
         player:setVar("MissionStatus",1);
@@ -212,5 +212,14 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",7);
         player:messageSpecial(KEYITEM_LOST,LETTER_FROM_ZONPAZIPPA);
         player:delKeyItem(LETTER_FROM_ZONPAZIPPA);
+
+    -- Can Cardians Cry
+    elseif (csid == 0x013f) then
+        player:addQuest(WINDURST,CAN_CARDIANS_CRY);
+    elseif (csid == 0x0145) then
+        player:completeQuest(WINDURST,CAN_CARDIANS_CRY);
+        player:addGil(GIL_RATE*5000);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
+        player:tradeComplete();
     end
 end;

@@ -24,12 +24,12 @@ function onMobDespawn(mob)
 
     if (Blighting_Brand_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Blighting_Brand");
-        if (ToD <= os.time(t) and GetMobAction(Blighting_Brand) == 0) then
+        if (ToD <= os.time() and GetMobAction(Blighting_Brand) == 0) then
             if (math.random(1,5) == 5) then
                 UpdateNMSpawnPoint(Blighting_Brand);
                 GetMobByID(Blighting_Brand):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Blighting_Brand", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
      end

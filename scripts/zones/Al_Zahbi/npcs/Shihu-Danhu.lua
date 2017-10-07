@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 -- NPC:  Shihu-Danhu
 -- Warp NPC
--- @pos 62.768 -1.98 -51.299 48
+-- !pos 62.768 -1.98 -51.299 48
 -----------------------------------
 
 require("scripts/globals/besieged");
@@ -19,13 +19,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (getAstralCandescence() == 1) then
         player:startEvent(0x0067);
     else
         player:messageSpecial(0); -- Missing the denied due to lack of Astral Candescence message.
     end
-    
+
 end;
 
 -----------------------------------
@@ -44,14 +44,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0067 and option == 1) then
         -- If you use TP, you need to wait 1 real day for using Kaduru TP
         player:setVar("ShihuDanhu_TP_date",os.date("%j"));
-        
+
         -- Random TP positions
         -- Coordinates marked {R} have been obtained by packet capture from retail. Don't change them.
-        -- TODO: if we have astral candesence, then 
+        -- TODO: if we have astral candesence, then
         local warp = math.random(1,5);
         if (warp == 1) then
             player:setPos(-1.015, 8.999, -52.962, 192, 243);   -- Ru Lude Gardens (H-9)     {R}
@@ -64,9 +64,9 @@ function onEventFinish(player,csid,option)
         elseif (warp == 5) then
             player:setPos(167.093, 18.095, -213.352, 73, 126); -- Qufim Island (I-9)         {R}
         end
-        
+
         -- TODO: elseif candesence is lost, then
-        -- tele to bat downs, rolanberry, qufim, sauro. POSITIONS ARE DIFFERENT. need packet captures. 
+        -- tele to bat downs, rolanberry, qufim, sauro. POSITIONS ARE DIFFERENT. need packet captures.
     end
-    
+
 end;

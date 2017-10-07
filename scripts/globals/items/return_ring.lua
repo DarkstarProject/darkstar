@@ -3,11 +3,11 @@
 -- Teleport Return Ring
 -- Enchantment: "Outpost Warp"
 -----------------------------------------
-
-require("scripts/globals/zone");
-require("scripts/globals/status");
-require("scripts/globals/conquest");
 require("scripts/globals/teleports");
+require("scripts/globals/conquest");
+require("scripts/globals/status");
+require("scripts/globals/zone");
+require("scripts/globals/msg");
 
 -----------------------------------------
 -- OnItemCheck
@@ -18,7 +18,7 @@ function onItemCheck(target)
     local region = target:getCurrentRegion();
 
     if (hasOutpost(target, target:getCurrentRegion()) == REGION_UNKNOWN or GetRegionOwner(region) ~= target:getNation()) then
-        result = MSGBASIC_CANT_BE_USED_IN_AREA;
+        result = msgBasic.CANT_BE_USED_IN_AREA;
     end
 
     return result;

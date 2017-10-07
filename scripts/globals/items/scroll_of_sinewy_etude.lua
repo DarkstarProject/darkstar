@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5032
---    Scroll of Sinewy Etude
---    Teaches the song Sinewy Etude
+-- ID: 5032
+-- Scroll of Sinewy Etude
+-- Teaches the song Sinewy Etude
 -----------------------------------------
 
 -----------------------------------------

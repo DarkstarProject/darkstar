@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Riverne Site #B01
 -- Name: Storms of Fate
--- @pos 299 -123 345 146
+-- !pos 299 -123 345 146
 -----------------------------------
 package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +32,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_COMPLETED) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
@@ -51,10 +51,10 @@ end;
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
         if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2) then
             player:addKeyItem(WHISPER_OF_THE_WYRMKING);
@@ -66,5 +66,5 @@ function onEventFinish(player,csid,option)
             end;
         end
     end
-    
+
 end;

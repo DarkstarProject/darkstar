@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5094
---    Scroll of Boost-STR
---    Teaches the white magic Boost-STR
+-- ID: 5094
+-- Scroll of Boost-STR
+-- Teaches the white magic Boost-STR
 -----------------------------------------
 
 -----------------------------------------

@@ -3,7 +3,7 @@
 --  NPC: Berstrogus
 --  Type: Standard NPC
 --  @zone 256
--- @pos -44 4 -10
+-- !pos -44 4 -10
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -41,5 +41,5 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
 end;

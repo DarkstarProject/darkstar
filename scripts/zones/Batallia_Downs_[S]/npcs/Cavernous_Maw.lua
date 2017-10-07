@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Batallia Downs [S]
 --  NPC: Cavernous Maw
--- @pos -48 0 435 84
+-- !pos -48 0 435 84
 -- Teleports Players to Batallia Downs
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs_[S]/TextIDs"] = nil;
@@ -66,5 +66,5 @@ function onEventFinish(player,csid,option)
         end
         toMaw(player,2);
     end
-    
+
 end;

@@ -2,7 +2,7 @@
 --  Area: Jugner Forest
 --  NPC:  qm2 (???)
 --  Involved in Quest: Sin Hunting - RNG AF1
--- @pos -10.946,-1.000,313.810 104
+-- !pos -10.946,-1.000,313.810 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
@@ -23,8 +23,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-   
-      local SinHunting = player:getVar("sinHunting");-- RNG AF1 
+
+      local SinHunting = player:getVar("sinHunting");-- RNG AF1
 
     if (SinHunting == 4) then
         player:startEvent(0x000d, 0, 1107);

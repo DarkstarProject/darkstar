@@ -3,8 +3,8 @@
 --   NPC: Rondipur
 --  Type: Quest Giver
 -- @zone 231
--- @pos -154.415 10.999 153.744
--- 
+-- !pos -154.415 10.999 153.744
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

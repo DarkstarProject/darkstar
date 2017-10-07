@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RuAun_Gardens
 -- NPC:  HomePoint#3
--- @pos -312 -42 -422 130
+-- !pos -312 -42 -422 130
 -----------------------------------
 
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21fe, 61);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21fe) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

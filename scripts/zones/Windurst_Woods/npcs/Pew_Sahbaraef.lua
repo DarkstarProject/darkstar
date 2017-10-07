@@ -1,14 +1,11 @@
 ----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Pew Sahbaraef
---  Type: Item Deliverer
---  @zone 241
--- @pos 61.899 -2.5 -112.956
-
---
+-- Type: Item Deliverer
+-- !pos 61.899 -2.5 -112.956 241
 -----------------------------------
-
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Bibiki Bay
 -- NPC:  Mep Nhapopoluko
 -- Type: Guild Merchant NPC (Fishing Guild)
--- @pos 464.350 -6 752.731 4
+-- !pos 464.350 -6 752.731 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------

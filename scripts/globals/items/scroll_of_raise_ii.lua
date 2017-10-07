@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4621
---    Scroll of Raise II
---    Teaches the white magic Raise II
+-- ID: 4621
+-- Scroll of Raise II
+-- Teaches the white magic Raise II
 -----------------------------------------
 
 -----------------------------------------

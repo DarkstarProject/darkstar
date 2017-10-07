@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4781
---    Scroll of Water V
---    Teaches the black magic Water V
+-- ID: 4781
+-- Scroll of Water V
+-- Teaches the black magic Water V
 -----------------------------------------
 
 -----------------------------------------

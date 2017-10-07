@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4873
---    Scroll of Retrace
---    Teaches the black magic Retrace
+-- ID: 4873
+-- Scroll of Retrace
+-- Teaches the black magic Retrace
 -----------------------------------------
 
 -----------------------------------------

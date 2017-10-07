@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4966
---    Scroll of Myoshu: Ichi
---    Teaches the ninjutsu Myoshu: Ichi
+-- ID: 4966
+-- Scroll of Myoshu: Ichi
+-- Teaches the ninjutsu Myoshu: Ichi
 -----------------------------------------
 
 -----------------------------------------

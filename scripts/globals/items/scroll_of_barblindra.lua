@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4697
---    Scroll of Barblindra
---    Teaches the white magic Barblindra
+-- ID: 4697
+-- Scroll of Barblindra
+-- Teaches the white magic Barblindra
 -----------------------------------------
 
 -----------------------------------------

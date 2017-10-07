@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5281
---    Old Bolt Box +3
---    When used, you will obtain one partial stack of Dogbolt +3
+-- ID: 5281
+-- Old Bolt Box +3
+-- When used, you will obtain one partial stack of Dogbolt +3
 -----------------------------------------
 
 -----------------------------------------
@@ -22,7 +22,5 @@ end;
 
 function onItemUse(target)
     local quantity = math.random(99);
-    quantity = math.random(99);
-    quantity = math.random(99);
     target:addItem(18192,quantity);
 end;

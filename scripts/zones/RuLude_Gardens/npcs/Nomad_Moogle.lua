@@ -2,7 +2,7 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Nomad Moogle
 -- Type: Adventurer's Assistant
--- @pos 10.012 1.453 121.883 243
+-- !pos 10.012 1.453 121.883 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

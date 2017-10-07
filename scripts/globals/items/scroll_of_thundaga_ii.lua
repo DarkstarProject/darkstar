@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4803
---    Scroll of Thundaga II
---    Teaches the black magic Thundaga II
+-- ID: 4803
+-- Scroll of Thundaga II
+-- Teaches the black magic Thundaga II
 -----------------------------------------
 
 -----------------------------------------

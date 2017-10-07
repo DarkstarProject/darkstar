@@ -2,7 +2,7 @@
 -- Area: Rolanberry Fields
 --  NPC: Mayuyu
 -- Legion NPC
--- @pos 240 24.399 468
+-- !pos 240 24.399 468
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------

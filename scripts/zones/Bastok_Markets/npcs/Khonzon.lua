@@ -1,13 +1,11 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --  NPC: Khonzon
---  Type: Item Deliverer
---  @zone 235
--- @pos -323.744 -16.001 -88.698
---
+-- Type: Item Deliverer
+-- !pos -323.744 -16.001 -88.698 235
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------

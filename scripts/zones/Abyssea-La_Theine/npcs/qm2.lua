@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm2 (???)
 -- Spawns Trudging Thomas
--- @pos ? ? ? 132
+-- !pos ? ? ? 132
 -----------------------------------
 require("scripts/globals/status");
 

@@ -34,8 +34,8 @@ function onMobRoam(mob)
         if (Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH] ~= nil) then
             if (GetMobAction(Voluptuous_Vilma) == 0) then
                 SetServerVariable("Voluptuous_Vilma_PH", Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH]);
-                DeterMob(Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH], true);
-                DeterMob(Voluptuous_Vilma, false);
+                DisallowRespawn(Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH], true);
+                DisallowRespawn(Voluptuous_Vilma, false);
                 DespawnMob(Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH]);
                 SpawnMob(Voluptuous_Vilma, "", 0);
             end
@@ -62,8 +62,8 @@ function onMobDespawn(mob)
 
     GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random(36000,37800));
     SetServerVariable("Rose_Garden_PH", 0);
-    DeterMob(Rose_Garden, true);
-    DeterMob(Rose_Garden_PH, false);
+    DisallowRespawn(Rose_Garden, true);
+    DisallowRespawn(Rose_Garden_PH, false);
     SpawnMob(Rose_Garden_PH, "", GetMobRespawnTime(Rose_Garden_PH));
 
 end;

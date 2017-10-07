@@ -31,7 +31,7 @@
 #include <functional>
 
 template<class _Ty>
-	struct greater_equal: public std::binary_function<_Ty, _Ty, bool>
+	struct greater_equal
 {	// functor for operator>
 	bool operator()(const _Ty& _Left, const _Ty& _Right) const
 	{	// apply operator> to operands

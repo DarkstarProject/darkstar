@@ -16,7 +16,13 @@ function onSpellCast(caster,target,spell)
     local pCHR = caster:getStat(MOD_CHR);
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
-    local resm = applyResistanceEffect(caster,spell,target,dCHR,SINGING_SKILL,0,EFFECT_LULLABY);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_CHR;
+    params.skillType = SINGING_SKILL;
+    params.bonus = 0;
+    params.effect = EFFECT_LULLABY;
+    resm = applyResistanceEffect(caster, target, spell, params);
 
     if (resm < 0.5) then
         spell:setMsg(85);--resist message

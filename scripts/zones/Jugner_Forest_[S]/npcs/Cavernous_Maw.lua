@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Jugner Forest [S]
 --  NPC: Cavernous Maw
--- @pos -118 -8 -520 82
+-- !pos -118 -8 -520 82
 -- Teleports Players to Jugner Forest
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;

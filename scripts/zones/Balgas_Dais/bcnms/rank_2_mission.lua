@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- Name: Mission Rank 2
--- @pos 299 -123 345 146
+-- !pos 299 -123 345 146
 -----------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------
@@ -29,7 +29,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(player:getNation(),5)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
@@ -39,16 +39,16 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
         if (player:hasKeyItem(DARK_KEY)) then
             player:addKeyItem(KINDRED_CREST);
@@ -57,5 +57,5 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(DARK_KEY);
         end
     end
-    
+
 end;

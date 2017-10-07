@@ -2,7 +2,7 @@
 -- Area: North Gustaberg
 -- NPC:  Monument
 -- Involved in Quest "Hearts of Mythril"
--- @pos 300.000 -62.803 498.200 106
+-- !pos 300.000 -62.803 498.200 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 
     local Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 
-    if (Hearts == QUEST_ACCEPTED) then
+    if (Hearts == QUEST_ACCEPTED and player:hasKeyItem(BOUQUETS_FOR_THE_PIONEERS)) then
         player:startEvent(0x000b);
     end
 
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:setVar("HeartsOfMythril",1);
         player:delKeyItem(BOUQUETS_FOR_THE_PIONEERS);
     end
-    
+
 end;
 
 

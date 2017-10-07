@@ -3,9 +3,9 @@
 -- Item: Cruel Scythe
 -- Additional Effect: Impairs evasion
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -19,6 +19,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(EFFECT_EVASION_DOWN)
         target:addStatusEffect(EFFECT_EVASION_DOWN, 12, 0, 60); -- Retail is actually 12.5% but DSP doesn't have the decimal place
-        return SUBEFFECT_EVASION_DOWN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_EVASION_DOWN;
+        return SUBEFFECT_EVASION_DOWN, msgBasic.ADD_EFFECT_STATUS, EFFECT_EVASION_DOWN;
     end
 end;

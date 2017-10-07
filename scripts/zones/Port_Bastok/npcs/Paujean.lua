@@ -2,7 +2,7 @@
 -- Area: Port Bastok
 --  NPC: Paujean
 -- Starts & Finishes Quest: Silence of the Rams
--- @pos -93.738 4.649 34.373 236
+-- !pos -93.738 4.649 34.373 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

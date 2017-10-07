@@ -3,8 +3,8 @@
 --   NPC: Shakir
 --  Type: Standard NPC
 -- @zone 231
--- @pos 48.952 -2.999 -16.687
--- 
+-- !pos 48.952 -2.999 -16.687
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

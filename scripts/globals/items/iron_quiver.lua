@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4225
---    Iron Quiver
---    When used, you will obtain one stack of Iron Arrows
+-- ID: 4225
+-- Iron Quiver
+-- When used, you will obtain one stack of Iron Arrows
 -----------------------------------------
 
 -----------------------------------------

@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 -- NPC:  Breanainn
 -- @zone 240
--- @pos 212 -6 96
+-- !pos 212 -6 96
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 -- NPC: Goraow
 -- Starts Quests: Vengeful Wrath
--- @pos 38 .1 14 234
+-- !pos 38 .1 14 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -35,9 +35,9 @@ function onTrigger(player,npc)
 
     local Vengeful = player:getQuestStatus(BASTOK,VENGEFUL_WRATH);
     local Fame = player:getFameLevel(BASTOK);
-    
+
     local WildcatBastok = player:getVar("WildcatBastok");
-    
+
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,16) == false) then
         player:startEvent(0x01fa);
     elseif (Vengeful == QUEST_AVAILABLE and Fame >= 3) then

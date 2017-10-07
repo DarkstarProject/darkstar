@@ -20,7 +20,13 @@ function onSpellCast(caster,target,spell)
     local duration = 60;
 
     --Resist
-    local resist = applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_BIND);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 35;
+    params.bonus = 0;
+    params.effect = EFFECT_BIND;
+    resist = applyResistanceEffect(caster, target, spell, params);
 
     if (resist >= 0.5) then --Do it!
         --Try to erase a weaker bind.

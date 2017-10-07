@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5079
---    Scroll of Foe Lullaby II
---    Teaches the song Foe Lullaby II
+-- ID: 5079
+-- Scroll of Foe Lullaby II
+-- Teaches the song Foe Lullaby II
 -----------------------------------------
 
 -----------------------------------------

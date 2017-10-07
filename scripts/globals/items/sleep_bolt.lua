@@ -5,6 +5,7 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -27,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_SLEEP_I)) then
             target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
         end
-        return SUBEFFECT_SLEEP, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_SLEEP_I;
+        return SUBEFFECT_SLEEP, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLEEP_I;
     end
 end;

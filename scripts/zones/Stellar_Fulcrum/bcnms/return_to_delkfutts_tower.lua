@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Stellar Fulcrum
 -- Name: Mission 5-2
--- @pos -520 -4 17 179
+-- !pos -520 -4 17 179
 -----------------------------------
 package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
 -------------------------------------
@@ -30,7 +30,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(ZILART,RETURN_TO_DELKFUTTS_TOWER)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
@@ -40,16 +40,16 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
         if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER) then
             player:completeMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
@@ -61,5 +61,5 @@ function onEventFinish(player,csid,option)
             player:startEvent(17);
         end
     end
-    
+
 end;

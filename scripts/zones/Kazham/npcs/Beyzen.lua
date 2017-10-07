@@ -3,8 +3,8 @@
 --   NPC: Beyzen
 --  Type: Event Scene Replayer
 -- @zone 250
--- @pos -53.976 -10.769 -74.771
--- 
+-- !pos -53.976 -10.769 -74.771
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;

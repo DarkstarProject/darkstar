@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Western Altepa Desert
 -- NPC:  <this space intentionally left blank>
--- @pos -152 -16 20 125
+-- !pos -152 -16 20 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

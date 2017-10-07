@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters
 -- NPC:  Kopopo
--- Guild Merchant NPC: Cooking Guild 
--- @pos -103.935 -2.875 74.304 238
+-- Guild Merchant NPC: Cooking Guild
+-- !pos -103.935 -2.875 74.304 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     if (player:sendGuild(530,5,20,7)) then
         player:showText(npc,KOPOPO_SHOP_DIALOG);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

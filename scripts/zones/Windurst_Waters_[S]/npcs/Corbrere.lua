@@ -3,8 +3,8 @@
 --   NPC: Corbrere
 --  Type: Standard NPC
 -- @zone 94
--- @pos -46.925 -4.5 49.006
--- 
+-- !pos -46.925 -4.5 49.006
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

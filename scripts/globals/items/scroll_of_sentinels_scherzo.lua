@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5078
---    Scroll of Sentinel's Scherzo
---    Teaches the song Sentinel's Scherzo
+-- ID: 5078
+-- Scroll of Sentinel's Scherzo
+-- Teaches the song Sentinel's Scherzo
 -----------------------------------------
 
 -----------------------------------------

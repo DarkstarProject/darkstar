@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
 --  NPC: Cavernous Maw
--- @pos 418 25 27 109
+-- !pos 418 25 27 109
 -- Teleports Players to Pashhow Marshlands [S]
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;

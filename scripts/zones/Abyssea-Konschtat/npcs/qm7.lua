@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
 --  NPC: qm7 (???)
--- Spawns Clingy Clare
--- @pos ? ? ? 15
+-- Spawns Bloodguzzler
+-- !pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
 
@@ -12,9 +12,9 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(2907,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(16838946) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(16838946):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+    if (trade:hasItemQty(2903,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+        if (GetMobAction(16838899) == ACTION_NONE) then -- Mob not already spawned from this
+            SpawnMob(16838899):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
         end
     end
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 2907); -- Inform payer what items they need.
+    player:startEvent(1010, 2903); -- Inform payer what items they need.
 end;
 
 -----------------------------------

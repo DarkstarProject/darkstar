@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4858
---    Scroll of Ice Spikes
---    Teaches the black magic Ice Spikes
+-- ID: 4858
+-- Scroll of Ice Spikes
+-- Teaches the black magic Ice Spikes
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- NPC:  <this space intentionally left blank>
--- @pos 450 -40 -31 139
+-- !pos 450 -40 -31 139
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------

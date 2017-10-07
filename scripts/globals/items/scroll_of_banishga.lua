@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4646
---    Scroll of Banishga
---    Teaches the white magic Banishga
+-- ID: 4646
+-- Scroll of Banishga
+-- Teaches the white magic Banishga
 -----------------------------------------
 
 -----------------------------------------

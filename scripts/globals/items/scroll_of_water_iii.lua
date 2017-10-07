@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4779
---    Scroll of Water III
---    Teaches the black magic Water III
+-- ID: 4779
+-- Scroll of Water III
+-- Teaches the black magic Water III
 -----------------------------------------
 
 -----------------------------------------

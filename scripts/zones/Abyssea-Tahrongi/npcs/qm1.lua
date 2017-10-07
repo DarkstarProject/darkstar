@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm1 (???)
 -- Spawns Halimede
--- @pos ? ? ? 45
+-- !pos ? ? ? 45
 -----------------------------------
 require("scripts/globals/status");
 

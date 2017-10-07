@@ -2,7 +2,7 @@
 -- Area: Bhaflau Thickets
 --  NPC: Daswil
 -- Type: Assault
--- @pos -208.720 -12.889 -779.713 52
+-- !pos -208.720 -12.889 -779.713 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------

@@ -3,7 +3,7 @@
 -- NPC: Agapito
 -- Start & Finishes Quest: The Stars of Ifrit
 -- @zone 236
--- @pos -72.093 -3.097 9.309
+-- !pos -72.093 -3.097 9.309
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

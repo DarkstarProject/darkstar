@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5069
---    Scroll of Dark Threnody
---    Teaches the song Dark Threnody
+-- ID: 5069
+-- Scroll of Dark Threnody
+-- Teaches the song Dark Threnody
 -----------------------------------------
 
 -----------------------------------------

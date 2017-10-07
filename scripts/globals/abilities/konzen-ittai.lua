@@ -5,10 +5,10 @@
 -- Recast Time: 0:03:00
 -- Duration: 1:00 or until next Weapon Skill
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -16,7 +16,7 @@ require("scripts/globals/weaponskills");
 
 function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
-        return MSGBASIC_REQUIRES_COMBAT,0;
+        return msgBasic.REQUIRES_COMBAT,0;
     else
         return 0,0;
     end

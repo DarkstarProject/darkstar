@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4774
---    Scroll of Thunder III
---    Teaches the black magic Thunder III
+-- ID: 4774
+-- Scroll of Thunder III
+-- Teaches the black magic Thunder III
 -----------------------------------------
 
 -----------------------------------------

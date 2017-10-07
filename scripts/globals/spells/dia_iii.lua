@@ -4,7 +4,6 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Dia III value per point is '30' This is a constant set in the table 'merits'
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -19,16 +18,28 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    --calculate raw damage
+    -- calculate raw damage
     local basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
-    local dmg = calculateMagicDamage(basedmg,5,caster,spell,target,ENFEEBLING_MAGIC_SKILL,MOD_INT,false);
+    local params = {};
+    params.dmg = basedmg;
+    params.multiplier = 5;
+    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.attribute = MOD_INT;
+    params.hasMultipleTargetReduction = false;
+
+    local dmg = calculateMagicDamage(caster, target, spell, params);
 
     -- Softcaps at 32, should always do at least 1
 
     dmg = utils.clamp(dmg, 1, 32);
 
-    --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ENFEEBLING_MAGIC_SKILL,1.0);
+    -- get resist multiplier (1x if no resist)
+    local params = {};
+    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+    params.attribute = MOD_INT;
+    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.bonus = 1.0;
+    resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -38,20 +49,18 @@ function onSpellCast(caster,target,spell)
     --add in final adjustments including the actual damage dealt
     local final = finalMagicAdjustments(caster,target,spell,dmg);
 
-    -- Calculate duration.
+    -- Calculate duration and bonus
     local duration = caster:getMerit(MERIT_DIA_III);
-    local dotBonus = 0;
-    
-    if (duration == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
+    local dotBonus = caster:getMod(MOD_DIA_DOT);  -- Dia Wand
+
+    if (duration == 0) then -- if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150;
     end
 
     if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
+        caster:delStatusEffect(EFFECT_SABOTEUR);
     end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
-    
-    dotBonus = dotBonus+caster:getMod(MOD_DIA_DOT);  -- Dia Wand
 
     -- Check for Bio.
     local bio = target:getStatusEffect(EFFECT_BIO);

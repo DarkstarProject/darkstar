@@ -1,11 +1,10 @@
 ---------------------------------------------------
 -- Whispering Wind
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onAbilityCheck(player, target, ability)
@@ -18,7 +17,7 @@ function onPetAbility(target, pet, skill)
     if (target:getHP()+base > target:getMaxHP()) then
         base = target:getMaxHP() - target:getHP(); --cap it
     end
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
     target:addHP(base);
     return base;
 end
