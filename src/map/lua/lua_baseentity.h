@@ -228,8 +228,6 @@ public:
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
 
-    int32 isInBattlefieldList(lua_State*);  // Return true is the mob is in battlefield list
-
     int32 getVar(lua_State*);               // Returns a character variable
     int32 setVar(lua_State*);               // Sets a character variable
     int32 addVar(lua_State*);               // Increments/decriments/sets a character variable

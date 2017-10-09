@@ -253,7 +253,7 @@ void CBattlefield::ApplyLevelCap(CCharEntity* PChar) const
 
     if (cap)
     {
-        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH);
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
         PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_RESTRICTION, cap, 0, 0));
     }
 }

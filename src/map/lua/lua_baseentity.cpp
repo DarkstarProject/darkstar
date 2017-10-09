@@ -7486,21 +7486,8 @@ inline int32 CLuaBaseEntity::addRecast(lua_State* L)
 inline int32 CLuaBaseEntity::getBattlefieldID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
-
-    int16 inst = -1;
-
-    if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
-    {
-        auto PBattlefield = PChar->loc.zone->m_BattlefieldHandler->GetBattlefield(PChar);
-        if (PBattlefield)
-            inst = PBattlefield->GetID();
-    }
-
-    lua_pushinteger(L, inst);
+    
+    lua_pushinteger(L, m_PBaseEntity->PBattlefield ? m_PBaseEntity->PBattlefield->GetID() : -1);
     return 1;
 }
 
@@ -7525,7 +7512,6 @@ inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
 
 inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
 {
-
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
@@ -7550,20 +7536,6 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
     PMob->m_AllowRespawn = true;
 
     return 0;
-}
-
-/************************************************************************
-*                                                                       *
-*  Check if mob is in battlefield list                                  *
-*                                                                       *
-************************************************************************/
-
-inline int32 CLuaBaseEntity::isInBattlefieldList(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    
-    lua_pushboolean(L, m_PBaseEntity->PBattlefield != nullptr);
-    return 1;
 }
 
 /************************************************************************
@@ -9431,7 +9403,7 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    auto PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity);
+    auto PBattlefield = m_PBaseEntity->PBattlefield;
 
     if (PBattlefield)
     {
@@ -11137,7 +11109,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateNPCHideTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefieldList),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkValorCredit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),

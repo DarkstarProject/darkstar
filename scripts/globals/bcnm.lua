@@ -147,10 +147,10 @@ end
 
 function CheckPartyMemberRequirements(player, battlefieldId, isUpdate, isTrade)
     -- todo: this is actually retarded, perform actual checks for entry
+    local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
 
     if isUpdate then
-        local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
-        local battlefield = player:getZone():getBattlefieldByInitiator(effect:getSubType())
+        local battlefield = player:getBattlefield()
         if not battlefield then
             -- battlefield doesnt exist or initiator left zone before i could enter
             return false
@@ -162,7 +162,7 @@ function CheckPartyMemberRequirements(player, battlefieldId, isUpdate, isTrade)
     else
         -- todo: check member requirements
     end
-    return bit.lshift(1, 11)
+    return GetCutsceneParam(effect:getPower(), player:getZoneID(), 1)
 end
 
 
@@ -305,7 +305,7 @@ end
 
 function EventTriggerBCNM(player, npc)
     if player:hasStatusEffect(EFFECT_BATTLEFIELD) then
-        if player:isInBattlefieldList() then
+        if player:isInBattlefield() then
             -- todo: this should maybe be bounds check in case initiator disconnects while party enters
             player:startEvent(0x7d03) -- Run Away or Stay menu
         else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
@@ -486,15 +486,16 @@ function CheckNonTradeBCNM(player, npc, getBitmask, battlefieldId)
     for keyid, condition in pairs(initiator_checks.trigger[Zone]) do
         if condition() and GetCutsceneParam(keyid, Zone, getBitmask) then
             mask = mask + GetCutsceneParam(keyid, Zone, getBitmask)
-            -- we only get battlefieldId param passed if running from eventupdate
-            player:setLocalVar("[battlefield]initiated", 1)
             if battlefieldId == keyid then
                 return mask
             end
         end
     end
-
-    player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0)
+    if not battlefieldId then
+        player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0)
+        -- we only get battlefieldId param passed if running from eventupdate
+        player:setLocalVar("[battlefield]initiated", 1)
+    end
     return mask;
 end
 
@@ -509,18 +510,15 @@ function EventUpdateBCNM(player, csid, option, entrance)
         local id = battlefieldId or player:getBattlefieldID()
         local isInitiator = player:getLocalVar("[battlefield]initiated")
 
-        if option ~= 255 then
+        --if option ~= 255 then
             local clearTime, name, partySize = 1
             local canRegister = false
 
             -- is this a party member or initiator
             if effect then
-                if not player:isInBattlefieldList() then
-                    -- todo: actual checks for party members
-                    canRegister = CheckPartyMemberRequirements(player, battlefieldId, true, true)
-                end
+                canRegister = CheckPartyMemberRequirements(player, battlefieldId, true, true)
             else
-                if isInitiator == 1 then
+                if isInitiator then
                     print("ass")
                     canRegister = TradeBCNM(player, zone, nil, nil, battlefieldId, true) or
                                     (skip or CheckNonTradeBCNM(player, npc, 1, battlefieldId))
@@ -531,13 +529,16 @@ function EventUpdateBCNM(player, csid, option, entrance)
 
             if canRegister then
                 if isInitiator then
+                    print("cunt")
                     result = player:registerBattlefield(id, area + 1)
                 else
-                    result = player:registerBattlefield()
+                    print("fucktard")
+                    result = player:registerBattlefield(id, area, effect:getSubType())
                 end
             end
 
             if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
+                print("area "..area)
                 player:setLocalVar("[battlefield]area", area + 1)
             else
                 local battlefield = player:getBattlefield()
@@ -546,7 +547,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
                     mask = battlefield:getID()
                 end
                 -- register party members
-                if isInitiator == 1 then
+                if isInitiator then
                     effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
                     for _, member in pairs(player:getAlliance()) do
                         if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
@@ -556,15 +557,12 @@ function EventUpdateBCNM(player, csid, option, entrance)
                     player:getBattlefield():setLocalVar("trade_id", player:getLocalVar("[battlefield]trade_id"))
                 end
             end
-
-            player:updateEvent(result, battlefieldIndex - 1, 0, clearTime, partySize, skip)
-            player:updateEventString(name)
-
-            if (result >= g_Battlefield.STATUS.LOCKED) or (result >= g_Battlefield.RETURNCODE.LOCKED) or not canRegister then
-                print("hemorrhoids")
-                return 0
-            end
-        end
+            --if not player:isInBattlefield() then
+                player:updateEvent(result, battlefieldIndex - 1, 0, clearTime, partySize, skip)
+                player:updateEventString(name)
+            --end
+            return canRegister and result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
+        --end
     end
    return 1
 end
