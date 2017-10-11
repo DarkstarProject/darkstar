@@ -65,7 +65,8 @@ enum EFFECTFLAG
     EFFECTFLAG_CONFRONTATION    = 0x80000,
     EFFECTFLAG_LOGOUT           = 0x100000,
     EFFECTFLAG_BLOODPACT        = 0x200000,
-    EFFECTFLAG_ON_JOBCHANGE     = 0x400000  // Removes effect when you change jobs
+    EFFECTFLAG_ON_JOBCHANGE     = 0x400000, // Removes effect when you change jobs
+    EFFECTFLAG_NO_CANCEL        = 0x800000  // CAN NOT CLICK IT OFF IN CLIENT
 };
 
 enum EFFECT
