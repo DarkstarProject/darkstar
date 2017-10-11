@@ -2490,6 +2490,11 @@ namespace charutils
 
         for (int32 i = 0; i < 48; ++i)
         {
+            //ignore unused skills
+            if((i >= 13 && i <= 21) || (i >= 46 && i <= 47))
+            {
+                continue;
+            }
             uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetMJob(), PChar->GetMLevel());
             uint16 MaxSSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetSJob(), PChar->GetSLevel());
             uint16 skillBonus = 0;
@@ -2561,12 +2566,8 @@ namespace charutils
                 }
             }
 
-            //ignore these indexes when calculating merits
-            if (i > 0 && (i < 13 || i > 21) && i < 46)
-            {
-                skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
-                meritIndex++;
-            }
+            skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
+            meritIndex++;
 
             skillBonus += PChar->getMod(static_cast<Mod>(i + 79));
 
