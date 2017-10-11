@@ -371,14 +371,6 @@ int32 login_config_read(const char *cfgName)
         {
             login_config.search_server_port = atoi(w2);
         }
-        else if (strcmp(w1, "expansions") == 0)
-        {
-            login_config.expansions = atoi(w2);
-        }
-        else if (strcmp(w1, "features") == 0)
-        {
-            login_config.features = atoi(w2);
-        }
         else if (strcmp(w1, "servername") == 0)
         {
             login_config.servername = std::string(w2);
@@ -458,7 +450,6 @@ int32 login_config_default()
     login_config.login_auth_ip = "127.0.0.1";
     login_config.login_auth_port = 54231;
 
-    login_config.expansions = 0xFFFF;
     login_config.servername = "DarkStar";
 
     login_config.mysql_host = "";
