@@ -747,7 +747,7 @@ public:
 
     uint32  GetTickTime();
     uint32  GetDuration();
-    time_point  GetLastTick();
+    int  GetElapsedTickCount();
     time_point  GetStartTime();
     CBattleEntity* GetOwner();
 
@@ -762,7 +762,7 @@ public:
     void    SetOwner(CBattleEntity* Owner);
     void    SetTickTime(uint32 tick);
 
-    void    SetLastTick(time_point LastTick);
+    void    IncrementElapsedTickCount();
     void    SetStartTime(time_point StartTime);
 
     void    addMod(Mod modType, int16 amount);
@@ -788,21 +788,21 @@ public:
 
 private:
 
-    CBattleEntity* m_POwner;            // владелец
+    CBattleEntity* m_POwner {nullptr};            // владелец
 
-    EFFECT      m_StatusID;             // основной тип эффекта
-    uint32      m_SubID;                // дополнительный тип эффекта
-    uint16      m_Icon;                 // иконка эффекта
-    uint16      m_Power;                // сила эффекта
-    uint16      m_SubPower;             // Secondary power of the effect
-    uint16      m_Tier;                 // Tier of the effect
-    uint32      m_Flag;                 // флаг эффекта (условия его исчезновения)
-    uint16      m_Type;                 // used to enforce only one
+    EFFECT      m_StatusID {EFFECT_NONE};             // основной тип эффекта
+    uint32      m_SubID {0};                // дополнительный тип эффекта
+    uint16      m_Icon {0};                 // иконка эффекта
+    uint16      m_Power {0};                // сила эффекта
+    uint16      m_SubPower {0};             // Secondary power of the effect
+    uint16      m_Tier {0};                 // Tier of the effect
+    uint32      m_Flag {0};                 // флаг эффекта (условия его исчезновения)
+    uint16      m_Type {0};                 // used to enforce only one
 
-    uint32      m_TickTime;             // время повторения эффекта (млс)
-    uint32      m_Duration;             // продолжительность эффекта (млс)
+    uint32      m_TickTime {0};             // время повторения эффекта (млс)
+    uint32      m_Duration {0};             // продолжительность эффекта (млс)
     time_point  m_StartTime;            // время получения эффекта (млс)
-    time_point  m_LastTick;             // премя последнего выполнения эффекта (млс)
+    int         m_tickCount {0};             // премя последнего выполнения эффекта (млс)
 
     string_t    m_Name;                 // имя эффекта для скриптов
 };

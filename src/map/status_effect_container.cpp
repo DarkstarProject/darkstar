@@ -1327,12 +1327,12 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
 
     if (!m_POwner->isDead())
     {
-        if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
-        {
-            return;
-        }
+        //if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
+        //{
+        //    return;
+        //}
 
-        m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
+        //m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
         m_EffectCheckTime = tick;
 
         for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
@@ -1340,9 +1340,9 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
             CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
             if (PStatusEffect->GetTickTime() != 0 &&
-                PStatusEffect->GetLastTick() + std::chrono::milliseconds(PStatusEffect->GetTickTime()) <= tick)
+                PStatusEffect->GetElapsedTickCount() < std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
             {
-                PStatusEffect->SetLastTick(tick);
+                PStatusEffect->IncrementElapsedTickCount();
                 luautils::OnEffectTick(m_POwner, PStatusEffect);
             }
 
