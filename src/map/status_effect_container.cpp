@@ -560,8 +560,8 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
     {
         if (m_StatusEffectList.at(i)->GetIcon() == IconID)
         {
-            // think this covers all the removable effects
-            if (!(m_StatusEffectList.at(i)->GetFlag() & (EFFECTFLAG_CONFRONTATION | EFFECTFLAG_FOOD | EFFECTFLAG_ERASABLE)))
+            // This covers all effects that client can remove. Function not used for anything the server removes.
+            if (!(m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_NO_CANCEL))
                 RemoveStatusEffect(i--);
         }
     }
@@ -1289,7 +1289,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
             uint32 duration = 0;
-            
+
             if (PStatusEffect->GetDuration() > 0)
             {
                 auto seconds = std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
