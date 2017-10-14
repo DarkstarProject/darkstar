@@ -79,7 +79,7 @@ static bool read_to_vector(const std::string &file, std::vector<uint32> &vec)
     fseek(f, 0, SEEK_SET);
 
     vec.resize(size / sizeof(uint32));
-    if (fread(vec.data(), sizeof(uint32), vec.size(), f) == -1)
+    if (fread(vec.data(), sizeof(uint32), vec.size(), f) != vec.size())
     {
         ShowFatalError("zlib: can't read file <%s>: %s\n", file.c_str(), strerror(errno));
         return false;
