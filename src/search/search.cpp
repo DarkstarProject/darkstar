@@ -126,14 +126,14 @@ void PrintPacket(char* data, int size)
         if (((y + 1) % 16) == 0)
         {
             message[48] = '\n';
-            printf(message);
+            fputs(message, stdout);
             memset(&message, 0, 50);
         }
     }
     if (strlen(message) > 0)
     {
         message[strlen(message)] = '\n';
-        printf(message);
+        fputs(message, stdout);
     }
     printf("\n");
 }
