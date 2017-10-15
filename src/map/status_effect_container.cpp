@@ -1316,40 +1316,45 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
 /************************************************************************
 *																		*
-*  Проверяем все эффекты на необходимость удаление, если их срок		*
-*  действия истек.														*
+*  Expires status effects                                               *
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::CheckEffects(time_point tick)
+void CStatusEffectContainer::CheckEffectsExpiry(time_point tick)
+{
+    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+
+        if (PStatusEffect->GetDuration() != 0 &&
+            std::chrono::milliseconds(PStatusEffect->GetDuration()) + PStatusEffect->GetStartTime() <= tick && i < m_StatusEffectList.size())
+        {
+            RemoveStatusEffect(i--);
+        }
+    }
+}
+
+/************************************************************************
+*																		*
+*  Runs OnEffectTick for all status effects                             *
+*																		*
+************************************************************************/
+
+void CStatusEffectContainer::TickEffects(time_point tick)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     if (!m_POwner->isDead())
     {
-        //if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
-        //{
-        //    return;
-        //}
-
-        //m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
-        m_EffectCheckTime = tick;
-
-        for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+        for (const auto& PStatusEffect : m_StatusEffectList)
         {
-            CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
-
             if (PStatusEffect->GetTickTime() != 0 &&
-                PStatusEffect->GetElapsedTickCount() < std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
+                PStatusEffect->GetElapsedTickCount() <= std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
             {
                 PStatusEffect->IncrementElapsedTickCount();
                 luautils::OnEffectTick(m_POwner, PStatusEffect);
-            }
-
-            if (PStatusEffect->GetDuration() != 0 &&
-                std::chrono::milliseconds(PStatusEffect->GetDuration()) + PStatusEffect->GetStartTime() <= tick && i < m_StatusEffectList.size())
-            {
-                RemoveStatusEffect(i--);
             }
         }
     }
@@ -1361,24 +1366,17 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::CheckRegen(time_point tick)
+void CStatusEffectContainer::TickRegen(time_point tick)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     if (!m_POwner->isDead())
     {
-        if ((tick - m_RegenCheckTime) < 3s)
-        {
-            return;
-        }
-
         CCharEntity* PChar = nullptr;
         if (m_POwner->objtype == TYPE_PC)
         {
             PChar = (CCharEntity*)m_POwner;
         }
-
-        m_RegenCheckTime = tick;
 
         int16 regen = m_POwner->getMod(Mod::REGEN);
         int16 poison = m_POwner->getMod(Mod::REGEN_DOWN);

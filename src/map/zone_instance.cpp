@@ -310,14 +310,14 @@ void CZoneInstance::WideScan(CCharEntity* PChar, uint16 radius)
     }
 }
 
-void CZoneInstance::ZoneServer(time_point tick)
+void CZoneInstance::ZoneServer(time_point tick, bool check_regions)
 {
     auto it = instanceList.begin();
     while (it != instanceList.end())
     {
         CInstance* instance = *it;
 
-        instance->ZoneServer(tick);
+        instance->ZoneServer(tick, check_regions);
         instance->CheckTime(tick);
 
         if ((instance->Failed() || instance->Completed()) && instance->CharListEmpty())
@@ -326,15 +326,7 @@ void CZoneInstance::ZoneServer(time_point tick)
             delete instance;
             continue;
         }
-        it++;
-    }
-}
-
-void CZoneInstance::ZoneServerRegion(time_point tick)
-{
-    for (auto instance : instanceList)
-    {
-        instance->ZoneServerRegion(tick);
+        ++it;
     }
 }
 
