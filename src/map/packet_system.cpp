@@ -303,8 +303,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", server_clock::now() + 500ms, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
-    return;
+    PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
 
 /************************************************************************

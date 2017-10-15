@@ -1355,18 +1355,13 @@ namespace luautils
         return retVal;
     }
 
-    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask)
+    void AfterZoneIn(CBaseEntity* PChar)
     {
-        CCharEntity* PChar = zoneutils::GetChar((uintptr)PTask->m_data);
-
-        if (!PChar)
-            return -1;
-
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
         if (prepFile(File, "afterZoneIn"))
         {
-            return -1;
+            return;
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -1376,7 +1371,7 @@ namespace luautils
         {
             ShowError("luautils::afterZoneIn: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns > 0)
@@ -1384,7 +1379,7 @@ namespace luautils
             ShowError("luautils::afterZoneIn (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
-        return 0;
+        return;
     }
 
     /************************************************************************
@@ -3575,17 +3570,15 @@ namespace luautils
         return 0;
     }
 
-    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask)
+    void AfterInstanceRegister(CBaseEntity* PChar)
     {
-        CCharEntity* PChar = (CCharEntity*)PTask->m_data;
-
         DSP_DEBUG_BREAK_IF(!PChar->PInstance);
 
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
 
         if (prepFile(File, "afterInstanceRegister"))
         {
-            return -1;
+            return;
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -3595,7 +3588,7 @@ namespace luautils
         {
             ShowError("luautils::afterInstanceRegister: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns > 0)
@@ -3603,7 +3596,7 @@ namespace luautils
             ShowError("luautils::afterInstanceRegister (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
-        return 0;
+        return;
     }
 
     int32 OnInstanceLoadFailed(CZone* PZone)
