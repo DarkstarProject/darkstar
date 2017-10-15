@@ -2493,6 +2493,7 @@ namespace charutils
             //ignore unused skills
             if((i >= 13 && i <= 21) || (i >= 46 && i <= 47))
             {
+                PChar->WorkingSkills.skill[i] = 0x8000;
                 continue;
             }
             uint16 MaxMSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetMJob(), PChar->GetMLevel());
