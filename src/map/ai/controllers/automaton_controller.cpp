@@ -1414,8 +1414,8 @@ namespace autoSpell
             {
                 SpellID id = (SpellID)Sql_GetUIntData(SqlHandle, 0);
                 AutomatonSpell PSpell {
-                    Sql_GetUIntData(SqlHandle, 1),
-                    Sql_GetUIntData(SqlHandle, 2),
+                    (uint16)Sql_GetUIntData(SqlHandle, 1),
+                    (uint8)Sql_GetUIntData(SqlHandle, 2),
                     (EFFECT)Sql_GetUIntData(SqlHandle, 3),
                     (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)
                 };

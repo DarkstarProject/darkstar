@@ -28,7 +28,6 @@ This file is part of DarkStar-server source code.
 #include "../common/utils.h"
 #include "../common/version.h"
 #include "../common/zlib.h"
-#include "../common/sql.h"
 
 #include <math.h>
 #include <stdio.h>

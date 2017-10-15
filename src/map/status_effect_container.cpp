@@ -560,8 +560,8 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
     {
         if (m_StatusEffectList.at(i)->GetIcon() == IconID)
         {
-            // think this covers all the removable effects
-            if (!(m_StatusEffectList.at(i)->GetFlag() & (EFFECTFLAG_CONFRONTATION | EFFECTFLAG_FOOD | EFFECTFLAG_ERASABLE)))
+            // This covers all effects that client can remove. Function not used for anything the server removes.
+            if (!(m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_NO_CANCEL))
                 RemoveStatusEffect(i--);
         }
     }
@@ -1289,7 +1289,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
             uint32 duration = 0;
-            
+
             if (PStatusEffect->GetDuration() > 0)
             {
                 auto seconds = std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
@@ -1327,12 +1327,12 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
 
     if (!m_POwner->isDead())
     {
-        if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
-        {
-            return;
-        }
+        //if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
+        //{
+        //    return;
+        //}
 
-        m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
+        //m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
         m_EffectCheckTime = tick;
 
         for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
@@ -1340,9 +1340,9 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
             CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
             if (PStatusEffect->GetTickTime() != 0 &&
-                PStatusEffect->GetLastTick() + std::chrono::milliseconds(PStatusEffect->GetTickTime()) <= tick)
+                PStatusEffect->GetElapsedTickCount() < std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
             {
-                PStatusEffect->SetLastTick(tick);
+                PStatusEffect->IncrementElapsedTickCount();
                 luautils::OnEffectTick(m_POwner, PStatusEffect);
             }
 

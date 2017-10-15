@@ -466,7 +466,7 @@ static int connect_check(uint32 ip)
 static int connect_check_(uint32 ip)
 {
 	ConnectHistory* hist = connect_history[ip&0xFFFF];
-	int i;
+	size_t i;
 	int is_allowip = 0;
 	int is_denyip = 0;
 	int connect_ok = 0;
@@ -935,7 +935,7 @@ void socket_init_tcp(void)
 	if(!_vsocket_init())
 		return;
 
-	char *SOCKET_CONF_FILENAME = "./conf/packet_darkstar_tcp.conf";
+    const char *SOCKET_CONF_FILENAME = "./conf/packet_darkstar_tcp.conf";
 	socket_config_read(SOCKET_CONF_FILENAME);
 	// session[0] is now currently used for disconnected sessions of the map server, and as such,
 	// should hold enough buffer (it is a vacuum so to speak) as it is never flushed. [Skotlex]
