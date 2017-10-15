@@ -662,13 +662,13 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
     CDataLoader PDataLoader;
     std::vector<ahItem*> ItemList = PDataLoader.GetAHItemsToCategory(AHCatID, OrderByArray);
 
-    uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
+    uint8 PacketsCount = (uint8)((ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0));
 
     for (uint8 i = 0; i < PacketsCount; ++i)
     {
         CAHItemsListPacket PAHPacket(20 * i);
 
-        PAHPacket.SetItemCount(ItemList.size());
+        PAHPacket.SetItemCount((uint16)ItemList.size());
 
         for (uint16 y = 20 * i; (y != 20 * (i + 1)) && (y < ItemList.size()); ++y)
         {

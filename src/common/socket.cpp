@@ -466,7 +466,7 @@ static int connect_check(uint32 ip)
 static int connect_check_(uint32 ip)
 {
 	ConnectHistory* hist = connect_history[ip&0xFFFF];
-	int i;
+	size_t i;
 	int is_allowip = 0;
 	int is_denyip = 0;
 	int connect_ok = 0;

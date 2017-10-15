@@ -163,7 +163,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
             }
             uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
             in_addr target;
-            target.s_addr = ip;
+            target.s_addr = (unsigned long)ip;
             ShowDebug("Message:  -> rerouting to %s:%lu\n", inet_ntoa(target), port);
             ip |= (port << 32);
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
