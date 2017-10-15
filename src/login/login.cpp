@@ -172,8 +172,8 @@ int do_sockets(fd_set* rfd, duration next)
 
 
     // can timeout until the next tick
-    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
-    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
+    timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = (long)std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
 
     memcpy(rfd, &readfds, sizeof(*rfd));
