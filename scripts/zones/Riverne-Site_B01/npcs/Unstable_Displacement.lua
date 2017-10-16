@@ -7,39 +7,16 @@
 package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/missions");
 require("scripts/zones/Riverne-Site_B01/TextIDs");
 require("scripts/globals/quests");
-require("scripts/globals/status");
 require("scripts/globals/bcnm");
-
-    -- events:
-    -- 7D00 : BC menu
-    -- Param 4 is a bitmask for the choice of battlefields in the menu:
-
-    -- 0:
-    -- 1:
-    -- 2:
-    -- 3:
-    -- 4:
-    -- 5:
-
-    -- Param 8 is a flag: 0 : menu, >0 : automatically enter and exit
-
-    -- 7D01 : final BC event.
-    -- param 2: #time record for this mission
-    -- param 3: #clear time in seconds
-    -- param 6: #which mission (linear numbering as above)
-    -- 7D03 : stay/run away
 
 -----------------------------------
 -- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-        return;
-    end
+    TradeBCNM(player,npc,trade);
 end;
 
 -----------------------------------
@@ -60,13 +37,8 @@ end;
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 -----------------------------------
