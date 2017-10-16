@@ -842,7 +842,7 @@ INSERT INTO `bcnm_loot` VALUES ('35', '744', '79', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '806', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '0', '600', '7');
 -- limbus                      lootID,ItemID,Roll,lootgroup
--- SE Appollyon first floor
+-- SE Apollyon first floor
 INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '0'); -- ancient beastcoin*4
 INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '1'); 
 INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '2'); 
@@ -857,7 +857,7 @@ INSERT INTO `bcnm_loot` VALUES ('110', '1955', '200', '5');  --  NIN,
 INSERT INTO `bcnm_loot` VALUES ('110', '2659', '62', '5');  --  COR,
 INSERT INTO `bcnm_loot` VALUES ('110', '2715', '407', '5');  --  DNC
 -- -------------------------------------
--- SE Appollyon Second floor
+-- SE Apollyon Second floor
 -- -------------------------------------
 INSERT INTO `bcnm_loot` VALUES ('111', '1875', '1000', '0'); -- ancient beastcoin*4
 INSERT INTO `bcnm_loot` VALUES ('111', '1875', '1000', '1'); 
@@ -873,7 +873,7 @@ INSERT INTO `bcnm_loot` VALUES ('111', '1955', '80', '5');  --  NIN,
 INSERT INTO `bcnm_loot` VALUES ('111', '1945', '90', '5');  --  DRK,
 INSERT INTO `bcnm_loot` VALUES ('111', '2659', '100', '5');  --  COR,
 INSERT INTO `bcnm_loot` VALUES ('111', '2715', '120', '5');  --  DNC
--- SE Appollyon Third floor
+-- SE Apollyon Third floor
 -- -------------------------------------
 INSERT INTO `bcnm_loot` VALUES ('112', '1875', '1000', '0'); -- ancient beastcoin*4
 INSERT INTO `bcnm_loot` VALUES ('112', '1875', '1000', '1'); 
@@ -891,7 +891,7 @@ INSERT INTO `bcnm_loot` VALUES ('112', '2659', '39', '5');  --  COR,
 INSERT INTO `bcnm_loot` VALUES ('112', '664', '20', '5');  --  Darksteel Sheet
 INSERT INTO `bcnm_loot` VALUES ('112', '646', '20', '5');  --   Adaman Ore
 INSERT INTO `bcnm_loot` VALUES ('112', '1931', '200', '5'); --  WAR,
--- ---SE Appollyon fourth floor-------------------------
+-- ---SE Apollyon fourth floor-------------------------
 INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '0'); -- ancient beastcoin*5
 INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '1'); 
 INSERT INTO `bcnm_loot` VALUES ('113', '1875', '1000', '2'); 
@@ -1736,3 +1736,11 @@ INSERT INTO `bcnm_loot` VALUES ('180','17277','163','2');
 INSERT INTO `bcnm_loot` VALUES ('180','17707','167','2');
 INSERT INTO `bcnm_loot` VALUES ('180','18098','153','2');
 INSERT INTO `bcnm_loot` VALUES ('180','4748','271','2');
+
+-- Central Temenos Basement final chest
+INSERT INTO `bcnm_loot` VALUES ('181','1875','1000','0');
+INSERT INTO `bcnm_loot` VALUES ('181','1875','1000','1');
+INSERT INTO `bcnm_loot` VALUES ('181','1875','1000','2');
+INSERT INTO `bcnm_loot` VALUES ('181','1875','1000','3');
+INSERT INTO `bcnm_loot` VALUES ('181','1875','1000','4');
+INSERT INTO `bcnm_loot` VALUES ('181','1875','1000','5');

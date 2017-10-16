@@ -190,7 +190,7 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
             WBUFW(&buf, 14) = m_PBaseEntity->loc.p.y;
             WBUFW(&buf, 18) = m_PBaseEntity->loc.p.z;
             WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
-            
+
             if (m_PBaseEntity->objtype == TYPE_PC)
                 WBUFL(&buf, 23) = ((CCharEntity*)m_PBaseEntity)->m_moghouseID;
 
@@ -220,7 +220,7 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
 
             WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
             WBUFW(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
-            
+
             message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
             found = true;
         }
@@ -7481,13 +7481,10 @@ inline int32 CLuaBaseEntity::addRecast(lua_State* L)
 
 
 /***************************************************************
-  Attempts to register a BCNM or Dynamis battlefield.
-  INPUT: The BCNM ID to register.
-  OUTPUT: The battlefield number assigned, or -1 if it's all full.
-  Call on: The Orb trader
+ is battlefield with given number free in current zone?
 ****************************************************************/
 
-inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L)
+inline int32 CLuaBaseEntity::isBattlefieldFree(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -7495,116 +7492,67 @@ inline int32 CLuaBaseEntity::bcnmRegister(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
+    DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    int bcnm = 0;
+    bool returnValue = PZone->m_BattlefieldHandler->isBattlefieldFree(lua_tointeger(L, 1));
+    lua_pushboolean(L, returnValue);
+    return 1;
+}
 
+/***************************************************************
+  Attempts to register a battlefield
+****************************************************************/
+
+inline int32 CLuaBaseEntity::registerBattlefield(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1)); // battlefield number
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2)); // battlefield id
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
     int ZoneID = PZone->GetID();
+    int returnValue = -1;
+    ShowDebug("%s wants to register arena %i for bfid %i in zone %i \n", PChar->GetName(), lua_tointeger(L, 1), lua_tointeger(L, 2), ZoneID);
 
-    if (ZoneID == 37 || ZoneID == 38)
-    {
-        if (PZone->m_BattlefieldHandler->hasFreeSpecialBattlefield(lua_tointeger(L, 1)))
-        {
-            ShowDebug("Free Special Battlefield found for BCNMID %i \n", lua_tointeger(L, 1));
-            bcnm = PZone->m_BattlefieldHandler->registerBcnm(lua_tointeger(L, 1), PChar);
+    returnValue = PZone->m_BattlefieldHandler->registerBattlefield(lua_tointeger(L, 1), lua_tointeger(L, 2), PChar);
 
-            if (bcnm != -1)
-            {
-                ShowDebug("Registration successful!\n");
-                lua_pushinteger(L, bcnm);
-            }
-            else
-            {
-                ShowDebug("Unable to register BCNM Special Battlefield.\n");
-                lua_pushinteger(L, bcnm);
-            }
-        }
-        else
-        {
-            ShowDebug("BCNM Registration Failed : No free Special battlefields for BCNMID %i \n", lua_tointeger(L, 1));
-            lua_pushinteger(L, -1);
-        }
-    }
-    else
-        if (PZone->m_BattlefieldHandler->hasFreeBattlefield())
-        {
-
-            if (ZoneID > 184 && ZoneID < 189 || ZoneID > 133 && ZoneID < 136 || ZoneID > 38 && ZoneID < 43)
-            {
-                ShowDebug("Free Dynamis Battlefield found for BCNMID %i \n", lua_tointeger(L, 1));
-                bcnm = PZone->m_BattlefieldHandler->registerDynamis(lua_tointeger(L, 1), PChar);
-            }
-            else
-            {
-                ShowDebug("Free BCNM Battlefield found for BCNMID %i \n", lua_tointeger(L, 1));
-                bcnm = PZone->m_BattlefieldHandler->registerBcnm(lua_tointeger(L, 1), PChar);
-            }
-
-            if (bcnm != -1)
-            {
-                ShowDebug("Registration successful!\n");
-                lua_pushinteger(L, bcnm);
-            }
-            else
-            {
-                ShowDebug("Unable to register BCNM Battlefield.\n");
-                lua_pushinteger(L, bcnm);
-            }
-        }
-        else
-        {
-            ShowDebug("BCNM Registration Failed : No free battlefields for BCNMID %i \n", lua_tointeger(L, 1));
-            lua_pushinteger(L, -1);
-        }
-
+    lua_pushinteger(L, returnValue);
     return 1;
 }
 
 /***************************************************************
   Attempts to enter a BCNM or Dynamis battlefield.
-  OUTPUT: 1 if successful, 0 if not.
-  Call on: Any player. (e.g. non-orb trader in same pt)
 ****************************************************************/
 
 inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1)); // battlefield number
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
     int ZoneID = PZone->GetID();
+    int returnValue = -1;
+    ShowDebug("%s wants to enter arena %i in zone %i \n", PChar->GetName(), lua_tointeger(L, 1), ZoneID);
 
-    if (ZoneID > 184 && ZoneID < 189 || ZoneID > 133 && ZoneID < 136 || ZoneID > 38 && ZoneID < 43)
-    {
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS))
-        {
-            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS)->GetPower();
-            if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
-            {
-                lua_pushinteger(L, 1);
-                return 1;
-            }
+    if (ZoneID > 38 && ZoneID < 43 || ZoneID > 133 && ZoneID < 136 || ZoneID > 184 && ZoneID < 189) {
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS)) {
+            returnValue = PZone->m_BattlefieldHandler->enterBcnm(lua_tointeger(L, 1), PChar);
+        }
+    } else {
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)) {
+            returnValue = PZone->m_BattlefieldHandler->enterBcnm(lua_tointeger(L, 1), PChar);
         }
     }
-    else
-    {
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
-        {
-            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
-            if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
-            {
-                lua_pushinteger(L, 1);
-                return 1;
-            }
-        }
-    }
-    ShowDebug("%s is unable to enter.\n", PChar->GetName());
-    lua_pushinteger(L, 0);
+
+    lua_pushinteger(L, returnValue);
     return 1;
 }
 
@@ -7626,15 +7574,15 @@ inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L)
 
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
     {
-        uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
+        uint16 bnum = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
         uint8 typeOfExit = lua_tointeger(L, 1);
-        if (typeOfExit == 1 && PChar->loc.zone->m_BattlefieldHandler->leaveBcnm(effect_bcnmid, PChar))
+        if (typeOfExit == 1 && PChar->loc.zone->m_BattlefieldHandler->leaveBcnm(bnum, PChar))
         {
-            ShowDebug("BCNM Leave :: %s left BCNMID %i \n", PChar->GetName(), effect_bcnmid);
+            ShowDebug("BCNM Leave :: %s left arena %i \n", PChar->GetName(), bnum);
         }
-        else if (typeOfExit == 2 && PChar->loc.zone->m_BattlefieldHandler->winBcnm(effect_bcnmid, PChar))
+        else if (typeOfExit == 2 && PChar->loc.zone->m_BattlefieldHandler->winBcnm(bnum, PChar))
         {
-            ShowDebug("BCNM Leave :: Won BCNMID %i \n", effect_bcnmid);
+            ShowDebug("BCNM Leave :: Won arena %i \n", bnum);
         }
     }
     else
@@ -7666,28 +7614,6 @@ inline int32 CLuaBaseEntity::isInBcnm(lua_State *L)
 
 //==========================================================//
 
-inline int32 CLuaBaseEntity::getBattlefieldID(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
-
-    uint8 inst = 255;
-
-    if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
-    {
-        inst = PChar->loc.zone->m_BattlefieldHandler->findBattlefieldIDFor(PChar);
-    }
-
-    lua_pushinteger(L, inst);
-    return 1;
-}
-
-
-//==========================================================//
-
 inline int32 CLuaBaseEntity::getBCNMloot(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -7698,10 +7624,10 @@ inline int32 CLuaBaseEntity::getBCNMloot(lua_State *L)
 
     uint8 inst = 255;
 
-    if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
+    if (PChar->PBCNM != nullptr)
     {
-        inst = PChar->loc.zone->m_BattlefieldHandler->findBattlefieldIDFor(PChar);
-        PChar->loc.zone->m_BattlefieldHandler->openTreasureChest(PChar);
+        inst = PChar->PBCNM->getBattlefieldNumber();
+        PChar->PBCNM->openChest();
     }
 
     lua_pushinteger(L, inst);
@@ -7734,55 +7660,32 @@ inline int32 CLuaBaseEntity::isBcnmsFull(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::isSpecialBattlefieldEmpty(lua_State *L)
+inline int32 CLuaBaseEntity::getBattlefieldTimeLeft(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    uint8 full = 1;
-
-
-    if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr &&
-        PZone->m_BattlefieldHandler->hasSpecialBattlefieldEmpty(lua_tointeger(L, 1)))
-    {
-
-        full = 0;
-    }
-    lua_pushinteger(L, full);
-    return 1;
-}
-
-inline int32 CLuaBaseEntity::getSpecialBattlefieldLeftTime(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-
-    DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
-
-    duration Leftime;
-
-
+    duration TimeLeft;
     if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr)
     {
-        Leftime = PZone->m_BattlefieldHandler->SpecialBattlefieldLeftTime(lua_tointeger(L, 1), server_clock::now());
+        TimeLeft = PZone->m_BattlefieldHandler->getBattlefieldTimeLeft(lua_tointeger(L, 1), server_clock::now());
     }
-
-    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(Leftime).count());
+    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(TimeLeft).count());
     return 1;
 }
-// Add time on your Special battlefield
-inline int32 CLuaBaseEntity::addTimeToSpecialBattlefield(lua_State *L)
+
+// add time to given battlefield number
+inline int32 CLuaBaseEntity::addTimeToBattlefield(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
@@ -7793,10 +7696,14 @@ inline int32 CLuaBaseEntity::addTimeToSpecialBattlefield(lua_State *L)
 
     return 1;
 }
+
 inline int32 CLuaBaseEntity::BCNMSetLoot(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
@@ -7811,14 +7718,12 @@ inline int32 CLuaBaseEntity::RestoreAndHealOnBattlefield(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    // only reset for players
-    if (m_PBaseEntity->objtype == TYPE_PC)
-    {
-        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-        PChar->loc.zone->m_BattlefieldHandler->RestoreOnBattlefield(lua_tointeger(L, 1));
-        return 0;
-    }
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
+
+    PChar->loc.zone->m_BattlefieldHandler->RestoreOnBattlefield(lua_tointeger(L, 1));
     return 0;
 }
 inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
@@ -7888,49 +7793,6 @@ int32 CLuaBaseEntity::getRespawnTime(lua_State* L)
     }
 }
 
-inline int32 CLuaBaseEntity::addPlayerToSpecialBattlefield(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-
-    DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
-
-    int bcnm = PZone->m_BattlefieldHandler->SpecialBattlefieldAddPlayer(lua_tointeger(L, 1), PChar);
-
-    if (bcnm != -1)
-    {
-        ShowDebug("Registration successful!\n");
-        lua_pushinteger(L, bcnm);
-    }
-    else
-    {
-        ShowDebug("Unable to register BCNM.\n");
-        lua_pushinteger(L, -1);
-    }
-
-    return 1;
-}
-
-// Return unique ID for Dynamis
-inline int32 CLuaBaseEntity::getDynamisUniqueID(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
-
-    DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
-
-    lua_pushinteger(L, PZone->m_BattlefieldHandler->getUniqueDynaID(lua_tointeger(L, 1)));
-
-    return 1;
-}
-
 // Add time on your dynamis battlefield
 inline int32 CLuaBaseEntity::addTimeToDynamis(lua_State *L)
 {
@@ -7960,7 +7822,7 @@ inline int32 CLuaBaseEntity::launchDynamisSecondPart(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
+inline int32 CLuaBaseEntity::addPlayerToBattlefield(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -7971,7 +7833,7 @@ inline int32 CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    int bcnm = PZone->m_BattlefieldHandler->dynamisAddPlayer(lua_tointeger(L, 1), PChar);
+    int bcnm = PZone->m_BattlefieldHandler->addPlayerToBattlefield(lua_tointeger(L, 1), PChar);
 
     if (bcnm != -1)
     {
@@ -8021,7 +7883,7 @@ inline int32 CLuaBaseEntity::getStatPoppedMobs(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  Check if mob is in battlefield list                                  *
+*  Check if mob is in battlefield list (Dynamis Only!)                  *
 *                                                                       *
 ************************************************************************/
 
@@ -8042,7 +7904,7 @@ inline int32 CLuaBaseEntity::isInBattlefieldList(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  Add mob in battlefield list                                          *
+*  Add mob in battlefield list (Dynamis Only!)                          *
 *                                                                       *
 ************************************************************************/
 
@@ -9870,7 +9732,7 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
         CStatusEffect* PStatusEffect = nullptr;
 
         if (PChar && (PStatusEffect = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)))
-            PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->getBattlefield(PChar->loc.zone->GetCharByID(PStatusEffect->GetSubID()));
+            PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->getBattlefield(PStatusEffect->GetPower());
     }
 
     if (PBattlefield)
@@ -11550,16 +11412,15 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addRecast),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmRegister),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBattlefieldFree),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,registerBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmEnter),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmLeave),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBcnm),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBcnmsFull),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpecialBattlefieldEmpty),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpecialBattlefieldLeftTime),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefieldTimeLeft),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,RestoreAndHealOnBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,BCNMSetLoot),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefieldID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCurrency),
@@ -11584,8 +11445,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBCNMloot),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDynamisUniqueID),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToDynamis),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToDynamis),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,launchDynamisSecondPart),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInDynamis),
@@ -11593,8 +11453,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatPoppedMobs),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefieldList),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addInBattlefieldList),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToSpecialBattlefield),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToSpecialBattlefield),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkValorCredit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),

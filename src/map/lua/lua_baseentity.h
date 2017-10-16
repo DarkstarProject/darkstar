@@ -218,26 +218,23 @@ public:
     int32 getCurrentGPItem(lua_State*);     // Gets current GP item id and max points
     int32 addGuildPoints(lua_State*);       // add guild points
 
-    int32 bcnmRegister(lua_State*);                  //Attempts to register a bcnm battlefield (used by Dynamis and BCNM)
-    int32 bcnmEnter(lua_State*);                     //Enter a bcnm battlefield (used by Dynamis and BCNM)
-    int32 bcnmLeave(lua_State*);                     //Leave a bcnm battlefield
-    int32 isInBcnm(lua_State*);                      //true if you're INSIDE the bc (not just the status)
-    int32 isBcnmsFull(lua_State*);                   //true if all 3 battlefield are full
-    int32 isSpecialBattlefieldEmpty(lua_State*);     // 1 if this battlefield is full
-    int32 getSpecialBattlefieldLeftTime(lua_State*); // return left time of the specific instance
-    int32 addTimeToSpecialBattlefield(lua_State*);   // add time of the specific instance
-    int32 BCNMSetLoot(lua_State*);                   // set a lootlist for a special inctance
-    int32 RestoreAndHealOnBattlefield(lua_State*);   // restore ability , PM and PV on the specific instance
-    int32 getBattlefieldID(lua_State*);              //returns 1 2 or 3 if the player can enter a bcnm with the instance assigned
-    int32 getBCNMloot(lua_State*);                   //triggers if the player opens the chest inside bcnm
-    int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
+    int32 isBattlefieldFree(lua_State*);            // is battlefield with given number free in current zone (returns 1, -1)
+    int32 registerBattlefield(lua_State*);          // attempt to register a battlefield (returns 1, -1)
+    int32 bcnmEnter(lua_State*);                    // enter a battlefield
+    int32 bcnmLeave(lua_State*);                    // leave a battlefield
+    int32 isInBcnm(lua_State*);                     // true if you're INSIDE the bc (not just the status)
+    int32 isBcnmsFull(lua_State*);                  // true if all 3 battlefield are full
+    int32 getBattlefieldTimeLeft(lua_State*);       // return time left in given battlefield num
+    int32 addTimeToBattlefield(lua_State*);         // add time to given battlefield num
+    int32 BCNMSetLoot(lua_State*);                  // set a lootlist for a special inctance
+    int32 RestoreAndHealOnBattlefield(lua_State*);  // restore ability , PM and PV on the specific instance
+    int32 getBCNMloot(lua_State*);                  // triggers if the player opens the chest inside bcnm
+    int32 addPlayerToBattlefield(lua_State*);       // add player to the given battlefield number and apply status
 
     int32 isSpawned(lua_State*);
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
     int32 getRespawnTime(lua_State*);
-    int32 getDynamisUniqueID(lua_State*);      //Get unique Dynamis ID
-    int32 addPlayerToDynamis(lua_State*);      //Add player to the Dynamis
     int32 addTimeToDynamis(lua_State*);        //Add time to the Dynamis
     int32 launchDynamisSecondPart(lua_State*); //Spawn Mob part 2 when mega boss is defeated
     int32 isInDynamis(lua_State*);             //If player is in Dynamis return true else false

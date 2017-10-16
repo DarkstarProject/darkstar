@@ -182,6 +182,7 @@ namespace battlefieldutils {
                     PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
                     battlefield->addNpc(PNpc);
                     ShowDebug(CL_CYAN"Spawned %s id %i inst %i \n", PNpc->status, PNpc->id, battlefield->getBattlefieldNumber());
+                    battlefield->m_chestSpawned = true;
                 }
                 else
                 {

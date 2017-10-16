@@ -1,23 +1,20 @@
 -----------------------------------
 -- Area: Temenos
--- Name: 
+-- Name: Temenos Northern Tower
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 
-
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
-    SetServerVariable("[Temenos_N_Tower]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1299),TEMENOS);        
-    HideTemenosDoor(GetInstanceRegion(1299));    
+    SetServerVariable("[Temenos_N_Tower]UniqueID",os.time());
+    HideArmouryCrates(Temenos_Northern_Tower,TEMENOS);        
+    HideTemenosDoor(Temenos_Northern_Tower);    
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[Temenos_N_Tower]UniqueID"));
-    player:setVar("LimbusID",1299);    
     player:delKeyItem(COSMOCLEANSE);
     player:delKeyItem(WHITE_CARD);
 end;
@@ -27,9 +24,10 @@ end;
 -- 4=Finish he dynamis
 
 function onBcnmLeave(player,instance,leavecode)
---print("leave code "..leavecode);
+    -- player:PrintToPlayer(leavecode);
+    print("leave code "..leavecode);
     if (leavecode == 4) then
-             player:setPos(580,-1.5,4.452,192);
-        ResetPlayerLimbusVariable(player)
+        SetServerVariable("[Temenos_N_Tower]UniqueID",0);
+        player:setPos(580,-1.5,4.452,192);
     end
 end;

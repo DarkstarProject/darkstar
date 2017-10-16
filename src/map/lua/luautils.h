@@ -188,6 +188,7 @@ namespace luautils
     int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
+    int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result, uint16 extras); // triggered when game triggers event update during cutscene with extra parameters (battlefield)
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when game triggers event update during cutscene
     int32 OnEventUpdate(CCharEntity* PChar, int8* string);                      // triggered when game triggers event update during cutscene
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when cutscene/event is completed
