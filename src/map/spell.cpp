@@ -444,7 +444,7 @@ namespace spell
                 PSpell->setBase(Sql_GetIntData(SqlHandle,12));
                 PSpell->setElement(Sql_GetIntData(SqlHandle,13));
                 PSpell->setZoneMisc(Sql_GetIntData(SqlHandle,14));
-                PSpell->setMultiplier(Sql_GetIntData(SqlHandle,15));
+                PSpell->setMultiplier((float)Sql_GetIntData(SqlHandle,15));
                 PSpell->setMessage(Sql_GetIntData(SqlHandle,16));
                 PSpell->setMagicBurstMessage(Sql_GetIntData(SqlHandle,17));
                 PSpell->setCE(Sql_GetIntData(SqlHandle,18));

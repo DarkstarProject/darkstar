@@ -318,8 +318,8 @@ int32 do_sockets(fd_set* rfd, duration next)
     int32 ret;
     memcpy(rfd, &readfds, sizeof(*rfd));
 
-    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
-    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
+    timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = (long)std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
     ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
@@ -416,7 +416,7 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
     uint16 tmp, i;
 
     // counting blocks whose size = 4 byte
-    tmp = (size - FFXI_HEADER_SIZE) / 4;
+    tmp = (uint16)((size - FFXI_HEADER_SIZE) / 4);
     tmp -= tmp % 2;
 
 #   ifdef WIN32
@@ -432,7 +432,7 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
         blowfish_decipher((uint32*)buff + i + 7, (uint32*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
     }
 
-    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16) == 0)
+    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16) == 0)
     {
         return 0;
     }
@@ -456,7 +456,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 #ifdef WIN32
     try
     {
-        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16);
     }
     catch (...)
     {
@@ -648,7 +648,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     CCharEntity *PChar = map_session_data->PChar;
     CBasicPacket* PSmallPacket;
     uint32 PacketSize = UINT32_MAX;
-    uint32 PacketCount = PChar->getPacketCount();
+    auto PacketCount = PChar->getPacketCount();
     uint8 packets = 0;
 
     do {
@@ -674,7 +674,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
             //Сжимаем данные без учета заголовка
             //Возвращаемый размер в 8 раз больше реальных данных
-            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, map_config.buffer_size);
+            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, (uint32)(*buffsize - FFXI_HEADER_SIZE), PTempBuff, map_config.buffer_size);
 
             // handle compression error
             if (PacketSize == static_cast<uint32>(-1))
@@ -684,7 +684,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
             WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
-            PacketSize = zlib_compressed_size(PacketSize) + 4;
+            PacketSize = (uint32)zlib_compressed_size(PacketSize) + 4;
 
         } while (PacketCount > 0 && PacketSize > 1300 - FFXI_HEADER_SIZE - 16); //max size for client to accept
 
@@ -1073,7 +1073,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "fame_multiplier") == 0)
         {
-            map_config.fame_multiplier = atof(w2);
+            map_config.fame_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "lightluggage_block") == 0)
         {
@@ -1089,11 +1089,11 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "ah_tax_rate_single") == 0)
         {
-            map_config.ah_tax_rate_single = atof(w2);
+            map_config.ah_tax_rate_single = (float)atof(w2);
         }
         else if (strcmp(w1, "ah_tax_rate_stacks") == 0)
         {
-            map_config.ah_tax_rate_stacks = atof(w2);
+            map_config.ah_tax_rate_stacks = (float)atof(w2);
         }
         else if (strcmp(w1, "ah_max_fee") == 0)
         {
@@ -1101,75 +1101,75 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "exp_rate") == 0)
         {
-            map_config.exp_rate = atof(w2);
+            map_config.exp_rate = (float)atof(w2);
         }
         else if (strcmp(w1, "exp_loss_rate") == 0)
         {
-            map_config.exp_loss_rate = atof(w2);
+            map_config.exp_loss_rate = (float)atof(w2);
         }
         else if (strcmp(w1, "exp_party_gap_penalties") == 0)
         {
-            map_config.exp_party_gap_penalties = atof(w2);
+            map_config.exp_party_gap_penalties = (uint8)atof(w2);
         }
         else if (strcmp(w1, "fov_allow_alliance") == 0)
         {
-            map_config.fov_allow_alliance = atof(w2);
+            map_config.fov_allow_alliance = (uint8)atof(w2);
         }
         else if (strcmp(w1, "mob_tp_multiplier") == 0)
         {
-            map_config.mob_tp_multiplier = atof(w2);
+            map_config.mob_tp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_tp_multiplier") == 0)
         {
-            map_config.player_tp_multiplier = atof(w2);
+            map_config.player_tp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "nm_hp_multiplier") == 0)
         {
-            map_config.nm_hp_multiplier = atof(w2);
+            map_config.nm_hp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "mob_hp_multiplier") == 0)
         {
-            map_config.mob_hp_multiplier = atof(w2);
+            map_config.mob_hp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_hp_multiplier") == 0)
         {
-            map_config.player_hp_multiplier = atof(w2);
+            map_config.player_hp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "nm_mp_multiplier") == 0)
         {
-            map_config.nm_mp_multiplier = atof(w2);
+            map_config.nm_mp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "mob_mp_multiplier") == 0)
         {
-            map_config.mob_mp_multiplier = atof(w2);
+            map_config.mob_mp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_mp_multiplier") == 0)
         {
-            map_config.player_mp_multiplier = atof(w2);
+            map_config.player_mp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "sj_mp_divisor") == 0)
         {
-            map_config.sj_mp_divisor = atof(w2);
+            map_config.sj_mp_divisor = (float)atof(w2);
         }
         else if (strcmp(w1, "nm_stat_multiplier") == 0)
         {
-            map_config.nm_stat_multiplier = atof(w2);
+            map_config.nm_stat_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "mob_stat_multiplier") == 0)
         {
-            map_config.mob_stat_multiplier = atof(w2);
+            map_config.mob_stat_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_stat_multiplier") == 0)
         {
-            map_config.player_stat_multiplier = atof(w2);
+            map_config.player_stat_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "ability_recast_multiplier") == 0)
         {
-            map_config.ability_recast_multiplier = atof(w2);
+            map_config.ability_recast_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "drop_rate_multiplier") == 0)
         {
-            map_config.drop_rate_multiplier = atof(w2);
+            map_config.drop_rate_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "all_mobs_gil_bonus") == 0)
         {
@@ -1181,7 +1181,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "exp_retain") == 0)
         {
-            map_config.exp_retain = dsp_cap(atof(w2), 0.0f, 1.0f);
+            map_config.exp_retain = (float)dsp_cap(atof(w2), 0.0f, 1.0f);
         }
         else if (strcmp(w1, "exp_loss_level") == 0)
         {
@@ -1209,19 +1209,19 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "skillup_chance_multiplier") == 0)
         {
-            map_config.skillup_chance_multiplier = atof(w2);
+            map_config.skillup_chance_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "craft_chance_multiplier") == 0)
         {
-            map_config.craft_chance_multiplier = atof(w2);
+            map_config.craft_chance_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "skillup_amount_multiplier") == 0)
         {
-            map_config.skillup_amount_multiplier = atof(w2);
+            map_config.skillup_amount_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "craft_amount_multiplier") == 0)
         {
-            map_config.craft_amount_multiplier = atof(w2);
+            map_config.craft_amount_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "craft_day_matters") == 0)
         {

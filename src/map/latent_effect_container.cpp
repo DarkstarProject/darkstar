@@ -91,7 +91,7 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *laten
 
 void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 {
-    for (int16 i = m_LatentEffectList.size() - 1; i >= 0; --i)
+    for (auto i = m_LatentEffectList.size() - 1; i >= 0; --i)
     {
         if (m_LatentEffectList.at(i)->GetSlot() == slot)
         {
@@ -428,9 +428,8 @@ void CLatentEffectContainer::CheckLatentsHours()
 *  activates them if the conditions are met.							*
 *																		*
 ************************************************************************/
-void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
+void CLatentEffectContainer::CheckLatentsPartyMembers(size_t members)
 {
-    // todo: fix this
     ProcessLatentEffects([this, members](CLatentEffect* latentEffect)
     {
         switch (latentEffect->GetConditionsID())
@@ -448,7 +447,7 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
             if (latentEffect->GetConditionsValue() <= members)
             {
                 auto inZone = 0;
-                for (auto m = 0; m < members; ++m)
+                for (size_t m = 0; m < members; ++m)
                 {
                     auto PMember = (CCharEntity*)m_POwner->PParty->members.at(m);
                     if (PMember->getZone() == m_POwner->getZone())

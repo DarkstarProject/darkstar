@@ -969,7 +969,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
                     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP(-PAbility->getAnimationID() * 1.5);
+                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
                         this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
                     else {
@@ -1212,7 +1212,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                     actionTarget.messageID = 77;
                 }
 
-                damage = (this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif;
+                damage = (int32)((this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif);
 
                 if (slot == SLOT_RANGED)
                 {
@@ -1288,7 +1288,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
         // lower damage based on shadows taken
         if (shadowsTaken)
-            actionTarget.param = actionTarget.param * (1 - ((float)shadowsTaken / realHits));
+            actionTarget.param = (int32)(actionTarget.param * (1 - ((float)shadowsTaken / realHits)));
 
         // absorb message
         if (actionTarget.param < 0)
@@ -1416,19 +1416,19 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
         {
             actionTarget.animation = 496;
-            hpReturned = GetMaxHP()*0.5;
+            hpReturned = (uint16)(GetMaxHP() * 0.5);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
         }
         addHP(((hpReturned < 1) ? 1 : hpReturned));
@@ -1449,7 +1449,7 @@ void CCharEntity::OnRaise()
             expLost = GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(jobs.job[GetMJob()] + 1) * 8) / 100 : 2400;
         }
 
-        uint16 xpReturned = ceil(expLost * ratioReturned);
+        uint16 xpReturned = (uint16)(ceil(expLost * ratioReturned));
 
         if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {

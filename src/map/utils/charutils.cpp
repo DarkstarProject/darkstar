@@ -638,8 +638,8 @@ namespace charutils
             PChar->jobs.exp[JOB_SCH] = (uint16)Sql_GetIntData(SqlHandle, 20);
             PChar->jobs.exp[JOB_GEO] = (uint16)Sql_GetIntData(SqlHandle, 21);
             PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
-            meritPoints = (uint16)Sql_GetIntData(SqlHandle, 23);
-            limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
+            meritPoints = (uint8)Sql_GetIntData(SqlHandle, 23);
+            limitPoints = (uint8)Sql_GetIntData(SqlHandle, 24);
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
@@ -713,7 +713,7 @@ namespace charutils
                 }
                 if (now < cast_time + recast)
                 {
-                    PChar->PRecastContainer->Load(RECAST_ABILITY, Sql_GetUIntData(SqlHandle, 0), (cast_time + recast - now), chargeTime, maxCharges);
+                    PChar->PRecastContainer->Load(RECAST_ABILITY, Sql_GetUIntData(SqlHandle, 0), (cast_time + recast - (uint32)now), chargeTime, maxCharges);
                 }
             }
         }
@@ -882,7 +882,7 @@ namespace charutils
 
                 if (PItem != nullptr)
                 {
-                    PItem->setLocationID(Sql_GetUIntData(SqlHandle, 1));
+                    PItem->setLocationID((uint8)Sql_GetUIntData(SqlHandle, 1));
                     PItem->setSlotID(Sql_GetUIntData(SqlHandle, 2));
                     PItem->setQuantity(Sql_GetUIntData(SqlHandle, 3));
                     PItem->setCharPrice(Sql_GetUIntData(SqlHandle, 4));
@@ -1488,7 +1488,7 @@ namespace charutils
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
-                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), -PItem->getReserve());
+                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), PItem->getReserve());
                 PItem->setReserve(0);
                 PChar->UContainer->ClearSlot(slotid);
             }
@@ -2334,7 +2334,7 @@ namespace charutils
         {
             std::vector<CAbility*> AbilitiesList = ability::GetAbilities(JOB_SMN);
 
-            for (int32 i = 0; i < AbilitiesList.size(); ++i)
+            for (size_t i = 0; i < AbilitiesList.size(); ++i)
             {
                 CAbility* PAbility = AbilitiesList.at(i);
 
@@ -2397,7 +2397,7 @@ namespace charutils
 
         AbilitiesList = ability::GetAbilities(PChar->GetMJob());
 
-        for (int32 i = 0; i < AbilitiesList.size(); ++i)
+        for (size_t i = 0; i < AbilitiesList.size(); ++i)
         {
             CAbility* PAbility = AbilitiesList.at(i);
 
@@ -2436,7 +2436,7 @@ namespace charutils
 
         AbilitiesList = ability::GetAbilities(PChar->GetSJob());
 
-        for (int32 i = 0; i < AbilitiesList.size(); ++i)
+        for (size_t i = 0; i < AbilitiesList.size(); ++i)
         {
             CAbility* PAbility = AbilitiesList.at(i);
 
@@ -2506,19 +2506,19 @@ namespace charutils
                 uint8 mLevel = PChar->GetMLevel();
                 if (mLevel < 51)
                 {
-                    artsBaseline = 5 + 2.7 * (mLevel - 1);
+                    artsBaseline = (uint16)(5 + 2.7 * (mLevel - 1));
                 }
                 else if ((mLevel > 50) && (mLevel < 61))
                 {
-                    artsBaseline = 137 + 4.7 * (mLevel - 50);
+                    artsBaseline = (uint16)(137 + 4.7 * (mLevel - 50));
                 }
                 else if ((mLevel > 60) && (mLevel < 71))
                 {
-                    artsBaseline = 184 + 3.7 * (mLevel - 60);
+                    artsBaseline = (uint16)(184 + 3.7 * (mLevel - 60));
                 }
                 else if ((mLevel > 70) && (mLevel < 75))
                 {
-                    artsBaseline = 221 + 5.0 * (mLevel - 70);
+                    artsBaseline = (uint16)(221 + 5.0 * (mLevel - 70));
                 }
                 else if (mLevel >= 75)
                 {
@@ -2622,8 +2622,6 @@ namespace charutils
         PChar->TraitList.clear();
         memset(&PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
 
-        TraitList_t* PTraitsList;
-
         battleutils::AddTraits(PChar, traits::GetTraits(PChar->GetMJob()), PChar->GetMLevel());
         battleutils::AddTraits(PChar, traits::GetTraits(PChar->GetSJob()), PChar->GetSLevel());
 
@@ -2707,7 +2705,7 @@ namespace charutils
                 // Do skill amount multiplier (Will only be applied if default setting is changed)
                 if (map_config.skillup_amount_multiplier > 1)
                 {
-                    SkillAmount += SkillAmount * map_config.skillup_amount_multiplier;
+                    SkillAmount += (uint8)(SkillAmount * map_config.skillup_amount_multiplier);
                     if (SkillAmount > 9)
                     {
                         SkillAmount = 9;
@@ -3118,7 +3116,7 @@ namespace charutils
             if (members.size() > 0)
             {
                 // distribute gil
-                uint32 gilPerPerson = gil / members.size();
+                auto gilPerPerson = (int32)(gil / members.size());
                 for (auto PMember : members)
                 {
                     UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
@@ -3184,7 +3182,8 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
-            uint32 baseexp = 0, exp = 0, dedication = 0;
+            uint32 baseexp = 0, dedication = 0;
+            auto exp = 0.f;
             float permonstercap, monsterbonus = 1.0f;
             bool chainactive = false;
             if (PMob->m_HiPCLvl > maxlevel) maxlevel = PMob->m_HiPCLvl;
@@ -3204,7 +3203,11 @@ namespace charutils
                             exp = (float)baseexp*(float)((float)(GetExpNEXTLevel(PMember->GetMLevel())) / (float)(GetExpNEXTLevel(maxlevel)));
                         }
                     }
-                    else exp = baseexp;
+                    else
+                    {
+                        exp = (float)baseexp;
+                    }
+
                     if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && (region >= 0 && region <= 22))
                     {
                         switch (pcinzone)
@@ -3403,7 +3406,7 @@ namespace charutils
                             PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                         }
                     }
-                    charutils::AddExperiencePoints(false, PMember, PMob, exp, baseexp, chainactive);
+                    charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
                 }
             }
         });
@@ -3437,8 +3440,8 @@ namespace charutils
         else
         {
             // Apply retention percent
-            exploss = exploss*(1 - retainPercent);
-            exploss = exploss * map_config.exp_loss_rate;
+            exploss = (uint16)(exploss * (1 - retainPercent));
+            exploss = (uint16)(exploss * map_config.exp_loss_rate);
         }
 
         if (PChar->jobs.exp[PChar->GetMJob()] < exploss)
@@ -3520,7 +3523,7 @@ namespace charutils
 
         if (!expFromRaise)
         {
-            exp = exp * map_config.exp_rate;
+            exp = (uint32)(exp * map_config.exp_rate);
         }
         uint16 currentExp = PChar->jobs.exp[PChar->GetMJob()];
         bool onLimitMode = false;
@@ -3597,7 +3600,7 @@ namespace charutils
             if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) &&
                 (region >= 28 && region <= 32))
             {
-                charutils::AddPoints(PChar, "imperial_standing", (exp * 0.1f));
+                charutils::AddPoints(PChar, "imperial_standing", (int32)(exp * 0.1f));
                 PChar->pushPacket(new CConquestPacket(PChar));
             }
 
@@ -4314,7 +4317,7 @@ namespace charutils
             PChar->id);
     }
 
-    uint32  AddExpBonus(CCharEntity* PChar, uint32 exp)
+    float  AddExpBonus(CCharEntity* PChar, float exp)
     {
         int32 bonus = 0;
         if (PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION))
@@ -4322,7 +4325,7 @@ namespace charutils
             CStatusEffect* dedication = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION);
             int16 percentage = dedication->GetPower();
             int16 cap = dedication->GetSubPower();
-            bonus += dsp_cap((exp * percentage) / 100, 0, cap);
+            bonus += dsp_cap((int32)((exp * percentage) / 100), 0, cap);
             dedication->SetSubPower(cap -= bonus);
 
             if (cap <= 0)
@@ -4332,7 +4335,7 @@ namespace charutils
 
         }
 
-        bonus += exp * (PChar->getMod(Mod::EXP_BONUS) / 100.0f);
+        bonus += (int32)(exp * (PChar->getMod(Mod::EXP_BONUS) / 100.0f));
 
         if (bonus + (int32)exp < 0)
             exp = 0;
@@ -4348,7 +4351,7 @@ namespace charutils
 
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            int32 tstamp = (int32)Sql_GetIntData(SqlHandle, 0);
+            auto tstamp = (uint32)Sql_GetIntData(SqlHandle, 0);
             if (CVanaTime::getInstance()->getVanaTime() < tstamp) {
                 return true;
             }

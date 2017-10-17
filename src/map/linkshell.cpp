@@ -91,7 +91,7 @@ void CLinkshell::setMessage(const int8* message, const int8* poster)
     int8 packetData[8] {};
     WBUFL(packetData, 0) = m_id;
     WBUFL(packetData, 4) = 0;
-    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CLinkshellMessagePacket(poster, message, m_name.c_str(), time(nullptr), true));
+    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CLinkshellMessagePacket(poster, message, m_name.c_str(), UINT32_MIN, true));
 }
 
 /************************************************************************
@@ -442,7 +442,7 @@ namespace linkshell
         {
 		    if (Sql_Query(SqlHandle, "INSERT INTO linkshells (name, color) VALUES ('%s', %u)", name, color) != SQL_ERROR)
             {
-                return LoadLinkshell(Sql_LastInsertId(SqlHandle))->getID();
+                return LoadLinkshell((uint32)Sql_LastInsertId(SqlHandle))->getID();
             }
         }
         return 0;

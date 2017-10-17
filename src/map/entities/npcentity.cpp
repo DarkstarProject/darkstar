@@ -44,7 +44,7 @@ int32 close_door(time_point tick, CTaskMgr::CTask* PTask)
 	//DSP_DEBUG_BREAK_IF(PTask->m_data == nullptr)
     //DSP_DEBUG_BREAK_IF(((CBaseEntity*)PTask->m_data)->objtype != TYPE_NPC);
 
-	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+	CNpcEntity* PNpc = std::any_cast<CNpcEntity*>(PTask->m_data);
 
 	PNpc->animation = ANIMATION_CLOSE_DOOR;
 	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
@@ -53,7 +53,7 @@ int32 close_door(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 open_door(time_point tick, CTaskMgr::CTask* PTask)
 {
-	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+	CNpcEntity* PNpc = std::any_cast<CNpcEntity*>(PTask->m_data);
 
 	PNpc->animation = ANIMATION_OPEN_DOOR;
 	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
@@ -68,7 +68,7 @@ int32 open_door(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 disappear_npc(time_point tick, CTaskMgr::CTask* PTask)
 {
-	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+	CNpcEntity* PNpc = std::any_cast<CNpcEntity*>(PTask->m_data);
 
 	PNpc->status = STATUS_DISAPPEAR;
 	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_DESPAWN, UPDATE_NONE));
@@ -83,7 +83,7 @@ int32 disappear_npc(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 reappear_npc(time_point tick, CTaskMgr::CTask* PTask)
 {
-	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+	CNpcEntity* PNpc = std::any_cast<CNpcEntity*>(PTask->m_data);
 
 	PNpc->status = STATUS_NORMAL;
 	PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));

@@ -506,7 +506,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     // This might be wrong
     if (PCastTarget)
     {
-        float missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
+        auto missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
         if (missinghp > 850 && Cast(PCastTarget->targid, SpellID::Cure_VI ))
             return true;
         else if (missinghp > 600 && Cast(PCastTarget->targid, SpellID::Cure_V))
@@ -1127,7 +1127,7 @@ bool CAutomatonController::TryEnhance()
     if (!PHasteTarget && !haste)
         PHasteTarget = PAutomaton;
 
-    uint8 members = 0;
+    size_t members = 0;
 
     // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
     if (PAutomaton->PMaster->PParty)

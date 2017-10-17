@@ -150,7 +150,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 
 	if( !is_console(handle) && stdout_with_ansisequence )
 	{
-		WriteFile(handle,fmt.c_str(),fmt.length(),&written,0);
+		WriteFile(handle,fmt.c_str(),(DWORD)fmt.length(),&written,0);
 		return 0;
 	}
 	// start with processing

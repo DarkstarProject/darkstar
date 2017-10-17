@@ -84,7 +84,7 @@ inline int32 CLuaAbility::getRange(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
-    lua_pushinteger(L, m_PLuaAbility->getRange());
+    lua_pushinteger(L, (lua_Integer)m_PLuaAbility->getRange());
     return 1;
 }
 
@@ -109,7 +109,7 @@ inline int32 CLuaAbility::setMsg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setMessage(lua_tointeger(L, -1));
+    m_PLuaAbility->setMessage((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -118,7 +118,7 @@ inline int32 CLuaAbility::setAnimation(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setAnimationID(lua_tointeger(L, -1));
+    m_PLuaAbility->setAnimationID((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -127,7 +127,7 @@ inline int32 CLuaAbility::setRecast(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setRecastTime(lua_tointeger(L, -1));
+    m_PLuaAbility->setRecastTime((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -136,7 +136,7 @@ inline int32 CLuaAbility::setCE(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setCE(lua_tointeger(L, -1));
+    m_PLuaAbility->setCE((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -145,7 +145,7 @@ inline int32 CLuaAbility::setVE(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setVE(lua_tointeger(L, -1));
+    m_PLuaAbility->setVE((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -154,7 +154,7 @@ inline int32 CLuaAbility::setRange(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaAbility->setRange(lua_tointeger(L, -1));
+    m_PLuaAbility->setRange((float)lua_tointeger(L, -1));
     return 0;
 }
 

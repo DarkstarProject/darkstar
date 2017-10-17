@@ -92,11 +92,11 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
 
                 //New message (in yellow) at the end of dynamis (5min before the end)
                 if ((time_elapsed % 60) == 0s && (PBattlefield->getTimeLimit() - time_elapsed) <= 5min) {
-                    PBattlefield->pushMessageToAllInBcnm(449, (time_remaining) / 60);
+                    PBattlefield->pushMessageToAllInBcnm(449, (uint32)((time_remaining) / 60));
                 }
                 else {
                     if (time_elapsed % 60 == 0s) {
-                        PBattlefield->pushMessageToAllInBcnm(202, time_remaining);
+                        PBattlefield->pushMessageToAllInBcnm(202, (uint32)time_remaining);
                     }
                 }
 
@@ -123,7 +123,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                     }
 
                     if (time_elapsed % 60 == 0s) {
-                        PBattlefield->pushMessageToAllInBcnm(202, time_remaining);
+                        PBattlefield->pushMessageToAllInBcnm(202, (uint32)time_remaining);
                     }
 
                     //if the time is finished, exiting Limbus
@@ -157,7 +157,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                     }
                     //handle time remaining prompts (since its useful!) Prompts every minute
                     if (time_elapsed % 60 == 0s) {
-                        PBattlefield->pushMessageToAllInBcnm(202, time_remaining);
+                        PBattlefield->pushMessageToAllInBcnm(202, (uint32)time_remaining);
                     }
 
                     //handle win conditions
@@ -376,7 +376,7 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar) {
             }
             else {
                 int numRegistered = 0;
-                for (int j = 0; j < PChar->PParty->members.size(); j++) {
+                for (size_t j = 0; j < PChar->PParty->members.size(); j++) {
                     if (PBattlefield->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))) {
                         ShowDebug("BattlefieldHandler ::3 Added %s to the valid players list for BCNM %i Battlefield %i \n",
                             PChar->PParty->members.at(j)->GetName(), id, PBattlefield->getBattlefieldNumber());
@@ -394,7 +394,7 @@ int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar) {
                 }
             }
             else {
-                for (int j = 0; j < PChar->PParty->members.size(); j++) {
+                for (size_t j = 0; j < PChar->PParty->members.size(); j++) {
                     if (PBattlefield->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))) {
                         ShowDebug("BattlefieldHandler ::6 Added %s to the valid players list for BCNM %i Battlefield %i \n",
                             PChar->PParty->members.at(j)->GetName(), id, PBattlefield->getBattlefieldNumber());
@@ -533,29 +533,30 @@ void CBattlefieldHandler::RestoreOnBattlefield(uint16 id) {
     int playermaxHP = 0;
     if (id <= m_MaxBattlefields &&  id > 0) {
         CBattlefield* PBattlefield = m_Battlefields[id - 1];
-        for (int i = 0; i < PBattlefield->m_PlayerList.size(); i++) {
-            if (PBattlefield->m_PlayerList.at(i)->animation != ANIMATION_DEATH) {
+        for (const auto& player : PBattlefield->m_PlayerList)
+        {
+            if (player->animation != ANIMATION_DEATH) {
 
-                PBattlefield->m_PlayerList.at(i)->PRecastContainer->Del(RECAST_MAGIC);
-                PBattlefield->m_PlayerList.at(i)->PRecastContainer->Del(RECAST_ABILITY);
+                player->PRecastContainer->Del(RECAST_MAGIC);
+                player->PRecastContainer->Del(RECAST_ABILITY);
 
-                playermaxMP = PBattlefield->m_PlayerList.at(i)->GetMaxMP();
-                playermaxHP = PBattlefield->m_PlayerList.at(i)->GetMaxHP();
+                playermaxMP = player->GetMaxMP();
+                playermaxHP = player->GetMaxHP();
 
-                PBattlefield->m_PlayerList.at(i)->addHP(playermaxHP);
-                PBattlefield->m_PlayerList.at(i)->addMP(playermaxMP);
+                player->addHP(playermaxHP);
+                player->addMP(playermaxMP);
 
-                PBattlefield->m_PlayerList.at(i)->pushPacket(new CCharSkillsPacket(PBattlefield->m_PlayerList.at(i)));
-                PBattlefield->m_PlayerList.at(i)->pushPacket(new CCharRecastPacket(PBattlefield->m_PlayerList.at(i)));
+                player->pushPacket(new CCharSkillsPacket(player));
+                player->pushPacket(new CCharRecastPacket(player));
 
                 //361 - All of <target>'s abilities are recharged.
-                PBattlefield->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PBattlefield->m_PlayerList.at(i), PBattlefield->m_PlayerList.at(i), 0, 0, 361));
+                player->pushPacket(new CMessageBasicPacket(player, player, 0, 0, 361));
 
                 //357 - <target> regains .. HP.
-                PBattlefield->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PBattlefield->m_PlayerList.at(i), PBattlefield->m_PlayerList.at(i), playermaxHP, playermaxHP, 357));
+                player->pushPacket(new CMessageBasicPacket(player, player, playermaxHP, playermaxHP, 357));
 
                 //357 - <target> regains .. HP.
-                PBattlefield->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PBattlefield->m_PlayerList.at(i), PBattlefield->m_PlayerList.at(i), playermaxMP, playermaxMP, 358));
+                player->pushPacket(new CMessageBasicPacket(player, player, playermaxMP, playermaxMP, 358));
             }
         }
     }
