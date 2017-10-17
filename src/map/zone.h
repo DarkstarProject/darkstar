@@ -561,8 +561,7 @@ public:
     time_point      m_RegionCheckTime;                                              // время последней проверки регионов
     weatherVector_t m_WeatherVector;                                                // вероятность появления каждого типа погоды
 
-    virtual void    ZoneServer(time_point tick);
-    virtual void    ZoneServerRegion(time_point tick);
+    virtual void    ZoneServer(time_point tick, bool check_regions);
     void            CheckRegions(CCharEntity* PChar);
 
     virtual void    ForEachChar(std::function<void(CCharEntity*)> func);
