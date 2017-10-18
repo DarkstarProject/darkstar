@@ -24,6 +24,7 @@ end;
 
 function onTrigger(player,npc)
     player:getBCNMloot();
+    npc:setStatus(STATUS_DISAPPEAR);
 end;
 
 -----------------------------------

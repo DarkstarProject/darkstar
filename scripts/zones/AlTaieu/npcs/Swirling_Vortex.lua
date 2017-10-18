@@ -45,10 +45,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x00A0 and option == 1 ) then
-        ResetPlayerLimbusVariable(player);
-        LimbusEntrance(player,APPOLLYON_NW_SW);
+        enterApollyon(player,APOLLYON_NW_SW);
     elseif (csid == 0x009F and option == 1 ) then
-        ResetPlayerLimbusVariable(player);
-        LimbusEntrance(player,APPOLLYON_SE_NE);
+        enterApollyon(player,APOLLYON_SE_NE);
     end
 end;

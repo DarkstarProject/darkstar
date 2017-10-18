@@ -32,9 +32,9 @@
 
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaBattlefield::CLuaBattlefield(lua_State *L)
@@ -51,9 +51,9 @@ CLuaBattlefield::CLuaBattlefield(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaBattlefield::CLuaBattlefield(CBattlefield* PBattlefield)
@@ -63,7 +63,7 @@ CLuaBattlefield::CLuaBattlefield(CBattlefield* PBattlefield)
 
 /************************************************************************
 *                                                                       *
-*						Get methods								        *
+*                       Get methods                                     *
 *                                                                       *
 ************************************************************************/
 
@@ -115,13 +115,6 @@ inline int32 CLuaBattlefield::getRecord(lua_State* L)
     lua_pushnumber(L, std::chrono::duration_cast<std::chrono::seconds>(record.clearTime).count());
     lua_setfield(L, newTable, "clearTime");
 
-    return 1;
-}
-
-inline int32 CLuaBattlefield::setAsFastest(lua_State* L) {
-    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-
-    lua_pushinteger(L, 0);
     return 1;
 }
 
@@ -252,9 +245,9 @@ inline int32 CLuaBattlefield::win(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*  declare lua function													*
-*																		*
+*                                                                       *
+*  declare lua function                                                 *
+*                                                                       *
 ************************************************************************/
 
 const int8 CLuaBattlefield::className[] = "CBattlefield";

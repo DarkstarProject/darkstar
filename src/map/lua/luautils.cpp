@@ -1546,9 +1546,47 @@ namespace luautils
     }
 
     /************************************************************************
-    *                                                                       *
     *  Запущенное событие нуждается в дополнительных параметрах             *
-    *                                                                       *
+    *  A triggered event needs additional parameters  (battlefield extras)  *
+    ************************************************************************/
+
+    int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result, uint16 extras)
+    {
+        int32 oldtop = lua_gettop(LuaHandle);
+
+        lua_pushnil(LuaHandle);
+        lua_setglobal(LuaHandle, "onEventUpdate");
+
+        auto loadResult = LoadEventScript(PChar, "onEventUpdate");
+
+        if (!loadResult)
+        {
+            ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, eventID);
+        lua_pushinteger(LuaHandle, result);
+        lua_pushinteger(LuaHandle, extras);
+
+        CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
+
+        if (lua_pcall(LuaHandle, 5, 0, 0))
+        {
+            ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+        return 0;
+    }
+
+    /************************************************************************
+    *  Запущенное событие нуждается в дополнительных параметрах             *
+    *  A triggered event needs additional parameters                        *
     ************************************************************************/
 
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)

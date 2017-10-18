@@ -5,7 +5,6 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/globals/limbus");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -34,7 +33,7 @@ function onMobFight(mob, target)
         mob:setLocalVar("delay", 0);
     end;
 
-    if (IsMobDead(16921016) == false or IsMobDead(16921017) == false) then -- check for kf'ghrah
+    if ( GetMobByID(16921016):isAlive() or GetMobByID(16921017):isAlive() ) then -- check for kf'ghrah
         if (spell > 0 and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
             if (delay >= 3) then
                 mob:castSpell(spell);

@@ -55,7 +55,7 @@ function onTrigger(player,npc)
     local coffer = CofferID-16928768;
 
     if (CofferType == cTIME) then 
-        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
+        player:addTimeToBattlefield(InstanceRegion,addtime);
     elseif (CofferType == cITEM) then
         if (InstanceRegion == Central_Temenos_4th_Floor and coffer~=79) then
             local randmimic = math.random(1,24)

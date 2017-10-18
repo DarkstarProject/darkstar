@@ -16,7 +16,7 @@ require("scripts/globals/missions");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
 
-    local inst = player:getBattlefieldID();
+    local inst = player:getBattlefield():getBattlefieldNumber();
 
     if (inst == 1) then
     

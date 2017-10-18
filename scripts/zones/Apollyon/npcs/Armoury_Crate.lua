@@ -31,14 +31,14 @@ function onTrigger(player,npc)
  local  DespawnOtherCoffer=false;
  local  MimicID=0;
  
-  for coffer = 1,#ARMOURY_CRATES_LIST_APPOLLYON,2 do
-      if (ARMOURY_CRATES_LIST_APPOLLYON[coffer]== CofferID-16932864) then      
-         CofferType=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][1];
-         InstanceRegion=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][2];
-         addtime=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][3];
-         DespawnOtherCoffer=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][4];
-         MimicID=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][5];
-         lootID=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][6];                          
+  for coffer = 1,#ARMOURY_CRATES_LIST_APOLLYON,2 do
+      if (ARMOURY_CRATES_LIST_APOLLYON[coffer]== CofferID-16932864) then      
+         CofferType=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][1];
+         InstanceRegion=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][2];
+         addtime=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][3];
+         DespawnOtherCoffer=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][4];
+         MimicID=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][5];
+         lootID=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][6];                          
       end      
   end
   
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
  
  
     if (CofferType == cTIME) then 
-            player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
+            player:addTimeToBattlefield(InstanceRegion,addtime);
     elseif (CofferType == cITEM) then
             player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
             player:getBCNMloot();
@@ -86,7 +86,7 @@ function onTrigger(player,npc)
          end        
     end  
     if (DespawnOtherCoffer==true) then
-        HideArmouryCrates(InstanceRegion,APPOLLYON_SE_NE);
+        HideArmouryCrates(InstanceRegion,APOLLYON_SE_NE);
     end
     
    npc:setStatus(STATUS_DISAPPEAR);

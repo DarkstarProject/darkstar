@@ -20,10 +20,9 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-GetMobByID(16928831):updateEnmity(target);
-GetMobByID(16928832):updateEnmity(target);
-GetMobByID(16928834):updateEnmity(target);
-
+    GetMobByID(16928831):updateEnmity(target);
+    GetMobByID(16928832):updateEnmity(target);
+    GetMobByID(16928834):updateEnmity(target);
 end;
 
 -----------------------------------
@@ -31,10 +30,15 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
- if (IsMobDead(16928831)==true and IsMobDead(16928832)==true and IsMobDead(16928833)==true and IsMobDead(16928834)==true and IsMobDead(16928835)==true ) then
-       GetNPCByID(16928768+39):setPos(-599,85,438);
-    GetNPCByID(16928768+39):setStatus(STATUS_NORMAL);
-
-    GetNPCByID(16928768+456):setStatus(STATUS_NORMAL);
- end
+    if (
+        GetMobByID(16928831):isDead() and
+        GetMobByID(16928832):isDead() and
+        GetMobByID(16928833):isDead() and
+        GetMobByID(16928834):isDead() and
+        GetMobByID(16928835):isDead()
+    ) then
+        GetNPCByID(16928768+39):setPos(-599,85,438);
+        GetNPCByID(16928768+39):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+456):setStatus(STATUS_NORMAL);
+    end
 end;

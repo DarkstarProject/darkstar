@@ -36,47 +36,40 @@ class CMobEntity;
 class CBattlefieldHandler
 {
 public:
-
     CBattlefieldHandler(uint16 zoneid);
-    void	handleBattlefields(time_point tick);							// called every tick to handle win/lose conditions, locking the bcnm, etc
-    int		registerBcnm(uint16 bcnmid, CCharEntity* PChar);		// returns the battlefield id of the registration, -1 if no free bcnm.
-                                                                    // also registers all people in the characters PT, etc.
 
-    bool	enterBcnm(uint16 bcnmid, CCharEntity* PChar);			// Enters the BCNM battlefield if you're registered
-    bool	leaveBcnm(uint16 bcnmid, CCharEntity* PChar);			// Leaves the BCNM battlefield if you're registered
-    bool	disconnectFromBcnm(CCharEntity* PChar);					// Disconnects/Warps you from a BCNM
-    bool	winBcnm(uint16 bcnmid, CCharEntity* PChar);				// Wins a BCNM battlefield (e.g. the player opening the chest)
+    void    handleBattlefields(time_point tick);    // called every tick to handle win/lose conditions, locking the bcnm, etc
 
-    uint8	findBattlefieldIDFor(CCharEntity* PChar);					// returns 1 2 3 or 255 if non-existent
-    bool	hasFreeBattlefield();										// returns true if there is a free battlefield available
-    bool	hasFreeSpecialBattlefield(uint16 id);
-    bool    hasSpecialBattlefieldEmpty(uint16 id);                     // return 1 if one or more player is still on the special battlefield
-    duration     SpecialBattlefieldLeftTime(uint16 id, time_point tick);         //return left Time of the specific battlefield
-    int     GiveTimeToBattlefield(uint16 id, duration Time);              // give time to specific battlefield
-    void    SetLootToBCNM(uint16 LootID, uint16 id, uint32 npcID);
-    void    RestoreOnBattlefield(uint16 id);                          //restor MP HP ability on a specific battlefield
-    uint32	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 battlefields of the given BCNM ID
-    void	openTreasureChest(CCharEntity* PChar);
-    void	wipeBattlefield(CBattlefield* inst);
-    CBattlefield* getBattlefield(CCharEntity*);                           // returns the battlefield a player is in
+    bool    isBattlefieldFree(uint16 bnum);                             // is battlefield with given number free
+    int     registerBattlefield(uint16 bnum, uint16 id, CCharEntity* PChar);   // registers to PChar and allies a battlefield in arena bnum with content id
+    bool    enterBcnm(uint16 bnum, CCharEntity* PChar);                 // enter battlefield arena bnum if you are registered
+    bool    leaveBcnm(uint16 bnum, CCharEntity* PChar);                 // leave battlefield arena bnum if you are registered
+    bool    disconnectFromBattlefield(CCharEntity* PChar);              // Disconnects/Warps you from a BCNM
+    bool    winBcnm(uint16 bcnmid, CCharEntity* PChar);                 // Wins a BCNM battlefield (e.g. the player opening the chest)
 
-    int     SpecialBattlefieldAddPlayer(uint16 id, CCharEntity* PChar);
+    uint8   findBattlefieldIDFor(CCharEntity* PChar);                   // returns 1 2 3 or 255 if non-existent
+    bool    hasFreeBattlefield();                                       // returns true if there is a free battlefield available
+    duration     getBattlefieldTimeLeft(uint16 bnum, time_point tick);  // return left Time of the specific battlefield
+    int     GiveTimeToBattlefield(uint16 bnum, duration Time);          // give time to specific battlefield
+    void    SetLootToBCNM(uint16 LootID, uint16 bnum, uint32 npcID);
+    void    RestoreOnBattlefield(uint16 bnum);                          // restore MP HP ability on a specific battlefield
+    void    wipeBattlefield(CBattlefield* inst);
+
+    CBattlefield* getBattlefield(uint16 bnum);                              // return battlefield of given arena
+    int     addPlayerToBattlefield(uint16 bnum, CCharEntity* PChar);        // add a player to given arena
+
     //Dynamis Functions
-    int		getUniqueDynaID(uint16 id);								//
-    int		registerDynamis(uint16 id, CCharEntity* PChar);			//
-    int		dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar);	// Add a player to the dynamis battlefield
-    int		dynamisMessage(uint16 Param1, uint16 Param2);			// Add message on dynamis param1: messageid, param2: parameter
-    void	launchDynamisSecondPart();
-    bool	disconnectFromDynamis(CCharEntity* PChar);
+    int     registerDynamis(uint16 bnum, uint16 id, CCharEntity* PChar);    // registers to PChar a dynamis in arena bnum with content id
+    int     dynamisMessage(uint16 Param1, uint16 Param2);                   // Add message on dynamis param1: messageid, param2: parameter
+    void    launchDynamisSecondPart();
+    void    insertMonsterInList(CMobEntity* PMob);
+    bool    checkMonsterInList(CMobEntity* PMob);
 
-    void	insertMonsterInList(CMobEntity* PMob);
-    bool	checkMonsterInList(CMobEntity* PMob);
-
-    uint16					m_ZoneId;
+    uint16          m_ZoneId;
 
 private:
-    uint8					m_MaxBattlefields;							// usually 3 except dynamis, einherjar, besieged, ...
-    CBattlefield*				m_Battlefields[8];
+    uint8           m_MaxBattlefields;
+    CBattlefield*   m_Battlefields[8];
 };
 
 #endif

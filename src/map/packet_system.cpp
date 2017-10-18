@@ -2628,11 +2628,12 @@ void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->loc.p.x = RBUFF(data, (0x04));
         PChar->loc.p.y = RBUFF(data, (0x08));
         PChar->loc.p.z = RBUFF(data, (0x0C));
+        uint16 extras = RBUFW(data, (0x14));
         PChar->loc.p.rotation = RBUFB(data, (0x1F));
 
         if (RBUFB(data, (0x1E)) != 0)
         {
-            luautils::OnEventUpdate(PChar, EventID, 0);
+            luautils::OnEventUpdate(PChar, EventID, 0, extras);
         }
         else
         {
@@ -4325,7 +4326,7 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->nameflags.flags & FLAG_ANON)
         {
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 175));
-        } 
+        }
         else
         {
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 176));

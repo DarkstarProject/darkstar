@@ -14,24 +14,12 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
-    ---- 0:
-    ---- 1:
-    ---- 2:
-    ---- 3:
-    ---- 4:
-    ---- 5:
-    ---- 6:
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-  if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-        return;
-    end
-
+    TradeBCNM(player,npc,trade);
 end;
 
 -----------------------------------
@@ -39,33 +27,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-  if (player:hasKeyItem(ORCISH_HUT_KEY)) then
+    if (player:hasKeyItem(ORCISH_HUT_KEY)) then
         if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
             player:startEvent(0x0003);
         else
             player:startEvent(0x0037);
         end
-  else
-         if (EventTriggerBCNM(player,npc)) then
+    else
+        if (EventTriggerBCNM(player,npc)) then
             return;
+        end
     end
-  end
-
 end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
-function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-
-    if (EventUpdateBCNM(player,csid,option)) then
-        return;
-    end
-
+function onEventUpdate(player,csid,option,extras)
+    EventUpdateBCNM(player,csid,option,extras);
 end;
 
 -----------------------------------
