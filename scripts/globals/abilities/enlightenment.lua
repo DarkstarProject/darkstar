@@ -5,9 +5,9 @@
 -- Recast Time: 0:05:00
 -- Duration: 0:01:00 or 1 Spell, whichever occurs first
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -15,7 +15,7 @@ require("scripts/globals/status");
 
 function onAbilityCheck(player,target,ability)
     if player:hasStatusEffect(EFFECT_ENLIGHTENMENT) then
-        return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
+        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;

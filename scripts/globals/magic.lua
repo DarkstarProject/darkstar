@@ -1,10 +1,10 @@
-require("scripts/globals/magicburst");
-require("scripts/globals/status");
-require("scripts/globals/weather");
-require("scripts/globals/utils");
-require("scripts/globals/settings");
 
-    MMSG_BUFF_FAIL = 75;
+require("scripts/globals/magicburst");
+require("scripts/globals/settings");
+require("scripts/globals/weather");
+require("scripts/globals/status");
+require("scripts/globals/utils");
+require("scripts/globals/msg");
 
     DIVINE_MAGIC_SKILL     = 32;
     HEALING_MAGIC_SKILL    = 33;
@@ -303,8 +303,8 @@ end;
 -- Output:
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
-function applyResistance(player, spell, target, params)
-    return applyResistanceEffect(player, spell, target, params);
+function applyResistance(caster, target, spell, params)
+    return applyResistanceEffect(caster, target, spell, params);
 end;
 
 -- USED FOR Status Effect Enfeebs (blind, slow, para, etc.)
@@ -1154,10 +1154,6 @@ function doDivineNuke(caster, target, spell, params)
 end
 
 function doNinjutsuNuke(caster, target, spell, params)
-    local V = params.dmg;
-    local M = params.mutliplier;
-    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
-    local resistBonus = params.resistBonus;
     local mabBonus = params.mabBonus;
 
     mabBonus = mabBonus or 0;
@@ -1174,14 +1170,6 @@ function doNinjutsuNuke(caster, target, spell, params)
 end
 
 function doNuke(caster, target, spell, params)
-    local V = params.dmg;
-    local M = params.mutliplier;
-    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
-    local resistBonus = params.resistBonus;
-    local mabBonus = params.mabBonus;
-    local modStat = params.attribute;
-    local skill = params.skillType;
-
     --calculate raw damage
     local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
@@ -1218,12 +1206,9 @@ function doNuke(caster, target, spell, params)
 end
 
 function doDivineBanishNuke(caster, target, spell, params)
-    local skill = DIVINE_MAGIC_SKILL;
-    local modStat = MOD_MND;
-    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
-    local resistBonus = params.resistBonus;
-    local V = params.dmg;
-    local M = params.multiplier;
+    params.skillType = DIVINE_MAGIC_SKILL;
+    params.attribute = MOD_MND;
+
     --calculate raw damage
     local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)

@@ -67,14 +67,16 @@ function onTrigger(player,npc)
     local TheHolyCrest = player:getVar("TheHolyCrest_Event");
     local tatsVar = player:getVar("troubleAtTheSluiceVar");
     local theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
+    local crestCheck = player:getVar("theHolyCrestCheck");
 
     npc:wait(-1);
 
     -- The Holy Crest Quest
     if (TheHolyCrest == 1) then
         player:startEvent(0x0006);
-    elseif (TheHolyCrest == 2) then
+    elseif (TheHolyCrest == 2 and crestCheck == 0) then
         player:startEvent(0x0007);
+        player:setVar("theHolyCrestCheck",1);
     -- Trouble at the Sluice Quest
     elseif (tatsVar == 1) then
         player:startEvent(0x000f);
@@ -88,6 +90,7 @@ function onTrigger(player,npc)
         player:startEvent(0x000b);
     elseif (theRumor == QUEST_COMPLETED) then
         player:startEvent(0x000e); -- Standard dialog after "The Rumor"
+        player:setVar("theHolyCrestCheck",0);
     else
         player:startEvent(0x000a); -- Standard dialog
     end
@@ -117,6 +120,7 @@ function onEventFinish(player,csid,option,npc)
         player:addKeyItem(NEUTRALIZER);
         player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
         player:setVar("troubleAtTheSluiceVar",0);
+        player:setVar("theHolyCrestCheck",0);
     elseif (csid == 0x000d and option == 1) then
         player:addQuest(SANDORIA,THE_RUMOR);
     elseif (csid == 0x000c) then

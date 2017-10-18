@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Kirata);
                 GetMobByID(Kirata):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Kirata", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
@@ -44,7 +44,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Nue);
                 GetMobByID(Nue):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Nue", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

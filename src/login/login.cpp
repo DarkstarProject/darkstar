@@ -172,8 +172,8 @@ int do_sockets(fd_set* rfd, duration next)
 
 
     // can timeout until the next tick
-    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
-    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
+    timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = (long)std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
 
     memcpy(rfd, &readfds, sizeof(*rfd));
@@ -371,14 +371,6 @@ int32 login_config_read(const char *cfgName)
         {
             login_config.search_server_port = atoi(w2);
         }
-        else if (strcmp(w1, "expansions") == 0)
-        {
-            login_config.expansions = atoi(w2);
-        }
-        else if (strcmp(w1, "features") == 0)
-        {
-            login_config.features = atoi(w2);
-        }
         else if (strcmp(w1, "servername") == 0)
         {
             login_config.servername = std::string(w2);
@@ -458,7 +450,6 @@ int32 login_config_default()
     login_config.login_auth_ip = "127.0.0.1";
     login_config.login_auth_port = 54231;
 
-    login_config.expansions = 0xFFFF;
     login_config.servername = "DarkStar";
 
     login_config.mysql_host = "";

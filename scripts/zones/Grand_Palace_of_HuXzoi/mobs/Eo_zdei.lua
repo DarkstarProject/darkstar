@@ -84,6 +84,6 @@ function onMobDeath(mob, player, isKiller)
 
         -- The jailer spawns instantly, so don't need to set respawn time
         SpawnMob(Jailer_of_Temperance):updateClaim(player);
-        DeterMob(mobID, true);
+        DisallowRespawn(mobID, true);
     end
 end;

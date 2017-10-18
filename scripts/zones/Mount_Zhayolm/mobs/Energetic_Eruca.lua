@@ -21,12 +21,12 @@ function onMobDespawn(mob)
 
     -- Set EnE's ToD
     SetServerVariable("[POP]Energetic_Eruca", os.time() + 86400); -- 24 hours
-    DeterMob(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
     local PH = GetServerVariable("[PH]Energetic_Eruca");
     SetServerVariable("[PH]Energetic_Eruca", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

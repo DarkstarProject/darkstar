@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Amikiri);
                 GetMobByID(Amikiri):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Amikiri", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

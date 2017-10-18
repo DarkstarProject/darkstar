@@ -37,7 +37,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Emergent_Elm);
                 GetMobByID(Emergent_Elm):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Emergent_Elm", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -2,8 +2,9 @@
 -- Area: Beadeaux (254)
 --  NM: Ge'Dha Evileye
 -- @spawnmob 17379450
--- @pos -238 1 -202 (254)
+-- @pos -238 1 -202 254
 -----------------------------------
+require("scripts/zones/Beadeaux/MobIDs");
 
 -----------------------------------
 -- onMobSpawn
@@ -34,16 +35,10 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    -- Set Ge_Dha_Evileye ToD
-    local wait = math.random(3600,7200);
-    SetServerVariable("[POP]Ge_Dha_Evileye",os.time()); -- 1-2 hours
-    DeterMob(mob:getID(), true);
-
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Ge_Dha_Evileye");
-    SetServerVariable("[PH]Ge_Dha_Evileye", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
+    -- Set ToD, DisallowRespawn NM, set placeholder respawn time, set Placeholder back to normal
+    local wait = math.random(3600,7200); -- 1-2 hours
+    SetServerVariable("[POP]Ge_Dha_Evileye", os.time() + wait);
+    DisallowRespawn(mob:getID(), true);
+    GetMobByID(Ge_Dha_Evileye_PH):setRespawnTime(GetMobRespawnTime(Ge_Dha_Evileye_PH));
+    DisallowRespawn(Ge_Dha_Evileye_PH, false);
 end;

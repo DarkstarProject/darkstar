@@ -5,11 +5,12 @@
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
@@ -22,15 +23,15 @@ function onMobWeaponSkill(target, mob, skill)
 
     blinded = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 60, 0, 60);
 
-    skill:setMsg(MSG_ENFEEB_IS);
+    skill:setMsg(msgBasic.ENFEEB_IS);
 
     -- display silenced first, else blind
-    if (silenced == MSG_ENFEEB_IS) then
+    if (silenced == msgBasic.ENFEEB_IS) then
         typeEffect = EFFECT_SILENCE;
-    elseif (blinded == MSG_ENFEEB_IS) then
+    elseif (blinded == msgBasic.ENFEEB_IS) then
         typeEffect = EFFECT_BLINDNESS;
     else
-        skill:setMsg(MSG_MISS);
+        skill:setMsg(msgBasic.MISS);
     end
 
     return typeEffect;

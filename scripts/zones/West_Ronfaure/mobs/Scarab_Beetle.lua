@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Fungus_Beetle);
                 GetMobByID(Fungus_Beetle):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Fungus_Beetle", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

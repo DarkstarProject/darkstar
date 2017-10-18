@@ -4,7 +4,7 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
------------------------------------
+require("scripts/globals/msg");
 
 
 -----------------------------------
@@ -49,7 +49,7 @@ function onAdditionalEffect(mob,target,damage)
 
         dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
 
-        return SUBEFFECT_WATER_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+        return SUBEFFECT_WATER_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
     end
 
 end;

@@ -5,6 +5,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -29,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
         heal = heal * 3;
     end
 
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
 
     return MobHealMove(mob, heal);
 end;

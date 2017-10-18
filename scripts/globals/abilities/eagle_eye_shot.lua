@@ -5,10 +5,10 @@
 -- Recast Time: 1:00:00
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -17,7 +17,7 @@ require("scripts/globals/weaponskills");
 function onAbilityCheck(player,target,ability)
     local ranged = player:getStorageItem(0, 0, SLOT_RANGED);
     local ammo = player:getStorageItem(0, 0, SLOT_AMMO);
-    
+
     if ranged and ranged:isType(ITEM_WEAPON) then
         local skilltype = ranged:getSkillType();
         if skilltype == SKILL_ARC or skilltype == SKILL_MRK or skilltype == SKILL_THR then
@@ -26,8 +26,8 @@ function onAbilityCheck(player,target,ability)
             end;
         end;
     end;
-    
-    return MSGBASIC_NO_RANGED_WEAPON, 0;
+
+    return msgBasic.NO_RANGED_WEAPON, 0;
 end;
 
 -----------------------------------
@@ -52,7 +52,7 @@ function onUseAbility(player,target,ability,action)
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
 
     if not (tpHits + extraHits > 0) then
-        ability:setMsg(MSGBASIC_USES_BUT_MISSES)
+        ability:setMsg(msgBasic.USES_BUT_MISSES)
         action:speceffect(target:getID(), 0)
     end
 

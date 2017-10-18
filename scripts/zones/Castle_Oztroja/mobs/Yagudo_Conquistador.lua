@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Yaa_Haqa_the_Profane);
                 GetMobByID(Yaa_Haqa_the_Profane):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Yaa_Haqa_the_Profane", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

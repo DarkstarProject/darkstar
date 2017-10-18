@@ -26,7 +26,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Eldritch_Edge);
                 GetMobByID(Eldritch_Edge):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Eldritch_Edge", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

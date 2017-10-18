@@ -5,11 +5,12 @@
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
@@ -22,15 +23,15 @@ function onMobWeaponSkill(target, mob, skill)
     slowed = MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, 60);
     weight = MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 40, 0, 60);
 
-    skill:setMsg(MSG_ENFEEB_IS);
+    skill:setMsg(msgBasic.ENFEEB_IS);
 
     -- display slow first, else weight
-    if (slowed == MSG_ENFEEB_IS) then
+    if (slowed == msgBasic.ENFEEB_IS) then
         typeEffect = EFFECT_SLOW;
-    elseif (weight == MSG_ENFEEB_IS) then
+    elseif (weight == msgBasic.ENFEEB_IS) then
         typeEffect = EFFECT_WEIGHT;
     else
-        skill:setMsg(MSG_MISS);
+        skill:setMsg(msgBasic.MISS);
     end
 
     return typeEffect;

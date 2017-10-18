@@ -1,11 +1,13 @@
 ---------------------------------------------
 --  Wheel of Impregnability
 ---------------------------------------------
+require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or mob:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 1;
@@ -20,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     mob:addStatusEffect(EFFECT_PHYSICAL_SHIELD, 0, 0, 0);
     mob:AnimationSub(1);
-    
-    skill:setMsg(MSG_BUFF);
+
+    skill:setMsg(msgBasic.BUFF);
     return EFFECT_PHYSICAL_SHIELD;
 end;

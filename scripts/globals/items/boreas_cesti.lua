@@ -4,9 +4,9 @@
 -- Additional Effect: Wind Damage
 -- 100% proc rate
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -22,9 +22,9 @@ function onAdditionalEffect(player,target,damage)
     dmg = adjustForTarget(target,dmg,ELE_WIND);
     dmg = finalMagicNonSpellAdjustments(player,target,ELE_WIND,dmg);
 
-    local message = MSGBASIC_ADD_EFFECT_DMG;
+    local message = msgBasic.ADD_EFFECT_DMG;
     if (dmg < 0) then
-        message = MSGBASIC_ADD_EFFECT_HEAL;
+        message = msgBasic.ADD_EFFECT_HEAL;
     end
 
     return SUBEFFECT_WIND_DAMAGE,message,dmg;

@@ -28,19 +28,13 @@
 #include "status_effect_container.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier)
+CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier) :
+    m_StatusID(id), m_SubID(subid), m_Icon(icon), m_Power(power), m_SubPower(subPower), m_Tier(tier), m_TickTime(tick * 1000), m_Duration(duration * 1000)
 {
-	m_StatusID = id;
-    m_Type     = 0;
-	m_SubID	   = subid;
-    m_Icon     = icon;
-	m_Power	   = power;
-    m_SubPower = subPower;
-    m_Tier     = tier;
-	m_Flag	   = EFFECTFLAG_NONE;
-	m_TickTime = tick * 1000;
-	m_Duration = duration * 1000;
-    m_POwner = nullptr;
+    if (m_TickTime < 3000 && m_TickTime != 0)
+    {
+        ShowWarning("Status Effect tick time less than 3s is no longer supported.  Effect ID: %d\n", id);
+    }
 }
 
 CStatusEffect::~CStatusEffect()
@@ -116,14 +110,14 @@ uint32 CStatusEffect::GetDuration()
 	return m_Duration;
 }
 
+int CStatusEffect::GetElapsedTickCount()
+{
+    return m_tickCount;
+}
+
 time_point CStatusEffect::GetStartTime()
 {
 	return m_StartTime;
-}
-
-time_point CStatusEffect::GetLastTick()
-{
-	return m_LastTick;
 }
 
 void CStatusEffect::SetFlag(uint32 Flag)
@@ -171,18 +165,18 @@ void CStatusEffect::SetDuration(uint32 Duration)
 
 void CStatusEffect::SetStartTime(time_point StartTime)
 {
-	m_LastTick  = StartTime;
+	m_tickCount  = 0;
 	m_StartTime = StartTime;
-}
-
-void CStatusEffect::SetLastTick(time_point LastTick)
-{
-	m_LastTick = LastTick;
 }
 
 void CStatusEffect::SetTickTime(uint32 tick)
 {
 	m_TickTime = tick;
+}
+
+void CStatusEffect::IncrementElapsedTickCount()
+{
+    ++m_tickCount;
 }
 
 void CStatusEffect::SetName(const int8* name)

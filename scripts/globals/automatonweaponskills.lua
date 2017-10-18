@@ -1,22 +1,11 @@
 -- Uses a mixture of mob and player WS formulas
 require("scripts/globals/weaponskills");
+require("scripts/globals/magicburst");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/magic");
-require("scripts/globals/magicburst");
+require("scripts/globals/msg");
 
-MSG_SHADOW = 31
-MSG_RESIST = 85
-MSG_USES = 101 -- simple uses message
-MSG_DISAPPEAR = 159 -- <target>'s stun effect disappears!
-MSG_MISS = 188
-MSG_BUFF = 186
-MSG_DRAIN_HP = 187
-MSG_NO_EFFECT = 189
-MSG_RECOVER_MP = 224
-MSG_ENFEEB = 243 --XXX receives the effect of petrification.
-MSG_ATTR_DRAINED = 369
-MSG_TP_INCREASE = 409
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus, weaponType, weaponDamage
 function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill, action)
@@ -219,7 +208,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     else
-        skill:setMsg(MSG_MISS)
+        skill:setMsg(msgBasic.MISS)
     end
 
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
@@ -275,7 +264,7 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
             pdifmax = cratio + 0.375;
         elseif ((2.625 < cratio) and (cratio <= 3.25)) then
             pdifmax = 3;
-        else 
+        else
             pdifmax = cratio;
         end
 
@@ -311,7 +300,7 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
             pdifmax = cratio + 0.375;
         elseif ((2.625 < cratio) and (cratio <= 3.25)) then
             pdifmax = 3;
-        else 
+        else
             pdifmax = cratio;
         end
 
@@ -510,7 +499,7 @@ end;
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     else
-        skill:setMsg(MSG_MISS)
+        skill:setMsg(msgBasic.MISS)
     end
 
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;

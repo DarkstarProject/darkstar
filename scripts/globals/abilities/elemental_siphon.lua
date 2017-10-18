@@ -10,6 +10,8 @@ require("scripts/globals/status");
 require("scripts/globals/pets");
 require("scripts/globals/magic")
 require("scripts/globals/utils")
+require("scripts/globals/msg");
+
 -----------------------------------
 -- onAbilityCheck
 -----------------------------------
@@ -19,7 +21,7 @@ function onAbilityCheck(player,target,ability)
     if (pet >= 0 and pet <= 7) then -- spirits
         return 0,0;
     else
-        return MSGBASIC_UNABLE_TO_USE_JA,0;
+        return msgBasic.UNABLE_TO_USE_JA,0;
     end
 end;
 
@@ -42,7 +44,7 @@ function onUseAbility(player,target,ability)
     elseif (spiritEle == 6) then
         spiritEle = 3
     end;
-    
+
     local pEquipMods = player:getMod(MOD_ENHANCES_ELEMENTAL_SIPHON);
     local basePower = player:getSkillLevel(SKILL_SUM) + pEquipMods - 50;
     if (basePower < 0) then -- skill your summoning magic you lazy bastard !
@@ -68,7 +70,7 @@ function onUseAbility(player,target,ability)
     elseif (weather == doubleWeatherWeak[spiritEle]) then
         weatherDayBonus = weatherDayBonus - 0.25;
     end
-    
+
     local power = math.floor(basePower * weatherDayBonus);
     local spirit = player:getPet();
     power = utils.clamp(power, 0, spirit:getMP()); -- cap MP drained at spirit's MP

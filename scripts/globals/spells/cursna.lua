@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
     local curse2 = target:getStatusEffect(EFFECT_CURSE_II);
     local bane = target:getStatusEffect(EFFECT_BANE);
     local bonus = caster:getMod(MOD_ENHANCES_CURSNA) + target:getMod(MOD_ENHANCES_CURSNA_RCVD);
-    local power = 25*(bonus/100); -- This 25 is temp until the skill calculation is in.
+    local power = 25*((100+bonus)/100); -- This 25 is temp until the skill calculation is in.
 
     spell:setMsg(75);
     if (target:hasStatusEffect(EFFECT_DOOM) and power > math.random(1, 100)) then

@@ -49,10 +49,33 @@ enum LEAVE_CODE {
     LEAVE_LOSE = 4
 };
 
+enum BATTLEFIELD_RETURN_CODE : uint8
+{
+    BATTLEFIELD_RETURN_CODE_WAIT              = 1,
+    BATTLEFIELD_RETURN_CODE_CUTSCENE          = 2,
+    BATTLEFIELD_RETURN_CODE_INCREMENT_REQUEST = 3,
+    BATTLEFIELD_RETURN_CODE_LOCKED            = 4,
+    BATTLEFIELD_RETURN_CODE_REQS_NOT_MET      = 5,
+    BATTLEFIELD_RETURN_CODE_BATTLEFIELD_FULL  = 6
+};
+
 class CMobEntity;
 class CCharEntity;
 class CBaseEntity;
 class CBattlefieldHandler;
+
+struct BattlefieldRecord
+{
+    std::string name;
+    uint8 partySize;
+    duration clearTime;
+    BattlefieldRecord()
+    {
+        name = "Not Set!";
+        partySize = 69;
+        clearTime = 240s;
+    }
+};
 
 typedef struct
 {
@@ -82,6 +105,7 @@ public:
     time_point		getWinTime();
     time_point		getDeadTime();
     uint8		getEntrance();
+    const BattlefieldRecord& getRecord() const;
 
     void		setTimeLimit(duration time);
     void		setBcnmName(int8* name);
@@ -92,6 +116,7 @@ public:
     void		setLootId(uint16 id);
     void		setDeadTime(time_point time);
     void		setEntrance(uint8 entrance);
+    void        setRecord(const std::string& name, uint8 partySize, duration clearTime);
 
     //player related functions
     bool		isValidPlayerForBcnm(CCharEntity* PChar);
@@ -182,6 +207,8 @@ private:
     bool			m_lost;
     bool			m_won;
     bool            m_cleared {false}; // set when the BCNM has ended and the players have started the end cutscene
+
+    BattlefieldRecord m_record;
     std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
 };
 

@@ -25,8 +25,8 @@ function onMobRoam(mob)
         if (Colorful_Leshy_PH_Table[Colorful_Leshy_PH] ~= nil) then
             if (GetMobAction(Colorful_Leshy) == 0) then
                 SetServerVariable("Colorful_Leshy_PH", Colorful_Leshy_PH_Table[Colorful_Leshy_PH]);
-                DeterMob(Colorful_Leshy_PH_Table[Colorful_Leshy_PH], true);
-                DeterMob(Colorful_Leshy, false);
+                DisallowRespawn(Colorful_Leshy_PH_Table[Colorful_Leshy_PH], true);
+                DisallowRespawn(Colorful_Leshy, false);
                 DespawnMob(Colorful_Leshy_PH_Table[Colorful_Leshy_PH]);
                 SpawnMob(Colorful_Leshy, "", 0);
             end

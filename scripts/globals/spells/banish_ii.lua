@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Banish
+-- Spell: Banish II
 -- Deals light damage to an enemy.
 -----------------------------------------
 

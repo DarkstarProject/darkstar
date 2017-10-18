@@ -1,12 +1,11 @@
 ---------------------------------------------------
---
+-- Lightning Armor
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 require("scripts/globals/utils");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onAbilityCheck(player, target, ability)
@@ -19,6 +18,6 @@ function onPetAbility(target, pet, skill, summoner)
 
     target:delStatusEffect(EFFECT_SHOCK_SPIKES);
     target:addStatusEffect(EFFECT_SHOCK_SPIKES,15,0,duration);
-    skill:setMsg(MSG_BUFF);
+    skill:setMsg(msgBasic.BUFF);
     return EFFECT_SHOCK_SPIKES;
 end

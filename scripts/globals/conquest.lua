@@ -40,7 +40,7 @@ TAVNAZIANARCH   = 18;
 CONQUEST_TALLY_START = 0;
 CONQUEST_TALLY_END   = 1;
 CONQUEST_UPDATE      = 2;
-  
+
 nationAlly = 3;
 
 -----------------------------------
@@ -696,20 +696,20 @@ switch (region): caseof {
         Quanteilleron,NATION_SANDORIA,        -- Quanteilleron, R.K.
         Quanteilleron+7,NATION_SANDORIA,    -- Prunilla, R.K.
         Quanteilleron+3,NATION_SANDORIA,    -- flag
-        Quanteilleron+11,NATION_SANDORIA,    -- flag
+        Quanteilleron+12,NATION_SANDORIA,    -- flag
     --
         Quanteilleron+1,NATION_BASTOK,        -- Tsunashige, I.M.
         Quanteilleron+8,NATION_BASTOK,        -- Fighting Ant, I.M.
         Quanteilleron+4,NATION_BASTOK,        -- flag
-        Quanteilleron+12,NATION_BASTOK,    -- flag
+        Quanteilleron+13,NATION_BASTOK,    -- flag
     --
         Quanteilleron+2,NATION_WINDURST,    -- Nyata-Mobuta, W.W.
         Quanteilleron+9,NATION_WINDURST,    -- Tebubu, W.W.
         Quanteilleron+5,NATION_WINDURST,    -- flag
-        Quanteilleron+13,NATION_WINDURST,    -- flag
+        Quanteilleron+14,NATION_WINDURST,    -- flag
     --
         Quanteilleron+6,BEASTMEN,    -- flag
-        Quanteilleron+14,BEASTMEN,    -- flag
+        Quanteilleron+15,BEASTMEN,    -- flag
     --
         Quanteilleron+10,OTHER,        -- Medicine Axe
     }
@@ -844,7 +844,7 @@ switch (region): caseof {
   ---------------------------------
     --print("KOLSHUSHU");
 
-    local Bonbavour = 17261143;
+    local Bonbavour = 17261150;
 
     npc  = {
     --
@@ -945,20 +945,20 @@ switch (region): caseof {
         Jeantelas+7,NATION_SANDORIA,        -- Pilcha, R.K.
         Jeantelas+3,NATION_SANDORIA,        -- flag
         Jeantelas+11,NATION_SANDORIA,        -- flag
-    --    
+    --
         Jeantelas+1,NATION_BASTOK,            -- Kaya, I.M.
         Jeantelas+8,NATION_BASTOK,            -- Heavy Bear, I.M.
         Jeantelas+4,NATION_BASTOK,            -- flag
         Jeantelas+12,NATION_BASTOK,        -- flag
-    --    
+    --
         Jeantelas+2,NATION_WINDURST,        -- Magumo-Yagimo, W.W.
         Jeantelas+9,NATION_WINDURST,        -- Tememe, W.W.
         Jeantelas+5,NATION_WINDURST,        -- flag
         Jeantelas+13,NATION_WINDURST,        -- flag
-    --    
+    --
         Jeantelas+6,BEASTMEN,        -- flag
         Jeantelas+14,BEASTMEN,        -- flag
-    --    
+    --
         Jeantelas+10,OTHER,            -- Pelogrant
     }
   end,
@@ -1007,20 +1007,20 @@ switch (region): caseof {
         Credaurion+7,NATION_SANDORIA,        -- Limion, R.K.
         Credaurion+3,NATION_SANDORIA,        -- flag
         Credaurion+11,NATION_SANDORIA,        -- flag
-    --    
+    --
         Credaurion+1,NATION_BASTOK,        -- Calliope, I.M.
         Credaurion+8,NATION_BASTOK,        -- Dedden, I.M.
         Credaurion+4,NATION_BASTOK,        -- flag
         Credaurion+12,NATION_BASTOK,        -- flag
-    --    
+    --
         Credaurion+2,NATION_WINDURST,        -- Ajimo-Majimo, W.W.
         Credaurion+9,NATION_WINDURST,        -- Ochocho, W.W.
         Credaurion+5,NATION_WINDURST,        -- flag
         Credaurion+13,NATION_WINDURST,        -- flag
-    --    
+    --
         Credaurion+6,BEASTMEN,        -- flag
         Credaurion+14,BEASTMEN,        -- flag
-    --    
+    --
         Credaurion+10,OTHER,        -- Kasim
     }
   end,
@@ -1153,7 +1153,7 @@ switch (region): caseof {
   [TULIA] = function (x) -- RuAun_Gardens (130)
   ---------------------------------
     --print("TULIA");
-    
+
     local RuAun_Banner = 17310080;
 
     npc  = {
@@ -1233,14 +1233,14 @@ function SetRegionalConquestOverseers(region)
 
     for i = 1, #npclist, 2 do
         local npc = GetNPCByID(npclist[i]);
-        
+
         if (npc ~= nil) then
             if (npclist[i+1] == nation) then
                 npc:setStatus(0);
             else
                 npc:setStatus(2);
             end
-        
+
             if (npclist[i+1] == OTHER) then
                 if (nation ~= BEASTMEN) then
                     npc:setStatus(0);
@@ -1296,7 +1296,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
         else
             player:messageText(player, messageBase+6, 5);
         end
-                
+
         local offset = 0;
         if (bit.band(ranking, 0x03) == 0x01) then
             offset = offset + 7; -- 7
@@ -1334,7 +1334,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
         end
         -- Global balance of power:
         player:messageText(player, messageBase+offset, 5);
-        
+
         if (isConquestAlliance()) then
             -- have formed an alliance.
             if (bit.band(ranking, 0x03) == 0x01) then
@@ -1353,9 +1353,9 @@ function conquestUpdate(zone, player, updateType, messageBase)
         else
             player:messageText(player, messageBase+31, 5);
         end
-        
+
         local influence = GetRegionInfluence(zone:getRegionID());
-        
+
         if (influence >= 64) then
             -- The beastmen are on the rise.
             player:messageText(player, messageBase+37, 5);
@@ -1366,7 +1366,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
             local sandoria = bit.band(influence, 0x03);
             local bastok = bit.rshift(bit.band(influence, 0x0C),2);
             local windurst = bit.rshift(bit.band(influence, 0x30),4);
-            
+
             -- Regional influence: San d'Oria
             player:messageText(player, messageBase+41 - sandoria, 5);
             -- Bastok
@@ -1374,7 +1374,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
             -- Windurst
             player:messageText(player, messageBase+49 - windurst, 5);
         end
-        
+
         if (isConquestAlliance()) then
             --are currently allied.
             if (bit.band(ranking, 0x03) == 0x01) then

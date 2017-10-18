@@ -131,9 +131,19 @@ int32 lobbydata_parse(int32 fd)
             CharList[0] = 0xE0; CharList[1] = 0x08;
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
-            CharList[28] = 16; // количество ячеек, доступных для создания персонажей (0-16)
+            const int8 *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
+            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                CharList[28] = Sql_GetUIntData(SqlHandle, 0);
+            }
+            else
+            {
+                do_close_lobbydata(sd, fd);
+                return -1;
+            }
 
-            const char *pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
+            pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
 												 race, face, head, body, hands, legs, feet, main, sub,\
 												 war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
 												 sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
@@ -142,9 +152,9 @@ int32 lobbydata_parse(int32 fd)
 											INNER JOIN char_look  USING(charid) \
 											INNER JOIN char_jobs  USING(charid) \
 										  WHERE accid = %i \
-										  LIMIT 16;";
+										  LIMIT %u;";
 
-            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid, CharList[28]);
             if (ret == SQL_ERROR)
             {
                 do_close_lobbydata(sd, fd);
@@ -178,7 +188,6 @@ int32 lobbydata_parse(int32 fd)
                 uint32 CharID = Sql_GetIntData(SqlHandle, 0);
 
                 uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
-                uint16 prevzone = (uint16)Sql_GetIntData(SqlHandle, 3);
 
                 uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
                 uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
@@ -207,8 +216,8 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
                 WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
-                // todo: cap login packet for zones > 255
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);      // если персонаж в MogHouse
+                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)zone;
+                WBUFW(CharList, 78 + 32 + i * 140) = zone;
                 ///////////////////////////////////////////////////
                 ++i;
             }
@@ -257,7 +266,7 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 32);
+            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
@@ -486,10 +495,20 @@ int32 lobbyview_parse(int32 fd)
             }
             else
             {
-                LOBBY_026_RESERVEPACKET(ReservePacket);
-                WBUFW(ReservePacket, 32) = login_config.expansions; // BitMask for expansions;
-                WBUFW(ReservePacket, 36) = login_config.features; // Bitmask for account features
-                memcpy(MainReservePacket, ReservePacket, sendsize);
+                const int8 *pfmtQuery = "SELECT expansions,features FROM accounts WHERE id = %u;";
+                int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    LOBBY_026_RESERVEPACKET(ReservePacket);
+                    WBUFW(ReservePacket, 32) = Sql_GetUIntData(SqlHandle, 0); // Expansion Bitmask
+                    WBUFW(ReservePacket, 36) = Sql_GetUIntData(SqlHandle, 1); // Feature Bitmask
+                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                }
+                else
+                {
+                    do_close_lobbydata(sd, fd);
+                    return -1;
+                }
             }
 
             //Хеширование пакета, и запись значения Хеш функции в пакет

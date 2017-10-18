@@ -11,10 +11,19 @@
 -- Recast Time: 90 seconds
 -- Magic Bursts on: Compression, Gravitation, Darkness
 -- Combos: None
+-- Notes:
+-- Affected by Blue Magic Skill and Magic Accuracy.
+-- Soft cap at 165MP before Magic Bursts / Day and Weather/Elemental Affinity effects.
+-- Elemental Affinity and Elemental Obis affect both accuracy and amount of MP drained.
+-- Magic Burst affects both accuracy and amount of MP drained.
+-- INT increases Magic Accuracy in general, but is not a modifier of this spell.
+-- Unlike Magic Hammer, MP drained is not enhanced by Magic Attack Bonus.
+-- A positive Monster Correlation (vs Birds) or a negative Monster Correlation (vs Aquans), affects both accuracy and potency.
 -----------------------------------------
-
-require("scripts/globals/magic");
+require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/utils");
 
 -----------------------------------------
 -- OnMagicCastingCheck
@@ -29,30 +38,29 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-
     -- also have small constant to account for 0 dark skill
-    local dmg = 5 + 0.375 * caster:getSkillLevel(BLUE_SKILL);
-    --get resist multiplier (1x if no resist)
+    local dmg = utils.clamp(5 + 0.375 * caster:getSkillLevel(BLUE_SKILL),0,165);
+    -- get resist multiplier (1x if no resist)
     local params = {};
     params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
     resist = applyResistance(caster, target, spell, params);
-    --get the resisted damage
+    -- get the resisted damage
     dmg = dmg*resist;
-    --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
+    -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
     dmg = addBonuses(caster,spell,target,dmg);
-    --add in target adjustment
+    -- add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
-    --add in final adjustments
+    -- add in final adjustments
 
     if (dmg < 0) then
         dmg = 0
     end
 
     dmg = dmg * BLUE_POWER;
-    
+
     if (target:isUndead()) then
         spell:setMsg(75); -- No effect
         return dmg;
@@ -66,6 +74,6 @@ function onSpellCast(caster,target,spell)
         caster:addMP(dmg);
         target:delMP(dmg);
     end
-    
+
     return dmg;
 end;

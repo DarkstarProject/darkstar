@@ -119,9 +119,7 @@ inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-*  Возвращаем количество тактов до окончания действия эффекта.          *
-*  В данном выражении нельзя выносить делитель за скобку, это приведет 	*
-*  к нарушению логики, т.к. мы сталкнемся с погрешностью таймера        *
+* Returns remaining ticks until expiry                                  *
 *																		*
 ************************************************************************/
 
@@ -134,8 +132,7 @@ inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
     if (m_PLuaStatusEffect->GetTickTime() != 0)
     {
         auto total_ticks = m_PLuaStatusEffect->GetDuration() / m_PLuaStatusEffect->GetTickTime();
-        auto elapsed_ticks = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetLastTick() - 
-            m_PLuaStatusEffect->GetStartTime()).count() / m_PLuaStatusEffect->GetTickTime();
+        auto elapsed_ticks = m_PLuaStatusEffect->GetElapsedTickCount();
         total = total_ticks - elapsed_ticks;
     }
     lua_pushinteger(L, total);
@@ -165,7 +162,7 @@ inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-*  Возвращаем количество тактов с начала действия эффекта	            *
+*  Returns number of elapsed ticks                                      *
 *                                                                       *
 ************************************************************************/
 
@@ -173,14 +170,7 @@ inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    long long count = 0;
-
-    if (m_PLuaStatusEffect->GetTickTime() != 0)
-    {
-        count = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetLastTick() - 
-            m_PLuaStatusEffect->GetStartTime()).count() / m_PLuaStatusEffect->GetTickTime();
-    }
-    lua_pushinteger(L, count);
+    lua_pushinteger(L, m_PLuaStatusEffect->GetElapsedTickCount());
     return 1;
 }
 

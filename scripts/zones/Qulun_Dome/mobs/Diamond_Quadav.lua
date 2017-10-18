@@ -36,7 +36,7 @@ function onMobDespawn(mob)
     local Diamond_Quadav = mob:getID();
     local Za_Dha_Adamantking = 17383443;
     local ToD = GetServerVariable("[POP]Za_Dha_Adamantking");
-    DeterMob(Diamond_Quadav, true);
+    DisallowRespawn(Diamond_Quadav, true);
     mob:showText(mob,DIAMOND_QUADAV_DEATH);
     if (ToD <= os.time() + 172800 and GetMobAction(Za_Dha_Adamantking) == 0) then -- -- From wikia:  A 3-5 day spawn; however it can spawn as early as 2 days from previous kill or as late as 10 days.
         if (math.random((1),(5)) == 3 or os.time() >= 777600) then

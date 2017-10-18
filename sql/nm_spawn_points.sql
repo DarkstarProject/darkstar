@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -6444,7 +6444,7 @@ INSERT INTO `nm_spawn_points` VALUES (17248588,2,-405.000, -29.000, 381.000);
 INSERT INTO `nm_spawn_points` VALUES (17248588,3,-433.000, -28.000, 332.000);
 
 -- Argus
-INSERT INTO `nm_spawn_points` VALUES (17588674,0,213.000, 19.000, -70.000);
+INSERT INTO `nm_spawn_points` VALUES (17588674,0,220.000, 18.800, -64.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,1,221.000, 20.000, -112.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,2,244.000, 20.000, -79.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,3,272.000, 20.000, -79.000);

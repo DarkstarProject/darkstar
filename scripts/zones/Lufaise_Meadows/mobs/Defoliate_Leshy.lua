@@ -22,7 +22,7 @@ function onMobDespawn(mob)
 
     GetMobByID(Colorful_Leshy):setLocalVar("1", os.time() + math.random(43200, 86400));
     SetServerVariable("Defoliate_Leshy_PH", 0);
-    DeterMob(Defoliate_Leshy, true);
-    DeterMob(Colorful_Leshy_PH, false);
+    DisallowRespawn(Defoliate_Leshy, true);
+    DisallowRespawn(Colorful_Leshy_PH, false);
     SpawnMob(Colorful_Leshy_PH, "", GetMobRespawnTime(Colorful_Leshy_PH));
 end;

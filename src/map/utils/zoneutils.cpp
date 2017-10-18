@@ -86,7 +86,11 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
             PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
             PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
             // ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", server_clock::now() + std::chrono::milliseconds(respawnTime), PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+            PNpc->PAI->QueueAction(queueAction_t(std::chrono::milliseconds(respawnTime), false, [](CBaseEntity* PNpc)
+            {
+                PNpc->status = STATUS_NORMAL;
+                PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
+            }));
         }
         else
         {

@@ -37,7 +37,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Mahishasura);
                 GetMobByID(Mahishasura):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Mahishasura", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

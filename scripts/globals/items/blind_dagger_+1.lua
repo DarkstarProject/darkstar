@@ -3,9 +3,9 @@
 -- Item: Blind Dagger +1
 -- Additional Effect: Blindness
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -18,6 +18,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
-        return SUBEFFECT_BLIND, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
+        return SUBEFFECT_BLIND, msgBasic.ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
     end
 end;

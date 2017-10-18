@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Tottering_Toby);
                 GetMobByID(Tottering_Toby):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Tottering_Toby", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

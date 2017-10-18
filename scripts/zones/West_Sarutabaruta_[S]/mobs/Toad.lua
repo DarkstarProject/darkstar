@@ -26,7 +26,7 @@ function onMobDespawn(mob)
         if (Ramponneau_ToD <= os.time() and GetMobAction(Ramponneau) == 0 and math.random((1),(5)) == 5) then
             GetMobByID(Ramponneau):setRespawnTime(GetMobRespawnTime(mobID));
             SetServerVariable("[PH]Ramponneau", mobID);
-            DeterMob(mobID, true);
+            DisallowRespawn(mobID, true);
         end
     end
 end;

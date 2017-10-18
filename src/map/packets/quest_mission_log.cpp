@@ -86,7 +86,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
                     break;
                 case LOG_CAMPAIGN_TWO:
                     // Second Campaign packet, summoned through logType
-                    generateCampaignMissionPacket(PChar, 256);
+                    generateCampaignMissionPacket(PChar, (uint8)256);
                     packetType = CAMPAIGN_MISSION_TWO;
                     break;
             }

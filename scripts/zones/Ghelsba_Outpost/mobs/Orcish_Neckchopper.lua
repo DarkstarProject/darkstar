@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Thousandarm_Deshglesh);
                 GetMobByID(Thousandarm_Deshglesh):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Thousandarm_Deshglesh", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -21,8 +21,10 @@ function onSpellCast(caster,target,spell)
     local dmg = math.random(100, 1200);
     
     --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster, spell, target, 
-      caster:getStat(MOD_INT)-target:getStat(MOD_INT), DARK_MAGIC_SKILL, 1.0);
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = DARK_MAGIC_SKILL;
+    local resist = applyResistance(caster, target, spell, params);
 
     --get the resisted damage
     dmg = dmg * resist;

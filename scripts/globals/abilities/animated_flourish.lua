@@ -5,9 +5,9 @@
 -- Finishing Moves Used: 1-2
 -- Recast Time: 00:30
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -29,8 +29,8 @@ function onAbilityCheck(player,target,ability)
 
     elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         return 0,0;
-    else    
-        return MSGBASIC_NO_FINISHINGMOVES,0;
+    else
+        return msgBasic.NO_FINISHINGMOVES,0;
     end;
 end;
 
@@ -58,7 +58,7 @@ function onUseAbility(player,target,ability)
 
     elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_5);
-        player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);    
+        player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);
         target:addEnmity(player, 0, 500);
     end;
 end;

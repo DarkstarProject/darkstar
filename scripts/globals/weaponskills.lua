@@ -8,18 +8,11 @@
 -- applications of accuracy mods ('Accuracy varies with TP.')
 -- applications of damage mods ('Damage varies with TP.')
 -- performance of the actual WS (rand numbers, etc)
+require("scripts/globals/magicburst");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/magic");
-require("scripts/globals/magicburst");
-
-MSG_HIT = 185
-MSG_HIT_SECONDARY = 264
-MSG_MISS = 188
-MSG_MISS_SECONDARY = 282
-MSG_ABSORB = 238
-MSG_ABSORB_SECONDARY = 263
-MSG_SHADOW = 31
+require("scripts/globals/msg");
 
 REACTION_NONE = 0x00
 REACTION_MISS = 0x01
@@ -113,16 +106,18 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
         nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
+        
+        if (nativecrit > 0.2) then -- caps only apply to base rate, not merits and mods
+            nativecrit = 0.2;
+        elseif (nativecrit < 0.05) then
+            nativecrit = 0.05;
+        end
+        
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
         end
 
-        if (nativecrit > 0.2) then -- caps!
-            nativecrit = 0.2;
-        elseif (nativecrit < 0.05) then
-            nativecrit = 0.05;
-        end
         critrate = critrate + nativecrit;
     end
 
@@ -181,7 +176,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
                 and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then -- it hit
-            if not shadowAbsorbed(target) then
+            if not shadowAbsorb(target) then
                 pdif = generatePdif (cratio[1], cratio[2], true);
                 if (params.canCrit) then
                     critchance = math.random();
@@ -293,7 +288,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     local shadowsAbsorbed = 0
 
     if not shadowAbsorb(target) then
-    
+
         dmg = attacker:getMainLvl() + 2 + (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
              attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
              attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
@@ -390,6 +385,9 @@ function getHitRate(attacker,target,capHitRate,bonus)
     if (target:hasStatusEffect(EFFECT_YONIN) and attacker:isFacing(target, 23)) then -- Yonin evasion boost if attacker is facing target
         bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
     end
+    if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
+        bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
+    end
 
     acc = acc + bonus;
 
@@ -433,6 +431,9 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
     end
     if (target:hasStatusEffect(EFFECT_YONIN) and target:isFacing(attacker, 23)) then -- Yonin evasion boost if defender is facing attacker
         bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
+    end
+    if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
+        bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
     end
 
     acc = acc + bonus;
@@ -765,16 +766,18 @@ end;
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
+        
+        if (nativecrit > 0.2) then -- caps only apply to base rate, not merits and mods
+            nativecrit = 0.2;
+        elseif (nativecrit < 0.05) then
+            nativecrit = 0.05;
+        end
+        
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
         end
 
-        if (nativecrit > 0.2) then -- caps!
-            nativecrit = 0.2;
-        elseif (nativecrit < 0.05) then
-            nativecrit = 0.05;
-        end
         critrate = critrate + nativecrit;
     end
 
@@ -979,9 +982,9 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
             if primary then
-                action:messageID(defender:getID(), MSG_HIT)
+                action:messageID(defender:getID(), msgBasic.DAMAGE)
             else
-                action:messageID(defender:getID(), MSG_HIT_SECONDARY)
+                action:messageID(defender:getID(), msgBasic.DAMAGE_SECONDARY)
             end
             if finaldmg > 0 then
                 action:reaction(defender:getID(), REACTION_HIT)
@@ -989,20 +992,20 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
             end
         else
             if primary then
-                action:messageID(defender:getID(), MSG_ABSORB)
+                action:messageID(defender:getID(), msgBasic.SELF_HEAL)
             else
-                action:messageID(defender:getID(), MSG_ABSORB_SECONDARY)
+                action:messageID(defender:getID(), msgBasic.SELF_HEAL_SECONDARY)
             end
         end
         action:param(defender:getID(), finaldmg)
     elseif shadowsAbsorbed > 0 then
-        action:messageID(defender:getID(), MSG_SHADOW)
+        action:messageID(defender:getID(), msgBasic.SHADOW_ABSORB)
         action:param(defender:getID(), shadowsAbsorbed)
     else
         if primary then
-            action:messageID(defender:getID(), MSG_MISS)
+            action:messageID(defender:getID(), msgBasic.MISS)
         else
-            action:messageID(defender:getID(), MSG_MISS_SECONDARY)
+            action:messageID(defender:getID(), msgBasic.MISS_SECONDARY)
         end
         action:reaction(defender:getID(), REACTION_EVADE)
     end

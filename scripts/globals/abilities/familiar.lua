@@ -5,9 +5,9 @@
 -- Recast Time: 1:00:00
 -- Duration: 0:30:00
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -16,9 +16,9 @@ require("scripts/globals/status");
 function onAbilityCheck(player,target,ability)
     local pet = player:getPet();
     if not pet then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return msgBasic.REQUIRES_A_PET,0;
     elseif not player:isJugPet() and pet:getObjType() ~= TYPE_MOB then
-        return MSGBASIC_NO_EFFECT_ON_PET,0;
+        return msgBasic.NO_EFFECT_ON_PET,0;
     else
         return 0,0;
     end

@@ -41,7 +41,7 @@ function onMobDespawn(mob)
                 -- printf("Despot will pop");
                 GetMobByID(Despot):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Despot", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

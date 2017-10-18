@@ -5,8 +5,8 @@
 -- Recast Time: 1:00:00
 -- Duration: 1:00
 -----------------------------------
-
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -15,7 +15,7 @@ require("scripts/globals/status");
 function onAbilityCheck(player,target,ability)
     -- The wyvern must be present in order to use Spirit Surge
     if (target:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return msgBasic.REQUIRES_A_PET,0;
     else
         return 0,0;
     end

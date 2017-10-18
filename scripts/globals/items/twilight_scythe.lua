@@ -4,9 +4,9 @@
 -- Additional Effect: DEATH
 -- TODO: Enchantment: Non-elemental
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAdditionalEffect Action
@@ -22,10 +22,10 @@ function onAdditionalEffect(player,target,damage)
             return 0,0,0;
         else
             target:setHP(0)
-            return SUBEFFECT_DEATH, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_KO;
+            return SUBEFFECT_DEATH, msgBasic.ADD_EFFECT_STATUS, EFFECT_KO;
         end
     else
         target:setHP(0)
-        return SUBEFFECT_DEATH, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_KO;
+        return SUBEFFECT_DEATH, msgBasic.ADD_EFFECT_STATUS, EFFECT_KO;
     end
 end;
