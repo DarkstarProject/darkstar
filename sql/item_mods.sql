@@ -31515,6 +31515,15 @@ INSERT INTO `item_mods` VALUES (26400,28,20); -- Magic Atk. Bonus+20
 INSERT INTO `item_mods` VALUES (26400,311,75); -- Magic Damage+75
 INSERT INTO `item_mods` VALUES (26400,109,107); -- Shield Skill+107
 INSERT INTO `item_mods` VALUES (26400,168,10); -- Spell interruption rate down 10%
+INSERT INTO `item_mods` VALUES (26406,127,3); -- Kupo Shield - Synthesis Skills +3
+INSERT INTO `item_mods` VALUES (26406,128,3);
+INSERT INTO `item_mods` VALUES (26406,129,3);
+INSERT INTO `item_mods` VALUES (26406,130,3);
+INSERT INTO `item_mods` VALUES (26406,131,3);
+INSERT INTO `item_mods` VALUES (26406,132,3);
+INSERT INTO `item_mods` VALUES (26406,133,3);
+INSERT INTO `item_mods` VALUES (26406,134,3);
+INSERT INTO `item_mods` VALUES (26406,135,3);
 INSERT INTO `item_mods` VALUES (26419,1,47);      -- ammurapi_shield DEF:47
 INSERT INTO `item_mods` VALUES (26419,2,22);      -- HP+22
 INSERT INTO `item_mods` VALUES (26419,5,58);      -- MP+58
@@ -38971,12 +38980,52 @@ INSERT INTO `item_mods` VALUES (27563,7,60);      -- Metamorph Ring +1: Converts
 INSERT INTO `item_mods` VALUES (27563,12,6);      -- INT +6
 INSERT INTO `item_mods` VALUES (27563,13,6);      -- MND +6
 INSERT INTO `item_mods` VALUES (27563,14,6);      -- CHR +6
+INSERT INTO `item_mods` VALUES (27564,15,15); -- Ifrit Ring - Fire Res +15
+INSERT INTO `item_mods` VALUES (27564,8,8); -- STR +8
 INSERT INTO `item_mods` VALUES (27565,8,9);
 INSERT INTO `item_mods` VALUES (27565,23,5);
 INSERT INTO `item_mods` VALUES (27565,54,16);
+INSERT INTO `item_mods` VALUES (27566,13,8); -- Leviathan Ring - MND +8
+INSERT INTO `item_mods` VALUES (27566,20,15); -- Water Res +15
+INSERT INTO `item_mods` VALUES (27567,13,9); -- Leviathan Ring  +1 - MND +9
+INSERT INTO `item_mods` VALUES (27567,20,16); -- Water Res +16
+INSERT INTO `item_mods` VALUES (27567,30,3); -- Magic Accuracy +3
+INSERT INTO `item_mods` VALUES (27568,19,15); -- Ramuh Ring - Lightning Res +15
+INSERT INTO `item_mods` VALUES (27568,9,8); -- Dex +8
+INSERT INTO `item_mods` VALUES (27569,19,16); -- Ramuh Ring +1 - Lightning Res +16
+INSERT INTO `item_mods` VALUES (27569,25,5); -- Accuracy +5
+INSERT INTO `item_mods` VALUES (27569,9,9); -- DEX +9
+INSERT INTO `item_mods` VALUES (27570,10,8); -- Titan Ring - VIT +8
+INSERT INTO `item_mods` VALUES (27570,18,15); -- Earth Res +15
+INSERT INTO `item_mods` VALUES (27571,1,8); -- Titan Ring - DEF +8
+INSERT INTO `item_mods` VALUES (27571,10,9); -- VIT +9
+INSERT INTO `item_mods` VALUES (27571,18,16); -- Earth Res +16
+INSERT INTO `item_mods` VALUES (27572,11,8); -- Garuda Ring - AGL +11
+INSERT INTO `item_mods` VALUES (27572,17,15); -- Wind Res +15
+INSERT INTO `item_mods` VALUES (27573,11,9); -- Garuda Ring - AGL +9
+INSERT INTO `item_mods` VALUES (27573,17,16); -- Wind Res +16
+INSERT INTO `item_mods` VALUES (27573,26,5); -- Ranged Accuracy +5
+INSERT INTO `item_mods` VALUES (27574,12,8); -- Shiva Ring - INT +8
+INSERT INTO `item_mods` VALUES (27574,16,15); -- Ice Res +15
 INSERT INTO `item_mods` VALUES (27575,12,9);
 INSERT INTO `item_mods` VALUES (27575,28,3);
 INSERT INTO `item_mods` VALUES (27575,55,16);
+INSERT INTO `item_mods` VALUES (27576,14,8); -- Carbuncle Ring - CHR +8
+INSERT INTO `item_mods` VALUES (27576,2,30); -- HP +30
+INSERT INTO `item_mods` VALUES (27576,21,15); -- Light Res +15
+INSERT INTO `item_mods` VALUES (27577,14,9); -- Carbuncle Ring +1 -- CHR +9
+INSERT INTO `item_mods` VALUES (27577,2,35); -- HP +35
+INSERT INTO `item_mods` VALUES (27577,21,16); -- Light Res +16
+INSERT INTO `item_mods` VALUES (27577,30,4); -- Magic Accuracy +4
+INSERT INTO `item_mods` VALUES (27578,22,15); -- Fenrir Ring - Dark Res +16
+INSERT INTO `item_mods` VALUES (27578,28,2); -- Magic Attack +2
+INSERT INTO `item_mods` VALUES (27578,30,2); -- Magic Accuracy +2
+INSERT INTO `item_mods` VALUES (27578,5,50); -- MP +50
+INSERT INTO `item_mods` VALUES (27579,22,16); -- Fenrir Ring +1 - Dark Res +16
+INSERT INTO `item_mods` VALUES (27579,28,3); -- Magic Attack +3
+INSERT INTO `item_mods` VALUES (27579,30,3); -- Magic Accuracy +3
+INSERT INTO `item_mods` VALUES (27579,311,5); -- Magic Damage +5
+INSERT INTO `item_mods` VALUES (27579,5,55); -- MP +50
 INSERT INTO `item_mods` VALUES (27580,2,50);
 INSERT INTO `item_mods` VALUES (27580,5,50);
 INSERT INTO `item_mods` VALUES (27580,23,15);
