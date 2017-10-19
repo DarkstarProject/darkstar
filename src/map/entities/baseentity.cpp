@@ -27,6 +27,7 @@
 #include "../zone.h"
 #include "../ai/ai_container.h"
 #include "../instance.h"
+#include "../battlefield.h"
 
 CBaseEntity::CBaseEntity()
 {
@@ -34,7 +35,7 @@ CBaseEntity::CBaseEntity()
 	namevis = 1;
 
     PAI = nullptr;
-	PBCNM = nullptr;
+	PBattlefield = nullptr;
 	PInstance = nullptr;
 
 	speed    = 40 + map_config.speed_mod;
@@ -52,6 +53,8 @@ CBaseEntity::CBaseEntity()
 
 CBaseEntity::~CBaseEntity()
 {
+    if (PBattlefield)
+        PBattlefield->RemoveEntity(this, BATTLEFIELD_LEAVE_CODE_WARPDC);
 }
 
 void CBaseEntity::Spawn()

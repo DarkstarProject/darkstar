@@ -2590,9 +2590,12 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 EventID = RBUFW(data, (0x12));
-    uint32 Result = RBUFL(data, (0x08));
+    auto CharID = data.ref<uint32>(0x04);
+    auto Result = data.ref<uint32>(0x08);
+    auto ZoneID = data.ref<uint16>(0x10);
+    auto EventID = data.ref<uint16>(0x12);
 
+    PrintPacket(data);
     if (PChar->m_event.EventID == EventID)
     {
         if (PChar->m_event.Option != 0) Result = PChar->m_event.Option;
@@ -2624,29 +2627,38 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 EventID = RBUFW(data, (0x1A));
-
+    auto CharID = data.ref<uint32>(0x10);
+    auto Result = data.ref<uint32>(0x14);
+    auto ZoneID = data.ref<uint16>(0x18);
+    
+    auto EventID = data.ref<uint16>(0x1A);
+   
+    PrintPacket(data);
     if (PChar->m_event.EventID == EventID)
     {
-        PChar->loc.p.x = RBUFF(data, (0x04));
-        PChar->loc.p.y = RBUFF(data, (0x08));
-        PChar->loc.p.z = RBUFF(data, (0x0C));
-        uint16 extras = RBUFW(data, (0x14));
-        PChar->loc.p.rotation = RBUFB(data, (0x1F));
+        bool updatePosition = false;
 
         if (RBUFB(data, (0x1E)) != 0)
         {
-            luautils::OnEventUpdate(PChar, EventID, 0, extras);
+            updatePosition = luautils::OnEventUpdate(PChar, EventID, Result) == 1;
         }
         else
         {
-            luautils::OnEventFinish(PChar, EventID, 0);
+            updatePosition = luautils::OnEventFinish(PChar, EventID, Result) == 1;
             if (PChar->m_event.EventID == EventID)
             {
                 PChar->m_event.reset();
             }
         }
 
+        if (updatePosition)
+        {
+            PChar->loc.p.x = RBUFF(data, (0x04));
+            PChar->loc.p.y = RBUFF(data, (0x08));
+            PChar->loc.p.z = RBUFF(data, (0x0C));
+            PChar->loc.p.rotation = RBUFB(data, (0x1F));
+        }
+        
         PChar->pushPacket(new CCSPositionPacket(PChar));
         PChar->pushPacket(new CPositionPacket(PChar));
     }

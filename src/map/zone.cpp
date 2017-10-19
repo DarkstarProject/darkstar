@@ -370,7 +370,7 @@ void CZone::LoadZoneSettings()
 
         if (Sql_GetData(SqlHandle, 10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
         {
-            m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
+            m_BattlefieldHandler = new CBattlefieldHandler(this);
         }
         if (m_miscMask & MISC_TREASURE)
         {
@@ -780,7 +780,7 @@ void CZone::ZoneServer(time_point tick)
 
     if (m_BattlefieldHandler != nullptr)
     {
-        m_BattlefieldHandler->handleBattlefields(tick);
+        m_BattlefieldHandler->HandleBattlefields(tick);
     }
 }
 

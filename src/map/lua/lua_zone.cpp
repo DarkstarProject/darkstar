@@ -154,6 +154,18 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaZone::getBattlefieldByInitiator(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    if (m_pLuaZone->m_BattlefieldHandler)
+        lua_pushlightuserdata(L, m_pLuaZone->m_BattlefieldHandler->GetBattlefieldByInitiator(lua_tointeger(L, 1)));
+    else
+        lua_pushnil(L);
+    return 1;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -168,5 +180,6 @@ Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
     LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
     LUNAR_DECLARE_METHOD(CLuaZone,getID),
     LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
+    LUNAR_DECLARE_METHOD(CLuaZone,getBattlefieldByInitiator),
     {nullptr,nullptr}
 };

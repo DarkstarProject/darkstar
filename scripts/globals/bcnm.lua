@@ -36,7 +36,7 @@ local battlefields = {
      -- { 7,  679, 3454},   -- Antagonistic Ambuscade (HKC30)
      -- { 8,    ?,    0},   -- *Head Wind (HTMBF)
     },
-    
+
     [10] = {                -- THE SHROUDED MAW
         { 0,  704,    0},   -- Darkness Named (PM3-5)
      -- { 1,  705,    0},   -- Test Your Mite (ENM)
@@ -432,34 +432,35 @@ local battlefields = {
      -- { 4,    ?,    0},   -- *Trial by Water (HTMBF)
     },
 
-};
+}
 
 -----------------------------------------------
 -- check requirements for registrant and allies
 -----------------------------------------------
 
 function checkReqs(player, npc, bfid, registrant)
-    local npcid   = npc:getID();
-    local mjob    = player:getMainJob();
-    local mlvl    = player:getMainLvl();
-    local nat     = player:getCurrentMission(player:getNation());
-    local sandy   = player:getCurrentMission(SANDORIA);
-    local basty   = player:getCurrentMission(BASTOK);
-    local windy   = player:getCurrentMission(WINDURST);
-    local roz     = player:getCurrentMission(ZILART);
-    local cop     = player:getCurrentMission(COP);
-    local toau    = player:getCurrentMission(TOAU);
-    local asa     = player:getCurrentMission(ASA);
-    local natStat  = player:getVar("MissionStatus");
-    local rozStat  = player:getVar("ZilartStatus");
-    local copStat  = player:getVar("PromathiaStatus");
-    local toauStat = player:getVar("AhtUrganStatus");
-    local stc = player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN);
-    local dm1 = player:getQuestStatus(OUTLANDS, DIVINE_MIGHT);
-    local dm2 = player:getQuestStatus(OUTLANDS, DIVINE_MIGHT_REPEAT);
+    local npcid   = npc:getID()
+    local mjob    = player:getMainJob()
+    local mlvl    = player:getMainLvl()
+    local nat     = player:getCurrentMission(player:getNation())
+    local sandy   = player:getCurrentMission(SANDORIA)
+    local basty   = player:getCurrentMission(BASTOK)
+    local windy   = player:getCurrentMission(WINDURST)
+    local roz     = player:getCurrentMission(ZILART)
+    local cop     = player:getCurrentMission(COP)
+    local toau    = player:getCurrentMission(TOAU)
+    local asa     = player:getCurrentMission(ASA)
+    local natStat  = player:getVar("MissionStatus")
+    local rozStat  = player:getVar("ZilartStatus")
+    local copStat  = player:getVar("PromathiaStatus")
+    local toauStat = player:getVar("AhtUrganStatus")
+    local stc = player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN)
+    local dm1 = player:getQuestStatus(OUTLANDS, DIVINE_MIGHT)
+    local dm2 = player:getQuestStatus(OUTLANDS, DIVINE_MIGHT_REPEAT)
 
     -- requirements to register a battlefield
-    local registerReqs = {
+    local registerReqs =
+    {
         [   0] = function() return ( (basty == THE_EMISSARY_SANDORIA2 or windy == THE_THREE_KINGDOMS_SANDORIA2) and natStat == 9                    ) end, -- Mission 2-3
         [   3] = function() return ( sandy == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2                                        ) end, -- Sandy 7-2: The Secret Weapon
         [   5] = function() return ( mjob == JOBS.WAR and mlvl >= 66                                                                                ) end, -- Quest: Shattering Stars (WAR LB5)
@@ -577,17 +578,18 @@ function checkReqs(player, npc, bfid, registrant)
         [1294] = function() return ( player:hasKeyItem(COSMOCLEANSE)                                                                                ) end, -- CS Apollyon
         [1296] = function() return ( player:hasKeyItem(COSMOCLEANSE)                                                                                ) end, -- Central Apollyon
         [1298] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Western Tower
-        [1299] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Northern Tower 
+        [1299] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Northern Tower
         [1300] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Eastern Tower
         [1301] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos Basement
         [1303] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 1st Floor
         [1304] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 2nd Floor
         [1305] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 3rd Floor
         [1306] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 4th Floor
-    };
+    }
 
     -- requirements to enter a battlefield already registered by a party member
-    local enterReqs = {
+    local enterReqs =
+    {
         [ 897] = function() return ( player:hasKeyItem(WHISPER_OF_THE_WYRMKING)                                                                     ) end, -- Quest: The Wyrmking Descends
         [ 928] = function() return ( player:hasCompletedMission(COP, ANCIENT_VOWS) or (cop == ANCIENT_VOWS and copStat >= 2)                        ) end, -- Quest: Ouryu Cometh
         [1290] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(RED_CARD)                                                ) end, -- NW Apollyon
@@ -597,23 +599,23 @@ function checkReqs(player, npc, bfid, registrant)
         [1294] = function() return ( player:hasKeyItem(COSMOCLEANSE)                                                                                ) end, -- CS Apollyon
         [1296] = function() return ( player:hasKeyItem(COSMOCLEANSE)                                                                                ) end, -- Central Apollyon
         [1298] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Western Tower
-        [1299] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Northern Tower 
+        [1299] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Northern Tower
         [1300] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Temenos Eastern Tower
         [1301] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos Basement
         [1303] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 1st Floor
         [1304] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 2nd Floor
         [1305] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 3rd Floor
         [1306] = function() return ( player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD)                                              ) end, -- Central Temenos 4th Floor
-    };
+    }
 
     -- determine whether player meets battlefield requirements
-    local req = (registrant == true) and registerReqs[bfid] or enterReqs[bfid];
-    if (req == nil) then
-        return true;
-    elseif (req()) then
-        return true;
+    local req = (registrant == true) and registerReqs[bfid] or enterReqs[bfid]
+    if not req then
+        return true
+    elseif req() then
+        return true
     else
-        return false;
+        return false
     end
 end
 
@@ -622,25 +624,26 @@ end
 -----------------------------------------------
 
 function checkSkip(player, bfid)
-    local nat       = player:getCurrentMission(player:getNation());
-    local sandy     = player:getCurrentMission(SANDORIA);
-    local basty     = player:getCurrentMission(BASTOK);
-    local windy     = player:getCurrentMission(WINDURST);
-    local roz       = player:getCurrentMission(ZILART);
-    local cop       = player:getCurrentMission(COP);
-    local toau      = player:getCurrentMission(TOAU);
-    local asa       = player:getCurrentMission(ASA);
-    local natStat   = player:getVar("MissionStatus");
-    local rozStat   = player:getVar("ZilartStatus");
-    local copStat   = player:getVar("PromathiaStatus");
-    local toauStat  = player:getVar("AhtUrganStatus");
-    local sofStat   = player:getQuestStatus(JEUNO,STORMS_OF_FATE);
-    local mission2_3a = (basty > THE_EMISSARY_SANDORIA2 or windy > THE_THREE_KINGDOMS_SANDORIA2) or ((basty == THE_EMISSARY_SANDORIA2 or windy == THE_THREE_KINGDOMS_SANDORIA2) and natStat > 9);
-    local mission2_3b = (sandy > JOURNEY_TO_BASTOK2 or windy > THE_THREE_KINGDOMS_BASTOK2) or ((sandy == JOURNEY_TO_BASTOK2 or windy == THE_THREE_KINGDOMS_BASTOK2) and natStat > 10);
-    local mission2_3c = (sandy > JOURNEY_TO_WINDURST2 or basty > THE_EMISSARY_WINDURST2) or ((sandy == JOURNEY_TO_WINDURST2 or basty == THE_EMISSARY_WINDURST2) and natStat > 8);
+    local nat       = player:getCurrentMission(player:getNation())
+    local sandy     = player:getCurrentMission(SANDORIA)
+    local basty     = player:getCurrentMission(BASTOK)
+    local windy     = player:getCurrentMission(WINDURST)
+    local roz       = player:getCurrentMission(ZILART)
+    local cop       = player:getCurrentMission(COP)
+    local toau      = player:getCurrentMission(TOAU)
+    local asa       = player:getCurrentMission(ASA)
+    local natStat   = player:getVar("MissionStatus")
+    local rozStat   = player:getVar("ZilartStatus")
+    local copStat   = player:getVar("PromathiaStatus")
+    local toauStat  = player:getVar("AhtUrganStatus")
+    local sofStat   = player:getQuestStatus(JEUNO,STORMS_OF_FATE)
+    local mission2_3a = (basty > THE_EMISSARY_SANDORIA2 or windy > THE_THREE_KINGDOMS_SANDORIA2) or ((basty == THE_EMISSARY_SANDORIA2 or windy == THE_THREE_KINGDOMS_SANDORIA2) and natStat > 9)
+    local mission2_3b = (sandy > JOURNEY_TO_BASTOK2 or windy > THE_THREE_KINGDOMS_BASTOK2) or ((sandy == JOURNEY_TO_BASTOK2 or windy == THE_THREE_KINGDOMS_BASTOK2) and natStat > 10)
+    local mission2_3c = (sandy > JOURNEY_TO_WINDURST2 or basty > THE_EMISSARY_WINDURST2) or ((sandy == JOURNEY_TO_WINDURST2 or basty == THE_EMISSARY_WINDURST2) and natStat > 8)
 
     -- requirements to skip a battlefield
-    local skipReqs = {
+    local skipReqs =
+    {
         [   0] = function() return ( mission2_3a                                                                                                                            ) end, -- Mission 2-3
         [   3] = function() return ( player:hasCompletedMission(SANDORIA, THE_SECRET_WEAPON) or (sandy == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") > 2)    ) end, -- Sandy 7-2: The Secret Weapon
         [  32] = function() return ( player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN) or (sandy == SAVE_THE_CHILDREN and natStat > 2)                                ) end, -- Sandy 1-3: Save the Children
@@ -685,17 +688,16 @@ function checkSkip(player, bfid)
         [ 993] = function() return ( player:hasCompletedMission(COP, THE_WARRIOR_S_PATH)                                                                                    ) end, -- PM7-5: The Warrior's Path
         [1024] = function() return ( player:hasCompletedMission(COP, WHEN_ANGELS_FALL) or (cop == WHEN_ANGELS_FALL and copStat > 4)                                         ) end, -- PM8-3: When Angels Fall
         [1056] = function() return ( player:hasCompletedMission(COP, DAWN) or (cop == DAWN and copStat > 2)                                                                 ) end, -- PM8-4: Dawn
-    };
+    }
 
     -- determine whether player meets cutscene skip requirements
-    local req = skipReqs[bfid];
-    if (req == nil) then
-        return false;
-    elseif (req()) then
-        return true;
-    else
-        return false;
+    local req = skipReqs[bfid]
+    if not req then
+        return false
+    elseif req() then
+        return true
     end
+    return false
 end
 
 -----------------------------------------------
@@ -703,17 +705,18 @@ end
 -----------------------------------------------
 
 function findBattlefields(player, npc, itemId)
-    local mask = 0;
-    local zbfs = battlefields[player:getZoneID()];
-    if (zbfs == nil) then
-        return 0;
+    local mask = 0
+    local zbfs = battlefields[player:getZoneID()]
+    if zbfs == nil then
+        return 0
     end
     for k, v in pairs(zbfs) do
-        if (v[3] == itemId and checkReqs(player, npc, v[2], true)) then
-            mask = bit.bor(mask,math.pow(2,v[1]));
+        print(npc:getName())
+        if v[3] == itemId and checkReqs(player, npc, v[2], true) then
+            mask = bit.bor(mask,math.pow(2,v[1]))
         end
     end
-    return mask;
+    return mask
 end
 
 -----------------------------------------------
@@ -721,16 +724,16 @@ end
 -----------------------------------------------
 
 function getBattlefieldIdByBit(player, bit)
-    local zbfs = battlefields[player:getZoneID()];
-    if (zbfs == nil) then
-        return false;
+    local zbfs = battlefields[player:getZoneID()]
+    if not zbfs then
+        return 0
     end
     for k, v in pairs(zbfs) do
-        if (v[1] == bit) then
-            return v[2];
+        if v[1] == bit then
+            return v[2]
         end
     end
-    return false;
+    return 0
 end
 
 -----------------------------------------------
@@ -738,15 +741,15 @@ end
 -----------------------------------------------
 
 function getBattlefieldMaskById(player, bfid)
-    local zbfs = battlefields[player:getZoneID()];
-    if (zbfs ~= nil) then
+    local zbfs = battlefields[player:getZoneID()]
+    if zbfs then
         for k, v in pairs(zbfs) do
-            if (v[2] == bfid) then
-                return math.pow(2,v[1]);
+            if v[2] == bfid then
+                return math.pow(2,v[1])
             end
         end
     end
-    return 0;
+    return 0
 end
 
 -----------------------------------------------
@@ -754,54 +757,56 @@ end
 -----------------------------------------------
 
 function getItemById(player, bfid)
-    local zbfs = battlefields[player:getZoneID()];
-    if (zbfs ~= nil) then
+    local zbfs = battlefields[player:getZoneID()]
+    if zbfs then
         for k, v in pairs(zbfs) do
-            if (v[2] == bfid) then
-                return v[3];
+            if v[2] == bfid then
+                return v[3]
             end
         end
     end
-    return 0;
+    return 0
 end
 
 -----------------------------------------------
 -- onTrade Action
 -----------------------------------------------
 
-function TradeBCNM(player, npc, trade)
+function TradeBCNM(player, npc, trade, onUpdate)
     -- validate trade
-    local itemId;
-    if (trade == nil) then
-        return false;
-    elseif (trade:getItemCount()==3 and trade:hasItemQty(1907,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1986,1)) then
-        itemId = -1;
-    elseif (trade:getItemCount()==4 and trade:hasItemQty(1909,1) and trade:hasItemQty(1910,1) and trade:hasItemQty(1987,1) and trade:hasItemQty(1988,1)) then
-        itemId = -2;
+    local itemId
+    if not trade then
+        return false
+    elseif trade:getItemCount() == 3 and trade:hasItemQty(1907,1) and trade:hasItemQty(1908,1) and trade:hasItemQty(1986,1) then
+        itemId = -1
+    elseif trade:getItemCount() == 4 and trade:hasItemQty(1909,1) and trade:hasItemQty(1910,1) and trade:hasItemQty(1987,1) and trade:hasItemQty(1988,1) then
+        itemId = -2
     else
-        itemId = trade:getItemId(0);
-        if (itemId == nil or itemId < 1 or itemId > 65535 or trade:getItemCount() ~= 1 or trade:getSlotQty(0) ~= 1) then
-            return false;
-        elseif (player:hasWornItem(itemId)) then
-            player:messageBasic(56, 0, 0); -- Unable to use item.
-            return false;
+        itemId = trade:getItemId(0)
+        if itemId == nil or itemId < 1 or itemId > 65535 or trade:getItemCount() ~= 1 or trade:getSlotQty(0) ~= 1 then
+            return false
+        elseif player:hasWornItem(itemId) then
+            player:messageBasic(56, 0, 0) -- Unable to use item.
+            return false
         end
     end
 
     -- validate battlefield status
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-        player:messageBasic(94, 0, 0); -- You must wait longer to perform that action.
-        return false;
+    if player:hasStatusEffect(EFFECT_BATTLEFIELD) and not onUpdate then
+        player:messageBasic(94, 0, 0) -- You must wait longer to perform that action.
+        return false
     end
 
     -- open menu of valid battlefields
-    local validBattlefields = findBattlefields(player, npc, itemId);
-    if (validBattlefields ~= 0) then
-        player:startEvent(32000, 0, 0, 0, validBattlefields, 0, 0, 0, 0);
-        return true;
+    local validBattlefields = findBattlefields(player, npc, itemId)
+    if validBattlefields ~= 0 then
+        if not onUpdate then
+            player:startEvent(32000, 0, 0, 0, validBattlefields, 0, 0, 0, 0)
+        end
+        return true
     end
-    
-    return false;
+
+    return false
 end
 
 -----------------------------------------------
@@ -811,32 +816,33 @@ end
 function EventTriggerBCNM(player, npc)
 
     -- player is in battlefield and clicks to leave
-    if (player:isInBcnm() == 1) then
-        player:startEvent(32003);
-        return true;
+    if player:isInBattlefield() then
+        player:startEvent(32003)
+        return true
 
     -- player wants to register a new battlefield
-    elseif (not player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-        local mask = findBattlefields(player, npc, 0);
-        -- mask = 268435455; -- uncomment to open menu with all possible battlefields
-        if (mask ~= 0) then
-            player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0);
-            return true;
+    elseif not player:hasStatusEffect(EFFECT_BATTLEFIELD) then
+        local mask = findBattlefields(player, npc, 0)
+        -- mask = 268435455 -- uncomment to open menu with all possible battlefields
+        if mask ~= 0 then
+            player:setLocalVar("[battlefield]initiator", 1)
+            player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0)
+            return true
         end
 
     -- player is allied with a registrant and wants to enter their instance
     else
-        local stat = player:getStatusEffect(EFFECT_BATTLEFIELD);
-        local bfid = stat:getSubPower();
-        local mask = getBattlefieldMaskById(player, bfid);
-        if (mask ~= 0 and checkReqs(player, npc, bfid, false)) then
-            player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0);
-            return true;
+        local stat = player:getStatusEffect(EFFECT_BATTLEFIELD)
+        local bfid = stat:getPower()
+        local mask = getBattlefieldMaskById(player, bfid)
+        if mask ~= 0 and checkReqs(player, npc, bfid, false) then
+            player:startEvent(32000, 1, 1, 1, mask, 1, 1, 1, 1)
+            return true
         end
 
     end
 
-    return false;
+    return false
 end
 
 -----------------------------------------------
@@ -844,63 +850,65 @@ end
 -----------------------------------------------
 
 function EventUpdateBCNM(player, csid, option, extras, entrance)
-    if (tonumber(extras) == nil) then extras = 0; end
-    if (tonumber(entrance) == nil) then entrance = 0; end
-    -- player:PrintToPlayer(string.format("EventUpdateBCNM csid=%i option=%i extras=%i", csid, option, extras));
+    -- player:PrintToPlayer(string.format("EventUpdateBCNM csid=%i option=%i extras=%i", csid, option, extras))
 
     -- requesting a battlefield
-    if (csid == 32000 and option == 0) then
-        local bit = math.floor(extras / 16);
-        local bfid = getBattlefieldIdByBit(player,bit);
-        local bnum = (extras % 16);
-        local reply = false;
-        
-        -- registrant
-        if (not player:hasStatusEffect(EFFECT_BATTLEFIELD) and player:isBattlefieldFree(bnum)) then
-            player:registerBattlefield(bnum, bfid);
-            reply = true;
-            if (entrance > 0 and player:getBattlefield() ~= nil) then
-                 player:getBattlefield():setEntrance(entrance);
-            end
-        -- ally
-        elseif (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-            local stat = player:getStatusEffect(EFFECT_BATTLEFIELD);
-            if (stat:getPower() == bnum) then
-                reply = true;
-            end
+    if csid == 32000 and option ~= 255 then
+        local battlefieldIndex = bit.rshift(option, 4)
+        local battlefieldId = getBattlefieldIdByBit(player, battlefieldIndex)
+        local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
+        local area = player:getLocalVar("[battlefield]area")
+        local id = battlefieldId or player:getBattlefieldID()
+        local isInitiator = player:getLocalVar("[battlefield]initiator")
+        local skip = checkSkip(player, id)
 
+        local clearTime, name, partySize = 1
+        local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
+        --print(id)
+        if isInitiator then
+            result = player:registerBattlefield(id, area + 1)
+        else
+            result = player:registerBattlefield(id, area, effect:getSubType())
         end
 
-        -- found a battlefield, respond to this packet
-        if (reply) then
-            local battlefield = player:getBattlefield();
-            
-            if (battlefield) then
-                local mask = math.pow(2, bit);
-                local record = battlefield:getRecord();
-                local clearTime = record.clearTime;
-                local partySize = record.partySize;
-                local name = record.name;
-                local skip = checkSkip(player, bfid) and 1 or 0;
-                player:updateEvent(2, bit, 0, clearTime, partySize, skip);
-                player:updateEventString(name);
-                player:bcnmEnter(bnum);
-            else
-                printf("BCNM.LUA ERROR: No Battlefield found for arena %u bfid %u", bnum, bfid);
+        if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
+            print("area "..area)
+            player:setLocalVar("[battlefield]area", area + 1)
+        else
+            local battlefield = player:getBattlefield()
+            if battlefield then
+                name, clearTime, partySize = battlefield:getRecord()
+                mask = battlefield:getID()
+            end
+            -- register party members
+            if isInitiator then
+                effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
+                for _, member in pairs(player:getAlliance()) do
+                    if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
+                        member:addStatusEffect(effect)
+                    end
+                end
             end
         end
+        print(player:getName().." "..battlefieldIndex)
+        if isInitiator then
+            player:updateEvent(result, battlefieldIndex - 1, isInitiator, clearTime, partySize, skip)
+            player:updateEventString(name)
+        else
+            player:updateEvent(result)
+        end
+        return canRegister and result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
 
     -- leaving a battlefield
-    elseif (csid == 32003 and option == 2) then
+    elseif csid == 32003 and option == 2 then
         player:updateEvent(3)
         return true
-    elseif (csid == 32003 and option == 3) then
+    elseif csid == 32003 and option == 3 then
         player:updateEvent(0)
         return true
-        
     end
 
-    return false;
+    return false
 end
 
 -----------------------------------------------
@@ -908,35 +916,31 @@ end
 -----------------------------------------------
 
 function EventFinishBCNM(player, csid, option)
-    -- player:PrintToPlayer(string.format("EventFinishBCNM csid=%i option=%i", csid, option));
-
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
-        if (csid == 32000 and option ~= 0) then
-            local zone = player:getZoneID();
-            local stat = player:getStatusEffect(EFFECT_BATTLEFIELD);
-            local bfid = stat:getSubPower();
-            local item = getItemById(player, bfid);
-            if (item ~= 0) then
+    -- player:PrintToPlayer(string.format("EventFinishBCNM csid=%i option=%i", csid, option))
+    player:setLocalVar("[battlefield]initiator", 0)
+    if player:hasStatusEffect(EFFECT_BATTLEFIELD) then
+        if csid == 32000 and option ~= 0 then
+            local zone = player:getZoneID()
+            local stat = player:getStatusEffect(EFFECT_BATTLEFIELD)
+            local bfid = stat:getPower()
+            local item = getItemById(player, bfid)
+            if item ~= 0 then
                 -- remove limbus chips
-                if (zone == 37 or zone == 38) then
-                    player:tradeComplete();
-                    
+                if zone == 37 or zone == 38 then
+                    player:tradeComplete()
+
                 -- set other traded item to worn
-                else
-                    if (player:hasItem(item)) then
-                        player:createWornItem(item);
-                    end
+                elseif player:hasItem(item) then
+                    player:createWornItem(item)
                 end
             end
 
-        elseif (csid == 32003 and option == 4) then
-            if (player:getBattlefield()) then
-                player:bcnmLeave(1);
+        elseif csid == 32003 and option == 4 then
+            if player:getBattlefield() then
+                player:leaveBattlefield(1)
             end
         end
-
-        return true;
+        return true
     end
-
-    return false;
+    return false
 end

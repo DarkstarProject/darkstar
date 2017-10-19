@@ -323,7 +323,10 @@ void CAIContainer::Reset()
         PathFind->Clear();
     }
 
-    Controller->Reset();
+    if (Controller)
+    {
+        Controller->Reset();
+    }
 
     while (!m_stateStack.empty())
     {
