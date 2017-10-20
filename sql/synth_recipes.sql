@@ -1,4 +1,5 @@
 -- MySQL dump 10.13  Distrib 5.6.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
@@ -4442,6 +4443,8 @@ INSERT INTO `synth_recipes` VALUES (4331,1,0,0,0,0,0,0,0,0,93,4099,4241,1351,913
 INSERT INTO `synth_recipes` VALUES (4332,1,0,0,0,0,0,0,0,70,113,4099,4241,1350,4014,9058,9130,0,0,0,0,27214,27215,27215,27215,1,1,1,1); -- Bewitched Haidate/Voodoo Haidate
 INSERT INTO `synth_recipes` VALUES (4333,1,0,0,0,0,0,0,0,0,91,4098,4240,1353,9130,0,0,0,0,0,0,27390,27391,27391,27391,1,1,1,1); -- Bewitched Sune-ate/Voodoo Sune-ate
 INSERT INTO `synth_recipes` VALUES (4334,1,0,0,0,0,0,0,0,70,111,4098,4240,1352,4014,9058,9130,0,0,0,0,27390,27391,27391,27391,1,1,1,1); -- Bewitched Sune-ate/Voodoo Sune-ate
+INSERT INTO `synth_recipes` VALUES (4335,1,0,0,0,0,0,0,0,89,0,4098,4240,2000,0,0,0,0,0,0,0,3306,3306,3306,3306,6,8,10,12); -- Dark Adaman Bolt Heads
+INSERT INTO `synth_recipes` VALUES (4336,1,0,0,0,0,0,0,0,67,0,4096,4238,643,643,643,2763,0,0,0,0,2764,2764,2764,2764,1,1,1,1); -- Dweomer Steel Ingot
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Type,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4); -- template
 -- crystals = fire(4096,4238) ice(4097,4239) wind(4098,4240) earth(4099,4241) lightning(4100,4242) water(4101,4243) light(4102,4244) dark(4103,4245)
