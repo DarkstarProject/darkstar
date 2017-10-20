@@ -7,12 +7,12 @@
 -- Ellyllon
 Ellyllon_PH =
 {
-    [17403938] = 17403939;
+    [17403938] = 17403939
 };
 
 -- Voluptuous Vivian
 Voluptuous_Vivian = 17404331;
 Voluptuous_Vivian_PH =
 {
-    [17404330] = '1', -- -196.178 5.592 190.971
+    [17404330] = '1' -- -196.178 5.592 190.971
 };
