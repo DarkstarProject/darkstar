@@ -5,10 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Ifrits_Cauldron/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -57,17 +56,15 @@ end;
 -----------------------------------
 
 function onGameHour(zone)
-
     local VanadielHour = VanadielHour();
-    local FlameSpout = 17617204;
+    local FlameSpout = 17617209;
 
     if (VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Vana'diel time
-        GetNPCByID(FlameSpout+5):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 1
-        GetNPCByID(FlameSpout+6):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 5
-        GetNPCByID(FlameSpout+7):openDoor(90); -- Ifrit's Cauldron flame spout (I-10) Map 8
-        GetNPCByID(FlameSpout+8):openDoor(90); -- Ifrit's Cauldron flame spout (E-7) Map 8
+        GetNPCByID(FlameSpout):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 1
+        GetNPCByID(FlameSpout+1):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 5
+        GetNPCByID(FlameSpout+2):openDoor(90); -- Ifrit's Cauldron flame spout (I-10) Map 8
+        GetNPCByID(FlameSpout+3):openDoor(90); -- Ifrit's Cauldron flame spout (E-7) Map 8
     end
-
 end;
 
 -----------------------------------
