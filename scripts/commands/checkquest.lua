@@ -17,7 +17,7 @@ function error(player, msg)
 end;
 
 function onTrigger(player,logId,questId,target)
-    
+
     -- validate logId
     local logName;
     if (logId == nil) then
@@ -28,12 +28,12 @@ function onTrigger(player,logId,questId,target)
         logId = QUEST_LOGS[logId];
     end
     if (logId ~= nil) then
-		local logTableTest = _G[string.upper(logId)];
-		if (type(logTableTest) == "table") then
-			logId = logTableTest;
-		else
-			logId = _G[string.upper(logId .. "_LOG")];
-		end
+        local logTableTest = _G[string.upper(logId)];
+        if (type(logTableTest) == "table") then
+            logId = logTableTest;
+        else
+            logId = _G[string.upper(logId .. "_LOG")];
+        end
     end
     if ((type(logId) == "table") and logId.quest_log ~= nil) then
         logName = logId.full_name;
@@ -75,7 +75,7 @@ function onTrigger(player,logId,questId,target)
         [1] = function (x) status = "ACCEPTED"; end,
         [2] = function (x) status = "COMPLETED"; end,
     }
-    
+
     -- show quest status
     player:PrintToPlayer( string.format( "%s's status for %s quest ID %i is: %s", targ:getName(), logName, questId, status ) );
 
