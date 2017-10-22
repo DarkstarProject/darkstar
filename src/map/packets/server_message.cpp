@@ -35,7 +35,7 @@ CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language
     WBUFB(data, (0x05) ) = 1;
     WBUFB(data, (0x06) ) = 1;
     WBUFB(data, (0x07) ) = language;
-    WBUFL(data, (0x08) ) = timestamp == 0 ? UINT32_MIN : timestamp;
+    WBUFL(data, (0x08) ) = (uint32)(timestamp == 0 ? time(0) : timestamp);
     WBUFL(data, (0x0C) ) = 0; // Message Length.. (Total)
     WBUFL(data, (0x10) ) = 0; // Message Offset..
     WBUFL(data, (0x14) ) = 0; // Message Length..
