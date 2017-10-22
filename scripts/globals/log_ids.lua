@@ -60,7 +60,7 @@ NORG =
     ['quest_log']= 5,
     ['fame_area']= 5
 };
-OTHER_AREAS =
+OTHER_AREAS_LOG =
 {
     ['full_name'] = "Other Areas",
     ['quest_log']= 4
@@ -225,7 +225,7 @@ QUEST_LOGS = {
     [1] = "BASTOK",
     [2] = "WINDURST",
     [3] = "JEUNO",
-    [4] = "OTHER_AREAS",
+    [4] = "OTHER_AREAS_LOG",
     [5] = "OUTLANDS",
     [6] = "TOAU",
     [7] = "WOTG",

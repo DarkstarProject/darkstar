@@ -28,7 +28,12 @@ function onTrigger(player, logId, questId, target)
         logId = QUEST_LOGS[logId];
     end
     if (logId ~= nil) then
-        logId = _G[string.upper(logId)];
+        local logTableTest = _G[string.upper(logId)];
+        if (type(logTableTest) == "table") then
+            logId = logTableTest;
+        else
+            logId = _G[string.upper(logId .. "_LOG")];
+        end
     end
     if ((type(logId) == "table") and logId.quest_log ~= nil) then
         logName = logId.full_name;
@@ -37,7 +42,7 @@ function onTrigger(player, logId, questId, target)
         error(player, "Invalid logID.");
         return;
     end
-    
+
     -- validate questId
     if (questId ~= nil) then
         questId = tonumber(questId) or _G[string.upper(questId)];

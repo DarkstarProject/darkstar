@@ -1,17 +1,7 @@
 ----------------------------------
--- Area: Sea Serpent Grotto
---   NM: Charybdis
+-- Area: The Boyahda Tree
+--  NM:  Ellyllon
 -----------------------------------
-
------------------------------------
--- onMobInitialize
------------------------------------
-
-function onMobInitialize(mob)
-
-    mob:setMobMod(MOBMOD_MULTI_HIT, 5);
-
-end;
 
 -----------------------------------
 -- onMobDeath
