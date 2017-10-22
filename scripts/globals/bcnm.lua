@@ -836,7 +836,7 @@ function EventTriggerBCNM(player, npc)
         local bfid = stat:getPower()
         local mask = getBattlefieldMaskById(player, bfid)
         if mask ~= 0 and checkReqs(player, npc, bfid, false) then
-            player:startEvent(32000, 1, 1, 1, mask, 1, 1, 1, 1)
+            player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0)
             return true
         end
 
@@ -853,7 +853,15 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
     -- player:PrintToPlayer(string.format("EventUpdateBCNM csid=%i option=%i extras=%i", csid, option, extras))
 
     -- requesting a battlefield
-    if csid == 32000 and option ~= 255 then
+    if csid == 32000 then
+        if option == 0 then
+            print("ffs0 "..player:getName())
+            player:updateEvent(0)
+            return 0
+        elseif option == 255 then
+            printf("ffs 69 "..player:getName())
+            return 0
+        end
         local battlefieldIndex = bit.rshift(option, 4)
         local battlefieldId = getBattlefieldIdByBit(player, battlefieldIndex)
         local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
@@ -862,13 +870,16 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local isInitiator = player:getLocalVar("[battlefield]initiator")
         local skip = checkSkip(player, id)
 
-        local clearTime, name, partySize = 1
+        local clearTime = 1
+        local name = "Meme"
+        local partySize = 1
+
         local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
         --print(id)
         if isInitiator then
             result = player:registerBattlefield(id, area + 1)
         else
-            result = player:registerBattlefield(id, area, effect:getSubType())
+            result = player:registerBattlefield()
         end
 
         if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
@@ -891,12 +902,8 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
             end
         end
         print(player:getName().." "..battlefieldIndex)
-        if isInitiator then
-            player:updateEvent(result, battlefieldIndex - 1, isInitiator, clearTime, partySize, skip)
-            player:updateEventString(name)
-        else
-            player:updateEvent(result)
-        end
+        player:updateEvent(result, battlefieldIndex, isInitiator, clearTime, partySize, skip)
+        player:updateEventString(name)
         return canRegister and result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
 
     -- leaving a battlefield

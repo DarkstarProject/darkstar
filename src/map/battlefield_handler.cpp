@@ -108,7 +108,7 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
 						    FROM bcnm_info i\
 							WHERE bcnmId = %u";
 
-        auto  ret = Sql_Query(SqlHandle, fmtQuery, battlefieldID);
+        auto ret = Sql_Query(SqlHandle, fmtQuery, battlefieldID);
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0 ||
@@ -133,12 +133,12 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
             auto PBattlefield = new CBattlefield(battlefieldID, m_PZone, area, PChar);
 
             PBattlefield->SetName(name);
+            PBattlefield->SetRecord(recordholder, recordtime, recordPartySize);
             PBattlefield->SetTimeLimit(timelimit);
             PBattlefield->SetLevelCap(levelcap);
 
             PBattlefield->SetMaxParticipants(maxplayers);
             PBattlefield->SetRuleMask(rulemask);
-            PBattlefield->SetRecord(recordholder, recordtime, recordPartySize);
 
             m_Battlefields.insert(std::make_pair(PBattlefield->GetArea(), PBattlefield));
 
@@ -166,12 +166,19 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
 CBattlefield* CBattlefieldHandler::GetBattlefield(CBaseEntity* PEntity)
 {
     auto entity = dynamic_cast<CBattleEntity*>(PEntity);
-    auto PEffect = entity ? entity->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD) : nullptr;
+
+    if (entity && entity->objtype == TYPE_PC)
+    {
+        for (auto& battlefield : m_Battlefields)
+        {
+            if (battlefield.second->IsRegistered(static_cast<CCharEntity*>(entity)))
+                return battlefield.second;
+        }
+    }
 
     for (auto& battlefield : m_Battlefields)
     {
-        if (battlefield.second == PEntity->PBattlefield || (PEffect &&
-            (PEffect->GetPower() == battlefield.second->GetID() && PEffect->GetSubID() == battlefield.second->GetInitiator().id)))
+        if (battlefield.second->GetEntity(entity))
             return battlefield.second;
     }
     return nullptr;
@@ -192,13 +199,8 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
     // attempt to add to an existing battlefield
     auto PBattlefield = GetBattlefield(PChar);
 
-    // assume relogging, remove entity from battlefield
-    if (RemoveFromBattlefield(PChar, PBattlefield))
-        return BATTLEFIELD_RETURN_CODE_REQS_NOT_MET;
-
     // entity wasnt found in battlefield, assume they have the effect but not physically inside battlefield
-    if (PBattlefield && PBattlefield->GetID() == battlefield && PBattlefield->GetArea() == area && PBattlefield->GetInitiator().id == initiator &&
-        !PChar->PBattlefield)
+    if (PBattlefield)
     {
         if (!PBattlefield->CheckInProgress())
         {
@@ -229,4 +231,14 @@ bool CBattlefieldHandler::RemoveFromBattlefield(CBaseEntity* PEntity, CBattlefie
     }
 
     return PBattlefield ? PBattlefield->RemoveEntity(PEntity, leavecode) : false;
+}
+
+bool CBattlefieldHandler::IsRegistered(CCharEntity * PChar)
+{
+    for (const auto& battlefield : m_Battlefields)
+    {
+        if (battlefield.second->IsRegistered(PChar))
+            return true;
+    }
+    return false;
 }

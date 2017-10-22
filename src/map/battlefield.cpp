@@ -170,7 +170,7 @@ uint8 CBattlefield::GetMaxParticipants() const
 
 uint8 CBattlefield::GetPlayerCount() const
 {
-    return m_PlayerList.size();
+    return m_EnteredPlayers.size();
 }
 
 uint8 CBattlefield::GetLevelCap() const
@@ -205,12 +205,9 @@ void CBattlefield::SetArea(uint8 area)
 
 void CBattlefield::SetRecord(const std::string& name, duration time, uint8 partySize)
 {
-    if (time < GetTimeLimit())
-    {
-        m_Record.name = !name.empty() ? name : m_Initiator.name;
-        m_Record.time = time;
-        m_Record.partySize = partySize;
-    }
+    m_Record.name = !name.empty() ? name : m_Initiator.name;
+    m_Record.time = time;
+    m_Record.partySize = partySize;
 }
 
 void CBattlefield::SetStatus(uint8 status)
@@ -253,17 +250,17 @@ void CBattlefield::ApplyLevelCap(CCharEntity* PChar) const
 
     if (cap)
     {
-        //PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
         PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_RESTRICTION, cap, 0, 0));
     }
 }
 
 bool CBattlefield::IsOccupied() const
 {
-    return m_PlayerList.size() > 0;
+    return m_EnteredPlayers.size() > 0;
 }
 
-bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool inBattlefield, BATTLEFIELDMOBCONDITION conditions, bool ally)
+bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOBCONDITION conditions, bool ally)
 {
     DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 
@@ -271,8 +268,17 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool inBattlefield, BATTLE
     {
         if (GetPlayerCount() < GetMaxParticipants())
         {
-            ApplyLevelCap(static_cast<CCharEntity*>(PEntity));
-            m_PlayerList.push_back(PEntity->id);
+            if (enter)
+            {
+                ApplyLevelCap(static_cast<CCharEntity*>( PEntity ));
+                m_EnteredPlayers.push_back(PEntity->id);
+                m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }));
+            }
+            else
+            {
+                m_RegisteredPlayers.push_back(PEntity->id);
+                return true;
+            }
         }
         else
         {
@@ -325,7 +331,7 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool inBattlefield, BATTLE
     auto entity = dynamic_cast<CBattleEntity*>(PEntity);
 
     // set their battlefield to this as they're now physically inside that battlefield
-    if (inBattlefield)
+    if (enter)
         PEntity->PBattlefield = this;
     // mob, initiator or ally
     if (entity && !entity->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD))
@@ -351,6 +357,19 @@ CBaseEntity* CBattlefield::GetEntity(CBaseEntity* PEntity)
     return nullptr;
 }
 
+bool CBattlefield::IsRegistered(CCharEntity* PChar)
+{
+    if (PChar)
+    {
+        for (auto charid : m_RegisteredPlayers)
+        {
+            if (charid == PChar->id)
+                return true;
+        }
+    }
+    return false;
+}
+
 bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 {
     // player's already zoned, we dont need to do anything
@@ -361,7 +380,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
     if (PEntity->objtype == TYPE_PC)
     {
         auto check = [PEntity, &found](auto charid) { if (PEntity->id == charid) { found = true; return found; } return false; };
-        m_PlayerList.erase(std::remove_if(m_PlayerList.begin(), m_PlayerList.end(), check), m_PlayerList.end());
+        m_EnteredPlayers.erase(std::remove_if(m_EnteredPlayers.begin(), m_EnteredPlayers.end(), check), m_EnteredPlayers.end());
 
         if (leavecode != 255)
         {
@@ -418,7 +437,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
     }
     PEntity->PBattlefield = nullptr;
 
-    if (m_PlayerList.size() == 0)
+    if (m_EnteredPlayers.size() == 0)
         CanCleanup(true);
 
     return found;
@@ -447,7 +466,7 @@ bool CBattlefield::CanCleanup(bool cleanup)
     if (cleanup)
         m_Cleanup = cleanup;
 
-    return m_Cleanup || m_PlayerList.size() == 0;
+    return m_Cleanup || m_EnteredPlayers.size() == 0;
 }
 
 void CBattlefield::Cleanup()
@@ -467,7 +486,7 @@ void CBattlefield::Cleanup()
 
     if (GetStatus() == BATTLEFIELD_STATUS_WON && GetRecord().time > m_FinishTime)
     {
-        SetRecord(m_Initiator.name, m_FinishTime, m_PlayerList.size());
+        SetRecord(m_Initiator.name, m_FinishTime, m_EnteredPlayers.size());
     }
     // wipe enmity from all mobs in list if needed
     ForEachRequiredEnemy([&](CMobEntity* PMob)
@@ -597,7 +616,7 @@ bool CBattlefield::CheckInProgress()
 
 void CBattlefield::ForEachPlayer(std::function<void(CCharEntity*)> func)
 {
-    for (auto player : m_PlayerList)
+    for (auto player : m_EnteredPlayers)
     {
         func(static_cast<CCharEntity*>(GetZone()->GetCharByID(player)));
     }

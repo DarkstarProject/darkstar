@@ -9374,7 +9374,7 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
     uint8 area = 0;
     uint32 initiator = 0;
 
-    if (PEffect && (lua_isnil(L, 1) || !lua_isuserdata(L, 1)) && lua_isnil(L, 2) && lua_isnil(L, 3))
+    if (PEffect)
     {
         battlefield = PEffect->GetPower();
         area = PEffect->GetSubPower();

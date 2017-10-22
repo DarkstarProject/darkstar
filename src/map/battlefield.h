@@ -162,6 +162,7 @@ public:
     void                   ClearEnmityForEntity(CBattleEntity* PEntity);
     bool                   InsertEntity(CBaseEntity* PEntity, bool inBattlefield = false, BATTLEFIELDMOBCONDITION conditions = CONDITION_NONE, bool ally = false);
     CBaseEntity*           GetEntity(CBaseEntity* PEntity);
+    bool                   IsRegistered(CCharEntity* PChar);
     bool                   RemoveEntity(CBaseEntity* PEntity, uint8 leavecode = 0);
     void                   onTick(time_point time);
     bool                   CanCleanup(bool cleanup = false);
@@ -169,7 +170,8 @@ public:
     bool                   LoadMobs();
     bool                   SpawnLoot();
 
-    std::vector<uint32>           m_PlayerList;
+    std::vector<uint32>           m_RegisteredPlayers;
+    std::vector<uint32>           m_EnteredPlayers;
     std::vector<CNpcEntity*>      m_NpcList;
     std::vector<BattlefieldMob_t> m_RequiredEnemyList;
     std::vector<BattlefieldMob_t> m_AdditionalEnemyList;

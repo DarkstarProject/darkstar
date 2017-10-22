@@ -140,7 +140,7 @@ inline int32 CLuaBattlefield::getPlayers(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    lua_createtable(L, m_PLuaBattlefield->m_PlayerList.size(), 0);
+    lua_createtable(L, m_PLuaBattlefield->m_EnteredPlayers.size(), 0);
     int8 newTable = lua_gettop(L);
     int i = 1;
 
