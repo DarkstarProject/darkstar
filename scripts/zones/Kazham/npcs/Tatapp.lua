@@ -294,7 +294,7 @@ function onTrigger(player,npc)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
             player:startEvent(0x00CB);
-            npc:wait(-1);
+            npc:wait();
         elseif (progress == 6 or failed == 7) then
                 player:startEvent(0x00D4);  -- asking for blackened toad
         elseif (progress >= 7 or failed >= 8) then
@@ -302,7 +302,7 @@ function onTrigger(player,npc)
         end
     else
         player:startEvent(0x00CB);
-        npc:wait(-1);
+        npc:wait();
     end
 end;
 -----------------------------------

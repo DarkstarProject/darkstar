@@ -85,7 +85,7 @@ function onTrigger(player,npc)
 
     if (player:getVar("BathedInScent") == 1 and OpoOpoAndIStatus == QUEST_AVAILABLE) then
         player:startEvent(0x00D9, 0, 483)  -- 483 broken mithran fishing rod
-        npc:wait(-1);
+        npc:wait();
     elseif (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry == 1 then
             player:startEvent(0x00EF); -- gave 1st NPC wrong item instead of "Broken Mithran Fishing Rod"
@@ -114,7 +114,7 @@ function onTrigger(player,npc)
         end
     else
         player:startEvent(0x00c5);  -- not sure why but this cs has no text
-        npc:wait(-1);
+        npc:wait();
     end
 end;
 
