@@ -218,7 +218,8 @@ public:
     int32 getCurrentGPItem(lua_State*);     // Gets current GP item id and max points
     int32 addGuildPoints(lua_State*);       // add guild points
 
-    int32 registerBattlefield(lua_State*);         // attempt to register and physically enter a battlefield
+    int32 registerBattlefield(lua_State*);         // attempt to register with a battlefield or load it (initiator is always entered)
+    int32 enterBattlefield(lua_State*);            // physically enter battlefield
     int32 leaveBattlefield(lua_State*);            // leave a battlefield
     int32 isInBattlefield(lua_State*);             // physically inside a battlefield
     int32 getBattlefield(lua_State*);

@@ -205,7 +205,10 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
         if (!PBattlefield->CheckInProgress())
         {
             // players havent started fighting yet, try entering
-            return PBattlefield->InsertEntity(PChar, true) ? BATTLEFIELD_RETURN_CODE_CUTSCENE : BATTLEFIELD_RETURN_CODE_BATTLEFIELD_FULL;
+            if (area != PBattlefield->GetArea())
+                return BATTLEFIELD_RETURN_CODE_INCREMENT_REQUEST;
+
+            return PBattlefield->InsertEntity(PChar, false) ? BATTLEFIELD_RETURN_CODE_CUTSCENE : BATTLEFIELD_RETURN_CODE_BATTLEFIELD_FULL;
         }
         else
         {
@@ -225,11 +228,7 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
 bool CBattlefieldHandler::RemoveFromBattlefield(CBaseEntity* PEntity, CBattlefield* PBattlefield, uint8 leavecode)
 {
     // would only be true for pets and players
-    if (!PBattlefield)
-    {
-        PBattlefield = GetBattlefield(PEntity);
-    }
-
+    PBattlefield = PBattlefield ? PBattlefield : GetBattlefield(PEntity);
     return PBattlefield ? PBattlefield->RemoveEntity(PEntity, leavecode) : false;
 }
 

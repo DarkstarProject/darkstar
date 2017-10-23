@@ -854,18 +854,40 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
 
     -- requesting a battlefield
     if csid == 32000 then
+        print("OPTION "..option)
+        local area = player:getLocalVar("[battlefield]area")
+        player:setLocalVar("[battlefield]area", player:getLocalVar("[battlefield]area") + 1)
         if option == 0 then
             print("ffs0 "..player:getName())
-            player:updateEvent(0)
-            return 0
+            local battlefield = player:getBattlefield()
+            result = g_Battlefield.RETURNCODE.LOCKED
+            if battlefield then
+                if area ~= battlefield:getArea() then
+                    result = g_Battlefield.RETURNCODE.INCREMENT_REQUEST
+                elseif not player:enterBattlefield() then
+                    player:updateEvent(result)
+                    return 1
+                end
+            end
+            player:updateEvent(result)
+            return result < g_Battlefield.RETURNCODE.LOCKED
+            --return 0
         elseif option == 255 then
-            printf("ffs 69 "..player:getName())
+            local battlefield = player:getBattlefield()
+            result = g_Battlefield.RETURNCODE.LOCKED
+            if battlefield then
+                if area ~= battlefield:getArea() then
+                    result = g_Battlefield.RETURNCODE.INCREMENT_REQUEST
+                elseif not player:enterBattlefield() then
+                    player:updateEvent(result)
+                    return 1
+                end
+            end
             return 0
         end
         local battlefieldIndex = bit.rshift(option, 4)
         local battlefieldId = getBattlefieldIdByBit(player, battlefieldIndex)
         local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
-        local area = player:getLocalVar("[battlefield]area")
         local id = battlefieldId or player:getBattlefieldID()
         local isInitiator = player:getLocalVar("[battlefield]initiator")
         local skip = checkSkip(player, id)
@@ -877,14 +899,22 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
         --print(id)
         if isInitiator then
-            result = player:registerBattlefield(id, area + 1)
+            result = player:registerBattlefield(id, area)
         else
-            result = player:registerBattlefield()
+            local battlefield = player:getBattlefield()
+            result = g_Battlefield.RETURNCODE.LOCKED
+            if battlefield then
+                if area ~= battlefield:getArea() then
+                    result = g_Battlefield.RETURNCODE.INCREMENT_REQUEST
+                elseif not player:enterBattlefield() then
+                    player:updateEvent(result)
+                    return 1
+                end
+            end
         end
-
+        print("AREAAAAAAAAAAA "..area)
         if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
-            print("area "..area)
-            player:setLocalVar("[battlefield]area", area + 1)
+
         else
             local battlefield = player:getBattlefield()
             if battlefield then
@@ -897,6 +927,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
                 for _, member in pairs(player:getAlliance()) do
                     if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
                         member:addStatusEffect(effect)
+                        member:registerBattlefield(id, area, player:getID())
                     end
                 end
             end
@@ -904,7 +935,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         print(player:getName().." "..battlefieldIndex)
         player:updateEvent(result, battlefieldIndex, isInitiator, clearTime, partySize, skip)
         player:updateEventString(name)
-        return canRegister and result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
+        return result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
 
     -- leaving a battlefield
     elseif csid == 32003 and option == 2 then
@@ -925,6 +956,7 @@ end
 function EventFinishBCNM(player, csid, option)
     -- player:PrintToPlayer(string.format("EventFinishBCNM csid=%i option=%i", csid, option))
     player:setLocalVar("[battlefield]initiator", 0)
+    player:setLocalVar("[battlefield]area", 0)
     if player:hasStatusEffect(EFFECT_BATTLEFIELD) then
         if csid == 32000 and option ~= 0 then
             local zone = player:getZoneID()
@@ -938,9 +970,10 @@ function EventFinishBCNM(player, csid, option)
 
                 -- set other traded item to worn
                 elseif player:hasItem(item) then
-                    player:createWornItem(item)
+                    --player:createWornItem(item)
                 end
             end
+            player:enterBattlefield()
 
         elseif csid == 32003 and option == 4 then
             if player:getBattlefield() then

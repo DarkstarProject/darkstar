@@ -272,21 +272,7 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
             {
                 ApplyLevelCap(static_cast<CCharEntity*>( PEntity ));
                 m_EnteredPlayers.push_back(PEntity->id);
-                //m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }));
-                bool wasRegistered;
-                do
-                {
-                    wasRegistered = false;
-                    for (auto itRegPc = m_RegisteredPlayers.begin(); itRegPc != m_RegisteredPlayers.end(); itRegPc++)
-                    {
-                        if (*itRegPc == PEntity->id)
-                        {
-                            wasRegistered = true;
-                            m_RegisteredPlayers.erase(itRegPc);
-                            break;
-                        }
-                    }
-                } while (wasRegistered);
+                m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }), m_RegisteredPlayers.end());
             }
             else
             {
@@ -469,6 +455,7 @@ void CBattlefield::onTick(time_point time)
         CheckInProgress();
         luautils::OnBattlefieldTick(this);
 
+        // todo: handle this in global
         // been here too long, gtfo
         if (GetTimeInside() >= GetTimeLimit())
             CanCleanup(true);

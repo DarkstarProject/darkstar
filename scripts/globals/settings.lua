@@ -38,7 +38,7 @@ LOW_LEVEL_REGIME = 0; -- Allow people to kill regime targets even if they give n
 -- This generally results in a more accurate presentation of your selected expansions
 -- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded)
 -- This feature correlates to the content_tag column in the SQL files
-RESTRICT_CONTENT = 0;
+RESTRICT_CONTENT = 1;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.

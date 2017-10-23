@@ -9366,28 +9366,29 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto PChar = static_cast<CCharEntity*>( m_PBaseEntity );
     auto PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
-    auto PEffect = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD);
     uint16 battlefield = -1;
     uint8 area = 0;
     uint32 initiator = 0;
 
-    if (PEffect)
-    {
-        battlefield = PEffect->GetPower();
-        area = PEffect->GetSubPower();
-        initiator = PEffect->GetSubID();
-    }
-    else
-    {
-        battlefield = !lua_isnil(L, 1) ? lua_tointeger(L, 1) : -1;
-        area = !lua_isnil(L, 2) ? lua_tointeger(L, 2) : 1;
-        initiator = !lua_isnil(L, 3) ? lua_tointeger(L, 3) : 0;
-    }
+    battlefield = !lua_isnil(L, 1) ? lua_tointeger(L, 1) : -1;
+    area = !lua_isnil(L, 2) ? lua_tointeger(L, 2) : 1;
+    initiator = !lua_isnil(L, 3) ? lua_tointeger(L, 3) : 0;
+
 
     lua_pushinteger(L, PZone->m_BattlefieldHandler->RegisterBattlefield(PChar, (uint16)battlefield, area, initiator));
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::enterBattlefield(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    auto PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity);
+    lua_pushboolean(L, PBattlefield ? PBattlefield->InsertEntity(m_PBaseEntity, true) : false);
     return 1;
 }
 
@@ -11101,6 +11102,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,registerBattlefield),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,enterBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leaveBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrency),
