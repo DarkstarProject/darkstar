@@ -36,11 +36,11 @@ class CBattlefieldHandler
 public:
 
     CBattlefieldHandler(CZone* PZone);
-    void	      HandleBattlefields(time_point tick);							                               // called every tick to handle win/lose conditions, locking the bcnm, etc
-    uint8         LoadBattlefield(CCharEntity* PChar, uint16 battlefieldID, uint8 area);                       // attempts to load battlefield, returns BATTLEFIELD_RETURN_CODE
-    CBattlefield* GetBattlefield(CBaseEntity* PEntity);                                        // return pointer to battlefield if exists
+    void	      HandleBattlefields(time_point tick);							         // called every tick to handle win/lose conditions, locking the bcnm, etc
+    uint8         LoadBattlefield(CCharEntity* PChar, uint16 battlefieldID, uint8 area); // attempts to load battlefield, returns BATTLEFIELD_RETURN_CODE
+    CBattlefield* GetBattlefield(CBaseEntity* PEntity, bool checkRegistered = false);            // return pointer to battlefield if exists
     CBattlefield* GetBattlefieldByInitiator(uint32 charID);
-    uint8         RegisterBattlefield(CCharEntity* PChar, uint16 battlefieldID, uint8 area, uint32 initiator); // attempts to register or load battlefield, returns BATTLEFIELD_RETURN_CODE
+    uint8         RegisterBattlefield(CCharEntity* PChar, uint16 battlefieldID, uint8 area, uint32 initiator);               // attempts to register or load battlefield, returns BATTLEFIELD_RETURN_CODE
     bool          RemoveFromBattlefield(CBaseEntity* PEntity, CBattlefield* PBattlefield = nullptr, uint8 leavecode = 3);
     bool          IsRegistered(CCharEntity* PChar);
     bool          IsEntered(CCharEntity* PChar);

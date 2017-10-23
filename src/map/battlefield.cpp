@@ -54,7 +54,7 @@ This file is part of DarkStar-server source code.
 CBattlefield::CBattlefield(uint16 id, CZone* PZone, uint8 area, CCharEntity* PInitiator)
 {
     m_ID = id;
-    m_ZoneID = PZone->GetID();
+    m_Zone = PZone;
     m_Area = area;
     m_Initiator.id = PInitiator->id;
     m_Initiator.name = PInitiator->name;
@@ -79,12 +79,12 @@ uint16 CBattlefield::GetID() const
 
 CZone* CBattlefield::GetZone() const
 {
-    return zoneutils::GetZone(m_ZoneID);
+    return m_Zone;
 }
 
 uint16 CBattlefield::GetZoneID() const
 {
-    return m_ZoneID;
+    return m_Zone->GetID();
 }
 
 const std::string& CBattlefield::GetName() const
@@ -264,6 +264,9 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
 {
     DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 
+    if (PEntity->PBattlefield)
+        return false;
+
     if (PEntity->objtype == TYPE_PC)
     {
         if (GetPlayerCount() < GetMaxParticipants())
@@ -271,12 +274,11 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
             if (enter)
             {
                 ApplyLevelCap(static_cast<CCharEntity*>( PEntity ));
-                m_EnteredPlayers.push_back(PEntity->id);
-                m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }), m_RegisteredPlayers.end());
+                m_EnteredPlayers.emplace(PEntity->id);
             }
-            else
+            else if (!IsRegistered(static_cast<CCharEntity*>(PEntity)))
             {
-                m_RegisteredPlayers.push_back(PEntity->id);
+                m_RegisteredPlayers.emplace(PEntity->id);
                 return true;
             }
         }
@@ -359,15 +361,7 @@ CBaseEntity* CBattlefield::GetEntity(CBaseEntity* PEntity)
 
 bool CBattlefield::IsRegistered(CCharEntity* PChar)
 {
-    if (PChar)
-    {
-        for (auto charid : m_RegisteredPlayers)
-        {
-            if (charid == PChar->id)
-                return true;
-        }
-    }
-    return false;
+    return PChar && m_RegisteredPlayers.find(PChar->id) != m_RegisteredPlayers.end();
 }
 
 bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
@@ -379,8 +373,10 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
     auto found = false;
     if (PEntity->objtype == TYPE_PC)
     {
-        auto check = [PEntity, &found](auto charid) { if (PEntity->id == charid) { found = true; return found; } return false; };
-        m_EnteredPlayers.erase(std::remove_if(m_EnteredPlayers.begin(), m_EnteredPlayers.end(), check), m_EnteredPlayers.end());
+        m_EnteredPlayers.erase(m_EnteredPlayers.find(PEntity->id), m_EnteredPlayers.end());
+
+        if (leavecode == BATTLEFIELD_LEAVE_CODE_EXIT)
+            m_RegisteredPlayers.erase(m_RegisteredPlayers.find(PEntity->id), m_RegisteredPlayers.end());
 
         if (leavecode != 255)
         {
@@ -407,6 +403,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         }
         else if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
         {
+            // todo: probably need to check allegiance too cause besieged will prolly use > 0x700 too
             // allies targid >= 0x700
             if (PEntity->targid >= 0x700)
             {
@@ -435,11 +432,9 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         entity->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_RESTRICTION);
         ClearEnmityForEntity(entity);
     }
+    ClearEnmityForEntity(dynamic_cast<CBattleEntity*>( PEntity ));
+
     PEntity->PBattlefield = nullptr;
-
-    if (m_EnteredPlayers.size() == 0)
-        CanCleanup(true);
-
     return found;
 }
 
@@ -489,34 +484,29 @@ void CBattlefield::Cleanup()
     {
         SetRecord(m_Initiator.name, m_FinishTime, m_EnteredPlayers.size());
     }
-    // wipe enmity from all mobs in list if needed
-    ForEachRequiredEnemy([&](CMobEntity* PMob)
-    {
-        RemoveEntity(PMob);
-    });
+    auto tempEnemies = m_RequiredEnemyList;
+    auto tempEnemies2 = m_AdditionalEnemyList;
+    auto tempNpcs = m_NpcList;
+    auto tempAllies = m_AllyList;
+    auto tempPlayers = m_EnteredPlayers;
 
-    ForEachAdditionalEnemy([&](CMobEntity* PMob)
-    {
-        RemoveEntity(PMob);
-    });
+    for (auto mob : tempEnemies)
+        RemoveEntity(mob.PMob);
+    for (auto mob : tempEnemies)
+        RemoveEntity(mob.PMob);
+    for (auto npc : tempNpcs)
+        RemoveEntity(npc);
+    for (auto ally : tempAllies)
+        RemoveEntity(ally);
 
     uint8 leavecode = m_Status == BATTLEFIELD_STATUS_WON ? BATTLEFIELD_LEAVE_CODE_WIN : BATTLEFIELD_LEAVE_CODE_LOSE;
 
-    ForEachPlayer([&](CCharEntity* PChar)
+    for (auto id : tempPlayers)
     {
-        RemoveEntity(PChar, leavecode);
-    });
-
-    ForEachAlly([&](CMobEntity* PAlly)
-    {
-        RemoveEntity(PAlly);
-    });
-
-    //make chest vanish (if any)
-    ForEachNpc([&](CNpcEntity* PNpc)
-    {
-        RemoveEntity(PNpc);
-    });
+        auto PChar = GetZone()->GetCharByID(id);
+        if (PChar)
+            RemoveEntity(PChar, leavecode);
+    }
 
     if (m_Attacked && m_Status == BATTLEFIELD_STATUS_WON)
     {
@@ -591,6 +581,9 @@ bool CBattlefield::SpawnLoot()
 
 void CBattlefield::ClearEnmityForEntity(CBattleEntity* PEntity)
 {
+    if (!PEntity)
+        return;
+
     auto func = [&](auto mob) { if (PEntity->PPet) mob->PEnmityContainer->Clear(PEntity->PPet->id);
     mob->PEnmityContainer->Clear(PEntity->id); };
 

@@ -293,6 +293,17 @@ inline int32 CLuaBattlefield::getLastTimeUpdate(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBattlefield::getInitiator(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+
+    const auto& initiator = m_PLuaBattlefield->GetInitiator();
+
+    lua_pushinteger(L, initiator.id);
+    lua_pushstring(L, initiator.name.c_str());
+    return 2;
+}
+
 inline int32 CLuaBattlefield::setLocalVar(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
@@ -436,6 +447,7 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getRecord),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getStatus),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getLastTimeUpdate),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,getInitiator),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setLastTimeUpdate),

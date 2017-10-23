@@ -24,7 +24,7 @@ This file is part of DarkStar-server source code.
 #ifndef _CBATTLEFIELD_H
 #define _CBATTLEFIELD_H
 
-#include <vector>
+#include <set>
 #include <functional>
 #include <memory>
 
@@ -170,8 +170,8 @@ public:
     bool                   LoadMobs();
     bool                   SpawnLoot();
 
-    std::vector<uint32>           m_RegisteredPlayers;
-    std::vector<uint32>           m_EnteredPlayers;
+    std::set<uint32>           m_RegisteredPlayers;
+    std::set<uint32>           m_EnteredPlayers;
     std::vector<CNpcEntity*>      m_NpcList;
     std::vector<BattlefieldMob_t> m_RequiredEnemyList;
     std::vector<BattlefieldMob_t> m_AdditionalEnemyList;
@@ -179,7 +179,7 @@ public:
 
 private:
     uint16                 m_ID;
-    uint16                 m_ZoneID;
+    CZone*                 m_Zone;
     std::string            m_Name;
     BattlefieldInitiator_t m_Initiator;
     uint8                  m_Area;

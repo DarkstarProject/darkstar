@@ -60,6 +60,7 @@ public:
     int32 getStatus(lua_State*);
     int32 getLocalVar(lua_State*);
     int32 getLastTimeUpdate(lua_State*);
+    int32 getInitiator(lua_State*);
 
     int32 setLastTimeUpdate(lua_State*);
     int32 setTimeLimit(lua_State*);

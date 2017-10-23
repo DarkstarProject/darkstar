@@ -132,7 +132,7 @@ function g_Battlefield.SendTimePrompts(battlefield, players)
         for i, player in pairs(players) do
             player:messageBasic(202, remainingTime)
         end
-        instance:setLastTimeUpdate(message)
+        battlefield:setLastTimeUpdate(message)
     end
 
     return remainingTime >= 0

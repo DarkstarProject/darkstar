@@ -9377,7 +9377,6 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
     area = !lua_isnil(L, 2) ? lua_tointeger(L, 2) : 1;
     initiator = !lua_isnil(L, 3) ? lua_tointeger(L, 3) : 0;
 
-
     lua_pushinteger(L, PZone->m_BattlefieldHandler->RegisterBattlefield(PChar, (uint16)battlefield, area, initiator));
     return 1;
 }
@@ -9387,7 +9386,7 @@ inline int32 CLuaBaseEntity::enterBattlefield(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    auto PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity);
+    auto PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity, true);
     lua_pushboolean(L, PBattlefield ? PBattlefield->InsertEntity(m_PBaseEntity, true) : false);
     return 1;
 }

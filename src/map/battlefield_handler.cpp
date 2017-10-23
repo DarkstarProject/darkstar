@@ -163,17 +163,18 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
     return BATTLEFIELD_RETURN_CODE_WAIT;
 }
 
-CBattlefield* CBattlefieldHandler::GetBattlefield(CBaseEntity* PEntity)
+CBattlefield* CBattlefieldHandler::GetBattlefield(CBaseEntity* PEntity, bool checkRegistered)
 {
     auto entity = dynamic_cast<CBattleEntity*>(PEntity);
-
-    if (entity && entity->objtype == TYPE_PC)
+    
+    if (checkRegistered && entity && entity->objtype == TYPE_PC)
     {
         for (auto& battlefield : m_Battlefields)
         {
             if (battlefield.second->IsRegistered(static_cast<CCharEntity*>(entity)))
                 return battlefield.second;
         }
+        return nullptr;
     }
 
     for (auto& battlefield : m_Battlefields)
@@ -194,11 +195,29 @@ CBattlefield* CBattlefieldHandler::GetBattlefieldByInitiator(uint32 charID)
     return nullptr;
 }
 
-uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battlefield, uint8 area, uint32 initiator)
+uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battlefieldId, uint8 area, uint32 initiator)
 {
+    if (PChar->PBattlefield)
+    {
+        // todo: fuck you entering multiple battlefields
+        ShowDebug("%s tried to enter another fuckin battlefield\n", PChar->GetName());
+        return BATTLEFIELD_RETURN_CODE_WAIT;
+    }
     // attempt to add to an existing battlefield
-    auto PBattlefield = GetBattlefield(PChar);
+    auto PBattlefield = GetBattlefield(PChar, true);
 
+    // couldnt find this character registered, try find by id and initiator
+    if (!PBattlefield)
+    {
+        for (const auto& battlefield : m_Battlefields)
+        {
+            if (battlefield.second->GetInitiator().id == initiator && battlefield.second->GetID() == battlefieldId)
+            {
+                PBattlefield = battlefield.second;
+                break;
+            }
+        }
+    }
     // entity wasnt found in battlefield, assume they have the effect but not physically inside battlefield
     if (PBattlefield)
     {
@@ -212,17 +231,12 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
         }
         else
         {
+            // todo: probably clear registered chars
             // can't enter, mobs been slapped
             return BATTLEFIELD_RETURN_CODE_LOCKED;
         }
     }
-    else if (PChar->PBattlefield)
-    {
-        // todo: fuck you entering multiple battlefields
-        ShowDebug("%s tried to enter another fuckin battlefield\n", PChar->GetName());
-        return false;
-    }
-    return LoadBattlefield(PChar, battlefield, area);
+    return LoadBattlefield(PChar, battlefieldId, area);
 }
 
 bool CBattlefieldHandler::RemoveFromBattlefield(CBaseEntity* PEntity, CBattlefield* PBattlefield, uint8 leavecode)

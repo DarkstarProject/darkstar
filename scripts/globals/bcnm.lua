@@ -858,31 +858,10 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local area = player:getLocalVar("[battlefield]area")
         player:setLocalVar("[battlefield]area", player:getLocalVar("[battlefield]area") + 1)
         if option == 0 then
-            print("ffs0 "..player:getName())
-            local battlefield = player:getBattlefield()
-            result = g_Battlefield.RETURNCODE.LOCKED
-            if battlefield then
-                if area ~= battlefield:getArea() then
-                    result = g_Battlefield.RETURNCODE.INCREMENT_REQUEST
-                elseif not player:enterBattlefield() then
-                    player:updateEvent(result)
-                    return 1
-                end
-            end
-            player:updateEvent(result)
-            return result < g_Battlefield.RETURNCODE.LOCKED
-            --return 0
+            -- todo: check if battlefields full, check party member requiremenst
+            return 0
         elseif option == 255 then
-            local battlefield = player:getBattlefield()
-            result = g_Battlefield.RETURNCODE.LOCKED
-            if battlefield then
-                if area ~= battlefield:getArea() then
-                    result = g_Battlefield.RETURNCODE.INCREMENT_REQUEST
-                elseif not player:enterBattlefield() then
-                    player:updateEvent(result)
-                    return 1
-                end
-            end
+            -- todo: check if battlefields full, check party member requirements
             return 0
         end
         local battlefieldIndex = bit.rshift(option, 4)
@@ -898,34 +877,32 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
 
         local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
         --print(id)
-        if isInitiator then
-            result = player:registerBattlefield(id, area)
-        else
-            local battlefield = player:getBattlefield()
-            result = g_Battlefield.RETURNCODE.LOCKED
-            if battlefield then
-                if area ~= battlefield:getArea() then
-                    result = g_Battlefield.RETURNCODE.INCREMENT_REQUEST
-                elseif not player:enterBattlefield() then
-                    player:updateEvent(result)
-                    return 1
-                end
-            end
-        end
-        print("AREAAAAAAAAAAA "..area)
+
+        result = player:registerBattlefield(id, area)
+
+        print("AREAAAAAAAAAAA "..area.."res "..result)
         if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
 
         else
+            if not player:getBattlefield() then
+                player:enterBattlefield()
+            end
+            local initiatorId = 0
+            local initiatorName = ""
+
             local battlefield = player:getBattlefield()
             if battlefield then
+                print("record "..player:getName())
                 name, clearTime, partySize = battlefield:getRecord()
-                mask = battlefield:getID()
+                initiatorId, initiatorName = battlefield:getInitiator()
+                print(initiatorId)
+                print(initiatorName)
             end
             -- register party members
-            if isInitiator then
-                effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
+            if initiatorId == player:getID() then
+                local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
                 for _, member in pairs(player:getAlliance()) do
-                    if member:getZoneID() == player:getZoneID() and not member:getBattlefield() then
+                    if member:getZoneID() == player:getZoneID() and not member:hasStatusEffect(EFFECT_BATTLEFIELD) and not member:getBattlefield() then
                         member:addStatusEffect(effect)
                         member:registerBattlefield(id, area, player:getID())
                     end
@@ -973,7 +950,6 @@ function EventFinishBCNM(player, csid, option)
                     --player:createWornItem(item)
                 end
             end
-            player:enterBattlefield()
 
         elseif csid == 32003 and option == 4 then
             if player:getBattlefield() then
