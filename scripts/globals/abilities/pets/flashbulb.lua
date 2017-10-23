@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Flashbulb
+-- Flashbulb
 ---------------------------------------------
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
     return 0
@@ -28,9 +28,9 @@ function onPetAbility(target, automaton, skill, master, action)
 
     if resist > 0.0625 then
         if target:addStatusEffect(EFFECT_FLASH, 200, 0, duration) then
-            skill:setMsg(msgBasic.ENFEEB)
+            skill:setMsg(msgBasic.SKILL_ENFEEB)
         else
-            skill:setMsg(msgBasic.NO_EFFECT)
+            skill:setMsg(msgBasic.SKILL_NO_EFFECT)
         end
     else
         skill:setMsg(msgBasic.RESIST)

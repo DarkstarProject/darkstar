@@ -1,9 +1,9 @@
 ---------------------------------------------
---  Exuviation
---  Family: Wamoura
---  Type: Healing and Full Erase
---  Range: Self
---  Notes: Erases all negative effects on the mob and heals an amount for each removed.
+-- Exuviation
+-- Family: Wamoura
+-- Type: Healing and Full Erase
+-- Range: Self
+-- Notes: Erases all negative effects on the mob and heals an amount for each removed.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

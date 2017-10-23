@@ -5,10 +5,8 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 95;
     if (target:getMainLvl() > player:getMainLvl()) then

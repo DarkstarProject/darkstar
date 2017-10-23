@@ -2,12 +2,9 @@
 -- Spell: Aspir
 -- Drain functions only on skill level!!
 -----------------------------------------
-
 require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -24,7 +21,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -38,9 +35,9 @@ function onSpellCast(caster,target,spell)
     end
 
     dmg = dmg * DARK_POWER;
-    
+
     if (target:isUndead()) then
-        spell:setMsg(75); -- No effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
         return dmg;
     end
 

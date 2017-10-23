@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Deafening Tantara
+-- Deafening Tantara
 --
---  Description: Inflicts silence in an area of effect.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: 10'
---  Notes: Doesn't use this if its horn is broken.
+-- Description: Inflicts silence in an area of effect.
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: 10'
+-- Notes: Doesn't use this if its horn is broken.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() == 1 and mob:getFamily() == 165) then -- Imps without horn
         return 1;

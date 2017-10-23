@@ -54,7 +54,7 @@ function onUseAbility(player,target,ability,action)
         action:messageID(target:getID(), msgBasic.USES_JA)
         action:speceffect(target:getID(), 32)
     else
-        action:messageID(target:getID(), msgBasic.USES_BUT_MISSES)
+        action:messageID(target:getID(), msgBasic.JA_MISS_2)
         action:speceffect(target:getID(), 0)
     end
 

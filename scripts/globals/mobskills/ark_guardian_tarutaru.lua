@@ -1,13 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Ark Guardian: Tarutaru
 -- Begin Ark Angel TT teleport
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 1;

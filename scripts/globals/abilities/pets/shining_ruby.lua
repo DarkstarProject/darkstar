@@ -1,12 +1,12 @@
----------------------------------------------------
+---------------------------------------------
 -- Shining Ruby
----------------------------------------------------
+---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
     return 0,0;
@@ -18,6 +18,6 @@ function onPetAbility(target, pet, skill, summoner)
 
     target:delStatusEffect(EFFECT_SHINING_RUBY);
     target:addStatusEffect(EFFECT_SHINING_RUBY,1,0,duration);
-    skill:setMsg(msgBasic.BUFF);
+    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
     return EFFECT_SHINING_RUBY;
 end

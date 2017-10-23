@@ -6,12 +6,9 @@
 -- Raw Value is said to be 30%
 -- It is said to increase to 50% w/ Saboteur
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -49,12 +46,12 @@ function onSpellCast(caster,target,spell)
         end
 
         if (target:addStatusEffect(EFFECT_ADDLE, power, 0, duration, 0, subPower)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return EFFECT_ADDLE;

@@ -3,13 +3,10 @@
 -- Restores target's HP.
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -101,7 +98,7 @@ function onSpellCast(caster,target,spell)
         -- no effect if player casted on mob
 
         if (target:isUndead()) then
-            spell:setMsg(2);
+            spell:setMsg(msgBasic.MAGIC_DMG);
             local params = {};
             params.dmg = minCure;
             params.multiplier = 1;
@@ -115,7 +112,7 @@ function onSpellCast(caster,target,spell)
             params.attribute = MOD_MND;
             params.skillType = HEALING_MAGIC_SKILL;
             params.bonus = 1.0;
-            resist = applyResistance(caster, target, spell, params);
+            local resist = applyResistance(caster, target, spell, params);
             dmg = dmg*resist;
             dmg = addBonuses(caster,spell,target,dmg);
             dmg = adjustForTarget(target,dmg,spell:getElement());
@@ -124,7 +121,7 @@ function onSpellCast(caster,target,spell)
             target:delHP(final);
             target:updateEnmityFromDamage(caster,final);
         elseif (caster:getObjType() == TYPE_PC) then
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         else
             -- e.g. monsters healing themselves.
             if (USE_OLD_CURE_FORMULA == true) then

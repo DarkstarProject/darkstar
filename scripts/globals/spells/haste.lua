@@ -2,11 +2,8 @@
 -- Spell: Haste
 -- Composure increases duration 3x
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -14,7 +11,6 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
     local duration = 180;
 
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
@@ -24,7 +20,7 @@ function onSpellCast(caster,target,spell)
     local power = 150; -- 150/1024
 
     if (target:addStatusEffect(EFFECT_HASTE,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
     return EFFECT_HASTE;

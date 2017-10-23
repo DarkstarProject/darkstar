@@ -208,7 +208,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     else
-        skill:setMsg(msgBasic.MISS)
+        skill:setMsg(msgBasic.SKILL_MISS)
     end
 
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
@@ -499,7 +499,7 @@ end;
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     else
-        skill:setMsg(msgBasic.MISS)
+        skill:setMsg(msgBasic.SKILL_MISS)
     end
 
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;

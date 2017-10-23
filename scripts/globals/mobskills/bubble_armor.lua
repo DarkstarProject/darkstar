@@ -1,17 +1,15 @@
 ---------------------------------------------
---  Bubble Armor
+-- Bubble Armor
 --
---  Description: Reduces magical damage received by 50%
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes:Nightmare Crabs use an enhanced version that applies a Magic Defense Boost that cannot be dispelled.
+-- Description: Reduces magical damage received by 50%
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes:Nightmare Crabs use an enhanced version that applies a Magic Defense Boost that cannot be dispelled.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

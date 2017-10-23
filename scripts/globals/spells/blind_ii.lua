@@ -3,12 +3,9 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Blind II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -16,7 +13,6 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
     local merits = caster:getMerit(MERIT_BLIND_II);
 
     -- Pull base stats.
@@ -28,7 +24,7 @@ function onSpellCast(caster,target,spell)
     if (power < 15) then
         power = 15;
     end
-    
+
     if (power > 90) then
         power = 90;
     end
@@ -52,19 +48,19 @@ function onSpellCast(caster,target,spell)
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 90) then --Do it!
-    
+
         if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
         if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
     return EFFECT_BLINDNESS;
 end;

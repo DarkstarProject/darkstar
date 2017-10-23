@@ -1,17 +1,15 @@
 ---------------------------------------------
---  Thornsong
+-- Thornsong
 --
---  Description: Covers the user in fiery spikes. Enemies that hit it take fire damage.
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes:
+-- Description: Covers the user in fiery spikes. Enemies that hit it take fire damage.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes:
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

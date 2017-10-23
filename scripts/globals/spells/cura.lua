@@ -10,9 +10,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -122,7 +119,7 @@ function onSpellCast(caster,target,spell)
 
     --Enmity for Cura is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
 
-    spell:setMsg(367);
+    spell:setMsg(msgBasic.AOE_HP_RECOVERY);
 
     return final;
 end;

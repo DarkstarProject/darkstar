@@ -5,13 +5,10 @@
 -- Recast Time: 0:03:00
 -- Duration: 1:00 or until next Weapon Skill
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -22,15 +19,11 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability,action)
     if (not target:hasStatusEffect(EFFECT_CHAINBOUND, 0) and not target:hasStatusEffect(EFFECT_SKILLCHAIN, 0)) then
         target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 2, 0, 5, 0, 1);
     else
-        ability:setMsg(156);
+        ability:setMsg(msgBasic.JA_NO_EFFECT);
     end
     local skill = player:getWeaponSkillType(SLOT_MAIN);
     local anim = 36;

@@ -1,15 +1,16 @@
 ---------------------------------------------
---  Chaotic Eye
+-- Chaotic Eye
 --
---  Description: Silences an enemy.
---  Type: Magical (Wind)
+-- Description: Silences an enemy.
+-- Type: Magical (Wind)
 --
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

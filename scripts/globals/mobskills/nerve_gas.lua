@@ -1,20 +1,19 @@
 ---------------------------------------------
---  Nerve Gas
+-- Nerve Gas
 --
---  Description: Inflicts curse and powerful poison effect.
---  Type: Magical
---  Wipes Shadows
---  Range: 10' Radial
+-- Description: Inflicts curse and powerful poison effect.
+-- Type: Magical
+-- Wipes Shadows
+-- Range: 10' Radial
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
 
-    if(mob:getFamily() == 316) then -- PW
+    if (mob:getFamily() == 316) then -- PW
         local mobSkin = mob:getModelId();
         if (mobSkin == 1796) then
             return 0;

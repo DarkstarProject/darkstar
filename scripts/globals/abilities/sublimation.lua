@@ -6,21 +6,14 @@
 -- Duration (Charging): Until MP stored is 25% of Max HP or until HP = 50%
 -- Duration (Charged): 2 hours
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
 
@@ -54,7 +47,7 @@ function onUseAbility(player,target,ability)
             player:delStatusEffect(EFFECT_REFRESH);
             player:addStatusEffect(EFFECT_SUBLIMATION_ACTIVATED,0,3,7200);
         else
-            ability:setMsg(323);
+            ability:setMsg(msgBasic.JA_NO_EFFECT_2);
         end
     end
     return mp;

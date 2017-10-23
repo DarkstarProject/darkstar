@@ -1,11 +1,8 @@
 -----------------------------------------
 -- Spell: Reprisal
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -22,9 +19,9 @@ function onSpellCast(caster,target,spell)
     end
 
    if (target:addStatusEffect(typeEffect,reflectedPercent, 0,duration, 0, maxReflectedDamage, 1)) then
-     spell:setMsg(230);
+     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
    else
-     spell:setMsg(75);
+     spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
    end
 
     return typeEffect;

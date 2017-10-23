@@ -1,14 +1,12 @@
 ---------------------------------------------
---  Boiling Point
+-- Boiling Point
 --
---  Description: Reduces magic defense in a fan-shaped area of effect.
---  Type: Magical
+-- Description: Reduces magic defense in a fan-shaped area of effect.
+-- Type: Magical
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

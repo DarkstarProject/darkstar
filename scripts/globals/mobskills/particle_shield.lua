@@ -1,15 +1,16 @@
 ---------------------------------------------
---  Particle Shield
+-- Particle Shield
 --
---  Description: Enhances defense.
---  Type: Magical
---  Notes: Ultima only.
+-- Description: Enhances defense.
+-- Type: Magical
+-- Notes: Ultima only.
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     local mobhp = mob:getHPP();
 

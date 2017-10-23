@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Rage
+-- Rage
 --
---  Description: The Ram goes berserk
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes: 25% Attack UP, -25% defense DOWN
+-- Description: The Ram goes berserk
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes: 25% Attack UP, -25% defense DOWN
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

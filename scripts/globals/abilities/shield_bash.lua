@@ -8,9 +8,6 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -20,10 +17,6 @@ function onAbilityCheck(player,target,ability)
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player, target, ability)
 
@@ -74,7 +67,7 @@ function onUseAbility(player, target, ability)
     target:delHP(damage);
     target:updateEnmityFromDamage(player,damage);
 
-    ability:setMsg(110);
+    ability:setMsg(msgBasic.JA_DAMAGE);
 
     return damage;
 end;

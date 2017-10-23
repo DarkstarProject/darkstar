@@ -2,12 +2,9 @@
 -- Spell: Breakga
 -- Temporarily blinds an enemy, greatly lowering its accuracy.
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -34,12 +31,12 @@ function onSpellCast(caster,target,spell)
         end
 
         if (target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return EFFECT_PETRIFICATION;

@@ -2,12 +2,9 @@
 -- Spell: Flash
 -- Temporarily blinds an enemy, greatly lowering its accuracy.
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -30,17 +27,17 @@ function onSpellCast(caster,target,spell)
 
     params.effect = nil;
 
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     local duration = 12 * resist;
 
     if (resist > 0.0625) then
         if (target:addStatusEffect(EFFECT_FLASH,200,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
     return EFFECT_FLASH;
 end;

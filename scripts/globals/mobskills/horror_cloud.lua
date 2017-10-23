@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Horror Cloud
+-- Horror Cloud
 --
---  Description: A debilitating cloud slows the attack speed of a single target.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Melee
---  Notes: Can be overwritten and blocked by Haste.
+-- Description: A debilitating cloud slows the attack speed of a single target.
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Melee
+-- Notes: Can be overwritten and blocked by Haste.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

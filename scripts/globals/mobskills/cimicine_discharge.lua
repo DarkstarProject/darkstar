@@ -1,14 +1,12 @@
----------------------------------------------------
+---------------------------------------------
 -- Cimicine Discharge
 -- Reduces the attack speed of enemies within range.
 -- Duration: Variable, with max of 3 min
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

@@ -5,9 +5,6 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------
--- onAdditionalEffect Action
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -33,10 +30,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     end
 end;
-
------------------------------------------
--- OnItemCheck
------------------------------------------
 
 function onItemCheck(target)
     return 0;

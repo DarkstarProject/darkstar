@@ -4,21 +4,14 @@
 -- Obtained: Thief Level 35
 -- Recast Time: 5:00
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local thfLevel;
@@ -52,10 +45,10 @@ function onUseAbility(player,target,ability,action)
             gil = gil * (1 + player:getMod(MOD_MUG_EFFECT));
             player:addGil(gil);
             target:setMobMod(MOBMOD_MUG_GIL, target:getMobMod(MOBMOD_MUG_GIL) - gil);
-            ability:setMsg(129);
+            ability:setMsg(msgBasic.MUG_SUCCESS);
         end
     else
-        ability:setMsg(244);
+        ability:setMsg(msgBasic.MUG_FAIL);
         action:animation(target:getID(), 184);
     end
 

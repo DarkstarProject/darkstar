@@ -1004,9 +1004,9 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
         action:param(defender:getID(), shadowsAbsorbed)
     else
         if primary then
-            action:messageID(defender:getID(), msgBasic.MISS)
+            action:messageID(defender:getID(), msgBasic.SKILL_MISS)
         else
-            action:messageID(defender:getID(), msgBasic.MISS_SECONDARY)
+            action:messageID(defender:getID(), msgBasic.EVADES)
         end
         action:reaction(defender:getID(), REACTION_EVADE)
     end
