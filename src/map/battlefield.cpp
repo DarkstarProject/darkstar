@@ -273,9 +273,10 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
                 ApplyLevelCap(static_cast<CCharEntity*>( PEntity ));
                 m_EnteredPlayers.push_back(PEntity->id);
                 //m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }));
-                bool wasRegistered = false;
+                bool wasRegistered;
                 do
                 {
+                    wasRegistered = false;
                     for (auto itRegPc = m_RegisteredPlayers.begin(); itRegPc != m_RegisteredPlayers.end(); itRegPc++)
                     {
                         if (*itRegPc == PEntity->id)
