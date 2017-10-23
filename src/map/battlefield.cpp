@@ -272,7 +272,20 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
             {
                 ApplyLevelCap(static_cast<CCharEntity*>( PEntity ));
                 m_EnteredPlayers.push_back(PEntity->id);
-                m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }));
+                //m_RegisteredPlayers.erase(std::remove_if(m_RegisteredPlayers.begin(), m_RegisteredPlayers.end(), [PEntity](auto id) { return PEntity->id == id; }));
+                bool wasRegistered = false;
+                do
+                {
+                    for (auto itRegPc = m_RegisteredPlayers.begin(); itRegPc != m_RegisteredPlayers.end(); itRegPc++)
+                    {
+                        if (*itRegPc == PEntity->id)
+                        {
+                            wasRegistered = true;
+                            m_RegisteredPlayers.erase(itRegPc);
+                            break;
+                        }
+                    }
+                } while (wasRegistered);
             }
             else
             {
@@ -530,8 +543,8 @@ bool CBattlefield::LoadMobs()
 {
     //get ids from DB
     auto fmtQuery = "SELECT monsterId, conditions \
-						    FROM bcnm_battlefield \
-							WHERE bcnmId = %u AND battlefieldNumber = %u";
+                            FROM bcnm_battlefield \
+                            WHERE bcnmId = %u AND battlefieldNumber = %u";
 
     auto ret = Sql_Query(SqlHandle, fmtQuery, this->GetID(), this->GetArea());
 
