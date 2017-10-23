@@ -981,15 +981,12 @@ end
 function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
-            if params.AbilityAsWS then
-                action:messageID(defender:getID(), msgBasic.USES_JA)
+            if primary then
+                action:messageID(defender:getID(), msgBasic.DAMAGE)
             else
-                if primary then
-                    action:messageID(defender:getID(), msgBasic.DAMAGE)
-                else
-                    action:messageID(defender:getID(), msgBasic.DAMAGE_SECONDARY)
-                end
+                action:messageID(defender:getID(), msgBasic.DAMAGE_SECONDARY)
             end
+
             if finaldmg > 0 then
                 action:reaction(defender:getID(), REACTION_HIT)
                 action:speceffect(defender:getID(), SPECEFFECT_RECOIL)

@@ -37,7 +37,6 @@ function onUseAbility(player,target,ability,action)
     params.atkmulti = 1;
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
     params.targetTPMult = 0;
-    params.AbilityAsWS = true;
 
     if (target:isMob()) then
         local enmityShed = 50;
@@ -59,9 +58,10 @@ function onUseAbility(player,target,ability,action)
         if (criticalHit) then
             action:speceffect(target:getID(), 38)
         end
+        action:messageID(defender:getID(), msgBasic.USES_JA)
         action:speceffect(target:getID(), 32)
     else
-        ability:setMsg(msgBasic.USES_BUT_MISSES)
+        action:messageID(defender:getID(), msgBasic.USES_BUT_MISSES)
         action:speceffect(target:getID(), 0)
     end
 
