@@ -5,9 +5,9 @@
 -- Recast Time: 1:00
 -- Duration: Instant
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
 
 -----------------------------------
@@ -23,7 +23,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
-
     local params = {};
     params.numHits = 1;
     local ftp = 1 + (player:getStat(MOD_VIT) / 256);
@@ -37,13 +36,13 @@ function onUseAbility(player,target,ability,action)
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = (player:getMod(MOD_JUMP_ATT_BONUS) + 100) / 100
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
+    params.AbilityAsWS = true;
 
     local taChar = player:getTrickAttackChar(target);
-
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params);
 
     if (tpHits + extraHits > 0) then
-        -- Under Spirit Surge, Jump also decreases target defence by 20% for 60 seconds
+        -- Under Spirit Surge, Jump also decreases target defense by 20% for 60 seconds
         if (player:hasStatusEffect(EFFECT_SPIRIT_SURGE) == true) then
             if (target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
                 target:addStatusEffect(EFFECT_DEFENSE_DOWN, 20, 0, 60);

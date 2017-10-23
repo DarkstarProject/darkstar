@@ -23,7 +23,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
-
     local params = {};
     params.numHits = 1;
     local ftp = 1
@@ -37,7 +36,8 @@ function onUseAbility(player,target,ability,action)
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
-    params.targetTPMult = 0
+    params.targetTPMult = 0;
+    params.AbilityAsWS = true;
 
     if (target:isMob()) then
         local enmityShed = 50;
