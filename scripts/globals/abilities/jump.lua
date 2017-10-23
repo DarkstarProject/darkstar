@@ -9,18 +9,11 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local params = {};
@@ -50,10 +43,10 @@ function onUseAbility(player,target,ability,action)
         if (criticalHit) then
             action:speceffect(target:getID(), 38)
         end
-        action:messageID(defender:getID(), msgBasic.USES_JA)
+        action:messageID(target:getID(), msgBasic.USES_JA)
         action:speceffect(target:getID(), 32)
     else
-        action:messageID(defender:getID(), msgBasic.USES_BUT_MISSES)
+        action:messageID(target:getID(), msgBasic.USES_BUT_MISSES)
         action:speceffect(target:getID(), 0)
     end
 
