@@ -41,5 +41,10 @@ function onSpellCast(caster,target,spell)
 
     spell:setMsg(msgBasic.AOE_HP_RECOVERY);
 
+    local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
+    if (mpBonusPercent > 0) then
+        caster:addMp(mpBonusPercent);
+    end
+
     return final;
 end;

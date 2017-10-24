@@ -3512,8 +3512,9 @@ INSERT INTO `item_mods` VALUES (11125,25,10);
 INSERT INTO `item_mods` VALUES (11125,73,6);
 INSERT INTO `item_mods` VALUES (11125,292,7);
 INSERT INTO `item_mods` VALUES (11125,384,61);
-INSERT INTO `item_mods` VALUES (11126,1,41);
-INSERT INTO `item_mods` VALUES (11126,13,7);
+INSERT INTO `item_mods` VALUES (11126,1,41);      -- Orison Pantaloons +2
+INSERT INTO `item_mods` VALUES (11126,13,7);      -- comment me
+INSERT INTO `item_mods` VALUES (11126,860,5);     -- Converts 5% of "Cure" amount to MP
 INSERT INTO `item_mods` VALUES (11127,1,41);
 INSERT INTO `item_mods` VALUES (11127,5,55);
 INSERT INTO `item_mods` VALUES (11127,28,7);
@@ -3974,8 +3975,9 @@ INSERT INTO `item_mods` VALUES (11225,23,7);
 INSERT INTO `item_mods` VALUES (11225,25,7);
 INSERT INTO `item_mods` VALUES (11225,292,5);
 INSERT INTO `item_mods` VALUES (11225,384,51);
-INSERT INTO `item_mods` VALUES (11226,1,39);
-INSERT INTO `item_mods` VALUES (11226,13,5);
+INSERT INTO `item_mods` VALUES (11226,1,39);      -- Orison Pantaloons +1 
+INSERT INTO `item_mods` VALUES (11226,13,5);      -- comment me
+INSERT INTO `item_mods` VALUES (11226,860,2);     -- Converts 2% of "Cure" amount to MP
 INSERT INTO `item_mods` VALUES (11227,1,39);
 INSERT INTO `item_mods` VALUES (11227,5,40);
 INSERT INTO `item_mods` VALUES (11227,28,5);
@@ -36964,6 +36966,7 @@ INSERT INTO `item_mods` VALUES (27241,29,3);      -- Magic Def. Bonus +3
 INSERT INTO `item_mods` VALUES (27241,31,73);     -- Magic Evasion +73
 INSERT INTO `item_mods` VALUES (27241,68,12);     -- Evasion +12
 INSERT INTO `item_mods` VALUES (27241,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27241,860,5);     -- Converts 5% of "Cure" amount to MP
 INSERT INTO `item_mods` VALUES (27242,1,106);     -- Ebers Pantaloons +1: DEF 106
 INSERT INTO `item_mods` VALUES (27242,2,41);      -- HP +41
 INSERT INTO `item_mods` VALUES (27242,5,35);      -- MP +35
@@ -36977,6 +36980,7 @@ INSERT INTO `item_mods` VALUES (27242,29,6);      -- Magic Def. Bonus +6
 INSERT INTO `item_mods` VALUES (27242,31,107);    -- Magic Evasion +107
 INSERT INTO `item_mods` VALUES (27242,68,27);     -- Evasion +27
 INSERT INTO `item_mods` VALUES (27242,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (27242,860,6);     -- Converts 6% of "Cure" amount to MP
 INSERT INTO `item_mods` VALUES (27243,1,74);
 INSERT INTO `item_mods` VALUES (27243,2,18);
 INSERT INTO `item_mods` VALUES (27243,5,91);
@@ -44584,22 +44588,23 @@ INSERT INTO `item_mods` VALUES (28148,31,107); -- 107 Meva
 INSERT INTO `item_mods` VALUES (28148,68,27); -- 27 Eva
 INSERT INTO `item_mods` VALUES (28148,384,51); -- 5% Gear Haste
 -- INSERT INTO `item_mods` VALUES (28148,Occult Acumen,30); -- "Occult Acumen"+30
-INSERT INTO `item_mods` VALUES (28151,1,106);
-INSERT INTO `item_mods` VALUES (28151,2,43);
-INSERT INTO `item_mods` VALUES (28151,5,69);
-INSERT INTO `item_mods` VALUES (28151,8,25);
-INSERT INTO `item_mods` VALUES (28151,10,12);
-INSERT INTO `item_mods` VALUES (28151,11,17);
-INSERT INTO `item_mods` VALUES (28151,12,34);
-INSERT INTO `item_mods` VALUES (28151,13,24);
-INSERT INTO `item_mods` VALUES (28151,14,19);
-INSERT INTO `item_mods` VALUES (28151,27,-8);     -- Sifahir Slacks: Enmity -8
-INSERT INTO `item_mods` VALUES (28151,29,6);
-INSERT INTO `item_mods` VALUES (28151,31,107);
-INSERT INTO `item_mods` VALUES (28151,68,27);
-INSERT INTO `item_mods` VALUES (28151,374,10);
-INSERT INTO `item_mods` VALUES (28151,384,51);
+INSERT INTO `item_mods` VALUES (28151,1,106);     -- Sifahir Slacks
+INSERT INTO `item_mods` VALUES (28151,2,43);      -- comment me
+INSERT INTO `item_mods` VALUES (28151,5,69);      -- comment me
+INSERT INTO `item_mods` VALUES (28151,8,25);      -- comment me
+INSERT INTO `item_mods` VALUES (28151,10,12);     -- comment me
+INSERT INTO `item_mods` VALUES (28151,11,17);     -- comment me
+INSERT INTO `item_mods` VALUES (28151,12,34);     -- comment me
+INSERT INTO `item_mods` VALUES (28151,13,24);     -- comment me
+INSERT INTO `item_mods` VALUES (28151,14,19);     -- comment me
+INSERT INTO `item_mods` VALUES (28151,27,-8);     -- Enmity -8
+INSERT INTO `item_mods` VALUES (28151,29,6);      -- comment me
+INSERT INTO `item_mods` VALUES (28151,31,107);    -- comment me
+INSERT INTO `item_mods` VALUES (28151,68,27);     -- comment me
+INSERT INTO `item_mods` VALUES (28151,374,10);    -- comment me
+INSERT INTO `item_mods` VALUES (28151,384,51);    -- comment me you bums
 INSERT INTO `item_mods` VALUES (28151,519,10);    -- Cure spellcasting time reduction 10%
+INSERT INTO `item_mods` VALUES (28151,860,4);     -- Converts 4% of "Cure" amount to MP
 INSERT INTO `item_mods` VALUES (28152,1,118);
 INSERT INTO `item_mods` VALUES (28152,2,60);
 INSERT INTO `item_mods` VALUES (28152,8,33);

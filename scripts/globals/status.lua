@@ -1375,11 +1375,14 @@ MOD_HOLY_CIRCLE_DURATION    = 857
 MOD_ARCANE_CIRCLE_DURATION  = 858
 MOD_ANCIENT_CIRCLE_DURATION = 859
 
--- The entire mod list is in desperate need of kind of some organizing.
--- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
+-- Other
+MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 
+-- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 857 -- stuff
+-- SPARE = 861 -- stuff
+-- SPARE = 862 -- stuff
+-- SPARE = 863 -- stuff
 
 ------------------------------------
 -- Merit Definitions
