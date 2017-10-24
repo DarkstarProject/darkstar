@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-    params.multiplier = multi;
+    params.multiplier = 7.08;
     params.tMultiplier = 1.5;
     params.duppercap = 69;
     params.str_wsc = 0.0;
@@ -40,12 +40,11 @@ function onSpellCast(caster,target,spell)
     params.chr_wsc = 0.0;
 
     local resist = applyResistance(caster, target, spell, params);
-    local multi = 7.08;
     local damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
-        multi = multi + 0.50;
+        params.multiplier = params.multiplier + 0.50;
     end
 
     if (damage > 0 and resist > 0.3) then
