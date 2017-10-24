@@ -70,11 +70,19 @@ function onZoneIn(player,prevZone)
 
     if (player:getVar("FirstPromyvionHolla") == 1) then
         cs = 0x0032;
-    elseif (ENABLE_COP_ZONE_CAP == 1) then
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
     end
 
     return cs;
+end;
+
+-----------------------------------
+-- afterZoneIn
+-----------------------------------
+
+function afterZoneIn(player)
+    if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
+        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0); -- LV30 cap
+    end
 end;
 
 -----------------------------------
@@ -82,8 +90,8 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
-    --regionID =region:GetRegionID();
-    --printf("regionID: %u",regionID);
+    -- regionID =region:GetRegionID();
+    -- printf("regionID: %u",regionID);
     if (player:getAnimation() == 0) then
         switch (region:GetRegionID()): caseof
         {
@@ -193,8 +201,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -202,16 +210,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x002E and option == 1) then
         player:setPos(-225.682, -6.459, 280.002, 128, 14); -- To Hall of Transference {R}
     elseif (csid == 0x0032) then
         player:setVar("FirstPromyvionHolla",0);
-        if (ENABLE_COP_ZONE_CAP == 1) then
-            player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0); -- ZONE LEVEL RESTRICTION
-        end
     end
 
     if (option == 1) then
