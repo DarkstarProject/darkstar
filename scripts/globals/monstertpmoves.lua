@@ -579,7 +579,6 @@ end;
 function MobDrainMove(mob, target, drainType, drain)
 
     if (target:isUndead() == false) then
-
         if (drainType == MOBDRAIN_MP) then
             -- can't go over limited mp
             if (target:getMP() < drain) then
@@ -589,7 +588,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delMP(drain);
             mob:addMP(drain);
 
-            return msgBasic.DRAIN_MP;
+            return msgBasic.SKILL_DRAIN_MP;
         elseif (drainType == MOBDRAIN_TP) then
             -- can't go over limited tp
             if (target:getTP() < drain) then
@@ -599,7 +598,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delTP(drain);
             mob:addTP(drain);
 
-            return msgBasic.DRAIN_TP;
+            return msgBasic.SKILL_DRAIN_TP;
         elseif (drainType == MOBDRAIN_HP) then
             -- can't go over limited hp
             if (target:getHP() < drain) then
@@ -609,9 +608,8 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delHP(drain);
             mob:addHP(drain);
 
-            return msgBasic.DRAIN_HP;
+            return msgBasic.SKILL_DRAIN_HP;
         end
-
     else
         -- it's undead so just deal damage
         -- can't go over limited hp
