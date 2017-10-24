@@ -1277,7 +1277,7 @@ bool CAutomatonController::TryTPMove()
         if (attemptChain)
         {
             CStatusEffect* PSCEffect = PTarget->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
-            if (PSCEffect)
+            if (PSCEffect && PSCEffect->GetStartTime() + 3s < server_clock::now())
             {
                 std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
                 if (PSCEffect->GetTier() == 0)
