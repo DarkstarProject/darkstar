@@ -762,8 +762,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             {
                 if (PSkill->getPrimarySkillchain())
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PSkill->getPrimarySkillchain()),
-                        static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain())) } );
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getPrimarySkillchain(),
+                        PSkill->getSecondarySkillchain(), PSkill->getTertiarySkillchain());
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);

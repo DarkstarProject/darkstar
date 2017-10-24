@@ -2862,21 +2862,23 @@ namespace battleutils
         return SC_NONE;
     }
 
-    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, uint32 id, std::initializer_list<SKILLCHAIN_ELEMENT> skillProperties)
+    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, uint8 primary, uint8 secondary, uint8 tertiary)
     {
         CStatusEffect* PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
         CStatusEffect* PCBEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_CHAINBOUND, 0);
         SKILLCHAIN_ELEMENT skillchain = SC_NONE;
+        auto combined_properties = primary | (secondary << 4) | (tertiary << 8);
 
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, combined_properties, 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
         {
             std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
+            std::list<SKILLCHAIN_ELEMENT> skillProperties = {(SKILLCHAIN_ELEMENT)primary, (SKILLCHAIN_ELEMENT)secondary, (SKILLCHAIN_ELEMENT)tertiary};
 
             // Chainbound active on target
             if (PCBEffect)
@@ -2901,7 +2903,7 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, combined_properties, 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
 
@@ -2915,18 +2917,10 @@ namespace battleutils
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
-                    {
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getTertiarySkillchain());
-                    }
-                    else
-                    {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PSCEffect->GetPower()));
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
-                    }
+                    auto properties = PSCEffect->GetPower();
+                    resonanceProperties.push_back((SKILLCHAIN_ELEMENT)(properties & 0b1111));
+                    resonanceProperties.push_back((SKILLCHAIN_ELEMENT)((properties >> 4) & 0b1111));
+                    resonanceProperties.push_back((SKILLCHAIN_ELEMENT)((properties >> 8) & 0b1111));
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
             }
@@ -2953,107 +2947,7 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetPower(id);
-            PSCEffect->SetSubPower(0);
-
-            return SUBEFFECT_NONE;
-        }
-    }
-
-    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CBlueSpell* PSpell)
-    {
-        CStatusEffect* PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
-        CStatusEffect* PCBEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_CHAINBOUND, 0);
-        SKILLCHAIN_ELEMENT skillchain = SC_NONE;
-
-        if (PSCEffect == nullptr && PCBEffect == nullptr)
-        {
-            // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, static_cast<uint16>(PSpell->getID()), 0, 10, 0, 0, 0));
-            return SUBEFFECT_NONE;
-        }
-        else
-        {
-            std::list<SKILLCHAIN_ELEMENT> skillProperties;
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PSpell->getPrimarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PSpell->getSecondarySkillchain());
-
-            std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
-
-            // Chainbound active on target
-            if (PCBEffect)
-            {
-                if (PCBEffect->GetStartTime() + 3s < server_clock::now())
-                {
-                    //Konzen-Ittai
-                    if (PCBEffect->GetPower() > 1)
-                    {
-                        resonanceProperties.push_back(SC_LIGHT);
-                        resonanceProperties.push_back(SC_DARKNESS);
-                        resonanceProperties.push_back(SC_GRAVITATION);
-                        resonanceProperties.push_back(SC_FRAGMENTATION);
-                        resonanceProperties.push_back(SC_DISTORTION);
-                        resonanceProperties.push_back(SC_FUSION);
-                    }
-                    resonanceProperties.push_back(SC_LIQUEFACTION);
-                    resonanceProperties.push_back(SC_INDURATION);
-                    resonanceProperties.push_back(SC_REVERBERATION);
-                    resonanceProperties.push_back(SC_IMPACTION);
-                    resonanceProperties.push_back(SC_COMPRESSION);
-
-                    skillchain = FormSkillchain(resonanceProperties, skillProperties);
-                }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, static_cast<uint16>(PSpell->getID()), 0, 10, 0, 0, 0));
-                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
-                PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
-            }
-            // Previous effect exists
-            else if (PSCEffect && PSCEffect->GetTier() == 0)
-            {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
-                // Previous effect is an opening effect, meaning the power is
-                // actually the ID of the opening weaponskill.  We need all 3
-                // of the possible skillchain properties on the initial link.
-                if (PSCEffect->GetStartTime() + 3s < server_clock::now())
-                {
-                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
-                    {
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getTertiarySkillchain());
-                    }
-                    else
-                    {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PSCEffect->GetPower()));
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
-                        resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
-                    }
-                    skillchain = FormSkillchain(resonanceProperties, skillProperties);
-                }
-            }
-            else
-            {
-                // Previous effect is not an opening effect, meaning the power is
-                // The skill chain ID resonating.
-                resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PSCEffect->GetPower());
-                skillchain = FormSkillchain(resonanceProperties, skillProperties);
-            }
-
-            if (skillchain != SC_NONE)
-            {
-                PSCEffect->SetStartTime(server_clock::now());
-                PSCEffect->SetDuration(PSCEffect->GetDuration() - 1000);
-                PSCEffect->SetTier(GetSkillchainTier((SKILLCHAIN_ELEMENT)skillchain));
-                PSCEffect->SetPower(skillchain);
-                PSCEffect->SetSubPower(dsp_min(PSCEffect->GetSubPower() + 1, 5)); // Linked, limited to 5
-
-                return (SUBEFFECT)GetSkillchainSubeffect((SKILLCHAIN_ELEMENT)skillchain);
-            }
-
-            PSCEffect->SetStartTime(server_clock::now());
-            PSCEffect->SetDuration(10000);
-            PSCEffect->SetTier(0);
-            PSCEffect->SetPower(static_cast<uint16>(PSpell->getID()));
+            PSCEffect->SetPower(combined_properties);
             PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;
