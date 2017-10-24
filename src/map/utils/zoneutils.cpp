@@ -126,7 +126,7 @@ void InitializeWeather()
 
                 //ShowDebug(CL_YELLOW"zonetuils::InitializeWeather: Static weather of %s updated to %u\n" CL_RESET, PZone.second->GetName(), PZone.second->m_WeatherVector.at(0).m_common);
             }
-            catch (std::out_of_range& ex)
+            catch (std::out_of_range&)
             {
                 PZone.second->SetWeather(WEATHER_NONE); // If not weather data found, initialize with WEATHER_NONE
 

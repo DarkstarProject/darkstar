@@ -617,7 +617,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(erasableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(erasableList.size());
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -639,7 +639,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
     }
     if (!waltzableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(waltzableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(waltzableList.size());
         EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(waltzableList.at(rndIdx));
         return result;
@@ -686,7 +686,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
     }
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
         EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(dispelableList.at(rndIdx), true);
         return result;
@@ -701,12 +701,12 @@ returns number of dispelled effects
 uint8 CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 {
     uint8 count = 0;
-    for (int i = 0; i < m_StatusEffectList.size(); ++i)
+    for (size_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
         {
-            RemoveStatusEffect(i, true);
+            RemoveStatusEffect((uint32)i, true);
             i--;
             count++;
         }
@@ -1062,7 +1062,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
     }
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
         uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
@@ -1110,7 +1110,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
             }
             //Note: it may be possible that having both bits set is for effects over 768, but there aren't
             // that many effects as of this writing
-            m_StatusIcons[count] = icon;
+            m_StatusIcons[count] = (uint8)icon;
 
             if (++count == 32) break;
         }
@@ -1292,7 +1292,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             if (PStatusEffect->GetDuration() > 0)
             {
-                auto seconds = std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+                auto seconds = (uint32)std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
 
                 if (seconds > 0)
                     duration = seconds;

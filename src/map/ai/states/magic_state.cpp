@@ -256,7 +256,7 @@ void CMagicState::SpendCost()
 
         if (dsprand::GetRandomNumber(100) < rate)
         {
-            cost *= (dsprand::GetRandomNumber(8.f, 16.f) / 16.0f);
+            cost = (int16)(cost * (dsprand::GetRandomNumber(8.f, 16.f) / 16.0f));
         }
 
         m_PEntity->addMP(-cost);
@@ -331,8 +331,8 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
 
 bool CMagicState::HasMoved()
 {
-    return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
-        floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
+    return floorf(m_startPos.x * 10 + 0.5f) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5f) / 10 ||
+        floorf(m_startPos.z * 10 + 0.5f) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5f) / 10;
 }
 
 void CMagicState::TryInterrupt(CBattleEntity* PAttacker)

@@ -52,7 +52,7 @@ int32 CLuaAction::ID(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.ActionTargetID = lua_tointeger(L, 2);
+                actionList.ActionTargetID = (uint32)lua_tointeger(L, 2);
                 return 0;
             }
         }
@@ -64,7 +64,7 @@ int32 CLuaAction::recast(lua_State* L)
 {
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        m_PLuaAction->recast = lua_tointeger(L, 1);
+        m_PLuaAction->recast = (uint16)lua_tointeger(L, 1);
         return 0;
     }
     else
@@ -78,7 +78,7 @@ int32 CLuaAction::actionID(lua_State* L)
 {
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        m_PLuaAction->actionid = lua_tointeger(L, 1);
+        m_PLuaAction->actionid = (uint16)lua_tointeger(L, 1);
         return 0;
     }
     else
@@ -97,7 +97,7 @@ inline int32 CLuaAction::param(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].param = lua_tointeger(L, 2);
+                actionList.actionTargets[0].param = (int32)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -119,7 +119,7 @@ inline int32 CLuaAction::messageID(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].messageID = lua_tointeger(L, 2);
+                actionList.actionTargets[0].messageID = (uint16)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -141,7 +141,7 @@ int32 CLuaAction::animation(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].animation = lua_tointeger(L, 2);
+                actionList.actionTargets[0].animation = (uint16)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -229,7 +229,7 @@ inline int32 CLuaAction::addEffectParam(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].addEffectParam = lua_tointeger(L, 2);
+                actionList.actionTargets[0].addEffectParam = (int32)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -252,7 +252,7 @@ int32 CLuaAction::addEffectMessage(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].addEffectMessage = lua_tointeger(L, 2);
+                actionList.actionTargets[0].addEffectMessage = (uint16)lua_tointeger(L, 2);
                 return 0;
             }
             else

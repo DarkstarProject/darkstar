@@ -656,7 +656,7 @@ int recv_to_fifo(int fd)
 
     auto prev_length = session[fd]->rdata.size();
     session[fd]->rdata.resize(prev_length + 0x7FF);
-	len = sRecv(fd, (char *) session[fd]->rdata.data() + prev_length, session[fd]->rdata.capacity() - prev_length, 0);
+	len = sRecv(fd, (char *) session[fd]->rdata.data() + prev_length, (int)(session[fd]->rdata.capacity() - prev_length), 0);
 
 	if( len == SOCKET_ERROR )
 	{//An exception has occured
@@ -1123,11 +1123,11 @@ void socket_final_udp(void)
 }
 int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen)
 {
-	return sRecvfrom(fd,(char*)buff,nbytes,flags,from,addrlen);
+	return sRecvfrom(fd,(char*)buff,(int)nbytes,flags,from,addrlen);
 }
 int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen)
 {
-	return sSendto(fd,(const char*)buff,nbytes,flags,from,addrlen);
+	return sSendto(fd,(const char*)buff,(int)nbytes,flags,from,addrlen);
 }
 #endif
 

@@ -111,9 +111,7 @@ inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetStartTime() - get_server_start_time()).count();
-
-    lua_pushinteger(L, time);
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetStartTime() - get_server_start_time()).count());
     return 1;
 }
 
@@ -135,7 +133,7 @@ inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
         auto elapsed_ticks = m_PLuaStatusEffect->GetElapsedTickCount();
         total = total_ticks - elapsed_ticks;
     }
-    lua_pushinteger(L, total);
+    lua_pushinteger(L, (lua_Integer)total);
     return 1;
 }
 
@@ -152,7 +150,7 @@ inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
     uint32 remaining = 0;
     if (m_PLuaStatusEffect->GetDuration() > 0)
     {
-        remaining = dsp_max(m_PLuaStatusEffect->GetDuration() - 
+        remaining = (uint32)dsp_max(m_PLuaStatusEffect->GetDuration() - 
             std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - m_PLuaStatusEffect->GetStartTime()).count(), 0);
     }
 
@@ -190,7 +188,7 @@ inline int32 CLuaStatusEffect::setIcon(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetIcon(lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetIcon((uint16)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -202,7 +200,7 @@ inline int32 CLuaStatusEffect::setPower(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetPower(lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetPower((uint16)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -212,7 +210,7 @@ inline int32 CLuaStatusEffect::setSubPower(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetSubPower(lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetSubPower((uint16)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -222,7 +220,7 @@ inline int32 CLuaStatusEffect::setTier(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetTier(lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetTier((uint16)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -234,7 +232,7 @@ inline int32 CLuaStatusEffect::setDuration(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetDuration(lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetDuration((uint32)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -244,7 +242,7 @@ inline int32 CLuaStatusEffect::setTick(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetTickTime(lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetTickTime((uint32)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -282,7 +280,7 @@ inline int32 CLuaStatusEffect::addMod(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    m_PLuaStatusEffect->addMod(static_cast<Mod>(lua_tointeger(L, 1)), lua_tointeger(L, 2));
+    m_PLuaStatusEffect->addMod(static_cast<Mod>(lua_tointeger(L, 1)), (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -294,7 +292,7 @@ inline int32 CLuaStatusEffect::setFlag(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetFlag(lua_tonumber(L, 1));
+    m_PLuaStatusEffect->SetFlag((uint32)lua_tonumber(L, 1));
     return 0;
 }
 
@@ -304,7 +302,7 @@ inline int32 CLuaStatusEffect::unsetFlag(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->UnsetFlag(lua_tonumber(L, 1));
+    m_PLuaStatusEffect->UnsetFlag((uint32)lua_tonumber(L, 1));
     return 0;
 }
 

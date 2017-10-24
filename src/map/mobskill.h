@@ -106,7 +106,7 @@ private:
     uint8       m_Aoe;              // не используется
     float       m_Distance;         // не используется
     uint8       m_Flag;             // не используется
-    uint8       m_ValidTarget;      //same as
+    uint16      m_ValidTarget;      //same as
     uint16      m_AnimationTime;    //how long the tp animation lasts for in ms
     uint16      m_ActivationTime;   //how long the mob prepares the tp move for
     uint16      m_Message;          //message param, scripters can edit this depending on self/resist/etc.

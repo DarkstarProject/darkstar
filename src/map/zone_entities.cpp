@@ -313,13 +313,13 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 
         if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
             //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
+            float pos[4] = {0.f, 0.f, 0.f, 0.f};
             battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (pos != nullptr) {
+            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
+                PChar->loc.p.rotation = (uint8)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -336,13 +336,13 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 
         if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
             //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
+            float pos[4] = {0.f, 0.f, 0.f, 0.f};
             battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (!(pos[0] == 0 && pos[1] == 0 && pos[2] == 0 && pos[3] == 0)) {
+            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
+                PChar->loc.p.rotation = (uint8)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }

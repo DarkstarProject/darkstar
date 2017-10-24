@@ -538,7 +538,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
     {
         std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid, allianceid);
 
-        CPartyListPacket PPartyPacket(partyid, PartyList.size());
+        CPartyListPacket PPartyPacket(partyid, (uint32)PartyList.size());
 
         for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
         {
@@ -553,7 +553,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
         uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
         std::list<SearchEntity*> LinkshellList = PDataLoader.GetLinkshellList(linkshellid);
 
-        CLinkshellListPacket PLinkshellPacket(linkshellid, LinkshellList.size());
+        CLinkshellListPacket PLinkshellPacket(linkshellid, (uint32)LinkshellList.size());
 
         for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
         {

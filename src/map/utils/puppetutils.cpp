@@ -279,7 +279,7 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    PChar->PAutomaton->addElementCapacity(i, -((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
+                    PChar->PAutomaton->addElementCapacity(i, -(int8)((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
                 }
                 luautils::OnAttachmentUnequip(PChar->PAutomaton, PAttachment);
                 PChar->PAutomaton->setAttachment(slotId, 0);
@@ -536,7 +536,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
             // Do skill amount multiplier (Will only be applied if default setting is changed)
             if (map_config.skillup_amount_multiplier > 1)
             {
-                SkillAmount += SkillAmount * map_config.skillup_amount_multiplier;
+                SkillAmount += (uint8)(SkillAmount * map_config.skillup_amount_multiplier);
                 if (SkillAmount > 9)
                 {
                     SkillAmount = 9;

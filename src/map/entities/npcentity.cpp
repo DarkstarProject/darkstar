@@ -37,7 +37,7 @@
 
 int32 reappear_npc(time_point tick, CTaskMgr::CTask* PTask)
 {
-	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
+	CNpcEntity* PNpc = std::any_cast<CNpcEntity*>(PTask->m_data);
 
 	return 0;
 }

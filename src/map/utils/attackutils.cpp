@@ -158,7 +158,7 @@ namespace attackutils
         {
             if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance / 10))
             {
-                return (damage = (damage * (occ_extra_dmg / 100.f)));
+                return (uint32)(damage * (occ_extra_dmg / 100.f));
             }
         }
 

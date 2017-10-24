@@ -240,7 +240,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
                 {
                     return true;
                 }
-                int charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
+                auto charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (uint32)(time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
 
                 if (charges < recast)
                 {

@@ -33,7 +33,7 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
     // if you'd like to try and figure out what the cap is based on, the client side max message length is also
     // variable in the same way, and is probably so under the same circumstances
     // until that can be found, we'll just use the max length 
-    int32 buffSize = dsp_min(message.size(), 236);
+    auto buffSize = dsp_min(message.size(), 236);
     const std::string& name = sender.empty() ? PChar->GetName() : sender;
     // Build the packet..
     CBasicPacket::id(id);

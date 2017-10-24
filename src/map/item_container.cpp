@@ -29,7 +29,7 @@
 #include "utils/itemutils.h"
 
 
-CItemContainer::CItemContainer(uint16 LocationID)
+CItemContainer::CItemContainer(uint8 LocationID)
 {
 	m_id = LocationID;
 
@@ -51,7 +51,7 @@ CItemContainer::~CItemContainer()
 	}
 }
 
-uint16 CItemContainer::GetID()
+uint8 CItemContainer::GetID()
 {
 	return m_id;
 }
