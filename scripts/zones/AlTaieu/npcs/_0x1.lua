@@ -7,7 +7,7 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/mobIDs");
+require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/missions");
 
 -----------------------------------
@@ -22,13 +22,29 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]SouthTower") == 0 and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0) then
+
+    if (
+            player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+        and player:getVar("PromathiaStatus") == 2
+        and player:getVar("[SEA][AlTieu]SouthTower") == 0
+        and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0
+        and not GetMobByID(AERNS_TOWER_SOUTH+0):isSpawned()
+        and not GetMobByID(AERNS_TOWER_SOUTH+1):isSpawned()
+        and not GetMobByID(AERNS_TOWER_SOUTH+2):isSpawned()
+    ) then
         player:messageSpecial(OMINOUS_SHADOW);
-        SpawnMob(SouthTowerAern):updateClaim(player);
-        SpawnMob(SouthTowerAern+1):updateClaim(player);
-        SpawnMob(SouthTowerAern+2):updateClaim(player);
-    elseif (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]SouthTower") == 1 and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0) then
+        SpawnMob(AERNS_TOWER_SOUTH+0):updateClaim(player);
+        SpawnMob(AERNS_TOWER_SOUTH+1):updateClaim(player);
+        SpawnMob(AERNS_TOWER_SOUTH+2):updateClaim(player);
+        
+    elseif (
+            player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+        and player:getVar("PromathiaStatus") == 2
+        and player:getVar("[SEA][AlTieu]SouthTower") == 1
+        and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0
+    ) then
         player:startEvent(0x00A1);
+
     else
         player:messageSpecial(NOTHING_OF_INTEREST);
     end

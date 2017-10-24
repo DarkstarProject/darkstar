@@ -4,6 +4,8 @@
 -- Jailor of Love Pet version
 -----------------------------------
 
+require("scripts/zones/AlTaieu/MobIDs");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -47,7 +49,7 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    local JoL = GetMobByID(16912848);
+    local JoL = GetMobByID(JAILER_OF_LOVE);
     local HPEMDES = JoL:getLocalVar("JoL_Qn_hpemde_Killed");
     JoL:setLocalVar("JoL_Qn_hpemde_Killed", HPEMDES+1);
 end;

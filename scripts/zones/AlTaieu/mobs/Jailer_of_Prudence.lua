@@ -5,8 +5,9 @@
 -- AnimationSubs: 0 - Normal, 3 - Mouth Open
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Jailer_of_Prudence
 -----------------------------------
-require("scripts/zones/AlTaieu/mobIDs");
+
 require("scripts/globals/status");
+require("scripts/zones/AlTaieu/MobIDs");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -59,11 +60,11 @@ end;
     -- if (ability:getID() == 437) then -- Perfect Dodge
         -- mob:addStatusEffectEx(EFFECT_FLEE,0,100,0,30);
     -- else        
-        -- if (mob:getID() == PrudenceOne and GetMobAction(PrudenceTwo) > 0 and GetMobAction(PrudenceTwo) ~= ACTION_SLEEP and GetMobAction(PrudenceTwo) ~= ACTION_STUN) then
+        -- if (mob:getID() == JAILER_OF_PRUDENCE_1 and GetMobAction(JAILER_OF_PRUDENCE_2) > 0 and GetMobAction(JAILER_OF_PRUDENCE_2) ~= ACTION_SLEEP and GetMobAction(JAILER_OF_PRUDENCE_2) ~= ACTION_STUN) then
             -- if (GetMobByID(PrudenceTwo):checkDistance(mob) <= 10) then
                 -- GetMobByID(PrudenceTwo):useMobAbility(ability:getID());
             -- end            
-        -- elseif (mob:getID() == PrudenceTwo and GetMobAction(PrudenceOne) > 0 and GetMobAction(PrudenceOne) ~= ACTION_SLEEP and GetMobAction(PrudenceOne) ~= ACTION_STUN) then
+        -- elseif (mob:getID() == JAILER_OF_PRUDENCE_2 and GetMobAction(JAILER_OF_PRUDENCE_1) > 0 and GetMobAction(JAILER_OF_PRUDENCE_1) ~= ACTION_SLEEP and GetMobAction(PrudenJAILER_OF_PRUDENCE_1eOne) ~= ACTION_STUN) then
             -- if (GetMobByID(PrudenceOne):checkDistance(mob) <= 10) then
                 -- GetMobByID(PrudenceOne):useMobAbility(ability:getID());
             -- end
@@ -83,9 +84,9 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    local firstPrudence     = GetMobByID(PrudenceOne);
-    local secondPrudence    = GetMobByID(PrudenceTwo);
-    if (mob:getID() == PrudenceOne) then
+    local firstPrudence     = GetMobByID(JAILER_OF_PRUDENCE_1);
+    local secondPrudence    = GetMobByID(JAILER_OF_PRUDENCE_2);
+    if (mob:getID() == JAILER_OF_PRUDENCE_1) then
         secondPrudence:setMobMod(MOBMOD_NO_DROPS, 0);
         secondPrudence:AnimationSub(3); -- Mouth Open
         secondPrudence:addMod(MOD_ATTP, 100);
