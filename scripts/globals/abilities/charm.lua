@@ -46,7 +46,19 @@ function onUseAbility(player,target,ability)
         end
 
     player:charmPet(target);
-    player:setVar("Charmed_Mob",mob);
+
+    local canTame = true;
+    local party = player:getParty();
+        for i,v in ipairs(party) do
+            if (target:getCE(v) > 0) then
+                canTame = false;
+            end
+        end
+
+    if (canTame == true) then
+        player:setVar("Charmed_Mob",mob);
+    end
+
     if (Tamed == true) then
         player:delMod(MOD_CHARM_CHANCE, 10);
         player:setVar("Tamed_Mob",0);
