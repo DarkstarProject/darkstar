@@ -1448,7 +1448,7 @@ namespace charutils
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
 
-            if (PItem != nullptr && PItem->getFlag() & (ITEM_FLAG_RARE | ITEM_FLAG_EX))
+            if (PItem != nullptr && PItem->getFlag() & ITEM_FLAG_RARE)
             {
                 if (HasItem(PTarget, PItem->getID()))
                 {
@@ -1479,6 +1479,7 @@ namespace charutils
                 {
                     CItem* PNewItem = itemutils::GetItem(PItem);
                     ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
+                    PNewItem->setReserve(0);
                     AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
                 else
