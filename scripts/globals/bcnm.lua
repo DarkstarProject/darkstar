@@ -232,18 +232,16 @@ function EventUpdateBCNM(player, csid, option, entrance)
             local name = 'Meme';
             local partySize = 5;
             local clearTime = 260;
-            
+
             if battlefield then
                 local record = battlefield:getRecord()
                 name = record.name
                 partySize = record.partySize
                 clearTime = record.clearTime
             end
-            print("aaaaaaaaaaaaaaaaasssssssssssss " ..partySize)
-            print("shiiiiiiiiiiiiiiiiiiiiiiiiiiit "..clearTime)
             if (mask < playerbcnmid) then
                 mask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+                player:updateEvent(2, mask - 1, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
                 player:updateEventString(name);
                 player:bcnmEnter(id)
                 player:setVar("bcnm_instanceid_tick", 0)
@@ -252,7 +250,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
 
             elseif (mask >= playerbcnmid) then
                 mask = GetBattleBitmask(id, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+                player:updateEvent(2, mask - 1, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
                 player:updateEventString(name);
                 player:bcnmEnter(id)
                 player:setVar("bcnm_instanceid_tick", 0)
@@ -372,16 +370,16 @@ function GetBattleBitmask(id, zone, mode)
         for index, battlefield in ipairs(battlefield_bitmask_map[zone]) do
             if id == battlefield then
                 if mode == 1 then
-                    ret = mask + bit.lshift(index + 1, 2);
+                    return bit.lshift(1, index - 1)
                 else
-                    ret = mask + index;
+                    return index;
                 end
             end
         end
     else
         printf("[bcnm] unable to get bitmask for battlefield: %u, zone: %u", id, zone);
     end
-    
+
     return ret
 end
 
@@ -450,7 +448,7 @@ function checkNonTradeBCNM(player, npc, mode)
     local Zone = player:getZoneID()
     mode = mode or 2;
 
-    local checks = 
+    local checks =
     {
         [6] =   {
                     [640] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6)  end, -- flames_for_the_dead
@@ -512,7 +510,7 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
         [139] = {
                     [0] = function()
-                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
                                   player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9)
                           end, -- Mission 2-3
                     [3] = function() return (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2)  end,
@@ -576,7 +574,7 @@ function checkNonTradeBCNM(player, npc, mode)
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
                     [516] = function() return (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
-                --[[ 
+                --[[
                     Temp disabled pending BCNM mob fixes
                     [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED))  end, -- ACP Mission 7
                 ]]
@@ -594,7 +592,7 @@ function checkNonTradeBCNM(player, npc, mode)
                     [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_CERULEAN_SEAL))  end,
                 },
     }
-    
+
     for keyid, condition in pairs(checks[Zone]) do
         if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
             mask = mask + GetBattleBitmask(keyid, Zone, mode);
@@ -605,7 +603,7 @@ function checkNonTradeBCNM(player, npc, mode)
             break;
         end;
     end;
-    
+
     if mode == 2 then
         player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0);
     end
