@@ -91,7 +91,7 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *laten
 
 void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 {
-    for (auto i = m_LatentEffectList.size() - 1; i >= 0; --i)
+    for (int16 i = (int16)(m_LatentEffectList.size() - 1); i >= 0; --i)
     {
         if (m_LatentEffectList.at(i)->GetSlot() == slot)
         {
