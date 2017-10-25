@@ -1439,7 +1439,7 @@ namespace charutils
 
     bool CanTrade(CCharEntity* PChar, CCharEntity* PTarget)
     {
-        if (PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() < PChar->UContainer->GetItemsCount())
+        if ((PTarget->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() + PTarget->UContainer->GetItemsCount()) < PChar->UContainer->GetItemsCount())
         {
             ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
             return false;
@@ -1448,7 +1448,7 @@ namespace charutils
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
 
-            if (PItem != nullptr && PItem->getFlag() & ITEM_FLAG_RARE)
+            if (PItem != nullptr && PItem->getFlag() & (ITEM_FLAG_RARE | ITEM_FLAG_EX))
             {
                 if (HasItem(PTarget, PItem->getID()))
                 {
@@ -1479,7 +1479,6 @@ namespace charutils
                 {
                     CItem* PNewItem = itemutils::GetItem(PItem);
                     ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
-                    PNewItem->setReserve(0);
                     AddItem(PTarget, LOC_INVENTORY, PNewItem);
                 }
                 else
@@ -1488,8 +1487,10 @@ namespace charutils
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
-                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), PItem->getReserve());
-                PItem->setReserve(0);
+                int32 qty = (PItem->getQuantity() - PItem->getReserve());
+                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - PItem->getReserve()));
+                if (qty > 0)
+                    PItem->setReserve(0);
                 PChar->UContainer->ClearSlot(slotid);
             }
         }

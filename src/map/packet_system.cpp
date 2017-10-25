@@ -1183,10 +1183,6 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
         {
-            // whoever commented above lied about ex items
-            if (PItem->getFlag() & ITEM_FLAG_EX)
-                return;
-
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {
