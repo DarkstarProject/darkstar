@@ -5086,7 +5086,7 @@ namespace battleutils
 
         int16 haste = PEntity->getMod(Mod::HASTE_MAGIC) + PEntity->getMod(Mod::HASTE_GEAR);
 
-        recast = (int32)((1024.f - haste) / 1024.f);
+        recast = (int32)(recast * ((1024.f - haste) / 1024.f));
 
         if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
         {
