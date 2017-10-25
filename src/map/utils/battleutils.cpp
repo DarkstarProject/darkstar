@@ -5146,7 +5146,7 @@ namespace battleutils
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
                 }
-                recast = (int32)((50 - bonus) / 100.0f);
+                recast = (int32)(recast * ((50 - bonus) / 100.0f));
 
                 applyArts = false;
             }
