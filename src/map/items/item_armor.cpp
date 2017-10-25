@@ -219,7 +219,7 @@ void CItemArmor::addPetModifier(CPetModifier* modifier)
     petModList.push_back(modifier);
 }
 
-void CItemArmor::addLatent(CLatentEffect* latent)
+void CItemArmor::addLatent(CLatentEffect latent)
 {
 	latentList.push_back(latent);
 }

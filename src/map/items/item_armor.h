@@ -88,11 +88,11 @@ public:
 
     void    addModifier(CModifier* modifier);
     void    addPetModifier(CPetModifier* modifier);
-	void	addLatent(CLatentEffect* latent);
+	void	addLatent(CLatentEffect latent);
 
 	std::vector<CModifier*> modList;			// список модификаторов
     std::vector<CPetModifier*> petModList;         // mod list for pets
-	std::vector<CLatentEffect*> latentList;     // contains latents
+	std::vector<CLatentEffect> latentList;     // contains latents
 
 private:
 

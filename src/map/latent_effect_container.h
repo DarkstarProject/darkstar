@@ -65,21 +65,20 @@ public:
     void CheckLatentsWeather();
     void CheckLatentsWeather(uint16 weather);
 
-	void AddLatentEffect(CLatentEffect* LatentEffect);
-	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot);
+	void AddLatentEffect(CLatentEffect LatentEffect);
+	void AddLatentEffects(std::vector<CLatentEffect>& latentList, uint8 reqLvl, uint8 slot);
 	void DelLatentEffects(uint8 reqLvl, uint8 slot);
 
 	 CLatentEffectContainer(CCharEntity* PEntity);
-	~CLatentEffectContainer();
 
 private:
 
 	CCharEntity* m_POwner;
-	std::vector<CLatentEffect*>	m_LatentEffectList;
+	std::vector<CLatentEffect>	m_LatentEffectList;
 
-    void ProcessLatentEffects(std::function <void(CLatentEffect*)> logic);
-    void ProcessLatentEffect(CLatentEffect* latentEffect);
-    void ApplyLatentEffect(CLatentEffect* effect, bool expression);
+    void ProcessLatentEffects(std::function <void(CLatentEffect&)> logic);
+    void ProcessLatentEffect(CLatentEffect& latentEffect);
+    void ApplyLatentEffect(CLatentEffect& effect, bool expression);
 };
 
 #endif
