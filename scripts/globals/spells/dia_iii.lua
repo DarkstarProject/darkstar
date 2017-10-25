@@ -7,9 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -39,7 +37,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -68,9 +66,9 @@ function onSpellCast(caster,target,spell)
     -- Do it!
     if (bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
         target:addStatusEffect(EFFECT_DIA,3+dotBonus,3,duration,FLAG_ERASABLE, 15);
-        spell:setMsg(2);
+        spell:setMsg(msgBasic.MAGIC_DMG);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
     -- Try to kill same tier Bio

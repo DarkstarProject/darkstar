@@ -72,11 +72,19 @@ function onZoneIn(player,prevZone)
 
     if (player:getVar("FirstPromyvionDem") == 1) then
         cs = 0x0032;
-    elseif (ENABLE_COP_ZONE_CAP == 1) then
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);-- ZONE LEVEL RESTRICTION
     end
 
     return cs;
+end;
+
+-----------------------------------
+-- afterZoneIn
+-----------------------------------
+
+function afterZoneIn(player)
+    if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
+        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0); -- LV30 cap
+    end
 end;
 
 -----------------------------------
@@ -204,16 +212,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x002e and option == 1) then
         player:setPos(-226.193, -46.459, -280.046, 127, 14); -- To Hall of Transference {R}
     elseif (csid == 0x0032) then
         player:setVar("FirstPromyvionDem",0);
-        if (ENABLE_COP_ZONE_CAP == 1) then
-            player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0); -- ZONE LEVEL RESTRICTION
-        end
     end
 
     if (option==1) then

@@ -1131,7 +1131,7 @@ namespace luautils
             return 0;
         }
 
-        int32 value = lua_tonumber(LuaHandle, -1);
+        int32 value = (int32)lua_tonumber(LuaHandle, -1);
         lua_pop(LuaHandle, -1);
         return value;
     }
@@ -1165,7 +1165,7 @@ namespace luautils
             return 0;
         }
 
-        uint8 value = lua_tonumber(LuaHandle, -1);
+        uint8 value = (uint8)lua_tonumber(LuaHandle, -1);
         lua_pop(LuaHandle, -1);
         return value;
     }
@@ -1323,18 +1323,13 @@ namespace luautils
         return retVal;
     }
 
-    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask)
+    void AfterZoneIn(CBaseEntity* PChar)
     {
-        CCharEntity* PChar = zoneutils::GetChar((uintptr)PTask->m_data);
-
-        if (!PChar)
-            return -1;
-
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
         if (prepFile(File, "afterZoneIn"))
         {
-            return -1;
+            return;
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -1344,7 +1339,7 @@ namespace luautils
         {
             ShowError("luautils::afterZoneIn: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns > 0)
@@ -1352,7 +1347,7 @@ namespace luautils
             ShowError("luautils::afterZoneIn (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
-        return 0;
+        return;
     }
 
     /************************************************************************
@@ -2587,7 +2582,7 @@ namespace luautils
 
         CLuaBattlefield LuaBattlefield(PBattlefield);
         Lunar<CLuaBattlefield>::push(LuaHandle, &LuaBattlefield);
-        lua_pushinteger(LuaHandle, std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->GetTimeInside()).count());
+        lua_pushinteger(LuaHandle, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->GetTimeInside()).count());
 
         if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
         {
@@ -3262,8 +3257,8 @@ namespace luautils
             lua_pop(LuaHandle, returns);
             return std::tuple<int32, uint8, uint8>();
         }
-        uint8 tpHitsLanded = lua_tonumber(LuaHandle, -4);
-        uint8 extraHitsLanded = lua_tonumber(LuaHandle, -3);
+        uint8 tpHitsLanded = (uint8)lua_tonumber(LuaHandle, -4);
+        uint8 extraHitsLanded = (uint8)lua_tonumber(LuaHandle, -3);
         bool criticalHit = lua_toboolean(LuaHandle, -2);
         int32 dmg = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
 
@@ -3736,17 +3731,15 @@ namespace luautils
         return 0;
     }
 
-    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask)
+    void AfterInstanceRegister(CBaseEntity* PChar)
     {
-        CCharEntity* PChar = (CCharEntity*)PTask->m_data;
-
         DSP_DEBUG_BREAK_IF(!PChar->PInstance);
 
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
 
         if (prepFile(File, "afterInstanceRegister"))
         {
-            return -1;
+            return;
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -3756,7 +3749,7 @@ namespace luautils
         {
             ShowError("luautils::afterInstanceRegister: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns > 0)
@@ -3764,7 +3757,7 @@ namespace luautils
             ShowError("luautils::afterInstanceRegister (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
-        return 0;
+        return;
     }
 
     int32 OnInstanceLoadFailed(CZone* PZone)
@@ -4438,13 +4431,13 @@ namespace luautils
 
     int32 SetDropRate(lua_State *L)
     {
-        DropList_t* DropList = itemutils::GetDropList(lua_tointeger(L, 1));
+        DropList_t* DropList = itemutils::GetDropList((uint16)lua_tointeger(L, 1));
 
         for (uint8 i = 0; i < DropList->size(); ++i)
         {
             if (DropList->at(i).ItemID == lua_tointeger(L, 2))
             {
-                DropList->at(i).DropRate = lua_tointeger(L, 3);
+                DropList->at(i).DropRate = (uint16)lua_tointeger(L, 3);
                 return 1;
             }
         }
@@ -4493,7 +4486,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CAbility* PAbility = ability::GetAbility(lua_tointeger(L, 1));
+            CAbility* PAbility = ability::GetAbility((uint16)lua_tointeger(L, 1));
 
             lua_getglobal(L, CLuaAbility::className);
             lua_pushstring(L, "new");
@@ -4583,16 +4576,16 @@ namespace luautils
 
         position_t center;
         lua_getfield(L, 1, "x");
-        center.x = lua_tonumber(L, -1);
+        center.x = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "y");
-        center.y = lua_tonumber(L, -1);
+        center.y = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "z");
-        center.z = lua_tonumber(L, -1);
+        center.z = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "rot");
-        center.rotation = lua_tonumber(L, -1);
+        center.rotation = (uint8)lua_tonumber(L, -1);
 
-        float radius = lua_tonumber(L, 2);
-        float theta = lua_tonumber(L, 3);
+        float radius = (float)lua_tonumber(L, 2);
+        float theta = (float)lua_tonumber(L, 3);
 
         position_t pos = nearPosition(center, radius, theta);
 

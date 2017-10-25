@@ -136,9 +136,9 @@ function doBoostGain(caster,target,spell,effect)
     end
 
     if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 end;
 
@@ -162,9 +162,9 @@ function doEnspell(caster,target,spell,effect)
     end
 
     if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 end;
 
@@ -184,7 +184,7 @@ end;
 function getCurePowerOld(caster)
     local MND = caster:getStat(MOD_MND);
     local VIT = caster:getStat(MOD_VIT);
-    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL);--it's healing magic skill for the BLU cures as well
+    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL); -- it's healing magic skill for the BLU cures as well
     local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
     return power;
 end;
@@ -275,7 +275,7 @@ function getCureAsNukeFinal(caster,spell,power,divisor,constant,basepower)
 end;
 
 -----------------------------------
---     Returns the staff bonus for the caster and spell.
+-- Returns the staff bonus for the caster and spell.
 -----------------------------------
 
 -- affinities that strengthen/weaken the index element
@@ -351,7 +351,7 @@ function applyResistanceEffect(caster, target, spell, params)
         magicaccbonus = magicaccbonus + bonus;
     end
 
-    if(effect ~= nil) then
+    if (effect ~= nil) then
         percentBonus = percentBonus - getEffectResistance(target, effect);
     end
 
@@ -475,7 +475,7 @@ function getEffectResistance(target, effect)
     local effectres = 0;
     if (effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II) then
         effectres = MOD_SLEEPRES;
-    elseif(effect == EFFECT_LULLABY) then
+    elseif (effect == EFFECT_LULLABY) then
         effectres = MOD_LULLABYRES;
     elseif (effect == EFFECT_POISON) then
         effectres = MOD_POISONRES;
@@ -643,7 +643,7 @@ end;
 
     if (dmg < 0) then
         dmg = target:addHP(-dmg);
-        spell:setMsg(7);
+        spell:setMsg(msgBasic.MAGIC_RECOVERS_HP);
     else
         target:delHP(dmg);
         target:handleAfflatusMiseryDamage(dmg);
@@ -817,7 +817,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
         local mab = caster:getMod(MOD_MATT) + bonusmab;
 
         local mab_crit = caster:getMod(MOD_MAGIC_CRITHITRATE);
-        if( math.random(1,100) < mab_crit ) then
+        if ( math.random(1,100) < mab_crit ) then
            mab = mab + ( 10 + caster:getMod(MOD_MAGIC_CRIT_DMG_INCREASE ) );
         end
 
@@ -951,9 +951,9 @@ function getElementalDamageReduction(target, element)
     return defense;
 end
 
----------------------------------------------------------------------
---     Elemental Debuff Potency functions
----------------------------------------------------------------------
+---------------------------------------------
+--  Elemental Debuff Potency functions
+---------------------------------------------
 
 function getElementalDebuffDOT(INT)
     local DOT = 0;
@@ -1028,7 +1028,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
 
     if (resm < 0.5) then
         -- print("resm resist");
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
         return EFFECT_THRENODY;
     end
 
@@ -1260,7 +1260,7 @@ function outputMagicHitRateInfo()
 
             local targetLvl = casterLvl + lvlMod;
 
-            if(targetLvl >= 0) then
+            if (targetLvl >= 0) then
                 -- assume BLM spell, A+
                 local magicAcc = utils.getSkillLvl(6, casterLvl);
                 -- assume default monster magic eva, D

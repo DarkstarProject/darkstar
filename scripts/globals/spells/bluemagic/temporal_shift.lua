@@ -12,25 +12,17 @@
 -- Magic Bursts on: Impaction, Fragmentation, and Light
 -- Combos: Attack Bonus
 -----------------------------------------
-
+require("scripts/globals/bluemagic");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_STUN;
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
     local params = {};
@@ -41,15 +33,15 @@ function onSpellCast(caster,target,spell)
     params.effect = EFFECT_STUN;
     resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 5 * resist;
-    
+
     if (resist > 0.0625) then -- Do it!
         if (target:addStatusEffect(typeEffect,2,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end;
 
     return typeEffect;

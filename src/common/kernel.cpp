@@ -101,7 +101,12 @@ static void dump_backtrace(void)
 	// gdb
 #if defined(__linux__)
 	int fd[2];
-	pipe(fd);
+	int status = pipe(fd);
+    if (status == -1)
+    {
+        ShowError("pipe failed for gdb backtrace: %s", strerror(errno));
+        _exit(EXIT_FAILURE);
+    }
 	pid_t child_pid = fork();
 
 #ifdef HAS_YAMA_PRCTL
@@ -126,7 +131,12 @@ static void dump_backtrace(void)
 		close(fd[1]);
 		waitpid(child_pid, NULL, 0);
 		char buf[4096] = {0};
-		read(fd[0], buf, sizeof(buf) - 1);
+		status = read(fd[0], buf, sizeof(buf) - 1);
+        if (status == -1)
+        {
+            ShowError("read failed for gdb backtrace: %s", strerror(errno));
+            _exit(EXIT_FAILURE);
+        }
 		ShowFatalError ("--- gdb backtrace ---\n%s", buf);
 	}
 #endif
@@ -218,7 +228,11 @@ const char* get_git_revision(void)
     {
         int8 line[1024], w1[1024], w2[1024];
 
-        fgets(line, 1024, fp);
+        if (fgets(line, 1024, fp) == nullptr)
+        {
+            ShowError("fgets failed for git revision: %s", strerror(errno));
+            _exit(EXIT_FAILURE);
+        }
         sscanf(line, "%[a-zA-Z0-9] %[^\t\r\n]", w1, w2);
         snprintf(dsp_git_version, sizeof(dsp_git_version), "%s", w1);
         fclose(fp);

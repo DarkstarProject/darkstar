@@ -1,8 +1,8 @@
 ---------------------------------------------
---  Goblin Dice
+-- Goblin Dice
 --
---  Description: Stun
---  Type: Physical (Blunt)
+-- Description: Stun
+-- Type: Physical (Blunt)
 --
 --
 ---------------------------------------------
@@ -22,20 +22,20 @@ function onMobWeaponSkill(target, mob, skill)
     local effect3 = target:dispelStatusEffect();
     local num = 0;
 
-    if(effect ~= EFFECT_NONE) then
+    if (effect ~= EFFECT_NONE) then
         num = num + 1;
     end
 
-    if(effect2 ~= EFFECT_NONE) then
+    if (effect2 ~= EFFECT_NONE) then
         num = num + 1;
     end
 
-    if(effect3 ~= EFFECT_NONE) then
+    if (effect3 ~= EFFECT_NONE) then
         num = num + 1;
     end
 
     if (num == 0) then
-        skill:setMsg(msgBasic.NO_EFFECT); -- no effect
+        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     else
         skill:setMsg(msgBasic.DISAPPEAR_NUM);
     end

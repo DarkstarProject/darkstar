@@ -55,7 +55,7 @@ namespace battlefieldutils {
         }
     }
 
-    void getStartPosition(uint16 zoneid, int(&pPosition)[4]) {
+    void getStartPosition(uint16 zoneid, float(&pPosition)[4]) {
 
         switch (zoneid) {
             case 139: //Horlais Peak

@@ -1,16 +1,14 @@
 ---------------------------------------------
---  Howl
+-- Howl
 --
---  Description: Grants the effect of Warcry to user and any linked allies.
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self and nearby mobs of same family and/or force up to 20'.
+-- Description: Grants the effect of Warcry to user and any linked allies.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self and nearby mobs of same family and/or force up to 20'.
 -----------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

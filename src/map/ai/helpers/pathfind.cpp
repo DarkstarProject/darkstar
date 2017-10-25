@@ -40,7 +40,7 @@ CPathFind::~CPathFind()
     Clear();
 }
 
-bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, uint8 roamFlags)
+bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, uint16 roamFlags)
 {
     Clear();
 
@@ -134,7 +134,7 @@ bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, uin
     Clear();
     //position_t* lastPoint = &point;
 
-    float randomRadian = dsprand::GetRandomNumber<float>(0, 2 * M_PI);
+    float randomRadian = dsprand::GetRandomNumber<float>(0, 2 * (float)M_PI);
 
     //lastPoint->x += cosf(randomRadian) * distanceFromPoint;
     //lastPoint->z += sinf(randomRadian) * distanceFromPoint;
@@ -163,7 +163,7 @@ bool CPathFind::WarpTo(const position_t& point, float maxDistance)
 {
     Clear();
 
-    position_t newPoint = nearPosition(point, maxDistance, M_PI);
+    position_t newPoint = nearPosition(point, maxDistance, (float)M_PI);
 
     m_PTarget->loc.p.x = newPoint.x;
     m_PTarget->loc.p.y = newPoint.y;
@@ -220,7 +220,7 @@ void CPathFind::StopWithin(float within)
     if (distanceTo > within)
     {
         // reduce last point to stop within the given number
-        float radians = atanf((secondLastPoint->z - lastPoint.z) / (secondLastPoint->x - lastPoint.x)) * (M_PI / 180.0f);
+        float radians = atanf((secondLastPoint->z - lastPoint.z) / (secondLastPoint->x - lastPoint.x)) * (float)(M_PI / 180.0f);
 
         lastPoint.x -= cosf(radians) * within;
         lastPoint.z -= sinf(radians) * within;
@@ -262,7 +262,7 @@ void CPathFind::FollowPath()
     {
         m_currentPoint++;
 
-        if (m_currentPoint >= m_points.size())
+        if (m_currentPoint >= (int16)m_points.size())
         {
             FinishedPath();
         }
@@ -303,7 +303,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
         }
         else
         {
-            float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * M_PI;
+            float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * (float)M_PI;
 
             m_PTarget->loc.p.x += cosf(radians) * (distanceTo - m_distanceFromPoint);
             m_PTarget->loc.p.y = pos.y;
@@ -314,7 +314,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
     {
         m_distanceMoved += stepDistance;
         // take a step towards target point
-        float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * M_PI;
+        float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * (float)M_PI;
 
         m_PTarget->loc.p.x += cosf(radians) * stepDistance;
         m_PTarget->loc.p.y = pos.y;
@@ -323,7 +323,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
     }
 
 
-    m_PTarget->loc.p.moving += ((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
+    m_PTarget->loc.p.moving += (uint16)((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
 
     if (m_PTarget->loc.p.moving > 0x2fff)
     {
@@ -348,7 +348,7 @@ bool CPathFind::FindPath(const position_t& start, const position_t& end)
     return true;
 }
 
-bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint8 roamFlags)
+bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint16 roamFlags)
 {
     auto m_turnLength = dsprand::GetRandomNumber(1, (int)maxTurns);
 

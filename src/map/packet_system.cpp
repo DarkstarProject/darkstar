@@ -160,9 +160,9 @@ void PrintPacket(CBasicPacket data)
     int8 message[50];
     memset(&message, 0, 50);
 
-    for (int y = 0; y < data.length(); y++)
+    for (size_t y = 0; y < data.length(); y++)
     {
-        sprintf(message, "%s %02hx", message, *((uint8*)data[y]));
+        sprintf(message, "%s %02hx", message, *((uint8*)data[(const int)y]));
         if (((y + 1) % 16) == 0)
         {
             message[48] = '\n';
@@ -303,8 +303,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
 
-    CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterZoneIn", server_clock::now() + 500ms, (void*)PChar->id, CTaskMgr::TASK_ONCE, luautils::AfterZoneIn));
-    return;
+    PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
 
 /************************************************************************
@@ -850,7 +849,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? dsprand::GetRandomNumber(9999999999) : 0));
+    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? (uint32)dsprand::GetRandomNumber(9999999999) : 0));
     return;
 }
 
@@ -1532,9 +1531,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
     case 0x01:
     {
-        int8* fmtQuery;
-
-        fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %d AND slot < 8 ORDER BY slot;";
+        const char* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %d AND slot < 8 ORDER BY slot;";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
@@ -1806,7 +1803,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (ret != SQL_ERROR)
         {
-            received_items = Sql_NumRows(SqlHandle);
+            received_items = (uint8)Sql_NumRows(SqlHandle);
         }
         PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0xFF, 0x02));
         PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, received_items, 0x01));
@@ -1899,7 +1896,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (ret != SQL_ERROR)
         {
-            received_items = Sql_NumRows(SqlHandle);
+            received_items = (uint8)Sql_NumRows(SqlHandle);
             if (received_items && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 slotID = Sql_GetUIntData(SqlHandle, 0);
@@ -2209,11 +2206,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
     case 0x0A:
     {
-        uint8 totalItemsOnAh = PChar->m_ah_history.size();
+        auto totalItemsOnAh = PChar->m_ah_history.size();
 
-        for (int8 slot = 0; slot < totalItemsOnAh; slot++)
+        for (size_t slot = 0; slot < totalItemsOnAh; slot++)
         {
-            PChar->pushPacket(new CAuctionHousePacket(0x0C, slot, PChar));
+            PChar->pushPacket(new CAuctionHousePacket(0x0C, (uint8)slot, PChar));
         }
     }
     break;
@@ -2234,11 +2231,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); // Failed to place up
                     return;
                 }
-                auctionFee = map_config.ah_base_fee_stacks+(price*map_config.ah_tax_rate_stacks/100);
+                auctionFee = (uint32)(map_config.ah_base_fee_stacks + (price * map_config.ah_tax_rate_stacks / 100));
             }
             else
             {
-                auctionFee = map_config.ah_base_fee_single+(price*map_config.ah_tax_rate_single/100);
+                auctionFee = (uint32)(map_config.ah_base_fee_single + (price * map_config.ah_tax_rate_single / 100));
             }
 
             auctionFee = dsp_cap(auctionFee, 0, map_config.ah_max_fee);
@@ -2273,10 +2270,10 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 return;
             }
             charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
-            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -auctionFee); // Deduct AH fee
+            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, auctionFee); // Deduct AH fee
 
             PChar->pushPacket(new CAuctionHousePacket(action, 1, 0, 0)); // Merchandise put up on auction msg
-            PChar->pushPacket(new CAuctionHousePacket(0x0C, PChar->m_ah_history.size(), PChar)); // Inform history of slot
+            PChar->pushPacket(new CAuctionHousePacket(0x0C, (uint8)PChar->m_ah_history.size(), PChar)); // Inform history of slot
         }
     }
     break;
@@ -5481,7 +5478,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);
         uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;
 
-        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -Price2);
+        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, Price2);
         charutils::UpdateItem(PTarget, LOC_INVENTORY, 0, Price1);
 
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));

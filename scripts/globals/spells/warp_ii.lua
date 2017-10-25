@@ -2,10 +2,8 @@
 -- Spell: Warp II
 -- Transports player to their home point. Can cast on allies.
 -----------------------------------------
-require("scripts/globals/status");
 require("scripts/globals/teleports");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

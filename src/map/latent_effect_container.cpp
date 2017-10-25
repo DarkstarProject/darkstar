@@ -36,19 +36,9 @@ This file is part of DarkStar-server source code.
 
 #include "time_server.h"
 
-CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity)
-    :m_POwner(PEntity)
-{
-    m_LatentEffectList.reserve(32);
-}
-
-CLatentEffectContainer::~CLatentEffectContainer()
-{
-    for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
-    {
-        delete m_LatentEffectList.at(i);
-    }
-}
+CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity) :
+    m_POwner(PEntity)
+{}
 
 /************************************************************************
 *																		*
@@ -56,28 +46,28 @@ CLatentEffectContainer::~CLatentEffectContainer()
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::AddLatentEffect(CLatentEffect* LatentEffect)
+void CLatentEffectContainer::AddLatentEffect(CLatentEffect LatentEffect)
 {
     m_LatentEffectList.push_back(LatentEffect);
-    LatentEffect->SetOwner(m_POwner);
+    LatentEffect.SetOwner(m_POwner);
 }
 
-void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot)
+void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect>& latentList, uint8 reqLvl, uint8 slot)
 {
-    for (uint16 i = 0; i < latentList->size(); ++i)
+    for (auto& latent : latentList)
     {
-        if (m_POwner->GetMLevel() >= reqLvl || latentList->at(i)->GetConditionsValue() == LATENT_JOB_LEVEL_ABOVE)
+        if (m_POwner->GetMLevel() >= reqLvl || latent.GetConditionsValue() == LATENT_JOB_LEVEL_ABOVE)
         {
-            if (latentList->at(i)->GetModValue() == Mod::MAIN_DMG_RATING && slot == SLOT_SUB)
+            if (latent.GetModValue() == Mod::MAIN_DMG_RATING && slot == SLOT_SUB)
             {
-                AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(),
-                    latentList->at(i)->GetConditionsValue(), slot, Mod::SUB_DMG_RATING,
-                    latentList->at(i)->GetModPower()));
+                AddLatentEffect(CLatentEffect(latent.GetConditionsID(),
+                    latent.GetConditionsValue(), slot, Mod::SUB_DMG_RATING,
+                    latent.GetModPower()));
             }
             else {
-                AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(),
-                    latentList->at(i)->GetConditionsValue(), slot, latentList->at(i)->GetModValue(),
-                    latentList->at(i)->GetModPower()));
+                AddLatentEffect(CLatentEffect(latent.GetConditionsID(),
+                    latent.GetConditionsValue(), slot, latent.GetModValue(),
+                    latent.GetModPower()));
             }
         }
     }
@@ -91,19 +81,9 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *laten
 
 void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 {
-    for (int16 i = m_LatentEffectList.size() - 1; i >= 0; --i)
-    {
-        if (m_LatentEffectList.at(i)->GetSlot() == slot)
-        {
-            CLatentEffect* latent = m_LatentEffectList.at(i);
-            if (latent->IsActivated())
-            {
-                latent->Deactivate();
-            }
-            m_LatentEffectList.erase(m_LatentEffectList.begin() + i);
-            delete latent;
-        }
-    }
+    m_LatentEffectList.erase(std::remove_if(m_LatentEffectList.begin(), m_LatentEffectList.end(), [slot](auto& latent){
+        return latent.GetSlot() == slot;
+    }), m_LatentEffectList.end());
 }
 
 /************************************************************************
@@ -115,9 +95,9 @@ void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 void CLatentEffectContainer::CheckLatentsHP()
 {
     //TODO: hook into this from anywhere HP changes
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_HP_UNDER_PERCENT:
         case LATENT_HP_OVER_PERCENT:
@@ -140,9 +120,9 @@ void CLatentEffectContainer::CheckLatentsHP()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsTP()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_TP_UNDER:
         case LATENT_TP_OVER:
@@ -165,9 +145,9 @@ void CLatentEffectContainer::CheckLatentsTP()
 void CLatentEffectContainer::CheckLatentsMP()
 {
     //TODO: hook into this from anywhere MP changes
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_MP_UNDER_PERCENT:
         case LATENT_MP_UNDER:
@@ -189,9 +169,9 @@ void CLatentEffectContainer::CheckLatentsMP()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 {
-    ProcessLatentEffects([this, slot](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this, slot](CLatentEffect& latentEffect)
     {
-        if (latentEffect->GetSlot() == slot)
+        if (latentEffect.GetSlot() == slot)
         {
             ProcessLatentEffect(latentEffect);
         }
@@ -208,37 +188,37 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 //easy: when animationType changes to ANIMATION_ATTACK or to something else
 void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 {
-    ProcessLatentEffects([this, drawn](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this, drawn](CLatentEffect& latentEffect)
     {
         if (drawn)
         {
-            switch (latentEffect->GetConditionsID())
+            switch (latentEffect.GetConditionsID())
             {
             case LATENT_WEAPON_DRAWN:
-                latentEffect->Activate();
+                latentEffect.Activate();
                 break;
             case LATENT_WEAPON_DRAWN_MP_OVER:
-                if (m_POwner->health.mp > latentEffect->GetConditionsValue())
+                if (m_POwner->health.mp > latentEffect.GetConditionsValue())
                 {
-                    latentEffect->Activate();
+                    latentEffect.Activate();
                 }
                 else
                 {
-                    latentEffect->Deactivate();
+                    latentEffect.Deactivate();
                 }
                 break;
             case LATENT_WEAPON_DRAWN_HP_UNDER:
-                if (m_POwner->health.hp < latentEffect->GetConditionsValue())
+                if (m_POwner->health.hp < latentEffect.GetConditionsValue())
                 {
-                    latentEffect->Activate();
+                    latentEffect.Activate();
                 }
                 else
                 {
-                    latentEffect->Deactivate();
+                    latentEffect.Deactivate();
                 }
                 break;
             case LATENT_WEAPON_SHEATHED:
-                latentEffect->Deactivate();
+                latentEffect.Deactivate();
                 break;
             default:
                 break;
@@ -246,15 +226,15 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
         }
         else
         {
-            switch (latentEffect->GetConditionsID())
+            switch (latentEffect.GetConditionsID())
             {
             case LATENT_WEAPON_DRAWN:
             case LATENT_WEAPON_DRAWN_MP_OVER:
             case LATENT_WEAPON_DRAWN_HP_UNDER:
-                latentEffect->Deactivate();
+                latentEffect.Deactivate();
                 break;
             case LATENT_WEAPON_SHEATHED:
-                latentEffect->Activate();
+                latentEffect.Activate();
                 break;
             default:
                 break;
@@ -271,9 +251,9 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsStatusEffect()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_STATUS_EFFECT_ACTIVE:
         case LATENT_WEATHER_ELEMENT:
@@ -295,9 +275,9 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsFoodEffect()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_FOOD_ACTIVE:
         case LATENT_NO_FOOD_ACTIVE:
@@ -317,9 +297,9 @@ void CLatentEffectContainer::CheckLatentsFoodEffect()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsRollSong()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_SONG_ROLL_ACTIVE:
             ProcessLatentEffect(latentEffect);
@@ -340,9 +320,9 @@ void CLatentEffectContainer::CheckLatentsRollSong()
 //probably call this at 00:00 vana time only
 void CLatentEffectContainer::CheckLatentsDay()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_TIME_OF_DAY:
             ProcessLatentEffect(latentEffect);
@@ -360,9 +340,9 @@ void CLatentEffectContainer::CheckLatentsDay()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsMoonPhase()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_MOON_PHASE:
             ProcessLatentEffect(latentEffect);
@@ -381,9 +361,9 @@ void CLatentEffectContainer::CheckLatentsMoonPhase()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsWeekDay()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_FIRESDAY:
         case LATENT_EARTHSDAY:
@@ -409,9 +389,9 @@ void CLatentEffectContainer::CheckLatentsWeekDay()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsHours()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_HOUR_OF_DAY:
             ProcessLatentEffect(latentEffect);
@@ -428,27 +408,26 @@ void CLatentEffectContainer::CheckLatentsHours()
 *  activates them if the conditions are met.							*
 *																		*
 ************************************************************************/
-void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
+void CLatentEffectContainer::CheckLatentsPartyMembers(size_t members)
 {
-    // todo: fix this
-    ProcessLatentEffects([this, members](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this, members](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_PARTY_MEMBERS:
-            if (latentEffect->GetConditionsValue() <= members)
+            if (latentEffect.GetConditionsValue() <= members)
             {
-                latentEffect->Activate();
+                latentEffect.Activate();
             }
             else
             {
-                latentEffect->Deactivate();
+                latentEffect.Deactivate();
             }
         case LATENT_PARTY_MEMBERS_IN_ZONE:
-            if (latentEffect->GetConditionsValue() <= members)
+            if (latentEffect.GetConditionsValue() <= members)
             {
                 auto inZone = 0;
-                for (auto m = 0; m < members; ++m)
+                for (size_t m = 0; m < members; ++m)
                 {
                     auto PMember = (CCharEntity*)m_POwner->PParty->members.at(m);
                     if (PMember->getZone() == m_POwner->getZone())
@@ -457,18 +436,18 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
                     }
                 }
 
-                if (inZone == latentEffect->GetConditionsValue())
+                if (inZone == latentEffect.GetConditionsValue())
                 {
-                    latentEffect->Activate();
+                    latentEffect.Activate();
                 }
                 else
                 {
-                    latentEffect->Deactivate();
+                    latentEffect.Deactivate();
                 }
             }
             else
             {
-                latentEffect->Deactivate();
+                latentEffect.Deactivate();
             }
             break;
         default:
@@ -479,9 +458,9 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(uint8 members)
 
 void CLatentEffectContainer::CheckLatentsPartyJobs()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_JOB_IN_PARTY:
             ProcessLatentEffect(latentEffect);
@@ -500,9 +479,9 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsPartyAvatar()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_AVATAR_IN_PARTY:
             ProcessLatentEffect(latentEffect);
@@ -521,9 +500,9 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsJobLevel()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_JOB_LEVEL_EVEN:
         case LATENT_JOB_LEVEL_ODD:
@@ -548,9 +527,9 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsPetType()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_PET_ID:
             ProcessLatentEffect(latentEffect);
@@ -581,9 +560,9 @@ void CLatentEffectContainer::CheckLatentsTime()
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 {
-    ProcessLatentEffects([this, slot](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this, slot](CLatentEffect& latentEffect)
     {
-        if (latentEffect->GetConditionsID() == LATENT_WEAPON_BROKEN && latentEffect->GetConditionsValue() == slot)
+        if (latentEffect.GetConditionsID() == LATENT_WEAPON_BROKEN && latentEffect.GetConditionsValue() == slot)
         {
             ProcessLatentEffect(latentEffect);
         }
@@ -597,9 +576,9 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsZone()
 {
-    ProcessLatentEffects([this](CLatentEffect* latentEffect)
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        switch (latentEffect->GetConditionsID())
+        switch (latentEffect.GetConditionsID())
         {
         case LATENT_ZONE:
         case LATENT_IN_DYNAMIS:
@@ -626,21 +605,20 @@ void CLatentEffectContainer::CheckLatentsWeather()
 
 void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
 {
-    for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+    ProcessLatentEffects([this, weather](CLatentEffect& latent)
     {
-        if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        if (latent.GetConditionsID() == LATENT_WEATHER_ELEMENT)
         {
             auto element = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false, weather));
-            ApplyLatentEffect(m_LatentEffectList.at(i), m_LatentEffectList.at(i)->GetConditionsValue() == element);
+            ApplyLatentEffect(latent, latent.GetConditionsValue() == element);
         }
-    }
-    m_POwner->UpdateHealth();
+    });
 }
 
 // Process the latent effects container and apply a logic function responsible for
 // filtering the appropriate latents to be activated/deactivated and finally update
 // health post looping
-void CLatentEffectContainer::ProcessLatentEffects(std::function <void(CLatentEffect*)> logic)
+void CLatentEffectContainer::ProcessLatentEffects(std::function <void(CLatentEffect&)> logic)
 {
     for (auto latentEffect : m_LatentEffectList)
     {
@@ -651,44 +629,44 @@ void CLatentEffectContainer::ProcessLatentEffects(std::function <void(CLatentEff
 
 // Processes a single CLatentEffect* and finds the expression to evaluate for
 // activation/deactivation and attempts to apply
-void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
+void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
 {
     // Our default case un-finds our latent prevent us from toggling a latent we don't have programmed
     auto expression = false;
     auto latentFound = true;
 
     // find the latent type from the enum and find the expression to tests againts
-    switch (latentEffect->GetConditionsID())
+    switch (latentEffect.GetConditionsID())
     {
     case LATENT_HP_UNDER_PERCENT:
-        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 <= latentEffect->GetConditionsValue();
+        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 <= latentEffect.GetConditionsValue();
         break;
     case LATENT_HP_OVER_PERCENT:
-        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 >= latentEffect->GetConditionsValue();
+        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 >= latentEffect.GetConditionsValue();
         break;
     case LATENT_HP_UNDER_TP_UNDER_100:
-        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 <= latentEffect->GetConditionsValue() && m_POwner->health.tp < 1000;
+        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 <= latentEffect.GetConditionsValue() && m_POwner->health.tp < 1000;
         break;
     case LATENT_HP_OVER_TP_UNDER_100:
-        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 >= latentEffect->GetConditionsValue() && m_POwner->health.tp < 1000;
+        expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 >= latentEffect.GetConditionsValue() && m_POwner->health.tp < 1000;
         break;
     case LATENT_MP_UNDER_PERCENT:
-        expression = m_POwner->health.maxmp && (float)(m_POwner->health.mp / m_POwner->health.maxmp) * 100 <= latentEffect->GetConditionsValue();
+        expression = m_POwner->health.maxmp && (float)(m_POwner->health.mp / m_POwner->health.maxmp) * 100 <= latentEffect.GetConditionsValue();
         break;
     case LATENT_MP_UNDER:
-        expression = m_POwner->health.mp <= latentEffect->GetConditionsValue();
+        expression = m_POwner->health.mp <= latentEffect.GetConditionsValue();
         break;
     case LATENT_TP_UNDER:
-        expression = m_POwner->health.tp < latentEffect->GetConditionsValue();
+        expression = m_POwner->health.tp < latentEffect.GetConditionsValue();
         break;
     case LATENT_TP_OVER:
-        expression = m_POwner->health.tp > latentEffect->GetConditionsValue();
+        expression = m_POwner->health.tp > latentEffect.GetConditionsValue();
         break;
     case LATENT_SUBJOB:
-        expression = m_POwner->GetSJob() == latentEffect->GetConditionsValue();
+        expression = m_POwner->GetSJob() == latentEffect.GetConditionsValue();
         break;
     case LATENT_PET_ID:
-        expression = m_POwner->PPet != nullptr && m_POwner->PPet->objtype == TYPE_PET && ((CPetEntity*)m_POwner->PPet)->m_PetID == latentEffect->GetConditionsValue();
+        expression = m_POwner->PPet != nullptr && m_POwner->PPet->objtype == TYPE_PET && ((CPetEntity*)m_POwner->PPet)->m_PetID == latentEffect.GetConditionsValue();
         break;
     case LATENT_WEAPON_DRAWN:
         expression = m_POwner->animation == ANIMATION_ATTACK;
@@ -697,13 +675,13 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         expression = m_POwner->animation != ANIMATION_ATTACK;
         break;
     case LATENT_STATUS_EFFECT_ACTIVE:
-        expression = m_POwner->StatusEffectContainer->HasStatusEffect((EFFECT)latentEffect->GetConditionsValue());
+        expression = m_POwner->StatusEffectContainer->HasStatusEffect((EFFECT)latentEffect.GetConditionsValue());
         break;
     case LATENT_NO_FOOD_ACTIVE:
         expression = !m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD);
         break;
     case LATENT_PARTY_MEMBERS:
-        expression = m_POwner->PParty != nullptr && latentEffect->GetConditionsValue() <= m_POwner->PParty->members.size();
+        expression = m_POwner->PParty != nullptr && latentEffect.GetConditionsValue() <= m_POwner->PParty->members.size();
         break;
     case LATENT_PARTY_MEMBERS_IN_ZONE:
     {
@@ -718,7 +696,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
                 }
             }
         }
-        expression = latentEffect->GetConditionsValue() <= inZone;
+        expression = latentEffect.GetConditionsValue() <= inZone;
         break;
     }
     case LATENT_AVATAR_IN_PARTY:
@@ -729,7 +707,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
                 if (member->PPet != nullptr)
                 {
                     auto PPet = (CPetEntity*)member->PPet;
-                    if (PPet->m_PetID == latentEffect->GetConditionsValue() &&
+                    if (PPet->m_PetID == latentEffect.GetConditionsValue() &&
                         PPet->PAI->IsSpawned())
                     {
                         expression = true;
@@ -741,7 +719,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         else if (m_POwner->PParty == nullptr && m_POwner->PPet != nullptr)
         {
             auto PPet = (CPetEntity*)m_POwner->PPet;
-            if (PPet->m_PetID == latentEffect->GetConditionsValue() &&
+            if (PPet->m_PetID == latentEffect.GetConditionsValue() &&
                 !PPet->isDead())
             {
                 expression = true;
@@ -755,7 +733,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
             {
                 if (member->id != m_POwner->id)
                 {
-                    if (member->GetMJob() == latentEffect->GetConditionsValue())
+                    if (member->GetMJob() == latentEffect.GetConditionsValue())
                     {
                         expression = true;
                         break;
@@ -765,7 +743,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         }
         break;
     case LATENT_ZONE:
-        expression = latentEffect->GetConditionsValue() == m_POwner->getZone();
+        expression = latentEffect.GetConditionsValue() == m_POwner->getZone();
         break;
     case LATENT_SYNTH_TRAINEE:
         // todo: figure this out
@@ -776,7 +754,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
     case LATENT_TIME_OF_DAY:
     {
         uint32 VanadielHour = CVanaTime::getInstance()->getHour();
-        switch (latentEffect->GetConditionsValue())
+        switch (latentEffect.GetConditionsValue())
         {
         case 0:
             //daytime: 06:00 to 18:00
@@ -796,7 +774,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
     case LATENT_HOUR_OF_DAY:
     {
         uint32 VanadielHour = CVanaTime::getInstance()->getHour();
-        switch (latentEffect->GetConditionsValue())
+        switch (latentEffect.GetConditionsValue())
         {
         case 1:
             //new day
@@ -853,7 +831,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
     {
         uint32 MoonPhase = CVanaTime::getInstance()->getMoonPhase();
         uint32 MoonDirection = CVanaTime::getInstance()->getMoonDirection(); //directions: 1 = waning, 2 = waxing, 0 = neither
-        switch (latentEffect->GetConditionsValue())
+        switch (latentEffect.GetConditionsValue())
         {
         case 0:
             //New Moon - 10% waning -> 5% waxing
@@ -906,7 +884,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         expression = m_POwner->GetMLevel() % 2 == 0;
         break;
     case LATENT_WEAPON_DRAWN_HP_UNDER:
-        expression = m_POwner->health.hp < latentEffect->GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK;
+        expression = m_POwner->health.hp < latentEffect.GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK;
         break;
     case LATENT_MP_UNDER_VISIBLE_GEAR:
         //TODO: figure out if this is actually right
@@ -962,7 +940,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         break;
     case LATENT_WEAPON_BROKEN:
     {
-        auto slot = latentEffect->GetSlot();
+        auto slot = latentEffect.GetSlot();
         auto item = (CItemWeapon*)m_POwner->getEquip((SLOTTYPE)slot);
         switch (slot)
         {
@@ -979,16 +957,16 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         break;
     case LATENT_FOOD_ACTIVE:
         expression = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD) &&
-            m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_FOOD)->GetSubID() == latentEffect->GetConditionsValue();
+            m_POwner->StatusEffectContainer->GetStatusEffect(EFFECT_FOOD)->GetSubID() == latentEffect.GetConditionsValue();
         break;
     case LATENT_JOB_LEVEL_BELOW:
-        expression = m_POwner->GetMLevel() < latentEffect->GetConditionsValue();
+        expression = m_POwner->GetMLevel() < latentEffect.GetConditionsValue();
         break;
     case LATENT_JOB_LEVEL_ABOVE:
-        expression = m_POwner->GetMLevel() >= latentEffect->GetConditionsValue();
+        expression = m_POwner->GetMLevel() >= latentEffect.GetConditionsValue();
         break;
     case LATENT_WEATHER_ELEMENT:
-        expression = latentEffect->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false));
+        expression = latentEffect.GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false));
         break;
     case LATENT_NATION_CONTROL:
     {
@@ -1003,7 +981,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         auto hasSanction = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION);
         auto hasSigil = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL);
 
-        switch (latentEffect->GetConditionsValue())
+        switch (latentEffect.GetConditionsValue())
         {
         case 0:
             //under own nation's control
@@ -1025,7 +1003,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         }
 
         auto PZone = m_POwner->loc.zone;
-        auto region = (REGIONTYPE)latentEffect->GetConditionsValue();
+        auto region = (REGIONTYPE)latentEffect.GetConditionsValue();
 
         switch (region)
         {
@@ -1042,14 +1020,14 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
         break;
     }
     case LATENT_MP_OVER:
-        expression = m_POwner->health.mp >= latentEffect->GetConditionsValue();
+        expression = m_POwner->health.mp >= latentEffect.GetConditionsValue();
         break;
     case LATENT_WEAPON_DRAWN_MP_OVER:
-        expression = m_POwner->health.mp > latentEffect->GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK;
+        expression = m_POwner->health.mp > latentEffect.GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK;
         break;
     default:
         latentFound = false;
-        ShowWarning("Latent ID %d unhandled in ProcessLatentEffect\n", latentEffect->GetConditionsID());
+        ShowWarning("Latent ID %d unhandled in ProcessLatentEffect\n", latentEffect.GetConditionsID());
         break;
     }
 
@@ -1061,14 +1039,14 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect* latentEffect)
 }
 
 // Activates a latent effect if true otherwise deactivates the latent effect
-void CLatentEffectContainer::ApplyLatentEffect(CLatentEffect* effect, bool expression)
+void CLatentEffectContainer::ApplyLatentEffect(CLatentEffect& effect, bool expression)
 {
     if (expression)
     {
-        effect->Activate();
+        effect.Activate();
     }
     else
     {
-        effect->Deactivate();
+        effect.Deactivate();
     }
 }

@@ -43,12 +43,12 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 
     for (auto&& recast : *RecastList)
     {
-        uint32 recasttime = (recast.RecastTime == 0 ? 0 : ((recast.RecastTime - (time(nullptr) - recast.TimeStamp))));
+        uint32 recasttime = (recast.RecastTime == 0 ? 0 : ((recast.RecastTime - (uint32)(time(0) - recast.TimeStamp))));
 
         if (recast.ID != 0)
         {
             WBUFL(data, (0x0C + count * 8) ) = recasttime;
-            WBUFB(data, (0x0F + count * 8) ) = recast.ID;
+            WBUFB(data, (0x0F + count * 8) ) = (uint8)recast.ID;
             count++;
         }
         else

@@ -106,7 +106,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
         // ^ TODO: verify what happens when a winner leaves zone
         for(int i = 0; i < 10; i++){
             if(m_PoolItems[i].Lotters.size()>0){
-                for(int j = 0; j<m_PoolItems[i].Lotters.size(); j++){
+                for(size_t j = 0; j<m_PoolItems[i].Lotters.size(); j++){
                     //remove their lot info
                     if(PChar->id == m_PoolItems[i].Lotters[j].member->id){
                         m_PoolItems[i].Lotters.erase(m_PoolItems[i].Lotters.begin()+j);
@@ -298,7 +298,7 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
     bool hasLottedBefore = false;
 
     // if this member has lotted on this item previously, set their lot to 0.
-    for(int i = 0; i<m_PoolItems[SlotID].Lotters.size();i++){
+    for(size_t i = 0; i<m_PoolItems[SlotID].Lotters.size(); i++){
         if(m_PoolItems[SlotID].Lotters[i].member->id == PChar->id){
             m_PoolItems[SlotID].Lotters[i].lot = 0;
             hasLottedBefore = true;
@@ -328,7 +328,7 @@ bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
 {
     std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
 
-    for(int i = 0; i<lotters.size(); i++){
+    for(size_t i = 0; i<lotters.size(); i++){
         if(lotters[i].member->id == PChar->id){
             return true;
         }
@@ -341,7 +341,7 @@ bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
 {
     std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
 
-    for(int i = 0; i<lotters.size(); i++){
+    for(size_t i = 0; i<lotters.size(); i++){
         if(lotters[i].member->id == PChar->id){
             return lotters[i].lot == 0;
         }

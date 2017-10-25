@@ -10,18 +10,11 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
    return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local baseDuration = 180;
@@ -33,7 +26,7 @@ function onUseAbility(player,target,ability)
         player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration);
         ability:setMsg(532); -- Gains the effect of sneak and invisible
     else
-        ability:setMsg(283); -- no effect on player.
+        ability:setMsg(msgBasic.NO_EFFECT); -- no effect on player.
     end
 
     return 1;

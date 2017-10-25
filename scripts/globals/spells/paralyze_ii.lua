@@ -4,12 +4,9 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Paralyze II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -19,7 +16,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     if (target:hasStatusEffect(EFFECT_PARALYSIS)) then -- Effect already on, do nothing
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
         -- Calculate duration.
         local duration = 120;
@@ -62,14 +59,14 @@ function onSpellCast(caster,target,spell)
 
         if (resist >= 0.5) then -- There are no quarter or less hits, if target resists more than .5 spell is resisted completely
             if (target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
-                spell:setMsg(236);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
                 -- no effect
-                spell:setMsg(75);
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end
         else
             -- resist
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     end
 

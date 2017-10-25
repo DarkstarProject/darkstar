@@ -110,7 +110,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	}
 
 	// loop through the list of BLUs and see if they can learn.
-	for (int i=0; i<PBlueMages.size(); i++) {
+	for (size_t i = 0; i < PBlueMages.size(); i++) {
 		CCharEntity* PBlueMage = PBlueMages[i];
 
 		if (PBlueMage->isDead()) { // too dead to learn
@@ -121,7 +121,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 			continue;
 		}
 
-		for (int spell=0; spell<PLearnableSpells.size(); spell++) {
+		for (size_t spell = 0; spell < PLearnableSpells.size(); spell++) {
 			CSpell* PSpell = PLearnableSpells[spell];
 
 			if (charutils::hasSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {

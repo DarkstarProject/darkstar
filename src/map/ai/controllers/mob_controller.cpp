@@ -793,7 +793,7 @@ void CMobController::DoRoamTick(time_point tick)
                     luautils::OnMobRoamAction(PMob);
                     m_LastActionTime = m_Tick;
                 }
-                else if (PMob->CanRoam() && PMob->PAI->PathFind->RoamAround(PMob->m_SpawnPoint, PMob->GetRoamDistance(), PMob->getMobMod(MOBMOD_ROAM_TURNS), PMob->m_roamFlags))
+                else if (PMob->CanRoam() && PMob->PAI->PathFind->RoamAround(PMob->m_SpawnPoint, PMob->GetRoamDistance(), (uint8)PMob->getMobMod(MOBMOD_ROAM_TURNS), PMob->m_roamFlags))
                 {
                     //#TODO: #AIToScript (event probably)
                     if (PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -847,7 +847,7 @@ void CMobController::FollowRoamPath()
         if (PPet != nullptr && !PPet->PAI->IsEngaged())
         {
             // pet should follow me if roaming
-            position_t targetPoint = nearPosition(PMob->loc.p, 2.1f, M_PI);
+            position_t targetPoint = nearPosition(PMob->loc.p, 2.1f, (float)M_PI);
 
             PPet->PAI->PathFind->PathTo(targetPoint);
         }
@@ -855,7 +855,7 @@ void CMobController::FollowRoamPath()
         // if I just finished reset my last action time
         if (!PMob->PAI->PathFind->IsFollowingPath())
         {
-            uint16 roamRandomness = (float)PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate();
+            uint16 roamRandomness = (uint16)(PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate());
             m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(roamRandomness));
 
             // i'm a worm pop back up
@@ -920,6 +920,7 @@ bool CMobController::Disengage()
     m_NeutralTime = m_Tick;
 
     PMob->PAI->PathFind->Clear();
+    PMob->PEnmityContainer->Clear();
 
     if (PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
     {

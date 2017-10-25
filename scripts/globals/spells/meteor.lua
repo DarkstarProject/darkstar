@@ -7,9 +7,6 @@ require("scripts/globals/settings");
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

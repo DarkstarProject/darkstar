@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Spoil
+-- Spoil
 --
---  Description: Lowers the strength of target.
---  Type: Enhancing
---  Utsusemi/Blink absorb: Ignore
---  Range: Self
---  Notes: Very sharp evasion increase.
+-- Description: Lowers the strength of target.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: Ignore
+-- Range: Self
+-- Notes: Very sharp evasion increase.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

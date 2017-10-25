@@ -3,11 +3,8 @@
 -- Lessens chance of being detected by sound
 -- Duration is 3 minutes (non-random duration)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -16,10 +13,10 @@ end;
 
 function onSpellCast(caster,target,spell)
     if (target:hasStatusEffect(EFFECT_SNEAK) == false) then
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
         target:addStatusEffect(EFFECT_SNEAK,0,10,420);
     else
-        spell:setMsg(75); -- no effect.
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect.
     end
 
     return EFFECT_SNEAK;

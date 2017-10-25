@@ -6,13 +6,10 @@
 -- Recast Time: 0:30
 -- Duration: 0:05
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -42,15 +39,11 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability,action)
     if (not target:hasStatusEffect(EFFECT_CHAINBOUND, 0) and not target:hasStatusEffect(EFFECT_SKILLCHAIN, 0)) then
         target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 1, 0, 5, 0, 1);
     else
-        ability:setMsg(156);
+        ability:setMsg(msgBasic.JA_NO_EFFECT);
     end
     action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
     action:speceffect(target:getID(), 1)

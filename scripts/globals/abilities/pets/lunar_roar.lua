@@ -1,12 +1,10 @@
----------------------------------------------------
+---------------------------------------------
 -- Aerial Armor
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
     return 0,0;

@@ -40,39 +40,41 @@ CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 
 
 CLatentEffect::~CLatentEffect()
 {
+    if(m_Activated)
+        Deactivate();
 }
 
-LATENT CLatentEffect::GetConditionsID()
+LATENT CLatentEffect::GetConditionsID() const
 {
     return m_ConditionsID;
 }
 
-uint16 CLatentEffect::GetConditionsValue()
+uint16 CLatentEffect::GetConditionsValue() const
 {
     return m_ConditionsValue;
 }
 
-uint8 CLatentEffect::GetSlot()
+uint8 CLatentEffect::GetSlot() const
 {
     return m_SlotID;
 }
 
-Mod CLatentEffect::GetModValue()
+Mod CLatentEffect::GetModValue() const
 {
     return m_ModValue;
 }
 
-int16 CLatentEffect::GetModPower()
+int16 CLatentEffect::GetModPower() const
 {
     return m_ModPower;
 }
 
-bool CLatentEffect::IsActivated()
+bool CLatentEffect::IsActivated() const
 {
     return m_Activated;
 }
 
-CBattleEntity* CLatentEffect::GetOwner()
+CBattleEntity* CLatentEffect::GetOwner() const
 {
     return m_POwner;
 }

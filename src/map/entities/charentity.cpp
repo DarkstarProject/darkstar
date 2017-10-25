@@ -658,8 +658,8 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                 StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) &&
                 static_cast<CBlueSpell*>(PSpell)->getPrimarySkillchain() != 0)
             {
-
-                SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, static_cast<CBlueSpell*>(PSpell));
+                auto PBlueSpell = static_cast<CBlueSpell*>(PSpell);
+                SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PBlueSpell->getPrimarySkillchain(), PBlueSpell->getSecondarySkillchain(), 0 );
                 if (effect != SUBEFFECT_NONE)
                 {
                     uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
@@ -811,8 +811,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     {
                         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getID(),
-                        { static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getPrimarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getTertiarySkillchain()) });
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getPrimarySkillchain(), PWeaponSkill->getSecondarySkillchain(), PWeaponSkill->getTertiarySkillchain() );
                         if (effect != SUBEFFECT_NONE)
                         {
                             actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);
@@ -969,7 +968,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
                     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP(-PAbility->getAnimationID() * 1.5);
+                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
                         this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
                     else {
@@ -1212,7 +1211,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                     actionTarget.messageID = 77;
                 }
 
-                damage = (this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif;
+                damage = (int32)((this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif);
 
                 if (slot == SLOT_RANGED)
                 {
@@ -1288,7 +1287,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
         // lower damage based on shadows taken
         if (shadowsTaken)
-            actionTarget.param = actionTarget.param * (1 - ((float)shadowsTaken / realHits));
+            actionTarget.param = (int32)(actionTarget.param * (1 - ((float)shadowsTaken / realHits)));
 
         // absorb message
         if (actionTarget.param < 0)
@@ -1416,19 +1415,19 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
         {
             actionTarget.animation = 496;
-            hpReturned = GetMaxHP()*0.5;
+            hpReturned = (uint16)(GetMaxHP() * 0.5);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
         }
         addHP(((hpReturned < 1) ? 1 : hpReturned));
@@ -1449,7 +1448,7 @@ void CCharEntity::OnRaise()
             expLost = GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(jobs.job[GetMJob()] + 1) * 8) / 100 : 2400;
         }
 
-        uint16 xpReturned = ceil(expLost * ratioReturned);
+        uint16 xpReturned = (uint16)(ceil(expLost * ratioReturned));
 
         if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {

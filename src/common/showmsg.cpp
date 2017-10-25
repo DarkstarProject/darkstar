@@ -150,7 +150,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 
 	if( !is_console(handle) && stdout_with_ansisequence )
 	{
-		WriteFile(handle,fmt.c_str(),fmt.length(),&written,0);
+		WriteFile(handle,fmt.c_str(),(DWORD)fmt.length(),&written,0);
 		return 0;
 	}
 	// start with processing
@@ -467,7 +467,7 @@ int	VFPRINTF(FILE *file, const std::string& fmt)
 
 	if( is_console(file) || stdout_with_ansisequence )
 	{
-		fprintf(file, fmt.c_str());
+		fputs(fmt.c_str(), file);
 		return 0;
 	}
 
@@ -664,7 +664,7 @@ int _vShowMessage(MSGTYPE flag, const std::string& string)
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
-			fprintf(fp,string.c_str());
+            fputs(string.c_str(), fp);
 			fclose(fp);
 		}
 	}

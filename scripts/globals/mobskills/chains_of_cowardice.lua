@@ -34,7 +34,7 @@ function onMobWeaponSkill(target, mob, skill)
     if target:isPC() and ((target:getRace() == 5 or target:getRace() == 6) and not target:hasKeyItem(LIGHT_OF_HOLLA)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
     else
-        skill:setMsg(msgBasic.NO_EFFECT);
+        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
     end
 
     return typeEffect;

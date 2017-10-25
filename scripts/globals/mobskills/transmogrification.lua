@@ -4,11 +4,9 @@
 --  Description: Activates a shield to absorb all incoming magical damage.
 --  Type: Magical
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

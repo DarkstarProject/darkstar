@@ -122,7 +122,7 @@ function onTrigger(player,npc)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
             player:startEvent(0x00C6);
-            npc:wait(-1);
+            npc:wait();
         elseif (progress == 1 or failed == 2) then
                 player:startEvent(0x00D0);  -- asking for workbench
         elseif (progress >= 2 or failed >= 3) then
@@ -130,7 +130,7 @@ function onTrigger(player,npc)
         end
     else
         player:startEvent(0x00C6);
-        npc:wait(-1);
+        npc:wait();
     end
 end;
 -----------------------------------

@@ -707,7 +707,7 @@ private:
     uint16      m_animationID;
     duration    m_animationTime;
     duration    m_castTime;
-    uint8       m_range;
+    float       m_range;
     uint8       m_aoe;
     uint16      m_validTarget;
     uint16      m_addType;

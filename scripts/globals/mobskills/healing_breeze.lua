@@ -1,8 +1,8 @@
 ---------------------------------------------
---  Healing Breeze
+-- Healing Breeze
 --
---  Description: Restores HP for party members within area of effect.
---  Type: Magical (Wind)
+-- Description: Restores HP for party members within area of effect.
+-- Type: Magical (Wind)
 --
 --
 ---------------------------------------------
@@ -17,7 +17,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local potency = skill:getParam();
 
     if (potency == 0) then

@@ -24,18 +24,12 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/utils");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
 
 function onSpellCast(caster,target,spell)
     -- also have small constant to account for 0 dark skill
@@ -46,7 +40,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     -- get the resisted damage
     dmg = dmg*resist;
     -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -62,7 +56,7 @@ function onSpellCast(caster,target,spell)
     dmg = dmg * BLUE_POWER;
 
     if (target:isUndead()) then
-        spell:setMsg(75); -- No effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
         return dmg;
     end
 

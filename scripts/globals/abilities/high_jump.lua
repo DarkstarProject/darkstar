@@ -5,25 +5,17 @@
 -- Recast Time: 2:00
 -- Duration: Instant
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability,action)
-
     local params = {};
     params.numHits = 1;
     local ftp = 1
@@ -37,7 +29,7 @@ function onUseAbility(player,target,ability,action)
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
-    params.targetTPMult = 0
+    params.targetTPMult = 0;
 
     if (target:isMob()) then
         local enmityShed = 50;
@@ -59,9 +51,10 @@ function onUseAbility(player,target,ability,action)
         if (criticalHit) then
             action:speceffect(target:getID(), 38)
         end
+        action:messageID(target:getID(), msgBasic.USES_JA)
         action:speceffect(target:getID(), 32)
     else
-        ability:setMsg(msgBasic.USES_BUT_MISSES)
+        action:messageID(target:getID(), msgBasic.JA_MISS_2)
         action:speceffect(target:getID(), 0)
     end
 

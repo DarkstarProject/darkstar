@@ -12,25 +12,17 @@
 -- Magic Bursts on: Induration, Distortion, and Darkness
 -- Combos: Auto Refresh
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_FROST;
     local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
     local params = {};
@@ -39,10 +31,10 @@ function onSpellCast(caster,target,spell)
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
     params.effect = nil;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
 
     if (target:getStatusEffect(EFFECT_BURN) ~= nil) then
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     elseif (resist > 0.5) then
         if (target:getStatusEffect(EFFECT_CHOKE) ~= nil) then
             target:delStatusEffect(EFFECT_CHOKE);
@@ -57,18 +49,18 @@ function onSpellCast(caster,target,spell)
             end;
         end;
         if (noeffect) then
-            spell:setMsg(75); -- no effect
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
         else
             if (effect ~= nil) then
                 target:delStatusEffect(typeEffect);
             end;
-                spell:setMsg(237);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB);
             local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
             target:addStatusEffect(typeEffect,DOT,3,ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
         end;
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end;
-    
+
     return typeEffect;
 end;

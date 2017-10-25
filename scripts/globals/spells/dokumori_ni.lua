@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Dokumori: Ni
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -28,22 +25,22 @@ function onSpellCast(caster,target,spell)
 
     --Calculates resist chanve from Reist Blind
     if (target:hasStatusEffect(effect)) then
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
         return effect;
     end
 
     if (math.random(0,100) >= target:getMod(MOD_POISONRES)) then
         if (duration >= 60) then
             if (target:addStatusEffect(effect,power,3,duration)) then
-                spell:setMsg(236);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(75);
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
     return effect;
 end;

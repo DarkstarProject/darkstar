@@ -1,12 +1,12 @@
----------------------------------------------------
+---------------------------------------------
 -- Wanion
 -- AoE of all status ailments it has.
----------------------------------------------------
+---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;
@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
             effectCount = true;
             local currentEffect = mob:getStatusEffect(effect);
             local msg = MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), currentEffect:getTick(), 120);
-            if (msg == msgBasic.ENFEEB_IS) then
+            if (msg == msgBasic.SKILL_ENFEEB_IS) then
                 lastEffect = effect;
             end
         end
@@ -36,7 +36,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- no effects present
     if (effectCount == false) then
-        skill:setMsg(msgBasic.NO_EFFECT);
+        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
     end
 
     return lastEffect;

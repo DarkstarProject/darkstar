@@ -175,7 +175,7 @@ void CTradeContainer::setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint
 
 uint8 CTradeContainer::getSize()
 {
-    return m_PItem.size();
+    return (uint8)m_PItem.size();
 }
 
 void CTradeContainer::setSize(uint8 size)

@@ -219,7 +219,7 @@ void CItemArmor::addPetModifier(CPetModifier* modifier)
     petModList.push_back(modifier);
 }
 
-void CItemArmor::addLatent(CLatentEffect* latent)
+void CItemArmor::addLatent(CLatentEffect latent)
 {
 	latentList.push_back(latent);
 }
@@ -237,7 +237,7 @@ void CItemArmor::setTrialNumber(uint16 trial)
     else
         WBUFB(m_extra, 0x01) &= ~0x40;
 
-    WBUFB(m_extra, 0x0A) = trial;
+    WBUFB(m_extra, 0x0A) = (uint8)trial;
 }
 
 uint16 CItemArmor::getTrialNumber()
@@ -258,8 +258,8 @@ void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
 void CItemArmor::ApplyAugment(uint8 slot)
 {
     SetAugmentMod(
-        unpackBitsBE(m_extra, 2 + (slot * 2), 0, 11),
-        unpackBitsBE(m_extra, 2 + (slot * 2), 11, 5)
+        (uint16)unpackBitsBE(m_extra, 2 + (slot * 2), 0, 11),
+        (uint8)unpackBitsBE(m_extra, 2 + (slot * 2), 11, 5)
         );
 }
 

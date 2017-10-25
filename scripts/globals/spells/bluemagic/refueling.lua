@@ -10,26 +10,18 @@
 -- Casting Time: 1.5 seconds
 -- Recast Time: 30 seconds
 -- Duration: 5 minutes
--- 
+--
 -- Combos: None
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_HASTE;
     local power = 102;
     local duration = 300;
@@ -43,9 +35,9 @@ function onSpellCast(caster,target,spell)
 
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end;
-    
+
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

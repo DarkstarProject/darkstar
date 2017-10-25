@@ -1,4 +1,4 @@
----------------------------------------------------
+---------------------------------------------
 -- Crystaline Cocoon
 -- Family: Aern
 -- Type: Enhancing
@@ -6,20 +6,17 @@
 -- Utsusemi/Blink absorb: N/A
 -- Range: Self
 -- Notes:
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local typeEffect1 = EFFECT_PROTECT;
     local typeEffect2 = EFFECT_SHELL;
     local power1 = 50;

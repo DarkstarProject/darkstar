@@ -303,6 +303,7 @@ enum class Mod
     AUSPICE_EFFECT            = 484, // Bonus to Auspice Subtle Blow Effect.
     AOE_NA                    = 524, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil
     REGEN_MULTIPLIER          = 838, // Multiplier to base regen rate
+    CURE2MP_PERCENT           = 860, // Converts % of "Cure" amount to MP
 
     // Black Mage
     CLEAR_MIND                = 295, // Used in conjunction with HEALMP to increase amount between tics
@@ -466,7 +467,7 @@ enum class Mod
     SAMBA_PDURATION           = 498, // Samba percent duration bonus
     REVERSE_FLOURISH_EFFECT   = 836, // Reverse Flourish effect in tenths of squared term multiplier
 
-    //Scholar
+    // Scholar
     BLACK_MAGIC_COST          = 393, // MP cost for black magic (light/dark arts)
     WHITE_MAGIC_COST          = 394, // MP cost for white magic (light/dark arts)
     BLACK_MAGIC_CAST          = 395, // Cast time for black magic (light/dark arts)
@@ -495,7 +496,7 @@ enum class Mod
 
     TP_BONUS                  = 345, //
 
-    //stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
+    // Stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
     FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
     EARTH_AFFINITY_DMG        = 348, // the damage/acc/perp affinity on the same weapon, so they must be separated.
     WATER_AFFINITY_DMG        = 349, // Each level of damage affinity is +/-5% damage, acc is +/-10 acc, and perp is
@@ -550,7 +551,7 @@ enum class Mod
 
     WYVERN_BREATH             = 402, //
 
-    /// Gear set modifiers
+    // Gear set modifiers
     DA_DOUBLE_DAMAGE          = 408, // Double attack's double damage chance %.
     TA_TRIPLE_DAMAGE          = 409, // Triple attack's triple damage chance %.
     ZANSHIN_DOUBLE_DAMAGE     = 410, // Zanshin's double damage chance %.
@@ -570,7 +571,7 @@ enum class Mod
     RERAISE_II                = 457, // Reraise II.
     RERAISE_III               = 458, // Reraise III.
 
-    //Elemental Absorb Chance
+    // Elemental Absorb Chance
     FIRE_ABSORB               = 459, // Occasionally absorbs fire elemental damage, in percents
     EARTH_ABSORB              = 460, // Occasionally absorbs earth elemental damage, in percents
     WATER_ABSORB              = 461, // Occasionally absorbs water elemental damage, in percents
@@ -580,7 +581,7 @@ enum class Mod
     LIGHT_ABSORB              = 465, // Occasionally absorbs light elemental damage, in percents
     DARK_ABSORB               = 466, // Occasionally absorbs dark elemental damage, in percents
 
-    //Elemental Null Chance
+    // Elemental Null Chance
     FIRE_NULL                 = 467, //
     EARTH_NULL                = 468, //
     WATER_NULL                = 469, //
@@ -667,8 +668,11 @@ enum class Mod
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
 
+    // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 860, // stuff
+    // SPARE = 861, // stuff
+    // SPARE = 862, // stuff
+    // SPARE = 863, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

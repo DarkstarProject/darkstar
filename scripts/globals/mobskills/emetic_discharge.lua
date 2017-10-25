@@ -1,10 +1,10 @@
 ---------------------------------------------
---  Emetic Discharge
---  Family: Bloodlapper and Brummbar
---  Description: Transfers all ailments to target
---  Type: Enfeebling
---  Utsusemi/Blink absorb: 2-3 shadows
---  Notes:
+-- Emetic Discharge
+-- Family: Bloodlapper and Brummbar
+-- Description: Transfers all ailments to target
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: 2-3 shadows
+-- Notes:
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -37,6 +37,6 @@ function onMobWeaponSkill(target, mob, skill)
         end;
     end;
 
-    skill:setMsg(msgBasic.NO_EFFECT); -- no effect
+    skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     return 0;
 end;

@@ -8,7 +8,7 @@ SUMMONING_MAGIC_SKILL = 38
 function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgmodsubsequent,tpeffect,mtp100,mtp200,mtp300)
     returninfo = {};
 
-    --Damage = (D+fSTR) * dmgmod * PDIF
+    -- Damage = (D+fSTR) * dmgmod * PDIF
     -- printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
     fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
 
@@ -24,7 +24,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
 
     lvldiff = lvluser - lvltarget;
 
-    --work out hit rate for mobs (bias towards them)
+    -- work out hit rate for mobs (bias towards them)
     hitrate = (acc*accmod) - eva;
     if (lvluser > lvltarget) then
         hitrate = hitrate + ((lvluser-lvltarget)*5);
@@ -64,7 +64,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     if (tpeffect==TP_DMG_BONUS) then
         hitdamage = hitdamage * avatarFTP(skill:getTP(), mtp100, mtp200, mtp300);
     end
-    --Applying pDIF
+    -- Applying pDIF
     local pdif = 0;
 
     -- start the hits
@@ -72,7 +72,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     finaldmg = 0;
     hitsdone = 1; hitslanded = 0;
 
-    --add on native crit hit rate (guesstimated, it actually follows an exponential curve)
+    -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
     nativecrit = (avatar:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
     nativecrit = nativecrit + (avatar:getMod(MOD_CRITHITRATE)/100);
 
@@ -118,7 +118,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     if (hitslanded == 0 or finaldmg == 0) then
         finaldmg = 0;
         hitslanded = 0;
-        skill:setMsg(msgBasic.MISS);
+        skill:setMsg(msgBasic.SKILL_MISS);
     end
 
     if finaldmg > 0 then
@@ -131,7 +131,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     return returninfo;
 end;
 
---Given the attacker's str and the mob's vit, fSTR is calculated
+-- Given the attacker's str and the mob's vit, fSTR is calculated
 function avatarFSTR(atk_str,def_vit)
     local dSTR = atk_str - def_vit;
     if (dSTR >= 12) then
@@ -151,7 +151,7 @@ function avatarFSTR(atk_str,def_vit)
     else
         fSTR2 = ((dSTR+13)/2);
     end
-    --Apply fSTR caps.
+    -- Apply fSTR caps.
     if (fSTR2< -1) then
         fSTR2 = -1;
     elseif (fSTR2>8) then
@@ -181,7 +181,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         end
 
         if (targShadows>0) then
-        --Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
+        -- Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
             if (targShadows >= shadowbehav) then --no damage, just suck the shadows
                 skill:setMsg(31);
                 target:setMod(shadowType,(targShadows-shadowbehav));
@@ -201,7 +201,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
                     end
                 end
                 return shadowbehav;
-            else --less shadows than this move will take, remove all and factor damage down
+            else -- less shadows than this move will take, remove all and factor damage down
                 dmg = dmg * ((shadowbehav-targShadows)/shadowbehav);
                 target:setMod(MOD_UTSUSEMI,0);
                 target:setMod(MOD_BLINK,0);
@@ -216,7 +216,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         target:delStatusEffect(EFFECT_BLINK);
     end
 
-    --handle Third Eye using shadowbehav as a guide
+    -- handle Third Eye using shadowbehav as a guide
     teye = target:getStatusEffect(EFFECT_THIRD_EYE);
     if (teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
         if (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
@@ -258,7 +258,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         return 0;
     end
 
-    --handling phalanx
+    -- handling phalanx
     dmg = dmg - target:getMod(MOD_PHALANX);
     if (dmg<0) then
         return 0;
@@ -268,13 +268,13 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     if (target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
-    --handle pd
+    -- handle pd
     if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
 
-    --handling stoneskin
+    -- handling stoneskin
     skin = target:getMod(MOD_STONESKIN);
     if (skin>0) then
         if (skin >= dmg) then --absorb all damage
@@ -283,7 +283,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
                 target:delStatusEffect(EFFECT_STONESKIN);
             end
             return 0;
-        else --absorbs some damage then wear
+        else -- absorbs some damage then wear
             target:delMod(MOD_STONESKIN,skin);
             target:delStatusEffect(EFFECT_STONESKIN);
             return dmg - skin;
@@ -313,17 +313,15 @@ function avatarFTP(tp,ftp1,ftp2,ftp3)
     return 1; -- no ftp mod
 end;
 
---------
---  Checks if the summoner is in a Trial Size Avatar Mini Fight (used to restrict summoning while in bcnm)
---------
+-- Checks if the summoner is in a Trial Size Avatar Mini Fight (used to restrict summoning while in bcnm)
 function avatarMiniFightCheck(caster)
-   local result = 0;
-   local bcnmid;
-   if (caster:hasStatusEffect(EFFECT_BATTLEFIELD) == true) then
-      bcnmid = caster:getStatusEffect(EFFECT_BATTLEFIELD):getPower();
-      if (bcnmid == 418 or bcnmid == 609 or bcnmid == 450 or bcnmid == 482 or bcnmid == 545 or bcnmid == 578) then -- Mini Avatar Fights
-         result = 40; -- Cannot use <spell> in this area.
-      end
-   end
-   return result;
+    local result = 0;
+    local bcnmid;
+    if (caster:hasStatusEffect(EFFECT_BATTLEFIELD) == true) then
+        bcnmid = caster:getStatusEffect(EFFECT_BATTLEFIELD):getPower();
+        if (bcnmid == 418 or bcnmid == 609 or bcnmid == 450 or bcnmid == 482 or bcnmid == 545 or bcnmid == 578) then -- Mini Avatar Fights
+            result = 40; -- Cannot use <spell> in this area.
+        end
+    end
+      return result;
 end;

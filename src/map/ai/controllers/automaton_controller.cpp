@@ -506,7 +506,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     // This might be wrong
     if (PCastTarget)
     {
-        float missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
+        auto missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
         if (missinghp > 850 && Cast(PCastTarget->targid, SpellID::Cure_VI ))
             return true;
         else if (missinghp > 600 && Cast(PCastTarget->targid, SpellID::Cure_V))
@@ -1127,7 +1127,7 @@ bool CAutomatonController::TryEnhance()
     if (!PHasteTarget && !haste)
         PHasteTarget = PAutomaton;
 
-    uint8 members = 0;
+    size_t members = 0;
 
     // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
     if (PAutomaton->PMaster->PParty)
@@ -1277,7 +1277,7 @@ bool CAutomatonController::TryTPMove()
         if (attemptChain)
         {
             CStatusEffect* PSCEffect = PTarget->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
-            if (PSCEffect)
+            if (PSCEffect && PSCEffect->GetStartTime() + 3s < server_clock::now())
             {
                 std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
                 if (PSCEffect->GetTier() == 0)
@@ -1414,8 +1414,8 @@ namespace autoSpell
             {
                 SpellID id = (SpellID)Sql_GetUIntData(SqlHandle, 0);
                 AutomatonSpell PSpell {
-                    Sql_GetUIntData(SqlHandle, 1),
-                    Sql_GetUIntData(SqlHandle, 2),
+                    (uint16)Sql_GetUIntData(SqlHandle, 1),
+                    (uint8)Sql_GetUIntData(SqlHandle, 2),
                     (EFFECT)Sql_GetUIntData(SqlHandle, 3),
                     (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)
                 };

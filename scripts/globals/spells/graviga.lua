@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Gravity
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -31,12 +28,12 @@ function onSpellCast(caster,target,spell)
 
     if (duration >= 30) then --Do it!
         if (target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
 
     return EFFECT_WEIGHT;

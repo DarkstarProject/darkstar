@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Yurin: Ichi
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -24,14 +21,14 @@ function onSpellCast(caster,target,spell)
     params.skillType = NINJUTSU_SKILL;
     params.bonus = 0;
     params.effect = nil;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --Base power is 10 and is not affected by resistaces.
     local power = 10;
 
     --Calculates Resist Chance
     if (resist >= 0.125) then
         local duration = 180 * resist;
-        
+
         if (duration >= 50) then
             -- Erases a weaker inhibit tp and applies the stronger one
             local inhibit_tp = target:getStatusEffect(effect);
@@ -39,21 +36,21 @@ function onSpellCast(caster,target,spell)
                 if (inhibit_tp:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
-                    spell:setMsg(237);
+                    spell:setMsg(msgBasic.MAGIC_ENFEEB);
                 else
                     -- no effect
-                    spell:setMsg(75);
+                    spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
                 end
             else
                 target:addStatusEffect(effect,power,0,duration);
-                spell:setMsg(237);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
-    
+
     return effect;
 end;

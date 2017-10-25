@@ -3,12 +3,8 @@
 -- Item: Mjollnir
 -- Additional Effect: Recover MP
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)

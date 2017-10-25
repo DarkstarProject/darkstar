@@ -1,13 +1,10 @@
 -----------------------------------------
 -- Spell: Teleport-Altep
 -----------------------------------------
-
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -19,7 +16,7 @@ function onSpellCast(caster,target,spell)
         target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_ALTEP,0,4.7);
         spell:setMsg(93);
     else
-        spell:setMsg(283);
+        spell:setMsg(msgBasic.NO_EFFECT);
     end;
 
     return 0;

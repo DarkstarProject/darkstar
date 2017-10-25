@@ -1,10 +1,10 @@
 ---------------------------------------------
---  Pyric Bulwark
+-- Pyric Bulwark
 --
---  Description: Grants a Physical Shield effect for a time.
---  Type: Enhancing
+-- Description: Grants a Physical Shield effect for a time.
+-- Type: Enhancing
 --
---  Range: Self
+-- Range: Self
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -14,7 +14,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
 
-  if(mob:getFamily() == 316) then
+  if (mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
 
     if (mobSkin == 1796) then
@@ -35,7 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- addEx to pervent dispel
     mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD,0,1,0,45)
-    skill:setMsg(msgBasic.BUFF)
+    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT)
     if (mob:getFamily() == 313) then -- Tinnin follows this up immediately with Nerve Gas
         mob:useMobAbility(1580);
     end

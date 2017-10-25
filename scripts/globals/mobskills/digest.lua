@@ -1,4 +1,4 @@
----------------------------------------------------
+---------------------------------------------
 -- Digest
 -- Deals dark damage to a single target. Additional effect: Drain
 -- Type: Magical

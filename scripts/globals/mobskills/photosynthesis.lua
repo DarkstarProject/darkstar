@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Photosynthesis
+-- Photosynthesis
 --
---  Description: Adds a Regen effect.
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes: Only available during daytime.
+-- Description: Adds a Regen effect.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes: Only available during daytime.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     -- only used during daytime
     local currentTime = VanadielHour();

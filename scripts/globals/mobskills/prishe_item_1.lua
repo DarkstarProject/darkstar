@@ -1,11 +1,14 @@
 ---------------------------------------------
---  Prishe Item 1
+-- Prishe Item 1
 ---------------------------------------------
+package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
+---------------------------------------------
+require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 1;
 end;

@@ -12,25 +12,17 @@
 -- Magic Bursts on: Transfixion, Fusion, Light
 -- Combos: None
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local params = {};
     params.attribute = MOD_INT;
@@ -44,13 +36,13 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(341);
             effect = target:dispelStatusEffect();
             if (effect == EFFECT_NONE) then
-                spell:setMsg(75);
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end;
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end;
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return effect;

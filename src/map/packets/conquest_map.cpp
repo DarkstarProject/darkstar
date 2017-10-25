@@ -87,13 +87,13 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 
             if (PChar->loc.zone->GetRegionID() == regionid)
             {
-                WBUFB(data, (0x86)) = (san_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-                WBUFB(data, (0x87)) = (bas_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-                WBUFB(data, (0x88)) = (win_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-                WBUFB(data, (0x89)) = (san_inf*100) / (total == 0 ? 1 : total);
-                WBUFB(data, (0x8A)) = (bas_inf*100) / (total == 0 ? 1 : total);
-                WBUFB(data, (0x8B)) = (win_inf*100) / (total == 0 ? 1 : total);
-                WBUFB(data, (0x94)) = (bst_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+                WBUFB(data, (0x86)) = (uint8)((san_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x87)) = (uint8)((bas_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x88)) = (uint8)((win_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x89)) = (uint8)((san_inf * 100) / (total == 0 ? 1 : total));
+                WBUFB(data, (0x8A)) = (uint8)((bas_inf * 100) / (total == 0 ? 1 : total));
+                WBUFB(data, (0x8B)) = (uint8)((win_inf * 100) / (total == 0 ? 1 : total));
+                WBUFB(data, (0x94)) = (uint8)((bst_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
             }
         }
     }

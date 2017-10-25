@@ -5,28 +5,22 @@
 -- Monster Type: Seethers
 -- Spell Type: Magical (Wind)
 -- Blue Magic Points: 3
--- Stat Bonus: VIT+3 CHR-2 
+-- Stat Bonus: VIT+3 CHR-2
 -- Level: 88
 -- Casting Time: 2 seconds
 -- Recast Time: 1 minute, 30 seconds
--- 
+--
 -- Combos: Evasion Bonus
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
-end;-----------------------------------------
--- OnSpellCast
------------------------------------------
+end;
 
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_BLINK;
     local skill = caster:getSkillLevel(BLUE_SKILL);
     local power = (skill / 50);
@@ -50,7 +44,7 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

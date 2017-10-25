@@ -2434,6 +2434,12 @@ INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,366,1,255); -- graviga
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,367,1,255); -- death
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,498,1,255); -- aeroja
 
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,252,1,255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,277,1,255); -- Dread Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,245,1,255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,246,1,255); -- Drain II
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,275,1,255); -- Absorb-TP
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,242,1,255); -- Absorb-ACC
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

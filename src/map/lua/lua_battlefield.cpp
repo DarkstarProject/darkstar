@@ -88,7 +88,7 @@ inline int32 CLuaBattlefield::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetTimeLimit()).count());
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetTimeLimit()).count());
     return 1;
 }
 
@@ -96,9 +96,9 @@ inline int32 CLuaBattlefield::getTimeInside(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    uint32 duration = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetTimeInside()).count();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetTimeInside()).count();
 
-    lua_pushinteger(L, duration);
+    lua_pushinteger(L, (lua_Integer)duration);
     return 1;
 }
 
@@ -106,7 +106,7 @@ inline int32 CLuaBattlefield::getRemainingTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetRemainingTime()).count());
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetRemainingTime()).count());
     return 1;
 }
 
@@ -114,7 +114,7 @@ inline int32 CLuaBattlefield::getFightTick(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetFightTime() - m_PLuaBattlefield->GetStartTime()).count());
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetFightTime() - m_PLuaBattlefield->GetStartTime()).count());
     return 1;
 }
 
@@ -124,7 +124,7 @@ inline int32 CLuaBattlefield::getWipeTime(lua_State* L)
 
     auto count = std::chrono::duration_cast<std::chrono::seconds>(get_server_start_time() - m_PLuaBattlefield->GetWipeTime()).count();
 
-    lua_pushinteger(L, count);
+    lua_pushinteger(L, (lua_Integer)count);
     return 1;
 }
 
@@ -132,7 +132,7 @@ inline int32 CLuaBattlefield::getFightTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(get_server_start_time() - m_PLuaBattlefield->GetFightTime()).count());
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(get_server_start_time() - m_PLuaBattlefield->GetFightTime()).count());
     return 1;
 }
 
@@ -141,7 +141,7 @@ inline int32 CLuaBattlefield::getPlayers(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, m_PLuaBattlefield->m_EnteredPlayers.size(), 0);
-    int8 newTable = lua_gettop(L);
+    auto newTable = lua_gettop(L);
     int i = 1;
 
     m_PLuaBattlefield->ForEachPlayer([&](CCharEntity* PChar)
@@ -212,7 +212,7 @@ inline int32 CLuaBattlefield::getNPCs(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, m_PLuaBattlefield->m_NpcList.size(), 0);
-    int8 newTable = lua_gettop(L);
+    auto newTable = lua_gettop(L);
     int i = 1;
 
     m_PLuaBattlefield->ForEachNpc([&](CNpcEntity* PNpc)
@@ -234,7 +234,7 @@ inline int32 CLuaBattlefield::getAllies(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, m_PLuaBattlefield->m_AllyList.size(), 0);
-    int8 newTable = lua_gettop(L);
+    auto newTable = lua_gettop(L);
     int i = 1;
 
     m_PLuaBattlefield->ForEachAlly([&](CMobEntity* PAlly)
@@ -261,8 +261,8 @@ inline int32 CLuaBattlefield::getRecord(lua_State* L)
     const auto& record = m_PLuaBattlefield->GetRecord();
 
     lua_pushstring(L, record.name.c_str());
-    lua_pushinteger(L, std::chrono::duration_cast<std::chrono::seconds>(record.time).count());
-    lua_pushinteger(L, record.partySize);
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(record.time).count());
+    lua_pushinteger(L, (lua_Integer)record.partySize);
     return 3;
 }
 
@@ -279,7 +279,7 @@ inline int32 CLuaBattlefield::getLocalVar(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-    lua_pushinteger(L, m_PLuaBattlefield->GetLocalVar(lua_tostring(L, 1)));
+    lua_pushinteger(L, (lua_Integer)m_PLuaBattlefield->GetLocalVar(lua_tostring(L, 1)));
     return 1;
 }
 
@@ -289,7 +289,7 @@ inline int32 CLuaBattlefield::getLastTimeUpdate(lua_State* L)
 
     auto count = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetLastTimeUpdate()).count();
 
-    lua_pushinteger(L, count);
+    lua_pushinteger(L, (lua_Integer)count);
     return 1;
 }
 
@@ -299,7 +299,7 @@ inline int32 CLuaBattlefield::getInitiator(lua_State* L)
 
     const auto& initiator = m_PLuaBattlefield->GetInitiator();
 
-    lua_pushinteger(L, initiator.id);
+    lua_pushinteger(L, (lua_Integer)initiator.id);
     lua_pushstring(L, initiator.name.c_str());
     return 2;
 }
@@ -310,7 +310,7 @@ inline int32 CLuaBattlefield::setLocalVar(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    m_PLuaBattlefield->SetLocalVar(lua_tostring(L, 1), lua_tointeger(L, 2));
+    m_PLuaBattlefield->SetLocalVar(lua_tostring(L, 1), (uint64_t)lua_tointeger(L, 2));
     return 0;
 }
 

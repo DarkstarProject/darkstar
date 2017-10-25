@@ -44,7 +44,7 @@ function onTrade(player,npc,trade)
     if (player:getVar("troubleAtTheSluiceVar") == 2) then
         if (trade:hasItemQty(959,1) and trade:getItemCount() == 1) then -- Trade Dahlia
             player:startEvent(0x0011);
-            npc:wait(-1);
+            npc:wait();
         end
     end
     if (player:getQuestStatus(SANDORIA,THE_RUMOR) == QUEST_ACCEPTED) then
@@ -52,7 +52,7 @@ function onTrade(player,npc,trade)
         local BeastBlood = trade:hasItemQty(930,1)
         if (BeastBlood == true and count == 1) then
             player:startEvent(0x000c);
-            npc:wait(-1);
+            npc:wait();
         end
     end
 end;
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
     local theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
     local crestCheck = player:getVar("theHolyCrestCheck");
 
-    npc:wait(-1);
+    npc:wait();
 
     -- The Holy Crest Quest
     if (TheHolyCrest == 1) then

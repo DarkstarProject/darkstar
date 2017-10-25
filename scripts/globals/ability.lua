@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  ABILITIES
+-- ABILITIES
 --
 -----------------------------------
 require("scripts/globals/status");
@@ -486,8 +486,8 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
     --handle pd
     if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
-            and skilltype==MOBSKILL_PHYSICAL) then
-        skill:setMsg(msgBasic.USES_BUT_MISSES);
+            and skilltype == MOBSKILL_PHYSICAL) then
+        skill:setMsg(msgBasic.JA_MISS_2);
         return 0;
     end
 

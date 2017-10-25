@@ -105,15 +105,14 @@ class CLatentEffect
 {
 public:
 
-    LATENT      GetConditionsID();
-    uint16      GetConditionsValue();
-    uint8       GetSlot();
-    Mod         GetModValue();
-    int16       GetModPower();
-    bool        IsActivated();
-    uint16      GetFlag();
+    LATENT      GetConditionsID() const;
+    uint16      GetConditionsValue() const;
+    uint8       GetSlot() const;
+    Mod         GetModValue() const;
+    int16       GetModPower() const;
+    bool        IsActivated() const;
 
-    CBattleEntity* GetOwner();
+    CBattleEntity* GetOwner() const;
 
     void    SetConditionsId(LATENT id);
     void    SetConditionsValue(uint16 value);

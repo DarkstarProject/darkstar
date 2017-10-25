@@ -55,7 +55,7 @@ function onTrigger(player,npc)
     end
 
     -- wait until event is over
-    npc:wait(-1);
+    npc:wait();
 end; 
 
 -----------------------------------

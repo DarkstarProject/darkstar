@@ -1,14 +1,15 @@
 ---------------------------------------------
---  Lead Breath
+-- Lead Breath
 --
---  Description: Weighs down players.
+-- Description: Weighs down players.
 --
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

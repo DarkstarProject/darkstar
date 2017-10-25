@@ -1,14 +1,12 @@
 ---------------------------------------------
---  Occultation
+-- Occultation
 --
---  Description: Creates 25 shadows
---  Type: Magical (Wind)
+-- Description: Creates 25 shadows
+-- Type: Magical (Wind)
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

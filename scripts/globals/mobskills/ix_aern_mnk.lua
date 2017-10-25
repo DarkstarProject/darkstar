@@ -1,12 +1,12 @@
----------------------------------------------------
+---------------------------------------------
 -- Hundred Fists
 -- Meant for Ix'Aern (MNK)
----------------------------------------------------
+---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() == 4661 and mob:getHPP() <= 50

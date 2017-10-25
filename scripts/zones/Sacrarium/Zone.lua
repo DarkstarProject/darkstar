@@ -5,10 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/settings");
 require("scripts/zones/Sacrarium/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onInitialize
@@ -16,7 +15,7 @@ require("scripts/zones/Sacrarium/TextIDs");
 
 function onInitialize(zone)
     -- Set random variable for determining Old Prof. Mariselle's spawn location
-    local rand = math.random((2),(7));
+    local rand = math.random(2,7);
     SetServerVariable("Old_Prof_Spawn_Location", rand);
 
     UpdateTreasureSpawnPoint(16892183);
@@ -31,11 +30,17 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-219.996,-18.587,82.795,64);
     end
-    -- ZONE LEVEL RESTRICTION
-    if (ENABLE_COP_ZONE_CAP == 1) then
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);
-    end
     return cs;
+end;
+
+-----------------------------------
+-- afterZoneIn
+-----------------------------------
+
+function afterZoneIn(player)
+    if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
+        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0); -- LV50 cap
+    end
 end;
 
 -----------------------------------
@@ -49,7 +54,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
 
 -----------------------------------
 -- onRegionEnter

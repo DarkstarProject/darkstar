@@ -91,7 +91,7 @@ typedef struct
 typedef struct
 {
     std::string name;
-    uint8 partySize;
+    size_t partySize;
     duration time;
 } BattlefieldRecord_t;
 
@@ -124,8 +124,8 @@ public:
     time_point             GetFightTime() const;
     duration               GetTimeLimit() const;
     time_point             GetWipeTime() const;
-    uint8                  GetMaxParticipants() const;
-    uint8                  GetPlayerCount() const;
+    size_t                 GetMaxParticipants() const;
+    size_t                 GetPlayerCount() const;
     uint8                  GetLevelCap() const;
     duration               GetFinishTime() const;
     duration               GetRemainingTime() const;
@@ -146,7 +146,7 @@ public:
     void                   SetName(const std::string& name);
     void                   SetInitiator(const std::string& name);
     void                   SetArea(uint8 area);
-    void                   SetRecord(const std::string& name, duration time, uint8 partySize);
+    void                   SetRecord(const std::string& name, duration time, size_t partySize);
     void                   SetStatus(uint8 status);
     void                   SetRuleMask(uint16 rulemask);
     void                   SetStartTime(time_point time);
@@ -170,8 +170,8 @@ public:
     bool                   LoadMobs();
     bool                   SpawnLoot();
 
-    std::set<uint32>           m_RegisteredPlayers;
-    std::set<uint32>           m_EnteredPlayers;
+    std::set<uint32>              m_RegisteredPlayers;
+    std::set<uint32>              m_EnteredPlayers;
     std::vector<CNpcEntity*>      m_NpcList;
     std::vector<BattlefieldMob_t> m_RequiredEnemyList;
     std::vector<BattlefieldMob_t> m_AdditionalEnemyList;
@@ -193,7 +193,7 @@ private:
     time_point             m_WipeTime;
     duration               m_FinishTime;
     duration               m_LastPromptTime;
-    uint8                  m_MaxParticipants;
+    size_t                 m_MaxParticipants;
     uint8                  m_LevelCap;
 
     bool                   m_Cleanup{ false };

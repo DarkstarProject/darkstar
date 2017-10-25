@@ -116,7 +116,7 @@ inline int32 CLuaItem::isType(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint8 type = lua_tointeger(L, 1);
+    auto type = (uint8)lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isType((ITEM_TYPE)type));
     return 1;
@@ -127,7 +127,7 @@ inline int32 CLuaItem::isSubType(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint8 subtype = lua_tointeger(L, 1);
+    auto subtype = (uint8)lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isSubType((ITEM_SUBTYPE)subtype));
     return 1;
@@ -163,7 +163,7 @@ inline int32 CLuaItem::addMod(lua_State* L)
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
-    int32 power = lua_tointeger(L, 2);
+    auto power = (int16)lua_tointeger(L, 2);
 
     PItem->addModifier(new CModifier(mod, power));
     return 0;
@@ -178,7 +178,7 @@ inline int32 CLuaItem::delMod(lua_State* L)
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
-    int32 power = lua_tointeger(L, 2);
+    auto power = (int16)lua_tointeger(L, 2);
 
     PItem->addModifier(new CModifier(mod, -power));
     return 0;
@@ -191,10 +191,10 @@ inline int32 CLuaItem::getAugment(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint8 slot = lua_tointeger(L, 1);
+    auto slot = (uint8)lua_tointeger(L, 1);
     uint16 augment = PItem->getAugment(slot);
-    uint16 augmentid = unpackBitsBE((uint8*)(&augment), 0, 11);
-    uint8 augmentVal = unpackBitsBE((uint8*)(&augment), 11, 5);
+    uint16 augmentid = (uint16)unpackBitsBE((uint8*)(&augment), 0, 11);
+    uint8 augmentVal = (uint8)unpackBitsBE((uint8*)(&augment), 11, 5);
 
     lua_pushinteger(L, augmentid);
     lua_pushinteger(L, augmentVal);

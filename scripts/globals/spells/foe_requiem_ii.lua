@@ -3,8 +3,7 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -27,22 +26,22 @@ function onSpellCast(caster,target,spell)
     params.effect = nil;
     resm = applyResistance(caster, target, spell, params);
     if (resm < 0.5) then
-        spell:setMsg(85);--resist message
+        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
         return 1;
     end
 
     local iBoost = caster:getMod(MOD_REQUIEM_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     power = power + iBoost;
-    
+
     if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
         power = power * 2;
     elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
         power = power * 1.5;
     end
     caster:delStatusEffect(EFFECT_MARCATO);
-    
+
     duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
-    
+
     if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
         duration = duration * 2;
     end
@@ -51,9 +50,9 @@ function onSpellCast(caster,target,spell)
         -- overwrite them
         target:delStatusEffect(effect);
         target:addStatusEffect(effect,power,3,duration);
-        spell:setMsg(237);
+        spell:setMsg(msgBasic.MAGIC_ENFEEB);
     else
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     end
 
     return effect;

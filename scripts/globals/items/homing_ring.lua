@@ -8,9 +8,6 @@ require("scripts/globals/conquest");
 require("scripts/globals/status");
 require("scripts/globals/zone");
 require("scripts/globals/msg");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,10 +20,6 @@ function onItemCheck(target)
 
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_HOMING,0,1);

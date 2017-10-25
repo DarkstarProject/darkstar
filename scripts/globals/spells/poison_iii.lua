@@ -1,12 +1,9 @@
 -----------------------------------------
---  Spell: Poison
+-- Spell: Poison
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -44,13 +41,13 @@ function onSpellCast(caster,target,spell)
         duration = duration * resist;
 
         if (target:addStatusEffect(effect,power,3,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
 
     else -- resist entirely.
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return effect;

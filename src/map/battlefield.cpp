@@ -163,12 +163,12 @@ uint64_t CBattlefield::GetLocalVar(const std::string& name) const
     return var != m_LocalVars.end() ? var->second : 0;
 }
 
-uint8 CBattlefield::GetMaxParticipants() const
+size_t CBattlefield::GetMaxParticipants() const
 {
     return m_MaxParticipants;
 }
 
-uint8 CBattlefield::GetPlayerCount() const
+size_t CBattlefield::GetPlayerCount() const
 {
     return m_EnteredPlayers.size();
 }
@@ -203,7 +203,7 @@ void CBattlefield::SetArea(uint8 area)
     m_Area = area;
 }
 
-void CBattlefield::SetRecord(const std::string& name, duration time, uint8 partySize)
+void CBattlefield::SetRecord(const std::string& name, duration time, size_t partySize)
 {
     m_Record.name = !name.empty() ? name : m_Initiator.name;
     m_Record.time = time;
@@ -345,17 +345,50 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
 
 CBaseEntity* CBattlefield::GetEntity(CBaseEntity* PEntity)
 {
-    if (PEntity->objtype == TYPE_PC)
-        ForEachPlayer([&](CCharEntity* PChar) { if (PChar == PEntity) return PEntity; });
-    else if (PEntity->objtype == TYPE_MOB && PEntity->allegiance == ALLEGIANCE_MOB)
-        ForEachEnemy([&](CMobEntity* PMob) { if (PMob == PEntity) return PEntity; });
-    else if (PEntity->objtype == TYPE_MOB && PEntity->allegiance == ALLEGIANCE_PLAYER)
-        ForEachAlly([&](CMobEntity* PAlly) { if (PAlly == PEntity) return PEntity; });
-    else if (PEntity->objtype == TYPE_PET && static_cast<CBattleEntity*>(PEntity)->PMaster->objtype == TYPE_PC)
-        ForEachPlayer([&](CCharEntity* PChar) { if (PChar == static_cast<CBattleEntity*>(PEntity)->PMaster) return PEntity; });
-    else if (PEntity->objtype == TYPE_NPC)
-        ForEachNpc([&](CNpcEntity* PNpc) { if (PNpc == PEntity) return PEntity; });
+    if (!PEntity)
+        return nullptr;
 
+    if (PEntity->objtype == TYPE_PC)
+    {
+        for (const auto id : m_EnteredPlayers)
+            if (id == PEntity->id)
+                return PEntity;
+    }
+    else if (PEntity->objtype == TYPE_MOB)
+    {
+        if (PEntity->allegiance == ALLEGIANCE_MOB)
+        {
+            for (const auto& mob : m_AdditionalEnemyList)
+                if (mob.PMob->id == PEntity->id)
+                    return mob.PMob;
+            for (const auto& mob : m_RequiredEnemyList)
+                if (mob.PMob->id == PEntity->id)
+                    return mob.PMob;
+        }
+        else if (PEntity->allegiance == ALLEGIANCE_PLAYER)
+        {
+            for (auto PAlly : m_AllyList)
+                if (PAlly->id == PEntity->id)
+                    return PAlly;
+        }
+    }
+    else if (PEntity->objtype == TYPE_PET)
+    {
+        if (auto POwner = dynamic_cast<CCharEntity*>(static_cast<CPetEntity*>(PEntity)->PMaster))
+        {
+            for (const auto id : m_EnteredPlayers)
+                if (id == POwner->id)
+                    return POwner;
+        }
+    }
+    else if (PEntity->objtype == TYPE_NPC)
+    {
+        for (auto PNpc : m_NpcList)
+        {
+            if (PNpc->id == PEntity->id)
+                return PNpc;
+        }
+    }
     return nullptr;
 }
 
@@ -432,7 +465,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         entity->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_RESTRICTION);
         ClearEnmityForEntity(entity);
     }
-    ClearEnmityForEntity(dynamic_cast<CBattleEntity*>( PEntity ));
+    ClearEnmityForEntity(dynamic_cast<CBattleEntity*>(PEntity));
 
     PEntity->PBattlefield = nullptr;
     return found;
@@ -600,7 +633,6 @@ bool CBattlefield::CheckInProgress()
             if (m_Status == BATTLEFIELD_STATUS_OPEN)
                 SetStatus(BATTLEFIELD_STATUS_LOCKED);
             m_Attacked = true;
-            return true;
         }
     });
 

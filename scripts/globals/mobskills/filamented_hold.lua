@@ -1,13 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Filamented Hold
 -- Reduces the attack speed of enemies within a fan-shaped area originating from the caster.
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

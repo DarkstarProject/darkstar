@@ -7,9 +7,6 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------
--- onAdditionalEffect Action
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -36,10 +33,6 @@ function onAdditionalEffect(player,target,damage)
     end
 end;
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     local result = 0;
     if (target:getFreeSlotsCount() == 0) then
@@ -47,10 +40,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addTP(100);

@@ -3,8 +3,7 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -15,7 +14,7 @@ function onSpellCast(caster,target,spell)
     local effectType = EFFECT_SILENCE;
 
     if (target:hasStatusEffect(effectType)) then
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
         return effectType;
     end
 
@@ -33,15 +32,15 @@ function onSpellCast(caster,target,spell)
     params.bonus = 0;
     params.effect = EFFECT_SILENCE;
     resist = applyResistanceEffect(caster, target, spell, params);
-        
+
     if (resist >= 0.5) then --Do it!
         if (target:addStatusEffect(effectType,1,0,duration * resist)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75); -- no effect
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return effectType;

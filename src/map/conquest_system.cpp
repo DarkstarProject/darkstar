@@ -578,7 +578,7 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            uint32 points = exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+            uint32 points = (uint32)(exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15));
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);

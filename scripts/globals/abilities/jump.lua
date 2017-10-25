@@ -5,25 +5,17 @@
 -- Recast Time: 1:00
 -- Duration: Instant
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability,action)
-
     local params = {};
     params.numHits = 1;
     local ftp = 1 + (player:getStat(MOD_VIT) / 256);
@@ -39,11 +31,10 @@ function onUseAbility(player,target,ability,action)
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
 
     local taChar = player:getTrickAttackChar(target);
-
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params);
 
     if (tpHits + extraHits > 0) then
-        -- Under Spirit Surge, Jump also decreases target defence by 20% for 60 seconds
+        -- Under Spirit Surge, Jump also decreases target defense by 20% for 60 seconds
         if (player:hasStatusEffect(EFFECT_SPIRIT_SURGE) == true) then
             if (target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
                 target:addStatusEffect(EFFECT_DEFENSE_DOWN, 20, 0, 60);
@@ -52,9 +43,10 @@ function onUseAbility(player,target,ability,action)
         if (criticalHit) then
             action:speceffect(target:getID(), 38)
         end
+        action:messageID(target:getID(), msgBasic.USES_JA)
         action:speceffect(target:getID(), 32)
     else
-        ability:setMsg(msgBasic.USES_BUT_MISSES)
+        action:messageID(target:getID(), msgBasic.JA_MISS_2)
         action:speceffect(target:getID(), 0)
     end
 
