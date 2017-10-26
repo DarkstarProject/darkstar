@@ -36,11 +36,12 @@ CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 
     m_ModValue          = modValue;
     m_ModPower          = modPower;
     m_Activated         = false;
+    m_POwner            = nullptr;
 }
 
 CLatentEffect::~CLatentEffect()
 {
-    if(m_Activated)
+    if (m_Activated)
         Deactivate();
 }
 
@@ -106,7 +107,7 @@ void CLatentEffect::SetModPower(int16 power)
 
 void CLatentEffect::Activate()
 {
-    if( !IsActivated() )
+    if (!IsActivated())
     {
         //additional effect/dmg latents add mod to weapon, not player
         if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)
@@ -128,7 +129,7 @@ void CLatentEffect::Activate()
 
 void CLatentEffect::Deactivate()
 {
-    if( IsActivated() )
+    if (IsActivated())
     {
         //remove the modifier from weapon, not player
         if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)

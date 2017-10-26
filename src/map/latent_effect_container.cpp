@@ -1041,6 +1041,9 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
 // Activates a latent effect if true otherwise deactivates the latent effect
 void CLatentEffectContainer::ApplyLatentEffect(CLatentEffect& effect, bool expression)
 {
+    if (!effect.GetOwner())
+        effect.SetOwner(m_POwner);
+
     if (expression)
     {
         effect.Activate();
