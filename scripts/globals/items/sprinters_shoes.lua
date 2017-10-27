@@ -3,8 +3,8 @@
 -- Item: Sprinter's Shoes
 -- Item Effect: Quickening for 60 minutes
 -----------------------------------------
-
 require("scripts/globals/settings");
+require("scripts/globals/msg");
 
 -----------------------------------------
 -- OnItemCheck
@@ -20,7 +20,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:delStatusEffect(EFFECT_QUICKENING);
     target:addStatusEffect(EFFECT_QUICKENING, 10, 0, 3600);
-    target:messageBasic(266,0, EFFECT_QUICKENING);
+    target:messageBasic(msgBasic.GAINS_EFFECT,0, EFFECT_QUICKENING);
 end;
