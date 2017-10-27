@@ -115,7 +115,7 @@ void CLatentEffect::Activate()
             CCharEntity* PChar = (CCharEntity*)m_POwner;
             CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
-            weapon->addModifier(new CModifier(GetModValue(), GetModPower()));
+            weapon->addModifier(CModifier(GetModValue(), GetModPower()));
         }
         else
         {
@@ -146,15 +146,15 @@ void CLatentEffect::Deactivate()
                     for (uint8 i = 0; i < weapon->modList.size(); ++i)
                     {
                         //ensure the additional effect is fully removed from the weapon
-                        if (weapon->modList.at(i)->getModID() == Mod::ADDITIONAL_EFFECT)
+                        if (weapon->modList.at(i).getModID() == Mod::ADDITIONAL_EFFECT)
                         {
-                            weapon->modList.at(i)->setModAmount(0);
+                            weapon->modList.at(i).setModAmount(0);
                         }
                     }
                 }
                 else
                 {
-                    weapon->addModifier(new CModifier(GetModValue(), -modPower));
+                    weapon->addModifier(CModifier(GetModValue(), -modPower));
                 }
             }
 

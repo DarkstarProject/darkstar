@@ -524,19 +524,19 @@ public:
     void		    addModifier(Mod type, int16 amount);
     void		    setModifier(Mod type, int16 amount);
     void		    delModifier(Mod type, int16 amount);
-    void		    addModifiers(std::vector<CModifier*> *modList);
-    void            addEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel, uint8 slotid);
-    void		    setModifiers(std::vector<CModifier*> *modList);
-    void		    delModifiers(std::vector<CModifier*> *modList);
-    void            delEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel, uint8 slotid);
+    void		    addModifiers(std::vector<CModifier> *modList);
+    void            addEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
+    void		    setModifiers(std::vector<CModifier> *modList);
+    void		    delModifiers(std::vector<CModifier> *modList);
+    void            delEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
     void 		    saveModifiers(); // save current state of modifiers
     void 		    restoreModifiers(); // restore to saved state
 
     void            addPetModifier(Mod type, PetModType, int16 amount);
     void            setPetModifier(Mod type, PetModType, int16 amount);
     void            delPetModifier(Mod type, PetModType, int16 amount);
-    void            addPetModifiers(std::vector<CPetModifier*> *modList);
-    void            delPetModifiers(std::vector<CPetModifier*> *modList);
+    void            addPetModifiers(std::vector<CPetModifier> *modList);
+    void            delPetModifiers(std::vector<CPetModifier> *modList);
     void            applyPetModifiers(CPetEntity* PPet);
     void            removePetModifiers(CPetEntity* PPet);
 

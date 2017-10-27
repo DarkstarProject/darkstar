@@ -39,10 +39,6 @@ CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, 
 
 CStatusEffect::~CStatusEffect()
 {
-	for (uint32 i = 0; i < modList.size(); ++i)
-	{
-		delete modList.at(i);
-	}
 }
 
 const int8* CStatusEffect::GetName()
@@ -194,11 +190,11 @@ void CStatusEffect::addMod(Mod modType, int16 amount)
 {
 	for (uint32 i = 0; i < modList.size(); ++i)
 	{
-		if (modList.at(i)->getModID() == modType)
+		if (modList.at(i).getModID() == modType)
 		{
-			modList.at(i)->setModAmount(modList.at(i)->getModAmount() + amount);
+			modList.at(i).setModAmount(modList.at(i).getModAmount() + amount);
 			return;
 		}
 	}
-	modList.push_back(new CModifier(modType, amount));
+	modList.push_back(CModifier(modType, amount));
 }

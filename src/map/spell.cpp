@@ -514,7 +514,7 @@ namespace spell
 
                 if (PSpellList[spellId])
                 {
-                    ((CBlueSpell*)PSpellList[spellId])->addModifier(new CModifier(modID,value));
+                    ((CBlueSpell*)PSpellList[spellId])->addModifier(CModifier(modID,value));
                 }
             }
         }
