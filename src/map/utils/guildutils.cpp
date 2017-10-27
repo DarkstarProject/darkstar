@@ -205,7 +205,7 @@ CItemContainer* GetGuildShop(uint16 GuildShopID)
             return PGuildShop;
 		}
 	}
-	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET);
+	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET, GuildShopID);
     return nullptr;
 }
 
@@ -219,7 +219,7 @@ CGuild* GetGuild(uint8 GuildID)
     {
         return nullptr;
     }
-    ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
+    ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET, GuildID);
     return nullptr;
 }
 
