@@ -130,6 +130,10 @@ public:
          Mod modValue, 
          int16 modPower
     );
+    CLatentEffect(CLatentEffect&&) = default;
+    CLatentEffect& operator=(CLatentEffect&&) = default;
+    CLatentEffect(const CLatentEffect&) = default;
+    CLatentEffect& operator=(const CLatentEffect&) = default;
 
    ~CLatentEffect();
 
