@@ -1328,8 +1328,8 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     }
                     if (moveQty > 0)
                     {
-                        charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID, moveQty);
-                        charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID2, -(int32)moveQty);
+                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID, moveQty);
+                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID2, -(int32)moveQty);
                     }
                 }
             }
