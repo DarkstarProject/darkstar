@@ -29,7 +29,7 @@
 #include "utils/itemutils.h"
 
 
-CItemContainer::CItemContainer(uint8 LocationID)
+CItemContainer::CItemContainer(uint16 LocationID)
 {
 	m_id = LocationID;
 
@@ -51,7 +51,7 @@ CItemContainer::~CItemContainer()
 	}
 }
 
-uint8 CItemContainer::GetID()
+uint16 CItemContainer::GetID()
 {
 	return m_id;
 }
@@ -146,7 +146,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
             m_count++;
 
 			PItem->setSlotID(SlotID);
-			PItem->setLocationID(m_id);
+			PItem->setLocationID((uint8)m_id);
 
 			m_ItemList[SlotID] = PItem;
 			return SlotID;
@@ -171,7 +171,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 		if (PItem != nullptr)
 		{
 			PItem->setSlotID(SlotID);
-			PItem->setLocationID(m_id);
+			PItem->setLocationID((uint8)m_id);
 
             if (m_ItemList[SlotID] == nullptr && SlotID != 0) m_count++;
 		}
