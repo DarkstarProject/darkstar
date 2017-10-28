@@ -1328,8 +1328,8 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     }
                     if (moveQty > 0)
                     {
-                        charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID, moveQty);
-                        charutils::UpdateItem(PChar, PItemContainer->GetID(), slotID2, -(int32)moveQty);
+                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID, moveQty);
+                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID2, -(int32)moveQty);
                     }
                 }
             }
@@ -1374,8 +1374,8 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     // Retrieve the data from Sql..
-    int32 charid = Sql_GetIntData(SqlHandle, 0);
-    int32 accid = Sql_GetIntData(SqlHandle, 1);
+    uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+    uint32 accid = Sql_GetUIntData(SqlHandle, 1);
 
     // User is trying to add someone to their blacklist..
     if (cmd == 0x00)
@@ -2270,7 +2270,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 return;
             }
             charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
-            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, auctionFee); // Deduct AH fee
+            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)auctionFee); // Deduct AH fee
 
             PChar->pushPacket(new CAuctionHousePacket(action, 1, 0, 0)); // Merchandise put up on auction msg
             PChar->pushPacket(new CAuctionHousePacket(0x0C, (uint8)PChar->m_ah_history.size(), PChar)); // Inform history of slot
@@ -5478,7 +5478,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);
         uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;
 
-        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, Price2);
+        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)Price2);
         charutils::UpdateItem(PTarget, LOC_INVENTORY, 0, Price1);
 
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));

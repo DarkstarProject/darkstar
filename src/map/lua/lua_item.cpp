@@ -165,7 +165,7 @@ inline int32 CLuaItem::addMod(lua_State* L)
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
     auto power = (int16)lua_tointeger(L, 2);
 
-    PItem->addModifier(new CModifier(mod, power));
+    PItem->addModifier(CModifier(mod, power));
     return 0;
 }
 
@@ -180,7 +180,7 @@ inline int32 CLuaItem::delMod(lua_State* L)
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
     auto power = (int16)lua_tointeger(L, 2);
 
-    PItem->addModifier(new CModifier(mod, -power));
+    PItem->addModifier(CModifier(mod, -power));
     return 0;
 }
 

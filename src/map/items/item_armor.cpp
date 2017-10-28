@@ -171,14 +171,14 @@ void CItemArmor::setScriptType(uint16 ScriptType)
 *                                                                       *
 ************************************************************************/
 
-void CItemArmor::addModifier(CModifier* modifier)
+void CItemArmor::addModifier(CModifier modifier)
 {
-    if (IsShield() && modifier->getModID() == Mod::DEF)
+    if (IsShield() && modifier.getModID() == Mod::DEF)
     {
         // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
         // http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/33/ <~Aegis and Ochain
 
-		int16 pdt = modifier->getModAmount() / 2;
+		int16 pdt = modifier.getModAmount() / 2;
 
         switch(m_shieldSize)
         {
@@ -206,15 +206,15 @@ int16 CItemArmor::getModifier(Mod mod)
 {
 	for (uint16 i = 0; i < modList.size(); ++i)
 	{
-		if (modList.at(i)->getModID() == mod)
+		if (modList.at(i).getModID() == mod)
 		{
-			return modList.at(i)->getModAmount();
+			return modList.at(i).getModAmount();
 		}
 	}
 	return 0;
 }
 
-void CItemArmor::addPetModifier(CPetModifier* modifier)
+void CItemArmor::addPetModifier(CPetModifier modifier)
 {
     petModList.push_back(modifier);
 }
@@ -304,9 +304,9 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
         modValue = (modValue > 0 ? modValue + value : modValue - value) * (multiplier > 1 ? multiplier : 1);
 
         if (!isPet)
-            addModifier(new CModifier(modId, modValue));
+            addModifier(CModifier(modId, modValue));
         else
-            addPetModifier(new CPetModifier(modId, petType, modValue));
+            addPetModifier(CPetModifier(modId, petType, modValue));
     }
 }
 

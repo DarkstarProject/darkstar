@@ -409,7 +409,7 @@ namespace itemutils
 
                 if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addModifier(new CModifier(modID,value));
+                    ((CItemArmor*)g_pItemList[ItemID])->addModifier(CModifier(modID,value));
                 }
             }
         }
@@ -427,7 +427,7 @@ namespace itemutils
 
                 if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(new CPetModifier(modID, petType, value));
+                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
                 }
             }
         }
@@ -555,16 +555,6 @@ namespace itemutils
     {
         for(int32 ItemID = 0; ItemID < MAX_ITEMID; ++ItemID)
         {
-            if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
-            {
-                CItemArmor* PItem = (CItemArmor*)g_pItemList[ItemID];
-
-                for (uint32 i = 0; i < PItem->modList.size(); ++i)
-                {
-                    delete PItem->modList.at(i);
-                }
-                PItem->modList.clear();
-            }
             delete g_pItemList[ItemID];
         }
 

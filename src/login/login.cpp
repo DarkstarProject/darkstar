@@ -32,6 +32,13 @@
 #include <thread>
 #include <iostream>
 
+#ifdef WIN32
+#include <io.h>
+#define isatty _isatty
+#else
+#include <unistd.h>
+#endif
+
 #include "login.h"
 #include "login_auth.h"
 #include "lobby.h"
@@ -112,31 +119,36 @@ int32 do_init(int32 argc, char** argv)
     messageThread = std::thread(message_server_init);
     ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 
-    consoleInputThread = std::thread([&]()
-    {
-        ShowStatus("Console input thread is ready..\r\n");
-        // ctrl c apparently causes log spam
-        auto lastInputTime = server_clock::now();
-        while (true)
-        {
-            if ((server_clock::now() - lastInputTime) > 1s)
-            {
-                std::string input;
-                std::cin >> input;
+    bool attached = isatty(0);
 
-                if (strcmp(input.c_str(), "verlock") == 0)
+    if (attached)
+    {
+        consoleInputThread = std::thread([&]()
+        {
+            ShowStatus("Console input thread is ready..\r\n");
+            // ctrl c apparently causes log spam
+            auto lastInputTime = server_clock::now();
+            while (true)
+            {
+                if ((server_clock::now() - lastInputTime) > 1s)
                 {
-                    version_info.enable_ver_lock = !version_info.enable_ver_lock;
-                    ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    std::string input;
+                    std::cin >> input;
+
+                    if (strcmp(input.c_str(), "verlock") == 0)
+                    {
+                        version_info.enable_ver_lock = !version_info.enable_ver_lock;
+                        ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    }
+                    else
+                    {
+                        ShowStatus("Unknown console input command\r\n");
+                    }
+                    lastInputTime = server_clock::now();
                 }
-                else
-                {
-                    ShowStatus("Unknown console input command\r\n");
-                }
-                lastInputTime = server_clock::now();
-            }
-        };
-    });
+            };
+        });
+    }
     return 0;
 }
 

@@ -110,6 +110,31 @@ function updateZoneDigCount(zone, increment)
     end
 end;
 
+function getChocoboDiggingItem(itemMap, chance, digAbility, mod, totd)
+    local accum = 0;
+
+    for i = 1, #itemMap do
+        local item = itemMap[i];
+        local itemAbundance = item[2];
+
+        accum = accum + itemAbundance + DIG_ABUNDANCE_BONUS;
+        if (chance < accum) then
+            local itemID = item[1];
+            local itemReq = item[3];
+
+            if ((itemReq == DIGREQ_NONE) or
+                (itemReq == DIGREQ_BURROW and digAbility == DIGABILITY_BURROW) or
+                (itemReq == DIGREQ_BORE and digAbility == DIGABILITY_BORE) or
+                (itemReq == DIGREQ_MODIFIER and mod == 1) or
+                (itemReq == DIGREQ_NIGHT and totd == TIME_NIGHT)) then
+
+                return itemID;
+            end
+        end
+    end
+
+    return 0;
+end;
 
 function chocoboDig(player, itemMap, precheck, messageArray)
 
@@ -122,6 +147,14 @@ function chocoboDig(player, itemMap, precheck, messageArray)
         local DigCount = player:getVar('[DIG]DigCount');
         local Chance = math.random(0, 100);
 
+        local moon = VanadielMoonPhase();
+
+        -- We need to check for moon phase, too. 45-60% results in a much lower dig chance than the rest of the phases
+
+        if (moon >= 45 and moon <=60) then
+            Chance = Chance * .5;
+        end
+
         if (Chance <= 15) then
             player:messageText(player, messageArray[2]);
             calculateSkillUp(player);
@@ -129,94 +162,73 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             -- recalculate chance to compare with item abundance
             Chance = math.random(0, 100);
 
-            -- select a random item
-            local RandomItem = itemMap[math.random(1, #itemMap)];
-            local RItemAbundance = RandomItem[2];
-
             local ItemID = 0;
             local weather = player:getWeather();
-            local moon = VanadielMoonPhase();
             local day = VanadielDayElement();
            
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
-            Chance = Chance * 100;
+            Chance = Chance * 10;
 
-            -- We need to check for moon phase, too. 45-60% results in a much lower dig chance than the rest of the phases
+            -- rank 1 is burrow, rank 2 is bore (see DIGABILITY at the top of the file)
+            local DigAbility = player:getSkillRank(SKILL_DIG);
 
-            if (moon >= 45 and moon <=60) then
-              Chance = Chance * .5;
+            local Mod = player:getMod(MOD_EGGHELM);
+
+            ItemID = getChocoboDiggingItem(itemMap, Chance, DigAbility, Mod, VanadielTOTD());
+
+            -- Let's see if the item should be obtained in this zone with this weather
+            local crystalMap = {
+                    0, -- fire crystal
+                    8, -- fire cluster
+                    5, -- water crystal
+                    13, -- water cluster
+                    3, -- earth crystal
+                    11, -- earth cluster
+                    2, -- wind crystal
+                    10, -- wind cluster
+                    1, -- ice crystal
+                    9, -- ice cluster
+                    4, -- lightning crystal
+                    12, -- lightning cluster
+                    6, -- light crystal
+                    14, -- light cluster
+                    7, -- dark crystal
+                    15, -- dark cluster
+            };
+            if (weather >= 4 and ItemID == 4096) then
+                ItemID = ItemID + crystalMap[weather-3];
             end
-
-            if (Chance < (RItemAbundance + DIG_ABUNDANCE_BONUS)) then
-
-                local RItemID = RandomItem[1];
-                local RItemReq = RandomItem[3];
-
-                -- rank 1 is burrow, rank 2 is bore (see DIGABILITY at the top of the file)
-                local DigAbility = player:getSkillRank(SKILL_DIG);
-
-                local Mod = player:getMod(MOD_EGGHELM);
-
-                if ((RItemReq == DIGREQ_NONE) or (RItemReq == DIGREQ_BURROW and DigAbility == DIGABILITY_BURROW) or (RItemReq == DIGREQ_BORE and DigAbility == DIGABILITY_BORE) or (RItemReq == DIGREQ_MODIFIER and Mod == 1) or (RItemReq == DIGREQ_NIGHT and VanadielTOTD() == TIME_NIGHT)) then
-                    ItemID = RItemID;
-                else
-                    ItemID = 0;
-                end
-
-                -- Let's see if the item should be obtained in this zone with this weather
-    local crystalMap = {
-            0, -- fire crystal
-            8, -- fire cluster
-            5, -- water crystal
-            13, -- water cluster
-            3, -- earth crystal
-            11, -- earth cluster
-            2, -- wind crystal
-            10, -- wind cluster
-            1, -- ice crystal
-            9, -- ice cluster
-            4, -- lightning crystal
-            12, -- lightning cluster
-            6, -- light crystal
-            14, -- light cluster
-            7, -- dark crystal
-            15, -- dark cluster
-    };
-                if (weather >= 4 and ItemID == 4096) then
-                  ItemID = ItemID + crystalMap[weather-3];
-                end
-    local oreMap = {
-            0, -- fire ore
-            3, -- earth ore
-            5, -- water ore
-            2, -- wind ore
-            1, -- ice ore
-            4, -- lightning ore
-            6, -- light ore
-            7, -- dark ore
-    };
-                -- If the item is an elemental ore, we need to check if the requirements are met
-                if (ItemID == 1255 and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
+            local oreMap = {
+                    0, -- fire ore
+                    3, -- earth ore
+                    5, -- water ore
+                    2, -- wind ore
+                    1, -- ice ore
+                    4, -- lightning ore
+                    6, -- light ore
+                    7, -- dark ore
+            };
+            -- If the item is an elemental ore, we need to check if the requirements are met
+            if (ItemID == 1255 and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
                 ItemID = ItemID + oreMap[day+1];
-                end
+            end
 
             -- make sure we have a valid item
             if (ItemID ~= 0) then
                 -- make sure we have enough room for the item
                 if (player:addItem(ItemID)) then
-                player:messageSpecial(ITEM_OBTAINED, ItemID);
+                    player:messageSpecial(ITEM_OBTAINED, ItemID);
                 else
-                player:messageSpecial(DIG_THROW_AWAY, ItemID);
+                    player:messageSpecial(DIG_THROW_AWAY, ItemID);
                 end
             else
                 -- beat the dig chance, but not the item chance
                 player:messageText(player, messageArray[2], false);
             end
 
+            calculateSkillUp(player);
+            updatePlayerDigCount(player, 1);
         end
-        calculateSkillUp(player);
-        updatePlayerDigCount(player, 1);
-    end
-    return true;
+        return true;
     end
 end;

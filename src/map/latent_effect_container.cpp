@@ -48,8 +48,8 @@ CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity) :
 
 void CLatentEffectContainer::AddLatentEffect(CLatentEffect LatentEffect)
 {
-    m_LatentEffectList.push_back(LatentEffect);
     LatentEffect.SetOwner(m_POwner);
+    m_LatentEffectList.push_back(LatentEffect);
 }
 
 void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect>& latentList, uint8 reqLvl, uint8 slot)
@@ -620,7 +620,7 @@ void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
 // health post looping
 void CLatentEffectContainer::ProcessLatentEffects(std::function <void(CLatentEffect&)> logic)
 {
-    for (auto latentEffect : m_LatentEffectList)
+    for (auto& latentEffect : m_LatentEffectList)
     {
         logic(latentEffect);
     }

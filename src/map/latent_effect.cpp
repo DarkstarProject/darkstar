@@ -36,11 +36,12 @@ CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 
     m_ModValue          = modValue;
     m_ModPower          = modPower;
     m_Activated         = false;
+    m_POwner            = nullptr;
 }
 
 CLatentEffect::~CLatentEffect()
 {
-    if(m_Activated)
+    if (m_Activated)
         Deactivate();
 }
 
@@ -106,7 +107,7 @@ void CLatentEffect::SetModPower(int16 power)
 
 void CLatentEffect::Activate()
 {
-    if( !IsActivated() )
+    if (!IsActivated())
     {
         //additional effect/dmg latents add mod to weapon, not player
         if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)
@@ -114,7 +115,7 @@ void CLatentEffect::Activate()
             CCharEntity* PChar = (CCharEntity*)m_POwner;
             CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
-            weapon->addModifier(new CModifier(GetModValue(), GetModPower()));
+            weapon->addModifier(CModifier(GetModValue(), GetModPower()));
         }
         else
         {
@@ -128,7 +129,7 @@ void CLatentEffect::Activate()
 
 void CLatentEffect::Deactivate()
 {
-    if( IsActivated() )
+    if (IsActivated())
     {
         //remove the modifier from weapon, not player
         if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)
@@ -145,15 +146,15 @@ void CLatentEffect::Deactivate()
                     for (uint8 i = 0; i < weapon->modList.size(); ++i)
                     {
                         //ensure the additional effect is fully removed from the weapon
-                        if (weapon->modList.at(i)->getModID() == Mod::ADDITIONAL_EFFECT)
+                        if (weapon->modList.at(i).getModID() == Mod::ADDITIONAL_EFFECT)
                         {
-                            weapon->modList.at(i)->setModAmount(0);
+                            weapon->modList.at(i).setModAmount(0);
                         }
                     }
                 }
                 else
                 {
-                    weapon->addModifier(new CModifier(GetModValue(), -modPower));
+                    weapon->addModifier(CModifier(GetModValue(), -modPower));
                 }
             }
 
