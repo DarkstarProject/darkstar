@@ -4,10 +4,11 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
+package.loaded["scripts/zones/Ranguemont_Pass/MobIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
 require("scripts/zones/Ranguemont_Pass/TextIDs");
+require("scripts/zones/Ranguemont_Pass/MobIDs");
+require("scripts/globals/settings");
 require("scripts/globals/zone");
 
 -----------------------------------
@@ -15,8 +16,11 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local Taisaijin = 17457216;
-    GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random((86400), (259200)));
+    -- pick a random Taisaijin PH and set its do not disturb time
+    local phIndex = math.random(1,3);
+    local ph = GetMobByID(TAISAIJIN_PH[phIndex]);
+    ph:setLocalVar("timeToGrow", os.time() + math.random(86400,259200)); -- 1 to 3 days
+    ph:setLocalVar("phIndex",phIndex);
 end;
 
 -----------------------------------
