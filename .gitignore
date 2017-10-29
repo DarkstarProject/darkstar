@@ -15,6 +15,7 @@ TestResults
 *.DS_Store
 
 # Build results
+build/
 [Dd]ebug/
 [Rr]elease/
 x64/
