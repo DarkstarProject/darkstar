@@ -19,12 +19,8 @@ else()
     set(lib_debug "")
 endif()
 
-# copy libs to output
-file(GLOB files ${lib_dir}/*.lib)
-foreach(file ${files})
-    file(COPY ${file} DESTINATION ${CMAKE_BINARY_DIR}/bin/${CMAKE_CONFIGURATION_TYPES})
-endforeach()
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR})
 
 add_subdirectory(src)
