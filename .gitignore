@@ -162,5 +162,10 @@ log/DSP.leaks
 .vs
 /win32/.vs/darkstar/v15
 
+<<<<<<< HEAD
 #VS Code
 .vscode
+=======
+# Ignore GIT_VER file
+GIT_VER
+>>>>>>> Ignore GIT_VER file
