@@ -20,7 +20,7 @@
     },
     {
       "name": "x86-Release",
-      "generator": "Ninja",
+      "generator": "Visual Studio 15 2017",
       "configurationType": "Release",
       "inheritEnvironments": [ "msvc_x86" ],
       "buildRoot": "${env.BuildDir}",
