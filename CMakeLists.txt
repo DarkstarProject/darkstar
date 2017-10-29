@@ -24,3 +24,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR})
 
 add_subdirectory(src)
+
+# setup GIT_VER
+execute_process(COMMAND git rev-parse HEAD
+    OUTPUT_VARIABLE git_ver)
+
+file(WRITE GIT_VER ${git_ver})
