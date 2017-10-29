@@ -59,10 +59,10 @@ class CItemContainer
 {
 public:
 
-	CItemContainer(uint8 LocationID);
+	CItemContainer(uint16 LocationID);
    ~CItemContainer();
 
-	uint8	GetID();
+	uint16	GetID();
     uint16  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
 	uint8	GetSize();
 	uint8	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
@@ -95,7 +95,7 @@ public:
 
 private:
 
-	uint8	m_id;
+	uint16	m_id;
     uint16  m_buff;
 	uint8	m_size;
     uint8   m_count;

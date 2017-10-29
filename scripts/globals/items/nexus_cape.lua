@@ -3,9 +3,8 @@
 -- Item: Nexus Cape
 -- Enchantment: "Teleport" (Party Leader)
 -----------------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/teleports");
+require("scripts/globals/status");
 
 -----------------------------------------
 -- OnItemCheck
@@ -22,7 +21,7 @@ function onItemCheck(target)
             local leaderZone = leader:getZoneID();
             local validZoneList =
             {
-                005,007,100,101,102,103,104,105,106,107,108,110,111,112,113,114,
+                5,7,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,
                 115,116,117,118,119,120,123,124,126,127,128,230,231,232,234,235,
                 236,238,239,240,241,243,244,245,246,247,248,249,250,252,257
             }
