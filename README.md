@@ -29,7 +29,7 @@ Remember to check back for any feedback, and drop a comment once requested chang
 
 Use 4 spaces per tab - this will be enforced in pull requests.
 
-Please *test your code* before committing changes/submitting a pull request.
+Please *test your code* before committing changes/submitting a pull request. You break it you fix it!
 
 Wiki
 ========
