@@ -6,6 +6,10 @@ add_definitions(
     -DDEBUGLOGLOGIN
 )
 
+if(UNIX)
+    add_definitions(-DFMT_HEADER_ONLY)
+endif()
+
 add_executable(DSConnect-server
     account.cpp
     message_server.cpp
@@ -26,7 +30,15 @@ add_executable(DSConnect-server
 )
 
 if(UNIX)
-    # TODO: add libs and includes
+    target_include_directories(DSConnect-server PRIVATE
+        /usr/include/mysql
+    )
+
+    target_link_libraries(DSConnect-server
+        mysqlclient
+        zmq
+        pthread
+    )
 else()
     target_include_directories(DSConnect-server PRIVATE
         ../common

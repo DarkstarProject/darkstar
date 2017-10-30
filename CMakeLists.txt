@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.9)
 project(darkstar)
 
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 include(cmake/compiler.cmake)
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)

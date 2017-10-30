@@ -5,7 +5,11 @@ set_property(GLOBAL PROPERTY LINKER_LANGUAGE CXX)
 
 if(UNIX)
     # TODO: add compiler/linker flags Debug/Release
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std:c++17 -Werror -fsigned-char")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std:c++17 -Werror -fsigned-char ")
+
+    add_definitions(
+        -g
+    )
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /W3 /WX")
     add_definitions(
