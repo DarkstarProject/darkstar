@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.7)
 project(darkstar)
 
 add_definitions(
@@ -45,7 +45,7 @@ else()
 
     target_link_libraries(DSConnect-server
         libmariadb${lib_suffix}
-        libzmq${lib_debug}${lib_suffix}
+        libzmq${lib_debug}${lib_spacer}${lib_suffix}
         WS2_32
     )
 endif()
