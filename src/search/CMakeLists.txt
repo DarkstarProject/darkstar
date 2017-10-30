@@ -25,7 +25,15 @@ add_executable(DSSearch-server
 )
 
 if(UNIX)
-    # TODO: add libs and includes
+    target_include_directories(DSConnect-server PRIVATE
+        /usr/include/mysql
+    )
+
+    target_link_libraries(DSConnect-server
+        mysqlclient
+        zmq
+        pthread
+    )
 else()
     target_include_directories(DSSearch-server PRIVATE
         ../common
@@ -36,7 +44,4 @@ else()
         libmariadb${lib_suffix}
         WS2_32
     )
-
-    # TODO: see if this can work
-    #set_target_properties(DSSearch-server PROPERTIES STATIC_LIBRARY_FLAGS "\" LinkLibraryDependencies=\"true")
 endif()

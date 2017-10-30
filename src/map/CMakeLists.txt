@@ -248,7 +248,16 @@ add_executable(DSGame-server
 )
 
 if(UNIX)
-    # TODO: add libs and includes
+    target_include_directories(DSGame-server PRIVATE
+        /usr/include/mysql
+        /usr/include/luajit-5.1
+    )
+    target_link_libraries(DSGame-server
+        mysqlclient
+        zmq
+        pthread
+        luajit-5.1
+    )
 else()
     target_link_libraries(DSGame-server
         libmariadb${lib_suffix}

@@ -6,10 +6,6 @@ add_definitions(
     -DDEBUGLOGLOGIN
 )
 
-if(UNIX)
-    add_definitions(-DFMT_HEADER_ONLY)
-endif()
-
 add_executable(DSConnect-server
     account.cpp
     message_server.cpp

@@ -30,6 +30,8 @@
 #include "../common/utils.h"
 #include "../common/dsprand.h"
 
+const int8 CNavMesh::ERROR_NEARESTPOLY;
+
 void CNavMesh::ToFFXIPos(const position_t* pos, float* out) {
     float y = pos->y;
     float z = pos->z;
