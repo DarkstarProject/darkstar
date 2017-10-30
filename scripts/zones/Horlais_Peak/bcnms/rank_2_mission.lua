@@ -48,9 +48,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
 
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-
         local name, clearTime, partySize = battlefield:getRecord()
-
         if (player:hasCompletedMission(player:getNation(),5)) then
             player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         else

@@ -77,7 +77,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
     
         local name, clearTime, partySize = battlefield:getRecord()
-
         if (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true) then
             player:addKeyItem(WHISPER_OF_DREAMS);
             player:delKeyItem(VIAL_OF_DREAM_INCENSE);

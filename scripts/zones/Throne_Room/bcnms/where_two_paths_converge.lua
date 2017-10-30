@@ -36,9 +36,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     -- print("leave code "..leavecode);
 
     if leavecode == 2 then
-
         local name, clearTime, partySize = battlefield:getRecord()
-
         if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
             player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,0);
         else

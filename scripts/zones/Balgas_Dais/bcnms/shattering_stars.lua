@@ -9,8 +9,13 @@ package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Balgas_Dais/TextIDs");
+require("scripts/globals/battlefield")
 
 -----------------------------------
+
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
@@ -33,9 +38,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
 
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-
         local name, clearTime, partySize = battlefield:getRecord()
-
         player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,0);
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

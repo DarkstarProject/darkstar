@@ -28,7 +28,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then
     
         local name, clearTime, partySize = battlefield:getRecord()
-
      --    player:setPos(0,0,0,0,0x00);
     end
     if (leavecode == 4) then

@@ -2577,6 +2577,7 @@ namespace luautils
 
         if (prepFile(File, "onBattlefieldTick"))
         {
+            ShowError("luautils::onBattlefieldTick: Unable to find onBattlefieldTick function for %s\n", &File[0]);
             return -1;
         }
 

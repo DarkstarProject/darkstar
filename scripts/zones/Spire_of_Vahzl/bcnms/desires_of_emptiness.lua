@@ -44,7 +44,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
     
         local name, clearTime, partySize = battlefield:getRecord()
-
         player:addExp(1500);
         if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then    
             player:setVar("PromathiaStatus",9);

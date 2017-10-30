@@ -41,7 +41,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     local currentMission = player:getCurrentMission(SANDORIA);
     if leavecode == 2 then 
         local name, clearTime, partySize = battlefield:getRecord()
-
         --printf("win");
         if (currentMission == THE_HEIR_TO_THE_LIGHT)    then
             player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,0);

@@ -76,7 +76,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
     
         local name, clearTime, partySize = battlefield:getRecord()
-
         player:addExp(1000);
         if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
             player:addTitle(TRANSIENT_DREAMER);

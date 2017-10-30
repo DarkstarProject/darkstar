@@ -44,9 +44,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
 
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-
         local name, clearTime, partySize = battlefield:getRecord()
-
         local record = instance:getRecord();
         local clearTime = record.clearTime;
     

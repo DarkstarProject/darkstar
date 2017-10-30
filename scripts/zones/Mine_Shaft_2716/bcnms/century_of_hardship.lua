@@ -32,7 +32,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
     
         local name, clearTime, partySize = battlefield:getRecord()
-
         if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 5) then
             player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);    
             player:setVar("COP_Louverance_s_Path",6);
