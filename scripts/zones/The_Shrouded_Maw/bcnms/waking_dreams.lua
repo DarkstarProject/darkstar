@@ -10,11 +10,16 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/The_Shrouded_Maw/TextIDs");
 require("scripts/globals/missions");
+require("scripts/globals/battlefield")
 
 -----------------------------------
 
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
 
     local inst = player:getBattlefield():getBattlefieldNumber();
 
@@ -55,7 +60,7 @@ function onBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -66,10 +71,13 @@ end;
 -- via bcnmLeave(1) or bcnmLeave(2). LeaveCodes 3 and 4 are called
 -- from the core when a player disconnects or the time limit is up, etc
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
     
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+    if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
+    
+        local name, clearTime, partySize = battlefield:getRecord()
+
         if (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true) then
             player:addKeyItem(WHISPER_OF_DREAMS);
             player:delKeyItem(VIAL_OF_DREAM_INCENSE);

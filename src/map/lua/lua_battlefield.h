@@ -73,6 +73,8 @@ public:
     int32 spawnLoot(lua_State*);
     int32 insertEntity(lua_State*);
     int32 cleanup(lua_State*);
+    int32 win(lua_State*);
+    int32 lose(lua_State*);
 };
 
 #endif

@@ -1,12 +1,17 @@
 -----------------------------------
 -- Area: dynamis_Qufim
 -- Name: dynamis_Qufim
+require("scripts/globals/battlefield")
 -----------------------------------
 
 
 
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
     
     SetServerVariable("[DynaQufim]UniqueID",os.time());
     SetServerVariable("[DynaQufim]Boss_Trigger",0);
@@ -16,7 +21,7 @@ function onBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
     
     player:setVar("DynamisID",GetServerVariable("[DynaQufim]UniqueID"));
     local realDay = os.time();
@@ -35,7 +40,7 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
     
     if (leavecode == 4) then

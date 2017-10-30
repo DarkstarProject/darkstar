@@ -6,14 +6,14 @@ require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)
+function onBattlefieldRegister(player,battlefield)
     SetServerVariable("[Temenos_N_Tower]UniqueID",os.time());
     HideArmouryCrates(Temenos_Northern_Tower,TEMENOS);        
     HideTemenosDoor(Temenos_Northern_Tower);    
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
     player:setVar("characterLimbusKey",GetServerVariable("[Temenos_N_Tower]UniqueID"));
     player:delKeyItem(COSMOCLEANSE);
     player:delKeyItem(WHITE_CARD);
@@ -23,7 +23,7 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish he dynamis
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
     -- player:PrintToPlayer(leavecode);
     print("leave code "..leavecode);
     if (leavecode == 4) then

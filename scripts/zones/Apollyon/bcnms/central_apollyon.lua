@@ -6,7 +6,7 @@ require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)        
+function onBattlefieldRegister(player,battlefield)        
     SetServerVariable("[Central_Apollyon]UniqueID",os.time());
     HideArmouryCrates(Central_Apollyon,APOLLYON_SE_NE);    
     GetNPCByID(16933248):setAnimation(8);
@@ -14,7 +14,7 @@ function onBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
     player:setVar("characterLimbusKey",GetServerVariable("[Central_Apollyon]UniqueID"));
     player:delKeyItem(COSMOCLEANSE);
 end;
@@ -23,7 +23,7 @@ end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish 
 
-function onBcnmLeave(player,instance,leavecode)
+function onBattlefieldLeave(player,battlefield,leavecode)
     --print("leave code "..leavecode);
     if (leavecode == 4) then
         SetServerVariable("[Central_Apollyon]UniqueID",0);

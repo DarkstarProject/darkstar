@@ -711,7 +711,7 @@ function findBattlefields(player, npc, itemId)
         return 0
     end
     for k, v in pairs(zbfs) do
-        print(npc:getName())
+        print(k)
         if v[3] == itemId and checkReqs(player, npc, v[2], true) then
             mask = bit.bor(mask,math.pow(2,v[1]))
         end
@@ -799,6 +799,7 @@ function TradeBCNM(player, npc, trade, onUpdate)
 
     -- open menu of valid battlefields
     local validBattlefields = findBattlefields(player, npc, itemId)
+    print("TURAYDOOOOOOOOO")
     if validBattlefields ~= 0 then
         if not onUpdate then
             player:startEvent(32000, 0, 0, 0, validBattlefields, 0, 0, 0, 0)
@@ -825,7 +826,6 @@ function EventTriggerBCNM(player, npc)
         local mask = findBattlefields(player, npc, 0)
         -- mask = 268435455 -- uncomment to open menu with all possible battlefields
         if mask ~= 0 then
-            player:setLocalVar("[battlefield]initiator", 1)
             player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0)
             return true
         end
@@ -854,7 +854,6 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
 
     -- requesting a battlefield
     if csid == 32000 then
-        print("OPTION "..option)
         local area = player:getLocalVar("[battlefield]area")
         player:setLocalVar("[battlefield]area", player:getLocalVar("[battlefield]area") + 1)
         if option == 0 then
@@ -868,7 +867,6 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local battlefieldId = getBattlefieldIdByBit(player, battlefieldIndex)
         local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
         local id = battlefieldId or player:getBattlefieldID()
-        local isInitiator = player:getLocalVar("[battlefield]initiator")
         local skip = checkSkip(player, id)
 
         local clearTime = 1
@@ -892,11 +890,8 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
 
             local battlefield = player:getBattlefield()
             if battlefield then
-                print("record "..player:getName())
                 name, clearTime, partySize = battlefield:getRecord()
                 initiatorId, initiatorName = battlefield:getInitiator()
-                print(initiatorId)
-                print(initiatorName)
             end
             -- register party members
             if initiatorId == player:getID() then
@@ -909,8 +904,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
                 end
             end
         end
-        print(player:getName().." "..battlefieldIndex)
-        player:updateEvent(result, battlefieldIndex, isInitiator, clearTime, partySize, skip)
+        player:updateEvent(result, battlefieldIndex, 0, clearTime, partySize, skip)
         player:updateEventString(name)
         return result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
 
@@ -932,7 +926,6 @@ end
 
 function EventFinishBCNM(player, csid, option)
     -- player:PrintToPlayer(string.format("EventFinishBCNM csid=%i option=%i", csid, option))
-    player:setLocalVar("[battlefield]initiator", 0)
     player:setLocalVar("[battlefield]area", 0)
     if player:hasStatusEffect(EFFECT_BATTLEFIELD) then
         if csid == 32000 and option ~= 0 then

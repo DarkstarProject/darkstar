@@ -241,7 +241,7 @@ void CBattlefield::SetLastTimeUpdate(duration time)
     m_LastPromptTime = time;
 }
 
-void CBattlefield::ApplyLevelCap(CCharEntity* PChar) const
+void CBattlefield::ApplyLevelRestrictions(CCharEntity* PChar) const
 {
     //adjust player's level to the appropriate cap and remove buffs
 
@@ -252,6 +252,10 @@ void CBattlefield::ApplyLevelCap(CCharEntity* PChar) const
     {
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
         PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_RESTRICTION, cap, 0, 0));
+        if (!(m_Rules & BCRULES::RULES_ALLOW_SUBJOBS))
+        {
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SJ_RESTRICTION, EFFECT_SJ_RESTRICTION, 0, 0, 0));
+        }
     }
 }
 
@@ -273,7 +277,7 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
         {
             if (enter)
             {
-                ApplyLevelCap(static_cast<CCharEntity*>( PEntity ));
+                ApplyLevelRestrictions(static_cast<CCharEntity*>( PEntity ));
                 m_EnteredPlayers.emplace(PEntity->id);
             }
             else if (!IsRegistered(static_cast<CCharEntity*>(PEntity)))

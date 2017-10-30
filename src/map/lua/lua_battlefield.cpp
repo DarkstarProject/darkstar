@@ -423,6 +423,22 @@ inline int32 CLuaBattlefield::cleanup(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBattlefield::win(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+    m_PLuaBattlefield->SetStatus(static_cast<uint8>(BATTLEFIELD_STATUS_WON));
+    m_PLuaBattlefield->CanCleanup(true);
+    return 0;
+}
+
+inline int32 CLuaBattlefield::lose(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+    m_PLuaBattlefield->SetStatus(static_cast<uint8>(BATTLEFIELD_STATUS_LOST));
+    m_PLuaBattlefield->CanCleanup(true);
+    return 0;
+}
+
 /************************************************************************
 *																		*
 *  declare lua function													*
@@ -459,5 +475,7 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBattlefield,spawnLoot),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,insertEntity),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,cleanup),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,win),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,lose),
     { nullptr,nullptr }
 };
