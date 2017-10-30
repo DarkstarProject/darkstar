@@ -3,9 +3,11 @@ set_property(GLOBAL PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(GLOBAL PROPERTY CXX_EXTENSIONS ON)
 set_property(GLOBAL PROPERTY LINKER_LANGUAGE CXX)
 
+add_definitions(-DFMT_HEADER_ONLY)
+
 if(UNIX)
     # TODO: add compiler/linker flags Debug/Release
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std:c++17 -Werror -fsigned-char ")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Werror -fsigned-char ")
 
     add_definitions(
         -g
@@ -16,7 +18,6 @@ else()
         -D_CONSOLE
         -D_MBCS
         -DNOMINMAX
-        -DFMT_HEADER_ONLY
         -DFMT_USE_WINDOWS_H=0
         -D_CRT_SECURE_NO_WARNINGS
         -D_CRT_NONSTDC_NO_DEPRECATE
