@@ -3,13 +3,22 @@
 --  NM:  Hoo_Mjuu_the_Torrent
 -----------------------------------
 
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function onMobSpawn(mob)
+    -- ffxiclopedia says "Can use this at 50% HP "
+    mob:setLocalVar("benedictionTrigger", math.random(10,50));
+end;
 
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
 
-function onMobFight( mob, target )
-    if (mob:getHPP() < 30 and mob:getLocalVar("benediction") == 0) then
+function onMobFight( mob, target)
+    local hpTrigger = mob:getLocalVar("benedictionTrigger");
+    if (mob:getHPP() <= hpTrigger and mob:getLocalVar("benediction") == 0) then
         mob:useMobAbility(689);
         mob:setLocalVar("benediction", 1);
     end
@@ -20,7 +29,6 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    mob:setLocalVar("benediction", 0);
 end;
 
 -----------------------------------
@@ -40,4 +48,3 @@ function onMobDespawn(mob)
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;
-
