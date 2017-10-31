@@ -10,13 +10,17 @@ require("scripts/zones/Beadeaux/MobIDs");
 -- onMobSpawn
 -----------------------------------
 
+function onMobSpawn(mob)
+    mob:setLocalVar("benedictionTrigger", math.random(10,50));
+end;
 
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
 
 function onMobFight( mob, target )
-    if (mob:getHPP() < 30 and mob:getLocalVar("benediction") == 0) then
+    local hpTrigger = mob:getLocalVar("benedictionTrigger");
+    if (mob:getHPP() <= hpTrigger and mob:getLocalVar("benediction") == 0) then
         mob:useMobAbility(689);
         mob:setLocalVar("benediction", 1);
     end
