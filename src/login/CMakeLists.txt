@@ -27,7 +27,7 @@ add_executable(DSConnect-server
 
 if(UNIX)
     target_include_directories(DSConnect-server PRIVATE
-        /usr/include/mysql
+        ${MYSQLCLIENT_INCLUDE_DIRS}
     )
 
     target_link_libraries(DSConnect-server

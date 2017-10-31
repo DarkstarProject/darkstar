@@ -25,11 +25,11 @@ add_executable(DSSearch-server
 )
 
 if(UNIX)
-    target_include_directories(DSConnect-server PRIVATE
-        /usr/include/mysql
+    target_include_directories(DSSearch-server PRIVATE
+        ${MYSQLCLIENT_INCLUDE_DIRS}
     )
 
-    target_link_libraries(DSConnect-server
+    target_link_libraries(DSSearch-server
         mysqlclient
         zmq
         pthread

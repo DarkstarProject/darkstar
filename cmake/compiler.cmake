@@ -6,12 +6,7 @@ set_property(GLOBAL PROPERTY LINKER_LANGUAGE CXX)
 add_definitions(-DFMT_HEADER_ONLY)
 
 if(UNIX)
-    # TODO: add compiler/linker flags Debug/Release
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Werror -fsigned-char ")
-
-    add_definitions(
-        -g
-    )
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wfatal-errors -fsigned-char")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /W3 /WX")
     add_definitions(

@@ -249,8 +249,8 @@ add_executable(DSGame-server
 
 if(UNIX)
     target_include_directories(DSGame-server PRIVATE
-        /usr/include/mysql
-        /usr/include/luajit-5.1
+        ${MYSQLCLIENT_INCLUDE_DIRS}
+        ${LUAJIT_INCLUDE_DIRS}
     )
     target_link_libraries(DSGame-server
         mysqlclient
@@ -259,17 +259,17 @@ if(UNIX)
         luajit-5.1
     )
 else()
-    target_link_libraries(DSGame-server
-        libmariadb${lib_suffix}
-        lua51${lib_suffix}
-        libzmq${lib_debug}${lib_suffix}
-        WS2_32
-    )
-
     target_include_directories(DSGame-server PRIVATE
         ../common
         ../../win32/external
         ../../win32/external/mysql
         ../../win32/external/zmq
+    )
+
+    target_link_libraries(DSGame-server
+        libmariadb${lib_suffix}
+        lua51${lib_spacer}${lib_suffix}
+        libzmq${lib_debug}${lib_spacer}${lib_suffix}
+        WS2_32
     )
 endif()
