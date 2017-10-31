@@ -3,11 +3,24 @@
 --  NM:  Hoo_Mjuu_the_Torrent
 -----------------------------------
 
+
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+
+function onMobFight( mob, target )
+    if (mob:getHPP() < 30 and mob:getLocalVar("benediction") == 0) then
+        mob:useMobAbility(689);
+        mob:setLocalVar("benediction", 1);
+    end
+end;
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+    mob:setLocalVar("benediction", 0);
 end;
 
 -----------------------------------
