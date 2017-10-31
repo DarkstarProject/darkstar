@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onMobFight( mob, target )
- local hpTrigger = mob:getLocalVar("benedictionTrigger");
+    local hpTrigger = mob:getLocalVar("benedictionTrigger");
     if (mob:getHPP() <= hpTrigger and mob:getLocalVar("benediction") == 0) then
         mob:useMobAbility(689);
         mob:setLocalVar("benediction", 1);
