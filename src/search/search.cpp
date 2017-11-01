@@ -126,14 +126,14 @@ void PrintPacket(char* data, int size)
         if (((y + 1) % 16) == 0)
         {
             message[48] = '\n';
-            printf(message);
+            fputs(message, stdout);
             memset(&message, 0, 50);
         }
     }
     if (strlen(message) > 0)
     {
         message[strlen(message)] = '\n';
-        printf(message);
+        fputs(message, stdout);
     }
     printf("\n");
 }
@@ -538,7 +538,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
     {
         std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid, allianceid);
 
-        CPartyListPacket PPartyPacket(partyid, PartyList.size());
+        CPartyListPacket PPartyPacket(partyid, (uint32)PartyList.size());
 
         for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
         {
@@ -553,7 +553,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
         uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
         std::list<SearchEntity*> LinkshellList = PDataLoader.GetLinkshellList(linkshellid);
 
-        CLinkshellListPacket PLinkshellPacket(linkshellid, LinkshellList.size());
+        CLinkshellListPacket PLinkshellPacket(linkshellid, (uint32)LinkshellList.size());
 
         for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
         {
@@ -662,13 +662,13 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
     CDataLoader PDataLoader;
     std::vector<ahItem*> ItemList = PDataLoader.GetAHItemsToCategory(AHCatID, OrderByArray);
 
-    uint8 PacketsCount = (ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0);
+    uint8 PacketsCount = (uint8)((ItemList.size() / 20) + (ItemList.size() % 20 != 0) + (ItemList.size() == 0));
 
     for (uint8 i = 0; i < PacketsCount; ++i)
     {
         CAHItemsListPacket PAHPacket(20 * i);
 
-        PAHPacket.SetItemCount(ItemList.size());
+        PAHPacket.SetItemCount((uint16)ItemList.size());
 
         for (uint16 y = 20 * i; (y != 20 * (i + 1)) && (y < ItemList.size()); ++y)
         {

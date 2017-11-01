@@ -1,7 +1,6 @@
 ---------------------------------------------
 -- Rejuvenation
 ---------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");

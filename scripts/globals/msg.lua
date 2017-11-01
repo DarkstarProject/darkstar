@@ -50,66 +50,99 @@ msgBasic =
 {
     NONE = 0, -- Display nothing
 
-    -- Unsorted messages used by ability.lua, monstertpmoves.lua, and automatonweaponskills.lua
-    BUFF_FAIL              = 75;
-    RESIST                 = 85,
-    FAMILIAR               = 108,
-    DISAPPEAR              = 159, -- <target>'s stun effect disappears!
+    -- Magic
+    MAGIC_DMG              = 2,   -- <caster> casts <spell>. <target> takes <amount> damage.
+    MAGIC_RECOVERS_HP      = 7,   -- <caster> casts <spell>. <target> recovers <amount> HP.
+    MAGIC_NO_EFFECT        = 75,  -- <caster>'s <spell> has no effect on <target>.
+    MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
+    MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
+    MAGIC_RESIST_2         = 284, -- <target> resists the effects of the spell!
+    MAGIC_DRAIN_HP         = 227, -- Caster> casts <spell>. <amount> HP drained from <target>
+    MAGIC_DRAIN_MP         = 228, -- Caster> casts <spell>. <amount> MP drained from <target>
+    MAGIC_GAIN_EFFECT      = 230, -- <caster> casts <spell>. <target> gains the effect of <status>.
+    MAGIC_ENFEEB_IS        = 236, -- <caster> casts <spell>. <target> is <status>.
+    MAGIC_ENFEEB           = 237, -- <caster> casts <spell>. <target> receives the effect of <status>.
+    MAGIC_ERASE            = 341, -- <caster> casts <spell> <target>'s <status> effect disappears!
+
+    -- Weaponskill / Mobskill (0-255 WS, 256+ monster skill)
+    SKILL_RECOVERS_MP      = 224, -- <user> uses <skill>. <target> recovers <amount> MP.
+    SKILL_RECOVERS_HP      = 103, -- The <player> uses .. <target> recovers .. HP.
+    SELF_HEAL              = 238, -- <user> uses <skill>. <user> recovers <amount> HP.
+    SELF_HEAL_SECONDARY    = 263, -- <target> recovers <amount> HP.
+    SKILL_ERASE            = 159, -- <user> uses <skill> <target>'s <status> effect disappears!
     DAMAGE                 = 185, -- player uses, target takes 10 damage. DEFAULT
     DAMAGE_SECONDARY       = 264,
-    BUFF                   = 186,
-    DRAIN_HP               = 187,
-    MISS                   = 188,
-    MISS_SECONDARY         = 282,
-    NO_EFFECT              = 189,
-    RECOVER_MP             = 224,
-    DRAIN_MP               = 225,
-    DRAIN_TP               = 226,
+    SKILL_DRAIN_HP         = 187, -- <user> uses <skill>. <amount> HP drained from <target>
+    SKILL_DRAIN_MP         = 225, -- <user> uses <skill>. <amount> MP drained from <target>
+    SKILL_DRAIN_TP         = 226, -- <user> uses <skill>. <amount> TP drained from <target>
+    SKILL_GAIN_EFFECT      = 186, -- <user> uses <skill>. <target> gains the effect of <status>.
+    SKILL_MISS             = 188,
+    SKILL_NO_EFFECT        = 189, -- <user> uses <skill>. No effect on <target>.
+    SKILL_ENFEEB_IS        = 242, -- <user> uses <skill>. <target> is <status>.
+    SKILL_ENFEEB           = 243, -- <user> uses <skill>. <target> receives the effect of <status>.
+
+    -- Job Ability messages (offset JA by 16)
+    JA_RECOVERS_HP         = 102, -- The <player> uses .. <target> recovers .. HP.
+    JA_RECOVERS_MP         = 451, -- <user> uses <ability>. <target> regains <amount> MP. (offset JA by 16)
+    USES_JA                = 100, -- The <player> uses ..
+    USES                   = 101, -- The <entity> uses ..
+    USES_JA_TAKE_DAMAGE    = 317, -- The <player> uses .. <target> takes .. points of damage.
+    JA_DAMAGE              = 110, -- <user> uses <ability>. <target> takes <amount> damage.
+    JA_ENFEEB_IS           = 127, -- <user> uses <ability>. <target> is <status>.
+    JA_REMOVE_EFFECT       = 123, -- <user> uses <ability>. <user> successfully removes <target>'s <status>.
+    JA_REMOVE_EFFECT_2     = 321, -- <user> uses <ability>. <target>'s <status> wears off.
+    JA_NO_EFFECT           = 156, -- <user> uses <ability>. No effect on <target>. (1 line msg)
+    JA_NO_EFFECT_2         = 323, -- <user> uses <ability>. No effect on <target>. (2 line msg)
+    JA_MISS                = 158, -- <user> uses <ability>, but misses. (no name included)
+    JA_MISS_2              = 324, -- <user> uses <ability>, but misses <target>. (includes target name)
+
+    -- Misc other unsorted (sort me)
+    FALL_TO_GROUND         = 20,  -- <name> falls to the ground.
+    NARROWLY_ESCAPE        = 359, -- <name> narrowly escapes impending doom.
+    AOE_HP_RECOVERY        = 367, -- <target> recovers <amount> HP.
+    IS_EFFECT              = 277, -- "is <status>" - that's the entire message.
+    EVADES                 = 282,
+    NO_EFFECT              = 283, -- "No effect" - that's the entire message.
+    GAINS_EFFECT           = 266, -- <target> gains the effect of <status>.
+    FAMILIAR               = 108,
     DISAPPEAR_NUM          = 231, -- <num> of <target>'s effects disappear!
-    SELF_HEAL              = 238,
-    SELF_HEAL_SECONDARY    = 263,
-    ENFEEB_IS              = 242, -- XXX is petrified.
-    ENFEEB                 = 243, -- XXX receives the effect of petrification.
     TP_REDUCED             = 362, -- tp reduced to
     ATTR_DRAINED           = 369,
     EFFECT_DRAINED         = 370, -- <num> status effects are drained from <target>.
     TP_INCREASE            = 409,
-
-    -- Misc other unsorted
-    DEFEATS_TARG           = 6, -- The <player> defeats <target>.
-    ALREADY_CLAIMED        = 12, -- Cannot attack. Your target is already claimed.
-    IS_INTERRUPTED         = 16, -- The <player>'s casting is interrupted.
-    UNABLE_TO_CAST         = 18, -- Unable to cast spells at this time.
-    CANNOT_PERFORM         = 71, -- The <player> cannot perform that action.
-    CANNOT_PERFORM_TARG    = 72, -- That action cannot be performed on <target>.
-    UNABLE_TO_USE_JA       = 87, -- Unable to use job ability.
-    UNABLE_TO_USE_JA2      = 88, -- Unable to use job ability.
-    IS_PARALYZED           = 29, -- The <player> is paralyzed.
+    DEFEATS_TARG           = 6,   -- The <player> defeats <target>.
+    ALREADY_CLAIMED        = 12,  -- Cannot attack. Your target is already claimed.
+    IS_INTERRUPTED         = 16,  -- The <player>'s casting is interrupted.
+    UNABLE_TO_CAST         = 18,  -- Unable to cast spells at this time.
+    CANNOT_PERFORM         = 71,  -- The <player> cannot perform that action.
+    CANNOT_PERFORM_TARG    = 72,  -- That action cannot be performed on <target>.
+    UNABLE_TO_USE_JA       = 87,  -- Unable to use job ability.
+    UNABLE_TO_USE_JA2      = 88,  -- Unable to use job ability.
+    IS_PARALYZED           = 29,  -- The <player> is paralyzed.
     ANTICIPATE             = 30,
-    SHADOW_ABSORB          = 31, -- .. of <target>'s shadows absorb the damage and disappear.
-    NOT_ENOUGH_MP          = 34, -- The <player> does not have enough MP to cast (NULL).
-    NO_NINJA_TOOLS         = 35, -- The <player> lacks the ninja tools to cast (NULL).
-    UNABLE_TO_CAST_SPELLS  = 49, -- The <player> is unable to cast spells.
-    WAIT_LONGER            = 94, -- You must wait longer to perform that action.
-    USES_JA                = 100, -- The <player> uses ..
-    USES                   = 101, -- The <entity> uses ..
-    USES_RECOVERS_HP       = 102, -- The <player> uses .. <target> recovers .. HP.
-    USES_JA_TAKE_DAMAGE    = 317, -- The <player> uses .. <target> takes .. points of damage.
+    SHADOW_ABSORB          = 31,  -- .. of <target>'s shadows absorb the damage and disappear.
+    NOT_ENOUGH_MP          = 34,  -- The <player> does not have enough MP to cast (NULL).
+    NO_NINJA_TOOLS         = 35,  -- The <player> lacks the ninja tools to cast (NULL).
+    UNABLE_TO_CAST_SPELLS  = 49,  -- The <player> is unable to cast spells.
+    WAIT_LONGER            = 94,  -- You must wait longer to perform that action.
     IS_INTIMIDATED         = 106, -- The <player> is intimidated by <target>'s presence.
     CANNOT_ON_THAT_TARG    = 155, -- You cannot perform that action on the specified target.
     CANNOT_ATTACK_TARGET   = 446, -- You cannot attack that target
     NEEDS_2H_WEAPON        = 307, -- That action requires a two-handed weapon.
-    USES_BUT_MISSES        = 324, -- The <player> uses .. but misses <target>.
     CANT_BE_USED_IN_AREA   = 316, -- That action cannot be used in this area.
     REQUIRES_SHIELD        = 199, -- That action requires a shield.
     REQUIRES_COMBAT        = 525, -- .. can only be performed during battle.
     STATUS_PREVENTS        = 569, -- Your current status prevents you from using that ability.
+    STEAL_SUCCESS          = 125, -- <user> uses <ability>. <user> steals <item> from <target>.
+    STEAL_FAIL             = 153, -- <user> uses <ability>. <user> fails to steal from <target>.
+    MUG_SUCCESS            = 129, -- <user> uses <ability>. <user> mugs <amount> gil from <target>.
+    MUG_FAIL               = 244, -- <user> fails to mug <target>.
 
     -- Distance
-    TARG_OUT_OF_RANGE      = 4, -- <target> is out of range.
-    UNABLE_TO_SEE_TARG     = 5, -- Unable to see <target>.
-    LOSE_SIGHT             = 36, -- You lose sight of <target>.
-    TOO_FAR_AWAY           = 78, -- <target> is too far away.
+    TARG_OUT_OF_RANGE      = 4,   -- <target> is out of range.
+    UNABLE_TO_SEE_TARG     = 5,   -- Unable to see <target>.
+    LOSE_SIGHT             = 36,  -- You lose sight of <target>.
+    TOO_FAR_AWAY           = 78,  -- <target> is too far away.
 
     -- Weaponskills
     CANNOT_USE_WS          = 190, -- The <player> cannot use that weapon ability.
@@ -176,5 +209,8 @@ msgBasic =
     ROLL_ALREADY_ACTIVE    = 429, -- The same roll is already active on the <player>.
 
     EFFECT_ALREADY_ACTIVE  = 523, -- The same effect is already active on <player>.
-    NO_FINISHINGMOVES      = 524  -- You have not earned enough finishing moves to perform that action.
+
+    -- DNC
+    NO_FINISHINGMOVES      = 524, -- You have not earned enough finishing moves to perform that action.
+    SPECTRAL_JIG           = 532  -- <user> uses <ability>. <target> receives the effect of Sneak and Invisible.
 };

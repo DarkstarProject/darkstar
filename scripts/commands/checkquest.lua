@@ -17,26 +17,15 @@ function error(player, msg)
 end;
 
 function onTrigger(player,logId,questId,target)
-    
+
     -- validate logId
-    local logName;
-    if (logId == nil) then
-        error(player, "You must provide a logID.");
-        return;
-    elseif (tonumber(logId) ~= nil) then
-        logId = tonumber(logId);
-        logId = QUEST_LOGS[logId];
-    end
-    if (logId ~= nil) then
-        logId = _G[string.upper(logId)];
-    end
-    if ((type(logId) == "table") and logId.quest_log ~= nil) then
-        logName = logId.full_name;
-        logId = logId.quest_log;
-    else
+    local questLog = GetQuestLogInfo(logId);
+    if (questLog == nil) then
         error(player, "Invalid logID.");
         return;
     end
+    local logName = questLog.full_name;
+    logId = questLog.quest_log;
 
     -- validate questId
     if (questId ~= nil) then
@@ -70,7 +59,7 @@ function onTrigger(player,logId,questId,target)
         [1] = function (x) status = "ACCEPTED"; end,
         [2] = function (x) status = "COMPLETED"; end,
     }
-    
+
     -- show quest status
     player:PrintToPlayer( string.format( "%s's status for %s quest ID %i is: %s", targ:getName(), logName, questId, status ) );
 

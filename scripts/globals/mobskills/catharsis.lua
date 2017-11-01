@@ -1,13 +1,13 @@
----------------------------------------------------
+---------------------------------------------
 -- Catharsis
 -- Description: Restores HP.
----------------------------------------------------
+---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/zone");
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (target:getCurrentRegion() == REGION_TAVNAZIA) then

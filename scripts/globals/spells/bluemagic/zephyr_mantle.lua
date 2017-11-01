@@ -10,30 +10,22 @@
 -- Casting Time: 7 seconds
 -- Recast Time: 60 seconds
 -- Duration: 5 minutes
--- 
+--
 -- Combos: Conserve MP
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_BLINK;
     local power = 4;
     local duration = 300;
-    
+
     if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
@@ -43,9 +35,9 @@ function onSpellCast(caster,target,spell)
 
         caster:delStatusEffect(EFFECT_DIFFUSION);
     end;
-    
+
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

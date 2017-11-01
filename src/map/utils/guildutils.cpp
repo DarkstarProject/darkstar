@@ -65,7 +65,7 @@ void Initialize()
     const int8* fmtQuery = "SELECT DISTINCT id, points_name FROM guilds ORDER BY id ASC;";
     if (Sql_Query(SqlHandle, fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
-        g_PGuildList.reserve(Sql_NumRows(SqlHandle));
+        g_PGuildList.reserve((const unsigned int)Sql_NumRows(SqlHandle));
 
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
@@ -78,7 +78,7 @@ void Initialize()
 
 	if (Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
-        g_PGuildShopList.reserve(Sql_NumRows(SqlHandle));
+        g_PGuildShopList.reserve((const unsigned int)Sql_NumRows(SqlHandle));
 
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
@@ -109,7 +109,7 @@ void Initialize()
 				PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
 
 				PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
-				PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
+				PItem->setBasePrice((uint32)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
 
                 PGuildShop->InsertItem(PItem);
 			}
@@ -133,7 +133,7 @@ void UpdateGuildsStock()
         {
             CItemShop* PItem = (CItemShop*)PGuildShop->GetItem(slotid);
 
-            PItem->setBasePrice(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice()));
+            PItem->setBasePrice((uint32)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
 
             if (PItem->IsDailyIncrease())
             {
@@ -205,7 +205,7 @@ CItemContainer* GetGuildShop(uint16 GuildShopID)
             return PGuildShop;
 		}
 	}
-	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET);
+	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET, GuildShopID);
     return nullptr;
 }
 
@@ -219,7 +219,7 @@ CGuild* GetGuild(uint8 GuildID)
     {
         return nullptr;
     }
-    ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET);
+    ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET, GuildID);
     return nullptr;
 }
 

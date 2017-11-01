@@ -55,7 +55,7 @@ function onTrade(player,npc,trade)
     elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED and
         trade:hasItemQty(601,1) and count == 1) then
             player:startEvent(0x0201);
-            npc:wait(-1);
+            npc:wait();
     end
 
 end;
@@ -68,7 +68,7 @@ function onTrigger(player,npc)
 
     local aSentrysPeril = player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL);
 
-    npc:wait(-1);
+    npc:wait();
 
     if (aSentrysPeril == QUEST_AVAILABLE) then
         player:startEvent(0x01fe);

@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Banish
+-- Spell: Banish IV
 -- Deals light damage to an enemy.
 -----------------------------------------
 

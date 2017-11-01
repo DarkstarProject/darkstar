@@ -6,14 +6,11 @@
 -- Recast Time: 0:20
 -- Duration: ??
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -44,10 +41,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local hit = 4;
@@ -87,7 +80,7 @@ function onUseAbility(player,target,ability,action)
         if resist > 0.25 then
             target:addStatusEffect(EFFECT_STUN, 1, 0, 2);
         else
-            ability:setMsg(110);
+            ability:setMsg(msgBasic.JA_DAMAGE);
         end
 
         dmg = utils.stoneskin(target, dmg);
@@ -99,7 +92,7 @@ function onUseAbility(player,target,ability,action)
         action:speceffect(target:getID(), hit)
         return dmg
     else
-        ability:setMsg(158);
+        ability:setMsg(msgBasic.JA_MISS);
         return 0;
     end
 end;

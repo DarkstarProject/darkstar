@@ -29,101 +29,102 @@
 #include <string>
 #include <queue>
 #include <functional>
+#include <any>
 
 template<class _Ty>
-	struct greater_equal
-{	// functor for operator>
-	bool operator()(const _Ty& _Left, const _Ty& _Right) const
-	{	// apply operator> to operands
-		return ((*_Left) > (*_Right));
-	}
+    struct greater_equal
+{    // functor for operator>
+    bool operator()(const _Ty& _Left, const _Ty& _Right) const
+    {    // apply operator> to operands
+        return ((*_Left) > (*_Right));
+    }
 };
 
 class CTaskMgr
 {
 public:
 
-	class CTask;
-	enum TASKTYPE
-	{
-		TASK_INTERVAL,
-		TASK_ONCE,
-		TASK_REMOVE,
-		TASK_INVALID
-	};
-	typedef int32 (*TaskFunc_t)(time_point tick,CTask*);
-	typedef std::priority_queue<CTask*,std::deque<CTask*>,greater_equal<CTask*> > TaskList_t;
-		
-	TaskList_t& getTaskList(){ return m_TaskList; };
+    class CTask;
+    enum TASKTYPE
+    {
+        TASK_INTERVAL,
+        TASK_ONCE,
+        TASK_REMOVE,
+        TASK_INVALID
+    };
+    typedef int32 (*TaskFunc_t)(time_point tick,CTask*);
+    typedef std::priority_queue<CTask*,std::deque<CTask*>,greater_equal<CTask*> > TaskList_t;
+        
+    TaskList_t& getTaskList(){ return m_TaskList; };
 
-	CTask* AddTask(CTask*);
-	CTask* AddTask(
-		std::string InitName,
-		time_point InitTick,
-		void *InitData,
-		TASKTYPE InitType,
-		TaskFunc_t InitFunc,
-		duration InitInterval=1s);
+    CTask* AddTask(CTask*);
+    CTask* AddTask(
+        std::string InitName,
+        time_point InitTick,
+        std::any InitData,
+        TASKTYPE InitType,
+        TaskFunc_t InitFunc,
+        duration InitInterval=1s);
 
-	duration	DoTimer(time_point tick);
-	void	RemoveTask(std::string TaskName);
+    duration    DoTimer(time_point tick);
+    void    RemoveTask(std::string TaskName);
 
-	static CTaskMgr * getInstance();
+    static CTaskMgr * getInstance();
 
-	~CTaskMgr() {};
+    ~CTaskMgr() {};
 
 private:
 
-	static CTaskMgr* _instance;
-		
-	TaskList_t m_TaskList;
+    static CTaskMgr* _instance;
+        
+    TaskList_t m_TaskList;
 
-	CTaskMgr() {};
+    CTaskMgr() {};
 };
 
 class CTaskMgr::CTask
 {
 public:
 
-	CTask(std::string InitName,
-		time_point InitTick,
-		void * InitData,
-		TASKTYPE InitType,
-		TaskFunc_t InitFunc,
-		duration InitInterval=1s
-		):	m_name(InitName),
-			m_tick(InitTick),
-			m_data(InitData),
-			m_type(InitType),
-			m_func(InitFunc),
-			m_interval(InitInterval) {};
+    CTask(std::string InitName,
+        time_point InitTick,
+        std::any InitData,
+        TASKTYPE InitType,
+        TaskFunc_t InitFunc,
+        duration InitInterval=1s
+        ):  m_name(InitName),
+            m_tick(InitTick),
+            m_data(InitData),
+            m_type(InitType),
+            m_func(InitFunc),
+            m_interval(InitInterval) {};
 
-	std::string m_name;
-	TASKTYPE	m_type;
-	time_point	m_tick;
-	duration	m_interval;
-	void*		m_data;
-	TaskFunc_t	m_func;
+    std::string m_name;
+    TASKTYPE    m_type;
+    time_point  m_tick;
+    duration    m_interval;
+    std::any    m_data;
+    TaskFunc_t  m_func;
 };
 
 inline bool operator<(const CTaskMgr::CTask& a,const CTaskMgr::CTask& b)
 {
-	return a.m_tick < b.m_tick;
+    return a.m_tick < b.m_tick;
 };
 
 inline bool operator>(const CTaskMgr::CTask& a,const CTaskMgr::CTask& b)
 {
-	return a.m_tick > b.m_tick;
+    return a.m_tick > b.m_tick;
 };
 
 inline bool operator >=(const CTaskMgr::CTask& a,const CTaskMgr::CTask& b)
 {
-	return a.m_tick >= b.m_tick;
+    return a.m_tick >= b.m_tick;
 };
 
 inline bool operator <=(const CTaskMgr::CTask& a,const CTaskMgr::CTask &b)
 {
-	return a.m_tick <= b.m_tick;
+    return a.m_tick <= b.m_tick;
 }
 
 #endif

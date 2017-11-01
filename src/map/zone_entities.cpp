@@ -313,13 +313,13 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 
         if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
             //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
+            float pos[4] = {0.f, 0.f, 0.f, 0.f};
             battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (pos != nullptr) {
+            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
+                PChar->loc.p.rotation = (uint8)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -336,13 +336,13 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 
         if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
             //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
+            float pos[4] = {0.f, 0.f, 0.f, 0.f};
             battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (!(pos[0] == 0 && pos[1] == 0 && pos[2] == 0 && pos[3] == 0)) {
+            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
+                PChar->loc.p.rotation = (uint8)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -945,7 +945,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
     PChar->pushPacket(new CWideScanPacket(WIDESCAN_END));
 }
 
-void CZoneEntities::ZoneServer(time_point tick)
+void CZoneEntities::ZoneServer(time_point tick, bool check_regions)
 {
     for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
     {
@@ -956,27 +956,35 @@ void CZoneEntities::ZoneServer(time_point tick)
             continue;
         }
 
-        PMob->StatusEffectContainer->CheckEffects(tick);
-        PMob->PAI->Tick(tick);
-        PMob->StatusEffectContainer->CheckRegen(tick);
         PMob->PRecastContainer->Check();
+        PMob->StatusEffectContainer->CheckEffectsExpiry(tick);
+        if(tick > m_EffectCheckTime)
+        {
+            PMob->StatusEffectContainer->TickRegen(tick);
+            PMob->StatusEffectContainer->TickEffects(tick);
+        }
+        PMob->PAI->Tick(tick);
     }
 
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
     {
         CNpcEntity* PNpc = (CNpcEntity*)it->second;
 
-        PNpc->PAI->Tick(server_clock::now());
+        PNpc->PAI->Tick(tick);
     }
 
     EntityList_t::const_iterator pit = m_petList.begin();
     while (pit != m_petList.end())
     {
         CPetEntity* PPet = (CPetEntity*)pit->second;
-        PPet->StatusEffectContainer->CheckEffects(tick);
-        PPet->PAI->Tick(tick);
-        PPet->StatusEffectContainer->CheckRegen(tick);
         PPet->PRecastContainer->Check();
+        PPet->StatusEffectContainer->CheckEffectsExpiry(tick);
+        if(tick > m_EffectCheckTime)
+        {
+            PPet->StatusEffectContainer->TickRegen(tick);
+            PPet->StatusEffectContainer->TickEffects(tick);
+        }
+        PPet->PAI->Tick(tick);
         if (PPet->status == STATUS_DISAPPEAR)
         {
             for (auto PMobIt : m_mobList)
@@ -1002,48 +1010,25 @@ void CZoneEntities::ZoneServer(time_point tick)
         if (PChar->status != STATUS_SHUTDOWN)
         {
             PChar->PRecastContainer->Check();
-            PChar->StatusEffectContainer->CheckEffects(tick);
+            PChar->StatusEffectContainer->CheckEffectsExpiry(tick);
+            if (tick > m_EffectCheckTime)
+            {
+                PChar->StatusEffectContainer->TickRegen(tick);
+                PChar->StatusEffectContainer->TickEffects(tick);
+            }
             PChar->PAI->Tick(tick);
             PChar->PTreasurePool->CheckItems(tick);
-            PChar->StatusEffectContainer->CheckRegen(tick);
+            if (check_regions)
+            {
+                m_zone->CheckRegions(PChar);
+            }
         }
     }
-}
-
-void CZoneEntities::ZoneServerRegion(time_point tick)
-{
-    for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+    if (tick > m_EffectCheckTime)
     {
-        CMobEntity* PMob = (CMobEntity*)it->second;
-
-        PMob->StatusEffectContainer->CheckEffects(tick);
-        PMob->PAI->Tick(tick);
-    }
-
-    for (EntityList_t::const_iterator it = m_petList.begin(); it != m_petList.end(); ++it)
-    {
-        CPetEntity* PPet = (CPetEntity*)it->second;
-
-        PPet->StatusEffectContainer->CheckEffects(tick);
-        PPet->PAI->Tick(tick);
-    }
-
-    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
-    {
-        CCharEntity* PChar = (CCharEntity*)it->second;
-
-        if (PChar->status != STATUS_SHUTDOWN)
-        {
-            PChar->PRecastContainer->Check();
-            PChar->StatusEffectContainer->CheckEffects(tick);
-            PChar->PAI->Tick(tick);
-            PChar->PTreasurePool->CheckItems(tick);
-
-            m_zone->CheckRegions(PChar);
-        }
+        m_EffectCheckTime = m_EffectCheckTime + 3s > tick ? m_EffectCheckTime + 3s : tick + 3s;
     }
 }
-
 
 CZone* CZoneEntities::GetZone()
 {

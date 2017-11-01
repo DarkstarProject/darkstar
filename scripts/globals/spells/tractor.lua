@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Tractor
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -14,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-printf("Caster Zone: %u",caster:getZoneID());
+    -- printf("Caster Zone: %u",caster:getZoneID());
     target:sendTractor(caster:getXPos(), caster:getYPos(), caster:getZPos(), target:getRotPos());
 
     spell:setMsg(309);

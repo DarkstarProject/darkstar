@@ -10,9 +10,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -121,7 +118,12 @@ function onSpellCast(caster,target,spell)
 
     --Enmity for Cura III is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
 
-    spell:setMsg(367);
+    spell:setMsg(msgBasic.AOE_HP_RECOVERY);
+
+    local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
+    if (mpBonusPercent > 0) then
+        caster:addMp(mpBonusPercent);
+    end
 
     return final;
 end;

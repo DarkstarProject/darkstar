@@ -12,7 +12,7 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-  if(mob:getFamily() == 316) then
+  if (mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
 
     if (mobSkin == 1805) then
@@ -25,7 +25,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local typeEffect = EFFECT_PETRIFICATION;
     local power = 1;
 

@@ -235,6 +235,7 @@ public:
     int32 isSpawned(lua_State*);
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
+    int32 getRespawnTime(lua_State*);
     int32 getDynamisUniqueID(lua_State*);      //Get unique Dynamis ID
     int32 addPlayerToDynamis(lua_State*);      //Add player to the Dynamis
     int32 addTimeToDynamis(lua_State*);        //Add time to the Dynamis

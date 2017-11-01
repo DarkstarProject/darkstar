@@ -86,13 +86,13 @@ public:
     void    LoadAugment(uint8 slot, uint16 augment);
     void    ApplyAugment(uint8 slot);
 
-    void    addModifier(CModifier* modifier);
-    void    addPetModifier(CPetModifier* modifier);
-	void	addLatent(CLatentEffect* latent);
+    void    addModifier(CModifier modifier);
+    void    addPetModifier(CPetModifier modifier);
+	void	addLatent(CLatentEffect latent);
 
-	std::vector<CModifier*> modList;			// список модификаторов
-    std::vector<CPetModifier*> petModList;         // mod list for pets
-	std::vector<CLatentEffect*> latentList;     // contains latents
+	std::vector<CModifier> modList;			// список модификаторов
+    std::vector<CPetModifier> petModList;         // mod list for pets
+	std::vector<CLatentEffect> latentList;     // contains latents
 
 private:
 

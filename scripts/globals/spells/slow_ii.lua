@@ -4,12 +4,9 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Slow II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -25,15 +22,15 @@ function onSpellCast(caster,target,spell)
     if (potency > 360) then
         potency = 360;
     end
-    
+
     if (potency < 128) then
         potency = 128;
     end
-    
+
     if (merits > 1) then
         potency = potency + ((merits - 1) * 10);
     end;
-    
+
     if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         potency = potency * 2;
     end
@@ -49,20 +46,20 @@ function onSpellCast(caster,target,spell)
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then --Do it!
-    
+
     if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
         if (target:addStatusEffect(EFFECT_SLOW,potency,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
 
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return EFFECT_SLOW;

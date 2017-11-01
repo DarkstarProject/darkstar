@@ -72,8 +72,9 @@ public:
     CStatusEffect* GetStatusEffect(EFFECT StatusID, uint32 SubID);
 
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
-    void CheckEffects(time_point tick);
-    void CheckRegen(time_point tick);
+    void CheckEffectsExpiry(time_point tick);
+    void TickEffects(time_point tick);
+    void TickRegen(time_point tick);
 
     void LoadStatusEffects();                                   // загружаем эффекты персонажа
     void SaveStatusEffects(bool logout = false);                // сохраняем эффекты персонажа
@@ -118,9 +119,6 @@ private:
 	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
     void OverwriteStatusEffect(CStatusEffect* StatusEffect);
-
-	time_point m_EffectCheckTime {server_clock::now()};
-    time_point m_RegenCheckTime {server_clock::now()};
 
 	std::vector<CStatusEffect*>	m_StatusEffectList;
 };

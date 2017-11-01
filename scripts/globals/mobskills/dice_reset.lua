@@ -1,15 +1,16 @@
 ---------------------------------------------
---  Goblin Dice
+-- Goblin Dice
 --
---  Description: Reset recasts on abilities
---  Type: Physical (Blunt)
+-- Description: Reset recasts on abilities
+-- Type: Physical (Blunt)
 --
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

@@ -1,14 +1,11 @@
 --------------------------------------
---     Spell: Absorb-ACC
---     Steals an enemy's accuracy.
+-- Spell: Absorb-ACC
+-- Steals an enemy's accuracy.
 --------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -18,7 +15,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     if (caster:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     else
         local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
         local params = {};
@@ -27,9 +24,9 @@ function onSpellCast(caster,target,spell)
         params.skillType = 37;
         params.bonus = 0;
         params.effect = nil;
-        resist = applyResistance(caster, target, spell, params);
+        local resist = applyResistance(caster, target, spell, params);
         if (resist <= 0.125) then
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         else
             spell:setMsg(533);
             caster:addStatusEffect(EFFECT_ACCURACY_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains ACC

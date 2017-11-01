@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Repose
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -23,14 +20,14 @@ function onSpellCast(caster,target,spell)
     params.effect = EFFECT_SLEEP_II;
     resist = applyResistanceEffect(caster, target, spell, params);
     if (resist < 0.5) then
-        spell:setMsg(85); -- Resist
+        spell:setMsg(msgBasic.MAGIC_RESIST); -- Resist
         return EFFECT_SLEEP_II;
     end
 
     if (target:addStatusEffect(EFFECT_SLEEP_II,2,0,90*resist)) then
-        spell:setMsg(237);
+        spell:setMsg(msgBasic.MAGIC_ENFEEB);
     else
-        spell:setMsg(75); -- No effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
     end
 
     return EFFECT_SLEEP_II;

@@ -83,7 +83,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    int8 permission = lua_tonumber(m_LState, -1);
+    int8 permission = (int8)lua_tonumber(m_LState, -1);
     lua_pop(m_LState, 1); // pop number..
 
     // Attempt to obtain the command parameters..

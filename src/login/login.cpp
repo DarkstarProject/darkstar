@@ -32,6 +32,13 @@
 #include <thread>
 #include <iostream>
 
+#ifdef WIN32
+#include <io.h>
+#define isatty _isatty
+#else
+#include <unistd.h>
+#endif
+
 #include "login.h"
 #include "login_auth.h"
 #include "lobby.h"
@@ -112,31 +119,36 @@ int32 do_init(int32 argc, char** argv)
     messageThread = std::thread(message_server_init);
     ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 
-    consoleInputThread = std::thread([&]()
-    {
-        ShowStatus("Console input thread is ready..\r\n");
-        // ctrl c apparently causes log spam
-        auto lastInputTime = server_clock::now();
-        while (true)
-        {
-            if ((server_clock::now() - lastInputTime) > 1s)
-            {
-                std::string input;
-                std::cin >> input;
+    bool attached = isatty(0);
 
-                if (strcmp(input.c_str(), "verlock") == 0)
+    if (attached)
+    {
+        consoleInputThread = std::thread([&]()
+        {
+            ShowStatus("Console input thread is ready..\r\n");
+            // ctrl c apparently causes log spam
+            auto lastInputTime = server_clock::now();
+            while (true)
+            {
+                if ((server_clock::now() - lastInputTime) > 1s)
                 {
-                    version_info.enable_ver_lock = !version_info.enable_ver_lock;
-                    ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    std::string input;
+                    std::cin >> input;
+
+                    if (strcmp(input.c_str(), "verlock") == 0)
+                    {
+                        version_info.enable_ver_lock = !version_info.enable_ver_lock;
+                        ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    }
+                    else
+                    {
+                        ShowStatus("Unknown console input command\r\n");
+                    }
+                    lastInputTime = server_clock::now();
                 }
-                else
-                {
-                    ShowStatus("Unknown console input command\r\n");
-                }
-                lastInputTime = server_clock::now();
-            }
-        };
-    });
+            };
+        });
+    }
     return 0;
 }
 
@@ -172,8 +184,8 @@ int do_sockets(fd_set* rfd, duration next)
 
 
     // can timeout until the next tick
-    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
-    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
+    timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = (long)std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
 
     memcpy(rfd, &readfds, sizeof(*rfd));
@@ -371,14 +383,6 @@ int32 login_config_read(const char *cfgName)
         {
             login_config.search_server_port = atoi(w2);
         }
-        else if (strcmp(w1, "expansions") == 0)
-        {
-            login_config.expansions = atoi(w2);
-        }
-        else if (strcmp(w1, "features") == 0)
-        {
-            login_config.features = atoi(w2);
-        }
         else if (strcmp(w1, "servername") == 0)
         {
             login_config.servername = std::string(w2);
@@ -458,7 +462,6 @@ int32 login_config_default()
     login_config.login_auth_ip = "127.0.0.1";
     login_config.login_auth_port = 54231;
 
-    login_config.expansions = 0xFFFF;
     login_config.servername = "DarkStar";
 
     login_config.mysql_host = "";

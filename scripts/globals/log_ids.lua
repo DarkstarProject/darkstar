@@ -60,7 +60,7 @@ NORG =
     ['quest_log']= 5,
     ['fame_area']= 5
 };
-OTHER_AREAS =
+OTHER_AREAS_LOG =
 {
     ['full_name'] = "Other Areas",
     ['quest_log']= 4
@@ -225,7 +225,7 @@ QUEST_LOGS = {
     [1] = "BASTOK",
     [2] = "WINDURST",
     [3] = "JEUNO",
-    [4] = "OTHER_AREAS",
+    [4] = "OTHER_AREAS_LOG",
     [5] = "OUTLANDS",
     [6] = "TOAU",
     [7] = "WOTG",
@@ -250,3 +250,48 @@ MISSION_LOGS = {
     [12] = "SOA",
     [13] = "ROV",
 };
+
+function GetQMLogInfo(cmdParamText, logNameTable)
+    -- Returns the table from this file after validating
+    if (cmdParamText == nil) then return nil end
+    if (type(logNameTable) ~= "table") then return nil end
+    local logName;
+    local ret = nil;
+    local logIdNum = tonumber(cmdParamText);
+    if (logIdNum ~= nil) then
+        logName = logNameTable[logIdNum];
+    else
+        logName = string.upper(cmdParamText);
+    end
+    if (logName ~= nil) then
+        ret = _G[logName];
+        if ((type(ret) == "table") and (type(ret.full_name) == "string")) then
+            return ret;
+        else
+            logName = logName .. "_LOG";
+            ret = _G[logName];
+            if ((type(ret) == "table") and (type(ret.full_name) == "string")) then 
+                return ret;
+            end
+        end
+    end
+    return nil;
+end
+
+function GetQuestLogInfo(cmdParamText)
+    local ret = GetQMLogInfo(cmdParamText, QUEST_LOGS);
+    if ((type(ret) == "table") and (type(ret.quest_log) == "number")) then
+        return ret;
+    else
+        return nil;
+    end
+end
+
+function GetMissionLogInfo(cmdParamText)
+    local ret = GetQMLogInfo(cmdParamText, MISSION_LOGS);
+    if ((type(ret) == "table") and (type(ret.mission_log)) == "number") then
+        return ret;
+    else
+        return nil;
+    end
+end

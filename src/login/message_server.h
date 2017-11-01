@@ -20,9 +20,9 @@ This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
+#include "../common/socket.h"
 #include "../common/sql.h"
 #include "../common/mmo.h"
-#include "../common/socket.h"
 
 #include <zmq.hpp>
 

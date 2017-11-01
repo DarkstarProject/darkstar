@@ -1,13 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Arua Of Persistence
 -- Enhances defense.
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

@@ -30,6 +30,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <cstdio>
+#include <any>
 
 /************************************************************************
 *																		*
@@ -183,7 +184,7 @@ int32 Sql_Ping(Sql_t* self)
 
 static int32 Sql_P_KeepaliveTimer(time_point tick,CTaskMgr::CTask* PTask)
 {
-	Sql_t* self = (Sql_t*)PTask->m_data;
+	Sql_t* self = std::any_cast<Sql_t*>(PTask->m_data);
 	ShowInfo("Pinging SQL server to keep connection alive...\n");
 	Sql_Ping(self);
 	return 0;
@@ -256,7 +257,7 @@ int32 Sql_QueryStr(Sql_t* self, const char* query)
 	Sql_FreeResult(self);
     self->buf.clear();
 	self->buf += query;
-	if( mysql_real_query(&self->handle, self->buf.c_str(), self->buf.length()) )
+	if( mysql_real_query(&self->handle, self->buf.c_str(), (unsigned int)self->buf.length()) )
 	{
 		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
 		return SQL_ERROR;

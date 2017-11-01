@@ -87,7 +87,7 @@ uint8 CBattlefield::getMaxParticipants()
 
 uint8 CBattlefield::getMaxPlayerInBCNM()
 {
-    return m_PlayerList.size();
+    return (uint8)m_PlayerList.size();
 }
 
 uint8 CBattlefield::getLevelCap()
@@ -194,9 +194,10 @@ void CBattlefield::enableSubJob()
         ShowWarning("battlefield:enableSubjob - No players in battlefield!\n");
         return;
     }
-    for (int i = 0; i < m_PlayerList.size(); i++)
+
+    for (const auto& player : m_PlayerList)
     {
-        m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECT_SJ_RESTRICTION);
+        player->StatusEffectContainer->DelStatusEffectsByFlag(EFFECT_SJ_RESTRICTION);
     }
 }
 
@@ -207,9 +208,10 @@ void CBattlefield::disableSubJob()
         ShowWarning("battlefield:disableSubjob - No players in battlefield!\n");
         return;
     }
-    for (int i = 0; i < m_PlayerList.size(); i++)
+
+    for (const auto& player : m_PlayerList)
     {
-        m_PlayerList.at(i)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SJ_RESTRICTION, 0, m_PlayerList.at(i)->GetSJob(), 0, 0), true);
+        player->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SJ_RESTRICTION, 0, player->GetSJob(), 0, 0), true);
     }
 }
 
@@ -260,11 +262,12 @@ void CBattlefield::capPlayerToBCNM()
         {
             cap = 1;
         }
-        for (int i = 0; i < m_PlayerList.size(); i++)
+
+        for (const auto& player : m_PlayerList)
         {
-            m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
-            m_PlayerList.at(i)->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
-            m_PlayerList.at(i)->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION, 0, cap, 0, 0), true);
+            player->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+            player->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE);
+            player->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION, 0, cap, 0, 0), true);
         }
     }
 }
@@ -272,9 +275,9 @@ void CBattlefield::capPlayerToBCNM()
 
 bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar)
 {
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (const auto& player : m_PlayerList)
     {
-        if (PChar->id == m_PlayerList.at(i)->id)
+        if (PChar->id == player->id)
         {
             return PChar->PBCNM != nullptr;
         }
@@ -282,15 +285,16 @@ bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar)
     return false;
 }
 
-void CBattlefield::pushMessageToAllInBcnm(uint16 msg, uint16 param)
+void CBattlefield::pushMessageToAllInBcnm(uint16 msg, uint32 param)
 {
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (const auto& player : m_PlayerList)
     {
-        if (m_PlayerList.at(i)->m_lastBcnmTimePrompt != param)
+        if (player->m_lastBcnmTimePrompt != param)
         {
-            m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(m_PlayerList.at(i), m_PlayerList.at(i), param, 0, msg));
-            m_PlayerList.at(i)->m_lastBcnmTimePrompt = param;
+            player->pushPacket(new CMessageBasicPacket(player, player, param, 0, msg));
+            player->m_lastBcnmTimePrompt = param;
         }
+
     }
 }
 
@@ -324,7 +328,7 @@ bool CBattlefield::addPlayerToBcnm(CCharEntity* PChar)
 
 bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar)
 {
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (size_t i = 0; i < m_PlayerList.size(); i++)
     {
         if (m_PlayerList.at(i)->id == PChar->id)
         {
@@ -345,9 +349,9 @@ bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar)
 
 bool CBattlefield::enterBcnm(CCharEntity* PChar)
 {
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (const auto& player : m_PlayerList)
     {
-        if (m_PlayerList.at(i)->id == PChar->id)
+        if (player->id == PChar->id)
         {
             if (PChar->PBCNM) { ShowWarning("%s is already inside a BCNM!\n", PChar->GetName()); }
             PChar->PBCNM = this;
@@ -362,9 +366,9 @@ bool CBattlefield::enterBcnm(CCharEntity* PChar)
 
 bool CBattlefield::isValidPlayerForBcnm(CCharEntity* PChar)
 {
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (const auto& player : m_PlayerList)
     {
-        if (PChar->id == m_PlayerList.at(i)->id)
+        if (PChar->id == player->id)
         {
             return true;
         }
@@ -379,9 +383,9 @@ bool CBattlefield::allPlayersDead()
         ShowWarning("battlefield:allPlayersDead : No players in list!\n");
     }
 
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (const auto& player: m_PlayerList)
     {
-        if (!m_PlayerList.at(i)->isDead())
+        if (!player->isDead())
         {
             return false;
         }
@@ -393,7 +397,7 @@ bool CBattlefield::allPlayersDead()
 
 void CBattlefield::lockBcnm()
 {
-    for (int i = 0; i < m_PlayerList.size(); i++)
+    for (size_t i = 0; i < m_PlayerList.size(); i++)
     {
         if (!m_PlayerList.at(i)->PBCNM) {
             ShowDebug("Removing %s from the valid players list for BCNMID %i Battlefield %i \n", m_PlayerList.at(i)->GetName(),
@@ -457,9 +461,9 @@ bool CBattlefield::allEnemiesDefeated()
 
 bool CBattlefield::isPlayersFighting()
 {
-    for (int i = 0; i < m_EnemyList.size(); i++)
+    for (const auto& enemy : m_EnemyList)
     {
-        if (m_EnemyList.at(i)->PEnmityContainer->GetHighestEnmity() != nullptr)
+        if (enemy->PEnmityContainer->GetHighestEnmity() != nullptr)
         {
             return true;
         }
@@ -480,21 +484,23 @@ void CBattlefield::cleanup()
 {
     ShowDebug("bcnm cleanup id:%i inst:%i \n", this->getID(), this->getBattlefieldNumber());
     //wipe enmity from all mobs in list if needed
-    for (int i = 0; i < m_EnemyList.size(); i++) {
-        m_EnemyList.at(i)->PAI->Despawn();
-        m_EnemyList.at(i)->status = STATUS_DISAPPEAR;
-        m_EnemyList.at(i)->PBCNM = nullptr;
+    for (const auto& enemy : m_EnemyList)
+    {
+        enemy->PAI->Despawn();
+        enemy->status = STATUS_DISAPPEAR;
+        enemy->PBCNM = nullptr;
     }
     //wipe mob list
     m_EnemyList.clear();
 
     //make chest vanish (if any)
-    for (int i = 0; i < m_NpcList.size(); i++) {
-        m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityAnimationPacket(m_NpcList.at(i), CEntityAnimationPacket::Fade_Out));
-        m_NpcList.at(i)->animation = ANIMATION_DEATH;
-        m_NpcList.at(i)->status = STATUS_MOB;
-        m_NpcList.at(i)->loc.zone->PushPacket(m_NpcList.at(i), CHAR_INRANGE, new CEntityUpdatePacket(m_NpcList.at(i), ENTITY_UPDATE, UPDATE_COMBAT));
-        m_NpcList.at(i)->PBCNM = nullptr;
+    for (const auto& npc: m_NpcList)
+    {
+        npc->loc.zone->PushPacket(npc, CHAR_INRANGE, new CEntityAnimationPacket(npc, CEntityAnimationPacket::Fade_Out));
+        npc->animation = ANIMATION_DEATH;
+        npc->status = STATUS_MOB;
+        npc->loc.zone->PushPacket(npc, CHAR_INRANGE, new CEntityUpdatePacket(npc, ENTITY_UPDATE, UPDATE_COMBAT));
+        npc->PBCNM = nullptr;
     }
     //wipe npc list
     m_NpcList.clear();
@@ -548,7 +554,7 @@ void CBattlefield::beforeCleanup()
             {
                 if (PChar)
                 {
-                    setRecord(PChar->GetName(), m_PlayerList.size(), clearTime);
+                    setRecord(PChar->GetName(), (uint8)m_PlayerList.size(), clearTime);
                     break;
                 }
             }
@@ -604,9 +610,9 @@ bool CBattlefield::loseBcnm()
 
 bool CBattlefield::isEnemyBelowHPP(uint8 hpp)
 {
-    for (int i = 0; i<m_EnemyList.size(); i++)
+    for (const auto& enemy: m_EnemyList)
     {
-        if (m_EnemyList.at(i)->GetHPP()>hpp)
+        if (enemy->GetHPP()>hpp)
         {
             return false;
         }
@@ -657,7 +663,7 @@ void CBattlefield::addTimeLimit(duration time)
 }
 
 bool CBattlefield::finishDynamis() {
-    for (int i = 0; i < m_PlayerList.size(); i++) {
+    for (size_t i = 0; i < m_PlayerList.size(); i++) {
         luautils::OnBcnmLeave(m_PlayerList.at(i), this, LEAVE_LOSE);
         if (this->delPlayerFromDynamis(m_PlayerList.at(i))) { i--; }
     }
@@ -710,7 +716,7 @@ void CBattlefield::cleanupDynamis()
 
 bool CBattlefield::delPlayerFromDynamis(CCharEntity* PChar)
 {
-    for (int i = 0; i < m_PlayerList.size(); i++) {
+    for (size_t i = 0; i < m_PlayerList.size(); i++) {
         if (m_PlayerList.at(i)->id == PChar->id) {
             PChar->PBCNM = nullptr;
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_DYNAMIS);
@@ -729,9 +735,9 @@ void CBattlefield::addMonsterInList(CMobEntity* PMob)
 
 bool CBattlefield::isMonsterInList(CMobEntity* PMob)
 {
-    for (int i = 0; i < m_MobList.size(); i++)
+    for (const auto& mob : m_MobList)
     {
-        if (PMob->id == m_MobList.at(i)->id)
+        if (PMob->id == mob->id)
         {
             return true;
         }

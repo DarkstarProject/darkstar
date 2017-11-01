@@ -21,26 +21,37 @@ end;
 
 function onMobDespawn(mob)
     -- Get Rock Lizard ID and check if it is a PH of LL
-    local mobID = mob:getID();
+    local mobID = mob:getID()
 
+    local nmID = Leaping_Lizzy_PH[mobID]
     -- Check if Rock Lizard is within the Leaping_Lizzy_PH table
-    if (Leaping_Lizzy_PH[mobID] ~= nil) then
+    if nmID ~= nil then
         -- printf("%u is a PH",mob);
         -- Get LL's previous ToD
-        local LL_ToD = GetServerVariable("[POP]Leaping_Lizzy");
+        local nm = GetMobByID(nmID)
+        local ToD = nm:getLocalVar("ToD")
 
-        -- Check if LL window is open, and there is not an LL popped already(ACTION_NONE = 0)
-        if (LL_ToD <= os.time() and GetMobAction(Leaping_Lizzy) == 0) then
+        -- Check if LL window is open, and there is not an LL popped already (or waiting to pop)
+        if ToD <= os.time() and nm:isSpawned() == false and nm:getRespawnTime() == 0 then
             -- printf("LL window open");
             -- Give Rock_Lizard 5 percent chance to pop LL
             if (math.random(1,20) == 5) then
                 -- printf("LL will pop");
-                UpdateNMSpawnPoint(Leaping_Lizzy);
-                GetMobByID(Leaping_Lizzy):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Leaping_Lizzy", mobID);
-                DisallowRespawn(mobID, true);
+                UpdateNMSpawnPoint(nmID)
+                nm:setRespawnTime(GetMobRespawnTime(mobID))
+                nm:addListener("DESPAWN", "LL_PH", function(mob)
+                    -- Set LL's ToD
+                    mob:setLocalVar("ToD", os.time() + 3600)
+                    DisallowRespawn(mob:getID(), true)
+
+                    -- Set PH back to normal, then set to respawn spawn
+                    local PH = mobID
+                    DisallowRespawn(PH, false)
+                    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH))
+                    mob:removeListener("LL_PH")
+                end)
+                DisallowRespawn(mobID, true)
             end
         end
     end
-
 end;

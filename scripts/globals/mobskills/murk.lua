@@ -1,9 +1,9 @@
 ---------------------------------------------
---  Murk
+-- Murk
 --
---  Description: Slow and Weight Area of Effect (10.0')
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
+-- Description: Slow and Weight Area of Effect (10.0')
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -16,22 +16,21 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local slowed = false;
     local weight = false;
 
     slowed = MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, 60);
     weight = MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 40, 0, 60);
 
-    skill:setMsg(msgBasic.ENFEEB_IS);
+    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
 
     -- display slow first, else weight
-    if (slowed == msgBasic.ENFEEB_IS) then
+    if (slowed == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_SLOW;
-    elseif (weight == msgBasic.ENFEEB_IS) then
+    elseif (weight == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_WEIGHT;
     else
-        skill:setMsg(msgBasic.MISS);
+        skill:setMsg(msgBasic.SKILL_MISS);
     end
 
     return typeEffect;

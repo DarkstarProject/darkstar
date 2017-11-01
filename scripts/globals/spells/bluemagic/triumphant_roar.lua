@@ -9,30 +9,22 @@
 -- Level: 71
 -- Casting Time: 3 seconds
 -- Recast Time: 90 seconds
--- 
+--
 -- Combos: None
 -----------------------------------------
-
+require("scripts/globals/bluemagic");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_ATTACK_BOOST
-    local power = 15    
+    local power = 15
     local duration = 90;
 
     if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
@@ -46,7 +38,7 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (target:addStatusEffect(typeEffect,power,1,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

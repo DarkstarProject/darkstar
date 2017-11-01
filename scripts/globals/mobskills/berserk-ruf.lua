@@ -1,12 +1,9 @@
 -----------------------------------
 -- Ability: Warcry
 -----------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
------------------------------------
--- OnUseAbility
 -----------------------------------
 
 function OnMobSkillCheck(target,mob,skill)

@@ -1,16 +1,16 @@
 ---------------------------------------------
---  Heat Barrier
---  Family: Wamouracampa
---  Description: Applies a thermal barrier, granting fiery spikes and fire damage on melee hits. 
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes: 
+-- Heat Barrier
+-- Family: Wamouracampa
+-- Description: Applies a thermal barrier, granting fiery spikes and fire damage on melee hits.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes:
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

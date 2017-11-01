@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Banish
+-- Spell: Banish III
 -- Deals light damage to an enemy.
 -----------------------------------------
 

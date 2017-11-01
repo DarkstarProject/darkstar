@@ -1,13 +1,9 @@
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 -----------------------------------------
 -- Spell: Dispel
---
 -----------------------------------------
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -26,10 +22,10 @@ function onSpellCast(caster,target,spell)
         effect = target:dispelStatusEffect();
         if (effect == EFFECT_NONE) then
             -- no effect
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return effect;

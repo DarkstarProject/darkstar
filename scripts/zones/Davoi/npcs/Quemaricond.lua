@@ -47,7 +47,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 3) then
         player:startEvent(0x0075);
-        npc:wait(-1);
+        npc:wait();
     else
         player:showText(npc, QUEMARICOND_DIALOG);
         npc:wait(2000);

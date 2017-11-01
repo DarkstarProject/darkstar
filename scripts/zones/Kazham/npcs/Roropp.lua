@@ -206,7 +206,7 @@ function onTrigger(player,npc)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
             player:startEvent(0x00C8);
-            npc:wait(-1);
+            npc:wait();
         elseif (progress == 3 or failed == 4) then
                 player:startEvent(0x00D2);  -- asking for sands of silence
         elseif (progress >= 4 or failed >= 5) then
@@ -214,7 +214,7 @@ function onTrigger(player,npc)
         end
     else
         player:startEvent(0x00C8);
-        npc:wait(-1);
+        npc:wait();
     end
 end;
 -----------------------------------

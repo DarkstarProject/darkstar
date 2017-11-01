@@ -29,11 +29,6 @@
 
 #include "baseentity.h"
 
-int32 close_door(time_point tick,CTaskMgr::CTask *PTask); // закрываем дверь
-int32 open_door(time_point tick,CTaskMgr::CTask *PTask);
-int32 disappear_npc(time_point tick,CTaskMgr::CTask *PTask); // Used for showNPC lua function
-int32 reappear_npc(time_point tick,CTaskMgr::CTask *PTask); // used for hideNPC lua function
-
 class CNpcEntity : public CBaseEntity {
 public:
 

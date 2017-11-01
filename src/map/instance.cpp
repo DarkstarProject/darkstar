@@ -181,7 +181,7 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
     m_entryloc.x = x;
     m_entryloc.y = y;
     m_entryloc.z = z;
-    m_entryloc.rotation = rot;
+    m_entryloc.rotation = (uint8)rot;
 }
 
 void CInstance::SetLastTimeUpdate(duration lastTime)
@@ -215,7 +215,7 @@ void CInstance::CheckTime(time_point tick)
 {
     if (m_lastTimeCheck + 1s <= tick && !Failed())
     {
-        luautils::OnInstanceTimeUpdate(GetZone(), this, std::chrono::duration_cast<std::chrono::milliseconds>(GetElapsedTime(tick)).count());
+        luautils::OnInstanceTimeUpdate(GetZone(), this, (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(GetElapsedTime(tick)).count());
         m_lastTimeCheck = tick;
     }
 }

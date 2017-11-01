@@ -1,10 +1,8 @@
 -----------------------------------------
 -- Spell: Escape
 -----------------------------------------
-require("scripts/globals/status");
 require("scripts/globals/teleports");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

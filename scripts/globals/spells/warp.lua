@@ -2,10 +2,8 @@
 -- Spell: Warp
 -- Transports the user to their Home Point
 -----------------------------------------
-require("scripts/globals/status");
 require("scripts/globals/teleports");
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

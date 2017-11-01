@@ -48,9 +48,6 @@ struct login_config_t
     uint16 login_view_port;
     std::string login_view_ip;
 
-    uint16 expansions;
-    uint16 features;
-
     std::string servername;
 
     std::string mysql_host;         // mysql addr     -> localhost:3306

@@ -1,16 +1,16 @@
 ---------------------------------------------
---  Feather Barrier
+-- Feather Barrier
 --
---  Description: Enhances evasion.
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
+-- Description: Enhances evasion.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

@@ -217,7 +217,7 @@ int32 login_parse(int32 fd)
             if (Sql_NumRows(SqlHandle) == 0)
             {
                 //creating new account_id
-                char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
+                const char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
 
                 uint32 accid = 0;
 

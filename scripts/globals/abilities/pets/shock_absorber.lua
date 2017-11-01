@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Shock Absorber
+-- Shock Absorber
 ---------------------------------------------
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
     return 0
@@ -47,9 +47,9 @@ function onPetAbility(target, automaton, skill, master, action)
     amount = amount + math.floor(bonus)
 
     if target:addStatusEffect(EFFECT_STONESKIN, amount, 0, duration) then
-        skill:setMsg(msgBasic.BUFF)
+        skill:setMsg(msgBasic.SKILL_GAIN_EFFECT)
     else
-        skill:setMsg(msgBasic.NO_EFFECT)
+        skill:setMsg(msgBasic.SKILL_NO_EFFECT)
     end
 
     return EFFECT_STONESKIN

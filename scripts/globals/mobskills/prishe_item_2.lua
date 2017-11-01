@@ -1,11 +1,14 @@
 ---------------------------------------------
---  Prishe Item 2
+-- Prishe Item 2
 ---------------------------------------------
+package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
+---------------------------------------------
+require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if (target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 1;

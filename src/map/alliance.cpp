@@ -113,7 +113,7 @@ uint32 CAlliance::partyCount(void)
 
     if (ret != SQL_ERROR)
     {
-        return Sql_NumRows(SqlHandle);
+        return (uint32)Sql_NumRows(SqlHandle);
     }
     return 0;
 }

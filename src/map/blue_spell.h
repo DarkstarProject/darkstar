@@ -48,9 +48,9 @@ public:
     void        setTraitWeight(uint8 weight);
     void        setPrimarySkillchain(uint8 sc);
     void        setSecondarySkillchain(uint8 sc);
-    void		addModifier(CModifier* modifier);
+    void		addModifier(CModifier modifier);
 
-	std::vector<CModifier*> modList;					// modifiers added when blue spell is equipped
+	std::vector<CModifier> modList;					// modifiers added when blue spell is equipped
 
 private:
 

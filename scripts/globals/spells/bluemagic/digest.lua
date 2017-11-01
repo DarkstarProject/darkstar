@@ -12,24 +12,17 @@
 -- Magic Bursts on: Compression, Gravitation, Darkness
 -- Combos: None
 -----------------------------------------
-
 require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-        
+
     local dmg = 5 + 0.575 * caster:getSkillLevel(BLUE_SKILL);
     --get resist multiplier (1x if no resist)
     local params = {};
@@ -37,7 +30,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_MND;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -49,9 +42,9 @@ function onSpellCast(caster,target,spell)
     if (dmg < 0) then
         dmg = 0
     end
-    
+
     if (target:isUndead()) then
-        spell:setMsg(75); 
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         return dmg;
     end
 
@@ -61,6 +54,6 @@ function onSpellCast(caster,target,spell)
 
     dmg = BlueFinalAdjustments(caster,target,spell,dmg);
     caster:addHP(dmg);
-    
+
     return dmg;
 end;

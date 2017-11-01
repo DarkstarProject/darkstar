@@ -25,9 +25,6 @@ require("scripts/globals/settings");
 require("scripts/globals/ability");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -42,9 +39,7 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
+
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
         corsairSetup(caster, ability, action, EFFECT_FIGHTERS_ROLL, JOBS.WAR);
