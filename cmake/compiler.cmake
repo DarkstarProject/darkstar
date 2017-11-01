@@ -1,13 +1,15 @@
-set_property(GLOBAL PROPERTY CXX_STANDARD 17)
-set_property(GLOBAL PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(GLOBAL PROPERTY CXX_EXTENSIONS ON)
-set_property(GLOBAL PROPERTY LINKER_LANGUAGE CXX)
+# fix when we can move to CMAKE ver 3.8.2+
+#set_property(GLOBAL PROPERTY CXX_STANDARD 17)
+#set_property(GLOBAL PROPERTY CXX_STANDARD_REQUIRED ON)
+#set_property(GLOBAL PROPERTY CXX_EXTENSIONS ON)
+#set_property(GLOBAL PROPERTY LINKER_LANGUAGE CXX)
 
 add_definitions(-DFMT_HEADER_ONLY)
 
 if(UNIX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wfatal-errors -fsigned-char")
 else()
+    # fix /std:latest once VS2017 CMAKE supports CXX_STANDARD
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /W3 /WX")
     add_definitions(
         -D_CONSOLE
