@@ -22,13 +22,21 @@ local function canDig(player)
     local LastDigTime = player:getLocalVar('[DIG]LastDigTime');
     local ZoneItemsDug = GetServerVariable('[DIG]ZONE'..player:getZoneID()..'_ITEMS');
     local ZoneInTime = player:getLocalVar('[DIG]ZoneInTime');
-    local CurrentTime = os.time(os.date('!*t'));
+    local CurrentTime = os.time();
 
     local SkillRank = player:getSkillRank(SKILL_DIG);
 
     -- base delay -5 for each rank
     local DigDelay = 16 - (SkillRank * 5);
     local AreaDigDelay = 60 - (SkillRank * 5);
+
+    local prevMidnight = getMidnight() - 86400;
+
+    -- Last dig was before today, so reset player fatigue
+    if (LastDigTime < prevMidnight) then
+        updatePlayerDigCount(player, 0);
+        DigCount = 0;
+    end
 
     -- neither player nor zone have reached their dig limit
 
@@ -85,7 +93,7 @@ end;
 
 function updatePlayerDigCount(player, increment)
 
-    local CurrentTime = os.time(os.date('!*t'));
+    local CurrentTime = os.time();
 
     if (increment == 0) then
         player:setVar('[DIG]DigCount', 0);
