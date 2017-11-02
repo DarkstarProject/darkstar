@@ -725,7 +725,7 @@ end;
 function MobBuffMove(mob, typeEffect, power, tick, duration)
 
     if (mob:addStatusEffect(typeEffect,power,tick,duration)) then
-        return msgBasic.BUFF;
+        return msgBasic.SKILL_GAIN_EFFECT;
     end
     return msgBasic.SKILL_NO_EFFECT;
 end;
