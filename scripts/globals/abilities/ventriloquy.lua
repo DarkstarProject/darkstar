@@ -34,9 +34,9 @@ function onUseAbility(player,target,ability)
         local enmitylist = target:getEnmityList()
         local playerfound, petfound = false, false
         for k,v in pairs(enmitylist) do
-            if v:getShortID() == player:getShortID() then
+            if v.entity:getShortID() == player:getShortID() then
                 playerfound = true
-            elseif v:getShortID() == pet:getShortID() then
+            elseif v.entity:getShortID() == pet:getShortID() then
                 petfound = true
             end
         end

@@ -10346,19 +10346,31 @@ inline int32 CLuaBaseEntity::getEnmityList(lua_State* L)
     if (enmityList)
     {
         lua_createtable(L, (int)enmityList->size(), 0);
-        int8 newTable = lua_gettop(L);
         int i = 1;
         for (auto member : *enmityList)
         {
             if (member.second.PEnmityOwner)
             {
+                lua_createtable(L, 0, 4);
+                //push entity
                 lua_getglobal(L, CLuaBaseEntity::className);
                 lua_pushstring(L, "new");
                 lua_gettable(L, -2);
                 lua_insert(L, -2);
                 lua_pushlightuserdata(L, (void*)member.second.PEnmityOwner);
                 lua_pcall(L, 2, 1, 0);
+                lua_setfield(L, -2, "entity");
+                //push ce
+                lua_pushinteger(L, member.second.CE);
+                lua_setfield(L, -2, "ce");
+                //push ve
+                lua_pushinteger(L, member.second.VE);
+                lua_setfield(L, -2, "ve");
+                //push active
+                lua_pushboolean(L, member.second.active);
+                lua_setfield(L, -2, "active");
 
+                //assign table to key's value
                 lua_rawseti(L, -2, i++);
             }
         }
