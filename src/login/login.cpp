@@ -61,7 +61,6 @@ int32 do_init(int32 argc, char** argv)
     LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
     VERSION_INFO_FILENAME = "version.info";
 
-    const char *lan_cfgName = LAN_CONFIG_NAME;
     //srand(gettick());
 
     for (i = 1; i < argc; i++) {
@@ -71,14 +70,9 @@ int32 do_init(int32 argc, char** argv)
             login_versionscreen(1);
         else if (strcmp(argv[i], "--login_config") == 0 || strcmp(argv[i], "--login-config") == 0)
             LOGIN_CONF_FILENAME = argv[i + 1];
-        else if (strcmp(argv[i], "--lan_config") == 0 || strcmp(argv[i], "--lan-config") == 0)
-            lan_cfgName = argv[i + 1];
         else if (strcmp(argv[i], "--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
             runflag = 0;
     }
-
-    //lan_config_default(&lan_config);
-    //lan_config_read(lan_cfgName,&lan_config);
 
     login_config_default();
     login_config_read(LOGIN_CONF_FILENAME);

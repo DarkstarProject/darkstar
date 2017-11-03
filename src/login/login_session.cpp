@@ -26,7 +26,7 @@
 
 login_sd_list_t login_sd_list;
 
-login_session_data_t *find_loginsd_byaccid(int32 accid)
+login_session_data_t *find_loginsd_byaccid(uint32 accid)
 {
     for (login_sd_list_t::iterator i = login_sd_list.begin();
     i != login_sd_list.end();
