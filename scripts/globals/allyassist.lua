@@ -67,6 +67,10 @@ function startAllyAssist(entity, assistMode)
 
     local target = targetMobs[math.random(#targetMobs)]
 
+    if (target == nil) then
+        return;
+    end
+
     for _,ally in ipairs(allies) do
         ally:engage(target:getShortID())
     end

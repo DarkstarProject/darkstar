@@ -84,5 +84,7 @@ function onEventFinish(player,csid,option)
         player:setVar("TOAUM31_PERMITDAY", 0);
         player:setTitle(NASHMEIRAS_MERCENARY);
         player:addMission(TOAU,IN_THE_BLOOD);
+    elseif (csid == 133) then -- enter instance, warp to periqia
+        player:setPos(0,0,0,0,56);
     end
 end;

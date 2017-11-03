@@ -253,7 +253,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
                 continue;
 
             // filter by nation
-            if (sr.nation != 255 && !sr.nation == PPlayer->nation)
+            if (sr.nation != 255 && sr.nation != PPlayer->nation)
                 continue;
 
             // filter by race
@@ -488,7 +488,7 @@ void CDataLoader::ExpireAHItems()
 			if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
 			{
 				// delete the item from the auction house
-				int32 ret3 = Sql_Query(sqlH2, "DELETE FROM auction_house WHERE id= %u", saleID);
+				Sql_Query(sqlH2, "DELETE FROM auction_house WHERE id= %u", saleID);
 			}
 		}
 	}
