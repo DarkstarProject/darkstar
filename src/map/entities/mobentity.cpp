@@ -621,9 +621,6 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
 {
     CBattleEntity::OnWeaponSkillFinished(state, action);
 
-    auto PSkill = state.GetSkill();
-    auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
-
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
 
@@ -746,7 +743,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.reaction = REACTION_MISS;
             target.speceffect = SPECEFFECT_NONE;
-            if (msg = PSkill->getAoEMsg())
+            if (msg == PSkill->getAoEMsg())
                 msg = 282;
         }
         else
