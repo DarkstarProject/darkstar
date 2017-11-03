@@ -525,7 +525,7 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     uint8 encodedSignature[12];
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
-    uint8 leftover = 0;
+    // uint8 leftover = 0;
     for(uint8 currChar = 0; currChar < dsp_min(15, strlen((const char*)signature)); ++currChar)
     {
         uint8 tempChar = 0;
