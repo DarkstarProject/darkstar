@@ -43,6 +43,7 @@ This file is part of DarkStar-server source code.
 #include "../mob_spell_list.h"
 #include "../enmity_container.h"
 #include "../items/item_weapon.h"
+#include "../zone_instance.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/mob_controller.h"
@@ -778,10 +779,15 @@ namespace petutils
             PPet->allegiance = PMaster->allegiance;
             PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
-            PMaster->PPet = PPet;
             PPet->PMaster = PMaster;
 
+            if (PMaster->PInstance)
+            {
+                PPet->PInstance = PMaster->PInstance;
+            }
+
             PMaster->loc.zone->InsertPET(PPet);
+
             PPet->Spawn();
             if (PMaster->objtype == TYPE_PC)
             {
@@ -1232,6 +1238,7 @@ namespace petutils
         {
             petType = PETTYPE_AUTOMATON;
         }
+
         CPetEntity* PPet = nullptr;
         if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
         {
@@ -1239,7 +1246,9 @@ namespace petutils
             PPet->PAI->SetController(std::make_unique<CAutomatonController>(static_cast<CAutomatonEntity*>(PPet)));
         }
         else
+        {
             PPet = new CPetEntity(petType);
+        }
 
         PPet->loc = PMaster->loc;
 
