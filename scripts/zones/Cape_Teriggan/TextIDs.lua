@@ -18,6 +18,7 @@ NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here.
 CONQUEST = 7215; -- You've earned conquest points!
 
 -- ZM4 Dialog
+     SOMETHING_BETTER = 7660; -- Don't you have something better to do right now?
    CANNOT_REMOVE_FRAG = 7663; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
 ALREADY_OBTAINED_FRAG = 7664; -- You have already obtained this monument's . Try searching for another.
       FOUND_ALL_FRAGS = 7665; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
