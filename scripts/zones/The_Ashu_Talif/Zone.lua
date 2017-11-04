@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
     -- printf("Zone Finish CSID: %u",csid);
     -- printf("Zone Finish RESULT: %u",option);
 
-    if(csid == 102) then
+    if(csid == 101 or csid == 102) then
         player:setPos(0,0,0,0,54);
     end
 end;

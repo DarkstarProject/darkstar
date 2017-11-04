@@ -2490,7 +2490,7 @@ namespace charutils
 
         uint8 meritIndex = 0;
 
-        for (int32 i = 0; i < 48; ++i)
+        for (int32 i = 1; i < 48; ++i)
         {
             //ignore unused skills
             if((i >= 13 && i <= 21) || (i >= 46 && i <= 47))

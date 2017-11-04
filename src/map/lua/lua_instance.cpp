@@ -236,7 +236,7 @@ inline int32 CLuaInstance::getWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
-    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::milliseconds>(get_server_start_time() - m_PLuaInstance->GetWipeTime()).count());
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaInstance->GetWipeTime() - get_server_start_time()).count());
 
     return 1;
 }

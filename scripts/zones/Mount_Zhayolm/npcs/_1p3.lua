@@ -105,6 +105,8 @@ function onInstanceCreated(player,target,instance)
         player:instanceEntry(target,4);
         player:delKeyItem(LEBROS_ASSAULT_ORDERS);
         player:delKeyItem(ASSAULT_ARMBAND);
+
+        local party = player:getParty();
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then

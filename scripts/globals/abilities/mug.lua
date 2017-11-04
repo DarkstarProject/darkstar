@@ -40,7 +40,7 @@ function onUseAbility(player,target,ability,action)
         end
 
         if (gil <= 0) then
-            ability:setMsg(244);
+            ability:setMsg(MsgBasic.MUG_FAIL);
         else
             gil = gil * (1 + player:getMod(MOD_MUG_EFFECT));
             player:addGil(gil);

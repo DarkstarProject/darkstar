@@ -103,9 +103,9 @@ INSERT INTO `zone_settings` VALUES (54,2,'127.0.0.1',54230,'Arrapago_Reef',150,1
 INSERT INTO `zone_settings` VALUES (55,6,'127.0.0.1',54230,'Ilrusi_Atoll',0,0,144,144,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (56,6,'127.0.0.1',54230,'Periqia',0,0,144,144,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (57,4,'127.0.0.1',54230,'Talacca_Cove',0,0,143,143,0,0.00,145);
-INSERT INTO `zone_settings` VALUES (58,2,'127.0.0.1',54230,'Silver_Sea_route_to_Nashmau',147,147,101,138,0,0.00,16);
-INSERT INTO `zone_settings` VALUES (59,2,'127.0.0.1',54230,'Silver_Sea_route_to_Al_Zahbi',147,147,101,138,0,0.00,16);
-INSERT INTO `zone_settings` VALUES (60,6,'127.0.0.1',54230,'The_Ashu_Talif',172,172,143,143,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (58,2,'127.0.0.1',54230,'Silver_Sea_route_to_Nashmau',147,147,101,138,0,0.00,138);
+INSERT INTO `zone_settings` VALUES (59,2,'127.0.0.1',54230,'Silver_Sea_route_to_Al_Zahbi',147,147,101,138,0,0.00,138);
+INSERT INTO `zone_settings` VALUES (60,6,'127.0.0.1',54230,'The_Ashu_Talif',172,172,143,143,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (61,2,'127.0.0.1',54230,'Mount_Zhayolm',0,0,101,138,0,0.00,154);
 INSERT INTO `zone_settings` VALUES (62,3,'127.0.0.1',54230,'Halvung',0,0,115,139,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (63,6,'127.0.0.1',54230,'Lebros_Cavern',0,0,144,144,0,0.00,145);
