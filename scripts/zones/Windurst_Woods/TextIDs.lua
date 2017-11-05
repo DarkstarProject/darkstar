@@ -25,6 +25,9 @@ ITEM_DELIVERY_DIALOG =  6825; -- We can deliver goods to your residence or to th
     NOKKHI_BAD_COUNT =  9755; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
    NOKKHI_GOOD_TRADE =  9757; -- And here you go! Come back soon, and bring your friends!
      NOKKHI_BAD_ITEM =  9758; -- I'm real sorry, but there's nothing I can do with those.
+     CLOUD_BAD_COUNT = 10102; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and 
+    CLOUD_GOOD_TRADE = 10106; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
+      CLOUD_BAD_ITEM = 10107; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
       CHOCOBO_DIALOG = 10401; -- Kweh!
 
 -- Mission Dialogs
