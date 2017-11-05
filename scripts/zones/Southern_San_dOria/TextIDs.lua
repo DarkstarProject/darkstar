@@ -51,6 +51,9 @@ IF_YOU_WEAR_THIS = 7356; -- If you put this on and walk around, something...unex
     NOKKHI_BAD_COUNT = 7374; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
    NOKKHI_GOOD_TRADE = 7376; -- And here you go! Come back soon, and bring your friends!
      NOKKHI_BAD_ITEM = 7377; -- I'm real sorry, but there's nothing I can do with those.
+     CLOUD_BAD_COUNT = 10102; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and 
+    CLOUD_GOOD_TRADE = 10106; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
+      CLOUD_BAD_ITEM = 10107; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
 ITEM_DELIVERY_DIALOG = 8406; -- Parcels delivered to rooms anywhere in Vana'diel!
         ROSEL_DIALOG = 7783; -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
 
