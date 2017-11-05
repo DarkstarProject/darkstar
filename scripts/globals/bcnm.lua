@@ -30,19 +30,19 @@ itemid_bcnmid_map =
     67,  {0, 0}, -- Jade Sepulcher
     139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
     140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
-    144, {1166, 68, 1178, 81, 1553, 76, 1180, 82, 1130, 79, 1552, 73}, -- Waughroon Shrine
-    146, {1553, 107, 1551, 105, 1177, 100}, -- Balgas Dias
+    144, {1166, 68, 1553, 76, 1130, 79, 1178, 81, 1180, 82}, -- Waughroon Shrine
+    146, {1551, 105, 1553, 107}, -- Balgas Dias
     163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
     168, {0, 0}, -- Chamber of Oracles
     170, {0, 0}, -- Full Moon Fountain
     180, {1550, 293}, -- LaLoff Amphitheater
     181, {0, 0}, -- The Celestial Nexus
-    201, {1546, 418, 1174, 417}, -- Cloister of Gales
-    202, {1548, 450, 1172, 449}, -- Cloister of Storms
-    203, {1545, 482, 1171, 481}, -- Cloister of Frost
+    201, {1174, 417, 1546, 418}, -- Cloister of Gales
+    202, {1172, 449, 1548, 450}, -- Cloister of Storms
+    203, {1171, 481, 1545, 482}, -- Cloister of Frost
     206, {0, 0}, -- Qu'Bia Arena
     207, {1544, 545}, -- Cloister of Flames
-    209, {1547, 578, 1169, 577}, -- Cloister of Tremors
+    209, {1169, 577, 1547, 578}, -- Cloister of Tremors
     211, {1549, 609} -- Cloister of Tides
 }
 
@@ -370,7 +370,7 @@ function GetBattleBitmask(id, zone, mode)
         for index, battlefield in ipairs(battlefield_bitmask_map[zone]) do
             if id == battlefield then
                 if mode == 1 then
-                    return bit.lshift(1, index - 1)
+                    return math.pow(2, index - 1);
                 else
                     return index;
                 end
