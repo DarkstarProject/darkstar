@@ -3,7 +3,6 @@
 --  MOB: Qn'hpemde
 -- Jailor of Love Pet version
 -----------------------------------
-
 require("scripts/zones/AlTaieu/MobIDs");
 
 -----------------------------------
@@ -18,16 +17,16 @@ end;
 -- onMobFight
 -----------------------------------
 
-function onMobFight(mob, target)        
+function onMobFight(mob, target)
     local changeTime = mob:getLocalVar("changeTime");
-    
+
     if (mob:AnimationSub() == 6 and mob:getBattleTime() - changeTime > 30) then
         mob:AnimationSub(3); -- Mouth Open
         mob:addMod(MOD_ATTP, 100);
         mob:addMod(MOD_DEFP, -50);
         mob:addMod(MOD_DMGMAGIC, -50);
         mob:setLocalVar("changeTime", mob:getBattleTime());
-    
+
     elseif (mob:AnimationSub() == 3 and mob:getBattleTime() - changeTime > 30) then
         mob:AnimationSub(6); -- Mouth Closed
         mob:addMod(MOD_ATTP, -100);

@@ -3,7 +3,6 @@
 --  MOB: Qn'xzomit
 -- Jailor of Love Pet version
 -----------------------------------
-
 require("scripts/zones/AlTaieu/MobIDs");
 
 -----------------------------------

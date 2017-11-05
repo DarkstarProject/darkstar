@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         and player:getVar("[SEA][AlTieu]WestTowerCS") == 0
     ) then
         player:startEvent(0x00A2);
-        
+
     else
         player:messageSpecial(NOTHING_OF_INTEREST);
     end

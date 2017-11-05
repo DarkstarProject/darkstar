@@ -26,8 +26,8 @@ end;
 function onMobDeath(mob, player, isKiller)
 
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
-    
-        local aernKills = {
+        local aernKills =
+        {
             [AERNS_TOWER_SOUTH + 0] = "Ru_aern_1-1KILL",
             [AERNS_TOWER_SOUTH + 1] = "Ru_aern_1-2KILL",
             [AERNS_TOWER_SOUTH + 2] = "Ru_aern_1-3KILL",
@@ -38,9 +38,9 @@ function onMobDeath(mob, player, isKiller)
             [AERNS_TOWER_EAST  + 1] = "Ru_aern_3-2KILL",
             [AERNS_TOWER_EAST  + 2] = "Ru_aern_3-3KILL",
         }
-    
+
         local varToSet = aernKills[mob:getID()];
-        
+
         if (varToSet ~= nil) then
             player:setVar(varToSet, 1);
         end

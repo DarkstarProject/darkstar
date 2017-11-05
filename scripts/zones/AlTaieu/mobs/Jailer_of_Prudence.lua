@@ -58,11 +58,11 @@ end;
 
     -- if (ability:getID() == 437) then -- Perfect Dodge
         -- mob:addStatusEffectEx(EFFECT_FLEE,0,100,0,30);
-    -- else        
+    -- else
         -- if (mob:getID() == JAILER_OF_PRUDENCE_1 and GetMobAction(JAILER_OF_PRUDENCE_2) > 0 and GetMobAction(JAILER_OF_PRUDENCE_2) ~= ACTION_SLEEP and GetMobAction(JAILER_OF_PRUDENCE_2) ~= ACTION_STUN) then
             -- if (GetMobByID(PrudenceTwo):checkDistance(mob) <= 10) then
                 -- GetMobByID(PrudenceTwo):useMobAbility(ability:getID());
-            -- end            
+            -- end
         -- elseif (mob:getID() == JAILER_OF_PRUDENCE_2 and GetMobAction(JAILER_OF_PRUDENCE_1) > 0 and GetMobAction(JAILER_OF_PRUDENCE_1) ~= ACTION_SLEEP and GetMobAction(PrudenJAILER_OF_PRUDENCE_1eOne) ~= ACTION_STUN) then
             -- if (GetMobByID(PrudenceOne):checkDistance(mob) <= 10) then
                 -- GetMobByID(PrudenceOne):useMobAbility(ability:getID());
