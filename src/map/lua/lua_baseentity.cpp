@@ -9388,7 +9388,7 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    auto PChar = static_cast<CCharEntity*>( m_PBaseEntity );
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
     auto PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
     uint16 battlefield = -1;
@@ -9428,14 +9428,6 @@ inline int32 CLuaBaseEntity::leaveBattlefield(lua_State* L)
     auto leavecode = lua_tointeger(L, 1);
 
     lua_pushinteger(L, m_PBaseEntity->loc.zone->m_BattlefieldHandler->RemoveFromBattlefield(m_PBaseEntity, m_PBaseEntity->PBattlefield, leavecode));
-    return 1;
-}
-
-inline int32 CLuaBaseEntity::isInBattlefield(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-
-    lua_pushboolean(L, m_PBaseEntity->PBattlefield != nullptr);
     return 1;
 }
 
@@ -11160,7 +11152,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateNPCHideTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkValorCredit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),

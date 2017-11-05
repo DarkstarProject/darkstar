@@ -1,7 +1,8 @@
-require("scripts/globals/status");
-require("scripts/globals/keyitems");
+require("scripts/globals/status")
+require("scripts/globals/keyitems")
+require("scripts/globals/battlefield")
 
-dynamis = {};
+dynamis = {}
 
 -----------------------------------
 -- Dynamis-Bastok
@@ -25,7 +26,7 @@ dynamis = {};
 
 -- [Position on the map] Adamantking mobid, {spawnlist: mob1, mob2,...}
 bastyList = {
-    --[[001]] 17539350,{13,4},
+    --[[001]] 17539350,{13,4}, -- 17539452
     --[[002]] 17539351,{12,10},
     --[[003]] 17539352,{5,1},
     --[[004]] 17539353,{6,1},
@@ -889,7 +890,7 @@ function dynamis.spawnGroup(mob, spawnList, mobTypeList)
 
                     if (mobNBR <= 20) then
                         -- Spawn random mob by job
-                        if (mobNBR == 0) then 
+                        if (mobNBR == 0) then
                             -- Spawn random Vanguard (TEMPORARY)
                             mobNBR = math.random(1,15);
                         end
@@ -941,3 +942,7 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
         end
     end
 end;
+
+function dynamis.extendTimeLimit(battlefield, minutes)
+    g_Battlefield.extendTimeLimit(battlefield, minutes, 448)
+end

@@ -241,7 +241,6 @@ uint8 CBattlefieldHandler::RegisterBattlefield(CCharEntity* PChar, uint16 battle
 
 bool CBattlefieldHandler::RemoveFromBattlefield(CBaseEntity* PEntity, CBattlefield* PBattlefield, uint8 leavecode)
 {
-    // would only be true for pets and players
     PBattlefield = PBattlefield ? PBattlefield : GetBattlefield(PEntity);
     return PBattlefield ? PBattlefield->RemoveEntity(PEntity, leavecode) : false;
 }

@@ -221,7 +221,6 @@ public:
     int32 registerBattlefield(lua_State*);         // attempt to register with a battlefield or load it (initiator is always entered)
     int32 enterBattlefield(lua_State*);            // physically enter battlefield
     int32 leaveBattlefield(lua_State*);            // leave a battlefield
-    int32 isInBattlefield(lua_State*);             // physically inside a battlefield
     int32 getBattlefield(lua_State*);
     int32 getBattlefieldID(lua_State*);            // returns battlefield id
 

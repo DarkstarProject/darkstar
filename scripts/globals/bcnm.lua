@@ -817,7 +817,7 @@ end
 function EventTriggerBCNM(player, npc)
 
     -- player is in battlefield and clicks to leave
-    if player:isInBattlefield() then
+    if player:getBattlefield() then
         player:startEvent(32003)
         return true
 

@@ -69,7 +69,7 @@ CBattlefield::CBattlefield(uint16 id, CZone* PZone, uint8 area, CCharEntity* PIn
 
 CBattlefield::~CBattlefield()
 {
-
+    luautils::OnBattlefieldDestroy(this);
 }
 
 uint16 CBattlefield::GetID() const
@@ -275,14 +275,17 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
     {
         if (GetPlayerCount() < GetMaxParticipants())
         {
+            CCharEntity* PChar = static_cast<CCharEntity*>(PEntity);
             if (enter)
             {
-                ApplyLevelRestrictions(static_cast<CCharEntity*>( PEntity ));
+                ApplyLevelRestrictions(PChar);
                 m_EnteredPlayers.emplace(PEntity->id);
+                luautils::OnBattlefieldEnter(PChar, this);
             }
-            else if (!IsRegistered(static_cast<CCharEntity*>(PEntity)))
+            else if (!IsRegistered(PChar))
             {
                 m_RegisteredPlayers.emplace(PEntity->id);
+                luautils::OnBattlefieldRegister(PChar, this);
                 return true;
             }
         }

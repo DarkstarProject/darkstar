@@ -30,12 +30,6 @@
 class CBattlefield;
 class CBattlefieldHandler;
 
-enum BATTLEFIELDTYPE {
-    BATTLEFIELDTYPE_DYNAMIS,
-    BATTLEFIELDTYPE_BCNM
-};
-
-
 namespace battlefieldutils
 {
     void getLosePosition(CBattlefield* battlefield, int(&pPosition)[4]);		// returns x y z rot in that order

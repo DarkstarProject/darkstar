@@ -122,7 +122,7 @@ inline int32 CLuaBattlefield::getWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    auto count = std::chrono::duration_cast<std::chrono::seconds>(get_server_start_time() - m_PLuaBattlefield->GetWipeTime()).count();
+    auto count = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->GetWipeTime() - get_server_start_time()).count();
 
     lua_pushinteger(L, (lua_Integer)count);
     return 1;
@@ -382,9 +382,12 @@ inline int32 CLuaBattlefield::spawnLoot(lua_State* L)
 inline int32 CLuaBattlefield::insertEntity(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
 
-    auto targid = lua_tointeger(L, 1);
+    auto PLuaEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    auto PEntity = PLuaEntity ? PLuaEntity->GetBaseEntity() : nullptr;
+
+    auto targid = PEntity ? PEntity->targid : lua_tointeger(L, 1);
     bool ally = !lua_isnil(L, 2) ? lua_toboolean(L, 2) : false;
     bool inBattlefield = !lua_isnil(L, 3) ? lua_toboolean(L, 3) : false;
     BATTLEFIELDMOBCONDITION conditions = static_cast<BATTLEFIELDMOBCONDITION>(!lua_isnil(L, 4) ? lua_tointeger(L, 4) : 0);
@@ -392,7 +395,8 @@ inline int32 CLuaBattlefield::insertEntity(lua_State* L)
     // entity type
     ENTITYTYPE filter = static_cast<ENTITYTYPE>(0x1F);
 
-    auto PEntity = ally ? mobutils::InstantiateAlly(targid, m_PLuaBattlefield->GetZoneID()) : m_PLuaBattlefield->GetZone()->GetEntity(targid, filter);
+    if (!PEntity)
+        PEntity = ally ? mobutils::InstantiateAlly(targid, m_PLuaBattlefield->GetZoneID()) : m_PLuaBattlefield->GetZone()->GetEntity(targid, filter);
 
     if (PEntity)
     {

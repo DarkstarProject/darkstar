@@ -207,3 +207,16 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
         battlefield:setLocalVar("lootSeen", 1)
     end
 end
+
+function g_Battlefield.ExtendTimeLimit(battlefield, minutes, message, param, players)
+    local timeLimit = battlefield:getTimeLimit()
+    local extension = minutes * 60
+    battlefield:setTimeLimit(timeLimit + extension)
+
+    if message then
+        players = players or battlefield:getPlayers()
+        for _, player in pairs(players) do
+            player:messageBasic(message, param or minutes)
+        end
+    end
+end
