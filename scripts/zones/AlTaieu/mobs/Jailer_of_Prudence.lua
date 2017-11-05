@@ -5,9 +5,8 @@
 -- AnimationSubs: 0 - Normal, 3 - Mouth Open
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Jailer_of_Prudence
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/zones/AlTaieu/MobIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobInitialize Action

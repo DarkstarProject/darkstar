@@ -2,11 +2,10 @@
 -- Area: Al'Taieu
 --  HNM: Absolute Virtue
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/status");
-require("scripts/globals/magic");
 require("scripts/zones/AlTaieu/MobIDs");
+require("scripts/globals/status");
+require("scripts/globals/titles");
+require("scripts/globals/magic");
 
 -----------------------------------
 -- onMobSpawn Action

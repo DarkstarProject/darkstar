@@ -4,10 +4,9 @@
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/zones/AlTaieu/TextIDs");
+require("scripts/zones/AlTaieu/MobIDs");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onMobSpawn Action

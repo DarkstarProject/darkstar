@@ -2,9 +2,8 @@
 -- Area: Al'Taieu
 --  MOB: Ru_aern
 -----------------------------------
-
-require("scripts/globals/missions");
 require("scripts/zones/AlTaieu/MobIDs");
+require("scripts/globals/missions");
 
 -----------------------------------
 -- onMobInitialize Action

@@ -6,9 +6,8 @@
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/zones/AlTaieu/TextIDs");
+require("scripts/zones/AlTaieu/MobIDs");
 
 -----------------------------------
 -- onTrade Action
