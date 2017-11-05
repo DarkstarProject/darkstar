@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Altepa
---  NPC: qm14 (???)
--- Spawns Bennu
--- !pos 91 -1 -140 218
+--  NPC: qm15 (???)
+-- Spawns Rani
+-- !pos -801 -7.8 -368 218
 -----------------------------------
 require("scripts/globals/abyssea");
 
