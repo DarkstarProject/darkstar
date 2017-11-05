@@ -137,6 +137,7 @@ function onEventFinish(player,csid,option)
         player:addItem(18180, 1);
         player:messageSpecial(ITEM_OBTAINED,18180);
         player:setVar("BetterTheDemonYouKnowQuest",0);
+        player:setVar("DemonTranslationReady",0);
         player:setTitle(APOSTATE_FOR_HIRE);
     end
 end;
