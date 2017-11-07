@@ -79,7 +79,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
 
 void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet, zmq::message_t* from)
 {
-    int ret;
+    int ret = SQL_ERROR;
     in_addr from_ip;
     uint16 from_port = 0;
     bool ipstring = false;
@@ -142,6 +142,16 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
         ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+        break;
+    }
+    case MSG_LOGIN:
+    {
+        // no op
+        break;
+    }
+    default:
+    {
+        ShowDebug("Message: unknown type received: %d from %s:%hu\n", type, inet_ntoa(from_ip), from_port);
         break;
     }
     }

@@ -93,11 +93,11 @@ public:
         TaskFunc_t InitFunc,
         duration InitInterval=1s
         ):  m_name(InitName),
-            m_tick(InitTick),
-            m_data(InitData),
             m_type(InitType),
-            m_func(InitFunc),
-            m_interval(InitInterval) {};
+            m_tick(InitTick),
+            m_interval(InitInterval),
+            m_data(InitData),
+            m_func(InitFunc) {};
 
     std::string m_name;
     TASKTYPE    m_type;

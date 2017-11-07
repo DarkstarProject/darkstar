@@ -2,25 +2,18 @@
 -- Area: Behemoths Dominion
 --  MOB: Legendary Weapon
 -----------------------------------
-
+package.loaded["scripts/zones/Behemoths_Dominion/MobIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Behemoths_Dominion/MobIDs");
 require("scripts/globals/fieldsofvalor");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDisengage(mob)
+    DespawnMob(mob:getID(), 120);
+end;
 
 function onMobDeath(mob, player, isKiller)
-
-    if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE and player:hasKeyItem(LIGHTNING_FRAGMENT) == false) then
-        if (GetServerVariable("[ZM4]Lightning_Headstone_Active") == 0) then
-            SetServerVariable("[ZM4]Lightning_Headstone_Active",1);
-        elseif (GetServerVariable("[ZM4]Lightning_Headstone_Active") == 1) then
-            SetServerVariable("[ZM4]Lightning_Headstone_Active",os.time()+ 900);
-        end
-    else
-        checkRegime(player,mob,102,2);
+    checkRegime(player,mob,102,2);
+    if (isKiller and GetMobByID(ANCIENT_WEAPON):isDead()) then
+        GetNPCByID(CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
     end
-
 end;

@@ -16,6 +16,7 @@ CONQUEST = 7215; -- You've earned conquest points!
 HARVESTING_IS_POSSIBLE_HERE = 7702; -- Harvesting is possible here if you have
 
 -- ZM4 Dialog
+      SOMETHING_BETTER = 7671; -- Don't you have something better to do right now?
     CANNOT_REMOVE_FRAG = 7674; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
  ALREADY_OBTAINED_FRAG = 7675; -- You have already obtained this monument's
 ALREADY_HAVE_ALL_FRAGS = 7676; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!

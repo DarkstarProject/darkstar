@@ -296,7 +296,5 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         instance = nullptr;
     }
 
-    //TODO: pets
-
     return instance;
 }
