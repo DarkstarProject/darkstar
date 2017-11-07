@@ -83,8 +83,8 @@
 
 namespace luautils
 {
-#define lua_prepscript(n,...) int8 File[255]; int32 oldtop = lua_gettop(LuaHandle); \
-                              snprintf( File, sizeof(File), n, ##__VA_ARGS__);
+#define lua_prepscript(n,...) int8 File[255]; \
+                              snprintf(File, sizeof(File), n, ##__VA_ARGS__);
     lua_State*  LuaHandle = nullptr;
 
     bool contentRestrictionEnabled;
@@ -1252,6 +1252,7 @@ namespace luautils
         CZone* PZone = zoneutils::GetZone(ZoneID);
 
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInitialize"))
         {
@@ -1285,6 +1286,7 @@ namespace luautils
     int32 OnGameIn(CCharEntity* PChar, bool zoning)
     {
         lua_prepscript("scripts/globals/player.lua");
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onGameIn"))
         {
@@ -1322,6 +1324,7 @@ namespace luautils
     int32 OnZoneIn(CCharEntity* PChar)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->m_moghouseID ? "Residential_Area" : zoneutils::GetZone(PChar->loc.destination)->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onZoneIn"))
         {
@@ -1358,6 +1361,7 @@ namespace luautils
     void AfterZoneIn(CBaseEntity* PChar)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "afterZoneIn"))
         {
@@ -1475,6 +1479,7 @@ namespace luautils
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
     {
         lua_prepscript("scripts/zones/%s/npcs/%s.lua", PChar->loc.zone->GetName(), PNpc->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         PChar->m_event.reset();
         PChar->m_event.Target = PNpc;
@@ -1553,8 +1558,6 @@ namespace luautils
 
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
-        int32 oldtop = lua_gettop(LuaHandle);
-
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
@@ -1586,8 +1589,6 @@ namespace luautils
 
     int32 OnEventUpdate(CCharEntity* PChar, int8* string)
     {
-        int32 oldtop = lua_gettop(LuaHandle);
-
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
@@ -1671,6 +1672,7 @@ namespace luautils
     int32 OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
     {
         lua_prepscript("scripts/zones/%s/npcs/%s.lua", PChar->loc.zone->GetName(), PNpc->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         PChar->m_event.reset();
         PChar->m_event.Target = PNpc;
@@ -1710,6 +1712,7 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(PNpc == nullptr);
 
         lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onSpawn"))
         {
@@ -1770,6 +1773,7 @@ namespace luautils
     int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, uint32 damage)
     {
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PDefender->loc.zone->GetName(), PDefender->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onSpikesDamage"))
         {
@@ -1826,6 +1830,7 @@ namespace luautils
     int32 OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
     {
         lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onEffectGain"))
         {
@@ -1862,6 +1867,7 @@ namespace luautils
     int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
     {
         lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onEffectTick"))
         {
@@ -1899,6 +1905,7 @@ namespace luautils
     int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
     {
         lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onEffectLose"))
         {
@@ -1972,6 +1979,7 @@ namespace luautils
     int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
     {
         lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onManeuverGain"))
         {
@@ -2001,6 +2009,7 @@ namespace luautils
     int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
     {
         lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onManeuverLose"))
         {
@@ -2071,6 +2080,7 @@ namespace luautils
     int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem)
     {
         lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onItemUse"))
         {
@@ -2105,6 +2115,7 @@ namespace luautils
     int32 CheckForGearSet(CBaseEntity* PTarget)
     {
         lua_prepscript("scripts/globals/gear_sets.lua");
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "checkForGearSet"))
         {
@@ -2144,6 +2155,7 @@ namespace luautils
 
         lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua",
             PSpell->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onSpellCast"))
         {
@@ -2192,6 +2204,7 @@ namespace luautils
         if (PCaster->objtype == TYPE_MOB)
         {
             lua_prepscript("scripts/zones/%s/mobs/%s.lua", PCaster->loc.zone->GetName(), PCaster->GetName());
+            int32 oldtop = lua_gettop(LuaHandle);
 
             if (prepFile(File, "onSpellPrecast"))
             {
@@ -2265,6 +2278,7 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PTarget->loc.zone->GetName(), PTarget->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMagicHit"))
         {
@@ -2317,6 +2331,7 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(PWeaponskill == NULL);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onWeaponskillHit"))
         {
@@ -2366,6 +2381,7 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMobInitialize"))
         {
@@ -2556,6 +2572,7 @@ namespace luautils
         CLuaBaseEntity LuaKillerEntity(PTarget);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (PTarget->objtype != TYPE_PET && PTarget->objtype != TYPE_MOB)
         {
@@ -2629,6 +2646,7 @@ namespace luautils
             CLuaBaseEntity LuaMobEntity(PMob);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onCriticalHit"))
         {
@@ -2668,6 +2686,7 @@ namespace luautils
         {
             // onMobDeathEx
             lua_prepscript("scripts/globals/mobs.lua");
+            int32 oldtop = lua_gettop(LuaHandle);
 
             PChar->ForAlliance([PMob, PChar, &File](CBattleEntity* PMember)
             {
@@ -2842,6 +2861,7 @@ namespace luautils
             CLuaBaseEntity LuaMobEntity(PMob);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMobRoamAction"))
         {
@@ -2877,6 +2897,7 @@ namespace luautils
             CLuaBaseEntity LuaMobEntity(PMob);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMobRoam"))
         {
@@ -2941,6 +2962,7 @@ namespace luautils
     int32 OnGameDay(CZone* PZone)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onGameDay"))
         {
@@ -2971,6 +2993,7 @@ namespace luautils
     int32 OnGameHour(CZone* PZone)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onGameHour"))
         {
@@ -2997,6 +3020,7 @@ namespace luautils
     int32 OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onZoneWeatherChange"))
         {
@@ -3022,6 +3046,7 @@ namespace luautils
     int32 OnTOTDChange(uint16 ZoneID, uint8 TOTD)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onTOTDChange"))
         {
@@ -3053,6 +3078,7 @@ namespace luautils
     std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action, CBattleEntity* taChar)
     {
         lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onUseWeaponSkill"))
         {
@@ -3124,6 +3150,7 @@ namespace luautils
     int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action)
     {
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (!prepFile(File, "onMobWeaponSkill"))
         {
@@ -3202,6 +3229,7 @@ namespace luautils
     int32 OnMobSkillCheck(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
     {
         lua_prepscript("scripts/globals/mobskills/%s.lua", PMobSkill->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMobSkillCheck"))
         {
@@ -3242,6 +3270,7 @@ namespace luautils
     int32 OnMobAutomatonSkillCheck(CBaseEntity* PTarget, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill)
     {
         lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMobSkillCheck"))
         {
@@ -3288,6 +3317,7 @@ namespace luautils
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
     {
         lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua", PSpell->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onMagicCastingCheck"))
         {
@@ -3343,6 +3373,7 @@ namespace luautils
         }
 
         lua_prepscript(filePath, PAbility->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onAbilityCheck");
@@ -3422,6 +3453,7 @@ namespace luautils
     int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster, action_t* action)
     {
         lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onPetAbility"))
         {
@@ -3543,6 +3575,7 @@ namespace luautils
         CZone* PZone = PInstance->GetZone();
 
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceZoneIn"))
         {
@@ -3575,6 +3608,7 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(!PChar->PInstance);
 
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "afterInstanceRegister"))
         {
@@ -3602,6 +3636,7 @@ namespace luautils
     int32 OnInstanceLoadFailed(CZone* PZone)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceLoadFailed"))
         {
@@ -3633,6 +3668,7 @@ namespace luautils
     int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time)
     {
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PZone->GetName(), PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceTimeUpdate"))
         {
@@ -3662,6 +3698,7 @@ namespace luautils
     int32 OnInstanceFailure(CInstance* PInstance)
     {
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceFailure"))
         {
@@ -3761,6 +3798,7 @@ namespace luautils
     int32 OnInstanceCreated(CInstance* PInstance)
     {
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceCreated"))
         {
@@ -3788,6 +3826,7 @@ namespace luautils
     int32 OnInstanceProgressUpdate(CInstance* PInstance)
     {
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceProgressUpdate"))
         {
@@ -3817,6 +3856,7 @@ namespace luautils
     int32 OnInstanceStageChange(CInstance* PInstance)
     {
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceStageChange"))
         {
@@ -3846,6 +3886,7 @@ namespace luautils
     int32 OnInstanceComplete(CInstance* PInstance)
     {
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PInstance->GetZone()->GetName(), PInstance->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onInstanceComplete"))
         {
@@ -3943,6 +3984,7 @@ namespace luautils
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onTransportEvent"))
         {
@@ -3972,6 +4014,7 @@ namespace luautils
     int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PZone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onConquestUpdate"))
         {
@@ -4006,6 +4049,7 @@ namespace luautils
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onBcnmEnter"))
         {
@@ -4049,6 +4093,7 @@ namespace luautils
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onBcnmLeave"))
         {
@@ -4095,6 +4140,7 @@ namespace luautils
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", PZone->GetName(), PBattlefield->getBcnmName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onBcnmRegister"))
         {
@@ -4129,6 +4175,7 @@ namespace luautils
     {
 
         lua_prepscript("scripts/zones/%s/bcnms/%s.lua", zoneutils::GetZone(PBattlefield->getZoneId())->GetName(), PBattlefield->getBcnmName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onBcnmDestroy"))
         {
@@ -4449,6 +4496,7 @@ namespace luautils
     int32 OnPlayerLevelUp(CCharEntity* PChar)
     {
         lua_prepscript("scripts/globals/player.lua");
+        int32 oldtop = lua_gettop(LuaHandle);
         if (prepFile(File, "onPlayerLevelUp"))
             return -1;
 
@@ -4475,6 +4523,7 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar)
     {
         lua_prepscript("scripts/globals/player.lua");
+        int32 oldtop = lua_gettop(LuaHandle);
         if (prepFile(File, "onPlayerLevelDown"))
             return -1;
 
@@ -4501,6 +4550,7 @@ namespace luautils
     bool OnChocoboDig(CCharEntity* PChar, bool pre)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        int32 oldtop = lua_gettop(LuaHandle);
 
         if (prepFile(File, "onChocoboDig"))
             return false;

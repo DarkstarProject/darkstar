@@ -172,7 +172,6 @@ inline int32 CLuaBattlefield::getAllies(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, (int)m_PLuaBattlefield->m_AllyList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto ally : m_PLuaBattlefield->m_AllyList)
     {
@@ -194,7 +193,6 @@ inline int32 CLuaBattlefield::getEnemies(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, (int)m_PLuaBattlefield->m_EnemyList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto enemy : m_PLuaBattlefield->m_EnemyList)
     {
@@ -216,7 +214,6 @@ inline int32 CLuaBattlefield::getPlayers(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, (int)m_PLuaBattlefield->m_PlayerList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto player : m_PLuaBattlefield->m_PlayerList)
     {

@@ -382,6 +382,8 @@ namespace petutils
         case JOB_SCH:
             PMob->health.maxmp = (int16)(15.2 * pow(lvl, 1.1075) * petStats->MPscale);
             break;
+        default:
+            break;
         }
 
         PMob->speed = petStats->speed;
@@ -465,12 +467,11 @@ namespace petutils
         int32 scaleOver60Column = 3;	// номер колонки с модификатором после 60 уровня
         int32 scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
         int32 scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
-        int32 scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
+        // int32 scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
         uint8 grade;
 
         uint8 mlvl = PPet->GetMLevel();
-        uint8 slvl = PPet->GetSLevel();
         JOBTYPE mjob = PPet->GetMJob();
         JOBTYPE sjob = PPet->GetSJob();
         // Расчет прироста HP от main job
@@ -901,7 +902,7 @@ namespace petutils
 
                 //master using leave command
                 auto state = dynamic_cast<CAbilityState*>(PMaster->PAI->GetCurrentState());
-                if (state && state->GetAbility()->getID() == ABILITY_LEAVE || PChar->loc.zoning || PChar->isDead()){
+                if ((state && state->GetAbility()->getID() == ABILITY_LEAVE) || PChar->loc.zoning || PChar->isDead()){
                     PMob->PEnmityContainer->Clear();
                     PMob->m_OwnerID.clean();
                     PMob->updatemask |= UPDATE_STATUS;
@@ -961,8 +962,6 @@ namespace petutils
     void DespawnPet(CBattleEntity* PMaster)
     {
         DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
-
-        CBattleEntity* PPet = PMaster->PPet;
 
         petutils::DetachPet(PMaster);
     }

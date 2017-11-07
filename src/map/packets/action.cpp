@@ -218,6 +218,10 @@ CActionPacket::CActionPacket(action_t& action)
             ref<uint8>(0x0E) = 0x1B;
         }
         break;
+        default:
+        {
+            break;
+        }
         }
     }
     break;
@@ -277,10 +281,18 @@ CActionPacket::CActionPacket(action_t& action)
             ref<uint8>(0x0E) = 0x1B;
         }
         break;
+        default:
+        {
+            break;
+        }
         }
         ActionType = ACTION_MAGIC_START;
     }
     break;
+    default:
+    {
+        break;
+    }
     }
 
     uint32 bitOffset = packBitsBE(data, ActionType, 82, 4);

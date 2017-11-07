@@ -448,6 +448,8 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
             if (skill == SKILL_AMA)
                 rank -= 2;
             break;
+        default:
+            break;
     }
 
     //only happens if a head gives bonus to a rank of 0 - making it G or F rank

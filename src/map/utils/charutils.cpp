@@ -1200,7 +1200,7 @@ namespace charutils
 
         if (SlotID != ERROR_SLOTID)
         {
-            uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
+            // uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
 
             const int8* Query =
                 "INSERT INTO char_inventory("
@@ -1512,7 +1512,7 @@ namespace charutils
         {
             auto removeSlotID = ((CItemArmor*)PItem)->getRemoveSlotId();
 
-            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
+            for (auto i = 0u; i < sizeof(removeSlotID) * 8; ++i)
             {
                 if (removeSlotID & (1 << i))
                 {
@@ -1540,7 +1540,6 @@ namespace charutils
                 }
             }
 
-            uint8 slotID = PChar->equip[equipSlotID];
             //todo: issues as item 0 reference is being handled as a real equipment piece
             //      thought to be source of nin bug
             PChar->equip[equipSlotID] = 0;
@@ -1712,7 +1711,7 @@ namespace charutils
         {
             auto removeSlotID = PItem->getRemoveSlotId();
 
-            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
+            for (auto i = 0u; i < sizeof(removeSlotID) * 8; ++i)
             {
                 if (removeSlotID & (1 << i))
                 {
@@ -2293,9 +2292,9 @@ namespace charutils
             if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
                 (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
                 (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())) ||
+                (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
                 PSkill->getID() == main_ws ||
-                isInDynamis && (PSkill->getID() == main_ws_dyn))
+                (isInDynamis && (PSkill->getID() == main_ws_dyn)))
             {
                 addWeaponSkill(PChar, PSkill->getID());
             }
@@ -2312,9 +2311,9 @@ namespace charutils
                 if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
                     (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
                     (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                    (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())) ||
+                    (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
                     PSkill->getID() == range_ws ||
-                    isInDynamis && (PSkill->getID() == range_ws_dyn))
+                    (isInDynamis && (PSkill->getID() == range_ws_dyn)))
                 {
                     addWeaponSkill(PChar, PSkill->getID());
                 }
@@ -3186,7 +3185,7 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
-            uint32 baseexp = 0, dedication = 0;
+            uint32 baseexp = 0;
             auto exp = 0.f;
             float permonstercap, monsterbonus = 1.0f;
             bool chainactive = false;
@@ -4351,7 +4350,7 @@ namespace charutils
 
     bool hasMogLockerAccess(CCharEntity* PChar) {
         int8 fmtQuery[] = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
+        Sql_Query(SqlHandle, fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
 
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {

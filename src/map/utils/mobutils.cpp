@@ -123,6 +123,8 @@ uint16 GetEvasion(CMobEntity* PMob)
         case JOB_BLM:
             evaRank = 5;
         break;
+        default:
+            break;
     }
 
     return GetBase(PMob, evaRank);
@@ -315,6 +317,8 @@ void CalculateStats(CMobEntity * PMob)
     case JOB_SMN:
         hasMp = true;
         break;
+    default:
+        break;
     }
 
     switch(sJob){
@@ -327,6 +331,8 @@ void CalculateStats(CMobEntity * PMob)
     case JOB_SCH:
     case JOB_SMN:
         hasMp = true;
+        break;
+    default:
         break;
     }
 
@@ -606,7 +612,7 @@ void SetupJob(CMobEntity* PMob)
 
             // only drgs in 3rd expansion calls wyvern as non-NM
             // include fomors
-            if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
+            if((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
             {
                 // 20 min recast
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
@@ -616,7 +622,7 @@ void SetupJob(CMobEntity* PMob)
         case JOB_RNG:
 
             // giga
-            if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
+            if((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328)
             {
                 // only used while at range
                 // catapult
@@ -707,6 +713,9 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
+            break;
+        default:
+            break;
     }
 
     // Just a fallback at the moment
@@ -727,6 +736,9 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
                 PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
             }
+            break;
+        default:
+            break;
     }
 }
 
@@ -743,6 +755,8 @@ void SetupRoaming(CMobEntity* PMob)
             distance = 20;
             turns = 5;
             cool = 45;
+            break;
+        default:
             break;
     }
 
@@ -801,8 +815,6 @@ void SetupPetSkills(CMobEntity* PMob)
 
 void SetupDynamisMob(CMobEntity* PMob)
 {
-    JOBTYPE mJob = PMob->GetMJob();
-
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
@@ -946,6 +958,8 @@ void SetupMaat(CMobEntity* PMob)
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             break;
+        default:
+            break;
     }
 }
 
@@ -1028,6 +1042,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
         case SYSTEM_PLANTOID: PMob->addModifier(Mod::BEAST_KILLER,    5); break;
         case SYSTEM_UNDEAD:   PMob->addModifier(Mod::ARCANA_KILLER,   5); break;
         case SYSTEM_VERMIN:   PMob->addModifier(Mod::PLANTOID_KILLER, 5); break;
+        default: break;
       }
 
     if (PMob->m_maxLevel == 0 && PMob->m_minLevel == 0)
@@ -1288,6 +1303,8 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
             break;
         case JOB_SMN:
             spellList = 141;
+            break;
+        default:
             break;
     }
 

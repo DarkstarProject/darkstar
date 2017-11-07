@@ -76,7 +76,6 @@ inline int32 CLuaInstance::getAllies(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
     lua_createtable(L, (int)m_PLuaInstance->m_allyList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto member : m_PLuaInstance->m_allyList)
     {
@@ -98,7 +97,6 @@ inline int32 CLuaInstance::getChars(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
     lua_createtable(L, (int)m_PLuaInstance->m_charList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto member : m_PLuaInstance->m_charList)
     {
@@ -120,7 +118,6 @@ inline int32 CLuaInstance::getMobs(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
     lua_createtable(L, (int)m_PLuaInstance->m_mobList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto member : m_PLuaInstance->m_mobList)
     {
@@ -142,7 +139,6 @@ inline int32 CLuaInstance::getNpcs(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
     lua_createtable(L, (int)m_PLuaInstance->m_npcList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto member : m_PLuaInstance->m_npcList)
     {
@@ -164,7 +160,6 @@ inline int32 CLuaInstance::getPets(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
     lua_createtable(L, (int)m_PLuaInstance->m_petList.size(), 0);
-    int8 newTable = lua_gettop(L);
     int i = 1;
     for (auto member : m_PLuaInstance->m_petList)
     {

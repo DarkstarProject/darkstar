@@ -189,7 +189,7 @@ namespace message
         case MSG_PT_INVITE:
         {
             uint32 id = RBUFL(extra->data(), 0);
-            uint16 targid = RBUFW(extra->data(), 4);
+            // uint16 targid = RBUFW(extra->data(), 4);
             uint8 inviteType = RBUFB(packet->data(), 0x0B);
             CCharEntity* PInvitee = zoneutils::GetChar(id);
 
@@ -233,9 +233,9 @@ namespace message
         case MSG_PT_INV_RES:
         {
             uint32 inviterId = RBUFL(extra->data(), 0);
-            uint16 inviterTargid = RBUFW(extra->data(), 4);
+            // uint16 inviterTargid = RBUFW(extra->data(), 4);
             uint32 inviteeId = RBUFL(extra->data(), 6);
-            uint16 inviteeTargid = RBUFW(extra->data(), 10);
+            // uint16 inviteeTargid = RBUFW(extra->data(), 10);
             uint8 inviteAnswer = RBUFB(extra->data(), 12);
             CCharEntity* PInviter = zoneutils::GetChar(inviterId);
 
@@ -278,7 +278,7 @@ namespace message
                     {
                         if (PInviter->PParty == nullptr)
                         {
-                            CParty* PParty = new CParty(PInviter);
+                            // CParty* PParty = new CParty(PInviter);
                         }
                         if (PInviter->PParty->GetLeader() == PInviter)
                         {

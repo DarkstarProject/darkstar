@@ -427,6 +427,7 @@ namespace battleutils
                 case JOB_NIN: id = 765; break;
                 case JOB_DRG: id = 766; break;
                 case JOB_SMN: id = 767; break;
+                default: break;
             }
 
             return GetMobSkill(id);
@@ -481,7 +482,7 @@ namespace battleutils
                               // Fomor / Shadow
                               id = 482;
                           }
-                          else if (familyId == 328 || familyId >= 126 && familyId <= 130)
+                          else if (familyId == 328 || (familyId >= 126 && familyId <= 130))
                           {
                               // Giga
                               id = 483;
@@ -655,8 +656,8 @@ namespace battleutils
     uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken)
     {
         uint16 damage = Action->spikesParam;
-        int16 intStat = PDefender->INT();
-        int16 mattStat = PDefender->getMod(Mod::MATT);
+        // int16 intStat = PDefender->INT();
+        // int16 mattStat = PDefender->getMod(Mod::MATT);
 
         switch (Action->spikesEffect)
         {
@@ -796,6 +797,9 @@ namespace battleutils
                         Action->spikesEffect = (SUBEFFECT)0;
                         return false;
                     }
+                    break;
+
+                default:
                     break;
             }
 
@@ -2016,6 +2020,8 @@ namespace battleutils
                         ((CMobEntity*)PAttacker)->PEnmityContainer->UpdateEnmityFromAttack(PDefender, damage);
                     }
                     break;
+                default:
+                    break;
             }
 
             // try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
@@ -2029,9 +2035,6 @@ namespace battleutils
 
             if ((slot == SLOT_RANGED || slot == SLOT_AMMO) && PAttacker->objtype == TYPE_PC)
             {
-                CCharEntity* PChar = (CCharEntity*)PAttacker;
-                CItemWeapon* PAmmo = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
-
                 int16 delay = PAttacker->GetRangedWeaponDelay(true);
 
                 baseTp = CalculateBaseTP((delay * 120) / 1000);
@@ -2157,6 +2160,9 @@ namespace battleutils
 
                 case TYPE_PET:
                     ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
+                    break;
+
+                default:
                     break;
             }
 
@@ -2677,6 +2683,8 @@ namespace battleutils
                     case Mod::BLINK:
                         PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
                         break;
+                    default:
+                        break;
                 }
             }
             else if (Shadow < 4 && Mod::UTSUSEMI == modShadow)
@@ -2734,6 +2742,7 @@ namespace battleutils
             case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(Mod::PLANTOID_KILLER); break;
             case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(Mod::UNDEAD_KILLER);   break;
             case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
+            default: break;
         }
         return (dsprand::GetRandomNumber(100) < KillerEffect);
     }
@@ -3131,6 +3140,10 @@ namespace battleutils
                 ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar ? taChar : PAttacker, (uint16)damage);
             }
             break;
+            default:
+            {
+                break;
+            }
         }
 
         return damage;
@@ -4442,18 +4455,23 @@ namespace battleutils
     uint8 GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell)
     {
         if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE) // Divine Veil goes here because -na spells have AoE w/ Accession
+        {
             if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_ACCESSION) || (PCaster->objtype == TYPE_PC &&
                 charutils::hasTrait((CCharEntity*)PCaster, TRAIT_DIVINE_VEIL) && PSpell->isNa() &&
                 (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIVINE_SEAL) || PCaster->getMod(Mod::AOE_NA) == 1)))
                 return SPELLAOE_RADIAL;
             else
                 return SPELLAOE_NONE;
+        }
         if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI)
+        {
             if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_MANIFESTATION))
                 return SPELLAOE_RADIAL;
             else
                 return SPELLAOE_NONE;
+        }
         if (PSpell->getAOE() == SPELLAOE_PIANISSIMO)
+        {
             if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))
             {
                 PCaster->StatusEffectContainer->DelStatusEffect(EFFECT_PIANISSIMO);
@@ -4461,11 +4479,14 @@ namespace battleutils
             }
             else
                 return SPELLAOE_RADIAL;
+        }
         if (PSpell->getAOE() == SPELLAOE_DIFFUSION)
+        {
             if (PCaster->StatusEffectContainer->HasStatusEffect(EFFECT_DIFFUSION))
                 return SPELLAOE_RADIAL;
             else
                 return SPELLAOE_NONE;
+        }
 
         return PSpell->getAOE();
     }
