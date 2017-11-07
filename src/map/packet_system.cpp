@@ -2020,7 +2020,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
-                int32 ret;
+                int32 ret = SQL_ERROR;
                 if (boxtype == 0x01)
                 {
                     ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
