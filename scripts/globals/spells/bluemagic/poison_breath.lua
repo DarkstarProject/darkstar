@@ -11,6 +11,7 @@
 -- Recast Time: 19.5 seconds
 -- Magic Bursts on: Reverberation, Distortion, and Darkness
 -- Combos: Clear Mind
+-- Damage = (Current HP)/10 + (Blue Mage level)/1.25
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -30,17 +31,17 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-    
+
     local params = {};
-    
+
     params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    
+
     params.attribute = MOD_INT;
-    
+
     params.skillType = BLUE_SKILL;
-    
+
     params.bonus = 1.0;
-    
+
     resist = applyResistance(caster, target, spell, params);
     local multi = 1.08;
     local params = {};
@@ -55,9 +56,11 @@ function onSpellCast(caster,target,spell)
         params.int_wsc = 0.0;
         params.mnd_wsc = 0.3;
         params.chr_wsc = 0.0;
-    damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
+    local HP = caster:getHP();
+    local LVL = caster:getMainLvl();
+    damage = (HP / 10) + (LVL / 1.25);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-    
+
     if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
         multi = multi + 0.50;
     end
@@ -67,6 +70,6 @@ function onSpellCast(caster,target,spell)
         target:delStatusEffect(typeEffect); 
         target:addStatusEffect(typeEffect,3,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     return damage;
 end;

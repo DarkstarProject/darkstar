@@ -411,6 +411,8 @@ function getBlueEffectDuration(caster,resist,effect)
         duration = math.random(60,120) + resist * 15; -- 60- 120 -- Needs confirmation but capped max duration based on White Magic Spell Slow
     elseif (effect == EFFECT_SILENCE) then
         duration = math.random(60,180) + resist * 15; -- 60- 180 -- Needs confirmation but capped max duration based on White Magic Spell Silence
+    elseif (effect == EFFECT_POISON) then
+        duration = math.random(20,30) + resist * 9; -- 20-30 -- based on magic spell poison
     end
 
     return duration;
