@@ -54,13 +54,15 @@ function onSpellCast(caster,target,spell)
         params.int_wsc = 0.0;
         params.mnd_wsc = 0.0;
         params.chr_wsc = 0.2;
-    damage = BlueMagicalSpell(caster, target, spell, params, CHR_BASED);
+    local HP = caster:getHP();
+    local LVL = caster:getMainLvl();
+    damage = (HP / 6) + (LVL / 1.875);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
     
     if (damage > 0 and resist > 0.0625) then
         local typeEffect = EFFECT_WEIGHT;
         target:delStatusEffect(typeEffect);
-        target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
+        target:addStatusEffect(typeEffect,50,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
     return damage;
