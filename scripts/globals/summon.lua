@@ -183,7 +183,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         if (targShadows>0) then
         -- Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
             if (targShadows >= shadowbehav) then --no damage, just suck the shadows
-                skill:setMsg(31);
+                skill:setMsg(msgBasic.SHADOW_ABSORB);
                 target:setMod(shadowType,(targShadows-shadowbehav));
                 if (shadowType == MOD_UTSUSEMI) then --update icon
                     effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
@@ -228,13 +228,13 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
             if (prevAnt == 0) then
                 --100% proc
                 teye:setPower(1);
-                skill:setMsg(30);
+                skill:setMsg(msgBasic.ANTICIPATE);
                 return 0;
             end
             if ( (math.random()*100) < (80-(prevAnt*10)) ) then
                 --anticipated!
                 teye:setPower(prevAnt+1);
-                skill:setMsg(30);
+                skill:setMsg(msgBasic.ANTICIPATE);
                 return 0;
             end
             target:delStatusEffect(EFFECT_THIRD_EYE);

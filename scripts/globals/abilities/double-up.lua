@@ -58,9 +58,9 @@ function onUseAbility(caster,target,ability,action)
         local total = applyRoll(caster,target,ability,action,total)
         local msg = ability:getMsg()
         if msg == 420 then
-            ability:setMsg(424)
+            ability:setMsg(msgBasic.DOUBLEUP)
         elseif msg == 422 then
-            ability:setMsg(425)
+            ability:setMsg(msgBasic.DOUBLEUP_FAIL)
         end
         return total;
     end

@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     if (effect == EFFECT_NONE) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     else
-        spell:setMsg(341);
+        spell:setMsg(msgBasic.MAGIC_ERASE);
     end
 
     return effect;

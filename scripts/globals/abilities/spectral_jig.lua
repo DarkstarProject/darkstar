@@ -10,6 +10,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -24,7 +25,7 @@ function onUseAbility(player,target,ability)
     if (player:hasStatusEffect(EFFECT_SNEAK) == false) then
         player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration);
         player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration);
-        ability:setMsg(532); -- Gains the effect of sneak and invisible
+        ability:setMsg(msgBasic.SPECTRAL_JIG); -- Gains the effect of sneak and invisible
     else
         ability:setMsg(msgBasic.NO_EFFECT); -- no effect on player.
     end
