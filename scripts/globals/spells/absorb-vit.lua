@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
         if (resist <= 0.125) then
             spell:setMsg(msgBasic.MAGIC_RESIST);
         else
-            spell:setMsg(331);
+            spell:setMsg(msgBasic.MAGIC_ABSORB_VIT);
             caster:addStatusEffect(EFFECT_VIT_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains VIT
             target:addStatusEffect(EFFECT_VIT_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE);    -- target loses VIT
         end

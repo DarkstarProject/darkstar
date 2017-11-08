@@ -4,6 +4,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
@@ -32,6 +33,6 @@ function onPetAbility(target, pet, skill)
     target:delStatusEffect(EFFECT_EVASION_DOWN);
     target:addStatusEffect(EFFECT_ACCURACY_DOWN,buffvalue,0,180);
     target:addStatusEffect(EFFECT_EVASION_DOWN,32-buffvalue,0,180);
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
     return 0;
 end

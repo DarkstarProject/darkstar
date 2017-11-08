@@ -8,6 +8,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -21,7 +22,7 @@ function onUseAbility(player,target,ability)
         target:lowerEnmity(player, 99);
     end
 
-    ability:setMsg(0);
+    ability:setMsg(msgBasic.NONE);
 
     -- Prevent the player from performing actions while in the air
     player:queue(0, function(player)

@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
         target:delTP(power);
-        spell:setMsg(431);
+        spell:setMsg(msgBasic.MAGIC_ERASE);
     end
 
     return tp;
