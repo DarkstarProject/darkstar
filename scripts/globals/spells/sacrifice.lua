@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     for i, effect in ipairs(removables) do
 
         if (target:hasStatusEffect(effect)) then
-            spell:setMsg(572);
+            spell:setMsg(msgBasic.MAGIC_ABSORB_AILMENT);
 
             local statusEffect = target:getStatusEffect(effect);
 
