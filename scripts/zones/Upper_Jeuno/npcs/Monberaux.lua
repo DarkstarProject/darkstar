@@ -111,6 +111,8 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(MYSTERIOUS_AMULET_DRAINED);
         player:completeMission(COP,THE_RITES_OF_LIFE);
         player:addMission(COP,BELOW_THE_ARKS); -- start the mission 1-2
+        player:startEvent(0x00ce); -- 206
+    elseif (csid == 0x00ce) then
         player:startEvent(0x00cf);  --207
     elseif (csid == 0x0052) then
         player:setVar("PromathiaStatus",1);
