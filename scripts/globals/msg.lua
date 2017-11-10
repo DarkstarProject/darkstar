@@ -48,7 +48,8 @@ chatType =
 
 msgBasic =
 {
-    NONE = 0, -- Display nothing
+    NONE    = 0, -- Display nothing
+    HIT_DMG = 1, -- <actor> hits <target> for <amount> points of damage.
 
     -- Magic
     MAGIC_DMG              = 2,   -- <caster> casts <spell>. <target> takes <amount> damage.
@@ -56,13 +57,26 @@ msgBasic =
     MAGIC_NO_EFFECT        = 75,  -- <caster>'s <spell> has no effect on <target>.
     MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
     MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
+    MAGIC_TELEPORT         = 93,  -- <caster> casts <spell>. <target> vanishes.
     MAGIC_RESIST_2         = 284, -- <target> resists the effects of the spell!
-    MAGIC_DRAIN_HP         = 227, -- Caster> casts <spell>. <amount> HP drained from <target>
-    MAGIC_DRAIN_MP         = 228, -- Caster> casts <spell>. <amount> MP drained from <target>
+    MAGIC_DRAIN_HP         = 227, -- <caster> casts <spell>. <amount> HP drained from <target>.
+    MAGIC_DRAIN_MP         = 228, -- <caster> casts <spell>. <amount> MP drained from <target>.
     MAGIC_GAIN_EFFECT      = 230, -- <caster> casts <spell>. <target> gains the effect of <status>.
     MAGIC_ENFEEB_IS        = 236, -- <caster> casts <spell>. <target> is <status>.
     MAGIC_ENFEEB           = 237, -- <caster> casts <spell>. <target> receives the effect of <status>.
-    MAGIC_ERASE            = 341, -- <caster> casts <spell> <target>'s <status> effect disappears!
+    MAGIC_CASTS_ON         = 309, -- <caster> casts <spell> on <target>.
+    MAGIC_ABSORB_STR       = 329, -- <caster> casts <spell>. <target>'s STR is drained.
+    MAGIC_ABSORB_DEX       = 330, -- <caster> casts <spell>. <target>'s DEX is drained.
+    MAGIC_ABSORB_VIT       = 331, -- <caster> casts <spell>. <target>'s VIT is drained.
+    MAGIC_ABSORB_AGI       = 332, -- <caster> casts <spell>. <target>'s AGI is drained.
+    MAGIC_ABSORB_INT       = 333, -- <caster> casts <spell>. <target>'s INT is drained.
+    MAGIC_ABSORB_MND       = 334, -- <caster> casts <spell>. <target>'s MND is drained.
+    MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
+    MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
+    MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
+    MSGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
+    MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
+    MAGIC_ABSORB_AILMENT   = 572, -- <caster> casts <spell>. <caster> absorbs <number> of <target>'s status ailments.
 
     -- Weaponskill / Mobskill (0-255 WS, 256+ monster skill)
     SKILL_RECOVERS_MP      = 224, -- <user> uses <skill>. <target> recovers <amount> MP.
@@ -80,6 +94,7 @@ msgBasic =
     SKILL_NO_EFFECT        = 189, -- <user> uses <skill>. No effect on <target>.
     SKILL_ENFEEB_IS        = 242, -- <user> uses <skill>. <target> is <status>.
     SKILL_ENFEEB           = 243, -- <user> uses <skill>. <target> receives the effect of <status>.
+    ABILITIES_RECHARGED    = 360, -- <user> uses <skill>. All of <target>'s abilities are recharged.
 
     -- Job Ability messages (offset JA by 16)
     JA_RECOVERS_HP         = 102, -- The <player> uses .. <target> recovers .. HP.

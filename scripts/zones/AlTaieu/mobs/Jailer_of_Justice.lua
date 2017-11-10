@@ -2,7 +2,6 @@
 -- Area: Al'Taieu
 --  NM:  Jailer of Justice
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
@@ -34,7 +33,7 @@ function onMobFight(mob, target)
             if (alreadyPopped == true) then
                 break;
             else
-                if (GetMobAction(Xzomit) == ACTION_NONE or GetMobAction(Xzomit) == ACTION_SPAWN) then
+                if (not GetMobByID(Xzomit):isSpawned()) then
                     SpawnMob(Xzomit, 300):updateEnmity(target);
                     mob:setLocalVar("lastPetPop", os.time());
                     alreadyPopped = true;

@@ -14,7 +14,7 @@ end;
 function onSpellCast(caster,target,spell)
     if (target:hasKeyItem(MERIPHATAUD_GATE_CRYSTAL) == true) then
             target:addStatusEffectEx(EFFECT_TELEPORT,0,RECALL_MERIPH,0,4.7);
-        spell:setMsg(93);
+        spell:setMsg(msgBasic.MAGIC_TELEPORT);
     else
         spell:setMsg(msgBasic.NO_EFFECT);
     end;

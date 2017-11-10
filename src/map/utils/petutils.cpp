@@ -887,9 +887,7 @@ namespace petutils
             CMobEntity* PMob = (CMobEntity*)PPet;
 
             if (!PMob->isDead()){
-
-                //clear the ex-charmed mobs enmity
-                PMob->PEnmityContainer->Clear();
+                PMob->PAI->Disengage();
 
                 // charm time is up, mob attacks player now
                 if (PMob->PEnmityContainer->IsWithinEnmityRange(PMob->PMaster))
@@ -925,10 +923,6 @@ namespace petutils
             PMob->PMaster = nullptr;
 
             PMob->PAI->SetController(std::make_unique<CMobController>(PMob));
-
-            if (!PMob->isDead())
-                PMob->PAI->Disengage();
-
         }
         else if (PPet->objtype == TYPE_PET){
             if (!PPet->isDead())

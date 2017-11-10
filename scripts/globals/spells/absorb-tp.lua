@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
         dmg = 0
     else
-        spell:setMsg(454);
+        spell:setMsg(msgBasic.MSGIC_ABSORB_TP);
 
         dmg = dmg * ((100 + caster:getMod(MOD_AUGMENTS_ABSORB)) / 100)
 

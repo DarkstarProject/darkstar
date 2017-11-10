@@ -7,6 +7,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -14,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
     if (mob:getTarget() and mob:getTarget():getFamily() == 478) then
         -- using Ambrosia!
         target:addStatusEffect(EFFECT_FOOD,0,0,14400,4511);

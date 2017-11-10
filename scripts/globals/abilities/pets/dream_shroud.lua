@@ -5,6 +5,7 @@ require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
@@ -21,6 +22,6 @@ function onPetAbility(target, pet, skill, summoner)
     target:delStatusEffect(EFFECT_MAGIC_DEF_BOOST);
     target:addStatusEffect(EFFECT_MAGIC_ATK_BOOST,buffvalue,0,duration);
     target:addStatusEffect(EFFECT_MAGIC_DEF_BOOST,14 - buffvalue,0,duration);
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
     return 0;
 end
