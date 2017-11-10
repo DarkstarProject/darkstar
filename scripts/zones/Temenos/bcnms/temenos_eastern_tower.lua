@@ -3,9 +3,15 @@
 -- Name: Temenos Eastern Tower
 -----------------------------------
 require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)
     if (GetMobByID(16928844):isSpawned()) then DespawnMob(16928844); end
     if (GetMobByID(16928853):isSpawned()) then DespawnMob(16928853); end

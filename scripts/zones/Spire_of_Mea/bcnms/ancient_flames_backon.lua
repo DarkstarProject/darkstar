@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -28,6 +29,9 @@ require("scripts/zones/Spire_of_Mea/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)

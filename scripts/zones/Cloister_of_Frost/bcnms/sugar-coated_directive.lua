@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 ----------------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/globals/quests");
 require("scripts/zones/Cloister_of_Frost/TextIDs");
 
@@ -15,6 +16,9 @@ require("scripts/zones/Cloister_of_Frost/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)

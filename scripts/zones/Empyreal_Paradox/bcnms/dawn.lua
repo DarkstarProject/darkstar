@@ -15,6 +15,7 @@ package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
@@ -33,6 +34,11 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)
     local baseID = 16924673 + (instance:getBattlefieldNumber() - 1) * 2
     local pos = GetMobByID(baseID):getSpawnPos();

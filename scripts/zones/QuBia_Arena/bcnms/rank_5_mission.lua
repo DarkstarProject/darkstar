@@ -7,6 +7,7 @@ package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
@@ -15,6 +16,9 @@ require("scripts/globals/keyitems");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)

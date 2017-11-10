@@ -14,6 +14,10 @@ require("scripts/globals/battlefield")
 
 -----------------------------------
 
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+end
+
 function onBattlefieldTick(battlefield, tick)
     g_Battlefield.onBattlefieldTick(battlefield, tick)
 end

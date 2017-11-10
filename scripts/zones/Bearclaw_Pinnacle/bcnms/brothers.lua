@@ -11,7 +11,11 @@ require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 require("scripts/globals/battlefield")
 
 -----------------------------------
- 
+
+ function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+end
+
 function onBattlefieldTick(battlefield, tick)
     g_Battlefield.onBattlefieldTick(battlefield, tick)
 end
@@ -39,19 +43,19 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
-        player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);    
+        player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-     
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
+-- print("bc finish csid "..csid.." and option "..option);
     if (csid == 0x7d01) then
         player:addExp(3500);
     end

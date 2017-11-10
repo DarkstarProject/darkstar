@@ -21,6 +21,10 @@ require("scripts/globals/battlefield")
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+end
+
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;

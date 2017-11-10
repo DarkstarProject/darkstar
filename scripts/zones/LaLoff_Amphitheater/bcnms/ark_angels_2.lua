@@ -6,6 +6,7 @@ package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 
@@ -25,6 +26,9 @@ require("scripts/globals/keyitems");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)

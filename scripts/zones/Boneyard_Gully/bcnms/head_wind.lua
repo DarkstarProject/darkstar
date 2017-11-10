@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Boneyard_Gully
 -- Name: head_wind
--- BCNM: 672 
+-- BCNM: 672
 -----------------------------------
 package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -----------------------------------
@@ -11,7 +11,7 @@ require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
 
 -----------------------------------
- 
+
 function onBattlefieldTick(battlefield, tick)
     g_Battlefield.onBattlefieldTick(battlefield, tick)
 end
@@ -34,28 +34,27 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 
-    
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 5) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);    
+            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);
             player:setVar("COP_Ulmia_s_Path",6);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);            
+            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
            player:startEvent(0x7d02);
    end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
+-- print("bc finish csid "..csid.." and option "..option);
     if (csid == 0x7d01) then
      player:addExp(1000);
     end

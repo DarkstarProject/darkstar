@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/zones/Talacca_Cove/TextIDs");
@@ -15,6 +16,9 @@ require("scripts/zones/Talacca_Cove/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)

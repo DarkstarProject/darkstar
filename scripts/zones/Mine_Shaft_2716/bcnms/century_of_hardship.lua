@@ -9,11 +9,15 @@ package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/globals/battlefield")
 require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)

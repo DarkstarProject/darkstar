@@ -5,6 +5,7 @@
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/zones/Cloister_of_Storms/TextIDs");
 
@@ -20,6 +21,11 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)
 end;
 
