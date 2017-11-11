@@ -3,27 +3,18 @@
 -- Item: Blink Band
 -- Item Effect: 3 shadows
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-
     if (target:hasStatusEffect(EFFECT_COPY_IMAGE) or target:hasStatusEffect(EFFECT_THIRD_EYE)) then
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     else
         target:addStatusEffect(EFFECT_BLINK, 3, 0, 300);
-        target:messageBasic(205,EFFECT_BLINK);
+        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_BLINK);
     end
 end;

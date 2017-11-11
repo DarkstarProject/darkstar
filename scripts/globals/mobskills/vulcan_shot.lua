@@ -10,10 +10,10 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
----------------------------------------------------
+require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
-    mob:messageBasic(43, 0, 254);
+    mob:messageBasic(msgBasic.READIES_WS, 0, 254);
     return 0;
 end;
 

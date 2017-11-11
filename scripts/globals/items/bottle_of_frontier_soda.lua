@@ -3,26 +3,17 @@
 -- Item: Bottle of Frontier Soda
 -- Item Effect: Restores 20 TP over 60 seconds.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REGAIN) == false) then
+    if (not target:hasStatusEffect(EFFECT_REGAIN)) then
         target:addStatusEffect(EFFECT_REGAIN,1,3,60);
     else
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;
-

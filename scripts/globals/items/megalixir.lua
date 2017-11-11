@@ -3,12 +3,7 @@
 -- Item: Elixir
 -- Item Effect: Instantly restores 100% of HP and MP
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     local result = 0;
@@ -24,12 +19,8 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addHP(target:getMaxHP());
     target:addMP(target:getMaxMP());
-    target:messageBasic(26);
+    target:messageBasic(msgBasic.RECOVERS_HP_AND_MP);
 end;

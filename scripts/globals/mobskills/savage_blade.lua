@@ -9,11 +9,11 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
----------------------------------------------
+require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4006) then
-        mob:messageBasic(43, 0, 42);
+        mob:messageBasic(msgBasic.READIES_WS, 0, 42);
     end
 
     return 0;
