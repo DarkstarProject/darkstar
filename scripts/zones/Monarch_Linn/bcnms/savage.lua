@@ -34,9 +34,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 1) then 
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,1);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

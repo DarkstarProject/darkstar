@@ -60,7 +60,6 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
     local status = battlefield:getStatus()
     local leavecode = -1
     local players = battlefield:getPlayers()
-    print("fuck")
     local cutsceneTimer = battlefield:getLocalVar("cutsceneTimer")
 
     if status == g_Battlefield.STATUS.LOST then
@@ -146,7 +145,7 @@ function g_Battlefield.HandleWipe(battlefield, players)
     players = players or battlefield:getPlayers()
 
     -- pure stolen from instance.lua
-    if wipeTime == 0 then
+    if wipeTime <= 0 then
         for _, player in pairs(players) do
             if player:getHP() ~= 0 then
                 rekt = false

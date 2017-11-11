@@ -21,7 +21,7 @@ end
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 
-    local inst = player:getBattlefield():getBattlefieldNumber();
+    local inst = player:getBattlefield():getArea();
 
     if (inst == 1) then
     

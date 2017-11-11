@@ -50,7 +50,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
 
         local name, clearTime, partySize = battlefield:getRecord()
-        player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,4);
+        player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,4);
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end

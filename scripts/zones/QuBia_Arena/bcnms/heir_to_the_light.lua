@@ -43,9 +43,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local name, clearTime, partySize = battlefield:getRecord()
         --printf("win");
         if (currentMission == THE_HEIR_TO_THE_LIGHT)    then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,1);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

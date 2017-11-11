@@ -37,9 +37,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:startEvent(0x7d01,1,1,1,0,1,0,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         else
-            player:startEvent(0x7d01,1,1,1,0,1,1,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

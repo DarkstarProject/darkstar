@@ -34,7 +34,7 @@ end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-    print("instance code ");
+    print("battlefield code ");
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -52,14 +52,14 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then    
             if (player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_DEM)) then 
-                player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,3);
+                player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,3);
             elseif (player:hasKeyItem(LIGHT_OF_MEA) or player:hasKeyItem(LIGHT_OF_DEM)) then 
-                player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,2); 
+                player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,2); 
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
-            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0,1); 
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); 
         else
-            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

@@ -14,13 +14,13 @@ require("scripts/globals/keyitems");
 
 -- Death cutscenes:
 
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0); -- Hume
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,0); -- taru
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,2,0); -- mithra
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,3,0); -- elvan
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,0); -- galka
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,5,0); -- divine might
--- player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,6,0); -- skip ending cs
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0); -- Hume
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0); -- taru
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,2,0); -- mithra
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,3,0); -- elvan
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0); -- galka
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,5,0); -- divine might
+-- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,6,0); -- skip ending cs
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -47,17 +47,17 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
-        local record = instance:getRecord();
+        local record = battlefield:getRecord();
         local clearTime = record.clearTime;
     
         if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-            player:startEvent(0x7d01,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,2,1);        -- winning CS (allow player to skip)
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,2,1);        -- winning CS (allow player to skip)
         else
-            player:startEvent(0x7d01,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,2,0);        -- winning CS (allow player to skip)
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,2,0);        -- winning CS (allow player to skip)
         end
         
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);    -- player lost
+        player:startEvent(0x7d02, 0, 0, 0, 0, 0, battlefield:getArea(), 180);    -- player lost
     end
 end;
 

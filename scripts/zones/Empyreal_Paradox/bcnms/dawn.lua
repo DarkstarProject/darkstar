@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Empyreal_Paradox
 -- Name: dawn
---instance 1
+--battlefield 1
 --16924673', 'Promathia V1', '936', '-520', '-119', '524
 --16924674', 'Promathia V2', '11135', '-520', '-119', '524
---instance 2
+--battlefield 2
 --16924675', 'Promathia V1', '936', '521', '-0.500', '517
 --16924675', 'Promathia V2', '11135', '521', '-0.499', '517
---instance 3
+--battlefield 3
 --16924675', 'Promathia V1', '936', '-519', '120', '-520
 --16924675', 'Promathia V2', '11135', '-519', '120', '-520
 -----------------------------------
@@ -40,13 +40,13 @@ end
 
 
 function onBattlefieldRegister(player,battlefield)
-    local baseID = 16924673 + (instance:getBattlefieldNumber() - 1) * 2
+    local baseID = 16924673 + (battlefield:getArea() - 1) * 2
     local pos = GetMobByID(baseID):getSpawnPos();
-    local prishe = instance:insertAlly(14166);
+    local prishe = battlefield:insertEntity(14166, true);
     prishe:setSpawn(pos.x - 6, pos.y, pos.z - 21.5, 192);
     prishe:spawn();
     
-    local selhteus = instance:insertAlly(14167);
+    local selhteus = battlefield:insertEntity(14167, true);
     selhteus:setSpawn(pos.x + 10, pos.y, pos.z - 17.5, 172);
     selhteus:spawn();
 end;
