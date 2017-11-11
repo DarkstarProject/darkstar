@@ -118,7 +118,6 @@ msgBasic =
     IS_EFFECT              = 277, -- "is <status>" - that's the entire message.
     EVADES                 = 282,
     NO_EFFECT              = 283, -- "No effect" - that's the entire message.
-    GAINS_EFFECT           = 266, -- <target> gains the effect of <status>.
     FAMILIAR               = 108,
     DISAPPEAR_NUM          = 231, -- <num> of <target>'s effects disappear!
     TP_REDUCED             = 362, -- tp reduced to

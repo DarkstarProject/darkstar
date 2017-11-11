@@ -16,6 +16,6 @@ end;
 function onItemUse(target)
     target:delStatusEffect(EFFECT_FLEE);
     target:addStatusEffect(EFFECT_FLEE, 100, 0, 30);
-    target:messageBasic(msgBasic.GAINS_EFFECT, 0, EFFECT_FLEE);
+    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_FLEE);
     target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
 end;
