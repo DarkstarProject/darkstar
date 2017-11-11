@@ -4,6 +4,8 @@
 --(Taken from 'mob_spawn_points' table)
 -----------------------------------
 
+TEMPEST_TIGON           = 16785593;
+
 -- Orctrap
 Orctrap = 16785676;
 Orctrap_PH =

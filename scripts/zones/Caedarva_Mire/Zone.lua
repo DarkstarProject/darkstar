@@ -5,19 +5,19 @@
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
+require("scripts/zones/Caedarva_Mire/TextIDs");
+require("scripts/zones/Caedarva_Mire/MobIDs");
+require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/zone");
-require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Aynu-kasey
-    SetRespawnTime(17101099, 900, 10800);
+    UpdateNMSpawnPoint(AYNU_KAYSEY);
+    GetMobByID(AYNU_KAYSEY):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------

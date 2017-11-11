@@ -6,9 +6,11 @@
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
+require("scripts/zones/Meriphataud_Mountains/MobIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
+require("scripts/globals/missions");
 require("scripts/globals/zone");
 
 -----------------------------------
@@ -60,11 +62,11 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Waraxe Beak
-    SetRespawnTime(17264828, 900, 10800);
+    UpdateNMSpawnPoint(WARAXE_BEAK);
+    GetMobByID(WARAXE_BEAK):setRespawnTime(math.random(900, 10800));
 
-    -- Coo Keja the Unseen
-    SetRespawnTime(17264946, 900, 10800);
+    UpdateNMSpawnPoint(COO_KEJA_THE_UNSEEN);
+    GetMobByID(COO_KEJA_THE_UNSEEN):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

@@ -5,18 +5,18 @@
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/Ordelles_Caves/TextIDs");
+require("scripts/zones/Ordelles_Caves/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Morbolger
-    SetRespawnTime(17568127, 900, 10800);
+    UpdateNMSpawnPoint(MORBOLGER);
+    GetMobByID(MORBOLGER):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(17568192);
 end;

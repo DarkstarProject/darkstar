@@ -28,3 +28,6 @@ Western_Shadow_PH =
 {
     [17613095] = '1', -- -204.000, -15.000, 118.000
 };
+
+MISER_MURPHY            = 17612849;
+CAPRICIOUS_CASSIE       = 17613130;

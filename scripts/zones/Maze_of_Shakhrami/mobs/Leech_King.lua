@@ -2,29 +2,21 @@
 -- Area: Maze of Shakhrami
 --  MOB: Leech King (NM)
 -----------------------------------
-
 require("scripts/zones/Maze_of_Shakhrami/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    local whichNM = math.random(0,19);
-
-    if (whichNM < 10) then
-        SetRespawnTime(Argus, 64800, 108000); -- 18-30 hours
-        DisallowRespawn(Leech_King, true);
+    if (math.random(2)==1) then
+        DisallowRespawn(LEECH_KING, true);
+        DisallowRespawn(ARGUS, false);
+        UpdateNMSpawnPoint(ARGUS);
+        GetMobByID(ARGUS):setRespawnTime(math.random(64800, 108000)); -- 18-30 hours
     else
-        SetRespawnTime(Leech_King, 64800, 108000); -- 18-30 hours
-        DisallowRespawn(Argus, true);
+        DisallowRespawn(ARGUS, true);
+        DisallowRespawn(LEECH_KING, false);
+        UpdateNMSpawnPoint(LEECH_KING);
+        GetMobByID(LEECH_KING):setRespawnTime(math.random(64800, 108000)); -- 18-30 hours
     end
-
 end;

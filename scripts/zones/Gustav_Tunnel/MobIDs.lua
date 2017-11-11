@@ -4,6 +4,8 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
+BUNE                    = 17645578;
+
 Goblinsavior_Heronox = 17645609;
 Goblinsavior_Heronox_PH =
 {
