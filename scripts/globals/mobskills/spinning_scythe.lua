@@ -9,16 +9,14 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
+require("scripts/globals/msg");
 
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+    mob:messageBasic(msgBasic.READIES_WS, 0, 688+256);
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
-    mob:messageBasic(43, 0, 688+256);
-    
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 2;
@@ -26,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
 
     -- 150-200 damage
-   target:delHP(dmg);
+    target:delHP(dmg);
     return dmg;
 end;

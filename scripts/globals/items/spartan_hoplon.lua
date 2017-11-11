@@ -3,25 +3,17 @@
 -- Item: Spartan Hoplon
 -- Item Effect: Phalanx
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     if (target:addStatusEffect(EFFECT_PHALANX,10,0,180)) then -- Retail potency unknown, 10 is a guess. (someone 1000 needles test this thing!)
-        target:messageBasic(205,EFFECT_PHALANX);
+        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_PHALANX);
     else
-        target:messageBasic(423); -- no effect
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;
