@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Mysticmaker Profblix
-Mysticmaker_Profblix = 17649693;
+MYSTICMAKER_PROFBLIX    = 17649693;
 
 -- Lord of Onzozo
 Lord_of_Onzozo = 17649731;

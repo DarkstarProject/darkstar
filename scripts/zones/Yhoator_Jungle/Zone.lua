@@ -6,12 +6,12 @@
 package.loaded[ "scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Yhoator_Jungle/TextIDs");
+require("scripts/zones/Yhoator_Jungle/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -59,14 +59,14 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Bright-handed Kunberry
-    SetRespawnTime(17285220, 900, 10800);
+    UpdateNMSpawnPoint(WOODLAND_SAGE);
+    GetMobByID(WOODLAND_SAGE):setRespawnTime(math.random(900, 10800));
 
-    -- Bisque-heeled Sunberry
-    SetRespawnTime(17285460, 900, 10800);
+    UpdateNMSpawnPoint(BISQUE_HEELED_SUNBERRY);
+    GetMobByID(BISQUE_HEELED_SUNBERRY):setRespawnTime(math.random(900, 10800));
 
-    -- Bright-handed Kunberry
-    SetRespawnTime(17285526, 900, 10800);
+    UpdateNMSpawnPoint(BRIGHT_HANDED_KUNBERRY);
+    GetMobByID(BRIGHT_HANDED_KUNBERRY):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

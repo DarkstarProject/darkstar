@@ -5,19 +5,19 @@
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/Kuftal_Tunnel/TextIDs");
+require("scripts/zones/Kuftal_Tunnel/MobIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/weather");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Guivre
-    SetRespawnTime(17490234, 900, 10800);
+    UpdateNMSpawnPoint(GUIVRE);
+    GetMobByID(GUIVRE):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(17490304);
 end;
@@ -78,9 +78,9 @@ end;
 function onZoneWeatherChange(weather)
 
     if (weather == WEATHER_WIND or weather == WEATHER_GALES) then
-        GetNPCByID(17490280):setAnimation(9); -- Rock Up
+        GetNPCByID(DOOR_ROCK):setAnimation(9); -- Rock Up
     else
-        GetNPCByID(17490280):setAnimation(8); -- Rock Down
+        GetNPCByID(DOOR_ROCK):setAnimation(8); -- Rock Down
     end
 
 end;

@@ -5,20 +5,20 @@
 -----------------------------------
 package.loaded[ "scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Cape_Teriggan/TextIDs");
+require("scripts/zones/Cape_Teriggan/MobIDs");
 require("scripts/globals/icanheararainbow");
+require("scripts/globals/conquest");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
-require("scripts/globals/conquest");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Kreutzet
-    SetRespawnTime(17240413, 900, 10800);
+    UpdateNMSpawnPoint(KREUTZET);
+    GetMobByID(KREUTZET):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
@@ -89,9 +89,9 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(17240413) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
+    if (GetMobAction(KREUTZET) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
         SpawnMob(17240413); -- Kreutzet
-    elseif (GetMobAction(17240413) == 16 and (weather ~= WEATHER_WIND and weather ~= WEATHER_GALES)) then
-        DespawnMob(17240413);
+    elseif (GetMobAction(KREUTZET) == 16 and (weather ~= WEATHER_WIND and weather ~= WEATHER_GALES)) then
+        DespawnMob(KREUTZET);
     end
 end;

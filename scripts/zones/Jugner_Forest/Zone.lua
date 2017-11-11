@@ -6,12 +6,12 @@
 package.loaded[ "scripts/zones/Jugner_Forest/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Jugner_Forest/TextIDs");
-require("scripts/globals/zone");
+require("scripts/zones/Jugner_Forest/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -57,8 +57,8 @@ end;
 function onInitialize(zone)
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
 
-    -- Fraelissa
-    SetRespawnTime(17203447, 900, 10800);
+    UpdateNMSpawnPoint(FRAELISSA);
+    GetMobByID(FRAELISSA):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID());
 end;

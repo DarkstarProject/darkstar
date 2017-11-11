@@ -4,6 +4,8 @@
 --(Taken from 'mob_spawn_points' table)
 -----------------------------------
 
+HARVESTMAN              = 16990252;
+
 -- Mahishasura
 Mahishasura = 16990306;
 Mahishasura_PH =

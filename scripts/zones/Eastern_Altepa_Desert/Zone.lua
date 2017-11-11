@@ -6,12 +6,12 @@
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+require("scripts/zones/Eastern_Altepa_Desert/MobIDs");
 require( "scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 
 -----------------------------------
@@ -62,11 +62,11 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Cactrot Rapido
-    SetRespawnTime(17244539, 900, 10800);
+    UpdateNMSpawnPoint(CACTROT_RAPIDO);
+    GetMobByID(CACTROT_RAPIDO):setRespawnTime(math.random(900, 10800));
 
-    -- Centurio XII-I
-    SetRespawnTime(17244372, 900, 10800);
+    UpdateNMSpawnPoint(CENTURIO_XII_I);
+    GetMobByID(CENTURIO_XII_I):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

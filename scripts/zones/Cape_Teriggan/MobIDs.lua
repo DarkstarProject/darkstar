@@ -14,6 +14,7 @@ Frostmane_PH =
     [17240371] = '1', -- -262.000, -0.700, 442.000
 };
 
+KREUTZET                = 17240413;
 AXESARION_THE_WANDERER  = 17240414;
 
 CERMET_HEADSTONE        = 17240497;

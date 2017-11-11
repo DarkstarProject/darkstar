@@ -5,21 +5,21 @@
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-require("scripts/globals/zone");
 require("scripts/zones/FeiYin/TextIDs");
+require("scripts/zones/FeiYin/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
+require("scripts/globals/quests");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Capricious Cassie
-    SetRespawnTime(17613130, 900, 10800);
+    UpdateNMSpawnPoint(CAPRICIOUS_CASSIE);
+    GetMobByID(CAPRICIOUS_CASSIE):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(17613242);
 end;
@@ -39,7 +39,7 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getVar("peaceForTheSpiritCS") == 1 and player:hasItem(1093) == false) then -- Antique Coin
-        SpawnMob(17612849); -- RDM AF
+        SpawnMob(MISER_MURPHY); -- RDM AF
     end
 
     if (prevZone == 111 and currentMission == 14 and MissionStatus == 10) then

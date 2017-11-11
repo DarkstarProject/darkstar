@@ -3,26 +3,27 @@
 -- Zone: Lufaise_Meadows (24)
 --
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
+package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Lufaise_Meadows/TextIDs");
+require("scripts/zones/Lufaise_Meadows/MobIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
-require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    local Colorful_Leshy = 16875762;
-    GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
-
     zone:registerRegion(1,179,-26,327,219,-18,347);
 
-    -- Padfoot
-    SetRespawnTime(16875578, 900, 10800);
+    GetMobByID(COLORFUL_LESHY):setLocalVar("1",os.time() + math.random((43200), (86400)));
+
+    UpdateNMSpawnPoint(PADFOOT);
+    GetMobByID(PADFOOT):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

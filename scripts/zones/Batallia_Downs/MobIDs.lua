@@ -13,4 +13,5 @@ TOTTERING_TOBY_PH       =
     [17207463] = '1'  -- -236.333, -7.819, 343.322
 };
 
+AHTU                    = 17207657;
 VEGNIX_GREENTHUMB       = 17207710;
