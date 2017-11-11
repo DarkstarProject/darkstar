@@ -4,9 +4,8 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
--- Tottering_Toby
-Tottering_Toby = 17207476;
-Tottering_Toby_PH =
+TOTTERING_TOBY          = 17207476;
+TOTTERING_TOBY_PH       =
 {
     [17207450] = '1', -- -248.150, -12.502, 174.407
     [17207449] = '1', -- -194.234, -18.485, 132.208
@@ -15,3 +14,4 @@ Tottering_Toby_PH =
 };
 
 AHTU                    = 17207657;
+VEGNIX_GREENTHUMB       = 17207710;
