@@ -3,12 +3,8 @@
 -- Rainbow Powder
 -- When applied, it makes things invisible.
 -----------------------------------------
-
+require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
 
 function onItemCheck(target)
     local result = 0;
@@ -20,12 +16,9 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
+    local duration = 180;
     target:delStatusEffect(EFFECT_INVISIBLE);
-    target:addStatusEffect(EFFECT_INVISIBLE,0,10,180);
+    target:addStatusEffect(EFFECT_INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
     target:addStatusEffect(EFFECT_MEDICINE,0,0,180);
 end;
