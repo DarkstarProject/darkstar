@@ -32,6 +32,9 @@ end;
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("RESULT:",option);
