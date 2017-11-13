@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Altepa
---  NPC: qm6 (???)
--- Spawns Sharabha
--- !pos -314 0 308 218
+--  NPC: qm18 (???)
+-- Spawns Bennu
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/abyssea");
 
@@ -15,7 +15,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
+    abysseaOnEventUpdate(player,csid,option);
 end;
 
 function onEventFinish(player,csid,option)
+    abysseaOnEventFinish(player,csid,option);
 end;
