@@ -23,15 +23,15 @@ end;
 
 function onTrigger(player,npc)
 
-        local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
-        local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
+    local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
+    local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
         
-        if (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 1) then
+    if (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 1) then
             player:startEvent(289); -- he tells u to go Caedarva Mire
         elseif (TheWaywardAutomationProgress == 2) then
             player:startEvent(289); -- Hint to go to Caedarva Mire
         else
-            player:startEvent(0x0120);
+            player:startEvent(288);
     end;
 end; 
 
