@@ -26,23 +26,43 @@ end;
 
 function onTrigger(player,npc)
 
-local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
-local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
-    if (NoStringsAttached == 1 and NoStringsAttachedProgress == 1) then
-        player:startEvent(0x0104); -- he tells u to get him an automaton
-    elseif (NoStringsAttached == 1 and NoStringsAttachedProgress == 2) then
-        player:startEvent(0x0105); -- reminder to get an automaton
-    elseif (NoStringsAttached == 1 and NoStringsAttachedProgress == 6) then
-        player:startEvent(0x010a); -- you bring him the automaton
-    elseif (NoStringsAttached == 2) then
-        player:startEvent(0x010b); -- asking you how are you doing with your automaton
-        -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
-        player:unlockAttachment(8224); --Harlequin Frame
-        player:unlockAttachment(8193); --Harlequin Head
-    else
-        player:startEvent(0x0103); -- Leave him alone
+        local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
+        local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
+
+        local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
+        local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
+
+        local LvL = player:getMainLvl();
+        local Job = player:getMainJob();
+        
+        if (NoStringsAttached == 1 and NoStringsAttachedProgress == 1) then
+            player:startEvent(0x0104); -- he tells u to get him an automaton
+            if (NoStringsAttached == 1 and NoStringsAttachedProgress == 2) then
+                player:startEvent(0x0105); -- reminder to get an automaton
+            elseif (NoStringsAttached == 1 and NoStringsAttachedProgress == 6) then
+                player:startEvent(0x010a); -- you bring him the automaton
+            elseif (NoStringsAttached == 2) then
+                player:startEvent(0x010b); -- asking you how are you doing with your automaton
+            -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
+                player:unlockAttachment(8224); --Harlequin Frame
+                player:unlockAttachment(8193); --Harlequin Head
+            elseif (NoStringsAttached == 0) then
+                player:startEvent(0x0103); -- Leave him alone 
+            end;
+        
+        elseif (Job == 18 and LvL >= 40 and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
+                player:startEvent(774); -- he tells you to help find his auto
+            elseif (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 1) then
+                player:startEvent(775); -- reminder about to head to Nashmau
+            elseif (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 3) then --Fix progress?
+                player:startEvent(776); -- tell him you found automation
+            elseif (TheWaywardAutomation == 2) then
+                player:startEvent(777);
     end;
 end;
+    
+
+        
 
 -----------------------------------
 -- onEventUpdate
@@ -77,6 +97,18 @@ function onEventFinish(player,csid,option)
             player:unlockAttachment(8193); --Harlequin Head
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17859);
+        end;
+    elseif (csid == 774) then
+        player:setVar("TheWaywardAutomationProgress",1);
+        player:addQuest(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
+    elseif (csid == 776) then
+        if (player:getFreeSlotsCount() ~= 0) then
+            player:completeQuest(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
+            player:addItem(17858); --Turbo Animator
+            player:messageSpecial(ITEM_OBTAINED,17858); -- Turbo Animator
+            player:setVar("TheWaywardAutomationProgress",0);
+        else
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17858);
         end;
     end;
 end;

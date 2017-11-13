@@ -1,39 +1,40 @@
 -----------------------------------
--- Area: Nashmau
--- NPC: Dnegan
--- Standard Info NPC
--- Involved in quest: Wayward Automation
--- !pos 29.89 -6 55.83 53
+-- Area: Caedarva Mire
+-- NPC:  qm9
+-- Involved in quest: The Wayward Automation
+-- !pos  129 1.396 -631 79
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
+package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 
-require("scripts/zones/Nashmau/TextIDs");
+require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-
 function onTrigger(player,npc)
 
         local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
         local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
         
-        if (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 1) then
-            player:startEvent(289); -- he tells u to go Caedarva Mire
-        elseif (TheWaywardAutomationProgress == 2) then
-            player:startEvent(289); -- Hint to go to Caedarva Mire
+        if (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 2) then
+            if (player:getVar("TheWaywardAutomationNM") >= 1) then
+                if (GetMobAction(17101145) == 0) then
+                    player:startEvent(14);-- Event ID 14 for CS after toad
+                end
+            else 
+                SpawnMob(17101145):updateClaim(player); --Caedarva toad
+            end
         else
-            player:startEvent(0x0120);
+            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -52,9 +53,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 289) then
-        player:setVar("TheWaywardAutomationProgress",2);
-    end;
+        if (csid == 14) then
+            player:setVar("TheWaywardAutomationProgress",3);
+            player:setVar("TheWaywardAutomationNM",0);
+        end;
 end;
-
-
