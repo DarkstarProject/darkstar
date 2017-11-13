@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 
 require("scripts/zones/Caedarva_Mire/TextIDs");
+require("scripts/zones/Caedarva_Mire/MobIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -25,16 +26,17 @@ function onTrigger(player,npc)
         
         if (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 2) then
             if (player:getVar("TheWaywardAutomationNM") >= 1) then
-                if (GetMobAction(17101145) == 0) then
                     player:startEvent(14);-- Event ID 14 for CS after toad
-                end
             else 
-                SpawnMob(17101145):updateClaim(player); --Caedarva toad
-            end
+                if (not GetMobByID(Caedarva_Toad):isSpawned()) then
+                SpawnMob(Caedarva_Toad):updateClaim(player); --Caedarva toad
+                end;
+            end;
         else
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        end;
     end;
-end;
+
 
 -----------------------------------
 -- onEventUpdate
