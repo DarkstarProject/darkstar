@@ -173,6 +173,7 @@ public:
     int32 getMaxSkillLevel(lua_State*);     // Get Skill Cap for skill and rank
     int32 getSkillRank(lua_State*);         // Get your current skill craft Rank
     int32 setSkillRank(lua_State*);         // Set new skill craft rank
+    int32 getCharSkillLevel(lua_State*);    // Get char skill level
     int32 getWeaponSkillLevel(lua_State*);  // Get Skill for equipped weapon
     int32 addSpell(lua_State*);             // Add spell to Entity spell list
     int32 hasSpell(lua_State*);             // Check to see if character has item in spell list

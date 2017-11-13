@@ -2151,8 +2151,8 @@ inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->RealSkills.skill[SkillID] = SkillAmount * 10;
-    PChar->WorkingSkills.skill[SkillID] = SkillAmount;
+    PChar->RealSkills.skill[SkillID] = SkillAmount;
+    PChar->WorkingSkills.skill[SkillID] = (SkillAmount / 10) * 0x20 + PChar->WorkingSkills.rank[SkillID];
 
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CheckWeaponSkill(PChar, SkillID);
@@ -2219,7 +2219,7 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
     auto newrank = (uint8)lua_tointeger(L, 2);
 
     PChar->WorkingSkills.rank[skillID] = newrank;
-    //PChar->WorkingSkills.skill[skillID] += 1;
+    PChar->WorkingSkills.skill[skillID] = (PChar->RealSkills.skill[skillID] / 10) * 0x20 + newrank;
     PChar->RealSkills.rank[skillID] = newrank;
     //PChar->RealSkills.skill[skillID] += 1;
 
@@ -2228,6 +2228,23 @@ inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
     PChar->pushPacket(new CCharSkillsPacket(PChar));
 
     return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Get craft char skill level player:getCharSkillLevel(SKILLID)         *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getCharSkillLevel(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 skillID = (uint8)lua_tointeger(L, 1);
+
+    lua_pushinteger(L, PChar->RealSkills.skill[skillID]);
+    return 1;
 }
 
 /************************************************************************
@@ -11382,6 +11399,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillRank),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
