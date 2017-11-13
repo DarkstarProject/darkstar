@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Erabu-Fumulubu
 -- Type: Fishing Synthesis Image Support
--- @pos -178.900 -2.789 76.200 240
+-- !pos -178.900 -2.789 76.200 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

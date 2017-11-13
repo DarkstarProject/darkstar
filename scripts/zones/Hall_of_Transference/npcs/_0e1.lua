@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Hall of Transference
 -- NPC:  Cermet Gate - Dem
--- @pos -220 -46 -279 14
+-- !pos -220 -46 -279 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NO_RESPONSE_OFFSET+1); -- The door is firmly shut.
     end
-    
+
 end;
 
 -----------------------------------

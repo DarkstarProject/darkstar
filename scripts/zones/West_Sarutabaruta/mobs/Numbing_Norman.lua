@@ -2,8 +2,8 @@
 -- Area: West Sarutabaruta
 --  MOB: Numbing Norman
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize
@@ -23,7 +23,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(5,15);
         target:addStatusEffect(EFFECT_PARALYSIS,5,3,duration);
-        return SUBEFFECT_PARALYSIS,MSGBASIC_ADD_EFFECT_STATUS,EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS,msgBasic.ADD_EFFECT_STATUS,EFFECT_PARALYSIS;
     end
 end;
 

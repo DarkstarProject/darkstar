@@ -3,7 +3,7 @@
 --  NPC: Koriso-Manriso
 --  Type: Item Deliverer
 --  @zone 244
--- @pos -64.39    1    23.704
+-- !pos -64.39    1    23.704
 --
 -----------------------------------
 

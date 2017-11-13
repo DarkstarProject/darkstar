@@ -3,26 +3,17 @@
 -- Item: Bottle of Strange Juice
 -- Item Effect: Restores 200 MP over 300 seconds.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
+    if (not target:hasStatusEffect(EFFECT_REFRESH)) then
         target:addStatusEffect(EFFECT_REFRESH,2,3,300);
     else
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;
-

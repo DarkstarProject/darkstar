@@ -3,7 +3,7 @@
 -- NPC: ???
 -- Involved in Quest: Unforgiven
 -- @zone 26
--- @pos 110.714 -40.856 -53.154
+-- !pos 110.714 -40.856 -53.154
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 require("scripts/zones/Tavnazian_Safehold/TextIDs")
@@ -14,8 +14,8 @@ require("scripts/globals/keyitems");
 -- at the end of if (player:getQuestStatus(REGION,QUEST_NAME)
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
--- == 2 means QUEST_COMPLETED 
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
+-- == 2 means QUEST_COMPLETED
+-- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
 -- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
 
 -----------------------------------
@@ -23,7 +23,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

@@ -3,12 +3,9 @@
 -- Item: Vampiric Claws
 -- Additional effect: HP Drain
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -26,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         drain = adjustForTarget(target,drain,ELE_DARK);
         drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
 
-        return SUBEFFECT_HP_DRAIN, MSGBASIC_ADD_EFFECT_HP_DRAIN, player:addHP(drain);
+        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, player:addHP(drain);
     end
 end;

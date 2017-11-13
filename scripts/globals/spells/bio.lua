@@ -19,7 +19,14 @@ function onSpellCast(caster,target,spell)
 
     --calculate raw damage
     local basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
-    local dmg = calculateMagicDamage(basedmg,1,caster,spell,target,DARK_MAGIC_SKILL,MOD_INT,false);
+    local params = {};
+    params.dmg = basedmg;
+    params.multiplier = 1;
+    params.skillType = DARK_MAGIC_SKILL;
+    params.attribute = MOD_INT;
+    params.hasMultipleTargetReduction = false;
+
+    local dmg = calculateMagicDamage(caster, target, spell, params);
 
     -- Softcaps at 15, should always do at least 1
     if (dmg > 15) then
@@ -30,7 +37,12 @@ function onSpellCast(caster,target,spell)
     end
 
     --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),DARK_MAGIC_SKILL,1.0);
+    local params = {};
+    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+    params.attribute = MOD_INT;
+    params.skillType = DARK_MAGIC_SKILL;
+    params.bonus = 1.0;
+    resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

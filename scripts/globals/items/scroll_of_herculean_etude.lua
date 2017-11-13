@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5039
---    Scroll of Herculean Etude
---    Teaches the song Herculean Etude
+-- ID: 5039
+-- Scroll of Herculean Etude
+-- Teaches the song Herculean Etude
 -----------------------------------------
 
 -----------------------------------------

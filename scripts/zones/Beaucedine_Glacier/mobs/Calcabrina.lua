@@ -4,7 +4,7 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
------------------------------------
+require("scripts/globals/msg");
 
 
 -----------------------------------
@@ -53,7 +53,7 @@ function onAdditionalEffect(mob,target,damage)
             mob:addHP(drain);
         end
 
-        return SUBEFFECT_HP_DRAIN, MSGBASIC_ADD_EFFECT_HP_DRAIN, drain;
+        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, drain;
     end
 
 end;

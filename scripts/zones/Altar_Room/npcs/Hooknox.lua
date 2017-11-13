@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Altar Room
---   NPC: Hooknox
---  Type: Standard NPC
--- @zone 152
--- @pos -265.248 11.693 -102.547
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Altar_Room/TextIDs"] = nil;
+-- Area: Altar Room
+--  NPC: Hooknox
+-- Type: Standard NPC
+-- !pos -265.248 11.693 -102.547 152
 -----------------------------------
 
 -----------------------------------
@@ -42,4 +37,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

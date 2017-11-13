@@ -2,7 +2,7 @@
 -- Area: Garlaige Citadel
 --  NPC: qm20 (??? - Bomb Coal Fragments)
 -- Involved in Quest: In Defiant Challenge
--- @pos -137.047 0 347.502 200
+-- !pos -137.047 0 347.502 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

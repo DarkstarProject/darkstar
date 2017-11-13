@@ -1,0 +1,4 @@
+TIAMAT                  = 16806227;
+FEELER_ANTLION          = 16806242;
+
+GASPONIA_OFFSET         = 16806327;

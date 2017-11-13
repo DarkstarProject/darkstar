@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5022
---    Scroll of Warding Round
---    Teaches the song Warding Round
+-- ID: 5022
+-- Scroll of Warding Round
+-- Teaches the song Warding Round
 -----------------------------------------
 
 -----------------------------------------

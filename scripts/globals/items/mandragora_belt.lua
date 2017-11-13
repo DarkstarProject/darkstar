@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15299
---    Mandragora Belt
---    Enchantment: 60Min, Costume - Mandragora
+-- ID: 15299
+-- Mandragora Belt
+-- Enchantment: 60Min, Costume - Mandragora
 -----------------------------------------
 
 require("scripts/globals/status");

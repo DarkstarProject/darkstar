@@ -29,8 +29,8 @@ end;
 function onMobDespawn(mob)
 
     -- Set Biast's ToD
-    SetServerVariable("[POP]Biast", os.time(t) + 75600); -- 21 hour
-    DeterMob(mob:getID()-1, false);
+    SetServerVariable("[POP]Biast", os.time() + 75600); -- 21 hour
+    DisallowRespawn(mob:getID()-1, false);
     GetMobByID(mob:getID()-1):setRespawnTime(GetMobRespawnTime(mob:getID()-1));
 
 end;

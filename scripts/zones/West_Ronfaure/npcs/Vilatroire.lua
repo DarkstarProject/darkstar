@@ -3,7 +3,7 @@
 -- NPC:  Vilatroire
 -- Involved in Quests: "Introduction To Teamwork", "Intermediate Teamwork",
 -- "Advanced Teamwork"
--- @pos -260.361 -70.999 423.420 100 
+-- !pos -260.361 -70.999 423.420 100
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -15,7 +15,7 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 
 function onTrade(player,npc,trade)
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

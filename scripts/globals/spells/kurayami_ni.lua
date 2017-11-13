@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Kurayami:Ni
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -18,7 +15,12 @@ function onSpellCast(caster,target,spell)
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation
-    local duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local duration = 300;
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = NINJUTSU_SKILL;
+    params.bonus = 0;
+    duration = duration * applyResistance(caster, target, spell, params);
     --Kurayami base power is 30 and is not affected by resistaces.
     local power = 30;
 
@@ -27,15 +29,15 @@ function onSpellCast(caster,target,spell)
         if (duration >= 150) then
 
             if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
-                spell:setMsg(236);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(75);
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
     return EFFECT_BLINDNESS;
 end;

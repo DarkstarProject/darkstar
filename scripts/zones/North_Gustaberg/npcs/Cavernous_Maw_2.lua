@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg
 --  NPC: Cavernous Maw
--- @pos -78 -0.5 600 106
+-- !pos -78 -0.5 600 106
 -- Teleports Players to Abyssea - Grauberg
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
@@ -18,7 +18,7 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -46,7 +46,7 @@ function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-   
+
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
@@ -58,6 +58,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 1) then
         -- Killed Amphitrite
     elseif (csid == 908 and option == 1) then
-        player:setPos(-555,31,-760,0,254); 
+        player:setPos(-555,31,-760,0,254);
     end
 end;

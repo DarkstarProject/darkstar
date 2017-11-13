@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
 -- NPC:  <this space intentionally left blank>
--- @pos 646 -2 -165 121
--- @pos -18 0 55 121
+-- !pos 646 -2 -165 121
+-- !pos -18 0 55 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------

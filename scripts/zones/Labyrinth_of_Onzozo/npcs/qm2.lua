@@ -2,7 +2,7 @@
 -- Area: Labyrinth of Onzozo
 -- NPC:  ??? (qm2)
 -- Involved in Quest: Yomi Okuri
--- @pos -176 10 -60 213
+-- !pos -176 10 -60 213
 -----------------------------------
 package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
 -----------------------------------

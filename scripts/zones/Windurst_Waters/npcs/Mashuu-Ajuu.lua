@@ -3,18 +3,15 @@
 --  NPC: Mashuu-Ajuu
 -- Starts and Finished Quest: Reap What You Sow
 -- Involved in Quest: Making the Grade
--- Working 100% 
---  @zone = 238
--- @pos = 129 -6 167
+-- !pos 129 -6 167 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");    
 require("scripts/zones/Windurst_Waters/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -26,10 +23,10 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(4565,1) == true) then
             player:startEvent(0x01db,500,131);                     -- REAP WHAT YOU SOW + GIL: Quest Turn In: Sobbing Fungus turned in
         elseif (trade:hasItemQty(4566,1) == true) then
-            player:startEvent(0x01dd,700);                     -- REAP WHAT YOU SOW + GIL + Stationary Set: Deathball turned in    
+            player:startEvent(0x01dd,700);                     -- REAP WHAT YOU SOW + GIL + Stationary Set: Deathball turned in
         end
-    end    
-end;      
+    end
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -39,7 +36,7 @@ function onTrigger(player,npc)
     local reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
         player:startEvent(0x01c0); -- During Making the GRADE
-    elseif (reapstatus == QUEST_AVAILABLE) then 
+    elseif (reapstatus == QUEST_AVAILABLE) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(0x01cf,0,4565,572);                 -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START
@@ -53,16 +50,16 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x01dc);                          -- Another Conversation During Quest
         end
-    elseif (reapstatus == QUEST_COMPLETED and player:needToZone()) then 
+    elseif (reapstatus == QUEST_COMPLETED and player:needToZone()) then
         player:startEvent(0x01de);                              -- REAP WHAT YOU SOW: After Quest
-    elseif (reapstatus == QUEST_COMPLETED and player:needToZone() == false and player:getVar("QuestReapSow_var") == 0) then 
+    elseif (reapstatus == QUEST_COMPLETED and player:needToZone() == false and player:getVar("QuestReapSow_var") == 0) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(0x01df,0,4565,572);                -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START
         else
             player:startEvent(0x01ad);                          -- Standard Conversation
         end
-    elseif (reapstatus == QUEST_COMPLETED and player:getVar("QuestReapSow_var") == 1) then 
+    elseif (reapstatus == QUEST_COMPLETED and player:getVar("QuestReapSow_var") == 1) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(0x01d0,0,4565,572);                  -- REAP WHAT YOU SOW + HERB SEEDS: OBJECTIVE REMINDER
@@ -71,8 +68,8 @@ function onTrigger(player,npc)
         end
     else
         player:startEvent(0x01ad);                              -- Standard Conversation
-    end    
-end; 
+    end
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -12,28 +12,25 @@
 -- Magic Bursts on: Compression, Gravitation, Darkness
 -- Combos: None
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
-require("scripts/globals/settings");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
-    local dmg = 1 + (0.705 * (caster:getSkillLevel(BLUE_SKILL)) + caster:getMod(1 + BLUE_SKILL));
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),BLUE_SKILL,1.0);
+    local dmg = 1 + (0.705 * caster:getSkillLevel(BLUE_SKILL));
+    local params = {};
+    params.diff = caster:getStat(MOD_MND)-target:getStat(MOD_MND);
+    params.attribute = MOD_MND;
+    params.skillType = BLUE_SKILL;
+    params.bonus = 1.0;
+    local resist = applyResistance(caster, target, spell, params);
     dmg = dmg*resist;
     dmg = addBonuses(caster,spell,target,dmg);
     dmg = adjustForTarget(target,dmg,spell:getElement());
@@ -44,9 +41,9 @@ function onSpellCast(caster,target,spell)
     if (dmg < 0) then
         dmg = 0
     end
-    
+
     if (target:isUndead()) then
-        spell:setMsg(75); 
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         return dmg;
     end
 
@@ -56,6 +53,6 @@ function onSpellCast(caster,target,spell)
 
     dmg = BlueFinalAdjustments(caster,target,spell,dmg);
     caster:addHP(dmg);
-    
+
     return dmg;
 end;

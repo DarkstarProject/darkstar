@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4807
---    Scroll of Waterga
---    Teaches the black magic Waterga
+-- ID: 4807
+-- Scroll of Waterga
+-- Teaches the black magic Waterga
 -----------------------------------------
 
 -----------------------------------------

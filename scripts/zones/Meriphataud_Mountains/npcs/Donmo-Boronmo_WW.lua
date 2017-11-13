@@ -2,7 +2,7 @@
 -- Area: Meriphataud Mountains
 --  NPC: Donmo-Boronmo, W.W.
 -- Type: Outpost Conquest Guards
--- @pos -294.470 15.806 420.117 119
+-- !pos -294.470 15.806 420.117 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------

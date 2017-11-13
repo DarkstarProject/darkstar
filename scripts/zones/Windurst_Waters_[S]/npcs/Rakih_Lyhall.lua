@@ -3,8 +3,8 @@
 --   NPC: Rakih Lyhall
 --  Type: Standard NPC
 -- @zone 94
--- @pos -48.111 -4.5 69.712
--- 
+-- !pos -48.111 -4.5 69.712
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

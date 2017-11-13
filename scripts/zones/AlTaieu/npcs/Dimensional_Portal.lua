@@ -4,7 +4,6 @@
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/AlTaieu/TextIDs");
 
 -----------------------------------

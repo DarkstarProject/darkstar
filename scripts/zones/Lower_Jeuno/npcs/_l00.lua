@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Streetlamp
 -- Involved in Quests: Community Service
--- @pos -107 0 -158 245
+-- !pos -107 0 -158 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ local cs = lampCsOffset + lampNum;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -84,6 +84,11 @@ function onEventFinish(player,csid,option)
                 lampsRemaining = lampsRemaining - 1;
             end
         end
-        player:messageSpecial(7241,lampsRemaining);
+
+        if lampsRemaining == 0 then
+            player:messageSpecial(LAMP_MSG_OFFSET);
+        else
+            player:messageSpecial(LAMP_MSG_OFFSET+1,lampsRemaining);
+        end
     end
 end;

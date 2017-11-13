@@ -3,7 +3,7 @@
 -- NPC: Glenne
 -- Starts and Finishes Quest: A Sentry's Peril
 -- @zone 230
--- @pos -122 -2 15
+-- !pos -122 -2 15
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -55,7 +55,7 @@ function onTrade(player,npc,trade)
     elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED and
         trade:hasItemQty(601,1) and count == 1) then
             player:startEvent(0x0201);
-            npc:wait(-1);
+            npc:wait();
     end
 
 end;
@@ -68,7 +68,7 @@ function onTrigger(player,npc)
 
     local aSentrysPeril = player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL);
 
-    npc:wait(-1);
+    npc:wait();
 
     if (aSentrysPeril == QUEST_AVAILABLE) then
         player:startEvent(0x01fe);
@@ -77,14 +77,14 @@ function onTrigger(player,npc)
             player:startEvent(0x0208);
         else
             player:startEvent(0x0284);
-        end    
+        end
     elseif (aSentrysPeril == QUEST_COMPLETED) then
         player:startEvent(0x0209);
     else
         npc:wait(0);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("RESULT: %u",option);
 
     npc:wait(5000);
-    
+
     if (csid == 0x01fe and option == 0) then
         if (player:getFreeSlotsCount() > 0) then
             player:addQuest(SANDORIA,A_SENTRY_S_PERIL);
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option,npc)
             player:messageSpecial(ITEM_OBTAINED,600);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
-        end     
+        end
     elseif (csid == 0x0284) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(600);
@@ -121,7 +121,7 @@ function onEventFinish(player,csid,option,npc)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
         end
     elseif (csid == 0x0201) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
         else
             player:tradeComplete();
@@ -132,5 +132,5 @@ function onEventFinish(player,csid,option,npc)
             player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
         end
     end
-    
+
 end;

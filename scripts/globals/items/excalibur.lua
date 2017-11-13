@@ -5,10 +5,9 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
@@ -24,7 +23,7 @@ function onAdditionalEffect(player,target,damage)
             finalDMG = utils.clamp(finalDMG, 0, 99999);
             finalDMG = utils.stoneskin(target, finalDMG);
             target:delHP(finalDMG);
-            return SUBEFFECT_LIGHT_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, finalDMG;
+            return SUBEFFECT_LIGHT_DAMAGE, msgBasic.ADD_EFFECT_DMG, finalDMG;
         end
     end
 end;

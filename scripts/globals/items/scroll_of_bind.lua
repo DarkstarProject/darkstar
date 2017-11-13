@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4866
---    Scroll of Bind
---    Teaches the black magic Bind
+-- ID: 4866
+-- Scroll of Bind
+-- Teaches the black magic Bind
 -----------------------------------------
 
 -----------------------------------------

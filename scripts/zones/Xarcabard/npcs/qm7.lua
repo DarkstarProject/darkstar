@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  qm7 (???)
 -- Involved in Quests: RNG AF3 quest - Unbridled Passion
--- @pos -295.065 -25.054 151.250 112
+-- !pos -295.065 -25.054 151.250 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +25,7 @@ local koenigsTiger = 17236205;
 
 function onTrigger(player,npc)
 
-    local UnbridledPassionCS = player:getVar("unbridledPassion");	
+    local UnbridledPassionCS = player:getVar("unbridledPassion");
     local tigerAction = GetMobAction(koenigsTiger);
 
     if (UnbridledPassionCS == 4 and tigerAction == 0) then -- prevent repeated playback while the tiger is already up and fighting

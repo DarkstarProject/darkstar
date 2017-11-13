@@ -3,7 +3,7 @@
 -- NPC: Kuu Mohzolhi
 -- Starts and Finishes Quest: Growing Flowers
 -- @zone 231
--- @pos -123 0 80
+-- !pos -123 0 80
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -53,20 +53,20 @@ itemQuality = 0;
     if (itemQuality == 2) then
         if (GrowingFlowers == QUEST_COMPLETED) then
             player:startEvent(0x025d, 0, 231, 4);
-        else 
+        else
             player:startEvent(0x025d, 0, 231, 2);
         end
     elseif (itemQuality == 1) then
         if (GrowingFlowers == QUEST_ACCEPTED) then
             player:startEvent(0x025d, 0, 231, 3);
-        else 
+        else
             player:startEvent(0x025d, 0, 231, 1);
         end
-    else 
+    else
         player:startEvent(0x025d, 0, 231, 0);
     end
 
-end; 
+end;
 
 
 -----------------------------------
@@ -75,7 +75,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x025d, 0, 231, 10);
-end; 
+end;
 
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4656
---    Scroll of Shell
---    Teaches the white magic Shell
+-- ID: 4656
+-- Scroll of Shell
+-- Teaches the white magic Shell
 -----------------------------------------
 
 -----------------------------------------

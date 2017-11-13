@@ -3,7 +3,7 @@
 --   NPC: Icoua
 --  Type: Standard NPC
 -- @zone 231
--- @pos 87.719 -1 9.256
+-- !pos 87.719 -1 9.256
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

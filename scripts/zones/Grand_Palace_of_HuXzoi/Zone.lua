@@ -25,7 +25,7 @@ function onInitialize(zone)
     zone:registerRegion(8,  -742, -4,  372,  -736, 4, 379);
     zone:registerRegion(9,  332, -4,  696,  338, 4, 702);
     zone:registerRegion(10,  -507, -4,  697,  -501, 4, 702);
-    
+
     -- Give Temperance a random PH
     local JoT_PH = math.random(1,5);
     SetServerVariable("[SEA]Jailer_of_Temperance_PH", Jailer_of_Temperance_PH[JoT_PH]);
@@ -129,10 +129,10 @@ end;
 
 function onGameHour(zone)
     local VanadielHour = VanadielHour();
-    
+
     if (VanadielHour % 6 == 0) then    -- Change the Jailer of Temperance PH every 6 hours (~15 mins).
         JoT_ToD = GetServerVariable("[SEA]Jailer_of_Temperance_POP");
-        if (GetMobAction(Jailer_of_Temperance) == 0 and JoT_ToD <= os.time(t)) then -- Don't want to set a PH if it's already up; also making sure it's been 15 mins since it died last
+        if (GetMobAction(Jailer_of_Temperance) == 0 and JoT_ToD <= os.time()) then -- Don't want to set a PH if it's already up; also making sure it's been 15 mins since it died last
             local JoT_PH = math.random(1,5);
             SetServerVariable("[SEA]Jailer_of_Temperance_PH", Jailer_of_Temperance_PH[JoT_PH]);
         end

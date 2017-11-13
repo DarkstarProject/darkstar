@@ -2,7 +2,7 @@
 -- Area: Arrapago Reef
 --  NPC: Meyaada
 -- Type: Assault
--- @pos 22.446 -7.920 573.390 54
+-- !pos 22.446 -7.920 573.390 54
 -----------------------------------
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------

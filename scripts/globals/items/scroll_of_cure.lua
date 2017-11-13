@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4608,4609
---    Scroll of Cure
---    Teaches the white magic Cure
+-- ID: 4608,4609
+-- Scroll of Cure
+-- Teaches the white magic Cure
 -----------------------------------------
 
 -----------------------------------------

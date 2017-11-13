@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
 --  NPC: Cavernous Maw
--- @pos -198 8 360 91
+-- !pos -198 8 360 91
 -- Teleports Players to Rolanberry Fields
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields_[S]/TextIDs"] = nil;
@@ -64,6 +64,6 @@ function onEventFinish(player,csid,option)
         if (hasMawActivated(player,0) == false) then
             player:addNationTeleport(MAW,2);
         end
-        toMaw(player,4);        
+        toMaw(player,4);
     end
 end;

@@ -3,8 +3,8 @@
 --   NPC: Gatih Mijurabi
 --  Type: Standard NPC
 -- @zone 250
--- @pos 58.249 -13.086 -49.084
--- 
+-- !pos 58.249 -13.086 -49.084
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         end
     elseif (player:getQuestStatus(OUTLANDS, PERSONAL_HYGIENE) == QUEST_ACCEPTED and player:getVar("BathedInScent") == 0) then
         player:startEvent(0x00C1);
-    else 
+    else
         player:startEvent(0x00c4);
     end
 end;

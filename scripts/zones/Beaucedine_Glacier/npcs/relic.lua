@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
 -- NPC:  <this space intentionally left blank>
--- @pos -89 0 -374 111
+-- !pos -89 0 -374 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------

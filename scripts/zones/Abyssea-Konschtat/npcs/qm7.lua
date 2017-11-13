@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm7 (???)
 -- Spawns Bloodguzzler
--- @pos ? ? ? 15
+-- !pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
 

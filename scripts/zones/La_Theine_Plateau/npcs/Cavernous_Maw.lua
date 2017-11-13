@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: La Theine Plateau
 --  NPC: Cavernous Maw
--- @pos -557.9 0.001 637.846 102
+-- !pos -557.9 0.001 637.846 102
 -- Teleports Players to Abyssea - La Theine
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;

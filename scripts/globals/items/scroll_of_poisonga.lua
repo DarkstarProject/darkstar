@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4833
---    Scroll of Poisonga
---    Teaches the black magic Poisonga
+-- ID: 4833
+-- Scroll of Poisonga
+-- Teaches the black magic Poisonga
 -----------------------------------------
 
 -----------------------------------------

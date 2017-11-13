@@ -188,13 +188,13 @@ uint32 CMobEntity::GetRandomGil()
         return dsprand::GetRandomNumber(min, max);
     }
 
-    float gil = pow(GetMLevel(), 1.05f);
+    float gil = (float)pow(GetMLevel(), 1.05f);
 
     if (gil < 1) {
         gil = 1;
     }
 
-    uint16 highGil = (float)(gil) / 3 + 4;
+    uint16 highGil = (uint16)(gil / 3 + 4);
 
     if (max)
     {
@@ -215,10 +215,10 @@ uint32 CMobEntity::GetRandomGil()
 
     if (getMobMod(MOBMOD_GIL_BONUS) != 0)
     {
-        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
+        gil *= (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
-    return gil;
+    return (uint32)gil;
 }
 
 bool CMobEntity::CanDropGil()
@@ -383,7 +383,7 @@ uint8 CMobEntity::TPUseChance()
         return 100;
     }
 
-    return getMobMod(MOBMOD_TP_USE_CHANCE);
+    return (uint8)getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
 void CMobEntity::setMobMod(uint16 type, int16 value)
@@ -546,9 +546,14 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
+    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance && !isCharmed)
+    {
+        return true;
+    }
+
     if (targetFlags & TARGET_NPC)
     {
-        if (allegiance == PInitiator->allegiance && !(m_Behaviour & BEHAVIOUR_NOHELP))
+        if (allegiance == PInitiator->allegiance && !(m_Behaviour & BEHAVIOUR_NOHELP) && !isCharmed)
         {
             return true;
         }
@@ -565,7 +570,7 @@ void CMobEntity::Spawn()
     m_THLvl = 0;
     m_ItemStolen = false;
     m_DropItemTime = 1000;
-    animationsub = getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
+    animationsub = (uint8)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
     CallForHelp(false);
 
     PEnmityContainer->Clear();
@@ -616,9 +621,6 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
 {
     CBattleEntity::OnWeaponSkillFinished(state, action);
 
-    auto PSkill = state.GetSkill();
-    auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
-
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
 
@@ -649,9 +651,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    if (objtype == TYPE_PET && (
-        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON ||
-        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR))
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR)
         action.actiontype = ACTION_PET_MOBABILITY_FINISH;
     else if (PSkill->getID() < 256)
         action.actiontype = ACTION_WEAPONSKILL_FINISH;
@@ -676,7 +676,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         }
     }
 
-    uint16 targets = PAI->TargetFind->m_targets.size();
+    uint16 targets = (uint16)PAI->TargetFind->m_targets.size();
 
     if (!PTarget || targets == 0)
     {
@@ -717,12 +717,15 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 
         if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
         {
-            target.animation = PSkill->getPetAnimationID();
+            if(static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR || static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_WYVERN)
+            {
+                target.animation = PSkill->getPetAnimationID();
+            }
             target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
         }
         else
         {
-            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill);
+            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill, &action);
         }
 
         if (msg == 0)
@@ -740,7 +743,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.reaction = REACTION_MISS;
             target.speceffect = SPECEFFECT_NONE;
-            if (msg = PSkill->getAoEMsg())
+            if (msg == PSkill->getAoEMsg())
                 msg = 282;
         }
         else
@@ -752,12 +755,12 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.speceffect = SPECEFFECT_RECOIL;
             target.knockback = PSkill->getKnockback();
-            if (first && (PSkill->getSkillchain() != 0))
+            if (first && (PSkill->getPrimarySkillchain() != 0))
             {
-                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getSkillchain());
-                if (PWeaponSkill)
+                if (PSkill->getPrimarySkillchain())
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getPrimarySkillchain(),
+                        PSkill->getSecondarySkillchain(), PSkill->getTertiarySkillchain());
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
@@ -935,7 +938,7 @@ bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>
             auto skill {battleutils::GetMobSkill(skillList.front())};
             if (skill)
             {
-                attack_range = skill->getDistance();
+                attack_range = (uint8)skill->getDistance();
             }
         }
         if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > attack_range ||

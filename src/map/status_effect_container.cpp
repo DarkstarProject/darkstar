@@ -393,7 +393,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 //check for latents
                 PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
                 PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
-                PChar->PLatentEffectContainer->CheckLatentsRollSong(PStatusEffect->GetFlag() & (EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
+                PChar->PLatentEffectContainer->CheckLatentsRollSong();
                 PChar->UpdateHealth();
             }
             PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -446,7 +446,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
         //check for latents
         PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
         PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
-        PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
+        PChar->PLatentEffectContainer->CheckLatentsRollSong();
         PChar->UpdateHealth();
 
         PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -560,8 +560,8 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
     {
         if (m_StatusEffectList.at(i)->GetIcon() == IconID)
         {
-            // think this covers all the removable effects
-            if (!(m_StatusEffectList.at(i)->GetFlag() & (EFFECTFLAG_CONFRONTATION | EFFECTFLAG_FOOD | EFFECTFLAG_ERASABLE)))
+            // This covers all effects that client can remove. Function not used for anything the server removes.
+            if (!(m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_NO_CANCEL))
                 RemoveStatusEffect(i--);
         }
     }
@@ -617,7 +617,7 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
     }
     if (!erasableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(erasableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(erasableList.size());
         EFFECT result = m_StatusEffectList.at(erasableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(erasableList.at(rndIdx));
         return result;
@@ -639,7 +639,7 @@ EFFECT CStatusEffectContainer::HealingWaltz()
     }
     if (!waltzableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(waltzableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(waltzableList.size());
         EFFECT result = m_StatusEffectList.at(waltzableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(waltzableList.at(rndIdx));
         return result;
@@ -686,7 +686,7 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
     }
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
         EFFECT result = m_StatusEffectList.at(dispelableList.at(rndIdx))->GetStatusID();
         RemoveStatusEffect(dispelableList.at(rndIdx), true);
         return result;
@@ -701,12 +701,12 @@ returns number of dispelled effects
 uint8 CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 {
     uint8 count = 0;
-    for (int i = 0; i < m_StatusEffectList.size(); ++i)
+    for (size_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
         {
-            RemoveStatusEffect(i, true);
+            RemoveStatusEffect((uint32)i, true);
             i--;
             count++;
         }
@@ -1062,7 +1062,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
     }
     if (!dispelableList.empty())
     {
-        uint16 rndIdx = dsprand::GetRandomNumber(dispelableList.size());
+        auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
         uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
@@ -1110,7 +1110,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
             }
             //Note: it may be possible that having both bits set is for effects over 768, but there aren't
             // that many effects as of this writing
-            m_StatusIcons[count] = icon;
+            m_StatusIcons[count] = (uint8)icon;
 
             if (++count == 32) break;
         }
@@ -1288,7 +1288,17 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
             }
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
-            uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+            uint32 duration = 0;
+
+            if (PStatusEffect->GetDuration() > 0)
+            {
+                auto seconds = (uint32)std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+
+                if (seconds > 0)
+                    duration = seconds;
+                else
+                    continue;
+            }
 
             Sql_Query(SqlHandle, Query,
                 m_POwner->id,
@@ -1306,40 +1316,45 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
 /************************************************************************
 *																		*
-*  Проверяем все эффекты на необходимость удаление, если их срок		*
-*  действия истек.														*
+*  Expires status effects                                               *
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::CheckEffects(time_point tick)
+void CStatusEffectContainer::CheckEffectsExpiry(time_point tick)
+{
+    DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
+
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+
+        if (PStatusEffect->GetDuration() != 0 &&
+            std::chrono::milliseconds(PStatusEffect->GetDuration()) + PStatusEffect->GetStartTime() <= tick && i < m_StatusEffectList.size())
+        {
+            RemoveStatusEffect(i--);
+        }
+    }
+}
+
+/************************************************************************
+*																		*
+*  Runs OnEffectTick for all status effects                             *
+*																		*
+************************************************************************/
+
+void CStatusEffectContainer::TickEffects(time_point tick)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     if (!m_POwner->isDead())
     {
-        if ((tick - m_EffectCheckTime) < 1s && (tick - m_EffectCheckTime > 0s))
+        for (const auto& PStatusEffect : m_StatusEffectList)
         {
-            return;
-        }
-
-        m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
-        m_EffectCheckTime = tick;
-
-        for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
-        {
-            CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
-
             if (PStatusEffect->GetTickTime() != 0 &&
-                PStatusEffect->GetLastTick() + std::chrono::milliseconds(PStatusEffect->GetTickTime()) <= tick)
+                PStatusEffect->GetElapsedTickCount() <= std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
             {
-                PStatusEffect->SetLastTick(tick);
+                PStatusEffect->IncrementElapsedTickCount();
                 luautils::OnEffectTick(m_POwner, PStatusEffect);
-            }
-
-            if (PStatusEffect->GetDuration() != 0 &&
-                std::chrono::milliseconds(PStatusEffect->GetDuration()) + PStatusEffect->GetStartTime() <= tick && i < m_StatusEffectList.size())
-            {
-                RemoveStatusEffect(i--);
             }
         }
     }
@@ -1351,24 +1366,17 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::CheckRegen(time_point tick)
+void CStatusEffectContainer::TickRegen(time_point tick)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
     if (!m_POwner->isDead())
     {
-        if ((tick - m_RegenCheckTime) < 3s)
-        {
-            return;
-        }
-
         CCharEntity* PChar = nullptr;
         if (m_POwner->objtype == TYPE_PC)
         {
             PChar = (CCharEntity*)m_POwner;
         }
-
-        m_RegenCheckTime = tick;
 
         int16 regen = m_POwner->getMod(Mod::REGEN);
         int16 poison = m_POwner->getMod(Mod::REGEN_DOWN);

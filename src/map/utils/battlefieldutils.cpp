@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -43,7 +44,7 @@ namespace battlefieldutils {
         a new Battlefield object.
     ****************************************************************/
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
-        const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId \
+        const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
@@ -67,6 +68,11 @@ namespace battlefieldutils {
             PBattlefield->setMaxParticipants(Sql_GetUIntData(SqlHandle, 8));
             PBattlefield->setZoneId(Sql_GetUIntData(SqlHandle, 9));
             PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle, 7);
+
+            PBattlefield->setRecord(Sql_GetData(SqlHandle, 2),
+                (uint8)Sql_GetUIntData(SqlHandle, 10),
+                std::chrono::seconds((uint32)Sql_GetUIntData(SqlHandle, 3)));
+
             return PBattlefield;
         }
         return nullptr;
@@ -112,11 +118,8 @@ namespace battlefieldutils {
                             if (strcmp(PMob->GetName(), "Maat") == 0) {
                                 mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
-                                // disable players subjob
-                                battlefield->disableSubJob();
-
                                 // disallow subjob, this will enable for later
-                                battlefield->m_RuleMask &= ~(1 << RULES_ALLOW_SUBJOBS);
+                                battlefield->m_RuleMask &= ~RULES_ALLOW_SUBJOBS;
 
                             }
                             PMob->Spawn();
@@ -135,6 +138,11 @@ namespace battlefieldutils {
                 else {
                     ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);
                 }
+            }
+            if (!(battlefield->m_RuleMask & RULES_ALLOW_SUBJOBS))
+            {
+                // disable players subjob
+                battlefield->disableSubJob();
             }
             return true;
         }
@@ -249,7 +257,7 @@ namespace battlefieldutils {
         }
     }
 
-    void getStartPosition(uint16 zoneid, int(&pPosition)[4]) {
+    void getStartPosition(uint16 zoneid, float(&pPosition)[4]) {
 
         switch (zoneid) {
             case 139: //Horlais Peak
@@ -284,41 +292,6 @@ namespace battlefieldutils {
         }
     }
 
-
-    uint8 getMaxLootGroups(CBattlefield* battlefield) {
-        const int8* fmtQuery = "SELECT MAX(lootGroupId) \
-                        FROM bcnm_loot \
-                        JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
-                        WHERE bcnm_info.LootDropId = %u LIMIT 1";
-
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId());
-        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
-            ShowError("SQL error occured \n");
-            return 0;
-        }
-        else {
-            return (uint8)Sql_GetUIntData(SqlHandle, 0);
-        }
-    }
-
-    uint16 getRollsPerGroup(CBattlefield* battlefield, uint8 groupID) {
-        const int8* fmtQuery = "SELECT SUM(CASE \
-            WHEN LootDropID = %u \
-            AND lootGroupId = %u \
-            THEN rolls  \
-            ELSE 0 END) \
-            FROM bcnm_loot;";
-
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId(), groupID);
-        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
-            ShowError("SQL error occured \n");
-            return 0;
-        }
-        else {
-            return (uint16)Sql_GetUIntData(SqlHandle, 0);
-        }
-    }
-
     /*************************************************************
     Get loot from the armoury crate
     ****************************************************************/
@@ -342,11 +315,12 @@ namespace battlefieldutils {
                 }
             }
         }
-        //getMaxLootGroups(battlefield);
-        if (maxloot != 0) {
-            for (uint8 group = 0; group <= maxloot; ++group) {
-                uint16 maxRolls = getRollsPerGroup(battlefield, group);
-                uint16 groupRoll = dsprand::GetRandomNumber(maxRolls);
+
+        if (maxloot != 0)
+        {
+            for (uint8 group = 0; group <= maxloot; ++group)
+            {
+                uint16 groupRoll = dsprand::GetRandomNumber(1000/* aka 100.0% */);
                 uint16 itemRolls = 0;
 
                 for (uint8 item = 0; item < LootList->size(); ++item)

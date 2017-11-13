@@ -2,7 +2,7 @@
 --  Area: Windurst Walls
 --  NPC:  Yoriri
 --  Type: Standard NPC
--- @pos 65.268 -8.5 -58.309 239
+-- !pos 65.268 -8.5 -58.309 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -48,10 +48,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x01f0) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",5,true);
     end
-    
+
 end;
 

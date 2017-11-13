@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4750
---    Scroll of Reraise III
---    Teaches the white magic Reraise III
+-- ID: 4750
+-- Scroll of Reraise III
+-- Teaches the white magic Reraise III
 -----------------------------------------
 
 -----------------------------------------

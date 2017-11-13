@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4668
---    Scroll of Barfire
---    Teaches the white magic Barfire
+-- ID: 4668
+-- Scroll of Barfire
+-- Teaches the white magic Barfire
 -----------------------------------------
 
 -----------------------------------------

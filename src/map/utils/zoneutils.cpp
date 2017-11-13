@@ -86,7 +86,11 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
             PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
             PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
             // ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", server_clock::now() + std::chrono::milliseconds(respawnTime), PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+            PNpc->PAI->QueueAction(queueAction_t(std::chrono::milliseconds(respawnTime), false, [](CBaseEntity* PNpc)
+            {
+                PNpc->status = STATUS_NORMAL;
+                PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
+            }));
         }
         else
         {
@@ -122,7 +126,7 @@ void InitializeWeather()
 
                 //ShowDebug(CL_YELLOW"zonetuils::InitializeWeather: Static weather of %s updated to %u\n" CL_RESET, PZone.second->GetName(), PZone.second->m_WeatherVector.at(0).m_common);
             }
-            catch (std::out_of_range& ex)
+            catch (std::out_of_range&)
             {
                 PZone.second->SetWeather(WEATHER_NONE); // If not weather data found, initialize with WEATHER_NONE
 
@@ -1080,18 +1084,9 @@ uint64 GetZoneIPP(uint16 zoneID)
 *                                                                       *
 ************************************************************************/
 
-bool IsResidentialArea(uint16 ZoneID)
+bool IsResidentialArea(CCharEntity* PChar)
 {
-    switch (ZoneID)
-    {
-        case ZONE_RESIDENTIAL_AREA:
-        case ZONE_189:
-        case ZONE_199:
-        case ZONE_214:
-        case ZONE_219:
-            return true;
-    }
-    return false;
+    return PChar->m_moghouseID != 0;
 }
 
 }; // namespace zoneutils

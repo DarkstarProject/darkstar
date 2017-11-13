@@ -3,7 +3,7 @@
 --  NPC: Indescript Markings
 --  Type: Quest
 --  @zone 96
--- @pos -63 -75 4
+-- !pos -63 -75 4
 -----------------------------------
 package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
     -- SCH AF Quest - Boots
     if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(RAFFLESIA_DREAMSPIT) == false) then
-    
+
         player:addKeyItem(RAFFLESIA_DREAMSPIT);
         player:messageSpecial(KEYITEM_OBTAINED, RAFFLESIA_DREAMSPIT);
         player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
@@ -48,9 +48,9 @@ function onTrigger(player,npc)
             [6] = {-176,    -37,   617},    -- G-5 SW
             [7] = {29,      -13,   710}     -- H-5
         };
-        
+
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
-        
+
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
         -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
     else

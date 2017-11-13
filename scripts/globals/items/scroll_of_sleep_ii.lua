@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4867
---    Scroll of Sleep II
---    Teaches the black magic Sleep II
+-- ID: 4867
+-- Scroll of Sleep II
+-- Teaches the black magic Sleep II
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4814
---    Scroll of Freeze
---    Teaches the black magic Freeze
+-- ID: 4814
+-- Scroll of Freeze
+-- Teaches the black magic Freeze
 -----------------------------------------
 
 -----------------------------------------

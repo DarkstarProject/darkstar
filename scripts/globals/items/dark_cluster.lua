@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4111
---    Dark Cluster
---    Turn into a stack of dark crystals
+-- ID: 4111
+-- Dark Cluster
+-- Turn into a stack of dark crystals
 -----------------------------------------
 
 -----------------------------------------

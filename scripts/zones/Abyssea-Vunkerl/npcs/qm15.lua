@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm15 (???)
 -- Spawns Durinn
--- @pos ? ? ? 217
+-- !pos ? ? ? 217
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

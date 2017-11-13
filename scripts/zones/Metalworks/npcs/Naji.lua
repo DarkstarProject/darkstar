@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Metalworks
 -- NPC:  Naji
--- Involved in Quests: The doorman (finish), Riding on the Clouds 
+-- Involved in Quests: The doorman (finish), Riding on the Clouds
 -- Involved in Mission: Bastok 6-2
--- @pos 64 -14 -4 237
+-- !pos 64 -14 -4 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 6) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -36,12 +36,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(YASINS_SWORD)) then -- The Doorman, WAR AF1
         player:startEvent(0x02ee);
     elseif (player:getCurrentMission(BASTOK) ~= 255) then
         local currentMission = player:getCurrentMission(BASTOK);
-        
+
         if (currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
             if (player:seenKeyItem(ZERUHN_REPORT)) then
                 player:startEvent(0x02C6,0);
@@ -76,7 +76,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x02bc);
     end
-    
+
 end;
 
 -- 0x02c6  0x02c7  0x02bc  0x02c9  0x02ca  0x02cb  0x02cd  0x02d0  0x02d1  0x02ee  0x03f0  0x03f1  0x02f9
@@ -129,5 +129,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x02ca or csid == 0x02d2 or csid == 0x02fa) then
         finishMissionTimeline(player,1,csid,option);
     end
-    
+
 end;

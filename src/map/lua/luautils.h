@@ -24,9 +24,11 @@
 #ifndef _LUAUTILS_H
 #define _LUAUTILS_H
 
+#include <optional>
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 #include "../../common/taskmgr.h"
+#include "../spell.h"
 #include "lua_ability.h"
 #include "lua_baseentity.h"
 #include "lua_mobskill.h"
@@ -178,7 +180,7 @@ namespace luautils
 
     int32 OnGameIn(CCharEntity* PChar, bool zoning);                            //
     int32 OnZoneIn(CCharEntity* PChar);                                         // triggers when a player zones into a zone
-    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask);                     // triggers after a player has finished zoning in
+    void AfterZoneIn(CBaseEntity* PChar);                                      // triggers after a player has finished zoning in
     int32 OnZoneInitialise(uint16 ZoneID);                                      // triggers when zone is loaded
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);                  // when player enters a region of a zone
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);                  // when player leaves a region of a zone
@@ -209,7 +211,7 @@ namespace luautils
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);    // triggers when a player attempts to cast a spell
     int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);      // triggered when casting a spell
     int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);                           // triggered just before casting a spell
-    int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
+    std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       // triggered when spell cast on monster
     int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
@@ -234,7 +236,7 @@ namespace luautils
     int32 OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield);                   //triggers when successfully registered a bcnm
     int32 OnBcnmDestroy(CBattlefield* PBattlefield);                            // triggers when BCNM is destroyed
 
-    int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);                            // triggers when mob weapon skill is used
+    int32 OnMobWeaponSkill(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action);                            // triggers when mob weapon skill is used
     int32 OnMobSkillCheck(CBaseEntity* PChar, CBaseEntity* PMob, CMobSkill* PMobSkill);                             // triggers before mob weapon skill is used, returns 0 if the move is valid
     int32 OnMobAutomatonSkillCheck(CBaseEntity* PChar, CAutomatonEntity* PAutomaton, CMobSkill* PMobSkill);
 
@@ -244,7 +246,7 @@ namespace luautils
     int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action);         // triggers when job ability is used
 
     int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance
-    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask);           // triggers after a character is registered and zoned into an instance (the first time)
+    void AfterInstanceRegister(CBaseEntity* PChar);                             // triggers after a character is registered and zoned into an instance (the first time)
     int32 OnInstanceLoadFailed(CZone* PZone);                                   // triggers when an instance load is failed (ie. instance no longer exists)
     int32 OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);// triggers every second for an instance
     int32 OnInstanceFailure(CInstance* PInstance);                              // triggers when an instance is failed
@@ -255,7 +257,7 @@ namespace luautils
     int32 OnInstanceComplete(CInstance* PInstance);                             // triggers when an instance is completed
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
-    int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
+    int32 DisallowRespawn(lua_State* L);                                               // Allow or prevent a mob from spawning
     int32 UpdateNMSpawnPoint(lua_State* L);                                     // Update the spawn point of an NM
     int32 SetDropRate(lua_State*);                                              // Set drop rate of a mob setDropRate(dropid,itemid,newrate)
     int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure

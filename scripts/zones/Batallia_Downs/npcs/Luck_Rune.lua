@@ -2,7 +2,7 @@
 --  Area: Batallia Downs
 --  NPC:  Luck Rune
 --  Involved in Quest: Mhaura Fortune
--- @pos -362.167 -12.199 157.158 105
+-- !pos -362.167 -12.199 157.158 105
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -------------------------------------

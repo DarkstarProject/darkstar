@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4683
---    Scroll of Barblind
---    Teaches the white magic Barblind
+-- ID: 4683
+-- Scroll of Barblind
+-- Teaches the white magic Barblind
 -----------------------------------------
 
 -----------------------------------------

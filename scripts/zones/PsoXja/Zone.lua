@@ -5,11 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/zones/PsoXja/TextIDs");
+require("scripts/globals/settings");
 require("scripts/globals/missions");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onInitialize
@@ -22,44 +21,39 @@ function onInitialize(zone)
     zone:registerRegion(4, -384.452,26,257.961, -379.945,32,262.558); -- Uncapped area 1 (F-7 Tower)
     zone:registerRegion(5, -302.493,42,-179.995, -297.386,48,-176.078); -- Uncapped area 2 (G-9 Tower)
     zone:registerRegion(6, 299.847,42, 257.716, 303.824,48,262.391); -- Uncapped area 3 (I-7 Tower)
-    
+
     UpdateTreasureSpawnPoint(16814557);
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    local playerX = player:getXPos();
+function onZoneIn(player,prevZone)
+    local cs = -1;
 
-    if ((playerX == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-29.956,-1.903,212.521,188);
     end
-    if (ENABLE_COP_ZONE_CAP == 1) then
-        local LVLcap = player:getVar("PSOXJA_RESTRICTION_LVL");
-        if (LVLcap > 0) then
-            player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,LVLcap,0,0);-- ZONE LEVEL RESTRICTION
-        end
-     end
-    if (playerX == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==2) then
+
+    if (player:getXPos() == -300 and player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus") == 2) then
         cs = 0x0001; -- COP event
-    elseif (playerX == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
+    elseif (player:getXPos() == 220 and player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 8) then
         cs = 0x0004;
     end
+
     return cs;
 end;
 
@@ -85,6 +79,14 @@ function afterZoneIn(player)
     player:entityVisualPacket("byc7");
     player:entityVisualPacket("byc8");
     player:entityVisualPacket("s123");
+
+    -- ZONE WIDE LEVEL RESTRICTION
+    if (ENABLE_COP_ZONE_CAP == 1) then
+        local LVLcap = player:getVar("PSOXJA_RESTRICTION_LVL");
+        if (LVLcap > 0) then -- LV cap depends on entrance
+            player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0);
+        end
+    end
 end;
 
 -----------------------------------
@@ -105,7 +107,7 @@ function onRegionEnter(player,region)
         player:startEvent(0x0018);
     elseif (region:GetRegionID() == 6) then
         player:startEvent(0x0019);
-    end    
+    end
 end;
 
 -----------------------------------
@@ -120,8 +122,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

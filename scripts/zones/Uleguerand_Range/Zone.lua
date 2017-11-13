@@ -5,19 +5,20 @@
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
+require("scripts/zones/Uleguerand_Range/TextIDs");
+require("scripts/zones/Uleguerand_Range/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/missions");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
-require("scripts/zones/Uleguerand_Range/TextIDs");
-require("scripts/globals/missions");
+
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Jormungand
-    SetRespawnTime(16797969, 86400, 259200);
+    UpdateNMSpawnPoint(JORMUNGAND);
+    GetMobByID(JORMUNGAND):setRespawnTime(math.random(86400, 259200));
 end;
 
 -----------------------------------
@@ -80,9 +81,7 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-
-    local waterfall = GetNPCByID(16798112);
-
+    local waterfall = GetNPCByID(WATERFALL);
     if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
         if (waterfall:getAnimation() ~= 9) then
             waterfall:setAnimation(9);

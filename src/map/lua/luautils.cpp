@@ -79,6 +79,7 @@
 #include "../ai/states/ability_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../ai/states/magic_state.h"
+#include <optional>
 
 namespace luautils
 {
@@ -141,7 +142,7 @@ namespace luautils
         lua_register(LuaHandle, "UpdateServerMessage", luautils::UpdateServerMessage);
         lua_register(LuaHandle, "UpdateTreasureSpawnPoint", luautils::UpdateTreasureSpawnPoint);
         lua_register(LuaHandle, "GetMobRespawnTime", luautils::GetMobRespawnTime);
-        lua_register(LuaHandle, "DeterMob", luautils::DeterMob);
+        lua_register(LuaHandle, "DisallowRespawn", luautils::DisallowRespawn);
         lua_register(LuaHandle, "UpdateNMSpawnPoint", luautils::UpdateNMSpawnPoint);
         lua_register(LuaHandle, "SetDropRate", luautils::SetDropRate);
         lua_register(LuaHandle, "NearLocation", luautils::nearLocation);
@@ -445,8 +446,9 @@ namespace luautils
 
             if (PMob != nullptr &&
                 PMob->isDead() &&
-                !(PMob->m_Type & MOBTYPE_NOTORIOUS) &&
-                (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 &&
+                !PMob->PAI->IsSpawned() && // exclude mobs that haven't yet despawned
+                PMob->m_Type == MOBTYPE_BATTLEFIELD && // exclude NMs and pets
+                (PMob->m_Family < 92 || PMob->m_Family > 95) && PMob->m_Family != 4 && // exclude Replicas and Ahrimans
                 PMob->GetMJob() == mobJob)
             {
                 lua_pushinteger(L, PMob->id);
@@ -1161,7 +1163,7 @@ namespace luautils
             return 0;
         }
 
-        int32 value = lua_tonumber(LuaHandle, -1);
+        int32 value = (int32)lua_tonumber(LuaHandle, -1);
         lua_pop(LuaHandle, -1);
         return value;
     }
@@ -1195,7 +1197,7 @@ namespace luautils
             return 0;
         }
 
-        uint8 value = lua_tonumber(LuaHandle, -1);
+        uint8 value = (uint8)lua_tonumber(LuaHandle, -1);
         lua_pop(LuaHandle, -1);
         return value;
     }
@@ -1353,18 +1355,13 @@ namespace luautils
         return retVal;
     }
 
-    int32 AfterZoneIn(time_point tick, CTaskMgr::CTask *PTask)
+    void AfterZoneIn(CBaseEntity* PChar)
     {
-        CCharEntity* PChar = zoneutils::GetChar((uintptr)PTask->m_data);
-
-        if (!PChar)
-            return -1;
-
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
         if (prepFile(File, "afterZoneIn"))
         {
-            return -1;
+            return;
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -1374,7 +1371,7 @@ namespace luautils
         {
             ShowError("luautils::afterZoneIn: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns > 0)
@@ -1382,7 +1379,7 @@ namespace luautils
             ShowError("luautils::afterZoneIn (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
-        return 0;
+        return;
     }
 
     /************************************************************************
@@ -1628,12 +1625,6 @@ namespace luautils
 
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
-        //#TODO: move this to BCNM stuff when it's rewritten
-        // 32003 is the run away event
-        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 && result == 4)))
-        {
-            PChar->PBCNM->delPlayerFromBcnm(PChar);
-        }
         int32 oldtop = lua_gettop(LuaHandle);
 
         lua_pushnil(LuaHandle);
@@ -2229,7 +2220,7 @@ namespace luautils
         return 0;
     }
 
-    int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
+    std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
     {
         DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
 
@@ -2237,7 +2228,7 @@ namespace luautils
 
         if (prepFile(File, "onMonsterMagicPrepare"))
         {
-            return -1;
+            return {};
         }
 
         CLuaBaseEntity LuaMobEntity(PCaster);
@@ -2247,26 +2238,19 @@ namespace luautils
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 2, 1, 0))
         {
             ShowError("luautils::onMonsterMagicPrepare: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns < 1)
-        {
-            ShowError("luautils::onMonsterMagicPrepare (%s): 1 return expected, got %d\n", File, returns);
-            return 0;
+            return {};
         }
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
-        if (returns > 1)
+        if (retVal > 0)
         {
-            ShowError("luautils::onMonsterMagicPrepare (%s): 1 return expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns - 1);
+            return static_cast<SpellID>(retVal);
         }
-        return retVal;
+        return {};
     }
 
     /************************************************************************
@@ -3112,8 +3096,8 @@ namespace luautils
             lua_pop(LuaHandle, returns);
             return std::tuple<int32, uint8, uint8>();
         }
-        uint8 tpHitsLanded = lua_tonumber(LuaHandle, -4);
-        uint8 extraHitsLanded = lua_tonumber(LuaHandle, -3);
+        uint8 tpHitsLanded = (uint8)lua_tonumber(LuaHandle, -4);
+        uint8 extraHitsLanded = (uint8)lua_tonumber(LuaHandle, -3);
         bool criticalHit = lua_toboolean(LuaHandle, -2);
         int32 dmg = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
 
@@ -3137,7 +3121,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
+    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action)
     {
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -3152,7 +3136,10 @@ namespace luautils
             CLuaMobSkill LuaMobSkill(PMobSkill);
             Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
 
-            if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+            CLuaAction LuaAction(action);
+            Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
+
+            if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
             {
                 ShowError("luautils::onMobWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
                 lua_pop(LuaHandle, 1);
@@ -3583,17 +3570,15 @@ namespace luautils
         return 0;
     }
 
-    int32 AfterInstanceRegister(time_point tick, CTaskMgr::CTask *PTask)
+    void AfterInstanceRegister(CBaseEntity* PChar)
     {
-        CCharEntity* PChar = (CCharEntity*)PTask->m_data;
-
         DSP_DEBUG_BREAK_IF(!PChar->PInstance);
 
         lua_prepscript("scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
 
         if (prepFile(File, "afterInstanceRegister"))
         {
-            return -1;
+            return;
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -3603,7 +3588,7 @@ namespace luautils
         {
             ShowError("luautils::afterInstanceRegister: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns > 0)
@@ -3611,7 +3596,7 @@ namespace luautils
             ShowError("luautils::afterInstanceRegister (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
-        return 0;
+        return;
     }
 
     int32 OnInstanceLoadFailed(CZone* PZone)
@@ -4173,7 +4158,7 @@ namespace luautils
     * Set SpawnType of mob to scripted (128) or normal (0) usind mob id     *
     *                                                                       *
     ************************************************************************/
-    int32 DeterMob(lua_State* L)
+    int32 DisallowRespawn(lua_State* L)
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
@@ -4184,25 +4169,18 @@ namespace luautils
             {
                 if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
                 {
-                    if (lua_toboolean(L, 2) == 0)
-                    {
-                        PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
-                    }
-                    else
-                    {
-                        PMob->m_AllowRespawn = false; // Deter the mob, do not allow mob to respawn
-                    }
-                    //ShowDebug(CL_RED"DeterMob: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
-                    return 1;
+                    PMob->m_AllowRespawn = !lua_toboolean(L, 2);
+                    //ShowDebug(CL_RED"DisallowRespawn: Mob <%u> DisallowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
+                    return 0;
                 }
                 else
                 {
-                    ShowDebug(CL_RED"DeterMob: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
+                    ShowDebug(CL_RED"DisallowRespawn: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
                 }
             }
             else
             {
-                ShowDebug(CL_RED"DeterMob: mob <%u> not found\n" CL_RESET, mobid);
+                ShowDebug(CL_RED"DisallowRespawn: mob <%u> not found\n" CL_RESET, mobid);
             }
             return 0;
         }
@@ -4294,13 +4272,13 @@ namespace luautils
 
     int32 SetDropRate(lua_State *L)
     {
-        DropList_t* DropList = itemutils::GetDropList(lua_tointeger(L, 1));
+        DropList_t* DropList = itemutils::GetDropList((uint16)lua_tointeger(L, 1));
 
         for (uint8 i = 0; i < DropList->size(); ++i)
         {
             if (DropList->at(i).ItemID == lua_tointeger(L, 2))
             {
-                DropList->at(i).DropRate = lua_tointeger(L, 3);
+                DropList->at(i).DropRate = (uint16)lua_tointeger(L, 3);
                 return 1;
             }
         }
@@ -4349,7 +4327,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CAbility* PAbility = ability::GetAbility(lua_tointeger(L, 1));
+            CAbility* PAbility = ability::GetAbility((uint16)lua_tointeger(L, 1));
 
             lua_getglobal(L, CLuaAbility::className);
             lua_pushstring(L, "new");
@@ -4367,7 +4345,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CSpell* PSpell = spell::GetSpell(lua_tointeger(L, 1));
+            CSpell* PSpell = spell::GetSpell(static_cast<SpellID>(lua_tointeger(L, 1)));
 
             lua_getglobal(L, CLuaSpell::className);
             lua_pushstring(L, "new");
@@ -4439,16 +4417,16 @@ namespace luautils
 
         position_t center;
         lua_getfield(L, 1, "x");
-        center.x = lua_tonumber(L, -1);
+        center.x = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "y");
-        center.y = lua_tonumber(L, -1);
+        center.y = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "z");
-        center.z = lua_tonumber(L, -1);
+        center.z = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "rot");
-        center.rotation = lua_tonumber(L, -1);
+        center.rotation = (uint8)lua_tonumber(L, -1);
 
-        float radius = lua_tonumber(L, 2);
-        float theta = lua_tonumber(L, 3);
+        float radius = (float)lua_tonumber(L, 2);
+        float theta = (float)lua_tonumber(L, 3);
 
         position_t pos = nearPosition(center, radius, theta);
 

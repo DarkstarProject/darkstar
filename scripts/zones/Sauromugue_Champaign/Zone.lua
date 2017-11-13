@@ -6,11 +6,13 @@
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
+require("scripts/zones/Sauromugue_Champaign/MobIDs");
 require( "scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/missions");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -62,8 +64,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Roc
-    SetRespawnTime(17269106, 900, 10800);
+    UpdateNMSpawnPoint(ROC);
+    GetMobByID(ROC):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------

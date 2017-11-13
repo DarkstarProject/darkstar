@@ -3,12 +3,9 @@
 -- Item: Aspir Knife
 -- Additional effect: MP Drain
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -31,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
         end
 
         target:addMP(-drain);
-        return SUBEFFECT_MP_DRAIN, MSGBASIC_ADD_EFFECT_MP_DRAIN, player:addMP(drain);
+        return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, player:addMP(drain);
     end
 end;

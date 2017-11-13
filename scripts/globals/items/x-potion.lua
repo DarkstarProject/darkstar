@@ -3,28 +3,20 @@
 -- Item: X-Potion
 -- Item Effect: Restores 150 HP
 -----------------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onItemCheck(target)
-    local value = 0;
-    local mHP = target:getMaxHP();
-    local cHP = target:getHP();
-
-    if (mHP == cHP) then
-        value = 56; -- Does not let player use item if their hp is full
+    if (target:getHP() == target:getMaxHP()) then
+        return msgBasic.ITEM_UNABLE_TO_USE;
+    elseif (target:hasStatusEffect(EFFECT_MEDICINE)) then
+        return msgBasic.ITEM_NO_USE_MEDICATED;
     end
-
-    return value;
+    return 0;
 end;
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
-    target:messageBasic(24,0,target:addHP(150*ITEM_POWER));
+    target:messageBasic(msgBasic.RECOVERS_HP, 0, target:addHP(150*ITEM_POWER));
+    target:addStatusEffect(EFFECT_MEDICINE,0,0,5);
 end;

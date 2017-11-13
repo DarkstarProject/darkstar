@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5441
---    Item: Angelwing
---    Adds angel wings to the user
+-- ID: 5441
+-- Item: Angelwing
+-- Adds angel wings to the user
 -----------------------------------------
 
 -----------------------------------------

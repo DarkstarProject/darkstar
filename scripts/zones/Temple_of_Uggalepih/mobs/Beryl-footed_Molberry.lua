@@ -15,7 +15,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    SetServerVariable("[POP]Beryl-footed_Molberry",os.time(t) + 900); -- 15min
+    SetServerVariable("[POP]Beryl-footed_Molberry",os.time() + 900); -- 15min
 
     local kills = player:getVar("EVERYONES_GRUDGE_KILLS");
 

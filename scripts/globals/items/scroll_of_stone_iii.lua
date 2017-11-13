@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4769
---    Scroll of Stone III
---    Teaches the black magic Stone III
+-- ID: 4769
+-- Scroll of Stone III
+-- Teaches the black magic Stone III
 -----------------------------------------
 
 -----------------------------------------

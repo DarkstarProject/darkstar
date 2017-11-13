@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4704
---    Scroll of Auspice
---    Teaches the white magic Auspice
+-- ID: 4704
+-- Scroll of Auspice
+-- Teaches the white magic Auspice
 -----------------------------------------
 
 -----------------------------------------

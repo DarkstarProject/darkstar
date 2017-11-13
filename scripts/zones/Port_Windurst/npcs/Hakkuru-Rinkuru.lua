@@ -3,7 +3,7 @@
 -- NPC:  Hakkuru-Rinkuru
 -- Involved In Quest: Making Amends
 -- Starts and Ends Quest: Wonder Wands
--- @pos -111 -4 101 240
+-- !pos -111 -4 101 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -21,10 +21,10 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(WINDURST,MAKING_AMENDS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(937,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x0115,1500); 
+            player:startEvent(0x0115,1500);
         else
             player:startEvent(0x0113,0,937);
         end
@@ -36,10 +36,10 @@ function onTrade(player,npc,trade)
         else
             player:startEvent(0x0104,0,17091,17061,17053); --Remind player which items are needed ifquest is accepted and items are not traded
         end
-    else 
+    else
         player:startEvent(0x00e0);
     end
-    
+
 end;
 
 -----------------------------------
@@ -47,13 +47,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     MakingAmends = player:getQuestStatus(WINDURST,MAKING_AMENDS);
     MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS); --Second quest in series
     WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS); --Third and final quest in series
     needToZone = player:needToZone();
     pFame = player:getFameLevel(WINDURST);
-    
+
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
     if (player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 0) then
         player:startEvent(0x01C8,0,248);
@@ -86,15 +86,15 @@ function onTrigger(player,npc)
     elseif (WonderWands == QUEST_COMPLETED) then
         if (player:getVar("SecondRewardVar") == 1) then
             player:startEvent(0x010b); --Initiates second reward ifWonder Wands has been completed.
-        else 
+        else
             player:startEvent(0x00e0); --Plays default conversation once all quests in the series have been completed.
         end
-    else 
+    else
         player:startEvent(0x00e0); --Standard Conversation
     end
 -- End Wonder Wands Section
-end; 
-        
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -111,13 +111,13 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x005a) then
         player:setVar("MissionStatus",1);
     elseif (csid == 0x0093) then
         player:setVar("MissionStatus",3);
     elseif (csid == 0x005e) then
-    
+
         -- Delete the variable(s) that was created for this mission
         player:setVar("Mission_started_from",0);
         player:setVar("MissionStatus_op1",0);
@@ -126,9 +126,9 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus_op4",0);
         player:setVar("MissionStatus_op5",0);
         player:setVar("MissionStatus_op6",0);
-        
+
         finishMissionTimeline(player,1,csid,option);
-        
+
     elseif (csid == 0x0112 and option == 1) then
             player:addQuest(WINDURST,MAKING_AMENDS);
     elseif (csid == 0x0115) then
@@ -154,7 +154,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("SecondRewardVar",0);
     elseif (csid == 0x0109) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12750); -- New Moon Armlets
         else
             player:tradeComplete();
@@ -172,5 +172,5 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(SOUTHWESTERN_STAR_CHARM);
             player:messageSpecial(KEYITEM_OBTAINED,SOUTHWESTERN_STAR_CHARM);
     end
-    
+
 end;

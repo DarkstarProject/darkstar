@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 -- NPC:  Door: Departures Exit
 -- @zone 240
--- @pos 218 -5 114
+-- !pos 218 -5 114
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -16,21 +16,21 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then 
+
+    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then
         player:startEvent(0x00b5,0,8,0,0,0,0,0,200);
     else
         player:startEvent(0x00b7,0,8);
     end
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -49,14 +49,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
-    if (csid == 0x00b5) then 
+
+    if (csid == 0x00b5) then
         X = player:getXPos();
-        
+
         if (X >= 221 and X <= 225) then
             player:delGil(200);
         end
     end
-    
+
 end;
 

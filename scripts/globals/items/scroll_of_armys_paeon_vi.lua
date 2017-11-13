@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4991
---    Scroll of Armys Paeton VI
---    Teaches the song Armys Paeton VI
+-- ID: 4991
+-- Scroll of Armys Paeton VI
+-- Teaches the song Armys Paeton VI
 -----------------------------------------
 
 -----------------------------------------

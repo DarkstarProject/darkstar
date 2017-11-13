@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  NPC: ??? (Spawn Sarameya(ZNM T4))
--- @pos 322 -14 -581 61
+-- !pos 322 -14 -581 61
 -----------------------------------
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------

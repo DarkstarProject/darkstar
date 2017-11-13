@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4861
---    Scroll of Sleep
---    Teaches the black magic Sleep
+-- ID: 4861
+-- Scroll of Sleep
+-- Teaches the black magic Sleep
 -----------------------------------------
 
 -----------------------------------------

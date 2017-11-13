@@ -2,7 +2,7 @@
 -- Area: Bastok Markets
 -- NPC: Pavel
 -- Involved in Quest: Stamp Hunt
--- @pos -349.798 -10.002 -181.296 235
+-- !pos -349.798 -10.002 -181.296 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

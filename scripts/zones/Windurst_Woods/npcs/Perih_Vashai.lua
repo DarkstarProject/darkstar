@@ -1,18 +1,18 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Parih Vashai
+--  NPC: Parih Vashai
 -- Starts and Finishes Quest: The Fanged One
--- @zone 241
--- @pos 117 -3 92
+-- !pos 117 -3 92 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/globals/missions");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------

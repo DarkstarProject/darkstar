@@ -1,7 +1,7 @@
 -----------------------------------
 -- NPC:  Small Keyhole
 -- Area: Sacrarium
--- @pos 99.772 -1.614 51.545 28
+-- !pos 99.772 -1.614 51.545 28
 -----------------------------------
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------
@@ -41,6 +41,9 @@ end;
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
+
+function onEventUpdate(player,csid,option)
+end
 
 function onEventFinish(player,csid,option)
 end;

@@ -38,7 +38,7 @@ CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBase
 	WBUFL(data,(0x04)) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
 	WBUFW(data,(0x10)) = PItem->ID;           // ItemID
 	WBUFB(data,(0x14)) = PItem->SlotID;       // TreasurePool slotID
-    WBUFL(data,(0x18)) = std::chrono::duration_cast<std::chrono::milliseconds>(PItem->TimeStamp - get_server_start_time()).count();
+    WBUFL(data,(0x18)) = (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(PItem->TimeStamp - get_server_start_time()).count();
 
 	if (PMob != nullptr)
 	{

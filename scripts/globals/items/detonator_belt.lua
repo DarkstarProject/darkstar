@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15921
---    Detonator Belt
---    Enchantment: 60Min, Costume - Cluster (Black)
+-- ID: 15921
+-- Detonator Belt
+-- Enchantment: 60Min, Costume - Cluster (Black)
 -----------------------------------------
 
 require("scripts/globals/status");

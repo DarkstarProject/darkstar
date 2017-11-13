@@ -48,8 +48,7 @@ public:
     int32 getBcnmID(lua_State*);
     int32 getTimeLimit(lua_State*);
     int32 getTimeInside(lua_State*);
-    int32 getFastestTime(lua_State*);
-    int32 getFastestPlayer(lua_State*);
+    int32 getRecord(lua_State*);
     int32 setAsFastest(lua_State*);
     int32 setEntrance(lua_State*);
     int32 getEntrance(lua_State*);

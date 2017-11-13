@@ -80,7 +80,7 @@
 
 int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 {
-    ((CZone*)PTask->m_data)->ZoneServer(tick);
+    std::any_cast<CZone*>(PTask->m_data)->ZoneServer(tick, false);
     return 0;
 }
 
@@ -93,15 +93,15 @@ int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
-    CZone* PZone = (CZone*)PTask->m_data;
+    CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
     if ((tick - PZone->m_RegionCheckTime) < 800ms)
     {
-        PZone->ZoneServer(tick);
+        PZone->ZoneServer(tick, false);
     }
     else
     {
-        PZone->ZoneServerRegion(tick);
+        PZone->ZoneServer(tick, true);
         PZone->m_RegionCheckTime = tick;
     }
     return 0;
@@ -115,7 +115,7 @@ int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
 {
-    CZone* PZone = (CZone*)PTask->m_data;
+    CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
     if (!PZone->IsWeatherStatic())
     {
@@ -774,28 +774,14 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 *                                                                       *
 ************************************************************************/
 
-void CZone::ZoneServer(time_point tick)
+void CZone::ZoneServer(time_point tick, bool check_regions)
 {
-    m_zoneEntities->ZoneServer(tick);
+    m_zoneEntities->ZoneServer(tick, check_regions);
 
     if (m_BattlefieldHandler != nullptr)
     {
         m_BattlefieldHandler->handleBattlefields(tick);
     }
-}
-
-/************************************************************************
-*                                                                       *
-*  Cервер для обработки активности и статус-эффектов сущностей в зоне.  *
-*  Дополнительно обрабатывается проверка на вход и выход персонажей из  *
-*  активных областей (пока реализован только вход в область).           *
-*  При любом раскладе последними должны обрабатываться персонажи        *
-*                                                                       *
-************************************************************************/
-
-void CZone::ZoneServerRegion(time_point tick)
-{
-    m_zoneEntities->ZoneServerRegion(tick);
 }
 
 void CZone::ForEachChar(std::function<void(CCharEntity*)> func)
@@ -862,11 +848,17 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     //remove temp items
     charutils::ClearTempItems(PChar);
 
-    if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO))
+    if (PChar->animation == ANIMATION_MOUNT && m_zoneType != ZONETYPE_DUNGEON) // Can summon mounts in outdoor area's chocobo can't go.
     {
         PChar->animation = ANIMATION_NONE;
-        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
     }
+    else if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO)) // Retail just prevents zoning instead.
+    {
+        PChar->animation = ANIMATION_NONE;
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
+    }
+
     if (PChar->m_Costum != 0)
     {
         PChar->m_Costum = 0;

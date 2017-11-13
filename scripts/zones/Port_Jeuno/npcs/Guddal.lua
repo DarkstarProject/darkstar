@@ -3,7 +3,7 @@
 -- NPC: Guddal
 -- Starts and Finishes Quest: Kazham Airship Pass (This quest does not appear in your quest log)
 -- @zone 246
--- @pos -14 8 44 
+-- !pos -14 8 44
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -18,25 +18,25 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM) == false) then 
-        if (trade:hasItemQty(1024,1) == true and trade:hasItemQty(1025,1) == true and trade:hasItemQty(1026,1) == true and 
-           trade:getGil() == 0 and trade:getItemCount() == 3) then 
+    if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM) == false) then
+        if (trade:hasItemQty(1024,1) == true and trade:hasItemQty(1025,1) == true and trade:hasItemQty(1026,1) == true and
+           trade:getGil() == 0 and trade:getItemCount() == 3) then
             player:startEvent(0x012d); -- Ending quest "Kazham Airship Pass"
         else
             player:startEvent(0x012e);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM) == false) then 
+    if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM) == false) then
         player:startEvent(0x012c);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

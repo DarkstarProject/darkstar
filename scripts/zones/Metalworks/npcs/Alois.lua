@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Alois
 -- Involved in Missions: Wading Beasts
--- @pos 96 -20 14 237
+-- !pos 96 -20 14 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -39,9 +39,9 @@ elseif (player:getVar("BASTOK91") == 3) then
 player:startEvent(0x0307);
 elseif (player:getVar("BASTOK91") == 4) then
 player:startEvent(0x0308);
-else    
+else
 player:startEvent(0x0172);
-end    
+end
 end;
 
 -----------------------------------
@@ -60,7 +60,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0174 or csid == 0x0175) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 0x0305) then
@@ -71,5 +71,5 @@ function onEventFinish(player,csid,option)
     player:addRankPoints(1500);
     player:setVar("OptionalcsCornelia",1);
     end
-    
+
 end;

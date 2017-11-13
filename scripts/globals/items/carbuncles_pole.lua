@@ -3,13 +3,10 @@
 -- Item: Carbuncle's Pole
 -- Item Effect: Restores 160-220 HP
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 15;
 
@@ -23,9 +20,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_LIGHT);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
 
-        local message = MSGBASIC_ADD_EFFECT_DMG;
+        local message = msgBasic.ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = MSGBASIC_ADD_EFFECT_HEAL;
+            message = msgBasic.ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_LIGHT_DAMAGE,message,dmg;
@@ -34,25 +31,16 @@ function onAdditionalEffect(player,target,damage)
     end
 end;
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     local hpHeal = math.random(160,220);
-
     local dif = target:getMaxHP() - target:getHP();
     if (hpHeal > dif) then
         hpHeal = dif;
     end
     target:addHP(hpHeal);
-    target:messageBasic(263,0,hpHeal);
+    target:messageBasic(msgBasic.RECOVERS_HP, 0, hpHeal);
 end;

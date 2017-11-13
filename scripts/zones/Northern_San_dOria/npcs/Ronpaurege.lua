@@ -3,7 +3,7 @@
 --  NPC: Ronpaurege
 --  Type: Standard Info NPC
 --  @zone 231
--- @pos 65.739 -0.199 74.275
+-- !pos 65.739 -0.199 74.275
 --
 -----------------------------------
 
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x029d);    
+    player:startEvent(0x029d);
 end;
 
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Nudahaal
 -- Type: Bonecraft Normal/Adv. Image Support
--- @pos -57.056 -7 -88.377 48
+-- !pos -57.056 -7 -88.377 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Windurst Woods
 -- NPC: Retto-Marutto
--- Guild Merchant NPC: Bonecrafting Guild 
--- @pos -6.142 -6.55 -132.639 241
+-- Guild Merchant NPC: Bonecrafting Guild
+-- !pos -6.142 -6.55 -132.639 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

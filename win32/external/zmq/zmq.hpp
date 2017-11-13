@@ -121,7 +121,7 @@ namespace zmq
         int errnum;
     };
 
-    inline int poll (zmq_pollitem_t const* items_, int nitems_, long timeout_ = -1)
+    inline int poll (zmq_pollitem_t const* items_, size_t nitems_, long timeout_ = -1)
     {
         int rc = zmq_poll (const_cast<zmq_pollitem_t*>(items_), nitems_, timeout_);
         if (rc < 0)

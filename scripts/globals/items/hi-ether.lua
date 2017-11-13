@@ -3,29 +3,16 @@
 -- Item: Hi-Ether
 -- Item Effect: Restores 50 MP
 -----------------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
-    local value = 0;
-    local mMP = target:getMaxMP();
-    local cMP = target:getMP();
-
-    if (mMP == cMP) then
-        value = 56; -- Does not let player use item if their hp is full
+    if (target:getMP() == target:getMaxMP()) then
+        return msgBasic.ITEM_UNABLE_TO_USE;
     end
-
-    return value;
+    return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    target:messageBasic(25,0,target:addMP(50*ITEM_POWER));
+    target:messageBasic(msgBasic.RECOVERS_MP,0,target:addMP(50*ITEM_POWER));
 end;

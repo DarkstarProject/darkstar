@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Orcish Captive
 -- @zone 80
--- @pos -92 -7 68
+-- !pos -92 -7 68
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

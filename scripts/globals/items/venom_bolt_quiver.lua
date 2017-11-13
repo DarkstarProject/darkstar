@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5338
---    Venom Bolt Quiver
---    When used, you will obtain one stack of Venom Bolts
+-- ID: 5338
+-- Venom Bolt Quiver
+-- When used, you will obtain one stack of Venom Bolts
 -----------------------------------------
 
 -----------------------------------------

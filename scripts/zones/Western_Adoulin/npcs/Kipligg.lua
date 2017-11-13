@@ -5,7 +5,7 @@
 --  Involved with Missions: '...Into the Fire'
 --                          'Done and Delivered'
 --  @zone 256
---  @pos -32 0 22 256
+--  !pos -32 0 22 256
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -14,7 +14,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

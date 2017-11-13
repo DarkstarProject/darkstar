@@ -25,10 +25,17 @@
 #include "../ai/ai_container.h"
 #include "../ai/controllers/automaton_controller.h"
 #include "../utils/puppetutils.h"
+#include "../../common/utils.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
 #include "../packets/char_job_extra.h"
 #include "../status_effect_container.h"
+#include "../ai/states/magic_state.h"
+#include "../ai/states/mobskill_state.h"
+#include "../packets/action.h"
+#include "../mob_modifier.h"
+#include "../utils/mobutils.h"
+#include "../recast_container.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -107,7 +114,7 @@ void CAutomatonEntity::burdenTick()
     {
         if (burden > 0)
         {
-            --burden;
+            burden -= dsp_cap(1 + PMaster->getMod(Mod::BURDEN_DECAY) + this->getMod(Mod::BURDEN_DECAY), 1, burden);
         }
     }
 }
@@ -117,18 +124,21 @@ void CAutomatonEntity::setInitialBurden()
     m_Burden.fill(30);
 }
 
-uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
+uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
 {
-    //TODO: tactical processor attachment
-    uint8 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
-    m_Burden[element] += burden;
-    //check for overload
-    if (m_Burden[element] > thresh)
+    m_Burden[element] = dsp_cap(m_Burden[element] + burden, 0, 255);
+
+    if (burden > 0)
     {
-        if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+        //check for overload
+        int16 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
+        if (m_Burden[element] > thresh)
         {
-            //return overload duration
-            return m_Burden[element] - thresh;
+            if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+            {
+                //return overload duration
+                return m_Burden[element] - thresh;
+            }
         }
     }
     return 0;
@@ -149,6 +159,57 @@ void CAutomatonEntity::PostTick()
 
 void CAutomatonEntity::Die()
 {
-    PMaster->StatusEffectContainer->RemoveAllManeuvers();
+    if (PMaster != nullptr)
+        PMaster->StatusEffectContainer->RemoveAllManeuvers();
     CPetEntity::Die();
+}
+
+bool CAutomatonEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+{
+    if (targetFlags & TARGET_PLAYER && this == PInitiator)
+    {
+        return true;
+    }
+    return CPetEntity::ValidTarget(PInitiator, targetFlags);
+}
+
+void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
+{
+    CMobEntity::OnCastFinished(state, action);
+
+    auto PSpell = state.GetSpell();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
+
+    if (PSpell->tookEffect())
+    {
+        puppetutils::TrySkillUP(this, SKILL_AMA, PTarget->GetMLevel());
+    }
+}
+
+void CAutomatonEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
+{
+    CMobEntity::OnMobSkillFinished(state, action);
+
+    auto PSkill = state.GetSkill();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    // Ranged attack skill up
+    if (PSkill->getID() == 1949 && !PSkill->hasMissMsg())
+    {
+        puppetutils::TrySkillUP(this, SKILL_ARA, PTarget->GetMLevel());
+    }
+}
+
+void CAutomatonEntity::Spawn()
+{
+    status = allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
+    updatemask |= UPDATE_HP;
+    PAI->Reset();
+    PAI->EventHandler.triggerListener("SPAWN", this);
+    animation = ANIMATION_NONE;
+    m_OwnerID.clean();
+    HideName(false);
+    luautils::OnMobSpawn(this);
 }

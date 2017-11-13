@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4874
---    Scroll of Absorb-STR
---    Teaches the black magic Absorb-STR
+-- ID: 4874
+-- Scroll of Absorb-STR
+-- Teaches the black magic Absorb-STR
 -----------------------------------------
 
 -----------------------------------------

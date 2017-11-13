@@ -3,12 +3,9 @@
 -- Item: Bravura
 -- Additional Effect: Impairs evasion
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -19,6 +16,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(EFFECT_EVASION_BOOST)
         target:addStatusEffect(EFFECT_EVASION_DOWN, 15, 0, 60);
-        return SUBEFFECT_EVASION_DOWN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_EVASION_DOWN;
+        return SUBEFFECT_EVASION_DOWN, msgBasic.ADD_EFFECT_STATUS, EFFECT_EVASION_DOWN;
     end
 end;

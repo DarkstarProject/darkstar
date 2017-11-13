@@ -91,7 +91,14 @@ function onInstanceComplete(instance)
     for i,v in pairs(chars) do
         if (v:getCurrentMission(TOAU) == THE_BLACK_COFFIN and v:getVar("AhtUrganStatus") == 1) then
             v:setVar("AhtUrganStatus", 2);
+            v:startEvent(101);
         end
     end
 end;
 
+
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+end

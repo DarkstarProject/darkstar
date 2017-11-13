@@ -75,7 +75,7 @@ int32 lobbydata_parse(int32 fd)
         {
             char* buff = &session[fd]->rdata[0];
 
-            int32 accid = RBUFL(buff, 1);
+            uint32 accid = RBUFL(buff, 1);
 
             sd = find_loginsd_byaccid(accid);
             if (sd == nullptr)
@@ -131,9 +131,19 @@ int32 lobbydata_parse(int32 fd)
             CharList[0] = 0xE0; CharList[1] = 0x08;
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
-            CharList[28] = 16; // количество ячеек, доступных для создания персонажей (0-16)
+            const int8 *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
+            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                CharList[28] = Sql_GetUIntData(SqlHandle, 0);
+            }
+            else
+            {
+                do_close_lobbydata(sd, fd);
+                return -1;
+            }
 
-            const char *pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
+            pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
 												 race, face, head, body, hands, legs, feet, main, sub,\
 												 war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
 												 sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
@@ -142,9 +152,9 @@ int32 lobbydata_parse(int32 fd)
 											INNER JOIN char_look  USING(charid) \
 											INNER JOIN char_jobs  USING(charid) \
 										  WHERE accid = %i \
-										  LIMIT 16;";
+										  LIMIT %u;";
 
-            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid, CharList[28]);
             if (ret == SQL_ERROR)
             {
                 do_close_lobbydata(sd, fd);
@@ -178,7 +188,6 @@ int32 lobbydata_parse(int32 fd)
                 uint32 CharID = Sql_GetIntData(SqlHandle, 0);
 
                 uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
-                uint16 prevzone = (uint16)Sql_GetIntData(SqlHandle, 3);
 
                 uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
                 uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
@@ -207,8 +216,8 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
                 WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
-                // todo: cap login packet for zones > 255
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);      // если персонаж в MogHouse
+                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)zone;
+                WBUFW(CharList, 78 + 32 + i * 140) = zone;
                 ///////////////////////////////////////////////////
                 ++i;
             }
@@ -257,7 +266,7 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 32);
+            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
@@ -305,9 +314,9 @@ int32 lobbydata_parse(int32 fd)
             int8 session_key[sizeof(key3) * 2 + 1];
             bin2hex(session_key, key3, sizeof(key3));
 
-            fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr) VALUES(%u,%u,x'%s',%u,%u,%u)";
+            fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
 
-            if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr) == SQL_ERROR)
+            if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
             {
                 //отправляем клиенту сообщение об ошибке
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
@@ -463,40 +472,52 @@ int32 lobbyview_parse(int32 fd)
             string_t client_ver_data((char*)(buff + 0x74), 6); // Full length is 10 but we drop last 4
             client_ver_data = client_ver_data+"xx_x";          // And then we replace those last 4..
 
-            string_t expected_version(version_info.CLIENT_VER, 0, 6); // Same deal here!
+            string_t expected_version(version_info.client_ver, 0, 6); // Same deal here!
             expected_version = expected_version+"xx_x";
+            bool ver_mismatch;
 
-            if (expected_version != client_ver_data)
+            if ((ver_mismatch = (expected_version != client_ver_data)))
+            {
+                ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
+                if (expected_version < client_ver_data)
+                    ShowError("lobbyview_parse: The server must be updated to support this client version\n");
+                else
+                    ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+            }
+
+            if (ver_mismatch && version_info.enable_ver_lock)
             {
                 sendsize = 0x24;
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
 
                 WBUFW(ReservePacket, 32) = 331;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
-                ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
-                if (expected_version < client_ver_data)
-                {
-                    ShowError("lobbyview_parse: The server must be updated to support this client version\n");
-                }
-                else
-                {
-                    ShowError("lobbyview_parse: The client must be updated to support this server version\n");
-                }
             }
             else
             {
-                LOBBY_026_RESERVEPACKET(ReservePacket);
-                WBUFW(ReservePacket, 32) = login_config.expansions; // BitMask for expansions;
-                WBUFW(ReservePacket, 36) = login_config.features; // Bitmask for account features
-                memcpy(MainReservePacket, ReservePacket, sendsize);
+                const int8 *pfmtQuery = "SELECT expansions,features FROM accounts WHERE id = %u;";
+                int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    LOBBY_026_RESERVEPACKET(ReservePacket);
+                    WBUFW(ReservePacket, 32) = Sql_GetUIntData(SqlHandle, 0); // Expansion Bitmask
+                    WBUFW(ReservePacket, 36) = Sql_GetUIntData(SqlHandle, 1); // Feature Bitmask
+                    memcpy(MainReservePacket, ReservePacket, sendsize);
+                }
+                else
+                {
+                    do_close_lobbydata(sd, fd);
+                    return -1;
+                }
             }
+
             //Хеширование пакета, и запись значения Хеш функции в пакет
             unsigned char Hash[16];
             md5(MainReservePacket, Hash, sendsize);
             memcpy(MainReservePacket + 12, Hash, 16);
             //Запись итогового пакета
             session[fd]->wdata.assign((const char*)MainReservePacket, sendsize);
-
+            session[fd]->ver_mismatch = ver_mismatch;
             RFIFOSKIP(fd, session[fd]->rdata.size());
             RFIFOFLUSH(fd);
         }
@@ -504,7 +525,6 @@ int32 lobbyview_parse(int32 fd)
         case 0x14:
         {
             //delete char
-            uint32 ContentID = RBUFL(session[fd]->rdata.data(), 0x1C);
             uint32 CharID = RBUFL(session[fd]->rdata.data(), 0x20);
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
@@ -532,7 +552,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x1F:
         {
             if (session[sd->login_lobbydata_fd] == nullptr) {
-                ShowInfo("0x1F nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+                ShowInfo("0x1F nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
                 uint32 val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
@@ -566,7 +586,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x07:
         {
             if (session[sd->login_lobbydata_fd] == nullptr) {
-                ShowInfo("0x07 nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+                ShowInfo("0x07 nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
                 uint32 val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
@@ -590,7 +610,7 @@ int32 lobbyview_parse(int32 fd)
                 do_close_lobbyview(sd, fd);
                 return -1;
             }
-            char lobbydata_code[] = { 0x15, 0x07 };
+            // char lobbydata_code[] = { 0x15, 0x07 };
             //				session[sd->login_lobbydata_fd]->wdata[0]  = 0x15;
             //				session[sd->login_lobbydata_fd]->wdata[1]  = 0x07;
             //				WFIFOSET(sd->login_lobbydata_fd,2);

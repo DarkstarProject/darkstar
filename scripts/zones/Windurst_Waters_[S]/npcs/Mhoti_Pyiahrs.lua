@@ -3,8 +3,8 @@
 --   NPC: Mhoti Pyiahrs
 --  Type: Allegiance
 -- @zone 94
--- @pos 6.356 -2 26.677
--- 
+-- !pos 6.356 -2 26.677
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

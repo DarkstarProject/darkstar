@@ -138,7 +138,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x0099);
-    npc:wait(-1);
+    npc:wait();
 end; 
 
 -----------------------------------

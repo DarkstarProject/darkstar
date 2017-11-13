@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4980
---    Scroll of Foe Requiem V
---    Teaches the song Foe Requiem V
+-- ID: 4980
+-- Scroll of Foe Requiem V
+-- Teaches the song Foe Requiem V
 -----------------------------------------
 
 -----------------------------------------

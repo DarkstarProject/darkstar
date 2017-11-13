@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 --  MOB: Koenigstiger
 -- Involved in Quests: Unbridled Passion (RNG AF3)
--- @zone 112
+-- !zone 112
 -----------------------------------
 
 require("scripts/globals/quests");

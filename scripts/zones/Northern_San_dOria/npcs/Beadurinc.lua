@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Beadurinc
 -- Type: Smithing Synthesis Image Support
--- @pos -182.300 10.999 146.650 231
+-- !pos -182.300 10.999 146.650 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

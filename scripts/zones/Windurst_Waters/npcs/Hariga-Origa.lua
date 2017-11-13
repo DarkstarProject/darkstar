@@ -3,7 +3,7 @@
 --  NPC:  Hariga-Origa
 --  Starts & Finishes Quest: Glyph Hanger
 -- Involved in Mission 2-1
--- @pos -62 -6 105 238
+-- !pos -62 -6 105 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -17,13 +17,13 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     smudgeStatus = player:getQuestStatus(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
-    
+
     if (smudgeStatus == QUEST_ACCEPTED and trade:hasItemQty(637,1) and trade:hasItemQty(4382,1)) then
         player:startEvent(0x01a1,3000);
     end
-        
+
 end;
 
 -----------------------------------
@@ -48,16 +48,16 @@ function onTrigger(player,npc)
     elseif (GlyphHanger == QUEST_ACCEPTED) then
         if (player:hasKeyItem(NOTES_FROM_IPUPU)) then
             player:startEvent(0x0181);
-        else 
+        else
             player:startEvent(0x017e);
         end
     elseif (GlyphHanger == QUEST_AVAILABLE) then
         player:startEvent(0x017d);
-    
+
     else
         player:startEvent(0x0174); -- The line will never be executed
     end
-    
+
 end;
 
 -----------------------------------
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_FEIYIN);
         end
         player:addFame(WINDURST,120);
-        player:completeQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);    
+        player:completeQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
     end
-    
+
 end;

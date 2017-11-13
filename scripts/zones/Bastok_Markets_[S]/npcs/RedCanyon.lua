@@ -5,8 +5,6 @@
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
-
-
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
@@ -18,6 +16,9 @@ end;
 -----------------------------------
 -- onEventFinish
 -----------------------------------
+
+function onEventUpdate(player,csid,option)
+end
 
 function onEventFinish(player,csid,option)
 printf("CSID: %u",csid);

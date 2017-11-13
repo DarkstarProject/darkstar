@@ -33,7 +33,13 @@ function onSpellCast(caster,target,spell)
 
     local duration = 3 * (1 + (skill / 11));
     local base = math.floor((math.floor(0.67 * caster:getMainLvl())/10)*(37 + math.floor(0.67*dINT)))
-    local resist = applyResistance(caster,spell,target,dINT,DARK_MAGIC_SKILL,0);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = DARK_MAGIC_SKILL;
+    params.bonus = 0;
+    params.effect = nil;
+    resist = applyResistance(caster, target, spell, params);
     local dmg = base * resist;
     duration = duration * resist;
     dmg = addBonuses(caster, spell, target, dmg);

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4877
---    Scroll of Absorb-AGI
---    Teaches the black magic Absorb-AGI
+-- ID: 4877
+-- Scroll of Absorb-AGI
+-- Teaches the black magic Absorb-AGI
 -----------------------------------------
 
 -----------------------------------------

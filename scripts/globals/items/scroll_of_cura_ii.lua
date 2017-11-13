@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5082
---    Scroll of Cura II
---    Teaches the white magic Cura II
+-- ID: 5082
+-- Scroll of Cura II
+-- Teaches the white magic Cura II
 -----------------------------------------
 
 -----------------------------------------

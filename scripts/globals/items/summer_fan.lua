@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4252
---    Summer Fan
---    A paper fan appears in the user's right hand
+-- ID: 4252
+-- Summer Fan
+-- A paper fan appears in the user's right hand
 -----------------------------------------
 
 -----------------------------------------

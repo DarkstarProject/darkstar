@@ -25,12 +25,12 @@ function onMobDespawn(mob)
 
     if (Deadly_Dodo_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Deadly_Dodo");
-        if (ToD <= os.time(t) and GetMobAction(Deadly_Dodo) == 0) then
+        if (ToD <= os.time() and GetMobAction(Deadly_Dodo) == 0) then
             if (math.random(1,3) == 2) then
                 UpdateNMSpawnPoint(Deadly_Dodo);
                 GetMobByID(Deadly_Dodo):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Deadly_Dodo", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4812
---    Scroll of Flare
---    Teaches the black magic Flare
+-- ID: 4812
+-- Scroll of Flare
+-- Teaches the black magic Flare
 -----------------------------------------
 
 -----------------------------------------

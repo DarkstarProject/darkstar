@@ -13,9 +13,9 @@
 -- 70      |4       |1:00 minute
 -- 90      |5       |48 seconds
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -23,7 +23,7 @@ require("scripts/globals/status");
 
 function onAbilityCheck(player,target,ability)
     if player:hasStatusEffect(EFFECT_ALTRUISM) then
-        return MSGBASIC_EFFECT_ALREADY_ACTIVE, 0;
+        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;

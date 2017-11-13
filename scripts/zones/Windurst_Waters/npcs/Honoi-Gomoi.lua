@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 -- NPC: Honoi-Gumoi
 -- Involved In Quest: Crying Over Onions, Hat in Hand
---  @zone = 238
--- @pos = -195 -11 -120
+-- !pos -195 -11 -120 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -11,6 +10,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -22,9 +22,9 @@ function onTrade(player,npc,trade)
         StarSpinel = trade:hasItemQty(1149,1);
         if (StarSpinel == true and count == 1) then
             player:startEvent(0x0307,0,1149);
-        end    
-    end    
-end; 
+        end
+    end
+end;
 
 -----------------------------------
 -- onTrigger Action

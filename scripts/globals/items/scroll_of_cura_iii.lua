@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5083
---    Scroll of Cura III
---    Teaches the white magic Cura III
+-- ID: 5083
+-- Scroll of Cura III
+-- Teaches the white magic Cura III
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6048
---    Noctohelix Schema
---    Teaches the black magic Noctohelix
+-- ID: 6048
+-- Noctohelix Schema
+-- Teaches the black magic Noctohelix
 -----------------------------------------
 
 -----------------------------------------

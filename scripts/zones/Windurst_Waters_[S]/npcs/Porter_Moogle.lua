@@ -3,7 +3,7 @@
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
 --  @zone 94
--- @pos TODO
+-- !pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -11,7 +11,7 @@ package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
-local e = 
+local e =
 {
     TALK_EVENT_ID       =   523,
     STORE_EVENT_ID      =   524,

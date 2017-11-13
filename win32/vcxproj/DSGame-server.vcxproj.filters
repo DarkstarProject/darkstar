@@ -854,6 +854,12 @@
     <ClInclude Include="..\..\src\map\ai\states\respawn_state.h">
       <Filter>Header Files\ai\states</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\char_recast_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\event_update_string.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1563,6 +1569,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\ai\states\respawn_state.cpp">
       <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\char_recast_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\event_update_string.cpp">
+      <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

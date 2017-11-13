@@ -2,7 +2,7 @@
 -- Area: Valkurm Dunes
 --  NPC: Quanteilleron, R.K.
 -- Outpost Conquest Guards
--- @pos 144 -7 104 103
+-- !pos 144 -7 104 103
 -------------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -------------------------------------

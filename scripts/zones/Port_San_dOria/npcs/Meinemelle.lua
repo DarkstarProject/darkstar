@@ -3,8 +3,8 @@
 --   NPC: Meinemelle
 --  Type: Standard NPC
 -- @zone 232
--- @pos -8.289 -9.3 -146.093
--- 
+-- !pos -8.289 -9.3 -146.093
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

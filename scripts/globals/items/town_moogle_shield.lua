@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 16182
---    Town Moogle Shield
---    Enchantment: 60Min, Costume - Moogle
+-- ID: 16182
+-- Town Moogle Shield
+-- Enchantment: 60Min, Costume - Moogle
 -----------------------------------------
 
 require("scripts/globals/status");

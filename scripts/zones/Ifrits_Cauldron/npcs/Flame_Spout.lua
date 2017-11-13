@@ -1,7 +1,7 @@
 ----------------------------------
 -- Area: Ifrit's Cauldron
 -- NPC: Flame Spout
--- @pos 193.967 -0.400 19.492 205
+-- !pos 193.967 -0.400 19.492 205
 -----------------------------------
 
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
       GetNPCByID(npcid+5):openDoor(90);
       player:tradeComplete();
    end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
     -- printf("%u",npc:getID())
     local npcid = npc:getID();
-    
+
    -- Commented out to preserve CSIDs for the quest, since the workaround was removed.
     --[[if (npcid == 17617204) then
         player:startEvent(0x000b);
@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     elseif (npcid == 17617207) then
         player:startEvent(0x000e);
     end]]
-    
+
 end;
 -----------------------------------
 -- onEventUpdate

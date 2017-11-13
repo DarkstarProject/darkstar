@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4652
---    Scroll of Protect II
---    Teaches the white magic Protect II
+-- ID: 4652
+-- Scroll of Protect II
+-- Teaches the white magic Protect II
 -----------------------------------------
 
 -----------------------------------------

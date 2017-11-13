@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5277
---    Old Quiver +7
---    When used, you will obtain one partial stack of Crude Arrows +7
+-- ID: 5277
+-- Old Quiver +7
+-- When used, you will obtain one partial stack of Crude Arrows +7
 -----------------------------------------
 
 -----------------------------------------
@@ -22,7 +22,5 @@ end;
 
 function onItemUse(target)
     local quantity = math.random(99);
-    quantity = math.random(99);
-    quantity = math.random(99);
     target:addItem(18188,quantity);
 end;

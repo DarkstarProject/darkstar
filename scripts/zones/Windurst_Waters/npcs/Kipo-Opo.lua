@@ -2,7 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Kipo-Opo
 -- Type: Cooking Adv. Image Support
--- @pos -119.750 -5.239 64.500 238
+-- !pos -119.750 -5.239 64.500 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

@@ -25,12 +25,12 @@ function onMobDespawn(mob)
 
     if (Cargo_Crab_Colin_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Cargo_Crab_Colin");
-        if (ToD <= os.time(t) and GetMobAction(Cargo_Crab_Colin) == 0) then
+        if (ToD <= os.time() and GetMobAction(Cargo_Crab_Colin) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Cargo_Crab_Colin);
                 GetMobByID(Cargo_Crab_Colin):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Cargo_Crab_Colin", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

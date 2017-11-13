@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4744
---    Scroll of Invisible
---    Teaches the white magic Invisible
+-- ID: 4744
+-- Scroll of Invisible
+-- Teaches the white magic Invisible
 -----------------------------------------
 
 -----------------------------------------

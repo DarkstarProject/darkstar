@@ -1,21 +1,20 @@
 -----------------------------------
 -- Area: AlTaieu
 -- NPC:  HomePoint#2
--- @pos -532 0 447 33
+-- !pos -532 0 447 33
 -----------------------------------
-
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
-
-require("scripts/globals/settings");
+-----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/homepoint");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +23,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21fd, 86);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,7 +44,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21fd) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

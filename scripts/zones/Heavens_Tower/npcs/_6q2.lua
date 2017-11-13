@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Heaven's Tower
 -- NPC:  Vestal Chamber (chamber of the Star Sibyl)
--- @pos 0.1 -49 37 242
+-- !pos 0.1 -49 37 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -16,17 +16,17 @@ require("scripts/zones/Heavens_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
-    
+
     if (CurrentMission == A_NEW_JOURNEY and MissionStatus == 0) then
         player:startEvent(0x0099);
     elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x009A);
     end
-    
+
     return 1;
 
 end;
@@ -68,7 +68,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0099) then
         player:setVar("MissionStatus",1);
         player:delKeyItem(STAR_CRESTED_SUMMONS);
@@ -98,5 +98,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x016A) then
         player:setVar("MissionStatus",3);
     end
-    
+
 end;

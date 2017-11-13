@@ -246,6 +246,7 @@ extern int32 naddr_;   // # of ip addresses
 		SendFunc func_send;
 		ParseFunc func_parse;
 
+        bool ver_mismatch;
 		void* session_data; // stores application-specific data related to the session
 	};
 

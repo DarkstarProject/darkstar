@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm9 (???)
 -- Spawns Chhir Batti
--- @pos ? ? ? 217
+-- !pos ? ? ? 217
 -----------------------------------
 require("scripts/globals/status");
 

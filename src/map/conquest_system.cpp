@@ -90,7 +90,7 @@ namespace conquest
             return;
 
         auto lost = 0;
-        for (auto i = 0; i < 4; ++i)
+        for (auto i = 0u; i < 4; ++i)
         {
             if (i == nation)
             {
@@ -169,6 +169,10 @@ namespace conquest
             case REGION_TAVNAZIA:
             {
                 points = 600;
+                break;
+            }
+            default:
+            {
                 break;
             }
         }
@@ -443,14 +447,14 @@ namespace conquest
                     windurst_prev = Sql_GetIntData(SqlHandle, 1);
             }
         }
-        return GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, sandoria_prev);
+        return GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
     }
 
     uint8 GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst)
     {
-        if ((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9||
-            (bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst) && bastok > 9||
-            (windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria) && windurst > 9)
+        if (((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9) ||
+            ((bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst) && bastok > 9) ||
+            ((windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria) && windurst > 9))
         {
             return 1;
         }
@@ -578,7 +582,7 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            uint32 points = exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+            uint32 points = (uint32)(exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15));
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);

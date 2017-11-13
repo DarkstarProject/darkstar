@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Dahaeel
---  Type: Standard NPC
--- @zone 48
--- @pos -58.732 -6.999 68.096
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+-- Area: Al Zahbi
+--  NPC: Dahaeel
+-- Type: Standard NPC
+-- !pos -58.732 -6.999 68.096 48
 -----------------------------------
 
 -----------------------------------
@@ -42,4 +37,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

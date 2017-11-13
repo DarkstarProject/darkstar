@@ -2,7 +2,7 @@
 -- Area: Vunkerl Inlet (S) (F-5)
 -- NPC: Leafy Patch
 -- Involved in Quests
--- @pos -418 -33 576
+-- !pos -418 -33 576
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
@@ -38,6 +38,9 @@ end;
 -----------------------------------
 -- onEventFinish
 -----------------------------------
+
+function onEventUpdate(player,csid,option)
+end
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

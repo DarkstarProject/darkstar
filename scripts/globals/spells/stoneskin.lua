@@ -3,12 +3,10 @@
 -----------------------------------------
 -- http://wiki.ffxiclopedia.org/wiki/Stoneskin
 -- Max 350 damage absorbed
-
+-- (before cap bonus gear, with no settings.lua adjustment)
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -38,9 +36,9 @@ function onSpellCast(caster,target,spell)
 
     local final = pAbs + pEquipMods;
     if (target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(MMSG_BUFF_FAIL);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
     return EFFECT_STONESKIN;

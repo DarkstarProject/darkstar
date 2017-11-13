@@ -3,7 +3,7 @@
 -- NPC:  Romeo
 -- Starts and Finishes Quest: Donate to Recycling
 -- @zone 248
--- @pos -11 -11 -6
+-- !pos -11 -11 -6
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -19,12 +19,12 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(OTHER_AREAS,DONATE_TO_RECYCLING) == QUEST_ACCEPTED) then
-        if ((trade:hasItemQty(16482,5) == true or trade:hasItemQty(16483,5) == true or trade:hasItemQty(16534,5) == true or 
-            trade:hasItemQty(17068,5) == true or trade:hasItemQty(17104,5) == true) and trade:getGil() == 0 and trade:getItemCount() == 5) then 
+        if ((trade:hasItemQty(16482,5) == true or trade:hasItemQty(16483,5) == true or trade:hasItemQty(16534,5) == true or
+            trade:hasItemQty(17068,5) == true or trade:hasItemQty(17104,5) == true) and trade:getGil() == 0 and trade:getItemCount() == 5) then
             player:startEvent(0x0015); -- Finish quest "Donate to Recycling"
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -32,7 +32,7 @@ end;
 
 function onTrigger(player,npc)
     DonateToRecycling = player:getQuestStatus(OTHER_AREAS,DONATE_TO_RECYCLING);
-    
+
     if (DonateToRecycling == QUEST_AVAILABLE) then
         player:startEvent(0x0014); -- Start quest "Donate to Recycling"
     elseif (DonateToRecycling == QUEST_ACCEPTED) then
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0017); -- Standard dialog
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -62,9 +62,9 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0014) then
         player:addQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
     elseif (csid == 0x0015) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
-        else 
+        else
             player:completeQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
             player:addTitle(ECOLOGIST);
             player:addItem(89);

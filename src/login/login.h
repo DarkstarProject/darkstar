@@ -48,9 +48,6 @@ struct login_config_t
     uint16 login_view_port;
     std::string login_view_ip;
 
-    uint16 expansions;
-    uint16 features;
-
     std::string servername;
 
     std::string mysql_host;         // mysql addr     -> localhost:3306
@@ -68,7 +65,8 @@ struct login_config_t
 
 struct version_info_t
 {
-    std::string CLIENT_VER;         // Expected Client version
+    std::string client_ver;         // Expected Client version
+    bool enable_ver_lock;
 };
 
 extern login_config_t login_config;

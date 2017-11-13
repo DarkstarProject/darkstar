@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4773
---    Scroll of Thunder II
---    Teaches the black magic Thunder II
+-- ID: 4773
+-- Scroll of Thunder II
+-- Teaches the black magic Thunder II
 -----------------------------------------
 
 -----------------------------------------

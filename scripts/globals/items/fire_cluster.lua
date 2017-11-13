@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4104
---    Fire Cluster
---    Turn into a stack of fire crystals
+-- ID: 4104
+-- Fire Cluster
+-- Turn into a stack of fire crystals
 -----------------------------------------
 
 -----------------------------------------

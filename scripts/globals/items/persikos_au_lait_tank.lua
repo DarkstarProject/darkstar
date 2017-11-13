@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 16227
---    Persikos Tank
---    When used, you will obtain one Persikos au lait
+-- ID: 16227
+-- Persikos Tank
+-- When used, you will obtain one Persikos au lait
 -----------------------------------------
 
 -----------------------------------------

@@ -58,14 +58,14 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quant
     uint32 auctionFee = 0;
     if (quantity == 0) // This is a stack..Yes, zero for stacks.. Why is this being called quantity?
     {
-        auctionFee = map_config.ah_base_fee_stacks+(price*map_config.ah_tax_rate_stacks/100);
+        auctionFee = (uint32)(map_config.ah_base_fee_stacks + (price * map_config.ah_tax_rate_stacks / 100));
     }
     else // This is a single item.
     {
-        auctionFee = map_config.ah_base_fee_single+(price*map_config.ah_tax_rate_single/100);
+        auctionFee = (uint32)(map_config.ah_base_fee_single  + (price * map_config.ah_tax_rate_single / 100));
     }
 
-    auctionFee = dsp_cap(auctionFee, 1, map_config.ah_max_fee);
+    auctionFee = dsp_cap(auctionFee, 0, map_config.ah_max_fee);
 
     WBUFB(data,(0x04)) = action;
     WBUFB(data,(0x05)) = 0xFF;

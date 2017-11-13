@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Waughroon Shrine
 -- Name: Mission Rank 2
--- @pos -345 104 -260 144
+-- !pos -345 104 -260 144
 -----------------------------------
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(player:getNation(),5)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
@@ -38,24 +38,24 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
-        if ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or 
-        player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and 
+        if ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or
+        player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and
         player:getVar("MissionStatus") == 10) then
             player:addKeyItem(KINDRED_CREST);
             player:messageSpecial(KEYITEM_OBTAINED,KINDRED_CREST);
             player:setVar("MissionStatus",11);
         end
     end
-    
+
 end;

@@ -2,7 +2,7 @@
 -- Area: Caedarva Mire
 -- NPC:  qm5
 -- Involved in quest: Get the Picture
--- @pos  -389 6 -597 79
+-- !pos  -389 6 -597 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 

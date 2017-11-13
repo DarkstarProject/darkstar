@@ -2,7 +2,7 @@
 -- Area: Vunkerl Inlet (S) (I-6)
 -- NPC: Leadavox
 -- Involved in Quests
--- @pos 206 -32 316
+-- !pos 206 -32 316
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
@@ -29,7 +29,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_ACCEPTED) then 
+    if (player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_ACCEPTED) then
         if (player:getVar("BetterPartOfValProg") == 2) then
             player:startEvent(0x0065);
         elseif (player:getVar("BetterPartOfValProg") == 3) then
@@ -42,6 +42,9 @@ end;
 -- onEventFinish
 -----------------------------------
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -53,5 +56,5 @@ function onEventFinish(player,csid,option)
         player:setVar("BetterPartOfValProg",4)
         player:addKeyItem(XHIFHUT);
         player:messageSpecial(KEYITEM_OBTAINED,XHIFHUT);
-    end     
+    end
 end;

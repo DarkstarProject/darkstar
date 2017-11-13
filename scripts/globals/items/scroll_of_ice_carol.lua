@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5047
---    Scroll of Ice Carol
---    Teaches the song Ice Carol
+-- ID: 5047
+-- Scroll of Ice Carol
+-- Teaches the song Ice Carol
 -----------------------------------------
 
 -----------------------------------------

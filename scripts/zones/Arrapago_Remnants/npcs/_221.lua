@@ -9,6 +9,9 @@ function onTrigger(entity, npc)
     end
 end
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(entity, eventid, result, door)
     if (eventid == 300 and result == 1) then
         local instance = door:getInstance()

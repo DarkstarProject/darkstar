@@ -6,13 +6,14 @@
 package.loaded[ "scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
+require("scripts/zones/East_Sarutabaruta/TextIDs");
+require("scripts/zones/East_Sarutabaruta/MobIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/globals/icanheararainbow");
-require("scripts/zones/East_Sarutabaruta/TextIDs");
 require("scripts/globals/zone");
-require("scripts/globals/chocobo_digging");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -57,7 +58,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    SetRespawnTime(17252725, 3600, 4200);
+    UpdateNMSpawnPoint(DUKE_DECAPOD);
+    GetMobByID(DUKE_DECAPOD):setRespawnTime(math.random(3600, 4200));
 end;
 
 -----------------------------------
@@ -79,7 +81,7 @@ function onZoneIn( player, prevZone)
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 0x0034; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and
-        player:hasStatusEffect(EFFECT_CHOCOBO) == false ) then
+        player:hasStatusEffect(EFFECT_MOUNTED) == false ) then
         cs = 0x0047;
     end
 

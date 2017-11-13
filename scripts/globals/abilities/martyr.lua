@@ -6,9 +6,9 @@
 -- Duration: Instant
 -- Target: Party member, cannot target self.
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/utils");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -16,9 +16,9 @@ require("scripts/globals/utils");
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return MSGBASIC_CANNOT_PERFORM_TARG,0;
+        return msgBasic.CANNOT_PERFORM_TARG,0;
     elseif (player:getHP() < 4) then -- Fails if HP < 4
-        return MSGBASIC_UNABLE_TO_USE_JA,0;
+        return msgBasic.UNABLE_TO_USE_JA,0;
     else
         return 0,0;
     end
@@ -38,7 +38,7 @@ function onUseAbility(player,target,ability)
 
     local damageHP = math.floor(player:getHP() * 0.25);
     -- printf("Martyr HP Damage: %d", damageHP);
- 
+
     --We need to capture this here because the base damage is the basis for the heal
     local healHP = damageHP * hpPercent;
     healHP = utils.clamp(healHP, 0,target:getMaxHP() - target:getHP());

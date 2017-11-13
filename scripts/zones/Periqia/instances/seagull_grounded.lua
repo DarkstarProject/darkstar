@@ -152,3 +152,8 @@ function onInstanceComplete(instance)
     box:setStatus(STATUS_NORMAL);
     
 end;
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+end

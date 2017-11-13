@@ -12,40 +12,34 @@
 -- Magic Bursts on: Induration, Distortion, Darkness
 -- Combos: None
 -----------------------------------------
-
+require("scripts/globals/bluemagic");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
-    local typeEffect = EFFECT_EVASION_DOWN;
-    local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.effect = EFFECT_EVASION_DOWN;
+    local resist = applyResistance(caster, target, spell, params);
     local duration = 60 * resist;
     local power = 20;
-    
+
     if (resist > 0.5) then -- Do it!
-        if (target:addStatusEffect(typeEffect,power,0,duration)) then
-            spell:setMsg(236);
+        if (target:addStatusEffect(params.effect,power,0,duration)) then
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end;
 
-    return typeEffect;
+    return params.effect;
 end;

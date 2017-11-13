@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: ???
 -- Spawns Glavoid
--- @pos ? ? ? 45
+-- !pos ? ? ? 45
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

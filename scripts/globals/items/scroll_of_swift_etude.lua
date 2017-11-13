@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5042
---    Scroll of Swift Etude
---    Teaches the song Swift Etude
+-- ID: 5042
+-- Scroll of Swift Etude
+-- Teaches the song Swift Etude
 -----------------------------------------
 
 -----------------------------------------

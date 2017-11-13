@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4221
---    Item: Beetle Quiver
---    When used, you will obtain one stack of Beetle Arrows
+-- ID: 4221
+-- Item: Beetle Quiver
+-- When used, you will obtain one stack of Beetle Arrows
 -----------------------------------------
 
 -----------------------------------------

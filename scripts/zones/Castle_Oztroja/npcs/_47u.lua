@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _47u (Handle)
 -- Notes: Opens door _474 from behind
--- @pos -60 24 -77 151
+-- !pos -60 24 -77 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -15,18 +15,18 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrigger(player,npc)
-        
-    local DoorID = npc:getID() - 1;        
+
+    local DoorID = npc:getID() - 1;
     local DoorA = GetNPCByID(DoorID):getAnimation();
-    
+
     if (player:getZPos() < -72) then
       if (DoorA == 9 and npc:getAnimation() == 9) then
         npc:openDoor(6.5);
         -- Should be a ~1 second delay here before the door opens
-        GetNPCByID(DoorID):openDoor(4.5); 
-      end     
-    end        
-    
+        GetNPCByID(DoorID):openDoor(4.5);
+      end
+    end
+
 end;
 
 -----------------------------------

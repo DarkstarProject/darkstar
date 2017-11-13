@@ -30,7 +30,7 @@ class CBlueSpell : public CSpell
 {
 public:
 
-    CBlueSpell(uint16 id);
+    CBlueSpell(SpellID id);
     virtual std::unique_ptr<CSpell> clone() override;
 
     uint16		getMonsterSkillId();
@@ -48,19 +48,19 @@ public:
     void        setTraitWeight(uint8 weight);
     void        setPrimarySkillchain(uint8 sc);
     void        setSecondarySkillchain(uint8 sc);
-    void		addModifier(CModifier* modifier);
+    void		addModifier(CModifier modifier);
 
-	std::vector<CModifier*> modList;					// modifiers added when blue spell is equipped
+	std::vector<CModifier> modList;					// modifiers added when blue spell is equipped
 
 private:
 
-	uint16		m_monsterSkillId;						// matching skill for a blue spell
-    uint8       m_setPoints;
-    uint8       m_ecosystem;
-    uint8       m_traitCategory;
-    uint8       m_traitWeight;
-    uint8       m_PrimarySkillchain;
-    uint8       m_SecondarySkillchain;
+	uint16		m_monsterSkillId {};						// matching skill for a blue spell
+    uint8       m_setPoints {};
+    uint8       m_ecosystem {};
+    uint8       m_traitCategory {};
+    uint8       m_traitWeight {};
+    uint8       m_PrimarySkillchain {};
+    uint8       m_SecondarySkillchain {};
 
 };
 

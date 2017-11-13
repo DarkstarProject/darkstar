@@ -2,7 +2,7 @@
 -- Area: Yuhtunga Jungle
 --  NPC: Mahol, I.M.
 -- Outpost Conquest Guards
--- @pos -242.487 -1 -402.772 123
+-- !pos -242.487 -1 -402.772 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------

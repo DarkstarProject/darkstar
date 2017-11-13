@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Shahau
 -- Type: Alchemy Image Support
--- @pos -10.470 -6.25 -141.700 241
+-- !pos -10.470 -6.25 -141.700 241
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

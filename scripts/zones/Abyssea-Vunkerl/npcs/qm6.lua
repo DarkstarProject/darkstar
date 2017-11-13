@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm6 (???)
 -- Spawns Rakshas
--- @pos ? ? ? 217
+-- !pos ? ? ? 217
 -----------------------------------
 require("scripts/globals/status");
 

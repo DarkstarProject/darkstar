@@ -65,7 +65,7 @@
 #include "../items/item_usable.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
-#include "../recast_container.h"
+#include "../char_recast_container.h"
 #include "../latent_effect_container.h"
 #include "../status_effect_container.h"
 #include "../treasure_pool.h"
@@ -180,8 +180,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
-
-    PRecastContainer = new CRecastContainer(this);
+    PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
     petZoningInfo.respawnPet = false;
@@ -217,7 +216,6 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
-    delete PRecastContainer;
 }
 
 uint8 CCharEntity::GetGender()
@@ -277,11 +275,32 @@ void CCharEntity::erasePackets(uint8 num)
     }
 }
 
+void CCharEntity::setPetZoningInfo()
+{
+    if (PPet->objtype == TYPE_PET)
+    {
+        switch (((CPetEntity*)PPet)->getPetType())
+        {
+        case PETTYPE_JUG_PET:
+        case PETTYPE_AUTOMATON:
+        case PETTYPE_WYVERN:
+            petZoningInfo.petHP = PPet->health.hp;
+            petZoningInfo.petTP = PPet->health.tp;
+            petZoningInfo.petMP = PPet->health.mp;
+            petZoningInfo.petType = ((CPetEntity*)PPet)->getPetType();
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 void CCharEntity::resetPetZoningInfo()
 {
     // reset the petZoning info
     petZoningInfo.petHP = 0;
     petZoningInfo.petTP = 0;
+    petZoningInfo.petMP = 0;
     petZoningInfo.respawnPet = false;
     petZoningInfo.petType = PETTYPE_AVATAR;
 }
@@ -344,7 +363,7 @@ int16 CCharEntity::addTP(int16 tp)
     tp = CBattleEntity::addTP(tp);
     //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
     //	{
-    PLatentEffectContainer->CheckLatentsTP(health.tp);
+    PLatentEffectContainer->CheckLatentsTP();
     //	}
     return abs(tp);
 }
@@ -352,7 +371,7 @@ int16 CCharEntity::addTP(int16 tp)
 int32 CCharEntity::addHP(int32 hp)
 {
     hp = CBattleEntity::addHP(hp);
-    PLatentEffectContainer->CheckLatentsHP(health.hp);
+    PLatentEffectContainer->CheckLatentsHP();
 
     return abs(hp);
 }
@@ -360,7 +379,7 @@ int32 CCharEntity::addHP(int32 hp)
 int32 CCharEntity::addMP(int32 mp)
 {
     mp = CBattleEntity::addMP(mp);
-    PLatentEffectContainer->CheckLatentsMP(health.mp);
+    PLatentEffectContainer->CheckLatentsMP();
 
     return abs(mp);
 }
@@ -519,6 +538,12 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
             return false;
         }
     }
+
+    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
+    {
+        return true;
+    }
+
     if (CBattleEntity::ValidTarget(PInitiator, targetFlags))
     {
         return true;
@@ -537,8 +562,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 
 bool CCharEntity::CanUseSpell(CSpell* PSpell)
 {
-    return charutils::hasSpell(this, PSpell->getID()) && CBattleEntity::CanUseSpell(PSpell) &&
-        !PRecastContainer->Has(RECAST_MAGIC, PSpell->getID());
+    return charutils::hasSpell(this, static_cast<uint16>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
+        !PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()));
 }
 
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
@@ -623,7 +648,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
 
     for (auto&& actionList : action.actionLists)
     {
@@ -633,8 +658,8 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                 StatusEffectContainer->HasStatusEffect(EFFECT_CHAIN_AFFINITY) &&
                 static_cast<CBlueSpell*>(PSpell)->getPrimarySkillchain() != 0)
             {
-
-                SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, static_cast<CBlueSpell*>(PSpell));
+                auto PBlueSpell = static_cast<CBlueSpell*>(PSpell);
+                SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PBlueSpell->getPrimarySkillchain(), PBlueSpell->getSecondarySkillchain(), 0 );
                 if (effect != SUBEFFECT_NONE)
                 {
                     uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
@@ -698,7 +723,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     int16 tp = state.GetSpentTP();
     tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
 
-    PLatentEffectContainer->CheckLatentsTP(this->health.tp);
+    PLatentEffectContainer->CheckLatentsTP();
 
     SLOTTYPE damslot = SLOT_MAIN;
     if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize <= PWeaponSkill->getRange())
@@ -740,25 +765,9 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
-                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                actionTarget.speceffect = (SPECEFFECT)((damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE) | actionTarget.speceffect);
-
-                if (actionTarget.reaction == REACTION_EVADE)
-                    actionTarget.messageID = primary ? 188 : 282; //but misses
-                else if (damage < 0)
+                if (primary && PBattleTarget->objtype == TYPE_MOB)
                 {
-                    actionTarget.param = -damage;
-                    actionTarget.messageID = primary ? 238 : 263; //absorbed ws
-                }
-                else
-                {
-                    actionTarget.param = damage;
-                    actionTarget.messageID = primary ? 185 : 264; //damage ws
-
-                    if (primary && PBattleTarget->objtype == TYPE_MOB)
-                    {
-                        luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
-                    }
+                    luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
                 }
             }
             else
@@ -802,7 +811,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     {
                         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getPrimarySkillchain(), PWeaponSkill->getSecondarySkillchain(), PWeaponSkill->getTertiarySkillchain() );
                         if (effect != SUBEFFECT_NONE)
                         {
                             actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);
@@ -959,7 +968,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
                     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP(-PAbility->getAnimationID() * 1.5);
+                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
                         this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
                     else {
@@ -1004,7 +1013,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.speceffect = SPECEFFECT_NONE;
                 actionTarget.animation = PAbility->getAnimationID();
                 actionTarget.messageID = PAbility->getMessage();
-                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
 
                 if (msg == 0) {
                     msg = PAbility->getMessage();
@@ -1020,6 +1028,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 }
 
                 actionTarget.messageID = msg;
+                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
             }
         }
         else
@@ -1202,7 +1211,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                     actionTarget.messageID = 77;
                 }
 
-                damage = (this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif;
+                damage = (int32)((this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif);
 
                 if (slot == SLOT_RANGED)
                 {
@@ -1278,7 +1287,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
         // lower damage based on shadows taken
         if (shadowsTaken)
-            actionTarget.param = actionTarget.param * (1 - ((float)shadowsTaken / realHits));
+            actionTarget.param = (int32)(actionTarget.param * (1 - ((float)shadowsTaken / realHits)));
 
         // absorb message
         if (actionTarget.param < 0)
@@ -1406,19 +1415,19 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
         {
             actionTarget.animation = 496;
-            hpReturned = GetMaxHP()*0.5;
+            hpReturned = (uint16)(GetMaxHP() * 0.5);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
         }
         addHP(((hpReturned < 1) ? 1 : hpReturned));
@@ -1439,7 +1448,7 @@ void CCharEntity::OnRaise()
             expLost = GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(jobs.job[GetMJob()] + 1) * 8) / 100 : 2400;
         }
 
-        uint16 xpReturned = ceil(expLost * ratioReturned);
+        uint16 xpReturned = (uint16)(ceil(expLost * ratioReturned));
 
         if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {
@@ -1569,7 +1578,7 @@ void CCharEntity::Die()
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain);
+        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
 }
 
 void CCharEntity::Die(duration _duration)

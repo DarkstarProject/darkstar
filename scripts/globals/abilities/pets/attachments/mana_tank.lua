@@ -18,7 +18,7 @@ end
 
 function onManeuverGain(pet,maneuvers)
     local bonus = 0
-    local frame = pet:getFrame()
+    local frame = pet:getAutomatonFrame()
     if frame == 0x23 then bonus = 1 end
     if (maneuvers == 1) then
         pet:addMod(MOD_REFRESH, 1 + bonus);
@@ -31,7 +31,7 @@ end
 
 function onManeuverLose(pet,maneuvers)
     local bonus = 0
-    local frame = pet:getFrame()
+    local frame = pet:getAutomatonFrame()
     if frame == 0x23 then bonus = 1 end
     if (maneuvers == 1) then
         pet:delMod(MOD_REFRESH, 1 + bonus);

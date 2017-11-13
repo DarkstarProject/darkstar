@@ -49,7 +49,7 @@ int32 connect_client_login(int32 listenfd)
     struct sockaddr_in client_address;
     if ((fd = connect_client(listenfd, client_address)) != -1)
     {
-        int32 code = create_session(fd, recv_to_fifo, send_from_fifo, login_parse);
+        create_session(fd, recv_to_fifo, send_from_fifo, login_parse);
         session[fd]->client_addr = ntohl(client_address.sin_addr.s_addr);
         return fd;
     }
@@ -217,7 +217,7 @@ int32 login_parse(int32 fd)
             if (Sql_NumRows(SqlHandle) == 0)
             {
                 //creating new account_id
-                char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
+                const char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
 
                 uint32 accid = 0;
 

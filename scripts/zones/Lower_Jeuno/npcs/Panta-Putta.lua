@@ -4,7 +4,7 @@
 -- Starts and Finishes Quest: The Wonder Magic Set, The kind cardian
 -- Involved in Quests: The Lost Cardian
 -- @zone 245
--- @pos -61 0 -140
+-- !pos -61 0 -140
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -31,24 +31,24 @@ function onTrigger(player,npc)
     WonderMagicSetKI = player:hasKeyItem(WONDER_MAGIC_SET);
     TheLostCardianCS = player:getVar("theLostCardianVar");
     TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
-    
-    if (player:getFameLevel(JEUNO) >= 4 and TheWonderMagicSet == QUEST_AVAILABLE) then 
+
+    if (player:getFameLevel(JEUNO) >= 4 and TheWonderMagicSet == QUEST_AVAILABLE) then
         player:startEvent(0x004D); -- Start quest "The wonder magic set"
-    elseif (TheWonderMagicSet == QUEST_ACCEPTED and WonderMagicSetKI == false) then 
+    elseif (TheWonderMagicSet == QUEST_ACCEPTED and WonderMagicSetKI == false) then
         player:startEvent(0x0037); -- During quest "The wonder magic set"
     elseif (WonderMagicSetKI == true) then
         player:startEvent(0x0021); -- Finish quest "The wonder magic set"
-    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,COOK_S_PRIDE) ~= QUEST_COMPLETED) then 
+    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,COOK_S_PRIDE) ~= QUEST_COMPLETED) then
         player:startEvent(0x0028); -- Standard dialog
-    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_LOST_CARDIAN) == QUEST_AVAILABLE) then 
-        if (TheLostCardianCS >= 1) then 
+    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
+        if (TheLostCardianCS >= 1) then
             player:startEvent(0x001E); -- Second dialog for "The lost cardien" quest
         else
             player:startEvent(0x0028); -- Standard dialog
         end
     elseif (TheKindCardian == QUEST_ACCEPTED and player:getVar("theKindCardianVar") == 2) then
         player:startEvent(0x0023); -- Finish quest "The kind cardien"
-    elseif (TheKindCardian == QUEST_COMPLETED) then 
+    elseif (TheKindCardian == QUEST_COMPLETED) then
         player:startEvent(0x004C); -- New standard dialog after "The kind cardien"
     else
         player:startEvent(0x004E); -- Base standard dialog
@@ -75,9 +75,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x004D and option == 1) then 
+    if (csid == 0x004D and option == 1) then
         player:addQuest(JEUNO,THE_WONDER_MAGIC_SET);
-    elseif (csid == 0x0021) then 
+    elseif (csid == 0x0021) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13328);
         else
@@ -89,9 +89,9 @@ function onEventFinish(player,csid,option)
             player:needToZone(true);
             player:completeQuest(JEUNO,THE_WONDER_MAGIC_SET);
         end
-    elseif (csid == 0x001E) then 
+    elseif (csid == 0x001E) then
         player:setVar("theLostCardianVar",2);
-    elseif (csid == 0x0023) then 
+    elseif (csid == 0x0023) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13596);
         else

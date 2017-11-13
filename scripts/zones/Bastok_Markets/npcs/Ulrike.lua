@@ -2,7 +2,7 @@
 -- Area: Bastok Markets
 --  NPC: Ulrike
 -- Type: Goldsmithing Synthesis Image Support
--- @pos -218.399 -7.824 -56.203 235
+-- !pos -218.399 -7.824 -56.203 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

@@ -30,6 +30,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <thread>
+#include <iostream>
+
+#ifdef WIN32
+#include <io.h>
+#define isatty _isatty
+#else
+#include <unistd.h>
+#endif
 
 #include "login.h"
 #include "login_auth.h"
@@ -45,6 +53,7 @@ version_info_t version_info;
 
 Sql_t *SqlHandle = nullptr;
 std::thread messageThread;
+std::thread consoleInputThread;
 
 int32 do_init(int32 argc, char** argv)
 {
@@ -52,7 +61,6 @@ int32 do_init(int32 argc, char** argv)
     LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
     VERSION_INFO_FILENAME = "version.info";
 
-    const char *lan_cfgName = LAN_CONFIG_NAME;
     //srand(gettick());
 
     for (i = 1; i < argc; i++) {
@@ -62,14 +70,9 @@ int32 do_init(int32 argc, char** argv)
             login_versionscreen(1);
         else if (strcmp(argv[i], "--login_config") == 0 || strcmp(argv[i], "--login-config") == 0)
             LOGIN_CONF_FILENAME = argv[i + 1];
-        else if (strcmp(argv[i], "--lan_config") == 0 || strcmp(argv[i], "--lan-config") == 0)
-            lan_cfgName = argv[i + 1];
         else if (strcmp(argv[i], "--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
             runflag = 0;
     }
-
-    //lan_config_default(&lan_config);
-    //lan_config_read(lan_cfgName,&lan_config);
 
     login_config_default();
     login_config_read(LOGIN_CONF_FILENAME);
@@ -108,8 +111,38 @@ int32 do_init(int32 argc, char** argv)
     }
 
     messageThread = std::thread(message_server_init);
-
     ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
+
+    bool attached = isatty(0);
+
+    if (attached)
+    {
+        consoleInputThread = std::thread([&]()
+        {
+            ShowStatus("Console input thread is ready..\r\n");
+            // ctrl c apparently causes log spam
+            auto lastInputTime = server_clock::now();
+            while (true)
+            {
+                if ((server_clock::now() - lastInputTime) > 1s)
+                {
+                    std::string input;
+                    std::cin >> input;
+
+                    if (strcmp(input.c_str(), "verlock") == 0)
+                    {
+                        version_info.enable_ver_lock = !version_info.enable_ver_lock;
+                        ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    }
+                    else
+                    {
+                        ShowStatus("Unknown console input command\r\n");
+                    }
+                    lastInputTime = server_clock::now();
+                }
+            };
+        });
+    }
     return 0;
 }
 
@@ -145,8 +178,8 @@ int do_sockets(fd_set* rfd, duration next)
 
 
     // can timeout until the next tick
-    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
-    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
+    timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = (long)std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
 
     memcpy(rfd, &readfds, sizeof(*rfd));
@@ -344,14 +377,6 @@ int32 login_config_read(const char *cfgName)
         {
             login_config.search_server_port = atoi(w2);
         }
-        else if (strcmp(w1, "expansions") == 0)
-        {
-            login_config.expansions = atoi(w2);
-        }
-        else if (strcmp(w1, "features") == 0)
-        {
-            login_config.features = atoi(w2);
-        }
         else if (strcmp(w1, "servername") == 0)
         {
             login_config.servername = std::string(w2);
@@ -411,7 +436,11 @@ int32 version_info_read(const char *fileName)
 
         if (strcmp(w1, "CLIENT_VER") == 0)
         {
-            version_info.CLIENT_VER = std::string(w2);
+            version_info.client_ver = std::string(w2);
+        }
+        else if (strcmp(w1, "ENABLE_VER_LOCK") == 0)
+        {
+            version_info.enable_ver_lock = strcmp(w2, "true") == 0 || std::atoi(w2) == 1;
         }
     }
     fclose(fp);
@@ -427,7 +456,6 @@ int32 login_config_default()
     login_config.login_auth_ip = "127.0.0.1";
     login_config.login_auth_port = 54231;
 
-    login_config.expansions = 0xFFFF;
     login_config.servername = "DarkStar";
 
     login_config.mysql_host = "";
@@ -446,7 +474,8 @@ int32 login_config_default()
 
 int32 version_info_default()
 {
-    version_info.CLIENT_VER = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    version_info.client_ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    version_info.enable_ver_lock = true;
     // version_info.DSP_VER = 0;
     return 0;
 }

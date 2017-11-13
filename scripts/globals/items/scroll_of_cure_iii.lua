@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4611
---    Scroll of Cure III
---    Teaches the white magic Cure III
+-- ID: 4611
+-- Scroll of Cure III
+-- Teaches the white magic Cure III
 -----------------------------------------
 
 -----------------------------------------

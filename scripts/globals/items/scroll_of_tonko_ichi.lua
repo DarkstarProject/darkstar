@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4961
---    Scroll of Tonko: Ichi
---    Teaches the ninjutsu Tonko: Ichi
+-- ID: 4961
+-- Scroll of Tonko: Ichi
+-- Teaches the ninjutsu Tonko: Ichi
 -----------------------------------------
 
 -----------------------------------------

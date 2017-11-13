@@ -2,7 +2,7 @@
 -- Area: Vunkerl Inlet (S) (H-6)
 -- NPC: ???
 -- Involved in Quests
--- @pos -26 -31 364
+-- !pos -26 -31 364
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
@@ -37,6 +37,9 @@ end;
 -- onEventFinish
 -----------------------------------
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -58,5 +61,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x006D) then
         player:delKeyItem(VUNKERL_HERB);
         player:setVar("BoyAndTheBeast",2);
-    end     
+    end
 end;

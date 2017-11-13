@@ -3,8 +3,8 @@
 --   NPC: Eddy
 --  Type: NPC Quest Giver
 -- @zone 232
--- @pos -5.209 -8.999 39.833
--- 
+-- !pos -5.209 -8.999 39.833
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

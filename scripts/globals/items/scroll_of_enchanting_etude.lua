@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5038
---    Scroll of Enchanting Etude
---    Teaches the song Enchanting Etude
+-- ID: 5038
+-- Scroll of Enchanting Etude
+-- Teaches the song Enchanting Etude
 -----------------------------------------
 
 -----------------------------------------

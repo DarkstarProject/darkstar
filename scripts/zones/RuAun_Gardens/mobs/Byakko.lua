@@ -6,6 +6,7 @@ package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/RuAun_Gardens/TextIDs");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize
@@ -37,7 +38,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_LIGHT);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_LIGHT,dmg);
 
-    return SUBEFFECT_LIGHT_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+    return SUBEFFECT_LIGHT_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
 end;
 
 -----------------------------------

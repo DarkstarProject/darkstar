@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4638
---    Scroll of Banish III
---    Teaches the white magic Banish III
+-- ID: 4638
+-- Scroll of Banish III
+-- Teaches the white magic Banish III
 -----------------------------------------
 
 -----------------------------------------

@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Baraka
 -- Involved in Missions 2-3
--- @pos 36 -2 -2 231
+-- !pos 36 -2 -2 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
     if (csid == 581) then
         -- This cs should only play if you visit San d'Oria first
         -- If you visit Windurst first you will encounter Lion in Heaven's Tower instead
-        if (player:getCurrentMission(BASTOK) == THE_EMISSARY 
+        if (player:getCurrentMission(BASTOK) == THE_EMISSARY
         and player:getVar("MissionStatus") < 2) then
             player:setVar("MissionStatus",2);
             player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);

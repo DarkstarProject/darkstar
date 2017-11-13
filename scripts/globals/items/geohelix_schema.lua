@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6045
---    Geohelix Schema
---    Teaches the black magic Geohelix
+-- ID: 6045
+-- Geohelix Schema
+-- Teaches the black magic Geohelix
 -----------------------------------------
 
 -----------------------------------------

@@ -1,13 +1,12 @@
----------------------------------------------------
---
----------------------------------------------------
-
+---------------------------------------------
+-- Hastega
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 require("scripts/globals/utils");
-
----------------------------------------------------
+require("scripts/globals/msg");
+---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
     return 0,0;
@@ -22,6 +21,6 @@ function onPetAbility(target, pet, skill, summoner)
     -- Garuda's Hastega is a weird exception and uses 153 instead of 15%
     -- That's why it overwrites some things regular haste won't.
     target:addStatusEffect(EFFECT_HASTE,153,0,duration);
-    skill:setMsg(MSG_BUFF);
+    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
     return EFFECT_HASTE;
 end

@@ -2,7 +2,7 @@
 -- Area: Lufaise Meadows
 --  NPC: Yoram, I.M.
 -- Outpost Conquest Guards
--- @pos -542.418 -7.124 -53.521 24
+-- !pos -542.418 -7.124 -53.521 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------

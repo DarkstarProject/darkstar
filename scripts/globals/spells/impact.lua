@@ -21,7 +21,13 @@ end;
 
 function onSpellCast(caster,target,spell)
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local resist = applyResistance(caster,spell,target,dINT,37,0);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 37;
+    params.bonus = 0;
+    params.effect = nil;
+    resist = applyResistance(caster, target, spell, params);
     local STR_Loss = ((target:getStat(MOD_STR) / 100) * 20); -- Should be 20%
     local DEX_Loss = ((target:getStat(MOD_DEX) / 100) * 20);
     local VIT_Loss = ((target:getStat(MOD_VIT) / 100) * 20);
@@ -62,11 +68,23 @@ function onSpellCast(caster,target,spell)
 
     --diverting use of doElementalNuke till spellParams is implemented for this spell
 
-    --local dmg = doElementalNuke(939,2.335,caster,spell,target,false,1.0);
+local params = {};params.dmg = 939;params.multiplier = 2.335;params.hasMultipleTargetReduction = false;params.resistBonus = 1.0;   --local dmg = doElementalNuke(caster, target, spell, params);
     --calculate raw damage
-    local dmg = calculateMagicDamage(939,2.335,caster,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
+    local params = {};
+    params.dmg = 939;
+    params.multiplier = 2.335;
+    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.attribute = MOD_INT;
+    params.hasMultipleTargetReduction = false;
+
+    local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,1.0);
+    local params = {};
+    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+    params.attribute = MOD_INT;
+    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.bonus = 1.0;
+    resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

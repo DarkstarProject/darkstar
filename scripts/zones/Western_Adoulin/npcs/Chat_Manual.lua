@@ -3,7 +3,7 @@
 --   NPC: Chat Manual
 --  Type: Tutorial NPC
 -- @zone: 256
---  @pos 28.790 0 -143.440
+--  !pos 28.790 0 -143.440
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

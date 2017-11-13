@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved with Quest: 'Raptor Rapture'
 --  @zone 256
---  @pos 13 0 -143 256
+--  !pos 13 0 -143 256
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

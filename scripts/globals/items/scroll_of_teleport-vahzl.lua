@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4747
---    Scroll of Teleport-Vahzl
---    Teaches the white magic Teleport-Vahzl
+-- ID: 4747
+-- Scroll of Teleport-Vahzl
+-- Teaches the white magic Teleport-Vahzl
 -----------------------------------------
 
 -----------------------------------------

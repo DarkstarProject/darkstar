@@ -3,12 +3,9 @@
 -- Item: Misery Staff
 -- Additional Effect: Curse
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -18,6 +15,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_CURSE_I, 5, 0, 30);
-        return SUBEFFECT_CURSE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_CURSE_I;
+        return SUBEFFECT_CURSE, msgBasic.ADD_EFFECT_STATUS, EFFECT_CURSE_I;
     end
 end;

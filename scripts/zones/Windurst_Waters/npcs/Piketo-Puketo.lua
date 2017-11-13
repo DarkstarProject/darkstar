@@ -2,7 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Piketo-Puketo
 -- Type: Cooking Guild Master
--- @pos -124.012 -2.999 59.998 238
+-- !pos -124.012 -2.999 59.998 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

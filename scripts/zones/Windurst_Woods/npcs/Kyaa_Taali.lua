@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Kyaa Taali
 -- Type: Bonecraft Image Support
--- @pos -10.470 -6.25 -141.700 241
+-- !pos -10.470 -6.25 -141.700 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

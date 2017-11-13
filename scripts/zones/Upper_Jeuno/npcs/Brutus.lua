@@ -2,7 +2,7 @@
 -- Area: Upper Jeuno
 -- NPC: Brutus
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster, Wings of gold, Scattered into Shadow, Chocobo on the Loose!
--- @pos -55 8 95 244
+-- !pos -55 8 95 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -31,10 +31,10 @@ function onTrigger(player,npc)
     local saveMySon = player:getQuestStatus(JEUNO,SAVE_MY_SON);
     local wingsOfGold = player:getQuestStatus(JEUNO,WINGS_OF_GOLD);
     local scatIntoShadow = player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW);
-    
+
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
-    
+
     if (chocoboOnTheLoose == QUEST_AVAILABLE) then
         player:startEvent(0x276D);
     elseif (chocoboOnTheLoose == QUEST_ACCEPTED and chocoboOnTheLooseStatus == 0) then
@@ -49,7 +49,7 @@ function onTrigger(player,npc)
         player:startEvent(0x277D);
     elseif (player:getMainLvl() >= 20 and ChocobosWounds ~= QUEST_COMPLETED) then
         local chocoFeed = player:getVar("ChocobosWounds_Event");
-    
+
         if (ChocobosWounds == QUEST_AVAILABLE) then
             player:startEvent(0x0047);
         elseif (chocoFeed == 1) then

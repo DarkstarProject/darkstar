@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Den of Rancor
 -- NPC:  Lantern (SW)
--- @pos -59 45 24 160
+-- !pos -59 45 24 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------
@@ -18,9 +18,9 @@ function onTrade(player,npc,trade)
     local LSW = GetNPCByID(Lantern_ID):getAnimation();
     local LNW = GetNPCByID(Lantern_ID+1):getAnimation();
     local LNE = GetNPCByID(Lantern_ID+2):getAnimation();
-    local LSE = GetNPCByID(Lantern_ID+3):getAnimation(); 
+    local LSE = GetNPCByID(Lantern_ID+3):getAnimation();
 
-    
+
 -- Trade Crimson Rancor Flame
     if (trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
         if (LSW == 8) then
@@ -33,11 +33,11 @@ function onTrade(player,npc,trade)
             if ALL == 27 then
                 player:messageSpecial(LANTERN_OFFSET + 9);
             elseif ALL == 26 then
-                player:messageSpecial(LANTERN_OFFSET + 10); 
+                player:messageSpecial(LANTERN_OFFSET + 10);
             elseif ALL == 25 then
-                player:messageSpecial(LANTERN_OFFSET + 11); 
+                player:messageSpecial(LANTERN_OFFSET + 11);
             elseif ALL == 24 then
-                player:messageSpecial(LANTERN_OFFSET + 12); 
+                player:messageSpecial(LANTERN_OFFSET + 12);
                 GetNPCByID(Lantern_ID+3):closeDoor(1);
                 GetNPCByID(Lantern_ID+2):closeDoor(1);
                 GetNPCByID(Lantern_ID+1):closeDoor(1);

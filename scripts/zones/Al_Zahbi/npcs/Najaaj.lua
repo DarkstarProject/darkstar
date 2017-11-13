@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Najaaj
---  Type: Standard NPC
--- @zone 48
--- @pos 61.563 -1 36.264
--- 
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+-- Area: Al Zahbi
+--  NPC: Najaaj
+-- Type: Standard NPC
+-- !pos 61.563 -1 36.264 48
 -----------------------------------
 
 -----------------------------------
@@ -42,4 +37,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
