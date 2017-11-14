@@ -21,7 +21,8 @@ function onTrigger(player,npc)
 
     local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
     local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
-        
+    
+    -- Quest: The WayWard Automation
     if (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1) then
         player:startEvent(289); -- he tells u to go Caedarva Mire
     elseif (TheWaywardAutomationProgress == 2) then

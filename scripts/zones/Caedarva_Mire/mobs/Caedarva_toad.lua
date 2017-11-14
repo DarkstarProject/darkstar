@@ -6,23 +6,13 @@
 
 require("scripts/globals/quests");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
         
 

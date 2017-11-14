@@ -14,16 +14,11 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
+
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -35,27 +30,30 @@ function onTrigger(player,npc)
 
     local LvL = player:getMainLvl();
     local Job = player:getMainJob();
-        
+    
+    -- Quest: No Strings Attached
     if (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 1) then
         player:startEvent(0x0104); -- he tells u to get him an automaton
-    if (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 2) then
+    elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 2) then
         player:startEvent(0x0105); -- reminder to get an automaton
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 6) then
         player:startEvent(0x010a); -- you bring him the automaton
-    elseif (NoStringsAttached == QUEST_COMPLETED) then
+    elseif (Job == JOBS.PUP and LvL < AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED) then
         player:startEvent(0x010b); -- asking you how are you doing with your automaton
     -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
         player:unlockAttachment(8224); --Harlequin Frame
         player:unlockAttachment(8193); --Harlequin Head
+    elseif (Job ~= JOBS.PUP and NoStringsAttached == QUEST_COMPLETED) then
+        player:startEvent(0x010b); -- asking you how are you doing with your automaton
     elseif (NoStringsAttached == QUEST_AVAILABLE) then
-        player:startEvent(0x0103); -- Leave him alone 
-    end;
-        
+        player:startEvent(0x0103); -- Leave him alone     
+    
+    --Quest: The Wayward Automation
     elseif (Job == JOBS.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
         player:startEvent(774); -- he tells you to help find his auto
     elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1) then
         player:startEvent(775); -- reminder about to head to Nashmau
-    elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then --Fix progress?
+    elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then 
         player:startEvent(776); -- tell him you found automation
     elseif (TheWaywardAutomation == QUEST_COMPLETED) then
         player:startEvent(777);
@@ -63,20 +61,13 @@ function onTrigger(player,npc)
 end;
     
 
-        
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+
 
 function onEventFinish(player,csid,option)
  --printf("CSID: %u",csid);
