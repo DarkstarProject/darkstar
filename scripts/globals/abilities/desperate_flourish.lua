@@ -58,7 +58,7 @@ function onUseAbility(player,target,ability,action)
         params.diff = 0;
         params.attribute = player:getWeaponSkillType(SLOT_MAIN);
         params.bonus = 50 - target:getMod(MOD_STUNRES);
-        resist = applyResistance(player, target, spell, params)
+        local resist = applyResistance(player, target, spell, params)
 
         if resist > 0.25 then
             target:delStatusEffectSilent(EFFECT_WEIGHT);

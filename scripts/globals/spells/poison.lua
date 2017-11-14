@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
 
     params.effect = effect;
 
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist == 1 or resist == 0.5) then -- effect taken
         duration = duration * resist;
 

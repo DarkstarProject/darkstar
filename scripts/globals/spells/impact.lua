@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = 37;
     params.bonus = 0;
     params.effect = nil;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     local STR_Loss = ((target:getStat(MOD_STR) / 100) * 20); -- Should be 20%
     local DEX_Loss = ((target:getStat(MOD_DEX) / 100) * 20);
     local VIT_Loss = ((target:getStat(MOD_VIT) / 100) * 20);
@@ -84,7 +84,7 @@ local params = {};params.dmg = 939;params.multiplier = 2.335;params.hasMultipleT
     params.attribute = MOD_INT;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

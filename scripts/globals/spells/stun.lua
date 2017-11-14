@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = 37;
     params.bonus = 0;
     params.effect = EFFECT_STUN;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist <= (1/16)) then
         -- resisted!
         spell:setMsg(msgBasic.MAGIC_RESIST);
