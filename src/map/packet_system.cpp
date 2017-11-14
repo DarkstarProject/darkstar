@@ -3827,17 +3827,11 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
             case MESSAGE_SAY:
             {
-                if (map_config.audit_chat == 1 && map_config.audit_say == 1)
                 {
-                    std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                    qStr += PChar->GetName();
-                    qStr += "','SAY','";
-                    qStr += escape(data[6]);
-                    qStr += "',current_timestamp());";
-                    const char * cC = qStr.c_str();
-                    Sql_QueryStr(SqlHandle, cC);
+                    int8 packetData[4]{};
+                    WBUFL(packetData, 0) = PChar->id;
+                    message::send(MSG_CHAT_UNITY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_UNITY, data[6]));
                 }
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, data[6]));
             }
             break;
             case MESSAGE_EMOTION:    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data[6])); break;

@@ -159,4 +159,6 @@ log/DSP.leaks
 .project
 .vs
 /win32/.vs/darkstar/v15
-
+/*.iobj
+/*.ipdb
+/scripts/commands/jinx.lua

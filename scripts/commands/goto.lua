@@ -5,7 +5,7 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 0,
     parameters = "si"
 };
 
@@ -22,7 +22,8 @@ function onTrigger(player, target, forceZone)
         return;
     end
     local targ = GetPlayerByName( target );
-    if (targ == nil) then
+	local gmlvl = player:getGMLevel();
+    if (targ == nil or gmlvl < 1) then
         if not player:gotoPlayer( target ) then
             error(player, string.format( "Player named '%s' not found!", target ) );
         end

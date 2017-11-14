@@ -22,10 +22,20 @@ function onGameIn(player, firstlogin, zoning)
         if (firstlogin) then
             CharCreate(player);
         end
+    player:PrintToServer(string.format("The character %s has logged in...", player:getName()), 0x1C);
+	player:addStatusEffect(EFFECT_REFRESH,25,0,0);
+    player:addStatusEffect(EFFECT_REGEN,28,0,0);
+	player:addStatusEffect(EFFECT_REGAIN,15,1,0);
+	player:addStatusEffect(EFFECT_HASTE,60,1,0);
     end
 
     if (zoning) then -- Things checked ONLY during zone in go here.
         -- Nothing here yet :P
+        player:addStatusEffect(EFFECT_REFRESH,25,0,0);
+        player:addStatusEffect(EFFECT_REGEN,28,0,0);
+        player:addStatusEffect(EFFECT_REGAIN,15,1,0);
+        player:addStatusEffect(EFFECT_HASTE,60,1,0);
+        player:capAllSkills();
     end
 
     -- Things checked BOTH during logon AND zone in below this line.
@@ -260,9 +270,9 @@ function CharCreate(player)
         default = function (x) end,
     }
 
-   ----- settings.lua Perks -----
+   ----- settings.lua Perks -----  -- SET JOB To 6,20 instead of 6,22 to avoid GEO AND RUN -- 
     if (ADVANCED_JOB_LEVEL == 0) then
-       for i = 6,22 do
+       for i = 6,20 do
           player:unlockJob(i);
        end
     end
@@ -324,12 +334,14 @@ function CharCreate(player)
     player:addTitle(NEW_ADVENTURER);
 
     -- Needs Moghouse Intro
-    player:setVar("MoghouseExplication",1);
+    player:setVar("MoghouseExplication",0);
     
 end;
 
 function onPlayerLevelUp(player)
+	player:capAllSkills();
 end
 
 function onPlayerLevelDown(player)
+	player:capAllSkills();
 end
