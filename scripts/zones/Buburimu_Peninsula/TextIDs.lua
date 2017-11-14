@@ -15,10 +15,10 @@ CONQUEST = 7411; -- You've earned conquest points!
 LOGGING_IS_POSSIBLE_HERE = 7395; -- Logging is possible here if you have
 
 -- Dialog Texts
-FIXME:            FIVEOFSPADES_DIALOG = 7241; -- GiMmeIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol!
+           FIVEOFSPADES_DIALOG = 7242; -- GiMmeIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol!
             SONG_RUNES_DEFAULT = 7368; -- An old momument. A melancholy song of two separated lovers is written upon it.
-FIXME:             SONG_RUNES_REQUIRE = 7381; -- If only you had <item>, you could jot down the lyrics.
-FIXME:             SONG_RUNES_WRITING = 7382; -- You write down the lyrics on the <item>.
+            SONG_RUNES_REQUIRE = 7382; -- If only you had <item>, you could jot down the lyrics.
+            SONG_RUNES_WRITING = 7383; -- You write down the lyrics on the <item>.
       YOU_CANNOT_ENTER_DYNAMIS = 7887; -- You cannot enter Dynamis
               MYSTERIOUS_VOICE = 7888; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 7889; -- Players who have not reached levelare prohibited from entering Dynamis.
