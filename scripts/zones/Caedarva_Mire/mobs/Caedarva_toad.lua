@@ -31,7 +31,7 @@ function onMobDeath(mob, player, isKiller)
     local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
     local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
     
-    if (TheWaywardAutomation == 1 and TheWaywardAutomationProgress == 2 and player:getVar("TheWaywardAutomationNM") == 0) then
+    if (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 2 and player:getVar("TheWaywardAutomationNM") == 0) then
         player:setVar("TheWaywardAutomationNM",1);
     end
 end;
