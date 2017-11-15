@@ -7,9 +7,6 @@
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -19,10 +16,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_YHOAT,0,1);

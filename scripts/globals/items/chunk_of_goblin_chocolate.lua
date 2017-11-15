@@ -7,11 +7,7 @@
 -- Lizard Killer 10
 -- Petrify resistance +10
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -21,10 +17,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,180,4495);
@@ -40,11 +32,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_PETRIFYRES, 5);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HPHEAL, 5);
     target:delMod(MOD_LIZARD_KILLER, 5);
     target:delMod(MOD_PETRIFYRES, 5);

@@ -9,11 +9,7 @@
 -- MP Recovered While Healing 3
 -- Ranged Accuracy % 8 (cap 15)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,10 +19,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,3600,5173);
@@ -45,11 +37,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_RACC_CAP, 15);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_MP, 20);
     target:delMod(MOD_VIT, -1);
     target:delMod(MOD_AGI, 5);

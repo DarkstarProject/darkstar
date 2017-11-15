@@ -6,11 +6,7 @@
 -- HP +8% (cap 140)
 -- Increases rate of combat skill gains by 60%
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -20,10 +16,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5887);
@@ -39,11 +31,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_COMBAT_SKILLUP_RATE, 60);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_HPP, 8);
     target:delMod(MOD_FOOD_HP_CAP, 140);
     target:delMod(MOD_COMBAT_SKILLUP_RATE, 60);

@@ -6,11 +6,7 @@
 -- MP +6% (cap 100)
 -- Increases rate of magic skill gains by 20%
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -21,29 +17,17 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5889);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_MPP, 6);
     target:addMod(MOD_FOOD_MP_CAP, 100);
     target:addMod(MOD_MAGIC_SKILLUP_RATE, 20);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_MPP, 6);
     target:delMod(MOD_FOOD_MP_CAP, 100);
     target:delMod(MOD_MAGIC_SKILLUP_RATE, 20);

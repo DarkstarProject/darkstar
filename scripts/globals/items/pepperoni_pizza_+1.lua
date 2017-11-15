@@ -8,11 +8,7 @@
 -- Accuracy 9% (caps @ 11)
 -- Attack 10% (caps @ 16)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -22,10 +18,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,5698);
@@ -44,11 +36,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_ACC_CAP, 11);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 35);
     target:delMod(MOD_STR, 2);
     target:delMod(MOD_FOOD_ATTP, 10);

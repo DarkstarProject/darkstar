@@ -3,11 +3,7 @@
 --   Olduum Ring
 --   Teleports to Wajoam Woodlands Leypoint
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)

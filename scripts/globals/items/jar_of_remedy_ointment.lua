@@ -4,20 +4,12 @@
 -- Item Effect: This potion remedies status ailments.
 -- Works on paralysis, silence, blindness, poison, and plague.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
     return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     if (target:hasStatusEffect(EFFECT_SILENCE) or target:hasStatusEffect(EFFECT_BLINDNESS) or target:hasStatusEffect(EFFECT_POISON) or target:hasStatusEffect(EFFECT_PARALYSIS) or target:hasStatusEffect(EFFECT_PLAGUE)) then

@@ -4,10 +4,6 @@
 --  Enchantment: "Enblizzard"
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     return 0;
 end;

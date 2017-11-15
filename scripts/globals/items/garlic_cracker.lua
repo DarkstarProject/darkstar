@@ -7,11 +7,7 @@
 -- Undead Killer 10
 -- Blind Resist 10
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -21,10 +17,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,180,4467);
@@ -40,11 +32,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_BLINDRES, 10);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HPHEAL, 6);
     target:delMod(MOD_UNDEAD_KILLER, 10);
     target:delMod(MOD_BLINDRES, 10);

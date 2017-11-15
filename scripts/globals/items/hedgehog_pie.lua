@@ -16,11 +16,7 @@
 -- Ranged ATT % 18
 -- Ranged ATT Cap 90
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -31,19 +27,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5146);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_HP, 55);
     target:addMod(MOD_STR, 6);
     target:addMod(MOD_VIT, 2);
@@ -58,11 +46,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_RATT_CAP, 90);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 55);
     target:delMod(MOD_STR, 6);
     target:delMod(MOD_VIT, 2);

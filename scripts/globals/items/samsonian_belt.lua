@@ -8,9 +8,6 @@
 
 require("scripts/globals/status");
 
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
