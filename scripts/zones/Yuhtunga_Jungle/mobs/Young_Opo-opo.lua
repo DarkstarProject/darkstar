@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
 --  MOB: Young Opo-opo
+-- Note: PH for Mischievous Micholas
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
 require("scripts/zones/Yuhtunga_Jungle/MobIDs");
+require("scripts/globals/fieldsofvalor");
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,126,1);
@@ -12,12 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    if (mob:getID() == MISCHIEVOUS_MICHOLAS_PH) then
-        local nm = GetMobByID(MISCHIEVOUS_MICHOLAS);
-        if (os.time() > nm:getLocalVar("repop") and not nm:isSpawned() and math.random(1,100) <= 20) then
-            DisallowRespawn(mob:getID(), true);
-            DisallowRespawn(MISCHIEVOUS_MICHOLAS, false);
-            nm:setRespawnTime(GetMobRespawnTime(MISCHIEVOUS_MICHOLAS_PH));
-        end
-    end
+    phOnDespawn(mob,MISCHIEVOUS_MICHOLAS_PH,20,3600); -- 1 hour
 end;

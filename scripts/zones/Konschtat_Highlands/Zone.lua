@@ -56,18 +56,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- remove one of stray mary's placeholders without a chance to pop NM
-    local phNum = math.random(2);
-    local count = 0;
-    for k, v in pairs(STRAY_MARY_PH) do
-        count = count + 1;
-        if (count ~= phNum) then
-            GetMobByID(k):setLocalVar("firstDepop", 1);
-            DisallowRespawn(k, true);
-            DespawnMob(k);
-            break;
-        end
-    end
 end;
 
 -----------------------------------

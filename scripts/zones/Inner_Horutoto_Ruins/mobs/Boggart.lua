@@ -5,26 +5,12 @@
 -----------------------------------
 require("scripts/zones/Inner_Horutoto_Ruins/MobIDs");
 require("scripts/globals/groundsofvalor");
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,650,1);
 end;
 
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-    if (NOCUOUS_WEAPON_PH[mobID] ~= nil) then
-        local nm = GetMobByID(NOCUOUS_WEAPON);
-        if (
-            os.time() > GetServerVariable("[POP]Nocuous_Weapon") and
-            GetServerVariable("[PH]Nocuous_Weapon") == 0 and
-            not nm:isSpawned() and
-            math.random(100) <= 10
-        ) then
-            UpdateNMSpawnPoint(NOCUOUS_WEAPON);
-            DisallowRespawn(NOCUOUS_WEAPON, false);
-            nm:setRespawnTime(GetMobRespawnTime(mobID));
-            SetServerVariable("[PH]Nocuous_Weapon", mobID);
-            DisallowRespawn(mobID, true);
-        end
-    end
+    phOnDespawn(mob,NOCUOUS_WEAPON_PH,5,3600); -- 1 hour
 end;

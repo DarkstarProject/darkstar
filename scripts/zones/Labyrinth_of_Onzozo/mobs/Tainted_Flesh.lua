@@ -3,25 +3,12 @@
 --  MOB: Tainted Flesh
 -- Note: Place holder Hellion
 -----------------------------------
-
 require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
+end;
 
-    local mobID = mob:getID();
-    if (Hellion_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[POP]Hellion");
-        if (ToD <= os.time() and GetMobAction(Hellion) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Hellion);
-                GetMobByID(Hellion):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Hellion", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
+function onMobDespawn(mob)
+    phOnDespawn(mob,HELLION_PH,5,math.random(7200,14400)); -- 2 to 4 hours
 end;

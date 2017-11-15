@@ -3,28 +3,8 @@
 --   NM: Bloodthirster Madkix
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    -- Set Bloodthirster Madkix's Window Open Time
-    local wait = math.random(7200,28800); -- 2-8 hours
-    SetServerVariable("[POP]Bloodthirster_Madkix", os.time() + wait);
-    DisallowRespawn(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Bloodthirster_Madkix");
-    SetServerVariable("[PH]Bloodthirster_Madkix", 0);
-    DisallowRespawn(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
 end;

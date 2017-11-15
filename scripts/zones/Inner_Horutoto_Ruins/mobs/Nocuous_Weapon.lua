@@ -33,10 +33,4 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    SetServerVariable("[POP]Nocuous_Weapon", os.time() + 3600); -- 1 hour
-    DisallowRespawn(mob:getID(), true);
-    local PH = GetServerVariable("[PH]Nocuous_Weapon");
-    SetServerVariable("[PH]Nocuous_Weapon", 0);
-    DisallowRespawn(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 end;

@@ -1,39 +1,16 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
 --  Mob: Clipper
+-- Note: PH for Cargo Crab Colin
 -----------------------------------
-
 require("scripts/zones/Korroloka_Tunnel/MobIDs");
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-
     checkGoVregime(player,mob,731,1);
-
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-
-    if (Cargo_Crab_Colin_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[POP]Cargo_Crab_Colin");
-        if (ToD <= os.time() and GetMobAction(Cargo_Crab_Colin) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Cargo_Crab_Colin);
-                GetMobByID(Cargo_Crab_Colin):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Cargo_Crab_Colin", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,CARGO_CRAB_COLIN_PH,5,math.random(7200,21600)); -- 1 to 6 hours
 end;
-
