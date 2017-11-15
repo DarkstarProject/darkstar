@@ -231,6 +231,36 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     return dmg;
 end;
 
+-- Blue Magical type spells
+
+function BlueBreathSpell(caster, target, spell, params)
+	local HP = params.HP;
+	local LVL = params.LVL;
+    local D = (caster:getHP()/HP) + (caster:getMainLvl()/LVL);
+	
+
+
+    local convergenceBonus = 1.0;
+    if (caster:hasStatusEffect(EFFECT_CONVERGENCE)) then
+        convergenceEffect = getStatusEffect(EFFECT_CONVERGENCE);
+        local convLvl = convergenceEffect:getPower();
+        if (convLvl == 1) then
+            convergenceBonus = 1.05;
+        elseif (convLvl == 2) then
+            convergenceBonus = 1.1;
+        elseif (convLvl == 3) then
+            convergenceBonus = 1.15;
+        end
+    end
+	
+    D =(D * convergenceBonus);
+	dmg = D
+
+    caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
+
+    return dmg;
+end
+
 function BlueFinalAdjustments(caster, target, spell, dmg, params)
     if (dmg < 0) then
         dmg = 0;

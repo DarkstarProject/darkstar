@@ -11,7 +11,6 @@
 -- Recast Time: 19.5 seconds
 -- Magic Bursts on: Reverberation, Distortion, and Darkness
 -- Combos: Clear Mind
--- Damage = (Current HP)/10 + (Blue Mage level)/1.25
 -----------------------------------------
 
 require("scripts/globals/magic");
@@ -32,44 +31,20 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local params = {};
-
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-
-    params.attribute = MOD_INT;
-
-    params.skillType = BLUE_SKILL;
-
-    params.bonus = 1.0;
-
-    resist = applyResistance(caster, target, spell, params);
-    local multi = 1.08;
-    local params = {};
-    -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-        params.multiplier = multi;
-        params.tMultiplier = 1.5;
-        params.duppercap = 69;
-        params.str_wsc = 0.0;
-        params.dex_wsc = 0.0;
-        params.vit_wsc = 0.0;
-        params.agi_wsc = 0.0;
-        params.int_wsc = 0.0;
-        params.mnd_wsc = 0.3;
-        params.chr_wsc = 0.0;
-    local HP = caster:getHP();
-    local LVL = caster:getMainLvl();
-    damage = (HP / 10) + (LVL / 1.25);
-    damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-
+	local params = {};
+		params.HP = 10;
+		params.LVL = 1.25;
+		
+    damage = BlueBreathSpell(caster, target, spell, params)
+    damage = BlueFinalAdjustments(caster, target, spell, damage);
+    
     if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
         multi = multi + 0.50;
     end
 
-    if (damage > 0 and resist > 0.3) then
         local typeEffect = EFFECT_POISON;
         target:delStatusEffect(typeEffect); 
-        target:addStatusEffect(typeEffect,3,0,getBlueEffectDuration(caster,resist,typeEffect));
-    end
-
+        target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
+    
     return damage;
 end;
