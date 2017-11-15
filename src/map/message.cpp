@@ -280,7 +280,7 @@ namespace message
                         {
                             // PInviter->PParty = new CParty(PInviter);
                         }
-                        if (PInviter->PParty->GetLeader() == PInviter)
+                        if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter)
                         {
                             ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
                                                        															charid = %u;", inviteeId);
