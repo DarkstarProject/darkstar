@@ -7,7 +7,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/globals/pets");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(18);
         player:addItem(17859);
         player:messageSpecial(ITEM_OBTAINED,17859); -- animator
-        player:messageSpecial(5699); -- "You can now become a puppetmaster." **This is incorrect and needs updated
+        player:messageSpecial(YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster." 
         player:setVar("NoStringsAttachedProgress",0);
         player:setPetName(PETTYPE_AUTOMATON, option+118);
         player:unlockAttachment(8224); --Harlequin Frame
