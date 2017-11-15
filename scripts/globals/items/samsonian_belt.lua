@@ -13,9 +13,6 @@ require("scripts/globals/status");
 function onItemCheck(target)
     return 0;
 end;
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local duration = 900;
