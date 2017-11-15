@@ -505,7 +505,7 @@ namespace meritNameSpace
 			// issue with unknown catagories causing massive confusion
 
             uint16 index = 0;			// global merit template count (to 255)
-			int8 catIndex = 0;			// global merit catagory count (to 51)
+			uint8 catIndex = 0;			// global merit catagory count (to 51)
 			int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
 			int8 catMeritIndex = 0;		// counts number of merits in a catagory
 

@@ -64,7 +64,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
         CreateKickAttacks();
     }
     else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
-        attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD))
+        (attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD)))
     {
         CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }

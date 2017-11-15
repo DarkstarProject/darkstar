@@ -187,7 +187,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
             if (PCurrentMob->allegiance == PMob->allegiance &&
                 (forceLink ||
                     PCurrentMob->m_Family == PMob->m_Family ||
-                    sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK)))
+                    (sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))))
             {
 
                 if (PCurrentMob->PMaster == nullptr || PCurrentMob->PMaster->objtype == TYPE_MOB)
@@ -740,6 +740,8 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             }
         }
         break;
+        default:
+            break;
     }
     if (ScriptType != SCRIPT_NONE)
     {

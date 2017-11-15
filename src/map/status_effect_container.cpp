@@ -230,6 +230,8 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         case EFFECT_REQUIEM:
             if (m_POwner->hasImmunity(IMMUNITY_REQUIEM)) return false;
             break;
+        default:
+            break;
     }
 
     // make sure pets can't be charmed

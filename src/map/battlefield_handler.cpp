@@ -42,7 +42,7 @@ CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
 
     //Dynamis zone (need to add COP dyna zone)
     //added ghelsba outpost here, 1 battlefield only
-    if (m_ZoneId > 184 && m_ZoneId < 189 || m_ZoneId > 133 && m_ZoneId < 136 || m_ZoneId == 140 || m_ZoneId == 35 || m_ZoneId > 38 && m_ZoneId < 43)
+    if ((m_ZoneId > 184 && m_ZoneId < 189) || (m_ZoneId > 133 && m_ZoneId < 136) || m_ZoneId == 140 || m_ZoneId == 35 || (m_ZoneId > 38 && m_ZoneId < 43))
     {
         m_MaxBattlefields = 1;
     }
@@ -74,7 +74,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
             auto time_remaining = std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->getTimeLimit() - time_elapsed).count();
 
             //Dynamis zone (need to add COP Dyna)
-            if (instzone > 184 && instzone < 189 || instzone > 133 && instzone < 136 || instzone > 38 && instzone < 43) {
+            if ((instzone > 184 && instzone < 189) || (instzone > 133 && instzone < 136) || (instzone > 38 && instzone < 43)) {
                 //handle death time
                 if (PBattlefield->allPlayersDead()) {//set dead time
                     if (PBattlefield->getDeadTime() == time_point::min()) {

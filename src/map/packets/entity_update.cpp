@@ -64,6 +64,10 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
             WBUFB(data, (0x0A)) = updatemask;
         }
         break;
+        default:
+        {
+            break;
+        }
     }
 
     if (updatemask & UPDATE_POS) {
@@ -147,6 +151,10 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
             }
         }
         break;
+        default:
+        {
+            break;
+        }
     }
 
     switch (PEntity->look.size)

@@ -1016,6 +1016,8 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         case REGION_WINDURST:
             expression = m_POwner->profile.nation == 2 && PZone->GetRegionID() == region;
             break;
+        default:
+            break;
         }
         break;
     }

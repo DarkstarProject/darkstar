@@ -87,7 +87,16 @@ public:
     void InterruptStates();
     // Pop the top state if it's the expected state
     template<typename State>
-    bool PopState() { if (IsCurrentState<State>()) m_stateStack.pop(); }
+    bool PopState()
+    {
+        if (IsCurrentState<State>())
+        {
+            m_stateStack.pop();
+            return true;
+        }
+
+        return false;
+    }
     /* Or have each state return a static number/string that Lua can use as well, in case this is not sufficient */
     template<typename State, typename = std::enable_if_t<std::is_base_of<CState, State>::value>>
     bool IsCurrentState() { return dynamic_cast<State*>(GetCurrentState()); }
