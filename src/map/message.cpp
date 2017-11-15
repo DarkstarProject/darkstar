@@ -278,7 +278,7 @@ namespace message
                     {
                         if (PInviter->PParty == nullptr)
                         {
-                            // CParty* PParty = new CParty(PInviter);
+                            // PInviter->PParty = new CParty(PInviter);
                         }
                         if (PInviter->PParty->GetLeader() == PInviter)
                         {

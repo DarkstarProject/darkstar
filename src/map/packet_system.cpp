@@ -3361,6 +3361,7 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (PInviter->PParty == nullptr)
                 {
                     ShowDebug(CL_CYAN"Creating new party\n" CL_RESET);
+                    PInviter->PParty = new CParty(PInviter);
                 }
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
