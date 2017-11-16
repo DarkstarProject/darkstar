@@ -1,8 +1,9 @@
 -----------------------------------
--- Area: Beadeaux (254)
+-- Area: Beadeaux (147)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
-Ge_Dha_Evileye = 17379450; -- -238 1 -202, 254
-Ge_Dha_Evileye_PH = 17379447; -- Not tabled because we only have ONE placeholder.
+GE_DHA_EVILEYE_PH = {
+    [17379447] = 17379450, -- -242.709 0.5 -188.01
+}
