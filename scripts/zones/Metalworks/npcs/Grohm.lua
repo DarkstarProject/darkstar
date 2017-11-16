@@ -2,13 +2,14 @@
 -- Area: Metalworks
 -- NPC:  Grohm
 -- Involved In Mission: Journey Abroad
--- !pos -18 -11 -27 237
+-- Involved in quest: Bait and Switch
+-- !pos -18.084 -10.000 -27.576 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/missions");
 require("scripts/zones/Metalworks/TextIDs");
+require("scripts/globals/missions");
+require("scripts/globals/baitandswitch");
 
 -----------------------------------
 -- onTrade Action
@@ -22,8 +23,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    local item = CheckOptionForItem(player);
+    local BnSDialogue = player:getLocalVar("Bait_and_Switch_Quest_NPCs");
+    local timesUP = false;
+    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
+        timesUP = true;
+    end
 
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK) then
+    if (player:getMaskBit(BnSDialogue,3) == true and item == 1 and timesUP == false) then
+        player:startEvent(0x0399);
+        player:setLocalVar("Bait_and_Switch_Quest_NPCs",BnSDialogue - 8);
+    elseif (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK) then
         if (player:getVar("notReceivePickaxe") == 1) then
             player:startEvent(0x01a9);
         elseif (player:getVar("MissionStatus") == 4) then
@@ -56,9 +66,8 @@ function onTrigger(player,npc)
             player:startEvent(0x01ab,1);
         end
     else
-        player:startEvent(0x01ab);--0x01a6
+        player:startEvent(0x01a6);
     end
-
 end;
 
 -----------------------------------
@@ -90,6 +99,9 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x01aa) then
         player:setVar("MissionStatus",10);
+    elseif (csid == 0x0399 and option == 1) then
+        player:setLocalVar("Bait_and_Switch_Caught",caught + 1);
+        player:setLocalVar("Miledo_Caught",1);
+        player:setLocalVar("Bait_and_Switch_Quest_Active",2);
     end
-
 end;
