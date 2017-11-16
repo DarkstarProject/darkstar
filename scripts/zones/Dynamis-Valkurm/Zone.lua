@@ -14,7 +14,6 @@ require("scripts/zones/Dynamis-Valkurm/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    SetServerVariable("[DynaValkurm]UniqueID", 0);
 end;
 
 -----------------------------------
@@ -34,34 +33,12 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-    local cs = 0;
-    local inst = 0;
+    local cs = -1;
 
-    if player:isBcnmsFull() == 1 then
-        -- run currently in progress
-        -- add player to the run if they entered via markings, or if they reconnected to a run they were previously in
-        -- gms will be automatically registered
-        if player:getVar("enteringDynamis") == 1 or player:getVar("DynamisID") == GetServerVariable("[DynaValkurm]UniqueID") or player:getGMLevel() > 0 then
-            inst = player:addPlayerToBattlefield(1);
-        end
-    else
-        -- no run yet in progress
-        -- register run by player if they entered via markings
-        -- gms will be automatically registered
-        if player:getVar("enteringDynamis") == 1 or player:getGMLevel() > 0 then
-            inst = player:registerBattlefield(1, 1286);
-        end
-    end
+    player:addListener("DYNAMIS_EXPIRE", "DYNAMIS_EXPIRE", function(player)
+        player:setPos(117,-9,132,162,103)
+    end)
 
-    if inst == 1 then
-        player:bcnmEnter(1);
-        cs = -1;
-        if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-            player:setPos(100,-8,131,47);
-        end
-    end
-
-    player:setVar("enteringDynamis",0);
     return cs;
 end;
 
@@ -79,7 +56,6 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-
 end;
 
 -----------------------------------
@@ -89,7 +65,4 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0) then
-        player:setPos(117,-9,132,162,103);
-    end
 end;

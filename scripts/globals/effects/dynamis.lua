@@ -3,7 +3,7 @@
 --     EFFECT_DYNAMIS
 --
 -----------------------------------
-
+require("scripts/globals/keyitems")
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
@@ -23,6 +23,14 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    player:delKeyItem(CRIMSON_GRANULES_OF_TIME)
+    player:delKeyItem(AZURE_GRANULES_OF_TIME)
+    player:delKeyItem(AMBER_GRANULES_OF_TIME)
+    player:delKeyItem(ALABASTER_GRANULES_OF_TIME)
+    player:delKeyItem(OBSIDIAN_GRANULES_OF_TIME)
+    if effect:getTimeRemaining() == 0 then
+        player:fireEvent("DYNAMIS_EXPIRE", player)
+    end
 end;
 
 -----------------------------------
