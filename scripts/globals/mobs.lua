@@ -54,34 +54,31 @@ end
 -- potential lottery placeholder was killed
 function phOnDespawn(ph,phList,chance,cooldown)
     local phId = ph:getID();
-    for k,v in pairs(phList) do
-        if (k == phId) then
-            local nmId = v;
-            local nm = GetMobByID(nmId);
-            if (nm ~= nil) then
-                local pop = nm:getLocalVar("pop");
-                if (os.time() > pop and not lotteryPrimed(phList) and math.random(100) <= chance) then
-                
-                    -- on PH death, replace PH repop with NM repop
-                    -- print(string.format("ph %i winner! nm %i will pop in place",phId,nmId));
-                    DisallowRespawn(phId, true);
-                    DisallowRespawn(nmId, false);
-                    UpdateNMSpawnPoint(nmId);
-                    nm:setRespawnTime(GetMobRespawnTime(phId));
-                    
-                    nm:addListener("DESPAWN", "DESPAWN_"..nmId, function(m)
-                        -- on NM death, replace NM repop with PH repop
-                        -- print(string.format("nm %i died. ph %i will pop in place",nmId,phId));
-                        DisallowRespawn(nmId, true);
-                        DisallowRespawn(phId, false);
-                        GetMobByID(phId):setRespawnTime(GetMobRespawnTime(phId));
-                        m:setLocalVar("pop", os.time() + cooldown);
-                        m:removeListener("DESPAWN_"..nmId);
-                    end);
-                    
-                end
+    local nmId = phList[phId];
+    if (nmId ~= nil) then
+        local nm = GetMobByID(nmId);
+        if (nm ~= nil) then
+            local pop = nm:getLocalVar("pop");
+            if (os.time() > pop and not lotteryPrimed(phList) and math.random(100) <= chance) then
+
+                -- on PH death, replace PH repop with NM repop
+                -- print(string.format("ph %i winner! nm %i will pop in place",phId,nmId));
+                DisallowRespawn(phId, true);
+                DisallowRespawn(nmId, false);
+                UpdateNMSpawnPoint(nmId);
+                nm:setRespawnTime(GetMobRespawnTime(phId));
+
+                nm:addListener("DESPAWN", "DESPAWN_"..nmId, function(m)
+                    -- on NM death, replace NM repop with PH repop
+                    -- print(string.format("nm %i died. ph %i will pop in place",nmId,phId));
+                    DisallowRespawn(nmId, true);
+                    DisallowRespawn(phId, false);
+                    GetMobByID(phId):setRespawnTime(GetMobRespawnTime(phId));
+                    m:setLocalVar("pop", os.time() + cooldown);
+                    m:removeListener("DESPAWN_"..nmId);
+                end);
+
             end
-            break;
         end
     end
 end
