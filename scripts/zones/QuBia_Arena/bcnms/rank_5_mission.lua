@@ -7,6 +7,7 @@ package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
@@ -15,6 +16,9 @@ require("scripts/globals/keyitems");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
@@ -33,9 +37,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         else -- Gives skip dialogue if previously completed
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

@@ -6,16 +6,22 @@ package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
 
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)
-    local baseID = 17039401 + (instance:getBattlefieldNumber() - 1) * 2
+    local baseID = 17039401 + (battlefield:getArea() - 1) * 2
     local pos = GetMobByID(baseID):getSpawnPos();
 
-    local karababa  = instance:insertAlly(2157);
+    local karababa  = battlefield:insertEntity(2157, true);
     karababa:setSpawn(pos.x, pos.y, pos.z, 0);
     karababa:spawn();
 end;
@@ -39,9 +45,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
    
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:hasCompletedMission(TOAU,SHIELD_OF_DIPLOMACY)) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,1);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

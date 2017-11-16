@@ -7,18 +7,26 @@ package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/zones/Sacrificial_Chamber/TextIDs");
-
+require("scripts/globals/battlefield")
 -----------------------------------
 -- EXAMPLE SCRIPT
--- 
+--
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
+
+function onBattlefieldInitialise(battlefield)
+    battlefield:setLocalVar("loot", 1)
+end
+
+function onBattlefieldTick(battlefield, tick)
+    g_Battlfield.onBattlefieldTick(battlefield, tick)
+end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
@@ -38,23 +46,21 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
-    
+
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
-    
         local name, clearTime, partySize = battlefield:getRecord()
-        player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,0);
+        player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
+-- print("bc finish csid "..csid.." and option "..option);
 end;

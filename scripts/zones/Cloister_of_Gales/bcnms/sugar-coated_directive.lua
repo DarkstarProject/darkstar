@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 ----------------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/globals/quests");
 require("scripts/zones/Cloister_of_Gales/TextIDs");
 
@@ -14,6 +15,9 @@ require("scripts/zones/Cloister_of_Gales/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
@@ -34,9 +38,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:hasCompletedMission(ASA,SUGAR_COATED_DIRECTIVE)) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,1);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,4,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
                 spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
             elseif (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then
                 target:delTP(power);
-                spell:setMsg(431); -- tp reduced
+                spell:setMsg(msgBasic.MAGIC_TP_REDUCE);
             elseif (target:hasStatusEffect(typeEffectOne)) then
                 target:addStatusEffect(typeEffectTwo,1,0,duration);
                 target:delTP(power);

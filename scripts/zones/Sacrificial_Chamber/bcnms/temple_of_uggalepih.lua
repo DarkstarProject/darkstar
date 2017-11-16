@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Sacrificial_Chamber/TextIDs");
@@ -13,6 +14,9 @@ require("scripts/zones/Sacrificial_Chamber/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
@@ -33,9 +37,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:startEvent(0x7d01,1,1,1,0,1,0,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         else
-            player:startEvent(0x7d01,1,1,1,0,1,1,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

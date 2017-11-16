@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/zones/Full_Moon_Fountain/TextIDs");
 
@@ -23,6 +24,9 @@ require("scripts/zones/Full_Moon_Fountain/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
@@ -44,9 +48,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (moonlitPath == QUEST_COMPLETED) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

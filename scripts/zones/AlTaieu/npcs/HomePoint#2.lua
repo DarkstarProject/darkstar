@@ -3,12 +3,11 @@
 -- NPC:  HomePoint#2
 -- !pos -532 0 447 33
 -----------------------------------
-
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
-
-require("scripts/globals/settings");
+-----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/homepoint");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action

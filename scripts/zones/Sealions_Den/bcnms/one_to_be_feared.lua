@@ -7,20 +7,21 @@ package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
+require("scripts/globals/battlefield")
 require("scripts/zones/Sealions_Den/TextIDs");
 
 -----------------------------------
---instance 1   !pos -780 -103 -90
+--battlefield 1   !pos -780 -103 -90
           -- >     -231              = lieux de combat
---instance 2   !pos -140 -23 -450
+--battlefield 2   !pos -140 -23 -450
          --  >      -151             = lieux de combat
---instance 3   !pos 500  56  -810
+--battlefield 3   !pos 500  56  -810
          --  >    640  -71   -206           = lieux de combat
 
 
-    --cs 0,instanceID= cs + teleportation     vers mamet
-    --cs 1,instanceID= cs + teleportation     vers ultima
-    --cs 2,instanceID= cs + teleportation     vers omega
+    --cs 0,battlefieldID= cs + teleportation     vers mamet
+    --cs 1,battlefieldID= cs + teleportation     vers ultima
+    --cs 2,battlefieldID= cs + teleportation     vers omega
     --cs 7 leave l'insctance
     -- cs 8 =>navire de guerre > retourner a tavnazia
 
@@ -28,6 +29,9 @@ require("scripts/zones/Sealions_Den/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
@@ -47,12 +51,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==2) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
             player:setVar("PromathiaStatus",0);
             player:completeMission(COP,ONE_TO_BE_FEARED);
             player:addMission(COP,CHAINS_AND_BONDS);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
            player:startEvent(0x7d02);

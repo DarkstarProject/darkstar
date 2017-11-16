@@ -3,9 +3,15 @@
 -- Name: NW Apollyon
 -----------------------------------
 require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)        
     SetServerVariable("[NW_Apollyon]UniqueID",os.time());
     HideArmouryCrates(NW_Apollyon,APOLLYON_NW_SW);

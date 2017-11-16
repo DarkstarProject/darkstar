@@ -614,7 +614,7 @@ end;
         -- dmg = utils.takeShadows(target, dmg, 1);
 
         -- if (dmg == 0) then
-            -- spell:setMsg(31);
+            -- spell:setMsg(msgBasic.SHADOW_ABSORB);
             -- return 1;
         -- end
     end

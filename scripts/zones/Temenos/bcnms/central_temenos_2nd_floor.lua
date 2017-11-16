@@ -3,9 +3,15 @@
 -- Name: Central Temenos 2nd Floor
 -----------------------------------
 require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)
     if (GetMobByID(16929039):isSpawned()) then DespawnMob(16929039); end
     if (GetMobByID(16929040):isSpawned()) then DespawnMob(16929040); end

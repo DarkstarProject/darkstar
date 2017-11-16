@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
@@ -26,6 +27,9 @@ require("scripts/zones/Spire_of_Dem/TextIDs");
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
 end;
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
@@ -47,10 +51,10 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         player:addExp(1500);
         if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then    
             player:setVar("PromathiaStatus",9);
-            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,0); 
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,0); 
             
         else
-            player:startEvent(0x7d01,0,0,0,instance:getTimeInside(),0,0,1); -- Alreday finished this promy
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- Alreday finished this promy
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);

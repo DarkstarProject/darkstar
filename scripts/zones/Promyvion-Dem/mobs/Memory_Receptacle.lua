@@ -1,213 +1,79 @@
 -----------------------------------
 -- Area: Promyvion-Dem
 --  MOB: Memory Receptacle
--- Todo: clean up disgustingly bad formatting
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Dem/TextIDs"] = nil;
+package.loaded["scripts/zones/Promyvion-Dem/MobIDs"] = nil;
 -----------------------------------
-require( "scripts/zones/Promyvion-Dem/TextIDs" );
+require("scripts/zones/Promyvion-Dem/TextIDs");
+require("scripts/zones/Promyvion-Dem/MobIDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
------------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
     mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-function onMobFight(mob, target)
-
-     local Mem_Recep = mob:getID();
-
-    if (Mem_Recep == 16850971) then -- Floor 1
-        for i = Mem_Recep+1, Mem_Recep+3 do -- Keep pets linked
-            if (GetMobAction(i) == 16) then
-                GetMobByID(i):updateEnmity(target);
-            end
-        end
-     elseif (Mem_Recep == 16851025 or Mem_Recep == 16851032 or Mem_Recep == 16851039 or Mem_Recep == 16851046) then -- Floor 2
-       for i = Mem_Recep+1, Mem_Recep+5 do
-          if (GetMobAction(i) == 16) then
-             GetMobByID(i):updateEnmity(target);
-           end
-        end
-     elseif (Mem_Recep == 16851072 or Mem_Recep == 16851081 or Mem_Recep == 16851090 or Mem_Recep == 16851149 or Mem_Recep == 16851158 or -- Floor 3
-      Mem_Recep == 16851167) then
-       for i = Mem_Recep+1, Mem_Recep+7 do
-          if (GetMobAction(i) == 16) then
-             GetMobByID(i):updateEnmity(target);
-           end
-        end
-   end
-
-   -- Summons a single stray every 30 seconds.
-
-   if (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16850971) and mob:AnimationSub() == 2) then -- Floor 1
-      for i = Mem_Recep+1, Mem_Recep+3 do
-         if (GetMobAction(i) == 0) then -- My Stray is deeaaaaaad!
-                 mob:AnimationSub(1);
-            SpawnMob(i):updateEnmity(target);
-            GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1); -- Set stray x and z position +1 from Recepticle
-            return;
-         end
-      end
-   elseif (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16851025 or Mem_Recep == 16851032 or Mem_Recep == 16851039 or -- Floor 2
-    Mem_Recep == 16851046) and mob:AnimationSub() == 2) then
-      for i = Mem_Recep+1, Mem_Recep+5 do
-         if (GetMobAction(i) == 0) then
-                 mob:AnimationSub(1);
-            SpawnMob(i):updateEnmity(target);
-            GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1); -- Set stray x and z position +1 from Recepticle
-            return;
-         end
-      end
-   elseif (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16851072 or Mem_Recep == 16851081 or Mem_Recep == 16851090 or -- Floor 3
-    Mem_Recep == 16851149 or Mem_Recep == 16851158 or Mem_Recep == 16851167) and mob:AnimationSub() == 2) then
-      for i = Mem_Recep+1, Mem_Recep+7 do
-         if (GetMobAction(i) == 0) then
-            mob:AnimationSub(1);
-            SpawnMob(i):updateEnmity(target);
-            GetMobByID(i):setPos(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1);
-            return;
-         end
-      end
-   else
-           mob:AnimationSub(2);
-   end
+function onMobSpawn(mob, target)
+    mob:setLocalVar("nextStray", os.time() + 30);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function checkStray(mob)
+    local mobId = mob:getID();
+    local numStrays = MEMORY_RECEPTACLES[mobId][2];
+    
+    if (os.time() > mob:getLocalVar("nextStray")) then
+        for i = mobId + 1, mobId + numStrays do
+            local stray = GetMobByID(i);
+            if (not stray:isSpawned()) then
+                mob:AnimationSub(1);
+                stray:setPos(mob:getXPos() + math.random(-1,1), mob:getYPos(), mob:getZPos() + math.random(-1,1));
+                SpawnMob(stray:getID());
+                mob:setLocalVar("nextStray", os.time() + 30);
+                break;
+            end
+        end
+    else
+        mob:AnimationSub(2);
+    end
+end;
+
+function onMobRoam(mob)
+    checkStray(mob);
+end;
+
+function onMobFight(mob, target)
+    local mobId = mob:getID();
+    local numStrays = MEMORY_RECEPTACLES[mobId][2];
+
+    -- keep pets linked
+    for i = mobId + 1, mobId + numStrays do
+        local stray = GetMobByID(i);
+        if (stray:isSpawned()) then
+            stray:updateEnmity(target);
+        end
+    end
+    
+    -- summon a stray every 30 seconds
+    checkStray(mob);
+end;
 
 function onMobDeath(mob, player, isKiller)
-    local rand = 0;
-    local mobID = mob:getID();
-    local difX = player:getXPos()-mob:getXPos();
-    local difY = player:getYPos()-mob:getYPos();
-    local difZ = player:getZPos()-mob:getZPos();
-  local killeranimation = player:getAnimation();
-    local Distance = math.sqrt( math.pow(difX,2) + math.pow(difY,2) + math.pow(difZ,2) ); --calcul de la distance entre les "killer" et le memory receptacle
-    --print(mobID);
-
-    mob:AnimationSub(0); -- Set ani. sub to default or the recepticles wont work properly
-
-    if (VanadielMinute() % 2 == 1) then
-        player:setVar("MemoryReceptacle",2);
-        rnd = 2;
-    else
-        player:setVar("MemoryReceptacle",1);
-        rnd = 1;
-    end
-
-    switch (mob:getID()) : caseof {
-        [16850971] = function (x)
-        GetNPCByID(16851268):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-                player:startEvent(30);
+    if (isKiller) then
+        mob:AnimationSub(0);
+        
+        -- chance to open portal
+        local mobId = mob:getID();
+        local floor = MEMORY_RECEPTACLES[mobId][1];
+        local numAlive = 1;
+        for k, v in pairs(MEMORY_RECEPTACLES) do
+            if (k ~= mobId and v[1] == floor and GetMobByID(k):isAlive()) then
+                numAlive = numAlive + 1;
             end
-        end,
-        [16851025] = function (x)
-        GetNPCByID(16851272):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-                    if (rnd == 2) then
-                    player:startEvent(35);
-                    else
-                    player:startEvent(34);
-                    end
-            end
-        end,
-        [16851032] = function (x)
-        GetNPCByID(16851273):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-                    if (rnd==2) then
-                    player:startEvent(35);
-                    else
-                    player:startEvent(34);
-                    end
-            end
-        end,
-        [16851039] = function (x)
-        GetNPCByID(16851274):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-                    if (rnd==2) then
-                    player:startEvent(35);
-                    else
-                    player:startEvent(34);
-                    end
-            end
-        end,
-        [16851046] = function (x)
-        GetNPCByID(16851275):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-                      if (rnd==2) then
-                    player:startEvent(35);
-                    else
-                    player:startEvent(34);
-                    end
-            end
-        end,
-        [16851072] = function (x)
-        GetNPCByID(16851269):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-            player:startEvent(32);
-            end
-        end,
-        [16851081] = function (x)
-        GetNPCByID(16851270):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-            player:startEvent(32);
-            end
-        end,
-        [16851090] = function (x)
-        GetNPCByID(16851271):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-            player:startEvent(32);
-            end
-        end,
-        [16851149] = function (x)
-        GetNPCByID(16851276):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-            player:startEvent(32);
-            end
-        end,
-        [16851158] = function (x)
-        GetNPCByID(16851277):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-            player:startEvent(32);
-            end
-        end,
-        [16851167] = function (x)
-        GetNPCByID(16851278):openDoor(180);
-            if (Distance <4 and killeranimation == 0) then
-            player:startEvent(32);
-            end
-        end,
-    }
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
-----------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-   if (option==1) then
-    player:setVar("MemoryReceptacle",0);
+        end
+        if (math.random(numAlive) == 1) then
+            local stream = GetNPCByID(MEMORY_RECEPTACLES[mobId][3]);
+            stream:openDoor(180);
+        end
     end
 end;

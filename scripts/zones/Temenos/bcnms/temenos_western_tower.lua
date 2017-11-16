@@ -3,9 +3,15 @@
 -- Name: Temenos Western Tower
 -----------------------------------
 require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)    
     SetServerVariable("[Temenos_W_Tower]UniqueID",os.time());
     HideArmouryCrates(Temenos_Western_Tower,TEMENOS);        

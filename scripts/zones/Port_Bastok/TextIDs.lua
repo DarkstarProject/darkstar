@@ -29,6 +29,9 @@ POWHATAN_DIALOG_1 = 7268; -- I'm sick and tired of entertaining guests.
  NOKKHI_BAD_COUNT = 8787; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
 NOKKHI_GOOD_TRADE = 8789; -- And here you go! Come back soon, and bring your friends!
   NOKKHI_BAD_ITEM = 8790; -- I'm real sorry, but there's nothing I can do with those.
+  CLOUD_BAD_COUNT = 9214; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and 
+ CLOUD_GOOD_TRADE = 9218; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
+   CLOUD_BAD_ITEM = 9219; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
 
 -- Shop Texts
   TENSHODO_SHOP_OPEN_DIALOG = 6725; -- Ah, one of our members. Welcome to the Tenshodo shop.

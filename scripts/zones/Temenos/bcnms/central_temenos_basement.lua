@@ -3,9 +3,15 @@
 -- Name: Central Temenos Basement
 -----------------------------------
 require("scripts/globals/limbus");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
+function onBattlefieldTick(battlefield, tick)
+    g_Battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
 function onBattlefieldRegister(player,battlefield)    
     SetServerVariable("[C_Temenos_Base]UniqueID",os.time());
     HideArmouryCrates(Central_Temenos_Basement,TEMENOS);        

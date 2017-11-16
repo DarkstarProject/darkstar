@@ -38,9 +38,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,1,0);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
         else
-            player:startEvent(0x7d01,1,clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
@@ -53,5 +53,5 @@ end;
 
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    player:setVar("BASTOK92",2); -- This should be MissionStatus..But all instances of same var need updated.
+    player:setVar("BASTOK92",2); -- This should be MissionStatus..But all battlefields of same var need updated.
 end;

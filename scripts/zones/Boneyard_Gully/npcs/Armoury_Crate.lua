@@ -23,8 +23,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:getBCNMloot();
-    npc:setStatus(STATUS_DISAPPEAR);
+    local battlefield = player:getBattlefield()
+    if battlefield then
+        g_Battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
+    end
 end;
 
 -----------------------------------

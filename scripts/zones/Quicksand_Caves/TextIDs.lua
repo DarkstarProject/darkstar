@@ -21,6 +21,7 @@ CHEST_ILLUSION = 7319; -- The chest was but an illusion...
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here.
     SENSE_OF_FOREBODING = 6401; -- You are suddenly overcome with a sense of foreboding...
+    NOW_IS_NOT_THE_TIME = 6402; -- Now is not the time for that!
        DOOR_FIRMLY_SHUT = 7321; -- The door is firmly shut.
           POOL_OF_WATER = 7353; -- It is a pool of water.
        YOU_FIND_NOTHING = 7356; -- You find nothing.

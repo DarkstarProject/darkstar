@@ -4,6 +4,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -24,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
         GetMobByID(shadow2):updateEnmity(target);
     end
 
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
 
     return 0;
 end;

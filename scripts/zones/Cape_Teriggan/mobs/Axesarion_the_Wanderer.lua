@@ -2,29 +2,16 @@
 -- Area: Cape Teriggan
 --  NM:  Axesarion the Wanderer
 -----------------------------------
-
+package.loaded["scripts/zones/Cape_Teriggan/MobIDs"] = nil;
 -----------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/zones/Cape_Teriggan/MobIDs");
 
-function onMobSpawn(mob)
+function onMobDisengage(mob)
+    DespawnMob(mob:getID(), 120);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
--- onMobDespawn Action
------------------------------------
-
-function onMobDespawn(mob)
-
-    if (GetServerVariable("[ZM4]Wind_Headstone_Active") == 0) then
-        SetServerVariable("[ZM4]Wind_Headstone_Active",os.time()+ 900);
+    if (isKiller) then
+        GetNPCByID(CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
     end
-
 end;
