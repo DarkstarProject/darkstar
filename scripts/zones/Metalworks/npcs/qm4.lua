@@ -138,6 +138,7 @@ function onEventFinish(player,csid,option)
             if (item == 7 and player:hasKeyItem(COSTUME_KIT) == true) then
                 player:delKeyItem(COSTUME_KIT);
             end
+            player:setVar("Bait_and_Switch_Conquest_Tally",getConquestTally());
             player:resetLocalVars();
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,AwardPrize(player));

@@ -39,11 +39,11 @@ function onTrigger(player,npc)
     local luto = (player:getLocalVar("Luto_Caught"));
     local miledo = (player:getLocalVar("Miledo_Caught"));
     local keyParam = 0;
-        if (luto == 1) then
-            keyParam = 2;
-        elseif (miledo == 1) then
-            keyParam = 1;
-        end
+    if (luto == 1) then
+        keyParam = 2;
+    elseif (miledo == 1) then
+        keyParam = 1;
+    end
     local timesUP = false;
     if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
         timesUP = true;
@@ -84,12 +84,12 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE * 300);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE * 300);
         player:addTitle(HOT_DOG);
-            if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
-                player:addFame(BASTOK,30);
-                player:completeQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);
-            else
-                player:addFame(BASTOK,5);
-            end
+        if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
+            player:addFame(BASTOK,30);
+            player:completeQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);
+        else
+            player:addFame(BASTOK,5);
+        end
     elseif (csid == 0x0395 and option == 1) then
         player:setLocalVar("Miledo_Caught",0);
         player:setLocalVar("Luto_Caught",0);

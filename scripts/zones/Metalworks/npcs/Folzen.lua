@@ -27,11 +27,11 @@ function onTrigger(player,npc)
     local luto = (player:getLocalVar("Luto_Caught"));
     local miledo = (player:getLocalVar("Miledo_Caught"));
     local keyParam = 0;
-        if (luto == 1) then
-            keyParam = 2;
-        elseif (miledo == 1) then
-            keyParam = 3;
-        end
+    if (luto == 1) then
+        keyParam = 2;
+    elseif (miledo == 1) then
+        keyParam = 3;
+    end
     local timesUP = false;
     if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
         timesUP = true;
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     if (active == 3 and timesUP == false) then
         if (item == 7) then
             player:startEvent(0x0392);
-        elseif (item ~= 7) then
+        else
             player:startEvent(0x0394,0,0,item,0,0,0,keyParam,0);
         end
     elseif (player:getMaskBit(BnSDialogue,5) == true and active == 1 and timesUP == false) then

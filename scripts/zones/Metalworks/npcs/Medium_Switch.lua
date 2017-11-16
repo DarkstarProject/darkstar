@@ -99,15 +99,15 @@ function onEventFinish(player,csid,option)
         if (option == 130 or option == 258 or option == 514 or 
             option == 1154 or option == 1282 or option == 1538) then
                 player:setLocalVar("CS_Progression_Increment",increment + 1);
-                    if (item == 2) then
-                        player:addGil(GIL_RATE * 10);
-                    end
-                    if (s_table.ord[checkSwitch] == 2) then
-                        player:messageSpecial(DeliverMessage(player));
-                        player:setLocalVar("Switch_Table_Current",checkSwitch + 1);
-                    else
-                        player:setLocalVar("Switch_Table_Current",1);
-                    end
+                if (item == 2) then
+                    player:addGil(GIL_RATE * 10);
+                end
+                if (s_table.ord[checkSwitch] == 2) then
+                    player:messageSpecial(DeliverMessage(player));
+                    player:setLocalVar("Switch_Table_Current",checkSwitch + 1);
+                else
+                    player:setLocalVar("Switch_Table_Current",1);
+                end
         elseif (option == 2) then
             if (s_table.ord[checkSwitch] == 2) then
                 player:messageSpecial(DeliverMessage(player));
