@@ -29,6 +29,7 @@ MISSION_DIALOG_CID_TO_AYAME =  7572; -- Give it to one of his Mythril Musketeers
 NOTHING_OUT_OF_ORDINARY =  6455; -- There is nothing out of the ordinary here.
      GLAROCIQUET_DIALOG =  8208; -- I am Speaker Name, a Temple Knight. I am one of the guards charged with overseeing San d'Oria's conquest campaign.
    LEXUN_MARIXUN_DIALOG =  8210; -- I am Speaker Name, a War Warlock. I am one of the guards charged with overseeing Windurst's conquest campaign.
+   BAIT_AND_SWITCH_BASE = 10595; -- First switch deactivated.
 
 -- Shop Texts
 VICIOUS_EYE_SHOP_DIALOG =  8000; -- Hi. This is where blacksmiths buy what they need.
