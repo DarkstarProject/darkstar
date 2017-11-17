@@ -119,63 +119,63 @@ local L = 3;
 Switch_Table =
 {
 -- Scope
-    [101] = {ord = {S,M,L},snake = 3,helmut = 0,wolf = 2,darha = 1,digits = 3},
-    [102] = {ord = {S,L,M},snake = 2,helmut = 0,wolf = 3,darha = 1,digits = 3},
-    [103] = {ord = {M,S,L},snake = 3,helmut = 0,wolf = 1,darha = 2,digits = 3},
-    [104] = {ord = {M,L,S},snake = 1,helmut = 0,wolf = 3,darha = 2,digits = 3},
-    [105] = {ord = {L,S,M},snake = 2,helmut = 0,wolf = 1,darha = 3,digits = 3},
-    [106] = {ord = {L,M,S},snake = 1,helmut = 0,wolf = 2,darha = 3,digits = 3},
+    [101] = {ord = {S,M,L},snake = 3,helmut = 0,wolf = 2,darha = 1},
+    [102] = {ord = {S,L,M},snake = 2,helmut = 0,wolf = 3,darha = 1},
+    [103] = {ord = {M,S,L},snake = 3,helmut = 0,wolf = 1,darha = 2},
+    [104] = {ord = {M,L,S},snake = 1,helmut = 0,wolf = 3,darha = 2},
+    [105] = {ord = {L,S,M},snake = 2,helmut = 0,wolf = 1,darha = 3},
+    [106] = {ord = {L,M,S},snake = 1,helmut = 0,wolf = 2,darha = 3},
 -- Bard's Harp
-    [201] = {ord = {S,M,L,M},snake = 2,helmut = 2,wolf = 1,darha = 1,digits = 4},
-    [202] = {ord = {S,M,L,L},snake = 3,helmut = 3,wolf = 1,darha = 1,digits = 4},
-    [203] = {ord = {S,L,M,M},snake = 2,helmut = 2,wolf = 2,darha = 1,digits = 4},
-    [204] = {ord = {S,L,M,L},snake = 3,helmut = 3,wolf = 2,darha = 1,digits = 4},
-    [205] = {ord = {M,S,L,S},snake = 1,helmut = 1,wolf = 3,darha = 2,digits = 4},
-    [206] = {ord = {M,L,S,S},snake = 1,helmut = 1,wolf = 4,darha = 2,digits = 4},
-    [207] = {ord = {M,L,S,L},snake = 3,helmut = 3,wolf = 4,darha = 2,digits = 4},
-    [208] = {ord = {L,S,M,S},snake = 1,helmut = 1,wolf = 5,darha = 3,digits = 4},
-    [209] = {ord = {L,M,S,S},snake = 1,helmut = 1,wolf = 6,darha = 3,digits = 4},
-    [210] = {ord = {L,M,S,M},snake = 2,helmut = 2,wolf = 6,darha = 3,digits = 4},
+    [201] = {ord = {S,M,L,M},snake = 2,helmut = 2,wolf = 1,darha = 1},
+    [202] = {ord = {S,M,L,L},snake = 3,helmut = 3,wolf = 1,darha = 1},
+    [203] = {ord = {S,L,M,M},snake = 2,helmut = 2,wolf = 2,darha = 1},
+    [204] = {ord = {S,L,M,L},snake = 3,helmut = 3,wolf = 2,darha = 1},
+    [205] = {ord = {M,S,L,S},snake = 1,helmut = 1,wolf = 3,darha = 2},
+    [206] = {ord = {M,L,S,S},snake = 1,helmut = 1,wolf = 4,darha = 2},
+    [207] = {ord = {M,L,S,L},snake = 3,helmut = 3,wolf = 4,darha = 2},
+    [208] = {ord = {L,S,M,S},snake = 1,helmut = 1,wolf = 5,darha = 3},
+    [209] = {ord = {L,M,S,S},snake = 1,helmut = 1,wolf = 6,darha = 3},
+    [210] = {ord = {L,M,S,M},snake = 2,helmut = 2,wolf = 6,darha = 3},
 -- Lead Guardsman's ID
-    [301] = {ord = {L,M,S,S,M,L},snake = 3,helmut = 1,wolf = 1,darha = 3,digits = 6},
-    [302] = {ord = {S,L,M,M,S,L},snake = 3,helmut = 2,wolf = 2,darha = 1,digits = 6},
-    [303] = {ord = {M,L,S,L,S,M},snake = 2,helmut = 2,wolf = 3,darha = 2,digits = 6},
-    [304] = {ord = {S,L,M,L,M,S},snake = 1,helmut = 3,wolf = 4,darha = 1,digits = 6},
-    [305] = {ord = {S,S,M,L,M,L},snake = 3,helmut = 4,wolf = 4,darha = 1,digits = 6},
-    [306] = {ord = {L,S,M,L,M,S},snake = 1,helmut = 4,wolf = 4,darha = 3,digits = 6},
-    [307] = {ord = {S,M,L,S,L,S},snake = 1,helmut = 5,wolf = 5,darha = 1,digits = 6},
-    [308] = {ord = {M,M,L,S,L,S},snake = 1,helmut = 5,wolf = 5,darha = 2,digits = 6},
-    [309] = {ord = {S,S,L,M,L,M},snake = 2,helmut = 6,wolf = 5,darha = 1,digits = 6},
-    [310] = {ord = {M,S,L,M,L,S},snake = 1,helmut = 6,wolf = 5,darha = 2,digits = 6},
+    [301] = {ord = {L,M,S,S,M,L},snake = 3,helmut = 1,wolf = 1,darha = 3},
+    [302] = {ord = {S,L,M,M,S,L},snake = 3,helmut = 2,wolf = 2,darha = 1},
+    [303] = {ord = {M,L,S,L,S,M},snake = 2,helmut = 2,wolf = 3,darha = 2},
+    [304] = {ord = {S,L,M,L,M,S},snake = 1,helmut = 3,wolf = 4,darha = 1},
+    [305] = {ord = {S,S,M,L,M,L},snake = 3,helmut = 4,wolf = 4,darha = 1},
+    [306] = {ord = {L,S,M,L,M,S},snake = 1,helmut = 4,wolf = 4,darha = 3},
+    [307] = {ord = {S,M,L,S,L,S},snake = 1,helmut = 5,wolf = 5,darha = 1},
+    [308] = {ord = {M,M,L,S,L,S},snake = 1,helmut = 5,wolf = 5,darha = 2},
+    [309] = {ord = {S,S,L,M,L,M},snake = 2,helmut = 6,wolf = 5,darha = 1},
+    [310] = {ord = {M,S,L,M,L,S},snake = 1,helmut = 6,wolf = 5,darha = 2},
 -- Snares, Lucky Charm, Pocket Watch
-    [401] = {ord = {M,S,L,S,M,L,S,S},snake = 1,helmut = 1,wolf = 1,darha = 2,digits = 8},
-    [402] = {ord = {S,M,L,M,S,L,M,M},snake = 2,helmut = 1,wolf = 1,darha = 1,digits = 8},
-    [403] = {ord = {L,M,S,S,S,M,L,M},snake = 2,helmut = 2,wolf = 2,darha = 3,digits = 8},
-    [404] = {ord = {L,S,M,M,M,L,S,S},snake = 1,helmut = 3,wolf = 3,darha = 3,digits = 8},
-    [405] = {ord = {S,L,M,M,M,S,L,L},snake = 3,helmut = 3,wolf = 3,darha = 1,digits = 8},
-    [406] = {ord = {L,S,M,S,L,M,S,M},snake = 2,helmut = 4,wolf = 4,darha = 3,digits = 8},
-    [407] = {ord = {M,S,L,S,M,L,S,L},snake = 3,helmut = 4,wolf = 4,darha = 2,digits = 8},
-    [408] = {ord = {S,L,M,L,L,M,S,M},snake = 2,helmut = 5,wolf = 5,darha = 1,digits = 8},
-    [409] = {ord = {M,L,S,L,L,S,M,S},snake = 1,helmut = 5,wolf = 5,darha = 2,digits = 8},
-    [410] = {ord = {L,S,M,S,L,M,S,S},snake = 1,helmut = 6,wolf = 1,darha = 3,digits = 8},
+    [401] = {ord = {M,S,L,S,M,L,S,S},snake = 1,helmut = 1,wolf = 1,darha = 2},
+    [402] = {ord = {S,M,L,M,S,L,M,M},snake = 2,helmut = 1,wolf = 1,darha = 1},
+    [403] = {ord = {L,M,S,S,S,M,L,M},snake = 2,helmut = 2,wolf = 2,darha = 3},
+    [404] = {ord = {L,S,M,M,M,L,S,S},snake = 1,helmut = 3,wolf = 3,darha = 3},
+    [405] = {ord = {S,L,M,M,M,S,L,L},snake = 3,helmut = 3,wolf = 3,darha = 1},
+    [406] = {ord = {L,S,M,S,L,M,S,M},snake = 2,helmut = 4,wolf = 4,darha = 3},
+    [407] = {ord = {M,S,L,S,M,L,S,L},snake = 3,helmut = 4,wolf = 4,darha = 2},
+    [408] = {ord = {S,L,M,L,L,M,S,M},snake = 2,helmut = 5,wolf = 5,darha = 1},
+    [409] = {ord = {M,L,S,L,L,S,M,S},snake = 1,helmut = 5,wolf = 5,darha = 2},
+    [410] = {ord = {L,S,M,S,L,M,S,S},snake = 1,helmut = 6,wolf = 1,darha = 3},
 -- Costume
-    [501] = {ord = {S,M,L,M,S,M,L,S,L,M},snake = 2,helmut = 1,wolf = 1,darha = 1,digits = 10},
-    [502] = {ord = {M,S,L,S,M,S,L,M,L,S},snake = 1,helmut = 1,wolf = 1,darha = 2,digits = 10},
-    [503] = {ord = {M,L,S,L,M,L,S,M,S,L},snake = 3,helmut = 1,wolf = 1,darha = 2,digits = 10},
-    [504] = {ord = {L,M,S,M,L,M,S,L,S,M},snake = 2,helmut = 1,wolf = 1,darha = 3,digits = 10},
-    [505] = {ord = {M,L,S,L,M,L,S,L,S,M},snake = 2,helmut = 2,wolf = 2,darha = 2,digits = 10},
-    [506] = {ord = {L,M,S,S,L,M,S,S,M,L},snake = 3,helmut = 3,wolf = 3,darha = 3,digits = 10},
-    [507] = {ord = {S,L,M,L,S,L,M,S,M,L},snake = 3,helmut = 4,wolf = 4,darha = 1,digits = 10},
-    [508] = {ord = {L,S,M,S,L,S,M,L,M,S},snake = 1,helmut = 4,wolf = 4,darha = 3,digits = 10},
-    [509] = {ord = {S,L,M,M,S,L,M,M,S,L},snake = 3,helmut = 5,wolf = 5,darha = 1,digits = 10},
-    [510] = {ord = {L,S,M,M,L,S,M,M,L,S},snake = 1,helmut = 5,wolf = 5,darha = 3,digits = 10},
+    [501] = {ord = {S,M,L,M,S,M,L,S,L,M},snake = 2,helmut = 1,wolf = 1,darha = 1},
+    [502] = {ord = {M,S,L,S,M,S,L,M,L,S},snake = 1,helmut = 1,wolf = 1,darha = 2},
+    [503] = {ord = {M,L,S,L,M,L,S,M,S,L},snake = 3,helmut = 1,wolf = 1,darha = 2},
+    [504] = {ord = {L,M,S,M,L,M,S,L,S,M},snake = 2,helmut = 1,wolf = 1,darha = 3},
+    [505] = {ord = {M,L,S,L,M,L,S,L,S,M},snake = 2,helmut = 2,wolf = 2,darha = 2},
+    [506] = {ord = {L,M,S,S,L,M,S,S,M,L},snake = 3,helmut = 3,wolf = 3,darha = 3},
+    [507] = {ord = {S,L,M,L,S,L,M,S,M,L},snake = 3,helmut = 4,wolf = 4,darha = 1},
+    [508] = {ord = {L,S,M,S,L,S,M,L,M,S},snake = 1,helmut = 4,wolf = 4,darha = 3},
+    [509] = {ord = {S,L,M,M,S,L,M,M,S,L},snake = 3,helmut = 5,wolf = 5,darha = 1},
+    [510] = {ord = {L,S,M,M,L,S,M,M,L,S},snake = 1,helmut = 5,wolf = 5,darha = 3},
 };
 
 function DeliverMessage(player)
     local s_order = player:getLocalVar("Bait_and_Switch_Quest_Order");
     local s_table = Switch_Table[s_order];
     local checkSwitch = player:getLocalVar("Switch_Table_Current");
-    local numSwitches = s_table.digits;
+    local numSwitches = #s_table.ord;
     local message_offset = BAIT_AND_SWITCH_BASE;
 
     if (checkSwitch == numSwitches) then
@@ -200,4 +200,37 @@ function AwardPrize(player)
     [7] =  4213,  -- Icarus Wing
 };
     return Reward_Prize[CheckOptionForItem(player)];
+end;
+
+function checkTimeUP(player)
+    local item = CheckOptionForItem(player);
+    local timesUP = false;
+    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
+        timesUP = true;
+    end
+
+    return timesUP;
+end;
+
+function caughtParam(player)
+    local caught = player:getLocalVar("Bait_and_Switch_Caught");
+    local caughtParam = 0;
+    if (caught == 2) then
+        caughtParam = 1;
+    end
+
+    return caughtParam;
+end;
+
+function checkCSProgression(player)
+    local increment = player:getLocalVar("CS_Progression_Increment");
+    local item = CheckOptionForItem(player);
+printf ("Large Switch - increment = %u",increment);
+    local CSProgression = CheckBaitProgress(player)[item] + increment;
+printf ("Large Switch - CS Progression = %u",CSProgression);
+    if (CSProgression > 3) then
+        CSProgression = 0;
+    end
+
+    return CSProgression;
 end;
