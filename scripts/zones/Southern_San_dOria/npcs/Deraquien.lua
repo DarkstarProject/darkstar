@@ -2,6 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC:  Deraquien
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
+-- Involved in Quest #2: A Timely Visit
 -- !pos -98 -2 31 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -30,11 +31,49 @@ end;
 
 function onTrigger(player,npc)
 
+    local Fame = player:getFameLevel(SANDORIA);
+    local Rank = player:getRank();
+    local Nation = player:getNation();
+    -- access to chateau if not sandorian
+    local Access = (player:getCurrentMission(Nation) == 5) or (player:hasCompletedMission(Nation, 5));
+
+    local ATimelyVisit = player:getQuestStatus(SANDORIA,A_TIMELY_VISIT);
+    local ATimelyVisitProgress = player:getVar("ATimelyVisitProgress");
+    --printf("Fame %d, Rank %d, Nation %d, Access %d, ATV %d, ATVP %d\n", Fame, Rank, Nation, Access, ATimelyVisit, ATimelyVisitProgress);
+
     local WildcatSandy = player:getVar("WildcatSandy");
 
+    -- Lure of the Wildcat: San d'Oria
     if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,4) == false) then
         player:startEvent(0x032b);
+
+    -- A Timely Visit
+    elseif (Fame >= 3 and ATimelyVisit == QUEST_AVAILABLE and
+            ((Nation == NATION_SANDORIA and Rank >= 2) or (Nation ~= NATION_SANDORIA and Access))) then
+        if (ATimelyVisitProgress == 1) then
+            player:startEvent(0x002f); -- shortened initial cs for the quest
+        else
+            player:startEvent(0x0021); -- initial cs for the quest - thief of royal scepter
+        end;
+    elseif (ATimelyVisit == QUEST_ACCEPTED and ATimelyVisitProgress == 2) then
+        player:startEvent(0x0022); -- reminder to see Narvecaint - reminder of thief in la theine
+    elseif (ATimelyVisit == QUEST_ACCEPTED and ATimelyVisitProgress == 3) then
+        player:startEvent(0x0050); -- see Halver - thief caught but phillone was there
+    elseif (ATimelyVisit == QUEST_ACCEPTED and ATimelyVisitProgress == 4) then
+        player:startEvent(0x0014); -- reminder to see Halver - go get reward for thief
+    elseif (ATimelyVisit == QUEST_ACCEPTED and ATimelyVisitProgress == 6) then
+        player:startEvent(0x0057); -- vijrtall shows up and derq tells you go talk to phillone
+    elseif (ATimelyVisit == QUEST_ACCEPTED and ATimelyVisitProgress == 7) then
+        player:startEvent(0x001e); -- reminder to see Phillone
+    elseif (ATimelyVisit == QUEST_ACCEPTED and ATimelyVisitProgress == 8) then
+        player:startEvent(0x0026); -- go to Jugner Forest to retrieve royal sceptre
+    elseif (ATimelyVisit == QUEST_COMPLETED) then
+        -- TODO: confirm conditions for this one, not sure it goes here
+        player:startEvent(0x028e); -- after quest completed - "nothing to report"
+
+    -- default
     else
+        -- TODO: confirm conditions for this one, not sure it goes here
         player:startEvent(0x012);
     end
 
@@ -57,20 +96,33 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
+    -- Lure of the Wildcat
     if (csid == 0x032b) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",4,true);
+
+    -- A Timely Visit
+    elseif (csid == 0x0021) then
+        if (option == 1) then
+            player:addQuest(SANDORIA, A_TIMELY_VISIT);
+            player:getVar("ATimelyVisitProgress");
+            player:setVar("ATimelyVisitProgress",2);
+        else
+            player:getVar("ATimelyVisitProgress");
+            player:setVar("ATimelyVisitProgress",1);
+        end;
+    elseif (csid == 0x002f and option == 1) then
+        player:addQuest(SANDORIA, A_TIMELY_VISIT);
+        player:setVar("ATimelyVisitProgress",2);
+    elseif (csid == 0x0050) then
+        player:setVar("ATimelyVisitProgress",4);
+    elseif (csid == 0x0057) then
+        player:setVar("ATimelyVisitProgress",7);
+    elseif (csid == 0x0026) then
+        player:setVar("ATimelyVisitProgress",9);
+        player:setPos(-206,-3,67);
     end
 
 end;
 
----------other CS
---    player:startEvent(0x028e) -- nothing to report
---    player:startEvent(0x0021)-- theif of royl sceptre
---    player:startEvent(0x002f)-- as again about the theif
---    player:startEvent(0x0022) -- reminder of theif in la thein
---    player:startEvent(0x0050)  -- thief caught but phillone was there
---    player:startEvent(0x0014)  -- go get reward for thief
---    player:startEvent(0x0057) -- vijrtall shows up and derq tells you go talk tho phillone
---    player:startEvent(0x001e) --reminder go talk to phillone
---    player:startEvent(0x0026) -- go help  retrieve royal sceptre
---    player:startEvent(0x001b) -- the lady wanst involved in the theft :(
+-- TODO: find where this cs goes
+--    player:startEvent(0x001b) -- the lady wasnt involved in the theft? I'll stick to my guard duties
