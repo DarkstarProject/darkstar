@@ -74,12 +74,10 @@ local function calculateSkillUp(player)
             -- skill up!
             player:setSkillLevel(SKILL_DIG, RealSkill + SkillIncrement);
 
-            -- gotta update the skill rank and push packet
+            -- update the skill rank
             -- Digging does not have test items, so increment rank once player hits 10.0, 20.0, .. 100.0
-            for i = 0, 10, 1 do
-                if (SkillRank == i and (RealSkill + SkillIncrement) >= ((SkillRank * 100) + 100)) then
-                    player:setSkillRank(SKILL_DIG, SkillRank + 1);
-                end
+            if ((RealSkill + SkillIncrement) >= ((SkillRank * 100) + 100)) then
+                player:setSkillRank(SKILL_DIG, SkillRank + 1);
             end
         end
     end

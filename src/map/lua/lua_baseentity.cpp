@@ -2240,10 +2240,18 @@ inline int32 CLuaBaseEntity::getCharSkillLevel(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    uint8 skillID = (uint8)lua_tointeger(L, 1);
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        lua_pushinteger(L, 0);
+    }
+    else
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        uint8 skillID = (uint8)lua_tointeger(L, 1);
 
-    lua_pushinteger(L, PChar->RealSkills.skill[skillID]);
+        lua_pushinteger(L, PChar->RealSkills.skill[skillID]);
+    }
+
     return 1;
 }
 
