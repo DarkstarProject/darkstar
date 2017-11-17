@@ -114,7 +114,7 @@ INSERT INTO `item_mods_pet` VALUES (11258,30,5,1);        -- Avatar: Magic Accur
 INSERT INTO `item_mods_pet` VALUES (11261,12,10,3);       -- Automaton: INT+10
 INSERT INTO `item_mods_pet` VALUES (11261,13,10,3);       -- Automaton: MND+10
 
--- 	Puppetry Tobe +1 - LVL 74
+--  Puppetry Tobe +1 - LVL 74
 INSERT INTO `item_mods_pet` VALUES (11297,2,20,4);        -- Harlequin Automaton: HP+20
 INSERT INTO `item_mods_pet` VALUES (11297,5,20,4);        -- Harlequin Automaton: MP+20
 INSERT INTO `item_mods_pet` VALUES (11297,2,24,5);        -- Valoredge Automaton: HP+24
@@ -217,7 +217,7 @@ INSERT INTO `item_mods_pet` VALUES (14468,27,5,1);        -- Avatar: Pet: Enmity
 -- Summoner's Doublet + 1 - LVL 75
 INSERT INTO `item_mods_pet` VALUES (14514,165,4,1);       -- Avatar: Critical Hit Rate +4%
 
--- 	Puppetry Tobe - LVL 58
+--  Puppetry Tobe - LVL 58
 INSERT INTO `item_mods_pet` VALUES (14523,2,20,4);        -- Harlequin Automaton: HP+20
 INSERT INTO `item_mods_pet` VALUES (14523,5,20,4);        -- Harlequin Automaton: MP+20
 INSERT INTO `item_mods_pet` VALUES (14523,2,24,5);        -- Valoredge Automaton: HP+24
@@ -339,10 +339,10 @@ INSERT INTO `item_mods_pet` VALUES (16654,368,10,0);      -- Pet: "Regain"+10
 INSERT INTO `item_mods_pet` VALUES (16843,25,10,2);       -- Wyvern: Accuracy+10
 INSERT INTO `item_mods_pet` VALUES (16843,23,10,2);       -- Wyvern: Attack+10
 
--- 	Wyvern Perch - LVL 73
+--  Wyvern Perch - LVL 73
 INSERT INTO `item_mods_pet` VALUES (17579,2,50,2);        -- Wyvern: HP+50
 
--- 	Animator +1 - LVL 71
+--  Animator +1 - LVL 71
 INSERT INTO `item_mods_pet` VALUES (17857,2,50,4);        -- Harlequin Automaton: HP+50
 INSERT INTO `item_mods_pet` VALUES (17857,5,50,4);        -- Harlequin Automaton: MP+50
 INSERT INTO `item_mods_pet` VALUES (17857,2,60,5);        -- Valoredge Automaton: HP+60
@@ -436,10 +436,10 @@ INSERT INTO `item_mods_pet` VALUES (27005,25,28,1);       -- Avatar: Accuracy +2
 INSERT INTO `item_mods_pet` VALUES (27005,384,31,1);      -- Avatar: Haste +3%
 
 -- Beckoners Bracers
-INSERT INTO `item_mods_pet` VALUES (27080,25,20,1);	-- Avatar: ACC +20
+INSERT INTO `item_mods_pet` VALUES (27080,25,20,1); -- Avatar: ACC +20
 
 -- Beckoners Bracers +1
-INSERT INTO `item_mods_pet` VALUES (27081,25,30,1);	-- Avatar: ACC +30
+INSERT INTO `item_mods_pet` VALUES (27081,25,30,1); -- Avatar: ACC +30
 
 -- Glyphic Spats
 INSERT INTO `item_mods_pet` VALUES (27180,30,10,1);       -- Avatar: Magic Accuracy +10
@@ -450,10 +450,10 @@ INSERT INTO `item_mods_pet` VALUES (27181,30,13,1);       -- Avatar: Magic Accur
 -- INSERT INTO `item_mods_pet` VALUES (27181,???,???,1);  -- Avatar: Shortens magic recast time for spirits
 
 -- Beckoners Spats
-INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);	-- Avatar: TP Bonus +550
+INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);   -- Avatar: TP Bonus +550
 
 -- Beckoners Spats +1
-INSERT INTO `item_mods_pet` VALUES (27266,345,600,1);	-- Avatar: TP Bonus +600
+INSERT INTO `item_mods_pet` VALUES (27266,345,600,1);   -- Avatar: TP Bonus +600
 
 -- Glyphic Pigaches
 INSERT INTO `item_mods_pet` VALUES (27356,23,28,1);       -- Avatar: Attack +25
@@ -540,8 +540,8 @@ INSERT INTO `item_mods_pet` VALUES (28605,25,7,1);        -- Avatar: Accuracy +7
 INSERT INTO `item_mods_pet` VALUES (28605,30,7,1);        -- Avatar: Magic Accuracy +7
 
 -- Pelagos Lance
-INSERT INTO `item_mods_pet` VALUES (20944,370,2,0); -- Wyvern: "Regen"+2
-INSERT INTO `item_mods_pet` VALUES (20944,161,3,0); -- Wyvern: Physical damage taken -3%
+INSERT INTO `item_mods_pet` VALUES (20944,370,2,2); -- Wyvern: "Regen"+2
+INSERT INTO `item_mods_pet` VALUES (20944,161,3,2); -- Wyvern: Physical damage taken -3%
 
 -- Regimen mittens
 INSERT INTO `item_mods_pet` VALUES (28025,25,20,0); -- Pet: Accuracy+20
