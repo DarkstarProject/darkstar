@@ -121,9 +121,9 @@ public:
     void    SetModPower(int16 power);
     void    Activate();
     void    Deactivate();
-    void    SetOwner(CBattleEntity* Owner);
 
     CLatentEffect(
+         CBattleEntity* owner,
          LATENT conditionsId,
          uint16 conditionsValue,
          uint8 slot, 
@@ -132,8 +132,8 @@ public:
     );
     CLatentEffect(CLatentEffect&&) = default;
     CLatentEffect& operator=(CLatentEffect&&) = default;
-    CLatentEffect(const CLatentEffect&) = default;
-    CLatentEffect& operator=(const CLatentEffect&) = default;
+    CLatentEffect(const CLatentEffect&) = delete;
+    CLatentEffect& operator=(const CLatentEffect&) = delete;
 
    ~CLatentEffect();
 
@@ -145,7 +145,7 @@ private:
     uint16      m_ConditionsValue;      //condition parameter to be met
     uint8       m_SlotID;               //slot associated with latent
     Mod         m_ModValue;             //mod ID to be applied when active
-    uint16      m_ModPower;             //power of mod to be applied when active
+    int16       m_ModPower;             //power of mod to be applied when active
     bool        m_Activated;            //active or not active
 };
 
