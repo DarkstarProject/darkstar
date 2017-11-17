@@ -27,12 +27,8 @@ function onTrigger(player,npc)
     local tally = player:getVar("Bait_and_Switch_Conquest_Tally");
     local active = player:getLocalVar("Bait_and_Switch_Quest_Active");
     local BnSDialogue = player:getLocalVar("Bait_and_Switch_Quest_NPCs");
-    local timesUP = false;
-    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
-        timesUP = true;
-    end
 
-    if (player:getMaskBit(BnSDialogue,8) == true and timesUP == false) then
+    if (player:getMaskBit(BnSDialogue,8) == true and checkTimeUP(player) == false) then
         player:startEvent(0x0385);
         player:setLocalVar("Bait_and_Switch_Quest_NPCs",BnSDialogue - 256);
     elseif (pFame >=3 and tally < os.time()) then

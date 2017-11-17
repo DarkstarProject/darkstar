@@ -33,14 +33,10 @@ function onTrigger(player,npc)
     elseif (miledo == 1) then
         keyParam = 1;
     end
-    local timesUP = false;
-    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
-        timesUP = true;
-    end
 
     if (active == 9) then
         player:startEvent(0x0396,0,keyParam);
-    elseif (player:getMaskBit(BnSDialogue,6) == true and timesUP == false and active == 1) then
+    elseif (player:getMaskBit(BnSDialogue,6) == true and checkTimeUP(player) == false and active == 1) then
         player:startEvent(0x038a,CheckBaitProgress(player)[item],0,item,s_table.darha);
         player:setLocalVar("Bait_and_Switch_Quest_NPCs",BnSDialogue - 64);
     else

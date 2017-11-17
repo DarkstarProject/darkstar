@@ -44,9 +44,8 @@ function onTrigger(player,npc)
     end
     local check = player:getLocalVar("Bait_and_Switch_Check_qm");
     local active = player:getLocalVar("Bait_and_Switch_Quest_Active");
-    local timeCheck = player:getLocalVar("Bait_and_Switch_Time_Limit");
 
-    if (os.time() > timeCheck and item == 6) then
+    if (checkTimeUP(player) == true) then
         player:messageSpecial(BAIT_AND_SWITCH_BASE - 380);
         player:resetLocalVars();
     elseif (active == 4) then
@@ -55,8 +54,8 @@ function onTrigger(player,npc)
         player:startEvent(0x038b);
     elseif (active == 1) then
         if (check == 0) then
-                player:startEvent(0x0384,0,letterWho,0,0,0,canCostume,metLuto);
-                player:setLocalVar("Bait_and_Switch_Check_qm",1);
+            player:startEvent(0x0384,0,letterWho,0,0,0,canCostume,metLuto);
+            player:setLocalVar("Bait_and_Switch_Check_qm",1);
         end
     end
 end; 

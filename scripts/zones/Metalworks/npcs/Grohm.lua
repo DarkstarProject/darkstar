@@ -25,12 +25,8 @@ end;
 function onTrigger(player,npc)
     local item = CheckOptionForItem(player);
     local BnSDialogue = player:getLocalVar("Bait_and_Switch_Quest_NPCs");
-    local timesUP = false;
-    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
-        timesUP = true;
-    end
 
-    if (player:getMaskBit(BnSDialogue,3) == true and item == 1 and timesUP == false) then
+    if (player:getMaskBit(BnSDialogue,3) == true and item == 1 and checkTimeUP(player) == false) then
         player:startEvent(0x0399);
         player:setLocalVar("Bait_and_Switch_Quest_NPCs",BnSDialogue - 8);
     elseif (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK) then
@@ -100,7 +96,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01aa) then
         player:setVar("MissionStatus",10);
     elseif (csid == 0x0399 and option == 1) then
-        player:setLocalVar("Bait_and_Switch_Caught",caught + 1);
+        player:setLocalVar("Bait_and_Switch_Caught",player:getLocalVar("Bait_and_Switch_Caught") + 1);
         player:setLocalVar("Miledo_Caught",1);
         player:setLocalVar("Bait_and_Switch_Quest_Active",2);
     end

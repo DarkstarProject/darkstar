@@ -25,51 +25,37 @@ function onTrigger(player,npc)
     local active = player:getLocalVar("Bait_and_Switch_Quest_Active");
     local item = CheckOptionForItem(player);
 printf ("Medium Switch - item = %u",item);
-    local increment = player:getLocalVar("CS_Progression_Increment");
-printf ("Medium Switch - increment = %u",increment);
     local s_table = Switch_Table[player:getLocalVar("Bait_and_Switch_Quest_Order")];
 printf ("Medium Switch - order = %u",player:getLocalVar("Bait_and_Switch_Quest_Order"));
     local checkSwitch = player:getLocalVar("Switch_Table_Current");
 printf ("Medium Switch - checkSwitch = %u",checkSwitch);
     local paramEight = 0;
 printf ("Medium Switch - Lead Guardsman = %u",player:getLocalVar("Lead_Guardsman"));
-        if (item == 5) then
-            if (player:getLocalVar("Lead_Guardsman") == BnS_REPLICA) then
-                if (s_table.ord[checkSwitch] == 2) then
-                    paramEight = 3;
-                else
-                    paramEight = 4;
-                end
-            end
-        elseif (item == 4) then
-            if (CheckSnares(player)[7] <= 3) then
-                if (CheckSnares(player)[4] == 1) then
-                    paramEight = 3;
-                end
-            elseif (CheckSnares(player)[7] > 3) then
-                if (CheckSnares(player)[4] == 1) then
-                    paramEight = 4;
-                end
+    if (item == 5) then
+        if (player:getLocalVar("Lead_Guardsman") == BnS_REPLICA) then
+            if (s_table.ord[checkSwitch] == 2) then
+                paramEight = 3;
+            else
+                paramEight = 4;
             end
         end
-    local CSProgression = CheckBaitProgress(player)[item] + increment;
-printf ("Medium Switch - CS Progression = %u",CSProgression);
-        if (CSProgression > 3) then
-            CSProgression = 0;
+    elseif (item == 4) then
+        if (CheckSnares(player)[7] <= 3) then
+            if (CheckSnares(player)[4] == 1) then
+                paramEight = 3;
+            end
+        elseif (CheckSnares(player)[7] > 3) then
+            if (CheckSnares(player)[4] == 1) then
+                paramEight = 4;
+            end
         end
-    local caughtParam = 0;
-    local caught = player:getLocalVar("Bait_and_Switch_Caught");
-printf ("Medium Switch - caught = %u",caught);
-        if (caught == 2) then
-            caughtParam = 1;
-        end
-    local timeCheck = player:getLocalVar("Bait_and_Switch_Time_Limit");
+    end
 
-    if (os.time() > timeCheck and item == 6) then
+    if (checkTimeUP(player) == true) then
         player:messageSpecial(BAIT_AND_SWITCH_BASE - 380);
         player:resetLocalVars();
     elseif (active == 1) then
-        player:startEvent(0x038d,0,caughtParam,item,0,0,CSProgression,0,paramEight);
+        player:startEvent(0x038d,0,caughtParam(player),item,0,0,checkCSProgression(player),0,paramEight);
     end
 end; 
 
@@ -87,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-     printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local s_table = Switch_Table[player:getLocalVar("Bait_and_Switch_Quest_Order")];
     local checkSwitch = player:getLocalVar("Switch_Table_Current");
     local increment = player:getLocalVar("CS_Progression_Increment");

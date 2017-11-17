@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC: Ferghus
+--  NPC: Ferghus
 -- Starts Quest: Too Many Chefs (1,86)
 -- Involved in quest: Bait and Switch
 -- !pos -23.092 -10.000 -27.157 237
@@ -29,14 +29,10 @@ function onTrigger(player,npc)
     local item = CheckOptionForItem(player);
     local BnSDialogue = player:getLocalVar("Bait_and_Switch_Quest_NPCs");
     local active = player:getLocalVar("Bait_and_Switch_Quest_Active");
-    local timesUP = false;
-    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
-        timesUP = true;
-    end
 
-    if (active == 2 and timesUP == false) then
+    if (active == 2 and checkTimeUP(player) == false) then
         player:startEvent(0x039b,0,0,item);
-    elseif (player:getMaskBit(BnSDialogue,2) == true and active == 1 and timesUP == false) then
+    elseif (player:getMaskBit(BnSDialogue,2) == true and active == 1 and checkTimeUP(player) == false) then
         player:startEvent(0x0391,0,0,item);
         player:setLocalVar("Bait_and_Switch_Quest_NPCs",BnSDialogue - 4);
     elseif (TooManyChefs == QUEST_AVAILABLE and pFame >= 5) then

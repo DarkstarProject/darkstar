@@ -23,12 +23,8 @@ end;
 function onTrigger(player,npc)
     local item = CheckOptionForItem(player);
     local BnSDialogue = player:getLocalVar("Bait_and_Switch_Quest_NPCs");
-    local timesUP = false;
-    if (os.time() > player:getLocalVar("Bait_and_Switch_Time_Limit") and item == 6) then
-        timesUP = true;
-    end
 
-    if (player:getMaskBit(BnSDialogue,4) == true and item == 1 and timesUP == false) then
+    if (player:getMaskBit(BnSDialogue,4) == true and item == 1 and checkTimeUP(player) == false) then
         player:startEvent(0x039a);
         player:setLocalVar("Bait_and_Switch_Quest_NPCs",BnSDialogue - 16);
     else
@@ -54,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x039a and option == 1) then
-        player:setLocalVar("Bait_and_Switch_Caught",caught + 1);
+        player:setLocalVar("Bait_and_Switch_Caught",player:getLocalVar("Bait_and_Switch_Caught") + 1);
         player:setLocalVar("Luto_Caught",1);
         player:setLocalVar("Bait_and_Switch_Quest_Active",2);
     end
