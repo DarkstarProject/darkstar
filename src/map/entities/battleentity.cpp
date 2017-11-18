@@ -66,6 +66,7 @@ CBattleEntity::CBattleEntity()
 
     memset(&stats, 0, sizeof(stats));
     memset(&health, 0, sizeof(health));
+    health.maxhp = 1;
 
     memset(&WorkingSkills, 0, sizeof(WorkingSkills));
 
