@@ -2597,6 +2597,7 @@ namespace battleutils
 
         int16 tripleAttack = PEntity->getMod(Mod::TRIPLE_ATTACK);
         int16 doubleAttack = PEntity->getMod(Mod::DOUBLE_ATTACK);
+        int16 quadAttack = PEntity->getMod(Mod::QUAD_ATTACK);
 
         //check for merit upgrades
         if (PEntity->objtype == TYPE_PC)
@@ -2611,10 +2612,16 @@ namespace battleutils
                 doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE, (CCharEntity*)PEntity);
             }
         }
+
+        quadAttack = std::clamp<int16>(quadAttack, 0, 100);
         doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
         tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
 
-        if (dsprand::GetRandomNumber(100) < tripleAttack)
+        if (dsprand::GetRandomNumber(100) < quadAttack)
+        {
+            num += 3;
+        }
+        else if (dsprand::GetRandomNumber(100) < tripleAttack)
         {
             num += 2;
         }
