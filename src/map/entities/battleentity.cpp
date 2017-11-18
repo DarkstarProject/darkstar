@@ -154,10 +154,6 @@ void CBattleEntity::UpdateHealth()
     {
         health.hp = std::clamp(health.hp, 0, health.modhp);
     }
-    if (health.hp == 0)
-    {
-        health.hp = 1;
-    }
 
     if (0 > health.modmp)
     {
