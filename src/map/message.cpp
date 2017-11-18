@@ -94,10 +94,11 @@ namespace message
         }
         case MSG_CHAT_TELL:
         {
+            CCharEntity* PSender = zoneutils::GetChar(RBUFL(extra->data(), 0));
             CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
             if (PChar && PChar->status != STATUS_DISAPPEAR && !jailutils::InPrison(PChar))
             {
-                if (PChar->nameflags.flags & FLAG_AWAY)
+                if (PChar->nameflags.flags & FLAG_AWAY && PSender->m_GMlevel == 0)
                 {
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
                 }
