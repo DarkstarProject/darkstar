@@ -134,13 +134,10 @@ void CBattleEntity::UpdateHealth()
 {
     int32 dif = (getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP));
 
-    health.modmp = ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) + std::min<int16>((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP);
     health.modhp = ((health.maxhp) * (100 + getMod(Mod::HPP)) / 100) + std::min<int16>((health.maxhp * m_modStat[Mod::FOOD_HPP] / 100), m_modStat[Mod::FOOD_HP_CAP]) + getMod(Mod::HP);
-
-    dif = (health.modmp - 0) < dif ? (health.modmp - 0) : dif;
-    dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
-
     health.modhp += dif;
+
+    health.modmp = ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) + std::min<int16>((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP);
     health.modmp -= dif;
 
     if (objtype == TYPE_PC)
@@ -149,8 +146,23 @@ void CBattleEntity::UpdateHealth()
         health.modmp = std::clamp(health.modmp, 0, 9999);
     }
 
-    health.hp = std::clamp(health.hp, 0, health.modhp);
-    health.mp = std::clamp(health.mp, 0, health.modmp);
+    if (0 > health.modhp)
+    {
+        health.hp = std::clamp(health.hp, health.modhp, 0);
+    }
+    else
+    {
+        health.hp = std::clamp(health.hp, 0, health.modhp);
+    }
+
+    if (0 > health.modmp)
+    {
+        health.mp = std::clamp(health.mp, health.modmp, 0);
+    }
+    else
+    {
+        health.mp = std::clamp(health.mp, 0, health.modmp);
+    }
 
     updatemask |= UPDATE_HP;
 }
