@@ -312,10 +312,6 @@ typedef char bool;
 #define TOUPPER(c) (toupper((unsigned char)(c)))
 
 //////////////////////////////////////////////////////////////////////////
-// length of a static array
-#define ARRAYLENGTH(A) ( sizeof(A)/sizeof((A)[0]) )
-
-//////////////////////////////////////////////////////////////////////////
 // Make sure va_copy exists
 #include <stdarg.h> // va_list, va_copy(?)
 #if !defined(va_copy)

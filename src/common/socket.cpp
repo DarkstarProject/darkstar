@@ -92,8 +92,9 @@ int sock2newfd(SOCKET s)
 	for( fd = 1; fd < sock_arr_len; ++fd )
 		if( sock_arr[fd] == INVALID_SOCKET )
 			break;// empty position
-	if( fd == ARRAYLENGTH(sock_arr) )
-	{// too many sockets
+    if (fd == (sizeof(sock_arr) / sizeof(sock_arr[0])))
+	{
+        // too many sockets
 		closesocket(s);
 		WSASetLastError(WSAEMFILE);
 		return -1;
