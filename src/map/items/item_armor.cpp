@@ -219,9 +219,10 @@ void CItemArmor::addPetModifier(CPetModifier modifier)
     petModList.push_back(modifier);
 }
 
-void CItemArmor::addLatent(CLatentEffect latent)
+void CItemArmor::addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModValue, int16 ModPower)
 {
-	latentList.push_back(latent);
+    itemLatent latent{ ConditionsID, ConditionsValue, ModValue, ModPower };
+    latentList.push_back(latent);
 }
 
 /************************************************************************
