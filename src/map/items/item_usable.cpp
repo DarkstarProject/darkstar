@@ -84,7 +84,7 @@ uint32 CItemUsable::getNextUseTime()
 
 void CItemUsable::setCurrentCharges(uint8 CurrCharges)
 {
-	WBUFB(m_extra, 0x01) = dsp_cap(CurrCharges, 0, m_MaxCharges);
+	WBUFB(m_extra, 0x01) = std::clamp<uint8>(CurrCharges, 0, m_MaxCharges);
 }
 
 uint8 CItemUsable::getCurrentCharges()
@@ -172,7 +172,7 @@ void CItemUsable::setAssignTime(uint32 VanaTime)
 uint32 CItemUsable::getReuseTime()
 {
     uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
-    uint32 ReuseTime   = dsp_max(m_AssignTime + m_UseDelay, getLastUseTime() + m_ReuseDelay);
+    uint32 ReuseTime   = std::max(m_AssignTime + m_UseDelay, getLastUseTime() + m_ReuseDelay);
 
     return (ReuseTime > CurrentTime ? (ReuseTime - CurrentTime) * 1000 : 0);
 }

@@ -95,17 +95,17 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
         int32 meritbonus = PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PChar);
         uint16 ameCap = puppetutils::getSkillCap(PChar, SKILL_AME);
         uint16 ameBonus = PChar->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
-        WBUFW(data,(0x70)) = dsp_min(ameCap, PChar->GetSkill(SKILL_AME)) + ameBonus;
+        WBUFW(data,(0x70)) = std::min(ameCap, PChar->GetSkill(SKILL_AME)) + ameBonus;
         WBUFW(data,(0x72)) = ameCap + ameBonus;
 
         uint16 araCap = puppetutils::getSkillCap(PChar, SKILL_ARA);
         uint16 araBonus = PChar->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
-        WBUFW(data,(0x74)) = dsp_min(araCap, PChar->GetSkill(SKILL_ARA)) + araBonus;
+        WBUFW(data,(0x74)) = std::min(araCap, PChar->GetSkill(SKILL_ARA)) + araBonus;
         WBUFW(data,(0x76)) = araCap + araBonus;
 
         uint16 amaCap = puppetutils::getSkillCap(PChar, SKILL_AMA);
         uint16 amaBonus = PChar->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
-        WBUFW(data,(0x78)) = dsp_min(amaCap, PChar->GetSkill(SKILL_AMA)) + amaBonus;
+        WBUFW(data,(0x78)) = std::min(amaCap, PChar->GetSkill(SKILL_AMA)) + amaBonus;
         WBUFW(data,(0x7A)) = amaCap + amaBonus;
 
         WBUFW(data,(0x80)) = PChar->PAutomaton->stats.STR;

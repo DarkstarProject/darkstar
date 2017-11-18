@@ -494,7 +494,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
     if (getSkillCap(PChar, SkillID) != 0 && !(PAutomaton->WorkingSkills.skill[SkillID] & 0x8000))
     {
         uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-        uint16 MaxSkill = getSkillCap(PChar, SkillID, dsp_min(PAutomaton->GetMLevel(), lvl));
+        uint16 MaxSkill = getSkillCap(PChar, SkillID, std::min(PAutomaton->GetMLevel(), lvl));
 
         int16  Diff = MaxSkill - CurSkill / 10;
         double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
@@ -512,7 +512,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
         {
             double chance = 0;
             uint8  SkillAmount = 1;
-            uint8  tier = dsp_min(1 + (Diff / 5), 5);
+            uint8  tier = std::min(1 + (Diff / 5), 5);
 
             for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
             {

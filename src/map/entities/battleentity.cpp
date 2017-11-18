@@ -134,8 +134,8 @@ void CBattleEntity::UpdateHealth()
 {
     int32 dif = (getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP));
 
-    health.modmp = ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) + dsp_min((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP);
-    health.modhp = ((health.maxhp) * (100 + getMod(Mod::HPP)) / 100) + dsp_min((health.maxhp * m_modStat[Mod::FOOD_HPP] / 100), m_modStat[Mod::FOOD_HP_CAP]) + getMod(Mod::HP);
+    health.modmp = ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) + std::min<int16>((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP);
+    health.modhp = ((health.maxhp) * (100 + getMod(Mod::HPP)) / 100) + std::min<int16>((health.maxhp * m_modStat[Mod::FOOD_HPP] / 100), m_modStat[Mod::FOOD_HP_CAP]) + getMod(Mod::HP);
 
     dif = (health.modmp - 0) < dif ? (health.modmp - 0) : dif;
     dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
@@ -145,12 +145,12 @@ void CBattleEntity::UpdateHealth()
 
     if (objtype == TYPE_PC)
     {
-        health.modhp = dsp_cap(health.modhp, 0, 9999);
-        health.modmp = dsp_cap(health.modmp, 0, 9999);
+        health.modhp = std::clamp(health.modhp, 0, 9999);
+        health.modmp = std::clamp(health.modmp, 0, 9999);
     }
 
-    health.hp = dsp_cap(health.hp, 0, health.modhp);
-    health.mp = dsp_cap(health.mp, 0, health.modmp);
+    health.hp = std::clamp(health.hp, 0, health.modhp);
+    health.mp = std::clamp(health.mp, 0, health.modmp);
 
     updatemask |= UPDATE_HP;
 }
@@ -195,7 +195,7 @@ int32 CBattleEntity::GetMaxMP()
 
 uint8 CBattleEntity::GetSpeed()
 {
-    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : dsp_cap(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
+    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<uint8>(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
 }
 
 bool CBattleEntity::CanRest()
@@ -446,7 +446,7 @@ int16 CBattleEntity::addTP(int16 tp)
     {
         updatemask |= UPDATE_HP;
     }
-    int16 cap = dsp_cap(health.tp + tp, 0, 3000);
+    int16 cap = std::clamp(health.tp + tp, 0, 3000);
     tp = health.tp - cap;
     health.tp = cap;
     return abs(tp);
@@ -464,7 +464,7 @@ int32 CBattleEntity::addHP(int32 hp)
         return 0; //if the entity is already dead, skip the rest to prevent killing it again
     }
 
-    int32 cap = dsp_cap(health.hp + hp, 0, GetMaxHP());
+    int32 cap = std::clamp(health.hp + hp, 0, GetMaxHP());
     hp = health.hp - cap;
     health.hp = cap;
 
@@ -490,7 +490,7 @@ int32 CBattleEntity::addHP(int32 hp)
 
 int32 CBattleEntity::addMP(int32 mp)
 {
-    int32 cap = dsp_cap(health.mp + mp, 0, GetMaxMP());
+    int32 cap = std::clamp(health.mp + mp, 0, GetMaxMP());
     mp = health.mp - cap;
     health.mp = cap;
     if (mp != 0)
@@ -508,37 +508,37 @@ int32 CBattleEntity::addMP(int32 mp)
 
 uint16 CBattleEntity::STR()
 {
-    return dsp_cap(stats.STR + m_modStat[Mod::STR], 0, 999);
+    return std::clamp(stats.STR + m_modStat[Mod::STR], 0, 999);
 }
 
 uint16 CBattleEntity::DEX()
 {
-    return dsp_cap(stats.DEX + m_modStat[Mod::DEX], 0, 999);
+    return std::clamp(stats.DEX + m_modStat[Mod::DEX], 0, 999);
 }
 
 uint16 CBattleEntity::VIT()
 {
-    return dsp_cap(stats.VIT + m_modStat[Mod::VIT], 0, 999);
+    return std::clamp(stats.VIT + m_modStat[Mod::VIT], 0, 999);
 }
 
 uint16 CBattleEntity::AGI()
 {
-    return dsp_cap(stats.AGI + m_modStat[Mod::AGI], 0, 999);
+    return std::clamp(stats.AGI + m_modStat[Mod::AGI], 0, 999);
 }
 
 uint16 CBattleEntity::INT()
 {
-    return dsp_cap(stats.INT + m_modStat[Mod::INT], 0, 999);
+    return std::clamp(stats.INT + m_modStat[Mod::INT], 0, 999);
 }
 
 uint16 CBattleEntity::MND()
 {
-    return dsp_cap(stats.MND + m_modStat[Mod::MND], 0, 999);
+    return std::clamp(stats.MND + m_modStat[Mod::MND], 0, 999);
 }
 
 uint16 CBattleEntity::CHR()
 {
-    return dsp_cap(stats.CHR + m_modStat[Mod::CHR], 0, 999);
+    return std::clamp(stats.CHR + m_modStat[Mod::CHR], 0, 999);
 }
 
 uint16 CBattleEntity::ATT()
@@ -566,7 +566,7 @@ uint16 CBattleEntity::ATT()
         ATT += this->GetSkill(SKILL_AME);
     }
     return ATT + (ATT * m_modStat[Mod::ATTP] / 100) +
-        dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
+        std::min<int16>((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
 }
 
 uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
@@ -578,7 +578,7 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
     }
     int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
     return ATT + (ATT * m_modStat[Mod::RATTP] / 100) +
-        dsp_min((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
+        std::min<int16>((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
 }
 
 uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
@@ -597,7 +597,7 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
     acc += getMod(Mod::RACC);
     acc += battleutils::GetRangedAccuracyBonuses(this);
     acc += AGI() / 2;
-    return acc + dsp_min(((100 + getMod(Mod::FOOD_RACCP)) * acc) / 100, getMod(Mod::FOOD_RACC_CAP));
+    return acc + std::min<int16>(((100 + getMod(Mod::FOOD_RACCP) * acc) / 100), getMod(Mod::FOOD_RACC_CAP));
 }
 
 uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
@@ -636,8 +636,8 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
             ACC += (int16)(DEX() * 0.5);
         }
         ACC = (ACC + m_modStat[Mod::ACC] + offsetAccuracy);
-        ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
-        return dsp_max(0, ACC);
+        ACC = ACC + std::min<int16>((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
+        return std::max<int16>(0, ACC);
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
@@ -645,14 +645,14 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
         ACC = (ACC > 200 ? (int16)(((ACC - 200) * 0.9) + 200) : ACC);
         ACC += (int16)(DEX() * 0.5);
         ACC += m_modStat[Mod::ACC] + offsetAccuracy;
-        ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
-        return dsp_max(0, ACC);
+        ACC = ACC + std::min<int16>((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
+        return std::max<int16>(0, ACC);
     }
     else
     {
         int16 ACC = m_modStat[Mod::ACC];
-        ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
-        return dsp_max(0, ACC);
+        ACC = ACC + std::min<int16>((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
+        return std::max<int16>(0, ACC);
     }
 }
 
@@ -664,7 +664,7 @@ uint16 CBattleEntity::DEF()
     }
 
     return DEF + (DEF * m_modStat[Mod::DEFP] / 100) +
-        dsp_min((DEF * m_modStat[Mod::FOOD_DEFP] / 100), m_modStat[Mod::FOOD_DEF_CAP]);
+        std::min<int16>((DEF * m_modStat[Mod::FOOD_DEFP] / 100), m_modStat[Mod::FOOD_DEF_CAP]);
 }
 
 uint16 CBattleEntity::EVA()
@@ -674,7 +674,7 @@ uint16 CBattleEntity::EVA()
     if (evasion > 200) { //Evasion skill is 0.9 evasion post-200
         evasion = (int16)(200 + (evasion - 200) * 0.9);
     }
-    return dsp_max(0, (m_modStat[Mod::EVA] + evasion + AGI() / 2));
+    return std::max(0, (m_modStat[Mod::EVA] + evasion + AGI() / 2));
 }
 
 /************************************************************************
@@ -720,9 +720,9 @@ void CBattleEntity::SetSJob(uint8 sjob)
 
 void CBattleEntity::SetMLevel(uint8 mlvl)
 {
-    m_modStat[Mod::DEF] -= m_mlvl + dsp_cap(m_mlvl - 50, 0, 10);
+    m_modStat[Mod::DEF] -= m_mlvl + std::clamp(m_mlvl - 50, 0, 10);
     m_mlvl = (mlvl == 0 ? 1 : mlvl);
-    m_modStat[Mod::DEF] += m_mlvl + dsp_cap(m_mlvl - 50, 0, 10);
+    m_modStat[Mod::DEF] += m_mlvl + std::clamp(m_mlvl - 50, 0, 10);
 
     if (this->objtype & TYPE_PC)
         Sql_Query(SqlHandle, "UPDATE char_stats SET mlvl = %u WHERE charid = %u LIMIT 1;", m_mlvl, this->id);
@@ -1575,7 +1575,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
         if (attack.IsFirstSwing() && attackRound.GetAttackSwingCount() == 1)
         {
             uint16 zanshinChance = this->getMod(Mod::ZANSHIN) + battleutils::GetMeritValue(this, MERIT_ZASHIN_ATTACK_RATE);
-            zanshinChance = dsp_cap(zanshinChance, 0, 100);
+            zanshinChance = std::clamp<uint16>(zanshinChance, 0, 100);
             //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
             if (((actionTarget.reaction == REACTION_EVADE || actionTarget.reaction == REACTION_GUARD ||
                   actionTarget.spikesEffect == SUBEFFECT_COUNTER) && dsprand::GetRandomNumber(100) < zanshinChance) ||

@@ -354,7 +354,7 @@ int8 CCharEntity::getShieldSize()
 
 void CCharEntity::SetName(int8* name)
 {
-    this->name.insert(0, name, dsp_cap(strlen((const int8*)name), 0, 15));
+    this->name.insert(0, name, std::clamp<size_t>(strlen((const int8*)name), 0, 15));
 }
 
 int16 CCharEntity::addTP(int16 tp)
@@ -774,7 +774,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             {
                 actionTarget.messageID = primary ? 224 : 276; //restores mp msg
                 actionTarget.reaction = REACTION_HIT;
-                damage = dsp_max(damage, 0);
+                damage = std::max(damage, 0);
                 actionTarget.param = addMP(damage);
             }
 
@@ -1193,7 +1193,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 {
                     pdif *= 1.25; //uncapped
                     int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = dsp_cap(criticaldamage, 0, 100);
+                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
                     pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;

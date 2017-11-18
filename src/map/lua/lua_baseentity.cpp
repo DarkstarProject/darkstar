@@ -3741,7 +3741,7 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
         if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
         {
             uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-            int32 quantity = dsp_max(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
+            auto quantity = (int32)std::max<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
 
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
         }
@@ -4529,7 +4529,7 @@ inline int32 CLuaBaseEntity::speed(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        uint8 speed = (uint8)dsp_min(lua_tointeger(L, 1), 255);
+        auto speed = std::min<uint8>((uint8)lua_tointeger(L, 1), 255);
 
         if (m_PBaseEntity->speed != speed)
         {
@@ -5751,7 +5751,7 @@ inline int32 CLuaBaseEntity::delExp(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    charutils::DelExperiencePoints(PChar, 0, (uint16)dsp_cap(lua_tointeger(L, 1), 0, 65535));
+    charutils::DelExperiencePoints(PChar, 0, std::clamp<uint16>((uint16)lua_tointeger(L, 1), 0, 65535));
     return 0;
 }
 
@@ -7343,7 +7343,7 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
     }
     acc += PEntity->getMod(Mod::RACC);
     acc += PEntity->AGI() / 2;
-    acc = acc + dsp_min(((100 + PEntity->getMod(Mod::FOOD_RACCP)) * acc) / 100, PEntity->getMod(Mod::FOOD_RACC_CAP));
+    acc = acc + std::min<int16>(((100 + PEntity->getMod(Mod::FOOD_RACCP)) * acc / 100), PEntity->getMod(Mod::FOOD_RACC_CAP));
 
     lua_pushinteger(L, acc);
     return 1;

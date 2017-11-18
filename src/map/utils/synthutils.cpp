@@ -415,7 +415,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
                                 chance *= 1.0 + ((double)1 / 3);
                         }
 
-                        chance = dsp_cap(chance, 0., 0.500);
+                        chance = std::clamp(chance, 0., 0.500);
 					}
 
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
