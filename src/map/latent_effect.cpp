@@ -40,7 +40,6 @@ CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, uint16 c
 
 CLatentEffect::~CLatentEffect()
 {
-    printf("destructor\n");
     if (m_Activated)
         Deactivate();
 }
@@ -123,7 +122,7 @@ void CLatentEffect::Activate()
         }
 
         m_Activated = true;
-        printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
+        //printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
     }
 }
 
@@ -165,6 +164,6 @@ void CLatentEffect::Deactivate()
         }
 
         m_Activated = false;
-        printf("LATENT DEACTIVATED: %d\n", m_ModValue);
+        //printf("LATENT DEACTIVATED: %d\n", m_ModValue);
     }
 }
