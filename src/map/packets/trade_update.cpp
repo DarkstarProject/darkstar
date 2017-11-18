@@ -63,10 +63,10 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
         WBUFW(data,(0x14)) = ((CItemLinkshell*)PItem)->GetLSRawColor();
         WBUFB(data,(0x16)) = ((CItemLinkshell*)PItem)->GetLSType();
 
-        memcpy(data+(0x17), PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),15));
+        memcpy(data+(0x17), PItem->getSignature(), std::min<size_t>(strlen(PItem->getSignature()), 15));
     }
     else
     {
-        memcpy(data+(0x15), PItem->getSignature(), dsp_min(strlen(PItem->getSignature()),12));
+        memcpy(data+(0x15), PItem->getSignature(), std::min<size_t>(strlen(PItem->getSignature()), 12));
     }
 }

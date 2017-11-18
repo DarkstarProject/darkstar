@@ -150,8 +150,8 @@ inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
     uint32 remaining = 0;
     if (m_PLuaStatusEffect->GetDuration() > 0)
     {
-        remaining = (uint32)dsp_max(m_PLuaStatusEffect->GetDuration() - 
-            std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - m_PLuaStatusEffect->GetStartTime()).count(), 0);
+        remaining = (uint32)std::max((m_PLuaStatusEffect->GetDuration() -
+            std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - m_PLuaStatusEffect->GetStartTime()).count()), std::chrono::seconds::rep{});
     }
 
     lua_pushinteger(L, remaining);

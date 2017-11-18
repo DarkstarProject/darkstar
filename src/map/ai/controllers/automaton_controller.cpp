@@ -425,7 +425,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         break;
     }
 
-    threshold = dsp_cap(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30, 90);
+    threshold = std::clamp<float>(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30.f, 90.f);
     CBattleEntity* PCastTarget = nullptr;
 
     bool haveHate = false;

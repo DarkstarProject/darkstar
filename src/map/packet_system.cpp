@@ -2238,7 +2238,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 auctionFee = (uint32)(map_config.ah_base_fee_single + (price * map_config.ah_tax_rate_single / 100));
             }
 
-            auctionFee = dsp_cap(auctionFee, 0, map_config.ah_max_fee);
+            auctionFee = std::clamp<uint32>(auctionFee, 0, map_config.ah_max_fee);
 
             if (PChar->getStorage(LOC_INVENTORY)->GetItem(0)->getQuantity() < auctionFee)
             {
@@ -3183,7 +3183,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else
             {
                 char victimName[31]{};
-                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
+                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], std::min<size_t>(strlen(data[0x0C]), 15));
                 int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
@@ -3262,7 +3262,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
             {
                 char victimName[31]{};
-                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
+                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], std::min<size_t>(strlen(data[0x0C]), 15));
                 int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
@@ -3568,7 +3568,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             (PItem->getID() == itemID) &&
             !(PItem->getFlag() & ITEM_FLAG_NOSALE))
         {
-            quantity = dsp_min(quantity, PItem->getQuantity());
+            quantity = std::min(quantity, PItem->getQuantity());
             PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
             PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
         }
@@ -5082,7 +5082,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         PItemContainer = PChar->getStorage(LOC_STORAGE);
 
-        uint8 RemovedSize = PItemContainer->GetSize() - dsp_min(PItemContainer->GetSize(), PItemContainer->GetBuff() - PItem->getStorage());
+        uint8 RemovedSize = PItemContainer->GetSize() - std::min<uint8>(PItemContainer->GetSize(), PItemContainer->GetBuff() - PItem->getStorage());
 
         if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
         {

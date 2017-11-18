@@ -164,7 +164,7 @@ int32 lobbydata_parse(int32 fd)
             LOBBY_A1_RESERVEPACKET(ReservePacket);
 
             //server's name that shows in lobby menu
-            memcpy(ReservePacket + 60, login_config.servername.c_str(), dsp_cap(login_config.servername.length(), 0, 15));
+            memcpy(ReservePacket + 60, login_config.servername.c_str(), std::clamp<size_t>(login_config.servername.length(), 0, 15));
 
             // Prepare the character list data..
             for (int j = 0; j < 16; ++j)
@@ -569,7 +569,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x24:
         {
             LOBBY_024_RESERVEPACKET(ReservePacket);
-            memcpy(ReservePacket + 36, login_config.servername.c_str(), dsp_cap(login_config.servername.length(), 0, 15));
+            memcpy(ReservePacket + 36, login_config.servername.c_str(), std::clamp<size_t>(login_config.servername.length(), 0, 15));
 
             unsigned char Hash[16];
 
@@ -720,7 +720,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 
     // Validate that the job is a starting job.
     uint8 mjob = RBUFB(buf, 50);
-    createchar.m_mjob = dsp_cap(mjob, 1, 6);
+    createchar.m_mjob = std::clamp<uint8>(mjob, 1, 6);
 
     // Log that the character attempting to create a non-starting job.
     if (mjob != createchar.m_mjob) {

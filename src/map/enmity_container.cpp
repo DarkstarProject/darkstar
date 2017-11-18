@@ -104,7 +104,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
             ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, (CCharEntity*)PEntity);
     }
 
-    float bonus = (100.0f + dsp_cap(PEntity->getMod(Mod::ENMITY) + enmityBonus, -50, 100)) / 100.0f;
+    float bonus = (100.0f + std::clamp(PEntity->getMod(Mod::ENMITY) + enmityBonus, -50, 100)) / 100.0f;
 
     return bonus;
 }
@@ -135,8 +135,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         int newVE = (int)(enmity_obj->second.VE + ((VE > 0) ? VE * bonus : VE));
 
         //Check for cap limit
-        enmity_obj->second.CE = dsp_cap(newCE, 0, 10000);
-        enmity_obj->second.VE = dsp_cap(newVE, 0, 10000);
+        enmity_obj->second.CE = std::clamp(newCE, 0, 10000);
+        enmity_obj->second.VE = std::clamp(newVE, 0, 10000);
         enmity_obj->second.active = true;
 
         if (CE + VE > 0 && PEntity->getMod(Mod::TREASURE_HUNTER) > enmity_obj->second.maxTH)
@@ -156,8 +156,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         if (initial) CE += 200;
         float bonus = CalculateEnmityBonus(PEntity);
 
-        CE = dsp_cap((int16)(CE * bonus), 0, 10000);
-        VE = dsp_cap((int16)(VE * bonus), 0, 10000);
+        CE = std::clamp<int16>((int16)(CE * bonus), 0, 10000);
+        VE = std::clamp<int16>((int16)(VE * bonus), 0, 10000);
         auto maxTH = 0;
         if (CE + VE > 0)
             maxTH = (uint8)(PEntity->getMod(Mod::TREASURE_HUNTER));
@@ -219,12 +219,12 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint8 level,
 
     if (enmity_obj != m_EnmityList.end())
     {
-        enmity_obj->second.CE = dsp_cap(enmity_obj->second.CE + CE, 0, 10000);
-        enmity_obj->second.VE = dsp_cap(enmity_obj->second.VE + VE, 0, 10000);
+        enmity_obj->second.CE = std::clamp(enmity_obj->second.CE + CE, 0, 10000);
+        enmity_obj->second.VE = std::clamp(enmity_obj->second.VE + VE, 0, 10000);
         enmity_obj->second.active = true;
     }
     else
-        m_EnmityList.emplace(PEntity->id, EnmityObject_t{ PEntity, (int16)dsp_cap(CE, 0, 10000), (int16)dsp_cap(VE, 0, 10000), true, 0 });
+        m_EnmityList.emplace(PEntity->id, EnmityObject_t{ PEntity, std::clamp<int16>(CE, 0, 10000), std::clamp<int16>(VE, 0, 10000), true, 0 });
 }
 
 /************************************************************************
@@ -346,14 +346,14 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
     {
         return;
     }
-    float reduction = (100.f - dsp_min(PEntity->getMod(Mod::ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
+    float reduction = (100.f - std::min<int16>(PEntity->getMod(Mod::ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
     int16 CE = (int16)(-(1800 * Damage / PEntity->GetMaxHP()) * reduction);
 
     auto enmity_obj = m_EnmityList.find(PEntity->id);
 
     if (enmity_obj != m_EnmityList.end())
     {
-        enmity_obj->second.CE = dsp_cap(enmity_obj->second.CE + CE, 0, 10000);
+        enmity_obj->second.CE = std::clamp(enmity_obj->second.CE + CE, 0, 10000);
     }
 }
 
