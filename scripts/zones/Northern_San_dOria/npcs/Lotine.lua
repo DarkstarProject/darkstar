@@ -19,9 +19,9 @@ end;
 function onTrigger(player,npc)
     local rand = math.random(1,2);
     if (rand == 1) then
-        player:startEvent(0x028c);
+        player:startEvent(652);
     else
-        player:startEvent(0x0290);
+        player:startEvent(656);
     end
 end;
 

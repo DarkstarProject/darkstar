@@ -20,7 +20,7 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_ACCEPTED and trade:hasItemQty(531,1) == true and trade:getItemCount() == 1) then
-        player:startEvent(0x0025);
+        player:startEvent(37);
     end
 end;
 
@@ -33,9 +33,9 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(JEUNO,CANDLE_MAKING) ~= QUEST_COMPLETED and
        player:getQuestStatus(JEUNO,A_CANDLELIGHT_VIGIL) == QUEST_ACCEPTED) then
-        player:startEvent(0x0024);  -- Start Quest Candle-making
+        player:startEvent(36);  -- Start Quest Candle-making
     else
-        player:startEvent(0x001e);  --Standard dialog
+        player:startEvent(30);  --Standard dialog
     end
 end;
 
@@ -55,9 +55,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0024 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then
+    if (csid == 36 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then
         player:addQuest(JEUNO,CANDLE_MAKING);
-    elseif (csid == 0x0025) then
+    elseif (csid == 37) then
         player:addTitle(BELIEVER_OF_ALTANA);
         player:addKeyItem(HOLY_CANDLE);
         player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);

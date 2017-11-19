@@ -31,17 +31,17 @@ function onTrigger(player,npc)
     local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
 
     if (ThePuppetMaster == QUEST_ACCEPTED and ThePuppetMasterProgress == 1) then
-        player:startEvent(0x0100,0,329,0,1169,0,0,0,0);
+        player:startEvent(256,0,329,0,1169,0,0,0,0);
     elseif (ThePuppetMaster == QUEST_ACCEPTED and ThePuppetMasterProgress == 2 and player:hasItem(1169) == false) then -- you've lost/tossed away the earth pendulum
-        player:startEvent(0x0101,0,1169,0,0,0,0,0,0);
+        player:startEvent(257,0,1169,0,0,0,0,0,0);
     elseif (ThePuppetMaster == QUEST_ACCEPTED and ThePuppetMasterProgress == 3) then
-        player:startEvent(0x0102);
+        player:startEvent(258);
     elseif ((TrialByEarth == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 6) or (TrialByEarth == QUEST_COMPLETED and realday ~= player:getVar("TrialByEarth_date"))) then
-        player:startEvent(0x00f9,0,TUNING_FORK_OF_EARTH); -- Start and restart quest "Trial by Earth"
+        player:startEvent(249,0,TUNING_FORK_OF_EARTH); -- Start and restart quest "Trial by Earth"
     elseif (TrialByEarth == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_EARTH) == false and WhisperOfTremors == false) then
-        player:startEvent(0x011c,0,TUNING_FORK_OF_EARTH); -- Defeat against Titan : Need new Fork
+        player:startEvent(284,0,TUNING_FORK_OF_EARTH); -- Defeat against Titan : Need new Fork
     elseif (TrialByEarth == QUEST_ACCEPTED and WhisperOfTremors == false) then
-        player:startEvent(0x00fa,0,TUNING_FORK_OF_EARTH,1);
+        player:startEvent(250,0,TUNING_FORK_OF_EARTH,1);
     elseif (TrialByEarth == QUEST_ACCEPTED and WhisperOfTremors) then
         numitem = 0;
 
@@ -51,9 +51,9 @@ function onTrigger(player,npc)
         if (player:hasItem(1205)) then numitem = numitem + 8; end   -- Desert Light
         if (player:hasSpell(299)) then numitem = numitem + 32; end  -- Ability to summon Titan
 
-        player:startEvent(0x00fc,0,TUNING_FORK_OF_EARTH,1,0,numitem);
+        player:startEvent(252,0,TUNING_FORK_OF_EARTH,1,0,numitem);
     else
-        player:startEvent(0x00fd); -- Standard dialog
+        player:startEvent(253); -- Standard dialog
     end
 
 end;
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0100) then
+    if (csid == 256) then
         if (player:getFreeSlotsCount() ~= 0) then
                 player:addItem(1169);
                 player:messageSpecial(ITEM_OBTAINED,1169);
@@ -83,16 +83,16 @@ function onEventFinish(player,csid,option)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1169);
         end;
-    elseif (csid == 0x0101) then
+    elseif (csid == 257) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1169);
             player:messageSpecial(ITEM_OBTAINED,1169);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1169);
         end;
-    elseif (csid == 0x0102) then
+    elseif (csid == 258) then
         player:setVar("ThePuppetMasterProgress",4);
-    elseif (csid == 0x00f9 and option == 1) then
+    elseif (csid == 249 and option == 1) then
         if (player:getQuestStatus(BASTOK,TRIAL_BY_EARTH) == QUEST_COMPLETED) then
             player:delQuest(BASTOK,TRIAL_BY_EARTH);
         end
@@ -100,10 +100,10 @@ function onEventFinish(player,csid,option)
         player:setVar("TrialByEarth_date", 0);
         player:addKeyItem(TUNING_FORK_OF_EARTH);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_EARTH);
-    elseif (csid == 0x011c) then
+    elseif (csid == 284) then
         player:addKeyItem(TUNING_FORK_OF_EARTH);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_EARTH);
-    elseif (csid == 0x00fc) then
+    elseif (csid == 252) then
         local item = 0;
         if (option == 1) then item = 17438;         -- Titan's Cudgel
         elseif (option == 2) then item = 13244;  -- Earth Belt

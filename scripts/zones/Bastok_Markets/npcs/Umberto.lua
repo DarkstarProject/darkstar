@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
-        player:startEvent(0x01d9);
+        player:startEvent(473);
     else
-        player:startEvent(0x019b);
+        player:startEvent(411);
     end
 end;
 
@@ -43,7 +43,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x01d9) then
+    if (csid == 473) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5674);
         else

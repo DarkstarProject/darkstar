@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR,FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getVar("FiresOfDiscProg") == 3) then
-            player:startEvent(0x000B);
+            player:startEvent(11);
         end
     end
 end;
@@ -45,7 +45,7 @@ end;
 
 function onEventFinish(player,csid,option)
     
-    if (csid==0x000B) then
+    if (csid==11) then
         player:setVar("FiresOfDiscProg",4);
     end
 

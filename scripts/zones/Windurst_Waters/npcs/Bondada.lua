@@ -29,11 +29,11 @@ function onTrigger(player,npc)
     end
     hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
     if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_var") < 127) then
-        player:startEvent(0x0035); -- Show Off Hat (She does not buy one)
+        player:startEvent(53); -- Show Off Hat (She does not buy one)
     elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1)  and player:getVar("QuestHatInHand_var") == 127) then
-        player:startEvent(0x003d); -- Show Off Hat (She buys one)
+        player:startEvent(61); -- Show Off Hat (She buys one)
     else
-        player:startEvent(0x002b); -- Standard Conversation
+        player:startEvent(43); -- Standard Conversation
     end
 end;
 
@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x003d) then  -- Show Off Hat
+    if (csid == 61) then  -- Show Off Hat
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+128);
         player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
     end

@@ -7,7 +7,7 @@
 -- onTrigger Action
 -----------------------------------
 function onTrigger(player,npc)
-    player:startEvent(0x2759);
+    player:startEvent(10073);
 end; 
  
 

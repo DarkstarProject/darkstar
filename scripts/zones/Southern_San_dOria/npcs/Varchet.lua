@@ -28,14 +28,14 @@ function onTrade(player,npc,trade)
         local ptotal = pdie1 + pdie2;
 
         if (ptotal > vtotal) then
-            player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_WON);
+            player:startEvent(519,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_WON);
         elseif (vtotal > ptotal) then
-            player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_LOST);
+            player:startEvent(519,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_LOST);
         elseif (ptotal == vtotal) then
-            player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_TIE);
+            player:startEvent(519,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_TIE);
         end
     else
-        player:startEvent(0x0260);
+        player:startEvent(608);
     end
 end;
 
@@ -47,9 +47,9 @@ function onTrigger(player,npc)
     local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
     if (exitTheGambler == QUEST_ACCEPTED) then
-        player:startEvent(0x027e);
+        player:startEvent(638);
     else
-        player:startEvent(0x020d);
+        player:startEvent(525);
     end
 end;
 
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
     local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
     local npc = player:getEventTarget();
 
-    if (csid == 0x207) then
+    if (csid == 519) then
         if (option == GAME_WON) then
             if (exitTheGambler == QUEST_ACCEPTED) then
                 player:completeQuest(SANDORIA,EXIT_THE_GAMBLER);

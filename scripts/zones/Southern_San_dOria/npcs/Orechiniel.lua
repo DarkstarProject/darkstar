@@ -28,12 +28,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == false) then
-            player:startEvent(0x028A,Cost,SkillLevel,0,239,player:getGil(),0,0,0);
+            player:startEvent(650,Cost,SkillLevel,0,239,player:getGil(),0,0,0);
         else
-            player:startEvent(0x028A,Cost,SkillLevel,0,239,player:getGil(),28727,0,0);
+            player:startEvent(650,Cost,SkillLevel,0,239,player:getGil(),28727,0,0);
         end
     else
-        player:startEvent(0x028A); -- Standard Dialogue
+        player:startEvent(650); -- Standard Dialogue
     end
 end;
 
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local Cost = getAdvImageSupportCost(player, SKILL_LEATHERCRAFT);
 
-    if (csid == 0x028A and option == 1) then
+    if (csid == 650 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(LEATHER_SUPPORT,0,5,0);
         player:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,480);

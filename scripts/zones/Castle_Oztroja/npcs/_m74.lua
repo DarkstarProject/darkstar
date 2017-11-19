@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     TorchStand4A = GetNPCByID(Torch4):getAnimation();
 
     if (DoorA == 9 and TorchStand3A == 9) then
-        player:startEvent(0x000a);
+        player:startEvent(10);
     else
         player:messageSpecial(TORCH_LIT);
     end

@@ -28,7 +28,7 @@ end;
 function onTrigger(player,npc)
     -- PATH OF THE BARD (Bard Flag)
     if (player:getQuestStatus(JEUNO,PATH_OF_THE_BARD) == QUEST_AVAILABLE and player:getVar("PathOfTheBard_Event") == 1) then
-        player:startEvent(0x0002);
+        player:startEvent(2);
 
     -- DEFAULT DIALOG
     else
@@ -48,7 +48,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0002) then
+    if (csid == 2) then
         player:addGil(GIL_RATE*3000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
         player:addTitle(WANDERING_MINSTREL);

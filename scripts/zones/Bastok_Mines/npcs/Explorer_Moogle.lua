@@ -21,7 +21,7 @@ end;
 function onTrigger(player,npc) 
 
 accept = 0;
-event  = 0x0249;
+event  = 585;
     
     if (player:getGil() < 300) then
         accept = 1;
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 
     local price = 300;
 
-    if (csid == 0x0249) then
+    if (csid == 585) then
         if (option == 1 and player:delGil(price)) then        
             toExplorerMoogle(player,231);
         elseif (option == 2 and player:delGil(price)) then    

@@ -74,9 +74,9 @@ function onZoneIn( player, prevZone)
     end
 
     if ( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0002;
+        cs = 2;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0004;
+        cs = 4;
     end
 
     return cs;
@@ -123,9 +123,9 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ( csid == 0x0002) then
+    if ( csid == 2) then
         lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0004) then
+    elseif (csid == 4) then
         if (player:getZPos() <  75) then
             player:updateEvent(0,0,0,0,0,1);
         else
@@ -141,7 +141,7 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ( csid == 0x0002) then
+    if ( csid == 2) then
         lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
     end
 end;

@@ -25,11 +25,11 @@ function onTrigger(player,npc)
 TwinstoneBonding = player:getQuestStatus(WINDURST,TWINSTONE_BONDING);
 
     if (TwinstoneBonding == QUEST_COMPLETED) then
-        player:startEvent(0x01ec,0,13360);        
+        player:startEvent(492,0,13360);        
     elseif (TwinstoneBonding == QUEST_ACCEPTED) then
-        player:startEvent(0x01e9,0,13360);    
+        player:startEvent(489,0,13360);    
     else
-        player:startEvent(0x01a9);
+        player:startEvent(425);
     end
 
 end; 

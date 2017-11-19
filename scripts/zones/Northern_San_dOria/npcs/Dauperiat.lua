@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
         carta = trade:hasItemQty(530, 1);
 
         if (carta == true and count == 1) then
-            player:startEvent(0x0288,0,530); --648
+            player:startEvent(648,0,530); --648
         end
        end
 end;
@@ -48,22 +48,22 @@ function onTrigger(player,npc)
 
 
     if (blackMail == QUEST_AVAILABLE and sanFame >= 3 and homeRank >= 3) then
-        player:startEvent(0x0283); -- 643 gives me letter
+        player:startEvent(643); -- 643 gives me letter
     elseif (blackMail == QUEST_ACCEPTED and envelope == true) then
-        player:startEvent(0x0285);  -- 645 recap, take envelope!
+        player:startEvent(645);  -- 645 recap, take envelope!
 
     elseif (blackMail == QUEST_ACCEPTED and questState == 1) then
-        player:startEvent(0x0286,0,530); --646  after giving letter to H, needs param
+        player:startEvent(646,0,530); --646  after giving letter to H, needs param
 
 
     elseif (blackMail == QUEST_ACCEPTED and questState == 2) then
-        player:startEvent(0x0287,0,530); --647 recap of 646
+        player:startEvent(647,0,530); --647 recap of 646
 
     else
         if (player:needToZone() ==true) then
-            player:startEvent(0x0282); --642 Quiet!
+            player:startEvent(642); --642 Quiet!
         else
-            player:startEvent(0x0281); --641 -- Quiet! leave me alone
+            player:startEvent(641); --641 -- Quiet! leave me alone
             player:needToZone(true);
         end
     end
@@ -87,13 +87,13 @@ function onEventFinish(player,csid,option)
 --print("CSID: %u",csid);
 --print("RESULT: %u",option);
 
-    if (csid == 0x0283) then
+    if (csid == 643) then
         player:addQuest(SANDORIA,BLACKMAIL);
         player:addKeyItem(SUSPICIOUS_ENVELOPE);
         player:messageSpecial(KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
-    elseif (csid == 0x0286 and option == 1) then
+    elseif (csid == 646 and option == 1) then
         player:setVar("BlackMailQuest",2);
-    elseif (csid == 0x0288) then
+    elseif (csid == 648) then
         player:tradeComplete();
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
         else
             player:addFame(SANDORIA,5);
         end
-    elseif (csid == 0x028 and option == 1) then
+    elseif (csid == 40 and option == 1) then
         player:addQuest(SANDORIA,BLACKMAIL);
     end
 

@@ -29,7 +29,7 @@ end;
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 8) then
-        player:startEvent(0x7);
+        player:startEvent(7);
     else
         player:messageSpecial(SD_VERY_SMALL);
     end;

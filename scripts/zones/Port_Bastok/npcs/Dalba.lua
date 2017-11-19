@@ -152,7 +152,7 @@ function onTrigger(player,npc)
         gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
     end
 
-    player:startEvent(0x0104,BastokMissions,BastokQuests,OtherQuests,PromathiaMissions,AddonScenarios,0xFFFFFFFE,10,gil);
+    player:startEvent(260,BastokMissions,BastokQuests,OtherQuests,PromathiaMissions,AddonScenarios,0xFFFFFFFE,10,gil);
 end;
 
 -----------------------------------
@@ -181,73 +181,73 @@ function onEventFinish(player,csid,option)
 
     if (player:getLocalVar("Dalba_PlayCutscene") < 2) then
         if (   option ==   1) then        -- Fetichism.
-            player:startEvent(0x03F0);
+            player:startEvent(1008);
         elseif (option ==   2) then        -- To the Forsaken Mines.
-            player:startEvent(0x03F2);
+            player:startEvent(1010);
         elseif (option ==  33) then        -- Beauty and the Galka.
-            player:startEvent(0x0002);
+            player:startEvent(2);
         elseif (option ==  34) then        -- Welcome to Bastok.
-            player:startEvent(0x0034);
+            player:startEvent(52);
         elseif (option ==  35) then        -- Guest of Hauteur.
-            player:startEvent(0x0037);
+            player:startEvent(55);
         elseif (option ==  36) then        -- Cid's Secret.
-            player:startEvent(0x0085);
+            player:startEvent(133);
         elseif (option ==  37) then        -- The Usual.
-            player:startEvent(0x0088);
+            player:startEvent(136);
         elseif (option ==  38) then        -- Love and Ice(pt.1).
-            player:startEvent(0x00B9);
+            player:startEvent(185);
         elseif (option ==  39) then        -- Love and Ice(pt.2).
-            player:startEvent(0x00BA);
+            player:startEvent(186);
         elseif (option ==  40) then        -- A Test of True Love(pt.1).
-            player:startEvent(0x010E);
+            player:startEvent(270);
         elseif (option ==  41) then        -- A Test of True Love(pt.2).
-            player:startEvent(0x0110);
+            player:startEvent(272);
         elseif (option ==  42) then        -- A Test of True Love(pt.3).
-            player:startEvent(0x0112);
+            player:startEvent(274);
         elseif (option ==  43) then        -- Lovers in the Dusk.
-            player:startEvent(0x0113);
+            player:startEvent(275);
         elseif (option ==  44) then        -- Ghosts of the Past(pt.1).
-            player:startEvent(0x00E7);
+            player:startEvent(231);
         elseif (option ==  45) then        -- Ghosts of the Past(pt.2).
-            player:startEvent(0x00E8);
+            player:startEvent(232);
         elseif (option ==  46) then        -- The First Meeting(pt.1).
-            player:startEvent(0x00E9);
+            player:startEvent(233);
         elseif (option ==  47) then        -- The First Meeting(pt.2).
-            player:startEvent(0x00EA);
+            player:startEvent(234);
         elseif (option ==  48) then        -- Ayame and Kaede(pt.1).
-            player:startEvent(0x00F0);
+            player:startEvent(240);
         elseif (option ==  49) then        -- Ayame and Kaede(pt.2).
-            player:startEvent(0x00F1);
+            player:startEvent(241);
         elseif (option ==  50) then        -- Ayame and Kaede(pt.3).
-            player:startEvent(0x00F2);
+            player:startEvent(242);
         elseif (option ==  51) then        -- Ayame and Kaede(pt.4).
-            player:startEvent(0x00F5);
+            player:startEvent(245);
         elseif (option ==  52) then        -- Ayame and Kaede(pt.5).
-            player:startEvent(0x00F6);
+            player:startEvent(246);
         -- elseif (option ==  53) then        -- Trial by Earth.
-        --     player:startEvent(0x00FA,0,TUNING_FORK_OF_EARTH,1);
+        --     player:startEvent(250,0,TUNING_FORK_OF_EARTH,1);
         elseif (option ==  54) then        -- The Walls of Your Mind(pt.1).
-            player:startEvent(0x011E);
+            player:startEvent(286);
         elseif (option ==  55) then        -- The Walls of Your Mind(pt.2).
-            player:startEvent(0x0121);
+            player:startEvent(289);
         elseif (option ==  56) then        -- The Walls of Your Mind(pt.3).
-            player:startEvent(0x0122);
+            player:startEvent(290);
         elseif (option ==  57) then        -- Faded Promises.
-            player:startEvent(0x0128);
+            player:startEvent(296);
         elseif (option ==  58) then        -- Out of the Depths(pt.1).
-            player:startEvent(0x0133);
+            player:startEvent(307);
         -- elseif (option ==  59) then        -- Out of the Depths(pt.2).
-        --     player:startEvent(0x0135,0,0,0,601); -- 601 = Old Nametag
+        --     player:startEvent(309,0,0,0,601); -- 601 = Old Nametag
         elseif (option ==  65) then        -- The Puppet Master(pt.1).
-            player:startEvent(0x0100,0,TUNING_FORK_OF_EARTH,0,1169,0,0,0,0); -- 1169 = Earth Pendulum
+            player:startEvent(256,0,TUNING_FORK_OF_EARTH,0,1169,0,0,0,0); -- 1169 = Earth Pendulum
         elseif (option ==  66) then        -- The Puppet Master(pt.2).
-            player:startEvent(0x0102);
+            player:startEvent(258);
         elseif (option ==  67) then        -- 20 in Pirate Years(pt.1).
-            player:startEvent(0x0105);
+            player:startEvent(261);
         elseif (option ==  68) then        -- 20 in Pirate Years(pt.2).
-            player:startEvent(0x0107);
+            player:startEvent(263);
         elseif (option ==  69) then        -- I'll Take the Big Box.
-            player:startEvent(0x0108);
+            player:startEvent(264);
         -- elseif (option ==  70) then        -- Chasing Dreams(pt.1).
         --     player:startEvent(CSID);
         -- elseif (option ==  71) then        -- Chasing Dreams(pt.2).
@@ -255,11 +255,11 @@ function onEventFinish(player,csid,option)
         -- elseif (option ==  72) then        -- Monstrosity.
         --     player:startEvent(CSID);
         elseif (option ==  97) then        -- The Call of the Wyrmking.
-            player:startEvent(0x0131);
+            player:startEvent(305);
         elseif (option ==  98) then        -- The Enduring Tumult of War.
-            player:startEvent(0x0132);
+            player:startEvent(306);
         elseif (option == 129) then        -- Drenched! It Began with a Raindrop.
-            player:startEvent(0x7549,0,0,0,0,0,0,236);
+            player:startEvent(30025,0,0,0,0,0,0,236);
 --        elseif (option ==   2) then        -- Hasten! In a Jam in Jeuno?
 --            player:startEvent(CSID,0,0,0,0,0,0,236);
         end

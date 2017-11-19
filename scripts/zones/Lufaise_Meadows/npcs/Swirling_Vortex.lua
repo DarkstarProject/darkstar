@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0064);
+    player:startEvent(100);
 end;
 
 -----------------------------------
@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x0064 and option == 1) then
+    if (csid == 100 and option == 1) then
         toValkurmDunes(player);
     end
     

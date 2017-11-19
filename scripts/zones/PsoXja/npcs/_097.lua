@@ -65,7 +65,7 @@ function onTrigger(player,npc)
                 player:messageSpecial(DOOR_LOCKED);
             end
         elseif (Z >= -81) then
-            player:startEvent(0x001A);
+            player:startEvent(26);
         end
     end
 
@@ -85,7 +85,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x001A and option == 1) then
+    if (csid == 26 and option == 1) then
         player:setPos(260,-0.25,-20,254,111);
     end
 end;

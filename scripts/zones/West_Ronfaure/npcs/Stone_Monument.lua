@@ -14,7 +14,7 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

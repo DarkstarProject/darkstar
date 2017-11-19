@@ -33,9 +33,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 7 or failed == 8 then
             if goodtrade then
-                player:startEvent(0x00E2);
+                player:startEvent(226);
             elseif badtrade then
-                player:startEvent(0x00EC);
+                player:startEvent(236);
             end
         end
     end
@@ -53,14 +53,14 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00CC);
+            player:startEvent(204);
         elseif (progress == 7 or failed == 8) then
-                player:startEvent(0x00D5);  -- asking for wyvern skull
+                player:startEvent(213);  -- asking for wyvern skull
         elseif (progress >= 8 or failed >= 9) then
-            player:startEvent(0x00F9); -- happy with wyvern skull
+            player:startEvent(249); -- happy with wyvern skull
         end
     else
-        player:startEvent(0x00CC);
+        player:startEvent(204);
     end
 end;
 -----------------------------------
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00E2) then    -- correct trade, onto next opo
+    if (csid == 226) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 7 then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",8);
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("OPO_OPO_FAILED",9);
         end
-    elseif (csid == 0x00EC) then              -- wrong trade, restart at first opo
+    elseif (csid == 236) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",8);
     end

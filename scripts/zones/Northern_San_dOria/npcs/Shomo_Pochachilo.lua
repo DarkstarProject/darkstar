@@ -28,9 +28,9 @@ function onTrigger(player,npc)
     quest_FatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
 
     if (quest_FatherAndSon == QUEST_COMPLETED) then
-        player:startEvent(0x02b8);
+        player:startEvent(696);
     else
-        player:startEvent(0x02a3);
+        player:startEvent(675);
     end
 
 end;

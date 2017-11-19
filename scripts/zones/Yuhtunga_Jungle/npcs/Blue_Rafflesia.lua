@@ -30,25 +30,25 @@ function onTrigger(player,npc)
 
     if (npcId == 17281586) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Player is on quest, first time.
-            player:startEvent(0x0015);
+            player:startEvent(21);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Repeating
-            player:startEvent(0x0015);
+            player:startEvent(21);
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
     elseif (npcId == 17281587) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("SecondBlueRafflesiaCS") == 0) then
-            player:startEvent(0x0016);
+            player:startEvent(22);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("SecondBlueRafflesiaCS") == 0) then
-            player:startEvent(0x0016);
+            player:startEvent(22);
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
     elseif (npcId == 17281588) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("ThirdBlueRafflesiaCS") == 0) then
-            player:startEvent(0x0017);
+            player:startEvent(23);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("ThirdBlueRafflesiaCS") == 0) then
-            player:startEvent(0x0017);
+            player:startEvent(23);
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
     local evenmoreTravelsStatus = player:getQuestStatus(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS)
 
 -- Set BathedInScent to 1 if they touched all 3 Rafflesia for EVEN_MORE_GULLIBLES_TRAVELS which opens the quest The Opo-Opo and I
-    if (csid == 0x0015 and option == 1) then
+    if (csid == 21 and option == 1) then
         if (player:getVar("SecondBlueRafflesiaCS") == 1 and player:getVar("ThirdBlueRafflesiaCS") == 1) then -- This is 3rd Rafflessia clicked, progressing.
             player:setVar("SecondBlueRafflesiaCS", 0);
             player:setVar("ThirdBlueRafflesiaCS", 0);
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             player:addItem(1144);        -- Rafflesia Nectar
             player:messageSpecial(ITEM_OBTAINED,1144);
         end
-    elseif (csid == 0x0016 and option == 1) then
+    elseif (csid == 22 and option == 1) then
         if (player:getVar("FirstBlueRafflesiaCS") == 1 and player:getVar("ThirdBlueRafflesiaCS") == 1) then
             player:setVar("FirstBlueRafflesiaCS", 0);
             player:setVar("ThirdBlueRafflesiaCS", 0);
@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
             player:addItem(1144);        -- Rafflesia Nectar
             player:messageSpecial(ITEM_OBTAINED,1144);
         end
-    elseif (csid == 0x0017 and option == 1) then
+    elseif (csid == 23 and option == 1) then
         if (player:getVar("FirstBlueRafflesiaCS") == 1 and player:getVar("SecondBlueRafflesiaCS") == 1) then
             player:setVar("FirstBlueRafflesiaCS", 0);
             player:setVar("SecondBlueRafflesiaCS", 0);

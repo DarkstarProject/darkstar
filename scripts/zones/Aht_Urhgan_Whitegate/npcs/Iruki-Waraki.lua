@@ -30,20 +30,20 @@ function onTrigger(player,npc)
 
     -- Quest: No Strings Attached
     if (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 1) then
-        player:startEvent(0x0104); -- he tells u to get him an automaton
+        player:startEvent(260); -- he tells u to get him an automaton
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 2) then
-        player:startEvent(0x0105); -- reminder to get an automaton
+        player:startEvent(261); -- reminder to get an automaton
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 6) then
-        player:startEvent(0x010a); -- you bring him the automaton
+        player:startEvent(266); -- you bring him the automaton
     elseif (Job == JOBS.PUP and LvL < AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED) then
-        player:startEvent(0x010b); -- asking you how are you doing with your automaton
+        player:startEvent(267); -- asking you how are you doing with your automaton
     -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
         player:unlockAttachment(8224); --Harlequin Frame
         player:unlockAttachment(8193); --Harlequin Head
     elseif (Job ~= JOBS.PUP and NoStringsAttached == QUEST_COMPLETED) then
-        player:startEvent(0x010b); -- asking you how are you doing with your automaton
+        player:startEvent(267); -- asking you how are you doing with your automaton
     elseif (NoStringsAttached == QUEST_AVAILABLE) then
-        player:startEvent(0x0103); -- Leave him alone     
+        player:startEvent(259); -- Leave him alone     
 
     --Quest: The Wayward Automation
     elseif (Job == JOBS.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
@@ -68,9 +68,9 @@ function onEventFinish(player,csid,option)
  --printf("CSID: %u",csid);
  --printf("RESULT: %u",option);
 
-    if (csid == 0x0104) then
+    if (csid == 260) then
         player:setVar("NoStringsAttachedProgress",2);
-    elseif (csid == 0x010a) then
+    elseif (csid == 266) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:completeQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
             player:addTitle(PROUD_AUTOMATON_OWNER);

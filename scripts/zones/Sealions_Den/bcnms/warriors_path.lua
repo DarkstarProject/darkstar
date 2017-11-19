@@ -47,15 +47,15 @@ function onBcnmLeave(player,instance,leavecode)
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         player:addExp(1000);
         if (player:getCurrentMission(COP) == THE_WARRIOR_S_PATH) then
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
             player:setVar("PromathiaStatus",0);
             player:completeMission(COP,THE_WARRIOR_S_PATH);
             player:addMission(COP,GARDEN_OF_ANTIQUITY);
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
         end
     elseif (leavecode == 4) then
-           player:startEvent(0x7d02);
+           player:startEvent(32002);
    end
 
 end;
@@ -66,7 +66,7 @@ end;
 
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
        player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
        player:addTitle(THE_CHEBUKKIS_WORST_NIGHTMARE);
     end

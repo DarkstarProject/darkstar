@@ -53,7 +53,7 @@ end;
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
-        player:startEvent(0x0009);
+        player:startEvent(9);
     end
 end;
 

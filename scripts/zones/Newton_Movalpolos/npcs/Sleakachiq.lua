@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if (Ypos <= 16.5) then
         if (trade:getItemCount() == 1 and trade:getGil() == 800) then
             player:tradeComplete();
-            player:startEvent(0x001C);
+            player:startEvent(28);
         end
     elseif (Ypos >= 19.5) then
         player:messageSpecial(39966); -- H0000! ... Come closer, can't trade from so far away.
@@ -35,9 +35,9 @@ function onTrigger(player,npc)
     local Ypos = player:getYPos();
 
     if (Ypos <= 16.5) then
-        player:startEvent(0x001B);
+        player:startEvent(27);
     elseif (Ypos >= 19.5) then
-        player:startEvent(0x001A);
+        player:startEvent(26);
     end
 end;
 
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x001C) then
+    if (csid == 28) then
         if (option == 1) then
             player:setPos(447.99,-4.092,729.791,96,106); -- To North Gustaberg {R}
         elseif (option == 2) then

@@ -17,7 +17,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 
 function onTrade(player,npc,trade)
 
---    player:startEvent(0x0202); -- event that follows egg trading
+--    player:startEvent(514); -- event that follows egg trading
 end;
 
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:startEvent(0x01fc);
+    player:startEvent(508);
 end;
 
 -----------------------------------

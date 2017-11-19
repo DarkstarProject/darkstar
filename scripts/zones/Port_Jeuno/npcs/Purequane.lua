@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then
-        player:startEvent(0x0026);
+        player:startEvent(38);
     else
-        player:startEvent(0x002e);
+        player:startEvent(46);
     end
 
     return 1;
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0026) then
+    if (csid == 38) then
         Z = player:getZPos();
 
         if (Z >= 58 and Z <= 61) then

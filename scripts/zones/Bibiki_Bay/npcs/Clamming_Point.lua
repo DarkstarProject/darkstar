@@ -96,7 +96,7 @@ function onTrigger(player,npc)
                     SetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse", 1);
                     SetServerVariable("ClammingPoint_" .. npc:getID() .. "_Delay", 0);
                     
-                    player:startEvent(0x0014, 0, 0, 0, 0, 0, 0, 0, 0);
+                    player:startEvent(20, 0, 0, 0, 0, 0, 0, 0, 0);
                 end
             end
         end
@@ -113,7 +113,7 @@ function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0014) then
+    if (csid == 20) then
         if (player:getVar("ClammingKitSize") == 200 and math.random() <= giveReducedIncidents(player)) then
             player:setLocalVar("SomethingJumpedInBucket", 1);
         else
@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0014) then
+    if (csid == 20) then
         if (player:getLocalVar("SomethingJumpedInBucket") > 0) then
             player:setLocalVar("SomethingJumpedInBucket", 0);
 

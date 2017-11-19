@@ -29,13 +29,13 @@ function onTrigger(player,npc)
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
     if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,16) == false) then
-        player:startEvent(0x0270);
+        player:startEvent(624);
     elseif (WonderWands == QUEST_ACCEPTED) then
-        player:startEvent(0x0100,0,0,0,17061);
+        player:startEvent(256,0,0,0,17061);
     elseif (WonderWands == QUEST_COMPLETED) then
-        player:startEvent(0x010c);
+        player:startEvent(268);
     else
-        player:startEvent(0xe9);
+        player:startEvent(233);
     end
 end;
 
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0270) then
+    if (csid == 624) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",16,true);
     end
 

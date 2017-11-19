@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     LuckOfTheDraw = player:getVar("LuckOfTheDraw");
 
     if (LuckOfTheDraw ==4) then
-        player:startEvent(0x0003);
+        player:startEvent(3);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     end
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 
 
-    if (csid == 0x0003) then                    -- complete corsair job flag quest
+    if (csid == 3) then                    -- complete corsair job flag quest
         player:setVar("LuckOfTheDraw",5); -- var will remain for af quests
         player:addItem(5493);
         player:messageSpecial(ITEM_OBTAINED,5493);

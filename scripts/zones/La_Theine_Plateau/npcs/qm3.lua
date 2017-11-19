@@ -19,7 +19,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1125,1) and trade:getItemCount() == 1 and trade:getGil() == 0 and player:getVar("I_CAN_HEAR_A_RAINBOW") == 127) then
-            player:startEvent(0x007c);
+            player:startEvent(124);
         end
     end
 end;
@@ -30,7 +30,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 0) then
-        player:startEvent(0x00CB);       
+        player:startEvent(203);       
     end
 end;
 
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007c) then
+    if (csid == 124) then
         player:tradeComplete();
         player:completeQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
         player:addTitle(RAINBOW_WEAVER);
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(UNLOCK_CARBUNCLE);
         player:setVar("ICanHearARainbow",0);
         SetServerVariable("I_Can_Hear_a_Rainbow", 1);
-    elseif (csid == 0x00CB) then    
+    elseif (csid == 203) then    
         player:setVar("COP_Tenzen_s_Path",1);
     end
 end;

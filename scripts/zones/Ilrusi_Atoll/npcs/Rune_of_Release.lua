@@ -31,7 +31,7 @@ function onTrigger(player,npc)
   local npcID = npc:getID();
  -- print(npcID);
   if (npcID==17002655) then
-    player:startEvent(0x0064,4);
+    player:startEvent(100,4);
 
 
 
@@ -55,7 +55,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option)
- if (csid == 0x0064 and option==1) then
+ if (csid == 100 and option==1) then
 
  local point =1000;
        ----------------RESPAWN COFFER NPC---------------------------------------

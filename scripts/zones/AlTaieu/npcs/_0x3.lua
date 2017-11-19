@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         and player:getVar("[SEA][AlTieu]EastTower") == 1
         and player:getVar("[SEA][AlTieu]EastTowerCS") == 0
     ) then
-        player:startEvent(0x00A3);
+        player:startEvent(163);
 
     else
         player:messageSpecial(NOTHING_OF_INTEREST);
@@ -65,7 +65,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00A3) then
+    if (csid == 163) then
         player:setVar("[SEA][AlTieu]EastTowerCS", 1);
         player:setVar("[SEA][AlTieu]EastTower", 0);
     end

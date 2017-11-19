@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_ACCEPTED) then
         if ((trade:hasItemQty(2796,1) and trade:hasItemQty(582,1) and trade:getItemCount() == 2) or (trade:hasItemQty(2796,1) and trade:hasItemQty(3319,1) and trade:getItemCount() == 2)
          or (trade:hasItemQty(2796,1) and trade:hasItemQty(3300,12) and trade:getItemCount() == 13)) then
-            player:startEvent(0x0016); 
+            player:startEvent(22); 
         end
     end
 end; 
@@ -28,11 +28,11 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_AVAILABLE) then
-        player:startEvent(0x0014); 
+        player:startEvent(20); 
     elseif (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_ACCEPTED) then
-        player:startEvent(0x0015); 
+        player:startEvent(21); 
     elseif (player:hasCompleteQuest(OUTLANDS,OPEN_SESAME)) then
-        player:startEvent(0x0018); 
+        player:startEvent(24); 
     end
 end;
 
@@ -53,9 +53,9 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("OPTION: %u",option);
     
-    if (csid == 0x0014 and option == 1) then
+    if (csid == 20 and option == 1) then
         player:addQuest(OUTLANDS,OPEN_SESAME); 
-    elseif (csid == 0x0016) then
+    elseif (csid == 22) then
         player:tradeComplete();
         player:addKeyItem(2051);
         player:messageSpecial(KEYITEM_OBTAINED,2051);

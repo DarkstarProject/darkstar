@@ -23,7 +23,7 @@ function onMobDeath(mob, player, isKiller)
     partyMembers = 6;
     pZone = player:getZoneID();
 
-    player:startEvent(0x7d01,0,record,0,(os.time() - player:getVar("BCNM_Timer")),partyMembers,0,0);
+    player:startEvent(32001,0,record,0,(os.time() - player:getVar("BCNM_Timer")),partyMembers,0,0);
 
 end;
 

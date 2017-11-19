@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    CheckMaps(player, npc, 0x0073);
+    CheckMaps(player, npc, 115);
 end;
 
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    if (csid == 0x0073) then
+    if (csid == 115) then
         CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
     end
 end;

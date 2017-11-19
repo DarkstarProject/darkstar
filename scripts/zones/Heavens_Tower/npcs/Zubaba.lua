@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
     if (currentMission == WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 3) then
         if (trade:hasItemQty(16447,3) and trade:getItemCount() == 3) then -- Trade Rusty Dagger
             player:tradeComplete();
-            player:startEvent(0x0097);
+            player:startEvent(151);
         end
     end
 
@@ -41,24 +41,24 @@ function onTrigger(player,npc)
 
     if (currentMission == WRITTEN_IN_THE_STARS and nextMissionFinished == false) then
         if (MissionStatus == 0) then
-            player:startEvent(0x0079);
+            player:startEvent(121);
         elseif (MissionStatus == 1) then
-            player:startEvent(0x007a);
+            player:startEvent(122);
         elseif (MissionStatus == 2) then
-            player:startEvent(0x0087);
+            player:startEvent(135);
         end
     elseif (currentMission == WRITTEN_IN_THE_STARS and (nextMissionFinished or player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS))) then
         if (MissionStatus == 0) then
-            player:startEvent(0x0101,0,16447); -- Rusty Dagger
+            player:startEvent(257,0,16447); -- Rusty Dagger
         elseif (MissionStatus == 3) then
-            player:startEvent(0x0096,0,16447);
+            player:startEvent(150,0,16447);
         end
     elseif (player:hasKeyItem(STAR_CRESTED_SUMMONS)) then
-        player:startEvent(0x009d);
+        player:startEvent(157);
     elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(SHADOW_FRAGMENT)) then
-        player:startEvent(0x00C2); -- her reaction after 5-1.
+        player:startEvent(194); -- her reaction after 5-1.
     else
-        player:startEvent(0x0038);
+        player:startEvent(56);
     end
 
 end;
@@ -80,13 +80,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0079) then
+    if (csid == 121) then
         player:addKeyItem(CHARM_OF_LIGHT);
         player:messageSpecial(KEYITEM_OBTAINED,CHARM_OF_LIGHT);
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x0095 or csid == 0x0101) then
+    elseif (csid == 149 or csid == 257) then
         player:setVar("MissionStatus",3);
-    elseif (csid == 0x0087 or csid == 0x0097) then
+    elseif (csid == 135 or csid == 151) then
         finishMissionTimeline(player,1,csid,option);
     end
 

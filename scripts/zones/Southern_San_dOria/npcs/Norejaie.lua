@@ -4,7 +4,7 @@
 require("scripts/globals/settings");
  
 function onTrigger(player,npc)
-   player:startEvent(0x02A5)
+   player:startEvent(677)
 end;
  
  

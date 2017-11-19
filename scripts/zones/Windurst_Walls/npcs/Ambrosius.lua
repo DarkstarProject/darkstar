@@ -18,11 +18,11 @@ function onTrigger(player,npc)
     QuestStatus = player:getQuestStatus(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
 
     if (QuestStatus == QUEST_AVAILABLE) then
-        player:startEvent(0x0030);
+        player:startEvent(48);
     elseif (QuestStatus == QUEST_ACCEPTED) then
-        player:startEvent(0x0031);
+        player:startEvent(49);
     elseif (QuestStatus == QUEST_COMPLETED) then
-        player:startEvent(0x0038);
+        player:startEvent(56);
     end
 end;
 
@@ -44,27 +44,27 @@ function onTrade(player,npc,trade)
         if (trade:getItemCount() == reward) then
             if (reward == 1) then
                 if (QuestStatus == QUEST_ACCEPTED) then
-                    player:startEvent(0x0034,GIL_RATE*50);
+                    player:startEvent(52,GIL_RATE*50);
                 elseif (QuestStatus == QUEST_COMPLETED) then
-                    player:startEvent(0x0039,GIL_RATE*50);
+                    player:startEvent(57,GIL_RATE*50);
                 end
             elseif (reward == 2) then
                 if (QuestStatus == QUEST_ACCEPTED) then
-                    player:startEvent(0x0035,GIL_RATE*150,2);
+                    player:startEvent(53,GIL_RATE*150,2);
                 elseif (QuestStatus == QUEST_COMPLETED) then
-                    player:startEvent(0x003a,GIL_RATE*150,2);
+                    player:startEvent(58,GIL_RATE*150,2);
                 end
             elseif (reward == 3) then
                 if (QuestStatus == QUEST_ACCEPTED) then
-                    player:startEvent(0x0036,GIL_RATE*250,3);
+                    player:startEvent(54,GIL_RATE*250,3);
                 elseif (QuestStatus == QUEST_COMPLETED) then
-                    player:startEvent(0x003b,GIL_RATE*250,3);
+                    player:startEvent(59,GIL_RATE*250,3);
                 end
             elseif (reward == 4) then
                 if (QuestStatus == QUEST_ACCEPTED) then
-                    player:startEvent(0x0037,GIL_RATE*500,4);
+                    player:startEvent(55,GIL_RATE*500,4);
                 elseif (QuestStatus == QUEST_COMPLETED) then
-                    player:startEvent(0x003c,GIL_RATE*500,4);
+                    player:startEvent(60,GIL_RATE*500,4);
                 end
             end
         end
@@ -88,41 +88,41 @@ function onEventFinish(player,csid,option)
     --printf("Finish CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0030 and option == 0) then
+    if (csid == 48 and option == 0) then
         player:addQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
-    elseif (csid == 0x0034) then
+    elseif (csid == 52) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
         player:addFame(WINDURST,80);
         player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
-    elseif (csid == 0x0035) then
+    elseif (csid == 53) then
         player:tradeComplete();
         player:addGil(GIL_RATE*150);
         player:addFame(WINDURST,80);
         player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
-    elseif (csid == 0x0036) then
+    elseif (csid == 54) then
         player:tradeComplete();
         player:addGil(GIL_RATE*250);
         player:addFame(WINDURST,80);
         player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
-    elseif (csid == 0x0037) then
+    elseif (csid == 55) then
         player:tradeComplete();
         player:addGil(GIL_RATE*500);
         player:addFame(WINDURST,80);
         player:completeQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
-    elseif (csid == 0x0039) then
+    elseif (csid == 57) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
         player:addFame(WINDURST,5);
-    elseif (csid == 0x003a) then
+    elseif (csid == 58) then
         player:tradeComplete();
         player:addGil(GIL_RATE*150);
         player:addFame(WINDURST,15);
-    elseif (csid == 0x003b) then
+    elseif (csid == 59) then
         player:tradeComplete();
         player:addGil(GIL_RATE*250);
         player:addFame(WINDURST,25);
-    elseif (csid == 0x003c) then
+    elseif (csid == 60) then
         player:tradeComplete();
         player:addGil(GIL_RATE*500);
         player:addFame(WINDURST,50);

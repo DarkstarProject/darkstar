@@ -87,7 +87,7 @@ local items = {
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x321, 2);
+    unionRepresentativeTrade(player, npc, trade, 801, 2);
 end;
 
 -----------------------------------
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    unionRepresentativeTrigger(player, 2, 0x320, "guild_smithing", keyitems);
+    unionRepresentativeTrigger(player, 2, 800, "guild_smithing", keyitems);
 end;
 
 -----------------------------------
@@ -105,7 +105,7 @@ end;
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x320) then
+    if (csid == 800) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     end
 end;
@@ -117,9 +117,9 @@ end;
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x320) then
+    if (csid == 800) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
-    elseif (csid == 0x321) then
+    elseif (csid == 801) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

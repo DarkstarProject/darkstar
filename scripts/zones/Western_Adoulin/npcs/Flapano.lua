@@ -26,16 +26,16 @@ function onTrade(player,npc,trade)
         local ATWTTB_Paid_Flapano = player:getMaskBit(player:getVar("ATWTTB_Payments"), 2);
         -- Progresses Quest: 'All the Way to the Bank'
         if (not ATWTTB_Paid_Flapano) then
-            player:startEvent(0x13CF);
+            player:startEvent(5071);
         end
     elseif (Exotic_Delicacies == QUEST_ACCEPTED) then
         if (npcUtil.tradeHas(trade, {3916, 5954, 5954, 5949})) then
             -- Trading Saffron x1, Barnacle x2, and Mussel x1
             -- Finishes Quest: 'Exotic Delicacies'
-            player:startEvent(0x0B2D);
+            player:startEvent(2861);
         elseif (npcUtil.tradeHas(trade, 5974) or npcUtil.tradeHas(trade, 5975)) then
             -- Trading Barnacle Paella or Flapano's Paella
-            player:startEvent(0x0B2E);
+            player:startEvent(2862);
         end
     end
 end;
@@ -50,16 +50,16 @@ function onTrigger(player,npc)
 
     if ((TWW == QUEST_ACCEPTED) and (player:getVar("Weatherspoon_War_Status") == 6)) then
         -- Dialogue near the end of Quest: 'The Weatherspoon War'
-        player:startEvent(0x00BF);
+        player:startEvent(191);
     else
         -- Flapano offers his quest every other time the player talks to him
         if (player:getVar("Flapano_Odd_Even") > 0) then
             if (Exotic_Delicacies == QUEST_ACCEPTED) then
                 -- Reminds player of items for Quest: 'Exotic Delicacies'
-                player:startEvent(0x0B2F);
+                player:startEvent(2863);
             elseif (Exotic_Delicacies == QUEST_AVAILABLE) then
                 --- Starts Quest: 'Exotic Delicacies'
-                player:startEvent(0x0B2C);
+                player:startEvent(2860);
             end
             player:setVar("Flapano_Odd_Even", 0);
         else
@@ -96,12 +96,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0B2C) then
+    if (csid == 2860) then
         if (option == 1) then
             --- Starts Quest: 'Exotic Delicacies'
             player:addQuest(ADOULIN, EXOTIC_DELICACIES);
         end
-    elseif (csid == 0x0B2D) then
+    elseif (csid == 2861) then
         -- Finishes Quest: 'Exotic Delicacies'
         if (npcUtil.giveItem(player, 5975)) then
             player:tradeComplete();
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(BAYLD_OBTAINED, 500 * BAYLD_RATE);
             player:addFame(ADOULIN);
         end
-    elseif (csid == 0x13CF) then
+    elseif (csid == 5071) then
         -- Progresses Quest: 'All the Way to the Bank'
         player:tradeComplete();
         player:setMaskBit("ATWTTB_Payments", 2, true);

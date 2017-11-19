@@ -75,14 +75,14 @@ function onZoneIn( player, prevZone)
 
     -- Check if we are on Windurst Mission 1-2
     if (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar( "MissionStatus") == 5 and prevZone == 194) then
-        cs = 0x0030;
+        cs = 48;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0032;
+        cs = 50;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0034; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
+        cs = 52; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and
         player:hasStatusEffect(EFFECT_MOUNTED) == false ) then
-        cs = 0x0047;
+        cs = 71;
     end
 
     return cs;
@@ -114,9 +114,9 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0032) then
+    if (csid == 50) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0034) then
+    elseif (csid == 52) then
         if (player:getPreviousZone() == 241 or player:getPreviousZone() == 115) then
             if (player:getZPos() < 570) then
                 player:updateEvent(0,0,0,0,0,1);
@@ -128,7 +128,7 @@ function onEventUpdate( player, csid, option)
                 player:updateEvent(0,0,0,0,0,2);
             end
         end
-    elseif (csid == 0x0047) then
+    elseif (csid == 71) then
         player:setVar("ASA_Status",option);
     end
 end;
@@ -140,7 +140,7 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0030) then
+    if (csid == 48) then
         player:setVar( "MissionStatus",6);
         -- Remove the glowing orb key items
         player:delKeyItem(FIRST_GLOWING_MANA_ORB);
@@ -149,9 +149,9 @@ function onEventFinish( player, csid, option)
         player:delKeyItem(FOURTH_GLOWING_MANA_ORB);
         player:delKeyItem(FIFTH_GLOWING_MANA_ORB);
         player:delKeyItem(SIXTH_GLOWING_MANA_ORB);
-    elseif (csid == 0x0032) then
+    elseif (csid == 50) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0047) then
+    elseif (csid == 71) then
         player:completeMission(ASA,BURGEONING_DREAD);
         player:addMission(ASA,THAT_WHICH_CURDLES_BLOOD);
     end

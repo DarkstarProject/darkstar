@@ -36,10 +36,10 @@ function onTrigger(player,npc)
             player:messageSpecial(7208,1,WINDURST_WOODS_SCOOP); -- Confirm Story
             player:setVar("QuestMakingHeadlines_var",prog+16);
         else
-            player:startEvent(0x002c); -- "The door is firmly shut"
+            player:startEvent(44); -- "The door is firmly shut"
         end
     else
-        player:startEvent(0x002c); -- "The door is firmly shut"
+        player:startEvent(44); -- "The door is firmly shut"
     end
     ]]
 end; 

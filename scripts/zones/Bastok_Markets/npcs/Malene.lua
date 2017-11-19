@@ -18,7 +18,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
       if (trade:hasItemQty(550, 1) and trade:getItemCount() == 1) then -- Quest: The Cold Light of Day - Trade Steam Clock
         if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) ~= QUEST_AVAILABLE) then
-            player:startEvent(0x0068);
+            player:startEvent(104);
         end
     end
 end;
@@ -29,9 +29,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(BASTOK, WISH_UPON_A_STAR) == QUEST_ACCEPTED and player:getVar("WishUponAStar_Status") == 1) then -- Quest: Wish Upon a Star
-        player:startEvent(0x014A);
+        player:startEvent(330);
     else -- Quest: The Cold Light of Day
-        player:startEvent(0x0066);
+        player:startEvent(102);
     end
 end;
 
@@ -52,11 +52,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0066) then -- Quest: The Cold Light of Day
+    if (csid == 102) then -- Quest: The Cold Light of Day
         if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) == QUEST_AVAILABLE) then
             player:addQuest(BASTOK, THE_COLD_LIGHT_OF_DAY);
         end
-    elseif (csid == 0x0068) then -- Quest: The Cold Light of Day - Traded Steam Clock
+    elseif (csid == 104) then -- Quest: The Cold Light of Day - Traded Steam Clock
         player:tradeComplete( );
         player:addTitle(CRAB_CRUSHER);
         player:addGil(GIL_RATE*500);
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         else
             player:addFame(BASTOK, 8);
         end
-    elseif (csid == 0x014A) then  -- Quest: Wish Upon a Star
+    elseif (csid == 330) then  -- Quest: Wish Upon a Star
         player:setVar("WishUponAStar_Status", 2);
     end
 end;
