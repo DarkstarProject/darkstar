@@ -23,13 +23,13 @@ function checkStray(mob)
     local numStrays = MEMORY_RECEPTACLES[mobId][2];
     
     if (os.time() > mob:getLocalVar("nextStray")) then
+        mob:setLocalVar("nextStray", os.time() + 30);
         for i = mobId + 1, mobId + numStrays do
             local stray = GetMobByID(i);
             if (not stray:isSpawned()) then
                 mob:AnimationSub(1);
                 stray:setPos(mob:getXPos() + math.random(-1,1), mob:getYPos(), mob:getZPos() + math.random(-1,1));
                 SpawnMob(stray:getID());
-                mob:setLocalVar("nextStray", os.time() + 30);
                 break;
             end
         end
