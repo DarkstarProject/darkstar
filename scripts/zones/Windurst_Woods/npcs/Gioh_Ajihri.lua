@@ -83,11 +83,15 @@ function onEventFinish(player,csid,option)
         player:setVar("GiohAijhriSpokenTo",0);
         
         if (TwinstoneBonding == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,TWINSTONE_BONDING);
-            player:addFame(WINDURST,80);
-            player:addItem(17154);
-            player:messageSpecial(ITEM_OBTAINED,17154);
-            player:addTitle(BOND_FIXER);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17154);
+            else
+                player:completeQuest(WINDURST,TWINSTONE_BONDING);
+                player:addFame(WINDURST,80);
+                player:addItem(17154);
+                player:messageSpecial(ITEM_OBTAINED,17154);
+                player:addTitle(BOND_FIXER);
+            end
         else
             player:addFame(WINDURST,10);
             player:addGil(GIL_RATE*900);

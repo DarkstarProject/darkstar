@@ -100,10 +100,14 @@ function onEventFinish(player,csid,option)
                 dropQty = 1;
             end
 
-            player:addItem(drop, dropQty);
-
-            player:setLocalVar("strAppDrop", 0);
-            player:setLocalVar("strAppDropQty", 0);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,drop);
+            else
+                player:addItem(drop, dropQty);
+                player:messageSpecial(ITEM_OBTAINED,drop);
+                player:setLocalVar("strAppDrop", 0);
+                player:setLocalVar("strAppDropQty", 0);
+            end
         end
     end
 end;

@@ -43,9 +43,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 63) then
-        player:completeQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);
-        player:addItem(751);
-        player:messageSpecial(ITEM_OBTAINED,751); --Platinum Beastcoin
-        player:setVar("KnotQuiteThere",0);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,751);
+        else
+            player:completeQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);
+            player:addItem(751);
+            player:messageSpecial(ITEM_OBTAINED,751); --Platinum Beastcoin
+            player:setVar("KnotQuiteThere",0);
+        end
     end
 end;

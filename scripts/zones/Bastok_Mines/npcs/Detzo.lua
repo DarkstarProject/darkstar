@@ -78,11 +78,15 @@ function onEventFinish(player,csid,option)
     if (csid == 93) then
         player:addQuest(BASTOK,RIVALS);
     elseif (csid == 94) then
-        player:addTitle(CONTEST_RIGGER);        
-        player:addItem(13571);
-        player:messageSpecial(ITEM_OBTAINED,13571);
-        player:addFame(BASTOK,30);
-        player:completeQuest(BASTOK,RIVALS);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13571);
+        else
+            player:addTitle(CONTEST_RIGGER);
+            player:addItem(13571);
+            player:messageSpecial(ITEM_OBTAINED,13571);
+            player:addFame(BASTOK,30);
+            player:completeQuest(BASTOK,RIVALS);
+        end
     end
     
 end;

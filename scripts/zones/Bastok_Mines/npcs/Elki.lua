@@ -66,13 +66,17 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(0x17);
         player:messageSpecial(KEYITEM_OBTAINED,0x17);
     elseif (csid == 42) then
-        player:addTitle(84);
-        player:addItem(12840);
-        player:messageSpecial(ITEM_OBTAINED,12840);
-        player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
-        player:addFame(BASTOK,80);
-        player:setVar("HeartsOfMythril",0);
-        player:needToZone(true);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12840);
+        else
+            player:addTitle(84);
+            player:addItem(12840);
+            player:messageSpecial(ITEM_OBTAINED,12840);
+            player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
+            player:addFame(BASTOK,80);
+            player:setVar("HeartsOfMythril",0);
+            player:needToZone(true);
+        end
     elseif (csid == 43 and option == 1) then
         player:addQuest(BASTOK,THE_ELEVENTH_S_HOUR);
     elseif (csid == 44) then

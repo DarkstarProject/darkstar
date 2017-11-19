@@ -170,12 +170,16 @@ function onEventFinish(player,csid,option)
             player:setPos(-355, -144, 91, 64, 158);
         end
     elseif (csid == 14) then
-        player:addItem(12516);
-        player:messageSpecial(ITEM_OBTAINED,12516); -- Chaos Burgeonet
-        player:addTitle(PARAGON_OF_DARK_KNIGHT_EXCELLENCE);
-        player:setVar("bladeOfEvilCS",0);
-        player:addFame(BASTOK,AF3_FAME);
-        player:completeQuest(BASTOK,BLADE_OF_EVIL);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12516);
+        else
+            player:addItem(12516);
+            player:messageSpecial(ITEM_OBTAINED,12516); -- Chaos Burgeonet
+            player:addTitle(PARAGON_OF_DARK_KNIGHT_EXCELLENCE);
+            player:setVar("bladeOfEvilCS",0);
+            player:addFame(BASTOK,AF3_FAME);
+            player:completeQuest(BASTOK,BLADE_OF_EVIL);
+        end
     end
 
 end;

@@ -74,11 +74,15 @@ function onEventFinish(player,csid,option)
         player:addQuest(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS);
         player:setVar("NavigatingtheUnfriendlySeas",1);
     elseif (csid == 233) then
-        player:addItem(15601) -- Receive item Corsairs culottes
-        player:messageSpecial(ITEM_OBTAINED,15601);
-        player:completeQuest(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS);
-        player:setVar("NavigatingtheUnfriendlySeas",0);
-        player:setVar("HydrogauageTimer",0);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15601);
+        else
+            player:addItem(15601) -- Receive item Corsairs culottes
+            player:messageSpecial(ITEM_OBTAINED,15601);
+            player:completeQuest(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS);
+            player:setVar("NavigatingtheUnfriendlySeas",0);
+            player:setVar("HydrogauageTimer",0);
+        end
     elseif (csid == 214) then
         player:addKeyItem(798);
         player:messageSpecial(KEYITEM_OBTAINED,ANTIQUE_AUTOMATON);

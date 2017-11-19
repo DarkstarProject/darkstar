@@ -56,9 +56,13 @@ function onEventFinish(player,csid,option)
     if (csid == 191) then
         player:addQuest(OUTLANDS, PERSONAL_HYGIENE);
     elseif (csid == 193) then
-        player:completeQuest(OUTLANDS, PERSONAL_HYGIENE);
-        player:addItem(13247)   -- Mithran Stone
-        player:messageSpecial(ITEM_OBTAINED,13247);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13247);
+        else
+            player:completeQuest(OUTLANDS, PERSONAL_HYGIENE);
+            player:addItem(13247); -- Mithran Stone
+            player:messageSpecial(ITEM_OBTAINED,13247);
+        end
     end
 end;
 

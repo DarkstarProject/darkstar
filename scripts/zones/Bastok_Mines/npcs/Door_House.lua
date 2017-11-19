@@ -81,8 +81,12 @@ function onEventFinish(player,csid,option)
         player:setVar("LeleroonsletterBlue", 4);
         player:setVar("corAfSubmitDay", vanaDay());
     elseif (csid == 522) then
-        player:setVar("LeleroonsletterBlue", 5);
-        player:addItem(15685); -- corsair's bottes
-        player:messageSpecial(ITEM_OBTAINED,15685);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15685);
+        else
+            player:setVar("LeleroonsletterBlue", 5);
+            player:addItem(15685); -- corsair's bottes
+            player:messageSpecial(ITEM_OBTAINED,15685);
+        end
     end;
 end;

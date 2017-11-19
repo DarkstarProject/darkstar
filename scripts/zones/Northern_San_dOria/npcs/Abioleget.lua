@@ -66,12 +66,16 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 600) then
-        player:addItem(13465);
-        player:messageSpecial(6567, 13465);
-        player:addFame(SANDORIA,30);
-        player:addTitle(THE_BENEVOLENT_ONE);
-        player:setVar("sermonQuestVar",0);
-        player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13465);
+        else
+            player:addItem(13465);
+            player:messageSpecial(ITEM_OBTAINED, 13465);
+            player:addFame(SANDORIA,30);
+            player:addTitle(THE_BENEVOLENT_ONE);
+            player:setVar("sermonQuestVar",0);
+            player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
+        end
     elseif (csid == 589) then
         player:addQuest(SANDORIA,THE_VICASQUE_S_SERMON );
     elseif (csid == 591) then

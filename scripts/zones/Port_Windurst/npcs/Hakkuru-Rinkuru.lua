@@ -143,16 +143,45 @@ function onEventFinish(player,csid,option)
     elseif (csid == 267) then
         rand = math.random(3); --Setup random variable to determine which 2 items are returned upon quest completion
         if (rand == 1) then
-            player:addItem(17091,1);
-            player:addItem(17061,1); --Returns the Oak Staff and the Mythril Rod
+            if (player:getFreeSlotsCount() == 1) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17061);
+            elseif (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17091);
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17061);
+            else
+                player:addItem(17091,1);
+                player:addItem(17061,1); --Returns the Oak Staff and the Mythril Rod
+                player:messageSpecial(ITEM_OBTAINED,17091);
+                player:messageSpecial(ITEM_OBTAINED,17061);
+                player:setVar("SecondRewardVar",0);
+            end
         elseif (rand == 2) then
-            player:addItem(17091,1);
-            player:addItem(17053,1); --Returns the Oak Staff and the Rose Wand
+            if (player:getFreeSlotsCount() == 1) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+            elseif (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17091);
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+            else
+                player:addItem(17091,1);
+                player:addItem(17053,1); --Returns the Oak Staff and the Rose Wand
+                player:messageSpecial(ITEM_OBTAINED,17091);
+                player:messageSpecial(ITEM_OBTAINED,17053);
+                player:setVar("SecondRewardVar",0);
+            end
         elseif (rand == 3) then
-            player:addItem(17061,1);
-            player:addItem(17053,1); --Returns the Rose Wand and the Mythril Rod
+            if (player:getFreeSlotsCount() == 1) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+            elseif (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17061);
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+            else
+                player:addItem(17061,1);
+                player:addItem(17053,1); --Returns the Rose Wand and the Mythril Rod
+                player:messageSpecial(ITEM_OBTAINED,17061);
+                player:messageSpecial(ITEM_OBTAINED,17053);
+                player:setVar("SecondRewardVar",0);
+            end
         end
-        player:setVar("SecondRewardVar",0);
     elseif (csid == 265) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12750); -- New Moon Armlets
