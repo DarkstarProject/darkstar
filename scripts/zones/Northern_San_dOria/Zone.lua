@@ -134,12 +134,16 @@ function onEventFinish(player,csid,option)
     elseif (csid == 569) then
         player:setPos(0,0,-13,192,0xe9);
     elseif (csid == 49) then
-        player:addTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
-        player:addItem(12513);
-        player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
-        player:setVar("peaceForTheSpiritCS",0);
-        player:addFame(SANDORIA,AF3_FAME);
-        player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12513);
+        else
+            player:addTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
+            player:addItem(12513);
+            player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
+            player:setVar("peaceForTheSpiritCS",0);
+            player:addFame(SANDORIA,AF3_FAME);
+            player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
+        end
     elseif (csid == 16) then
         player:setVar("Wait1DayM8-1_date",0);
         player:setVar("Mission8-1Completed",1);

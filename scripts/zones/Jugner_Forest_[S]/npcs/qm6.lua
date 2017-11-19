@@ -60,10 +60,14 @@ function onEventFinish(player,csid,option)
     elseif (csid == 202) then
         SpawnMob(17113462):updateClaim(player);
     elseif (csid == 203) then
-        player:addItem(8131,1)
-        player:messageSpecial(ITEM_OBTAINED,813)
-        player:completeQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
-        player:setVar("ClawsOfGriffonProg",0);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,8131);
+        else
+            player:addItem(8131,1)
+            player:messageSpecial(ITEM_OBTAINED,813)
+            player:completeQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
+            player:setVar("ClawsOfGriffonProg",0);
+        end
     end
 
 end;

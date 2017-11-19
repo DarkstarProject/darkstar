@@ -100,8 +100,13 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(MYSTERIOUS_AMULET);
         player:setVar("PromathiaStatus",1);
     elseif (csid == 111) then
-        player:addItem(14657);
-        player:setVar("PromathiaStatus",1);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14657);
+        else
+            player:addItem(14657);
+            player:messageSpecial(ITEM_OBTAINED,14657);
+            player:setVar("PromathiaStatus",1);
+        end
      elseif (csid == 116) then
      player:setVar("PromathiaStatus",7);
      player:addTitle(BANISHER_OF_EMPTINESS);

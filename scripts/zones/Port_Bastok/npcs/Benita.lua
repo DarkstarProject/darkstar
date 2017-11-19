@@ -72,10 +72,14 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,THE_WISDOM_OF_ELDERS);
         player:setVar("TheWisdomVar",1);
     elseif (csid == 176) then
-        player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
-        player:addFame(BASTOK,120);
-        player:addItem(12500);
-        player:messageSpecial(ITEM_OBTAINED,12500);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12500);
+        else
+            player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
+            player:addFame(BASTOK,120);
+            player:addItem(12500);
+            player:messageSpecial(ITEM_OBTAINED,12500);
+        end
     end
     
 end;

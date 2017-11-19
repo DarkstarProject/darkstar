@@ -126,10 +126,14 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestStatus_DNC_AF1", 1);
 
     elseif (csid== 10133) then
-        player:setVar("QuestStatus_DNC_AF1", 0);
-        player:addItem(19203); -- war hoop
-        player:messageSpecial(ITEM_OBTAINED,19203);
-        player:completeQuest(JEUNO,THE_UNFINISHED_WALTZ);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,19203);
+        else
+            player:setVar("QuestStatus_DNC_AF1", 0);
+            player:addItem(19203); -- war hoop
+            player:messageSpecial(ITEM_OBTAINED,19203);
+            player:completeQuest(JEUNO,THE_UNFINISHED_WALTZ);
+        end
 
     -- Dancer AF: The Road to Divadom
     elseif (csid == 10136) then -- Road To Divadom pt 1

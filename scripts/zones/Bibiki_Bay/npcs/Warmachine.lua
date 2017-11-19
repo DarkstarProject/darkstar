@@ -64,10 +64,14 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Louverance_s_Path",3);
     elseif (csid == 43) then
         local ColoredDropID=player:getVar("ColoredDrop");
-        player:addItem(ColoredDropID);
-        player:messageSpecial(ITEM_OBTAINED,ColoredDropID);
-        player:setVar("COP_3-taru_story",2);
-        player:setVar("ColoredDrop",0);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ColoredDropID);
+        else
+            player:addItem(ColoredDropID);
+            player:messageSpecial(ITEM_OBTAINED,ColoredDropID);
+            player:setVar("COP_3-taru_story",2);
+            player:setVar("ColoredDrop",0);
+        end
     end
 
 end;

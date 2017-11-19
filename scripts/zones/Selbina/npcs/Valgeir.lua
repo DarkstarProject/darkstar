@@ -97,7 +97,7 @@ elseif (csid==103) then  -- Found the ingredients
     player:tradeComplete();
     player:setVar("QUEST_EXPERTISE_STATE_var",2); -- Already asked
     player:setVar("QuestExpertiseHourStarted_var",VanadielHour());
-    player:setVar("QuestExpertiseDayStarted_var",VanadielDayOfTheYear());    
+    player:setVar("QuestExpertiseDayStarted_var",VanadielDayOfTheYear());
 elseif (csid==105) then  -- Done the cooking
     player:addKeyItem(LAND_CRAB_BISQUE); -- give LAND_CRAB_BISQUE
     player:messageSpecial(KEYITEM_OBTAINED,LAND_CRAB_BISQUE);
@@ -105,12 +105,15 @@ elseif (csid==105) then  -- Done the cooking
     player:setVar("QuestExpertiseHourStarted_var",0);
     player:setVar("QuestExpertiseDayStarted_var",0);
 elseif (csid==106) then
-    player:setVar("QuestTheBacisCommentary_var",1);
-    player:delKeyItem(MHAURAN_COUSCOUS); -- Give MHAURAN_COUSCOUS  to Valgeir    
-    player:addItem(4436,1); --4436 - baked_popoto
-    player:messageSpecial(ITEM_OBTAINED,4436); --  baked_popoto
+    if (player:getFreeSlotsCount() == 0) then
+        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4436);
+    else
+        player:setVar("QuestTheBacisCommentary_var",1);
+        player:delKeyItem(MHAURAN_COUSCOUS); -- Give MHAURAN_COUSCOUS to Valgeir
+        player:addItem(4436,1); -- baked popoto
+        player:messageSpecial(ITEM_OBTAINED,4436); -- baked popoto
+    end
 elseif (csid==107) then
-    player:setVar("QuestTheBacisCommentary_var",0);    
+    player:setVar("QuestTheBacisCommentary_var",0);
 end;
 end;
-
