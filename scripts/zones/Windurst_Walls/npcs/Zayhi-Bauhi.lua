@@ -20,15 +20,15 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(4370,1) and trade:getItemCount() == 1) then
             local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
             if (ToBeeOrNotStatus == 10) then 
-                player:startEvent(0x0045); -- After Honey#1: Clearing throat
+                player:startEvent(69); -- After Honey#1: Clearing throat
             elseif (ToBeeOrNotStatus == 1) then
-                player:startEvent(0x0046); -- After Honey#2: Tries to speak again... coughs
+                player:startEvent(70); -- After Honey#2: Tries to speak again... coughs
             elseif (ToBeeOrNotStatus == 2) then
-                player:startEvent(0x0049); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
+                player:startEvent(73); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
             elseif (ToBeeOrNotStatus == 3) then
-                player:startEvent(0x004A); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
+                player:startEvent(74); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
             elseif (ToBeeOrNotStatus == 4) then
-                player:startEvent(0x004B); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey
+                player:startEvent(75); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey
             end
         end
     end
@@ -44,34 +44,34 @@ function onTrigger(player,npc)
     local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
     
     if ((player:getFameLevel(WINDURST) >= 2 and PostmanKOsTwice == QUEST_COMPLETED and ToBee == QUEST_AVAILABLE) or (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus == 10)) then 
-        player:startEvent(0x0040);   -- Just Before Quest Start "Too Bee or Not Too Be" (Speech given with lots of coughing)
+        player:startEvent(64);   -- Just Before Quest Start "Too Bee or Not Too Be" (Speech given with lots of coughing)
     elseif (ToBee == QUEST_ACCEPTED) then 
         if (ToBeeOrNotStatus == 1) then
-            player:startEvent(0x0045); -- After Honey#1: Clearing throat
+            player:startEvent(69); -- After Honey#1: Clearing throat
         elseif (ToBeeOrNotStatus == 2) then
-            player:startEvent(0x0046); -- After Honey#2: Tries to speak again... coughs
+            player:startEvent(70); -- After Honey#2: Tries to speak again... coughs
         elseif (ToBeeOrNotStatus == 3) then
-            player:startEvent(0x0049); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
+            player:startEvent(73); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
         elseif (ToBeeOrNotStatus == 4) then
-            player:startEvent(0x004A); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
+            player:startEvent(74); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
         end
     elseif (ToBee == QUEST_COMPLETED and player:needToZone()) then    
-        player:startEvent(0x004E); -- ToBee After Quest Finish but before zone (tooth still hurts)        
+        player:startEvent(78); -- ToBee After Quest Finish but before zone (tooth still hurts)        
     else
-        player:startEvent(0x012B); -- Normal speech
+        player:startEvent(299); -- Normal speech
     end
 end;
 
 --        Event ID List for NPC
---      player:startEvent(0x012B); -- Normal speach
---      player:startEvent(0x003D); -- Normal speach
---      player:startEvent(0x0040); -- Start quest "Too Bee or Not Too Be" (Speech given with lots of coughing)
---      player:startEvent(0x0045); -- After Honey#1: Clearing throat
---      player:startEvent(0x0046); -- After Honey#2: Tries to speak again... coughs
---      player:startEvent(0x0049); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
---      player:startEvent(0x004A); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
---      player:startEvent(0x004B); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
---      player:startEvent(0x004E); -- ToBee After Quest Finish but before zone (tooth still hurts)
+--      player:startEvent(299); -- Normal speach
+--      player:startEvent(61); -- Normal speach
+--      player:startEvent(64); -- Start quest "Too Bee or Not Too Be" (Speech given with lots of coughing)
+--      player:startEvent(69); -- After Honey#1: Clearing throat
+--      player:startEvent(70); -- After Honey#2: Tries to speak again... coughs
+--      player:startEvent(73); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
+--      player:startEvent(74); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
+--      player:startEvent(75); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
+--      player:startEvent(78); -- ToBee After Quest Finish but before zone (tooth still hurts)
 
 -----------------------------------
 -- onEventUpdate
@@ -90,21 +90,21 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0040) then
+    if (csid == 64) then
         player:setVar("ToBeeOrNot_var",10);
-    elseif (csid == 0x0045) then -- After Honey#1: Clearing throat
+    elseif (csid == 69) then -- After Honey#1: Clearing throat
         player:tradeComplete();
         player:setVar("ToBeeOrNot_var",1);
-    elseif (csid == 0x0046) then -- After Honey#2: Tries to speak again... coughs
+    elseif (csid == 70) then -- After Honey#2: Tries to speak again... coughs
         player:tradeComplete();
         player:setVar("ToBeeOrNot_var",2);
-    elseif (csid == 0x0049) then -- After Honey#3: Tries to speak again... coughs..asked for more Honey
+    elseif (csid == 73) then -- After Honey#3: Tries to speak again... coughs..asked for more Honey
         player:tradeComplete();
         player:setVar("ToBeeOrNot_var",3);
-    elseif (csid == 0x004A) then -- After Honey#4: Feels like its getting a lot better but there is still iritaion
+    elseif (csid == 74) then -- After Honey#4: Feels like its getting a lot better but there is still iritaion
         player:tradeComplete();
         player:setVar("ToBeeOrNot_var",4);
-    elseif (csid == 0x004B) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
+    elseif (csid == 75) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
         player:tradeComplete();
         player:setVar("ToBeeOrNot_var",5);
         player:addFame(WINDURST,30);

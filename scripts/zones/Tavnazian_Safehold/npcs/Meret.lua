@@ -99,7 +99,7 @@ function onTrade(player,npc,trade)
         end
     
         if (reward > 0) then
-            player:startEvent(0x024A,item,reward);
+            player:startEvent(586,item,reward);
         end
     end
 end; 
@@ -114,15 +114,15 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
         if (NameOfScience == QUEST_COMPLETED) then
             if (rnd < 0.5) then
-                player:startEvent(0x0246);
+                player:startEvent(582);
             else
-                player:startEvent(0x0247);
+                player:startEvent(583);
             end
         else
-            player:startEvent(0x0249);
+            player:startEvent(585);
         end       
     else
-        player:startEvent(0x0248);
+        player:startEvent(584);
     end
 end; 
 
@@ -142,7 +142,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x024A) then
+    if (csid == 586) then
         if (player:getFreeSlotsCount()==0 or (option ~= VIRTUE_STONE_POUCH and player:hasItem(option)==true)) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,option); 
         else

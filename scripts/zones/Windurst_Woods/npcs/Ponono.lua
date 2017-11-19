@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
     if (newRank ~= 0) then
         player:setSkillRank(SKILL_CLOTHCRAFT,newRank);
-        player:startEvent(0x271c,0,0,0,0,newRank);
+        player:startEvent(10012,0,0,0,0,newRank);
     end
 end;
 
@@ -35,10 +35,10 @@ function onTrigger(player,npc)
     if (guildMember == 1) then guildMember = 10000; end
     if (canGetNewRank(player,craftSkill,SKILL_CLOTHCRAFT) == 1) then getNewRank = 100; end
 
-    player:startEvent(0x271b,testItem,getNewRank,30,guildMember,44,0,0,0);
+    player:startEvent(10011,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 0x271b  0x271c  0x02bc  0x02bd  0x02be  0x02bf  0x02c0  0x02c1  0x0340  0x02fd
+-- 10011  10012  0x02bc  0x02bd  0x02be  0x02bf  0x02c0  0x02c1  0x0340  0x02fd
 
 -----------------------------------
 -- onEventUpdate
@@ -56,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x271b and option == 1) then
+    if (csid == 10011 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4099);
         else

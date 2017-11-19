@@ -31,10 +31,10 @@ function onTrigger(player,npc)
             player:messageSpecial(YOU_PLACE_THE,LIGHT_FRAGMENT);
 
             if (ZilartStatus == 255) then
-                player:startEvent(0x0001);
+                player:startEvent(1);
             end
         elseif (ZilartStatus == 255) then -- Execute cutscene if the player is interrupted.
-            player:startEvent(0x0001);
+            player:startEvent(1);
         else
             player:messageSpecial(IS_SET_IN_THE_PEDESTAL,LIGHT_FRAGMENT);
         end
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
     -- printf("onFinish RESULT: %u",option);
 
-    if (csid == 0x0001) then
+    if (csid == 1) then
         player:addTitle(LIGHTWEAVER);
         player:setVar("ZilartStatus",0);
         player:addKeyItem(PRISMATIC_FRAGMENT);

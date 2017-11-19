@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0007 and option == 0) then
+    if (csid == 7 and option == 0) then
         player:addKeyItem(BLUE_RECOMMENDATION_LETTER);
         player:messageSpecial(KEYITEM_OBTAINED,BLUE_RECOMMENDATION_LETTER);
     end

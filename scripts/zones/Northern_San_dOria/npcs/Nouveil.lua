@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
         if (trade:getGil() >= 10) then
-            player:startEvent(0x023b);
+            player:startEvent(571);
         end;
     end;
 
@@ -39,14 +39,14 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
         if (player:hasItem(603) == true) then
-            player:startEvent(0x023d);
+            player:startEvent(573);
         elseif (player:hasItem(602) == true) then
-            player:startEvent(0x023c);
+            player:startEvent(572);
         else
-            player:startEvent(0x023f);
+            player:startEvent(575);
         end;
     else
-        player:startEvent(0x023e);
+        player:startEvent(574);
     end;
 
 end;
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- Waters of the Cheval, recieve blessed waterskin
-    if (csid == 0x023b) then
+    if (csid == 571) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 602);
         else

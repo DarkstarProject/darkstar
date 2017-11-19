@@ -43,34 +43,34 @@ function onTrigger(player,npc)
     Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);
     WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
     if (WonderWands == QUEST_ACCEPTED) then
-        player:startEvent(0x0102,0,17053);
+        player:startEvent(258,0,17053);
     elseif (Catch == 0) then
         prog = player:getVar("QuestCatchItIfYouCan_var");
         if (prog == 0) then
-            player:startEvent(0x00e6); -- CATCH IT IF YOU CAN: Before Quest 1
+            player:startEvent(230); -- CATCH IT IF YOU CAN: Before Quest 1
             player:setVar("QuestCatchItIfYouCan_var",1);
         elseif (prog == 1) then
-            player:startEvent(0x00fd); -- CATCH IT IF YOU CAN: Before Start
+            player:startEvent(253); -- CATCH IT IF YOU CAN: Before Start
             player:setVar("QuestCatchItIfYouCan_var",2);
         elseif (prog == 2) then
-            player:startEvent(0x00e7); -- CATCH IT IF YOU CAN: Before Quest 2
+            player:startEvent(231); -- CATCH IT IF YOU CAN: Before Quest 2
         end
 
     elseif (Catch >= 1 and (player:hasStatusEffect(EFFECT_MUTE) == true or player:hasStatusEffect(EFFECT_BANE) == true or player:hasStatusEffect(EFFECT_PLAGUE) == true)) then
-        player:startEvent(0x00f6); -- CATCH IT IF YOU CAN: Quest Turn In 1
+        player:startEvent(246); -- CATCH IT IF YOU CAN: Quest Turn In 1
     elseif (Catch >= 1 and player:needToZone()) then
-        player:startEvent(0x00ff); -- CATCH IT IF YOU CAN: After Quest
+        player:startEvent(255); -- CATCH IT IF YOU CAN: After Quest
     elseif (Catch == 1 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
         rand = math.random(1,2);
         if (rand == 1) then
-            player:startEvent(0x00f8); -- CATCH IT IF YOU CAN: During Quest 1
+            player:startEvent(248); -- CATCH IT IF YOU CAN: During Quest 1
         else
-            player:startEvent(0x00fb); -- CATCH IT IF YOU CAN: During Quest 2
+            player:startEvent(251); -- CATCH IT IF YOU CAN: During Quest 2
         end
     elseif (WonderWands == QUEST_COMPLETED) then
-        player:startEvent(0x0109);
+        player:startEvent(265);
     else
-        player:startEvent(0x00e6); -- STANDARD CONVERSATION
+        player:startEvent(230); -- STANDARD CONVERSATION
     end
 end;
 
@@ -90,9 +90,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00e7) then
+    if (csid == 231) then
         player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
-    elseif (csid == 0x00f6 and option == 0) then
+    elseif (csid == 246 and option == 0) then
         player:needToZone(true);
         if (player:hasStatusEffect(EFFECT_MUTE) == true) then
             player:delStatusEffect(EFFECT_MUTE);

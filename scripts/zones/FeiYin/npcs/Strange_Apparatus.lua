@@ -14,7 +14,7 @@ require("scripts/globals/strangeapparatus");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    player:startEvent(0x001B, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(27, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0019, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(25, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------

@@ -29,21 +29,21 @@ BeautyAndTheGalkaDenied = player:getVar("BeautyAndTheGalkaDenied");
 PalboroughMinesLogs     = player:hasKeyItem(2);
 
     if (PalboroughMinesLogs == true) then
-        player:startEvent(0x000a);
+        player:startEvent(10);
     elseif (BeautyAndTheGalka == QUEST_ACCEPTED) then
         Message = math.random(0,1);
         
         if (Message == 1) then
-            player:startEvent(0x0008);
+            player:startEvent(8);
         else
-            player:startEvent(0x0009);
+            player:startEvent(9);
         end 
     elseif (BeautyAndTheGalkaDenied == 1) then
-        player:startEvent(0x0007);
+        player:startEvent(7);
     elseif (BeautyAndTheGalka == QUEST_COMPLETED) then
-        player:startEvent(0x000c);
+        player:startEvent(12);
     else
-        player:startEvent(0x000b);
+        player:startEvent(11);
     end
 
 end;
@@ -65,9 +65,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0007 and option == 0) then
+    if (csid == 7 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
-    elseif (csid == 0x000a) then
+    elseif (csid == 10) then
         FreeSlots = player:getFreeSlotsCount();
         
         if (FreeSlots >= 1) then

@@ -42,9 +42,9 @@ function onTrigger(player,npc)
 
   if (player:hasKeyItem(ORCISH_HUT_KEY)) then
         if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
-            player:startEvent(0x0003);
+            player:startEvent(3);
         else
-            player:startEvent(0x0037);
+            player:startEvent(55);
         end
   else
          if (EventTriggerBCNM(player,npc)) then
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
     -- printf("onFinish RESULT: %u",option);
 
-   if (csid == 0x0003 or csid == 0x0037) then
+   if (csid == 3 or csid == 55) then
       player:delKeyItem(ORCISH_HUT_KEY);
       player:setVar("MissionStatus",4);
    else

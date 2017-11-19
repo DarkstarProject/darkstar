@@ -30,13 +30,13 @@ function onTrigger(player,npc)
     NeutralizerKI = player:hasKeyItem(NEUTRALIZER);
 
     if (troubleAtTheSluice == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
-        player:startEvent(0x0039);
+        player:startEvent(57);
     elseif (troubleAtTheSluice == QUEST_ACCEPTED and NeutralizerKI == false) then
-        player:startEvent(0x0037);
+        player:startEvent(55);
     elseif (NeutralizerKI) then
-        player:startEvent(0x0038);
+        player:startEvent(56);
     else
-        player:startEvent(0x0249);
+        player:startEvent(585);
     end
 
 end;
@@ -58,10 +58,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0039 and option == 0) then
+    if (csid == 57 and option == 0) then
         player:addQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
         player:setVar("troubleAtTheSluiceVar",1);
-    elseif (csid == 0x0038) then
+    elseif (csid == 56) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
         else

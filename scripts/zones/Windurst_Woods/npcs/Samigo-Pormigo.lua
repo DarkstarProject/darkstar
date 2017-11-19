@@ -81,7 +81,7 @@ local items = {
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x2727, 6);
+    unionRepresentativeTrade(player, npc, trade, 10023, 6);
 end;
 
 -----------------------------------
@@ -89,7 +89,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    unionRepresentativeTrigger(player, 6, 0x2726, "guild_bonecraft", keyitems);
+    unionRepresentativeTrigger(player, 6, 10022, "guild_bonecraft", keyitems);
 end;
 
 -----------------------------------
@@ -99,7 +99,7 @@ end;
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x2726) then
+    if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     end
 end;
@@ -112,9 +112,9 @@ function onEventFinish(player,csid,option,target)
      -- printf("CSID: %u",csid);
      -- printf("RESULT: %u",option);
 
-    if (csid == 0x2726) then
+    if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
-    elseif (csid == 0x2727) then
+    elseif (csid == 10023) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

@@ -17,7 +17,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade) 
     if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
-        player:startEvent(0x0264);
+        player:startEvent(612);
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
     end
@@ -38,7 +38,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-    player:startEvent(0x023d);
+    player:startEvent(573);
 end; 
 
 -----------------------------------
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0264) then
+    if (csid == 612) then
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
     end
 end;

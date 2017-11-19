@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
-        player:startEvent(0x027a);
+        player:startEvent(634);
     else
         player:showText(npc, 7817)-- nothing to report
     end
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x027a) then
+    if (csid == 634) then
         player:addKeyItem(BOOK_OF_THE_WEST);
         player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_WEST);
     end

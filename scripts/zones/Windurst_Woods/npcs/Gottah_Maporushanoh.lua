@@ -22,11 +22,11 @@ function onTrigger(player,npc)
 AmazinScorpio = player:getQuestStatus(WINDURST,THE_AMAZIN_SCORPIO);
 
     if (AmazinScorpio == QUEST_COMPLETED) then
-        player:startEvent(0x01e6);
+        player:startEvent(486);
     elseif (AmazinScorpio == QUEST_ACCEPTED) then
-        player:startEvent(0x01e3);
+        player:startEvent(483);
     else
-        player:startEvent(0x1a4);
+        player:startEvent(420);
     end
     
 end;

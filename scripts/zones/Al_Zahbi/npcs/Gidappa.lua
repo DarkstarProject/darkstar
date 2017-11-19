@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
             if (player:hasStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY) == false) then
                 player:tradeComplete();
-                player:startEvent(0x00E5,8,0,0,0,188,0,4,0);
+                player:startEvent(229,8,0,0,0,188,0,4,0);
             else
                 npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
             end
@@ -41,12 +41,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY) == false) then
-            player:startEvent(0x00E4,8,SkillLevel,0,511,188,0,4,2184);
+            player:startEvent(228,8,SkillLevel,0,511,188,0,4,2184);
         else
-            player:startEvent(0x00E4,8,SkillLevel,0,511,188,7127,4,2184);
+            player:startEvent(228,8,SkillLevel,0,511,188,7127,4,2184);
         end
     else
-        player:startEvent(0x00E4,0,0,0,0,0,0,4,0); -- Standard Dialogue
+        player:startEvent(228,0,0,0,0,0,0,4,0); -- Standard Dialogue
     end
 end;
 
@@ -67,10 +67,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00E4 and option == 1) then
+    if (csid == 228 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,4,1);
         player:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,1,0,120);
-    elseif (csid == 0x00E5) then
+    elseif (csid == 229) then
         player:messageSpecial(IMAGE_SUPPORT,0,4,0);
         player:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,3,0,480);
     end

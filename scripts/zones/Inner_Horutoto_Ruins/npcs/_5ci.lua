@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(WINDURST) == WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 1) then
-        player:startEvent(0x0029,0,CHARM_OF_LIGHT);
+        player:startEvent(41,0,CHARM_OF_LIGHT);
     else
         player:messageSpecial(DOOR_FIRMLY_CLOSED);
     end
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0029) then
+    if (csid == 41) then
         player:setVar("MissionStatus",2);
         player:delKeyItem(CHARM_OF_LIGHT);
     end

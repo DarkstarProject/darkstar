@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (newRank ~= 0) then
         player:setSkillRank(SKILL_WOODWORKING,newRank);
-        player:startEvent(0x026e,0,0,0,0,newRank);
+        player:startEvent(622,0,0,0,0,newRank);
     end
 end;
 
@@ -36,10 +36,10 @@ function onTrigger(player,npc)
     if (guildMember == 1) then guildMember = 150995375; end
     if (canGetNewRank(player,craftSkill,SKILL_WOODWORKING) == 1) then getNewRank = 100; end
 
-    player:startEvent(0x026d,testItem,getNewRank,30,guildMember,44,0,0,0);
+    player:startEvent(621,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 0x026d  0x026e  0x02f7  0x0010  0x0000
+-- 621  622  0x02f7  0x0010  0x0000
 
 -----------------------------------
 -- onEventUpdate
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x026d and option == 1) then
+    if (csid == 621 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4098);
         else

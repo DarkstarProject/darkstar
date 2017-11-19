@@ -143,11 +143,11 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x007b;
+        cs = 123;
     elseif ( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
-        cs = 0x007a;
+        cs = 122;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x007d;
+        cs = 125;
     end
 
     return cs;
@@ -179,9 +179,9 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007b) then
+    if (csid == 123) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x007d) then
+    elseif (csid == 125) then
         player:updateEvent(0,0,0,0,0,2);
     end
 end;
@@ -193,9 +193,9 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007b) then
+    if (csid == 123) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x007a) then
+    elseif (csid == 122) then
         player:addItem( 14096);
         player:messageSpecial( ITEM_OBTAINED, 14096); -- Chaos Sollerets
         player:setVar( "darkPuppetCS", 0);

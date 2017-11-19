@@ -25,10 +25,10 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED and player:getVar("BoyAndTheBeast") == 0) then
         if (player:getCurrentMission(WOTG) == CAIT_SITH or player:hasCompletedMission(WOTG, CAIT_SITH)) then
-            player:startEvent(0x0037);
+            player:startEvent(55);
         end
     else
-        player:startEvent(0x0025E);
+        player:startEvent(606);
     end
 end;
 
@@ -48,7 +48,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0037) then
+    if (csid == 55) then
         player:setVar("BoyAndTheBeast",1);
     end
 end;

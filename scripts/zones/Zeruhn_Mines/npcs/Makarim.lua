@@ -29,10 +29,10 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ZERUHN_REPORT)) then
             player:messageSpecial(MAKARIM_DIALOG_I);
         else
-            player:startEvent(0x0079);
+            player:startEvent(121);
         end
     else
-        player:startEvent(0x0068);
+        player:startEvent(104);
     end
 
 end;
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0079) then
+    if (csid == 121) then
         player:addKeyItem(ZERUHN_REPORT);
         player:messageSpecial(KEYITEM_OBTAINED,ZERUHN_REPORT);
     end

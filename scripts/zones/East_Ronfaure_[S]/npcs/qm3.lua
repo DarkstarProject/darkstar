@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(CHARRED_PROPELLER)) then
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         else
-            player:startEvent(0x0001);
+            player:startEvent(1);
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
-    if (csid == 0x0001) then
+    if (csid == 1) then
         player:addKeyItem(CHARRED_PROPELLER);
         player:messageSpecial(KEYITEM_OBTAINED,CHARRED_PROPELLER);
     end

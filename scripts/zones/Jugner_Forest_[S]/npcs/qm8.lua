@@ -25,12 +25,12 @@ end;
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
         if (player:getVar("WrathOfTheGriffon") == 0) then
-            player:startEvent(0x00CC);
+            player:startEvent(204);
         elseif (player:getVar("WrathOfTheGriffon") == 1) then
             if (player:needToZone() and player:getVar("CobraClawKilled") == 1) then
-                player:startEvent(0x00CE);
+                player:startEvent(206);
             else
-                player:startEvent(0x00CD);
+                player:startEvent(205);
             end
         end
     else
@@ -55,11 +55,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00CC) then
+    if (csid == 204) then
         player:setVar("WrathOfTheGriffon",1);
-    elseif (csid == 0x00CD) then
+    elseif (csid == 205) then
         SpawnMob(17113464):updateClaim(player);
-    elseif (csid ==0x00CE) then
+    elseif (csid ==206) then
         player:setVar("WrathOfTheGriffon",2);
     end
 

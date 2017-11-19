@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
     
     if (player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:hasKeyItem(OLD_TOOLBOX) == false) then
-        player:startEvent(0x0017);
+        player:startEvent(23);
     else
-        player:startEvent(0x0016);
+        player:startEvent(22);
     end
 
 end;
@@ -40,7 +40,7 @@ function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
-    if (csid == 0x0017 and option == 0) then
+    if (csid == 23 and option == 0) then
         player:addKeyItem(OLD_TOOLBOX);
     end
 

@@ -110,7 +110,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x6C) then
+    if (csid == 108) then
         player:setPos(0,0,0,0,66);
     end
 end;

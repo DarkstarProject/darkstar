@@ -31,24 +31,24 @@ function onTrigger(player,npc)
         wtbStatus = player:getVar("WelcometoBastok_Event");
 
         if (WelcometoBastok == QUEST_AVAILABLE) then
-            player:startEvent(0x32);
+            player:startEvent(50);
         else
             if (wtbStatus == 0) then
-                player:startEvent(0x33);
+                player:startEvent(51);
             elseif (wtbStatus == 1) then
-                player:startEvent(0x35);
+                player:startEvent(53);
             end
         end
     elseif (GuestofHauteur ~= QUEST_COMPLETED and WelcometoBastok == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 3 and player:getMainLvl() >= 31) then
          gohStatus = player:getVar("GuestofHauteur_Event");
 
         if (GuestofHauteur == QUEST_AVAILABLE) then
-            player:startEvent(0x37);
+            player:startEvent(55);
         else
             if (gohStatus == 0) then
-                player:startEvent(0x38);
+                player:startEvent(56);
             elseif (gohStatus == 1) then
-                player:startEvent(0x3a);
+                player:startEvent(58);
             end
         end
     else
@@ -74,9 +74,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x32 and option == 0) then
+    if (csid == 50 and option == 0) then
         player:addQuest(BASTOK,WELCOME_TO_BASTOK);
-    elseif (csid == 0x35) then
+    elseif (csid == 53) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16565);
         else
@@ -87,9 +87,9 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,80);
             player:completeQuest(BASTOK,WELCOME_TO_BASTOK);
         end
-    elseif (csid == 0x37 and option == 0) then
+    elseif (csid == 55 and option == 0) then
         player:addQuest(BASTOK,GUEST_OF_HAUTEUR);
-    elseif (csid == 0x3a) then
+    elseif (csid == 58) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12300);
         else

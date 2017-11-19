@@ -25,11 +25,11 @@ function onTrigger(player,npc)
         exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
         if (player:hasKeyItem(MAP_OF_KING_RANPERRES_TOMB)) then
-           player:startEvent(0x0202);
+           player:startEvent(514);
         elseif (exitTheGambler == QUEST_COMPLETED) then
-           player:startEvent(0x0204);
+           player:startEvent(516);
         else
-           player:startEvent(0x0209);
+           player:startEvent(521);
         end
 end;
 

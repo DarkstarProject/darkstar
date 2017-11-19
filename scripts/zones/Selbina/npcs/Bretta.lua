@@ -20,9 +20,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getZPos() > -28.750) then
-        player:startEvent(0x046d, 1152 - ((os.time() - 1009810584)%1152));
+        player:startEvent(1133, 1152 - ((os.time() - 1009810584)%1152));
     else
-        player:startEvent(0x00de);
+        player:startEvent(222);
     end
 end;
 

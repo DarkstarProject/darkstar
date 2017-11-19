@@ -35,29 +35,29 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
         if (player:getVar("AyameAndKaede_Event") == 3) then
-            player:startEvent(0x005f); -- During Quest "Ayame and Kaede"
+            player:startEvent(95); -- During Quest "Ayame and Kaede"
         else
-            player:startEvent(0x005e);
+            player:startEvent(94);
         end
     elseif (twentyInPirateYears == QUEST_AVAILABLE and mJob == 13 and mLvl >= 40) then
-        player:startEvent(0x0085); -- Start Quest "20 in Pirate Years"
+        player:startEvent(133); -- Start Quest "20 in Pirate Years"
     elseif (twentyInPirateYears == QUEST_ACCEPTED and player:hasKeyItem(TRICK_BOX)) then
-        player:startEvent(0x0086); -- Finish Quest "20 in Pirate Years"
+        player:startEvent(134); -- Finish Quest "20 in Pirate Years"
     elseif (twentyInPirateYears == QUEST_COMPLETED and illTakeTheBigBox == QUEST_AVAILABLE and mJob == 13 and mLvl >= 50 and player:needToZone() == false) then
-        player:startEvent(0x0087); -- Start Quest "I'll Take the Big Box"
+        player:startEvent(135); -- Start Quest "I'll Take the Big Box"
     elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE and mJob == 13) then
-        player:startEvent(0x0088); -- Start Quest "True Will"
+        player:startEvent(136); -- Start Quest "True Will"
     elseif (player:hasKeyItem(OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
-        player:startEvent(0x0089);
+        player:startEvent(137);
     elseif (player:getVar("trueWillCS") == 1) then
-        player:startEvent(0x008a);
+        player:startEvent(138);
     else
-        player:startEvent(0x005e);
+        player:startEvent(94);
     end
 
 end;
 
---0x00af  0x005e  0x005f  0x0085  0x0086  0x0087  0x0088  0x0089  0x008a  0x00b8  0x00b9  0x00ba  0x00bb  0x00bc  0x00bd
+--0x00af  94  95  133  134  135  136  137  138  0x00b8  0x00b9  0x00ba  0x00bb  0x00bc  0x00bd
 
 -----------------------------------
 -- onEventUpdate
@@ -76,15 +76,15 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x005f) then
+    if (csid == 95) then
         player:addKeyItem(SEALED_DAGGER);
         player:messageSpecial(KEYITEM_OBTAINED, SEALED_DAGGER);
         player:delKeyItem(STRANGELY_SHAPED_CORAL);
         player:setVar("AyameAndKaede_Event", 4);
-    elseif (csid == 0x0085) then
+    elseif (csid == 133) then
         player:addQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS);
         player:setVar("twentyInPirateYearsCS",1);
-    elseif (csid == 0x0086) then
+    elseif (csid == 134) then
         if (player:getFreeSlotsCount() <= 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17771);
         else
@@ -98,11 +98,11 @@ function onEventFinish(player,csid,option)
             player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS);
         end
-    elseif (csid == 0x0087) then
+    elseif (csid == 135) then
         player:addQuest(OUTLANDS,I_LL_TAKE_THE_BIG_BOX);
-    elseif (csid == 0x0088) then
+    elseif (csid == 136) then
         player:addQuest(OUTLANDS,TRUE_WILL);
-    elseif (csid == 0x0089) then
+    elseif (csid == 137) then
         player:setVar("trueWillCS",1);
     end
 

@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-        if (csid == 0x0001) then
+        if (csid == 1) then
             player:addKeyItem(SEA_SERPENT_STATUE);
             player:messageSpecial(KEYITEM_OBTAINED,SEA_SERPENT_STATUE);
         end

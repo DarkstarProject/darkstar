@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13122,1) and trade:getItemCount() == 1) then -- Trade Miner's Pendant
-            player:startEvent(0x00e8); -- Finish Quest "Ghosts of the Past"
+            player:startEvent(232); -- Finish Quest "Ghosts of the Past"
         end
     end
 
@@ -38,13 +38,13 @@ function onTrigger(player,npc)
     mJob = player:getMainJob();
 
     if (ghostsOfThePast == QUEST_AVAILABLE and mJob == 2 and mLvl >= 40) then
-        player:startEvent(0x00e7); -- Start Quest "Ghosts of the Past"
+        player:startEvent(231); -- Start Quest "Ghosts of the Past"
     elseif (ghostsOfThePast == QUEST_COMPLETED and player:needToZone() == false and theFirstMeeting == QUEST_AVAILABLE and mJob == 2 and mLvl >= 50) then
-        player:startEvent(0x00e9); -- Start Quest "The First Meeting"
+        player:startEvent(233); -- Start Quest "The First Meeting"
     elseif (player:hasKeyItem(LETTER_FROM_DALZAKK) and player:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL)) then
-        player:startEvent(0x00ea); -- Finish Quest "The First Meeting"
+        player:startEvent(234); -- Finish Quest "The First Meeting"
     else
-        player:startEvent(0x00e6); -- Standard Dialog
+        player:startEvent(230); -- Standard Dialog
     end
 
 end;
@@ -66,9 +66,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00e7) then
+    if (csid == 231) then
         player:addQuest(BASTOK,GHOSTS_OF_THE_PAST);
-    elseif (csid == 0x00e8) then
+    elseif (csid == 232) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17478); -- Beat Cesti
         else
@@ -79,9 +79,9 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,AF1_FAME);
             player:completeQuest(BASTOK,GHOSTS_OF_THE_PAST);
         end
-    elseif (csid == 0x00e9) then
+    elseif (csid == 233) then
         player:addQuest(BASTOK,THE_FIRST_MEETING);
-    elseif (csid == 0x00ea) then
+    elseif (csid == 234) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14090); -- Temple Gaiters
         else

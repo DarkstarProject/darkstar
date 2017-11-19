@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-player:startEvent(0x0016);
+player:startEvent(22);
 
 end; 
 
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 
 PastPerfectVar = player:getVar("PastPerfectVar");
 
-    if (csid == 0x0016 and PastPerfectVar == 1) then
+    if (csid == 22 and PastPerfectVar == 1) then
         player:setVar("PastPerfectVar",2);
     end
 

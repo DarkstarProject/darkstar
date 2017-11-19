@@ -30,7 +30,7 @@ function onZoneIn(player,prevZone)
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
-            cs = 0x01;
+            cs = 1;
         end
         player:setPos(-45,-0,26,213);
         player:setHomePoint();
@@ -40,13 +40,13 @@ function onZoneIn(player,prevZone)
         position = math.random(1,5) - 75;
         player:setPos(116,0.99,position,127);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     end
     if (prevZone == 172) then
         if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5) then
-            cs = 0x00b0
+            cs = 176
         end
     end -- this if was leaking into the other functions
 
@@ -88,12 +88,12 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x01) then
+    if (csid == 1) then
         player:messageSpecial(ITEM_OBTAINED,0x218);
-    elseif (csid == 0x7534 and option == 0) then
+    elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x00b0) then
+    elseif (csid == 176) then
         finishMissionTimeline(player,1,csid,option);
     end -- you're not useing the script i sent youuu
 end;

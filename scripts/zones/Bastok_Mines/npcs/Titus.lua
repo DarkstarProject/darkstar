@@ -28,12 +28,12 @@ function onTrigger(player,npc)
     
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_ALCHEMY_IMAGERY) == false) then
-            player:startEvent(0x007B,SkillCap,SkillLevel,1,137,player:getGil(),0,0,0);
+            player:startEvent(123,SkillCap,SkillLevel,1,137,player:getGil(),0,0,0);
         else
-            player:startEvent(0x007B,SkillCap,SkillLevel,1,137,player:getGil(),6758,0,0);
+            player:startEvent(123,SkillCap,SkillLevel,1,137,player:getGil(),6758,0,0);
         end
     else
-        player:startEvent(0x007B);
+        player:startEvent(123);
     end
 end; 
 
@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007B and option == 1) then
+    if (csid == 123 and option == 1) then
         player:messageSpecial(ALCHEMY_SUPPORT,0,7,1);
         player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,1,0,120);
     end

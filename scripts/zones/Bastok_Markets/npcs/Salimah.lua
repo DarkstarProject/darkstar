@@ -61,9 +61,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,GOURMET) ~= QUEST_AVAILABLE and player:needToZone()) then
-        player:startEvent(0x0079);
+        player:startEvent(121);
     else
-        player:startEvent(0x00c8);
+        player:startEvent(200);
     end
 end;
 
@@ -86,11 +86,11 @@ function onEventFinish(player,csid,option)
 
     local Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 
-    if (csid == 0x00c8) then
+    if (csid == 200) then
         if (Gourmet == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,GOURMET);
         end
-    elseif (csid ~= 0x0079) then
+    elseif (csid ~= 121) then
         player:tradeComplete();
         if (Gourmet == QUEST_ACCEPTED) then
             player:completeQuest(BASTOK,GOURMET);

@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x000a);
+    player:startEvent(10);
 end;
 -----------------------------------
 -- onEventUpdate
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local npc = player:getEventTarget();
 
-    if (csid == 0x000a and option == 0) then
+    if (csid == 10 and option == 0) then
         local mainweapon = player:getEquipID(SLOT_MAIN);
         local subweapon = player:getEquipID(SLOT_SUB);
 

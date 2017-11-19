@@ -41,7 +41,7 @@ function onTrigger(player,npc)
      --printf("Executor: %u",Executorkill);
 
     if (Executorkill == 1 and Assassin1kill == 1 and Assassin2kill == 1 and Assassin3kill == 1) then -- If all Mobs have been killed
-        player:startEvent(0x0025);
+        player:startEvent(37);
     elseif (ExecutorA == 0 and Assassin1A == 0 and Assassin2A == 0 and Assassin3A == 0 and Executorkill~=2) then -- If no mobs present
         SpawnMob(ExecutorID):updateClaim(player);
         SpawnMob(Assassin1ID);
@@ -70,7 +70,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0025) then
+    if (csid == 37) then
         player:setVar("Cryptonberry_Executor_KILL",2);
         player:setVar("Cryptonberry_Assassins-1_KILL",0);
         player:setVar("Cryptonberry_Assassins-2_KILL",0);

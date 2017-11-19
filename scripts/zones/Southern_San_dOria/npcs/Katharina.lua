@@ -21,7 +21,7 @@ end;
 -----------------------------------
 require("scripts/globals/settings");
 function onTrigger(player,npc)
-    player:startEvent(0x377);
+    player:startEvent(887);
 end;
 
 -----------------------------------

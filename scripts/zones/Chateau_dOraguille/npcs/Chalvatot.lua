@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 
     -- HER MAJESTY'S GARDEN (derfland humus)
     elseif (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
-        player:startEvent(0x0053);
+        player:startEvent(83);
 
     end;
 end;
@@ -48,37 +48,37 @@ function onTrigger(player,npc)
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
     if (currentMission == THE_CRYSTAL_SPRING and MissionStatus == 3) then
-        player:startEvent(0x022c);
+        player:startEvent(556);
 
     -- LEAUTE'S LAST WISHES (San d'Oria 6-1)
     elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(DREAMROSE)) then
-        player:startEvent(0x006f);
+        player:startEvent(111);
 
     -- CIRCLE OF TIME (Bard AF3)
     elseif (circleOfTime == QUEST_ACCEPTED) then
         if (circleProgress == 5) then
-            player:startEvent(0x0063);
+            player:startEvent(99);
         elseif (circleProgress == 6) then
-            player:startEvent(0x0062);
+            player:startEvent(98);
         elseif (circleProgress == 7) then
-            player:startEvent(0x0061);
+            player:startEvent(97);
         elseif (circleProgress == 9) then
-            player:startEvent(0x0060);
+            player:startEvent(96);
         end;
 
     -- LURE OF THE WILDCAT
     elseif (lureOfTheWildcat == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,19) == false) then
-        player:startEvent(0x0231);
+        player:startEvent(561);
 
     -- HER MAJESTY'S GARDEN
     elseif (herMajestysGarden == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4) then
-        player:startEvent(0x0054);
+        player:startEvent(84);
     elseif (herMajestysGarden == QUEST_ACCEPTED) then
-        player:startEvent(0x0052);
+        player:startEvent(82);
 
     -- DEFAULT DIALOG
     else
-        player:startEvent(0x0213);
+        player:startEvent(531);
     end;
 end;
 
@@ -95,17 +95,17 @@ end;
 
 function onEventFinish(player,csid,option)
     -- SAN D'ORIA MISSIONS
-    if (csid == 0x022c or csid == 0x006f) then
+    if (csid == 556 or csid == 111) then
         finishMissionTimeline(player,3,csid,option);
 
     -- CIRCLE OF TIME
-    elseif (csid == 0x0063 and option == 0) then
+    elseif (csid == 99 and option == 0) then
         player:setVar("circleTime",6);
-    elseif ((csid == 0x0062 or csid == 0x0063) and option == 1) then
+    elseif ((csid == 98 or csid == 99) and option == 1) then
         player:setVar("circleTime",7);
         player:addKeyItem(MOON_RING);
         player:messageSpecial(KEYITEM_OBTAINED,MOON_RING);
-    elseif (csid == 0x0060) then
+    elseif (csid == 96) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
             player:messageSpecial(ITEM_OBTAINED,12647)
@@ -117,13 +117,13 @@ function onEventFinish(player,csid,option)
         end;
 
     -- LURE OF THE WILDCAT
-    elseif (csid == 0x0231) then
+    elseif (csid == 561) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",19,true);
 
     -- HER MAJESTY'S GARDEN
-    elseif (csid == 0x0054 and option == 1) then
+    elseif (csid == 84 and option == 1) then
         player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
-    elseif (csid == 0x0053) then
+    elseif (csid == 83) then
         player:tradeComplete();
         player:addKeyItem(MAP_OF_THE_NORTHLANDS_AREA);
         player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);

@@ -27,12 +27,12 @@ function onTrigger(player,npc)
     MissionStatus = player:getVar("MissionStatus");
 
     if (currentMission == A_NEW_JOURNEY and MissionStatus == 4) then
-        player:startEvent(0x0028);
+        player:startEvent(40);
     elseif (player:getRank() == 4 and MissionStatus == 0 and player:getCurrentMission(WINDURST) == 255 and getMissionRankPoints(player,13) == 1) then
         if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
-            player:startEvent(0x0083,1);
+            player:startEvent(131,1);
         else
-            player:startEvent(0x0083);
+            player:startEvent(131);
         end
     elseif (player:getRank() >= 4) then
         player:messageSpecial(WINDURST_EMBASSY); -- restricted area
@@ -61,15 +61,15 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0028) then
+    if (csid == 40) then
         finishMissionTimeline(player,1,csid,option);
-    elseif (csid == 0x0083 and option == 1) then
+    elseif (csid == 131 and option == 1) then
         player:setVar("MissionStatus",1);
         if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
             player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
             player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
         end
-    elseif (csid == 0x0026 or csid == 0x0023) then
+    elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);
     end
 

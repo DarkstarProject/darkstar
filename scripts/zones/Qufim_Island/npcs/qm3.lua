@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
     if (player:getCurrentMission(ACP) == THE_ECHO_AWAKENS and trade:getItemCount() == 3
     and trade:hasItemQty(2740,1) and trade:hasItemQty(2741,1) and trade:hasItemQty(2742,1)) then
         player:tradeComplete();
-        player:startEvent(0x001F);
+        player:startEvent(31);
     end
 end;
 
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
 
     if (ENABLE_ACP == 1 and player:hasKeyItem(AMBER_KEY) == false) then
         if (ACPm == GATHERER_OF_LIGHT_I and SR and SC and SV and now ~= LastViridian) then
-            player:startEvent(0x0020);
+            player:startEvent(32);
         elseif (ACPm == GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 0) then
             -- Spawn Seed mandragora's
             player:setVar("SEED_MANDY",1); -- This will need moved into Seed mandies onDeath script later.
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
             -- EFFECT_CONFRONTATION for 30 min
         elseif (ACPm == GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 1) then -- change SEED_MANDY var number later when battle actually works (intended purpose is to track number of slain mandies).
             player:setVar("SEED_MANDY",0);
-            player:startEvent(0x0022);
+            player:startEvent(34);
         -- elseif (ACPm >= THOSE_WHO_LURK_IN_SHADOWS_I and AmberKey == false and now ~= LastAmber and now ~= LastViridian and SR and SC and SV and player:getVar("SEED_MANDY") == 0) then
             -- This is for repeats to get amber keys.
             -- Spawn Seed mandragora's with EFFECT_CONFRONTATION for 30 min
@@ -86,16 +86,16 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x001F) then
+    if (csid == 31) then
         player:completeMission(ACP,THE_ECHO_AWAKENS);
         player:addMission(ACP,GATHERER_OF_LIGHT_I);
-    elseif (csid == 0x0020) then
+    elseif (csid == 32) then
         player:completeMission(ACP,GATHERER_OF_LIGHT_I);
         player:addMission(ACP,GATHERER_OF_LIGHT_II);
         player:delKeyItem(SEEDSPALL_ROSEUM)
         player:delKeyItem(SEEDSPALL_CAERULUM)
         player:delKeyItem(SEEDSPALL_VIRIDIS)
-    elseif (csid == 0x0022) then
+    elseif (csid == 34) then
         player:completeMission(ACP,GATHERER_OF_LIGHT_II);
         player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_I);
     end

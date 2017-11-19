@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         local MissionStatus = player:getVar("MissionStatus");
 
         if (MissionStatus == 6) then
-            player:startEvent(0x006b);
+            player:startEvent(107);
         elseif (MissionStatus == 7) then
             player:showText(npc, RESCUE_DRILL + 14);
         elseif (MissionStatus == 8) then
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x006b) then
+    if (csid == 107) then
         player:setVar("MissionStatus",7);
     end
 

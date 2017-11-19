@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
         
     if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade pickaxe        
         if (hittingTheMarquisateNanaaCS == 1) then
-            player:startEvent(0x0077);
+            player:startEvent(119);
         end
     end
 end;
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0077) then
+    if (csid == 119) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14094);
         else 

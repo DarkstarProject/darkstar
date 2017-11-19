@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         SpawnMob(17572200) -- Jack of Coins
 
     elseif (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 2) then
-        player:startEvent(0x0044)
+        player:startEvent(68)
     else
         player:messageSpecial(DOOR_FIRMLY_SHUT);
     end
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0044) then
+    if (csid == 68) then
         player:setVar("MissionStatus",3);
         player:delKeyItem(SOUTHWESTERN_STAR_CHARM);
     end

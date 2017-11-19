@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(PIECE_OF_SHATTERED_LUMBER)) then
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         else
-            player:startEvent(0x0002);
+            player:startEvent(2);
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -49,7 +49,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
-    if (csid == 0x0002) then
+    if (csid == 2) then
         player:addKeyItem(PIECE_OF_SHATTERED_LUMBER);
         player:messageSpecial(KEYITEM_OBTAINED,PIECE_OF_SHATTERED_LUMBER);
     end

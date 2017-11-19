@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-76.839,-1.696,659.969,122);
     end
     if (prevZone == 102 and player:getVar("darkPuppetCS") == 1) then
-        cs = 0x000a;
+        cs = 10;
     end
     return cs;
 end;
@@ -71,7 +71,7 @@ end;
 function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-    if (csid == 0x000a) then
+    if (csid == 10) then
         player:setVar("darkPuppetCS",2);
     end
 end;

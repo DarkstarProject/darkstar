@@ -61,20 +61,20 @@ itemQuality = 0;
 
     if (itemQuality == 2) then
         if (PrettyLittleThings == QUEST_COMPLETED) then
-            player:startEvent(0x2727, 0, 246, 4);
+            player:startEvent(10023, 0, 246, 4);
         else
-            player:startEvent(0x2727, 0, 246, 2);
+            player:startEvent(10023, 0, 246, 2);
         end
     elseif (itemQuality == 1) then
         if (PrettyLittleThings == QUEST_COMPLETED) then
-            player:startEvent(0x2727, 0, 246, 5);
+            player:startEvent(10023, 0, 246, 5);
         elseif (PrettyLittleThings == QUEST_ACCEPTED) then
-            player:startEvent(0x2727, 0, 246, 3);
+            player:startEvent(10023, 0, 246, 3);
         else
-            player:startEvent(0x2727, 0, 246, 1);
+            player:startEvent(10023, 0, 246, 1);
         end
     else
-        player:startEvent(0x2727, 0, 246, 0);
+        player:startEvent(10023, 0, 246, 0);
     end
 
 end;
@@ -85,7 +85,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2727, 0, 246, 10);
+    player:startEvent(10023, 0, 246, 10);
 end;
 
 
@@ -107,13 +107,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x2727 and option == 4002) then
+    if (csid == 10023 and option == 4002) then
         player:moghouseFlag(8);
         player:messageSpecial(MOGHOUSE_EXIT);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,PRETTY_LITTLE_THINGS);
-    elseif (csid == 0x2727 and option == 1) then
+    elseif (csid == 10023 and option == 1) then
         player:tradeComplete();
         player:addQuest(JEUNO,PRETTY_LITTLE_THINGS);
     end

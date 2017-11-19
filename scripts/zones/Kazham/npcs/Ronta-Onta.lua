@@ -30,11 +30,11 @@ function onTrigger(player,npc)
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
     if ((TrialByFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) or (TrialByFire == QUEST_COMPLETED and realday ~= player:getVar("TrialByFire_date"))) then
-        player:startEvent(0x010e,0,TUNING_FORK_OF_FIRE); -- Start and restart quest "Trial by Fire"
+        player:startEvent(270,0,TUNING_FORK_OF_FIRE); -- Start and restart quest "Trial by Fire"
     elseif (TrialByFire == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_FIRE) == false and WhisperOfFlames == false) then
-        player:startEvent(0x011d,0,TUNING_FORK_OF_FIRE); -- Defeat against Ifrit : Need new Fork
+        player:startEvent(285,0,TUNING_FORK_OF_FIRE); -- Defeat against Ifrit : Need new Fork
     elseif (TrialByFire == QUEST_ACCEPTED and WhisperOfFlames == false) then
-        player:startEvent(0x010f,0,TUNING_FORK_OF_FIRE,0);
+        player:startEvent(271,0,TUNING_FORK_OF_FIRE,0);
     elseif (TrialByFire == QUEST_ACCEPTED and WhisperOfFlames) then
         numitem = 0;
 
@@ -44,9 +44,9 @@ function onTrigger(player,npc)
         if (player:hasItem(1203)) then numitem = numitem + 8; end   -- Egil's Torch
         if (player:hasSpell(298)) then numitem = numitem + 32; end  -- Ability to summon Ifrit
 
-        player:startEvent(0x0111,0,TUNING_FORK_OF_FIRE,0,0,numitem);
+        player:startEvent(273,0,TUNING_FORK_OF_FIRE,0,0,numitem);
     else
-        player:startEvent(0x0112); -- Standard dialog
+        player:startEvent(274); -- Standard dialog
     end
 
 end;
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x010e and option == 1) then
+    if (csid == 270 and option == 1) then
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_FIRE) == QUEST_COMPLETED) then
             player:delQuest(OUTLANDS,TRIAL_BY_FIRE);
         end
@@ -76,10 +76,10 @@ function onEventFinish(player,csid,option)
         player:setVar("TrialByFire_date", 0);
         player:addKeyItem(TUNING_FORK_OF_FIRE);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_FIRE);
-    elseif (csid == 0x011d) then
+    elseif (csid == 285) then
         player:addKeyItem(TUNING_FORK_OF_FIRE);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_FIRE);
-    elseif (csid == 0x0111) then
+    elseif (csid == 273) then
         item = 0;
         if (option == 1) then item = 17665;         -- Ifrits Blade
         elseif (option == 2) then item = 13241;  -- Fire Belt

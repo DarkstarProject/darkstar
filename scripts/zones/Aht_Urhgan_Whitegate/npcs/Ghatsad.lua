@@ -369,13 +369,13 @@ function onTrigger(player,npc)
     ]]
 
     if (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 2) then
-        player:startEvent(0x0106); -- he want you to go to Arrapago
+        player:startEvent(262); -- he want you to go to Arrapago
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 3) then
-        player:startEvent(0x0107); -- reminder to go to Arrapago
+        player:startEvent(263); -- reminder to go to Arrapago
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 4 and Automaton == true) then
-        player:startEvent(0x0108); -- you give the antique automaton to him and need to wait a gameday
+        player:startEvent(264); -- you give the antique automaton to him and need to wait a gameday
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 5 and CreationReady == true) then
-        player:startEvent(0x0109); -- you go back for your automaton
+        player:startEvent(265); -- you go back for your automaton
     elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 0 and attachmentStatus == 0 and player:getMainJob() == JOBS.PUP and player:getMainLvl() >= 10) then
         player:startEventString(620, automatonName, automatonName, automatonName, automatonName, attachments, 0, 0, 0, 0, 2185, 3, unlockedAttachments);
     elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 0 and attachmentStatus == 1) then
@@ -458,7 +458,7 @@ function onTrigger(player,npc)
             player:startEventString(629, automatonName, automatonName, automatonName, automatonName);
         end
     else
-        player:startEvent(0x0100);
+        player:startEvent(256);
     end;
 end;
 
@@ -479,14 +479,14 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0106) then
+    if (csid == 262) then
         player:setVar("NoStringsAttachedProgress",3);
-    elseif (csid == 0x0108) then
+    elseif (csid == 264) then
         player:setVar("CreationStarted_Day",VanadielDayOfTheYear());
         player:setVar("CreationStarted_Year",VanadielYear());
         player:setVar("NoStringsAttachedProgress",5);
         player:delKeyItem(798);
-    elseif (csid == 0x0109) then
+    elseif (csid == 265) then
         player:setVar("NoStringsAttachedProgress",6);
         player:setVar("CreationStarted_Day",0);
         player:setVar("CreationStarted_Year",0);

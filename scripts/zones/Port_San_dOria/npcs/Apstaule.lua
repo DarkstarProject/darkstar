@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
         local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
         if (TheBrugaireConsortium == 1) then
             player:tradeComplete(); 
-            player:startEvent(0x021c);
+            player:startEvent(540);
             player:setVar("TheBrugaireConsortium-Parcels", 21);
         end
     end
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x21e);
+    player:startEvent(542);
 end;
 
 -----------------------------------

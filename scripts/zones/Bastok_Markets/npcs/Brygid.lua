@@ -69,7 +69,7 @@ function onTrigger(player,npc)
     if (body == 12600 and legs == 12832) then BrygidSet = 1 end;
 
     if (BrygidTheStylist == QUEST_ACCEPTED and BrygidSet == 1) then
-        player:startEvent(0x0137);
+        player:startEvent(311);
     elseif ((BrygidReturns ~= QUEST_ACCEPTED and BrygidTheStylist == QUEST_COMPLETED) and
            (isArtifactArmor(head) or isArtifactArmor(body) or isArtifactArmor(hands)
             or isArtifactArmor(legs) or isArtifactArmor(feet))) then
@@ -98,9 +98,9 @@ function onTrigger(player,npc)
         player:startEvent(385,0,14400+wantsSubligar,15374+wantsSubligar);
         end
     elseif (BrygidTheStylist ~= QUEST_COMPLETED) then
-        player:startEvent(0x0136);
+        player:startEvent(310);
     else
-        player:startEvent(0x0077);
+        player:startEvent(119);
     end
 
 end;
@@ -130,9 +130,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local wantsSubligar = player:getVar("BrygidWantsSubligar");
 
-    if (csid == 0x0136 and player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
+    if (csid == 310 and player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
         player:addQuest(BASTOK,BRYGID_THE_STYLIST);
-    elseif (csid == 0x0137) then
+    elseif (csid == 311) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
         else
