@@ -17,11 +17,9 @@ require("scripts/zones/Sealions_Den/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     end
-
 end;
 
 -----------------------------------
@@ -33,8 +31,6 @@ function onTrigger(player,npc)
         player:startEvent(0x000D);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
-    elseif (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
-        player:startEvent(0x000C);
     end
 end;
 
