@@ -12468,19 +12468,19 @@ INSERT INTO `mob_groups` VALUES (14581,4317,22,1056,0,4127,0,0,54,55,0);  -- Pro
 INSERT INTO `mob_groups` VALUES (14582,4317,22,1056,0,4127,0,0,56,57,0);  -- Promyvion-Vahzl Level 4/5
 
 -- Strays
-INSERT INTO `mob_groups` VALUES (14583,3784,16,330,128,0,0,0,19,23,0);  -- Promyvion-Holla Level 1
-INSERT INTO `mob_groups` VALUES (14584,3784,16,330,128,0,0,0,23,27,0);  -- Promyvion-Holla Level 2
-INSERT INTO `mob_groups` VALUES (14585,3784,16,330,128,0,0,0,27,31,0);  -- Promyvion-Holla Level 3
-INSERT INTO `mob_groups` VALUES (14586,3784,18,330,128,0,0,0,19,23,0);  -- Promyvion-Dem Level 1
-INSERT INTO `mob_groups` VALUES (14587,3784,18,330,128,0,0,0,23,27,0);  -- Promyvion-Dem Level 2
-INSERT INTO `mob_groups` VALUES (14588,3784,18,330,128,0,0,0,27,31,0);  -- Promyvion-Dem Level 3
-INSERT INTO `mob_groups` VALUES (14589,3784,20,330,128,0,0,0,19,23,0);  -- Promyvion-Mea Level 1
-INSERT INTO `mob_groups` VALUES (14590,3784,20,330,128,0,0,0,23,27,0);  -- Promyvion-Mea Level 2
-INSERT INTO `mob_groups` VALUES (14591,3784,20,330,128,0,0,0,27,31,0);  -- Promyvion-Mea Level 3
-INSERT INTO `mob_groups` VALUES (14592,3784,22,330,128,0,0,0,39,42,0);  -- Promyvion-Vahzl Level 1
-INSERT INTO `mob_groups` VALUES (14593,3784,22,330,128,0,0,0,42,45,0);  -- Promyvion-Vahzl Level 2
-INSERT INTO `mob_groups` VALUES (14594,3784,22,330,128,0,0,0,45,48,0);  -- Promyvion-Vahzl Level 3
-INSERT INTO `mob_groups` VALUES (14595,3784,22,330,128,0,0,0,48,51,0);  -- Promyvion-Vahzl Level 4
+INSERT INTO `mob_groups` VALUES (14583,3784,16,330,0,0,0,0,19,23,0);  -- Promyvion-Holla Level 1
+INSERT INTO `mob_groups` VALUES (14584,3784,16,330,0,0,0,0,23,27,0);  -- Promyvion-Holla Level 2
+INSERT INTO `mob_groups` VALUES (14585,3784,16,330,0,0,0,0,27,31,0);  -- Promyvion-Holla Level 3
+INSERT INTO `mob_groups` VALUES (14586,3784,18,330,0,0,0,0,19,23,0);  -- Promyvion-Dem Level 1
+INSERT INTO `mob_groups` VALUES (14587,3784,18,330,0,0,0,0,23,27,0);  -- Promyvion-Dem Level 2
+INSERT INTO `mob_groups` VALUES (14588,3784,18,330,0,0,0,0,27,31,0);  -- Promyvion-Dem Level 3
+INSERT INTO `mob_groups` VALUES (14589,3784,20,330,0,0,0,0,19,23,0);  -- Promyvion-Mea Level 1
+INSERT INTO `mob_groups` VALUES (14590,3784,20,330,0,0,0,0,23,27,0);  -- Promyvion-Mea Level 2
+INSERT INTO `mob_groups` VALUES (14591,3784,20,330,0,0,0,0,27,31,0);  -- Promyvion-Mea Level 3
+INSERT INTO `mob_groups` VALUES (14592,3784,22,330,0,0,0,0,39,42,0);  -- Promyvion-Vahzl Level 1
+INSERT INTO `mob_groups` VALUES (14593,3784,22,330,0,0,0,0,42,45,0);  -- Promyvion-Vahzl Level 2
+INSERT INTO `mob_groups` VALUES (14594,3784,22,330,0,0,0,0,45,48,0);  -- Promyvion-Vahzl Level 3
+INSERT INTO `mob_groups` VALUES (14595,3784,22,330,0,0,0,0,48,51,0);  -- Promyvion-Vahzl Level 4
 
 
 -- Seethers
