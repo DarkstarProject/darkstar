@@ -2,9 +2,11 @@
 -- Area: Dynamis Valkurm
 --  MOB: Adamantking_Image
 -----------------------------------
+package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/status");
-require("scripts/globals/titles");
-require("scripts/globals/dynamis");
+require("scripts/globals/keyitems");
+require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -18,12 +20,18 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-local mobID = mob:getID();
-    if (mobID == 16937239 and mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(10);
-        mob:addInBattlefieldList();
-    elseif (mobID == 16937237 and  mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(20);
-        mob:addInBattlefieldList();
+    local effect = player:getStatusEffect(EFFECT_DYNAMIS)
+    if effect then
+        if mob:getMainLvl() < 85 then
+            if not player:hasKeyItem(AZURE_GRANULES_OF_TIME) then
+                effect:setDuration(effect:getDuration + 10 * 60 * 1000)
+                player:messageSpecial(DYNAMIS_TIME_EXTEND,10)
+            end
+        else
+            if not player:hasKeyItem(OBSIDIAN_GRANULES_OF_TIME) then
+                effect:setDuration(effect:getDuration + 20 * 60 * 1000)
+                player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
+            end
+        end
     end
 end;

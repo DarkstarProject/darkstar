@@ -2,9 +2,11 @@
 -- Area: Dynamis Valkurm
 --  MOB: Goblin_Statue
 -----------------------------------
+package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/status");
-require("scripts/globals/titles");
-require("scripts/globals/dynamis");
+require("scripts/globals/keyitems");
+require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -19,13 +21,18 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 local mobID = mob:getID();
-    if (mobID == 16937289 and mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(10);
-        mob:addInBattlefieldList();
-        --print("addtime 10min");
-    elseif (mobID == 16937287 and mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(20);
-        mob:addInBattlefieldList();
-        --print("addtime 20min");
+    local effect = player:getStatusEffect(EFFECT_DYNAMIS)
+    if effect then
+        if mob:getMainLvl() < 85 then
+            if not player:hasKeyItem(ALABASTER_GRANULES_OF_TIME) then
+                effect:setDuration(effect:getDuration + 10 * 60 * 1000)
+                player:messageSpecial(DYNAMIS_TIME_EXTEND,10)
+            end
+        else
+            if not player:hasKeyItem(OBSIDIAN_GRANULES_OF_TIME) then
+                effect:setDuration(effect:getDuration + 20 * 60 * 1000)
+                player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
+            end
+        end
     end
 end;

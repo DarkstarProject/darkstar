@@ -5,7 +5,7 @@
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/globals/dynamis");
+require("scripts/globals/keyitems");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
@@ -16,30 +16,22 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    
-        local mobID = mob:getID();
-    
-    if (mobID == 16937264 and mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(10);
-        --print("addtime 10min");
-        mob:addInBattlefieldList();
-    elseif (mobID == 16937262 and mob:isInBattlefieldList() == false) then
-        player:addTimeToDynamis(20);
-        --print("addtime 20min");
-        mob:addInBattlefieldList();
+    local effect = player:getStatusEffect(EFFECT_DYNAMIS)
+    if effect then
+        if mob:getMainLvl() < 85 then
+            if not player:hasKeyItem(AMBER_GRANULES_OF_TIME) then
+                effect:setDuration(effect:getDuration + 10 * 60 * 1000)
+                player:messageSpecial(DYNAMIS_TIME_EXTEND,10)
+            end
+        else
+            if not player:hasKeyItem(OBSIDIAN_GRANULES_OF_TIME) then
+                effect:setDuration(effect:getDuration + 20 * 60 * 1000)
+                player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
+            end
+        end
     end
-    
-    
-    
 end;
