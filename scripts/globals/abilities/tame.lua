@@ -41,7 +41,6 @@ function onUseAbility(player,target,ability)
             end
         end
         local resist = applyResistanceAbility(player, target, ELE_NONE, SKILL_NON, player:getStat(MOD_INT) - target:getStat(MOD_INT))
-    print(resist)
         if resist <= 0.25 then
             ability:setMsg(msgBasic.JA_MISS_2)
             return 0
