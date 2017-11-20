@@ -3880,8 +3880,6 @@ namespace battleutils
 
             if (TryCharm(PCharmer, PVictim) == false)
             {
-                //player failed to charm mob - agro mob
-                battleutils::ClaimMob(PVictim, PCharmer);
                 return;
             }
         }

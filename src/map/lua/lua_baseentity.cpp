@@ -10394,6 +10394,10 @@ inline int32 CLuaBaseEntity::getEnmityList(lua_State* L)
                 lua_pushboolean(L, member.second.active);
                 lua_setfield(L, -2, "active");
 
+                //push tameable
+                lua_pushboolean(L, ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->IsTameable());
+                lua_setfield(L, -2, "tameable");
+
                 //assign table to key's value
                 lua_rawseti(L, -2, i++);
             }
@@ -11311,6 +11315,14 @@ int32 CLuaBaseEntity::disengage(lua_State* L)
     return 0;
 }
 
+int32 CLuaBaseEntity::isEngaged(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    lua_pushboolean(L, m_PBaseEntity->PAI->IsEngaged());
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -11805,5 +11817,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isDead),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,engage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disengage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isEngaged),
     {nullptr,nullptr}
 };

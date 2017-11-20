@@ -87,7 +87,7 @@ void CAbilityState::ApplyEnmity()
             mob->m_OwnerID.id = m_PEntity->id;
             mob->m_OwnerID.targid = m_PEntity->targid;
             mob->updatemask |= UPDATE_STATUS;
-            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE());
+            mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE(), false, m_PAbility->getID() == ABILITY_CHARM);
             if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
                 mob->m_HiPCLvl = m_PEntity->GetMLevel();
         }

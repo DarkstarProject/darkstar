@@ -66,6 +66,7 @@ void CEnmityContainer::Clear(uint32 EntityID)
     {
         m_EnmityList.erase(EntityID);
     }
+    m_tameable = true;
 }
 
 void CEnmityContainer::LogoutReset(uint32 EntityID)
@@ -115,7 +116,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster)
+void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster, bool tameable)
 {
     // you're too far away so i'm ignoring you
     if (!IsWithinEnmityRange(PEntity))
@@ -153,14 +154,16 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
                 break;
             }
         }
+        auto maxTH = 0;
+        if(CE + VE > 0)
+        {
+            maxTH = (uint8)(PEntity->getMod(Mod::TREASURE_HUNTER));
+        }
         if (initial) CE += 200;
         float bonus = CalculateEnmityBonus(PEntity);
 
         CE = std::clamp<int16>((int16)(CE * bonus), 0, 10000);
         VE = std::clamp<int16>((int16)(VE * bonus), 0, 10000);
-        auto maxTH = 0;
-        if (CE + VE > 0)
-            maxTH = (uint8)(PEntity->getMod(Mod::TREASURE_HUNTER));
 
         m_EnmityList.emplace(PEntity->id, EnmityObject_t {PEntity, CE, VE, true, (uint8)maxTH});
 
@@ -173,6 +176,10 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
                 AddBaseEnmity(PEntity->PMaster);
             }
         }
+    }
+    if (!tameable)
+    {
+        m_tameable = false;
     }
 }
 
@@ -445,4 +452,9 @@ uint8 CEnmityContainer::GetHighestTH()
 EnmityList_t* CEnmityContainer::GetEnmityList()
 {
     return &m_EnmityList;
+}
+
+bool CEnmityContainer::IsTameable()
+{
+    return m_tameable;
 }
