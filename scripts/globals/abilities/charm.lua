@@ -37,5 +37,31 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+
+    local Tamed = false;
+    local mob = target:getID();
+        if (player:getVar("Tamed_Mob") == mob)then
+            player:addMod(MOD_CHARM_CHANCE, 10);
+            Tamed = true;
+        end
+
     player:charmPet(target);
+
+    local canTame = true;
+    local party = player:getParty();
+        for i,v in ipairs(party) do
+            if (target:getCE(v) > 0) then
+                canTame = false;
+            end
+        end
+
+    if (canTame == true) then
+        player:setVar("Charmed_Mob",mob);
+    end
+
+    if (Tamed == true) then
+        player:delMod(MOD_CHARM_CHANCE, 10);
+        player:setVar("Tamed_Mob",0);
+        Tamed = false;
+    end
 end;
