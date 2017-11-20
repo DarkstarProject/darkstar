@@ -380,8 +380,52 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32
 
                 // TODO: анализируем RodFlag
 
-				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
+                // Implement possibility of catching up to 3 fish with Rogue Rig, Robber Rig, or Sabiki Rig
+                uint8 fishes = dsprand::GetRandomNumber(3);
+                CItemWeapon* PLure = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+                if (PLure->getID() == 0x43F6 || PLure->getID() == 0x43F7 || PLure->getID() == 0x426A)
+                {
+                    if (PFish->getID() == 0x1108 ||  // Bastore Sardine
+                        PFish->getID() == 0x1549 ||  // Hamsi
+                        PFish->getID() == 0x1133 ||  // Yellow Globe
+                        PFish->getID() == 0x16A1 ||  // Quus
+                        PFish->getID() == 0x10D6 ||  // Tiny Goldfish
+                        PFish->getID() == 0x1408 ||  // Cone Calamary
+                        PFish->getID() == 0x1548 ||  // Kalamar
+                        PFish->getID() == 0x1176 ||  // Icefish
+                        PFish->getID() == 0x10C3)    // Sandfish
+                    {
+                        if (fishes == 0)
+                        {
+                            charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                        }
+                        else if (fishes == 1)
+                        {
+                            charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 2);
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                        }
+                        else if (fishes == 2)
+                        {
+                            charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 3);
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                        }
+                    }
+                    else  // failed to catch a "multiple" type of fish
+                    {
+                        charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
+                        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                    }
+                }
+                else  // not using a "multiple" type of lure
+                {
+                charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                }
+                // After lure/fish checks to see if you got "multiples", we continue on to rest of the fishing logic:
 
 				if (PFish->isType(ITEM_USABLE))
 				{
