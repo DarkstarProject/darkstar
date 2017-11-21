@@ -6288,13 +6288,12 @@ INSERT INTO `nm_spawn_points` VALUES (17363080,46,120.000,-15.000,238.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,47,128.000,-15.000,249.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,48,121.000,-15.000,245.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,49,115.000,-15.000,246.000);
-
--- Bu'Ghi Howlblade
 INSERT INTO `nm_spawn_points` VALUES (17363181,0,170,-15,179);
 INSERT INTO `nm_spawn_points` VALUES (17363181,1,170,-16,165);
 INSERT INTO `nm_spawn_points` VALUES (17363181,2,166,-16,135);
 INSERT INTO `nm_spawn_points` VALUES (17363181,3,167.207,-18.027,159.374);
 INSERT INTO `nm_spawn_points` VALUES (17363181,4,185.502,-31.864,175.730);
+INSERT INTO `nm_spawn_points` VALUES (17555721,0,133,-0.5,220);
 
 -- 16806117 Sargas - Pos data needs correction, had nothing to go on except wiki saying sw corner of G-9.
 -- INSERT INTO `nm_spawn_points` VALUES (16806117,0,-247.000,2.750,-128.000);
@@ -6393,6 +6392,16 @@ INSERT INTO `nm_spawn_points` VALUES (17252725,4,-236.000, -24.101, 607.000);
 -- Eldritch Edge
 INSERT INTO `nm_spawn_points` VALUES (17228150,0,395.000,-24.000,-147.000);
 INSERT INTO `nm_spawn_points` VALUES (17228150,1,388.000,-37.859,-162.602);
+
+-- Ah Puch
+INSERT INTO `nm_spawn_points` VALUES (17571903,0,-418,-1,629);
+INSERT INTO `nm_spawn_points` VALUES (17571903,1,-419,-1,570);
+INSERT INTO `nm_spawn_points` VALUES (17571903,2,-419,-1,581);
+INSERT INTO `nm_spawn_points` VALUES (17571903,3,-418,-1,590);
+INSERT INTO `nm_spawn_points` VALUES (17571903,4,-418,-1,597);
+INSERT INTO `nm_spawn_points` VALUES (17571903,5,-417,-1,640);
+INSERT INTO `nm_spawn_points` VALUES (17571903,6,-419,-1,615);
+INSERT INTO `nm_spawn_points` VALUES (17571903,7,-417,-1,661);
 
 -- Bomb King
 INSERT INTO `nm_spawn_points` VALUES (17572146,0,310.000, 0.000, 710.000);
