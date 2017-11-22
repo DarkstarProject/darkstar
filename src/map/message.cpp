@@ -97,14 +97,15 @@ namespace message
             CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
             if (PChar && PChar->status != STATUS_DISAPPEAR && !jailutils::InPrison(PChar))
             {
-                if (PChar->nameflags.flags & FLAG_AWAY)
+                CBasicPacket* newPacket = new CBasicPacket();
+                memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
+                auto gm_sent = newPacket->ref<uint8>(0x05);
+                if (PChar->nameflags.flags & FLAG_AWAY && !gm_sent)
                 {
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
                 }
                 else
                 {
-                    CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
                     PChar->pushPacket(newPacket);
                 }
             }
