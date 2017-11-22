@@ -213,7 +213,7 @@ void CAlliance::addParty(CParty * party)
 	party->m_PAlliance = this;
 	partyList.push_back(party);
 	
-    int newparty = 0;
+    uint8 newparty = 0;
 
     int ret = Sql_Query(SqlHandle, "SELECT partyflag & %d FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", PARTY_SECOND | PARTY_THIRD, m_AllianceID, PARTY_SECOND | PARTY_THIRD);
 

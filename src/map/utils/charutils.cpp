@@ -159,20 +159,20 @@ namespace charutils
 
         // Расчет прироста HP от main job
 
-        int32 mainLevelOver30 = dsp_cap(mlvl - 30, 0, 30);          // Расчет условия +1HP каждый лвл после 30 уровня
+        int32 mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);          // Расчет условия +1HP каждый лвл после 30 уровня
         int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);        // Первый режим рассчета до 60 уровня (Используется так же и для MP)
-        int32 mainLevelOver60To75 = dsp_cap(mlvl - 60, 0, 15);      // Второй режим расчета после 60 уровня
+        int32 mainLevelOver60To75 = std::clamp(mlvl - 60, 0, 15);      // Второй режим расчета после 60 уровня
         int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);            // Третий режим расчета после 75 уровня
 
         //Расчет бонусного количества HP
 
         int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);            // +2HP на каждом уровне после 10
-        int32 mainLevelOver50andUnder60 = dsp_cap(mlvl - 50, 0, 10);    // +2HP на каждом уровне в промежутке от 50 до 60 уровня
+        int32 mainLevelOver50andUnder60 = std::clamp(mlvl - 50, 0, 10);    // +2HP на каждом уровне в промежутке от 50 до 60 уровня
         int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
 
         // Расчет прироста HP от дополнительной профессии
 
-        int32 subLevelOver10 = dsp_cap(slvl - 10, 0, 20);               // +1HP на каждый уровень после 10 (/2)
+        int32 subLevelOver10 = std::clamp(slvl - 10, 0, 20);               // +1HP на каждый уровень после 10 (/2)
         int32 subLevelOver30 = (slvl < 30 ? 0 : slvl - 30);             // +1HP на каждый уровень после 30
 
         // Расчет raceStat jobStat bonusStat sJobStat
@@ -1200,7 +1200,7 @@ namespace charutils
 
         if (SlotID != ERROR_SLOTID)
         {
-            uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
+            // uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
 
             const int8* Query =
                 "INSERT INTO char_inventory("
@@ -1512,7 +1512,7 @@ namespace charutils
         {
             auto removeSlotID = ((CItemArmor*)PItem)->getRemoveSlotId();
 
-            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
+            for (auto i = 0u; i < sizeof(removeSlotID) * 8; ++i)
             {
                 if (removeSlotID & (1 << i))
                 {
@@ -1540,7 +1540,6 @@ namespace charutils
                 }
             }
 
-            uint8 slotID = PChar->equip[equipSlotID];
             //todo: issues as item 0 reference is being handled as a real equipment piece
             //      thought to be source of nin bug
             PChar->equip[equipSlotID] = 0;
@@ -1712,7 +1711,7 @@ namespace charutils
         {
             auto removeSlotID = PItem->getRemoveSlotId();
 
-            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
+            for (auto i = 0u; i < sizeof(removeSlotID) * 8; ++i)
             {
                 if (removeSlotID & (1 << i))
                 {
@@ -2293,9 +2292,9 @@ namespace charutils
             if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
                 (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
                 (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())) ||
+                (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
                 PSkill->getID() == main_ws ||
-                isInDynamis && (PSkill->getID() == main_ws_dyn))
+                (isInDynamis && (PSkill->getID() == main_ws_dyn)))
             {
                 addWeaponSkill(PChar, PSkill->getID());
             }
@@ -2312,9 +2311,9 @@ namespace charutils
                 if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
                     (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
                     (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                    (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())) ||
+                    (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
                     PSkill->getID() == range_ws ||
-                    isInDynamis && (PSkill->getID() == range_ws_dyn))
+                    (isInDynamis && (PSkill->getID() == range_ws_dyn)))
                 {
                     addWeaponSkill(PChar, PSkill->getID());
                 }
@@ -2509,7 +2508,7 @@ namespace charutils
                 uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH, JOB_RDM, PChar->GetMLevel()); //B+ skill
                 uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill cap
                 uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
-                uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, dsp_max(MaxMSkill, MaxSSkill)); // working skill before bonuses
+                auto currentSkill = std::clamp<uint16>((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
                 uint16 artsBaseline = 0; // Level based baseline to which to raise skills
                 uint8 mLevel = PChar->GetMLevel();
                 if (mLevel < 51)
@@ -2536,20 +2535,20 @@ namespace charutils
                 {
                     // If the player's skill is below the E cap
                     // give enough bonus points to raise it to the arts baseline
-                    skillBonus += dsp_max(artsBaseline - currentSkill, 0);
+                    skillBonus += std::max(artsBaseline - currentSkill, 0);
                 }
                 else if (currentSkill < skillCapD)
                 {
                     //if the skill is at or above the E cap but below the D cap
                     // raise it up to the B+ skill cap minus the difference between the current skill rank and the scholar base skill cap (D)
                     // i.e. give a bonus of the difference between the B+ skill cap and the D skill cap
-                    skillBonus += dsp_max((artsSkill - skillCapD), 0);
+                    skillBonus += std::max((artsSkill - skillCapD), 0);
                 }
                 else if (currentSkill < artsSkill)
                 {
                     // If the player's skill is at or above the D cap but below the B+ cap
                     // give enough bonus points to raise it to the B+ cap
-                    skillBonus += dsp_max(artsSkill - currentSkill, 0);
+                    skillBonus += std::max(artsSkill - currentSkill, 0);
                 }
 
                 if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE}))
@@ -2655,7 +2654,7 @@ namespace charutils
         if ((PChar->WorkingSkills.rank[SkillID] != 0) && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
         {
             uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-            uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), dsp_min(PChar->GetMLevel(), lvl));
+            uint16 MaxSkill = battleutils::GetMaxSkill(SkillID, PChar->GetMJob(), std::min(PChar->GetMLevel(), lvl));
 
             int16  Diff = MaxSkill - CurSkill / 10;
             double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
@@ -2683,7 +2682,7 @@ namespace charutils
             {
                 double chance = 0;
                 uint8  SkillAmount = 1;
-                uint8  tier = dsp_min(1 + (Diff / 5), 5);
+                uint8  tier = std::min(1 + (Diff / 5), 5);
 
                 for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
                 {
@@ -3062,7 +3061,7 @@ namespace charutils
 
         if ((charlvl > 0) && (charlvl < 100))
         {
-            return g_ExpTable[dsp_cap(levelDif, 0, 49)][(charlvl - 1) / 5];
+            return g_ExpTable[std::clamp(levelDif, 0, 49)][(charlvl - 1) / 5];
         }
         return 0;
     }
@@ -3099,7 +3098,7 @@ namespace charutils
         if (map_config.all_mobs_gil_bonus > 0)
         {
             gBonus = map_config.all_mobs_gil_bonus*PMob->GetMLevel();
-            gil += dsp_cap(gBonus, 1, map_config.max_gil_bonus);
+            gil += std::clamp<uint32>(gBonus, 1, map_config.max_gil_bonus);
         }
 
         // Distribute gil to player/party/alliance
@@ -3186,7 +3185,7 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
-            uint32 baseexp = 0, dedication = 0;
+            uint32 baseexp = 0;
             auto exp = 0.f;
             float permonstercap, monsterbonus = 1.0f;
             bool chainactive = false;
@@ -4329,7 +4328,7 @@ namespace charutils
             CStatusEffect* dedication = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DEDICATION);
             int16 percentage = dedication->GetPower();
             int16 cap = dedication->GetSubPower();
-            bonus += dsp_cap((int32)((exp * percentage) / 100), 0, cap);
+            bonus += std::clamp<int32>((int32)((exp * percentage) / 100), 0, cap);
             dedication->SetSubPower(cap -= bonus);
 
             if (cap <= 0)
@@ -4351,7 +4350,7 @@ namespace charutils
 
     bool hasMogLockerAccess(CCharEntity* PChar) {
         int8 fmtQuery[] = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' ";
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
+        Sql_Query(SqlHandle, fmtQuery, PChar->id, "mog-locker-expiry-timestamp");
 
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {

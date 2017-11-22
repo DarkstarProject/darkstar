@@ -19,7 +19,7 @@ require("scripts/globals/status");
 function onTrade(player,npc,trade)
     starstatus = player:getQuestStatus(WINDURST,TO_CATCH_A_FALLIHG_STAR);
     if (starstatus == 1 and trade:hasItemQty(546,1) == true and trade:getItemCount() == 1 and trade:getGil() == 0) then
-        player:startEvent(0x00c7); -- Quest Finish
+        player:startEvent(199); -- Quest Finish
     end
 end;
 
@@ -30,14 +30,14 @@ end;
 function onTrigger(player,npc)
     starstatus = player:getQuestStatus(WINDURST,TO_CATCH_A_FALLIHG_STAR);
     if (starstatus == QUEST_AVAILABLE) then
-        player:startEvent(0x00c4,0,546); -- Quest Start
+        player:startEvent(196,0,546); -- Quest Start
     elseif (starstatus == QUEST_ACCEPTED) then
-        player:startEvent(0x00c5,0,546); -- Quest Reminder
+        player:startEvent(197,0,546); -- Quest Reminder
     elseif (starstatus == QUEST_COMPLETED and player:getVar("QuestCatchAFallingStar_prog") > 0) then
-        player:startEvent(0x00c8); -- After Quest
+        player:startEvent(200); -- After Quest
         player:setVar("QuestCatchAFallingStar_prog",0)
     else
-        player:startEvent(0x0165);
+        player:startEvent(357);
     end
 end;
 
@@ -57,9 +57,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00c4) then
+    if (csid == 196) then
         player:addQuest(WINDURST,TO_CATCH_A_FALLIHG_STAR);
-    elseif (csid == 0x00c7) then
+    elseif (csid == 199) then
         player:tradeComplete(trade);
         player:completeQuest(WINDURST,TO_CATCH_A_FALLIHG_STAR);
         player:addFame(WINDURST,75);

@@ -48,7 +48,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 1) then
-        player:startEvent(0x0001);
+        player:startEvent(1);
     elseif (EventTriggerBCNM(player,npc)) then
         return 1;
     else
@@ -76,7 +76,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0001) then
+    if (csid == 1) then
         player:setVar('StormsOfFate',2);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

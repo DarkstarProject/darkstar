@@ -29,12 +29,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_COOKING_IMAGERY) == false) then
-            player:startEvent(0x271F,Cost,SkillLevel,0,495,player:getGil(),0,0,0); -- p1 = skill level
+            player:startEvent(10015,Cost,SkillLevel,0,495,player:getGil(),0,0,0); -- p1 = skill level
         else
-            player:startEvent(0x271F,Cost,SkillLevel,0,495,player:getGil(),28589,0,0);
+            player:startEvent(10015,Cost,SkillLevel,0,495,player:getGil(),28589,0,0);
         end
     else
-        player:startEvent(0x271F); -- Standard Dialogue
+        player:startEvent(10015); -- Standard Dialogue
     end
 end;
 
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local Cost = getAdvImageSupportCost(player,SKILL_COOKING);
 
-    if (csid == 0x271F and option == 1) then
+    if (csid == 10015 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(COOKING_SUPPORT,0,8,0);
         player:addStatusEffect(EFFECT_COOKING_IMAGERY,3,0,480);

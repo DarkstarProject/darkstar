@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:hasKeyItem(917)) == true then
-        player:startEvent(0x0066)
+        player:startEvent(102)
     else
-        player:startEvent(0x006E)
+        player:startEvent(110)
     end
 end;
 
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0066) then
+    if (csid == 102) then
             player:delKeyItem(BATTLE_RATIONS);
             player:setVar("THE_FIGHTING_FOURTH",1);
     end        

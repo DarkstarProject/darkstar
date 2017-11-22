@@ -53,7 +53,7 @@ function onTrigger(player,npc)
         local Menu7 = player:getCP();
         local Menu8 = getRewardExForce(guardnation,player);
 
-        player:startEvent(0x7ff9,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
+        player:startEvent(32761,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
     end
 
 end;

@@ -13,10 +13,6 @@ function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
 end;

@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = 35;
     params.bonus = 0;
     params.effect = EFFECT_SILENCE;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
 
     if (resist >= 0.5) then --Do it!
         if (target:addStatusEffect(effectType,1,0,duration * resist)) then

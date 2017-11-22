@@ -296,7 +296,7 @@ bool CMeritPoints::AddLimitPoints(uint16 points)
 			return false;
 		}
 
-        uint8 MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
+        uint8 MeritPoints = std::min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 
         m_LimitPoints = m_LimitPoints % MAX_LIMIT_POINTS;
 
@@ -317,7 +317,7 @@ bool CMeritPoints::AddLimitPoints(uint16 points)
 
 void CMeritPoints::SetLimitPoints(uint16 points)
 {
-    m_LimitPoints = dsp_min(points, MAX_LIMIT_POINTS - 1);
+    m_LimitPoints = std::min<uint16>(points, MAX_LIMIT_POINTS - 1);
 }
 
 /************************************************************************
@@ -328,7 +328,7 @@ void CMeritPoints::SetLimitPoints(uint16 points)
 
 void CMeritPoints::SetMeritPoints(uint16 points)
 {
-    m_MeritPoints = dsp_min(points, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
+    m_MeritPoints = std::min<uint8>((uint8)points, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 }
 
 /************************************************************************
@@ -463,7 +463,7 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
     if (PMerit)
     {
         if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
-            meritValue = dsp_min(PMerit->count, cap[PChar->GetMLevel()]);
+            meritValue = std::min(PMerit->count, cap[PChar->GetMLevel()]);
 
         if (PMerit->catid == 25 && PChar->GetMLevel() < 96) // categoryID 25 is for merit weaponskills, which only apply if the player is lv 96+
             meritValue = 0;
@@ -505,7 +505,7 @@ namespace meritNameSpace
 			// issue with unknown catagories causing massive confusion
 
             uint16 index = 0;			// global merit template count (to 255)
-			int8 catIndex = 0;			// global merit catagory count (to 51)
+			uint8 catIndex = 0;			// global merit catagory count (to 51)
 			int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
 			int8 catMeritIndex = 0;		// counts number of merits in a catagory
 

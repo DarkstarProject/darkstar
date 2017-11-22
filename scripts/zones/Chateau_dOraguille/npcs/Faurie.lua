@@ -17,7 +17,7 @@ end;
 -----------------------------------
 require("scripts/globals/settings");
 function onTrigger(player,npc)
-    player:startEvent(0x01FA);
+    player:startEvent(506);
 end;
 -----------------------------------
 -- onEventFinish Action

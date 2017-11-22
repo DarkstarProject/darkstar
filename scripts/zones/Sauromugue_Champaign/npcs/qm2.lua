@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
                 player:getEquipID(SLOT_WAIST) == 0 and player:getEquipID(SLOT_EAR1) == 0 and
                 player:getEquipID(SLOT_EAR2) == 0 and player:getEquipID(SLOT_RING1) == 0 and
                 player:getEquipID(SLOT_RING2) == 0 and player:getEquipID(SLOT_BACK) == 0) then
-                player:startEvent(0x0002); -- complete grappling part of the quest
+                player:startEvent(2); -- complete grappling part of the quest
             else
                 player:messageSpecial(THF_AF_WALL_OFFSET+2,0,17474); --  You try climbing the wall using the [Grapnel], but you are too heavy.
             end
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0002) then
+    if (csid == 2) then
         player:setVar("thickAsThievesGrapplingCS",8);
         player:delKeyItem(FIRST_FORGED_ENVELOPE);
         player:addKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);

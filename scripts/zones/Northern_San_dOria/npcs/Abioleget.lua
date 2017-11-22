@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         count = trade:getItemCount();
         if (gil == 70 and count == 1) then
             player:tradeComplete();
-            player:startEvent(0x024F);
+            player:startEvent(591);
         end
     end
 end;
@@ -35,11 +35,11 @@ function onTrigger(player,npc)
     sermonQuest = player:getQuestStatus(SANDORIA,THE_VICASQUE_S_SERMON);
 
     if (sermonQuest == QUEST_AVAILABLE) then
-        player:startEvent(0x024d);
+        player:startEvent(589);
     elseif (sermonQuest == QUEST_ACCEPTED) then
         if (player:getVar("sermonQuestVar") == 1) then
             player:tradeComplete();
-            player:startEvent(0x0258);
+            player:startEvent(600);
         else
             player:showText(npc,11103,618,70);
         end
@@ -65,16 +65,20 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0258) then
-        player:addItem(13465);
-        player:messageSpecial(6567, 13465);
-        player:addFame(SANDORIA,30);
-        player:addTitle(THE_BENEVOLENT_ONE);
-        player:setVar("sermonQuestVar",0);
-        player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
-    elseif (csid == 0x024D) then
+    if (csid == 600) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13465);
+        else
+            player:addItem(13465);
+            player:messageSpecial(ITEM_OBTAINED, 13465);
+            player:addFame(SANDORIA,30);
+            player:addTitle(THE_BENEVOLENT_ONE);
+            player:setVar("sermonQuestVar",0);
+            player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
+        end
+    elseif (csid == 589) then
         player:addQuest(SANDORIA,THE_VICASQUE_S_SERMON );
-    elseif (csid == 0x024F) then
+    elseif (csid == 591) then
         player:addItem(618);
         player:messageSpecial(6567, 618);
     end

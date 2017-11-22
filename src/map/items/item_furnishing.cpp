@@ -53,7 +53,7 @@ bool CItemFurnishing::isInstalled()
 
 void CItemFurnishing::setStorage(uint8 storage)
 {
-	m_storage = dsp_min(storage,80);
+	m_storage = std::min<uint8>(storage, 80);
 }
 
 uint8 CItemFurnishing::getStorage()

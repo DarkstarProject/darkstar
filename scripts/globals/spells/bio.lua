@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

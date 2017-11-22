@@ -9,11 +9,7 @@
 -- HP 7% Cap 15
 -- Evasion 3
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -24,19 +20,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5669);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_ACCP, 7);
     target:addMod(MOD_FOOD_ACC_CAP, 15);
     target:addMod(MOD_FOOD_RACCP, 7);
@@ -46,11 +34,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_EVA, 3);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_ACCP, 7);
     target:delMod(MOD_FOOD_ACC_CAP, 15);
     target:delMod(MOD_FOOD_RACCP, 7);

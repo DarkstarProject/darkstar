@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = SKILL_BLU;
     params.bonus = 0;
     params.effect = EFFECT_STUN;
-    resist = applyResistanceEffect(caster, target, spell, params)
+    local resist = applyResistanceEffect(caster, target, spell, params)
     local params = {};
     -- Todo: determine if these param values are retail
         params.tpmod = TPMOD_DAMAGE;

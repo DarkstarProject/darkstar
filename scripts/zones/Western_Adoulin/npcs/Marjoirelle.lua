@@ -25,10 +25,10 @@ function onTrigger(player,npc)
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Marjoirelle)) then
         -- Progresses Quest: 'Order Up'
-        player:startEvent(0x0044);
+        player:startEvent(68);
     else
         -- Standard Dialogue
-        player:startEvent(0x021A);
+        player:startEvent(538);
     end
 end;
 
@@ -44,7 +44,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0044) then
+    if (csid == 68) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 8, true);
     end

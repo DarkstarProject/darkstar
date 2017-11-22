@@ -79,7 +79,7 @@ function onRegionEnter(player,region)
         [1] = function (x)  -- Windurst Mission 1-3, final cutscene with Leepe-Hoppe
             -- If we're on Windurst Mission 1-3
             if (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE and player:getVar("MissionStatus") == 2) then
-                player:startEvent(0x0092);
+                player:startEvent(146);
             end
         end,
     }

@@ -34,46 +34,46 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
         Message = math.random(0,1)
         
         if (Message == 1) then
-            player:startEvent(0x0219);
+            player:startEvent(537);
         else
-            player:startEvent(0x020d);
+            player:startEvent(525);
         end
     elseif (ThePromise == QUEST_ACCEPTED) then
-        player:startEvent(0x0203);
+        player:startEvent(515);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
-        player:startEvent(0x01fd);
+        player:startEvent(509);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
         CryingOverOnionsVar = player:getVar("CryingOverOnions");
         
         if (CryingOverOnionsVar >= 1) then
-            player:startEvent(0x01fc);
+            player:startEvent(508);
         else
-            player:startEvent(0x01f5);
+            player:startEvent(501);
         end
     elseif (OnionRings == QUEST_COMPLETED) then
-        player:startEvent(0x01b9);
+        player:startEvent(441);
     elseif (OnionRings == QUEST_ACCEPTED ) then
-        player:startEvent(0x01b2);
+        player:startEvent(434);
     elseif (InspectorsGadget == QUEST_COMPLETED) then
-        player:startEvent(0x01a8);
+        player:startEvent(424);
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
-        player:startEvent(0x01a0);
+        player:startEvent(416);
     elseif (KnowOnesOnions == QUEST_COMPLETED) then
-        player:startEvent(0x0193);
+        player:startEvent(403);
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
         KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
         
         if (KnowOnesOnionsVar == 2) then
-            player:startEvent(0x0192);
+            player:startEvent(402);
         else
-            player:startEvent(0x0189);
+            player:startEvent(393);
         end
     elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
-        player:startEvent(0x017c);
+        player:startEvent(380);
     elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
-        player:startEvent(0x0174);
+        player:startEvent(372);
     else
-        player:startEvent(0x016a);
+        player:startEvent(362);
     end
    
 end;

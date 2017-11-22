@@ -35,16 +35,16 @@ function onTrigger(player,npc)
     ------------------------------------------------------------
     -- Class Reunion
     if (ClassReunion == 1 and ClassReunionProgress == 4) then
-        player:startEvent(0x02c9,0,1171,0,0,0,0,0,0); -- he gives you an ice pendulum and wants you to go to Cloister of Frost
+        player:startEvent(713,0,1171,0,0,0,0,0,0); -- he gives you an ice pendulum and wants you to go to Cloister of Frost
     elseif (ClassReunion == 1 and ClassReunionProgress == 5 and player:hasItem(1171) == false) then
-        player:startEvent(0x02c8,0,1171,0,0,0,0,0,0); -- lost the ice pendulum need another one
+        player:startEvent(712,0,1171,0,0,0,0,0,0); -- lost the ice pendulum need another one
     ------------------------------------------------------------
     elseif ((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then
-        player:startEvent(0x02c2,0,TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
+        player:startEvent(706,0,TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
     elseif (TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then
-        player:startEvent(0x02ce,0,TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork
+        player:startEvent(718,0,TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork
     elseif (TrialByIce == QUEST_ACCEPTED and WhisperOfFrost == false) then
-        player:startEvent(0x02c3,0,TUNING_FORK_OF_ICE,4);
+        player:startEvent(707,0,TUNING_FORK_OF_ICE,4);
     elseif (TrialByIce == QUEST_ACCEPTED and WhisperOfFrost) then
         local numitem = 0;
 
@@ -54,9 +54,9 @@ function onTrigger(player,npc)
         if (player:hasItem(1207)) then numitem = numitem + 8; end   -- Rust 'B' Gone
         if (player:hasSpell(302)) then numitem = numitem + 32; end  -- Ability to summon Shiva
 
-        player:startEvent(0x02c5,0,TUNING_FORK_OF_ICE,4,0,numitem);
+        player:startEvent(709,0,TUNING_FORK_OF_ICE,4,0,numitem);
     else
-        player:startEvent(0x02c6); -- Standard dialog
+        player:startEvent(710); -- Standard dialog
     end
 
 end;
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x02c2 and option == 1) then
+    if (csid == 706 and option == 1) then
         if (player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED) then
             player:delQuest(SANDORIA,TRIAL_BY_ICE);
         end
@@ -86,10 +86,10 @@ function onEventFinish(player,csid,option)
         player:setVar("TrialByIce_date", 0);
         player:addKeyItem(TUNING_FORK_OF_ICE);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
-    elseif (csid == 0x02ce) then
+    elseif (csid == 718) then
         player:addKeyItem(TUNING_FORK_OF_ICE);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
-    elseif (csid == 0x02c5) then
+    elseif (csid == 709) then
         local item = 0;
         if (option == 1) then item = 17492;         -- Shiva's Claws
         elseif (option == 2) then item = 13242;  -- Ice Belt
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,TRIAL_BY_ICE);
         end
-    elseif (csid == 0x02c9 or csid == 0x02c8) then
+    elseif (csid == 713 or csid == 712) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1171);
             player:messageSpecial(ITEM_OBTAINED,1171);

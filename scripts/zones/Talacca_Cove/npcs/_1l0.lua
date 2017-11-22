@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     LuckOfTheDraw = player:getVar("LuckOfTheDraw");
 
     if (LuckOfTheDraw ==4) then
-        player:startEvent(0x0003);
+        player:startEvent(3);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     end
@@ -57,14 +57,18 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 
 
-    if (csid == 0x0003) then                    -- complete corsair job flag quest
-        player:setVar("LuckOfTheDraw",5); -- var will remain for af quests
-        player:addItem(5493);
-        player:messageSpecial(ITEM_OBTAINED,5493);
-        player:delKeyItem(FORGOTTEN_HEXAGUN);
-        player:unlockJob(17);
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_CORSAIR);
-        player:completeQuest(AHT_URHGAN,LUCK_OF_THE_DRAW);
+    if (csid == 3) then -- complete corsair job flag quest
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5493);
+        else
+            player:setVar("LuckOfTheDraw",5); -- var will remain for af quests
+            player:addItem(5493);
+            player:messageSpecial(ITEM_OBTAINED,5493);
+            player:delKeyItem(FORGOTTEN_HEXAGUN);
+            player:unlockJob(17);
+            player:messageSpecial(YOU_CAN_NOW_BECOME_A_CORSAIR);
+            player:completeQuest(AHT_URHGAN,LUCK_OF_THE_DRAW);
+        end
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end

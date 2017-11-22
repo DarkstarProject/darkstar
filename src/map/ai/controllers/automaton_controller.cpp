@@ -147,8 +147,9 @@ bool CAutomatonController::isRanged()
     case HEAD_SOULSOOTHER:
     case HEAD_SPIRITREAVER:
         return true;
+    default:
+        return false;
     }
-    return false;
 }
 
 CurrentManeuvers CAutomatonController::GetCurrentManeuvers() const
@@ -173,7 +174,6 @@ void CAutomatonController::DoCombatTick(time_point tick)
         return;
     }
 
-    auto PPrevTarget = PTarget;
     PTarget = static_cast<CBattleEntity*>(PAutomaton->GetEntity(PAutomaton->GetBattleTargetID()));
 
     if (TryDeaggro())
@@ -217,7 +217,7 @@ void CAutomatonController::DoCombatTick(time_point tick)
 void CAutomatonController::Move()
 {
     float currentDistance = distanceSquared(PAutomaton->loc.p, PTarget->loc.p);
-    if (isRanged() && (currentDistance > 225) || (PAutomaton->health.mp < 8 && PAutomaton->health.maxmp > 8))
+    if ((isRanged() && (currentDistance > 225)) || (PAutomaton->health.mp < 8 && PAutomaton->health.maxmp > 8))
     {
         PAutomaton->m_Behaviour &= ~BEHAVIOUR_STANDBACK;
     }
@@ -425,7 +425,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         break;
     }
 
-    threshold = dsp_cap(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30, 90);
+    threshold = std::clamp<float>(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30.f, 90.f);
     CBattleEntity* PCastTarget = nullptr;
 
     bool haveHate = false;

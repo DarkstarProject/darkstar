@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(CREST_OF_DAVOI_KI)) then
-        player:startEvent(0x0036);
+        player:startEvent(54);
     else
-        player:startEvent(0x0037);
+        player:startEvent(55);
     end
 
 end;

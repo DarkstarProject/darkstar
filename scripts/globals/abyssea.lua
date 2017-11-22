@@ -315,6 +315,21 @@ function getNewBlueWeakness(mob)
     return blue_weakness[table][math.random(#blue_weakness[table])]
 end
 
+-- [ZoneID] = {Required Trades Event, Has Key Items Event, Missing Key Item Event}
+local POP_EVENTS =
+{
+     [15] = {1010, 1020, 1021}, -- Abyssea-Konschtat
+     [45] = {1010, 1020, 1021}, -- Abyssea-Tahrongi
+    [132] = {1010, 1020, 1021}, -- Abyssea-La Theine
+    [215] = {1010, 1022, 1023}, -- Abyssea-Attohwa
+    [216] = {1010, 1020, 1021}, -- Abyssea-Misareaux
+    [217] = {1010, 1015, 1120}, -- Abyssea-Vunkerl
+    [218] = {1010, 1020, 1021}, -- Abyssea-Altepa
+    [253] = {1010, 1020, 1025}, -- Abyssea-Uleguerand
+    [253] = {1010, 1020, 1021}, -- Abyssea-Grauberg
+    [255] = {1010, 1020, 1021}, -- Abyssea-Empyreal Paradox
+}
+
 function abysseaOnTrade(player,npc,trade)
     -- validate QM pop data
     local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
@@ -346,12 +361,17 @@ function abysseaOnTrade(player,npc,trade)
     
     -- complete trade and pop nm
     player:tradeComplete();
+    local dx = player:getXPos() + math.random(-1,1);
+    local dy = player:getYPos();
+    local dz = player:getZPos() + math.random(-1,1);
+    GetMobByID(nm):setSpawn(dx,dy,dz);
     SpawnMob(nm):updateClaim(player);
     return true;
 end
 
 function abysseaOnTrigger(player,npc)
     -- validate QM pop data
+    local events = POP_EVENTS[player:getZoneID()];
     local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
     package.loaded[MobIDs] = nil;
     require(MobIDs); 
@@ -374,7 +394,7 @@ function abysseaOnTrigger(player,npc)
                 t[i] = 0;
             end
         end
-        player:startEvent(1010,t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8]); -- report required trades
+        player:startEvent(events[1],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8]); -- report required trades
         return true;
     end
     
@@ -401,13 +421,13 @@ function abysseaOnTrigger(player,npc)
     end
 
     -- start event
-    if (not validKis) then
-        player:startEvent(1021,kis[1],kis[2],kis[3],kis[4],kis[5],kis[6],kis[7],kis[8]); -- player is missing key items
-        return false;
-    else
+    if (validKis) then
         player:setLocalVar("abysseaQM", npc:getID());
-        player:startEvent(1020,kis[1],kis[2],kis[3],kis[4],kis[5],kis[6],kis[7],kis[8]); -- player has all key items
+        player:startEvent(events[2],kis[1],kis[2],kis[3],kis[4],kis[5],kis[6],kis[7],kis[8]); -- player has all key items
         return true;
+    else
+        player:startEvent(events[3],kis[1],kis[2],kis[3],kis[4],kis[5],kis[6],kis[7],kis[8]); -- player is missing key items
+        return false;
     end
 end
 
@@ -417,6 +437,7 @@ end
 
 function abysseaOnEventFinish(player,csid,option)
     -- validate QM pop data
+    local events = POP_EVENTS[player:getZoneID()];
     local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
     package.loaded[MobIDs] = nil;
     require(MobIDs); 
@@ -426,7 +447,7 @@ function abysseaOnEventFinish(player,csid,option)
         return false;
     end
 
-    if (csid == 1020 and option == 1) then
+    if (csid == events[2] and option == 1) then
         -- delete kis
         local kis = pop[3];
         for k, v in pairs(kis) do
@@ -437,6 +458,10 @@ function abysseaOnEventFinish(player,csid,option)
         
         -- pop nm
         local nm = pop[4];
+        local dx = player:getXPos() + math.random(-1,1);
+        local dy = player:getYPos();
+        local dz = player:getZPos() + math.random(-1,1);
+        GetMobByID(nm):setSpawn(dx,dy,dz);
         SpawnMob(nm):updateClaim(player);
         return true;
     end

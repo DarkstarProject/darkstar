@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
     params.effect = EFFECT_STUN;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 5 * resist;
 
     if (resist > 0.0625) then -- Do it!

@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (newRank ~= 0) then
         player:setSkillRank(SKILL_ALCHEMY,newRank);
-        player:startEvent(0x0079,0,0,0,0,newRank);
+        player:startEvent(121,0,0,0,0,newRank);
     end
 end;
 
@@ -50,9 +50,9 @@ function onTrigger(player,npc)
         end
 
         -- The Parameters are Item IDs for the Recipe
-        player:startEvent(0x024e, item, 2774, 929, 4103, 2777, 4103);
+        player:startEvent(590, item, 2774, 929, 4103, 2777, 4103);
     else
-        player:startEvent(0x0078,testItem,getNewRank,30,guildMember,44,0,0,0);
+        player:startEvent(120,testItem,getNewRank,30,guildMember,44,0,0,0);
     end
 end;
 
@@ -72,7 +72,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0078 and option == 1) then
+    if (csid == 120 and option == 1) then
         local crystal = 4101; -- water crystal
 
         if (player:getFreeSlotsCount() == 0) then

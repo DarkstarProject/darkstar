@@ -89,6 +89,10 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
                     generateCampaignMissionPacket(PChar, (uint8)256);
                     packetType = CAMPAIGN_MISSION_TWO;
                     break;
+                default:
+                {
+                    break;
+                }
             }
         }
         else {

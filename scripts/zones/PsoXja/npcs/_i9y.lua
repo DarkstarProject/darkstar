@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
-        player:startEvent(0x003a);
+        player:startEvent(58);
     else
         player:messageSpecial(DEVICE_IN_OPERATION);
     end
@@ -41,7 +41,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
-    if (csid == 0x003a) then
+    if (csid == 58) then
         local CrystalOperator = npc:getID();
         npc:openDoor(118); -- this sets the trigger animation to glowing. The time is retail confirmed.
         GetNPCByID(CrystalOperator+1):closeDoor(118); -- tiles will reset at the same time.

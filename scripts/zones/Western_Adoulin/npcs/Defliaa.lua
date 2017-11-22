@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
         local ATWTTB_Paid_Defliaa = player:getMaskBit(player:getVar("ATWTTB_Payments"), 0);
         if ((not ATWTTB_Paid_Defliaa) and npcUtil.tradeHas(trade, nil, 19440)) then
             -- Progresses Quest: 'All the Way to the Bank'
-            player:startEvent(0x13CD);
+            player:startEvent(5069);
         end
     end
 end;
@@ -60,7 +60,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x13CD) then
+    if (csid == 5069) then
         -- Progresses Quest: 'All the Way to the Bank'
         player:tradeComplete();
         player:setMaskBit("ATWTTB_Payments", 0, true);

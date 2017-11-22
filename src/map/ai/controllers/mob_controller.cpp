@@ -1053,5 +1053,10 @@ bool CMobController::IsSpellReady(float currentDistance)
         bonusTime = PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
     }
 
+    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    {
+        return true;
+    }
+
     return (m_Tick >= m_LastMagicTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_MAGIC_COOL) - bonusTime));
 }

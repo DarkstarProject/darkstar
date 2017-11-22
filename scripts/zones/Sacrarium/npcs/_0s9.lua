@@ -12,7 +12,7 @@ function onTrigger(player,npc)
     if (player:getZPos() > 20) then
         player:messageSpecial(CANNOT_OPEN_SIDE);
     elseif (player:getZPos() < 20) then
-        player:startEvent(0x006a);
+        player:startEvent(106);
     end
 
 end;

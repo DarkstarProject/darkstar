@@ -43,11 +43,11 @@ function onZoneIn(player,prevZone)
 
     if (prevZone == 109) then
         if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 100) then
-            cs = 0x0079;
+            cs = 121;
         elseif (player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1) then
-            cs = 0x0078;
+            cs = 120;
         elseif (player:getMainJob() == JOBS.DRK and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_AVAILABLE) then
-            cs = 0x007a;
+            cs = 122;
         end
     end
 
@@ -102,16 +102,16 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
 
-    if (csid == 0x0079) then
+    if (csid == 121) then
         player:unlockJob(8);
         player:addTitle(DARK_SIDER);
         player:setVar("ZeruhnMines_Zeid_CS", 0);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT);
         player:completeQuest(BASTOK, BLADE_OF_DARKNESS);
-    elseif (csid == 0x0078) then
+    elseif (csid == 120) then
         player:setVar("MissionStatus",2);
         player:setPos(-297, 1, 96, 1);
-    elseif (csid == 0x007a) then
+    elseif (csid == 122) then
         player:addQuest(BASTOK,BLADE_OF_EVIL);
     end
 

@@ -43,7 +43,7 @@ function onTrade(player,npc,trade)
 
     if (player:getVar("troubleAtTheSluiceVar") == 2) then
         if (trade:hasItemQty(959,1) and trade:getItemCount() == 1) then -- Trade Dahlia
-            player:startEvent(0x0011);
+            player:startEvent(17);
             npc:wait();
         end
     end
@@ -51,7 +51,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local BeastBlood = trade:hasItemQty(930,1)
         if (BeastBlood == true and count == 1) then
-            player:startEvent(0x000c);
+            player:startEvent(12);
             npc:wait();
         end
     end
@@ -73,26 +73,26 @@ function onTrigger(player,npc)
 
     -- The Holy Crest Quest
     if (TheHolyCrest == 1) then
-        player:startEvent(0x0006);
+        player:startEvent(6);
     elseif (TheHolyCrest == 2 and crestCheck == 0) then
-        player:startEvent(0x0007);
+        player:startEvent(7);
         player:setVar("theHolyCrestCheck",1);
     -- Trouble at the Sluice Quest
     elseif (tatsVar == 1) then
-        player:startEvent(0x000f);
+        player:startEvent(15);
         player:setVar("troubleAtTheSluiceVar",2);
     elseif (tatsVar == 2) then
-        player:startEvent(0x0010);
+        player:startEvent(16);
     -- The rumor Quest
     elseif (theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3 and player:getMainLvl() >= 10) then
-        player:startEvent(0x000d);
+        player:startEvent(13);
     elseif (theRumor == QUEST_ACCEPTED) then
-        player:startEvent(0x000b);
+        player:startEvent(11);
     elseif (theRumor == QUEST_COMPLETED) then
-        player:startEvent(0x000e); -- Standard dialog after "The Rumor"
+        player:startEvent(14); -- Standard dialog after "The Rumor"
         player:setVar("theHolyCrestCheck",0);
     else
-        player:startEvent(0x000a); -- Standard dialog
+        player:startEvent(10); -- Standard dialog
     end
 end;
 
@@ -113,17 +113,17 @@ function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0006) then
+    if (csid == 6) then
         player:setVar("TheHolyCrest_Event",2);
-    elseif (csid == 0x0011) then
+    elseif (csid == 17) then
         player:tradeComplete();
         player:addKeyItem(NEUTRALIZER);
         player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
         player:setVar("troubleAtTheSluiceVar",0);
         player:setVar("theHolyCrestCheck",0);
-    elseif (csid == 0x000d and option == 1) then
+    elseif (csid == 13 and option == 1) then
         player:addQuest(SANDORIA,THE_RUMOR);
-    elseif (csid == 0x000c) then
+    elseif (csid == 12) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4853); -- Scroll of Drain
         else

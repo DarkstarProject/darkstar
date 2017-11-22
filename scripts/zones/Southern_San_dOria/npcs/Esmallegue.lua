@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
--- player:startEvent(0x37e);-- cavernous maw
-    player:startEvent(0x0375)
+-- player:startEvent(894);-- cavernous maw
+    player:startEvent(885)
 end;
 
 -----------------------------------

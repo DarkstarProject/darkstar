@@ -77,7 +77,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
                 WBUFW(data,(size*2+0x0C)) = ((CItemArmor*)PItem)->getAugment(3);
             }
 
-			memcpy(data+(size*2+0x10), PItem->getSignature(), dsp_cap(strlen(PItem->getSignature()), 0, 12));
+			memcpy(data+(size*2+0x10), PItem->getSignature(), std::clamp<size_t>(strlen(PItem->getSignature()), 0, 12));
 
 			this->size += 0x0E;
 			count++;
@@ -118,7 +118,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
         WBUFW(data,(0x0E)) = PLinkshell->getID();
         WBUFW(data,(0x10)) = PLinkshell->GetLSRawColor();
 
-        memcpy(data+(0x14), PLinkshell->getSignature(), dsp_cap(strlen(PLinkshell->getSignature()), 0, 15));
+        memcpy(data+(0x14), PLinkshell->getSignature(), std::clamp<size_t>(strlen(PLinkshell->getSignature()), 0, 15));
     }
 	if ((PChar->nameflags.flags & FLAG_GM) || !(PTarget->nameflags.flags & FLAG_ANON))
 	{

@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(940,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x0269);
+            player:startEvent(617);
         end
     end
 
@@ -41,47 +41,47 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 2) then
         player:startEvent(63); -- DRG AF3 cutscene, doesn't appear to have a follow up.
     elseif (LvL < 7) then
-        player:startEvent(0x029c);
+        player:startEvent(668);
     elseif (LvL >= 7 and ASquiresTest ~= QUEST_COMPLETED) then
         if (ASquiresTest == 0) then
             if (player:getVar("SquiresTest") == 1) then
-                player:startEvent(0x0277);
+                player:startEvent(631);
             else
-                player:startEvent(0x0268);
+                player:startEvent(616);
             end
         elseif (ASquiresTest == QUEST_ACCEPTED) then
-            player:startEvent(0x029b);
+            player:startEvent(667);
         end
     elseif (LvL >= 7 and LvL < 15) then
-        player:startEvent(0x029f);
+        player:startEvent(671);
     elseif (LvL >= 15 and ASquiresTestII ~= QUEST_COMPLETED) then
         local StalactiteDew = player:hasKeyItem(STALACTITE_DEW)
 
         if (ASquiresTestII == QUEST_AVAILABLE) then
-            player:startEvent(0x0271);
+            player:startEvent(625);
         elseif (ASquiresTestII == QUEST_ACCEPTED and StalactiteDew == false) then
-            player:startEvent(0x0276);
+            player:startEvent(630);
         elseif (StalactiteDew) then
-            player:startEvent(0x0272);
+            player:startEvent(626);
         else
-            player:startEvent(0x029b);
+            player:startEvent(667);
         end
     elseif (LvL >= 15 and LvL < 30) then
-        player:startEvent(0x029e);
+        player:startEvent(670);
     elseif (LvL >= 30 and AKnightsTest ~= QUEST_COMPLETED) then
         if (AKnightsTest == 0) then
             if (player:getVar("KnightsTest_Event") == 1) then
-                player:startEvent(0x027b);
+                player:startEvent(635);
             else
-                player:startEvent(0x0273);
+                player:startEvent(627);
             end
         elseif (player:hasKeyItem(KNIGHTS_SOUL)) then
-            player:startEvent(0x0274);
+            player:startEvent(628);
         else
-            player:startEvent(0x029d);
+            player:startEvent(669);
         end
     else
-        player:startEvent(0x029b);
+        player:startEvent(667);
     end
 
 end;
@@ -103,16 +103,16 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0268) then
+    if (csid == 616) then
         if (option == 0) then
             player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
         else
             player:setVar("SquiresTest_Event",1);
         end
-    elseif (csid == 0x0277 and option == 0) then
+    elseif (csid == 631 and option == 0) then
         player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
         player:setVar("SquiresTest_Event",0);
-    elseif (csid == 0x0269) then
+    elseif (csid == 617) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
             player:addTitle(KNIGHT_IN_TRAINING);
@@ -123,9 +123,9 @@ function onEventFinish(player,csid,option)
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565); -- Spatha
         end
-    elseif (csid == 0x0271 or csid == 0x0276) then
+    elseif (csid == 625 or csid == 630) then
         player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
-    elseif (csid == 0x0272) then
+    elseif (csid == 626) then
         player:tradeComplete();
         player:addTitle(SPELUNKER);
         player:delKeyItem(STALACTITE_DEW);
@@ -133,7 +133,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED, SQUIRE_CERTIFICATE);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,A_SQUIRE_S_TEST_II);
-    elseif (csid == 0x0273) then
+    elseif (csid == 627) then
         if (option == 0) then
             player:addQuest(SANDORIA,A_KNIGHT_S_TEST);
             player:addKeyItem(BOOK_OF_TASKS);
@@ -141,12 +141,12 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("KnightsTest_Event",1);
         end
-    elseif (csid == 0x027b and option == 0) then
+    elseif (csid == 635 and option == 0) then
         player:addQuest(SANDORIA,A_KNIGHT_S_TEST);
         player:addKeyItem(BOOK_OF_TASKS);
         player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_TASKS);
         player:setVar("KnightsTest_Event",0);
-    elseif (csid == 0x0274) then
+    elseif (csid == 628) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addTitle(TRIED_AND_TESTED_KNIGHT);
             player:delKeyItem(KNIGHTS_SOUL);
@@ -167,10 +167,10 @@ function onEventFinish(player,csid,option)
     end
 
 end;
---    player:startEvent(0x7fb2)     -- starlight celebration
---    player:startEvent(0x000a)     -- methods create madness you havent used the weapon to full extent
---    player:startEvent(0x0008)      -- methods create madness start
---    player:startEvent(0x000b)      -- methods create nadness menu
---    player:startEvent(0x0009)      -- methods create madness map
---    player:startEvent(0x000c)     -- methods create madness map reminder
---    player:startEvent(0x000d)     -- methods create madness end
+--    player:startEvent(32690)     -- starlight celebration
+--    player:startEvent(10)     -- methods create madness you havent used the weapon to full extent
+--    player:startEvent(8)      -- methods create madness start
+--    player:startEvent(11)      -- methods create nadness menu
+--    player:startEvent(9)      -- methods create madness map
+--    player:startEvent(12)     -- methods create madness map reminder
+--    player:startEvent(13)     -- methods create madness end

@@ -42,7 +42,7 @@ victory = false
 end
 end
 if victory == true then
-player:startEvent(0x7d04,0,0,4);
+player:startEvent(32004,0,0,4);
 end
 
 end;
@@ -60,7 +60,7 @@ end;
 function onEventFinish(player,csid,option)
 printf("finishCSID: %u",csid);
 printf("RESULT: %u",option);
-if (csid == 0x7d04) then
+if (csid == 32004) then
  if (player:getBattlefield():getBattlefieldNumber() == 1) then
     SpawnMob(17621014);
     SpawnMob(17621015);

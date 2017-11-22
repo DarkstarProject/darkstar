@@ -3,11 +3,7 @@
 -- Equip: Twilight Cloak
 -- Able to cast "Impact"
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)

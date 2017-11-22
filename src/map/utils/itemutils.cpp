@@ -446,7 +446,7 @@ namespace itemutils
 
                 if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addLatent(CLatentEffect((LATENT)latentId, latentParam, 0, modID, value));
+                    ((CItemArmor*)g_pItemList[ItemID])->addLatent((LATENT)latentId, latentParam, modID, value);
                 }
             }
         }

@@ -87,7 +87,7 @@ duration CTaskMgr::DoTimer(time_point tick)
 			}
 				break;
 		}
-		diff = dsp_cap(diff, 50ms, 1000ms);
+		diff = std::clamp<duration>(diff, 50ms, 1000ms);
 	}
 	return diff;
 }

@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
     NorgFame = player:getFameLevel(NORG);
 
-    player:startEvent(0x0064 + (NorgFame - 1));
+    player:startEvent(100 + (NorgFame - 1));
 end;
 
 -----------------------------------

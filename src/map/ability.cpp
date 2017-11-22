@@ -464,6 +464,7 @@ namespace ability
             case JOB_SCH: return PAbilityList[ABILITY_TABULA_RASA]; break;
             case JOB_GEO: return PAbilityList[ABILITY_BOLSTER]; break;
             case JOB_RUN: return PAbilityList[ABILITY_ELEMENTAL_SFORZO]; break;
+            default: break;
         }
         return nullptr;
     }

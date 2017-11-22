@@ -23,7 +23,7 @@ ViewedNote = player:getVar("GroceriesViewedNote");
         MeatJerky = trade:hasItemQty(4376,1);
 
         if (MeatJerky == true and count == 1) then
-            player:startEvent(0x0071);
+            player:startEvent(113);
         end
     end
     
@@ -39,13 +39,13 @@ Groceries = player:getQuestStatus(BASTOK,GROCERIES);
 GroceriesVar = player:getVar("Groceries");
 
     if (Groceries == QUEST_COMPLETED) then
-        player:startEvent(0x0073);
+        player:startEvent(115);
     elseif (Groceries == QUEST_AVAILABLE or GroceriesVar == 0) then
-        player:startEvent(0x006e);
+        player:startEvent(110);
     elseif (GroceriesVar == 1) then
         player:showText(npc,10510);
     elseif (GroceriesVar == 2) then
-        player:startEvent(0x0070);
+        player:startEvent(112);
     end
 
 end;
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x006e) then
+    if (csid == 110) then
         Groceries = player:getQuestStatus(BASTOK,GROCERIES);
         
         if (Groceries == QUEST_AVAILABLE) then
@@ -76,12 +76,12 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(0x98);
         player:messageSpecial(KEYITEM_OBTAINED,0x98);
         player:setVar("Groceries",1);
-    elseif (csid == 0x0070) then
+    elseif (csid == 112) then
         player:addFame(BASTOK,8);
         player:setVar("Groceries",0);
         player:addGil(GIL_RATE*10);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*10);
-    elseif (csid == 0x0071) then
+    elseif (csid == 113) then
         FreeSlots = player:getFreeSlotsCount();
     
         if (FreeSlots >= 1) then

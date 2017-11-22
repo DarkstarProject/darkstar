@@ -20,6 +20,9 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(VRTRA);
     GetMobByID(VRTRA):setRespawnTime(math.random(86400, 259200));
 
+    UpdateNMSpawnPoint(BARBASTELLE);
+    GetMobByID(BARBASTELLE):setRespawnTime(math.random(1800,5400));
+
     UpdateTreasureSpawnPoint(17555955);
 end;
 
@@ -53,7 +56,7 @@ end;
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
-        player:startEvent(0x0009);
+        player:startEvent(9);
     end
 end;
 

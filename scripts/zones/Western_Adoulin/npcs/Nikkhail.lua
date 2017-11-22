@@ -33,14 +33,14 @@ function onTrigger(player,npc)
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
         if ((ATFTA == QUEST_ACCEPTED) and ATFTA_Need_KI) then
             -- Progresses Quest: 'A Thirst for the Ages'
-            player:startEvent(0x13BD);
+            player:startEvent(5053);
         else
             -- Standard dialogue, after joining colonization effort
-            player:startEvent(0x0248);
+            player:startEvent(584);
         end
     else
         -- Dialogue prior to joining colonization effort
-        player:startEvent(0x01FE);
+        player:startEvent(510);
     end
 end;
 
@@ -56,7 +56,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x13BD) then
+    if (csid == 5053) then
         -- Progresses Quest: 'A Thirst for the Ages'
         player:addKeyItem(COPY_OF_THE_ALLIANCE_AGREEMENT);
         player:messageSpecial(KEYITEM_OBTAINED, COPY_OF_THE_ALLIANCE_AGREEMENT);

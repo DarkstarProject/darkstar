@@ -121,32 +121,51 @@ public:
     void    SetModPower(int16 power);
     void    Activate();
     void    Deactivate();
-    void    SetOwner(CBattleEntity* Owner);
 
     CLatentEffect(
+         CBattleEntity* owner,
          LATENT conditionsId,
          uint16 conditionsValue,
          uint8 slot, 
          Mod modValue, 
          int16 modPower
     );
-    CLatentEffect(CLatentEffect&&) = default;
-    CLatentEffect& operator=(CLatentEffect&&) = default;
-    CLatentEffect(const CLatentEffect&) = default;
-    CLatentEffect& operator=(const CLatentEffect&) = default;
+    CLatentEffect(const CLatentEffect&) = delete;
+    CLatentEffect& operator=(const CLatentEffect&) = delete;
+    CLatentEffect(CLatentEffect&& o) noexcept
+    {
+        std::swap(m_POwner, o.m_POwner);
+        std::swap(m_ConditionsID, o.m_ConditionsID);
+        std::swap(m_ConditionsValue, o.m_ConditionsValue);
+        std::swap(m_SlotID, o.m_SlotID);
+        std::swap(m_ModValue, o.m_ModValue);
+        std::swap(m_ModPower, o.m_ModPower);
+        std::swap(m_Activated, o.m_Activated);
+    }
+    CLatentEffect& operator=(CLatentEffect&& o) noexcept
+    {
+        std::swap(m_POwner, o.m_POwner);
+        std::swap(m_ConditionsID, o.m_ConditionsID);
+        std::swap(m_ConditionsValue, o.m_ConditionsValue);
+        std::swap(m_SlotID, o.m_SlotID);
+        std::swap(m_ModValue, o.m_ModValue);
+        std::swap(m_ModPower, o.m_ModPower);
+        std::swap(m_Activated, o.m_Activated);
+        return *this;
+    }
 
    ~CLatentEffect();
 
 private:
 
-    CBattleEntity* m_POwner;            
+    CBattleEntity* m_POwner{nullptr};
 
-    LATENT      m_ConditionsID;         //condition type to be true
-    uint16      m_ConditionsValue;      //condition parameter to be met
-    uint8       m_SlotID;               //slot associated with latent
-    Mod         m_ModValue;             //mod ID to be applied when active
-    uint16      m_ModPower;             //power of mod to be applied when active
-    bool        m_Activated;            //active or not active
+    LATENT      m_ConditionsID{LATENT_HP_UNDER_PERCENT};         //condition type to be true
+    uint16      m_ConditionsValue{0};      //condition parameter to be met
+    uint8       m_SlotID{0};               //slot associated with latent
+    Mod         m_ModValue{Mod::NONE};     //mod ID to be applied when active
+    int16       m_ModPower{0};             //power of mod to be applied when active
+    bool        m_Activated{false};        //active or not active
 };
 
 #endif

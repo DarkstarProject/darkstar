@@ -415,7 +415,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
                                 chance *= 1.0 + ((double)1 / 3);
                         }
 
-                        chance = dsp_cap(chance, 0., 0.500);
+                        chance = std::clamp(chance, 0., 0.500);
 					}
 
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -799,8 +799,8 @@ int32 startSynth(CCharEntity* PChar)
 
 	uint8  invSlotID  = 0;
 	uint8  tempSlotID = 0;
-	uint16 itemID     = 0;
-	uint32 quantity   = 0;
+	// uint16 itemID     = 0;
+	// uint32 quantity   = 0;
 
 	for(uint8 slotID = 1; slotID <= 8; ++slotID)
 	{

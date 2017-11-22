@@ -3,20 +3,12 @@
 -- Item: Panacea
 -- Item Effect: Removes any number of status effects
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
     return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:delStatusEffect(EFFECT_PARALYSIS);

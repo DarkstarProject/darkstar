@@ -35,14 +35,14 @@ function onTrigger(player,npc)
 
     if (pNation == NATION_WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
-            player:startEvent(0x0246);
+            player:startEvent(582);
         else
-            player:startEvent(0x022a);
+            player:startEvent(554);
         end
     elseif (pNation == NATION_BASTOK) then
-        player:startEvent(0x0242);
+        player:startEvent(578);
     elseif (pNation == NATION_SANDORIA) then
-        player:startEvent(0x0241);
+        player:startEvent(577);
     end
 
 end;
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0246) then
+    if (csid == 582) then
         player:setVar("MissionStatus",2);
     end
 

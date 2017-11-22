@@ -15,10 +15,6 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,180,4566);
     if (not target:hasStatusEffect(EFFECT_POISON)) then

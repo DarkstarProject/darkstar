@@ -1181,7 +1181,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "exp_retain") == 0)
         {
-            map_config.exp_retain = (float)dsp_cap(atof(w2), 0.0f, 1.0f);
+            map_config.exp_retain = std::clamp<float>((float)atof(w2), 0.0f, 1.0f);
         }
         else if (strcmp(w1, "exp_loss_level") == 0)
         {

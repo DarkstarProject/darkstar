@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x006c);
+    player:startEvent(108);
     player:setVar("SahaginKeyProgress",2);
 end;
 

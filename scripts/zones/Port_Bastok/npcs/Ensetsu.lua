@@ -33,33 +33,33 @@ function onTrigger(player,npc)
         questStatus = player:getVar("AyameAndKaede_Event")
 
         if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
-            player:startEvent(0x00f2);
+            player:startEvent(242);
         elseif (questStatus == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == true) then
-            player:startEvent(0x00f5);
+            player:startEvent(245);
         elseif (questStatus == 3) then
-            player:startEvent(0x00f3);
+            player:startEvent(243);
         elseif (player:hasKeyItem(SEALED_DAGGER)) then
-            player:startEvent(0x00f6,SEALED_DAGGER);
+            player:startEvent(246,SEALED_DAGGER);
         else
-            player:startEvent(0x001b);
+            player:startEvent(27);
         end
     elseif (AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
-        player:startEvent(0x00f7);
+        player:startEvent(247);
     elseif (player:getVar("twentyInPirateYearsCS") == 2) then
-        player:startEvent(0x0106);
+        player:startEvent(262);
     elseif (player:getVar("twentyInPirateYearsCS") == 4) then
-        player:startEvent(0x0107);
+        player:startEvent(263);
     elseif (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
-        player:startEvent(0x0108);
+        player:startEvent(264);
     elseif (player:getVar("illTakeTheBigBoxCS") == 1) then
-        player:startEvent(0x0109);
+        player:startEvent(265);
     else
-        player:startEvent(0x001b);
+        player:startEvent(27);
     end
 
 end;
 
--- 0x001b  0x00f0  0x00f2  0x00f3  0x00f5  0x00f6  0x00f7  0x0106  0x0107  0x0108  0x0109  0x0105
+-- 27  0x00f0  242  243  245  246  247  262  263  264  265  0x0105
 
 -----------------------------------
 -- onEventUpdate
@@ -78,11 +78,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00f2) then
+    if (csid == 242) then
         player:setVar("AyameAndKaede_Event", 2);
-    elseif (csid == 0x00f5) then
+    elseif (csid == 245) then
         player:setVar("AyameAndKaede_Event", 3);
-    elseif (csid == 0x00f6) then
+    elseif (csid == 246) then
         player:delKeyItem(SEALED_DAGGER);
         player:addTitle(SHADOW_WALKER);
         player:unlockJob(13);
@@ -90,9 +90,9 @@ function onEventFinish(player,csid,option)
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
         player:completeQuest(BASTOK,AYAME_AND_KAEDE);
-    elseif (csid == 0x0106) then
+    elseif (csid == 262) then
         player:setVar("twentyInPirateYearsCS",3);
-    elseif (csid == 0x0108) then
+    elseif (csid == 264) then
         player:setVar("illTakeTheBigBoxCS",1);
     end
 

@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option,target)
      -- printf("CSID: %u",csid);
      -- printf("RESULT: %u",option);
 
-    if ((csid == 408 and option == 4) or csid == 0x74) then
+    if ((csid == 408 and option == 4) or csid == 116) then
         player:setPos(0,0,0,0,74);
     end
 end;
@@ -101,7 +101,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
-                    v:startEvent(0x74, 8);
+                    v:startEvent(116, 8);
                     v:delKeyItem(REMNANTS_PERMIT);
                 end
             end

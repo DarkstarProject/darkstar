@@ -23,11 +23,11 @@ end;
 function onTrigger(player,npc)
     local CRUOR = player:getCurrency("cruor");
     if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED) then
-        player:startEvent(0x0153,1,CRUOR,7,7,7); -- Temp activated all locations till param handling sorted out.
+        player:startEvent(339,1,CRUOR,7,7,7); -- Temp activated all locations till param handling sorted out.
     elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_COMPLETED) then
-        player:startEvent(0x0153,2,CRUOR,7,7,7); -- Temp activated all locations till param handling sorted out.
+        player:startEvent(339,2,CRUOR,7,7,7); -- Temp activated all locations till param handling sorted out.
     else
-        player:startEvent(0x0153, 0);
+        player:startEvent(339, 0);
     end
 end;
 
@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     local CRUOR = player:getCurrency("cruor");
-    if (csid == 0x0153) then
+    if (csid == 339) then
         if (option == 260) then
             if (CRUOR >= 200) then
                 player:delCurrency("cruor", 200);

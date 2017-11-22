@@ -46,29 +46,16 @@ CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity) :
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::AddLatentEffect(CLatentEffect LatentEffect)
-{
-    LatentEffect.SetOwner(m_POwner);
-    m_LatentEffectList.push_back(LatentEffect);
-}
-
-void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect>& latentList, uint8 reqLvl, uint8 slot)
+void CLatentEffectContainer::AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot)
 {
     for (auto& latent : latentList)
     {
-        if (m_POwner->GetMLevel() >= reqLvl || latent.GetConditionsValue() == LATENT_JOB_LEVEL_ABOVE)
+        if (m_POwner->GetMLevel() >= reqLvl || latent.ConditionsValue == LATENT_JOB_LEVEL_ABOVE)
         {
-            if (latent.GetModValue() == Mod::MAIN_DMG_RATING && slot == SLOT_SUB)
-            {
-                AddLatentEffect(CLatentEffect(latent.GetConditionsID(),
-                    latent.GetConditionsValue(), slot, Mod::SUB_DMG_RATING,
-                    latent.GetModPower()));
-            }
-            else {
-                AddLatentEffect(CLatentEffect(latent.GetConditionsID(),
-                    latent.GetConditionsValue(), slot, latent.GetModValue(),
-                    latent.GetModPower()));
-            }
+            if (latent.ModValue == Mod::MAIN_DMG_RATING && slot == SLOT_SUB)
+                m_LatentEffectList.emplace_back(m_POwner, latent.ConditionsID, latent.ConditionsValue, slot, Mod::SUB_DMG_RATING, latent.ModPower);
+            else
+                m_LatentEffectList.emplace_back(m_POwner, latent.ConditionsID, latent.ConditionsValue, slot, latent.ModValue, latent.ModPower);
         }
     }
 }
@@ -1015,6 +1002,8 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
             break;
         case REGION_WINDURST:
             expression = m_POwner->profile.nation == 2 && PZone->GetRegionID() == region;
+            break;
+        default:
             break;
         }
         break;

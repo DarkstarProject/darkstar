@@ -22,9 +22,9 @@ function onTrigger(player,npc)
     OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
 
     if (OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfTheShellZone") == 0) then
-        player:startEvent(0x0053);
+        player:startEvent(83);
     else
-        player:startEvent(0x002a);    
+        player:startEvent(42);    
     end
     
 end; 

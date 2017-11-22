@@ -29,7 +29,7 @@ function onZoneIn(player,prevZone)
         player:setPos(282.292,2.498,-17.908,247);
     end    
     if (player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 2) then    
-        cs = 0x0074;
+        cs = 116;
     end    
     if (player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_ACCEPTED and GetMobAction(17387969) == 0) then    
         SpawnMob(17387969); -- Spawned by Quest: The Crimson Trial upon entering the zone.
@@ -93,7 +93,7 @@ end;
 function onEventFinish(player,csid,option)        
     --printf("CSID: %u",csid);    
     --printf("RESULT: %u",option);    
-    if (csid == 0x0074) then    
+    if (csid == 116) then    
         player:setVar("MissionStatus",3);
     end    
 end;        

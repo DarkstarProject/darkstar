@@ -26,11 +26,11 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,3) == false) then
         player:startEvent(10091);
     else
-        player:startEvent(0x001e); -- Standard dialog
+        player:startEvent(30); -- Standard dialog
     end
 end;
 
--- 0x0018  0x001e  0x001f  0x0020  0x009e  0x0062  0x009d  0x0061  0x0064  0x276b
+-- 0x0018  30  0x001f  0x0020  0x009e  0x0062  0x009d  0x0061  0x0064  0x276b
 
 -----------------------------------
 -- onEventUpdate

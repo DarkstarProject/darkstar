@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00dd,player:getGil(),100);
+    player:startEvent(221,player:getGil(),100);
 end;
 
 -----------------------------------
@@ -41,7 +41,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00dd and option == 333) then
+    if (csid == 221 and option == 333) then
         player:delGil(100);
     end
 

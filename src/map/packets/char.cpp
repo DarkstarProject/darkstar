@@ -145,6 +145,10 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
             }
         }
         break;
+        default:
+        {
+            break;
+        }
     }
 }
 

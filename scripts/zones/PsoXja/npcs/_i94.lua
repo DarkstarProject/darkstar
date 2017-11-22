@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 
     if (Z >= -261) then
         if (player:hasKeyItem(595)==true) then -- Blue Bracelet
-            player:startEvent(0x003d);
+            player:startEvent(61);
         else
             player:messageSpecial(ARCH_GLOW_BLUE);
         end

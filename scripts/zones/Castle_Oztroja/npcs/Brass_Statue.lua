@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     end
 end;
 
-    --player:startEvent(0x000d); -- Password event
+    --player:startEvent(13); -- Password event
 
 -----------------------------------
 -- onEventUpdate

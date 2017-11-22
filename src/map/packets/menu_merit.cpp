@@ -52,7 +52,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 	}
 
 	//capped EXP
-	if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1 
+	if ((PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1) 
 		|| PChar->MeritMode)
 	{
 		flag |= 0x40;

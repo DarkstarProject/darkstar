@@ -4,28 +4,8 @@
 -- ToDo: Amemet should walk in a big circle
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    -- Set Amemet's Window Open Time
-    local wait = math.random(7200,43200); -- 2-12 hours
-    SetServerVariable("[POP]Amemet", os.time() + wait);
-    DisallowRespawn(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Amemet");
-    SetServerVariable("[PH]Amemet", 0);
-    DisallowRespawn(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
 end;

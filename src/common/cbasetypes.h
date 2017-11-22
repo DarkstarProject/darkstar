@@ -252,10 +252,6 @@ typedef char bool;
 	#include <algorithm>
 #endif
 
-#define dsp_max(a,b) (((a) > (b)) ? (a) : (b))
-#define dsp_min(a,b) (((a) < (b)) ? (a) : (b))
-#define dsp_cap(a, min, max) ((a >= max) ? max : (a <= min) ? min : a)	// caps values to min/max
-
 //////////////////////////////////////////////////////////////////////////
 // should not happen
 #ifndef NULL
@@ -314,10 +310,6 @@ typedef char bool;
 #define TOASCII(c) (toascii((unsigned char)(c)))
 #define TOLOWER(c) (tolower((unsigned char)(c)))
 #define TOUPPER(c) (toupper((unsigned char)(c)))
-
-//////////////////////////////////////////////////////////////////////////
-// length of a static array
-#define ARRAYLENGTH(A) ( sizeof(A)/sizeof((A)[0]) )
 
 //////////////////////////////////////////////////////////////////////////
 // Make sure va_copy exists

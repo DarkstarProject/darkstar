@@ -69,16 +69,39 @@ function onEventUpdate(player,csid,option)
 
     if(csid == 3140 or csid == 3155) then
         if (option == 1) then
-            player:setVar("TOAU_RINGTIME", os.time());
-            player:addItem(15807);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15807);
+            else
+                player:setVar("TOAU_RINGTIME", os.time());
+                player:setVar("TOAU_RINGRECV", 1);
+                player:addItem(15807);
+                player:messageSpecial(ITEM_OBTAINED,15807);
+            end
         elseif (option == 2) then
-            player:setVar("TOAU_RINGTIME", os.time());
-            player:addItem(15808);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15808);
+            else
+                player:setVar("TOAU_RINGTIME", os.time());
+                player:setVar("TOAU_RINGRECV", 1);
+                player:addItem(15808);
+                player:messageSpecial(ITEM_OBTAINED,15808);
+            end
         elseif (option == 3) then
-            player:setVar("TOAU_RINGTIME", os.time());
-            player:addItem(15809);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15809);
+            else
+                player:setVar("TOAU_RINGTIME", os.time());
+                player:setVar("TOAU_RINGRECV", 1);
+                player:addItem(15809);
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15809);
+            end
         elseif (option == 4) then
-            player:addItem(129);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,129);
+            else
+                player:addItem(129);
+                player:messageSpecial(ITEM_OBTAINED,129);
+            end
         elseif (option == 99) then
             player:updateEvent(15807,15808,15809);
         end
@@ -104,11 +127,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3111) then
         player:completeMission(TOAU,SEAL_OF_THE_SERPENT);
         player:addMission(TOAU,MISPLACED_NOBILITY);
-    elseif (csid == 3140) then
+    elseif (csid == 3140 and player:getVar("TOAU_RINGRECV") == 1) then
         player:completeMission(TOAU,IMPERIAL_CORONATION);
         player:addMission(TOAU,THE_EMPRESS_CROWNED);
+        player:setVar("TOAU_RINGRECV", 0);
     elseif (csid == 3155 and option == 6) then
-        player:addItem(129);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,129);
+        else
+            player:addItem(129);
+            player:messageSpecial(ITEM_OBTAINED,129);
+        end
     end
 end;
 

@@ -8,11 +8,7 @@
 -- Intelligence -3
 -- Attack 18% Cap 90
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -22,10 +18,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5689);
@@ -43,11 +35,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_ATT_CAP, 90);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_STR, 6);
     target:delMod(MOD_AGI, 2);
     target:delMod(MOD_INT, -3);

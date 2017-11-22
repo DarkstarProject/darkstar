@@ -26,7 +26,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-104,-25.36,-410,195);
     end
     if (prevZone == 91 and player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 2) then
-        cs = 0x0003;
+        cs = 3;
     end
     return cs;
 end;
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0003) then
+    if (csid == 3) then
         player:setVar("DownwardHelix",3);
     end
 end;

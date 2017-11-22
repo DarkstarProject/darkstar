@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
 if (player:getVar("OptionalcsCornelia") ==1) then
-player:startEvent(0x0309);
+player:startEvent(777);
 else
-player:startEvent(0x026C);
+player:startEvent(620);
 end
 end; 
 
@@ -43,7 +43,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-if (csid == 0x0309) then
+if (csid == 777) then
 player:setVar("OptionalcsCornelia",0);
 end
 end;

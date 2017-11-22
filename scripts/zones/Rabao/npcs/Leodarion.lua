@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 2) then
         if (trade:hasItemQty(17098,1) and trade:getItemCount() == 1) then -- Trade Oak Pole
-            player:startEvent(0x005c);
+            player:startEvent(92);
         end
     end
 
@@ -36,28 +36,28 @@ function onTrigger(player,npc)
         illTakeTheBigBoxCS = player:getVar("illTakeTheBigBoxCS");
 
         if (illTakeTheBigBoxCS == 1) then
-            player:startEvent(0x005a);
+            player:startEvent(90);
         elseif (illTakeTheBigBoxCS == 2) then
-            player:startEvent(0x005b);
+            player:startEvent(91);
         elseif (illTakeTheBigBoxCS == 3 and VanadielDayOfTheYear() == player:getVar("illTakeTheBigBox_Timer")) then
-            player:startEvent(0x005d);
+            player:startEvent(93);
         elseif (illTakeTheBigBoxCS == 3) then
-            player:startEvent(0x005e);
+            player:startEvent(94);
         elseif (illTakeTheBigBoxCS == 4) then
-            player:startEvent(0x005f);
+            player:startEvent(95);
         end
     elseif (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
         trueWillCS = player:getVar("trueWillCS");
 
         if (trueWillCS == 1) then
-            player:startEvent(0x0061);
+            player:startEvent(97);
         elseif (trueWillCS == 2 and player:hasKeyItem(LARGE_TRICK_BOX) == false) then
-            player:startEvent(0x0062);
+            player:startEvent(98);
         elseif (player:hasKeyItem(LARGE_TRICK_BOX)) then
-            player:startEvent(0x0063);
+            player:startEvent(99);
         end
     else
-        player:startEvent(0x0059);
+        player:startEvent(89);
     end
 
 end;
@@ -79,21 +79,21 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x005a) then
+    if (csid == 90) then
         player:setVar("illTakeTheBigBoxCS",2);
-    elseif (csid == 0x005c) then
+    elseif (csid == 92) then
         player:tradeComplete();
         player:setVar("illTakeTheBigBox_Timer",VanadielDayOfTheYear());
         player:setVar("illTakeTheBigBoxCS",3);
-    elseif (csid == 0x005e) then
+    elseif (csid == 94) then
         player:setVar("illTakeTheBigBox_Timer",0);
         player:setVar("illTakeTheBigBoxCS",4);
         player:addKeyItem(SEANCE_STAFF);
         player:messageSpecial(KEYITEM_OBTAINED,SEANCE_STAFF);
-    elseif (csid == 0x0061) then
+    elseif (csid == 97) then
         player:delKeyItem(OLD_TRICK_BOX);
         player:setVar("trueWillCS",2);
-    elseif (csid == 0x0063) then
+    elseif (csid == 99) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13782);
         else
