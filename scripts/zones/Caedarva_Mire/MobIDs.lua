@@ -4,5 +4,6 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
-AYNU_KAYSEY   = 17101099;
-Caedarva_Toad = 17101145;
+AYNU_KAYSEY     = 17101099;
+CAEDARVA_TOAD   = 17101145;
+KHIMAIRA        = 17101201;
