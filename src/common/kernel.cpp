@@ -160,6 +160,7 @@ static void sig_proc(int sn)
 				do_final(EXIT_SUCCESS);
 			runflag = 0;
 			break;
+		case SIGABRT:
 		case SIGSEGV:
 		case SIGFPE:
 			dump_backtrace();
@@ -192,6 +193,7 @@ void signals_init (void)
 	compat_signal(SIGTERM, sig_proc);
 	compat_signal(SIGINT, sig_proc);
 #ifndef _DEBUG // need unhandled exceptions to debug on Windows
+	compat_signal(SIGABRT, sig_proc);
 	compat_signal(SIGSEGV, sig_proc);
 	compat_signal(SIGFPE, sig_proc);
 #endif
