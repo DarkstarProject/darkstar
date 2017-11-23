@@ -263,9 +263,9 @@ void CMagicState::SpendCost()
     }
 }
 
-std::uint32_t CMagicState::GetRecast()
+uint32 CMagicState::GetRecast()
 {
-    std::uint32_t RecastTime = 0;
+    uint32 RecastTime = 0;
 
     if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
         !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))

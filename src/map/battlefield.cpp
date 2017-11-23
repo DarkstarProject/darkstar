@@ -285,7 +285,7 @@ bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar)
     return false;
 }
 
-void CBattlefield::pushMessageToAllInBcnm(std::uint16_t msg, std::uint32_t param)
+void CBattlefield::pushMessageToAllInBcnm(std::uint16_t msg, uint32 param)
 {
     for (const auto& player : m_PlayerList)
     {
@@ -691,7 +691,7 @@ void CBattlefield::cleanupDynamis()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
+            uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
             CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
             if (PMob != nullptr) {

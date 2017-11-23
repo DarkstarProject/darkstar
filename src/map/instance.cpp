@@ -62,12 +62,12 @@ std::uint8_t CInstance::GetID()
     return m_instanceid;
 }
 
-std::uint32_t CInstance::GetProgress()
+uint32 CInstance::GetProgress()
 {
     return m_progress;
 }
 
-std::uint32_t CInstance::GetStage()
+uint32 CInstance::GetStage()
 {
     return m_stage;
 }
@@ -189,13 +189,13 @@ void CInstance::SetLastTimeUpdate(duration lastTime)
     m_lastTimeUpdate = lastTime;
 }
 
-void CInstance::SetProgress(std::uint32_t progress)
+void CInstance::SetProgress(uint32 progress)
 {
     m_progress = progress;
     luautils::OnInstanceProgressUpdate(this);
 }
 
-void CInstance::SetStage(std::uint32_t stage)
+void CInstance::SetStage(uint32 stage)
 {
     m_stage = stage;
 }
@@ -215,7 +215,7 @@ void CInstance::CheckTime(time_point tick)
 {
     if (m_lastTimeCheck + 1s <= tick && !Failed())
     {
-        luautils::OnInstanceTimeUpdate(GetZone(), this, (std::uint32_t)std::chrono::duration_cast<std::chrono::milliseconds>(GetElapsedTime(tick)).count());
+        luautils::OnInstanceTimeUpdate(GetZone(), this, (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(GetElapsedTime(tick)).count());
         m_lastTimeCheck = tick;
     }
 }
@@ -279,7 +279,7 @@ void CInstance::Cancel()
     m_status = INSTANCE_FAILED;
 }
 
-bool CInstance::CheckFirstEntry(std::uint32_t id)
+bool CInstance::CheckFirstEntry(uint32 id)
 {
     //insert returns a pair (iterator,inserted)
     return m_enteredChars.insert(id).second;

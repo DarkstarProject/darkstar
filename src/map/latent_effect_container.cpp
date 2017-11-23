@@ -740,7 +740,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         break;
     case LATENT_TIME_OF_DAY:
     {
-        std::uint32_t VanadielHour = CVanaTime::getInstance()->getHour();
+        uint32 VanadielHour = CVanaTime::getInstance()->getHour();
         switch (latentEffect.GetConditionsValue())
         {
         case 0:
@@ -760,7 +760,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
     }
     case LATENT_HOUR_OF_DAY:
     {
-        std::uint32_t VanadielHour = CVanaTime::getInstance()->getHour();
+        uint32 VanadielHour = CVanaTime::getInstance()->getHour();
         switch (latentEffect.GetConditionsValue())
         {
         case 1:
@@ -816,8 +816,8 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         break;
     case LATENT_MOON_PHASE:
     {
-        std::uint32_t MoonPhase = CVanaTime::getInstance()->getMoonPhase();
-        std::uint32_t MoonDirection = CVanaTime::getInstance()->getMoonDirection(); //directions: 1 = waning, 2 = waxing, 0 = neither
+        uint32 MoonPhase = CVanaTime::getInstance()->getMoonPhase();
+        uint32 MoonDirection = CVanaTime::getInstance()->getMoonDirection(); //directions: 1 = waning, 2 = waxing, 0 = neither
         switch (latentEffect.GetConditionsValue())
         {
         case 0:

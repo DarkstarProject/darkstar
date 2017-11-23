@@ -82,8 +82,8 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
             WBUFB(data,0x1C+(regionid*4)) = conquest::GetInfluenceGraphics(san_inf, bas_inf, win_inf, bst_inf);
             WBUFB(data,0x1D+(regionid*4)) = region_control+1;
 
-            std::int64_t total = san_inf + bas_inf + win_inf;
-            std::int64_t totalBeastmen = total + bst_inf;
+            int64 total = san_inf + bas_inf + win_inf;
+            int64 totalBeastmen = total + bst_inf;
 
             if (PChar->loc.zone->GetRegionID() == regionid)
             {

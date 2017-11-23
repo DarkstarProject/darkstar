@@ -51,7 +51,7 @@ struct search_req
     std::uint8_t nation;
     std::uint8_t minRank;
     std::uint8_t maxRank;
-    std::uint32_t flags;
+    uint32 flags;
     string_t name;
     std::uint8_t nameLen;
 };

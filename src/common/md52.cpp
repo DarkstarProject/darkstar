@@ -26,10 +26,10 @@
 
 #define GET_UINT32(n,b,i)                       \
 {                                               \
-	(n) = ( (std::uint32_t) (b)[(i)    ]       )       \
-	| ( (std::uint32_t) (b)[(i) + 1] <<  8 )       \
-	| ( (std::uint32_t) (b)[(i) + 2] << 16 )       \
-	| ( (std::uint32_t) (b)[(i) + 3] << 24 );      \
+	(n) = ( (uint32) (b)[(i)    ]       )       \
+	| ( (uint32) (b)[(i) + 1] <<  8 )       \
+	| ( (uint32) (b)[(i) + 2] << 16 )       \
+	| ( (uint32) (b)[(i) + 3] << 24 );      \
 }
 
 #define PUT_UINT32(n,b,i)                       \
@@ -53,7 +53,7 @@ void md5_starts( md5_context *ctx )
 
 void md5_process( md5_context *ctx, std::uint8_t data[64] )
 {
-	std::uint32_t X[16], A, B, C, D;
+	uint32 X[16], A, B, C, D;
 
 	GET_UINT32( X[0],  data,  0 );
 	GET_UINT32( X[1],  data,  4 );
@@ -174,9 +174,9 @@ void md5_process( md5_context *ctx, std::uint8_t data[64] )
 	ctx->state[3] += D;
 }
 
-void md5_update( md5_context *ctx, std::uint8_t *input, std::uint32_t length )
+void md5_update( md5_context *ctx, std::uint8_t *input, uint32 length )
 {
-	std::uint32_t left, fill;
+	uint32 left, fill;
 
 	if( ! length ) return;
 
@@ -222,8 +222,8 @@ static std::uint8_t md5_padding[64] =
 
 void md5_finish( md5_context *ctx, std::uint8_t digest[16] )
 {
-	std::uint32_t last, padn;
-	std::uint32_t high, low;
+	uint32 last, padn;
+	uint32 high, low;
 	std::uint8_t msglen[8];
 
 	high = ( ctx->total[0] >> 29 )

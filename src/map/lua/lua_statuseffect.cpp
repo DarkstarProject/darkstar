@@ -147,10 +147,10 @@ inline std::int32_t CLuaStatusEffect::getLastTick(lua_State* L)
 inline std::int32_t CLuaStatusEffect::getTimeRemaining(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
-    std::uint32_t remaining = 0;
+    uint32 remaining = 0;
     if (m_PLuaStatusEffect->GetDuration() > 0)
     {
-        remaining = (std::uint32_t)std::max((m_PLuaStatusEffect->GetDuration() -
+        remaining = (uint32)std::max((m_PLuaStatusEffect->GetDuration() -
             std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - m_PLuaStatusEffect->GetStartTime()).count()), std::chrono::seconds::rep{});
     }
 
@@ -232,7 +232,7 @@ inline std::int32_t CLuaStatusEffect::setDuration(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetDuration((std::uint32_t)lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetDuration((uint32)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -242,7 +242,7 @@ inline std::int32_t CLuaStatusEffect::setTick(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetTickTime((std::uint32_t)lua_tointeger(L, 1));
+    m_PLuaStatusEffect->SetTickTime((uint32)lua_tointeger(L, 1));
     return 0;
 }
 
@@ -292,7 +292,7 @@ inline std::int32_t CLuaStatusEffect::setFlag(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetFlag((std::uint32_t)lua_tonumber(L, 1));
+    m_PLuaStatusEffect->SetFlag((uint32)lua_tonumber(L, 1));
     return 0;
 }
 
@@ -302,7 +302,7 @@ inline std::int32_t CLuaStatusEffect::unsetFlag(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->UnsetFlag((std::uint32_t)lua_tonumber(L, 1));
+    m_PLuaStatusEffect->UnsetFlag((uint32)lua_tonumber(L, 1));
     return 0;
 }
 

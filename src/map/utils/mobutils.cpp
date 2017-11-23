@@ -1171,7 +1171,7 @@ ModsList_t* GetMobFamilyMods(std::uint16_t familyId, bool create)
 	return nullptr;
 }
 
-ModsList_t* GetMobPoolMods(std::uint32_t poolId, bool create)
+ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 {
 	if(mobPoolModsList[poolId])
 	{
@@ -1192,7 +1192,7 @@ ModsList_t* GetMobPoolMods(std::uint32_t poolId, bool create)
 	return nullptr;
 }
 
-ModsList_t* GetMobSpawnMods(std::uint32_t mobId, bool create)
+ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
 {
 	if(mobSpawnModsList[mobId])
 	{
@@ -1313,7 +1313,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
     PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
 }
 
-CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstance* instance)
+CMobEntity* InstantiateAlly(uint32 groupid, std::uint16_t zoneID, CInstance* instance)
 {
 	const char* Query =
 		"SELECT zoneid, name, \
@@ -1348,8 +1348,8 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);
 			PMob->m_DropID = Sql_GetUIntData(SqlHandle, 4);
 
-			PMob->HPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 5);
-			PMob->MPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 6);
+			PMob->HPmodifier = (uint32)Sql_GetIntData(SqlHandle, 5);
+			PMob->MPmodifier = (uint32)Sql_GetIntData(SqlHandle, 6);
 
 			PMob->m_minLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 7);
 			PMob->m_maxLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
@@ -1411,12 +1411,12 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->m_Element = (std::uint8_t)Sql_GetIntData(SqlHandle, 43);
 			PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 44);
 			PMob->m_name_prefix = (std::uint8_t)Sql_GetIntData(SqlHandle, 45);
-			PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlHandle, 46);
+			PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 46);
 
 			//Special sub animation for Mob (yovra, jailer of love, phuabo)
 			// yovra 1: en hauteur, 2: en bas, 3: en haut
 			// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
-			PMob->animationsub = (std::uint32_t)Sql_GetIntData(SqlHandle, 47);
+			PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 47);
 
 			// Setup HP / MP Stat Percentage Boost
 			PMob->HPscale = Sql_GetFloatData(SqlHandle, 48);

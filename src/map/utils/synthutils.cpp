@@ -800,7 +800,7 @@ std::int32_t startSynth(CCharEntity* PChar)
 	std::uint8_t  invSlotID  = 0;
 	std::uint8_t  tempSlotID = 0;
 	// std::uint16_t itemID     = 0;
-	// std::uint32_t quantity   = 0;
+	// uint32 quantity   = 0;
 
 	for(std::uint8_t slotID = 1; slotID <= 8; ++slotID)
 	{

@@ -34,7 +34,7 @@ Sql_t* ChatSqlHandle = nullptr;
 std::queue<chat_message_t> msg_queue;
 std::mutex queue_mutex;
 
-void queue_message(std::uint64_t ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
+void queue_message(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 {
     std::lock_guard<std::mutex>lk(queue_mutex);
     chat_message_t msg;
@@ -51,12 +51,12 @@ void queue_message(std::uint64_t ipp, MSGSERVTYPE type, zmq::message_t* extra, z
     msg_queue.push(std::move(msg));
 }
 
-void message_server_send(std::uint64_t ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
+void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet)
 {
     try
     {
-        zmq::message_t to(sizeof(std::uint64_t));
-        memcpy(to.data(), &ipp, sizeof(std::uint64_t));
+        zmq::message_t to(sizeof(uint64));
+        memcpy(to.data(), &ipp, sizeof(uint64));
         zSocket->send(to, ZMQ_SNDMORE);
 
         zmq::message_t newType(sizeof(MSGSERVTYPE));
@@ -110,7 +110,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
                       							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
-        std::uint32_t partyid = RBUFL(extra->data(), 0);
+        uint32 partyid = RBUFL(extra->data(), 0);
         ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
         break;
     }
@@ -161,7 +161,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
         ShowDebug("Message: Received message %d from %s:%hu\n", type, inet_ntoa(from_ip), from_port);
         while (Sql_NextRow(ChatSqlHandle) == SQL_SUCCESS)
         {
-            std::uint64_t ip = 0;
+            uint64 ip = 0;
             if (ipstring)
             {
                 std::int8_t* ip_string = Sql_GetData(ChatSqlHandle, 0);
@@ -171,7 +171,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
             {
                 ip = Sql_GetUIntData(ChatSqlHandle, 0);
             }
-            std::uint64_t port = Sql_GetUIntData(ChatSqlHandle, 1);
+            uint64 port = Sql_GetUIntData(ChatSqlHandle, 1);
             in_addr target;
             target.s_addr = (unsigned long)ip;
             ShowDebug("Message:  -> rerouting to %s:%lu\n", inet_ntoa(target), port);
@@ -261,7 +261,7 @@ void message_server_init()
     zContext = zmq::context_t(1);
     zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
 
-    std::uint32_t to = 500;
+    uint32 to = 500;
     zSocket->setsockopt(ZMQ_RCVTIMEO, &to, sizeof to);
 
     string_t server = "tcp://";

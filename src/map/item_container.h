@@ -70,13 +70,13 @@ public:
     std::uint8_t   AddSize(std::int8_t size);                     // увеличиваем/уменьшаем размер контейнера
 	std::uint8_t	SetSize(std::uint8_t size);
 	std::uint8_t	SearchItem(std::uint16_t ItemID);				// поиск предмета в хранилище
-    std::uint8_t   SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity); //search for item that has space to accomodate x items added
+    std::uint8_t   SearchItemWithSpace(std::uint16_t ItemID, uint32 quantity); //search for item that has space to accomodate x items added
 
 	std::uint8_t	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
 	std::uint8_t	InsertItem(CItem* PItem, std::uint8_t slotID);	// добавляем заранее созданный предмет в выбранную ячейку
 
-    std::uint32_t  SortingPacket;                          // количество запросов на сортировку за такт
-    std::uint32_t  LastSortingTime;                        // время последней сортировки контейнера
+    uint32  SortingPacket;                          // количество запросов на сортировку за такт
+    uint32  LastSortingTime;                        // время последней сортировки контейнера
 
 	CItem*	GetItem(std::uint8_t slotID);					// получаем указатель на предмет, находящийся в указанной ячейка.
 	void	Clear();								// Remove all items from container

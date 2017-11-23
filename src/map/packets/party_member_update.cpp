@@ -38,7 +38,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint
 
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-    ref<std::uint32_t>(0x04) = PChar->id;
+    ref<uint32>(0x04) = PChar->id;
 
     ref<std::uint16_t>(0x14) = memberflags;
 
@@ -48,8 +48,8 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint
     }
     else
     {
-        ref<std::uint32_t>(0x08) = PChar->health.hp;
-        ref<std::uint32_t>(0x0C) = PChar->health.mp;
+        ref<uint32>(0x08) = PChar->health.hp;
+        ref<uint32>(0x0C) = PChar->health.mp;
         ref<std::uint16_t>(0x10) = PChar->health.tp;
         ref<std::uint16_t>(0x18) = PChar->targid;
         ref<std::uint8_t>(0x1A) = MemberNumber;
@@ -67,13 +67,13 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint
 
     memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
 }
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const std::int8_t* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const std::int8_t* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID)
 {
 
     this->type = 0xDD;
     this->size = 0x20;
 
-    ref<std::uint32_t>(0x04) = id;
+    ref<uint32>(0x04) = id;
 
     ref<std::uint16_t>(0x14) = memberFlags;
     ref<std::uint16_t>(0x20) = ZoneID;

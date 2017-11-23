@@ -138,12 +138,12 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
     add_on_scenarios += PChar->m_missionLog[MISSION_ASA].current << 0x08;
     // Not perfect, but they display and missions DO progress. Can fix properly later. There is a delay before when the menu updates. Zoning will force it.
 
-    std::uint32_t chains = 0;
+    uint32 chains = 0;
     chains = PChar->m_missionLog[MISSION_COP].current + 1;
     chains = ((chains * 0x08) + 0x60);
 
-    std::uint32_t soa = (PChar->m_missionLog[MISSION_SOA].current * 2) + 0x6E;
-    std::uint32_t rov = PChar->m_missionLog[MISSION_ROV].current + 0x6C;
+    uint32 soa = (PChar->m_missionLog[MISSION_SOA].current * 2) + 0x6E;
+    uint32 rov = PChar->m_missionLog[MISSION_ROV].current + 0x6C;
 
     // While current National Missions + Zilart Mission are updated in this packet, completed missions are sent in a separate one.
     WBUFB(data, (0x04)) = PChar->profile.nation;                                // Nation

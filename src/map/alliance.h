@@ -41,18 +41,18 @@ class CAlliance
 public:
 
     CAlliance(CBattleEntity* PEntity);
-	CAlliance(std::uint32_t id);
+	CAlliance(uint32 id);
 
-	std::uint32_t  m_AllianceID;
+	uint32  m_AllianceID;
 	CParty* getMainParty();
 	void setMainParty(CParty * aLeader);
     void addParty(CParty * party);
-	void addParty(std::uint32_t partyid);
+	void addParty(uint32 partyid);
     void pushParty(CParty* PParty, std::uint8_t number);
 	void removeParty(CParty * party);
     void delParty(CParty* party);
     void dissolveAlliance(bool playerInitiated = true);
-	std::uint32_t partyCount(void);
+	uint32 partyCount(void);
     void assignAllianceLeader(const char* name);
 
 	std::vector<CParty*> partyList; //list of parties in alliance

@@ -41,14 +41,14 @@ public:
     CItemShop(std::uint16_t id);
     virtual ~CItemShop();
 
-    std::uint32_t  getMinPrice();
-    std::uint32_t  getMaxPrice();
+    uint32  getMinPrice();
+    uint32  getMaxPrice();
 
     bool    IsInMenu();
     bool    IsDailyIncrease();
 
-    void    setMinPrice(std::uint32_t price);
-    void    setMaxPrice(std::uint32_t price);
+    void    setMinPrice(uint32 price);
+    void    setMaxPrice(uint32 price);
     void    setDailyIncrease(std::uint16_t quantity);
     std::uint16_t  getDailyIncrease();
     void    setInitialQuantity(std::uint16_t quantity);
@@ -57,8 +57,8 @@ public:
 
 private:
 
-    std::uint32_t  m_MinPrice;
-    std::uint32_t  m_MaxPrice;
+    uint32  m_MinPrice;
+    uint32  m_MaxPrice;
 
     std::uint16_t    m_DailyIncrease;
     std::uint16_t    m_InitialQuantity;

@@ -43,9 +43,9 @@ class CLinkshell
 {
 public:
 
-    CLinkshell(std::uint32_t id);
+    CLinkshell(uint32 id);
 
-    std::uint32_t      getID();
+    uint32      getID();
     std::uint16_t      getColor();
 
     void        setColor(std::uint16_t color);
@@ -60,14 +60,14 @@ public:
     void        RemoveMemberByName(std::int8_t* MemberName);
 	void		ChangeMemberRank(std::int8_t* MemberName, std::uint8_t toSack);
 
-    void        PushPacket(std::uint32_t senderID, CBasicPacket* packet);
+    void        PushPacket(uint32 senderID, CBasicPacket* packet);
     void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
 
     std::vector<CCharEntity*> members; // список участников linkshell
 
 private:
 
-    std::uint32_t      m_id;
+    uint32      m_id;
     std::uint16_t      m_color;
 
     string_t    m_name;
@@ -81,13 +81,13 @@ private:
 
 namespace linkshell
 {
-    CLinkshell* LoadLinkshell(std::uint32_t id);
+    CLinkshell* LoadLinkshell(uint32 id);
 
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, std::uint8_t lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
-    std::uint32_t RegisterNewLinkshell(const std::int8_t* name, std::uint16_t color);
-	CLinkshell* GetLinkshell(std::uint32_t id);
+    uint32 RegisterNewLinkshell(const std::int8_t* name, std::uint16_t color);
+	CLinkshell* GetLinkshell(uint32 id);
 };
 
 #endif

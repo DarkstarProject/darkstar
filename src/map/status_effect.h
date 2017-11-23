@@ -738,30 +738,30 @@ class CStatusEffect
 public:
 
     EFFECT  GetStatusID();
-    std::uint32_t  GetSubID();
+    uint32  GetSubID();
     std::uint16_t  GetIcon();
     std::uint16_t  GetPower();
     std::uint16_t  GetSubPower();
     std::uint16_t  GetTier();
-    std::uint32_t  GetFlag();
+    uint32  GetFlag();
     std::uint16_t  GetType();
 
-    std::uint32_t  GetTickTime();
-    std::uint32_t  GetDuration();
+    uint32  GetTickTime();
+    uint32  GetDuration();
     int  GetElapsedTickCount();
     time_point  GetStartTime();
     CBattleEntity* GetOwner();
 
-    void    SetFlag(std::uint32_t Flag);
-    void    UnsetFlag(std::uint32_t Flag);
+    void    SetFlag(uint32 Flag);
+    void    UnsetFlag(uint32 Flag);
     void    SetType(std::uint16_t Type);
     void    SetIcon(std::uint16_t Icon);
     void    SetPower(std::uint16_t Power);
     void    SetSubPower(std::uint16_t subPower);
     void    SetTier(std::uint16_t tier);
-    void    SetDuration(std::uint32_t Duration);
+    void    SetDuration(uint32 Duration);
     void    SetOwner(CBattleEntity* Owner);
-    void    SetTickTime(std::uint32_t tick);
+    void    SetTickTime(uint32 tick);
 
     void    IncrementElapsedTickCount();
     void    SetStartTime(time_point StartTime);
@@ -779,9 +779,9 @@ public:
          EFFECT id,
          std::uint16_t icon,
          std::uint16_t power,
-         std::uint32_t tick,
-         std::uint32_t duration,
-         std::uint32_t subid = 0,
+         uint32 tick,
+         uint32 duration,
+         uint32 subid = 0,
          std::uint16_t subPower = 0,
          std::uint16_t tier = 0);
 
@@ -792,16 +792,16 @@ private:
     CBattleEntity* m_POwner {nullptr};            // владелец
 
     EFFECT      m_StatusID {EFFECT_NONE};             // основной тип эффекта
-    std::uint32_t      m_SubID {0};                // дополнительный тип эффекта
+    uint32      m_SubID {0};                // дополнительный тип эффекта
     std::uint16_t      m_Icon {0};                 // иконка эффекта
     std::uint16_t      m_Power {0};                // сила эффекта
     std::uint16_t      m_SubPower {0};             // Secondary power of the effect
     std::uint16_t      m_Tier {0};                 // Tier of the effect
-    std::uint32_t      m_Flag {0};                 // флаг эффекта (условия его исчезновения)
+    uint32      m_Flag {0};                 // флаг эффекта (условия его исчезновения)
     std::uint16_t      m_Type {0};                 // used to enforce only one
 
-    std::uint32_t      m_TickTime {0};             // время повторения эффекта (млс)
-    std::uint32_t      m_Duration {0};             // продолжительность эффекта (млс)
+    uint32      m_TickTime {0};             // время повторения эффекта (млс)
+    uint32      m_Duration {0};             // продолжительность эффекта (млс)
     time_point  m_StartTime;            // время получения эффекта (млс)
     int         m_tickCount {0};             // премя последнего выполнения эффекта (млс)
 

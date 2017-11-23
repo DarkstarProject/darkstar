@@ -40,7 +40,7 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-CPartyListPacket::CPartyListPacket(std::uint32_t partyid, std::uint32_t Total)
+CPartyListPacket::CPartyListPacket(uint32 partyid, uint32 Total)
 {
     m_partyid = partyid;
     m_offset = 192;
@@ -68,7 +68,7 @@ CPartyListPacket::~CPartyListPacket()
 void CPartyListPacket::AddPlayer(SearchEntity* PPlayer)
 {
 
-    std::uint32_t size_offset = m_offset / 8;
+    uint32 size_offset = m_offset / 8;
     m_offset += 8;
 
     m_offset = packBitsLE(m_data, SEARCH_NAME, m_offset, 5);

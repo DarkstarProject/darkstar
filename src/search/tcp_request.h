@@ -67,8 +67,8 @@ public:
     std::uint8_t GetPacketType();
 
     std::int32_t ReceiveFromSocket();
-    std::int32_t SendToSocket(std::uint8_t* data, std::uint32_t length);
-    std::int32_t SendRawToSocket(std::uint8_t* data, std::uint32_t length);
+    std::int32_t SendToSocket(std::uint8_t* data, uint32 length);
+    std::int32_t SendRawToSocket(std::uint8_t* data, uint32 length);
 
 private:
 

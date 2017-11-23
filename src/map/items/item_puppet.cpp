@@ -36,15 +36,15 @@ std::uint8_t CItemPuppet::getEquipSlot()
 {
     return m_equipSlot;
 }
-void CItemPuppet::setEquipSlot(std::uint32_t slot)
+void CItemPuppet::setEquipSlot(uint32 slot)
 {
     m_equipSlot = slot;
 }
-std::uint32_t CItemPuppet::getElementSlots()
+uint32 CItemPuppet::getElementSlots()
 {
     return m_elementSlots;
 }
-void CItemPuppet::setElementSlots(std::uint32_t slots)
+void CItemPuppet::setElementSlots(uint32 slots)
 {
     m_elementSlots = slots;
 }

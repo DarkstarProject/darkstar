@@ -74,7 +74,7 @@ std::int8_t*  PTempBuff = nullptr;                // временный  буф�
 thread_local Sql_t* SqlHandle = nullptr;
 
 std::int32_t  map_fd = 0;                      // main socket
-std::uint32_t map_amntplayers = 0;             // map amnt unique players
+uint32 map_amntplayers = 0;             // map amnt unique players
 
 in_addr map_ip;
 std::uint16_t map_port = 0;
@@ -91,7 +91,7 @@ std::thread messageThread;
 *                                                                       *
 ************************************************************************/
 
-map_session_data_t* mapsession_getbyipp(std::uint64_t ipp)
+map_session_data_t* mapsession_getbyipp(uint64 ipp)
 {
     map_session_list_t::iterator i = map_session_list.begin();
     while (i != map_session_list.end())
@@ -109,7 +109,7 @@ map_session_data_t* mapsession_getbyipp(std::uint64_t ipp)
 *                                                                       *
 ************************************************************************/
 
-map_session_data_t* mapsession_createsession(std::uint32_t ip, std::uint16_t port)
+map_session_data_t* mapsession_createsession(uint32 ip, std::uint16_t port)
 {
     map_session_data_t* map_session_data = new map_session_data_t;
     memset(map_session_data, 0, sizeof(map_session_data_t));
@@ -120,8 +120,8 @@ map_session_data_t* mapsession_createsession(std::uint32_t ip, std::uint16_t por
     map_session_data->client_addr = ip;
     map_session_data->client_port = port;
 
-    std::uint64_t port64 = port;
-    std::uint64_t ipp = ip;
+    uint64 port64 = port;
+    uint64 ipp = ip;
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
@@ -159,7 +159,7 @@ std::int32_t do_init(std::int32_t argc, char** argv)
 
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
-    srand((std::uint32_t)time(nullptr));
+    srand((uint32)time(nullptr));
     dsprand::seed();
 
     map_config_default();
@@ -345,13 +345,13 @@ std::int32_t do_sockets(fd_set* rfd, duration next)
         {
             // find player char
 #   ifdef WIN32
-            std::uint32_t ip = ntohl(from.sin_addr.S_un.S_addr);
+            uint32 ip = ntohl(from.sin_addr.S_un.S_addr);
 #   else
-            std::uint32_t ip = ntohl(from.sin_addr.s_addr);
+            uint32 ip = ntohl(from.sin_addr.s_addr);
 #   endif
 
-            std::uint64_t port = ntohs(from.sin_port);
-            std::uint64_t ipp = ip;
+            uint64 port = ntohs(from.sin_port);
+            uint64 ipp = ip;
             ipp |= port << 32;
             map_session_data_t* map_session_data = mapsession_getbyipp(ipp);
 
@@ -420,19 +420,19 @@ std::int32_t map_decipher_packet(std::int8_t* buff, size_t size, sockaddr_in* fr
     tmp -= tmp % 2;
 
 #   ifdef WIN32
-    std::uint32_t ip = ntohl(from->sin_addr.S_un.S_addr);
+    uint32 ip = ntohl(from->sin_addr.S_un.S_addr);
 #   else
-    std::uint32_t ip = ntohl(from->sin_addr.s_addr);
+    uint32 ip = ntohl(from->sin_addr.s_addr);
 #   endif
 
     blowfish_t *pbfkey = &map_session_data->blowfish;
 
     for (i = 0; i < tmp; i += 2)
     {
-        blowfish_decipher((std::uint32_t*)buff + i + 7, (std::uint32_t*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
+        blowfish_decipher((uint32*)buff + i + 7, (uint32*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
     }
 
-    if (checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16)) == 0)
+    if (checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16)) == 0)
     {
         return 0;
     }
@@ -456,7 +456,7 @@ std::int32_t recv_parse(std::int8_t* buff, size_t* buffsize, sockaddr_in* from, 
 #ifdef WIN32
     try
     {
-        checksumResult = checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16));
+        checksumResult = checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16));
     }
     catch (...)
     {
@@ -471,7 +471,7 @@ std::int32_t recv_parse(std::int8_t* buff, size_t* buffsize, sockaddr_in* from, 
     {
         if (map_session_data->PChar == nullptr)
         {
-            std::uint32_t CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
+            uint32 CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
 
             const char* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
 
@@ -527,7 +527,7 @@ std::int32_t recv_parse(std::int8_t* buff, size_t* buffsize, sockaddr_in* from, 
             return -1;
         }
         // reading data size
-        std::uint32_t PacketDataSize = RBUFL(buff, *buffsize - sizeof(std::int32_t) - 16);
+        uint32 PacketDataSize = RBUFL(buff, *buffsize - sizeof(std::int32_t) - 16);
         // creating buffer for decompress data
         auto PacketDataBuff = std::make_unique<std::int8_t[]>(map_config.buffer_size);
         // it's decompressing data and getting new size
@@ -608,7 +608,7 @@ std::int32_t parse(std::int8_t* buff, size_t* buffsize, sockaddr_in* from, map_s
     if (RBUFW(buff, 2) != map_session_data->server_packet_id)
     {
         WBUFW(map_session_data->server_packet_data, 2) = SmallPD_Code;
-        WBUFW(map_session_data->server_packet_data, 8) = (std::uint32_t)time(nullptr);
+        WBUFW(map_session_data->server_packet_data, 8) = (uint32)time(nullptr);
 
         g_PBuff = map_session_data->server_packet_data;
         *buffsize = map_session_data->server_packet_size;
@@ -642,12 +642,12 @@ std::int32_t send_parse(std::int8_t *buff, size_t* buffsize, sockaddr_in* from, 
     WBUFW(buff, 2) = map_session_data->client_packet_id;
 
     // сохранение текущего времени (32 BIT!)
-    WBUFL(buff, 8) = (std::uint32_t)time(nullptr);
+    WBUFL(buff, 8) = (uint32)time(nullptr);
 
     // собираем большой пакет, состоящий из нескольких маленьких
     CCharEntity *PChar = map_session_data->PChar;
     CBasicPacket* PSmallPacket;
-    std::uint32_t PacketSize = UINT32_MAX;
+    uint32 PacketSize = UINT32_MAX;
     auto PacketCount = PChar->getPacketCount();
     std::uint8_t packets = 0;
 
@@ -674,21 +674,21 @@ std::int32_t send_parse(std::int8_t *buff, size_t* buffsize, sockaddr_in* from, 
 
             //Сжимаем данные без учета заголовка
             //Возвращаемый размер в 8 раз больше реальных данных
-            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, (std::uint32_t)(*buffsize - FFXI_HEADER_SIZE), PTempBuff, map_config.buffer_size);
+            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, (uint32)(*buffsize - FFXI_HEADER_SIZE), PTempBuff, map_config.buffer_size);
 
             // handle compression error
-            if (PacketSize == static_cast<std::uint32_t>(-1))
+            if (PacketSize == static_cast<uint32>(-1))
             {
                 continue;
             }
 
             WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
-            PacketSize = (std::uint32_t)zlib_compressed_size(PacketSize) + 4;
+            PacketSize = (uint32)zlib_compressed_size(PacketSize) + 4;
 
         } while (PacketCount > 0 && PacketSize > 1300 - FFXI_HEADER_SIZE - 16); //max size for client to accept
 
-        if (PacketSize == static_cast<std::uint32_t>(-1))
+        if (PacketSize == static_cast<uint32>(-1))
         {
             if (PChar->getPacketCount() > 0)
             {
@@ -701,7 +701,7 @@ std::int32_t send_parse(std::int8_t *buff, size_t* buffsize, sockaddr_in* from, 
                 return -1;
             }
         }
-    } while (PacketSize == static_cast<std::uint32_t>(-1));
+    } while (PacketSize == static_cast<uint32>(-1));
     PChar->erasePackets(packets);
 
     //Запись размера данных без учета заголовка
@@ -718,13 +718,13 @@ std::int32_t send_parse(std::int8_t *buff, size_t* buffsize, sockaddr_in* from, 
     //making total packet
     memcpy(buff + FFXI_HEADER_SIZE, PTempBuff, PacketSize);
 
-    std::uint32_t CypherSize = (PacketSize / 4)&-2;
+    uint32 CypherSize = (PacketSize / 4)&-2;
 
     blowfish_t* pbfkey = &map_session_data->blowfish;
 
-    for (std::uint32_t j = 0; j < CypherSize; j += 2)
+    for (uint32 j = 0; j < CypherSize; j += 2)
     {
-        blowfish_encipher((std::uint32_t*)(buff)+j + 7, (std::uint32_t*)(buff)+j + 8, pbfkey->P, pbfkey->S[0]);
+        blowfish_encipher((uint32*)(buff)+j + 7, (uint32*)(buff)+j + 8, pbfkey->P, pbfkey->S[0]);
     }
 
     // контролируем размер отправляемого пакета. в случае,
@@ -760,8 +760,8 @@ std::int32_t map_close_session(time_point tick, map_session_data_t* map_session_
             Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
         }
 
-        std::uint64_t port64 = map_session_data->client_port;
-        std::uint64_t ipp = map_session_data->client_addr;
+        uint64 port64 = map_session_data->client_port;
+        uint64 ipp = map_session_data->client_addr;
         ipp |= port64 << 32;
 
         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(map_session_data->shuttingDown == 1);

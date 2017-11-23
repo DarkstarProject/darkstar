@@ -80,7 +80,7 @@ namespace effects
     // Default effect of statuses are overwrite if equal or higher
     struct EffectParams_t
     {
-        std::uint32_t   Flag;
+        uint32   Flag;
         string_t Name;
         // type will erase all other effects that match
         // example: en- spells, spikes
@@ -100,7 +100,7 @@ namespace effects
         std::uint8_t    Element;
 
         // minimum duration. IE: stun cannot last less than 1 second
-        std::uint32_t    MinDuration;
+        uint32    MinDuration;
     };
 
     std::array<EffectParams_t, MAX_EFFECTID> EffectsParams;
@@ -415,7 +415,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::RemoveStatusEffect(std::uint32_t id, bool silent)
+void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 {
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
 
@@ -588,7 +588,7 @@ void CStatusEffectContainer::DelStatusEffectsByType(std::uint16_t Type)
 *                                                                       *
 ************************************************************************/
 
-void CStatusEffectContainer::DelStatusEffectsByFlag(std::uint32_t flag, bool silent)
+void CStatusEffectContainer::DelStatusEffectsByFlag(uint32 flag, bool silent)
 {
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -708,7 +708,7 @@ std::uint8_t CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
         {
-            RemoveStatusEffect((std::uint32_t)i, true);
+            RemoveStatusEffect((uint32)i, true);
             i--;
             count++;
         }
@@ -734,7 +734,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
     return false;
 }
 
-bool CStatusEffectContainer::HasStatusEffectByFlag(std::uint32_t flag)
+bool CStatusEffectContainer::HasStatusEffectByFlag(uint32 flag)
 {
 
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
@@ -878,7 +878,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, st
     return false;
 }
 
-bool CStatusEffectContainer::HasCorsairEffect(std::uint32_t charid)
+bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
 {
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -896,7 +896,7 @@ bool CStatusEffectContainer::HasCorsairEffect(std::uint32_t charid)
     return false;
 }
 
-void CStatusEffectContainer::Fold(std::uint32_t charid)
+void CStatusEffectContainer::Fold(uint32 charid)
 {
     CStatusEffect* oldestRoll = nullptr;
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
@@ -1032,7 +1032,7 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
 *                                                                       *
 ************************************************************************/
 
-CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, std::uint32_t SubID)
+CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 SubID)
 {
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -1226,8 +1226,8 @@ void CStatusEffectContainer::LoadStatusEffects()
                 (EFFECT)Sql_GetUIntData(SqlHandle, 0),
                 (std::uint16_t)Sql_GetUIntData(SqlHandle, 1),
                 (std::uint16_t)Sql_GetUIntData(SqlHandle, 2),
-                (std::uint32_t)Sql_GetUIntData(SqlHandle, 3),
-                (std::uint32_t)Sql_GetUIntData(SqlHandle, 4),
+                (uint32)Sql_GetUIntData(SqlHandle, 3),
+                (uint32)Sql_GetUIntData(SqlHandle, 4),
                 (std::uint16_t)Sql_GetUIntData(SqlHandle, 5),
                 (std::uint16_t)Sql_GetUIntData(SqlHandle, 6),
                 (std::uint16_t)Sql_GetUIntData(SqlHandle, 7));
@@ -1289,12 +1289,12 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
                 PStatusEffect->SetPower(m_POwner->getMod(Mod::STONESKIN));
             }
 
-            std::uint32_t tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
-            std::uint32_t duration = 0;
+            uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
+            uint32 duration = 0;
 
             if (PStatusEffect->GetDuration() > 0)
             {
-                auto seconds = (std::uint32_t)std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+                auto seconds = (uint32)std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
 
                 if (seconds > 0)
                     duration = seconds;

@@ -28,14 +28,14 @@
 #include "stop_downloading.h"
 #include "../entities/charentity.h"
 
-CStopDownloadingPacket::CStopDownloadingPacket(CCharEntity* PChar, std::vector< std::pair< std::uint32_t, string_t > > blacklist)
+CStopDownloadingPacket::CStopDownloadingPacket(CCharEntity* PChar, std::vector< std::pair< uint32, string_t > > blacklist)
 {
 	this->type = 0x41;
 	this->size = 0x7C;
 
 	for (size_t x = 0; x < blacklist.size(); x++)
 	{
-		auto offset = (std::uint32_t)(0x04 + (20 * x)) ;
+		auto offset = (uint32)(0x04 + (20 * x)) ;
 		WBUFL(data, offset) = blacklist[x].first;
 		memcpy(data + offset + 4, blacklist[x].second.c_str(), blacklist[x].second.size());
 	}

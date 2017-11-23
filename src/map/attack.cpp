@@ -414,7 +414,7 @@ void CAttack::ProcessDamage()
         {
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;
         }
-        m_damage = (std::uint32_t)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
+        m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
             battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
     }
     // Not H2H.
@@ -422,12 +422,12 @@ void CAttack::ProcessDamage()
     {
         if (GetWeaponSlot() == SLOT_MAIN)
         {
-            m_damage = (std::uint32_t)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
+            m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
                 battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
         }
         else if (GetWeaponSlot() == SLOT_SUB)
         {
-            m_damage = (std::uint32_t)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
+            m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
                 battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
         }
     }

@@ -34,28 +34,28 @@ CEventUpdateStringPacket::CEventUpdateStringPacket(
     const std::string& string1,
     const std::string& string2,
     const std::string& string3,
-    std::uint32_t param0,
-    std::uint32_t param1,
-    std::uint32_t param2,
-    std::uint32_t param3,
-    std::uint32_t param4,
-    std::uint32_t param5,
-    std::uint32_t param6,
-    std::uint32_t param7,
-    std::uint32_t param8)
+    uint32 param0,
+    uint32 param1,
+    uint32 param2,
+    uint32 param3,
+    uint32 param4,
+    uint32 param5,
+    uint32 param6,
+    uint32 param7,
+    uint32 param8)
 {
     this->type = 0x5D;
     this->size = 0x2C;
 
-    ref<std::uint32_t>(0x04) = param0;
-    ref<std::uint32_t>(0x08) = param1;
-    ref<std::uint32_t>(0x0C) = param2;
-    ref<std::uint32_t>(0x10) = param3;
-    ref<std::uint32_t>(0x14) = param4;
-    ref<std::uint32_t>(0x18) = param5;
-    ref<std::uint32_t>(0x1C) = param6;
-    ref<std::uint32_t>(0x20) = param7;
-    ref<std::uint32_t>(0x24) = param8;
+    ref<uint32>(0x04) = param0;
+    ref<uint32>(0x08) = param1;
+    ref<uint32>(0x0C) = param2;
+    ref<uint32>(0x10) = param3;
+    ref<uint32>(0x14) = param4;
+    ref<uint32>(0x18) = param5;
+    ref<uint32>(0x1C) = param6;
+    ref<uint32>(0x20) = param7;
+    ref<uint32>(0x24) = param8;
 
     memcpy(data + 0x28, string0.c_str(), 15);
     memcpy(data + 0x38, string1.c_str(), 15);

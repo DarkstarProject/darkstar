@@ -1420,7 +1420,7 @@ namespace autoSpell
                     (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)
                 };
 
-                std::uint32_t removes = Sql_GetUIntData(SqlHandle, 5);
+                uint32 removes = Sql_GetUIntData(SqlHandle, 5);
                 while (removes > 0)
                 {
                     PSpell.removes.push_back((EFFECT)(removes & 0xFF));

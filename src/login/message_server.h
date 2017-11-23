@@ -28,7 +28,7 @@ This file is part of DarkStar-server source code.
 
 struct chat_message_t
 {
-    std::uint64_t dest;
+    uint64 dest;
     MSGSERVTYPE type;
     zmq::message_t data;
     zmq::message_t packet;
@@ -36,4 +36,4 @@ struct chat_message_t
 
 void message_server_init();
 void message_server_close();
-void queue_message(std::uint64_t ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);
+void queue_message(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zmq::message_t* packet);

@@ -130,7 +130,7 @@ public:
     void		capPlayerToBCNM();										// adjust player's level to the appropriate cap and remove buffs
     void		disableSubJob();										// disable all players subjobs
     void		enableSubJob();											// enable all players subjobs
-    void		pushMessageToAllInBcnm(std::uint16_t msg, std::uint32_t param);
+    void		pushMessageToAllInBcnm(std::uint16_t msg, uint32 param);
 
     //spawning chests + loot
     void		addNpc(CBaseEntity* PNpc);
@@ -171,7 +171,7 @@ public:
     std::uint16_t		m_RuleMask;
     bool		locked;
     string_t	m_FastestName;
-    std::uint32_t		m_FastestTime;
+    uint32		m_FastestTime;
     time_point		lastTick;
     time_point      fightTick;
 
@@ -198,7 +198,7 @@ private:
     time_point 			m_WinTime;
     time_point			m_AllDeadTime;											// time when every pt member has fallen
     duration			m_TimeLimit;
-    std::uint32_t			m_LootId;
+    uint32			m_LootId;
     std::uint8_t			m_LevelCap;
     std::uint8_t			m_MaxParticipants;										// 1,3,6,12,18,zone
     std::uint16_t			m_DynaUniqueID;											// unique ID for dynamis battlefield

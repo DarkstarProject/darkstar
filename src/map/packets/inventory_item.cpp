@@ -61,7 +61,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, std::uint8_t LocationID
                 {
                     WBUFB(data,(0x14)) = 0x90;
 
-                    std::uint32_t CurrentTime = CVanaTime::getInstance()->getVanaTime();
+                    uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
 
                     WBUFL(data,(0x15)) = ((CItemUsable*)PItem)->getNextUseTime();
                     WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;

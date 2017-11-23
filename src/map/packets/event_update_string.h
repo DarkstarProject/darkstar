@@ -48,15 +48,15 @@ public:
         const std::string& string1 = "",
         const std::string& string2 = "",
         const std::string& string3 = "",
-		std::uint32_t param0 = 0,
-		std::uint32_t param1 = 0,
-		std::uint32_t param2 = 0,
-		std::uint32_t param3 = 0,
-		std::uint32_t param4 = 0,
-		std::uint32_t param5 = 0,
-		std::uint32_t param6 = 0,
-		std::uint32_t param7 = 0,
-        std::uint32_t param8 = 0);
+		uint32 param0 = 0,
+		uint32 param1 = 0,
+		uint32 param2 = 0,
+		uint32 param3 = 0,
+		uint32 param4 = 0,
+		uint32 param5 = 0,
+		uint32 param6 = 0,
+		uint32 param7 = 0,
+        uint32 param8 = 0);
 };
 
 #endif

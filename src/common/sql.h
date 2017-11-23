@@ -88,7 +88,7 @@ std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, cons
 /// Retrieves the timeout of the connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-std::int32_t Sql_GetTimeout(Sql_t* self, std::uint32_t* out_timeout);
+std::int32_t Sql_GetTimeout(Sql_t* self, uint32* out_timeout);
 
 /// Retrieves the name of the columns of a table into out_buf, with the separator after each name.
 ///
@@ -131,22 +131,22 @@ std::int32_t Sql_Query(Sql_t* self, const char* query, Args... args)
 	return Sql_QueryStr(self, query_v.c_str());
 }
 
-std::uint64_t Sql_AffectedRows(Sql_t* self);
+uint64 Sql_AffectedRows(Sql_t* self);
 
 /// Returns the number of the AUTO_INCREMENT column of the last INSERT/UPDATE query.
 ///
 /// @return Value of the auto-increment column
-std::uint64_t Sql_LastInsertId(Sql_t* self);
+uint64 Sql_LastInsertId(Sql_t* self);
 
 /// Returns the number of columns in each row of the result.
 ///
 /// @return Number of columns
-std::uint32_t Sql_NumColumns(Sql_t* self);
+uint32 Sql_NumColumns(Sql_t* self);
 
 /// Returns the number of rows in the result.
 ///
 /// @return Number of rows
-std::uint64_t Sql_NumRows(Sql_t* self);
+uint64 Sql_NumRows(Sql_t* self);
 
 /// Fetches the next row.
 /// The data of the previous row is no longer valid.
@@ -167,7 +167,7 @@ std::int32_t Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_le
 
 std::int8_t*  Sql_GetData(Sql_t* self, size_t col);
 std::int32_t  Sql_GetIntData(Sql_t *self, size_t col);
-std::uint32_t Sql_GetUIntData(Sql_t *self, size_t col);
+uint32 Sql_GetUIntData(Sql_t *self, size_t col);
 float  Sql_GetFloatData(Sql_t *self, size_t col);
 
 

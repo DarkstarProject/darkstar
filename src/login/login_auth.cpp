@@ -112,7 +112,7 @@ std::int32_t login_parse(std::int32_t fd)
             {
                 ret = Sql_NextRow(SqlHandle);
 
-                sd->accid = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+                sd->accid = (uint32)Sql_GetUIntData(SqlHandle, 0);
                 std::uint8_t status = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
 
                 if (status & ACCST_NORMAL)
@@ -139,9 +139,9 @@ std::int32_t login_parse(std::int32_t fd)
                     {
                         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                         {
-                            std::uint32_t charid = Sql_GetUIntData(SqlHandle, 0);
-                            std::uint64_t ip = Sql_GetUIntData(SqlHandle, 1);
-                            std::uint64_t port = Sql_GetUIntData(SqlHandle, 2);
+                            uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                            uint64 ip = Sql_GetUIntData(SqlHandle, 1);
+                            uint64 port = Sql_GetUIntData(SqlHandle, 2);
 
                             ip |= (port << 32);
 
@@ -219,7 +219,7 @@ std::int32_t login_parse(std::int32_t fd)
                 //creating new account_id
                 const char *fmtQuery = "SELECT max(accounts.id) FROM accounts;";
 
-                std::uint32_t accid = 0;
+                uint32 accid = 0;
 
                 if (Sql_Query(SqlHandle, fmtQuery) != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
                 {

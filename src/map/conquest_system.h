@@ -54,7 +54,7 @@ namespace conquest
 	void	UpdateConquestSystem();										// Update conquest information in the DB
 
     void    UpdateInfluencePoints(int points, unsigned int nation, unsigned int region);
-	void	GainInfluencePoints(CCharEntity* PChar, std::uint32_t points);		// Gain influence for player's nation (+1)
+	void	GainInfluencePoints(CCharEntity* PChar, uint32 points);		// Gain influence for player's nation (+1)
 	void	LoseInfluencePoints(CCharEntity* PChar);					// Lose influence for player's nation and gain for beastmen influence
 	
     std::uint8_t	GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);	// Get number for graphics in conquest menu (arrows)
@@ -75,7 +75,7 @@ namespace conquest
 	std::uint8_t	GetNexTally();												// Next tally (weekly or every hour ?)
     std::uint8_t	GetRegionOwner(REGIONTYPE RegionID);						// Get owner of the region
 
-    std::uint32_t	AddConquestPoints(CCharEntity* PChar, std::uint32_t exp);			// Add conquest points
+    uint32	AddConquestPoints(CCharEntity* PChar, uint32 exp);			// Add conquest points
 };
 
 #endif

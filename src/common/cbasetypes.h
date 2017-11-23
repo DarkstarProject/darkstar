@@ -24,6 +24,12 @@
 #define DSP_DEBUG_BREAK_IF(_CONDITION_)
 #endif
 
+// typedef/using
+using int64 = std::int64_t;
+
+using uint32 = std::uint32_t;
+using uint64 = std::uint64_t;
+
 // string case comparison for *nix portability
 #if !defined(_MSC_VER)
 #define strcmpi				strcasecmp

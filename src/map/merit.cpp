@@ -195,7 +195,7 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
+void CMeritPoints::LoadMeritPoints(uint32 charid)
 {
     std::uint8_t catNumber = 0;
 
@@ -222,8 +222,8 @@ void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
         {
             if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint32_t meritID = Sql_GetUIntData(SqlHandle, 0);
-                std::uint32_t upgrades = Sql_GetUIntData(SqlHandle, 1);
+                uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
+                uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
                 for (std::uint16_t i = 0; i < MERITS_COUNT; i++)
                 {
                     if (merits[i].id == meritID)
@@ -243,7 +243,7 @@ void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SaveMeritPoints(std::uint32_t charid)
+void CMeritPoints::SaveMeritPoints(uint32 charid)
 {
     for (std::uint16_t i = 0; i < MERITS_COUNT; ++i)
         if (merits[i].count > 0)

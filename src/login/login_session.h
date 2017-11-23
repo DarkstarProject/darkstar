@@ -30,11 +30,11 @@
 
 struct login_session_data_t {
     char login[17];
-    std::uint32_t accid;
-    std::uint32_t serviced;
-    std::uint32_t client_addr;
+    uint32 accid;
+    uint32 serviced;
+    uint32 client_addr;
     std::uint16_t client_port;
-    std::uint32_t servip;
+    uint32 servip;
 
     char charname[17];
     std::int32_t login_fd;
@@ -46,9 +46,9 @@ struct login_session_data_t {
 typedef std::list<login_session_data_t*> login_sd_list_t;
 extern login_sd_list_t login_sd_list;
 
-login_session_data_t* find_loginsd_byaccid(std::uint32_t accid);
-login_session_data_t* find_loginsd_byip(std::uint32_t ip);
-void				  erase_loginsd_byaccid(std::uint32_t accid);
+login_session_data_t* find_loginsd_byaccid(uint32 accid);
+login_session_data_t* find_loginsd_byip(uint32 ip);
+void				  erase_loginsd_byaccid(uint32 accid);
 void				  erase_loginsd(std::int32_t loginfd);
 
 

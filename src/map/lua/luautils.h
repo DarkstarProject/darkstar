@@ -184,13 +184,13 @@ namespace luautils
     std::int32_t OnZoneInitialise(std::uint16_t ZoneID);                                      // triggers when zone is loaded
     std::int32_t OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);                  // when player enters a region of a zone
     std::int32_t OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);                  // when player leaves a region of a zone
-    std::int32_t OnTransportEvent(CCharEntity* PChar, std::uint32_t TransportID);
+    std::int32_t OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
     std::int32_t OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
 
     std::int32_t OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
-    std::int32_t OnEventUpdate(CCharEntity* PChar, std::uint16_t eventID, std::uint32_t result);     // triggered when game triggers event update during cutscene
+    std::int32_t OnEventUpdate(CCharEntity* PChar, std::uint16_t eventID, uint32 result);     // triggered when game triggers event update during cutscene
     std::int32_t OnEventUpdate(CCharEntity* PChar, std::int8_t* string);                      // triggered when game triggers event update during cutscene
-    std::int32_t OnEventFinish(CCharEntity* PChar, std::uint16_t eventID, std::uint32_t result);     // triggered when cutscene/event is completed
+    std::int32_t OnEventFinish(CCharEntity* PChar, std::uint16_t eventID, uint32 result);     // triggered when cutscene/event is completed
     std::int32_t OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);                       // triggers when a trade completes with an npc
 
     std::int32_t OnNpcSpawn(CBaseEntity* PNpc);                                        // triggers when a patrol npc spawns
@@ -205,7 +205,7 @@ namespace luautils
     std::int32_t OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, std::uint8_t maneuvers);
 
     std::int32_t OnItemUse(CBaseEntity* PTarget, CItem* PItem);                        // triggers when item is used
-    std::int32_t OnItemCheck(CBaseEntity* PTarget, CItem* PItem, std::uint32_t param = 0);    // check to see if item can be used
+    std::int32_t OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);    // check to see if item can be used
     std::int32_t CheckForGearSet(CBaseEntity* PTarget);                                // check for gear sets
 
     std::int32_t OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);    // triggers when a player attempts to cast a spell
@@ -248,7 +248,7 @@ namespace luautils
     std::int32_t OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance
     void AfterInstanceRegister(CBaseEntity* PChar);                             // triggers after a character is registered and zoned into an instance (the first time)
     std::int32_t OnInstanceLoadFailed(CZone* PZone);                                   // triggers when an instance load is failed (ie. instance no longer exists)
-    std::int32_t OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, std::uint32_t time);// triggers every second for an instance
+    std::int32_t OnInstanceTimeUpdate(CZone* PZone, CInstance* PInstance, uint32 time);// triggers every second for an instance
     std::int32_t OnInstanceFailure(CInstance* PInstance);                              // triggers when an instance is failed
     std::int32_t OnInstanceCreated(CCharEntity* PChar, CInstance* PInstance);          // triggers when an instance is created (per character - waiting outside for entry)
     std::int32_t OnInstanceCreated(CInstance* PInstance);                              // triggers when an instance is created (instance setup)
@@ -263,8 +263,8 @@ namespace luautils
     std::int32_t UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure
     std::int32_t UpdateServerMessage(lua_State*);                                      // update server message, first modify in conf and update
 
-    std::int32_t OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, std::uint32_t damage); // for items with additional effects
-    std::int32_t OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, std::uint32_t damage);                         // for mobs with spikes
+    std::int32_t OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, uint32 damage); // for items with additional effects
+    std::int32_t OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, uint32 damage);                         // for mobs with spikes
 
     std::int32_t nearLocation(lua_State*);
 

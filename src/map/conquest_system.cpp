@@ -114,7 +114,7 @@ namespace conquest
     *						                                                *
     ************************************************************************/
 
-    void GainInfluencePoints(CCharEntity* PChar, std::uint32_t points)
+    void GainInfluencePoints(CCharEntity* PChar, uint32 points)
     {
         conquest::UpdateInfluencePoints(points, PChar->profile.nation, PChar->loc.zone->GetRegionID());
     }
@@ -210,7 +210,7 @@ namespace conquest
         else
         {
             std::uint8_t offset = 0;
-            std::int64_t total = san_inf + bas_inf + win_inf;
+            int64 total = san_inf + bas_inf + win_inf;
 
             //Sandoria
             if (san_inf >= total * 0.65)	  offset = 3;
@@ -571,7 +571,7 @@ namespace conquest
 
     // TODO: необходимо учитывать добавленные очки для еженедельного подсчета conquest
 
-    std::uint32_t AddConquestPoints(CCharEntity* PChar, std::uint32_t exp)
+    uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
     {
         // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket,
         // т.к. клиент сам запрашивает этот пакет через фиксированный промежуток времени
@@ -583,7 +583,7 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            std::uint32_t points = (std::uint32_t)(exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15));
+            uint32 points = (uint32)(exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15));
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);

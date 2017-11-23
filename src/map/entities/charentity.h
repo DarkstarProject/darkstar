@@ -42,7 +42,7 @@ This file is part of DarkStar-server source code.
 
 struct jobs_t
 {
-    std::uint32_t unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
+    uint32 unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
     std::uint8_t  job[MAX_JOBTYPE];		// текущий уровень для каждой из профессий
     std::uint16_t exp[MAX_JOBTYPE];		// текущее количество опыта для каждой из профессий
     std::uint8_t  genkai;					// максимальный уровень профессий персонажа
@@ -76,7 +76,7 @@ struct profile_t
     std::uint16_t	   title;			// звание
     std::uint16_t     fame[15];		// известность
     std::uint8_t 	   rank[3];			// рагн в трех государствах
-    std::uint32_t	   rankpoints;	    // очки ранга в трех государствах
+    uint32	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
     std::uint8_t      campaign_allegiance;
 };
@@ -85,19 +85,19 @@ struct profile_t
 struct expChain_t
 {
     std::uint16_t chainNumber;
-    std::uint32_t chainTime;
+    uint32 chainTime;
 };
 
 struct NationTP_t
 {
-    std::uint32_t		sandoria;
-    std::uint32_t		bastok;
-    std::uint32_t		windurst;
-    std::uint32_t		ahturhgan;
-    std::uint32_t		maw;
-    std::uint32_t		pastsandoria;
-    std::uint32_t		pastbastok;
-    std::uint32_t		pastwindurst;
+    uint32		sandoria;
+    uint32		bastok;
+    uint32		windurst;
+    uint32		ahturhgan;
+    uint32		maw;
+    uint32		pastsandoria;
+    uint32		pastbastok;
+    uint32		pastwindurst;
 };
 
 
@@ -115,7 +115,7 @@ struct AuctionHistory_t
 {
     std::uint16_t		itemid;
     std::uint8_t		stack;
-    std::uint32_t		price;
+    uint32		price;
     std::uint8_t		status; //e.g. if sold/not sold/on market
 };
 
@@ -123,7 +123,7 @@ struct UnlockedAttachments_t
 {
     std::uint8_t heads;
     std::uint8_t frames;
-    std::uint32_t attachments[8];
+    uint32 attachments[8];
 };
 
 struct GearSetMod_t
@@ -155,7 +155,7 @@ class CItemState;
 class CItemUsable;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
-typedef std::map<std::uint32_t, CBaseEntity*> SpawnIDList_t;
+typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
 typedef std::vector<EntityID_t> BazaarList_t;
 
 class CCharEntity : public CBattleEntity
@@ -191,7 +191,7 @@ public:
     missionlog_t			m_missionLog[MAX_MISSIONAREA];	// список миссий
     assaultlog_t			m_assaultLog;					// список assault миссий
     campaignlog_t			m_campaignLog;					// список campaing миссий
-    std::uint32_t					m_lastBcnmTimePrompt;			// the last message prompt in seconds
+    uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
     PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
     void					setPetZoningInfo();				// set pet zoning info (when zoning and logging out)
     void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
@@ -256,30 +256,30 @@ public:
     EntityID_t        BazaarID;                     // Pointer to the bazaar we are browsing.
     BazaarList_t	  BazaarCustomers;              // Array holding the IDs of the current customers
 
-    std::uint32_t			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
+    uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
     std::uint8_t			  m_LevelRestriction;			// ограничение уровня персонажа
     std::uint16_t            m_Costum;                     // карнавальный костюм персонажа (модель)
     std::uint16_t			  m_Monstrosity;				// Monstrosity model ID
-    std::uint32_t			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
-    std::uint32_t            m_DeathCounter;               // Counter when you last died. This is set when you first login
-    std::uint32_t            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
+    uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
+    uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
+    uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
 
     std::uint8_t			  m_hasTractor;					// checks if player has tractor already
     std::uint8_t			  m_hasRaise;					// checks if player has raise already
     std::uint8_t             m_hasAutoTarget;              // возможность использования AutoTarget функции
     position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
 
-    std::uint32_t			  m_PlayTime;
-    std::uint32_t			  m_SaveTime;
+    uint32			  m_PlayTime;
+    uint32			  m_SaveTime;
 
-    std::uint32_t            m_LastYell;
+    uint32            m_LastYell;
 
     std::uint8_t			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
     std::uint8_t             m_mentor;                     // Mentor flag status.
     bool              m_isNewPlayer;                // New player flag..
-    std::uint32_t            m_moghouseID;
+    uint32            m_moghouseID;
 
     std::int8_t			  getShieldSize();
 
@@ -301,8 +301,8 @@ public:
     std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)
 
-    void SetPlayTime(std::uint32_t playTime);				// Set playtime
-    std::uint32_t GetPlayTime(bool needUpdate = true);		// Get playtime
+    void SetPlayTime(uint32 playTime);				// Set playtime
+    uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
     CItemArmor*	getEquip(SLOTTYPE slot);
 

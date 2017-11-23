@@ -30,7 +30,7 @@ This file is part of DarkStar-server source code.
 
 namespace blacklistutils
 {
-	bool IsBlacklisted(std::uint32_t ownerId, std::uint32_t targetId)
+	bool IsBlacklisted(uint32 ownerId, uint32 targetId)
 	{
 		const char* sql = "SELECT * FROM char_blacklist WHERE charid_owner = %u AND charid_target = %u;";
 		std::int32_t ret = Sql_Query(SqlHandle, sql, ownerId, targetId);
@@ -38,7 +38,7 @@ namespace blacklistutils
 		return (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1);
 	}
 
-	bool AddBlacklisted(std::uint32_t ownerId, std::uint32_t targetId)
+	bool AddBlacklisted(uint32 ownerId, uint32 targetId)
 	{
 		if (IsBlacklisted(ownerId, targetId))
 			return false;
@@ -47,7 +47,7 @@ namespace blacklistutils
 		return (Sql_Query(SqlHandle, sql, ownerId, targetId) != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1);
 	}
 
-	bool DeleteBlacklisted(std::uint32_t ownerId, std::uint32_t targetId)
+	bool DeleteBlacklisted(uint32 ownerId, uint32 targetId)
 	{
 		if (!IsBlacklisted(ownerId, targetId))
 			return false;
@@ -58,7 +58,7 @@ namespace blacklistutils
 
 	void SendBlacklist(CCharEntity* PChar)
 	{
-		std::vector< std::pair< std::uint32_t, string_t > > blacklist;
+		std::vector< std::pair< uint32, string_t > > blacklist;
 
 		// Obtain this users blacklist info..
 		const char* sql = "SELECT c.charid, c.charname FROM char_blacklist AS b INNER JOIN chars AS c ON b.charid_target = c.charid WHERE charid_owner = %u;";
@@ -72,7 +72,7 @@ namespace blacklistutils
 		int currentCount = 0;
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			std::uint32_t accid_target = Sql_GetUIntData(SqlHandle, 0);
+			uint32 accid_target = Sql_GetUIntData(SqlHandle, 0);
 			string_t targetName = (const char*)(Sql_GetData(SqlHandle, 1));
 
 			blacklist.push_back(std::make_pair(accid_target, targetName));

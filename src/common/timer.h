@@ -5,10 +5,10 @@
 
 #include "../common/cbasetypes.h"
 
-#define DIFF_TICK(a,b) ((std::uint32_t)((a)-(b)))
+#define DIFF_TICK(a,b) ((uint32)((a)-(b)))
 
-std::uint32_t gettick(void);
-std::uint32_t gettick_nocache(void);
+uint32 gettick(void);
+uint32 gettick_nocache(void);
 
 time_point get_server_start_time(void);
 

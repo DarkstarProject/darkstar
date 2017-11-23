@@ -66,7 +66,7 @@ class CWeatherPacket : public CBasicPacket
 {
 public:
 
-    CWeatherPacket(std::uint32_t ChangeTime, WEATHER WeatherEffect);
+    CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect);
 };
 
 #endif

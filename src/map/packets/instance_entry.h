@@ -40,7 +40,7 @@ class CInstanceEntryPacket : public CBasicPacket
 {
 public:
 
-	CInstanceEntryPacket(CBaseEntity* PEntrance, std::uint32_t response);
+	CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 response);
 };
 
 #endif

@@ -31,7 +31,7 @@ class CPartyListPacket
 {
 public:
 
-    CPartyListPacket(std::uint32_t partyid, std::uint32_t Total);
+    CPartyListPacket(uint32 partyid, uint32 Total);
     ~CPartyListPacket();
 
     void AddPlayer(SearchEntity* PPlayer);
@@ -41,8 +41,8 @@ public:
 
 private:
 
-    std::uint32_t m_partyid;
-    std::uint32_t m_offset;
+    uint32 m_partyid;
+    uint32 m_offset;
 
     std::uint8_t m_data[1024];
 };

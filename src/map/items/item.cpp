@@ -160,12 +160,12 @@ bool CItem::isSubType(ITEM_SUBTYPE subtype)
 *                                                                       *
 ************************************************************************/
 
-void CItem::setReserve(std::uint32_t reserve)
+void CItem::setReserve(uint32 reserve)
 {
     m_reserve = (reserve < m_quantity ? reserve : m_quantity);
 }
 
-std::uint32_t CItem::getReserve()
+uint32 CItem::getReserve()
 {
     return m_reserve;
 }
@@ -176,12 +176,12 @@ std::uint32_t CItem::getReserve()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setQuantity(std::uint32_t quantity)
+void CItem::setQuantity(uint32 quantity)
 {
     m_quantity = (quantity < m_stackSize ? quantity : m_stackSize);
 }
 
-std::uint32_t CItem::getQuantity()
+uint32 CItem::getQuantity()
 {
     return m_quantity;
 }
@@ -192,12 +192,12 @@ std::uint32_t CItem::getQuantity()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setStackSize(std::uint32_t stackSize)
+void CItem::setStackSize(uint32 stackSize)
 {
     m_stackSize = stackSize;
 }
 
-std::uint32_t CItem::getStackSize()
+uint32 CItem::getStackSize()
 {
     return m_stackSize;
 }
@@ -208,12 +208,12 @@ std::uint32_t CItem::getStackSize()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setBasePrice(std::uint32_t BasePrice)
+void CItem::setBasePrice(uint32 BasePrice)
 {
     m_BasePrice = BasePrice;
 }
 
-std::uint32_t CItem::getBasePrice()
+uint32 CItem::getBasePrice()
 {
     return m_BasePrice;
 }
@@ -224,12 +224,12 @@ std::uint32_t CItem::getBasePrice()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setCharPrice(std::uint32_t CharPrice)
+void CItem::setCharPrice(uint32 CharPrice)
 {
     if (!(m_flag & ITEM_FLAG_EX)) m_CharPrice = CharPrice;
 }
 
-std::uint32_t CItem::getCharPrice()
+uint32 CItem::getCharPrice()
 {
     return m_CharPrice;
 }

@@ -184,7 +184,7 @@ namespace battleutils
     void                applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, duration charmTime = 0s);
     void                unCharm(CBattleEntity* PEntity);
 
-    std::uint16_t				doSoulEaterEffect(CCharEntity* m_PChar, std::uint32_t damage);
+    std::uint16_t				doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
     std::uint16_t				getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, std::uint16_t damage);
     std::uint16_t				jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, std::uint8_t tier);
 
@@ -230,9 +230,9 @@ namespace battleutils
     void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, std::uint8_t level);
     bool                HasClaim(CBattleEntity* PEntity, CBattleEntity* PTarget);
 
-    std::uint32_t              CalculateSpellCastTime(CBattleEntity*, CSpell*);
+    uint32              CalculateSpellCastTime(CBattleEntity*, CSpell*);
     std::uint16_t              CalculateSpellCost(CBattleEntity*, CSpell*);
-    std::uint32_t              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
+    uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
     std::int16_t               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, std::int16_t);
     bool                RemoveAmmo(CCharEntity*, int quantity = 1);
     std::int32_t               GetMeritValue(CBattleEntity*, MERIT_TYPE);

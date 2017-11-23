@@ -38,7 +38,7 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-CSearchListPacket::CSearchListPacket(std::uint32_t Total)
+CSearchListPacket::CSearchListPacket(uint32 Total)
 {
     m_count = 0;
     m_offset = 192;
@@ -61,7 +61,7 @@ CSearchListPacket::CSearchListPacket(std::uint32_t Total)
 
 void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
 {
-    std::uint32_t size_offset = m_offset / 8;
+    uint32 size_offset = m_offset / 8;
     m_offset += 8;
 
     m_offset = packBitsLE(m_data, SEARCH_NAME, m_offset, 5);

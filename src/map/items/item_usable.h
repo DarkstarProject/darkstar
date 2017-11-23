@@ -42,10 +42,10 @@ public:
 	std::uint16_t	getAnimationTime();
 	std::uint16_t	getActivationTime();
 	std::uint8_t	getValidTarget();
-    std::uint32_t  getReuseTime();
-	std::uint32_t	getReuseDelay();
-	std::uint32_t	getLastUseTime();
-    std::uint32_t  getNextUseTime();
+    uint32  getReuseTime();
+	uint32	getReuseDelay();
+	uint32	getLastUseTime();
+    uint32  getNextUseTime();
     std::uint16_t  getAoE();
 
 	void	setUseDelay(std::uint8_t UseDelay);
@@ -55,9 +55,9 @@ public:
 	void	setAnimationTime(std::uint16_t AnimationTime);
 	void	setActivationTime(std::uint16_t ActivationTime);
 	void	setValidTarget(std::uint8_t ValidTarget);
-	void	setReuseDelay(std::uint32_t ReuseDelay);
-	void	setLastUseTime(std::uint32_t LastUseTime);
-    void    setAssignTime(std::uint32_t VanaTime);
+	void	setReuseDelay(uint32 ReuseDelay);
+	void	setLastUseTime(uint32 LastUseTime);
+    void    setAssignTime(uint32 VanaTime);
 	void    setAoE(std::uint16_t AoE);
 
 private:
@@ -68,8 +68,8 @@ private:
 	std::uint16_t	m_AnimationTime;    // время анимации для правильного отображения сообщения (эффектов)
 	std::uint16_t	m_ActivationTime;   // время активации предмета во время использования
 	std::uint8_t	m_ValidTarget;
-	std::uint32_t	m_ReuseDelay;       // задержка между использованием предмета
-    std::uint32_t  m_AssignTime;       // время экипировки предмета
+	uint32	m_ReuseDelay;       // задержка между использованием предмета
+    uint32  m_AssignTime;       // время экипировки предмета
     std::uint16_t  m_AoE;
 };
 

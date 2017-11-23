@@ -38,7 +38,7 @@ CMessageStandardPacket::CMessageStandardPacket(std::uint16_t MessageID)
     WBUFW(data,(0x0A)) = MessageID;
 }
 
-CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, std::uint32_t param0, std::uint32_t param1, std::uint16_t MessageID)
+CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, std::uint16_t MessageID)
 {
 	this->type = 0x09;
 	this->size = 0x12;
@@ -65,7 +65,7 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, std::uint32_t
 	}
 }
 
-CMessageStandardPacket::CMessageStandardPacket(std::uint32_t param0, std::uint32_t param1, std::uint32_t param2, std::uint32_t param3, std::uint16_t MessageID)
+CMessageStandardPacket::CMessageStandardPacket(uint32 param0, uint32 param1, uint32 param2, uint32 param3, std::uint16_t MessageID)
 {
 	this->type = 0x09;
 	this->size = 0x08;
@@ -83,7 +83,7 @@ CMessageStandardPacket::CMessageStandardPacket(std::uint32_t param0, std::uint32
 *																		*
 ************************************************************************/
 
-CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, std::uint32_t param0, std::uint16_t MessageID)
+CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, std::uint16_t MessageID)
 {
 	this->type = 0x09;
 	this->size = 0x18;

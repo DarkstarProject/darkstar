@@ -43,8 +43,8 @@ CStatusEffectPacket::CStatusEffectPacket(CCharEntity* PChar)
         if (PEffect->GetIcon() != 0)
         {
             ref<std::uint16_t>(0x08 + (i * 0x02)) = PEffect->GetIcon();
-            ref<std::uint32_t>(0x48 + (i * 0x04)) = PEffect->GetDuration() == 0 ? 0x7FFFFFFF : 
-                (((PEffect->GetDuration() - (std::uint32_t)std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - PEffect->GetStartTime()).count())/1000) 
+            ref<uint32>(0x48 + (i * 0x04)) = PEffect->GetDuration() == 0 ? 0x7FFFFFFF : 
+                (((PEffect->GetDuration() - (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - PEffect->GetStartTime()).count())/1000) 
                 + CVanaTime::getInstance()->getVanaTime()) * 60;
             ++i;
         }

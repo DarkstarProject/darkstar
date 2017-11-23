@@ -46,9 +46,9 @@ public:
 
     CAuctionHousePacket(std::uint8_t action);                                  // Send the auction menu
     CAuctionHousePacket(std::uint8_t action, std::uint8_t slot, CCharEntity * PChar); // Send the list of items sold by a character
-    CAuctionHousePacket(std::uint8_t action, std::uint8_t message, std::uint16_t itemid, std::uint32_t price);
+    CAuctionHousePacket(std::uint8_t action, std::uint8_t message, std::uint16_t itemid, uint32 price);
     CAuctionHousePacket(std::uint8_t action, std::uint8_t message, CCharEntity* PChar, std::uint8_t slot, bool keepItem);
-    CAuctionHousePacket(std::uint8_t action, CItem* PItem, std::uint8_t quantity, std::uint32_t price);
+    CAuctionHousePacket(std::uint8_t action, CItem* PItem, std::uint8_t quantity, uint32 price);
 };
 
 #endif

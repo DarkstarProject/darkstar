@@ -290,18 +290,18 @@ std::uint8_t subkey[4168] =
 	0xE3, 0xDF, 0x8F, 0x57, 0xE6, 0x72, 0xC3, 0x3A
 };
 
-inline std::uint32_t TT(std::uint32_t working, std::uint32_t* S)
+inline uint32 TT(uint32 working, uint32* S)
 {
 	return (((S[256+((working>>8)&0xff)]&1)^32)+((S[768+(working >> 24)]&1)^32)+S[512+((working>>16)&0xff)]+S[working&0xff]);
 }
 
-void blowfish_encipher(std::uint32_t* xl, std::uint32_t* xr, std::uint32_t* P, std::uint32_t* S)
+void blowfish_encipher(uint32* xl, uint32* xr, uint32* P, uint32* S)
 {	
 	
 #if defined (WIN32) && defined (_M_X86)
 
-	std::uint32_t  Xr;
-	std::uint32_t   i;
+	uint32  Xr;
+	uint32   i;
 
 	_asm {
 
@@ -362,9 +362,9 @@ cycle:
 
 #else
 
-	std::uint32_t Xl;
-	std::uint32_t Xr;
-	std::uint32_t temp;
+	uint32 Xl;
+	uint32 Xr;
+	uint32 temp;
 	std::uint16_t	      i;
 	
 	const std::int32_t N = 16;
@@ -394,13 +394,13 @@ cycle:
 #endif 
 }
 
-void blowfish_decipher(std::uint32_t* xl, std::uint32_t* xr, std::uint32_t* P, std::uint32_t* S)
+void blowfish_decipher(uint32* xl, uint32* xr, uint32* P, uint32* S)
 {
 
 #if defined (WIN32) && defined (_M_X86)
 
-   std::uint32_t  Xr;
-   std::uint32_t   i;
+   uint32  Xr;
+   uint32   i;
 
    	_asm {
 
@@ -461,9 +461,9 @@ cycle:
 
 #else
 
-	std::uint32_t Xl;
-	std::uint32_t Xr;
-	std::uint32_t temp;
+	uint32 Xl;
+	uint32 Xr;
+	uint32 temp;
 	std::uint16_t i;
 
 	Xl = *xl;
@@ -494,14 +494,14 @@ cycle:
 #endif
 }
 
-std::uint32_t* blowfish_init(std::int8_t key[], std::int16_t keybytes, std::uint32_t* P, std::uint32_t* S)
+uint32* blowfish_init(std::int8_t key[], std::int16_t keybytes, uint32* P, uint32* S)
 {
 	std::int16_t          i;
 	std::int16_t          j;
 	std::int16_t          k;
-	std::uint32_t		 data;
-	std::uint32_t		 datal;
-	std::uint32_t		 datar;
+	uint32		 data;
+	uint32		 datal;
+	uint32		 datar;
 
 	const std::int32_t N = 16;
 	memcpy(P, subkey, 72);

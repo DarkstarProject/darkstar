@@ -205,10 +205,10 @@ inline std::int32_t CLuaTradeContainer::hasItemQty(lua_State *L)
         if (!lua_isnil(L, -1) && lua_isnumber(L, -1) &&
             !lua_isnil(L, -2) && lua_isnumber(L, -2))
         {
-            std::uint32_t quantity = (std::uint32_t)lua_tonumber(L, -1);
+            uint32 quantity = (uint32)lua_tonumber(L, -1);
             std::uint16_t itemID = (std::uint16_t)lua_tonumber(L, -2);
 
-            std::uint32_t tradeQuantity = m_pMyTradeContainer->getItemQuantity(itemID);
+            uint32 tradeQuantity = m_pMyTradeContainer->getItemQuantity(itemID);
 
             lua_pushboolean(L, (quantity == tradeQuantity ? true : false));
 

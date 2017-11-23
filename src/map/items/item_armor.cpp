@@ -76,7 +76,7 @@ std::uint8_t CItemArmor::getILvl()
     return m_iLvl;
 }
 
-std::uint32_t CItemArmor::getJobs()
+uint32 CItemArmor::getJobs()
 {
 	return m_jobs;
 }
@@ -91,7 +91,7 @@ void CItemArmor::setILvl(std::uint8_t lvl)
     m_iLvl = lvl;
 }
 
-void CItemArmor::setJobs(std::uint32_t jobs)
+void CItemArmor::setJobs(uint32 jobs)
 {
 	m_jobs = jobs;
 }
@@ -118,8 +118,8 @@ void CItemArmor::setRemoveSlotId(std::uint16_t removSlot)
 
 std::uint8_t CItemArmor::getSlotType()
 {
-	std::uint32_t result = 0;
-	getMSB(&result,(std::uint32_t)m_equipSlotID);
+	uint32 result = 0;
+	getMSB(&result,(uint32)m_equipSlotID);
 	return result;
 }
 

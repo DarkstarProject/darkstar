@@ -40,7 +40,7 @@ class CTradeActionPacket : public CBasicPacket
 {
 	public:
 
-	CTradeActionPacket(CCharEntity* PChar, std::uint32_t action);
+	CTradeActionPacket(CCharEntity* PChar, uint32 action);
 };
 
 #endif

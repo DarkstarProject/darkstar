@@ -226,7 +226,7 @@ std::uint8_t CItemContainer::SearchItem(std::uint16_t ItemID)
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CItemContainer::SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity)
+std::uint8_t CItemContainer::SearchItemWithSpace(std::uint16_t ItemID, uint32 quantity)
 {
 	for (std::uint8_t SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{

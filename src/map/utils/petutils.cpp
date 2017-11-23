@@ -68,7 +68,7 @@ struct Pet_t
     std::uint8_t       name_prefix;
     std::uint8_t		size;		// размер модели
     std::uint16_t		m_Family;
-    std::uint32_t		time;		// время существования (будет использоваться для задания длительности статус эффекта)
+    uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
     std::uint8_t		mJob;
     std::uint8_t		m_Element;
@@ -761,7 +761,7 @@ namespace petutils
     *																		*
     ************************************************************************/
 
-    void SpawnPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone)
+    void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
         if (PMaster->objtype == TYPE_PC && (PetID == PETID_HARLEQUINFRAME || PetID == PETID_VALOREDGEFRAME || PetID == PETID_SHARPSHOTFRAME || PetID == PETID_STORMWAKERFRAME))
@@ -817,7 +817,7 @@ namespace petutils
         }
     }
 
-    void SpawnMobPet(CBattleEntity* PMaster, std::uint32_t PetID)
+    void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
     {
         // this is ONLY used for mob smn elementals / avatars
         /*
@@ -966,7 +966,7 @@ namespace petutils
         petutils::DetachPet(PMaster);
     }
 
-    std::int16_t PerpetuationCost(std::uint32_t id, std::uint8_t level)
+    std::int16_t PerpetuationCost(uint32 id, std::uint8_t level)
     {
         std::int16_t cost = 0;
         if (id >= 0 && id <= 7)
@@ -1110,7 +1110,7 @@ namespace petutils
 
     }
 
-    void LoadPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone)
+    void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
         if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN) {
@@ -1198,7 +1198,7 @@ namespace petutils
             {
                 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    std::uint32_t chocoboid = (std::uint32_t)Sql_GetIntData(SqlHandle, 0);
+                    uint32 chocoboid = (uint32)Sql_GetIntData(SqlHandle, 0);
 
                     if (chocoboid != 0)
                     {

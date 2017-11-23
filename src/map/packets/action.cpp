@@ -51,7 +51,7 @@ CActionPacket::CActionPacket(action_t& action)
     this->type = 0x28;
     this->size = 0x12;
 
-    ref<std::uint32_t>(0x05) = action.id;
+    ref<uint32>(0x05) = action.id;
 
     ACTIONTYPE ActionType = action.actiontype;
 
@@ -295,7 +295,7 @@ CActionPacket::CActionPacket(action_t& action)
     }
     }
 
-    std::uint32_t bitOffset = packBitsBE(data, ActionType, 82, 4);
+    uint32 bitOffset = packBitsBE(data, ActionType, 82, 4);
     auto targets = 0;
     auto actions = 0;
 

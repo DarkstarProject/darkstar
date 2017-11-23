@@ -52,7 +52,7 @@ std::int32_t CLuaAction::ID(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.ActionTargetID = (std::uint32_t)lua_tointeger(L, 2);
+                actionList.ActionTargetID = (uint32)lua_tointeger(L, 2);
                 return 0;
             }
         }

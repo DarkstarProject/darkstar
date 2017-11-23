@@ -474,7 +474,7 @@ struct zoneWeather_t
 
 struct zoneLine_t
 {
-    std::uint32_t     m_zoneLineID;
+    uint32     m_zoneLineID;
     std::uint16_t     m_toZone;
     position_t m_toPos;
 };
@@ -500,7 +500,7 @@ typedef std::map<std::uint16_t, zoneWeather_t> weatherVector_t;
 
 typedef std::map<std::uint16_t, CBaseEntity*> EntityList_t;
 
-std::int32_t zone_update_weather(std::uint32_t tick, CTaskMgr::CTask *PTask);
+std::int32_t zone_update_weather(uint32 tick, CTaskMgr::CTask *PTask);
 
 class CZone
 {
@@ -510,20 +510,20 @@ public:
     ZONETYPE        GetType();
     REGIONTYPE      GetRegionID();
     CONTINENTTYPE   GetContinentID();
-    std::uint32_t          GetIP();
+    uint32          GetIP();
     std::uint16_t          GetPort();
     std::uint16_t          GetTax();
     WEATHER         GetWeather();
-    std::uint32_t          GetWeatherChangeTime();
+    uint32          GetWeatherChangeTime();
     const std::int8_t*     GetName();
     std::uint8_t           GetSoloBattleMusic();
     std::uint8_t           GetPartyBattleMusic();
     std::uint8_t           GetBackgroundMusicDay();
     std::uint8_t           GetBackgroundMusicNight();
-    zoneLine_t*     GetZoneLine(std::uint32_t zoneLineID);
+    zoneLine_t*     GetZoneLine(uint32 zoneLineID);
 
     virtual CCharEntity*    GetCharByName(std::int8_t* name);                              // finds the player if exists in zone
-    virtual CCharEntity*    GetCharByID(std::uint32_t id);
+    virtual CCharEntity*    GetCharByID(uint32 id);
     // Gets an entity - ignores instances (use CBaseEntity->GetEntity if possible)
     virtual CBaseEntity*    GetEntity(std::uint16_t targid, std::uint8_t filter = -1);            // получаем указатель на любую сущность в зоне
 
@@ -585,11 +585,11 @@ private:
     CONTINENTTYPE   m_continentID;          // ID континента
     string_t        m_zoneName;             // имя зоны
     std::uint16_t          m_zonePort;             // порт зоны
-    std::uint32_t          m_zoneIP;               // IP зоны
+    uint32          m_zoneIP;               // IP зоны
     bool            m_useNavMesh;           // Use navmesh for roaming, chasing
 
     WEATHER         m_Weather;              // текущая погода
-    std::uint32_t          m_WeatherChangeTime;    // время начала текущей погоды
+    uint32          m_WeatherChangeTime;    // время начала текущей погоды
     CZoneEntities*  m_zoneEntities;
 
     std::uint16_t          m_tax;                  // налог в bazaar

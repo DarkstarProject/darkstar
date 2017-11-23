@@ -414,17 +414,17 @@ void CCharEntity::setBlockingAid(bool isBlockingAid)
     m_isBlockingAid = isBlockingAid;
 }
 
-void CCharEntity::SetPlayTime(std::uint32_t playTime)
+void CCharEntity::SetPlayTime(uint32 playTime)
 {
     m_PlayTime = playTime;
     m_SaveTime = gettick() / 1000;
 }
 
-std::uint32_t CCharEntity::GetPlayTime(bool needUpdate)
+uint32 CCharEntity::GetPlayTime(bool needUpdate)
 {
     if (needUpdate)
     {
-        std::uint32_t currentTime = gettick() / 1000;
+        uint32 currentTime = gettick() / 1000;
 
         m_PlayTime += currentTime - m_SaveTime;
         m_SaveTime = currentTime;
@@ -1568,7 +1568,7 @@ void CCharEntity::Die()
     }
     Die(60min);
     m_DeathCounter = 0;
-    m_DeathTimestamp = (std::uint32_t)time(nullptr);
+    m_DeathTimestamp = (uint32)time(nullptr);
 
     setBlockingAid(false);
 

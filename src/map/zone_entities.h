@@ -33,7 +33,7 @@ public:
     void			HealAllMobs();
 
     CCharEntity*    GetCharByName(std::int8_t* name);                                      // finds the player if exists in zone
-    CCharEntity*	GetCharByID(std::uint32_t id);
+    CCharEntity*	GetCharByID(uint32 id);
     CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1); 					// получаем указатель на любую сущность в зоне
 
     void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне

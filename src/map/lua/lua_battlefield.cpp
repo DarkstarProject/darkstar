@@ -93,7 +93,7 @@ inline std::int32_t CLuaBattlefield::getBcnmID(lua_State* L)
 
 inline std::int32_t CLuaBattlefield::getTimeInside(lua_State* L) {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-    std::uint32_t duration = (std::uint32_t)std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->getWinTime() - m_PLuaBattlefield->getStartTime()).count();
+    uint32 duration = (uint32)std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->getWinTime() - m_PLuaBattlefield->getStartTime()).count();
     lua_pushinteger(L, duration);
     return 1;
 }
@@ -144,7 +144,7 @@ inline std::int32_t CLuaBattlefield::insertAlly(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
     DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1) || lua_isnil(L, 1));
 
-    auto groupid = (std::uint32_t)lua_tointeger(L, 1);
+    auto groupid = (uint32)lua_tointeger(L, 1);
 
     CMobEntity* PAlly = mobutils::InstantiateAlly(groupid, m_PLuaBattlefield->getZoneId());
     if (PAlly)

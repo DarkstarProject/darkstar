@@ -514,12 +514,12 @@ struct Merit_t
             std::uint8_t  next;    // required merit points for next upgrade
             std::uint8_t  count;   // number of upgrades
         };
-        std::uint32_t data;        // data sent in packet
+        uint32 data;        // data sent in packet
     };
 
-    std::uint32_t value;           // the coefficient of variation of the parameter that is bound to merit 
+    uint32 value;           // the coefficient of variation of the parameter that is bound to merit 
     std::uint8_t  upgrade;         // maximum number of upgrades
-    std::uint32_t jobs;            // bitmask of jobs for which merit has effect
+    uint32 jobs;            // bitmask of jobs for which merit has effect
 	std::uint8_t  upgradeid;		// which set of upgrade values the merit will use
 	std::uint8_t  catid;			// cat which merit belongs to
     std::uint16_t spellid;         // associated spell ID to learn/unlearn
@@ -554,8 +554,8 @@ class CMeritPoints
         const Merit_t* GetMerit(MERIT_TYPE merit);
 		const Merit_t* GetMeritByIndex(std::uint16_t index);				// get merit index, 0,1,2,3,4 and so on
 
-		void LoadMeritPoints(std::uint32_t charid);						// load char applied merits
-		void SaveMeritPoints(std::uint32_t charid);	// save char applied merits
+		void LoadMeritPoints(uint32 charid);						// load char applied merits
+		void SaveMeritPoints(uint32 charid);	// save char applied merits
 
     private:
 

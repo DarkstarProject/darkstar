@@ -75,22 +75,22 @@ void CSpell::setJob(std::int8_t* jobs)
     memcpy(&m_job[1], jobs, 22);
 }
 
-std::uint32_t CSpell::getCastTime()
+uint32 CSpell::getCastTime()
 {
     return m_castTime;
 }
 
-void CSpell::setCastTime(std::uint32_t CastTime)
+void CSpell::setCastTime(uint32 CastTime)
 {
     m_castTime = CastTime;
 }
 
-std::uint32_t CSpell::getRecastTime()
+uint32 CSpell::getRecastTime()
 {
     return m_recastTime;
 }
 
-void CSpell::setRecastTime(std::uint32_t RecastTime)
+void CSpell::setRecastTime(uint32 RecastTime)
 {
     m_recastTime = RecastTime;
 }
@@ -338,12 +338,12 @@ std::uint16_t CSpell::getVE()
     return m_VE;
 }
 
-void CSpell::setModifiedRecast(std::uint32_t mrec)
+void CSpell::setModifiedRecast(uint32 mrec)
 {
     m_modifiedRecastTime = mrec;
 }
 
-std::uint32_t CSpell::getModifiedRecast()
+uint32 CSpell::getModifiedRecast()
 {
     return m_modifiedRecastTime;
 }

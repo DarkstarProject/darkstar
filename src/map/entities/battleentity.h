@@ -480,7 +480,7 @@ public:
     bool		    isDead();					// проверяем, мертва ли сущность
     bool		    isAlive();
     bool			isInDynamis();
-    bool			hasImmunity(std::uint32_t imID);
+    bool			hasImmunity(uint32 imID);
     bool			isAsleep();
 
     JOBTYPE		    GetMJob();					// главная профессия

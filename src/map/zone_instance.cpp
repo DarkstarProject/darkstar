@@ -59,7 +59,7 @@ CCharEntity* CZoneInstance::GetCharByName(std::int8_t* name)
     return PEntity;
 }
 
-CCharEntity* CZoneInstance::GetCharByID(std::uint32_t id)
+CCharEntity* CZoneInstance::GetCharByID(uint32 id)
 {
     CCharEntity* PEntity = nullptr;
     for (auto instance : instanceList)

@@ -39,7 +39,7 @@
 
 // флаги перед именем персонажа
 
-enum FLAGTYPE : std::uint32_t
+enum FLAGTYPE : uint32
 {
     FLAG_INEVENT        = 0x00000002,
     FLAG_CHOCOBO        = 0x00000040,
@@ -204,7 +204,7 @@ struct nameflags_t
 			std::uint8_t byte3;
 			std::uint8_t byte4;
 		};
-		std::uint32_t flags;
+		uint32 flags;
 	};
 };
 
@@ -285,13 +285,13 @@ unsigned char a[]={ \
 
 struct lan_config_t
 {
-	std::uint32_t uiLoginLanIP;
+	uint32 uiLoginLanIP;
 	std::uint16_t usLoginLanPort;
 
-	std::uint32_t uiMapLanIP;
+	uint32 uiMapLanIP;
 	std::uint16_t usMapLanPort;
 
-	std::uint32_t wait_time;
+	uint32 wait_time;
 	std::uint8_t  connect_try_num;
 };
 

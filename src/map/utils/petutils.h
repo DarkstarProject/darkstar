@@ -70,15 +70,15 @@ namespace petutils
 	void LoadPetList();
 	void FreePetList();
 
-	void SpawnPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone);
-    void SpawnMobPet(CBattleEntity* PMaster, std::uint32_t PetID);
+	void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
+    void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID);
     void DetachPet(CBattleEntity* PMaster);
     void DespawnPet(CBattleEntity* PMaster);
     void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
     void RetreatToMaster(CBattleEntity* PMaster);
-    std::int16_t PerpetuationCost(std::uint32_t id, std::uint8_t level);
+    std::int16_t PerpetuationCost(uint32 id, std::uint8_t level);
     void Familiar(CBattleEntity* PPet);
-    void LoadPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone);
+    void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
     void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize);
     void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet);
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod);

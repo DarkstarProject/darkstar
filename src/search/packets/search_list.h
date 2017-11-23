@@ -51,7 +51,7 @@ class CSearchListPacket
 {
 public:
 
-    CSearchListPacket(std::uint32_t Total);
+    CSearchListPacket(uint32 Total);
 
     void AddPlayer(SearchEntity* PPlayer);
 
@@ -61,7 +61,7 @@ public:
 private:
 
     std::uint8_t  m_count;
-    std::uint32_t m_offset;
+    uint32 m_offset;
     std::uint8_t  m_data[1024];
 };
 

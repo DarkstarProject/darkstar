@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 #include "synth_suggestion.h"
 
 
-CSynthSuggestionPacket::CSynthSuggestionPacket(std::uint32_t synthID)
+CSynthSuggestionPacket::CSynthSuggestionPacket(uint32 synthID)
 {
 	this->type = 0x31;
 	this->size = 0x1A;

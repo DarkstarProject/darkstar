@@ -73,7 +73,7 @@ typedef u_int SOCKET;
 struct SearchCommInfo
 {
     SOCKET socket;
-    std::uint32_t ip;
+    uint32 ip;
     std::uint16_t port;
 };
 
@@ -526,8 +526,8 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 
     std::uint16_t partyid = RBUFW(data, (0x10));
     std::uint16_t allianceid = RBUFW(data, (0x14));
-    std::uint32_t linkshellid1 = RBUFL(data, (0x18));
-    std::uint32_t linkshellid2 = RBUFL(data, (0x1C));
+    uint32 linkshellid1 = RBUFL(data, (0x18));
+    uint32 linkshellid2 = RBUFL(data, (0x1C));
 
     ShowMessage("SEARCH::PartyID = %u\n", partyid);
     ShowMessage("SEARCH::LinkshellIDs = %u, %u\n", linkshellid1, linkshellid2);
@@ -538,7 +538,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
     {
         std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid, allianceid);
 
-        CPartyListPacket PPartyPacket(partyid, (std::uint32_t)PartyList.size());
+        CPartyListPacket PPartyPacket(partyid, (uint32)PartyList.size());
 
         for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
         {
@@ -550,10 +550,10 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
     }
     else if (linkshellid1 != 0 || linkshellid2 != 0)
     {
-        std::uint32_t linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
+        uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
         std::list<SearchEntity*> LinkshellList = PDataLoader.GetLinkshellList(linkshellid);
 
-        CLinkshellListPacket PLinkshellPacket(linkshellid, (std::uint32_t)LinkshellList.size());
+        CLinkshellListPacket PLinkshellPacket(linkshellid, (uint32)LinkshellList.size());
 
         for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
         {
@@ -715,7 +715,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     // суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
     // результат поиска в базе отправляется клиенту
 
-    std::uint32_t bitOffset = 0;
+    uint32 bitOffset = 0;
 
     unsigned char sortDescending = 0;
     unsigned char isPresent = 0;
@@ -736,7 +736,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 
     std::uint16_t areas[10];
 
-    std::uint32_t flags = 0;
+    uint32 flags = 0;
 
 
     std::uint8_t* data = (std::uint8_t*)PTCPRequest.GetData();

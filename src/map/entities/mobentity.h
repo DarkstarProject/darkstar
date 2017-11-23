@@ -117,8 +117,8 @@ public:
     CMobEntity();
     ~CMobEntity();
 
-    std::uint32_t    getEntityFlags();                        // Returns the current value in m_flags
-    void      setEntityFlags(std::uint32_t EntityFlags);      // Change the current value in m_flags
+    uint32    getEntityFlags();                        // Returns the current value in m_flags
+    void      setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
 
     bool      hasRageMode();                           // If the mob has the rage mode: true
     void      addRageMode();                           // Rage mode ON:  stat x10
@@ -132,7 +132,7 @@ public:
     bool      CanDeaggro();
     time_point GetDespawnTime();
     void      SetDespawnTime(duration _duration);
-    std::uint32_t    GetRandomGil();                          // returns a random amount of gil
+    uint32    GetRandomGil();                          // returns a random amount of gil
     bool      CanRoamHome();                           // is it possible for me to walk back?
     bool      CanRoam();                               // check if mob can walk around
 
@@ -185,15 +185,15 @@ public:
     virtual void FadeOut() override;
 
     bool      m_AllowRespawn;             // if true, allow respawn
-    std::uint32_t    m_RespawnTime;              // respawn time
-    std::uint32_t    m_DropItemTime;             // time until monster death animation
+    uint32    m_RespawnTime;              // respawn time
+    uint32    m_DropItemTime;             // time until monster death animation
 
-    std::uint32_t    m_DropID;                   // dropid of items to be dropped. dropid in Database (mob_droplist)
+    uint32    m_DropID;                   // dropid of items to be dropped. dropid in Database (mob_droplist)
 
     std::uint8_t     m_minLevel;                 // lowest possible level of the mob
     std::uint8_t     m_maxLevel;                 // highest possible level of the mob
-    std::uint32_t    HPmodifier;                 // HP in Database (mob_groups)
-    std::uint32_t    MPmodifier;                 // MP in Database (mob_groups)
+    uint32    HPmodifier;                 // HP in Database (mob_groups)
+    uint32    MPmodifier;                 // MP in Database (mob_groups)
 
     float     HPscale;                    // HP boost percentage
     float     MPscale;                    // MP boost percentage
@@ -242,12 +242,12 @@ public:
     bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
     std::uint16_t    m_Family;
     std::uint16_t    m_MobSkillList;             // Mob skill list defined from mob_pools
-    std::uint32_t    m_Pool;                     // pool the mob came from
+    uint32    m_Pool;                     // pool the mob came from
 
     CMobSpellList*        m_SpellListContainer;        // The spells list container for this mob
     std::map<std::uint16_t, std::uint16_t>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
-    std::uint32_t    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+    uint32    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     std::uint8_t     m_name_prefix;                           // The ding bats VS Ding bats
     string_t  packetName;                              // Used for battle allies
 

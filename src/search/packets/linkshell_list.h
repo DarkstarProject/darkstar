@@ -31,7 +31,7 @@ class CLinkshellListPacket
 {
 public:
 
-    CLinkshellListPacket(std::uint32_t linkshellid, std::uint32_t Total);
+    CLinkshellListPacket(uint32 linkshellid, uint32 Total);
     ~CLinkshellListPacket();
 
     void AddPlayer(SearchEntity* PPlayer);
@@ -40,8 +40,8 @@ public:
     std::uint16_t GetSize();
 
 private:
-    std::uint32_t m_linkshellid;
-    std::uint32_t m_offset;
+    uint32 m_linkshellid;
+    uint32 m_offset;
     std::uint8_t m_data[1024];
 };
 

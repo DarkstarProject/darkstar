@@ -25,7 +25,7 @@
 
 #include "message_system.h"
 
-CMessageSystemPacket::CMessageSystemPacket(std::uint32_t param0, std::uint32_t param1, std::uint16_t messageID)
+CMessageSystemPacket::CMessageSystemPacket(uint32 param0, uint32 param1, std::uint16_t messageID)
 {
 	this->type = 0x53;
 	this->size = 0x08;

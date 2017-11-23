@@ -54,7 +54,7 @@ int config_switch(const char* str)
     return (int)strtol(str, NULL, 0);
 }
 
-std::int32_t checksum(unsigned char *buf, std::uint32_t buflen, char checkhash[16])
+std::int32_t checksum(unsigned char *buf, uint32 buflen, char checkhash[16])
 {
     unsigned char hash[16];
 
@@ -135,7 +135,7 @@ std::int32_t intpow32(std::int32_t base, std::int32_t exponent)
 *																		*
 ************************************************************************/
 
-void getMSB(std::uint32_t* result, std::uint32_t value)
+void getMSB(uint32* result, uint32 value)
 {
     *result = 0;
     if(value == 0)
@@ -219,7 +219,7 @@ position_t nearPosition(const position_t& A, float offset, float radian)
 *																		*
 ************************************************************************/
 
-std::int32_t hasBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t size)
+std::int32_t hasBit(std::uint16_t value, std::uint8_t* BitArray, uint32 size)
 {
     if(value >= size * 8)
     {
@@ -229,7 +229,7 @@ std::int32_t hasBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t s
     return (std::int32_t)(BitArray[value >> 3] & (1 << (value % 8)));
 }
 
-std::int32_t addBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t size)
+std::int32_t addBit(std::uint16_t value, std::uint8_t* BitArray, uint32 size)
 {
     if(!hasBit(value, BitArray, size) && (value < size * 8))
     {
@@ -239,7 +239,7 @@ std::int32_t addBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t s
     return 0;
 }
 
-std::int32_t delBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t size)
+std::int32_t delBit(std::uint16_t value, std::uint8_t* BitArray, uint32 size)
 {
     if(hasBit(value, BitArray, size))
     {
@@ -255,17 +255,17 @@ std::int32_t delBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t s
 *																		*
 ************************************************************************/
 
-std::uint32_t packBitsBE(std::uint8_t* target, std::uint64_t value, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint32 packBitsBE(std::uint8_t* target, uint64 value, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return packBitsBE(target, value, 0, bitOffset, lengthInBit);
 }
 
-std::uint32_t packBitsBE(std::uint8_t* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint32 packBitsBE(std::uint8_t* target, uint64 value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);										//correct bitOffsets>=8
     bitOffset %= 8;
 
-    std::uint64_t bitmask = 0xFFFFFFFFFFFFFFFFLL;								//Generate bitmask
+    uint64 bitmask = 0xFFFFFFFFFFFFFFFFLL;								//Generate bitmask
 
     bitmask >>= (64 - lengthInBit);
     bitmask <<= bitOffset;
@@ -297,17 +297,17 @@ std::uint32_t packBitsBE(std::uint8_t* target, std::uint64_t value, std::int32_t
     }
     else if((lengthInBit + bitOffset) <= 32)
     {
-        std::uint32_t* dataPointer = (std::uint32_t*)&target[byteOffset];
+        uint32* dataPointer = (uint32*)&target[byteOffset];
 
-        std::uint32_t bitmaskUC = (std::uint32_t)bitmask;
-        std::uint32_t valueUC = (std::uint32_t)value;
+        uint32 bitmaskUC = (uint32)bitmask;
+        uint32 valueUC = (uint32)value;
 
         *dataPointer &= bitmaskUC;
         *dataPointer |= valueUC;
     }
     else if((lengthInBit + bitOffset) <= 64)
     {
-        std::uint64_t* dataPointer = (std::uint64_t*)&target[byteOffset];
+        uint64* dataPointer = (uint64*)&target[byteOffset];
 
         *dataPointer &= bitmask;
         *dataPointer |= value;
@@ -320,22 +320,22 @@ std::uint32_t packBitsBE(std::uint8_t* target, std::uint64_t value, std::int32_t
 }
 
 
-std::uint64_t unpackBitsBE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint64 unpackBitsBE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return unpackBitsBE(target, 0, bitOffset, lengthInBit);
 }
 
-std::uint64_t unpackBitsBE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint64 unpackBitsBE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);
     bitOffset %= 8;
 
-    std::uint64_t bitmask = 0xFFFFFFFFFFFFFFFFLL;
+    uint64 bitmask = 0xFFFFFFFFFFFFFFFFLL;
 
     bitmask >>= (64 - lengthInBit);
     bitmask <<= bitOffset;
 
-    std::uint64_t retVal;
+    uint64 retVal;
 
     if((lengthInBit + bitOffset) <= 8)
     {
@@ -351,15 +351,15 @@ std::uint64_t unpackBitsBE(std::uint8_t* target, std::int32_t byteOffset, std::i
     }
     else if((lengthInBit + bitOffset) <= 32)
     {
-        std::uint32_t* dataPointer = (std::uint32_t*)&target[byteOffset];
+        uint32* dataPointer = (uint32*)&target[byteOffset];
 
-        retVal = ((*dataPointer)&(std::uint32_t)bitmask) >> bitOffset;
+        retVal = ((*dataPointer)&(uint32)bitmask) >> bitOffset;
     }
     else if((lengthInBit + bitOffset) <= 64)
     {
-        std::uint64_t* dataPointer = (std::uint64_t*)&target[byteOffset];
+        uint64* dataPointer = (uint64*)&target[byteOffset];
 
-        retVal = ((*dataPointer)&(std::uint64_t)bitmask) >> bitOffset;
+        retVal = ((*dataPointer)&(uint64)bitmask) >> bitOffset;
     }
     else
     {
@@ -369,12 +369,12 @@ std::uint64_t unpackBitsBE(std::uint8_t* target, std::int32_t byteOffset, std::i
     return retVal;
 }
 
-std::uint32_t packBitsLE(std::uint8_t* target, std::uint64_t value, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint32 packBitsLE(std::uint8_t* target, uint64 value, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return packBitsLE(target, value, 0, bitOffset, lengthInBit);
 }
 
-std::uint32_t packBitsLE(std::uint8_t* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint32 packBitsLE(std::uint8_t* target, uint64 value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);													//correct bitOffsets >= 8
     bitOffset %= 8;
@@ -414,12 +414,12 @@ std::uint32_t packBitsLE(std::uint8_t* target, std::uint64_t value, std::int32_t
     return ((byteOffset << 3) + bitOffset + lengthInBit);
 }
 
-std::uint64_t unpackBitsLE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint64 unpackBitsLE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return unpackBitsLE(target, 0, bitOffset, lengthInBit);
 }
 
-std::uint64_t unpackBitsLE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
+uint64 unpackBitsLE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);
     bitOffset %= 8;
@@ -439,7 +439,7 @@ std::uint64_t unpackBitsLE(std::uint8_t* target, std::int32_t byteOffset, std::i
         return 0;
     }
 
-    std::uint64_t retVal;
+    uint64 retVal;
 
     std::uint8_t* modifiedTarget = new std::uint8_t[bytesNeeded];
 

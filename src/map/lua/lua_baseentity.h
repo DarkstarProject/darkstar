@@ -209,7 +209,7 @@ public:
     std::int32_t startEvent(lua_State*);           // Begins Event
     std::int32_t startEventString(lua_State*);     // Begins Event with string param (0x33 packet)
     std::int32_t updateEvent(lua_State*);          // Updates event
-    std::int32_t updateEventString(lua_State*);    // (string, string, string, string, std::uint32_t, ...)
+    std::int32_t updateEventString(lua_State*);    // (string, string, string, string, uint32, ...)
 
     std::int32_t getEventTarget(lua_State*);       //
     std::int32_t openSendBox(lua_State*);          // Opens send box (to deliver items)

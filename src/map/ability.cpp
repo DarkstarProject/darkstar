@@ -528,7 +528,7 @@ namespace ability
         return charge;
     }
 
-    std::uint32_t GetAbsorbMessage(std::uint32_t msg)
+    uint32 GetAbsorbMessage(uint32 msg)
     {
         if (msg == 110)
             return 102;

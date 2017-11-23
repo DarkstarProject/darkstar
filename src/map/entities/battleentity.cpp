@@ -111,7 +111,7 @@ bool CBattleEntity::isInDynamis()
 }
 
 // return true if the mob has immunity
-bool CBattleEntity::hasImmunity(std::uint32_t imID)
+bool CBattleEntity::hasImmunity(uint32 imID)
 {
     if (objtype == TYPE_MOB || objtype == TYPE_PET) {
         IMMUNITY mobImmunity = (IMMUNITY)imID;
@@ -208,8 +208,8 @@ bool CBattleEntity::Rest(float rate)
 {
     if (health.hp != health.maxhp || health.mp != health.maxmp) {
         // recover 20% HP
-        std::uint32_t recoverHP = (std::uint32_t)(health.maxhp * rate);
-        std::uint32_t recoverMP = (std::uint32_t)(health.maxmp * rate);
+        uint32 recoverHP = (uint32)(health.maxhp * rate);
+        uint32 recoverMP = (uint32)(health.maxmp * rate);
         addHP(recoverHP);
         addMP(recoverMP);
 

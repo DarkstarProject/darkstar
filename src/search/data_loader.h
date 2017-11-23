@@ -37,14 +37,14 @@ struct search_req;
 struct ahItem
 {
     std::uint16_t ItemID;
-    std::uint32_t SinglAmount;
-    std::uint32_t StackAmount;
+    uint32 SinglAmount;
+    uint32 StackAmount;
 };
 
 struct ahHistory
 {
-    std::uint32_t Price;
-    std::uint32_t Data;
+    uint32 Price;
+    uint32 Data;
     std::uint8_t  Name1[15];
     std::uint8_t  Name2[15];
 };
@@ -52,7 +52,7 @@ struct ahHistory
 struct SearchEntity
 {
     std::uint8_t  name[16];
-    std::uint32_t id;
+    uint32 id;
     std::uint8_t  mjob;
     std::uint8_t  mlvl;
     std::uint8_t  sjob;
@@ -63,10 +63,10 @@ struct SearchEntity
     std::uint16_t zone;
     std::uint16_t prevzone;
     std::uint16_t flags1;
-    std::uint32_t flags2;
-    std::uint32_t comment;
-    std::uint32_t linkshellid1;
-    std::uint32_t linkshellid2;
+    uint32 flags2;
+    uint32 comment;
+    uint32 linkshellid1;
+    uint32 linkshellid2;
     std::uint8_t  linkshellrank1;
     std::uint8_t  linkshellrank2;
     std::uint16_t languages;
@@ -85,11 +85,11 @@ public:
     CDataLoader();
     ~CDataLoader();
 
-    std::uint32_t GetPlayersCount(search_req sr);
+    uint32 GetPlayersCount(search_req sr);
 
     std::vector<ahHistory*>  GetAHItemHystory(std::uint16_t ItemID, bool stack);
     std::list<SearchEntity*> GetPartyList(std::uint16_t PartyID, std::uint16_t AllianceID);
-    std::list<SearchEntity*> GetLinkshellList(std::uint32_t LinkshellID);
+    std::list<SearchEntity*> GetLinkshellList(uint32 LinkshellID);
     std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
     std::vector<ahItem*>     GetAHItemsToCategory(std::uint8_t AHCategoryID, std::int8_t* OrderByString);
     void					 ExpireAHItems();

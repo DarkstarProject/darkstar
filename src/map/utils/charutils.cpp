@@ -578,7 +578,7 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->jobs.unlocked = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+            PChar->jobs.unlocked = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->jobs.genkai = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
 
             PChar->jobs.job[JOB_WAR] = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
@@ -653,7 +653,7 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->nameflags.flags = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+            PChar->nameflags.flags = (uint32)Sql_GetUIntData(SqlHandle, 0);
 
             PChar->SetMJob(Sql_GetUIntData(SqlHandle, 1));
             PChar->SetSJob(Sql_GetUIntData(SqlHandle, 2));
@@ -700,10 +700,10 @@ namespace charutils
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint32_t cast_time = Sql_GetUIntData(SqlHandle, 1);
-                std::uint32_t recast = Sql_GetUIntData(SqlHandle, 2);
+                uint32 cast_time = Sql_GetUIntData(SqlHandle, 1);
+                uint32 recast = Sql_GetUIntData(SqlHandle, 2);
                 time_t now = time(nullptr);
-                std::uint32_t chargeTime = 0;
+                uint32 chargeTime = 0;
                 std::uint8_t maxCharges = 0;
                 Charge_t* charge = ability::GetCharge(PChar, Sql_GetUIntData(SqlHandle, 0));
                 if (charge != nullptr)
@@ -713,7 +713,7 @@ namespace charutils
                 }
                 if (now < cast_time + recast)
                 {
-                    PChar->PRecastContainer->Load(RECAST_ABILITY, Sql_GetUIntData(SqlHandle, 0), (cast_time + recast - (std::uint32_t)now), chargeTime, maxCharges);
+                    PChar->PRecastContainer->Load(RECAST_ABILITY, Sql_GetUIntData(SqlHandle, 0), (cast_time + recast - (uint32)now), chargeTime, maxCharges);
                 }
             }
         }
@@ -1153,7 +1153,7 @@ namespace charutils
 
     // TODO: мне не нравится параметр silens, нужно придумать что-нибудь более элегантное
 
-    std::uint8_t AddItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint16_t ItemID, std::uint32_t quantity, bool silence)
+    std::uint8_t AddItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint16_t ItemID, uint32 quantity, bool silence)
     {
         if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
         {
@@ -1346,7 +1346,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t UpdateItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t slotID, std::int32_t quantity, bool force)
+    uint32 UpdateItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t slotID, std::int32_t quantity, bool force)
     {
         CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 
@@ -1371,8 +1371,8 @@ namespace charutils
                 return 0;
         }
 
-        std::uint32_t ItemID = PItem->getID();
-        std::uint32_t newQuantity = PItem->getQuantity() + quantity;
+        uint32 ItemID = PItem->getID();
+        uint32 newQuantity = PItem->getQuantity() + quantity;
 
         if (newQuantity > PItem->getStackSize()) newQuantity = PItem->getStackSize();
 
@@ -2232,7 +2232,7 @@ namespace charutils
     // куда добавить битовое поле, указывающее, в какой ячейке находится экипировка с условием
     // для начала это поле избавит нас от проверки ячеек у персонажей без экипировки с условием
 
-    void CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, std::uint32_t param)
+    void CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param)
     {
         if (!(PChar->m_EquipFlag & ScriptType))
             return;
@@ -2321,7 +2321,7 @@ namespace charutils
         }
     }
 
-    void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, std::uint32_t PetID) {
+    void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID) {
         DSP_DEBUG_BREAK_IF(PPet == nullptr || PChar == nullptr);
 
         memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
@@ -3024,9 +3024,9 @@ namespace charutils
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            for (std::uint32_t x = 0; x < 50 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 x = 0; x < 50 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
-                for (std::uint32_t y = 0; y < 20; ++y)
+                for (uint32 y = 0; y < 20; ++y)
                 {
                     g_ExpTable[x][y] = (std::uint16_t)Sql_GetIntData(SqlHandle, y);
                 }
@@ -3055,7 +3055,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t GetRealExp(std::uint8_t charlvl, std::uint8_t moblvl)
+    uint32 GetRealExp(std::uint8_t charlvl, std::uint8_t moblvl)
     {
         std::int32_t levelDif = moblvl - charlvl + 34;
 
@@ -3072,7 +3072,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t GetExpNEXTLevel(std::uint8_t charlvl)
+    uint32 GetExpNEXTLevel(std::uint8_t charlvl)
     {
         if ((charlvl > 0) && (charlvl < 100))
         {
@@ -3092,13 +3092,13 @@ namespace charutils
     void DistributeGil(CCharEntity* PChar, CMobEntity* PMob)
     {
         //work out the amount of gil to give (guessed; replace with testing)
-        std::uint32_t gil = PMob->GetRandomGil();
-        std::uint32_t gBonus = 0;
+        uint32 gil = PMob->GetRandomGil();
+        uint32 gBonus = 0;
 
         if (map_config.all_mobs_gil_bonus > 0)
         {
             gBonus = map_config.all_mobs_gil_bonus*PMob->GetMLevel();
-            gil += std::clamp<std::uint32_t>(gBonus, 1, map_config.max_gil_bonus);
+            gil += std::clamp<uint32>(gBonus, 1, map_config.max_gil_bonus);
         }
 
         // Distribute gil to player/party/alliance
@@ -3185,7 +3185,7 @@ namespace charutils
 
         PChar->ForAlliance([&PMob, &region, &minlevel, &maxlevel, &pcinzone](CBattleEntity* PPartyMember) {
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
-            std::uint32_t baseexp = 0;
+            uint32 baseexp = 0;
             auto exp = 0.f;
             float permonstercap, monsterbonus = 1.0f;
             bool chainactive = false;
@@ -3409,7 +3409,7 @@ namespace charutils
                             PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                         }
                     }
-                    charutils::AddExperiencePoints(false, PMember, PMob, (std::uint32_t)exp, baseexp, chainactive);
+                    charutils::AddExperiencePoints(false, PMember, PMob, (uint32)exp, baseexp, chainactive);
                 }
             }
         });
@@ -3519,14 +3519,14 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, std::uint32_t exp, std::uint32_t baseexp, bool isexpchain)
+    void AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp, bool isexpchain)
     {
         if (PChar->isDead())
             return;
 
         if (!expFromRaise)
         {
-            exp = (std::uint32_t)(exp * map_config.exp_rate);
+            exp = (uint32)(exp * map_config.exp_rate);
         }
         std::uint16_t currentExp = PChar->jobs.exp[PChar->GetMJob()];
         bool onLimitMode = false;
@@ -3612,8 +3612,8 @@ namespace charutils
             if (zoneutils::GetCurrentRegion(Pzone) == REGION_ABYSSEA)
             {
                 std::uint16_t TextID = luautils::GetTextIDVariable(Pzone, "CRUOR_OBTAINED");
-                std::uint32_t Total = charutils::GetPoints(PChar, "cruor");
-                std::uint32_t Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
+                uint32 Total = charutils::GetPoints(PChar, "cruor");
+                uint32 Cruor = 0; // Need to work out how to do cruor chains, until then no cruor will drop unless this line is customized for non retail play.
 
                 if (TextID == 0)
                 {
@@ -4354,7 +4354,7 @@ namespace charutils
 
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            auto tstamp = (std::uint32_t)Sql_GetIntData(SqlHandle, 0);
+            auto tstamp = (uint32)Sql_GetIntData(SqlHandle, 0);
             if (CVanaTime::getInstance()->getVanaTime() < tstamp) {
                 return true;
             }
@@ -4421,7 +4421,7 @@ namespace charutils
 
     void SaveDeathTime(CCharEntity* PChar)
     {
-        std::uint32_t currentTime = (std::uint32_t)time(nullptr);
+        uint32 currentTime = (uint32)time(nullptr);
         PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
         PChar->m_DeathTimestamp = currentTime;
 
@@ -4630,9 +4630,9 @@ namespace charutils
             "s.charid = p.charid WHERE p.charid = %u;", (PARTY_SECOND | PARTY_THIRD), PChar->id);
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            std::uint32_t partyid = Sql_GetUIntData(SqlHandle, 0);
-            std::uint32_t allianceid = Sql_GetUIntData(SqlHandle, 1);
-            std::uint32_t partynumber = Sql_GetUIntData(SqlHandle, 2);
+            uint32 partyid = Sql_GetUIntData(SqlHandle, 0);
+            uint32 allianceid = Sql_GetUIntData(SqlHandle, 1);
+            uint32 partynumber = Sql_GetUIntData(SqlHandle, 2);
 
             //first, parties and alliances must be created or linked if the character's current party has changed
             // for example, joining a party from another server
@@ -4803,12 +4803,12 @@ namespace charutils
         }
     }
 
-    void SendToZone(CCharEntity* PChar, std::uint8_t type, std::uint64_t ipp)
+    void SendToZone(CCharEntity* PChar, std::uint8_t type, uint64 ipp)
     {
         if (type == 2)
         {
             Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
-                (std::uint32_t)ipp, (std::uint32_t)(ipp >> 32), PChar->id);
+                (uint32)ipp, (uint32)(ipp >> 32), PChar->id);
 
             const char* Query =
                 "UPDATE chars "

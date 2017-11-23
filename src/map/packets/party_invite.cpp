@@ -30,7 +30,7 @@
 #include "../entities/charentity.h"
 
 
-CPartyInvitePacket::CPartyInvitePacket(std::uint32_t id, std::uint16_t targid, CCharEntity* PInviter, INVITETYPE InviteType)
+CPartyInvitePacket::CPartyInvitePacket(uint32 id, std::uint16_t targid, CCharEntity* PInviter, INVITETYPE InviteType)
 {
 	this->type = 0xDC;
 	this->size = 0x10; 

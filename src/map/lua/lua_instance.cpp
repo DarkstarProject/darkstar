@@ -301,7 +301,7 @@ inline std::int32_t CLuaInstance::setProgress(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetProgress((std::uint32_t)lua_tointeger(L, 1));
+    m_PLuaInstance->SetProgress((uint32)lua_tointeger(L, 1));
 
     return 0;
 }
@@ -321,7 +321,7 @@ inline std::int32_t CLuaInstance::setStage(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetStage((std::uint32_t)lua_tointeger(L, 1));
+    m_PLuaInstance->SetStage((uint32)lua_tointeger(L, 1));
 
     return 0;
 }
@@ -367,7 +367,7 @@ inline std::int32_t CLuaInstance::insertAlly(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1) || lua_isnil(L, 1));
 
-    auto groupid = (std::uint32_t)lua_tointeger(L, 1);
+    auto groupid = (uint32)lua_tointeger(L, 1);
 
     CMobEntity* PAlly = mobutils::InstantiateAlly(groupid, m_PLuaInstance->GetZone()->GetID(), m_PLuaInstance);
     if (PAlly)

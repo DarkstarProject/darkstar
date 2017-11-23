@@ -637,7 +637,7 @@ struct Charge_t
     JOBTYPE    job;         //job
     std::uint8_t      level;       //level
     std::uint8_t      maxCharges;  //maximum number of stored charges
-    std::uint32_t     chargeTime;  //time required to restore one charge
+    uint32     chargeTime;  //time required to restore one charge
     std::uint16_t     merit;
 };
 
@@ -737,7 +737,7 @@ namespace ability
     CAbility* GetTwoHourAbility(JOBTYPE JobID);
     bool CanLearnAbility(CBattleEntity* PUser, std::uint16_t AbilityID);
     Charge_t* GetCharge(CBattleEntity* PUser, std::uint16_t chargeID);
-    std::uint32_t GetAbsorbMessage(std::uint32_t message);
+    uint32 GetAbsorbMessage(uint32 message);
 
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID);
 };

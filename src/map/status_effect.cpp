@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, std::uint16_t icon, std::uint16_t power, std::uint32_t tick, std::uint32_t duration, std::uint32_t subid, std::uint16_t subPower, std::uint16_t tier) :
+CStatusEffect::CStatusEffect(EFFECT id, std::uint16_t icon, std::uint16_t power, uint32 tick, uint32 duration, uint32 subid, std::uint16_t subPower, std::uint16_t tier) :
     m_StatusID(id), m_SubID(subid), m_Icon(icon), m_Power(power), m_SubPower(subPower), m_Tier(tier), m_TickTime(tick * 1000), m_Duration(duration * 1000)
 {
     if (m_TickTime < 3000 && m_TickTime != 0)
@@ -61,7 +61,7 @@ CBattleEntity* CStatusEffect::GetOwner()
 	return m_POwner;
 }
 
-std::uint32_t CStatusEffect::GetSubID()
+uint32 CStatusEffect::GetSubID()
 {
 	return m_SubID;
 }
@@ -91,17 +91,17 @@ std::uint16_t CStatusEffect::GetTier()
     return m_Tier;
 }
 
-std::uint32_t CStatusEffect::GetFlag()
+uint32 CStatusEffect::GetFlag()
 {
 	return m_Flag;
 }
 
-std::uint32_t CStatusEffect::GetTickTime()
+uint32 CStatusEffect::GetTickTime()
 {
 	return m_TickTime;
 }
 
-std::uint32_t CStatusEffect::GetDuration()
+uint32 CStatusEffect::GetDuration()
 {
 	return m_Duration;
 }
@@ -116,12 +116,12 @@ time_point CStatusEffect::GetStartTime()
 	return m_StartTime;
 }
 
-void CStatusEffect::SetFlag(std::uint32_t Flag)
+void CStatusEffect::SetFlag(uint32 Flag)
 {
     m_Flag |= Flag;
 }
 
-void CStatusEffect::UnsetFlag(std::uint32_t flag)
+void CStatusEffect::UnsetFlag(uint32 flag)
 {
     m_Flag &= ~flag;
 }
@@ -154,7 +154,7 @@ void CStatusEffect::SetTier(std::uint16_t tier)
     m_Tier = tier;
 }
 
-void CStatusEffect::SetDuration(std::uint32_t Duration)
+void CStatusEffect::SetDuration(uint32 Duration)
 {
 	m_Duration = Duration;
 }
@@ -165,7 +165,7 @@ void CStatusEffect::SetStartTime(time_point StartTime)
 	m_StartTime = StartTime;
 }
 
-void CStatusEffect::SetTickTime(std::uint32_t tick)
+void CStatusEffect::SetTickTime(uint32 tick)
 {
 	m_TickTime = tick;
 }
@@ -188,7 +188,7 @@ void CStatusEffect::SetName(string_t name)
 
 void CStatusEffect::addMod(Mod modType, std::int16_t amount)
 {
-	for (std::uint32_t i = 0; i < modList.size(); ++i)
+	for (uint32 i = 0; i < modList.size(); ++i)
 	{
 		if (modList.at(i).getModID() == modType)
 		{

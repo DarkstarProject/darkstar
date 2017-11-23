@@ -56,8 +56,8 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 			if (PItem->isSubType(ITEM_CHARGED))
 			{
-                std::uint32_t currentTime = CVanaTime::getInstance()->getVanaTime();
-				std::uint32_t nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
+                uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
+				uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
 				WBUFB(data,(size*2+0x04)) = 0x01;
 				WBUFB(data,(size*2+0x05)) = ((CItemUsable*)PItem)->getCurrentCharges();

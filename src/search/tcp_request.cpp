@@ -154,7 +154,7 @@ std::int32_t CTCPRequestPacket::ReceiveFromSocket()
 *                                                                       *
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::SendRawToSocket(std::uint8_t* data, std::uint32_t length)
+std::int32_t CTCPRequestPacket::SendRawToSocket(std::uint8_t* data, uint32 length)
 {
     std::int32_t iResult;
 
@@ -177,7 +177,7 @@ std::int32_t CTCPRequestPacket::SendRawToSocket(std::uint8_t* data, std::uint32_
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, std::uint32_t length)
+std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, uint32 length)
 {
     std::int32_t iResult;
 
@@ -195,7 +195,7 @@ std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, std::uint32_t l
 
     for (std::uint8_t i = 0; i < tmp; i += 2)
     {
-        blowfish_encipher((std::uint32_t*)data + i + 2, (std::uint32_t*)data + i + 3, blowfish.P, blowfish.S[0]);
+        blowfish_encipher((uint32*)data + i + 2, (uint32*)data + i + 3, blowfish.P, blowfish.S[0]);
     }
 
     memcpy(&data[length] - 0x04, key + 16, 4);
@@ -272,7 +272,7 @@ std::int32_t CTCPRequestPacket::decipher()
 
     for (std::uint8_t i = 0; i < tmp; i += 2)
     {
-        blowfish_decipher((std::uint32_t*)m_data + i + 2, (std::uint32_t*)m_data + i + 3, blowfish.P, blowfish.S[0]);
+        blowfish_decipher((uint32*)m_data + i + 2, (uint32*)m_data + i + 3, blowfish.P, blowfish.S[0]);
     }
     WBUFL(key, (20)) = RBUFL(m_data, (m_size - 0x18));
 

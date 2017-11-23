@@ -93,7 +93,7 @@ struct actionTarget_t
 
 struct actionList_t
 {
-    std::uint32_t    ActionTargetID;		    // 32 bits
+    uint32    ActionTargetID;		    // 32 bits
     std::vector<actionTarget_t> actionTargets;
 
     actionList_t() : ActionTargetID(0) {}
@@ -112,7 +112,7 @@ struct actionList_t
 
 struct action_t
 {
-    std::uint32_t id;
+    uint32 id;
     ACTIONTYPE actiontype;
     std::uint16_t actionid;
     std::uint16_t recast;

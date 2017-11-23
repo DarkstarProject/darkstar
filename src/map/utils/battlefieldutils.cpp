@@ -71,7 +71,7 @@ namespace battlefieldutils {
 
             PBattlefield->setRecord((const char*)Sql_GetData(SqlHandle, 2),
                 (std::uint8_t)Sql_GetUIntData(SqlHandle, 10),
-                std::chrono::seconds((std::uint32_t)Sql_GetUIntData(SqlHandle, 3)));
+                std::chrono::seconds((uint32)Sql_GetUIntData(SqlHandle, 3)));
 
             return PBattlefield;
         }
@@ -102,7 +102,7 @@ namespace battlefieldutils {
         }
         else {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-                std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
+                uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
                 std::uint8_t condition = Sql_GetUIntData(SqlHandle, 1);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
                 if (PMob != nullptr)
@@ -173,7 +173,7 @@ namespace battlefieldutils {
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint32_t npcid = Sql_GetUIntData(SqlHandle, 0);
+                uint32 npcid = Sql_GetUIntData(SqlHandle, 0);
                 CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
                 if (PNpc != nullptr)
                 {
@@ -365,7 +365,7 @@ namespace battlefieldutils {
         }
         else {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-                std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
+                uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
                 if (PMob != nullptr)
                 {

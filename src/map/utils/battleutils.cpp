@@ -112,9 +112,9 @@ namespace battleutils
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            for (std::uint32_t x = 0; x < 100 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 x = 0; x < 100 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
-                for (std::uint32_t y = 0; y < 14; ++y)
+                for (uint32 y = 0; y < 14; ++y)
                 {
                     g_SkillTable[x][y] = (std::uint16_t)Sql_GetIntData(SqlHandle, y);
                 }
@@ -129,11 +129,11 @@ namespace battleutils
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            for (std::uint32_t x = 0; x < MAX_SKILLTYPE && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 x = 0; x < MAX_SKILLTYPE && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
                 auto SkillID = std::clamp<std::uint8_t>(Sql_GetIntData(SqlHandle, 0), 0, MAX_SKILLTYPE - 1);
 
-                for (std::uint32_t y = 1; y < MAX_JOBTYPE; ++y)
+                for (uint32 y = 1; y < MAX_JOBTYPE; ++y)
                 {
                     g_SkillRanks[SkillID][y] = std::clamp<std::uint8_t>(Sql_GetIntData(SqlHandle, y), 0, 11);
                 }
@@ -251,7 +251,7 @@ namespace battleutils
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            for (std::uint32_t x = 0; Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 x = 0; Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
                 std::uint16_t level = (std::uint16_t)Sql_GetIntData(SqlHandle, 0);
                 std::uint16_t count = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
@@ -578,7 +578,7 @@ namespace battleutils
         //matching day 10% bonus, matching weather 10% or 25% for double weather
         float dBonus = 1.0;
         float resist = 1.0;
-        std::uint32_t WeekDay = CVanaTime::getInstance()->getWeekday();
+        uint32 WeekDay = CVanaTime::getInstance()->getWeekday();
         WEATHER weather = GetWeather(PAttacker, false);
 
         DAYTYPE strongDay[8] = { FIRESDAY, EARTHSDAY, WATERSDAY, WINDSDAY, ICEDAY, LIGHTNINGDAY, LIGHTSDAY, DARKSDAY };
@@ -587,7 +587,7 @@ namespace battleutils
         WEATHER strongWeatherDouble[8] = { WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_SQUALL, WEATHER_GALES, WEATHER_BLIZZARDS, WEATHER_THUNDERSTORMS, WEATHER_STELLAR_GLARE, WEATHER_DARKNESS };
         WEATHER weakWeatherSingle[8] = { WEATHER_RAIN, WEATHER_WIND, WEATHER_THUNDER, WEATHER_SNOW, WEATHER_HOT_SPELL, WEATHER_DUST_STORM, WEATHER_GLOOM, WEATHER_AURORAS };
         WEATHER weakWeatherDouble[8] = { WEATHER_SQUALL, WEATHER_GALES, WEATHER_THUNDERSTORMS, WEATHER_BLIZZARDS, WEATHER_HEAT_WAVE, WEATHER_SAND_STORM, WEATHER_DARKNESS, WEATHER_STELLAR_GLARE };
-        std::uint32_t obi[8] = { 15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442 };
+        uint32 obi[8] = { 15435, 15438, 15440, 15437, 15436, 15439, 15441, 15442 };
         Mod resistarray[8] = { Mod::FIRERES, Mod::EARTHRES, Mod::WATERRES, Mod::WINDRES, Mod::ICERES, Mod::THUNDERRES, Mod::LIGHTRES, Mod::DARKRES };
         bool obiBonus = false;
 
@@ -707,7 +707,7 @@ namespace battleutils
 
                 // Dmg math.
                 float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
-                std::uint16_t dmg = (std::uint32_t)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
+                std::uint16_t dmg = (uint32)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
                 dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, PHYSICAL_ATTACK_TYPE::NORMAL);
                 std::uint16_t bonus = dmg * (PDefender->getMod(Mod::RETALIATION) / 100);
                 dmg = dmg + bonus;
@@ -3517,7 +3517,7 @@ namespace battleutils
     *	Effect from soul eater		                                        *
     *                                                                       *
     ************************************************************************/
-    std::uint16_t doSoulEaterEffect(CCharEntity* m_PChar, std::uint32_t damage)
+    std::uint16_t doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
     {
         // Souleater has no effect <10HP.
         if (m_PChar->GetMJob() == JOB_DRK && m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER))
@@ -3529,12 +3529,12 @@ namespace battleutils
             auto gearBonusPercent = m_PChar->getMod(Mod::SOULEATER_EFFECT);
             drainPercent = drainPercent + std::min(0.02f, 0.01f * gearBonusPercent);
 
-            damage += (std::uint32_t)(m_PChar->health.hp * drainPercent);
+            damage += (uint32)(m_PChar->health.hp * drainPercent);
             m_PChar->addHP((std::int32_t)(-drainPercent * m_PChar->health.hp));
         }
         else if (m_PChar->GetSJob() == JOB_DRK &&m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)) {
             //lose 10% Current HP, only HALF (5%) converted to damage
-            damage += (std::uint32_t)(m_PChar->health.hp * 0.05);
+            damage += (uint32)(m_PChar->health.hp * 0.05);
             m_PChar->addHP((std::int32_t)(-0.1 * m_PChar->health.hp));
         }
         return damage;
@@ -3824,7 +3824,7 @@ namespace battleutils
         //VT				1 minute	guess
         //IT				30 seconds	guess
 
-        std::uint32_t CharmTime = 0;
+        uint32 CharmTime = 0;
 
         // player charming mob
         if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
@@ -3869,13 +3869,13 @@ namespace battleutils
             //apply charm time extension from gear
             std::uint16_t charmModValue = (PCharmer->getMod(Mod::CHARM_TIME));
             // adds 5% increase
-            auto extraCharmTime = (std::uint32_t)(CharmTime * (charmModValue * 0.5f) / 10);
+            auto extraCharmTime = (uint32)(CharmTime * (charmModValue * 0.5f) / 10);
             CharmTime += extraCharmTime;
 
             //randomize charm time if > EM
             if (baseExp > 100)
             {
-                CharmTime = (std::uint32_t)(CharmTime * dsprand::GetRandomNumber(0.75f, 1.25f));
+                CharmTime = (uint32)(CharmTime * dsprand::GetRandomNumber(0.75f, 1.25f));
             }
 
             if (TryCharm(PCharmer, PVictim) == false)
@@ -3998,7 +3998,7 @@ namespace battleutils
         //printf("Charmer = %s, Lvl. %u\n", PCharmer->name.c_str(), charmerLvl);
         //printf("Target = %s, Lvl. %u\n", PTarget->name.c_str(), targetLvl);
 
-        std::uint32_t base = 0;
+        uint32 base = 0;
         std::uint16_t baseExp = charutils::GetRealExp(charmerLvl, targetLvl);
 
         //printf("baseExp = %u\n", baseExp);
@@ -4923,7 +4923,7 @@ namespace battleutils
         return found;
     }
 
-    std::uint32_t CalculateSpellCastTime(CBattleEntity* PEntity, CSpell* PSpell)
+    uint32 CalculateSpellCastTime(CBattleEntity* PEntity, CSpell* PSpell)
     {
         if (PSpell == nullptr)
         {
@@ -4931,12 +4931,12 @@ namespace battleutils
         }
 
         bool applyArts = true;
-        std::uint32_t base = PSpell->getCastTime();
-        std::uint32_t cast = base;
+        uint32 base = PSpell->getCastTime();
+        uint32 cast = base;
 
         if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_HASSO, EFFECT_SEIGAN}))
         {
-            cast = (std::uint32_t)(cast * 2.0f);
+            cast = (uint32)(cast * 2.0f);
         }
 
         if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
@@ -4949,7 +4949,7 @@ namespace battleutils
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
                 }
-                cast -= (std::uint32_t)(base * ((100 - (50 + bonus)) / 100.0f));
+                cast -= (uint32)(base * ((100 - (50 + bonus)) / 100.0f));
                 applyArts = false;
             }
             else if (applyArts)
@@ -4957,11 +4957,11 @@ namespace battleutils
                 if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK}))
                 {
                     // Add any "Grimoire: Reduces spellcasting time" bonuses
-                    cast = (std::uint32_t)(cast * (1.0f + (PEntity->getMod(Mod::BLACK_MAGIC_CAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f));
+                    cast = (uint32)(cast * (1.0f + (PEntity->getMod(Mod::BLACK_MAGIC_CAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f));
                 }
                 else
                 {
-                    cast = (std::uint32_t)(cast * (1.0f + PEntity->getMod(Mod::BLACK_MAGIC_CAST) / 100.0f));
+                    cast = (uint32)(cast * (1.0f + PEntity->getMod(Mod::BLACK_MAGIC_CAST) / 100.0f));
                 }
             }
         }
@@ -4975,7 +4975,7 @@ namespace battleutils
                 {
                     bonus = PEntity->getMod(Mod::ALACRITY_CELERITY_EFFECT);
                 }
-                cast -= (std::uint32_t)(base * ((100 - (50 + bonus)) / 100.0f));
+                cast -= (uint32)(base * ((100 - (50 + bonus)) / 100.0f));
                 applyArts = false;
             }
             else if (applyArts)
@@ -4983,11 +4983,11 @@ namespace battleutils
                 if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE}))
                 {
                     // Add any "Grimoire: Reduces spellcasting time" bonuses
-                    cast = (std::uint32_t)(cast * (1.0f + (PEntity->getMod(Mod::WHITE_MAGIC_CAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f));
+                    cast = (uint32)(cast * (1.0f + (PEntity->getMod(Mod::WHITE_MAGIC_CAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f));
                 }
                 else
                 {
-                    cast = (std::uint32_t)(cast * (1.0f + PEntity->getMod(Mod::WHITE_MAGIC_CAST) / 100.0f));
+                    cast = (uint32)(cast * (1.0f + PEntity->getMod(Mod::WHITE_MAGIC_CAST) / 100.0f));
                 }
             }
         }
@@ -5007,14 +5007,14 @@ namespace battleutils
                 {
                     return 0;
                 }
-                cast = (std::uint32_t)(cast * 0.5f);
+                cast = (uint32)(cast * 0.5f);
             }
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TROUBADOUR))
             {
-                cast = (std::uint32_t)(cast * 1.5f);
+                cast = (uint32)(cast * 1.5f);
             }
             std::uint16_t songcasting = PEntity->getMod(Mod::SONG_SPELLCASTING_TIME);
-            cast = (std::uint32_t)(cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f)));
+            cast = (uint32)(cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f)));
         }
 
         auto fastCast = std::clamp<std::int16_t>(PEntity->getMod(Mod::FASTCAST), -100, 50);
@@ -5030,7 +5030,7 @@ namespace battleutils
         auto uncappedFastCast = std::clamp<std::int16_t>(PEntity->getMod(Mod::UFASTCAST), -100, 100);
         float sumFastCast = std::clamp<float>((float)(fastCast + uncappedFastCast), -100.f, 100.f);
 
-        return (std::uint32_t)(cast * ((100.0f - sumFastCast) / 100.0f));
+        return (uint32)(cast * ((100.0f - sumFastCast) / 100.0f));
     }
 
     std::uint16_t CalculateSpellCost(CBattleEntity* PEntity, CSpell* PSpell)
@@ -5096,7 +5096,7 @@ namespace battleutils
         }
         return std::clamp<std::int16_t>(cost, 0, 9999);
     }
-    std::uint32_t CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell)
+    uint32 CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell)
     {
         if (PSpell == nullptr)
         {
@@ -5104,7 +5104,7 @@ namespace battleutils
         }
 
         bool applyArts = true;
-        std::uint32_t base = PSpell->getRecastTime();
+        uint32 base = PSpell->getRecastTime();
         std::int32_t recast = base;
 
         //apply Fast Cast

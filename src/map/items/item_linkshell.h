@@ -53,11 +53,11 @@ public:
 	CItemLinkshell(std::uint16_t);
 	virtual ~CItemLinkshell();
 
-    std::uint32_t      GetLSID();
+    uint32      GetLSID();
     LSTYPE      GetLSType();
 	lscolor_t	GetLSColor();
     std::uint16_t      GetLSRawColor();
-    void        SetLSID(std::uint32_t lsid);
+    void        SetLSID(uint32 lsid);
 	void		SetLSColor(std::uint16_t color);	
     virtual const std::int8_t* getSignature();
     virtual void setSignature(std::int8_t* signature);

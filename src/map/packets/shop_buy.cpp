@@ -26,7 +26,7 @@
 #include "shop_buy.h"
 
 
-CShopBuyPacket::CShopBuyPacket(std::uint8_t slotID, std::uint32_t quantity)
+CShopBuyPacket::CShopBuyPacket(std::uint8_t slotID, uint32 quantity)
 {
 	this->type = 0x3F;
 	this->size = 0x06;

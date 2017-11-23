@@ -58,10 +58,10 @@ enum SKILLUP_STYLE
 
 struct map_config_t
 {
-    std::uint32_t buffer_size;             // max size of recv buffer -> default 1800 bytes
+    uint32 buffer_size;             // max size of recv buffer -> default 1800 bytes
 
     std::uint16_t usMapPort;               // port of map server      -> xxxxx
-    std::uint32_t uiMapIp;                 // ip of map server        -> INADDR_ANY
+    uint32 uiMapIp;                 // ip of map server        -> INADDR_ANY
 
     std::string mysql_host;         // mysql addr     -> localhost:3306
     std::uint16_t mysql_port;              // mysql port     -> 3306
@@ -72,7 +72,7 @@ struct map_config_t
     std::string server_message;
     std::string server_message_fr;
 
-    std::uint32_t max_time_lastupdate;       // max interval wait of last update player char
+    uint32 max_time_lastupdate;       // max interval wait of last update player char
     std::int32_t  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
     std::int32_t  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
 
@@ -80,7 +80,7 @@ struct map_config_t
     std::uint16_t ah_base_fee_stacks;        // Base AH fee for stacks
     float  ah_tax_rate_single;        // Percent of listing price to tax single items
     float  ah_tax_rate_stacks;        // Percent of listing price to tax stacks
-    std::uint32_t ah_max_fee;                // Maximum total AH fees/taxes
+    uint32 ah_max_fee;                // Maximum total AH fees/taxes
 
     float  exp_rate;                  // множитель получаемого опыта
     float  exp_loss_rate;             // same as exp rate but applies when player dies
@@ -115,8 +115,8 @@ struct map_config_t
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
     float  ability_recast_multiplier; // Adjust ability recast time
     float  drop_rate_multiplier;      // Multiplier for drops
-    std::uint32_t all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
-    std::uint32_t max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
+    uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
+    uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
     std::uint8_t  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
     std::int8_t   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
     std::int8_t   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
@@ -143,7 +143,7 @@ struct map_config_t
 
 struct map_session_data_t
 {
-    std::uint32_t       client_addr;
+    uint32       client_addr;
     std::uint16_t       client_port;
     std::uint16_t       client_packet_id;          // id последнего пакета, пришедшего от клиента
     std::uint16_t       server_packet_id;          // id последнего пакета, отправленного сервером
@@ -161,7 +161,7 @@ struct map_session_data_t
 };
 
 extern map_config_t map_config;
-extern std::uint32_t map_amntplayers;
+extern uint32 map_amntplayers;
 extern std::int32_t map_fd;
 
 static constexpr float server_tick_rate = 2.5f;
@@ -170,14 +170,14 @@ extern thread_local Sql_t* SqlHandle;
 
 extern CCommandHandler CmdHandler;
 
-typedef std::map<std::uint64_t,map_session_data_t*> map_session_list_t;
+typedef std::map<uint64,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
 
 extern in_addr map_ip;
 extern std::uint16_t map_port;
 
-extern inline map_session_data_t* mapsession_getbyipp(std::uint64_t ipp);
-extern inline map_session_data_t* mapsession_createsession(std::uint32_t ip,std::uint16_t port);
+extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
+extern inline map_session_data_t* mapsession_createsession(uint32 ip,std::uint16_t port);
 
 //=======================================================================
 

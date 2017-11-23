@@ -47,8 +47,8 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, std::uint8_t SlotID, std::uin
 
         if (PItem->isSubType(ITEM_CHARGED) && PItem->isType(ITEM_USABLE))
 	    {
-            std::uint32_t currentTime = CVanaTime::getInstance()->getVanaTime();
-		    std::uint32_t nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
+            uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
+		    uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
 		    WBUFB(data,(0x11)) = 0x01;													    // флаг ITEM_CHARGED
 		    WBUFB(data,(0x12)) = ((CItemUsable*)PItem)->getCurrentCharges(); 

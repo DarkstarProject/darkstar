@@ -86,12 +86,12 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, std::uint16_t id)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, std::uint8_t maxCharges)
+void CRecastContainer::Add(RECASTTYPE type, std::uint16_t id, uint32 duration, uint32 chargeTime, std::uint8_t maxCharges)
 {
     Load(type, id, duration, chargeTime, maxCharges);
 }
 
-Recast_t* CRecastContainer::Load(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, std::uint8_t maxCharges)
+Recast_t* CRecastContainer::Load(RECASTTYPE type, std::uint16_t id, uint32 duration, uint32 chargeTime, std::uint8_t maxCharges)
 {
     Recast_t* recast = GetRecast(type, id);
 
@@ -222,7 +222,7 @@ bool CRecastContainer::Has(RECASTTYPE type, std::uint16_t id)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::HasRecast(RECASTTYPE type, std::uint16_t id, std::uint32_t recast)
+bool CRecastContainer::HasRecast(RECASTTYPE type, std::uint16_t id, uint32 recast)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -241,7 +241,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, std::uint16_t id, std::uint32_
                 {
                     return true;
                 }
-                auto charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (std::uint32_t)(time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
+                auto charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (uint32)(time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
 
                 if (charges < recast)
                 {

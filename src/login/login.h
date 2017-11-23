@@ -56,7 +56,7 @@ struct login_config_t
     std::string mysql_password;     // mysql pass     -> default NULL
     std::string mysql_database;     // mysql database -> default dspdb
 
-    std::uint32_t search_server_port;      // search_server_port -> 54002
+    uint32 search_server_port;      // search_server_port -> 54002
 
     std::uint16_t msg_server_port;         // chat server port
     std::string msg_server_ip;      // chat server IP

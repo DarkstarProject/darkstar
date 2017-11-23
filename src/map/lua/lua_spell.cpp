@@ -123,7 +123,7 @@ inline std::int32_t CLuaSpell::castTime(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        m_PLuaSpell->setCastTime((std::uint32_t)lua_tointeger(L, 1));
+        m_PLuaSpell->setCastTime((uint32)lua_tointeger(L, 1));
     else
         lua_pushinteger(L, m_PLuaSpell->getCastTime());
 

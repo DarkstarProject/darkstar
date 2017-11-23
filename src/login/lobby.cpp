@@ -75,7 +75,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
         {
             char* buff = &session[fd]->rdata[0];
 
-            std::uint32_t accid = RBUFL(buff, 1);
+            uint32 accid = RBUFL(buff, 1);
 
             sd = find_loginsd_byaccid(accid);
             if (sd == nullptr)
@@ -185,7 +185,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 
                 Sql_GetData(SqlHandle, 1, &strCharName, nullptr);
 
-                std::uint32_t CharID = Sql_GetIntData(SqlHandle, 0);
+                uint32 CharID = Sql_GetIntData(SqlHandle, 0);
 
                 std::uint16_t zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
 
@@ -266,12 +266,12 @@ std::int32_t lobbydata_parse(std::int32_t fd)
                 return -1;
             }
 
-            std::uint32_t charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
+            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
 										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
-            std::uint32_t ZoneIP = sd->servip;
+            uint32 ZoneIP = sd->servip;
             std::uint16_t ZonePort = 54230;
             std::uint16_t ZoneID = 0;
             std::uint16_t PrevZone = 0;
@@ -525,7 +525,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
         case 0x14:
         {
             //delete char
-            std::uint32_t CharID = RBUFL(session[fd]->rdata.data(), 0x20);
+            uint32 CharID = RBUFL(session[fd]->rdata.data(), 0x20);
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
@@ -554,7 +554,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             if (session[sd->login_lobbydata_fd] == nullptr) {
                 ShowInfo("0x1F nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
-                std::uint32_t val = 1337;
+                uint32 val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
                     val = session[sd->login_lobbydata_fd - 1]->client_addr;
                 }
@@ -588,7 +588,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             if (session[sd->login_lobbydata_fd] == nullptr) {
                 ShowInfo("0x07 nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
-                std::uint32_t val = 1337;
+                uint32 val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
                     val = session[sd->login_lobbydata_fd - 1]->client_addr;
                 }
@@ -757,13 +757,13 @@ std::int32_t lobby_createchar(login_session_data_t *loginsd, std::int8_t *buf)
         return -1;
     }
 
-    std::uint32_t CharID = 0;
+    uint32 CharID = 0;
 
     if (Sql_NumRows(SqlHandle) != 0)
     {
         Sql_NextRow(SqlHandle);
 
-        CharID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0) + 1;
+        CharID = (uint32)Sql_GetUIntData(SqlHandle, 0) + 1;
     }
 
     CharID = (CharID < 21828 ? 21828 : CharID);
@@ -781,7 +781,7 @@ std::int32_t lobby_createchar(login_session_data_t *loginsd, std::int8_t *buf)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t lobby_createchar_save(std::uint32_t accid, std::uint32_t charid, char_mini* createchar)
+std::int32_t lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 {
     const char* Query = "INSERT INTO chars(charid,accid,charname,pos_zone,nation) VALUES(%u,%u,'%s',%u,%u);";
 

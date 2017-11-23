@@ -37,7 +37,7 @@ CTradeItemPacket::CTradeItemPacket(CItem* PItem, std::uint8_t slot)
 {
 	this->type = 0x25;
 	this->size = 0x06;
-	std::uint32_t amount = PItem->getReserve();
+	uint32 amount = PItem->getReserve();
     WBUFL(data,(0x04)) = amount == 0  ? 0 : amount ;
 	WBUFW(data, (0x08) ) = amount == 0 ? 0 : PItem->getID();
 	WBUFB(data,(0x0A)) = slot;

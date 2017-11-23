@@ -139,7 +139,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(std::uint8_t AHCategoryID
 *                                                                       *
 ************************************************************************/
 
-std::uint32_t CDataLoader::GetPlayersCount(search_req sr)
+uint32 CDataLoader::GetPlayersCount(search_req sr)
 {
     std::uint8_t jobid = sr.jobid;
     if (jobid > 0 && jobid < 21){
@@ -221,7 +221,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
 
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->id = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PPlayer->prevzone = (std::uint16_t)Sql_GetIntData(SqlHandle, 4);
             PPlayer->nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 5);
@@ -234,8 +234,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
 
             PPlayer->zone = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
 
-            std::uint32_t partyid = (std::uint32_t)Sql_GetUIntData(SqlHandle, 1);
-            std::uint32_t nameflag = (std::uint32_t)Sql_GetUIntData(SqlHandle, 10);
+            uint32 partyid = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 10);
 
             if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
             if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
@@ -366,7 +366,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::u
 
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->id = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PPlayer->nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 4);
             PPlayer->mjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
@@ -376,7 +376,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::u
             PPlayer->race = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
             PPlayer->rank = (std::uint8_t)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
 
-            std::uint32_t nameflag = (std::uint32_t)Sql_GetUIntData(SqlHandle, 9);
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
 
             if (PartyID == PPlayer->id) PPlayer->flags1 |= 0x0008;
             if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
@@ -399,7 +399,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::u
 *                                                                       *
 ************************************************************************/
 
-std::list<SearchEntity*> CDataLoader::GetLinkshellList(std::uint32_t LinkshellID)
+std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
     const char* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
@@ -426,7 +426,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(std::uint32_t LinkshellID
 
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
-            PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+            PPlayer->id = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PPlayer->nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 4);
             PPlayer->mjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
@@ -440,8 +440,8 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(std::uint32_t LinkshellID
             PPlayer->linkshellrank1 = Sql_GetIntData(SqlHandle, 16);
             PPlayer->linkshellrank2 = Sql_GetIntData(SqlHandle, 17);
 
-            std::uint32_t partyid = (std::uint32_t)Sql_GetUIntData(SqlHandle, 1);
-            std::uint32_t nameflag = (std::uint32_t)Sql_GetUIntData(SqlHandle, 9);
+            uint32 partyid = (uint32)Sql_GetUIntData(SqlHandle, 1);
+            uint32 nameflag = (uint32)Sql_GetUIntData(SqlHandle, 9);
 
             if (partyid == PPlayer->id) PPlayer->flags1 |= 0x0008;
             if (nameflag & FLAG_AWAY)   PPlayer->flags1 |= 0x0100;
@@ -470,18 +470,18 @@ void CDataLoader::ExpireAHItems()
 	std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
 					   		T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
 	std::int32_t ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
-	std::int64_t expiredAuctions = Sql_NumRows(SqlHandle);
+	int64 expiredAuctions = Sql_NumRows(SqlHandle);
 	if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
 	{
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			std::string qStr2;
 			// iterate through the expired auctions and return them to the seller
-			std::uint32_t saleID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
-			std::uint32_t itemID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 1);
+			uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
+			uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
 			std::uint8_t  itemStack = (std::uint8_t)Sql_GetUIntData(SqlHandle, 2);
 			std::uint8_t ahStack = (std::uint8_t)Sql_GetUIntData(SqlHandle, 3);
-			std::uint32_t seller = (std::uint32_t)Sql_GetUIntData(SqlHandle, 4);
+			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 4);
 			ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
 				"(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1 );
 			//		ShowMessage(cC2, seller, seller, itemID);

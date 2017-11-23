@@ -162,7 +162,7 @@ bool CNavMesh::load(const std::string& filename)
     return true;
 }
 
-void CNavMesh::outputError(std::uint32_t status)
+void CNavMesh::outputError(uint32 status)
 {
 
     if (status & DT_WRONG_MAGIC)

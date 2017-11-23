@@ -53,20 +53,20 @@ namespace charutils
 
     void	SetLevelRestriction(CCharEntity* PChar, std::uint8_t lvl);
 
-    std::uint32_t	GetExpNEXTLevel(std::uint8_t charlvl);
-    std::uint32_t	GetRealExp(std::uint8_t charlvl, std::uint8_t moblvl);
+    uint32	GetExpNEXTLevel(std::uint8_t charlvl);
+    uint32	GetRealExp(std::uint8_t charlvl, std::uint8_t moblvl);
 
     void	DelExperiencePoints(CCharEntity* PChar, float retainpct, std::uint16_t forcedXpLoss);
     void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
     void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
-    void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, std::uint32_t exp, std::uint32_t baseexp = 0, bool isexpchain = false);
+    void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp = 0, bool isexpchain = false);
 
     void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, std::uint8_t lvl);
     void	BuildingCharSkillsTable(CCharEntity* PChar);
     void    BuildingCharWeaponSkills(CCharEntity* PChar);
     void	BuildingCharAbilityTable(CCharEntity* PChar);
     void	BuildingCharTraitsTable(CCharEntity* PChar);
-    void    BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, std::uint32_t PetID);
+    void    BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID);
 
     void    DoTrade(CCharEntity* PChar, CCharEntity* PTarget);
     bool    CanTrade(CCharEntity* PChar, CCharEntity* PTarget);
@@ -74,11 +74,11 @@ namespace charutils
     void	CheckWeaponSkill(CCharEntity* PChar, std::uint8_t skill);
     bool    HasItem(CCharEntity* PChar, std::uint16_t ItemID);
     std::uint8_t   AddItem(CCharEntity* PChar, std::uint8_t LocationID, CItem* PItem, bool silence = false);
-    std::uint8_t	AddItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint16_t itemID, std::uint32_t quantity = 1, bool silence = false);
+    std::uint8_t	AddItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint16_t itemID, uint32 quantity = 1, bool silence = false);
     std::uint8_t   MoveItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t SlotID, std::uint8_t NewSlotID);
-    std::uint32_t	UpdateItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t slotID, std::int32_t quantity, bool force = false);
+    uint32	UpdateItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t slotID, std::int32_t quantity, bool force = false);
     void	CheckValidEquipment(CCharEntity* PChar);
-    void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, std::uint32_t param);
+    void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
     void	EquipItem(CCharEntity* PChar, std::uint8_t slotID, std::uint8_t equipSlotID, std::uint8_t containerID);
     void	UnequipItem(CCharEntity* PChar, std::uint8_t equipSlotID, bool update = true); //call with update == false to prevent calls to UpdateHealth() - used for correct handling of stats on armor swaps
     void    RemoveSub(CCharEntity* PChar);
@@ -177,7 +177,7 @@ namespace charutils
     void    SetPoints(CCharEntity* PChar, const char* type, std::int32_t amount);
     std::int32_t   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
-    void    SendToZone(CCharEntity* PChar, std::uint8_t type, std::uint64_t ipp);
+    void    SendToZone(CCharEntity* PChar, std::uint8_t type, uint64 ipp);
     void    HomePoint(CCharEntity* PChar);
     void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 

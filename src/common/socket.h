@@ -133,26 +133,26 @@ int sSocket(int af, int type, int protocol);
 #define RBUFP(p,pos) (((std::uint8_t*)(p)) + (pos))
 #define RBUFB(p,pos) (*(std::uint8_t*)RBUFP((p),(pos)))
 #define RBUFW(p,pos) (*(std::uint16_t*)RBUFP((p),(pos)))
-#define RBUFL(p,pos) (*(std::uint32_t*)RBUFP((p),(pos)))
+#define RBUFL(p,pos) (*(uint32*)RBUFP((p),(pos)))
 #define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
 
 #define WBUFP(p,pos) (((std::uint8_t*)(p)) + (pos))
 #define WBUFB(p,pos) (*(std::uint8_t*)WBUFP((p),(pos)))
 #define WBUFW(p,pos) (*(std::uint16_t*)WBUFP((p),(pos)))
-#define WBUFL(p,pos) (*(std::uint32_t*)WBUFP((p),(pos)))
-#define WBUFU(p,pos) (*(std::uint64_t*)WBUFP((p),(pos)))
+#define WBUFL(p,pos) (*(uint32*)WBUFP((p),(pos)))
+#define WBUFU(p,pos) (*(uint64*)WBUFP((p),(pos)))
 #define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
 #define TOB(n) ((std::uint8_t)((n)&std::numeric_limits<std::uint8_t>::max()))
 #define TOW(n) ((std::uint16_t)((n)&std::numeric_limits<std::uint16_t>::max()))
-#define TOL(n) ((std::uint32_t)((n)&std::numeric_limits<std::uint32_t>::max()))
+#define TOL(n) ((uint32)((n)&std::numeric_limits<uint32>::max()))
 
 extern fd_set readfds;
 extern int fd_max;
 extern time_t last_tick;
 extern time_t stall_time;
 
-std::int32_t makeConnection(std::uint32_t ip, std::uint16_t port, std::int32_t type);
+std::int32_t makeConnection(uint32 ip, std::uint16_t port, std::int32_t type);
 
 std::int32_t do_sockets(fd_set* rfd,duration next);
 
@@ -163,20 +163,20 @@ bool socket_init(void);
 bool socket_final(void);
 
 // hostname/ip conversion functions
-std::uint32_t host2ip(const char* hostname);
+uint32 host2ip(const char* hostname);
 
 
-const char* ip2str(std::uint32_t ip, char ip_str[16]);
+const char* ip2str(uint32 ip, char ip_str[16]);
 
-std::uint32_t str2ip(const char* ip_str);
+uint32 str2ip(const char* ip_str);
 
 #define CONVIP(ip) ((ip)>>24)&0xFF,((ip)>>16)&0xFF,((ip)>>8)&0xFF,((ip)>>0)&0xFF
 
 std::uint16_t ntows(std::uint16_t netshort);
 
-int socket_getips(std::uint32_t* ips, int max);
+int socket_getips(uint32* ips, int max);
 
-extern std::uint32_t g_addr_[16];   // ip addresses of local host (host byte order)
+extern uint32 g_addr_[16];   // ip addresses of local host (host byte order)
 
 extern std::int32_t naddr_;   // # of ip addresses
 
@@ -215,8 +215,8 @@ extern std::int32_t naddr_;   // # of ip addresses
 	#define WFIFOB(fd,pos) (*(std::uint8_t*)WFIFOP(fd,pos))
 	#define RFIFOW(fd,pos) (*(std::uint16_t*)RFIFOP(fd,pos))
 	#define WFIFOW(fd,pos) (*(std::uint16_t*)WFIFOP(fd,pos))
-	#define RFIFOL(fd,pos) (*(std::uint32_t*)RFIFOP(fd,pos))
-	#define WFIFOL(fd,pos) (*(std::uint32_t*)WFIFOP(fd,pos))
+	#define RFIFOL(fd,pos) (*(uint32*)RFIFOP(fd,pos))
+	#define WFIFOL(fd,pos) (*(uint32*)WFIFOP(fd,pos))
 
 	#define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata.size() - session[fd]->rdata_pos)
 	#define RFIFOFLUSH(fd) \
@@ -236,7 +236,7 @@ extern std::int32_t naddr_;   // # of ip addresses
 			unsigned char server : 1;
 		} flag;
 
-		std::uint32_t client_addr; // remote client address
+		uint32 client_addr; // remote client address
 
 		std::string rdata, wdata;
 		size_t rdata_pos;
@@ -266,7 +266,7 @@ extern std::int32_t naddr_;   // # of ip addresses
 
 	std::int32_t connect_client(std::int32_t listen_fd, sockaddr_in& client_address);
 
-	std::int32_t makeConnection_tcp(std::uint32_t ip, std::uint16_t port);
+	std::int32_t makeConnection_tcp(uint32 ip, std::uint16_t port);
 
 	std::int32_t makeListenBind_tcp(const char* ip, std::uint16_t port,RecvFunc connect_client);
 
@@ -293,7 +293,7 @@ extern std::int32_t naddr_;   // # of ip addresses
 	*
 	*/
 	extern std::int32_t listen_fd;
-	std::int32_t makeBind_udp(std::uint32_t ip, std::uint16_t port);
+	std::int32_t makeBind_udp(uint32 ip, std::uint16_t port);
 
 	void socket_init_udp(void);
 	void do_close_udp(std::int32_t fd);

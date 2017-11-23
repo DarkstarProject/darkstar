@@ -126,12 +126,12 @@ CMobEntity::CMobEntity()
         std::make_unique<CTargetFind>(this));
 }
 
-std::uint32_t CMobEntity::getEntityFlags()
+uint32 CMobEntity::getEntityFlags()
 {
     return m_flags;
 }
 
-void CMobEntity::setEntityFlags(std::uint32_t EntityFlags)
+void CMobEntity::setEntityFlags(uint32 EntityFlags)
 {
     m_flags = EntityFlags;
 }
@@ -165,7 +165,7 @@ void CMobEntity::SetDespawnTime(duration _duration)
     }
 }
 
-std::uint32_t CMobEntity::GetRandomGil()
+uint32 CMobEntity::GetRandomGil()
 {
 
     std::int16_t min = getMobMod(MOBMOD_GIL_MIN);
@@ -218,7 +218,7 @@ std::uint32_t CMobEntity::GetRandomGil()
         gil *= (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
-    return (std::uint32_t)gil;
+    return (uint32)gil;
 }
 
 bool CMobEntity::CanDropGil()
@@ -242,7 +242,7 @@ bool CMobEntity::CanStealGil()
 
 void CMobEntity::ResetGilPurse()
 {
-    std::uint32_t purse = GetRandomGil() / ((dsprand::GetRandomNumber(4, 7)));
+    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4, 7)));
     if (purse == 0)
         purse = GetRandomGil();
     setMobMod(MOBMOD_MUG_GIL, purse);

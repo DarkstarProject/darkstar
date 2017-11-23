@@ -35,7 +35,7 @@ enum class PHYSICAL_ATTACK_TYPE;
 namespace attackutils
 {
     std::uint8_t				getHitCount(std::uint8_t hits);		// The multihit calculator.
-    std::uint32_t				CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, std::uint32_t damage, PHYSICAL_ATTACK_TYPE attackType);
+    uint32				CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType);
 
     bool				IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender);		// Is the attack parried.
     bool				IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender);		// Is the attack guarded.

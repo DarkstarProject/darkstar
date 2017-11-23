@@ -37,7 +37,7 @@ public:
     CCharRecastContainer(CCharEntity*);
     virtual ~CCharRecastContainer(){}
     virtual void Check() override;
-    virtual void Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, std::uint8_t maxCharges) override;
+    virtual void Add(RECASTTYPE type, std::uint16_t id, uint32 duration, uint32 chargeTime, std::uint8_t maxCharges) override;
     virtual void Del(RECASTTYPE type) override;
     virtual void Del(RECASTTYPE type, std::uint16_t id) override;
     virtual void DeleteByIndex(RECASTTYPE type, std::uint8_t index) override;

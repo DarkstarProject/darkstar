@@ -49,7 +49,7 @@ public:
     virtual void TryInterrupt(CBattleEntity* PAttacker) override;
 
     void SpendCost();
-    std::uint32_t GetRecast();
+    uint32 GetRecast();
     void ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
 
 protected:
