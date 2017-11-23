@@ -54,15 +54,15 @@ int32 addBit(uint16 value, uint8* BitArray, uint32 size);		// добавляем
 int32 delBit(uint16 value, uint8* BitArray, uint32 size);		// удаляем бит из массива
 
 	//(un)pack functions for Big Endian(BE) targets
-uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
-uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit);
-uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
-uint64 unpackBitsBE(uint8* target, int32 bitOffset, uint8 lengthInBit);
+uint32 packBitsBE(uint8* target, std::uint64_t value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
+uint32 packBitsBE(uint8* target, std::uint64_t value, int32 bitOffset, uint8 lengthInBit);
+std::uint64_t unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
+std::uint64_t unpackBitsBE(uint8* target, int32 bitOffset, uint8 lengthInBit);
 	//(un)pack functions for Little Endian(LE) targets
-uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
-uint32 packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit);
-uint64 unpackBitsLE(uint8* target,int32 bitOffset, uint8 lengthInBit);
-uint64 unpackBitsLE(uint8* target,int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
+uint32 packBitsLE(uint8* target, std::uint64_t value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
+uint32 packBitsLE(uint8* target, std::uint64_t value, int32 bitOffset, uint8 lengthInBit);
+std::uint64_t unpackBitsLE(uint8* target,int32 bitOffset, uint8 lengthInBit);
+std::uint64_t unpackBitsLE(uint8* target,int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 
     // Encode/Decode Strings to/from FFXI 6-bit format
 int8* EncodeStringLinkshell(int8* signature, int8* target);

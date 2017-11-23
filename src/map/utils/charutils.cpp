@@ -4803,7 +4803,7 @@ namespace charutils
         }
     }
 
-    void SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp)
+    void SendToZone(CCharEntity* PChar, uint8 type, std::uint64_t ipp)
     {
         if (type == 2)
         {

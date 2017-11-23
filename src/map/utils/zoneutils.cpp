@@ -1059,9 +1059,9 @@ void ForEachZone(std::function<void(CZone*)> func)
     }
 }
 
-uint64 GetZoneIPP(uint16 zoneID)
+std::uint64_t GetZoneIPP(uint16 zoneID)
 {
-    uint64 ipp = 0;
+    std::uint64_t ipp = 0;
     const int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %u;";
 
     int ret = Sql_Query(SqlHandle, query, zoneID);
@@ -1069,7 +1069,7 @@ uint64 GetZoneIPP(uint16 zoneID)
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         ipp = inet_addr(Sql_GetData(SqlHandle, 0));
-        uint64 port = Sql_GetUIntData(SqlHandle, 1);
+        std::uint64_t port = Sql_GetUIntData(SqlHandle, 1);
         ipp |= (port << 32);
     }
     else

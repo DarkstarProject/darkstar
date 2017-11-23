@@ -255,17 +255,17 @@ int32 delBit(uint16 value, uint8* BitArray, uint32 size)
 *																		*
 ************************************************************************/
 
-uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit)
+uint32 packBitsBE(uint8* target, std::uint64_t value, int32 bitOffset, uint8 lengthInBit)
 {
     return packBitsBE(target, value, 0, bitOffset, lengthInBit);
 }
 
-uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
+uint32 packBitsBE(uint8* target, std::uint64_t value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
     byteOffset += (bitOffset >> 3);										//correct bitOffsets>=8
     bitOffset %= 8;
 
-    uint64 bitmask = 0xFFFFFFFFFFFFFFFFLL;								//Generate bitmask
+    std::uint64_t bitmask = 0xFFFFFFFFFFFFFFFFLL;								//Generate bitmask
 
     bitmask >>= (64 - lengthInBit);
     bitmask <<= bitOffset;
@@ -307,7 +307,7 @@ uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset
     }
     else if((lengthInBit + bitOffset) <= 64)
     {
-        uint64* dataPointer = (uint64*)&target[byteOffset];
+        std::uint64_t* dataPointer = (std::uint64_t*)&target[byteOffset];
 
         *dataPointer &= bitmask;
         *dataPointer |= value;
@@ -320,22 +320,22 @@ uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset
 }
 
 
-uint64 unpackBitsBE(uint8* target, int32 bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsBE(uint8* target, int32 bitOffset, uint8 lengthInBit)
 {
     return unpackBitsBE(target, 0, bitOffset, lengthInBit);
 }
 
-uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
     byteOffset += (bitOffset >> 3);
     bitOffset %= 8;
 
-    uint64 bitmask = 0xFFFFFFFFFFFFFFFFLL;
+    std::uint64_t bitmask = 0xFFFFFFFFFFFFFFFFLL;
 
     bitmask >>= (64 - lengthInBit);
     bitmask <<= bitOffset;
 
-    uint64 retVal;
+    std::uint64_t retVal;
 
     if((lengthInBit + bitOffset) <= 8)
     {
@@ -357,9 +357,9 @@ uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
     }
     else if((lengthInBit + bitOffset) <= 64)
     {
-        uint64* dataPointer = (uint64*)&target[byteOffset];
+        std::uint64_t* dataPointer = (std::uint64_t*)&target[byteOffset];
 
-        retVal = ((*dataPointer)&(uint64)bitmask) >> bitOffset;
+        retVal = ((*dataPointer)&(std::uint64_t)bitmask) >> bitOffset;
     }
     else
     {
@@ -369,12 +369,12 @@ uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
     return retVal;
 }
 
-uint32 packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit)
+uint32 packBitsLE(uint8* target, std::uint64_t value, int32 bitOffset, uint8 lengthInBit)
 {
     return packBitsLE(target, value, 0, bitOffset, lengthInBit);
 }
 
-uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
+uint32 packBitsLE(uint8* target, std::uint64_t value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
     byteOffset += (bitOffset >> 3);													//correct bitOffsets >= 8
     bitOffset %= 8;
@@ -414,12 +414,12 @@ uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset
     return ((byteOffset << 3) + bitOffset + lengthInBit);
 }
 
-uint64 unpackBitsLE(uint8* target, int32 bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsLE(uint8* target, int32 bitOffset, uint8 lengthInBit)
 {
     return unpackBitsLE(target, 0, bitOffset, lengthInBit);
 }
 
-uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
     byteOffset += (bitOffset >> 3);
     bitOffset %= 8;
@@ -439,7 +439,7 @@ uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
         return 0;
     }
 
-    uint64 retVal;
+    std::uint64_t retVal;
 
     uint8* modifiedTarget = new uint8[bytesNeeded];
 

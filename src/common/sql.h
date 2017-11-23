@@ -131,12 +131,12 @@ int32 Sql_Query(Sql_t* self, const char* query, Args... args)
 	return Sql_QueryStr(self, query_v.c_str());
 }
 
-uint64 Sql_AffectedRows(Sql_t* self);
+std::uint64_t Sql_AffectedRows(Sql_t* self);
 
 /// Returns the number of the AUTO_INCREMENT column of the last INSERT/UPDATE query.
 ///
 /// @return Value of the auto-increment column
-uint64 Sql_LastInsertId(Sql_t* self);
+std::uint64_t Sql_LastInsertId(Sql_t* self);
 
 /// Returns the number of columns in each row of the result.
 ///
@@ -146,7 +146,7 @@ uint32 Sql_NumColumns(Sql_t* self);
 /// Returns the number of rows in the result.
 ///
 /// @return Number of rows
-uint64 Sql_NumRows(Sql_t* self);
+std::uint64_t Sql_NumRows(Sql_t* self);
 
 /// Fetches the next row.
 /// The data of the previous row is no longer valid.

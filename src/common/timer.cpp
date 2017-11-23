@@ -26,11 +26,11 @@ time_point start_time;
  *----------------------------*/
 
 #if defined(ENABLE_RDTSC)
-static uint64 RDTSC_BEGINTICK = 0,   RDTSC_CLOCK = 0;
+static std::uint64_t RDTSC_BEGINTICK = 0,   RDTSC_CLOCK = 0;
 
-static __inline uint64 _rdtsc(){
+static __inline std::uint64_t _rdtsc(){
 	register union{
-		uint64	qw;
+		std::uint64_t	qw;
 		uint32 	dw[2];
 	} t;
 
@@ -40,7 +40,7 @@ static __inline uint64 _rdtsc(){
 }
 
 static void rdtsc_calibrate(){
-	uint64 t1, t2;
+	std::uint64_t t1, t2;
 	int32 i;
 	
 	ShowStatus("Calibrating Timer Source, please wait... ");

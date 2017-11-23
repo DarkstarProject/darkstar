@@ -210,7 +210,7 @@ namespace conquest
         else
         {
             uint8 offset = 0;
-            int64 total = san_inf + bas_inf + win_inf;
+            std::int64_t total = san_inf + bas_inf + win_inf;
 
             //Sandoria
             if (san_inf >= total * 0.65)	  offset = 3;

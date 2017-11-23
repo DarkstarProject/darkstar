@@ -140,8 +140,8 @@ int32 login_parse(int32 fd)
                         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                         {
                             uint32 charid = Sql_GetUIntData(SqlHandle, 0);
-                            uint64 ip = Sql_GetUIntData(SqlHandle, 1);
-                            uint64 port = Sql_GetUIntData(SqlHandle, 2);
+                            std::uint64_t ip = Sql_GetUIntData(SqlHandle, 1);
+                            std::uint64_t port = Sql_GetUIntData(SqlHandle, 2);
 
                             ip |= (port << 32);
 

@@ -62,7 +62,7 @@ namespace zoneutils
     CCharEntity* GetChar(uint32 id);                                                // returns pointer to character by id
     CCharEntity* GetCharToUpdate(uint32 primary, uint32 ternary);                   // returnes pointer to preferred char to update for party changes
     void         ForEachZone(std::function<void(CZone*)> func);
-    uint64       GetZoneIPP(uint16 zoneid);                                         // returns IPP for zone ID
+    std::uint64_t       GetZoneIPP(uint16 zoneid);                                         // returns IPP for zone ID
     bool         IsResidentialArea(CCharEntity*);                                  // returns whether or not the area is a residential zone
 };
 

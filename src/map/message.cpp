@@ -508,8 +508,8 @@ namespace message
         zContext = zmq::context_t(1);
         zSocket = new zmq::socket_t(zContext, ZMQ_DEALER);
 
-        uint64 ipp = map_ip.s_addr;
-        uint64 port = map_port;
+        std::uint64_t ipp = map_ip.s_addr;
+        std::uint64_t port = map_port;
 
         //if no ip/port were supplied, set to 1 (0 is not valid for an identity)
         if (map_ip.s_addr == 0 && map_port == 0)

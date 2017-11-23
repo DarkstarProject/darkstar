@@ -27,7 +27,7 @@
 #include "../entities/charentity.h"
 #include "../utils/zoneutils.h"
 
-CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, uint64 ipp)
+CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, std::uint64_t ipp)
 {
 	this->type = 0x0B;
 	this->size = 0x0E;

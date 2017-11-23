@@ -277,11 +277,11 @@ int32 Sql_QueryStr(Sql_t* self, const char* query)
 *																		*
 ************************************************************************/
 
-uint64 Sql_AffectedRows(Sql_t* self)
+std::uint64_t Sql_AffectedRows(Sql_t* self)
 {
 	if( self )
 	{
-		return (uint64)mysql_affected_rows(&self->handle);
+		return (std::uint64_t)mysql_affected_rows(&self->handle);
 	}
 	return 0;
 }
@@ -293,11 +293,11 @@ uint64 Sql_AffectedRows(Sql_t* self)
 *																		*
 ************************************************************************/
 
-uint64 Sql_LastInsertId(Sql_t* self)
+std::uint64_t Sql_LastInsertId(Sql_t* self)
 {
 	if( self )
 	{
-		return (uint64)mysql_insert_id(&self->handle);
+		return (std::uint64_t)mysql_insert_id(&self->handle);
 	}
 	return 0;
 }
@@ -323,11 +323,11 @@ uint32 Sql_NumColumns(Sql_t* self)
 *																		*
 ************************************************************************/
 
-uint64 Sql_NumRows(Sql_t* self)
+std::uint64_t Sql_NumRows(Sql_t* self)
 {
 	if( self && self->result )
 	{
-		return (uint64)mysql_num_rows(self->result);
+		return (std::uint64_t)mysql_num_rows(self->result);
 	}
 	return 0;
 }

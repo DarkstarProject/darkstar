@@ -170,13 +170,13 @@ extern thread_local Sql_t* SqlHandle;
 
 extern CCommandHandler CmdHandler;
 
-typedef std::map<uint64,map_session_data_t*> map_session_list_t;
+typedef std::map<std::uint64_t,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
 
 extern in_addr map_ip;
 extern uint16 map_port;
 
-extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
+extern inline map_session_data_t* mapsession_getbyipp(std::uint64_t ipp);
 extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port);
 
 //=======================================================================

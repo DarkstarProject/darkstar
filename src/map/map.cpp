@@ -91,7 +91,7 @@ std::thread messageThread;
 *                                                                       *
 ************************************************************************/
 
-map_session_data_t* mapsession_getbyipp(uint64 ipp)
+map_session_data_t* mapsession_getbyipp(std::uint64_t ipp)
 {
     map_session_list_t::iterator i = map_session_list.begin();
     while (i != map_session_list.end())
@@ -120,8 +120,8 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     map_session_data->client_addr = ip;
     map_session_data->client_port = port;
 
-    uint64 port64 = port;
-    uint64 ipp = ip;
+    std::uint64_t port64 = port;
+    std::uint64_t ipp = ip;
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
@@ -350,8 +350,8 @@ int32 do_sockets(fd_set* rfd, duration next)
             uint32 ip = ntohl(from.sin_addr.s_addr);
 #   endif
 
-            uint64 port = ntohs(from.sin_port);
-            uint64 ipp = ip;
+            std::uint64_t port = ntohs(from.sin_port);
+            std::uint64_t ipp = ip;
             ipp |= port << 32;
             map_session_data_t* map_session_data = mapsession_getbyipp(ipp);
 
@@ -760,8 +760,8 @@ int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
             Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
         }
 
-        uint64 port64 = map_session_data->client_port;
-        uint64 ipp = map_session_data->client_addr;
+        std::uint64_t port64 = map_session_data->client_port;
+        std::uint64_t ipp = map_session_data->client_addr;
         ipp |= port64 << 32;
 
         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(map_session_data->shuttingDown == 1);
