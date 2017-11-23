@@ -1127,10 +1127,10 @@ bool CBattleEntity::CanUseSpell(CSpell* PSpell)
 
 void CBattleEntity::Spawn()
 {
-    CBaseEntity::Spawn();
     animation = ANIMATION_NONE;
-    m_OwnerID.clean();
     HideName(false);
+    CBaseEntity::Spawn();
+    m_OwnerID.clean();
 }
 
 void CBattleEntity::Die()
