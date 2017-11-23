@@ -24,14 +24,11 @@
 #define DSP_DEBUG_BREAK_IF(_CONDITION_)
 #endif
 
-//////////////////////////////////////////////////////////////////////////
-// Integers with guaranteed _exact_ size.
-//////////////////////////////////////////////////////////////////////////
-//typedef char				std::int8_t;
-
-typedef signed char			sint8;
-typedef signed short		sint16;
-typedef signed int			sint32;
+// string case comparison for *nix portability
+#if !defined(_MSC_VER)
+#define strcmpi				strcasecmp
+#define stricmp				strcasecmp
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 // Assert
