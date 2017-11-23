@@ -28,7 +28,7 @@
 #include "item_linkshell.h"
 
 
-CItemLinkshell::CItemLinkshell(uint16 id) : CItem(id)
+CItemLinkshell::CItemLinkshell(std::uint16_t id) : CItem(id)
 {
 	setType(ITEM_LINKSHELL);
 }
@@ -57,12 +57,12 @@ lscolor_t CItemLinkshell::GetLSColor()
 	return *(lscolor_t*)(m_extra+0x06);
 }
 
-uint16 CItemLinkshell::GetLSRawColor()
+std::uint16_t CItemLinkshell::GetLSRawColor()
 {
     return RBUFW(m_extra, 0x06);
 }
 
-void CItemLinkshell::SetLSColor(uint16 color)
+void CItemLinkshell::SetLSColor(std::uint16_t color)
 {
 	WBUFW(m_extra,0x06) = color;
 }

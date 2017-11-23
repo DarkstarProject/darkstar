@@ -23,7 +23,7 @@
 
 #include "item_puppet.h"
 
-CItemPuppet::CItemPuppet(uint16 id) : CItem(id)
+CItemPuppet::CItemPuppet(std::uint16_t id) : CItem(id)
 {
 	setType(ITEM_PUPPET);
 }

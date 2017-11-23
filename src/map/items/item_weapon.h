@@ -33,24 +33,24 @@ class CItemWeapon : public CItemArmor
 {
 public:
 
-	CItemWeapon(uint16);
+	CItemWeapon(std::uint16_t);
 	virtual ~CItemWeapon();
 
 	uint8	getSkillType();
 	uint8	getSubSkillType();
-    uint16  getILvlSkill();
-    uint16  getILvlParry();
-    uint16  getILvlMacc();
-	int16	getDelay();
-	int16	getBaseDelay();
-	uint16	getDamage();
-	uint16	getDmgType();
+    std::uint16_t  getILvlSkill();
+    std::uint16_t  getILvlParry();
+    std::uint16_t  getILvlMacc();
+	std::int16_t	getDelay();
+	std::int16_t	getBaseDelay();
+	std::uint16_t	getDamage();
+	std::uint16_t	getDmgType();
     uint8   getAdditionalEffect();
     uint8   getHitCount();
-	uint16  getUnlockPoints();
-    uint16  getCurrentUnlockPoints();
+	std::uint16_t  getUnlockPoints();
+    std::uint16_t  getCurrentUnlockPoints();
     void    resetDelay();
-    bool    addWsPoints(uint16 points);
+    bool    addWsPoints(std::uint16_t points);
 
     bool    isRanged();
     bool    isThrowing();
@@ -60,33 +60,33 @@ public:
 
 	void	setSkillType(uint8 skillType);
 	void	setSubSkillType(uint8 subSkillType);
-    void    setILvlSkill(uint16 skill);
-    void    setILvlParry(uint16 parry);
-    void    setILvlMacc(uint16 macc);
-	void	setDelay(uint16 delay);
-	void	setBaseDelay(uint16 delay); //should ONLY be set by zoneutils!
-	void	setDamage(uint16 damage);
-	void	setDmgType(uint16 dmgType);
+    void    setILvlSkill(std::uint16_t skill);
+    void    setILvlParry(std::uint16_t parry);
+    void    setILvlMacc(std::uint16_t macc);
+	void	setDelay(std::uint16_t delay);
+	void	setBaseDelay(std::uint16_t delay); //should ONLY be set by zoneutils!
+	void	setDamage(std::uint16_t damage);
+	void	setDmgType(std::uint16_t dmgType);
     void    setAdditionalEffect(uint8 effect);
     void    setMaxHit(uint8 hit);
-	void    setUnlockablePoints(uint16 points);
-    void    setCurrentUnlockPoints(uint16 points);
+	void    setUnlockablePoints(std::uint16_t points);
+    void    setCurrentUnlockPoints(std::uint16_t points);
 
 private:
 
 	uint8	m_skillType;
 	uint8	m_subSkillType; //gun vs crossbow, any other exclusives
-    uint16  m_iLvlSkill;
-    uint16  m_iLvlParry;
-    uint16  m_iLvlMacc;
-	uint16	m_damage;
-	int16	m_delay;    //can be -ve e.g. ammo/ranged weapons
-	int16	m_baseDelay;
-	uint16	m_dmgType;
+    std::uint16_t  m_iLvlSkill;
+    std::uint16_t  m_iLvlParry;
+    std::uint16_t  m_iLvlMacc;
+	std::uint16_t	m_damage;
+	std::int16_t	m_delay;    //can be -ve e.g. ammo/ranged weapons
+	std::int16_t	m_baseDelay;
+	std::uint16_t	m_dmgType;
     uint8   m_effect;
     uint8   m_maxHit;
 
-    uint16  m_wsunlockpoints;
+    std::uint16_t  m_wsunlockpoints;
 
     bool    m_ranged;
     bool    m_twoHanded;

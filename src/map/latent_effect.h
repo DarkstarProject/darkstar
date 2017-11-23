@@ -106,29 +106,29 @@ class CLatentEffect
 public:
 
     LATENT      GetConditionsID() const;
-    uint16      GetConditionsValue() const;
+    std::uint16_t      GetConditionsValue() const;
     uint8       GetSlot() const;
     Mod         GetModValue() const;
-    int16       GetModPower() const;
+    std::int16_t       GetModPower() const;
     bool        IsActivated() const;
 
     CBattleEntity* GetOwner() const;
 
     void    SetConditionsId(LATENT id);
-    void    SetConditionsValue(uint16 value);
+    void    SetConditionsValue(std::uint16_t value);
     void    SetSlot(uint8 slot);
     void    SetModValue(Mod value);
-    void    SetModPower(int16 power);
+    void    SetModPower(std::int16_t power);
     void    Activate();
     void    Deactivate();
 
     CLatentEffect(
          CBattleEntity* owner,
          LATENT conditionsId,
-         uint16 conditionsValue,
+         std::uint16_t conditionsValue,
          uint8 slot, 
          Mod modValue, 
-         int16 modPower
+         std::int16_t modPower
     );
     CLatentEffect(const CLatentEffect&) = delete;
     CLatentEffect& operator=(const CLatentEffect&) = delete;
@@ -161,10 +161,10 @@ private:
     CBattleEntity* m_POwner{nullptr};
 
     LATENT      m_ConditionsID{LATENT_HP_UNDER_PERCENT};         //condition type to be true
-    uint16      m_ConditionsValue{0};      //condition parameter to be met
+    std::uint16_t      m_ConditionsValue{0};      //condition parameter to be met
     uint8       m_SlotID{0};               //slot associated with latent
     Mod         m_ModValue{Mod::NONE};     //mod ID to be applied when active
-    int16       m_ModPower{0};             //power of mod to be applied when active
+    std::int16_t       m_ModPower{0};             //power of mod to be applied when active
     bool        m_Activated{false};        //active or not active
 };
 

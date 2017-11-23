@@ -44,7 +44,7 @@ struct CurrentManeuvers
 
 struct AutomatonSpell
 {
-    uint16 skilllevel{ 0 };
+    std::uint16_t skilllevel{ 0 };
     uint8 heads{ 0 };
     EFFECT enfeeble{ EFFECT_KO };
     IMMUNITY immunity{ IMMUNITY_NONE };
@@ -66,8 +66,8 @@ protected:
     void setCooldowns();
     void setMagicCooldowns();
     virtual bool CanCastSpells() override;
-    virtual bool Cast(uint16 targid, SpellID spellid) override;
-    virtual bool MobSkill(uint16 targid, uint16 wsid) override;
+    virtual bool Cast(std::uint16_t targid, SpellID spellid) override;
+    virtual bool MobSkill(std::uint16_t targid, std::uint16_t wsid) override;
 
 private:
     bool TryAction();

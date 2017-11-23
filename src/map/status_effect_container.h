@@ -45,19 +45,19 @@ public:
     uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
     bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
-    bool CanGainStatusEffect(EFFECT statusEffect, uint16 power); // returns true if the status effect will take effect
+    bool CanGainStatusEffect(EFFECT statusEffect, std::uint16_t power); // returns true if the status effect will take effect
     bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
     bool DelStatusEffect(EFFECT StatusID);
     bool DelStatusEffectSilent(EFFECT StatusID);
-    bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
+    bool DelStatusEffect(EFFECT StatusID, std::uint16_t SubID);
     void DelStatusEffectsByFlag(std::uint32_t flag, bool silent = false);                   // удаляем все эффекты с указанным типом
-    void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
-    void DelStatusEffectsByType(uint16 Type);
-    bool DelStatusEffectByTier(EFFECT StatusID, uint16 power);
+    void DelStatusEffectsByIcon(std::uint16_t IconID);                 // удаляем все эффекты с указанной иконкой
+    void DelStatusEffectsByType(std::uint16_t Type);
+    bool DelStatusEffectByTier(EFFECT StatusID, std::uint16_t power);
     void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
-    bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
+    bool HasStatusEffect(EFFECT StatusID, std::uint16_t SubID);        // проверяем наличие эффекта с уникальным subid
     bool HasStatusEffect(std::initializer_list<EFFECT>);
     bool HasStatusEffectByFlag(std::uint32_t flag);
 
@@ -83,7 +83,7 @@ public:
 
     bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
     bool CheckForElevenRoll();
-    bool HasBustEffect(uint16 id);
+    bool HasBustEffect(std::uint16_t id);
     bool HasCorsairEffect(std::uint32_t charid);
     void Fold(std::uint32_t charid);
 
@@ -95,7 +95,7 @@ public:
     bool IsAsleep();
     bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
 
-    uint16 GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
+    std::uint16_t GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
     void CopyConfrontationEffect(CBattleEntity* PEntity); // copies confrontation status (pet summoning, etc)
 
     template<typename F, typename... Args>
@@ -132,7 +132,7 @@ private:
 namespace effects
 {
     void LoadEffectsParameters();
-    uint16 GetEffectElement(uint16 effect);
+    std::uint16_t GetEffectElement(std::uint16_t effect);
 };
 
 #endif

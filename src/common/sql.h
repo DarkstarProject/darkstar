@@ -83,7 +83,7 @@ struct Sql_t* Sql_Malloc(void);
 /// Establishes a connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db);
+std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, std::uint16_t port, const char* db);
 
 /// Retrieves the timeout of the connection.
 ///

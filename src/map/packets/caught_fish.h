@@ -40,7 +40,7 @@ class CCaughtFishPacket : public CBasicPacket
 {
 public:
 
-	CCaughtFishPacket(CCharEntity* PChar, uint16 param0, uint16 messageID);
+	CCaughtFishPacket(CCharEntity* PChar, std::uint16_t param0, std::uint16_t messageID);
 };
 
 #endif

@@ -155,7 +155,7 @@ uint8* CLinkshellListPacket::GetData()
 *																		*
 ************************************************************************/
 
-uint16 CLinkshellListPacket::GetSize()
+std::uint16_t CLinkshellListPacket::GetSize()
 {
     return m_offset / 8 + 20;
 }

@@ -29,7 +29,7 @@ This file is part of DarkStar-server source code.
 #include "../../mobskill.h"
 #include "../../status_effect_container.h"
 
-CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) :
+CMobSkillState::CMobSkillState(CMobEntity* PEntity, std::uint16_t targid, std::uint16_t wsid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {

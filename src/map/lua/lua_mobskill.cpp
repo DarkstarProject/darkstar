@@ -68,7 +68,7 @@ inline std::int32_t CLuaMobSkill::setMsg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaMobSkill->setMsg((uint16)lua_tointeger(L, -1));
+    m_PLuaMobSkill->setMsg((std::uint16_t)lua_tointeger(L, -1));
     return 0;
 }
 

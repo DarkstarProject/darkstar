@@ -242,7 +242,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         int8 session_key[20 * 2 + 1];
         bin2hex(session_key, (uint8*)session->blowfish.key, 20);
 
-        uint16 destination = PChar->loc.destination;
+        std::uint16_t destination = PChar->loc.destination;
 
         if (destination >= MAX_ZONEID){
             ShowWarning("packet_system::SmallPacket0x00A player tried to enter zone out of range: %d\n", destination);
@@ -559,7 +559,7 @@ void SmallPacket0x015(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 targid = RBUFW(data, (0x04));
+    std::uint16_t targid = RBUFW(data, (0x04));
 
     if (targid == PChar->targid)
     {
@@ -594,7 +594,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x017(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 targid = RBUFW(data, (0x04));
+    std::uint16_t targid = RBUFW(data, (0x04));
     std::uint32_t npcid = RBUFL(data, (0x08));
     uint8  type = RBUFB(data, (0x12));
 
@@ -611,7 +611,7 @@ void SmallPacket0x017(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     // std::uint32_t ID = RBUFL(data, (0x04));
-    uint16 TargID = RBUFW(data, (0x08));
+    std::uint16_t TargID = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0A));
 
     switch (action)
@@ -681,13 +681,13 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x07: // weaponskill
     {
-        uint16 WSkillID = RBUFW(data, (0x0C));
+        std::uint16_t WSkillID = RBUFW(data, (0x0C));
         PChar->PAI->WeaponSkill(TargID, WSkillID);
     }
     break;
     case 0x09: // jobability
     {
-        uint16 JobAbilityID = RBUFW(data, (0x0C));
+        std::uint16_t JobAbilityID = RBUFW(data, (0x0C));
         //if ((JobAbilityID < 496 && !charutils::hasAbility(PChar, JobAbilityID - 16)) || JobAbilityID >= 496 && !charutils::hasPetAbility(PChar, JobAbilityID - 512))
         //    return;
         PChar->PAI->Ability(TargID, JobAbilityID - 16);
@@ -882,7 +882,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PItem != nullptr && !PItem->isSubType(ITEM_LOCKED))
     {
-        uint16 ItemID = PItem->getID();
+        std::uint16_t ItemID = PItem->getID();
 
         if (charutils::UpdateItem(PChar, container, slotID, -quantity) != 0)
         {
@@ -1014,7 +1014,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     std::uint32_t charid = RBUFL(data, (0x04));
-    uint16 targid = RBUFW(data, (0x08));
+    std::uint16_t targid = RBUFW(data, (0x08));
 
     CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
     ShowDebug(CL_CYAN"%s initiated trade request with %s\n" CL_RESET, PChar->GetName(), PTarget->GetName());
@@ -1072,7 +1072,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PTarget != nullptr && PChar->TradePending.id == PTarget->id)
     {
-        uint16 action = RBUFB(data, (0x04));
+        std::uint16_t action = RBUFB(data, (0x04));
 
         switch (action)
         {
@@ -1171,7 +1171,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     std::uint32_t quantity = RBUFL(data, (0x04));
-    uint16 itemID = RBUFW(data, (0x08));
+    std::uint16_t itemID = RBUFW(data, (0x08));
     uint8  invSlotID = RBUFB(data, (0x0A));
     uint8  tradeSlotID = RBUFB(data, (0x0B));
 
@@ -1222,7 +1222,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     std::uint32_t npcid = RBUFL(data, (0x04));
-    uint16 targid = RBUFW(data, (0x3A));
+    std::uint16_t targid = RBUFW(data, (0x3A));
 
     CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
 
@@ -1260,7 +1260,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     // std::uint32_t EntityID = RBUFL(data, (0x04));
-    uint16 TargetID = RBUFW(data, (0x0C));
+    std::uint16_t TargetID = RBUFW(data, (0x0C));
     uint8  SlotID = RBUFB(data, (0x0E));
     uint8  StorageID = RBUFB(data, (0x10));
 
@@ -2140,7 +2140,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  slotid = RBUFB(data, (0x05));
     std::uint32_t price = RBUFL(data, (0x08));
     uint8  slot = RBUFB(data, (0x0C));
-    uint16 itemid = RBUFW(data, (0x0E));
+    std::uint16_t itemid = RBUFW(data, (0x0E));
     uint8  quantity = RBUFB(data, (0x10));
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n" CL_RESET, RBUFB(data, (0x04)));
@@ -2189,7 +2189,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     AuctionHistory_t ah;
-                    ah.itemid = (uint16)Sql_GetIntData(SqlHandle, 0);
+                    ah.itemid = (std::uint16_t)Sql_GetIntData(SqlHandle, 0);
                     ah.price = (std::uint32_t)Sql_GetUIntData(SqlHandle, 1);
                     ah.stack = (uint8)Sql_GetIntData(SqlHandle, 2);
                     ah.status = 0;
@@ -2490,7 +2490,7 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             // uint8 slotId = RBUFB(data, i);
             uint8 equipSlotId = RBUFB(data, i + 0x01);
             // uint8 locationId = RBUFB(data, i + 0x02);
-            uint16 itemId = RBUFW(data, i + 0x04);
+            std::uint16_t itemId = RBUFW(data, i + 0x04);
 
             auto PItem = itemutils::GetItem(itemId);
             if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
@@ -2541,8 +2541,8 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x058(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    // uint16 skillID = RBUFW(data, (0x04));
-    // uint16 skillLevel = RBUFW(data, (0x06));
+    // std::uint16_t skillID = RBUFW(data, (0x04));
+    // std::uint16_t skillLevel = RBUFW(data, (0x06));
     //PChar->pushPacket(new CSynthSuggestionPacket(recipeID));
 }
 
@@ -2587,7 +2587,7 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 EventID = RBUFW(data, (0x12));
+    std::uint16_t EventID = RBUFW(data, (0x12));
     std::uint32_t Result = RBUFL(data, (0x08));
 
     if (PChar->m_event.EventID == EventID)
@@ -2621,7 +2621,7 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x05C(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 EventID = RBUFW(data, (0x1A));
+    std::uint16_t EventID = RBUFW(data, (0x1A));
 
     if (PChar->m_event.EventID == EventID)
     {
@@ -2696,7 +2696,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // Exiting Mog House..
         if (zoneLineID == 1903324538)
         {
-            uint16 prevzone = PChar->getZone();
+            std::uint16_t prevzone = PChar->getZone();
 
             // If zero, return to previous zone.. otherwise, determine the zone..
             if (zone != 0)
@@ -2860,9 +2860,9 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     //PrintPacket(data);
 
     //std::uint32_t charid = data.ref<std::uint32_t>(0x04);
-    uint16 stamina = data.ref<uint16>(0x08);
-    //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
-    //uint16 targetid = data.ref<uint16>(0x0C);
+    std::uint16_t stamina = data.ref<std::uint16_t>(0x08);
+    //std::uint16_t ukn1 = data.ref<std::uint16_t>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
+    //std::uint16_t targetid = data.ref<std::uint16_t>(0x0C);
     uint8  action = data.ref<uint8>(0x0E);
     //uint8 ukn2 = data.ref<uint8>(0x0F);
     std::uint32_t special = data.ref<std::uint32_t>(0x10);
@@ -2882,7 +2882,7 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     std::uint32_t charid = RBUFL(data, 0x04);
-    uint16 targid = RBUFW(data, 0x08);
+    std::uint16_t targid = RBUFW(data, 0x08);
     // cannot invite yourself
     if (PChar->id == charid)
         return;
@@ -3519,7 +3519,7 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    uint16 itemID = PChar->Container->getItemID(shopSlotID);
+    std::uint16_t itemID = PChar->Container->getItemID(shopSlotID);
     std::uint32_t price = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
     CItem* PItem = itemutils::GetItemPointer(itemID);
@@ -3561,7 +3561,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->animation != ANIMATION_SYNTH)
     {
         std::uint32_t quantity = RBUFL(data, (0x04));
-        uint16 itemID = RBUFW(data, (0x08));
+        std::uint16_t itemID = RBUFW(data, (0x08));
         uint8  slotID = RBUFB(data, (0x0A));
 
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
@@ -3587,7 +3587,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     std::uint32_t quantity = PChar->Container->getQuantity(PChar->Container->getSize() - 1);
-    uint16 itemID = PChar->Container->getItemID(PChar->Container->getSize() - 1);
+    std::uint16_t itemID = PChar->Container->getItemID(PChar->Container->getSize() - 1);
     uint8  slotID = PChar->Container->getInvSlotID(PChar->Container->getSize() - 1);
 
     CItem* gil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
@@ -3629,7 +3629,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->CraftContainer->Clean();
 
-    uint16 ItemID = RBUFL(data, (0x06));
+    std::uint16_t ItemID = RBUFL(data, (0x06));
     uint8  invSlotID = RBUFB(data, (0x08));
 
     uint8  numItems = RBUFB(data, (0x09));
@@ -3672,7 +3672,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 itemID = RBUFW(data, (0x04));
+    std::uint16_t itemID = RBUFW(data, (0x04));
     uint8  quantity = RBUFB(data, (0x07));
     uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
     CItemShop* item = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
@@ -3714,7 +3714,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0A2(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 diceroll = dsprand::GetRandomNumber(1000);
+    std::uint16_t diceroll = dsprand::GetRandomNumber(1000);
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, 88));
     return;
@@ -3747,7 +3747,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (PChar->PGuildShop != nullptr)
         {
-            uint16 itemID = RBUFW(data, (0x04));
+            std::uint16_t itemID = RBUFW(data, (0x04));
             uint8  slot = RBUFB(data, (0x06));
             uint8  quantity = RBUFB(data, (0x07));
             uint8  shopSlotID = PChar->PGuildShop->SearchItem(itemID);
@@ -4120,7 +4120,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PItemLinkshell->getID() == 512)
         {
             std::uint32_t   LinkshellID = 0;
-            uint16   LinkshellColor = RBUFW(data, (0x04));
+            std::uint16_t   LinkshellColor = RBUFW(data, (0x04));
             string_t LinkshellName = data[12];
             int8     DecodedName[21];
             int8     EncodedName[16];
@@ -4373,7 +4373,7 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     std::uint32_t id = RBUFL(data, (0x04));
-    uint16 targid = RBUFW(data, (0x08));
+    std::uint16_t targid = RBUFW(data, (0x08));
     uint8 type = RBUFB(data, (0x0C));
 
     //checkparam
@@ -4465,11 +4465,11 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else
             {
                 std::uint32_t baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
-                uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
-                uint16 charAtt = PChar->ATT();
+                std::uint16_t charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
+                std::uint16_t charAtt = PChar->ATT();
                 uint8 mobLvl = PTarget->GetMLevel();
-                uint16 mobEva = PTarget->EVA();
-                uint16 mobDef = PTarget->DEF();
+                std::uint16_t mobEva = PTarget->EVA();
+                std::uint16_t mobDef = PTarget->DEF();
 
                 uint8 MessageValue = 0;
 
@@ -4775,7 +4775,7 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0F1(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 IconID = RBUFW(data, (0x04));
+    std::uint16_t IconID = RBUFW(data, (0x04));
 
     if (IconID)
         PChar->StatusEffectContainer->DelStatusEffectsByIcon(IconID);
@@ -4976,7 +4976,7 @@ void SmallPacket0x0F4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0F5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 TargID = RBUFW(data, (0x04));
+    std::uint16_t TargID = RBUFW(data, (0x04));
 
     PChar->PWideScanTarget = PChar->GetEntity(TargID, TYPE_MOB | TYPE_NPC);
     return;
@@ -5002,7 +5002,7 @@ void SmallPacket0x0F6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 ItemID = RBUFW(data, (0x04));
+    std::uint16_t ItemID = RBUFW(data, (0x04));
 
     if (ItemID == 0)
         return;
@@ -5063,7 +5063,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint16 ItemID = RBUFW(data, (0x04));
+    std::uint16_t ItemID = RBUFW(data, (0x04));
 
     if (ItemID == 0)
     {
@@ -5179,7 +5179,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else if (prevsjob == JOB_BLU)
                 blueutils::UnequipAllBlueSpells(PChar);
 
-            uint16 subType = PChar->m_Weapons[SLOT_SUB]->getDmgType();
+            std::uint16_t subType = PChar->m_Weapons[SLOT_SUB]->getDmgType();
 
             if (subType > 0 && subType < 4)
             {
@@ -5356,7 +5356,7 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PTarget != nullptr && PTarget->id == PChar->BazaarID.id)
     {
-        for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+        for (std::uint16_t i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             if (PTarget->BazaarCustomers[i].id == PChar->id)
             {
@@ -5494,7 +5494,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 break;
             }
         }
-        for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
+        for (std::uint16_t i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
             CCharEntity* PCustomer = (CCharEntity*)PTarget->GetEntity(PTarget->BazaarCustomers[i].targid, TYPE_PC);
 
@@ -5581,7 +5581,7 @@ void SmallPacket0x10A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x10B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    for (uint16 i = 0; i < PChar->BazaarCustomers.size(); ++i)
+    for (std::uint16_t i = 0; i < PChar->BazaarCustomers.size(); ++i)
     {
         CCharEntity* PCustomer = (CCharEntity*)PChar->GetEntity(PChar->BazaarCustomers[i].targid, TYPE_PC);
 
@@ -5622,9 +5622,9 @@ void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
 
     //std::uint32_t charid = data.ref<std::uint32_t>(0x04);
-    uint16 stamina = data.ref<uint16>(0x08);
-    //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
-    //uint16 targetid = data.ref<uint16>(0x0C);
+    std::uint16_t stamina = data.ref<std::uint16_t>(0x08);
+    //std::uint16_t ukn1 = data.ref<std::uint16_t>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
+    //std::uint16_t targetid = data.ref<std::uint16_t>(0x0C);
     uint8 action = data.ref<uint8>(0x0E);
     //uint8 ukn2 = data.ref<uint8>(0x0F);
     std::uint32_t special = data.ref<std::uint32_t>(0x10);
@@ -5666,7 +5666,7 @@ void SmallPacket0x115(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void PacketParserInitialize()
 {
-    for (uint16 i = 0; i < 512; ++i)
+    for (std::uint16_t i = 0; i < 512; ++i)
     {
         PacketSize[i] = 0;
         PacketParser[i] = &SmallPacket0x000;

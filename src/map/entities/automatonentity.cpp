@@ -131,7 +131,7 @@ uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
     if (burden > 0)
     {
         //check for overload
-        int16 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
+        std::int16_t thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
         if (m_Burden[element] > thresh)
         {
             if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
@@ -164,7 +164,7 @@ void CAutomatonEntity::Die()
     CPetEntity::Die();
 }
 
-bool CAutomatonEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+bool CAutomatonEntity::ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags)
 {
     if (targetFlags & TARGET_PLAYER && this == PInitiator)
     {
@@ -180,7 +180,7 @@ void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<std::uint16_t>(PSpell->getID()), action.recast);
 
     if (PSpell->tookEffect())
     {

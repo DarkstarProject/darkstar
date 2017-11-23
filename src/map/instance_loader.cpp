@@ -129,7 +129,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
             PMob->name.insert(0, Sql_GetData(SqlInstanceHandle, 0));
             PMob->id = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 1);
-            PMob->targid = (uint16)PMob->id & 0x0FFF;
+            PMob->targid = (std::uint16_t)PMob->id & 0x0FFF;
 
             PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlInstanceHandle, 2);
             PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlInstanceHandle, 3);
@@ -157,7 +157,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
             PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
 
-            PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlInstanceHandle, 19);
+            PMob->m_Behaviour = (std::uint16_t)Sql_GetIntData(SqlInstanceHandle, 19);
             PMob->m_Link = (uint8)Sql_GetIntData(SqlInstanceHandle, 20);
             PMob->m_Type = (uint8)Sql_GetIntData(SqlInstanceHandle, 21);
             PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlInstanceHandle, 22);
@@ -179,22 +179,22 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->attRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 56);
             PMob->accRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 57);
 
-            PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
-            PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
-            PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
-            PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
+            PMob->setModifier(Mod::SLASHRES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
+            PMob->setModifier(Mod::PIERCERES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
+            PMob->setModifier(Mod::HTHRES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
+            PMob->setModifier(Mod::IMPACTRES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
 
-            PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
-            PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
-            PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
-            PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
-            PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
-            PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
-            PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
-            PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
+            PMob->setModifier(Mod::FIRERES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
+            PMob->setModifier(Mod::ICERES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
+            PMob->setModifier(Mod::WINDRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
+            PMob->setModifier(Mod::EARTHRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
+            PMob->setModifier(Mod::THUNDERRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
+            PMob->setModifier(Mod::WATERRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
+            PMob->setModifier(Mod::LIGHTRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
+            PMob->setModifier(Mod::DARKRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
 
             PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
-            PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
+            PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlInstanceHandle, 48);
             PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 49);
             PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlInstanceHandle, 50);
 
@@ -266,7 +266,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
                 PNpc->loc.p.x = Sql_GetFloatData(SqlInstanceHandle, 3);
                 PNpc->loc.p.y = Sql_GetFloatData(SqlInstanceHandle, 4);
                 PNpc->loc.p.z = Sql_GetFloatData(SqlInstanceHandle, 5);
-                PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlInstanceHandle, 6);
+                PNpc->loc.p.moving = (std::uint16_t)Sql_GetUIntData(SqlInstanceHandle, 6);
 
                 PNpc->m_TargID = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
 

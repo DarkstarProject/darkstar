@@ -29,7 +29,7 @@
 #include "utils/itemutils.h"
 
 
-CItemContainer::CItemContainer(uint16 LocationID)
+CItemContainer::CItemContainer(std::uint16_t LocationID)
 {
 	m_id = LocationID;
 
@@ -51,7 +51,7 @@ CItemContainer::~CItemContainer()
 	}
 }
 
-uint16 CItemContainer::GetID()
+std::uint16_t CItemContainer::GetID()
 {
 	return m_id;
 }
@@ -72,7 +72,7 @@ uint8 CItemContainer::GetFreeSlotsCount()
 *                                                                       *
 ************************************************************************/
 
-uint16 CItemContainer::GetBuff()
+std::uint16_t CItemContainer::GetBuff()
 {
     return m_buff;
 }
@@ -207,7 +207,7 @@ CItem* CItemContainer::GetItem(uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemContainer::SearchItem(uint16 ItemID)
+uint8 CItemContainer::SearchItem(std::uint16_t ItemID)
 {
 	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{
@@ -226,7 +226,7 @@ uint8 CItemContainer::SearchItem(uint16 ItemID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemContainer::SearchItemWithSpace(uint16 ItemID, std::uint32_t quantity)
+uint8 CItemContainer::SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity)
 {
 	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{

@@ -142,7 +142,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
+uint8 CTreasurePool::AddItem(std::uint16_t ItemID, CBaseEntity* PEntity)
 {
     uint8  SlotID;
     uint8  FreeSlotID = -1;
@@ -259,7 +259,7 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
+void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, std::uint16_t Lot)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
     DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
@@ -310,7 +310,7 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
         m_PoolItems[SlotID].Lotters.push_back(li);
     }
 
-    uint16 PassedLot = 65535; // passed mask is FF FF
+    std::uint16_t PassedLot = 65535; // passed mask is FF FF
     //Player lots Item for XXX message
     for (std::uint32_t i = 0; i < members.size(); ++i)
     {

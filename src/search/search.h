@@ -27,13 +27,13 @@ This file is part of DarkStar-server source code.
 struct search_config_t
 {
     std::string mysql_host;         // mysql addr     -> localhost
-    uint16      mysql_port;         // mysql port     -> 3306
+    std::uint16_t      mysql_port;         // mysql port     -> 3306
     std::string mysql_login;        // mysql login    -> default root
     std::string mysql_password;     // mysql pass     -> default root
     std::string mysql_database;     // mysql database -> default dspdb
     bool		expire_auctions;	// If true, then start task to expire old auctions off the auction house
     uint8		expire_days;		// Number of days to keep stuff on the auction house
-    int16		expire_interval;	// How often the task should run (time * 1000) in seconds
+    std::int16_t		expire_interval;	// How often the task should run (time * 1000) in seconds
 };
 
 struct login_config_t
@@ -43,7 +43,7 @@ struct login_config_t
 
 struct search_req
 {
-    uint16 zoneid[10];
+    std::uint16_t zoneid[10];
     uint8 jobid;
     uint8 minlvl;
     uint8 maxlvl;

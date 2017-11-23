@@ -144,7 +144,7 @@ uint8* CSearchListPacket::GetData()
 *																		*
 ************************************************************************/
 
-uint16 CSearchListPacket::GetSize()
+std::uint16_t CSearchListPacket::GetSize()
 {
     return m_offset / 8 + 20;
 }

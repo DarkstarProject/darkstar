@@ -46,7 +46,7 @@ class CPartyInvitePacket : public CBasicPacket
 {
 public:
 
-	CPartyInvitePacket(std::uint32_t id, uint16 targid, CCharEntity* PInviter, INVITETYPE InviteType);
+	CPartyInvitePacket(std::uint32_t id, std::uint16_t targid, CCharEntity* PInviter, INVITETYPE InviteType);
 };
 
 #endif

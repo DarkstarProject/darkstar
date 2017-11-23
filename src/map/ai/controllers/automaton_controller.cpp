@@ -444,8 +444,8 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
             haveHate = false;
         else
         {
-            uint16 selfEnmity = selfEnmity_obj->second.CE + selfEnmity_obj->second.VE;
-            uint16 masterEnmity = masterEnmity_obj->second.CE + masterEnmity_obj->second.VE;
+            std::uint16_t selfEnmity = selfEnmity_obj->second.CE + selfEnmity_obj->second.VE;
+            std::uint16_t masterEnmity = masterEnmity_obj->second.CE + masterEnmity_obj->second.VE;
             haveHate = selfEnmity > masterEnmity ? true : false;
         }
     }
@@ -470,7 +470,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     {
         if (PMob)
         {
-            uint16 highestEnmity = 0;
+            std::uint16_t highestEnmity = 0;
             for (uint8 i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
             {
                 CBattleEntity* member = PAutomaton->PMaster->PParty->members.at(i);
@@ -524,7 +524,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     return false;
 }
 
-inline bool resistanceComparator(const std::pair<SpellID, int16>& firstElem, const std::pair<SpellID, int16>& secondElem) {
+inline bool resistanceComparator(const std::pair<SpellID, std::int16_t>& firstElem, const std::pair<SpellID, std::int16_t>& secondElem) {
     return firstElem.second < secondElem.second;
 }
 
@@ -552,7 +552,7 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
 
     if (PAutomaton->getMod(Mod::AUTO_SCAN_RESISTS))
     {
-        std::vector<std::pair<SpellID, int16>> reslist{
+        std::vector<std::pair<SpellID, std::int16_t>> reslist{
             std::make_pair(SpellID::Thunder, PTarget->getMod(Mod::THUNDERRES)),
             std::make_pair(SpellID::Blizzard, PTarget->getMod(Mod::ICERES)),
             std::make_pair(SpellID::Fire, PTarget->getMod(Mod::FIRERES)),
@@ -561,7 +561,7 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
             std::make_pair(SpellID::Stone, PTarget->getMod(Mod::EARTHRES))
         };
         std::stable_sort(reslist.begin(), reslist.end(), resistanceComparator);
-        for (std::pair<SpellID, int16>& res : reslist)
+        for (std::pair<SpellID, std::int16_t>& res : reslist)
             castPriority.push_back(res.first);
     }
     else if (PAutomaton->getHead() == HEAD_SPIRITREAVER)
@@ -604,11 +604,11 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
     for (int8 i = tier; i >= 0; --i)
     {
         for (SpellID& id : castPriority)
-            if (Cast(PTarget->targid, static_cast<SpellID>(static_cast<uint16>(id) + i)))
+            if (Cast(PTarget->targid, static_cast<SpellID>(static_cast<std::uint16_t>(id) + i)))
                 return true;
 
         for (SpellID& id : defaultPriority)
-            if (Cast(PTarget->targid, static_cast<SpellID>(static_cast<uint16>(id) + i)))
+            if (Cast(PTarget->targid, static_cast<SpellID>(static_cast<std::uint16_t>(id) + i)))
                 return true;
     }
 
@@ -1003,7 +1003,7 @@ bool CAutomatonController::TryEnhance()
     if (PMob)
         enmityList = PMob->PEnmityContainer->GetEnmityList();
 
-    uint16 highestEnmity = 0;
+    std::uint16_t highestEnmity = 0;
 
     CBattleEntity* PRegenTarget = nullptr;
     CBattleEntity* PProtectTarget = nullptr;
@@ -1268,7 +1268,7 @@ bool CAutomatonController::TryTPMove()
             }
         }
 
-        int16 currentSkill = -1;
+        std::int16_t currentSkill = -1;
         CMobSkill* PWSkill = nullptr;
         int8 currentManeuvers = -1;
 
@@ -1372,15 +1372,15 @@ bool CAutomatonController::CanCastSpells()
     return PAutomaton->PAI->CanChangeState();
 }
 
-bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
+bool CAutomatonController::Cast(std::uint16_t targid, SpellID spellid)
 {
-    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(spellid)))
+    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->Has(RECAST_MAGIC, static_cast<std::uint16_t>(spellid)))
         return false;
 
     return CPetController::Cast(targid, spellid);
 }
 
-bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
+bool CAutomatonController::MobSkill(std::uint16_t targid, std::uint16_t wsid)
 {
     if(PAutomaton->PRecastContainer->Has(RECAST_ABILITY, wsid))
         return false;
@@ -1414,7 +1414,7 @@ namespace autoSpell
             {
                 SpellID id = (SpellID)Sql_GetUIntData(SqlHandle, 0);
                 AutomatonSpell PSpell {
-                    (uint16)Sql_GetUIntData(SqlHandle, 1),
+                    (std::uint16_t)Sql_GetUIntData(SqlHandle, 1),
                     (uint8)Sql_GetUIntData(SqlHandle, 2),
                     (EFFECT)Sql_GetUIntData(SqlHandle, 3),
                     (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)

@@ -67,14 +67,14 @@ public:
     static void ToDetourPos(position_t* out);
 
 public:
-    CNavMesh(uint16 zoneID);
+    CNavMesh(std::uint16_t zoneID);
     ~CNavMesh();
 
     bool load(const std::string& path);
     void unload();
 
     std::vector<position_t> findPath(const position_t& start, const position_t& end);
-    std::pair<int16, position_t> findRandomPosition(const position_t& start, float maxRadius);
+    std::pair<std::int16_t, position_t> findRandomPosition(const position_t& start, float maxRadius);
 
     // returns true if the point is in water
     bool inWater(const position_t& point);
@@ -87,7 +87,7 @@ public:
 private:
     void outputError(std::uint32_t status);
 
-    uint16 m_zoneID;
+    std::uint16_t m_zoneID;
     dtRaycastHit m_hit;
     dtPolyRef m_hitPath[20];
     std::unique_ptr<dtNavMesh> m_navMesh;

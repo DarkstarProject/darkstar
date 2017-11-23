@@ -32,12 +32,12 @@ std::unique_ptr<CSpell> CBlueSpell::clone()
   return std::unique_ptr<CBlueSpell>(new CBlueSpell(*this));
 }
 
-uint16 CBlueSpell::getMonsterSkillId()
+std::uint16_t CBlueSpell::getMonsterSkillId()
 {
 	return m_monsterSkillId;
 }
 
-void CBlueSpell::setMonsterSkillId(uint16 skillid)
+void CBlueSpell::setMonsterSkillId(std::uint16_t skillid)
 {
 	m_monsterSkillId = skillid;
 }

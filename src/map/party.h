@@ -63,8 +63,8 @@ public:
 	CParty(std::uint32_t id);
 
     std::uint32_t GetPartyID();                                // узнаем уникальный ID группы
-    uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
-    uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
+    std::uint16_t GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
+    uint8  MemberCount(std::uint16_t ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
@@ -85,11 +85,11 @@ public:
     void SetPartyID(std::uint32_t id);                         // set new party ID
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
-    void SetSyncTarget(int8* MemberName, uint16 message);         // устанавливаем цель синхронизации уровней3
+    void SetSyncTarget(int8* MemberName, std::uint16_t message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
     void SetPartyNumber(uint8 number);
 
-    void PushPacket(std::uint32_t senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(std::uint32_t senderID, std::uint16_t ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
     void PushEffectsPacket();
     void EffectsChanged();
 	CAlliance* m_PAlliance;

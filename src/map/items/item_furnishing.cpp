@@ -24,7 +24,7 @@
 #include "item_furnishing.h"
 #include "../map.h"
 
-CItemFurnishing::CItemFurnishing(uint16 id) : CItem(id)
+CItemFurnishing::CItemFurnishing(std::uint16_t id) : CItem(id)
 {
 	setType(ITEM_FURNISHING);
 

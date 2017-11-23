@@ -60,12 +60,12 @@ std::uint32_t CLinkshell::getID()
     return m_id;
 }
 
-uint16 CLinkshell::getColor()
+std::uint16_t CLinkshell::getColor()
 {
     return m_color;
 }
 
-void CLinkshell::setColor(uint16 color)
+void CLinkshell::setColor(std::uint16_t color)
 {
     m_color = color;
 }
@@ -436,7 +436,7 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t RegisterNewLinkshell(const int8* name, uint16 color)
+    std::uint32_t RegisterNewLinkshell(const int8* name, std::uint16_t color)
     {
         if (IsValidLinkshellName(name))
         {

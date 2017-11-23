@@ -28,7 +28,7 @@ This file is part of DarkStar-server source code.
 #include "../../entities/charentity.h"
 #include "../../entities/npcentity.h"
 
-CTriggerState::CTriggerState(CBaseEntity* PEntity, uint16 targid) :
+CTriggerState::CTriggerState(CBaseEntity* PEntity, std::uint16_t targid) :
     CState(PEntity, targid)
 {
 }

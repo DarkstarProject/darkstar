@@ -63,7 +63,7 @@ std::uint32_t CRegion::GetRegionID()
 *                                                                       *
 ************************************************************************/
 
-int16 CRegion::GetCount()
+std::int16_t CRegion::GetCount()
 {
     return m_Count;
 }
@@ -74,7 +74,7 @@ int16 CRegion::GetCount()
 *                                                                       *
 ************************************************************************/
     
-int16 CRegion::AddCount(int16 count)
+std::int16_t CRegion::AddCount(std::int16_t count)
 {
     m_Count += count;
     return m_Count;
@@ -86,7 +86,7 @@ int16 CRegion::AddCount(int16 count)
 *                                                                       *
 ************************************************************************/
     
-int16 CRegion::DelCount(int16 count)
+std::int16_t CRegion::DelCount(std::int16_t count)
 {
     m_Count -= count;
     return m_Count;

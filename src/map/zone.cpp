@@ -190,12 +190,12 @@ std::uint32_t CZone::GetIP()
     return m_zoneIP;
 }
 
-uint16 CZone::GetPort()
+std::uint16_t CZone::GetPort()
 {
     return m_zonePort;
 }
 
-uint16 CZone::GetTax()
+std::uint16_t CZone::GetTax()
 {
     return m_tax;
 }
@@ -235,7 +235,7 @@ uint8 CZone::GetBackgroundMusicNight()
     return m_zoneMusic.m_songNight;
 }
 
-bool CZone::CanUseMisc(uint16 misc)
+bool CZone::CanUseMisc(std::uint16_t misc)
 {
     return (m_miscMask & misc) == misc;
 }
@@ -279,7 +279,7 @@ void CZone::LoadZoneLines()
             zoneLine_t* zl = new zoneLine_t;
 
             zl->m_zoneLineID = (std::uint32_t)Sql_GetIntData(SqlHandle, 0);
-            zl->m_toZone = (uint16)Sql_GetIntData(SqlHandle, 1);
+            zl->m_toZone = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
             zl->m_toPos.x = Sql_GetFloatData(SqlHandle, 2);
             zl->m_toPos.y = Sql_GetFloatData(SqlHandle, 3);
             zl->m_toPos.z = Sql_GetFloatData(SqlHandle, 4);
@@ -314,7 +314,7 @@ void CZone::LoadZoneWeather()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            m_WeatherVector.insert(std::make_pair((uint16)Sql_GetUIntData(SqlHandle, 0), zoneWeather_t(Sql_GetIntData(SqlHandle, 1),
+            m_WeatherVector.insert(std::make_pair((std::uint16_t)Sql_GetUIntData(SqlHandle, 0), zoneWeather_t(Sql_GetIntData(SqlHandle, 1),
                 Sql_GetIntData(SqlHandle, 2), Sql_GetIntData(SqlHandle, 3))));
         }
     }
@@ -358,13 +358,13 @@ void CZone::LoadZoneSettings()
         m_zoneName.insert(0, Sql_GetData(SqlHandle, 0));
 
         m_zoneIP = inet_addr(Sql_GetData(SqlHandle, 1));
-        m_zonePort = (uint16)Sql_GetUIntData(SqlHandle, 2);
+        m_zonePort = (std::uint16_t)Sql_GetUIntData(SqlHandle, 2);
         m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
         m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
         m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
         m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle, 6);   // party battle music
-        m_tax = (uint16)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
-        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle, 8);
+        m_tax = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
+        m_miscMask = (std::uint16_t)Sql_GetUIntData(SqlHandle, 8);
 
         m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
 
@@ -387,7 +387,7 @@ void CZone::LoadNavMesh()
 {
     if (m_navMesh == nullptr)
     {
-        m_navMesh = new CNavMesh((uint16)GetID());
+        m_navMesh = new CNavMesh((std::uint16_t)GetID());
     }
 
     int8 file[255];
@@ -471,7 +471,7 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 *                                                                       *
 ************************************************************************/
 
-void CZone::TransportDepart(uint16 boundary, uint16 zone)
+void CZone::TransportDepart(std::uint16_t boundary, std::uint16_t zone)
 {
     m_zoneEntities->TransportDepart(boundary, zone);
 }
@@ -705,7 +705,7 @@ void CZone::SpawnTransport(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
+CBaseEntity* CZone::GetEntity(std::uint16_t targid, uint8 filter)
 {
     return m_zoneEntities->GetEntity(targid, filter);
 }
@@ -761,7 +761,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 *                                                                       *
 ************************************************************************/
 
-void CZone::WideScan(CCharEntity* PChar, uint16 radius)
+void CZone::WideScan(CCharEntity* PChar, std::uint16_t radius)
 {
     m_zoneEntities->WideScan(PChar, radius);
 }

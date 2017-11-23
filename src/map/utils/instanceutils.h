@@ -32,7 +32,7 @@ class CCharEntity;
 namespace instanceutils
 {
 	void CheckInstance();
-	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester);
+	void LoadInstance(uint8 instanceid, std::uint16_t zoneid, CCharEntity* PRequester);
 };
 
 #endif

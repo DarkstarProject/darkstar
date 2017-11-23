@@ -32,7 +32,7 @@
 *                                                                       *
 ************************************************************************/
 
-CItem::CItem(uint16 id)
+CItem::CItem(std::uint16_t id)
 {
     m_id = id;
 
@@ -64,12 +64,12 @@ CItem::~CItem()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setID(uint16 id)
+void CItem::setID(std::uint16_t id)
 {
     m_id = id;
 }
 
-uint16 CItem::getID()
+std::uint16_t CItem::getID()
 {
     return m_id;
 }
@@ -80,12 +80,12 @@ uint16 CItem::getID()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setSubID(uint16 subid)
+void CItem::setSubID(std::uint16_t subid)
 {
     m_subid = subid;
 }
 
-uint16 CItem::getSubID()
+std::uint16_t CItem::getSubID()
 {
     return m_subid;
 }
@@ -96,12 +96,12 @@ uint16 CItem::getSubID()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setFlag(uint16 flag)
+void CItem::setFlag(std::uint16_t flag)
 {
     m_flag = flag;
 }
 
-uint16 CItem::getFlag()
+std::uint16_t CItem::getFlag()
 {
     return m_flag;
 }

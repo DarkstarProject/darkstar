@@ -40,7 +40,7 @@
 #include "mob_modifier.h"
 #include "ai/states/death_state.h"
 
-CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type)
+CBattlefield::CBattlefield(CBattlefieldHandler* hand, std::uint16_t id, BATTLEFIELDTYPE type)
 {
     m_Type = type;
     m_BcnmID = id;
@@ -55,7 +55,7 @@ CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE
     m_record = BattlefieldRecord();
 }
 
-uint16 CBattlefield::getID()
+std::uint16_t CBattlefield::getID()
 {
     return m_BcnmID;
 }
@@ -75,7 +75,7 @@ BATTLEFIELDTYPE CBattlefield::getType()
     return m_Type;
 }
 
-uint16 CBattlefield::getZoneId()
+std::uint16_t CBattlefield::getZoneId()
 {
     return m_ZoneID;
 }
@@ -95,7 +95,7 @@ uint8 CBattlefield::getLevelCap()
     return m_LevelCap;
 }
 
-uint16 CBattlefield::getLootId()
+std::uint16_t CBattlefield::getLootId()
 {
     return m_LootId;
 }
@@ -151,7 +151,7 @@ void CBattlefield::setBattlefieldNumber(uint8 battlefield)
     m_BattlefieldNumber = battlefield;
 }
 
-void CBattlefield::setZoneId(uint16 zone)
+void CBattlefield::setZoneId(std::uint16_t zone)
 {
     m_ZoneID = zone;
 }
@@ -166,7 +166,7 @@ void CBattlefield::setLevelCap(uint8 cap)
     m_LevelCap = cap;
 }
 
-void CBattlefield::setLootId(uint16 id)
+void CBattlefield::setLootId(std::uint16_t id)
 {
     m_LootId = id;
 }
@@ -285,7 +285,7 @@ bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar)
     return false;
 }
 
-void CBattlefield::pushMessageToAllInBcnm(uint16 msg, std::uint32_t param)
+void CBattlefield::pushMessageToAllInBcnm(std::uint16_t msg, std::uint32_t param)
 {
     for (const auto& player : m_PlayerList)
     {
@@ -630,7 +630,7 @@ void CBattlefield::setDynaUniqueID()
     //ShowDebug("uniqueid core: %u\n", m_DynaUniqueID);
 }
 
-uint16 CBattlefield::getDynaUniqueID()
+std::uint16_t CBattlefield::getDynaUniqueID()
 {
     return m_DynaUniqueID;
 }

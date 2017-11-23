@@ -241,7 +241,7 @@ inline std::int32_t CLuaInstance::getEntity(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto targid = (uint16)lua_tointeger(L, 1);
+    auto targid = (std::uint16_t)lua_tointeger(L, 1);
 
     uint8 filter = -1;
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))

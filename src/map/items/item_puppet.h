@@ -39,7 +39,7 @@ class CItemPuppet : public CItem
 {
 public:
 
-	CItemPuppet(uint16);
+	CItemPuppet(std::uint16_t);
 	virtual ~CItemPuppet();
 
     uint8  getEquipSlot();

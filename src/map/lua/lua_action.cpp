@@ -64,7 +64,7 @@ std::int32_t CLuaAction::recast(lua_State* L)
 {
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        m_PLuaAction->recast = (uint16)lua_tointeger(L, 1);
+        m_PLuaAction->recast = (std::uint16_t)lua_tointeger(L, 1);
         return 0;
     }
     else
@@ -78,7 +78,7 @@ std::int32_t CLuaAction::actionID(lua_State* L)
 {
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        m_PLuaAction->actionid = (uint16)lua_tointeger(L, 1);
+        m_PLuaAction->actionid = (std::uint16_t)lua_tointeger(L, 1);
         return 0;
     }
     else
@@ -119,7 +119,7 @@ inline std::int32_t CLuaAction::messageID(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].messageID = (uint16)lua_tointeger(L, 2);
+                actionList.actionTargets[0].messageID = (std::uint16_t)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -141,7 +141,7 @@ std::int32_t CLuaAction::animation(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].animation = (uint16)lua_tointeger(L, 2);
+                actionList.actionTargets[0].animation = (std::uint16_t)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -252,7 +252,7 @@ std::int32_t CLuaAction::addEffectMessage(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].addEffectMessage = (uint16)lua_tointeger(L, 2);
+                actionList.actionTargets[0].addEffectMessage = (std::uint16_t)lua_tointeger(L, 2);
                 return 0;
             }
             else

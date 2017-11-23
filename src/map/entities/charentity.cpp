@@ -357,9 +357,9 @@ void CCharEntity::SetName(int8* name)
     this->name.insert(0, name, std::clamp<size_t>(strlen((const int8*)name), 0, 15));
 }
 
-int16 CCharEntity::addTP(int16 tp)
+std::int16_t CCharEntity::addTP(std::int16_t tp)
 {
-    // int16 oldtp = health.tp;
+    // std::int16_t oldtp = health.tp;
     tp = CBattleEntity::addTP(tp);
     //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
     //	{
@@ -521,7 +521,7 @@ void CCharEntity::delTrait(CTrait* PTrait)
     charutils::delTrait(this, PTrait->getID());
 }
 
-bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -562,8 +562,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 
 bool CCharEntity::CanUseSpell(CSpell* PSpell)
 {
-    return charutils::hasSpell(this, static_cast<uint16>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
-        !PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()));
+    return charutils::hasSpell(this, static_cast<std::uint16_t>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
+        !PRecastContainer->Has(RECAST_MAGIC, static_cast<std::uint16_t>(PSpell->getID()));
 }
 
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
@@ -648,7 +648,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<std::uint16_t>(PSpell->getID()), action.recast);
 
     for (auto&& actionList : action.actionLists)
     {
@@ -662,7 +662,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                 SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PBlueSpell->getPrimarySkillchain(), PBlueSpell->getSecondarySkillchain(), 0 );
                 if (effect != SUBEFFECT_NONE)
                 {
-                    uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
+                    std::uint16_t skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
 
                     actionTarget.addEffectParam = skillChainDamage;
                     actionTarget.addEffectMessage = 287 + effect;
@@ -720,7 +720,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     auto PWeaponSkill = state.GetSkill();
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    int16 tp = state.GetSpentTP();
+    std::int16_t tp = state.GetSpentTP();
     tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
 
     PLatentEffectContainer->CheckLatentsTP();
@@ -752,8 +752,8 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             actionTarget_t& actionTarget = actionList.getNewActionTarget();
 
-            uint16 tpHitsLanded;
-            uint16 extraHitsLanded;
+            std::uint16_t tpHitsLanded;
+            std::uint16_t extraHitsLanded;
             std::int32_t damage;
             CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(this, PTarget);
 
@@ -782,7 +782,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             {
                 if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 218)
                 {
-                    uint16 recycleChance = getMod(Mod::RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
+                    std::uint16_t recycleChance = getMod(Mod::RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
 
                     if (StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
                     {
@@ -1003,7 +1003,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
 
             PAI->TargetFind->findWithinArea(this, AOERADIUS_ATTACKER, distance);
 
-            uint16 msg = 0;
+            std::uint16_t msg = 0;
             for (auto&& PTarget : PAI->TargetFind->m_targets)
             {
                 actionList_t& actionList = action.getNewActionList();
@@ -1075,7 +1075,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             //            this->pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_CANNOT_CHARM));
             //        }
             //        else {
-            //            uint16 baseExp = charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel());
+            //            std::uint16_t baseExp = charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel());
 
             //            if (baseExp >= 400) {//IT
             //                this->pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_VERY_DIFFICULT_CHARM));
@@ -1192,8 +1192,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
                 {
                     pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
+                    std::int16_t criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
+                    criticaldamage = std::clamp<std::int16_t>(criticaldamage, 0, 100);
                     pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
@@ -1245,7 +1245,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         }
 
         // check for recycle chance
-        uint16 recycleChance = getMod(Mod::RECYCLE);
+        std::uint16_t recycleChance = getMod(Mod::RECYCLE);
         if (charutils::hasTrait(this, TRAIT_RECYCLE))
         {
             recycleChance += PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
@@ -1322,7 +1322,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     }
     else if (isSange)
     {
-        uint16 power = StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
+        std::uint16_t power = StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
         // remove shadows
         while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(this));
@@ -1338,7 +1338,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     //#TODO: figure out the packet structure of double/triple shot
     //if (this->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !this->secondDoubleShotTaken &&	!isBarrage && !isSange)
     //{
-    //    uint16 doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
+    //    std::uint16_t doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
     //    if (dsprand::GetRandomNumber(100) < doubleShotChance)
     //    {
     //        this->secondDoubleShotTaken = true;
@@ -1401,7 +1401,7 @@ void CCharEntity::OnRaise()
         }
 
         double ratioReturned = 0.0f;
-        uint16 hpReturned = 1;
+        std::uint16_t hpReturned = 1;
 
         action_t action;
         action.id = id;
@@ -1413,19 +1413,19 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
+            hpReturned = (std::uint16_t)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
+            hpReturned = (std::uint16_t)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
         {
             actionTarget.animation = 496;
-            hpReturned = (uint16)(GetMaxHP() * 0.5);
+            hpReturned = (std::uint16_t)(GetMaxHP() * 0.5);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
         }
         addHP(((hpReturned < 1) ? 1 : hpReturned));
@@ -1435,9 +1435,9 @@ void CCharEntity::OnRaise()
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CActionPacket(action));
 
         uint8 mLevel = (m_LevelRestriction != 0 && m_LevelRestriction < GetMLevel()) ? m_LevelRestriction : GetMLevel();
-        uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
+        std::uint16_t expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
 
-        uint16 xpNeededToLevel = charutils::GetExpNEXTLevel(jobs.job[GetMJob()]) - jobs.exp[GetMJob()];
+        std::uint16_t xpNeededToLevel = charutils::GetExpNEXTLevel(jobs.job[GetMJob()]) - jobs.exp[GetMJob()];
 
         // Exp is enough to level you and (you're not under a level restriction, or the level restriction is higher than your current main level).
         if (xpNeededToLevel < expLost && (m_LevelRestriction == 0 || GetMLevel() < m_LevelRestriction))
@@ -1446,7 +1446,7 @@ void CCharEntity::OnRaise()
             expLost = GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(jobs.job[GetMJob()] + 1) * 8) / 100 : 2400;
         }
 
-        uint16 xpReturned = (uint16)(ceil(expLost * ratioReturned));
+        std::uint16_t xpReturned = (std::uint16_t)(ceil(expLost * ratioReturned));
 
         if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {
@@ -1526,7 +1526,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     }
 }
 
-CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
+CBattleEntity* CCharEntity::IsValidTarget(std::uint16_t targid, std::uint16_t validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)

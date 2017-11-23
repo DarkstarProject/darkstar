@@ -187,7 +187,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 
                 std::uint32_t CharID = Sql_GetIntData(SqlHandle, 0);
 
-                uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
+                std::uint16_t zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
 
                 uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
                 uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
@@ -208,13 +208,13 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 
                 WBUFB(CharList, 44 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 5); // race;
                 WBUFB(CharList, 56 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 6); // face;
-                WBUFW(CharList, 58 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 7); // head;
-                WBUFW(CharList, 60 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 8); // body;
-                WBUFW(CharList, 62 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 9); // hands;
-                WBUFW(CharList, 64 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 10); // legs;
-                WBUFW(CharList, 66 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 11); // feet;
-                WBUFW(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
-                WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
+                WBUFW(CharList, 58 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 7); // head;
+                WBUFW(CharList, 60 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 8); // body;
+                WBUFW(CharList, 62 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 9); // hands;
+                WBUFW(CharList, 64 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 10); // legs;
+                WBUFW(CharList, 66 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 11); // feet;
+                WBUFW(CharList, 68 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 12); // main;
+                WBUFW(CharList, 70 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 13); // sub;
 
                 WBUFB(CharList, 72 + 32 + i * 140) = (uint8)zone;
                 WBUFW(CharList, 78 + 32 + i * 140) = zone;
@@ -272,23 +272,23 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 									    FROM zone_settings, chars \
 										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
             std::uint32_t ZoneIP = sd->servip;
-            uint16 ZonePort = 54230;
-            uint16 ZoneID = 0;
-            uint16 PrevZone = 0;
+            std::uint16_t ZonePort = 54230;
+            std::uint16_t ZoneID = 0;
+            std::uint16_t PrevZone = 0;
 
             if (Sql_Query(SqlHandle, fmtQuery, charid) != SQL_ERROR &&
                 Sql_NumRows(SqlHandle) != 0)
             {
                 Sql_NextRow(SqlHandle);
 
-                ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 2);
-                PrevZone = (uint16)Sql_GetUIntData(SqlHandle, 3);
+                ZoneID = (std::uint16_t)Sql_GetUIntData(SqlHandle, 2);
+                PrevZone = (std::uint16_t)Sql_GetUIntData(SqlHandle, 3);
 
                 //new char only (first login from char create)
                 if (PrevZone == 0)  key3[16] += 6;
 
                 ZoneIP = inet_addr(Sql_GetData(SqlHandle, 0));
-                ZonePort = (uint16)Sql_GetUIntData(SqlHandle, 1);
+                ZonePort = (std::uint16_t)Sql_GetUIntData(SqlHandle, 1);
                 WBUFL(ReservePacket, (0x38)) = ZoneIP;
                 WBUFW(ReservePacket, (0x3C)) = ZonePort;
                 ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);

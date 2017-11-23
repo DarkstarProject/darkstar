@@ -65,17 +65,17 @@ enum ACTIONTYPE : uint8
 struct actionTarget_t
 {
     REACTION		  reaction;			    //  5 bits
-    uint16			  animation;			// 12 bits
+    std::uint16_t			  animation;			// 12 bits
     SPECEFFECT		  speceffect;			//  7 bits
     uint8             knockback;            //  3 bits
     std::int32_t			  param;				// 17 bits
-    uint16			  messageID;			// 10 bits
+    std::uint16_t			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
     std::int32_t             addEffectParam;       // 17 bits
-    uint16            addEffectMessage;     // 10 bits
+    std::uint16_t            addEffectMessage;     // 10 bits
     SUBEFFECT         spikesEffect;         // 10 bits
-    uint16            spikesParam;          // 14 bits
-    uint16            spikesMessage;        // 10 bits
+    std::uint16_t            spikesParam;          // 14 bits
+    std::uint16_t            spikesMessage;        // 10 bits
 
     actionTarget_t() : reaction(REACTION_NONE), animation(0),
         speceffect(SPECEFFECT_NONE), knockback(0), param(0),
@@ -114,8 +114,8 @@ struct action_t
 {
     std::uint32_t id;
     ACTIONTYPE actiontype;
-    uint16 actionid;
-    uint16 recast;
+    std::uint16_t actionid;
+    std::uint16_t recast;
     SPELLGROUP spellgroup;
     std::vector<actionList_t> actionLists;
 

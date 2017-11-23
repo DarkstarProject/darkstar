@@ -45,7 +45,7 @@ CCharRecastContainer::CCharRecastContainer(CCharEntity* PChar) : CRecastContaine
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::Add(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
+void CCharRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
 {
     Recast_t* recast = Load(type, id, duration, chargeTime, maxCharges);
 
@@ -77,7 +77,7 @@ void CCharRecastContainer::Del(RECASTTYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::Del(RECASTTYPE type, uint16 id)
+void CCharRecastContainer::Del(RECASTTYPE type, std::uint16_t id)
 {
     CRecastContainer::Del(type, id);
     Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, id);
@@ -154,7 +154,7 @@ void CCharRecastContainer::Check()
     {
         RecastList_t* PRecastList = GetRecastList((RECASTTYPE)type);
 
-        for (uint16 i = 0; i < PRecastList->size(); ++i)
+        for (std::uint16_t i = 0; i < PRecastList->size(); ++i)
         {
             Recast_t* recast = &PRecastList->at(i);
 

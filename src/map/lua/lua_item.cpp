@@ -163,7 +163,7 @@ inline std::int32_t CLuaItem::addMod(lua_State* L)
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
-    auto power = (int16)lua_tointeger(L, 2);
+    auto power = (std::int16_t)lua_tointeger(L, 2);
 
     PItem->addModifier(CModifier(mod, power));
     return 0;
@@ -178,7 +178,7 @@ inline std::int32_t CLuaItem::delMod(lua_State* L)
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
     Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
-    auto power = (int16)lua_tointeger(L, 2);
+    auto power = (std::int16_t)lua_tointeger(L, 2);
 
     PItem->addModifier(CModifier(mod, -power));
     return 0;
@@ -192,8 +192,8 @@ inline std::int32_t CLuaItem::getAugment(lua_State* L)
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
     auto slot = (uint8)lua_tointeger(L, 1);
-    uint16 augment = PItem->getAugment(slot);
-    uint16 augmentid = (uint16)unpackBitsBE((uint8*)(&augment), 0, 11);
+    std::uint16_t augment = PItem->getAugment(slot);
+    std::uint16_t augmentid = (std::uint16_t)unpackBitsBE((uint8*)(&augment), 0, 11);
     uint8 augmentVal = (uint8)unpackBitsBE((uint8*)(&augment), 11, 5);
 
     lua_pushinteger(L, augmentid);

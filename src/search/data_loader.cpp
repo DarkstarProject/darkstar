@@ -57,7 +57,7 @@ CDataLoader::~CDataLoader()
 *                                                                       *
 ************************************************************************/
 
-std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
+std::vector<ahHistory*> CDataLoader::GetAHItemHystory(std::uint16_t ItemID, bool stack)
 {
     std::vector<ahHistory*> HistoryList;
 
@@ -222,8 +222,8 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone = (uint16)Sql_GetIntData(SqlHandle, 3);
-            PPlayer->prevzone = (uint16)Sql_GetIntData(SqlHandle, 4);
+            PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
+            PPlayer->prevzone = (std::uint16_t)Sql_GetIntData(SqlHandle, 4);
             PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 5);
             PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 11);
             PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 12);
@@ -340,7 +340,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
 *                                                                       *
 ************************************************************************/
 
-std::list<SearchEntity*> CDataLoader::GetPartyList(uint16 PartyID, uint16 AllianceID)
+std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::uint16_t AllianceID)
 {
     std::list<SearchEntity*> PartyList;
 
@@ -367,7 +367,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint16 PartyID, uint16 Allian
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone = (uint16)Sql_GetIntData(SqlHandle, 3);
+            PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 4);
             PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 10);
             PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 11);
@@ -427,7 +427,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(std::uint32_t LinkshellID
             memcpy(PPlayer->name, Sql_GetData(SqlHandle, 2), 15);
 
             PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
-            PPlayer->zone = (uint16)Sql_GetIntData(SqlHandle, 3);
+            PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 4);
             PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 10);
             PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 11);

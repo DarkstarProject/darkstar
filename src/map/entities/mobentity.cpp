@@ -168,8 +168,8 @@ void CMobEntity::SetDespawnTime(duration _duration)
 std::uint32_t CMobEntity::GetRandomGil()
 {
 
-    int16 min = getMobMod(MOBMOD_GIL_MIN);
-    int16 max = getMobMod(MOBMOD_GIL_MAX);
+    std::int16_t min = getMobMod(MOBMOD_GIL_MIN);
+    std::int16_t max = getMobMod(MOBMOD_GIL_MAX);
 
     if (min && max)
     {
@@ -194,7 +194,7 @@ std::uint32_t CMobEntity::GetRandomGil()
         gil = 1;
     }
 
-    uint16 highGil = (uint16)(gil / 3 + 4);
+    std::uint16_t highGil = (std::uint16_t)(gil / 3 + 4);
 
     if (max)
     {
@@ -266,7 +266,7 @@ bool CMobEntity::CanRoam()
     return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM)) && getMobMod(MOBMOD_NO_MOVE) == 0;
 }
 
-bool CMobEntity::CanLink(position_t* pos, int16 superLink)
+bool CMobEntity::CanLink(position_t* pos, std::int16_t superLink)
 {
     // handle super linking
     if (superLink && getMobMod(MOBMOD_SUPERLINK) == superLink)
@@ -386,22 +386,22 @@ uint8 CMobEntity::TPUseChance()
     return (uint8)getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
-void CMobEntity::setMobMod(uint16 type, int16 value)
+void CMobEntity::setMobMod(std::uint16_t type, std::int16_t value)
 {
     m_mobModStat[type] = value;
 }
 
-int16 CMobEntity::getMobMod(uint16 type)
+std::int16_t CMobEntity::getMobMod(std::uint16_t type)
 {
     return m_mobModStat[type];
 }
 
-void CMobEntity::addMobMod(uint16 type, int16 value)
+void CMobEntity::addMobMod(std::uint16_t type, std::int16_t value)
 {
     m_mobModStat[type] += value;
 }
 
-void CMobEntity::defaultMobMod(uint16 type, int16 value)
+void CMobEntity::defaultMobMod(std::uint16_t type, std::int16_t value)
 {
     if (m_mobModStat[type] == 0)
     {
@@ -409,12 +409,12 @@ void CMobEntity::defaultMobMod(uint16 type, int16 value)
     }
 }
 
-void CMobEntity::resetMobMod(uint16 type)
+void CMobEntity::resetMobMod(std::uint16_t type)
 {
     m_mobModStat[type] = m_mobModStatSave[type];
 }
 
-std::int32_t CMobEntity::getBigMobMod(uint16 type)
+std::int32_t CMobEntity::getBigMobMod(std::uint16_t type)
 {
     return getMobMod(type) * 1000;
 }
@@ -530,7 +530,7 @@ float CMobEntity::GetRoamRate()
     return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }
 
-bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -676,7 +676,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         }
     }
 
-    uint16 targets = (uint16)PAI->TargetFind->m_targets.size();
+    std::uint16_t targets = (std::uint16_t)PAI->TargetFind->m_targets.size();
 
     if (!PTarget || targets == 0)
     {
@@ -693,8 +693,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     PSkill->setTP(state.GetSpentTP());
     PSkill->setHPP(GetHPP());
 
-    uint16 msg = 0;
-    uint16 defaultMessage = PSkill->getMsg();
+    std::uint16_t msg = 0;
+    std::uint16_t defaultMessage = PSkill->getMsg();
 
     bool first {true};
     for (auto&& PTarget : PAI->TargetFind->m_targets)
@@ -838,7 +838,7 @@ void CMobEntity::DropItems()
                       >= 90 = High Kindred Crests ID=2956
             */
 
-            uint16 Pzone = PChar->getZone();
+            std::uint16_t Pzone = PChar->getZone();
 
             bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 

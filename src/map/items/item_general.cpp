@@ -23,7 +23,7 @@
 
 #include "item_general.h"
 
-CItemGeneral::CItemGeneral(uint16 id) : CItem(id)
+CItemGeneral::CItemGeneral(std::uint16_t id) : CItem(id)
 {
 	setType(ITEM_GENERAL);
 }

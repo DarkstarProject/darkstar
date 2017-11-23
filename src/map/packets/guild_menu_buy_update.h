@@ -41,7 +41,7 @@ class CGuildMenuBuyUpdatePacket : public CBasicPacket
 {
 public:
 	
-	CGuildMenuBuyUpdatePacket(CCharEntity* PChar, uint8 stock, uint16 itemID, uint8 quantity);
+	CGuildMenuBuyUpdatePacket(CCharEntity* PChar, uint8 stock, std::uint16_t itemID, uint8 quantity);
 };
 
 #endif

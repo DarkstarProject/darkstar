@@ -44,10 +44,10 @@ CPlayerController::CPlayerController(CCharEntity* _PChar) :
 void CPlayerController::Tick(time_point)
 {}
 
-bool CPlayerController::Cast(uint16 targid, SpellID spellid)
+bool CPlayerController::Cast(std::uint16_t targid, SpellID spellid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, static_cast<uint16>(spellid), 0))
+    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, static_cast<std::uint16_t>(spellid), 0))
     {
         return CController::Cast(targid, spellid);
     }
@@ -58,7 +58,7 @@ bool CPlayerController::Cast(uint16 targid, SpellID spellid)
     }
 }
 
-bool CPlayerController::Engage(uint16 targid)
+bool CPlayerController::Engage(std::uint16_t targid)
 {
     //#TODO: pet engage/disengage
     std::unique_ptr<CBasicPacket> errMsg;
@@ -95,7 +95,7 @@ bool CPlayerController::Engage(uint16 targid)
     return false;
 }
 
-bool CPlayerController::ChangeTarget(uint16 targid)
+bool CPlayerController::ChangeTarget(std::uint16_t targid)
 {
     return CController::ChangeTarget(targid);
 }
@@ -105,7 +105,7 @@ bool CPlayerController::Disengage()
     return CController::Disengage();
 }
 
-bool CPlayerController::Ability(uint16 targid, uint16 abilityid)
+bool CPlayerController::Ability(std::uint16_t targid, std::uint16_t abilityid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
@@ -119,7 +119,7 @@ bool CPlayerController::Ability(uint16 targid, uint16 abilityid)
     }
 }
 
-bool CPlayerController::RangedAttack(uint16 targid)
+bool CPlayerController::RangedAttack(std::uint16_t targid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
@@ -133,7 +133,7 @@ bool CPlayerController::RangedAttack(uint16 targid)
     return false;
 }
 
-bool CPlayerController::UseItem(uint16 targid, uint8 loc, uint8 slotid)
+bool CPlayerController::UseItem(std::uint16_t targid, uint8 loc, uint8 slotid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
@@ -143,7 +143,7 @@ bool CPlayerController::UseItem(uint16 targid, uint8 loc, uint8 slotid)
     return false;
 }
 
-bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
+bool CPlayerController::WeaponSkill(std::uint16_t targid, std::uint16_t wsid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())

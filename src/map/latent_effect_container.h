@@ -64,7 +64,7 @@ public:
 	void CheckLatentsWeaponBreak(uint8 slot);
 	void CheckLatentsZone();
     void CheckLatentsWeather();
-    void CheckLatentsWeather(uint16 weather);
+    void CheckLatentsWeather(std::uint16_t weather);
 
 	void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
 	void DelLatentEffects(uint8 reqLvl, uint8 slot);

@@ -67,7 +67,7 @@ RecastList_t* CRecastContainer::GetRecastList(RECASTTYPE type)
 *                                                                       *
 ************************************************************************/
 
-Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
+Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, std::uint16_t id)
 {
     RecastList_t* list = GetRecastList(type);
     for (auto&& recast : *list)
@@ -86,12 +86,12 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Add(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
+void CRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
 {
     Load(type, id, duration, chargeTime, maxCharges);
 }
 
-Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
+Recast_t* CRecastContainer::Load(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
 {
     Recast_t* recast = GetRecast(type, id);
 
@@ -161,7 +161,7 @@ void CRecastContainer::Del(RECASTTYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Del(RECASTTYPE type, uint16 id)
+void CRecastContainer::Del(RECASTTYPE type, std::uint16_t id)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -206,7 +206,7 @@ void CRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
+bool CRecastContainer::Has(RECASTTYPE type, std::uint16_t id)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -222,11 +222,11 @@ bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, std::uint32_t recast)
+bool CRecastContainer::HasRecast(RECASTTYPE type, std::uint16_t id, std::uint32_t recast)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
-    for (uint16 i = 0; i < PRecastList->size(); ++i)
+    for (std::uint16_t i = 0; i < PRecastList->size(); ++i)
     {
         if (PRecastList->at(i).ID == id && PRecastList->at(i).RecastTime > 0)
         {
@@ -265,7 +265,7 @@ void CRecastContainer::Check()
     {
         RecastList_t* PRecastList = GetRecastList(type);
 
-        for (uint16 i = 0; i < PRecastList->size(); ++i)
+        for (std::uint16_t i = 0; i < PRecastList->size(); ++i)
         {
             Recast_t* recast = &PRecastList->at(i);
 

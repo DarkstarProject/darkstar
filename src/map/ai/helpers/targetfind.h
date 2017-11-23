@@ -114,7 +114,7 @@ public:
     bool isWithinRange(position_t* pos, float range);
     bool canSee(position_t* point);
 
-    CBattleEntity* getValidTarget(uint16 actionTargetID, uint16 validTargetFlags);
+    CBattleEntity* getValidTarget(std::uint16_t actionTargetID, std::uint16_t validTargetFlags);
 
     std::vector<CBattleEntity*> m_targets; // contains all found entities
 
@@ -129,7 +129,7 @@ protected:
     CBattleEntity* m_PMasterTarget; // mater of target
     CBattleEntity* m_PTarget; // first target
 
-    uint16 m_zone;
+    std::uint16_t m_zone;
     FINDTYPE m_findType;
     uint8 m_findFlags;
 

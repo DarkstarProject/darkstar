@@ -35,7 +35,7 @@ struct action_t;
 class CItemState : public CState
 {
 public:
-    CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid);
+    CItemState(CCharEntity* PEntity, std::uint16_t targid, uint8 loc, uint8 slotid);
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;

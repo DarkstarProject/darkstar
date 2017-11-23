@@ -35,7 +35,7 @@ public:
 
     virtual CCharEntity*    GetCharByName(int8* name) override;                             // finds the player if exists in zone
     virtual CCharEntity*	GetCharByID(std::uint32_t id) override;
-    virtual CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1) override; 			// получаем указатель на любую сущность в зоне
+    virtual CBaseEntity*	GetEntity(std::uint16_t targid, uint8 filter = -1) override; 			// получаем указатель на любую сущность в зоне
 
     virtual void	SpawnPCs(CCharEntity* PChar) override; 									// отображаем персонажей в зоне
     virtual void	SpawnMOBs(CCharEntity* PChar) override;									// отображаем MOBs в зоне
@@ -44,7 +44,7 @@ public:
     virtual void	SpawnMoogle(CCharEntity* PChar) override;								// отображаем Moogle в MogHouse
     virtual void    SpawnTransport(CCharEntity* PChar) override;                            // отображаем транспорт
 
-    virtual void	WideScan(CCharEntity* PChar, uint16 radius) override;					// сканирование местности с заданным радиусом
+    virtual void	WideScan(CCharEntity* PChar, std::uint16_t radius) override;					// сканирование местности с заданным радиусом
 
     virtual void	DecreaseZoneCounter(CCharEntity* PChar) override;						// добавляем персонажа в зону
     virtual void	IncreaseZoneCounter(CCharEntity* PChar) override;						// удаляем персонажа из зоны
@@ -55,7 +55,7 @@ public:
     virtual void	DeletePET(CBaseEntity* PPet) override;       	                        // derefs the pet's ID from this zone
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity) override;                         // ищем группу для монстра
-    virtual void    TransportDepart(uint16 boundary, uint16 zone) override;                 // транспотр отправляется, необходимо собрать пассажиров
+    virtual void    TransportDepart(std::uint16_t boundary, std::uint16_t zone) override;                 // транспотр отправляется, необходимо собрать пассажиров
 
     virtual void	TOTDChange(TIMETYPE TOTD) override;										// обработка реакции мира на смену времени суток
     virtual void	PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*) override;	// отправляем глобальный пакет в пределах зоны

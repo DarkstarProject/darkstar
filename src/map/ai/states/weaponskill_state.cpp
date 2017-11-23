@@ -29,7 +29,7 @@ This file is part of DarkStar-server source code.
 #include "../../weapon_skill.h"
 #include "../../status_effect_container.h"
 
-CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsid) :
+CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, std::uint16_t targid, std::uint16_t wsid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {

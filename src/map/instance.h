@@ -81,7 +81,7 @@ private:
     void LoadInstance();
 
     uint8 m_instanceid {0};
-    uint16 m_entrance {0};
+    std::uint16_t m_entrance {0};
     string_t m_instanceName;
     std::uint32_t m_commander {0};
     uint8 m_levelcap {0};

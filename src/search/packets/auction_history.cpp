@@ -36,7 +36,7 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-CAHHistoryPacket::CAHHistoryPacket(uint16 ItemID)
+CAHHistoryPacket::CAHHistoryPacket(std::uint16_t ItemID)
 {
     m_count = 0;
 
@@ -85,7 +85,7 @@ uint8* CAHHistoryPacket::GetData()
 *																		*
 ************************************************************************/
 
-uint16 CAHHistoryPacket::GetSize()
+std::uint16_t CAHHistoryPacket::GetSize()
 {
     return 0x20 + 40 * m_count + 28;
 }

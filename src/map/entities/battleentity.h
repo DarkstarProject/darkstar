@@ -375,7 +375,7 @@ enum SKILLCHAIN_ELEMENT
 #define MAX_SKILLCHAIN_LEVEL (4)
 #define MAX_SKILLCHAIN_COUNT (5)
 
-enum IMMUNITY : uint16
+enum IMMUNITY : std::uint16_t
 {
     IMMUNITY_NONE = 0x00,
     IMMUNITY_SLEEP = 0x01,
@@ -395,17 +395,17 @@ struct apAction_t
 {
     CBattleEntity*    ActionTarget;		    // 32 bits
     REACTION		  reaction;			    //  5 bits
-    uint16			  animation;			// 12 bits
+    std::uint16_t			  animation;			// 12 bits
     SPECEFFECT		  speceffect;			// 7 bits
     uint8             knockback;            // 3 bits
     std::int32_t			  param;				// 17 bits
-    uint16			  messageID;			// 10 bits
+    std::uint16_t			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
     std::int32_t             addEffectParam;       // 17 bits
-    uint16            addEffectMessage;     // 10 bits
+    std::uint16_t            addEffectMessage;     // 10 bits
     SUBEFFECT         spikesEffect;         // 10 bits
-    uint16            spikesParam;          // 14 bits
-    uint16            spikesMessage;        // 10 bits
+    std::uint16_t            spikesParam;          // 14 bits
+    std::uint16_t            spikesMessage;        // 10 bits
 
     apAction_t()
     {
@@ -434,7 +434,7 @@ struct apAction_t
 
 struct health_t
 {
-    int16   tp;                 // текущее значение
+    std::int16_t   tp;                 // текущее значение
     std::int32_t   hp, mp;             // текущие значения
     std::int32_t   maxhp, maxmp;       // максимальные значения
     std::int32_t   modhp, modmp;       // модифицированные максимальные значения
@@ -461,19 +461,19 @@ public:
     CBattleEntity();						// конструктор
     virtual ~CBattleEntity();						// деструктор
 
-    uint16          STR();
-    uint16          DEX();
-    uint16          VIT();
-    uint16          AGI();
-    uint16          INT();
-    uint16          MND();
-    uint16          CHR();
-    uint16          DEF();
-    uint16          ATT();
-    uint16			ACC(uint8 attackNumber, uint8 offsetAccuracy);
-    uint16          EVA();
-    uint16          RATT(uint8 skill, uint16 bonusSkill = 0);
-    uint16          RACC(uint8 skill, uint16 bonusSkill = 0);
+    std::uint16_t          STR();
+    std::uint16_t          DEX();
+    std::uint16_t          VIT();
+    std::uint16_t          AGI();
+    std::uint16_t          INT();
+    std::uint16_t          MND();
+    std::uint16_t          CHR();
+    std::uint16_t          DEF();
+    std::uint16_t          ATT();
+    std::uint16_t			ACC(uint8 attackNumber, uint8 offsetAccuracy);
+    std::uint16_t          EVA();
+    std::uint16_t          RATT(uint8 skill, std::uint16_t bonusSkill = 0);
+    std::uint16_t          RACC(uint8 skill, std::uint16_t bonusSkill = 0);
 
     uint8           GetSpeed();
 
@@ -499,31 +499,31 @@ public:
     std::int32_t           GetMaxMP();                 // максимальное количество mp
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
-    int16			GetWeaponDelay(bool tp);		//returns delay of combined weapons
+    std::int16_t			GetWeaponDelay(bool tp);		//returns delay of combined weapons
     uint8           GetMeleeRange();                //returns the distance considered to be within melee range of the entity
-    int16			GetRangedWeaponDelay(bool tp);	//returns delay of ranged weapon + ammo where applicable
-    int16			GetAmmoDelay();			        //returns delay of ammo (for cooldown between shots)
-    uint16			GetMainWeaponDmg();				//returns total main hand DMG
-    uint16			GetSubWeaponDmg();				//returns total sub weapon DMG
-    uint16			GetRangedWeaponDmg();			//returns total ranged weapon DMG
-    uint16			GetMainWeaponRank();			//returns total main hand DMG Rank
-    uint16			GetSubWeaponRank();				//returns total sub weapon DMG Rank
-    uint16			GetRangedWeaponRank();			//returns total ranged weapon DMG Rank
+    std::int16_t			GetRangedWeaponDelay(bool tp);	//returns delay of ranged weapon + ammo where applicable
+    std::int16_t			GetAmmoDelay();			        //returns delay of ammo (for cooldown between shots)
+    std::uint16_t			GetMainWeaponDmg();				//returns total main hand DMG
+    std::uint16_t			GetSubWeaponDmg();				//returns total sub weapon DMG
+    std::uint16_t			GetRangedWeaponDmg();			//returns total ranged weapon DMG
+    std::uint16_t			GetMainWeaponRank();			//returns total main hand DMG Rank
+    std::uint16_t			GetSubWeaponRank();				//returns total sub weapon DMG Rank
+    std::uint16_t			GetRangedWeaponRank();			//returns total ranged weapon DMG Rank
 
-    uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
+    std::uint16_t		    GetSkill(std::uint16_t SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
-    virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
+    virtual std::int16_t	addTP(std::int16_t tp);			// увеличиваем/уменьшаем количество tp
     virtual std::int32_t	addHP(std::int32_t hp);			// увеличиваем/уменьшаем количество hp
     virtual std::int32_t 	addMP(std::int32_t mp);			// увеличиваем/уменьшаем количество mp
 
-    int16		    getMod(Mod modID);		// величина модификатора
+    std::int16_t		    getMod(Mod modID);		// величина модификатора
 
     bool            CanRest(); // checks if able to heal
     bool			Rest(float rate); // heal an amount of hp / mp
 
-    void		    addModifier(Mod type, int16 amount);
-    void		    setModifier(Mod type, int16 amount);
-    void		    delModifier(Mod type, int16 amount);
+    void		    addModifier(Mod type, std::int16_t amount);
+    void		    setModifier(Mod type, std::int16_t amount);
+    void		    delModifier(Mod type, std::int16_t amount);
     void		    addModifiers(std::vector<CModifier> *modList);
     void            addEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
     void		    setModifiers(std::vector<CModifier> *modList);
@@ -532,9 +532,9 @@ public:
     void 		    saveModifiers(); // save current state of modifiers
     void 		    restoreModifiers(); // restore to saved state
 
-    void            addPetModifier(Mod type, PetModType, int16 amount);
-    void            setPetModifier(Mod type, PetModType, int16 amount);
-    void            delPetModifier(Mod type, PetModType, int16 amount);
+    void            addPetModifier(Mod type, PetModType, std::int16_t amount);
+    void            setPetModifier(Mod type, PetModType, std::int16_t amount);
+    void            delPetModifier(Mod type, PetModType, std::int16_t amount);
     void            addPetModifiers(std::vector<CPetModifier> *modList);
     void            delPetModifiers(std::vector<CPetModifier> *modList);
     void            applyPetModifiers(CPetEntity* PPet);
@@ -577,13 +577,13 @@ public:
     virtual void    addTrait(CTrait*);
     virtual void    delTrait(CTrait*);
 
-    virtual bool    ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags);
+    virtual bool    ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags);
     virtual bool    CanUseSpell(CSpell*);
 
     virtual void    Spawn() override;
     virtual void    Die();
-    uint16 GetBattleTargetID();
-    void SetBattleTargetID(uint16 id) { m_battleTarget = id; }
+    std::uint16_t GetBattleTargetID();
+    void SetBattleTargetID(std::uint16_t id) { m_battleTarget = id; }
     CBattleEntity* GetBattleTarget();
 
     /* State callbacks */
@@ -592,7 +592,7 @@ public:
     virtual bool OnAttackError(CAttackState&) { return false; }
     /* Returns whether to call Attack or not (which includes error messages) */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg);
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg);
+    virtual CBattleEntity* IsValidTarget(std::uint16_t targid, std::uint16_t validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg);
     virtual void OnEngage(CAttackState&);
     virtual void OnDisengage(CAttackState&);
     /* Casting */
@@ -617,8 +617,8 @@ public:
     health_t	    health;						// hp,mp,tp
     stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
-    uint16		    m_Immunity;					// Mob immunity
-    uint16			m_magicEvasion;		        // store this so it can be removed easily
+    std::uint16_t		    m_Immunity;					// Mob immunity
+    std::uint16_t			m_magicEvasion;		        // store this so it can be removed easily
     uint8			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
@@ -650,12 +650,12 @@ private:
     JOBTYPE		m_sjob;						// дополнительная профессия
     uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
     uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
-    uint16      m_battleTarget {0};
+    std::uint16_t      m_battleTarget {0};
     time_point  m_battleStartTime;
 
-    std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
-    std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
-    std::unordered_map<PetModType, std::unordered_map<Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
+    std::unordered_map<Mod, std::int16_t, EnumClassHash>		m_modStat;	// массив модификаторов
+    std::unordered_map<Mod, std::int16_t, EnumClassHash>		m_modStatSave;	// saved state
+    std::unordered_map<PetModType, std::unordered_map<Mod, std::int16_t, EnumClassHash>, EnumClassHash> m_petMod;
 };
 
 #endif

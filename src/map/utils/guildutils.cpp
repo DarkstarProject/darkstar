@@ -193,7 +193,7 @@ void UpdateGuildPointsPattern()
 *																		*
 ************************************************************************/
 
-CItemContainer* GetGuildShop(uint16 GuildShopID)
+CItemContainer* GetGuildShop(std::uint16_t GuildShopID)
 {
     for (auto PGuildShop : g_PGuildShopList)
 	{

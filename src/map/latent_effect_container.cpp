@@ -590,7 +590,7 @@ void CLatentEffectContainer::CheckLatentsWeather()
     CheckLatentsWeather(zoneutils::GetZone(m_POwner->getZone())->GetWeather());
 }
 
-void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
+void CLatentEffectContainer::CheckLatentsWeather(std::uint16_t weather)
 {
     ProcessLatentEffects([this, weather](CLatentEffect& latent)
     {

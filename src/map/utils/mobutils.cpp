@@ -53,9 +53,9 @@ namespace mobutils
 *																		*
 ************************************************************************/
 
-uint16 GetWeaponDamage(CMobEntity* PMob)
+std::uint16_t GetWeaponDamage(CMobEntity* PMob)
 {
-    uint16 lvl = PMob->GetMLevel();
+    std::uint16_t lvl = PMob->GetMLevel();
     uint8 bonus = 0;
 
     if (lvl >= 75)
@@ -71,26 +71,26 @@ uint16 GetWeaponDamage(CMobEntity* PMob)
         bonus = 1;
     }
 
-    uint16 damage = lvl + bonus;
+    std::uint16_t damage = lvl + bonus;
 
-    damage = (uint16)(damage * PMob->m_dmgMult / 100.0f);
+    damage = (std::uint16_t)(damage * PMob->m_dmgMult / 100.0f);
 
     if (PMob->getMobMod(MOBMOD_WEAPON_BONUS) != 0)
     {
-        damage = (uint16)(damage * PMob->getMobMod(MOBMOD_WEAPON_BONUS) / 100.0f);
+        damage = (std::uint16_t)(damage * PMob->getMobMod(MOBMOD_WEAPON_BONUS) / 100.0f);
     }
 
     return damage;
 }
 
-uint16 GetMagicEvasion(CMobEntity* PMob)
+std::uint16_t GetMagicEvasion(CMobEntity* PMob)
 {
     uint8 mEvaRank = 3;
 
     return GetBase(PMob, mEvaRank);
 }
 
-uint16 GetEvasion(CMobEntity* PMob)
+std::uint16_t GetEvasion(CMobEntity* PMob)
 {
     uint8 evaRank = PMob->evaRank;
 
@@ -137,7 +137,7 @@ uint16 GetEvasion(CMobEntity* PMob)
 *																		*
 ************************************************************************/
 
-uint16 GetBaseToRank(uint8 rank, uint16 lvl)
+std::uint16_t GetBaseToRank(uint8 rank, std::uint16_t lvl)
 {
 	switch (rank)
 	{
@@ -159,42 +159,42 @@ uint16 GetBaseToRank(uint8 rank, uint16 lvl)
 *																		*
 ************************************************************************/
 
-uint16 GetBase(CMobEntity * PMob, uint8 rank)
+std::uint16_t GetBase(CMobEntity * PMob, uint8 rank)
  {
  	uint8 lvl = PMob->GetMLevel();
  	if(lvl > 50){
  		switch(rank){
  			case 1: // A
- 				return (uint16)(153 + (lvl - 50) * 5.0f);
+ 				return (std::uint16_t)(153 + (lvl - 50) * 5.0f);
  			case 2: // B
- 				return (uint16)(147 + (lvl - 50) * 4.9f);
+ 				return (std::uint16_t)(147 + (lvl - 50) * 4.9f);
  			case 3: // C
- 				return (uint16)(136 + (lvl - 50) * 4.8f);
+ 				return (std::uint16_t)(136 + (lvl - 50) * 4.8f);
  			case 4: // D
- 				return (uint16)(126 + (lvl - 50) * 4.7f);
+ 				return (std::uint16_t)(126 + (lvl - 50) * 4.7f);
  			case 5: // E
- 				return (uint16)(116 + (lvl - 50) * 4.5f);
+ 				return (std::uint16_t)(116 + (lvl - 50) * 4.5f);
  			case 6: // F
- 				return (uint16)(106 + (lvl - 50) * 4.4f);
+ 				return (std::uint16_t)(106 + (lvl - 50) * 4.4f);
  			case 7: // G
- 				return (uint16)(96 + (lvl - 50) * 4.3f);
+ 				return (std::uint16_t)(96 + (lvl - 50) * 4.3f);
  		}
  	} else {
  		switch(rank){
  			case 1:
- 				return (uint16)(6 + (lvl - 1) * 3.0f);
+ 				return (std::uint16_t)(6 + (lvl - 1) * 3.0f);
  			case 2:
- 				return (uint16)(5 + (lvl - 1) * 2.9f);
+ 				return (std::uint16_t)(5 + (lvl - 1) * 2.9f);
  			case 3:
- 				return (uint16)(5 + (lvl - 1) * 2.8f);
+ 				return (std::uint16_t)(5 + (lvl - 1) * 2.8f);
  			case 4:
- 				return (uint16)(4 + (lvl - 1) * 2.7f);
+ 				return (std::uint16_t)(4 + (lvl - 1) * 2.7f);
  			case 5:
- 				return (uint16)(4 + (lvl - 1) * 2.5f);
+ 				return (std::uint16_t)(4 + (lvl - 1) * 2.5f);
  			case 6:
- 				return (uint16)(3 + (lvl - 1) * 2.4f);
+ 				return (std::uint16_t)(3 + (lvl - 1) * 2.4f);
  			case 7:
- 				return (uint16)(3 + (lvl - 1) * 2.3f);
+ 				return (std::uint16_t)(3 + (lvl - 1) * 2.3f);
  		}
  	}
 
@@ -279,7 +279,7 @@ void CalculateStats(CMobEntity * PMob)
         }
 
 
-        PMob->health.maxhp = (int16)(base * pow(mLvl, growth) * hpScale);
+        PMob->health.maxhp = (std::int16_t)(base * pow(mLvl, growth) * hpScale);
 
         if(isNM)
         {
@@ -352,7 +352,7 @@ void CalculateStats(CMobEntity * PMob)
 
         if(PMob->MPmodifier == 0)
         {
-            PMob->health.maxmp = (int16)(18.2 * pow(mLvl,1.1075) * scale) + 10;
+            PMob->health.maxmp = (std::int16_t)(18.2 * pow(mLvl,1.1075) * scale) + 10;
             if(isNM)
             {
                 PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * 1.5f);
@@ -390,29 +390,29 @@ void CalculateStats(CMobEntity * PMob)
         PMob->m_Weapons[SLOT_MAIN]->resetDelay();
     }
 
-    uint16 fSTR = GetBaseToRank(PMob->strRank, mLvl);
-    uint16 fDEX = GetBaseToRank(PMob->dexRank, mLvl);
-    uint16 fVIT = GetBaseToRank(PMob->vitRank, mLvl);
-    uint16 fAGI = GetBaseToRank(PMob->agiRank, mLvl);
-    uint16 fINT = GetBaseToRank(PMob->intRank, mLvl);
-    uint16 fMND = GetBaseToRank(PMob->mndRank, mLvl);
-    uint16 fCHR = GetBaseToRank(PMob->chrRank, mLvl);
+    std::uint16_t fSTR = GetBaseToRank(PMob->strRank, mLvl);
+    std::uint16_t fDEX = GetBaseToRank(PMob->dexRank, mLvl);
+    std::uint16_t fVIT = GetBaseToRank(PMob->vitRank, mLvl);
+    std::uint16_t fAGI = GetBaseToRank(PMob->agiRank, mLvl);
+    std::uint16_t fINT = GetBaseToRank(PMob->intRank, mLvl);
+    std::uint16_t fMND = GetBaseToRank(PMob->mndRank, mLvl);
+    std::uint16_t fCHR = GetBaseToRank(PMob->chrRank, mLvl);
 
-    uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), mLvl);
-    uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), mLvl);
-    uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),4), mLvl);
-    uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),5), mLvl);
-    uint16 mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),6), mLvl);
-    uint16 mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),7), mLvl);
-    uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),8), mLvl);
+    std::uint16_t mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),2), mLvl);
+    std::uint16_t mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),3), mLvl);
+    std::uint16_t mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),4), mLvl);
+    std::uint16_t mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),5), mLvl);
+    std::uint16_t mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),6), mLvl);
+    std::uint16_t mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),7), mLvl);
+    std::uint16_t mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(),8), mLvl);
 
-    uint16 sSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),2), PMob->GetSLevel());
-    uint16 sDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),3), PMob->GetSLevel());
-    uint16 sVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),4), PMob->GetSLevel());
-    uint16 sAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),5), PMob->GetSLevel());
-    uint16 sINT = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),6), PMob->GetSLevel());
-    uint16 sMND = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),7), PMob->GetSLevel());
-    uint16 sCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),8), PMob->GetSLevel());
+    std::uint16_t sSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),2), PMob->GetSLevel());
+    std::uint16_t sDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),3), PMob->GetSLevel());
+    std::uint16_t sVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),4), PMob->GetSLevel());
+    std::uint16_t sAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),5), PMob->GetSLevel());
+    std::uint16_t sINT = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),6), PMob->GetSLevel());
+    std::uint16_t sMND = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),7), PMob->GetSLevel());
+    std::uint16_t sCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetSJob(),8), PMob->GetSLevel());
 
     if(PMob->GetSLevel() > 15)
     {
@@ -445,23 +445,23 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->stats.STR = (uint16)(PMob->stats.STR * 1.5f * map_config.nm_stat_multiplier);
-        PMob->stats.DEX = (uint16)(PMob->stats.DEX * 1.5f * map_config.nm_stat_multiplier);
-        PMob->stats.VIT = (uint16)(PMob->stats.VIT * 1.5f * map_config.nm_stat_multiplier);
-        PMob->stats.AGI = (uint16)(PMob->stats.AGI * 1.5f * map_config.nm_stat_multiplier);
-        PMob->stats.INT = (uint16)(PMob->stats.INT * 1.5f * map_config.nm_stat_multiplier);
-        PMob->stats.MND = (uint16)(PMob->stats.MND * 1.5f * map_config.nm_stat_multiplier);
-        PMob->stats.CHR = (uint16)(PMob->stats.CHR * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.STR = (std::uint16_t)(PMob->stats.STR * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.DEX = (std::uint16_t)(PMob->stats.DEX * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.VIT = (std::uint16_t)(PMob->stats.VIT * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.AGI = (std::uint16_t)(PMob->stats.AGI * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.INT = (std::uint16_t)(PMob->stats.INT * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.MND = (std::uint16_t)(PMob->stats.MND * 1.5f * map_config.nm_stat_multiplier);
+        PMob->stats.CHR = (std::uint16_t)(PMob->stats.CHR * 1.5f * map_config.nm_stat_multiplier);
     }
     else
     {
-        PMob->stats.STR = (uint16)(PMob->stats.STR * map_config.mob_stat_multiplier);
-        PMob->stats.DEX = (uint16)(PMob->stats.DEX * map_config.mob_stat_multiplier);
-        PMob->stats.VIT = (uint16)(PMob->stats.VIT * map_config.mob_stat_multiplier);
-        PMob->stats.AGI = (uint16)(PMob->stats.AGI * map_config.mob_stat_multiplier);
-        PMob->stats.INT = (uint16)(PMob->stats.INT * map_config.mob_stat_multiplier);
-        PMob->stats.MND = (uint16)(PMob->stats.MND * map_config.mob_stat_multiplier);
-        PMob->stats.CHR = (uint16)(PMob->stats.CHR * map_config.mob_stat_multiplier);
+        PMob->stats.STR = (std::uint16_t)(PMob->stats.STR * map_config.mob_stat_multiplier);
+        PMob->stats.DEX = (std::uint16_t)(PMob->stats.DEX * map_config.mob_stat_multiplier);
+        PMob->stats.VIT = (std::uint16_t)(PMob->stats.VIT * map_config.mob_stat_multiplier);
+        PMob->stats.AGI = (std::uint16_t)(PMob->stats.AGI * map_config.mob_stat_multiplier);
+        PMob->stats.INT = (std::uint16_t)(PMob->stats.INT * map_config.mob_stat_multiplier);
+        PMob->stats.MND = (std::uint16_t)(PMob->stats.MND * map_config.mob_stat_multiplier);
+        PMob->stats.CHR = (std::uint16_t)(PMob->stats.CHR * map_config.mob_stat_multiplier);
     }
 
     // special case, give spell list to my pet
@@ -482,7 +482,7 @@ void CalculateStats(CMobEntity * PMob)
     // cap all stats for mLvl / job
     for (int i=SKILL_DIV; i <=SKILL_BLU; i++)
     {
-        uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
+        std::uint16_t maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
         {
             PMob->WorkingSkills.skill[i] = maxSkill;
@@ -490,7 +490,7 @@ void CalculateStats(CMobEntity * PMob)
         else //if the mob is WAR/BLM and can cast spell
         {
             // set skill as high as main level, so their spells won't get resisted
-            uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),mLvl > 99 ? 99 : mLvl);
+            std::uint16_t maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetSJob(),mLvl > 99 ? 99 : mLvl);
 
             if (maxSubSkill != 0)
             {
@@ -500,7 +500,7 @@ void CalculateStats(CMobEntity * PMob)
     }
     for (int i=SKILL_H2H; i <=SKILL_STF; i++)
     {
-        uint16 maxSkill = battleutils::GetMaxSkill(3, mLvl > 99 ? 99 : mLvl);
+        std::uint16_t maxSkill = battleutils::GetMaxSkill(3, mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
         {
             PMob->WorkingSkills.skill[i] = maxSkill;
@@ -744,10 +744,10 @@ void SetupJob(CMobEntity* PMob)
 
 void SetupRoaming(CMobEntity* PMob)
 {
-    uint16 distance = 10;
-    uint16 turns = 1;
-    uint16 cool = 20;
-    uint16 rate = 15;
+    std::uint16_t distance = 10;
+    std::uint16_t turns = 1;
+    std::uint16_t cool = 20;
+    std::uint16_t rate = 15;
 
     switch(PMob->m_EcoSystem)
     {
@@ -779,7 +779,7 @@ void SetupRoaming(CMobEntity* PMob)
 
 void SetupPetSkills(CMobEntity* PMob)
 {
-    int16 skillListId = 0;
+    std::int16_t skillListId = 0;
     // same mob can spawn as different families
     // can't set this from the database
     switch(PMob->m_Family)
@@ -1004,7 +1004,7 @@ void GetAvailableSpells(CMobEntity* PMob) {
 	}
 }
 
-void SetSpellList(CMobEntity* PMob, uint16 spellList)
+void SetSpellList(CMobEntity* PMob, std::uint16_t spellList)
 {
 	PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
 	RecalculateSpellContainer(PMob);
@@ -1023,8 +1023,8 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
     PMob->defaultMobMod(MOBMOD_2HOUR_PROC, 60);
-    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, (int16)CMobEntity::sight_range);
-    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, (int16)CMobEntity::sound_range);
+    PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, (std::int16_t)CMobEntity::sight_range);
+    PMob->defaultMobMod(MOBMOD_SOUND_RANGE, (std::int16_t)CMobEntity::sound_range);
 
     // Killer Effect
     switch (PMob->m_EcoSystem)
@@ -1102,7 +1102,7 @@ void LoadCustomMods()
 	{
 		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
-			uint16 pool = Sql_GetUIntData(SqlHandle,0);
+			std::uint16_t pool = Sql_GetUIntData(SqlHandle,0);
 			ModsList_t* poolMods = GetMobPoolMods(pool, true);
 
 			Mod id = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
@@ -1150,7 +1150,7 @@ void LoadCustomMods()
 	}
 }
 
-ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
+ModsList_t* GetMobFamilyMods(std::uint16_t familyId, bool create)
 {
 	if(mobFamilyModsList[familyId])
 	{
@@ -1229,7 +1229,7 @@ void AddCustomMods(CMobEntity* PMob)
         //TODO: don't store mobmods in a CModifier
 		for(std::vector<CModifier*>::iterator it = PFamilyMods->mobMods.begin(); it != PFamilyMods->mobMods.end() ; ++it)
 		{
-			PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
+			PMob->setMobMod(static_cast<std::uint16_t>((*it)->getModID()), (*it)->getModAmount());
 		}
 	}
 
@@ -1246,7 +1246,7 @@ void AddCustomMods(CMobEntity* PMob)
 
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
 		{
-			PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
+			PMob->setMobMod(static_cast<std::uint16_t>((*it)->getModID()), (*it)->getModAmount());
 		}
 	}
 
@@ -1263,7 +1263,7 @@ void AddCustomMods(CMobEntity* PMob)
 
 		for(std::vector<CModifier*>::iterator it = PSpawnMods->mobMods.begin(); it != PSpawnMods->mobMods.end() ; ++it)
 		{
-			PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
+			PMob->setMobMod(static_cast<std::uint16_t>((*it)->getModID()), (*it)->getModAmount());
 		}
 	}
 }
@@ -1274,7 +1274,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
     PMob->SetMJob(job);
 
     // give him a spell list based on job
-    uint16 spellList = 0;
+    std::uint16_t spellList = 0;
 
     switch(job){
         case JOB_WHM:
@@ -1313,7 +1313,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
     PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
 }
 
-CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* instance)
+CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstance* instance)
 {
 	const int8* Query =
 		"SELECT zoneid, name, \
@@ -1365,7 +1365,7 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* ins
 			PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 			PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 
-			PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 15);
+			PMob->m_Behaviour = (std::uint16_t)Sql_GetIntData(SqlHandle, 15);
 			PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);
 			PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
 			PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
@@ -1394,22 +1394,22 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* ins
 			PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 52);
 			PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 53);
 
-			PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle, 31) * 1000));
-			PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlHandle, 32) * 1000));
-			PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 33) * 1000));
-			PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 34) * 1000));
+			PMob->setModifier(Mod::SLASHRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 31) * 1000));
+			PMob->setModifier(Mod::PIERCERES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 32) * 1000));
+			PMob->setModifier(Mod::HTHRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 33) * 1000));
+			PMob->setModifier(Mod::IMPACTRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 34) * 1000));
 
-			PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100)); // These are stored as floating percentages
-			PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100)); // and need to be adjusted into modifier units.
-			PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // Higher RES = lower damage.
-			PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // Negatives signify lower resist chance.
-			PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Positives signify increased resist chance.
-			PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100));
-			PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
-			PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
+			PMob->setModifier(Mod::FIRERES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100)); // These are stored as floating percentages
+			PMob->setModifier(Mod::ICERES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100)); // and need to be adjusted into modifier units.
+			PMob->setModifier(Mod::WINDRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // Higher RES = lower damage.
+			PMob->setModifier(Mod::EARTHRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // Negatives signify lower resist chance.
+			PMob->setModifier(Mod::THUNDERRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Positives signify increased resist chance.
+			PMob->setModifier(Mod::WATERRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100));
+			PMob->setModifier(Mod::LIGHTRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
+			PMob->setModifier(Mod::DARKRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
 
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
-			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 44);
+			PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 44);
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 45);
 			PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlHandle, 46);
 
@@ -1453,7 +1453,7 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* ins
 
 void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
 {
-    uint16 animationID = 0;
+    std::uint16_t animationID = 0;
     switch (level)
     {
     case WeaknessType::RED:

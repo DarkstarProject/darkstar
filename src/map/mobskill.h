@@ -42,7 +42,7 @@ class CMobSkill
 {
 public:
 
-    CMobSkill(uint16 id);
+    CMobSkill(std::uint16_t id);
 
     bool        hasMissMsg() const;
     bool        isAoE() const;
@@ -52,23 +52,23 @@ public:
     bool        isSpecial() const;
     bool        isTpSkill() const;
 
-    uint16      getID() const;
-    uint16      getAnimationID() const;
-    uint16      getPetAnimationID() const;
+    std::uint16_t      getID() const;
+    std::uint16_t      getAnimationID() const;
+    std::uint16_t      getPetAnimationID() const;
     uint8       getAoe() const;
     float       getDistance() const;
     uint8       getFlag() const;
-    uint16      getAnimationTime() const;
-    uint16      getActivationTime() const;
-    uint16      getMsg() const;
-    uint16      getAoEMsg() const;
-    uint16      getValidTargets() const;
-    int16       getTP() const;
+    std::uint16_t      getAnimationTime() const;
+    std::uint16_t      getActivationTime() const;
+    std::uint16_t      getMsg() const;
+    std::uint16_t      getAoEMsg() const;
+    std::uint16_t      getValidTargets() const;
+    std::int16_t       getTP() const;
     uint8       getHPP() const;
-    uint16      getTotalTargets() const;
-    uint16      getMsgForAction() const;
+    std::uint16_t      getTotalTargets() const;
+    std::uint16_t      getMsgForAction() const;
     float       getRadius() const;
-    int16       getParam() const;
+    std::int16_t       getParam() const;
     uint8       getKnockback() const;
     uint8       getPrimarySkillchain() const;
     uint8       getSecondarySkillchain() const;
@@ -76,19 +76,19 @@ public:
 
     bool        isDamageMsg();
 
-    void        setID(uint16 id);
-    void        setAnimationID(uint16 aid);
+    void        setID(std::uint16_t id);
+    void        setAnimationID(std::uint16_t aid);
     void        setAoe(uint8 aoe);
     void        setDistance(float distance);
     void        setFlag(uint8 flag);
-    void        setAnimationTime(uint16 AnimationTime);
-    void        setActivationTime(uint16 ActivationTime);
-    void        setMsg(uint16 msg);
-    void        setValidTargets(uint16 targ);
-    void        setTP(int16 tp);
+    void        setAnimationTime(std::uint16_t AnimationTime);
+    void        setActivationTime(std::uint16_t ActivationTime);
+    void        setMsg(std::uint16_t msg);
+    void        setValidTargets(std::uint16_t targ);
+    void        setTP(std::int16_t tp);
     void        setHPP(uint8 hpp);
-    void        setTotalTargets(uint16 targets);
-    void        setParam(int16 value);
+    void        setTotalTargets(std::uint16_t targets);
+    void        setParam(std::int16_t value);
     void        setKnockback(uint8 knockback);
     void        setPrimarySkillchain(uint8 skillchain);
     void        setSecondarySkillchain(uint8 skillchain);
@@ -99,18 +99,18 @@ public:
 
 private:
 
-    uint16      m_ID;
-    uint16      m_TotalTargets;
-    int16       m_Param;
-    uint16      m_AnimID;           //animation id
+    std::uint16_t      m_ID;
+    std::uint16_t      m_TotalTargets;
+    std::int16_t       m_Param;
+    std::uint16_t      m_AnimID;           //animation id
     uint8       m_Aoe;              // не используется
     float       m_Distance;         // не используется
     uint8       m_Flag;             // не используется
-    uint16      m_ValidTarget;      //same as
-    uint16      m_AnimationTime;    //how long the tp animation lasts for in ms
-    uint16      m_ActivationTime;   //how long the mob prepares the tp move for
-    uint16      m_Message;          //message param, scripters can edit this depending on self/resist/etc.
-    int16       m_TP;               //the tp at the time of finish readying (for scripts)
+    std::uint16_t      m_ValidTarget;      //same as
+    std::uint16_t      m_AnimationTime;    //how long the tp animation lasts for in ms
+    std::uint16_t      m_ActivationTime;   //how long the mob prepares the tp move for
+    std::uint16_t      m_Message;          //message param, scripters can edit this depending on self/resist/etc.
+    std::int16_t       m_TP;               //the tp at the time of finish readying (for scripts)
     uint8       m_HPP;              // HPP at the time of using mob skill (for scripts)
     uint8       m_knockback;        //knockback value (0-7)
     uint8       m_primarySkillchain;       //weaponskill ID of skillchain properties

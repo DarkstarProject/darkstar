@@ -36,15 +36,15 @@ public:
 
     virtual void Tick(time_point) override;
 
-    virtual bool Cast(uint16 targid, SpellID spellid) override;
-    virtual bool Engage(uint16 targid) override;
-    virtual bool ChangeTarget(uint16 targid) override;
+    virtual bool Cast(std::uint16_t targid, SpellID spellid) override;
+    virtual bool Engage(std::uint16_t targid) override;
+    virtual bool ChangeTarget(std::uint16_t targid) override;
     virtual bool Disengage() override;
-    virtual bool WeaponSkill(uint16 targid, uint16 wsid) override;
+    virtual bool WeaponSkill(std::uint16_t targid, std::uint16_t wsid) override;
 
-    virtual bool Ability(uint16 targid, uint16 abilityid) override;
-    virtual bool RangedAttack(uint16 targid);
-    virtual bool UseItem(uint16 targid, uint8 loc, uint8 slotid);
+    virtual bool Ability(std::uint16_t targid, std::uint16_t abilityid) override;
+    virtual bool RangedAttack(std::uint16_t targid);
+    virtual bool UseItem(std::uint16_t targid, uint8 loc, uint8 slotid);
 
     void setLastAttackTime(time_point);
     void setLastErrMsgTime(time_point);

@@ -56,7 +56,7 @@ namespace fishingutils
 *																		*
 ************************************************************************/
 
-uint16 MessageOffset[MAX_ZONEID];
+std::uint16_t MessageOffset[MAX_ZONEID];
 
 void LoadFishingMessages()
 {
@@ -71,7 +71,7 @@ void LoadFishingMessages()
 *																		*
 ************************************************************************/
 
-uint16 GetMessageOffset(uint16 ZoneID)
+std::uint16_t GetMessageOffset(std::uint16_t ZoneID)
 {
 	return MessageOffset[ZoneID];
 }
@@ -91,7 +91,7 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
+	std::uint16_t MessageOffset = GetMessageOffset(PChar->getZone());
 
 	if (MessageOffset == 0)
 	{
@@ -158,7 +158,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
-	uint16 RodID = WeaponItem->getID();
+	std::uint16_t RodID = WeaponItem->getID();
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
@@ -166,7 +166,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
-	uint16 LureID = WeaponItem->getID();
+	std::uint16_t LureID = WeaponItem->getID();
 
 	std::int32_t FishingChance = dsprand::GetRandomNumber(100);
 
@@ -304,7 +304,7 @@ void RodBreaks(CCharEntity* PChar)
 
 	DSP_DEBUG_BREAK_IF(PRod == nullptr);
 
-	uint16 BrokenRodID = 0;
+	std::uint16_t BrokenRodID = 0;
 
 	switch (PRod->getID())
 	{
@@ -337,9 +337,9 @@ void RodBreaks(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, std::uint32_t special)
+void FishingAction(CCharEntity* PChar, FISHACTION action, std::uint16_t stamina, std::uint32_t special)
 {
-	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
+	std::uint16_t MessageOffset = GetMessageOffset(PChar->getZone());
 
 	switch (action) 
 	{

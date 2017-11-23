@@ -81,7 +81,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 {
     int ret = SQL_ERROR;
     in_addr from_ip;
-    uint16 from_port = 0;
+    std::uint16_t from_port = 0;
     bool ipstring = false;
     if (from)
     {

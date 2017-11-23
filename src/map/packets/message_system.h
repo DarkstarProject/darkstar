@@ -38,7 +38,7 @@ class CMessageSystemPacket : public CBasicPacket
 {
 public:
 
-	CMessageSystemPacket(std::uint32_t param0, std::uint32_t param1, uint16 messageID);
+	CMessageSystemPacket(std::uint32_t param0, std::uint32_t param1, std::uint16_t messageID);
 };
 
 #endif

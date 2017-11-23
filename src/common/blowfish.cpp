@@ -365,7 +365,7 @@ cycle:
 	std::uint32_t Xl;
 	std::uint32_t Xr;
 	std::uint32_t temp;
-	uint16	      i;
+	std::uint16_t	      i;
 	
 	const std::int32_t N = 16;
 	Xl = *xl;
@@ -464,7 +464,7 @@ cycle:
 	std::uint32_t Xl;
 	std::uint32_t Xr;
 	std::uint32_t temp;
-	uint16 i;
+	std::uint16_t i;
 
 	Xl = *xl;
 	Xr = *xr;
@@ -494,11 +494,11 @@ cycle:
 #endif
 }
 
-std::uint32_t* blowfish_init(int8 key[], int16 keybytes, std::uint32_t* P, std::uint32_t* S)
+std::uint32_t* blowfish_init(int8 key[], std::int16_t keybytes, std::uint32_t* P, std::uint32_t* S)
 {
-	int16          i;
-	int16          j;
-	int16          k;
+	std::int16_t          i;
+	std::int16_t          j;
+	std::int16_t          k;
 	std::uint32_t		 data;
 	std::uint32_t		 datal;
 	std::uint32_t		 datar;

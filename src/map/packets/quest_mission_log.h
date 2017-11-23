@@ -68,7 +68,7 @@ enum LOG_TYPE
 };
 
 // Quest Log Packet Values
-static const std::unordered_map<uint8, std::pair<uint16, uint16>> questPacketBytes =
+static const std::unordered_map<uint8, std::pair<std::uint16_t, std::uint16_t>> questPacketBytes =
 {
     // Quest Log ID   , Current, Complete
     { QUESTS_SANDORIA , {0x50  , 0x90   }},

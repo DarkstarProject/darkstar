@@ -77,7 +77,7 @@ std::int32_t  map_fd = 0;                      // main socket
 std::uint32_t map_amntplayers = 0;             // map amnt unique players
 
 in_addr map_ip;
-uint16 map_port = 0;
+std::uint16_t map_port = 0;
 
 map_config_t map_config;                // map server settings
 map_session_list_t map_session_list;
@@ -109,7 +109,7 @@ map_session_data_t* mapsession_getbyipp(std::uint64_t ipp)
 *                                                                       *
 ************************************************************************/
 
-map_session_data_t* mapsession_createsession(std::uint32_t ip, uint16 port)
+map_session_data_t* mapsession_createsession(std::uint32_t ip, std::uint16_t port)
 {
     map_session_data_t* map_session_data = new map_session_data_t;
     memset(map_session_data, 0, sizeof(map_session_data_t));
@@ -413,10 +413,10 @@ std::int32_t parse_console(int8* buf)
 
 std::int32_t map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_session_data_t* map_session_data)
 {
-    uint16 tmp, i;
+    std::uint16_t tmp, i;
 
     // counting blocks whose size = 4 byte
-    tmp = (uint16)((size - FFXI_HEADER_SIZE) / 4);
+    tmp = (std::uint16_t)((size - FFXI_HEADER_SIZE) / 4);
     tmp -= tmp % 2;
 
 #   ifdef WIN32
@@ -561,9 +561,9 @@ std::int32_t parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_
 
     CCharEntity *PChar = map_session_data->PChar;
 
-    uint16 SmallPD_Size = 0;
-    uint16 SmallPD_Type = 0;
-    uint16 SmallPD_Code = RBUFW(buff, 0);
+    std::uint16_t SmallPD_Size = 0;
+    std::uint16_t SmallPD_Type = 0;
+    std::uint16_t SmallPD_Code = RBUFW(buff, 0);
 
     for (int8* SmallPD_ptr = PacketData_Begin;
         SmallPD_ptr + (RBUFB(SmallPD_ptr, 1) & 0xFE) * 2 <= PacketData_End && (RBUFB(SmallPD_ptr, 1) & 0xFE);

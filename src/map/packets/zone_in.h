@@ -40,7 +40,7 @@ class CZoneInPacket : public CBasicPacket
 {
 public:
 
-	CZoneInPacket(CCharEntity* PChar, int16);
+	CZoneInPacket(CCharEntity* PChar, std::int16_t);
 };
 
 #endif

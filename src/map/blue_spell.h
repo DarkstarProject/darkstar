@@ -33,7 +33,7 @@ public:
     CBlueSpell(SpellID id);
     virtual std::unique_ptr<CSpell> clone() override;
 
-    uint16		getMonsterSkillId();
+    std::uint16_t		getMonsterSkillId();
     uint8       getSetPoints();
     uint8       getEcosystem();
     uint8       getTraitCategory();
@@ -41,7 +41,7 @@ public:
     uint8       getPrimarySkillchain();
     uint8       getSecondarySkillchain();
 
-	void		setMonsterSkillId(uint16 skillid);
+	void		setMonsterSkillId(std::uint16_t skillid);
     void        setSetPoints(uint8 setpoints);
     void        setEcosystem(uint8 ecosystem);
     void        setTraitCategory(uint8 category);
@@ -54,7 +54,7 @@ public:
 
 private:
 
-	uint16		m_monsterSkillId {};						// matching skill for a blue spell
+	std::uint16_t		m_monsterSkillId {};						// matching skill for a blue spell
     uint8       m_setPoints {};
     uint8       m_ecosystem {};
     uint8       m_traitCategory {};

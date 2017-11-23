@@ -24,7 +24,7 @@
 #include <string.h>
 #include "mobskill.h"
 
-CMobSkill::CMobSkill(uint16 id)
+CMobSkill::CMobSkill(std::uint16_t id)
 {
 	m_ID = id;
 	m_AnimID = 0;
@@ -80,22 +80,22 @@ bool CMobSkill::isSpecial() const
   return m_Flag & SKILLFLAG_SPECIAL;
 }
 
-void CMobSkill::setID(uint16 id)
+void CMobSkill::setID(std::uint16_t id)
 {
 	m_ID = id;
 }
 
-void CMobSkill::setMsg(uint16 msg)
+void CMobSkill::setMsg(std::uint16_t msg)
 {
 	m_Message = msg;
 }
 
-void CMobSkill::setTotalTargets(uint16 targets)
+void CMobSkill::setTotalTargets(std::uint16_t targets)
 {
     m_TotalTargets = targets;
 }
 
-void CMobSkill::setAnimationID(uint16 animID)
+void CMobSkill::setAnimationID(std::uint16_t animID)
 {
 	m_AnimID = animID;
 }
@@ -126,7 +126,7 @@ void CMobSkill::setFlag(uint8 flag)
 	m_Flag = flag;
 }
 
-void CMobSkill::setTP(int16 tp)
+void CMobSkill::setTP(std::int16_t tp)
 {
 	m_TP = tp;
 }
@@ -136,33 +136,33 @@ void CMobSkill::setHPP(uint8 hpp)
     m_HPP = hpp;
 }
 
-void CMobSkill::setAnimationTime(uint16 AnimationTime)
+void CMobSkill::setAnimationTime(std::uint16_t AnimationTime)
 {
     m_AnimationTime = AnimationTime;
 }
 
-void CMobSkill::setActivationTime(uint16 ActivationTime)
+void CMobSkill::setActivationTime(std::uint16_t ActivationTime)
 {
     m_ActivationTime = ActivationTime;
 }
 
-void CMobSkill::setValidTargets(uint16 targ)
+void CMobSkill::setValidTargets(std::uint16_t targ)
 {
     m_ValidTarget = targ;
 }
 
 
-uint16 CMobSkill::getID() const
+std::uint16_t CMobSkill::getID() const
 {
 	return m_ID;
 }
 
-uint16 CMobSkill::getAnimationID() const
+std::uint16_t CMobSkill::getAnimationID() const
 {
 	return m_AnimID;
 }
 
-uint16 CMobSkill::getPetAnimationID() const
+std::uint16_t CMobSkill::getPetAnimationID() const
 {
     // levi
     if (m_AnimID >= 552 && m_AnimID <= 560)
@@ -214,7 +214,7 @@ uint16 CMobSkill::getPetAnimationID() const
   return m_AnimID;
 }
 
-int16 CMobSkill::getTP() const
+std::int16_t CMobSkill::getTP() const
 {
     return m_TP;
 }
@@ -224,22 +224,22 @@ uint8 CMobSkill::getHPP() const
     return m_HPP;
 }
 
-uint16 CMobSkill::getTotalTargets() const
+std::uint16_t CMobSkill::getTotalTargets() const
 {
     return m_TotalTargets;
 }
 
-uint16 CMobSkill::getMsg() const
+std::uint16_t CMobSkill::getMsg() const
 {
     return m_Message;
 }
 
-uint16 CMobSkill::getMsgForAction() const
+std::uint16_t CMobSkill::getMsgForAction() const
 {
     return getID();
 }
 
-uint16 CMobSkill::getAoEMsg() const
+std::uint16_t CMobSkill::getAoEMsg() const
 {
 
     switch(m_Message){
@@ -308,7 +308,7 @@ float CMobSkill::getRadius() const
   return m_Distance;
 }
 
-int16 CMobSkill::getParam() const
+std::int16_t CMobSkill::getParam() const
 {
   return m_Param;
 }
@@ -323,7 +323,7 @@ bool CMobSkill::isDamageMsg()
   return m_Message == 110 || m_Message == 185 || m_Message == 197 || m_Message == 264 || m_Message == 187 || m_Message == 225 || m_Message == 226;
 }
 
-void CMobSkill::setParam(int16 value)
+void CMobSkill::setParam(std::int16_t value)
 {
   m_Param = value;
 }
@@ -333,17 +333,17 @@ void CMobSkill::setKnockback(uint8 knockback)
     m_knockback = knockback;
 }
 
-uint16 CMobSkill::getValidTargets() const
+std::uint16_t CMobSkill::getValidTargets() const
 {
 	return m_ValidTarget;
 }
 
-uint16 CMobSkill::getAnimationTime() const
+std::uint16_t CMobSkill::getAnimationTime() const
 {
     return m_AnimationTime;
 }
 
-uint16 CMobSkill::getActivationTime() const
+std::uint16_t CMobSkill::getActivationTime() const
 {
     return m_ActivationTime;
 }

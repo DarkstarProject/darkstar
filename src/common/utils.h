@@ -49,9 +49,9 @@ uint8 getangle(const position_t& A, const position_t& B);						// А - осно�
 bool  isFaceing(const position_t& A, const position_t& B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
 position_t nearPosition(const position_t& A, float offset, float radian); // Returns a position near the given position
 
-std::int32_t hasBit(uint16 value, uint8* BitArray, std::uint32_t size);		// проверяем наличие бита в массиве
-std::int32_t addBit(uint16 value, uint8* BitArray, std::uint32_t size);		// добавляем бит в массив
-std::int32_t delBit(uint16 value, uint8* BitArray, std::uint32_t size);		// удаляем бит из массива
+std::int32_t hasBit(std::uint16_t value, uint8* BitArray, std::uint32_t size);		// проверяем наличие бита в массиве
+std::int32_t addBit(std::uint16_t value, uint8* BitArray, std::uint32_t size);		// добавляем бит в массив
+std::int32_t delBit(std::uint16_t value, uint8* BitArray, std::uint32_t size);		// удаляем бит из массива
 
 	//(un)pack functions for Big Endian(BE) targets
 std::uint32_t packBitsBE(uint8* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit);

@@ -32,7 +32,7 @@
 
 CMessageSpecialPacket::CMessageSpecialPacket(
 	CBaseEntity* PEntity, 
-	uint16 messageID,  
+	std::uint16_t messageID,  
 	std::uint32_t param0, 
 	std::uint32_t param1, 
 	std::uint32_t param2, 

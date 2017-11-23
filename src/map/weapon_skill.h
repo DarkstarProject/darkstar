@@ -36,11 +36,11 @@ class CWeaponSkill
  {
 public:
 
-	CWeaponSkill(uint16 id);
+	CWeaponSkill(std::uint16_t id);
 
-	uint16		getID();
+	std::uint16_t		getID();
 	uint8		getJob(JOBTYPE JobID);
-	uint16		getSkillLevel();
+	std::uint16_t		getSkillLevel();
 	uint8		getRange();
 	uint8       getElement();
     bool        isElemental();
@@ -53,9 +53,9 @@ public:
 	uint8       getType();
     uint8       getUnlockId();
 
-	void		setID(uint16 id);
+	void		setID(std::uint16_t id);
 	void		setJob(int8* jobs);
-	void		setSkillLevel(uint16 level);
+	void		setSkillLevel(std::uint16_t level);
 	void		setRange(uint8 range);
     void        setElement(uint8 element);
 	void		setPrimarySkillchain(uint8 skillchain);
@@ -77,10 +77,10 @@ public:
 
 private:
 
-	uint16		m_ID;
+	std::uint16_t		m_ID;
 	uint8       m_TypeID;
 	uint8		m_Job[MAX_JOBTYPE];
-	uint16		m_Skilllevel;
+	std::uint16_t		m_Skilllevel;
 	uint8       m_AnimationId;
     duration    m_AnimationTime;
 	uint8       m_Element;

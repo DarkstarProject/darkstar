@@ -220,9 +220,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, num);
 
     // Checking the players triple, double and quadruple attack
-    int16 tripleAttack = m_attacker->getMod(Mod::TRIPLE_ATTACK);
-    int16 doubleAttack = m_attacker->getMod(Mod::DOUBLE_ATTACK);
-    int16 quadAttack = m_attacker->getMod(Mod::QUAD_ATTACK);
+    std::int16_t tripleAttack = m_attacker->getMod(Mod::TRIPLE_ATTACK);
+    std::int16_t doubleAttack = m_attacker->getMod(Mod::DOUBLE_ATTACK);
+    std::int16_t quadAttack = m_attacker->getMod(Mod::QUAD_ATTACK);
 
     //check for merit upgrades
     if (isPC)
@@ -235,9 +235,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // TODO: Quadruple attack merits when SE release them.
     }
 
-    quadAttack = std::clamp<int16>(quadAttack, 0, 100);
-    doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
-    tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
+    quadAttack = std::clamp<std::int16_t>(quadAttack, 0, 100);
+    doubleAttack = std::clamp<std::int16_t>(doubleAttack, 0, 100);
+    tripleAttack = std::clamp<std::int16_t>(tripleAttack, 0, 100);
 
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
@@ -321,14 +321,14 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
+        std::uint16_t kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {
             kickAttack += ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, (CCharEntity*)m_attacker);
         }
 
-        kickAttack = std::clamp<uint16>(kickAttack, 0, 100);
+        kickAttack = std::clamp<std::uint16_t>(kickAttack, 0, 100);
 
         if (dsprand::GetRandomNumber(100) < kickAttack)
         {

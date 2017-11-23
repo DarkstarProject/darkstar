@@ -167,7 +167,7 @@ uint8* CPartyListPacket::GetData()
 *																		*
 ************************************************************************/
 
-uint16 CPartyListPacket::GetSize()
+std::uint16_t CPartyListPacket::GetSize()
 {
     return m_offset / 8 + 20;
 }

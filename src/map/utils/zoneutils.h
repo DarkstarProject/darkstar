@@ -49,20 +49,20 @@ namespace zoneutils
     void TOTDChange(TIMETYPE TOTD);                                                 // реакция мира на смену времени суток
     void SavePlayTime();
 
-    REGIONTYPE    GetCurrentRegion(uint16 ZoneID);
-    CONTINENTTYPE GetCurrentContinent(uint16 ZoneID);
+    REGIONTYPE    GetCurrentRegion(std::uint16_t ZoneID);
+    CONTINENTTYPE GetCurrentContinent(std::uint16_t ZoneID);
 
     int GetWeatherElement(WEATHER weather);
 
-    CZone*       GetZone(uint16 ZoneID);                                            // получаем указатель на зону
-    CNpcEntity*  GetTrigger(uint16 TargID, uint16 ZoneID);                          // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
+    CZone*       GetZone(std::uint16_t ZoneID);                                            // получаем указатель на зону
+    CNpcEntity*  GetTrigger(std::uint16_t TargID, std::uint16_t ZoneID);                          // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
     CBaseEntity* GetEntity(std::uint32_t ID, uint8 filter = -1);                           // получаем указатель на любую сущность
     CCharEntity* GetCharByName(int8* name);                                         // получаем указатель на персонажа по имени
-    CCharEntity* GetCharFromWorld(std::uint32_t charid, uint16 targid);                    // returns pointer to character by id and target id
+    CCharEntity* GetCharFromWorld(std::uint32_t charid, std::uint16_t targid);                    // returns pointer to character by id and target id
     CCharEntity* GetChar(std::uint32_t id);                                                // returns pointer to character by id
     CCharEntity* GetCharToUpdate(std::uint32_t primary, std::uint32_t ternary);                   // returnes pointer to preferred char to update for party changes
     void         ForEachZone(std::function<void(CZone*)> func);
-    std::uint64_t       GetZoneIPP(uint16 zoneid);                                         // returns IPP for zone ID
+    std::uint64_t       GetZoneIPP(std::uint16_t zoneid);                                         // returns IPP for zone ID
     bool         IsResidentialArea(CCharEntity*);                                  // returns whether or not the area is a residential zone
 };
 

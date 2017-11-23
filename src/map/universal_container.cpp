@@ -81,7 +81,7 @@ void CUContainer::Clean()
 *                                                                       *
 ************************************************************************/
 
-uint16 CUContainer::GetTarget()
+std::uint16_t CUContainer::GetTarget()
 {
     return m_target;
 }
@@ -92,7 +92,7 @@ uint16 CUContainer::GetTarget()
 *                                                                       *
 ************************************************************************/
 	
-void CUContainer::SetTarget(uint16 Target)
+void CUContainer::SetTarget(std::uint16_t Target)
 {
     m_target = Target;
 }

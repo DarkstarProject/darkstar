@@ -51,7 +51,7 @@ CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, CItem* 
     if (PItem)
     {
         ref<std::uint32_t>(0x04) = PItem->getQuantity();
-        ref<uint16>(0x08) = PItem->getID();
+        ref<std::uint16_t>(0x08) = PItem->getID();
     }
 
     memcpy(data + (0x0A), PChar->GetName(), PChar->name.size());

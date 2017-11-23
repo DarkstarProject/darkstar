@@ -28,7 +28,7 @@
 #include "../trade_container.h"
 
 
-CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, uint16 itemID, uint8 quantity)
+CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID, uint8 quantity)
 {
     id(0x6F);
     length(0x38);
@@ -38,7 +38,7 @@ CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE mess
     if (itemID != 0)
     {
         ref<uint8>(0x06) = quantity;
-        ref<uint16>(0x08) = itemID;
+        ref<std::uint16_t>(0x08) = itemID;
     } 
 
     for (uint8 i = 0; i < 4; i++)
@@ -57,15 +57,15 @@ CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE mess
         }
     }
 
-    ref<uint16>(0x22) = PChar->CraftContainer->getItemID(0); //crystal
+    ref<std::uint16_t>(0x22) = PChar->CraftContainer->getItemID(0); //crystal
 
     for(uint8 slotID = 1; slotID <= 8; ++slotID) //recipe materials
     {
-        uint16 itemID = PChar->CraftContainer->getItemID(slotID);
-        ref<uint16>(0x24 + ((slotID - 1) * 2)) = itemID;
+        std::uint16_t itemID = PChar->CraftContainer->getItemID(slotID);
+        ref<std::uint16_t>(0x24 + ((slotID - 1) * 2)) = itemID;
 
         if (PChar->CraftContainer->getQuantity(slotID) == 0)
-            ref<uint16>(0x0A + ((slotID - 1) * 2)) = itemID;
+            ref<std::uint16_t>(0x0A + ((slotID - 1) * 2)) = itemID;
     }
 
 }

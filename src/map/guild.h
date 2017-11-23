@@ -37,10 +37,10 @@ class CCharEntity;
 struct GPItem_t
 {
     CItem* item;
-    uint16 maxpoints;
-    uint16 points;
+    std::uint16_t maxpoints;
+    std::uint16_t points;
 
-    GPItem_t(CItem* _item, uint16 _maxpoints, uint16 _points)
+    GPItem_t(CItem* _item, std::uint16_t _maxpoints, std::uint16_t _points)
         : item(_item), maxpoints(_maxpoints), points(_points)
     {};
 };
@@ -56,8 +56,8 @@ public:
     uint8 id();
 
     void updateGuildPointsPattern(uint8 pattern);
-    uint8 addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdded);
-    std::pair<uint16,uint16> getDailyGPItem(CCharEntity* PChar);
+    uint8 addGuildPoints(CCharEntity* PChar, CItem* PItem, std::int16_t& pointsAdded);
+    std::pair<std::uint16_t,std::uint16_t> getDailyGPItem(CCharEntity* PChar);
 
 private:
     uint8 m_id;

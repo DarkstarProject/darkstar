@@ -103,7 +103,7 @@ bool isRightRecipe(CCharEntity* PChar)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		uint16 KeyItemID = (uint16)Sql_GetUIntData(SqlHandle,1);
+		std::uint16_t KeyItemID = (std::uint16_t)Sql_GetUIntData(SqlHandle,1);
 
 		if ((KeyItemID == 0) || (charutils::hasKeyItem(PChar,KeyItemID)))
 		{
@@ -113,17 +113,17 @@ bool isRightRecipe(CCharEntity* PChar)
 			ShowDebug(CL_CYAN"Recipe matches ID %u.\n" CL_RESET, PChar->CraftContainer->getItemID(9));
 			#endif
 
-			PChar->CraftContainer->setItem(10 + 1, (uint16)Sql_GetUIntData(SqlHandle,10), (uint8)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
-			PChar->CraftContainer->setItem(10 + 2, (uint16)Sql_GetUIntData(SqlHandle,11), (uint8)Sql_GetUIntData(SqlHandle,15), 0);	// RESULT_HQ
-			PChar->CraftContainer->setItem(10 + 3, (uint16)Sql_GetUIntData(SqlHandle,12), (uint8)Sql_GetUIntData(SqlHandle,16), 0);	// RESULT_HQ2
-			PChar->CraftContainer->setItem(10 + 4, (uint16)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
+			PChar->CraftContainer->setItem(10 + 1, (std::uint16_t)Sql_GetUIntData(SqlHandle,10), (uint8)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
+			PChar->CraftContainer->setItem(10 + 2, (std::uint16_t)Sql_GetUIntData(SqlHandle,11), (uint8)Sql_GetUIntData(SqlHandle,15), 0);	// RESULT_HQ
+			PChar->CraftContainer->setItem(10 + 3, (std::uint16_t)Sql_GetUIntData(SqlHandle,12), (uint8)Sql_GetUIntData(SqlHandle,16), 0);	// RESULT_HQ2
+			PChar->CraftContainer->setItem(10 + 4, (std::uint16_t)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
 
-			uint16 skillValue   = 0;
-			uint16 currentSkill = 0;
+			std::uint16_t skillValue   = 0;
+			std::uint16_t currentSkill = 0;
 
 			for (uint8 skillID = 49; skillID < 57; ++skillID)
 			{
-				skillValue   = (uint16)Sql_GetUIntData(SqlHandle,(skillID-49+2));
+				skillValue   = (std::uint16_t)Sql_GetUIntData(SqlHandle,(skillID-49+2));
 				currentSkill = PChar->RealSkills.skill[skillID];
 
 				// skill записываем в поле quantity ячеек 9-16
@@ -356,7 +356,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			}
 
 			// Apply synthesis success rate modifier
-			int16 modSynthSuccess = PChar->getMod(Mod::SYNTH_SUCCESS);
+			std::int16_t modSynthSuccess = PChar->getMod(Mod::SYNTH_SUCCESS);
 			success += (double)modSynthSuccess * 0.01;
 
             if(!canSynthesizeHQ(PChar,skillID))
@@ -506,7 +506,7 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 		}
 
 		uint8  skillRank = PChar->RealSkills.rank[skillID];
-		uint16 maxSkill  = (skillRank+1)*100;
+		std::uint16_t maxSkill  = (skillRank+1)*100;
 
 		std::int32_t  charSkill = PChar->RealSkills.skill[skillID];
 		std::int32_t  baseDiff   = PChar->CraftContainer->getQuantity(skillID-40) - charSkill/10; //the 5 lvl difference rule for breaks does NOT consider the effects of image support/gear
@@ -521,7 +521,7 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 			double skillUpChance = ((double)baseDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
 
 			// Apply synthesis skill gain rate modifier before synthesis fail modifier
-			int16 modSynthSkillGain = PChar->getMod(Mod::SYNTH_SKILL_GAIN);
+			std::int16_t modSynthSkillGain = PChar->getMod(Mod::SYNTH_SKILL_GAIN);
 			skillUpChance += (double)modSynthSkillGain * 0.01;
 
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
@@ -736,10 +736,10 @@ std::int32_t doSynthFail(CCharEntity* PChar)
 std::int32_t startSynth(CCharEntity* PChar)
 {
     PChar->m_LastSynthTime = server_clock::now();
-	uint16 effect  = 0;
+	std::uint16_t effect  = 0;
 	uint8  element = 0;
 
-	uint16 crystalType = PChar->CraftContainer->getItemID(0);
+	std::uint16_t crystalType = PChar->CraftContainer->getItemID(0);
 
 	switch(crystalType)
 	{
@@ -799,7 +799,7 @@ std::int32_t startSynth(CCharEntity* PChar)
 
 	uint8  invSlotID  = 0;
 	uint8  tempSlotID = 0;
-	// uint16 itemID     = 0;
+	// std::uint16_t itemID     = 0;
 	// std::uint32_t quantity   = 0;
 
 	for(uint8 slotID = 1; slotID <= 8; ++slotID)
@@ -849,7 +849,7 @@ std::int32_t doSynthResult(CCharEntity* PChar)
 	{
 		doSynthFail(PChar);
 	}else{
-		uint16 itemID   = PChar->CraftContainer->getItemID(10 + m_synthResult);
+		std::uint16_t itemID   = PChar->CraftContainer->getItemID(10 + m_synthResult);
 		uint8  quantity = PChar->CraftContainer->getInvSlotID(10 + m_synthResult); // к сожалению поле quantity занято
 
 		uint8 invSlotID   = 0;

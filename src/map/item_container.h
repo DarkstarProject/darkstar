@@ -59,18 +59,18 @@ class CItemContainer
 {
 public:
 
-	CItemContainer(uint16 LocationID);
+	CItemContainer(std::uint16_t LocationID);
    ~CItemContainer();
 
-	uint16	GetID();
-    uint16  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
+	std::uint16_t	GetID();
+    std::uint16_t  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
 	uint8	GetSize();
 	uint8	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
     uint8   AddBuff(int8 buff);                     // планируемый размер хранилища (размер без ограничений)
     uint8   AddSize(int8 size);                     // увеличиваем/уменьшаем размер контейнера
 	uint8	SetSize(uint8 size);
-	uint8	SearchItem(uint16 ItemID);				// поиск предмета в хранилище
-    uint8   SearchItemWithSpace(uint16 ItemID, std::uint32_t quantity); //search for item that has space to accomodate x items added
+	uint8	SearchItem(std::uint16_t ItemID);				// поиск предмета в хранилище
+    uint8   SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity); //search for item that has space to accomodate x items added
 
 	uint8	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
 	uint8	InsertItem(CItem* PItem, uint8 slotID);	// добавляем заранее созданный предмет в выбранную ячейку
@@ -95,8 +95,8 @@ public:
 
 private:
 
-	uint16	m_id;
-    uint16  m_buff;
+	std::uint16_t	m_id;
+    std::uint16_t  m_buff;
 	uint8	m_size;
     uint8   m_count;
 

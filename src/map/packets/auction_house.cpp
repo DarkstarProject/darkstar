@@ -104,7 +104,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* 
     }
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, uint16 itemid, std::uint32_t price)
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, std::uint16_t itemid, std::uint32_t price)
 {
     this->type = 0x4C;
     this->size = 0x1E;

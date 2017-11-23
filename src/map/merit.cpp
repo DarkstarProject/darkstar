@@ -199,7 +199,7 @@ void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
 {
     uint8 catNumber = 0;
 
-    for (uint16 i = 0; i < MERITS_COUNT; ++i)
+    for (std::uint16_t i = 0; i < MERITS_COUNT; ++i)
     {
         if ((catNumber < 51 && i == meritNameSpace::groupOffset[catNumber]) || (catNumber > 25 && catNumber < 31))
         {
@@ -218,13 +218,13 @@ void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
 
     if (Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid) != SQL_ERROR)
     {
-        for (uint16 j = 0; j < Sql_NumRows(SqlHandle); j++)
+        for (std::uint16_t j = 0; j < Sql_NumRows(SqlHandle); j++)
         {
             if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 std::uint32_t meritID = Sql_GetUIntData(SqlHandle, 0);
                 std::uint32_t upgrades = Sql_GetUIntData(SqlHandle, 1);
-                for (uint16 i = 0; i < MERITS_COUNT; i++)
+                for (std::uint16_t i = 0; i < MERITS_COUNT; i++)
                 {
                     if (merits[i].id == meritID)
                     {
@@ -245,7 +245,7 @@ void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
 
 void CMeritPoints::SaveMeritPoints(std::uint32_t charid)
 {
-    for (uint16 i = 0; i < MERITS_COUNT; ++i)
+    for (std::uint16_t i = 0; i < MERITS_COUNT; ++i)
         if (merits[i].count > 0)
             Sql_Query(SqlHandle, "INSERT INTO char_merit (charid, meritid, upgrades) VALUES(%u, %u, %u) ON DUPLICATE KEY UPDATE upgrades = %u", charid, merits[i].id, merits[i].count, merits[i].count);
         else
@@ -258,7 +258,7 @@ void CMeritPoints::SaveMeritPoints(std::uint32_t charid)
 *                                                                       *
 ************************************************************************/
 
-uint16 CMeritPoints::GetLimitPoints()
+std::uint16_t CMeritPoints::GetLimitPoints()
 {
     return m_LimitPoints;
 }
@@ -283,7 +283,7 @@ uint8 CMeritPoints::GetMeritPoints()
 
 // true - если merit был добавлен
 
-bool CMeritPoints::AddLimitPoints(uint16 points)
+bool CMeritPoints::AddLimitPoints(std::uint16_t points)
 {
     m_LimitPoints += points;
 
@@ -315,9 +315,9 @@ bool CMeritPoints::AddLimitPoints(uint16 points)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SetLimitPoints(uint16 points)
+void CMeritPoints::SetLimitPoints(std::uint16_t points)
 {
-    m_LimitPoints = std::min<uint16>(points, MAX_LIMIT_POINTS - 1);
+    m_LimitPoints = std::min<std::uint16_t>(points, MAX_LIMIT_POINTS - 1);
 }
 
 /************************************************************************
@@ -326,7 +326,7 @@ void CMeritPoints::SetLimitPoints(uint16 points)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SetMeritPoints(uint16 points)
+void CMeritPoints::SetMeritPoints(std::uint16_t points)
 {
     m_MeritPoints = std::min<uint8>((uint8)points, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 }
@@ -340,8 +340,8 @@ void CMeritPoints::SetMeritPoints(uint16 points)
 
 bool CMeritPoints::IsMeritExist(MERIT_TYPE merit)
 {
-    if ((int16)merit <  MCATEGORY_START) return false;
-    if ((int16)merit >= MCATEGORY_COUNT) return false;
+    if ((std::int16_t)merit <  MCATEGORY_START) return false;
+    if ((std::int16_t)merit >= MCATEGORY_COUNT) return false;
 
     if ((GetMeritID(merit)) >= meritCatInfo[GetMeritCategory(merit)].MeritsInCat) return false;
 
@@ -365,7 +365,7 @@ const Merit_t* CMeritPoints::GetMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
+const Merit_t* CMeritPoints::GetMeritByIndex(std::uint16_t index)
 {
     DSP_DEBUG_BREAK_IF(index >= MERITS_COUNT);
 
@@ -444,7 +444,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-//uint16 CMeritPoints::GetNextMeritUpgrade(uint16 catId, uint16 MeritCount)
+//std::uint16_t CMeritPoints::GetNextMeritUpgrade(std::uint16_t catId, std::uint16_t MeritCount)
 //{
 //	return upgrade[count[catId].UpgradeID][MeritCount];
 //}
@@ -485,7 +485,7 @@ std::int32_t CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 namespace meritNameSpace
 {
 	Merit_t GMeritsTemplate[MERITS_COUNT] = {0};		// global list of merits and their properties
-	int16 groupOffset[MCATEGORY_COUNT/64-1] = {0};		// the first merit offset of each catagory
+	std::int16_t groupOffset[MCATEGORY_COUNT/64-1] = {0};		// the first merit offset of each catagory
 
     /************************************************************************
     *                                                                       *
@@ -504,7 +504,7 @@ namespace meritNameSpace
 
 			// issue with unknown catagories causing massive confusion
 
-            uint16 index = 0;			// global merit template count (to 255)
+            std::uint16_t index = 0;			// global merit template count (to 255)
 			uint8 catIndex = 0;			// global merit catagory count (to 51)
 			int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
 			int8 catMeritIndex = 0;		// counts number of merits in a catagory

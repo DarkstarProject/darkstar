@@ -219,7 +219,7 @@ position_t nearPosition(const position_t& A, float offset, float radian)
 *																		*
 ************************************************************************/
 
-std::int32_t hasBit(uint16 value, uint8* BitArray, std::uint32_t size)
+std::int32_t hasBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
 {
     if(value >= size * 8)
     {
@@ -229,7 +229,7 @@ std::int32_t hasBit(uint16 value, uint8* BitArray, std::uint32_t size)
     return (std::int32_t)(BitArray[value >> 3] & (1 << (value % 8)));
 }
 
-std::int32_t addBit(uint16 value, uint8* BitArray, std::uint32_t size)
+std::int32_t addBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
 {
     if(!hasBit(value, BitArray, size) && (value < size * 8))
     {
@@ -239,7 +239,7 @@ std::int32_t addBit(uint16 value, uint8* BitArray, std::uint32_t size)
     return 0;
 }
 
-std::int32_t delBit(uint16 value, uint8* BitArray, std::uint32_t size)
+std::int32_t delBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
 {
     if(hasBit(value, BitArray, size))
     {
@@ -287,10 +287,10 @@ std::uint32_t packBitsBE(uint8* target, std::uint64_t value, std::int32_t byteOf
     }
     else if((lengthInBit + bitOffset) <= 16)
     {
-        uint16* dataPointer = (uint16*)&target[byteOffset];
+        std::uint16_t* dataPointer = (std::uint16_t*)&target[byteOffset];
 
-        uint16 bitmaskUC = (uint16)bitmask;
-        uint16 valueUC = (uint16)value;
+        std::uint16_t bitmaskUC = (std::uint16_t)bitmask;
+        std::uint16_t valueUC = (std::uint16_t)value;
 
         *dataPointer &= bitmaskUC;
         *dataPointer |= valueUC;
@@ -345,9 +345,9 @@ std::uint64_t unpackBitsBE(uint8* target, std::int32_t byteOffset, std::int32_t 
     }
     else if((lengthInBit + bitOffset) <= 16)
     {
-        uint16* dataPointer = (uint16*)&target[byteOffset];
+        std::uint16_t* dataPointer = (std::uint16_t*)&target[byteOffset];
 
-        retVal = ((*dataPointer)&(uint16)bitmask) >> bitOffset;
+        retVal = ((*dataPointer)&(std::uint16_t)bitmask) >> bitOffset;
     }
     else if((lengthInBit + bitOffset) <= 32)
     {

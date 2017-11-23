@@ -107,12 +107,12 @@ void CTrait::setMod(Mod mod)
 *                                                                       *
 ************************************************************************/
 
-int16 CTrait::getValue()
+std::int16_t CTrait::getValue()
 {
     return m_value;
 }
 
-void CTrait::setValue(int16 value)
+void CTrait::setValue(std::int16_t value)
 {
     m_value = value;
 }

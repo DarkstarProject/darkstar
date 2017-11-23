@@ -78,15 +78,15 @@
 *	lists used in battleutils											*
 ************************************************************************/
 
-std::array<std::array<uint16, 14>, 100> g_SkillTable;
+std::array<std::array<std::uint16_t, 14>, 100> g_SkillTable;
 std::array<std::array<uint8, MAX_JOBTYPE>, MAX_SKILLTYPE> g_SkillRanks;
-std::array<std::array<uint16, MAX_SKILLCHAIN_COUNT + 1>, MAX_SKILLCHAIN_LEVEL + 1> g_SkillChainDamageModifiers;
+std::array<std::array<std::uint16_t, MAX_SKILLCHAIN_COUNT + 1>, MAX_SKILLCHAIN_LEVEL + 1> g_SkillChainDamageModifiers;
 
 std::array<CWeaponSkill*, MAX_WEAPONSKILL_ID> g_PWeaponSkillList;			// Holds all Weapon skills
 std::array<CMobSkill*, 4096> g_PMobSkillList;		        	// List of mob skills
 
 std::array<std::list<CWeaponSkill*>, MAX_SKILLTYPE> g_PWeaponSkillsList;
-std::unordered_map<uint16, std::vector<uint16>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
+std::unordered_map<std::uint16_t, std::vector<std::uint16_t>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
 
 /************************************************************************
 *  battleutils															*
@@ -116,7 +116,7 @@ namespace battleutils
             {
                 for (std::uint32_t y = 0; y < 14; ++y)
                 {
-                    g_SkillTable[x][y] = (uint16)Sql_GetIntData(SqlHandle, y);
+                    g_SkillTable[x][y] = (std::uint16_t)Sql_GetIntData(SqlHandle, y);
                 }
             }
         }
@@ -232,9 +232,9 @@ namespace battleutils
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int16 skillListId = Sql_GetIntData(SqlHandle, 0);
+                std::int16_t skillListId = Sql_GetIntData(SqlHandle, 0);
 
-                uint16 skillId = Sql_GetIntData(SqlHandle, 1);
+                std::uint16_t skillId = Sql_GetIntData(SqlHandle, 1);
 
                 g_PMobSkillLists[skillListId].push_back(skillId);
             }
@@ -253,9 +253,9 @@ namespace battleutils
         {
             for (std::uint32_t x = 0; Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
             {
-                uint16 level = (uint16)Sql_GetIntData(SqlHandle, 0);
-                uint16 count = (uint16)Sql_GetIntData(SqlHandle, 1);
-                uint16 value = (uint16)Sql_GetIntData(SqlHandle, 2);
+                std::uint16_t level = (std::uint16_t)Sql_GetIntData(SqlHandle, 0);
+                std::uint16_t count = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
+                std::uint16_t value = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
                 g_SkillChainDamageModifiers[level][count] = value;
             }
         }
@@ -299,12 +299,12 @@ namespace battleutils
     *	Return Max Skill by SkillType, JobType, and level					*
     ************************************************************************/
 
-    uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
+    std::uint16_t GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
     {
         return g_SkillTable[level][g_SkillRanks[SkillID][JobID]];
     }
 
-    uint16 GetMaxSkill(uint8 rank, uint8 level)
+    std::uint16_t GetMaxSkill(uint8 rank, uint8 level)
     {
         return g_SkillTable[level][rank];
     }
@@ -349,7 +349,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
+    CWeaponSkill* GetWeaponSkill(std::uint16_t WSkillID)
     {
         DSP_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
 
@@ -375,7 +375,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    CMobSkill* GetMobSkill(uint16 SkillID)
+    CMobSkill* GetMobSkill(std::uint16_t SkillID)
     {
         try
         {
@@ -393,7 +393,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    const std::vector<uint16>& GetMobSkillList(uint16 ListID)
+    const std::vector<std::uint16_t>& GetMobSkillList(std::uint16_t ListID)
     {
         return g_PMobSkillLists[ListID];
     }
@@ -403,9 +403,9 @@ namespace battleutils
     *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
     *                                                                       *
     ************************************************************************/
-    CMobSkill* GetTwoHourMobSkill(JOBTYPE job, uint16 familyId)
+    CMobSkill* GetTwoHourMobSkill(JOBTYPE job, std::uint16_t familyId)
     {
-        uint16 id = 0;
+        std::uint16_t id = 0;
 
         if(familyId == 335)
         {
@@ -535,8 +535,8 @@ namespace battleutils
         else if (Tier == 2)
         {
             //Tier 2 enspells calculate the damage on each hit and increment the potency in Mod::ENSPELL_DMG per hit
-            uint16 skill = PAttacker->GetSkill(SKILL_ENH);
-            uint16 cap = 3 + ((6 * skill) / 100);
+            std::uint16_t skill = PAttacker->GetSkill(SKILL_ENH);
+            std::uint16_t cap = 3 + ((6 * skill) / 100);
             if (skill > 200) {
                 cap = 5 + ((5 * skill) / 100);
             }
@@ -653,11 +653,11 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    uint16 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken)
+    std::uint16_t CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, std::uint16_t damageTaken)
     {
-        uint16 damage = Action->spikesParam;
-        // int16 intStat = PDefender->INT();
-        // int16 mattStat = PDefender->getMod(Mod::MATT);
+        std::uint16_t damage = Action->spikesParam;
+        // std::int16_t intStat = PDefender->INT();
+        // std::int16_t mattStat = PDefender->getMod(Mod::MATT);
 
         switch (Action->spikesEffect)
         {
@@ -676,7 +676,7 @@ namespace battleutils
     {
         Action->spikesEffect = (SUBEFFECT)PDefender->getMod(Mod::SPIKES);
         Action->spikesMessage = 44;
-        Action->spikesParam = std::max<int16>(PDefender->getMod(Mod::SPIKES_DMG), 0);
+        Action->spikesParam = std::max<std::int16_t>(PDefender->getMod(Mod::SPIKES_DMG), 0);
 
         // Handle Retaliation
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
@@ -707,9 +707,9 @@ namespace battleutils
 
                 // Dmg math.
                 float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
-                uint16 dmg = (std::uint32_t)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
+                std::uint16_t dmg = (std::uint32_t)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
                 dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, PHYSICAL_ATTACK_TYPE::NORMAL);
-                uint16 bonus = dmg * (PDefender->getMod(Mod::RETALIATION) / 100);
+                std::uint16_t bonus = dmg * (PDefender->getMod(Mod::RETALIATION) / 100);
                 dmg = dmg + bonus;
 
                 // FINISH HIM! dun dun dun
@@ -729,7 +729,7 @@ namespace battleutils
             }
 
             // calculate damage
-            Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, Action, (uint16)(abs(damage))));
+            Action->spikesParam = HandleStoneskin(PAttacker, CalculateSpikeDamage(PAttacker, PDefender, Action, (std::uint16_t)(abs(damage))));
 
             switch (Action->spikesEffect)
             {
@@ -870,7 +870,7 @@ namespace battleutils
             else
             {
                 auto ratio = std::clamp<uint8>(damage / 4, 1, 255);
-                Action->spikesParam = HandleStoneskin(PAttacker, damage - dsprand::GetRandomNumber<uint16>(ratio) + dsprand::GetRandomNumber<uint16>(ratio));
+                Action->spikesParam = HandleStoneskin(PAttacker, damage - dsprand::GetRandomNumber<std::uint16_t>(ratio) + dsprand::GetRandomNumber<std::uint16_t>(ratio));
                 PAttacker->addHP(-Action->spikesParam);
             }
 
@@ -942,7 +942,7 @@ namespace battleutils
         Action->addEffectParam = 0;
 
         EFFECT daze = EFFECT_NONE;
-        uint16 power = 0;
+        std::uint16_t power = 0;
         if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
         {
             daze = EFFECT_DRAIN_DAZE;
@@ -989,7 +989,7 @@ namespace battleutils
         {
             SUBEFFECT subeffects[8] = { SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE, SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
                 SUBEFFECT_WATER_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_LIGHTNING_DAMAGE };
-            int16 enspell = PAttacker->getMod(Mod::ENSPELL);
+            std::int16_t enspell = PAttacker->getMod(Mod::ENSPELL);
 
             if (enspell > 0 && enspell <= 6)
             {
@@ -1090,12 +1090,12 @@ namespace battleutils
         {
             // Generic drain for anyone able to do melee damage to a dazed target
             // TODO: ignore dazes from dancers outside party
-            int16 delay = PAttacker->GetWeaponDelay(false) / 10;
+            std::int16_t delay = PAttacker->GetWeaponDelay(false) / 10;
 
             if (PAttacker->PMaster == nullptr)
             {
                 EFFECT daze = EFFECT_NONE;
-                uint16 power = 0;
+                std::uint16_t power = 0;
                 if (PAttacker->PParty != nullptr && PAttacker->objtype == TYPE_PC)
                 {
                     for (uint8 i = 0; i < PAttacker->PParty->members.size(); i++)
@@ -1141,7 +1141,7 @@ namespace battleutils
 
                 if (daze == EFFECT_DRAIN_DAZE)
                 {
-                    uint16 multiplier = (uint16)(3 + (5.5f * power - 1));
+                    std::uint16_t multiplier = (std::uint16_t)(3 + (5.5f * power - 1));
                     int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     // vary damage based on lvl diff
@@ -1177,7 +1177,7 @@ namespace battleutils
                 }
                 else if (daze == EFFECT_ASPIR_DAZE)
                 {
-                    uint16 multiplier = 1 + (2 * power - 1);
+                    std::uint16_t multiplier = 1 + (2 * power - 1);
                     int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
@@ -1189,7 +1189,7 @@ namespace battleutils
                     Action->additionalEffect = SUBEFFECT_MP_DRAIN;
                     Action->addEffectMessage = 162;
 
-                    int16 mpDrained = PDefender->addMP(-Samba);
+                    std::int16_t mpDrained = PDefender->addMP(-Samba);
 
                     PAttacker->addMP(mpDrained);
                     Action->addEffectParam = mpDrained;
@@ -1501,7 +1501,7 @@ namespace battleutils
     {
 
         //get ranged attack value
-        uint16 rAttack = 1;
+        std::uint16_t rAttack = 1;
 
         if (PAttacker->objtype == TYPE_PC)
         {
@@ -1572,25 +1572,25 @@ namespace battleutils
         return dsprand::GetRandomNumber(minPdif, maxPdif);
     }
 
-    int16 CalculateBaseTP(int delay){
-        int16 x = 1;
+    std::int16_t CalculateBaseTP(int delay){
+        std::int16_t x = 1;
         if (delay <= 180) {
-            x = (int16)(61 + ((delay - 180) * 63.f) / 360);
+            x = (std::int16_t)(61 + ((delay - 180) * 63.f) / 360);
         }
         else if (delay <= 540) {
-            x = (int16)(61 + ((delay - 180) * 88.f) / 360);
+            x = (std::int16_t)(61 + ((delay - 180) * 88.f) / 360);
         }
         else if (delay <= 630) {
-            x = (int16)(149 + ((delay - 540) * 20.f) / 360);
+            x = (std::int16_t)(149 + ((delay - 540) * 20.f) / 360);
         }
         else if (delay <= 720) {
-            x = (int16)(154 + ((delay - 630) * 28.f) / 360);
+            x = (std::int16_t)(154 + ((delay - 630) * 28.f) / 360);
         }
         else if (delay <= 900) {
-            x = (int16)(161 + ((delay - 720) * 24.f) / 360);
+            x = (std::int16_t)(161 + ((delay - 720) * 24.f) / 360);
         }
         else {
-            x = (int16)(173 + ((delay - 900) * 28.f) / 360);
+            x = (std::int16_t)(173 + ((delay - 900) * 28.f) / 360);
         }
         return x;
     }
@@ -1705,8 +1705,8 @@ namespace battleutils
         int8 shieldSize = 3;
         std::int32_t base = 0;
         float blockRateMod = (100.0f + PDefender->getMod(Mod::SHIELDBLOCKRATE)) / 100.0f;
-        uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
-        uint16 blockskill = PDefender->GetSkill(SKILL_SHL);
+        std::uint16_t attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
+        std::uint16_t blockskill = PDefender->GetSkill(SKILL_SHL);
 
         if (PDefender->objtype == TYPE_PC)
         {
@@ -1801,7 +1801,7 @@ namespace battleutils
 
                 // Issekigan grants parry rate bonus. From best available data, if you already capped out at 25% parry it grants another 25% bonus for ~50% parry rate
                 if (PDefender->objtype == TYPE_PC && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)) {
-                    int16 issekiganBonus = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ISSEKIGAN)->GetPower();
+                    std::int16_t issekiganBonus = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ISSEKIGAN)->GetPower();
                     //ShowDebug(CL_CYAN"GetParryRate: Issekigan Active, Parry Rate %d -> %d...\n" CL_RESET, parryRate, (parryRate+issekiganBonus));
                     parryRate = parryRate + issekiganBonus;
                 }
@@ -1852,7 +1852,7 @@ namespace battleutils
     *																		*
     ************************************************************************/
 
-    std::int32_t TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, std::int32_t damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
+    std::int32_t TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, std::int32_t damage, bool isBlocked, uint8 slot, std::uint16_t tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
     {
         giveTPtoAttacker = giveTPtoAttacker && !PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI);
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
@@ -1944,7 +1944,7 @@ namespace battleutils
                         }
                         // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
                         // Set Reprisal spike damage
-                        PDefender->setModifier(Mod::SPIKES_DMG, std::clamp<int16>((blockedDamage * (reprisalEffect->GetPower())) / 100,
+                        PDefender->setModifier(Mod::SPIKES_DMG, std::clamp<std::int16_t>((blockedDamage * (reprisalEffect->GetPower())) / 100,
                             0, reprisalEffect->GetSubPower()));
                     }
                 }
@@ -2031,18 +2031,18 @@ namespace battleutils
                 PDefender->TryHitInterrupt(PAttacker);
             }
 
-            int16 baseTp = 0;
+            std::int16_t baseTp = 0;
 
             if ((slot == SLOT_RANGED || slot == SLOT_AMMO) && PAttacker->objtype == TYPE_PC)
             {
-                int16 delay = PAttacker->GetRangedWeaponDelay(true);
+                std::int16_t delay = PAttacker->GetRangedWeaponDelay(true);
 
                 baseTp = CalculateBaseTP((delay * 120) / 1000);
 
             }
             else
             {
-                int16 delay = PAttacker->GetWeaponDelay(true);
+                std::int16_t delay = PAttacker->GetWeaponDelay(true);
 
                 if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
                     PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
@@ -2056,7 +2056,7 @@ namespace battleutils
                 if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_H2H)
                     ratio = 2.0f;
 
-                baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
+                baseTp = (std::int16_t)(CalculateBaseTP((delay * 60) / 1000) / ratio);
             }
 
 
@@ -2067,7 +2067,7 @@ namespace battleutils
                     baseTp += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_IKISHOTEN, (CCharEntity*)PAttacker);
                 }
 
-                PAttacker->addTP((int16)(tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PAttacker->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PAttacker)))))));
+                PAttacker->addTP((std::int16_t)(tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PAttacker->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PAttacker)))))));
             }
 
             if (giveTPtoVictim)
@@ -2078,10 +2078,10 @@ namespace battleutils
                 //mobs hit get basetp+30 whereas pcs hit get basetp/3
                 if (PDefender->objtype == TYPE_PC)
                 {
-                    PDefender->addTP((int16)(tpMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PAttacker))))))); //yup store tp counts on hits taken too!
+                    PDefender->addTP((std::int16_t)(tpMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PAttacker))))))); //yup store tp counts on hits taken too!
                 }
                 else
-                    PDefender->addTP((uint16)(tpMultiplier * ((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(Mod::STORETP))))); //subtle blow also reduces the "+30" on mob tp gain
+                    PDefender->addTP((std::uint16_t)(tpMultiplier * ((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(Mod::STORETP))))); //subtle blow also reduces the "+30" on mob tp gain
             }
         }
         else if (PDefender->objtype == TYPE_MOB)
@@ -2099,7 +2099,7 @@ namespace battleutils
     *																		*
     ************************************************************************/
 
-    std::int32_t TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, std::int32_t damage, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier)
+    std::int32_t TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, std::int32_t damage, uint8 slot, bool primary, float tpMultiplier, std::uint16_t bonusTP, float targetTPMultiplier)
     {
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
 
@@ -2111,7 +2111,7 @@ namespace battleutils
 
         if (!isRanged)
         {
-            damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
+            damage = getOverWhelmDamageBonus(PChar, PDefender, (std::uint16_t)damage);
         }
 
         HandleAfflatusMiseryDamage(PDefender, damage);
@@ -2169,16 +2169,16 @@ namespace battleutils
             // try to interrupt spell
             PDefender->TryHitInterrupt(PChar);
 
-            int16 baseTp = 0;
+            std::int16_t baseTp = 0;
 
             if (isRanged)
             {
-                int16 delay = PChar->GetRangedWeaponDelay(true);
+                std::int16_t delay = PChar->GetRangedWeaponDelay(true);
                 baseTp = CalculateBaseTP((delay * 120) / 1000);
             }
             else
             {
-                int16 delay = PChar->GetWeaponDelay(true);
+                std::int16_t delay = PChar->GetWeaponDelay(true);
 
                 if (PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
                     PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
@@ -2192,14 +2192,14 @@ namespace battleutils
                 if (PChar->m_Weapons[slot]->getSkillType() == SKILL_H2H)
                     ratio = 2.0f;
 
-                baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
+                baseTp = (std::int16_t)(CalculateBaseTP((delay * 60) / 1000) / ratio);
             }
 
 
             // add tp to attacker
             if (primary)
             {
-                PChar->addTP((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
+                PChar->addTP((std::int16_t)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
             }
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender
@@ -2207,9 +2207,9 @@ namespace battleutils
 
             //mobs hit get basetp+30 whereas pcs hit get basetp/3
             if (PDefender->objtype == TYPE_PC)
-                PDefender->addTP((int16)(tpMultiplier * targetTPMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))))); //yup store tp counts on hits taken too!
+                PDefender->addTP((std::int16_t)(tpMultiplier * targetTPMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))))); //yup store tp counts on hits taken too!
             else
-                PDefender->addTP((int16)(tpMultiplier * targetTPMultiplier * ((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(Mod::STORETP))))); //subtle blow also reduces the "+30" on mob tp gain
+                PDefender->addTP((std::int16_t)(tpMultiplier * targetTPMultiplier * ((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(Mod::STORETP))))); //subtle blow also reduces the "+30" on mob tp gain
         }
         else if (PDefender->objtype == TYPE_MOB)
             ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PChar, 0);
@@ -2352,7 +2352,7 @@ namespace battleutils
     *																		*
     ************************************************************************/
 
-    float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent)
+    float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, std::uint16_t bonusAttPercent)
     {
         // used to apply a % of attack bonus
         float attPercentBonus = 0;
@@ -2439,8 +2439,8 @@ namespace battleutils
 
         if (isCritical)
         {
-            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE);
-            criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
+            std::int16_t criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE);
+            criticaldamage = std::clamp<std::int16_t>(criticaldamage, 0, 100);
             pDIF *= ((100 + criticaldamage) / 100.0f);
         }
 
@@ -2595,9 +2595,9 @@ namespace battleutils
         //checking players weapon hit count
         uint8 num = PWeapon->getHitCount();
 
-        int16 tripleAttack = PEntity->getMod(Mod::TRIPLE_ATTACK);
-        int16 doubleAttack = PEntity->getMod(Mod::DOUBLE_ATTACK);
-        int16 quadAttack = PEntity->getMod(Mod::QUAD_ATTACK);
+        std::int16_t tripleAttack = PEntity->getMod(Mod::TRIPLE_ATTACK);
+        std::int16_t doubleAttack = PEntity->getMod(Mod::DOUBLE_ATTACK);
+        std::int16_t quadAttack = PEntity->getMod(Mod::QUAD_ATTACK);
 
         //check for merit upgrades
         if (PEntity->objtype == TYPE_PC)
@@ -2613,9 +2613,9 @@ namespace battleutils
             }
         }
 
-        quadAttack = std::clamp<int16>(quadAttack, 0, 100);
-        doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
-        tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
+        quadAttack = std::clamp<std::int16_t>(quadAttack, 0, 100);
+        doubleAttack = std::clamp<std::int16_t>(doubleAttack, 0, 100);
+        tripleAttack = std::clamp<std::int16_t>(tripleAttack, 0, 100);
 
         if (dsprand::GetRandomNumber(100) < quadAttack)
         {
@@ -2635,7 +2635,7 @@ namespace battleutils
         {
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO))
             {
-                uint16 zanshin = PEntity->getMod(Mod::ZANSHIN);
+                std::uint16_t zanshin = PEntity->getMod(Mod::ZANSHIN);
                 if (PEntity->objtype == TYPE_PC)
                     zanshin += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)PEntity);
 
@@ -2666,7 +2666,7 @@ namespace battleutils
     bool IsAbsorbByShadow(CBattleEntity* PDefender)
     {
         //utsus always overwrites blink, so if utsus>0 then we know theres no blink.
-        uint16 Shadow = PDefender->getMod(Mod::UTSUSEMI);
+        std::uint16_t Shadow = PDefender->getMod(Mod::UTSUSEMI);
         Mod modShadow = Mod::UTSUSEMI;
         if (Shadow == 0) {
             Shadow = PDefender->getMod(Mod::BLINK);
@@ -2702,7 +2702,7 @@ namespace battleutils
 
                     if (PStatusEffect != nullptr)
                     {
-                        uint16 icon = EFFECT_COPY_IMAGE_3;
+                        std::uint16_t icon = EFFECT_COPY_IMAGE_3;
                         switch (PDefender->getMod(Mod::UTSUSEMI))
                         {
                             case 1: icon = EFFECT_COPY_IMAGE_1; break;
@@ -2730,7 +2730,7 @@ namespace battleutils
         // cannot intimidate yourself!
         if (PAttacker == PDefender) return false;
 
-        int16 KillerEffect = 0;
+        std::int16_t KillerEffect = 0;
 
         switch (PAttacker->m_EcoSystem)
         {
@@ -2970,7 +2970,7 @@ namespace battleutils
         }
     }
 
-    int16 GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender, ELEMENT* appliedEle)
+    std::int16_t GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender, ELEMENT* appliedEle)
     {
         static const Mod resistances[][4] =
         {
@@ -3085,10 +3085,10 @@ namespace battleutils
 
         // Determine the skill chain level and elemental resistance.
         SKILLCHAIN_ELEMENT skillchain = (SKILLCHAIN_ELEMENT)PEffect->GetPower();
-        uint16 chainLevel = PEffect->GetTier();
-        uint16 chainCount = PEffect->GetSubPower();
+        std::uint16_t chainLevel = PEffect->GetTier();
+        std::uint16_t chainCount = PEffect->GetSubPower();
         ELEMENT appliedEle = ELEMENT_NONE;
-        int16 resistance = GetSkillchainMinimumResistance(skillchain, PDefender, &appliedEle);
+        std::int16_t resistance = GetSkillchainMinimumResistance(skillchain, PDefender, &appliedEle);
 
         DSP_DEBUG_BREAK_IF(chainLevel <= 0 || chainLevel > 4 || chainCount <= 0 || chainCount > 5);
 
@@ -3144,7 +3144,7 @@ namespace battleutils
 
             case TYPE_MOB:
             {
-                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar ? taChar : PAttacker, (uint16)damage);
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar ? taChar : PAttacker, (std::uint16_t)damage);
             }
             break;
             default:
@@ -3219,7 +3219,7 @@ namespace battleutils
             CCharEntity* PChar = ((CCharEntity*)PEntity);
 
             uint8  SlotID = 0;
-            uint16 toolID = PSpell->getMPCost();
+            std::uint16_t toolID = PSpell->getMPCost();
 
             if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
             {
@@ -3286,12 +3286,12 @@ namespace battleutils
             }
             else
             {
-                uint16 meritBonus = 0;
+                std::uint16_t meritBonus = 0;
 
                 if (charutils::hasTrait(PChar, TRAIT_NINJA_TOOL_EXPERT))
                     meritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_NINJA_TOOL_EXPERTISE, (CCharEntity*)PChar);
 
-                uint16 chance = (PChar->getMod(Mod::NINJA_TOOL) + meritBonus);
+                std::uint16_t chance = (PChar->getMod(Mod::NINJA_TOOL) + meritBonus);
 
                 if (ConsumeTool && dsprand::GetRandomNumber(100) > chance)
                 {
@@ -3442,7 +3442,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount)
+    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, std::uint16_t amount)
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PTarget == nullptr);
@@ -3461,7 +3461,7 @@ namespace battleutils
 
     //Generate enmity for all targets in range
 
-    void GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE)
+    void GenerateInRangeEnmity(CBattleEntity* PSource, std::int16_t CE, std::int16_t VE)
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
 
@@ -3517,7 +3517,7 @@ namespace battleutils
     *	Effect from soul eater		                                        *
     *                                                                       *
     ************************************************************************/
-    uint16 doSoulEaterEffect(CCharEntity* m_PChar, std::uint32_t damage)
+    std::uint16_t doSoulEaterEffect(CCharEntity* m_PChar, std::uint32_t damage)
     {
         // Souleater has no effect <10HP.
         if (m_PChar->GetMJob() == JOB_DRK && m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER))
@@ -3566,7 +3566,7 @@ namespace battleutils
     *	Samurai overwhelm damage bonus                                      *
     *                                                                       *
     ************************************************************************/
-    uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage)
+    std::uint16_t getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, std::uint16_t damage)
     {
         if (m_PChar->objtype == TYPE_PC) // Some mobskills use TakeWeaponskillDamage function, which calls upon this one.
         {
@@ -3586,7 +3586,7 @@ namespace battleutils
                     case 5:	tmpDamage += tmpDamage * 0.19f; break;
                     default: break;
                 }
-                damage = (uint16)floor(tmpDamage);
+                damage = (std::uint16_t)floor(tmpDamage);
             }
         }
         return damage;
@@ -3658,7 +3658,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    uint16 jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
+    std::uint16_t jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier)
     {
 
         // super jump - remove 99% of enmity
@@ -3678,7 +3678,7 @@ namespace battleutils
 
 
         // multihit's just multiply jump damage
-        uint16 subType = PAttacker->m_Weapons[SLOT_SUB]->getDmgType();
+        std::uint16_t subType = PAttacker->m_Weapons[SLOT_SUB]->getDmgType();
         uint8 numattacksLeftHand = 0;
 
         //sub weapon is equipped
@@ -3698,8 +3698,8 @@ namespace battleutils
 
         uint8 hitrate = battleutils::GetHitRate(PAttacker, PVictim);
         uint8 realHits = 0;			// to store the real number of hit for tp multipler
-        uint16 totalDamage = 0;
-        uint16 damageForRound = 0;
+        std::uint16_t totalDamage = 0;
+        std::uint16_t damageForRound = 0;
         bool hitTarget = false;
 
         // Loop number of hits
@@ -3724,20 +3724,20 @@ namespace battleutils
                 if (!battleutils::IsAbsorbByShadow(PVictim))
                 {
                     // successful hit, add damage
-                    uint16 AttMultiplerPercent = 0;
+                    std::uint16_t AttMultiplerPercent = 0;
 
                     // get jump attack bonus from gear
                     if (PAttacker->objtype == TYPE_PC)
                         AttMultiplerPercent = PAttacker->getMod(Mod::JUMP_ATT_BONUS);
 
                     float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
-                    damageForRound = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PVictim, SLOT_MAIN)) * DamageRatio);
+                    damageForRound = (std::uint16_t)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PVictim, SLOT_MAIN)) * DamageRatio);
 
                     // bonus applies to jump only, not high jump
                     if (tier == 1)
                     {
                         float jumpBonus = ((PAttacker->VIT() / (float)256) + 1);
-                        damageForRound = (uint16)(damageForRound * jumpBonus);
+                        damageForRound = (std::uint16_t)(damageForRound * jumpBonus);
                     }
 
                     hitTarget = true;
@@ -3775,7 +3775,7 @@ namespace battleutils
         // high jump removes %50 emnity + more from any gear mods
         if (tier == 2 && PVictim->objtype == TYPE_MOB)
         {
-            uint16 enmityReduction = PAttacker->getMod(Mod::HIGH_JUMP_ENMITY_REDUCTION) + 50;
+            std::uint16_t enmityReduction = PAttacker->getMod(Mod::HIGH_JUMP_ENMITY_REDUCTION) + 50;
 
             // DRG sub has only 30% enmity removed instead of 50%.
             if (PAttacker->GetSJob() == JOB_DRG)
@@ -3842,7 +3842,7 @@ namespace battleutils
             }
 
             // mob is charmable
-            uint16 baseExp = charutils::GetRealExp(PCharmer->GetMLevel(), PVictim->GetMLevel());
+            std::uint16_t baseExp = charutils::GetRealExp(PCharmer->GetMLevel(), PVictim->GetMLevel());
 
             if (baseExp >= 400) {//IT
                 CharmTime = 22500;
@@ -3867,7 +3867,7 @@ namespace battleutils
             }
 
             //apply charm time extension from gear
-            uint16 charmModValue = (PCharmer->getMod(Mod::CHARM_TIME));
+            std::uint16_t charmModValue = (PCharmer->getMod(Mod::CHARM_TIME));
             // adds 5% increase
             auto extraCharmTime = (std::uint32_t)(CharmTime * (charmModValue * 0.5f) / 10);
             CharmTime += extraCharmTime;
@@ -3999,7 +3999,7 @@ namespace battleutils
         //printf("Target = %s, Lvl. %u\n", PTarget->name.c_str(), targetLvl);
 
         std::uint32_t base = 0;
-        uint16 baseExp = charutils::GetRealExp(charmerLvl, targetLvl);
+        std::uint16_t baseExp = charutils::GetRealExp(charmerLvl, targetLvl);
 
         //printf("baseExp = %u\n", baseExp);
         if (baseExp >= 400) // IT
@@ -4134,7 +4134,7 @@ namespace battleutils
         else
         {
             damage = HandleSevereDamage(PDefender, damage);
-            int16 absorbedMP = (int16)(damage * PDefender->getMod(Mod::ABSORB_DMG_TO_MP) / 100);
+            std::int16_t absorbedMP = (std::int16_t)(damage * PDefender->getMod(Mod::ABSORB_DMG_TO_MP) / 100);
             if (absorbedMP > 0)
                 PDefender->addMP(absorbedMP);
         }
@@ -4168,7 +4168,7 @@ namespace battleutils
         else
         {
             damage = HandleSevereDamage(PDefender, damage);
-            int16 absorbedMP = (int16)(damage * PDefender->getMod(Mod::ABSORB_DMG_TO_MP) / 100);
+            std::int16_t absorbedMP = (std::int16_t)(damage * PDefender->getMod(Mod::ABSORB_DMG_TO_MP) / 100);
             if (absorbedMP > 0)
                 PDefender->addMP(absorbedMP);
         }
@@ -4196,7 +4196,7 @@ namespace battleutils
         else
         {
             damage = HandleSevereDamage(PDefender, damage);
-            int16 absorbedMP = (int16)(damage * (PDefender->getMod(Mod::ABSORB_DMG_TO_MP) + PDefender->getMod(Mod::ABSORB_PHYSDMG_TO_MP)) / 100);
+            std::int16_t absorbedMP = (std::int16_t)(damage * (PDefender->getMod(Mod::ABSORB_DMG_TO_MP) + PDefender->getMod(Mod::ABSORB_PHYSDMG_TO_MP)) / 100);
             if (absorbedMP > 0)
                 PDefender->addMP(absorbedMP);
             damage = HandleFanDance(PDefender, damage);
@@ -4224,7 +4224,7 @@ namespace battleutils
         else
         {
             damage = HandleSevereDamage(PDefender, damage);
-            int16 absorbedMP = (int16)(damage * (PDefender->getMod(Mod::ABSORB_DMG_TO_MP) + PDefender->getMod(Mod::ABSORB_PHYSDMG_TO_MP)) / 100);
+            std::int16_t absorbedMP = (std::int16_t)(damage * (PDefender->getMod(Mod::ABSORB_DMG_TO_MP) + PDefender->getMod(Mod::ABSORB_PHYSDMG_TO_MP)) / 100);
             if (absorbedMP > 0)
                 PDefender->addMP(absorbedMP);
             damage = HandleFanDance(PDefender, damage);
@@ -4248,7 +4248,7 @@ namespace battleutils
             // We keep track of the running total of Accuracy Bonus as part of the Sub Power of the Effect
             // This is used to re-adjust Mod::ACC when the effect wears off
 
-            uint16 accBonus = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->GetSubPower();
+            std::uint16_t accBonus = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_AFFLATUS_MISERY)->GetSubPower();
 
             // Per BGWiki, this bonus is thought to cap at +30
             if (accBonus < 30) {
@@ -4277,7 +4277,7 @@ namespace battleutils
             CTrait* PExistingTrait = PEntity->TraitList.at(j);
 
             if (PExistingTrait->getID() == TRAIT_TACTICAL_PARRY) {
-                int16 tpBonus = PEntity->getMod(Mod::TACTICAL_PARRY);
+                std::int16_t tpBonus = PEntity->getMod(Mod::TACTICAL_PARRY);
                 //ShowDebug(CL_CYAN"HandleTacticalParry: Tactical Parry Tp Bonus = %d\n" CL_RESET, tpBonus);
                 PEntity->addTP(tpBonus);
             }
@@ -4290,7 +4290,7 @@ namespace battleutils
 
         if (PEntity->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)PEntity, TRAIT_TRANQUIL_HEART))
         {
-            int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
+            std::int16_t healingSkill = PEntity->GetSkill(SKILL_HEA);
             reductionPercent = ((healingSkill / 10) * .5f);
 
             // Reduction Percent Caps at 25%
@@ -4310,8 +4310,8 @@ namespace battleutils
     {
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
         {
-            uint16 BindBreakChance = 0; // 0-1000 (100.0%) scale. Maybe change to a float later..
-            uint16 LvDiffByExp = charutils::GetRealExp(PAttacker->GetMLevel(), PDefender->GetMLevel()); // This is temp.
+            std::uint16_t BindBreakChance = 0; // 0-1000 (100.0%) scale. Maybe change to a float later..
+            std::uint16_t LvDiffByExp = charutils::GetRealExp(PAttacker->GetMLevel(), PDefender->GetMLevel()); // This is temp.
 
             // Todo: replace with an actual calculated value based on level difference. Not it, Bro!
             // This entire block of conditionals should not exist. Lv diff really shouldn't be handled at the exp check level either.
@@ -4354,7 +4354,7 @@ namespace battleutils
 
     std::int32_t HandleStoneskin(CBattleEntity* PDefender, std::int32_t damage)
     {
-        int16 skin = PDefender->getMod(Mod::STONESKIN);
+        std::int16_t skin = PDefender->getMod(Mod::STONESKIN);
         if (damage > 0 && skin > 0)
         {
             if (skin > damage)
@@ -4409,7 +4409,7 @@ namespace battleutils
 
             // Severe Damage is when the Attack's Damage Exceeds a Certain Threshold
             if (damage > damageThreshold) {
-                uint16 severeReduction = PDefender->StatusEffectContainer->GetStatusEffect(effect)->GetSubPower();
+                std::uint16_t severeReduction = PDefender->StatusEffectContainer->GetStatusEffect(effect)->GetSubPower();
                 severeReduction = std::clamp((100 - severeReduction), 0, 100) / 100;
                 damage = damage * severeReduction;
 
@@ -4433,7 +4433,7 @@ namespace battleutils
     *	handle the /assist command		                                    *
     *                                                                       *
     ************************************************************************/
-    void assistTarget(CCharEntity* PChar, uint16 TargID)
+    void assistTarget(CCharEntity* PChar, std::uint16_t TargID)
     {
         // get the player we want to assist
         CBattleEntity* PlayerToAssist = (CBattleEntity*)PChar->GetEntity(TargID, TYPE_MOB | TYPE_PC);
@@ -4501,7 +4501,7 @@ namespace battleutils
         return GetWeather(PEntity, ignoreScholar, zoneutils::GetZone(PEntity->getZone())->GetWeather());
     }
 
-    WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather)
+    WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar, std::uint16_t zoneWeather)
     {
         WEATHER scholarSpell = WEATHER_NONE;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_FIRESTORM))
@@ -4791,7 +4791,7 @@ namespace battleutils
     *	Get the Snapshot shot time reduction                                *
     *                                                                       *
     ************************************************************************/
-    int16 GetSnapshotReduction(CCharEntity* m_PChar, int16 delay)
+    std::int16_t GetSnapshotReduction(CCharEntity* m_PChar, std::int16_t delay)
     {
         auto SnapShotReductionPercent {m_PChar->getMod(Mod::SNAP_SHOT)};
 
@@ -4806,7 +4806,7 @@ namespace battleutils
             SnapShotReductionPercent += m_PChar->getMod(Mod::VELOCITY_SNAPSHOT_BONUS);
         }
 
-        return (int16)(delay * (100 - SnapShotReductionPercent) / 100.f);
+        return (std::int16_t)(delay * (100 - SnapShotReductionPercent) / 100.f);
     }
 
     /************************************************************************
@@ -4943,7 +4943,7 @@ namespace battleutils
         {
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
             {
-                uint16 bonus = 0;
+                std::uint16_t bonus = 0;
                 //Only apply Alacrity/celerity mod if the spell element matches the weather.
                 if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), (uint8)PSpell->getElement()))
                 {
@@ -4969,7 +4969,7 @@ namespace battleutils
         {
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
             {
-                uint16 bonus = 0;
+                std::uint16_t bonus = 0;
                 //Only apply Alacrity/celerity mod if the spell element matches the weather.
                 if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), (uint8)PSpell->getElement()))
                 {
@@ -5013,11 +5013,11 @@ namespace battleutils
             {
                 cast = (std::uint32_t)(cast * 1.5f);
             }
-            uint16 songcasting = PEntity->getMod(Mod::SONG_SPELLCASTING_TIME);
+            std::uint16_t songcasting = PEntity->getMod(Mod::SONG_SPELLCASTING_TIME);
             cast = (std::uint32_t)(cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f)));
         }
 
-        auto fastCast = std::clamp<int16>(PEntity->getMod(Mod::FASTCAST), -100, 50);
+        auto fastCast = std::clamp<std::int16_t>(PEntity->getMod(Mod::FASTCAST), -100, 50);
         if (PSpell->isCure()) // Cure cast time reductions
         {
             fastCast += PEntity->getMod(Mod::CURE_CAST_TIME);
@@ -5025,15 +5025,15 @@ namespace battleutils
             {
                 fastCast += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)PEntity);
             }
-            fastCast = std::clamp<int16>(fastCast, -100, 80);
+            fastCast = std::clamp<std::int16_t>(fastCast, -100, 80);
         }
-        auto uncappedFastCast = std::clamp<int16>(PEntity->getMod(Mod::UFASTCAST), -100, 100);
+        auto uncappedFastCast = std::clamp<std::int16_t>(PEntity->getMod(Mod::UFASTCAST), -100, 100);
         float sumFastCast = std::clamp<float>((float)(fastCast + uncappedFastCast), -100.f, 100.f);
 
         return (std::uint32_t)(cast * ((100.0f - sumFastCast) / 100.0f));
     }
 
-    uint16 CalculateSpellCost(CBattleEntity* PEntity, CSpell* PSpell)
+    std::uint16_t CalculateSpellCost(CBattleEntity* PEntity, CSpell* PSpell)
     {
         if (PSpell == nullptr)
         {
@@ -5048,13 +5048,13 @@ namespace battleutils
         }
 
         bool applyArts = true;
-        uint16 base = PSpell->getMPCost();
+        std::uint16_t base = PSpell->getMPCost();
         if (PSpell->getID() == SpellID::Embrava || PSpell->getID() == SpellID::Kaustra) //Embrava/Kaustra
         {
-            base = (uint16)(PEntity->health.maxmp * 0.2);
+            base = (std::uint16_t)(PEntity->health.maxmp * 0.2);
         }
 
-        int16 cost = base;
+        std::int16_t cost = base;
 
         if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
         {
@@ -5070,7 +5070,7 @@ namespace battleutils
             }
             else if (applyArts)
             {
-                cost += (int16)(base * (PEntity->getMod(Mod::BLACK_MAGIC_COST) / 100.0f));
+                cost += (std::int16_t)(base * (PEntity->getMod(Mod::BLACK_MAGIC_COST) / 100.0f));
             }
         }
         else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
@@ -5087,14 +5087,14 @@ namespace battleutils
             }
             else if (applyArts)
             {
-                cost += (int16)(base * (PEntity->getMod(Mod::WHITE_MAGIC_COST) / 100.0f));
+                cost += (std::int16_t)(base * (PEntity->getMod(Mod::WHITE_MAGIC_COST) / 100.0f));
             }
         }
         if (dsprand::GetRandomNumber(100) < (PEntity->getMod(Mod::NO_SPELL_MP_DEPLETION)))
         {
             cost = 0;
         }
-        return std::clamp<int16>(cost, 0, 9999);
+        return std::clamp<std::int16_t>(cost, 0, 9999);
     }
     std::uint32_t CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell)
     {
@@ -5110,7 +5110,7 @@ namespace battleutils
         //apply Fast Cast
         recast = (std::int32_t)(recast * ((100.0f - std::clamp((float)PEntity->getMod(Mod::FASTCAST) / 2.0f, 0.0f, 25.0f)) / 100.0f));
 
-        int16 haste = PEntity->getMod(Mod::HASTE_MAGIC) + PEntity->getMod(Mod::HASTE_GEAR);
+        std::int16_t haste = PEntity->getMod(Mod::HASTE_MAGIC) + PEntity->getMod(Mod::HASTE_GEAR);
 
         recast = (std::int32_t)(recast * ((1024.f - haste) / 1024.f));
 
@@ -5166,7 +5166,7 @@ namespace battleutils
             }
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_ALACRITY))
             {
-                uint16 bonus = 0;
+                std::uint16_t bonus = 0;
                 //Only apply Alacrity/celerity mod if the spell element matches the weather.
                 if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, false), (uint8)PSpell->getElement()))
                 {
@@ -5205,7 +5205,7 @@ namespace battleutils
             }
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CELERITY))
             {
-                uint16 bonus = 0;
+                std::uint16_t bonus = 0;
                 //Only apply Alacrity/celerity mod if the spell element matches the weather.
                 if (battleutils::WeatherMatchesElement(battleutils::GetWeather(PEntity, true), (uint8)PSpell->getElement()))
                 {
@@ -5234,10 +5234,10 @@ namespace battleutils
         return recast / 1000;
     }
 
-    int16 CalculateWeaponSkillTP(CBattleEntity* PEntity, CWeaponSkill* PWeaponSkill, int16 spentTP)
+    std::int16_t CalculateWeaponSkillTP(CBattleEntity* PEntity, CWeaponSkill* PWeaponSkill, std::int16_t spentTP)
     {
         //apply TP Bonus
-        int16 tp = spentTP + PEntity->getMod(Mod::TP_BONUS);
+        std::int16_t tp = spentTP + PEntity->getMod(Mod::TP_BONUS);
 
         if (PEntity->objtype == TYPE_PC)
         {

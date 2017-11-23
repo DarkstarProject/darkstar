@@ -38,12 +38,12 @@ public:
     virtual void Tick(time_point tick) = 0;
     virtual void Despawn();
     virtual void Reset();
-    virtual bool Cast(uint16 targid, SpellID spellid);
-    virtual bool Engage(uint16 targid);
-    virtual bool ChangeTarget(uint16 targid);
+    virtual bool Cast(std::uint16_t targid, SpellID spellid);
+    virtual bool Engage(std::uint16_t targid);
+    virtual bool ChangeTarget(std::uint16_t targid);
     virtual bool Disengage();
-    virtual bool WeaponSkill(uint16 targid, uint16 wsid);
-    virtual bool Ability(uint16 targid, uint16 abilityid) { return false; }
+    virtual bool WeaponSkill(std::uint16_t targid, std::uint16_t wsid);
+    virtual bool Ability(std::uint16_t targid, std::uint16_t abilityid) { return false; }
 
     bool IsAutoAttackEnabled();
     void SetAutoAttackEnabled(bool);

@@ -31,7 +31,7 @@ This file is part of DarkStar-server source code.
 #include "../alliance.h"
 #include "../party.h"
 
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, std::uint16_t memberflags, std::uint16_t ZoneID)
 {
     this->type = 0xDD;
     this->size = 0x20;
@@ -40,18 +40,18 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
 
     ref<std::uint32_t>(0x04) = PChar->id;
 
-    ref<uint16>(0x14) = memberflags;
+    ref<std::uint16_t>(0x14) = memberflags;
 
     if (PChar->getZone() != ZoneID)
     {
-        ref<uint16>(0x20) = PChar->getZone();
+        ref<std::uint16_t>(0x20) = PChar->getZone();
     }
     else
     {
         ref<std::uint32_t>(0x08) = PChar->health.hp;
         ref<std::uint32_t>(0x0C) = PChar->health.mp;
-        ref<uint16>(0x10) = PChar->health.tp;
-        ref<uint16>(0x18) = PChar->targid;
+        ref<std::uint16_t>(0x10) = PChar->health.tp;
+        ref<std::uint16_t>(0x18) = PChar->targid;
         ref<uint8>(0x1A) = MemberNumber;
         ref<uint8>(0x1D) = PChar->GetHPP();
         ref<uint8>(0x1E) = PChar->GetMPP();
@@ -67,7 +67,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
 
     memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
 }
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8* name, std::uint16_t memberFlags, uint8 MemberNumber, std::uint16_t ZoneID)
 {
 
     this->type = 0xDD;
@@ -75,8 +75,8 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8*
 
     ref<std::uint32_t>(0x04) = id;
 
-    ref<uint16>(0x14) = memberFlags;
-    ref<uint16>(0x20) = ZoneID;
+    ref<std::uint16_t>(0x14) = memberFlags;
+    ref<std::uint16_t>(0x20) = ZoneID;
 
     memcpy(data + (0x26), name, strlen(name));
 }

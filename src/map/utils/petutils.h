@@ -76,7 +76,7 @@ namespace petutils
     void DespawnPet(CBattleEntity* PMaster);
     void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget);
     void RetreatToMaster(CBattleEntity* PMaster);
-    int16 PerpetuationCost(std::uint32_t id, uint8 level);
+    std::int16_t PerpetuationCost(std::uint32_t id, uint8 level);
     void Familiar(CBattleEntity* PPet);
     void LoadPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone);
     void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize);

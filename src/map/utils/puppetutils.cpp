@@ -150,7 +150,7 @@ void SaveAutomaton(CCharEntity* PChar)
 
 bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 {
-	uint16 id = PItem->getID();
+	std::uint16_t id = PItem->getID();
 
 	if (!PItem->isType(ITEM_PUPPET))
 		return false;
@@ -192,7 +192,7 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 
 bool HasAttachment(CCharEntity* PChar, CItem* PItem)
 {
-    uint16 id = PItem->getID();
+    std::uint16_t id = PItem->getID();
 
     if (!PItem->isType(ITEM_PUPPET))
         return false;
@@ -401,7 +401,7 @@ void setHead(CCharEntity* PChar, uint8 head)
 
 }
 
-uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
+std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
 {
     int8 rank = 0;
     if (skill < SKILL_AME || skill > SKILL_AMA)
@@ -459,7 +459,7 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
     return battleutils::GetMaxSkill(rank, level);
 }
 
-uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
 {
     return getSkillCap(PChar, skill, PChar->PAutomaton->GetMLevel());
 }
@@ -469,7 +469,7 @@ void LoadAutomatonStats(CCharEntity* PChar)
     switch (PChar->PAutomaton->getFrame())
     {
         default: //case FRAME_HARLEQUIN:
-            ShowWarning(CL_YELLOW"puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n" CL_RESET, PChar->GetName(), (uint16)PChar->PAutomaton->getFrame());
+            ShowWarning(CL_YELLOW"puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n" CL_RESET, PChar->GetName(), (std::uint16_t)PChar->PAutomaton->getFrame());
         case FRAME_HARLEQUIN:
             petutils::LoadPet(PChar, PETID_HARLEQUINFRAME, false);
             break;
@@ -493,10 +493,10 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
     CCharEntity* PChar = (CCharEntity*)PAutomaton->PMaster;
     if (getSkillCap(PChar, SkillID) != 0 && !(PAutomaton->WorkingSkills.skill[SkillID] & 0x8000))
     {
-        uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-        uint16 MaxSkill = getSkillCap(PChar, SkillID, std::min(PAutomaton->GetMLevel(), lvl));
+        std::uint16_t CurSkill = PChar->RealSkills.skill[SkillID];
+        std::uint16_t MaxSkill = getSkillCap(PChar, SkillID, std::min(PAutomaton->GetMLevel(), lvl));
 
-        int16  Diff = MaxSkill - CurSkill / 10;
+        std::int16_t  Diff = MaxSkill - CurSkill / 10;
         double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
 
         double random = dsprand::GetRandomNumber(1.);
@@ -560,7 +560,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
                 PAutomaton->WorkingSkills.skill[SkillID] += 1;
                 if (SkillID == SKILL_AMA)
                 {
-                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
+                    std::uint16_t amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
                     PAutomaton->WorkingSkills.automaton_magic = amaSkill;
                     PAutomaton->WorkingSkills.healing = amaSkill;
                     PAutomaton->WorkingSkills.enhancing = amaSkill;

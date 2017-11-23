@@ -74,7 +74,7 @@ struct SearchCommInfo
 {
     SOCKET socket;
     std::uint32_t ip;
-    uint16 port;
+    std::uint16_t port;
 };
 
 void TaskManagerThread();
@@ -524,8 +524,8 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 {
     uint8* data = (uint8*)PTCPRequest.GetData();
 
-    uint16 partyid = RBUFW(data, (0x10));
-    uint16 allianceid = RBUFW(data, (0x14));
+    std::uint16_t partyid = RBUFW(data, (0x10));
+    std::uint16_t allianceid = RBUFW(data, (0x14));
     std::uint32_t linkshellid1 = RBUFL(data, (0x18));
     std::uint32_t linkshellid2 = RBUFL(data, (0x1C));
 
@@ -668,9 +668,9 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
     {
         CAHItemsListPacket PAHPacket(20 * i);
 
-        PAHPacket.SetItemCount((uint16)ItemList.size());
+        PAHPacket.SetItemCount((std::uint16_t)ItemList.size());
 
-        for (uint16 y = 20 * i; (y != 20 * (i + 1)) && (y < ItemList.size()); ++y)
+        for (std::uint16_t y = 20 * i; (y != 20 * (i + 1)) && (y < ItemList.size()); ++y)
         {
             PAHPacket.AddItem(ItemList.at(y));
         }
@@ -688,7 +688,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
 void HandleAuctionHouseHistory(CTCPRequestPacket& PTCPRequest)
 {
     uint8* data = (uint8*)PTCPRequest.GetData();
-    uint16 ItemID = RBUFW(data, (0x12));
+    std::uint16_t ItemID = RBUFW(data, (0x12));
     uint8  stack = RBUFB(data, (0x15));
 
     CAHHistoryPacket PAHPacket(ItemID);
@@ -734,7 +734,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     uint8 minRank = 0;
     uint8 maxRank = 0;
 
-    uint16 areas[10];
+    std::uint16_t areas[10];
 
     std::uint32_t flags = 0;
 
@@ -742,7 +742,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     uint8* data = (uint8*)PTCPRequest.GetData();
     uint8  size = RBUFB(data, (0x10));
 
-    uint16 workloadBits = size * 8;
+    std::uint16_t workloadBits = size * 8;
 
     memset(areas, 0, sizeof(areas));
     //ShowMessage("Received a search packet with size %u byte\n", size);
@@ -810,7 +810,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
             }
             else // 8 Bit = 1 Byte per Area Code
             {
-                areas[areaCount] = (uint16)unpackBitsLE(&data[0x11], bitOffset, 10);
+                areas[areaCount] = (std::uint16_t)unpackBitsLE(&data[0x11], bitOffset, 10);
                 areaCount++;
                 bitOffset += 10;
                 //	printf("SEARCH::Area List Entry found(%2X)!\n",areas[areaCount-1]);

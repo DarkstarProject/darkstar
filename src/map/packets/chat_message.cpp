@@ -47,7 +47,7 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
     if (PChar->nameflags.flags & FLAG_GM && sender.empty())
         ref<uint8>(0x05) = 0x01;
 
-    ref<uint16>(0x06) = PChar->getZone();
+    ref<std::uint16_t>(0x06) = PChar->getZone();
 
     memcpy(data + (0x08), &name[0], name.size());
     memcpy(data + (0x18), &message[0], buffSize);

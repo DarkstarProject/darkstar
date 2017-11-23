@@ -39,7 +39,7 @@
 #include "navmesh.h"
 
 
-enum ZONEID : uint16
+enum ZONEID : std::uint16_t
 {
     ZONE_RESIDENTIAL_AREA             = 0,
     ZONE_PHANAUET_CHANNEL             = 1,
@@ -475,7 +475,7 @@ struct zoneWeather_t
 struct zoneLine_t
 {
     std::uint32_t     m_zoneLineID;
-    uint16     m_toZone;
+    std::uint16_t     m_toZone;
     position_t m_toPos;
 };
 
@@ -496,9 +496,9 @@ class CZoneEntities;
 typedef std::list<CRegion*> regionList_t;
 typedef std::list<zoneLine_t*> zoneLineList_t;
 
-typedef std::map<uint16, zoneWeather_t> weatherVector_t;
+typedef std::map<std::uint16_t, zoneWeather_t> weatherVector_t;
 
-typedef std::map<uint16, CBaseEntity*> EntityList_t;
+typedef std::map<std::uint16_t, CBaseEntity*> EntityList_t;
 
 std::int32_t zone_update_weather(std::uint32_t tick, CTaskMgr::CTask *PTask);
 
@@ -511,8 +511,8 @@ public:
     REGIONTYPE      GetRegionID();
     CONTINENTTYPE   GetContinentID();
     std::uint32_t          GetIP();
-    uint16          GetPort();
-    uint16          GetTax();
+    std::uint16_t          GetPort();
+    std::uint16_t          GetTax();
     WEATHER         GetWeather();
     std::uint32_t          GetWeatherChangeTime();
     const int8*     GetName();
@@ -525,10 +525,10 @@ public:
     virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
     virtual CCharEntity*    GetCharByID(std::uint32_t id);
     // Gets an entity - ignores instances (use CBaseEntity->GetEntity if possible)
-    virtual CBaseEntity*    GetEntity(uint16 targid, uint8 filter = -1);            // получаем указатель на любую сущность в зоне
+    virtual CBaseEntity*    GetEntity(std::uint16_t targid, uint8 filter = -1);            // получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
-    bool            CanUseMisc(uint16 misc);
+    bool            CanUseMisc(std::uint16_t misc);
     void            SetWeather(WEATHER weatherCondition);
     void            UpdateWeather();
 
@@ -540,7 +540,7 @@ public:
     virtual void    SpawnTransport(CCharEntity* PChar);                             // отображаем транспорт
     void            SavePlayTime();
 
-    virtual void    WideScan(CCharEntity* PChar, uint16 radius);                    // сканирование местности с заданным радиусом
+    virtual void    WideScan(CCharEntity* PChar, std::uint16_t radius);                    // сканирование местности с заданным радиусом
 
     virtual void    DecreaseZoneCounter(CCharEntity* PChar);                        // добавляем персонажа в зону
     virtual void    IncreaseZoneCounter(CCharEntity* PChar);                        // удаляем персонажа из зоны
@@ -551,7 +551,7 @@ public:
     virtual void    DeletePET(CBaseEntity* PPet);                                   // derefs the pet's ID from this zone
 
     virtual void    FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-    virtual void    TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
+    virtual void    TransportDepart(std::uint16_t boundary, std::uint16_t zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
     void            InsertRegion(CRegion* Region);                                  // добавляем в зону активную область
 
@@ -584,7 +584,7 @@ private:
     REGIONTYPE      m_regionID;             // ID области
     CONTINENTTYPE   m_continentID;          // ID континента
     string_t        m_zoneName;             // имя зоны
-    uint16          m_zonePort;             // порт зоны
+    std::uint16_t          m_zonePort;             // порт зоны
     std::uint32_t          m_zoneIP;               // IP зоны
     bool            m_useNavMesh;           // Use navmesh for roaming, chasing
 
@@ -592,8 +592,8 @@ private:
     std::uint32_t          m_WeatherChangeTime;    // время начала текущей погоды
     CZoneEntities*  m_zoneEntities;
 
-    uint16          m_tax;                  // налог в bazaar
-    uint16          m_miscMask;             // битовое поле, описывающее возможности использования в зоне определенных умений
+    std::uint16_t          m_tax;                  // налог в bazaar
+    std::uint16_t          m_miscMask;             // битовое поле, описывающее возможности использования в зоне определенных умений
 
     zoneMusic_t     m_zoneMusic;            // информация о мелодиях, используемых в зоне
 

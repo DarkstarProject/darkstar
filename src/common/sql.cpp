@@ -70,7 +70,7 @@ Sql_t* Sql_Malloc(void)
 *																		*
 ************************************************************************/
 
-std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db)
+std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, std::uint16_t port, const char* db)
 {
 	if( self == NULL )
 		return SQL_ERROR;

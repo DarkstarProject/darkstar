@@ -28,7 +28,7 @@
 #include "../entities/baseentity.h"
 
 
-CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param, std::int32_t value, uint16 messageID)
+CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param, std::int32_t value, std::uint16_t messageID)
 {
 	this->type = 0x29;
 	this->size = 0x0E;
@@ -44,7 +44,7 @@ CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTar
 	WBUFW(data,(0x18)) = messageID;
 }
 
-uint16 CMessageBasicPacket::getMessageID()
+std::uint16_t CMessageBasicPacket::getMessageID()
 {
-    return ref<uint16>(0x18);
+    return ref<std::uint16_t>(0x18);
 }

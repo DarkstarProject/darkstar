@@ -44,7 +44,7 @@ struct jobs_t
 {
     std::uint32_t unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
     uint8  job[MAX_JOBTYPE];		// текущий уровень для каждой из профессий
-    uint16 exp[MAX_JOBTYPE];		// текущее количество опыта для каждой из профессий
+    std::uint16_t exp[MAX_JOBTYPE];		// текущее количество опыта для каждой из профессий
     uint8  genkai;					// максимальный уровень профессий персонажа
 };
 
@@ -73,8 +73,8 @@ struct profile_t
 {
     uint8	   nation;			// принадлежность к государству
     uint8	   mhflag;			// флаг выхода из MogHouse
-    uint16	   title;			// звание
-    uint16     fame[15];		// известность
+    std::uint16_t	   title;			// звание
+    std::uint16_t     fame[15];		// известность
     uint8 	   rank[3];			// рагн в трех государствах
     std::uint32_t	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
@@ -84,7 +84,7 @@ struct profile_t
 
 struct expChain_t
 {
-    uint16 chainNumber;
+    std::uint16_t chainNumber;
     std::uint32_t chainTime;
 };
 
@@ -106,14 +106,14 @@ struct PetInfo_t
     bool		respawnPet;		// used for spawning pet on zone
     uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..
     PETTYPE		petType;		// type of pet being transfered
-    int16		petHP;			// pets hp
-    int16       petMP;
+    std::int16_t		petHP;			// pets hp
+    std::int16_t       petMP;
     float		petTP;			// pets tp
 };
 
 struct AuctionHistory_t
 {
-    uint16		itemid;
+    std::uint16_t		itemid;
     uint8		stack;
     std::uint32_t		price;
     uint8		status; //e.g. if sold/not sold/on market
@@ -130,7 +130,7 @@ struct GearSetMod_t
 {
     uint8	modNameId;
     Mod  	modId;
-    uint16	modValue;
+    std::uint16_t	modValue;
 };
 
 /************************************************************************
@@ -171,12 +171,12 @@ public:
     expChain_t				expChain;						// Exp Chains
     search_t				search;							// данные и комментарий, отображаемые в окне поиска
     bazaar_t				bazaar;							// все данные, необходимые для таботы bazaar
-    uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
-    uint16					m_EquipBlock;					// заблокированные ячейки экипировки
-    uint16                  m_StatsDebilitation;            // Debilitation arrows
+    std::uint16_t					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
+    std::uint16_t					m_EquipBlock;					// заблокированные ячейки экипировки
+    std::uint16_t                  m_StatsDebilitation;            // Debilitation arrows
     uint8					equip[18];						//      SlotID where equipment is
     uint8					equipLoc[18];					// ContainerID where equipment is
-    uint16                  styleItems[16];                 // Item IDs for items that are style locked.
+    std::uint16_t                  styleItems[16];                 // Item IDs for items that are style locked.
 
     uint8					m_ZonesList[36];				// список посещенных персонажем зон
     std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
@@ -204,10 +204,10 @@ public:
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
 
-    uint16			  m_copCurrent;					// текущая миссия Chains of Promathia
-    uint16			  m_acpCurrent;					// текущая миссия A Crystalline Prophecy
-    uint16			  m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
-    uint16			  m_asaCurrent;					// текущая миссия A Shantotto Ascension
+    std::uint16_t			  m_copCurrent;					// текущая миссия Chains of Promathia
+    std::uint16_t			  m_acpCurrent;					// текущая миссия A Crystalline Prophecy
+    std::uint16_t			  m_mkeCurrent;					// текущая миссия A Moogle Kupo d'Etat
+    std::uint16_t			  m_asaCurrent;					// текущая миссия A Shantotto Ascension
 
     // TODO: половина этого массива должна храниться в char_vars, а не здесь, т.к. эта информация не отображается в интерфейсе клиента и сервер не проводит с ними никаких операций
 
@@ -258,8 +258,8 @@ public:
 
     std::uint32_t			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
     uint8			  m_LevelRestriction;			// ограничение уровня персонажа
-    uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
-    uint16			  m_Monstrosity;				// Monstrosity model ID
+    std::uint16_t            m_Costum;                     // карнавальный костюм персонажа (модель)
+    std::uint16_t			  m_Monstrosity;				// Monstrosity model ID
     std::uint32_t			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
     std::uint32_t            m_DeathCounter;               // Counter when you last died. This is set when you first login
     std::uint32_t            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
@@ -294,7 +294,7 @@ public:
     bool              m_EffectsChanged;
     time_point        m_LastSynthTime;
 
-    int16 addTP(int16 tp) override;
+    std::int16_t addTP(std::int16_t tp) override;
     std::int32_t addHP(std::int32_t hp) override;
     std::int32_t addMP(std::int32_t mp) override;
 
@@ -315,7 +315,7 @@ public:
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
 
-    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags) override;
     virtual bool CanUseSpell(CSpell*) override;
 
     virtual void Die() override;
@@ -326,7 +326,7 @@ public:
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool OnAttackError(CAttackState&) override;
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
+    virtual CBattleEntity* IsValidTarget(std::uint16_t targid, std::uint16_t validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;

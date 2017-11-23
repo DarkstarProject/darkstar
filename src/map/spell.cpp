@@ -45,12 +45,12 @@ CSpell::CSpell(SpellID id)
       return std::unique_ptr<CSpell>(new CSpell(*this));
   }
 
-void CSpell::setTotalTargets(uint16 total)
+void CSpell::setTotalTargets(std::uint16_t total)
 {
     m_totalTargets = total;
 }
 
-uint16 CSpell::getTotalTargets()
+std::uint16_t CSpell::getTotalTargets()
 {
     return m_totalTargets;
 }
@@ -152,12 +152,12 @@ bool CSpell::isHeal()
 
 bool CSpell::isCure()
 {
-    return ((static_cast<uint16>(m_ID) >= 1 && static_cast<uint16>(m_ID) <= 11) || m_ID == SpellID::Cura || m_ID == SpellID::Cura_II || m_ID == SpellID::Cura_III);
+    return ((static_cast<std::uint16_t>(m_ID) >= 1 && static_cast<std::uint16_t>(m_ID) <= 11) || m_ID == SpellID::Cura || m_ID == SpellID::Cura_II || m_ID == SpellID::Cura_III);
 }
 
 bool CSpell::isNa()
 {
-    return (static_cast<uint16>(m_ID) >= 14 && static_cast<uint16>(m_ID) <= 20) || m_ID == SpellID::Erase;
+    return (static_cast<std::uint16_t>(m_ID) >= 14 && static_cast<std::uint16_t>(m_ID) <= 20) || m_ID == SpellID::Erase;
 }
 
 bool CSpell::canHitShadow()
@@ -176,42 +176,42 @@ float CSpell::getRadius()
     return m_radius;
 }
 
-uint16 CSpell::getZoneMisc()
+std::uint16_t CSpell::getZoneMisc()
 {
     return m_zoneMisc;
 }
 
-void CSpell::setZoneMisc(uint16 Misc)
+void CSpell::setZoneMisc(std::uint16_t Misc)
 {
     m_zoneMisc = Misc;
 }
 
-uint16 CSpell::getAnimationID()
+std::uint16_t CSpell::getAnimationID()
 {
     return m_animation;
 }
 
-void CSpell::setAnimationID(uint16 AnimationID)
+void CSpell::setAnimationID(std::uint16_t AnimationID)
 {
     m_animation = AnimationID;
 }
 
-uint16 CSpell::getAnimationTime()
+std::uint16_t CSpell::getAnimationTime()
 {
     return m_animationTime;
 }
 
-void CSpell::setAnimationTime(uint16 AnimationTime)
+void CSpell::setAnimationTime(std::uint16_t AnimationTime)
 {
     m_animationTime = AnimationTime;
 }
 
-uint16 CSpell::getMPCost()
+std::uint16_t CSpell::getMPCost()
 {
     return m_mpCost;
 }
 
-void CSpell::setMPCost(uint16 MP)
+void CSpell::setMPCost(std::uint16_t MP)
 {
     m_mpCost = MP;
 }
@@ -231,12 +231,12 @@ void CSpell::setAOE(uint8 AOE)
     m_AOE = AOE;
 }
 
-uint16 CSpell::getBase()
+std::uint16_t CSpell::getBase()
 {
     return m_base;
 }
 
-void CSpell::setBase(uint16 base)
+void CSpell::setBase(std::uint16_t base)
 {
     m_base = base;
 }
@@ -261,12 +261,12 @@ void CSpell::setMultiplier(float multiplier)
     m_multiplier = multiplier;
 }
 
-uint16 CSpell::getMessage()
+std::uint16_t CSpell::getMessage()
 {
     return m_message;
 }
 
-uint16 CSpell::getAoEMessage()
+std::uint16_t CSpell::getAoEMessage()
 {
     switch(m_message){
         case 93: // vanishes
@@ -288,37 +288,37 @@ uint16 CSpell::getAoEMessage()
     }
 }
 
-void CSpell::setMessage(uint16 message)
+void CSpell::setMessage(std::uint16_t message)
 {
     m_message = message;
 }
 
-uint16 CSpell::getMagicBurstMessage()
+std::uint16_t CSpell::getMagicBurstMessage()
 {
     return m_MagicBurstMessage;
 }
 
-void CSpell::setMagicBurstMessage(uint16 message)
+void CSpell::setMagicBurstMessage(std::uint16_t message)
 {
     m_MagicBurstMessage = message;
 }
 
-uint16 CSpell::getElement()
+std::uint16_t CSpell::getElement()
 {
     return m_element;
 }
 
-void CSpell::setElement(uint16 element)
+void CSpell::setElement(std::uint16_t element)
 {
     m_element = element;
 }
 
-void CSpell::setCE(uint16 ce)
+void CSpell::setCE(std::uint16_t ce)
 {
     m_CE = ce;
 }
 
-uint16 CSpell::getCE()
+std::uint16_t CSpell::getCE()
 {
     return m_CE;
 }
@@ -328,12 +328,12 @@ void CSpell::setRadius(float radius)
     m_radius = radius;
 }
 
-void CSpell::setVE(uint16 ve)
+void CSpell::setVE(std::uint16_t ve)
 {
     m_VE = ve;
 }
 
-uint16 CSpell::getVE()
+std::uint16_t CSpell::getVE()
 {
     return m_VE;
 }
@@ -358,12 +358,12 @@ void CSpell::setRequirements(uint8 requirements)
     m_requirements = requirements;
 }
 
-uint16 CSpell::getMeritId()
+std::uint16_t CSpell::getMeritId()
 {
     return m_meritId;
 }
 
-void CSpell::setMeritId(uint16 meritId)
+void CSpell::setMeritId(std::uint16_t meritId)
 {
     m_meritId = meritId;
 }
@@ -402,7 +402,7 @@ void CSpell::setRange(float range)
 namespace spell
 {
     std::array<CSpell*, 1024> PSpellList; // spell list
-    std::map<uint16, uint16> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
+    std::map<std::uint16_t, std::uint16_t> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
 
     //Load a list of spells
     void LoadSpellList()
@@ -462,7 +462,7 @@ namespace spell
                     PSpell->setRadius(10);
                 }
 
-                PSpellList[static_cast<uint16>(PSpell->getID())] = PSpell;
+                PSpellList[static_cast<std::uint16_t>(PSpell->getID())] = PSpell;
             }
         }
 
@@ -485,7 +485,7 @@ namespace spell
                 }
 
                 // Sanity check the spell ID
-                uint16 spellId = Sql_GetIntData(SqlHandle,0);
+                std::uint16_t spellId = Sql_GetIntData(SqlHandle,0);
 
                 if(PSpellList[spellId] == nullptr)
                 {
@@ -508,9 +508,9 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
+                std::uint16_t spellId = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
-                int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
+                std::int16_t  value  = (std::int16_t) Sql_GetIntData (SqlHandle,2);
 
                 if (PSpellList[spellId])
                 {
@@ -532,7 +532,7 @@ namespace spell
                     continue;
                 }
 
-                uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
+                std::uint16_t spellId = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
 
                 if (PSpellList[spellId])
                 {
@@ -542,13 +542,13 @@ namespace spell
         }
     }
 
-    CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
-        std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell.find(SkillID);
+    CSpell* GetSpellByMonsterSkillId(std::uint16_t SkillID) {
+        std::map<std::uint16_t,std::uint16_t>::iterator it = PMobSkillToBlueSpell.find(SkillID);
         if (it == PMobSkillToBlueSpell.end()) {
             return nullptr;
         }
         else {
-            uint16 spellId = it->second;
+            std::uint16_t spellId = it->second;
             return PSpellList[spellId];
         }
     }

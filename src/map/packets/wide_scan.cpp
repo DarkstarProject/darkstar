@@ -53,8 +53,8 @@ CWideScanPacket::CWideScanPacket(CCharEntity * PChar, CBaseEntity * PEntity)
 	// 2 - красная точка (Mob)
 	WBUFB(data,(0x07)) = PEntity->objtype/2; 
 
-	WBUFW(data,(0x08)) = (int16)(PEntity->loc.p.x - PChar->loc.p.x); // x - разница координат персонажа и объекта
-	WBUFW(data,(0x0A)) = (int16)(PEntity->loc.p.z - PChar->loc.p.z); // z - разница координат персонажа и объекта
+	WBUFW(data,(0x08)) = (std::int16_t)(PEntity->loc.p.x - PChar->loc.p.x); // x - разница координат персонажа и объекта
+	WBUFW(data,(0x0A)) = (std::int16_t)(PEntity->loc.p.z - PChar->loc.p.z); // z - разница координат персонажа и объекта
 
   //memcpy(data+(0x0C), PEntity->GetName(), (PEntity->name.size() > 14 ? 14 : PEntity->name.size()));  
 }

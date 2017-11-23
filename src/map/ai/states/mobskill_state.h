@@ -32,11 +32,11 @@ class CMobEntity;
 class CMobSkillState : public CState
 {
 public:
-    CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid);
+    CMobSkillState(CMobEntity* PEntity, std::uint16_t targid, std::uint16_t wsid);
 
     CMobSkill* GetSkill();
 
-    int16 GetSpentTP() { return m_spentTP; }
+    std::int16_t GetSpentTP() { return m_spentTP; }
 protected:
     virtual bool CanChangeState() override { return false; }
     virtual bool CanFollowPath() override { return false; }
@@ -50,7 +50,7 @@ private:
     std::unique_ptr<CMobSkill> m_PSkill;
     time_point m_finishTime;
     duration m_castTime;
-    int16 m_spentTP;
+    std::int16_t m_spentTP;
 };
 
 #endif

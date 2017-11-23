@@ -34,19 +34,19 @@ public:
 
     virtual void Tick(time_point tick) override;
     virtual bool Disengage() override;
-    virtual bool Engage(uint16 targid) override;
+    virtual bool Engage(std::uint16_t targid) override;
     virtual void Despawn() override;
     virtual void Reset() override;
 
-    virtual bool MobSkill(uint16 targid, uint16 wsid);
-    virtual bool Ability(uint16 targid, uint16 abilityid) override { return false; }
+    virtual bool MobSkill(std::uint16_t targid, std::uint16_t wsid);
+    virtual bool Ability(std::uint16_t targid, std::uint16_t abilityid) override { return false; }
     bool MobSkill(int list = 0);
     bool TryCastSpell();
     bool TrySpecialSkill();
 
     bool CanAggroTarget(CBattleEntity*);
     void TapDeaggroTime();
-    virtual bool Cast(uint16 targid, SpellID spellid) override;
+    virtual bool Cast(std::uint16_t targid, SpellID spellid) override;
 
 protected:
     virtual bool TryDeaggro();
@@ -63,7 +63,7 @@ protected:
     virtual void Move();
 
     virtual void DoCombatTick(time_point tick);
-    void FaceTarget(uint16 targid = 0);
+    void FaceTarget(std::uint16_t targid = 0);
     virtual void HandleEnmity();
 
     virtual void DoRoamTick(time_point tick);

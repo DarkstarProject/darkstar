@@ -36,7 +36,7 @@
 
 // типы событий, в которых участвует логика предмета
 
-enum SCRIPTTYPE : uint16
+enum SCRIPTTYPE : std::uint16_t
 {
 	SCRIPT_NONE			= 0x0000,
 	SCRIPT_EQUIP		= 0x0001,
@@ -53,50 +53,50 @@ class CItemArmor : public CItemUsable
 {
 public:
 
-	CItemArmor(uint16);
+	CItemArmor(std::uint16_t);
 	virtual ~CItemArmor();
 
     struct itemLatent
     {
         LATENT ConditionsID;
-        uint16 ConditionsValue;
+        std::uint16_t ConditionsValue;
         Mod ModValue;
-        int16 ModPower;
+        std::int16_t ModPower;
     };
 
     uint8	getReqLvl();
     uint8   getILvl();
 	std::uint32_t	getJobs();
-	uint16	getModelId();
-	uint16	getScriptType();
+	std::uint16_t	getModelId();
+	std::uint16_t	getScriptType();
 	uint8	getShieldSize();
-	uint16	getEquipSlotId();
-	uint16	getRemoveSlotId();
+	std::uint16_t	getEquipSlotId();
+	std::uint16_t	getRemoveSlotId();
     uint8   getShieldAbsorption();
-	int16	getModifier(Mod mod);
+	std::int16_t	getModifier(Mod mod);
     uint8   getSlotType();
-    uint16  getAugment(uint8 slot);
-	uint16  getTrialNumber();
+    std::uint16_t  getAugment(uint8 slot);
+	std::uint16_t  getTrialNumber();
 
     bool    IsShield();
 
 	void	setReqLvl(uint8 lvl);
     void    setILvl(uint8 lvl);
 	void	setJobs(std::uint32_t jobs);
-	void	setModelId(uint16 mdl);
+	void	setModelId(std::uint16_t mdl);
 	void	setShieldSize(uint8 shield);
-	void	setScriptType(uint16 isScripted);
-	void	setEquipSlotId(uint16 equipSlot);
-	void	setRemoveSlotId(uint16 removSlot);
-    void    setAugment(uint8 slot, uint16 type, uint8 value);
-	void    setTrialNumber(uint16);
+	void	setScriptType(std::uint16_t isScripted);
+	void	setEquipSlotId(std::uint16_t equipSlot);
+	void	setRemoveSlotId(std::uint16_t removSlot);
+    void    setAugment(uint8 slot, std::uint16_t type, uint8 value);
+	void    setTrialNumber(std::uint16_t);
 
-    void    LoadAugment(uint8 slot, uint16 augment);
+    void    LoadAugment(uint8 slot, std::uint16_t augment);
     void    ApplyAugment(uint8 slot);
 
     void    addModifier(CModifier modifier);
     void    addPetModifier(CPetModifier modifier);
-	void	addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModValue, int16 ModPower);
+	void	addLatent(LATENT ConditionsID, std::uint16_t ConditionsValue, Mod ModValue, std::int16_t ModPower);
 
 	std::vector<CModifier> modList;			// список модификаторов
     std::vector<CPetModifier> petModList;         // mod list for pets
@@ -107,14 +107,14 @@ private:
 	uint8	m_reqLvl;
     uint8   m_iLvl;
 	std::uint32_t  m_jobs;
-	uint16	m_modelID;
-	uint16	m_scriptType;
+	std::uint16_t	m_modelID;
+	std::uint16_t	m_scriptType;
 	uint8	m_shieldSize;
     uint8   m_absorption;
-	uint16	m_equipSlotID;
-	uint16	m_removeSlotID;
+	std::uint16_t	m_equipSlotID;
+	std::uint16_t	m_removeSlotID;
 
-    void    SetAugmentMod(uint16 type, uint8 value);
+    void    SetAugmentMod(std::uint16_t type, uint8 value);
 };
 
 #endif

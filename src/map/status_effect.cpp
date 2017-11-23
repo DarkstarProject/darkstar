@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, std::uint32_t tick, std::uint32_t duration, std::uint32_t subid, uint16 subPower, uint16 tier) :
+CStatusEffect::CStatusEffect(EFFECT id, std::uint16_t icon, std::uint16_t power, std::uint32_t tick, std::uint32_t duration, std::uint32_t subid, std::uint16_t subPower, std::uint16_t tier) :
     m_StatusID(id), m_SubID(subid), m_Icon(icon), m_Power(power), m_SubPower(subPower), m_Tier(tier), m_TickTime(tick * 1000), m_Duration(duration * 1000)
 {
     if (m_TickTime < 3000 && m_TickTime != 0)
@@ -66,27 +66,27 @@ std::uint32_t CStatusEffect::GetSubID()
 	return m_SubID;
 }
 
-uint16 CStatusEffect::GetType()
+std::uint16_t CStatusEffect::GetType()
 {
     return m_Type;
 }
 
-uint16 CStatusEffect::GetIcon()
+std::uint16_t CStatusEffect::GetIcon()
 {
 	return m_Icon;
 }
 
-uint16 CStatusEffect::GetPower()
+std::uint16_t CStatusEffect::GetPower()
 {
 	return m_Power;
 }
 
-uint16 CStatusEffect::GetSubPower()
+std::uint16_t CStatusEffect::GetSubPower()
 {
     return m_SubPower;
 }
 
-uint16 CStatusEffect::GetTier()
+std::uint16_t CStatusEffect::GetTier()
 {
     return m_Tier;
 }
@@ -126,7 +126,7 @@ void CStatusEffect::UnsetFlag(std::uint32_t flag)
     m_Flag &= ~flag;
 }
 
-void CStatusEffect::SetIcon(uint16 Icon)
+void CStatusEffect::SetIcon(std::uint16_t Icon)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
@@ -134,22 +134,22 @@ void CStatusEffect::SetIcon(uint16 Icon)
     m_POwner->StatusEffectContainer->UpdateStatusIcons();
 }
 
-void CStatusEffect::SetType(uint16 Type)
+void CStatusEffect::SetType(std::uint16_t Type)
 {
     m_Type = Type;
 }
 
-void CStatusEffect::SetPower(uint16 Power)
+void CStatusEffect::SetPower(std::uint16_t Power)
 {
 	m_Power = Power;
 }
 
-void CStatusEffect::SetSubPower(uint16 subPower)
+void CStatusEffect::SetSubPower(std::uint16_t subPower)
 {
     m_SubPower = subPower;
 }
 
-void CStatusEffect::SetTier(uint16 tier)
+void CStatusEffect::SetTier(std::uint16_t tier)
 {
     m_Tier = tier;
 }
@@ -186,7 +186,7 @@ void CStatusEffect::SetName(string_t name)
 	m_Name = name;
 }
 
-void CStatusEffect::addMod(Mod modType, int16 amount)
+void CStatusEffect::addMod(Mod modType, std::int16_t amount)
 {
 	for (std::uint32_t i = 0; i < modList.size(); ++i)
 	{

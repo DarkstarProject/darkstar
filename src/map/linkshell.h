@@ -46,9 +46,9 @@ public:
     CLinkshell(std::uint32_t id);
 
     std::uint32_t      getID();
-    uint16      getColor();
+    std::uint16_t      getColor();
 
-    void        setColor(uint16 color);
+    void        setColor(std::uint16_t color);
 
     const int8* getName();
 	void		setName(int8* name);
@@ -68,7 +68,7 @@ public:
 private:
 
     std::uint32_t      m_id;
-    uint16      m_color;
+    std::uint16_t      m_color;
 
     string_t    m_name;
 };
@@ -86,7 +86,7 @@ namespace linkshell
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
-    std::uint32_t RegisterNewLinkshell(const int8* name, uint16 color);
+    std::uint32_t RegisterNewLinkshell(const int8* name, std::uint16_t color);
 	CLinkshell* GetLinkshell(std::uint32_t id);
 };
 

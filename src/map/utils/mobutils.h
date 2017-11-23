@@ -56,17 +56,17 @@ namespace mobutils
 	void  SetupMaat(CMobEntity* PMob);
 	void  SetupPetSkills(CMobEntity* PMob);
 
-	uint16	GetWeaponDamage(CMobEntity* PMob);
-        uint16  GetMagicEvasion(CMobEntity* PMob);
-        uint16  GetEvasion(CMobEntity* PMob);
-        uint16  GetBase(CMobEntity* PMob, uint8 rank);
-        uint16  GetBaseToRank(uint8 rank, uint16 level);
+	std::uint16_t	GetWeaponDamage(CMobEntity* PMob);
+        std::uint16_t  GetMagicEvasion(CMobEntity* PMob);
+        std::uint16_t  GetEvasion(CMobEntity* PMob);
+        std::uint16_t  GetBase(CMobEntity* PMob, uint8 rank);
+        std::uint16_t  GetBaseToRank(uint8 rank, std::uint16_t level);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	InitializeMob(CMobEntity* PMob, CZone* PZone);
 	void	LoadCustomMods();
 
 	// get modifiers for pool / family / spawn
-	ModsList_t* GetMobFamilyMods(uint16 familyId, bool create = false);
+	ModsList_t* GetMobFamilyMods(std::uint16_t familyId, bool create = false);
 	ModsList_t* GetMobPoolMods(std::uint32_t poolId, bool create = false);
 	ModsList_t* GetMobSpawnMods(std::uint32_t mobId, bool create = false);
 
@@ -75,8 +75,8 @@ namespace mobutils
         // Set job before spawn
 	void  InitializeMaat(CMobEntity* PMob, JOBTYPE job);
 
-	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* = nullptr);
+	void  SetSpellList(CMobEntity*, std::uint16_t);
+	CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 

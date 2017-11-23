@@ -60,11 +60,11 @@ struct map_config_t
 {
     std::uint32_t buffer_size;             // max size of recv buffer -> default 1800 bytes
 
-    uint16 usMapPort;               // port of map server      -> xxxxx
+    std::uint16_t usMapPort;               // port of map server      -> xxxxx
     std::uint32_t uiMapIp;                 // ip of map server        -> INADDR_ANY
 
     std::string mysql_host;         // mysql addr     -> localhost:3306
-    uint16 mysql_port;              // mysql port     -> 3306
+    std::uint16_t mysql_port;              // mysql port     -> 3306
     std::string mysql_login;        // mysql login    -> default root
     std::string mysql_password;     // mysql pass     -> default nullptr
     std::string mysql_database;     // mysql database -> default dspdb
@@ -76,8 +76,8 @@ struct map_config_t
     std::int32_t  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
     std::int32_t  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
 
-    uint16 ah_base_fee_single;        // Base AH fee for single items
-    uint16 ah_base_fee_stacks;        // Base AH fee for stacks
+    std::uint16_t ah_base_fee_single;        // Base AH fee for single items
+    std::uint16_t ah_base_fee_stacks;        // Base AH fee for stacks
     float  ah_tax_rate_single;        // Percent of listing price to tax single items
     float  ah_tax_rate_stacks;        // Percent of listing price to tax stacks
     std::uint32_t ah_max_fee;                // Maximum total AH fees/taxes
@@ -121,7 +121,7 @@ struct map_config_t
     int8   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
     uint8  max_merit_points;          // global variable, amount of merit points players are allowed
-    uint16 yell_cooldown;             // Minimum time between uses of yell command (in seconds).
+    std::uint16_t yell_cooldown;             // Minimum time between uses of yell command (in seconds).
     float  fame_multiplier;           // Fame multiplier
     bool   audit_chat;
     bool   audit_say;
@@ -131,7 +131,7 @@ struct map_config_t
     bool   audit_linkshell;
     bool   audit_party;
     uint8  healing_tick_delay;
-    uint16 msg_server_port;           // central message server port
+    std::uint16_t msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
 };
 
@@ -144,9 +144,9 @@ struct map_config_t
 struct map_session_data_t
 {
     std::uint32_t       client_addr;
-    uint16       client_port;
-    uint16       client_packet_id;          // id последнего пакета, пришедшего от клиента
-    uint16       server_packet_id;          // id последнего пакета, отправленного сервером
+    std::uint16_t       client_port;
+    std::uint16_t       client_packet_id;          // id последнего пакета, пришедшего от клиента
+    std::uint16_t       server_packet_id;          // id последнего пакета, отправленного сервером
     int8*        server_packet_data;        // указатель на собранный пакет, который был ранее отправлен клиенту
     size_t       server_packet_size;        // размер пакета, который был ранее отправлен клиенту
     time_t       last_update;               // time of last packet recv
@@ -174,10 +174,10 @@ typedef std::map<std::uint64_t,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
 
 extern in_addr map_ip;
-extern uint16 map_port;
+extern std::uint16_t map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(std::uint64_t ipp);
-extern inline map_session_data_t* mapsession_createsession(std::uint32_t ip,uint16 port);
+extern inline map_session_data_t* mapsession_createsession(std::uint32_t ip,std::uint16_t port);
 
 //=======================================================================
 

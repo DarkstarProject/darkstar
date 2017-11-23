@@ -24,11 +24,11 @@ This file is part of DarkStar-server source code.
 #include "state.h"
 #include "../../entities/baseentity.h"
 
-CState::CState(CBaseEntity* PEntity, uint16 _targid) :
+CState::CState(CBaseEntity* PEntity, std::uint16_t _targid) :
     m_PEntity(PEntity),
     m_targid(_targid) {}
 
-void CState::UpdateTarget(uint16 targid)
+void CState::UpdateTarget(std::uint16_t targid)
 {
     m_PTarget = m_PEntity->GetEntity(targid);
 }
@@ -43,7 +43,7 @@ CBaseEntity* CState::GetTarget() const
     return m_PTarget;
 }
 
-uint16 CState::GetTargetID() const
+std::uint16_t CState::GetTargetID() const
 {
     return m_targid;
 }
@@ -63,7 +63,7 @@ void CState::ResetEntryTime()
     m_entryTime = server_clock::now();
 }
 
-void CState::SetTarget(uint16 _targid)
+void CState::SetTarget(std::uint16_t _targid)
 {
     if (_targid != m_targid)
     {

@@ -40,7 +40,7 @@ class CSynthResultMessagePacket : public CBasicPacket
 {
 public:
 
-	CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, uint16 itemID = 0, uint8 quantity = 0);
+	CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID = 0, uint8 quantity = 0);
 };
 
 #endif

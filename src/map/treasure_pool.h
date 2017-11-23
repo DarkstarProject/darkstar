@@ -50,13 +50,13 @@ class CMobEntity;
 
 struct LotInfo
 {
-    uint16 lot;
+    std::uint16_t lot;
     CCharEntity* member;
 };
 
 struct TreasurePoolItem
 {
-    uint16 ID;
+    std::uint16_t ID;
     uint8  SlotID;
     time_point TimeStamp;
 
@@ -71,10 +71,10 @@ public:
 
     TREASUREPOOLTYPE GetPoolType();
 
-    uint8 AddItem(uint16 ItemID, CBaseEntity*);
+    uint8 AddItem(std::uint16_t ItemID, CBaseEntity*);
 
-    void LotItem(uint8 SlotID, uint16 Lot);
-    void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
+    void LotItem(uint8 SlotID, std::uint16_t Lot);
+    void LotItem(CCharEntity* PChar, uint8 SlotID, std::uint16_t Lot);
     void PassItem(CCharEntity* PChar, uint8 SlotID);
     bool HasLottedItem(CCharEntity* PChar, uint8 SlotID);
     bool HasPassedItem(CCharEntity* PChar, uint8 SlotID);

@@ -62,7 +62,7 @@ void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool 
                         CBlueSpell* POldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slotIndex] + 0x200));
                         PChar->delModifiers(&POldSpell->modList);
                     }
-				    PChar->m_SetBlueSpells[slotIndex] = static_cast<uint16>(PSpell->getID()) - 0x200;
+				    PChar->m_SetBlueSpells[slotIndex] = static_cast<std::uint16_t>(PSpell->getID()) - 0x200;
 				    PChar->addModifiers(&PSpell->modList);
                 }
 			}
@@ -84,7 +84,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 
 	// prune the learnable blue spells
 	std::vector<CSpell*> PLearnableSpells;
-	for (std::map<uint16, uint16>::iterator i=PMob->m_UsedSkillIds.begin(); i != PMob->m_UsedSkillIds.end(); ++i) {
+	for (std::map<std::uint16_t, std::uint16_t>::iterator i=PMob->m_UsedSkillIds.begin(); i != PMob->m_UsedSkillIds.end(); ++i) {
 		CSpell* PSpell = spell::GetSpellByMonsterSkillId(i->first);
 		if (PSpell != nullptr) {
 			PLearnableSpells.push_back(PSpell);
@@ -124,16 +124,16 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 		for (size_t spell = 0; spell < PLearnableSpells.size(); spell++) {
 			CSpell* PSpell = PLearnableSpells[spell];
 
-			if (charutils::hasSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
+			if (charutils::hasSpell(PBlueMage, static_cast<std::uint16_t>(PSpell->getID()))) {
 				continue;
 			}
 
 			uint8 learnableLevel = PSpell->getJob(JOB_BLU);
 			if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
                 if (dsprand::GetRandomNumber(100) < 33) {
-					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
-						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
-						charutils::SaveSpell(PBlueMage, static_cast<uint16>(PSpell->getID()));
+					if (charutils::addSpell(PBlueMage, static_cast<std::uint16_t>(PSpell->getID()))) {
+						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<std::uint16_t>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
+						charutils::SaveSpell(PBlueMage, static_cast<std::uint16_t>(PSpell->getID()));
 						PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
 					}
 				}
@@ -196,7 +196,7 @@ bool IsSpellSet(CCharEntity* PChar, CBlueSpell* PSpell)
     {
         if (PChar->m_SetBlueSpells[slot] != 0)
         {
-            if (PChar->m_SetBlueSpells[slot] == static_cast<uint16>(PSpell->getID()) - 0x200)
+            if (PChar->m_SetBlueSpells[slot] == static_cast<std::uint16_t>(PSpell->getID()) - 0x200)
             {
                 return true;
             }

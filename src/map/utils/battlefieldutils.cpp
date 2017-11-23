@@ -43,7 +43,7 @@ namespace battlefieldutils {
         Loads the given battlefield from the database and returns
         a new Battlefield object.
     ****************************************************************/
-    CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
+    CBattlefield* loadBattlefield(CBattlefieldHandler* hand, std::uint16_t bcnmid, BATTLEFIELDTYPE type) {
         const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
@@ -67,7 +67,7 @@ namespace battlefieldutils {
             PBattlefield->setLootId(Sql_GetUIntData(SqlHandle, 6));
             PBattlefield->setMaxParticipants(Sql_GetUIntData(SqlHandle, 8));
             PBattlefield->setZoneId(Sql_GetUIntData(SqlHandle, 9));
-            PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle, 7);
+            PBattlefield->m_RuleMask = (std::uint16_t)Sql_GetUIntData(SqlHandle, 7);
 
             PBattlefield->setRecord(Sql_GetData(SqlHandle, 2),
                 (uint8)Sql_GetUIntData(SqlHandle, 10),
@@ -257,7 +257,7 @@ namespace battlefieldutils {
         }
     }
 
-    void getStartPosition(uint16 zoneid, float(&pPosition)[4]) {
+    void getStartPosition(std::uint16_t zoneid, float(&pPosition)[4]) {
 
         switch (zoneid) {
             case 139: //Horlais Peak
@@ -320,8 +320,8 @@ namespace battlefieldutils {
         {
             for (uint8 group = 0; group <= maxloot; ++group)
             {
-                uint16 groupRoll = dsprand::GetRandomNumber(1000/* aka 100.0% */);
-                uint16 itemRolls = 0;
+                std::uint16_t groupRoll = dsprand::GetRandomNumber(1000/* aka 100.0% */);
+                std::uint16_t itemRolls = 0;
 
                 for (uint8 item = 0; item < LootList->size(); ++item)
                 {

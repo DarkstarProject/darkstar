@@ -88,7 +88,7 @@ void CTransportHandler::InitializeTransport()
             PTransport->Dock.p.y  = Sql_GetFloatData(SqlHandle,4);
             PTransport->Dock.p.z  = Sql_GetFloatData(SqlHandle,5);
             PTransport->Dock.p.rotation = (uint8) Sql_GetIntData(SqlHandle,6);
-            PTransport->Dock.boundary   = (uint16)Sql_GetIntData(SqlHandle,7);
+            PTransport->Dock.boundary   = (std::uint16_t)Sql_GetIntData(SqlHandle,7);
             PTransport->Dock.prevzone   = (uint8) Sql_GetIntData(SqlHandle,8);
 
             PTransport->PDoorNPC      = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,2), TYPE_NPC);
@@ -97,11 +97,11 @@ void CTransportHandler::InitializeTransport()
             PTransport->AnimationArrive = (uint8)Sql_GetIntData(SqlHandle, 9);
             PTransport->AnimationDepart = (uint8)Sql_GetIntData(SqlHandle,10);
 
-            PTransport->TimeOffset   = (uint16)Sql_GetIntData(SqlHandle,11);
-            PTransport->TimeInterval = (uint16)Sql_GetIntData(SqlHandle,12);
-            PTransport->TimeWaiting  = (uint16)Sql_GetIntData(SqlHandle,13);
-            PTransport->TimeAnimationArrive = (uint16)Sql_GetIntData(SqlHandle,14);
-            PTransport->TimeAnimationDepart = (uint16)Sql_GetIntData(SqlHandle,15);
+            PTransport->TimeOffset   = (std::uint16_t)Sql_GetIntData(SqlHandle,11);
+            PTransport->TimeInterval = (std::uint16_t)Sql_GetIntData(SqlHandle,12);
+            PTransport->TimeWaiting  = (std::uint16_t)Sql_GetIntData(SqlHandle,13);
+            PTransport->TimeAnimationArrive = (std::uint16_t)Sql_GetIntData(SqlHandle,14);
+            PTransport->TimeAnimationDepart = (std::uint16_t)Sql_GetIntData(SqlHandle,15);
 
             if (PTransport->PDoorNPC == nullptr ||
                 PTransport->PTransportNPC == nullptr)
@@ -142,9 +142,9 @@ void CTransportHandler::InitializeTransport()
             TransportZone_t TransportZone;
 
             TransportZone.zone = (uint8)Sql_GetIntData(SqlHandle, 0);
-            TransportZone.TimeOffset = (uint16)Sql_GetIntData(SqlHandle, 1);
-            TransportZone.TimeInterval = (uint16)Sql_GetIntData(SqlHandle, 2);
-            TransportZone.TimeAnimationArrive = (uint16)Sql_GetIntData(SqlHandle, 3);
+            TransportZone.TimeOffset = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
+            TransportZone.TimeInterval = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
+            TransportZone.TimeAnimationArrive = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
 
             TransportZoneList.push_back(TransportZone);
         }
@@ -168,7 +168,7 @@ void CTransportHandler::TransportTimer()
     {
         Transport_t* PTransport = TransportList.at(i);
 
-        uint16 ShipTimerOffset = ((VanaTime - PTransport->TimeOffset) % PTransport->TimeInterval);
+        std::uint16_t ShipTimerOffset = ((VanaTime - PTransport->TimeOffset) % PTransport->TimeInterval);
 
         // корабль появляется на горизонте
         if (ShipTimerOffset == 0)
@@ -214,7 +214,7 @@ void CTransportHandler::TransportTimer()
 
     for (auto transportZone : TransportZoneList)
     {
-        uint16 ShipTimerOffset = ((VanaTime - transportZone.TimeOffset) % transportZone.TimeInterval);
+        std::uint16_t ShipTimerOffset = ((VanaTime - transportZone.TimeOffset) % transportZone.TimeInterval);
 
         if (ShipTimerOffset == transportZone.TimeAnimationArrive - 10)
         {
@@ -230,7 +230,7 @@ void CTransportHandler::TransportTimer()
 
 		if (elevator->isStarted)
 		{
-			uint16 TimerOffset = (VanaTime % elevator->interval);
+			std::uint16_t TimerOffset = (VanaTime % elevator->interval);
 			
 			if (elevator->id == ELEVATOR_PORT_BASTOK_DRWBRDG)
 			{

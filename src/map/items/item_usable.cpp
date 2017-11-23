@@ -28,7 +28,7 @@
 #include "../vana_time.h"
 #include "../map.h"
 
-CItemUsable::CItemUsable(uint16 id) : CItem(id)
+CItemUsable::CItemUsable(std::uint16_t id) : CItem(id)
 {
 	setType(ITEM_USABLE);
 
@@ -102,32 +102,32 @@ uint8 CItemUsable::getMaxCharges()
 	return m_MaxCharges;
 }
 
-void CItemUsable::setAnimationID(uint16 Animation)
+void CItemUsable::setAnimationID(std::uint16_t Animation)
 {
 	m_Animation = Animation;
 }
 
-uint16 CItemUsable::getAnimationID()
+std::uint16_t CItemUsable::getAnimationID()
 {
 	return m_Animation;
 }
 
-void CItemUsable::setAnimationTime(uint16 AnimationTime)
+void CItemUsable::setAnimationTime(std::uint16_t AnimationTime)
 {
 	m_AnimationTime = AnimationTime;
 }
 
-uint16 CItemUsable::getAnimationTime()
+std::uint16_t CItemUsable::getAnimationTime()
 {
 	return m_AnimationTime;
 }
 
-void CItemUsable::setActivationTime(uint16 ActivationTime)
+void CItemUsable::setActivationTime(std::uint16_t ActivationTime)
 {
 	m_ActivationTime = ActivationTime;
 }
 
-uint16 CItemUsable::getActivationTime()
+std::uint16_t CItemUsable::getActivationTime()
 {
 	return m_ActivationTime;
 }
@@ -142,12 +142,12 @@ uint8 CItemUsable::getValidTarget()
 	return m_ValidTarget;
 }
 
-uint16 CItemUsable::getAoE()
+std::uint16_t CItemUsable::getAoE()
 { 
     return m_AoE; 
 }
 
-void CItemUsable::setAoE(uint16 AoE) 
+void CItemUsable::setAoE(std::uint16_t AoE) 
 { 
     m_AoE = AoE; 
 }

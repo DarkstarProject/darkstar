@@ -107,7 +107,7 @@ CActionPacket::CActionPacket(action_t& action)
     case ACTION_MOBABILITY_FINISH:
     case ACTION_PET_MOBABILITY_FINISH:
     {
-        uint16 id = action.actionid;
+        std::uint16_t id = action.actionid;
 
         //higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
         packBitsBE(data, id, 86, 12);

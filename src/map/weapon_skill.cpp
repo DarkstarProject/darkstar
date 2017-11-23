@@ -24,7 +24,7 @@
 #include <string.h>
 #include "weapon_skill.h"
 
-CWeaponSkill::CWeaponSkill(uint16 id)
+CWeaponSkill::CWeaponSkill(std::uint16_t id)
 {
 	m_ID = id;
 
@@ -41,7 +41,7 @@ CWeaponSkill::CWeaponSkill(uint16 id)
 	memset(m_Job, 0, sizeof(m_Job));
 }
 
-void CWeaponSkill::setID(uint16 id)
+void CWeaponSkill::setID(std::uint16_t id)
 {
 	m_ID = id;
 }
@@ -76,7 +76,7 @@ void CWeaponSkill::setJob(int8* jobs)
 	memcpy(&m_Job[1], jobs, 22);
 }
 
-void CWeaponSkill::setSkillLevel(uint16 level)
+void CWeaponSkill::setSkillLevel(std::uint16_t level)
 {
 	m_Skilllevel = level;
 }
@@ -132,7 +132,7 @@ void CWeaponSkill::setRange(uint8 range)
 	m_Range = range;
 }
 
-uint16 CWeaponSkill::getID()
+std::uint16_t CWeaponSkill::getID()
 {
 	return m_ID;
 }
@@ -152,7 +152,7 @@ uint8 CWeaponSkill::getJob(JOBTYPE job)
 	return m_Job[job];
 }
 
-uint16 CWeaponSkill::getSkillLevel()
+std::uint16_t CWeaponSkill::getSkillLevel()
 {
 	return m_Skilllevel;
 }

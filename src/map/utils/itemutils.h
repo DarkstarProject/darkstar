@@ -51,17 +51,17 @@ enum DROP_TYPE
 
 struct DropItem_t
 {
-    uint16 ItemID;
+    std::uint16_t ItemID;
     uint8  DropType;
-    uint16 DropRate;
+    std::uint16_t DropRate;
     uint8  GroupId;
-    uint16 GroupRate;
+    std::uint16_t GroupRate;
 };
 
 struct LootItem_t
 {
-    uint16 ItemID;
-    uint16 Rolls;
+    std::uint16_t ItemID;
+    std::uint16_t Rolls;
     uint8  LootGroupId;
 };
 
@@ -81,14 +81,14 @@ namespace itemutils
     void    FreeItemList();
 
     CItem*  GetItem(CItem* PItem);
-    CItem*  GetItem(uint16 ItemID);
-    CItem*  GetItemPointer(uint16 ItemID);
+    CItem*  GetItem(std::uint16_t ItemID);
+    CItem*  GetItemPointer(std::uint16_t ItemID);
 
     CItemWeapon* GetUnarmedItem();
     CItemWeapon* GetUnarmedH2HItem();
 
-    DropList_t* GetDropList(uint16 DropID);
-    LootList_t* GetLootList(uint16 LootDropID);
+    DropList_t* GetDropList(std::uint16_t DropID);
+    LootList_t* GetLootList(std::uint16_t LootDropID);
 
 };
 

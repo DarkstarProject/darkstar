@@ -30,11 +30,11 @@ This file is part of DarkStar-server source code.
 class CWeaponSkillState : public CState
 {
 public:
-    CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsid);
+    CWeaponSkillState(CBattleEntity* PEntity, std::uint16_t targid, std::uint16_t wsid);
 
     CWeaponSkill* GetSkill();
 
-    int16 GetSpentTP() { return m_spent; }
+    std::int16_t GetSpentTP() { return m_spent; }
 
 protected:
     virtual bool CanChangeState() override { return false; }
@@ -48,7 +48,7 @@ private:
     CBattleEntity* const m_PEntity;
     std::unique_ptr<CWeaponSkill> m_PSkill;
     time_point m_finishTime;
-    int16 m_spent {0};
+    std::int16_t m_spent {0};
     duration m_castTime;
 };
 

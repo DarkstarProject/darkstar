@@ -157,7 +157,7 @@ std::uint32_t g_addr_[16];   // ip addresses of local host (host byte order)
 
 std::int32_t naddr_;   // # of ip addresses
 
-std::int32_t makeConnection(std::uint32_t ip, uint16 port, std::int32_t type)
+std::int32_t makeConnection(std::uint32_t ip, std::uint16_t port, std::int32_t type)
 {
 	struct sockaddr_in remote_address;
 	std::int32_t fd;
@@ -392,7 +392,7 @@ std::uint32_t str2ip(const char* ip_str)
 
 // Reorders bytes from network to little endian (Windows).
 // Neccessary for sending port numbers to the RO client until Gravity notices that they forgot ntohs() calls.
-uint16 ntows(uint16 netshort)
+std::uint16_t ntows(std::uint16_t netshort)
 {
 	return ((netshort & 0xFF) << 8) | ((netshort & 0xFF00) >> 8);
 }
@@ -734,7 +734,7 @@ bool session_isActive(int fd)
 	return ( session_isValid(fd) && !session[fd]->flag.eof );
 }
 
-std::int32_t makeConnection_tcp(std::uint32_t ip, uint16 port)
+std::int32_t makeConnection_tcp(std::uint32_t ip, std::uint16_t port)
 {
 	int fd = makeConnection(ip,port,SOCK_STREAM);
 	if( fd > 0 )
@@ -792,7 +792,7 @@ int connect_client(int listen_fd, sockaddr_in& client_address)
 	return fd;
 }
 
-std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
+std::int32_t makeListenBind_tcp(const char* ip, std::uint16_t port,RecvFunc connect_client)
 {
 	struct sockaddr_in server_address;
 	int fd;
@@ -1038,7 +1038,7 @@ void set_nonblocking(int fd, unsigned long yes)
 *
 */
 static int access_debug    = 0;
-std::int32_t makeBind_udp(std::uint32_t ip, uint16 port)
+std::int32_t makeBind_udp(std::uint32_t ip, std::uint16_t port)
 {
 	struct sockaddr_in server_address;
 	int fd;

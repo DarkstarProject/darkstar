@@ -95,7 +95,7 @@ inline std::int32_t CLuaRegion::AddCount(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    lua_pushinteger(L, m_PLuaRegion->AddCount((int16)lua_tointeger(L, -1)));
+    lua_pushinteger(L, m_PLuaRegion->AddCount((std::int16_t)lua_tointeger(L, -1)));
     return 1;
 }
 
@@ -110,7 +110,7 @@ inline std::int32_t CLuaRegion::DelCount(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    lua_pushinteger(L, m_PLuaRegion->DelCount((int16)lua_tointeger(L, -1)));
+    lua_pushinteger(L, m_PLuaRegion->DelCount((std::int16_t)lua_tointeger(L, -1)));
     return 1;
 }
 

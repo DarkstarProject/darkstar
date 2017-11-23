@@ -88,7 +88,7 @@ public:
     virtual void Spawn() override;
     virtual void Die() override;
 
-    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags) override;
 
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;

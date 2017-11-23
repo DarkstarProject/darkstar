@@ -56,9 +56,9 @@ struct CParty::partyInfo_t
     std::uint32_t partyid;
     std::uint32_t allianceid;
     std::string name;
-    uint16 flags;
-    uint16 zone;
-    uint16 prev_zone;
+    std::uint16_t flags;
+    std::uint16_t zone;
+    std::uint16_t prev_zone;
 };
 
 /************************************************************************
@@ -192,7 +192,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 *																		*
 ************************************************************************/
 
-uint8 CParty::MemberCount(uint16 ZoneID)
+uint8 CParty::MemberCount(std::uint16_t ZoneID)
 {
     uint8 count = 0;
 
@@ -451,9 +451,9 @@ std::vector<CParty::partyInfo_t> CParty::GetPartyInfo()
         {
             memberinfo.push_back({Sql_GetUIntData(SqlHandle,0), Sql_GetUIntData(SqlHandle, 1),
                 Sql_GetUIntData(SqlHandle, 2), std::string(Sql_GetData(SqlHandle, 3)),
-                static_cast<uint16>(Sql_GetUIntData(SqlHandle, 4)),
-                static_cast<uint16>(Sql_GetUIntData(SqlHandle, 5)),
-                static_cast<uint16>(Sql_GetUIntData(SqlHandle, 6))});
+                static_cast<std::uint16_t>(Sql_GetUIntData(SqlHandle, 4)),
+                static_cast<std::uint16_t>(Sql_GetUIntData(SqlHandle, 5)),
+                static_cast<std::uint16_t>(Sql_GetUIntData(SqlHandle, 6))});
         }
     }
     return memberinfo;
@@ -528,7 +528,7 @@ void CParty::AddMember(std::uint32_t id)
     if (m_PartyType == PARTY_PCS)
     {
         std::uint32_t allianceid = 0;
-        uint16 Flags = 0;
+        std::uint16_t Flags = 0;
         if (m_PAlliance)
         {
             allianceid = m_PAlliance->m_AllianceID;
@@ -646,12 +646,12 @@ CBattleEntity* CParty::GetQuaterMaster()
 *                                                                       *
 ************************************************************************/
 
-uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
+std::uint16_t CParty::GetMemberFlags(CBattleEntity* PEntity)
 {
     DSP_DEBUG_BREAK_IF(PEntity == nullptr);
     DSP_DEBUG_BREAK_IF(PEntity->PParty != this);
 
-    uint16 Flags = 0;
+    std::uint16_t Flags = 0;
 
     if (PEntity->PParty->m_PAlliance != nullptr)
     {
@@ -691,7 +691,7 @@ void CParty::ReloadParty()
             {
                 CCharEntity* PChar = (CCharEntity*)member;
                 PChar->ReloadPartyDec();
-                uint16 alliance = 0;
+                std::uint16_t alliance = 0;
                 PChar->pushPacket(new CPartyDefinePacket(party));
                 //auto effects = std::make_unique<CPartyEffectsPacket>();
                 uint8 j = 0;
@@ -711,7 +711,7 @@ void CParty::ReloadParty()
                     }
                     else
                     {
-                        uint16 zoneid = memberinfo.zone == 0 ? memberinfo.prev_zone : memberinfo.zone;
+                        std::uint16_t zoneid = memberinfo.zone == 0 ? memberinfo.prev_zone : memberinfo.zone;
                         PChar->pushPacket(new CPartyMemberUpdatePacket(
                             memberinfo.id, memberinfo.name.c_str(),
                             memberinfo.flags, j, zoneid));
@@ -748,7 +748,7 @@ void CParty::ReloadParty()
                 }
                 else
                 {
-                    uint16 zoneid = memberinfo.zone == 0 ? memberinfo.prev_zone : memberinfo.zone;
+                    std::uint16_t zoneid = memberinfo.zone == 0 ? memberinfo.prev_zone : memberinfo.zone;
                     PChar->pushPacket(new CPartyMemberUpdatePacket(
                         memberinfo.id, memberinfo.name.c_str(),
                         memberinfo.flags, j, zoneid));
@@ -791,7 +791,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
         }
         else
         {
-            uint16 zoneid = memberinfo.zone == 0 ? memberinfo.prev_zone : memberinfo.zone;
+            std::uint16_t zoneid = memberinfo.zone == 0 ? memberinfo.prev_zone : memberinfo.zone;
             PChar->pushPacket(new CPartyMemberUpdatePacket(
                 memberinfo.id, memberinfo.name.c_str(),
                 memberinfo.flags, j, zoneid));
@@ -912,7 +912,7 @@ void CParty::SetLeader(const char* MemberName)
 *																		*
 ************************************************************************/
 
-void CParty::SetSyncTarget(int8* MemberName, uint16 message)
+void CParty::SetSyncTarget(int8* MemberName, std::uint16_t message)
 {
     CBattleEntity* PEntity = nullptr;
     if (MemberName)
@@ -1026,7 +1026,7 @@ void CParty::SetQuarterMaster(const char* MemberName)
 *																		*
 ************************************************************************/
 
-void CParty::PushPacket(std::uint32_t senderID, uint16 ZoneID, CBasicPacket* packet)
+void CParty::PushPacket(std::uint32_t senderID, std::uint16_t ZoneID, CBasicPacket* packet)
 {
     for (std::uint32_t i = 0; i < members.size(); ++i)
     {

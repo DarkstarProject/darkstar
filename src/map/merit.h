@@ -510,7 +510,7 @@ struct Merit_t
     {
         struct
         {
-            uint16 id;      // id мерита
+            std::uint16_t id;      // id мерита
             uint8  next;    // required merit points for next upgrade
             uint8  count;   // number of upgrades
         };
@@ -522,7 +522,7 @@ struct Merit_t
     std::uint32_t jobs;            // bitmask of jobs for which merit has effect
 	uint8  upgradeid;		// which set of upgrade values the merit will use
 	uint8  catid;			// cat which merit belongs to
-    uint16 spellid;         // associated spell ID to learn/unlearn
+    std::uint16_t spellid;         // associated spell ID to learn/unlearn
 };
 
 /************************************************************************
@@ -538,28 +538,28 @@ class CMeritPoints
 
         CMeritPoints(CCharEntity* PChar);
 
-        uint16      GetLimitPoints();
+        std::uint16_t      GetLimitPoints();
         uint8       GetMeritPoints();
         std::int32_t       GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar);
 
-        bool        AddLimitPoints(uint16 points);                  // automatically adds merit points > 10000
+        bool        AddLimitPoints(std::uint16_t points);                  // automatically adds merit points > 10000
         bool        IsMeritExist(MERIT_TYPE merit);                 // проверяем существование merit
 
         void        RaiseMerit(MERIT_TYPE merit); // add upgrade
         void        LowerMerit(MERIT_TYPE merit); // del upgrade
 
-        void        SetLimitPoints(uint16 points);                  // used for loading player limit points on login
-        void        SetMeritPoints(uint16 points);                  // used for loading player merit points on login
+        void        SetLimitPoints(std::uint16_t points);                  // used for loading player limit points on login
+        void        SetMeritPoints(std::uint16_t points);                  // used for loading player merit points on login
 
         const Merit_t* GetMerit(MERIT_TYPE merit);
-		const Merit_t* GetMeritByIndex(uint16 index);				// get merit index, 0,1,2,3,4 and so on
+		const Merit_t* GetMeritByIndex(std::uint16_t index);				// get merit index, 0,1,2,3,4 and so on
 
 		void LoadMeritPoints(std::uint32_t charid);						// load char applied merits
 		void SaveMeritPoints(std::uint32_t charid);	// save char applied merits
 
     private:
 
-        uint16       m_LimitPoints;
+        std::uint16_t       m_LimitPoints;
         uint8        m_MeritPoints;
         CCharEntity* m_PChar;
 		Merit_t      merits[MERITS_COUNT];
@@ -574,7 +574,7 @@ namespace meritNameSpace
 	void		LoadMeritsList();									// load the global list of merits
 
 	extern Merit_t GMeritsTemplate[MERITS_COUNT];
-	extern int16 groupOffset[MCATEGORY_COUNT/64-1];				// the first merit offset of each catagory
+	extern std::int16_t groupOffset[MCATEGORY_COUNT/64-1];				// the first merit offset of each catagory
 };
 
 #endif

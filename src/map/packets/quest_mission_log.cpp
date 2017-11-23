@@ -33,7 +33,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
     this->type = 0x56;
     this->size = 0x14;
 
-    uint16 packetType = 0x00;
+    std::uint16_t packetType = 0x00;
 
     // FFXI packs different TOAU information in the same packet as certain other content, so we'll have to work around it.
     // First, deal with all quest areas which aren't TOAU:
@@ -131,7 +131,7 @@ void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logI
 
 void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 {
-    uint16 add_on_scenarios = 0;
+    std::uint16_t add_on_scenarios = 0;
     
     add_on_scenarios += PChar->m_missionLog[MISSION_ACP].current;
     add_on_scenarios += PChar->m_missionLog[MISSION_AMK].current << 0x04;
@@ -191,12 +191,12 @@ void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PCha
 
 void CQuestMissionLogPacket::generateCampaignMissionPacket(CCharEntity * PChar, uint8 startQMID)
 {
-    for (uint16 questMissionID = startQMID; questMissionID < (startQMID + 256); questMissionID++)
+    for (std::uint16_t questMissionID = startQMID; questMissionID < (startQMID + 256); questMissionID++)
         data[(questMissionID / 8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
 }
 
 void CQuestMissionLogPacket::generateAssaultMissionPacket(CCharEntity * PChar)
 {
-    for (uint16 questMissionID = 0; questMissionID < 128; questMissionID++)
+    for (std::uint16_t questMissionID = 0; questMissionID < 128; questMissionID++)
         data[(questMissionID / 8) + 0x10 + 4] ^= ((PChar->m_assaultLog.complete[questMissionID]) << (questMissionID % 8));
 }

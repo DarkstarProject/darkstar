@@ -32,7 +32,7 @@ class CItemGeneral : public CItem
 {
 public:
 
-	CItemGeneral(uint16);
+	CItemGeneral(std::uint16_t);
 	virtual ~CItemGeneral();
 	
 private:

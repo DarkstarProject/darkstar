@@ -37,7 +37,7 @@
 *                                                                       *
 ************************************************************************/
 
-uint16 GetMogHouseID(CCharEntity* PChar)
+std::uint16_t GetMogHouseID(CCharEntity* PChar)
 {
     switch (zoneutils::GetCurrentRegion(PChar->getZone()))
     {
@@ -94,7 +94,7 @@ uint8 GetMogHouseFlag(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
+CZoneInPacket::CZoneInPacket(CCharEntity * PChar, std::int16_t csid)
 {
     this->type = 0x0A;
     this->size = 0x82;

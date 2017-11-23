@@ -190,7 +190,7 @@ namespace message
         case MSG_PT_INVITE:
         {
             std::uint32_t id = RBUFL(extra->data(), 0);
-            // uint16 targid = RBUFW(extra->data(), 4);
+            // std::uint16_t targid = RBUFW(extra->data(), 4);
             uint8 inviteType = RBUFB(packet->data(), 0x0B);
             CCharEntity* PInvitee = zoneutils::GetChar(id);
 
@@ -234,9 +234,9 @@ namespace message
         case MSG_PT_INV_RES:
         {
             std::uint32_t inviterId = RBUFL(extra->data(), 0);
-            // uint16 inviterTargid = RBUFW(extra->data(), 4);
+            // std::uint16_t inviterTargid = RBUFW(extra->data(), 4);
             std::uint32_t inviteeId = RBUFL(extra->data(), 6);
-            // uint16 inviteeTargid = RBUFW(extra->data(), 10);
+            // std::uint16_t inviteeTargid = RBUFW(extra->data(), 10);
             uint8 inviteAnswer = RBUFB(extra->data(), 12);
             CCharEntity* PInviter = zoneutils::GetChar(inviterId);
 
@@ -410,7 +410,7 @@ namespace message
                     break;
                 }
 
-                uint16 zoneId = RBUFW(extra->data(), 8);
+                std::uint16_t zoneId = RBUFW(extra->data(), 8);
                 float x = RBUFF(extra->data(), 10);
                 float y = RBUFF(extra->data(), 14);
                 float z = RBUFF(extra->data(), 18);
@@ -491,7 +491,7 @@ namespace message
         }
     }
 
-    void init(const char* chatIp, uint16 chatPort)
+    void init(const char* chatIp, std::uint16_t chatPort)
     {
         SqlHandle = Sql_Malloc();
 

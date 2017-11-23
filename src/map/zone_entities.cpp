@@ -128,7 +128,7 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 {
     if (PPet != nullptr)
     {
-        uint16 targid = 0x700;
+        std::uint16_t targid = 0x700;
 
         for (EntityList_t::const_iterator it = m_petList.begin(); it != m_petList.end(); ++it)
         {
@@ -182,7 +182,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 
             if (!forceLink && !PCurrentMob->m_Link) continue;
 
-            int16 sublink = PMob->getMobMod(MOBMOD_SUBLINK);
+            std::int16_t sublink = PMob->getMobMod(MOBMOD_SUBLINK);
 
             if (PCurrentMob->allegiance == PMob->allegiance &&
                 (forceLink ||
@@ -201,7 +201,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
     }
 }
 
-void CZoneEntities::TransportDepart(uint16 boundary, uint16 zone)
+void CZoneEntities::TransportDepart(std::uint16_t boundary, std::uint16_t zone)
 {
     for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
     {
@@ -380,9 +380,9 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
     ShowDebug(CL_CYAN"CZone:: %s DecreaseZoneCounter <%u> %s\n" CL_RESET, m_zone->GetName(), m_charList.size(), PChar->GetName());
 }
 
-uint16 CZoneEntities::GetNewTargID()
+std::uint16_t CZoneEntities::GetNewTargID()
 {
-    uint16 targid = 0x400;
+    std::uint16_t targid = 0x400;
     for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
     {
         if (targid != it->first)
@@ -438,7 +438,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
             // проверка ночного/дневного сна монстров уже учтена в проверке CurrentAction, т.к. во сне монстры не ходят ^^
 
-            uint16 expGain = (uint16)charutils::GetRealExp(PChar->GetMLevel(), PCurrentMob->GetMLevel());
+            std::uint16_t expGain = (std::uint16_t)charutils::GetRealExp(PChar->GetMLevel(), PCurrentMob->GetMLevel());
 
             CMobController* PController = static_cast<CMobController*>(PCurrentMob->PAI->GetController());
 
@@ -604,7 +604,7 @@ void CZoneEntities::SpawnTransport(CCharEntity* PChar)
     }
 }
 
-CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
+CBaseEntity* CZoneEntities::GetEntity(std::uint16_t targid, uint8 filter)
 {
     if (targid < 0x400)
     {
@@ -831,7 +831,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
                                 (packet->ref<uint8>(0x0A) != 0x20 || packet->ref<uint8>(0x0A) != 0x0F))
                             {
                                 std::uint32_t id = packet->ref<std::uint32_t>(0x04);
-                                uint16 targid = packet->ref<uint16>(0x08);
+                                std::uint16_t targid = packet->ref<std::uint16_t>(0x08);
 
                                 CBaseEntity* entity = GetEntity(targid);
 
@@ -919,7 +919,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
     delete packet;
 }
 
-void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
+void CZoneEntities::WideScan(CCharEntity* PChar, std::uint16_t radius)
 {
     PChar->pushPacket(new CWideScanPacket(WIDESCAN_BEGIN));
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)

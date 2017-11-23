@@ -1134,7 +1134,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t GetTextIDVariable(uint16 ZoneID, const char* variable)
+    std::int32_t GetTextIDVariable(std::uint16_t ZoneID, const char* variable)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, variable);
@@ -1241,7 +1241,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnZoneInitialise(uint16 ZoneID)
+    std::int32_t OnZoneInitialise(std::uint16_t ZoneID)
     {
         CZone* PZone = zoneutils::GetZone(ZoneID);
 
@@ -1500,7 +1500,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnEventUpdate(CCharEntity* PChar, uint16 eventID, std::uint32_t result)
+    std::int32_t OnEventUpdate(CCharEntity* PChar, std::uint16_t eventID, std::uint32_t result)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
@@ -1568,7 +1568,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnEventFinish(CCharEntity* PChar, uint16 eventID, std::uint32_t result)
+    std::int32_t OnEventFinish(CCharEntity* PChar, std::uint16_t eventID, std::uint32_t result)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventFinish");
@@ -2162,7 +2162,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill)
+    std::int32_t OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, std::uint16_t PWeaponskill)
     {
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
         DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
@@ -2792,7 +2792,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
+    std::int32_t OnZoneWeatherChange(std::uint16_t ZoneID, uint8 weather)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
 
@@ -2813,7 +2813,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnTOTDChange(uint16 ZoneID, uint8 TOTD)
+    std::int32_t OnTOTDChange(std::uint16_t ZoneID, uint8 TOTD)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
 
@@ -2840,7 +2840,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::tuple<std::int32_t, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action, CBattleEntity* taChar)
+    std::tuple<std::int32_t, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, std::uint16_t tp, bool primary, action_t& action, CBattleEntity* taChar)
     {
         lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
 
@@ -3889,13 +3889,13 @@ namespace luautils
 
     std::int32_t SetDropRate(lua_State *L)
     {
-        DropList_t* DropList = itemutils::GetDropList((uint16)lua_tointeger(L, 1));
+        DropList_t* DropList = itemutils::GetDropList((std::uint16_t)lua_tointeger(L, 1));
 
         for (uint8 i = 0; i < DropList->size(); ++i)
         {
             if (DropList->at(i).ItemID == lua_tointeger(L, 2))
             {
-                DropList->at(i).DropRate = (uint16)lua_tointeger(L, 3);
+                DropList->at(i).DropRate = (std::uint16_t)lua_tointeger(L, 3);
                 return 1;
             }
         }
@@ -3944,7 +3944,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CAbility* PAbility = ability::GetAbility((uint16)lua_tointeger(L, 1));
+            CAbility* PAbility = ability::GetAbility((std::uint16_t)lua_tointeger(L, 1));
 
             lua_getglobal(L, CLuaAbility::className);
             lua_pushstring(L, "new");

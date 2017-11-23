@@ -55,7 +55,7 @@ class CSynthAnimationPacket : public CBasicPacket
 {
 public:
 
-	CSynthAnimationPacket(CCharEntity* PChar, uint16 effect, uint8 param);
+	CSynthAnimationPacket(CCharEntity* PChar, std::uint16_t effect, uint8 param);
 };
 
 #endif

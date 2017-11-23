@@ -37,7 +37,7 @@ public:
     void AddPlayer(SearchEntity* PPlayer);
 
     uint8* GetData();
-    uint16 GetSize();
+    std::uint16_t GetSize();
 
 private:
 

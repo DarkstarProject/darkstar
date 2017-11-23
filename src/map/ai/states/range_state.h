@@ -30,7 +30,7 @@ class CCharEntity;
 class CRangeState : public CState
 {
 public:
-    CRangeState(CCharEntity* PEntity, uint16 targid);
+    CRangeState(CCharEntity* PEntity, std::uint16_t targid);
 
     void SpendCost();
     bool IsRapidShot() { return m_rapidShot; }

@@ -40,7 +40,7 @@ enum RECASTTYPE
 
 struct Recast_t
 {
-    uint16     ID;
+    std::uint16_t     ID;
     time_t     TimeStamp;
     std::uint32_t     RecastTime;
     std::uint32_t     chargeTime;
@@ -64,17 +64,17 @@ class CRecastContainer
     virtual void Check();
 
     virtual void Del(RECASTTYPE type);
-    virtual void Del(RECASTTYPE type, uint16 id);
+    virtual void Del(RECASTTYPE type, std::uint16_t id);
 	virtual void DeleteByIndex(RECASTTYPE type, uint8 index);
-    bool Has(RECASTTYPE type, uint16 id);
-    bool HasRecast(RECASTTYPE type, uint16 id, std::uint32_t recast);
-    virtual void Add(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime = 0, uint8 maxCharges = 0);
-    Recast_t* Load(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime = 0, uint8 maxCharges = 0);
+    bool Has(RECASTTYPE type, std::uint16_t id);
+    bool HasRecast(RECASTTYPE type, std::uint16_t id, std::uint32_t recast);
+    virtual void Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime = 0, uint8 maxCharges = 0);
+    Recast_t* Load(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime = 0, uint8 maxCharges = 0);
     virtual void ResetAbilities();
     virtual void ChangeJob() {}
 
     virtual RecastList_t* GetRecastList(RECASTTYPE type);
-    Recast_t*     GetRecast(RECASTTYPE type, uint16 id);
+    Recast_t*     GetRecast(RECASTTYPE type, std::uint16_t id);
 
 	CRecastContainer(CBattleEntity* PChar);
     virtual ~CRecastContainer(){}

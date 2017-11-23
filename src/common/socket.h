@@ -132,19 +132,19 @@ int sSocket(int af, int type, int protocol);
 // buffer I/O macros
 #define RBUFP(p,pos) (((uint8*)(p)) + (pos))
 #define RBUFB(p,pos) (*(uint8*)RBUFP((p),(pos)))
-#define RBUFW(p,pos) (*(uint16*)RBUFP((p),(pos)))
+#define RBUFW(p,pos) (*(std::uint16_t*)RBUFP((p),(pos)))
 #define RBUFL(p,pos) (*(std::uint32_t*)RBUFP((p),(pos)))
 #define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
 
 #define WBUFP(p,pos) (((uint8*)(p)) + (pos))
 #define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
-#define WBUFW(p,pos) (*(uint16*)WBUFP((p),(pos)))
+#define WBUFW(p,pos) (*(std::uint16_t*)WBUFP((p),(pos)))
 #define WBUFL(p,pos) (*(std::uint32_t*)WBUFP((p),(pos)))
 #define WBUFU(p,pos) (*(std::uint64_t*)WBUFP((p),(pos)))
 #define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
 #define TOB(n) ((uint8)((n)&std::numeric_limits<std::uint8_t>::max()))
-#define TOW(n) ((uint16)((n)&std::numeric_limits<std::uint16_t>::max()))
+#define TOW(n) ((std::uint16_t)((n)&std::numeric_limits<std::uint16_t>::max()))
 #define TOL(n) ((std::uint32_t)((n)&std::numeric_limits<std::uint32_t>::max()))
 
 extern fd_set readfds;
@@ -152,7 +152,7 @@ extern int fd_max;
 extern time_t last_tick;
 extern time_t stall_time;
 
-std::int32_t makeConnection(std::uint32_t ip, uint16 port, std::int32_t type);
+std::int32_t makeConnection(std::uint32_t ip, std::uint16_t port, std::int32_t type);
 
 std::int32_t do_sockets(fd_set* rfd,duration next);
 
@@ -172,7 +172,7 @@ std::uint32_t str2ip(const char* ip_str);
 
 #define CONVIP(ip) ((ip)>>24)&0xFF,((ip)>>16)&0xFF,((ip)>>8)&0xFF,((ip)>>0)&0xFF
 
-uint16 ntows(uint16 netshort);
+std::uint16_t ntows(std::uint16_t netshort);
 
 int socket_getips(std::uint32_t* ips, int max);
 
@@ -213,8 +213,8 @@ extern std::int32_t naddr_;   // # of ip addresses
 
 	#define RFIFOB(fd,pos) (*(uint8*)RFIFOP(fd,pos))
 	#define WFIFOB(fd,pos) (*(uint8*)WFIFOP(fd,pos))
-	#define RFIFOW(fd,pos) (*(uint16*)RFIFOP(fd,pos))
-	#define WFIFOW(fd,pos) (*(uint16*)WFIFOP(fd,pos))
+	#define RFIFOW(fd,pos) (*(std::uint16_t*)RFIFOP(fd,pos))
+	#define WFIFOW(fd,pos) (*(std::uint16_t*)WFIFOP(fd,pos))
 	#define RFIFOL(fd,pos) (*(std::uint32_t*)RFIFOP(fd,pos))
 	#define WFIFOL(fd,pos) (*(std::uint32_t*)WFIFOP(fd,pos))
 
@@ -266,9 +266,9 @@ extern std::int32_t naddr_;   // # of ip addresses
 
 	std::int32_t connect_client(std::int32_t listen_fd, sockaddr_in& client_address);
 
-	std::int32_t makeConnection_tcp(std::uint32_t ip, uint16 port);
+	std::int32_t makeConnection_tcp(std::uint32_t ip, std::uint16_t port);
 
-	std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
+	std::int32_t makeListenBind_tcp(const char* ip, std::uint16_t port,RecvFunc connect_client);
 
 	std::int32_t RFIFOSKIP(std::int32_t fd, size_t len);
 
@@ -293,7 +293,7 @@ extern std::int32_t naddr_;   // # of ip addresses
 	*
 	*/
 	extern std::int32_t listen_fd;
-	std::int32_t makeBind_udp(std::uint32_t ip, uint16 port);
+	std::int32_t makeBind_udp(std::uint32_t ip, std::uint16_t port);
 
 	void socket_init_udp(void);
 	void do_close_udp(std::int32_t fd);

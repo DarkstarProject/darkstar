@@ -52,30 +52,30 @@ public:
     CAIContainer(const CAIContainer&) = delete;
     CAIContainer& operator=(const CAIContainer&) = delete;
 
-    bool Cast(uint16 targid, SpellID spellid);
-    bool Engage(uint16 targid);
-    bool ChangeTarget(uint16 targid);
+    bool Cast(std::uint16_t targid, SpellID spellid);
+    bool Engage(std::uint16_t targid);
+    bool ChangeTarget(std::uint16_t targid);
     bool Disengage();
-    bool WeaponSkill(uint16 targid, uint16 wsid);
-    bool MobSkill(uint16 targid, uint16 wsid);
-    bool Ability(uint16 targid, uint16 abilityid);
-    bool RangedAttack(uint16 targid);
-    bool Trigger(uint16 targid);
-    bool UseItem(uint16 targid, uint8 loc, uint8 slotid);
+    bool WeaponSkill(std::uint16_t targid, std::uint16_t wsid);
+    bool MobSkill(std::uint16_t targid, std::uint16_t wsid);
+    bool Ability(std::uint16_t targid, std::uint16_t abilityid);
+    bool RangedAttack(std::uint16_t targid);
+    bool Trigger(std::uint16_t targid);
+    bool UseItem(std::uint16_t targid, uint8 loc, uint8 slotid);
     bool Inactive(duration _duration, bool canChangeState);
 
     /* Internal Controller functions */
-    bool Internal_Engage(uint16 targetid);
-    bool Internal_Cast(uint16 targetid, SpellID spellid);
-    bool Internal_ChangeTarget(uint16 targetid);
+    bool Internal_Engage(std::uint16_t targetid);
+    bool Internal_Cast(std::uint16_t targetid, SpellID spellid);
+    bool Internal_ChangeTarget(std::uint16_t targetid);
     bool Internal_Disengage();
-    bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
-    bool Internal_MobSkill(uint16 targid, uint16 wsid);
-    bool Internal_Ability(uint16 targetid, uint16 abilityid);
-    bool Internal_RangedAttack(uint16 targetid);
+    bool Internal_WeaponSkill(std::uint16_t targid, std::uint16_t wsid);
+    bool Internal_MobSkill(std::uint16_t targid, std::uint16_t wsid);
+    bool Internal_Ability(std::uint16_t targetid, std::uint16_t abilityid);
+    bool Internal_RangedAttack(std::uint16_t targetid);
     bool Internal_Die(duration);
     bool Internal_Raise();
-    bool Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
+    bool Internal_UseItem(std::uint16_t targetid, uint8 loc, uint8 slotid);
     bool Internal_Despawn();
     bool Internal_Respawn(duration _duration);
 

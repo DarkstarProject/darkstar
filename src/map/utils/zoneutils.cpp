@@ -43,7 +43,7 @@
 #include "../mob_modifier.h"
 
 
-std::map<uint16, CZone*> g_PZoneList;   // глобальный массив указателей на игровые зоны
+std::map<std::uint16_t, CZone*> g_PZoneList;   // глобальный массив указателей на игровые зоны
 CNpcEntity*  g_PTrigger;    // триггер для запуска событий
 
 
@@ -152,7 +152,7 @@ void SavePlayTime()
 *                                                                       *
 ************************************************************************/
 
-CZone* GetZone(uint16 ZoneID)
+CZone* GetZone(std::uint16_t ZoneID)
 {
     DSP_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
     try
@@ -165,7 +165,7 @@ CZone* GetZone(uint16 ZoneID)
     }
 }
 
-CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)
+CNpcEntity* GetTrigger(std::uint16_t TargID, std::uint16_t ZoneID)
 {
     g_PTrigger->targid = TargID;
     g_PTrigger->id = ((4096 + ZoneID) << 12) + TargID;
@@ -182,11 +182,11 @@ CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)
 
 CBaseEntity* GetEntity(std::uint32_t ID, uint8 filter)
 {
-    uint16 zoneID = (ID >> 12) & 0x0FFF;
+    std::uint16_t zoneID = (ID >> 12) & 0x0FFF;
     CZone* PZone = GetZone(zoneID);
     if (PZone)
     {
-        return PZone->GetEntity((uint16)(ID & 0x0FFF), filter);
+        return PZone->GetEntity((std::uint16_t)(ID & 0x0FFF), filter);
     }
     else
     {
@@ -220,7 +220,7 @@ CCharEntity* GetCharByName(int8* name)
 *                                                                       *
 ************************************************************************/
 
-CCharEntity* GetCharFromWorld(std::uint32_t charid, uint16 targid)
+CCharEntity* GetCharFromWorld(std::uint32_t charid, std::uint16_t targid)
 {
     // will not return pointers to players in Mog House
     for (auto PZone : g_PZoneList)
@@ -326,7 +326,7 @@ void LoadNPCList()
             }
 
             std::uint32_t NpcID = Sql_GetUIntData(SqlHandle, 0);
-            uint16 ZoneID = (NpcID - 0x1000000) >> 12;
+            std::uint16_t ZoneID = (NpcID - 0x1000000) >> 12;
 
             if (GetZone(ZoneID)->GetType() != ZONETYPE_DUNGEON_INSTANCED)
             {
@@ -340,7 +340,7 @@ void LoadNPCList()
                 PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
                 PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
                 PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
-                PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 6);
+                PNpc->loc.p.moving = (std::uint16_t)Sql_GetUIntData(SqlHandle, 6);
 
                 PNpc->m_TargID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
 
@@ -410,7 +410,7 @@ void LoadMOBList()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
+            std::uint16_t ZoneID = (std::uint16_t)Sql_GetUIntData(SqlHandle, 0);
 
             if (GetZone(ZoneID)->GetType() != ZONETYPE_DUNGEON_INSTANCED)
             {
@@ -419,7 +419,7 @@ void LoadMOBList()
                 PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
                 PMob->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 2);
 
-                PMob->targid = (uint16)PMob->id & 0x0FFF;
+                PMob->targid = (std::uint16_t)PMob->id & 0x0FFF;
 
                 PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
                 PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle, 4);
@@ -447,7 +447,7 @@ void LoadMOBList()
                 PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
                 PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
 
-                PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlHandle, 20);
+                PMob->m_Behaviour = (std::uint16_t)Sql_GetIntData(SqlHandle, 20);
                 PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 21);
                 PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 22);
                 PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 23);
@@ -476,22 +476,22 @@ void LoadMOBList()
                 PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 57);
                 PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 58);
 
-                PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle, 36) * 1000));
-                PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlHandle, 37) * 1000));
-                PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 38) * 1000));
-                PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 39) * 1000));
+                PMob->setModifier(Mod::SLASHRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 36) * 1000));
+                PMob->setModifier(Mod::PIERCERES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 37) * 1000));
+                PMob->setModifier(Mod::HTHRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 38) * 1000));
+                PMob->setModifier(Mod::IMPACTRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 39) * 1000));
 
-                PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // These are stored as floating percentages
-                PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // and need to be adjusted into modifier units.
-                PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); // Higher RES = lower damage.
-                PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100)); // Negatives signify lower resist chance.
-                PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100)); // Positives signify increased resist chance.
-                PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlHandle, 45) - 1) * -100));
-                PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlHandle, 46) - 1) * -100));
-                PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlHandle, 47) - 1) * -100));
+                PMob->setModifier(Mod::FIRERES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // These are stored as floating percentages
+                PMob->setModifier(Mod::ICERES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // and need to be adjusted into modifier units.
+                PMob->setModifier(Mod::WINDRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); // Higher RES = lower damage.
+                PMob->setModifier(Mod::EARTHRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 43) - 1) * -100)); // Negatives signify lower resist chance.
+                PMob->setModifier(Mod::THUNDERRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 44) - 1) * -100)); // Positives signify increased resist chance.
+                PMob->setModifier(Mod::WATERRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 45) - 1) * -100));
+                PMob->setModifier(Mod::LIGHTRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 46) - 1) * -100));
+                PMob->setModifier(Mod::DARKRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 47) - 1) * -100));
 
                 PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 48);
-                PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 49);
+                PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 49);
                 PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
                 PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlHandle, 51);
 
@@ -529,7 +529,7 @@ void LoadMOBList()
                 PMob->namevis = Sql_GetUIntData(SqlHandle, 61);
                 PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 62);
 
-                PMob->m_roamFlags = (uint16)Sql_GetUIntData(SqlHandle, 63);
+                PMob->m_roamFlags = (std::uint16_t)Sql_GetUIntData(SqlHandle, 63);
                 PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 64);
 
                 PMob->m_TrueDetection = Sql_GetUIntData(SqlHandle, 65);
@@ -582,7 +582,7 @@ void LoadMOBList()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
+            std::uint16_t ZoneID = (std::uint16_t)Sql_GetUIntData(SqlHandle, 0);
             std::uint32_t masterid = (std::uint32_t)Sql_GetUIntData(SqlHandle,1);
             std::uint32_t petid = masterid + (std::uint32_t)Sql_GetUIntData(SqlHandle,2);
 
@@ -621,7 +621,7 @@ void LoadMOBList()
 *                                                                       *
 ************************************************************************/
 
-CZone* CreateZone(uint16 ZoneID)
+CZone* CreateZone(std::uint16_t ZoneID)
 {
     static const int8* Query =
         "SELECT zonetype FROM zone_settings "
@@ -657,7 +657,7 @@ void LoadZoneList()
 {
     g_PTrigger = new CNpcEntity();  // нужно в конструкторе CNpcEntity задавать модель по умолчанию
 
-    std::vector<uint16> zones;
+    std::vector<std::uint16_t> zones;
     const int8* query = "SELECT zoneid FROM zone_settings WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
     int ret = Sql_Query(SqlHandle, query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
@@ -701,7 +701,7 @@ void LoadZoneList()
 *                                                                       *
 ************************************************************************/
 
-REGIONTYPE GetCurrentRegion(uint16 ZoneID)
+REGIONTYPE GetCurrentRegion(std::uint16_t ZoneID)
 {
     switch (ZoneID)
     {
@@ -1001,7 +1001,7 @@ REGIONTYPE GetCurrentRegion(uint16 ZoneID)
 *                                                                       *
 ************************************************************************/
 
-CONTINENTTYPE GetCurrentContinent(uint16 ZoneID)
+CONTINENTTYPE GetCurrentContinent(std::uint16_t ZoneID)
 {
     return GetCurrentRegion(ZoneID) != REGION_UNKNOWN ? THE_MIDDLE_LANDS : OTHER_AREAS;
 }
@@ -1059,7 +1059,7 @@ void ForEachZone(std::function<void(CZone*)> func)
     }
 }
 
-std::uint64_t GetZoneIPP(uint16 zoneID)
+std::uint64_t GetZoneIPP(std::uint16_t zoneID)
 {
     std::uint64_t ipp = 0;
     const int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %u;";

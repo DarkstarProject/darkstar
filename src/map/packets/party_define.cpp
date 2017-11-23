@@ -53,7 +53,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 			uint8 i = 0;
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
-				uint16 targid = 0;
+				std::uint16_t targid = 0;
 				CCharEntity* PChar = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
 				if (PChar) targid = PChar->targid;
 				WBUFL(data, 12 * i + (0x08) ) = Sql_GetUIntData(SqlHandle, 0);

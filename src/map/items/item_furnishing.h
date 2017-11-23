@@ -97,7 +97,7 @@ class CItemFurnishing : public CItem
 {
 public:
 
-	CItemFurnishing(uint16);
+	CItemFurnishing(std::uint16_t);
 	virtual ~CItemFurnishing();
 
 	uint8	getStorage();

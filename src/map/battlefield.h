@@ -88,19 +88,19 @@ class CBattlefield
 {
 public:
 
-    CBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type);
+    CBattlefield(CBattlefieldHandler* hand, std::uint16_t bcnmid, BATTLEFIELDTYPE type);
 
     //bcnm related functions
-    uint16		getID();
+    std::uint16_t		getID();
     duration		getTimeLimit();
     BATTLEFIELDTYPE		getType();
     const int8* getBcnmName();
-    uint16		getZoneId();
+    std::uint16_t		getZoneId();
     uint8       getBattlefieldNumber();
     uint8       getMaxParticipants();
     uint8		getMaxPlayerInBCNM();
     uint8		getLevelCap();
-    uint16		getLootId();
+    std::uint16_t		getLootId();
     time_point		getStartTime();
     time_point		getWinTime();
     time_point		getDeadTime();
@@ -109,11 +109,11 @@ public:
 
     void		setTimeLimit(duration time);
     void		setBcnmName(int8* name);
-    void		setZoneId(uint16 zone);
+    void		setZoneId(std::uint16_t zone);
     void		setBattlefieldNumber(uint8 battlefield);
     void		setMaxParticipants(uint8 max);
     void		setLevelCap(uint8 cap);
-    void		setLootId(uint16 id);
+    void		setLootId(std::uint16_t id);
     void		setDeadTime(time_point time);
     void		setEntrance(uint8 entrance);
     void        setRecord(const std::string& name, uint8 partySize, duration clearTime);
@@ -130,7 +130,7 @@ public:
     void		capPlayerToBCNM();										// adjust player's level to the appropriate cap and remove buffs
     void		disableSubJob();										// disable all players subjobs
     void		enableSubJob();											// enable all players subjobs
-    void		pushMessageToAllInBcnm(uint16 msg, std::uint32_t param);
+    void		pushMessageToAllInBcnm(std::uint16_t msg, std::uint32_t param);
 
     //spawning chests + loot
     void		addNpc(CBaseEntity* PNpc);
@@ -160,7 +160,7 @@ public:
 
     //Dynamis functions
     void		setDynaUniqueID();										// set unique ID in dynamis battlefield
-    uint16		getDynaUniqueID();										// get unique ID in dynamis battlefield
+    std::uint16_t		getDynaUniqueID();										// get unique ID in dynamis battlefield
     bool		addPlayerToDynamis(CCharEntity* PChar);					// add player to the dynamis
     void		addTimeLimit(duration time);								// add time in dynamis
     bool		finishDynamis();										// finish dynamis
@@ -168,7 +168,7 @@ public:
     bool		delPlayerFromDynamis(CCharEntity* PChar);				// delete player in m_PlayerList
     void		clearPlayerEnmity(CCharEntity* PChar); 					// erase chars enmity
 
-    uint16		m_RuleMask;
+    std::uint16_t		m_RuleMask;
     bool		locked;
     string_t	m_FastestName;
     std::uint32_t		m_FastestTime;
@@ -189,9 +189,9 @@ public:
 
 private:
     CBattlefieldHandler* m_Handler;
-    uint16			m_BcnmID;
+    std::uint16_t			m_BcnmID;
     string_t		m_name;
-    uint16			m_ZoneID;
+    std::uint16_t			m_ZoneID;
     BATTLEFIELDTYPE m_Type;
     uint8			m_BattlefieldNumber;
     time_point			m_StartTime;
@@ -201,7 +201,7 @@ private:
     std::uint32_t			m_LootId;
     uint8			m_LevelCap;
     uint8			m_MaxParticipants;										// 1,3,6,12,18,zone
-    uint16			m_DynaUniqueID;											// unique ID for dynamis battlefield
+    std::uint16_t			m_DynaUniqueID;											// unique ID for dynamis battlefield
     uint8			m_entrance;
     CCharEntity*	m_CurrentBattlefieldLeader;
     bool			m_lost;

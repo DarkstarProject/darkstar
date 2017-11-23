@@ -53,29 +53,29 @@ protected:
     uint8* data;
     uint8& type;
     uint8& size;
-    uint16& code;
+    std::uint16_t& code;
     bool owner;
 
 public:
 
     CBasicPacket()
-        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(true)
+        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(true)
     {
         std::fill(data, data + PACKET_SIZE, 0);
     }
 
     CBasicPacket(uint8* _data)
-        : data(_data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(false)
+        : data(_data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(false)
     {}
 
     CBasicPacket(const CBasicPacket& other)
-        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(true)
+        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(true)
     {
         memcpy(data, other.data, PACKET_SIZE);
     }
 
     CBasicPacket(CBasicPacket&& other)
-        : data(other.data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(other.owner)
+        : data(other.data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(other.owner)
     {
         other.data = nullptr;
     }
@@ -93,9 +93,9 @@ public:
 
     /* Getters for the header */
 
-    uint16 id()
+    std::uint16_t id()
     {
-        return ref<uint16>(0) & 0x1FF;
+        return ref<std::uint16_t>(0) & 0x1FF;
     }
     std::size_t length()
     {
@@ -103,7 +103,7 @@ public:
     }
     unsigned short sequence()
     {
-        return ref<uint16>(2);
+        return ref<std::uint16_t>(2);
     }
 
     /* Setters for the header */
@@ -111,8 +111,8 @@ public:
     // Set the first 9 bits to the ID. The highest bit overflows into the second byte.
     void id(unsigned int new_id)
     {
-        ref<uint16>(0) &= ~0x1FF;
-        ref<uint16>(0) |= new_id & 0x1FF;
+        ref<std::uint16_t>(0) &= ~0x1FF;
+        ref<std::uint16_t>(0) |= new_id & 0x1FF;
     }
 
     // The length "byte" is actually just the highest 7 bits.
@@ -125,7 +125,7 @@ public:
 
     void sequence(unsigned short new_sequence)
     {
-        ref<uint16>(2) = new_sequence;
+        ref<std::uint16_t>(2) = new_sequence;
     }
 
     /* Indexer for the data buffer */

@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 
-CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, uint16 conditionsValue, uint8 slot, Mod modValue, int16 modPower) :
+CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, std::uint16_t conditionsValue, uint8 slot, Mod modValue, std::int16_t modPower) :
     m_POwner(owner),
     m_ConditionsID(conditionsId),
     m_ConditionsValue(conditionsValue),
@@ -49,7 +49,7 @@ LATENT CLatentEffect::GetConditionsID() const
     return m_ConditionsID;
 }
 
-uint16 CLatentEffect::GetConditionsValue() const
+std::uint16_t CLatentEffect::GetConditionsValue() const
 {
     return m_ConditionsValue;
 }
@@ -64,7 +64,7 @@ Mod CLatentEffect::GetModValue() const
     return m_ModValue;
 }
 
-int16 CLatentEffect::GetModPower() const
+std::int16_t CLatentEffect::GetModPower() const
 {
     return m_ModPower;
 }
@@ -84,7 +84,7 @@ void CLatentEffect::SetConditionsId(LATENT id)
     m_ConditionsID = id;
 }
 
-void CLatentEffect::SetConditionsValue(uint16 value)
+void CLatentEffect::SetConditionsValue(std::uint16_t value)
 {
     m_ConditionsValue = value;
 }
@@ -99,7 +99,7 @@ void CLatentEffect::SetModValue(Mod value)
     m_ModValue = value;
 }
 
-void CLatentEffect::SetModPower(int16 power)
+void CLatentEffect::SetModPower(std::int16_t power)
 {
     m_ModPower = power;
 }
@@ -136,7 +136,7 @@ void CLatentEffect::Deactivate()
             CCharEntity* PChar = (CCharEntity*)m_POwner;
 			CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
-            int16 modPower = GetModPower();
+            std::int16_t modPower = GetModPower();
 
             if (weapon != nullptr && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
             {

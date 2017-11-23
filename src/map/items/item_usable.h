@@ -32,45 +32,45 @@ class CItemUsable : public CItem
 {
 public:
 
-	CItemUsable(uint16);
+	CItemUsable(std::uint16_t);
 	virtual ~CItemUsable();
 
 	uint8	getUseDelay();
 	uint8	getCurrentCharges();
 	uint8	getMaxCharges();
-	uint16	getAnimationID();
-	uint16	getAnimationTime();
-	uint16	getActivationTime();
+	std::uint16_t	getAnimationID();
+	std::uint16_t	getAnimationTime();
+	std::uint16_t	getActivationTime();
 	uint8	getValidTarget();
     std::uint32_t  getReuseTime();
 	std::uint32_t	getReuseDelay();
 	std::uint32_t	getLastUseTime();
     std::uint32_t  getNextUseTime();
-    uint16  getAoE();
+    std::uint16_t  getAoE();
 
 	void	setUseDelay(uint8 UseDelay);
 	void	setCurrentCharges(uint8 CurrCharges);
 	void	setMaxCharges(uint8 MaxCharges);
-	void	setAnimationID(uint16 Animation);
-	void	setAnimationTime(uint16 AnimationTime);
-	void	setActivationTime(uint16 ActivationTime);
+	void	setAnimationID(std::uint16_t Animation);
+	void	setAnimationTime(std::uint16_t AnimationTime);
+	void	setActivationTime(std::uint16_t ActivationTime);
 	void	setValidTarget(uint8 ValidTarget);
 	void	setReuseDelay(std::uint32_t ReuseDelay);
 	void	setLastUseTime(std::uint32_t LastUseTime);
     void    setAssignTime(std::uint32_t VanaTime);
-	void    setAoE(uint16 AoE);
+	void    setAoE(std::uint16_t AoE);
 
 private:
 
 	uint8	m_UseDelay;         // задержка использования после экипировки 
 	uint8	m_MaxCharges;       // максимальное количество зарядов предмета
-	uint16	m_Animation;
-	uint16	m_AnimationTime;    // время анимации для правильного отображения сообщения (эффектов)
-	uint16	m_ActivationTime;   // время активации предмета во время использования
+	std::uint16_t	m_Animation;
+	std::uint16_t	m_AnimationTime;    // время анимации для правильного отображения сообщения (эффектов)
+	std::uint16_t	m_ActivationTime;   // время активации предмета во время использования
 	uint8	m_ValidTarget;
 	std::uint32_t	m_ReuseDelay;       // задержка между использованием предмета
     std::uint32_t  m_AssignTime;       // время экипировки предмета
-    uint16  m_AoE;
+    std::uint16_t  m_AoE;
 };
 
 #endif

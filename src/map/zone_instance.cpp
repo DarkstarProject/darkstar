@@ -70,7 +70,7 @@ CCharEntity* CZoneInstance::GetCharByID(std::uint32_t id)
     return PEntity;
 }
 
-CBaseEntity* CZoneInstance::GetEntity(uint16 targid, uint8 filter)
+CBaseEntity* CZoneInstance::GetEntity(std::uint16_t targid, uint8 filter)
 {
     CBaseEntity* PEntity = nullptr;
     if (filter & TYPE_PC)
@@ -124,7 +124,7 @@ void CZoneInstance::FindPartyForMob(CBaseEntity* PEntity)
     }
 }
 
-void CZoneInstance::TransportDepart(uint16 boundary, uint16 zone)
+void CZoneInstance::TransportDepart(std::uint16_t boundary, std::uint16_t zone)
 {
     for (auto instance : instanceList)
     {
@@ -223,7 +223,7 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
         //instance no longer exists: put them outside (at exit)
         PChar->loc.prevzone = GetID();
 
-        uint16 zoneid = luautils::OnInstanceLoadFailed(this);
+        std::uint16_t zoneid = luautils::OnInstanceLoadFailed(this);
 
         zoneutils::GetZone(zoneid > MAX_ZONEID ? PChar->loc.prevzone : zoneid)->IncreaseZoneCounter(PChar);
     }
@@ -303,7 +303,7 @@ void CZoneInstance::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
     }
 }
 
-void CZoneInstance::WideScan(CCharEntity* PChar, uint16 radius)
+void CZoneInstance::WideScan(CCharEntity* PChar, std::uint16_t radius)
 {
     if (PChar->PInstance)
     {

@@ -44,6 +44,6 @@ struct blowfish_t
 void blowfish_decipher(std::uint32_t* xl, std::uint32_t* xr, std::uint32_t* P, std::uint32_t* S);
 void blowfish_encipher(std::uint32_t* xl, std::uint32_t* xr, std::uint32_t* P, std::uint32_t* S);
 
-std::uint32_t* blowfish_init(int8 key[], int16 keybytes, std::uint32_t* P, std::uint32_t* S);
+std::uint32_t* blowfish_init(int8 key[], std::int16_t keybytes, std::uint32_t* P, std::uint32_t* S);
 
 #endif

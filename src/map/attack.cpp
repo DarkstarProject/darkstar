@@ -357,11 +357,11 @@ bool CAttack::CheckCounter()
 
     //counter check (rate AND your hit rate makes it land, else its just a regular hit)
     //having seigan active gives chance to counter at 25% of the zanshin proc rate
-    uint16 seiganChance = 0;
+    std::uint16_t seiganChance = 0;
     if (m_victim->objtype == TYPE_PC && m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
     {
         seiganChance = m_victim->getMod(Mod::ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
-        seiganChance = std::clamp<uint16>(seiganChance, 0, 100);
+        seiganChance = std::clamp<std::uint16_t>(seiganChance, 0, 100);
         seiganChance /= 4;
     }
     if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(Mod::COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
@@ -409,7 +409,7 @@ void CAttack::ProcessDamage()
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
         m_naturalH2hDamage = (std::int32_t)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
-        m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
+        m_baseDamage = std::max<std::uint16_t>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;

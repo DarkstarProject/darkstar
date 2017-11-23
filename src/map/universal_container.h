@@ -62,7 +62,7 @@ public:
 
     void    SetLock();
 	void    UnLock();
-    void    SetTarget(uint16 Target);
+    void    SetTarget(std::uint16_t Target);
 	void	SetType(UCONTAINERTYPE Type);
 	bool	SetItem(uint8 slotID, CItem* PItem);
     void    SetSize(uint8 size);
@@ -73,7 +73,7 @@ public:
 	bool	IsContainerEmpty();
     bool    IsSlotEmpty(uint8 slotID);
 
-    uint16  GetTarget();
+    std::uint16_t  GetTarget();
     uint8	GetItemsCount();
 	CItem*	GetItem(uint8 slotID);
 
@@ -83,7 +83,7 @@ private:
 
     bool    m_lock;
     uint8   m_count;
-    uint16  m_target;
+    std::uint16_t  m_target;
 	std::vector<CItem*>  m_PItem;
 };
 

@@ -38,7 +38,7 @@ class CItemShop : public CItem
 {
 public:
 
-    CItemShop(uint16 id);
+    CItemShop(std::uint16_t id);
     virtual ~CItemShop();
 
     std::uint32_t  getMinPrice();
@@ -49,19 +49,19 @@ public:
 
     void    setMinPrice(std::uint32_t price);
     void    setMaxPrice(std::uint32_t price);
-    void    setDailyIncrease(uint16 quantity);
-    uint16  getDailyIncrease();
-    void    setInitialQuantity(uint16 quantity);
-    uint16  getInitialQuantity();
-	uint16  getSellPrice();
+    void    setDailyIncrease(std::uint16_t quantity);
+    std::uint16_t  getDailyIncrease();
+    void    setInitialQuantity(std::uint16_t quantity);
+    std::uint16_t  getInitialQuantity();
+	std::uint16_t  getSellPrice();
 
 private:
 
     std::uint32_t  m_MinPrice;
     std::uint32_t  m_MaxPrice;
 
-    uint16    m_DailyIncrease;
-    uint16    m_InitialQuantity;
+    std::uint16_t    m_DailyIncrease;
+    std::uint16_t    m_InitialQuantity;
 };
 
 #endif

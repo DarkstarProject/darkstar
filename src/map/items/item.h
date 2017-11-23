@@ -80,12 +80,12 @@ class CItem
 {
 public:
 
-    CItem(uint16 id);
+    CItem(std::uint16_t id);
     virtual ~CItem();
 
-    uint16      getID();
-    uint16      getSubID();
-    uint16      getFlag();
+    std::uint16_t      getID();
+    std::uint16_t      getSubID();
+    std::uint16_t      getFlag();
     uint8       getAHCat();
     std::uint32_t      getReserve();
     std::uint32_t      getQuantity();
@@ -99,10 +99,10 @@ public:
     bool        isType(ITEM_TYPE);
     bool        isSubType(ITEM_SUBTYPE);
 
-    void        setID(uint16 );
-    void        setSubID(uint16);
+    void        setID(std::uint16_t );
+    void        setSubID(std::uint16_t);
     void        setSubType(uint8);
-    void        setFlag(uint16);
+    void        setFlag(std::uint16_t);
     void        setAHCat(uint8);
     void        setReserve(std::uint32_t);
     void        setQuantity(std::uint32_t);
@@ -133,8 +133,8 @@ protected:
 
 private:
 
-    uint16      m_id;
-    uint16      m_subid;
+    std::uint16_t      m_id;
+    std::uint16_t      m_subid;
     uint8       m_type;
     uint8       m_subtype;
     std::uint32_t      m_quantity;     // текущее количество предметов
@@ -143,7 +143,7 @@ private:
     std::uint32_t      m_BasePrice;
     std::uint32_t      m_CharPrice;    // стоимость предмета в bazaar
     uint8       m_ahCat;        // категоряи предмета на укционе
-    uint16      m_flag;
+    std::uint16_t      m_flag;
 
     uint8       m_slotID;       // ячейка предмета в хранилище
     uint8       m_locationID;   // номер хранилища предмета

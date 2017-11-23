@@ -164,13 +164,13 @@ public:
     uint8   getJob();
     uint8   getLevel();
     Mod     getMod();
-    int16   getValue();
+    std::int16_t   getValue();
     uint8   getRank();
 
     void    setJob(int8 job);
     void    setLevel(uint8 level);
     void    setMod(Mod mod);
-    void    setValue(int16 value);
+    void    setValue(std::int16_t value);
     void    setRank(uint8 rank);
 
 private:
@@ -179,7 +179,7 @@ private:
     uint8   m_job;
     uint8   m_level;
     Mod     m_mod;
-    int16   m_value;
+    std::int16_t   m_value;
     uint8   m_rank;
 };
 

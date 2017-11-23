@@ -34,7 +34,7 @@
 *                                                                       *
 ************************************************************************/
 
-CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
+CItemWeapon::CItemWeapon(std::uint16_t id) : CItemArmor(id)
 {
 	setType(ITEM_WEAPON);
 
@@ -107,7 +107,7 @@ bool CItemWeapon::isUnlocked()
     return isUnlockable() && getCurrentUnlockPoints() == m_wsunlockpoints;
 }
 
-bool CItemWeapon::addWsPoints(uint16 points)
+bool CItemWeapon::addWsPoints(std::uint16_t points)
 {
     if (getCurrentUnlockPoints() + points >= m_wsunlockpoints)
     {
@@ -165,17 +165,17 @@ void CItemWeapon::setSubSkillType(uint8 subSkillType)
 	m_subSkillType = subSkillType;
 }
 
-void CItemWeapon::setILvlSkill(uint16 skill)
+void CItemWeapon::setILvlSkill(std::uint16_t skill)
 {
     m_iLvlSkill = skill;
 }
 
-void CItemWeapon::setILvlParry(uint16 parry)
+void CItemWeapon::setILvlParry(std::uint16_t parry)
 {
     m_iLvlParry = parry;
 }
 
-void CItemWeapon::setILvlMacc(uint16 macc)
+void CItemWeapon::setILvlMacc(std::uint16_t macc)
 {
     m_iLvlMacc = macc;
 }
@@ -185,17 +185,17 @@ uint8 CItemWeapon::getSubSkillType()
 	return m_subSkillType;
 }
 
-uint16 CItemWeapon::getILvlSkill()
+std::uint16_t CItemWeapon::getILvlSkill()
 {
     return m_iLvlSkill;
 }
 
-uint16 CItemWeapon::getILvlParry()
+std::uint16_t CItemWeapon::getILvlParry()
 {
     return m_iLvlParry;
 }
 
-uint16 CItemWeapon::getILvlMacc()
+std::uint16_t CItemWeapon::getILvlMacc()
 {
     return m_iLvlMacc;
 }
@@ -208,12 +208,12 @@ uint16 CItemWeapon::getILvlMacc()
 *																		*
 ************************************************************************/
 
-void CItemWeapon::setDelay(uint16 delay)
+void CItemWeapon::setDelay(std::uint16_t delay)
 {
 	m_delay = delay;
 }
 
-int16 CItemWeapon::getDelay()
+std::int16_t CItemWeapon::getDelay()
 {
 	return m_delay;
 }
@@ -226,12 +226,12 @@ int16 CItemWeapon::getDelay()
 *																		*
 ************************************************************************/
 
-void CItemWeapon::setBaseDelay(uint16 delay)
+void CItemWeapon::setBaseDelay(std::uint16_t delay)
 {
 	m_baseDelay = delay;
 }
 
-int16 CItemWeapon::getBaseDelay()
+std::int16_t CItemWeapon::getBaseDelay()
 {
 	return m_baseDelay;
 }
@@ -241,12 +241,12 @@ int16 CItemWeapon::getBaseDelay()
 *                                                                       *
 ************************************************************************/
 
-uint16 CItemWeapon::getUnlockPoints()
+std::uint16_t CItemWeapon::getUnlockPoints()
 {
 	return m_wsunlockpoints;
 }
 
-uint16 CItemWeapon::getCurrentUnlockPoints()
+std::uint16_t CItemWeapon::getCurrentUnlockPoints()
 {
     return RBUFW(m_extra, 0);
 }
@@ -257,12 +257,12 @@ uint16 CItemWeapon::getCurrentUnlockPoints()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setDamage(uint16 damage)
+void CItemWeapon::setDamage(std::uint16_t damage)
 {
 	m_damage = damage;
 }
 
-uint16 CItemWeapon::getDamage()
+std::uint16_t CItemWeapon::getDamage()
 {
 	return m_damage;
 }
@@ -273,12 +273,12 @@ uint16 CItemWeapon::getDamage()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setDmgType(uint16 dmgType)
+void CItemWeapon::setDmgType(std::uint16_t dmgType)
 {
 	m_dmgType = dmgType;
 }
 
-uint16 CItemWeapon::getDmgType()
+std::uint16_t CItemWeapon::getDmgType()
 {
 	return m_dmgType;
 }
@@ -305,12 +305,12 @@ uint8 CItemWeapon::getAdditionalEffect()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setUnlockablePoints(uint16 points)
+void CItemWeapon::setUnlockablePoints(std::uint16_t points)
 {
     m_wsunlockpoints = points;
 }
 
-void CItemWeapon::setCurrentUnlockPoints(uint16 points)
+void CItemWeapon::setCurrentUnlockPoints(std::uint16_t points)
 {
     WBUFW(m_extra, 0) = points;
 }
