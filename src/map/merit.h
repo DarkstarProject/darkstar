@@ -540,7 +540,7 @@ class CMeritPoints
 
         uint16      GetLimitPoints();
         uint8       GetMeritPoints();
-        std::int32_t       GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar);
+        int32       GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar);
 
         bool        AddLimitPoints(uint16 points);                  // automatically adds merit points > 10000
         bool        IsMeritExist(MERIT_TYPE merit);                 // проверяем существование merit

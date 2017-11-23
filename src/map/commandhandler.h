@@ -42,7 +42,7 @@ public:
     ~CCommandHandler()  {}
 
     void  init(lua_State* L);
-    std::int32_t call(CCharEntity* PChar, const int8* commandline);
+    int32 call(CCharEntity* PChar, const int8* commandline);
 };
 
 #endif

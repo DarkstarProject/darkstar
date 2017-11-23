@@ -51,8 +51,8 @@ struct jobs_t
 
 struct event_t
 {
-    std::int32_t EventID;                  // номер события
-    std::int32_t Option;                   // фиктивный возвращаемый результат
+    int32 EventID;                  // номер события
+    int32 Option;                   // фиктивный возвращаемый результат
 
     CBaseEntity* Target;            // инициатор события
 
@@ -295,8 +295,8 @@ public:
     time_point        m_LastSynthTime;
 
     int16 addTP(int16 tp) override;
-    std::int32_t addHP(std::int32_t hp) override;
-    std::int32_t addMP(std::int32_t mp) override;
+    int32 addHP(int32 hp) override;
+    int32 addMP(int32 mp) override;
 
     std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)

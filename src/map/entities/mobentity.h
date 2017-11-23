@@ -147,7 +147,7 @@ public:
     void      addMobMod(uint16 type, int16 value);     // add
     void      defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
     void      resetMobMod(uint16 type);                // resets mob mod to original value
-    std::int32_t     getBigMobMod(uint16 type);               // multiplies mod by 1000
+    int32     getBigMobMod(uint16 type);               // multiplies mod by 1000
     void      saveMobModifiers();                      // save current state of modifiers
     void      restoreMobModifiers();                   // restore to saved state
 

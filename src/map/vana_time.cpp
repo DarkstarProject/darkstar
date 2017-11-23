@@ -126,12 +126,12 @@ uint32 CVanaTime::getVanaTime()
     return (uint32)time(nullptr) - VTIME_BASEDATE;
 }
 
-std::int32_t CVanaTime::getCustomOffset()
+int32 CVanaTime::getCustomOffset()
 {
     return m_customOffset;
 }
 
-void CVanaTime::setCustomOffset(std::int32_t offset)
+void CVanaTime::setCustomOffset(int32 offset)
 {
     m_customOffset = offset;
     m_TimeType = SyncTime();
@@ -144,16 +144,16 @@ TIMETYPE CVanaTime::GetCurrentTOTD()
 
 uint32 CVanaTime::getMoonPhase()
 {
-    std::int32_t phase = 0;
-    double daysmod = (std::int32_t)(((m_vanaDate / VTIME_DAY) + 26) % 84);
+    int32 phase = 0;
+    double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
     if (daysmod >= 42)
     {
-        phase = (std::int32_t)(100 * ((daysmod - 42) / 42) + 0.5);
+        phase = (int32)(100 * ((daysmod - 42) / 42) + 0.5);
     }
     else
     {
-        phase = (std::int32_t)(100 * (1 - (daysmod / 42)) + 0.5);
+        phase = (int32)(100 * (1 - (daysmod / 42)) + 0.5);
     }
 
     return phase;
@@ -161,7 +161,7 @@ uint32 CVanaTime::getMoonPhase()
 
 uint8 CVanaTime::getMoonDirection()
 {
-    double daysmod = (std::int32_t)(((m_vanaDate / VTIME_DAY) + 26) % 84);
+    double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
     if (daysmod == 42 || daysmod == 0)
     {

@@ -33,7 +33,7 @@ namespace blacklistutils
 	bool IsBlacklisted(uint32 ownerId, uint32 targetId)
 	{
 		const char* sql = "SELECT * FROM char_blacklist WHERE charid_owner = %u AND charid_target = %u;";
-		std::int32_t ret = Sql_Query(SqlHandle, sql, ownerId, targetId);
+		int32 ret = Sql_Query(SqlHandle, sql, ownerId, targetId);
 
 		return (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1);
 	}

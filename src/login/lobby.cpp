@@ -34,8 +34,8 @@
 #include "lobby.h"
 
 
-std::int32_t login_lobbydata_fd;
-std::int32_t login_lobbyview_fd;
+int32 login_lobbydata_fd;
+int32 login_lobbyview_fd;
 
 /************************************************************************
 *                                                                       *
@@ -43,9 +43,9 @@ std::int32_t login_lobbyview_fd;
 *                                                                       *
 ************************************************************************/
 
-std::int32_t connect_client_lobbydata(std::int32_t listenfd)
+int32 connect_client_lobbydata(int32 listenfd)
 {
-    std::int32_t fd = 0;
+    int32 fd = 0;
     struct sockaddr_in client_address;
     if ((fd = connect_client(listenfd, client_address)) != -1)
     {
@@ -64,7 +64,7 @@ std::int32_t connect_client_lobbydata(std::int32_t listenfd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t lobbydata_parse(std::int32_t fd)
+int32 lobbydata_parse(int32 fd)
 {
     login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
@@ -109,7 +109,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
         if (RBUFB(buff, 0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET, ip2str(session[fd]->client_addr, nullptr));
         ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", RBUFB(buff, 0), ip2str(sd->client_addr, nullptr));
 
-        std::int32_t code = RBUFB(buff, 0);
+        int32 code = RBUFB(buff, 0);
         switch (code)
         {
         case 0xA1:
@@ -132,7 +132,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
             const char *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
-            std::int32_t ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 CharList[28] = Sql_GetUIntData(SqlHandle, 0);
@@ -387,7 +387,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t do_close_lobbydata(login_session_data_t *loginsd, std::int32_t fd)
+int32 do_close_lobbydata(login_session_data_t *loginsd, int32 fd)
 {
     if (loginsd != nullptr)
     {
@@ -416,9 +416,9 @@ std::int32_t do_close_lobbydata(login_session_data_t *loginsd, std::int32_t fd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t connect_client_lobbyview(std::int32_t listenfd)
+int32 connect_client_lobbyview(int32 listenfd)
 {
-    std::int32_t fd = 0;
+    int32 fd = 0;
     struct sockaddr_in client_address;
     if ((fd = connect_client(listenfd, client_address)) != -1)
     {
@@ -435,7 +435,7 @@ std::int32_t connect_client_lobbyview(std::int32_t listenfd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t lobbyview_parse(std::int32_t fd)
+int32 lobbyview_parse(int32 fd)
 {
     login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
@@ -466,7 +466,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
         {
         case 0x26:
         {
-            std::int32_t sendsize = 0x28;
+            int32 sendsize = 0x28;
             unsigned char MainReservePacket[0x28];
 
             string_t client_ver_data((char*)(buff + 0x74), 6); // Full length is 10 but we drop last 4
@@ -496,7 +496,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             else
             {
                 const char *pfmtQuery = "SELECT expansions,features FROM accounts WHERE id = %u;";
-                std::int32_t ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+                int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     LOBBY_026_RESERVEPACKET(ReservePacket);
@@ -619,7 +619,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             LOBBY_ACTION_DONE(ReservePacket);
             unsigned char hash[16];
 
-            std::int32_t sendsize = 32;
+            int32 sendsize = 32;
             //memset(ReservePacket+12,0,sizeof(16));
             md5((unsigned char*)(ReservePacket), hash, sendsize);
 
@@ -641,7 +641,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             //find assigns
             const char *fmtQuery = "SELECT charname FROM chars WHERE charname LIKE '%s'";
 
-            std::int32_t sendsize = 0x24;
+            int32 sendsize = 0x24;
             unsigned char MainReservePacket[0x24];
 
 
@@ -692,7 +692,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t do_close_lobbyview(login_session_data_t* sd, std::int32_t fd)
+int32 do_close_lobbyview(login_session_data_t* sd, int32 fd)
 {
     ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET": " CL_WHITE"%s" CL_RESET" shutdown the socket\n", sd->login);
     do_close_tcp(fd);
@@ -705,7 +705,7 @@ std::int32_t do_close_lobbyview(login_session_data_t* sd, std::int32_t fd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t lobby_createchar(login_session_data_t *loginsd, int8 *buf)
+int32 lobby_createchar(login_session_data_t *loginsd, int8 *buf)
 {
     // инициализируем генератор случайных чисел
     srand(clock());
@@ -781,7 +781,7 @@ std::int32_t lobby_createchar(login_session_data_t *loginsd, int8 *buf)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
+int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
 {
     const char* Query = "INSERT INTO chars(charid,accid,charname,pos_zone,nation) VALUES(%u,%u,'%s',%u,%u);";
 

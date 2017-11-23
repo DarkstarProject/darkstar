@@ -537,8 +537,8 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
     std::vector<SpellID> defaultPriority;
 
     int8 tier = 4;
-    std::int32_t hp = PTarget->health.hp;
-    std::int32_t selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
+    int32 hp = PTarget->health.hp;
+    int32 selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
     if (selfmp < 4)
         return false;
     else if (hp <= 50 || selfmp < 16)
@@ -1406,7 +1406,7 @@ namespace autoSpell
     {
         const char* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
 
-        std::int32_t ret = Sql_Query(SqlHandle, Query);
+        int32 ret = Sql_Query(SqlHandle, Query);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {

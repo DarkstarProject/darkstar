@@ -500,7 +500,7 @@ typedef std::map<uint16, zoneWeather_t> weatherVector_t;
 
 typedef std::map<uint16, CBaseEntity*> EntityList_t;
 
-std::int32_t zone_update_weather(uint32 tick, CTaskMgr::CTask *PTask);
+int32 zone_update_weather(uint32 tick, CTaskMgr::CTask *PTask);
 
 class CZone
 {

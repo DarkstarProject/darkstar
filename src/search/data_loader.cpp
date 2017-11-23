@@ -67,7 +67,7 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
         "ORDER BY sell_date DESC "
         "LIMIT 10";
 
-    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, ItemID, stack);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, ItemID, stack);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -109,7 +109,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
         "GROUP BY item_basic.itemid "
         "%s";
 
-    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID, OrderByString);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, AHCategoryID, OrderByString);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -208,7 +208,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
     fmtQuery.append(filterQry);
     fmtQuery.append(" ORDER BY charname ASC");
 
-    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery.c_str());
+    int32 ret = Sql_Query(SqlHandle, fmtQuery.c_str());
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -355,7 +355,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint16 PartyID, uint16 Allian
         "ORDER BY charname ASC "
         "LIMIT 18";
 
-    std::int32_t ret = Sql_Query(SqlHandle, Query, (!AllianceID ? PartyID : AllianceID), (!PartyID ? AllianceID : PartyID));
+    int32 ret = Sql_Query(SqlHandle, Query, (!AllianceID ? PartyID : AllianceID), (!PartyID ? AllianceID : PartyID));
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -415,7 +415,7 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
         "ORDER BY charname ASC "
         "LIMIT 18";
 
-    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID, LinkshellID);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, LinkshellID, LinkshellID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -469,7 +469,7 @@ void CDataLoader::ExpireAHItems()
 
 	std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
 					   		T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
-	std::int32_t ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
+	int32 ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
 	int64 expiredAuctions = Sql_NumRows(SqlHandle);
 	if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
 	{

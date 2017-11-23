@@ -68,7 +68,7 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
 {
     CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
 
-    std::int32_t ret = Sql_Query(SqlHandle, "SELECT treasure_spawn_points.pos, treasure_spawn_points.pos_rot, treasure_spawn_points.pos_x, treasure_spawn_points.pos_y, treasure_spawn_points.pos_z, npc_list.content_tag FROM `treasure_spawn_points` INNER JOIN `npc_list` ON treasure_spawn_points.npcid = npc_list.npcid WHERE treasure_spawn_points.npcid=%u ORDER BY RAND() LIMIT 1", npcid);
+    int32 ret = Sql_Query(SqlHandle, "SELECT treasure_spawn_points.pos, treasure_spawn_points.pos_rot, treasure_spawn_points.pos_x, treasure_spawn_points.pos_y, treasure_spawn_points.pos_z, npc_list.content_tag FROM `treasure_spawn_points` INNER JOIN `npc_list` ON treasure_spawn_points.npcid = npc_list.npcid WHERE treasure_spawn_points.npcid=%u ORDER BY RAND() LIMIT 1", npcid);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
@@ -312,7 +312,7 @@ void LoadNPCList()
         ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    std::int32_t ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -404,7 +404,7 @@ void LoadMOBList()
             WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
             AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
-    std::int32_t ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {

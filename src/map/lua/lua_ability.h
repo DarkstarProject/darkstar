@@ -46,18 +46,18 @@ public:
         return m_PLuaAbility;
     }
 
-    std::int32_t getID(lua_State*);
-    std::int32_t getMsg(lua_State*);
-    std::int32_t getRecast(lua_State*);
-    std::int32_t getRange(lua_State*);
-    std::int32_t getName(lua_State*);
-    std::int32_t getAnimation(lua_State*);
-    std::int32_t setMsg(lua_State*);
-    std::int32_t setAnimation(lua_State*);
-    std::int32_t setRecast(lua_State*);
-    std::int32_t setCE(lua_State*);
-    std::int32_t setVE(lua_State*);
-    std::int32_t setRange(lua_State*);
+    int32 getID(lua_State*);
+    int32 getMsg(lua_State*);
+    int32 getRecast(lua_State*);
+    int32 getRange(lua_State*);
+    int32 getName(lua_State*);
+    int32 getAnimation(lua_State*);
+    int32 setMsg(lua_State*);
+    int32 setAnimation(lua_State*);
+    int32 setRecast(lua_State*);
+    int32 setCE(lua_State*);
+    int32 setVE(lua_State*);
+    int32 setRange(lua_State*);
 };
 
 #endif

@@ -86,7 +86,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdde
 
     if (PItem)
     {
-        std::int32_t curPoints = charutils::GetVar(PChar, "[GUILD]daily_points");
+        int32 curPoints = charutils::GetVar(PChar, "[GUILD]daily_points");
 
         if (curPoints >= 0)
         {

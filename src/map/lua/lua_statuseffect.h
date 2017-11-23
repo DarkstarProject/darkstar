@@ -45,31 +45,31 @@ public:
         return m_PLuaStatusEffect;
     }
 
-    std::int32_t getType(lua_State*);
-    std::int32_t getSubType(lua_State*);
-    std::int32_t getPower(lua_State*);
-    std::int32_t getSubPower(lua_State*);
-    std::int32_t getTier(lua_State*);
-    std::int32_t getDuration(lua_State*);
-    std::int32_t getStartTime(lua_State*);
-    std::int32_t getLastTick(lua_State*);
-    std::int32_t getTimeRemaining(lua_State*);
-    std::int32_t getTickCount(lua_State*);
-    std::int32_t getTick(lua_State*);
+    int32 getType(lua_State*);
+    int32 getSubType(lua_State*);
+    int32 getPower(lua_State*);
+    int32 getSubPower(lua_State*);
+    int32 getTier(lua_State*);
+    int32 getDuration(lua_State*);
+    int32 getStartTime(lua_State*);
+    int32 getLastTick(lua_State*);
+    int32 getTimeRemaining(lua_State*);
+    int32 getTickCount(lua_State*);
+    int32 getTick(lua_State*);
 
-    std::int32_t setIcon(lua_State*);
-    std::int32_t setPower(lua_State*);
-    std::int32_t setSubPower(lua_State*);
-    std::int32_t setTier(lua_State*);
-    std::int32_t setDuration(lua_State*);
-    std::int32_t setTick(lua_State*);
-    std::int32_t setStartTime(lua_State*);
+    int32 setIcon(lua_State*);
+    int32 setPower(lua_State*);
+    int32 setSubPower(lua_State*);
+    int32 setTier(lua_State*);
+    int32 setDuration(lua_State*);
+    int32 setTick(lua_State*);
+    int32 setStartTime(lua_State*);
 
-    std::int32_t resetStartTime(lua_State*);
+    int32 resetStartTime(lua_State*);
 
-    std::int32_t addMod(lua_State*);
-    std::int32_t setFlag(lua_State*);
-    std::int32_t unsetFlag(lua_State*);
+    int32 addMod(lua_State*);
+    int32 setFlag(lua_State*);
+    int32 unsetFlag(lua_State*);
 };
 
 #endif

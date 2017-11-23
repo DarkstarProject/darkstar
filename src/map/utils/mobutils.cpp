@@ -283,9 +283,9 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * 2.0f);
+            PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.0f);
             if(mLvl > 75){
-                PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * 2.5f);
+                PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.5f);
             }
         }
 
@@ -297,11 +297,11 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * map_config.nm_hp_multiplier);
+        PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.nm_hp_multiplier);
     }
     else
     {
-        PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * map_config.mob_hp_multiplier);
+        PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.mob_hp_multiplier);
     }
 
     bool hasMp = false;
@@ -355,10 +355,10 @@ void CalculateStats(CMobEntity * PMob)
             PMob->health.maxmp = (int16)(18.2 * pow(mLvl,1.1075) * scale) + 10;
             if(isNM)
             {
-                PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * 1.5f);
+                PMob->health.maxmp = (int32)(PMob->health.maxmp * 1.5f);
                 if(mLvl>75)
                 {
-                    PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * 1.5f);
+                    PMob->health.maxmp = (int32)(PMob->health.maxmp * 1.5f);
                 }
             }
         }
@@ -369,11 +369,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * map_config.nm_mp_multiplier);
+            PMob->health.maxmp = (int32)(PMob->health.maxmp * map_config.nm_mp_multiplier);
         }
         else
         {
-            PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * map_config.mob_mp_multiplier);
+            PMob->health.maxmp = (int32)(PMob->health.maxmp * map_config.mob_mp_multiplier);
         }
     }
 
@@ -1070,7 +1070,7 @@ void LoadCustomMods()
 	// load family mods
 	const char QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
-    std::int32_t ret = Sql_Query(SqlHandle, QueryFamilyMods);
+    int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
 	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -1330,7 +1330,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
 
-	std::int32_t ret = Sql_Query(SqlHandle, Query, groupid);
+	int32 ret = Sql_Query(SqlHandle, Query, groupid);
 
 	CMobEntity* PMob = nullptr;
 

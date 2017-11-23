@@ -45,7 +45,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	uint8 count = 0;
 
-	for (std::int32_t i = 0; i < 16; ++i)
+	for (int32 i = 0; i < 16; ++i)
 	{
 		CItem* PItem = PTarget->getEquip((SLOTTYPE)i);
 

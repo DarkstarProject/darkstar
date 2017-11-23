@@ -78,7 +78,7 @@
 *                                                                       *
 ************************************************************************/
 
-std::int32_t zone_server(time_point tick, CTaskMgr::CTask* PTask)
+int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 {
     std::any_cast<CZone*>(PTask->m_data)->ZoneServer(tick, false);
     return 0;
@@ -91,7 +91,7 @@ std::int32_t zone_server(time_point tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
+int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
@@ -113,7 +113,7 @@ std::int32_t zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
+int32 zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
@@ -270,7 +270,7 @@ void CZone::LoadZoneLines()
 {
     static const char fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
-    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -308,7 +308,7 @@ void CZone::LoadZoneWeather()
         "WHERE zoneid = %u "
         "ORDER BY weather_day";
 
-    std::int32_t ret = Sql_Query(SqlHandle, Query, m_zoneID);
+    int32 ret = Sql_Query(SqlHandle, Query, m_zoneID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {

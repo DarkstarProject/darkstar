@@ -43,7 +43,7 @@ void LoadAutomaton(CCharEntity* PChar)
             "char_pet LEFT JOIN pet_name ON automatonid = id "
             "WHERE charid = %u;";
 
-    std::int32_t ret = Sql_Query(SqlHandle,Query,PChar->id);
+    int32 ret = Sql_Query(SqlHandle,Query,PChar->id);
 
     if (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&

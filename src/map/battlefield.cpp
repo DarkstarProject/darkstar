@@ -682,7 +682,7 @@ void CBattlefield::cleanupDynamis()
                             LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
                             WHERE zoneid = %u";
 
-    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
 
     if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) {
         ShowError("Dynamis cleanup : SQL error - Cannot find any ID for Dyna %i \n", this->getID());

@@ -63,7 +63,7 @@ CLuaMobSkill::CLuaMobSkill(CMobSkill* PSkill)
 *                                                                       *
 ************************************************************************/
 
-inline std::int32_t CLuaMobSkill::setMsg(lua_State *L)
+inline int32 CLuaMobSkill::setMsg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -72,7 +72,7 @@ inline std::int32_t CLuaMobSkill::setMsg(lua_State *L)
     return 0;
 }
 
-inline std::int32_t CLuaMobSkill::hasMissMsg(lua_State *L)
+inline int32 CLuaMobSkill::hasMissMsg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -80,7 +80,7 @@ inline std::int32_t CLuaMobSkill::hasMissMsg(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::isSingle(lua_State *L)
+inline int32 CLuaMobSkill::isSingle(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -88,7 +88,7 @@ inline std::int32_t CLuaMobSkill::isSingle(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::isAoE(lua_State *L)
+inline int32 CLuaMobSkill::isAoE(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -96,7 +96,7 @@ inline std::int32_t CLuaMobSkill::isAoE(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::isConal(lua_State *L)
+inline int32 CLuaMobSkill::isConal(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -104,7 +104,7 @@ inline std::int32_t CLuaMobSkill::isConal(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::getTotalTargets(lua_State *L)
+inline int32 CLuaMobSkill::getTotalTargets(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -112,7 +112,7 @@ inline std::int32_t CLuaMobSkill::getTotalTargets(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::getMsg(lua_State *L)
+inline int32 CLuaMobSkill::getMsg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -120,7 +120,7 @@ inline std::int32_t CLuaMobSkill::getMsg(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::getID(lua_State* L)
+inline int32 CLuaMobSkill::getID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -128,7 +128,7 @@ inline std::int32_t CLuaMobSkill::getID(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::getParam(lua_State* L)
+inline int32 CLuaMobSkill::getParam(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -142,7 +142,7 @@ inline std::int32_t CLuaMobSkill::getParam(lua_State* L)
 
 **************************************************************************/
 
-inline std::int32_t CLuaMobSkill::getTP(lua_State* L)
+inline int32 CLuaMobSkill::getTP(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 
@@ -150,7 +150,7 @@ inline std::int32_t CLuaMobSkill::getTP(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaMobSkill::getHPP(lua_State* L)
+inline int32 CLuaMobSkill::getHPP(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
 

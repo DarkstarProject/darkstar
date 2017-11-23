@@ -455,7 +455,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
+int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 	uint8 meritValue = 0;
@@ -496,7 +496,7 @@ namespace meritNameSpace
     void LoadMeritsList()
     {
 
-        std::int32_t ret = Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
+        int32 ret = Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
             spell_list sl ON m.name = sl.name ORDER BY m.meritid ASC LIMIT %u", MERITS_COUNT);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != MERITS_COUNT )

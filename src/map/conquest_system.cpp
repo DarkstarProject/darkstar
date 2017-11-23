@@ -186,7 +186,7 @@ namespace conquest
     *												                        *
     ************************************************************************/
 
-    uint8 GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf)
+    uint8 GetInfluenceGraphics(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf)
 	{
         //if all nations and beastmen == 0
         if (san_inf == 0 && bas_inf == 0 && win_inf == 0 && bst_inf == 0)
@@ -236,14 +236,14 @@ namespace conquest
 
     uint8 GetInfluenceGraphics(REGIONTYPE regionid)
     {
-        std::int32_t sandoria = 0;
-        std::int32_t bastok = 0;
-        std::int32_t windurst = 0;
-        std::int32_t beastmen = 0;
+        int32 sandoria = 0;
+        int32 bastok = 0;
+        int32 windurst = 0;
+        int32 beastmen = 0;
         const char* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
-        std::int32_t ret = Sql_Query(SqlHandle, Query, regionid);
+        int32 ret = Sql_Query(SqlHandle, Query, regionid);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
@@ -256,7 +256,7 @@ namespace conquest
     }
 
     //TODO: figure out what the beastmen-less numbers are for
-    uint8 GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf)
+    uint8 GetInfluenceRanking(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf)
     {
         uint8 ranking = 63;
         if (san_inf >= bas_inf)
@@ -280,7 +280,7 @@ namespace conquest
         return ranking;
     }
 
-    uint8 GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf)
+    uint8 GetInfluenceRanking(int32 san_inf, int32 bas_inf, int32 win_inf)
     {
         return GetInfluenceRanking(san_inf, bas_inf, win_inf, 0);
     }
@@ -412,7 +412,7 @@ namespace conquest
         uint8 windurst = 0;
         const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
-        std::int32_t ret = Sql_Query(SqlHandle, Query);
+        int32 ret = Sql_Query(SqlHandle, Query);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -491,7 +491,7 @@ namespace conquest
         uint8 windurst = 0;
         const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
-        std::int32_t ret = Sql_Query(SqlHandle, Query);
+        int32 ret = Sql_Query(SqlHandle, Query);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -554,7 +554,7 @@ namespace conquest
     {
         const char* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
-        std::int32_t ret = Sql_Query(SqlHandle, Query, RegionID);
+        int32 ret = Sql_Query(SqlHandle, Query, RegionID);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {

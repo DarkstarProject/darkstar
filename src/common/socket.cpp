@@ -148,20 +148,20 @@ int sSocket(int af, int type, int protocol)
 *
 */
 fd_set readfds;
-std::int32_t fd_max;
+int32 fd_max;
 time_t last_tick;
 time_t tick_time;
 time_t stall_time = 60;
 
 uint32 g_addr_[16];   // ip addresses of local host (host byte order)
 
-std::int32_t naddr_;   // # of ip addresses
+int32 naddr_;   // # of ip addresses
 
-std::int32_t makeConnection(uint32 ip, uint16 port, std::int32_t type)
+int32 makeConnection(uint32 ip, uint16 port, int32 type)
 {
 	struct sockaddr_in remote_address;
-	std::int32_t fd;
-	std::int32_t result;
+	int32 fd;
+	int32 result;
 
 	fd = sSocket(AF_INET, type, 0);
 
@@ -215,7 +215,7 @@ std::int32_t makeConnection(uint32 ip, uint16 port, std::int32_t type)
 	return fd;
 }
 
-void do_close(std::int32_t fd)
+void do_close(int32 fd)
 {
 	sFD_CLR(fd, &readfds);// this needs to be done before closing the socket
 	sShutdown(fd, SHUT_RDWR); // Disallow further reads/writes
@@ -734,7 +734,7 @@ bool session_isActive(int fd)
 	return ( session_isValid(fd) && !session[fd]->flag.eof );
 }
 
-std::int32_t makeConnection_tcp(uint32 ip, uint16 port)
+int32 makeConnection_tcp(uint32 ip, uint16 port)
 {
 	int fd = makeConnection(ip,port,SOCK_STREAM);
 	if( fd > 0 )
@@ -792,7 +792,7 @@ int connect_client(int listen_fd, sockaddr_in& client_address)
 	return fd;
 }
 
-std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
+int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
 {
 	struct sockaddr_in server_address;
 	int fd;
@@ -846,7 +846,7 @@ std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_cli
 	return fd;
 }
 
-std::int32_t RFIFOSKIP(std::int32_t fd, size_t len)
+int32 RFIFOSKIP(int32 fd, size_t len)
 {
 	  struct socket_data *s;
 
@@ -864,7 +864,7 @@ std::int32_t RFIFOSKIP(std::int32_t fd, size_t len)
 	return 0;
 }
 
-void do_close_tcp(std::int32_t fd)
+void do_close_tcp(int32 fd)
 {
 	flush_fifo(fd);
 	do_close(fd);
@@ -973,7 +973,7 @@ void socket_final_tcp(void)
 		if(session[i])
 			do_close_tcp(i);
 }
-void flush_fifo(std::int32_t fd)
+void flush_fifo(int32 fd)
 {
 	if(session[fd] != NULL)
 		session[fd]->func_send(fd);
@@ -992,7 +992,7 @@ void set_defaultparse(ParseFunc defaultparse)
 	default_func_parse = defaultparse;
 }
 
-void set_eof(std::int32_t fd)
+void set_eof(int32 fd)
 {
 	if( session_isActive(fd) )
 	{
@@ -1038,7 +1038,7 @@ void set_nonblocking(int fd, unsigned long yes)
 *
 */
 static int access_debug    = 0;
-std::int32_t makeBind_udp(uint32 ip, uint16 port)
+int32 makeBind_udp(uint32 ip, uint16 port)
 {
 	struct sockaddr_in server_address;
 	int fd;
@@ -1112,7 +1112,7 @@ void socket_init_udp(void)
 	socket_config_read(SOCKET_CONF_FILENAME);
 }
 
-void do_close_udp(std::int32_t fd)
+void do_close_udp(int32 fd)
 {
 	do_close(fd);
 }
@@ -1122,11 +1122,11 @@ void socket_final_udp(void)
 		return;
 	//do_close_udp(listen_fd);
 }
-std::int32_t recvudp(std::int32_t fd,void *buff,size_t nbytes,std::int32_t flags,struct sockaddr *from, socklen_t *addrlen)
+int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen)
 {
 	return sRecvfrom(fd,(char*)buff,(int)nbytes,flags,from,addrlen);
 }
-std::int32_t sendudp(std::int32_t fd,void *buff,size_t nbytes,std::int32_t flags,const struct sockaddr *from,socklen_t addrlen)
+int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen)
 {
 	return sSendto(fd,(const char*)buff,(int)nbytes,flags,from,addrlen);
 }

@@ -88,7 +88,7 @@ void erase_loginsd_byaccid(uint32 accid)
     return;
 }
 
-void erase_loginsd(std::int32_t loginfd)
+void erase_loginsd(int32 loginfd)
 {
     for (login_sd_list_t::iterator i = login_sd_list.begin();
     i != login_sd_list.end();

@@ -67,7 +67,7 @@ CLuaZone::CLuaZone(CZone* PZone)
 *																		*
 ************************************************************************/
 
-inline std::int32_t CLuaZone::registerRegion(lua_State *L)
+inline int32 CLuaZone::registerRegion(lua_State *L)
 {
     if (m_pLuaZone != nullptr)
     {
@@ -106,7 +106,7 @@ inline std::int32_t CLuaZone::registerRegion(lua_State *L)
 *																		*
 ************************************************************************/
 
-inline std::int32_t CLuaZone::levelRestriction(lua_State *L)
+inline int32 CLuaZone::levelRestriction(lua_State *L)
 {
     if (m_pLuaZone != nullptr)
     {
@@ -116,7 +116,7 @@ inline std::int32_t CLuaZone::levelRestriction(lua_State *L)
     return 1;
 }
 
-inline std::int32_t CLuaZone::getPlayers(lua_State* L)
+inline int32 CLuaZone::getPlayers(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
 
@@ -136,7 +136,7 @@ inline std::int32_t CLuaZone::getPlayers(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaZone::getID(lua_State* L)
+inline int32 CLuaZone::getID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
 
@@ -145,7 +145,7 @@ inline std::int32_t CLuaZone::getID(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaZone::getRegionID(lua_State* L)
+inline int32 CLuaZone::getRegionID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
 

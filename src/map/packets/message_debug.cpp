@@ -28,7 +28,7 @@
 #include "../entities/baseentity.h"
 
 
-CMessageDebugPacket::CMessageDebugPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param0, std::int32_t param1, uint16 messageID)
+CMessageDebugPacket::CMessageDebugPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param0, int32 param1, uint16 messageID)
 {
 	this->type = 0x2d;
 	this->size = 0x0e;

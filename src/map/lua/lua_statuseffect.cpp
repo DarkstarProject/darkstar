@@ -51,7 +51,7 @@ CLuaStatusEffect::CLuaStatusEffect(CStatusEffect* StatusEffect)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::getType(lua_State* L)
+inline int32 CLuaStatusEffect::getType(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -61,7 +61,7 @@ inline std::int32_t CLuaStatusEffect::getType(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::getSubType(lua_State* L)
+inline int32 CLuaStatusEffect::getSubType(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -71,7 +71,7 @@ inline std::int32_t CLuaStatusEffect::getSubType(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::getPower(lua_State* L)
+inline int32 CLuaStatusEffect::getPower(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -79,7 +79,7 @@ inline std::int32_t CLuaStatusEffect::getPower(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaStatusEffect::getSubPower(lua_State* L)
+inline int32 CLuaStatusEffect::getSubPower(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -87,7 +87,7 @@ inline std::int32_t CLuaStatusEffect::getSubPower(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaStatusEffect::getTier(lua_State* L)
+inline int32 CLuaStatusEffect::getTier(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -97,7 +97,7 @@ inline std::int32_t CLuaStatusEffect::getTier(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::getDuration(lua_State* L)
+inline int32 CLuaStatusEffect::getDuration(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -107,7 +107,7 @@ inline std::int32_t CLuaStatusEffect::getDuration(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::getStartTime(lua_State* L)
+inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -121,7 +121,7 @@ inline std::int32_t CLuaStatusEffect::getStartTime(lua_State* L)
 *																		*
 ************************************************************************/
 
-inline std::int32_t CLuaStatusEffect::getLastTick(lua_State* L)
+inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -144,7 +144,7 @@ inline std::int32_t CLuaStatusEffect::getLastTick(lua_State* L)
 *                                                                       *
 ************************************************************************/
 
-inline std::int32_t CLuaStatusEffect::getTimeRemaining(lua_State* L)
+inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
     uint32 remaining = 0;
@@ -164,7 +164,7 @@ inline std::int32_t CLuaStatusEffect::getTimeRemaining(lua_State* L)
 *                                                                       *
 ************************************************************************/
 
-inline std::int32_t CLuaStatusEffect::getTickCount(lua_State* L)
+inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -172,7 +172,7 @@ inline std::int32_t CLuaStatusEffect::getTickCount(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaStatusEffect::getTick(lua_State* L)
+inline int32 CLuaStatusEffect::getTick(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -182,7 +182,7 @@ inline std::int32_t CLuaStatusEffect::getTick(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::setIcon(lua_State* L)
+inline int32 CLuaStatusEffect::setIcon(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -194,7 +194,7 @@ inline std::int32_t CLuaStatusEffect::setIcon(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::setPower(lua_State* L)
+inline int32 CLuaStatusEffect::setPower(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -204,7 +204,7 @@ inline std::int32_t CLuaStatusEffect::setPower(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaStatusEffect::setSubPower(lua_State* L)
+inline int32 CLuaStatusEffect::setSubPower(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -214,7 +214,7 @@ inline std::int32_t CLuaStatusEffect::setSubPower(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaStatusEffect::setTier(lua_State* L)
+inline int32 CLuaStatusEffect::setTier(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -226,7 +226,7 @@ inline std::int32_t CLuaStatusEffect::setTier(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::setDuration(lua_State* L)
+inline int32 CLuaStatusEffect::setDuration(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -236,7 +236,7 @@ inline std::int32_t CLuaStatusEffect::setDuration(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaStatusEffect::setTick(lua_State* L)
+inline int32 CLuaStatusEffect::setTick(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -252,7 +252,7 @@ inline std::int32_t CLuaStatusEffect::setTick(lua_State* L)
 *                                                                       *
 ************************************************************************/
 
-inline std::int32_t CLuaStatusEffect::resetStartTime(lua_State* L)
+inline int32 CLuaStatusEffect::resetStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -260,7 +260,7 @@ inline std::int32_t CLuaStatusEffect::resetStartTime(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaStatusEffect::setStartTime(lua_State* L)
+inline int32 CLuaStatusEffect::setStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -273,7 +273,7 @@ inline std::int32_t CLuaStatusEffect::setStartTime(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::addMod(lua_State* L)
+inline int32 CLuaStatusEffect::addMod(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -286,7 +286,7 @@ inline std::int32_t CLuaStatusEffect::addMod(lua_State* L)
 
 //======================================================//
 
-inline std::int32_t CLuaStatusEffect::setFlag(lua_State* L)
+inline int32 CLuaStatusEffect::setFlag(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
@@ -296,7 +296,7 @@ inline std::int32_t CLuaStatusEffect::setFlag(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaStatusEffect::unsetFlag(lua_State* L)
+inline int32 CLuaStatusEffect::unsetFlag(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 

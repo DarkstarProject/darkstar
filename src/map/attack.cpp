@@ -270,7 +270,7 @@ uint8 CAttack::GetHitRate()
 *  Returns the damage for this swing.									*
 *																		*
 ************************************************************************/
-std::int32_t CAttack::GetDamage()
+int32 CAttack::GetDamage()
 {
     return m_damage;
 }
@@ -280,7 +280,7 @@ std::int32_t CAttack::GetDamage()
 *  Sets the damage for this swing.										*
 *																		*
 ************************************************************************/
-void CAttack::SetDamage(std::int32_t value)
+void CAttack::SetDamage(int32 value)
 {
     m_damage = value;
 }
@@ -408,7 +408,7 @@ void CAttack::ProcessDamage()
     if (m_attackRound->IsH2H())
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
-        m_naturalH2hDamage = (std::int32_t)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
+        m_naturalH2hDamage = (int32)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
         m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
@@ -450,19 +450,19 @@ void CAttack::ProcessDamage()
     // Get critical bonus mods.
     if (m_isCritical)
     {
-        m_damage += (std::int32_t)(m_damage * m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100.0f);
+        m_damage += (int32)(m_damage * m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100.0f);
     }
 
     // Apply Sneak Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
     {
-        m_damage += (std::int32_t)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100.0f));
+        m_damage += (int32)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100.0f));
     }
 
     // Apply Trick Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
-        m_damage += (std::int32_t)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100.0f));
+        m_damage += (int32)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100.0f));
     }
 
     // Try skill up.

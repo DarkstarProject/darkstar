@@ -414,7 +414,7 @@ void CMobEntity::resetMobMod(uint16 type)
     m_mobModStat[type] = m_mobModStatSave[type];
 }
 
-std::int32_t CMobEntity::getBigMobMod(uint16 type)
+int32 CMobEntity::getBigMobMod(uint16 type)
 {
     return getMobMod(type) * 1000;
 }
@@ -763,7 +763,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                         PSkill->getSecondarySkillchain(), PSkill->getTertiarySkillchain());
                     if (effect != SUBEFFECT_NONE)
                     {
-                        std::int32_t skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
+                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
                         if (skillChainDamage < 0)
                         {
                             target.addEffectParam = -skillChainDamage;

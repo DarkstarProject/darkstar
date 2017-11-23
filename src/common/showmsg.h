@@ -89,8 +89,8 @@ This file is part of DarkStar-server source code.
 
 #define CL_SPACE		"           "		// space aquivalent of the print messages
 
-extern std::int32_t stdout_with_ansisequence;		// If the color ansi sequences are to be used. [flaviojs]
-extern std::int32_t msg_silent;					// Specifies how silent the console is. [Skotlex]
+extern int32 stdout_with_ansisequence;		// If the color ansi sequences are to be used. [flaviojs]
+extern int32 msg_silent;					// Specifies how silent the console is. [Skotlex]
 extern char timestamp_format[20];			// For displaying Timestamps [Skotlex]
 
 enum MSGTYPE 
@@ -111,69 +111,69 @@ enum MSGTYPE
 void ClearScreen(void);
 
 void InitializeLog(std::string logFile);
-std::int32_t _vShowMessage(MSGTYPE, const std::string&);
+int32 _vShowMessage(MSGTYPE, const std::string&);
 template<typename... Args>
-std::int32_t ShowMessage(const std::string& fmt_string, Args... args)
+int32 ShowMessage(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_NONE, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowStatus(const std::string& fmt_string, Args... args)
+int32 ShowStatus(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_STATUS, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowSQL(const std::string& fmt_string, Args... args)
+int32 ShowSQL(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_SQL, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowInfo(const std::string& fmt_string, Args... args)
+int32 ShowInfo(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_INFORMATION, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowNotice(const std::string& fmt_string, Args... args)
+int32 ShowNotice(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_NOTICE, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowWarning(const std::string& fmt_string, Args... args)
+int32 ShowWarning(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_WARNING, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowDebug(const std::string& fmt_string, Args... args)
+int32 ShowDebug(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_DEBUG, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowError(const std::string& fmt_string, Args... args)
+int32 ShowError(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_ERROR, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowFatalError(const std::string& fmt_string, Args... args)
+int32 ShowFatalError(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_FATALERROR, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowScript(const std::string& fmt_string, Args... args)
+int32 ShowScript(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_LUASCRIPT, fmt_string_v);
 }
 template<typename... Args>
-std::int32_t ShowNavError(const std::string& fmt_string, Args... args)
+int32 ShowNavError(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_NAVMESH, fmt_string_v);

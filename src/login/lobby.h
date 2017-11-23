@@ -29,39 +29,39 @@
 
 #include "login_session.h"
 
-extern std::int32_t login_lobbydata_fd;
-extern std::int32_t login_lobbyview_fd;
+extern int32 login_lobbydata_fd;
+extern int32 login_lobbyview_fd;
 
 /*
 *
 *	Parse connections for lobby data
 */
-std::int32_t connect_client_lobbydata(std::int32_t listenfd);
+int32 connect_client_lobbydata(int32 listenfd);
 
 /*
 *
 *	Parse connections for lobby view
 *
 */
-std::int32_t connect_client_lobbyview(std::int32_t listenfd);
+int32 connect_client_lobbyview(int32 listenfd);
 /*==========================================
 * Login Lobby Data parse
 *-------------------------------------------*/
-std::int32_t lobbydata_parse(std::int32_t fd);
+int32 lobbydata_parse(int32 fd);
 
 /*==========================================
 * Login Lobby View parse
 *-------------------------------------------*/
-std::int32_t lobbyview_parse(std::int32_t fd);
+int32 lobbyview_parse(int32 fd);
 
 /*=============================================
 * lobby data close socket
 *-------------------------------------------*/
-std::int32_t do_close_lobbydata(login_session_data_t* loginsd, std::int32_t fd);
+int32 do_close_lobbydata(login_session_data_t* loginsd, int32 fd);
 
-std::int32_t do_close_lobbyview(login_session_data_t*, std::int32_t fd);
+int32 do_close_lobbyview(login_session_data_t*, int32 fd);
 
 
-std::int32_t lobby_createchar(login_session_data_t* loginsd, int8* buf);
-std::int32_t lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar);
+int32 lobby_createchar(login_session_data_t* loginsd, int8* buf);
+int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar);
 #endif

@@ -62,7 +62,7 @@ CLuaInstance::CLuaInstance(CInstance* PInstance)
     m_PLuaInstance = PInstance;
 }
 
-inline std::int32_t CLuaInstance::getID(lua_State* L)
+inline int32 CLuaInstance::getID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -71,7 +71,7 @@ inline std::int32_t CLuaInstance::getID(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getAllies(lua_State* L)
+inline int32 CLuaInstance::getAllies(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -92,7 +92,7 @@ inline std::int32_t CLuaInstance::getAllies(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getChars(lua_State* L)
+inline int32 CLuaInstance::getChars(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -113,7 +113,7 @@ inline std::int32_t CLuaInstance::getChars(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getMobs(lua_State* L)
+inline int32 CLuaInstance::getMobs(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -134,7 +134,7 @@ inline std::int32_t CLuaInstance::getMobs(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getNpcs(lua_State* L)
+inline int32 CLuaInstance::getNpcs(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -155,7 +155,7 @@ inline std::int32_t CLuaInstance::getNpcs(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getPets(lua_State* L)
+inline int32 CLuaInstance::getPets(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -176,7 +176,7 @@ inline std::int32_t CLuaInstance::getPets(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getTimeLimit(lua_State* L)
+inline int32 CLuaInstance::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -187,7 +187,7 @@ inline std::int32_t CLuaInstance::getTimeLimit(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getEntryPos(lua_State* L)
+inline int32 CLuaInstance::getEntryPos(lua_State* L)
 {
     lua_createtable(L, 4, 0);
     int8 newTable = lua_gettop(L);
@@ -209,7 +209,7 @@ inline std::int32_t CLuaInstance::getEntryPos(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getLastTimeUpdate(lua_State* L)
+inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -218,7 +218,7 @@ inline std::int32_t CLuaInstance::getLastTimeUpdate(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getProgress(lua_State* L)
+inline int32 CLuaInstance::getProgress(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -227,7 +227,7 @@ inline std::int32_t CLuaInstance::getProgress(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getWipeTime(lua_State* L)
+inline int32 CLuaInstance::getWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -236,7 +236,7 @@ inline std::int32_t CLuaInstance::getWipeTime(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getEntity(lua_State* L)
+inline int32 CLuaInstance::getEntity(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -267,7 +267,7 @@ inline std::int32_t CLuaInstance::getEntity(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::getStage(lua_State* L)
+inline int32 CLuaInstance::getStage(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -276,7 +276,7 @@ inline std::int32_t CLuaInstance::getStage(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::setLevelCap(lua_State* L)
+inline int32 CLuaInstance::setLevelCap(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -286,7 +286,7 @@ inline std::int32_t CLuaInstance::setLevelCap(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::setLastTimeUpdate(lua_State* L)
+inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -296,7 +296,7 @@ inline std::int32_t CLuaInstance::setLastTimeUpdate(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::setProgress(lua_State* L)
+inline int32 CLuaInstance::setProgress(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -306,7 +306,7 @@ inline std::int32_t CLuaInstance::setProgress(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::setWipeTime(lua_State* L)
+inline int32 CLuaInstance::setWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -316,7 +316,7 @@ inline std::int32_t CLuaInstance::setWipeTime(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::setStage(lua_State* L)
+inline int32 CLuaInstance::setStage(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -326,7 +326,7 @@ inline std::int32_t CLuaInstance::setStage(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::fail(lua_State* L)
+inline int32 CLuaInstance::fail(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -335,7 +335,7 @@ inline std::int32_t CLuaInstance::fail(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::failed(lua_State* L)
+inline int32 CLuaInstance::failed(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -344,7 +344,7 @@ inline std::int32_t CLuaInstance::failed(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::complete(lua_State* L)
+inline int32 CLuaInstance::complete(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -353,7 +353,7 @@ inline std::int32_t CLuaInstance::complete(lua_State* L)
     return 0;
 }
 
-inline std::int32_t CLuaInstance::completed(lua_State* L)
+inline int32 CLuaInstance::completed(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
@@ -362,7 +362,7 @@ inline std::int32_t CLuaInstance::completed(lua_State* L)
     return 1;
 }
 
-inline std::int32_t CLuaInstance::insertAlly(lua_State* L)
+inline int32 CLuaInstance::insertAlly(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1) || lua_isnil(L, 1));

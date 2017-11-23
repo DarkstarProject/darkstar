@@ -368,7 +368,7 @@ int16 CCharEntity::addTP(int16 tp)
     return abs(tp);
 }
 
-std::int32_t CCharEntity::addHP(std::int32_t hp)
+int32 CCharEntity::addHP(int32 hp)
 {
     hp = CBattleEntity::addHP(hp);
     PLatentEffectContainer->CheckLatentsHP();
@@ -376,7 +376,7 @@ std::int32_t CCharEntity::addHP(std::int32_t hp)
     return abs(hp);
 }
 
-std::int32_t CCharEntity::addMP(std::int32_t mp)
+int32 CCharEntity::addMP(int32 mp)
 {
     mp = CBattleEntity::addMP(mp);
     PLatentEffectContainer->CheckLatentsMP();
@@ -754,7 +754,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             uint16 tpHitsLanded;
             uint16 extraHitsLanded;
-            std::int32_t damage;
+            int32 damage;
             CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(this, PTarget);
 
             actionTarget.reaction = REACTION_NONE;
@@ -968,7 +968,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
                     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP((std::int32_t)(-PAbility->getAnimationID() * 1.5));
+                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
                         this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
                     else {
@@ -1042,7 +1042,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             actionTarget.param = 0;
             auto prevMsg = actionTarget.messageID;
 
-            std::int32_t value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
+            int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
             if (prevMsg == actionTarget.messageID) actionTarget.messageID = PAbility->getMessage();
             if (actionTarget.messageID == 0) actionTarget.messageID = MSGBASIC_USES_JA;
             actionTarget.param = value;
@@ -1118,8 +1118,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 {
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    std::int32_t damage = 0;
-    std::int32_t totalDamage = 0;
+    int32 damage = 0;
+    int32 totalDamage = 0;
 
     action.id = id;
     action.actiontype = ACTION_RANGED_FINISH;
@@ -1209,7 +1209,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                     actionTarget.messageID = 77;
                 }
 
-                damage = (std::int32_t)((this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif);
+                damage = (int32)((this->GetRangedWeaponDmg() + battleutils::GetFSTR(this, PTarget, slot)) * pdif);
 
                 if (slot == SLOT_RANGED)
                 {
@@ -1285,7 +1285,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
         // lower damage based on shadows taken
         if (shadowsTaken)
-            actionTarget.param = (std::int32_t)(actionTarget.param * (1 - ((float)shadowsTaken / realHits)));
+            actionTarget.param = (int32)(actionTarget.param * (1 - ((float)shadowsTaken / realHits)));
 
         // absorb message
         if (actionTarget.param < 0)

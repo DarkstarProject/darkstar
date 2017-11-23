@@ -411,7 +411,7 @@ namespace spell
                              AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range \
                              FROM spell_list;";
 
-        std::int32_t ret = Sql_Query(SqlHandle, Query);
+        int32 ret = Sql_Query(SqlHandle, Query);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {

@@ -73,8 +73,8 @@ struct map_config_t
     std::string server_message_fr;
 
     uint32 max_time_lastupdate;       // max interval wait of last update player char
-    std::int32_t  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
-    std::int32_t  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
+    int32  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
+    int32  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
 
     uint16 ah_base_fee_single;        // Base AH fee for single items
     uint16 ah_base_fee_stacks;        // Base AH fee for stacks
@@ -162,7 +162,7 @@ struct map_session_data_t
 
 extern map_config_t map_config;
 extern uint32 map_amntplayers;
-extern std::int32_t map_fd;
+extern int32 map_fd;
 
 static constexpr float server_tick_rate = 2.5f;
 
@@ -181,19 +181,19 @@ extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port
 
 //=======================================================================
 
-std::int32_t recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
-std::int32_t parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
-std::int32_t send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
+int32 recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
+int32 parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
+int32 send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
 
-void  map_helpscreen(std::int32_t flag);                                                       // Map-Server Version Screen [venom]
-void  map_versionscreen(std::int32_t flag);                                                    // Map-Server Version Screen [venom]
+void  map_helpscreen(int32 flag);                                                       // Map-Server Version Screen [venom]
+void  map_versionscreen(int32 flag);                                                    // Map-Server Version Screen [venom]
 
-std::int32_t map_config_read(const int8 *cfgName);                                             // Map-Server Config [venom]
-std::int32_t map_config_default();
+int32 map_config_read(const int8 *cfgName);                                             // Map-Server Config [venom]
+int32 map_config_default();
 
-std::int32_t map_cleanup(time_point tick,CTaskMgr::CTask *PTask);                              // Clean up timed out players
-std::int32_t map_close_session(time_point tick, map_session_data_t* map_session_data);
+int32 map_cleanup(time_point tick,CTaskMgr::CTask *PTask);                              // Clean up timed out players
+int32 map_close_session(time_point tick, map_session_data_t* map_session_data);
 
-std::int32_t map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask);
+int32 map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask);
 
 #endif //_MAP_H

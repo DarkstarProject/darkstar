@@ -92,7 +92,7 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
         WBUFW(data,(0x6E)) = PChar->PAutomaton->GetMaxMP();
 
         // TODO: this is a lot of calculations that could be avoided if these were properly initialized in the Automaton when first loading your character
-        std::int32_t meritbonus = PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PChar);
+        int32 meritbonus = PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PChar);
         uint16 ameCap = puppetutils::getSkillCap(PChar, SKILL_AME);
         uint16 ameBonus = PChar->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
         WBUFW(data,(0x70)) = std::min(ameCap, PChar->GetSkill(SKILL_AME)) + ameBonus;

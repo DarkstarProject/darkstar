@@ -118,7 +118,7 @@ static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::
     }
 }
 
-std::int32_t zlib_init()
+int32 zlib_init()
 {
     std::vector<uint32> dec;
     if (!read_to_vector("compress.dat", zlib.enc) || !read_to_vector("decompress.dat", dec))
@@ -128,7 +128,7 @@ std::int32_t zlib_init()
     return 0;
 }
 
-static std::int32_t zlib_compress_sub(const uint8 *b32, const uint32 read, const uint32 elem, int8 *out, const uint32 out_sz)
+static int32 zlib_compress_sub(const uint8 *b32, const uint32 read, const uint32 elem, int8 *out, const uint32 out_sz)
 {
     assert(b32 && out);
 
@@ -156,7 +156,7 @@ static std::int32_t zlib_compress_sub(const uint8 *b32, const uint32 read, const
     return 0;
 }
 
-std::int32_t zlib_compress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz)
+int32 zlib_compress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz)
 {
     assert(in && out);
     assert(zlib.enc.size());

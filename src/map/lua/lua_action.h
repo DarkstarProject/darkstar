@@ -46,17 +46,17 @@ public:
         return m_PLuaAction;
     }
 
-    std::int32_t ID(lua_State*);
-    std::int32_t recast(lua_State*);
-    std::int32_t actionID(lua_State*);
-    std::int32_t param(lua_State*);
-    std::int32_t messageID(lua_State*);
-    std::int32_t animation(lua_State*);
-    std::int32_t speceffect(lua_State*);
-    std::int32_t reaction(lua_State*);
-    std::int32_t addEffectParam(lua_State*);
-    std::int32_t addEffectMessage(lua_State*);
-    std::int32_t additionalEffect(lua_State*);
+    int32 ID(lua_State*);
+    int32 recast(lua_State*);
+    int32 actionID(lua_State*);
+    int32 param(lua_State*);
+    int32 messageID(lua_State*);
+    int32 animation(lua_State*);
+    int32 speceffect(lua_State*);
+    int32 reaction(lua_State*);
+    int32 addEffectParam(lua_State*);
+    int32 addEffectMessage(lua_State*);
+    int32 additionalEffect(lua_State*);
 };
 
 #endif

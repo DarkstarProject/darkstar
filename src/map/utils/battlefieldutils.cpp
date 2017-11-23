@@ -48,7 +48,7 @@ namespace battlefieldutils {
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
-        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0 ||
@@ -92,7 +92,7 @@ namespace battlefieldutils {
                             FROM bcnm_battlefield \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
-        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0)
@@ -162,7 +162,7 @@ namespace battlefieldutils {
                             FROM bcnm_treasure_chests \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
-        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
         if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
         {
@@ -355,7 +355,7 @@ namespace battlefieldutils {
                                 FROM bcnm_battlefield \
                                 WHERE bcnmId = %u AND battlefieldNumber = 2";
 
-        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0)

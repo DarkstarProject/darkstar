@@ -78,19 +78,19 @@ extern Sql_t *SqlHandle;
 /*======================================================
  * Login-Server Version Screen [venom]
  *------------------------------------------------------*/
-void login_helpscreen(std::int32_t flag);
+void login_helpscreen(int32 flag);
 /*======================================================
  * Login-Server Version Screen [venom]
  *------------------------------------------------------*/
-void login_versionscreen(std::int32_t flag);
+void login_versionscreen(int32 flag);
 /*==========================================
  * Login-Server Config [venom]
  *------------------------------------------*/
 
-std::int32_t login_config_read(const char *cfgName);
-std::int32_t login_config_default();
+int32 login_config_read(const char *cfgName);
+int32 login_config_default();
 
-std::int32_t version_info_read(const char *cfgName);
-std::int32_t version_info_default();
+int32 version_info_read(const char *cfgName);
+int32 version_info_default();
 
 #endif

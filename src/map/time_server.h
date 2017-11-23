@@ -28,6 +28,6 @@
 #include "../common/taskmgr.h"
 
 
-std::int32_t time_server(time_point tick,CTaskMgr::CTask*);
+int32 time_server(time_point tick,CTaskMgr::CTask*);
 
 #endif

@@ -881,7 +881,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         //CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
         //CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-        //std::int32_t visibleMp = 0;
+        //int32 visibleMp = 0;
         //visibleMp += (head ? head->getModifier(Mod::MP) : 0);
         //visibleMp += (body ? body->getModifier(Mod::MP) : 0);
         //visibleMp += (hands ? hands->getModifier(Mod::MP) : 0);
@@ -907,7 +907,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         //CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
         //CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-        //std::int32_t visibleHp = 0;
+        //int32 visibleHp = 0;
         //visibleHp += (head ? head->getModifier(Mod::HP) : 0);
         //visibleHp += (body ? body->getModifier(Mod::HP) : 0);
         //visibleHp += (hands ? hands->getModifier(Mod::HP) : 0);

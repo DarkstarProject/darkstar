@@ -367,7 +367,7 @@ cycle:
 	uint32 temp;
 	uint16	      i;
 	
-	const std::int32_t N = 16;
+	const int32 N = 16;
 	Xl = *xl;
 	Xr = *xr;
 
@@ -468,7 +468,7 @@ cycle:
 
 	Xl = *xl;
 	Xr = *xr;
-	const std::int32_t N = 16;
+	const int32 N = 16;
 	for(i = N+1; i > 1; --i)
 	{
 	  Xl = Xl^P[i];
@@ -503,7 +503,7 @@ uint32* blowfish_init(int8 key[], int16 keybytes, uint32* P, uint32* S)
 	uint32		 datal;
 	uint32		 datar;
 
-	const std::int32_t N = 16;
+	const int32 N = 16;
 	memcpy(P, subkey, 72);
 	memcpy(S, subkey+72, 4096);
 

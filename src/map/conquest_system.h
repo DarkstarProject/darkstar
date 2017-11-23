@@ -57,10 +57,10 @@ namespace conquest
 	void	GainInfluencePoints(CCharEntity* PChar, uint32 points);		// Gain influence for player's nation (+1)
 	void	LoseInfluencePoints(CCharEntity* PChar);					// Lose influence for player's nation and gain for beastmen influence
 	
-    uint8	GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);	// Get number for graphics in conquest menu (arrows)
+    uint8	GetInfluenceGraphics(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf);	// Get number for graphics in conquest menu (arrows)
     uint8	GetInfluenceGraphics(REGIONTYPE RegionID);	                // Get number for graphics in conquest menu (arrows)
-    uint8   GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);
-    uint8   GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf);
+    uint8   GetInfluenceRanking(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf);
+    uint8   GetInfluenceRanking(int32 san_inf, int32 bas_inf, int32 win_inf);
 
     void	UpdateConquestGM(ConquestUpdate type);						// Update conquest system by GM (modify in the DB and use @updateconquest)
 	void	UpdateWeekConquest();										// Update conquest system every sunday

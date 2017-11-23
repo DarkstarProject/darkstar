@@ -76,7 +76,7 @@ namespace charutils
     uint8   AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence = false);
     uint8	AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1, bool silence = false);
     uint8   MoveItem(CCharEntity* PChar, uint8 LocationID, uint8 SlotID, uint8 NewSlotID);
-    uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, std::int32_t quantity, bool force = false);
+    uint32	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity, bool force = false);
     void	CheckValidEquipment(CCharEntity* PChar);
     void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);
     void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
@@ -94,38 +94,38 @@ namespace charutils
     void	addKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // добавляем ключевой предмет
     void	delKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // улаляем ключевой предмет
 
-    std::int32_t	hasSpell(CCharEntity* PChar, uint16 SpellID);		        // проверяем наличие заклинания
-    std::int32_t	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
-    std::int32_t	delSpell(CCharEntity* PChar, uint16 SpellID);		        // улаляем заклинание
+    int32	hasSpell(CCharEntity* PChar, uint16 SpellID);		        // проверяем наличие заклинания
+    int32	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
+    int32	delSpell(CCharEntity* PChar, uint16 SpellID);		        // улаляем заклинание
 
-    std::int32_t	hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие заклинания
-    std::int32_t	addLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем заклинание
-    std::int32_t	delLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// улаляем заклинание
+    int32	hasLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// проверяем наличие заклинания
+    int32	addLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем заклинание
+    int32	delLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// улаляем заклинание
 
     bool	hasLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
     void	addLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
     void	delLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
 
-    std::int32_t	hasAbility(CCharEntity* PChar, uint16 AbilityID);	        // проверяем наличие ключевого предмета
-    std::int32_t	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
-    std::int32_t	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
+    int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	        // проверяем наличие ключевого предмета
+    int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
+    int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
 
-    std::int32_t   hasTitle(CCharEntity* PChar, uint16 Title);
-    std::int32_t   addTitle(CCharEntity* PChar, uint16 Title);
-    std::int32_t   delTitle(CCharEntity* PChar, uint16 Title);
+    int32   hasTitle(CCharEntity* PChar, uint16 Title);
+    int32   addTitle(CCharEntity* PChar, uint16 Title);
+    int32   delTitle(CCharEntity* PChar, uint16 Title);
     void   setTitle(CCharEntity* PChar, uint16 Title); // set title if not, save and update player
 
-    std::int32_t	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
-    std::int32_t	addPetAbility(CCharEntity* PChar, uint16 AbilityID);
-    std::int32_t	delPetAbility(CCharEntity* PChar, uint16 AbilityID);
+    int32	hasPetAbility(CCharEntity* PChar, uint16 AbilityID);	        //same as Ability but for pet commands (e.g. Healing Ruby)
+    int32	addPetAbility(CCharEntity* PChar, uint16 AbilityID);
+    int32	delPetAbility(CCharEntity* PChar, uint16 AbilityID);
 
-    std::int32_t	hasTrait(CCharEntity* PChar, uint8 TraitID);	            // check if pchar has trait by traitid and jobid
-    std::int32_t	addTrait(CCharEntity* PChar, uint8 TraitID);	            // add trait by traitid and jobid
-    std::int32_t	delTrait(CCharEntity* PChar, uint8 TraitID);	            // delete trait by traitid and jobid
+    int32	hasTrait(CCharEntity* PChar, uint8 TraitID);	            // check if pchar has trait by traitid and jobid
+    int32	addTrait(CCharEntity* PChar, uint8 TraitID);	            // add trait by traitid and jobid
+    int32	delTrait(CCharEntity* PChar, uint8 TraitID);	            // delete trait by traitid and jobid
 
-    std::int32_t	addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to add weapon skill
-    std::int32_t	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to check for weapon skill
-    std::int32_t	delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to delete weapon skill
+    int32	addWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to add weapon skill
+    int32	hasWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to check for weapon skill
+    int32	delWeaponSkill(CCharEntity* PChar, uint16 WeaponSkillID);   // declaration of function to delete weapon skill
 
     void	SaveCharJob(CCharEntity* PChar, JOBTYPE job);		        // сохраняем уровень для выбранной профессий персонажа
     void	SaveCharExp(CCharEntity* PChar, JOBTYPE job);		        // сохраняем опыт для выбранной профессии персонажа
@@ -173,15 +173,15 @@ namespace charutils
 
     bool    IsAidBlocked(CCharEntity* PInitiator, CCharEntity* PTarget);
 
-    void    AddPoints(CCharEntity* PChar, const char* type, std::int32_t amount, std::int32_t max = INT32_MAX);
-    void    SetPoints(CCharEntity* PChar, const char* type, std::int32_t amount);
-    std::int32_t   GetPoints(CCharEntity* PChar, const char* type);
+    void    AddPoints(CCharEntity* PChar, const char* type, int32 amount, int32 max = INT32_MAX);
+    void    SetPoints(CCharEntity* PChar, const char* type, int32 amount);
+    int32   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
     void    HomePoint(CCharEntity* PChar);
     void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
-    std::int32_t   GetVar(CCharEntity* PChar, const char* var);
+    int32   GetVar(CCharEntity* PChar, const char* var);
 };
 
 #endif

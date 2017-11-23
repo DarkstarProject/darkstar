@@ -85,7 +85,7 @@ bool isRightRecipe(CCharEntity* PChar)
 			AND Ingredient8 = %u \
 		LIMIT 1";
 
-	std::int32_t ret = Sql_Query(
+	int32 ret = Sql_Query(
 		SqlHandle,
 		fmtQuery,
 		PChar->CraftContainer->getItemID(0),
@@ -496,7 +496,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-std::int32_t doSynthSkillUp(CCharEntity* PChar)
+int32 doSynthSkillUp(CCharEntity* PChar)
 {
 	for(uint8 skillID = 49; skillID < 57; ++skillID)
 	{
@@ -508,8 +508,8 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 		uint8  skillRank = PChar->RealSkills.rank[skillID];
 		uint16 maxSkill  = (skillRank+1)*100;
 
-		std::int32_t  charSkill = PChar->RealSkills.skill[skillID];
-		std::int32_t  baseDiff   = PChar->CraftContainer->getQuantity(skillID-40) - charSkill/10; //the 5 lvl difference rule for breaks does NOT consider the effects of image support/gear
+		int32  charSkill = PChar->RealSkills.skill[skillID];
+		int32  baseDiff   = PChar->CraftContainer->getQuantity(skillID-40) - charSkill/10; //the 5 lvl difference rule for breaks does NOT consider the effects of image support/gear
 
 		if ((baseDiff <= 0) || ((baseDiff > 5) && (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL)))		// результат синтеза хранится в quantity нулевой ячейки
 		{
@@ -533,8 +533,8 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 
 			if (random < skillUpChance)
 			{
-				std::int32_t  satier = 0;
-				std::int32_t  skillAmount  = 1;
+				int32  satier = 0;
+				int32  skillAmount  = 1;
 				double chance = 0;
 
 				if((baseDiff >= 1) && (baseDiff < 3))
@@ -575,7 +575,7 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 				// Do craft amount multiplier
 				if (map_config.craft_amount_multiplier > 1)
 				{
-					skillAmount += (std::int32_t)(skillAmount * map_config.craft_amount_multiplier);
+					skillAmount += (int32)(skillAmount * map_config.craft_amount_multiplier);
 					if (skillAmount > 9)
 					{
 						skillAmount = 9;
@@ -614,7 +614,7 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-std::int32_t doSynthFail(CCharEntity* PChar)
+int32 doSynthFail(CCharEntity* PChar)
 {
 	uint8  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
@@ -704,7 +704,7 @@ std::int32_t doSynthFail(CCharEntity* PChar)
 					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET, lostCount, invSlotID);
 					#endif
 
-					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(std::int32_t)lostCount);
+					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)lostCount);
 					lostCount = 0;
 				}else{
 					PChar->pushPacket(new CInventoryAssignPacket(PItem, INV_NORMAL));
@@ -733,7 +733,7 @@ std::int32_t doSynthFail(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-std::int32_t startSynth(CCharEntity* PChar)
+int32 startSynth(CCharEntity* PChar)
 {
     PChar->m_LastSynthTime = server_clock::now();
 	uint16 effect  = 0;
@@ -841,7 +841,7 @@ std::int32_t startSynth(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-std::int32_t doSynthResult(CCharEntity* PChar)
+int32 doSynthResult(CCharEntity* PChar)
 {
 	uint8 m_synthResult = PChar->CraftContainer->getQuantity(0);
 
@@ -871,7 +871,7 @@ std::int32_t doSynthResult(CCharEntity* PChar)
 					ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET,removeCount,invSlotID);
 					#endif
 					PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setSubType(ITEM_UNLOCKED);
-					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(std::int32_t)removeCount);
+					charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)removeCount);
 				}
 				invSlotID   = nextSlotID;
 				nextSlotID  = 0;
@@ -925,7 +925,7 @@ std::int32_t doSynthResult(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-std::int32_t sendSynthDone(CCharEntity* PChar)
+int32 sendSynthDone(CCharEntity* PChar)
 {
 	doSynthResult(PChar);
 

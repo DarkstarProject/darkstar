@@ -84,9 +84,9 @@ public:
 	uint32	 getSysYearDay();						// Number of day since 1st january
 
     uint32   getVanaTime();
-	std::int32_t	 getCustomOffset();
+	int32	 getCustomOffset();
 
-	void	 setCustomOffset(std::int32_t offset);
+	void	 setCustomOffset(int32 offset);
 	
 	time_point   lastConquestUpdate;
     time_point   lastVHourlyUpdate;
@@ -110,7 +110,7 @@ private:
 
 	TIMETYPE m_TimeType;							// текущий тип времени
 
-	std::int32_t	 m_customOffset;						// Смещение игрового времени в игровых минутах
+	int32	 m_customOffset;						// Смещение игрового времени в игровых минутах
 };
 
 #endif

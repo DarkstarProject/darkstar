@@ -118,7 +118,7 @@ namespace effects
             EffectsParams[i].Flag = 0;
         }
 
-        std::int32_t ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element, min_duration FROM status_effects WHERE id < %u", MAX_EFFECTID);
+        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element, min_duration FROM status_effects WHERE id < %u", MAX_EFFECTID);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -1214,7 +1214,7 @@ void CStatusEffectContainer::LoadStatusEffects()
         "FROM char_effects "
         "WHERE charid = %u;";
 
-    std::int32_t ret = Sql_Query(SqlHandle, Query, m_POwner->id);
+    int32 ret = Sql_Query(SqlHandle, Query, m_POwner->id);
 
     std::vector<CStatusEffect*> PEffectList;
 

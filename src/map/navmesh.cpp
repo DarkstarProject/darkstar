@@ -254,7 +254,7 @@ std::vector<position_t> CNavMesh::findPath(const position_t& start, const positi
     dtPolyRef straightPathPolys[MAX_NAV_POLYS];
 
     // not sure what this is for?
-    std::int32_t pathCount = 0;
+    int32 pathCount = 0;
 
     status = m_navMeshQuery.findPath(startRef, endRef, snearest, enearest, &filter, m_polys, &pathCount, MAX_NAV_POLYS);
 
@@ -267,7 +267,7 @@ std::vector<position_t> CNavMesh::findPath(const position_t& start, const positi
 
     if (pathCount > 0)
     {
-        std::int32_t straightPathCount = MAX_NAV_POLYS * 3;
+        int32 straightPathCount = MAX_NAV_POLYS * 3;
 
         status = m_navMeshQuery.findStraightPath(snearest, enearest, m_polys, pathCount, straightPath, straightPathFlags, straightPathPolys, &straightPathCount, MAX_NAV_POLYS);
 

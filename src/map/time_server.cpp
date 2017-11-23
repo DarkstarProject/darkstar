@@ -35,7 +35,7 @@
 #include "latent_effect_container.h"
 
 
-std::int32_t time_server(time_point tick,CTaskMgr::CTask* PTask)
+int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
 {
     TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
     // uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();

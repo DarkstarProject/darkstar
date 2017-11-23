@@ -79,7 +79,7 @@ struct SearchCommInfo
 
 void TaskManagerThread();
 
-std::int32_t ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
+int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
 
 
 const char* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
@@ -117,7 +117,7 @@ void PrintPacket(char* data, int size)
 
     printf("\n");
 
-    for (std::int32_t y = 0; y < size; y++)
+    for (int32 y = 0; y < size; y++)
     {
         char msgtmp[50];
         memset(&msgtmp, 0, 50);
@@ -144,7 +144,7 @@ void PrintPacket(char* data, int size)
 *																		*
 ************************************************************************/
 
-std::int32_t main(std::int32_t argc, char **argv)
+int32 main(int32 argc, char **argv)
 {
 #ifdef WIN32
     WSADATA wsaData;
@@ -997,7 +997,7 @@ void TaskManagerThread()
 *                                                                       *
 ************************************************************************/
 
-std::int32_t ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
+int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 {
     //ShowMessage(CL_YELLOW"[TASK] ah_cleanup tick..\n" CL_RESET);
 

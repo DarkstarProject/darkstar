@@ -32,7 +32,7 @@ void CCommandHandler::init(lua_State* L)
     m_LState = L;
 }
 
-std::int32_t CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
+int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 {
     std::istringstream clstream((char*)commandline);
     std::string cmdname;
@@ -146,7 +146,7 @@ std::int32_t CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 
     // Push the calling character (if exists)..
     CLuaBaseEntity LuaCmdCaller(PChar);
-    std::int32_t cntparam = 0;
+    int32 cntparam = 0;
 
     Lunar<CLuaBaseEntity>::push(m_LState, &LuaCmdCaller);
     cntparam += 1;
@@ -204,7 +204,7 @@ std::int32_t CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
     }
 
     // Call the function..
-    std::int32_t status = lua_pcall(m_LState, cntparam, 0, 0);
+    int32 status = lua_pcall(m_LState, cntparam, 0, 0);
     if (status)
     {
         ShowError("cmdhandler::call: (%s) error: %s\n", cmdname.c_str(), lua_tostring(m_LState, -1));

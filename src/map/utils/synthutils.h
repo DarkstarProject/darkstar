@@ -57,8 +57,8 @@ namespace synthutils
         SYNTHESIS_HQ3		= 4
     };
 
-	std::int32_t startSynth(CCharEntity* PChar);
-	std::int32_t sendSynthDone(CCharEntity* PChar);
+	int32 startSynth(CCharEntity* PChar);
+	int32 sendSynthDone(CCharEntity* PChar);
 };
 
 #endif

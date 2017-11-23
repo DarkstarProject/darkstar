@@ -133,7 +133,7 @@ bool CBattleEntity::isAsleep()
 
 void CBattleEntity::UpdateHealth()
 {
-    std::int32_t dif = (getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP));
+    int32 dif = (getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP));
 
     health.modmp = ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) + std::min<int16>((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP);
     health.modhp = ((health.maxhp) * (100 + getMod(Mod::HPP)) / 100) + std::min<int16>((health.maxhp * m_modStat[Mod::FOOD_HPP] / 100), m_modStat[Mod::FOOD_HP_CAP]) + getMod(Mod::HP);
@@ -167,7 +167,7 @@ uint8 CBattleEntity::GetHPP()
     return (uint8)ceil(((float)health.hp / (float)GetMaxHP()) * 100);
 }
 
-std::int32_t CBattleEntity::GetMaxHP()
+int32 CBattleEntity::GetMaxHP()
 {
     return health.modhp;
 }
@@ -183,7 +183,7 @@ uint8 CBattleEntity::GetMPP()
     return (uint8)ceil(((float)health.mp / (float)GetMaxMP()) * 100);
 }
 
-std::int32_t CBattleEntity::GetMaxMP()
+int32 CBattleEntity::GetMaxMP()
 {
     return health.modmp;
 }
@@ -459,13 +459,13 @@ int16 CBattleEntity::addTP(int16 tp)
 *																		*
 ************************************************************************/
 
-std::int32_t CBattleEntity::addHP(std::int32_t hp)
+int32 CBattleEntity::addHP(int32 hp)
 {
     if (health.hp == 0 && hp < 0) {
         return 0; //if the entity is already dead, skip the rest to prevent killing it again
     }
 
-    std::int32_t cap = std::clamp(health.hp + hp, 0, GetMaxHP());
+    int32 cap = std::clamp(health.hp + hp, 0, GetMaxHP());
     hp = health.hp - cap;
     health.hp = cap;
 
@@ -489,9 +489,9 @@ std::int32_t CBattleEntity::addHP(std::int32_t hp)
     return abs(hp);
 }
 
-std::int32_t CBattleEntity::addMP(std::int32_t mp)
+int32 CBattleEntity::addMP(int32 mp)
 {
-    std::int32_t cap = std::clamp(health.mp + mp, 0, GetMaxMP());
+    int32 cap = std::clamp(health.mp + mp, 0, GetMaxMP());
     mp = health.mp - cap;
     health.mp = cap;
     if (mp != 0)
@@ -545,7 +545,7 @@ uint16 CBattleEntity::CHR()
 uint16 CBattleEntity::ATT()
 {
     //TODO: consider which weapon!
-    std::int32_t ATT = 8 + m_modStat[Mod::ATT];
+    int32 ATT = 8 + m_modStat[Mod::ATT];
     if (m_Weapons[SLOT_MAIN]->isTwoHanded())
     {
         ATT += (STR() * 3) / 4;
@@ -577,7 +577,7 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
     {
         return 0;
     }
-    std::int32_t ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
+    int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
     return ATT + (ATT * m_modStat[Mod::RATTP] / 100) +
         std::min<int16>((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
 }
@@ -659,7 +659,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 
 uint16 CBattleEntity::DEF()
 {
-    std::int32_t DEF = 8 + m_modStat[Mod::DEF] + VIT() / 2;
+    int32 DEF = 8 + m_modStat[Mod::DEF] + VIT() / 2;
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0)) {
 	return DEF / 2;
     }
@@ -1447,7 +1447,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                         }
 
                         float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
-                        auto damage = (std::int32_t)((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
+                        auto damage = (int32)((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
                         actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, attack.GetAttackType(), damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                         actionTarget.spikesMessage = 33;
                         if (PTarget->objtype == TYPE_PC)

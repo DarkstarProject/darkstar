@@ -36,16 +36,16 @@
 
 #include <algorithm>
 
-std::int32_t login_fd;					//main fd(socket) of server
+int32 login_fd;					//main fd(socket) of server
 
 /*
 *
 *		LOGIN SECTION
 *
 */
-std::int32_t connect_client_login(std::int32_t listenfd)
+int32 connect_client_login(int32 listenfd)
 {
-    std::int32_t fd = 0;
+    int32 fd = 0;
     struct sockaddr_in client_address;
     if ((fd = connect_client(listenfd, client_address)) != -1)
     {
@@ -56,7 +56,7 @@ std::int32_t connect_client_login(std::int32_t listenfd)
     return -1;
 }
 
-std::int32_t login_parse(std::int32_t fd)
+int32 login_parse(int32 fd)
 {
     login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
@@ -107,7 +107,7 @@ std::int32_t login_parse(std::int32_t fd)
             const char* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
-            std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
+            int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
             if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
             {
                 ret = Sql_NextRow(SqlHandle);
@@ -119,7 +119,7 @@ std::int32_t login_parse(std::int32_t fd)
                 {
                     //fmtQuery = "SELECT * FROM accounts_sessions WHERE accid = %d AND client_port <> 0";
 
-                    //std::int32_t ret = Sql_Query(SqlHandle,fmtQuery,sd->accid);
+                    //int32 ret = Sql_Query(SqlHandle,fmtQuery,sd->accid);
 
                     //if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 )
                     //{
@@ -283,7 +283,7 @@ std::int32_t login_parse(std::int32_t fd)
 };
 
 
-std::int32_t do_close_login(login_session_data_t* loginsd, std::int32_t fd)
+int32 do_close_login(login_session_data_t* loginsd, int32 fd)
 {
     ShowInfo(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET"shutdown socket...\n", ip2str(loginsd->client_addr, nullptr));
     erase_loginsd(fd);

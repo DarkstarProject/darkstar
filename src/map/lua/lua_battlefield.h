@@ -44,20 +44,20 @@ public:
     {
         return m_PLuaBattlefield;
     }
-    std::int32_t getBattlefieldNumber(lua_State*);
-    std::int32_t getBcnmID(lua_State*);
-    std::int32_t getTimeLimit(lua_State*);
-    std::int32_t getTimeInside(lua_State*);
-    std::int32_t getRecord(lua_State*);
-    std::int32_t setAsFastest(lua_State*);
-    std::int32_t setEntrance(lua_State*);
-    std::int32_t getEntrance(lua_State*);
-    std::int32_t insertAlly(lua_State*);
-    std::int32_t getAllies(lua_State*);
-    std::int32_t getEnemies(lua_State*);
-    std::int32_t getPlayers(lua_State*);
-    std::int32_t lose(lua_State*);
-    std::int32_t win(lua_State*);
+    int32 getBattlefieldNumber(lua_State*);
+    int32 getBcnmID(lua_State*);
+    int32 getTimeLimit(lua_State*);
+    int32 getTimeInside(lua_State*);
+    int32 getRecord(lua_State*);
+    int32 setAsFastest(lua_State*);
+    int32 setEntrance(lua_State*);
+    int32 getEntrance(lua_State*);
+    int32 insertAlly(lua_State*);
+    int32 getAllies(lua_State*);
+    int32 getEnemies(lua_State*);
+    int32 getPlayers(lua_State*);
+    int32 lose(lua_State*);
+    int32 win(lua_State*);
 };
 
 #endif

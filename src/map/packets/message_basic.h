@@ -145,7 +145,7 @@ class CMessageBasicPacket : public CBasicPacket
 {
 public:
 
-	CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param, std::int32_t value, uint16 messageID);
+	CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param, int32 value, uint16 messageID);
     uint16 getMessageID();
 };
 

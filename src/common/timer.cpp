@@ -41,7 +41,7 @@ static __inline uint64 _rdtsc(){
 
 static void rdtsc_calibrate(){
 	uint64 t1, t2;
-	std::int32_t i;
+	int32 i;
 	
 	ShowStatus("Calibrating Timer Source, please wait... ");
 	
@@ -87,7 +87,7 @@ static uint32 tick(void)
 //////////////////////////////////////////////////////////////////////////
 // tick is cached for TICK_CACHE calls
 static uint32 gettick_cache;
-static std::int32_t  gettick_count = 1;
+static int32  gettick_count = 1;
 
 unsigned int gettick_nocache(void)
 {

@@ -104,7 +104,7 @@ uint8* CTCPRequestPacket::GetData()
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::GetSize()
+int32 CTCPRequestPacket::GetSize()
 {
     return m_size;
 }
@@ -115,7 +115,7 @@ std::int32_t CTCPRequestPacket::GetSize()
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::ReceiveFromSocket()
+int32 CTCPRequestPacket::ReceiveFromSocket()
 {
     char recvbuf[DEFAULT_BUFLEN];
 
@@ -154,9 +154,9 @@ std::int32_t CTCPRequestPacket::ReceiveFromSocket()
 *                                                                       *
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
+int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 {
-    std::int32_t iResult;
+    int32 iResult;
 
     iResult = send(*m_socket, (const char*)data, length, 0);
     if (iResult == SOCKET_ERROR)
@@ -177,9 +177,9 @@ std::int32_t CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
+int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 {
-    std::int32_t iResult;
+    int32 iResult;
 
     WBUFW(data, (0x00)) = length;          // packet size
     WBUFL(data, (0x04)) = 0x46465849;      // "IXFF"
@@ -219,11 +219,11 @@ std::int32_t CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::CheckPacketHash()
+int32 CTCPRequestPacket::CheckPacketHash()
 {
     uint8 PacketHash[16];
 
-    std::int32_t toHash = m_size;  // whole packet
+    int32 toHash = m_size;  // whole packet
 
     toHash -= 0x08;         // -headersize
     toHash -= 0x10;         // -hashsize
@@ -261,7 +261,7 @@ uint8 CTCPRequestPacket::GetPacketType()
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::decipher()
+int32 CTCPRequestPacket::decipher()
 {
     md5((uint8*)(key), blowfish.hash, 20);
 

@@ -40,7 +40,7 @@ CSynthSuggestionPacket::CSynthSuggestionPacket(uint32 synthID)
 		WHERE ID = %u \
 		LIMIT 1";
 
-	std::int32_t ret = Sql_Query(
+	int32 ret = Sql_Query(
 		SqlHandle,
 		fmtQuery,
 		synthID);
