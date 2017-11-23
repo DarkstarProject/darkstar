@@ -196,7 +196,7 @@ int32 CBattleEntity::GetMaxMP()
 
 uint8 CBattleEntity::GetSpeed()
 {
-    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<uint8>(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
+    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<uint8>(speed * (100 + getMod(Mod::MOVE)) / 100, std::numeric_limits<std::uint8_t>::min(), std::numeric_limits<std::uint8_t>::max()));
 }
 
 bool CBattleEntity::CanRest()

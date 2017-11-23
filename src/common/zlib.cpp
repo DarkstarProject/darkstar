@@ -111,8 +111,8 @@ static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::
             // Everything equal or less to 0xff is 8bit data.
             // The pointers at offsets -3 and -2 in table must be zero for each non-zero data entry
             // This approach assumes pointers are at least 8bit on the system.
-            static_assert(sizeof(uintptr) >= sizeof(uint8), "Pointer can't hold a 8bit value");
-            jump[i].ptr = reinterpret_cast<void*>(static_cast<uintptr>(dec[i]));
+            static_assert(sizeof(std::uintptr_t) >= sizeof(uint8), "Pointer can't hold a 8bit value");
+            jump[i].ptr = reinterpret_cast<void*>(static_cast<std::uintptr_t>(dec[i]));
             assert(!jump[i].ptr || (!jump[i-2].ptr && !jump[i-3].ptr));
         }
     }
@@ -224,7 +224,7 @@ uint32 zlib_decompress(const int8 *in, const uint32 in_sz, int8 *out, const uint
 
         // The remaining address should be data
         assert(jmp[3].ptr <= reinterpret_cast<void*>(0xff));
-        out[w++] = static_cast<uint8>(reinterpret_cast<uintptr>(jmp[3].ptr));
+        out[w++] = static_cast<uint8>(reinterpret_cast<std::uintptr_t>(jmp[3].ptr));
         jmp = static_cast<const struct zlib_jump*>(zlib.jump[0].ptr);
 
         if (w >= out_sz)
