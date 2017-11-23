@@ -61,7 +61,7 @@ CAIContainer::CAIContainer(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _
 {
 }
 
-bool CAIContainer::Cast(std::uint16_t targid, SpellID spellid)
+bool CAIContainer::Cast(uint16 targid, SpellID spellid)
 {
     if (Controller)
     {
@@ -70,7 +70,7 @@ bool CAIContainer::Cast(std::uint16_t targid, SpellID spellid)
     return false;
 }
 
-bool CAIContainer::Engage(std::uint16_t targid)
+bool CAIContainer::Engage(uint16 targid)
 {
     if (Controller)
     {
@@ -79,7 +79,7 @@ bool CAIContainer::Engage(std::uint16_t targid)
     return false;
 }
 
-bool CAIContainer::ChangeTarget(std::uint16_t targid)
+bool CAIContainer::ChangeTarget(uint16 targid)
 {
     if (Controller)
     {
@@ -97,7 +97,7 @@ bool CAIContainer::Disengage()
     return false;
 }
 
-bool CAIContainer::WeaponSkill(std::uint16_t targid, std::uint16_t wsid)
+bool CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
 {
     if (Controller)
     {
@@ -106,7 +106,7 @@ bool CAIContainer::WeaponSkill(std::uint16_t targid, std::uint16_t wsid)
     return false;
 }
 
-bool CAIContainer::MobSkill(std::uint16_t targid, std::uint16_t wsid)
+bool CAIContainer::MobSkill(uint16 targid, uint16 wsid)
 {
     auto AIController = dynamic_cast<CMobController*>(Controller.get());
     if (AIController)
@@ -116,7 +116,7 @@ bool CAIContainer::MobSkill(std::uint16_t targid, std::uint16_t wsid)
     return false;
 }
 
-bool CAIContainer::Ability(std::uint16_t targid, std::uint16_t abilityid)
+bool CAIContainer::Ability(uint16 targid, uint16 abilityid)
 {
     if (Controller)
     {
@@ -125,7 +125,7 @@ bool CAIContainer::Ability(std::uint16_t targid, std::uint16_t abilityid)
     return false;
 }
 
-bool CAIContainer::RangedAttack(std::uint16_t targid)
+bool CAIContainer::RangedAttack(uint16 targid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(Controller.get());
     if (PlayerController)
@@ -135,7 +135,7 @@ bool CAIContainer::RangedAttack(std::uint16_t targid)
     return false;
 }
 
-bool CAIContainer::Trigger(std::uint16_t targID)
+bool CAIContainer::Trigger(uint16 targID)
 {
     if (CanChangeState())
     {
@@ -149,7 +149,7 @@ bool CAIContainer::Trigger(std::uint16_t targID)
     return false;
 }
 
-bool CAIContainer::UseItem(std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid)
+bool CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(PEntity->PAI->GetController());
     if (PlayerController)
@@ -164,7 +164,7 @@ bool CAIContainer::Inactive(duration _duration, bool canChangeState)
     return ForceChangeState<CInactiveState>(PEntity, _duration, canChangeState);
 }
 
-bool CAIContainer::Internal_Engage(std::uint16_t targetid)
+bool CAIContainer::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
@@ -194,7 +194,7 @@ bool CAIContainer::Internal_Engage(std::uint16_t targetid)
     return false;
 }
 
-bool CAIContainer::Internal_Cast(std::uint16_t targetid, SpellID spellid)
+bool CAIContainer::Internal_Cast(uint16 targetid, SpellID spellid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -202,7 +202,7 @@ bool CAIContainer::Internal_Cast(std::uint16_t targetid, SpellID spellid)
     return false;
 }
 
-bool CAIContainer::Internal_ChangeTarget(std::uint16_t targetid)
+bool CAIContainer::Internal_ChangeTarget(uint16 targetid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -231,7 +231,7 @@ bool CAIContainer::Internal_Disengage()
     return false;
 }
 
-bool CAIContainer::Internal_WeaponSkill(std::uint16_t targid, std::uint16_t wsid)
+bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -239,7 +239,7 @@ bool CAIContainer::Internal_WeaponSkill(std::uint16_t targid, std::uint16_t wsid
     return false;
 }
 
-bool CAIContainer::Internal_MobSkill(std::uint16_t targid, std::uint16_t wsid)
+bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 {
     auto entity {dynamic_cast<CMobEntity*>(PEntity)};
     if (entity)
@@ -247,7 +247,7 @@ bool CAIContainer::Internal_MobSkill(std::uint16_t targid, std::uint16_t wsid)
     return false;
 }
 
-bool CAIContainer::Internal_Ability(std::uint16_t targetid, std::uint16_t abilityid)
+bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
@@ -255,7 +255,7 @@ bool CAIContainer::Internal_Ability(std::uint16_t targetid, std::uint16_t abilit
     return false;
 }
 
-bool CAIContainer::Internal_RangedAttack(std::uint16_t targetid)
+bool CAIContainer::Internal_RangedAttack(uint16 targetid)
 {
     auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)
@@ -279,7 +279,7 @@ bool CAIContainer::Internal_Raise()
     return false;
 }
 
-bool CAIContainer::Internal_UseItem(std::uint16_t targetid, std::uint8_t loc, std::uint8_t slotid)
+bool CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
 {
     auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)

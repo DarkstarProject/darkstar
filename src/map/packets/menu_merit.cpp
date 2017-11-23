@@ -40,7 +40,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
     WBUFW(data,(0x08)) = PChar->PMeritPoints->GetLimitPoints();
     WBUFB(data,(0x0A)) = PChar->PMeritPoints->GetMeritPoints();
 
-	std::uint8_t flag = 0x00;
+	uint8 flag = 0x00;
 
 	if (PChar->jobs.job[PChar->GetMJob()] >= 75 && charutils::hasKeyItem(PChar, 606))			// keyitem Limit Breaker
 	{
@@ -69,7 +69,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
 	memset(data + 4, 0, sizeof(PACKET_SIZE -4));
 
-    std::uint8_t packet[] = 
+    uint8 packet[] = 
     {
 		0x03, 0x00, 0xD8
     };
@@ -83,7 +83,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 
 	memset(data + 4, 0, sizeof(PACKET_SIZE -4));
 
-	std::uint8_t packet2[] = 
+	uint8 packet2[] = 
 	{
 		0x04, 0x00, 0x84
 	};

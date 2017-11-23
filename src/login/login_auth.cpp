@@ -82,7 +82,7 @@ std::int32_t login_parse(std::int32_t fd)
     if (session[fd]->rdata.size() == 33)
     {
         char* buff = &session[fd]->rdata[0];
-        std::int8_t code = RBUFB(buff, 32);
+        int8 code = RBUFB(buff, 32);
 
         std::string name(buff, buff + 16);
         std::string password(buff + 16, buff + 32);
@@ -113,7 +113,7 @@ std::int32_t login_parse(std::int32_t fd)
                 ret = Sql_NextRow(SqlHandle);
 
                 sd->accid = (uint32)Sql_GetUIntData(SqlHandle, 0);
-                std::uint8_t status = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
+                uint8 status = (uint8)Sql_GetUIntData(SqlHandle, 1);
 
                 if (status & ACCST_NORMAL)
                 {

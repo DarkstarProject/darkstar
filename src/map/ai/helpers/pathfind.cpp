@@ -40,7 +40,7 @@ CPathFind::~CPathFind()
     Clear();
 }
 
-bool CPathFind::RoamAround(const position_t& point, float maxRadius, std::uint8_t maxTurns, std::uint16_t roamFlags)
+bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, uint16 roamFlags)
 {
     Clear();
 
@@ -75,7 +75,7 @@ bool CPathFind::RoamAround(const position_t& point, float maxRadius, std::uint8_
     return true;
 }
 
-bool CPathFind::PathTo(const position_t& point, std::uint8_t pathFlags, bool clear)
+bool CPathFind::PathTo(const position_t& point, uint8 pathFlags, bool clear)
 {
     // don't follow a new path if the current path has script flag and new path doesn't
     if (IsFollowingPath() && (m_pathFlags & PATHFLAG_SCRIPT) && !(pathFlags & PATHFLAG_SCRIPT))
@@ -119,7 +119,7 @@ bool CPathFind::PathTo(const position_t& point, std::uint8_t pathFlags, bool cle
     return true;
 }
 
-bool CPathFind::PathInRange(const position_t& point, float range, std::uint8_t pathFlags /*= 0*/, bool clear /*= true*/)
+bool CPathFind::PathInRange(const position_t& point, float range, uint8 pathFlags /*= 0*/, bool clear /*= true*/)
 {
     if (clear)
     {
@@ -129,7 +129,7 @@ bool CPathFind::PathInRange(const position_t& point, float range, std::uint8_t p
     return PathTo(point, pathFlags, false);
 }
 
-bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, std::uint8_t pathFlags)
+bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, uint8 pathFlags)
 {
     Clear();
     //position_t* lastPoint = &point;
@@ -147,7 +147,7 @@ bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, std
     return PathTo(point, pathFlags, false);
 }
 
-bool CPathFind::PathThrough(std::vector<position_t>&& points, std::uint8_t pathFlags)
+bool CPathFind::PathThrough(std::vector<position_t>&& points, uint8 pathFlags)
 {
     Clear();
 
@@ -261,7 +261,7 @@ void CPathFind::FollowPath()
     {
         m_currentPoint++;
 
-        if (m_currentPoint >= (std::int16_t)m_points.size())
+        if (m_currentPoint >= (int16)m_points.size())
         {
             FinishedPath();
         }
@@ -276,7 +276,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
 
     float speed = GetRealSpeed();
 
-    std::int8_t mode = 2;
+    int8 mode = 2;
 
     if (!run)
     {
@@ -322,7 +322,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
     }
 
 
-    m_PTarget->loc.p.moving += (std::uint16_t)((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
+    m_PTarget->loc.p.moving += (uint16)((0x36 * ((float)m_PTarget->speed / 0x28)) - (0x14 * (mode - 1)));
 
     if (m_PTarget->loc.p.moving > 0x2fff)
     {
@@ -347,14 +347,14 @@ bool CPathFind::FindPath(const position_t& start, const position_t& end)
     return true;
 }
 
-bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, std::uint8_t maxTurns, std::uint16_t roamFlags)
+bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint16 roamFlags)
 {
     auto m_turnLength = dsprand::GetRandomNumber(1, (int)maxTurns);
 
     position_t startPosition = start;
 
     // find end points for turns
-    for (std::int8_t i = 0; i < m_turnLength; i++) {
+    for (int8 i = 0; i < m_turnLength; i++) {
         // look for new point centered around the last point
         auto status = m_PTarget->loc.zone->m_navMesh->findRandomPosition(startPosition, maxRadius);
 
@@ -407,7 +407,7 @@ bool CPathFind::OnPoint()
 
 float CPathFind::GetRealSpeed()
 {
-    std::uint8_t baseSpeed = m_PTarget->speed;
+    uint8 baseSpeed = m_PTarget->speed;
 
     if (m_PTarget->objtype != TYPE_NPC)
     {

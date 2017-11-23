@@ -31,7 +31,7 @@ This file is part of DarkStar-server source code.
 #include "../alliance.h"
 #include "../party.h"
 
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint8_t MemberNumber, std::uint16_t memberflags, std::uint16_t ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 ZoneID)
 {
     this->type = 0xDD;
     this->size = 0x20;
@@ -40,34 +40,34 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint
 
     ref<uint32>(0x04) = PChar->id;
 
-    ref<std::uint16_t>(0x14) = memberflags;
+    ref<uint16>(0x14) = memberflags;
 
     if (PChar->getZone() != ZoneID)
     {
-        ref<std::uint16_t>(0x20) = PChar->getZone();
+        ref<uint16>(0x20) = PChar->getZone();
     }
     else
     {
         ref<uint32>(0x08) = PChar->health.hp;
         ref<uint32>(0x0C) = PChar->health.mp;
-        ref<std::uint16_t>(0x10) = PChar->health.tp;
-        ref<std::uint16_t>(0x18) = PChar->targid;
-        ref<std::uint8_t>(0x1A) = MemberNumber;
-        ref<std::uint8_t>(0x1D) = PChar->GetHPP();
-        ref<std::uint8_t>(0x1E) = PChar->GetMPP();
+        ref<uint16>(0x10) = PChar->health.tp;
+        ref<uint16>(0x18) = PChar->targid;
+        ref<uint8>(0x1A) = MemberNumber;
+        ref<uint8>(0x1D) = PChar->GetHPP();
+        ref<uint8>(0x1E) = PChar->GetMPP();
 
         if (!(PChar->nameflags.flags & FLAG_ANON))
         {
-            ref<std::uint8_t>(0x22) = PChar->GetMJob();
-            ref<std::uint8_t>(0x23) = PChar->GetMLevel();
-            ref<std::uint8_t>(0x24) = PChar->GetSJob();
-            ref<std::uint8_t>(0x25) = PChar->GetSLevel();
+            ref<uint8>(0x22) = PChar->GetMJob();
+            ref<uint8>(0x23) = PChar->GetMLevel();
+            ref<uint8>(0x24) = PChar->GetSJob();
+            ref<uint8>(0x25) = PChar->GetSLevel();
         }
     }
 
     memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
 }
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const std::int8_t* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID)
 {
 
     this->type = 0xDD;
@@ -75,8 +75,8 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const std::int8_t*
 
     ref<uint32>(0x04) = id;
 
-    ref<std::uint16_t>(0x14) = memberFlags;
-    ref<std::uint16_t>(0x20) = ZoneID;
+    ref<uint16>(0x14) = memberFlags;
+    ref<uint16>(0x20) = ZoneID;
 
     memcpy(data + (0x26), name, strlen((const char*)name));
 }

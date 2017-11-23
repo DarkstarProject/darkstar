@@ -36,7 +36,7 @@ This file is part of DarkStar-server source code.
 #include "mob_spell_list.h"
 #include "mob_modifier.h"
 
-CInstanceLoader::CInstanceLoader(std::uint8_t instanceid, CZone* PZone, CCharEntity* PRequester)
+CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester)
 {
     DSP_DEBUG_BREAK_IF(PZone->GetType() != ZONETYPE_DUNGEON_INSTANCED);
 
@@ -129,9 +129,9 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
             PMob->name.insert(0, (const char*)Sql_GetData(SqlInstanceHandle, 0));
             PMob->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 1);
-            PMob->targid = (std::uint16_t)PMob->id & 0x0FFF;
+            PMob->targid = (uint16)PMob->id & 0x0FFF;
 
-            PMob->m_SpawnPoint.rotation = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 2);
+            PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlInstanceHandle, 2);
             PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlInstanceHandle, 3);
             PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlInstanceHandle, 4);
             PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlInstanceHandle, 5);
@@ -143,8 +143,8 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->HPmodifier = (uint32)Sql_GetIntData(SqlInstanceHandle, 9);
             PMob->MPmodifier = (uint32)Sql_GetIntData(SqlInstanceHandle, 10);
 
-            PMob->m_minLevel = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 11);
-            PMob->m_maxLevel = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 12);
+            PMob->m_minLevel = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
+            PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlInstanceHandle, 12);
 
             memcpy(&PMob->look, Sql_GetData(SqlInstanceHandle, 13), 23);
 
@@ -157,45 +157,45 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_Weapons[SLOT_MAIN]->setDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
             PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlInstanceHandle, 18) * 1000) / 60);
 
-            PMob->m_Behaviour = (std::uint16_t)Sql_GetIntData(SqlInstanceHandle, 19);
-            PMob->m_Link = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 20);
-            PMob->m_Type = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 21);
+            PMob->m_Behaviour = (uint16)Sql_GetIntData(SqlInstanceHandle, 19);
+            PMob->m_Link = (uint8)Sql_GetIntData(SqlInstanceHandle, 20);
+            PMob->m_Type = (uint8)Sql_GetIntData(SqlInstanceHandle, 21);
             PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlInstanceHandle, 22);
             PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlInstanceHandle, 23);
-            PMob->m_ModelSize = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 24);
+            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlInstanceHandle, 24);
 
-            PMob->speed = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 25);
-            PMob->speedsub = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 25);
+            PMob->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 25);
+            PMob->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 25);
 
-            PMob->strRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 26);
-            PMob->dexRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 27);
-            PMob->vitRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 28);
-            PMob->agiRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 29);
-            PMob->intRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 30);
-            PMob->mndRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 31);
-            PMob->chrRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 32);
-            PMob->evaRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 33);
-            PMob->defRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 34);
-            PMob->attRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 56);
-            PMob->accRank = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 57);
+            PMob->strRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 26);
+            PMob->dexRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 27);
+            PMob->vitRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 28);
+            PMob->agiRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 29);
+            PMob->intRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 30);
+            PMob->mndRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 31);
+            PMob->chrRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 32);
+            PMob->evaRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 33);
+            PMob->defRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 34);
+            PMob->attRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 56);
+            PMob->accRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 57);
 
-            PMob->setModifier(Mod::SLASHRES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
-            PMob->setModifier(Mod::PIERCERES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
-            PMob->setModifier(Mod::HTHRES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
-            PMob->setModifier(Mod::IMPACTRES, (std::uint16_t)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
+            PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
+            PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
+            PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
+            PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
 
-            PMob->setModifier(Mod::FIRERES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
-            PMob->setModifier(Mod::ICERES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
-            PMob->setModifier(Mod::WINDRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
-            PMob->setModifier(Mod::EARTHRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
-            PMob->setModifier(Mod::THUNDERRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
-            PMob->setModifier(Mod::WATERRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
-            PMob->setModifier(Mod::LIGHTRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
-            PMob->setModifier(Mod::DARKRES, (std::int16_t)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
+            PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
+            PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
+            PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
+            PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
+            PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
+            PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
+            PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
+            PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
 
-            PMob->m_Element = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 47);
-            PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlInstanceHandle, 48);
-            PMob->m_name_prefix = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 49);
+            PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
+            PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
+            PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 49);
             PMob->m_flags = (uint32)Sql_GetIntData(SqlInstanceHandle, 50);
 
             //Special sub animation for Mob (yovra, jailer of love, phuabo)
@@ -208,7 +208,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->MPscale = Sql_GetFloatData(SqlInstanceHandle, 53);
 
             // Check if we should be looking up scripts for this mob
-            PMob->m_HasSpellScript = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 54);
+            PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlInstanceHandle, 54);
 
             PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlInstanceHandle, 55));
 
@@ -262,25 +262,25 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
                 PNpc->name.insert(0, (const char*)Sql_GetData(SqlInstanceHandle, 1));
 
-                PNpc->loc.p.rotation = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 2);
+                PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlInstanceHandle, 2);
                 PNpc->loc.p.x = Sql_GetFloatData(SqlInstanceHandle, 3);
                 PNpc->loc.p.y = Sql_GetFloatData(SqlInstanceHandle, 4);
                 PNpc->loc.p.z = Sql_GetFloatData(SqlInstanceHandle, 5);
-                PNpc->loc.p.moving = (std::uint16_t)Sql_GetUIntData(SqlInstanceHandle, 6);
+                PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlInstanceHandle, 6);
 
                 PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
 
-                PNpc->speed = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 7);
-                PNpc->speedsub = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 8);
-                PNpc->animation = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 9);
-                PNpc->animationsub = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 10);
+                PNpc->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 7);
+                PNpc->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 8);
+                PNpc->animation = (uint8)Sql_GetIntData(SqlInstanceHandle, 9);
+                PNpc->animationsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 10);
 
-                PNpc->namevis = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 11);
+                PNpc->namevis = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
                 PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlInstanceHandle, 12);
                 PNpc->m_flags = (uint32)Sql_GetUIntData(SqlInstanceHandle, 13);
 
-                PNpc->name_prefix = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 15);
-                PNpc->widescan = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 16);
+                PNpc->name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 15);
+                PNpc->widescan = (uint8)Sql_GetIntData(SqlInstanceHandle, 16);
 
                 memcpy(&PNpc->look, Sql_GetData(SqlInstanceHandle, 14), 20);
 

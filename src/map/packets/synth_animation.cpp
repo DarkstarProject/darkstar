@@ -27,7 +27,7 @@
 #include "../entities/charentity.h"
 
 
-CSynthAnimationPacket::CSynthAnimationPacket(CCharEntity * PChar, std::uint16_t effect, std::uint8_t param)
+CSynthAnimationPacket::CSynthAnimationPacket(CCharEntity * PChar, uint16 effect, uint8 param)
 {
 	this->type = 0x30;
 	this->size = 0x08;

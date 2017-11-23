@@ -31,7 +31,7 @@
 #include "../utils/itemutils.h"
 #include "../status_effect_container.h"
 
-CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, std::uint8_t updatemask)
+CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemask)
 {
     this->type = 0x0D;
     this->size = 0x3A;

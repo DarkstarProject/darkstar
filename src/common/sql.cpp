@@ -70,7 +70,7 @@ Sql_t* Sql_Malloc(void)
 *																		*
 ************************************************************************/
 
-std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, std::uint16_t port, const char* db)
+std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db)
 {
 	if( self == NULL )
 		return SQL_ERROR;
@@ -390,13 +390,13 @@ std::int32_t Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_le
 *																		*
 ************************************************************************/
 
-std::int8_t* Sql_GetData(Sql_t* self, size_t col)
+int8* Sql_GetData(Sql_t* self, size_t col)
 {
 	if( self && self->row )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
-			return (std::int8_t*)self->row[col];
+			return (int8*)self->row[col];
 		}
 	}
 	ShowFatalError("Sql_GetData: SQL_ERROR\n");
@@ -514,7 +514,7 @@ void Sql_Free(Sql_t* self)
 
 bool Sql_SetAutoCommit(Sql_t* self, bool value)
 {
-    std::uint8_t val = (value) ? 1 : 0;
+    uint8 val = (value) ? 1 : 0;
 
     //if( self && mysql_autocommit(&self->handle, val) == 0)
     if( self && Sql_Query(self, "SET @@autocommit = %u", val) != SQL_ERROR)

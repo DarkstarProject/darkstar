@@ -48,7 +48,7 @@ void CMobSpellContainer::AddSpell(SpellID spellId)
     CSpell* spell = spell::GetSpell(spellId);
 
     if(spell == nullptr){
-        ShowDebug("Missing spellID = %d, given to mob. Check spell_list.sql\n", static_cast<std::uint16_t>(spellId));
+        ShowDebug("Missing spellID = %d, given to mob. Check spell_list.sql\n", static_cast<uint16>(spellId));
         return;
     }
 
@@ -56,7 +56,7 @@ void CMobSpellContainer::AddSpell(SpellID spellId)
 
     // add spell to correct vector
     // try to add it to ga list first
-    std::uint8_t aoe = battleutils::GetSpellAoEType(m_PMob, spell);
+    uint8 aoe = battleutils::GetSpellAoEType(m_PMob, spell);
     if(aoe > 0 && spell->canTargetEnemy()){
 
         m_gaList.push_back(spellId);
@@ -83,7 +83,7 @@ void CMobSpellContainer::AddSpell(SpellID spellId)
 
     }
     else {
-        ShowDebug("Where does this spell go? %d\n", static_cast<std::uint16_t>(spellId));
+        ShowDebug("Where does this spell go? %d\n", static_cast<uint16>(spellId));
     }
 }
 

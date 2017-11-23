@@ -41,7 +41,7 @@ class CBazaarConfirmationPacket: public CBasicPacket
 {
 public:
 
-	CBazaarConfirmationPacket(CCharEntity* PChar, std::uint8_t SlotID, std::uint8_t Quantity);
+	CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity);
     CBazaarConfirmationPacket(CCharEntity* PChar, CItem* PItem);
 };
 

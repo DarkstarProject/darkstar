@@ -38,7 +38,7 @@ class CEquipPacket : public CBasicPacket
 {
 public:
 
-	CEquipPacket(std::uint8_t EquipSlot, std::uint8_t SlotID, std::uint8_t containerID);
+	CEquipPacket(uint8 EquipSlot, uint8 SlotID, uint8 containerID);
 };
 
 #endif

@@ -39,8 +39,8 @@
 class CLinkshellMessagePacket : public CBasicPacket
 {
 public:
-    static const std::uint16_t id {0xCC};
-    CLinkshellMessagePacket(const std::int8_t* poster, const std::int8_t* message, const std::int8_t* lsname, uint32 posttime, bool ls1);
+    static const uint16 id {0xCC};
+    CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, uint32 posttime, bool ls1);
 };
 
 #endif

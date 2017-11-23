@@ -33,7 +33,7 @@
 #include "../entities/petentity.h"
 #include "../status_effect_container.h"
 
-CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type, std::uint8_t updatemask)
+CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask)
 {
     this->type = 0x0E;
     this->size = 0x1C;

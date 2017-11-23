@@ -27,7 +27,7 @@
 #include "../entities/baseentity.h"
 
 
-CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, std::uint16_t messageID, bool showName, std::uint8_t mode)
+CMessageTextPacket::CMessageTextPacket(CBaseEntity* PEntity, uint16 messageID, bool showName, uint8 mode)
 {
 	this->type = 0x36;
 	this->size = 0x08;

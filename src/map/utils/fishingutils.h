@@ -47,7 +47,7 @@ namespace fishingutils
     void LoadFishingMessages();
 
     void StartFishing(CCharEntity* PChar);
-    void FishingAction(CCharEntity* PChar, FISHACTION action, std::uint16_t stamina, uint32 special);
+    void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32 special);
 };
 
 #endif

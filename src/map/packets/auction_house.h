@@ -44,11 +44,11 @@ class CAuctionHousePacket : public CBasicPacket
 {
 public:
 
-    CAuctionHousePacket(std::uint8_t action);                                  // Send the auction menu
-    CAuctionHousePacket(std::uint8_t action, std::uint8_t slot, CCharEntity * PChar); // Send the list of items sold by a character
-    CAuctionHousePacket(std::uint8_t action, std::uint8_t message, std::uint16_t itemid, uint32 price);
-    CAuctionHousePacket(std::uint8_t action, std::uint8_t message, CCharEntity* PChar, std::uint8_t slot, bool keepItem);
-    CAuctionHousePacket(std::uint8_t action, CItem* PItem, std::uint8_t quantity, uint32 price);
+    CAuctionHousePacket(uint8 action);                                  // Send the auction menu
+    CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity * PChar); // Send the list of items sold by a character
+    CAuctionHousePacket(uint8 action, uint8 message, uint16 itemid, uint32 price);
+    CAuctionHousePacket(uint8 action, uint8 message, CCharEntity* PChar, uint8 slot, bool keepItem);
+    CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity, uint32 price);
 };
 
 #endif

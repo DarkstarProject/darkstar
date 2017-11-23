@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 #include "blacklist.h"
 #include "../entities/charentity.h"
 
-CBlacklistPacket::CBlacklistPacket(uint32 accid, const std::int8_t* targetName, std::int8_t action)
+CBlacklistPacket::CBlacklistPacket(uint32 accid, const int8* targetName, int8 action)
 {
 	this->type = 0x42;
 	this->size = 0x0E;

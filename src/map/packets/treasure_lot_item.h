@@ -46,9 +46,9 @@ class CBaseEntity;
 class CTreasureLotItemPacket : public CBasicPacket
 {
 public:
-	CTreasureLotItemPacket(CBaseEntity*, std::uint8_t SlotID, std::uint16_t Lot);
-	CTreasureLotItemPacket(std::uint8_t slotID, ITEMLOTTYPE MessageType);
-	CTreasureLotItemPacket(CBaseEntity* PWinner, std::uint8_t SlotID, std::uint16_t Lot, ITEMLOTTYPE MessageType);
+	CTreasureLotItemPacket(CBaseEntity*, uint8 SlotID, uint16 Lot);
+	CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE MessageType);
+	CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 SlotID, uint16 Lot, ITEMLOTTYPE MessageType);
 };
 
 #endif

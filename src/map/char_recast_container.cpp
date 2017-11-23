@@ -45,7 +45,7 @@ CCharRecastContainer::CCharRecastContainer(CCharEntity* PChar) : CRecastContaine
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::Add(RECASTTYPE type, std::uint16_t id, uint32 duration, uint32 chargeTime, std::uint8_t maxCharges)
+void CCharRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
 {
     Recast_t* recast = Load(type, id, duration, chargeTime, maxCharges);
 
@@ -77,7 +77,7 @@ void CCharRecastContainer::Del(RECASTTYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::Del(RECASTTYPE type, std::uint16_t id)
+void CCharRecastContainer::Del(RECASTTYPE type, uint16 id)
 {
     CRecastContainer::Del(type, id);
     Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, id);
@@ -89,7 +89,7 @@ void CCharRecastContainer::Del(RECASTTYPE type, std::uint16_t id)
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::DeleteByIndex(RECASTTYPE type, std::uint8_t index)
+void CCharRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
 {
     RecastList_t* PRecastList = GetRecastList(type);
     if (type == RECAST_ABILITY)
@@ -150,11 +150,11 @@ RecastList_t* CCharRecastContainer::GetRecastList(RECASTTYPE type)
 
 void CCharRecastContainer::Check()
 {
-    for (std::uint8_t type = 0; type < MAX_RECASTTPE_SIZE; ++type)
+    for (uint8 type = 0; type < MAX_RECASTTPE_SIZE; ++type)
     {
         RecastList_t* PRecastList = GetRecastList((RECASTTYPE)type);
 
-        for (std::uint16_t i = 0; i < PRecastList->size(); ++i)
+        for (uint16 i = 0; i < PRecastList->size(); ++i)
         {
             Recast_t* recast = &PRecastList->at(i);
 
@@ -162,7 +162,7 @@ void CCharRecastContainer::Check()
             {
                 if (type == RECAST_ITEM)
                 {
-                    auto id = (std::uint8_t)recast->ID;
+                    auto id = (uint8)recast->ID;
                     CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(id);
 
                     m_PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, id));

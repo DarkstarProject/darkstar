@@ -70,7 +70,7 @@ struct action_t;
 struct actionList_t;
 struct actionTarget_t;
 
-enum ConquestUpdate : std::uint8_t;
+enum ConquestUpdate : uint8;
 
 namespace luautils
 {
@@ -82,7 +82,7 @@ namespace luautils
     int register_fp(int index);
     void unregister_fp(int);
     std::int32_t print(lua_State*);
-    std::int32_t prepFile(std::int8_t*, const char*);
+    std::int32_t prepFile(int8*, const char*);
 
     template<class T, class L>
     void pushLuaType(T* obj) { Lunar<L>::push(LuaHandle, new L(obj), true); }
@@ -136,7 +136,7 @@ namespace luautils
     std::int32_t getNationRank(lua_State* L);
     std::int32_t getConquestBalance(lua_State* L);
     std::int32_t isConquestAlliance(lua_State* L);
-    std::int32_t SetRegionalConquestOverseers(std::uint8_t regionID);                         // Update NPC Conquest Guard
+    std::int32_t SetRegionalConquestOverseers(uint8 regionID);                         // Update NPC Conquest Guard
     std::int32_t setMobPos(lua_State*);                                                // set a mobs position (only if mob is not in combat)
 
     std::int32_t getAbility(lua_State*);
@@ -169,28 +169,28 @@ namespace luautils
     std::int32_t clearVarFromAll(lua_State *);                                         // Deletes a specific player variable from all players
     std::int32_t terminate(lua_State*);                                                // Logs off all characters and terminates the server
 
-    std::int32_t GetTextIDVariable(std::uint16_t ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
-    std::uint8_t GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
+    std::int32_t GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
+    uint8 GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
     bool IsContentEnabled(const char* content);                                 // Check if the content is enabled in settings.lua
 
     std::int32_t OnGameDay(CZone* PZone);                                              // Automatic action of NPC every game day
     std::int32_t OnGameHour(CZone* PZone);                                             // Automatic action of NPC every game hour
-    std::int32_t OnZoneWeatherChange(std::uint16_t ZoneID, std::uint8_t weather);
-    std::int32_t OnTOTDChange(std::uint16_t ZoneID, std::uint8_t TOTD);
+    std::int32_t OnZoneWeatherChange(uint16 ZoneID, uint8 weather);
+    std::int32_t OnTOTDChange(uint16 ZoneID, uint8 TOTD);
 
     std::int32_t OnGameIn(CCharEntity* PChar, bool zoning);                            //
     std::int32_t OnZoneIn(CCharEntity* PChar);                                         // triggers when a player zones into a zone
     void AfterZoneIn(CBaseEntity* PChar);                                      // triggers after a player has finished zoning in
-    std::int32_t OnZoneInitialise(std::uint16_t ZoneID);                                      // triggers when zone is loaded
+    std::int32_t OnZoneInitialise(uint16 ZoneID);                                      // triggers when zone is loaded
     std::int32_t OnRegionEnter(CCharEntity* PChar, CRegion* PRegion);                  // when player enters a region of a zone
     std::int32_t OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);                  // when player leaves a region of a zone
     std::int32_t OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
     std::int32_t OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
 
     std::int32_t OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
-    std::int32_t OnEventUpdate(CCharEntity* PChar, std::uint16_t eventID, uint32 result);     // triggered when game triggers event update during cutscene
-    std::int32_t OnEventUpdate(CCharEntity* PChar, std::int8_t* string);                      // triggered when game triggers event update during cutscene
-    std::int32_t OnEventFinish(CCharEntity* PChar, std::uint16_t eventID, uint32 result);     // triggered when cutscene/event is completed
+    std::int32_t OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when game triggers event update during cutscene
+    std::int32_t OnEventUpdate(CCharEntity* PChar, int8* string);                      // triggered when game triggers event update during cutscene
+    std::int32_t OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when cutscene/event is completed
     std::int32_t OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);                       // triggers when a trade completes with an npc
 
     std::int32_t OnNpcSpawn(CBaseEntity* PNpc);                                        // triggers when a patrol npc spawns
@@ -201,8 +201,8 @@ namespace luautils
 
     std::int32_t OnAttachmentEquip(CBattleEntity* PEntity, CItemPuppet* attachment);
     std::int32_t OnAttachmentUnequip(CBattleEntity* PEntity, CItemPuppet* attachment);
-    std::int32_t OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, std::uint8_t maneuvers);
-    std::int32_t OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, std::uint8_t maneuvers);
+    std::int32_t OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
+    std::int32_t OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 
     std::int32_t OnItemUse(CBaseEntity* PTarget, CItem* PItem);                        // triggers when item is used
     std::int32_t OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);    // check to see if item can be used
@@ -213,7 +213,7 @@ namespace luautils
     std::int32_t OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);                           // triggered just before casting a spell
     std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
     std::int32_t OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       // triggered when spell cast on monster
-    std::int32_t OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, std::uint16_t PWeaponskill); // Triggered when Weaponskill strikes monster
+    std::int32_t OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
     std::int32_t OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
     std::int32_t ApplyMixins(CBaseEntity* PMob);
@@ -231,7 +231,7 @@ namespace luautils
     std::int32_t OnPath(CBaseEntity* PEntity);                                           // triggers when a patrol npc finishes its pathfind
 
     std::int32_t OnBcnmEnter(CCharEntity* PChar, CBattlefield* PInstance);                 //triggers when enter a bcnm
-    std::int32_t OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, std::uint8_t LeaveCode);    //triggers when leaving a bcnm
+    std::int32_t OnBcnmLeave(CCharEntity* PChar, CBattlefield* PInstance, uint8 LeaveCode);    //triggers when leaving a bcnm
                                                                                     //Code 1=via Circle 2=warp/dc 3=win 4=lose
     std::int32_t OnBcnmRegister(CCharEntity* PChar, CBattlefield* PBattlefield);                   //triggers when successfully registered a bcnm
     std::int32_t OnBcnmDestroy(CBattlefield* PBattlefield);                            // triggers when BCNM is destroyed
@@ -242,7 +242,7 @@ namespace luautils
 
     std::int32_t OnAbilityCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CAbility* PAbility, CBaseEntity** PMsgTarget);   // triggers when a player attempts to use a job ability or roll
     std::int32_t OnPetAbility(CBaseEntity* PPet, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PPetMaster, action_t* action);      // triggers when pet uses an ability
-    std::tuple<std::int32_t, std::uint8_t, std::uint8_t> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, std::uint16_t tp, bool primary, action_t& action, CBattleEntity* taChar);// returns: damage, tphits landed, extra hits landed
+    std::tuple<std::int32_t, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action, CBattleEntity* taChar);// returns: damage, tphits landed, extra hits landed
     std::int32_t OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action);         // triggers when job ability is used
 
     std::int32_t OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance);           // triggered on zone in to instance

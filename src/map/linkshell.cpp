@@ -60,38 +60,38 @@ uint32 CLinkshell::getID()
     return m_id;
 }
 
-std::uint16_t CLinkshell::getColor()
+uint16 CLinkshell::getColor()
 {
     return m_color;
 }
 
-void CLinkshell::setColor(std::uint16_t color)
+void CLinkshell::setColor(uint16 color)
 {
     m_color = color;
 }
 
-const std::int8_t* CLinkshell::getName()
+const int8* CLinkshell::getName()
 {
-    return (const std::int8_t*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
-void CLinkshell::setName(std::int8_t* name)
+void CLinkshell::setName(int8* name)
 {
 	m_name.clear();
 	m_name.insert(0, (const char*)name);
 }
 
-void CLinkshell::setMessage(const std::int8_t* message, const std::int8_t* poster)
+void CLinkshell::setMessage(const int8* message, const int8* poster)
 {
     char sqlMessage[256];
     Sql_EscapeString(SqlHandle, sqlMessage, (const char*)message);
     Sql_Query(SqlHandle, "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %d;",
         poster, sqlMessage , static_cast<uint32>(time(nullptr)), m_id);
 
-    std::int8_t packetData[8] {};
+    int8 packetData[8] {};
     WBUFL(packetData, 0) = m_id;
     WBUFL(packetData, 4) = 0;
-    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CLinkshellMessagePacket(poster, message, (const std::int8_t*)m_name.c_str(), std::numeric_limits<uint32>::min(), true));
+    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CLinkshellMessagePacket(poster, message, (const int8*)m_name.c_str(), std::numeric_limits<uint32>::min(), true));
 }
 
 /************************************************************************
@@ -100,7 +100,7 @@ void CLinkshell::setMessage(const std::int8_t* message, const std::int8_t* poste
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::AddMember(CCharEntity* PChar, std::int8_t type, std::uint8_t lsNum)
+void CLinkshell::AddMember(CCharEntity* PChar, int8 type, uint8 lsNum)
 {
     members.push_back(PChar);
     if (lsNum == 1)
@@ -151,7 +151,7 @@ bool CLinkshell::DelMember(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::ChangeMemberRank(std::int8_t* MemberName, std::uint8_t toSack)
+void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 {
 	//topearl = 3
 	//tosack = 2
@@ -183,7 +183,7 @@ void CLinkshell::ChangeMemberRank(std::int8_t* MemberName, std::uint8_t toSack)
                     newShellItem->setQuantity(1);
                     memcpy(newShellItem->m_extra, PItemLinkshell->m_extra, 24);
                     newShellItem->setSubType(ITEM_LOCKED);
-                    std::uint8_t SlotID = PItemLinkshell->getSlotID();
+                    uint8 SlotID = PItemLinkshell->getSlotID();
                     delete PItemLinkshell;
                     PItemLinkshell = newShellItem;
 
@@ -223,7 +223,7 @@ void CLinkshell::ChangeMemberRank(std::int8_t* MemberName, std::uint8_t toSack)
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::RemoveMemberByName(std::int8_t* MemberName)
+void CLinkshell::RemoveMemberByName(int8* MemberName)
 {
 	for (uint32 i = 0; i < members.size(); ++i) 
 	{
@@ -260,7 +260,7 @@ void CLinkshell::RemoveMemberByName(std::int8_t* MemberName)
             }
 
 			CItemContainer* Inventory = PMember->getStorage(LOC_INVENTORY);
-            for (std::uint8_t SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
+            for (uint8 SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
             {
                     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
@@ -306,10 +306,10 @@ void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
             if (members.at(i)->PLinkshell2 == this)
             {
                 if (newPacket->id() == CChatMessagePacket::id) {
-                    newPacket->ref<std::uint8_t>(0x04) = MESSAGE_LINKSHELL2;
+                    newPacket->ref<uint8>(0x04) = MESSAGE_LINKSHELL2;
                 }
                 else if (newPacket->id() == CLinkshellMessagePacket::id) {
-                    newPacket->ref<std::uint8_t>(0x05) |= 0x40;
+                    newPacket->ref<uint8>(0x05) |= 0x40;
                 }
             }
             members.at(i)->pushPacket(newPacket);
@@ -325,7 +325,7 @@ void CLinkshell::PushLinkshellMessage(CCharEntity* PChar, bool ls1)
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         PChar->pushPacket(new CLinkshellMessagePacket(Sql_GetData(SqlHandle, 0), Sql_GetData(SqlHandle, 1),
-            (const std::int8_t*)m_name.c_str(), Sql_GetUIntData(SqlHandle, 2), ls1));
+            (const int8*)m_name.c_str(), Sql_GetUIntData(SqlHandle, 2), ls1));
     }
 }
 
@@ -354,7 +354,7 @@ namespace linkshell
             auto PLinkshell = std::make_unique<CLinkshell>(Sql_GetUIntData(SqlHandle,0));
         
             PLinkshell->setColor(Sql_GetIntData(SqlHandle,1));
-            std::int8_t EncodedName[16];
+            int8 EncodedName[16];
             EncodeStringLinkshell(Sql_GetData(SqlHandle,2), EncodedName);
             PLinkshell->setName(EncodedName);
             LinkshellList[id] = std::move(PLinkshell);
@@ -370,7 +370,7 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, std::uint8_t lsNum)
+    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum)
     {
         DSP_DEBUG_BREAK_IF(PChar == nullptr);
         if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
@@ -424,7 +424,7 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    bool IsValidLinkshellName(const std::int8_t* name)
+    bool IsValidLinkshellName(const int8* name)
     {
         auto ret = Sql_Query(SqlHandle, "SELECT linkshellid FROM linkshells WHERE name = '%s';", name);
         return ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0;
@@ -436,7 +436,7 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    uint32 RegisterNewLinkshell(const std::int8_t* name, std::uint16_t color)
+    uint32 RegisterNewLinkshell(const int8* name, uint16 color)
     {
         if (IsValidLinkshellName(name))
         {

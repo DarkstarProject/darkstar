@@ -43,14 +43,14 @@ struct Transport_t
 {
     location_t   Dock;
 
-    std::uint8_t  AnimationArrive;
-    std::uint8_t  AnimationDepart;
+    uint8  AnimationArrive;
+    uint8  AnimationDepart;
 
-    std::uint16_t TimeOffset;
-    std::uint16_t TimeAnimationArrive;
-    std::uint16_t TimeAnimationDepart;
-    std::uint16_t TimeInterval;
-    std::uint16_t TimeWaiting;
+    uint16 TimeOffset;
+    uint16 TimeAnimationArrive;
+    uint16 TimeAnimationDepart;
+    uint16 TimeInterval;
+    uint16 TimeWaiting;
 
     CBaseEntity* PDoorNPC;
     CBaseEntity* PTransportNPC;
@@ -58,19 +58,19 @@ struct Transport_t
 
 struct TransportZone_t
 {
-    std::uint16_t zone;
-    std::uint16_t TimeOffset;
-    std::uint16_t TimeInterval;
-    std::uint16_t TimeAnimationArrive;
+    uint16 zone;
+    uint16 TimeOffset;
+    uint16 TimeInterval;
+    uint16 TimeAnimationArrive;
 };
 
 struct Elevator_t 
 {
-	std::uint8_t id;
-	std::uint16_t zone;
+	uint8 id;
+	uint16 zone;
 
-	std::uint16_t interval;
-	std::uint16_t movetime;
+	uint16 interval;
+	uint16 movetime;
 
 	CNpcEntity * Elevator;
 	CNpcEntity * LowerDoor;

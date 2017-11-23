@@ -34,7 +34,7 @@ CMobSpellList::CMobSpellList()
 
 }
 
-void CMobSpellList::AddSpell(SpellID spellId, std::uint16_t minLvl, std::uint16_t maxLvl)
+void CMobSpellList::AddSpell(SpellID spellId, uint16 minLvl, uint16 maxLvl)
 {
   MobSpell_t Mob_Spell = {spellId, minLvl, maxLvl};
 
@@ -67,10 +67,10 @@ namespace mobSpellList
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 SpellID spellId = (SpellID)Sql_GetIntData(SqlHandle,1);
-                std::uint16_t minLvl = (std::uint16_t)Sql_GetIntData(SqlHandle,2);
-                std::uint16_t maxLvl = (std::uint16_t)Sql_GetIntData(SqlHandle,3);
+                uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
+                uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
 
-                std::uint16_t pos = Sql_GetIntData(SqlHandle,0);
+                uint16 pos = Sql_GetIntData(SqlHandle,0);
                 if (!PMobSpellList[pos])
                 {
                     PMobSpellList[pos] = new CMobSpellList();
@@ -82,7 +82,7 @@ namespace mobSpellList
     }
 
     //Get Spell By ID
-    CMobSpellList* GetMobSpellList(std::uint16_t MobSpellListID)
+    CMobSpellList* GetMobSpellList(uint16 MobSpellListID)
     {
         if (MobSpellListID < MAX_MOBSPELLLIST_ID)
         {

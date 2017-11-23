@@ -38,7 +38,7 @@ class CInventoryModifyPacket: public CBasicPacket
 {
 public:
 
-	CInventoryModifyPacket(std::uint8_t LocationID, std::uint8_t slotID, uint32 quantity);
+	CInventoryModifyPacket(uint8 LocationID, uint8 slotID, uint32 quantity);
 };
 
 #endif

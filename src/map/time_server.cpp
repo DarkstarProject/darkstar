@@ -38,7 +38,7 @@
 std::int32_t time_server(time_point tick,CTaskMgr::CTask* PTask)
 {
     TIMETYPE VanadielTOTD = CVanaTime::getInstance()->SyncTime();
-    // std::uint8_t WeekDay = (std::uint8_t)CVanaTime::getInstance()->getWeekday();
+    // uint8 WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
 
     // weekly update for conquest (sunday at midnight)
     if (CVanaTime::getInstance()->getSysWeekDay() == 1  && CVanaTime::getInstance()->getSysHour() == 0 && CVanaTime::getInstance()->getSysMinute() == 0)

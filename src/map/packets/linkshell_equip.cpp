@@ -29,7 +29,7 @@
 #include "../linkshell.h"
 
 
-CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar, std::uint8_t number)
+CLinkshellEquipPacket::CLinkshellEquipPacket(CCharEntity* PChar, uint8 number)
 {
 	this->type = 0xE0;
 	this->size = 0x04;

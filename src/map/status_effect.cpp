@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, std::uint16_t icon, std::uint16_t power, uint32 tick, uint32 duration, uint32 subid, std::uint16_t subPower, std::uint16_t tier) :
+CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier) :
     m_StatusID(id), m_SubID(subid), m_Icon(icon), m_Power(power), m_SubPower(subPower), m_Tier(tier), m_TickTime(tick * 1000), m_Duration(duration * 1000)
 {
     if (m_TickTime < 3000 && m_TickTime != 0)
@@ -41,9 +41,9 @@ CStatusEffect::~CStatusEffect()
 {
 }
 
-const std::int8_t* CStatusEffect::GetName()
+const int8* CStatusEffect::GetName()
 {
-	return (const std::int8_t*)m_Name.c_str();
+	return (const int8*)m_Name.c_str();
 }
 
 void CStatusEffect::SetOwner(CBattleEntity* Owner)
@@ -66,27 +66,27 @@ uint32 CStatusEffect::GetSubID()
 	return m_SubID;
 }
 
-std::uint16_t CStatusEffect::GetType()
+uint16 CStatusEffect::GetType()
 {
     return m_Type;
 }
 
-std::uint16_t CStatusEffect::GetIcon()
+uint16 CStatusEffect::GetIcon()
 {
 	return m_Icon;
 }
 
-std::uint16_t CStatusEffect::GetPower()
+uint16 CStatusEffect::GetPower()
 {
 	return m_Power;
 }
 
-std::uint16_t CStatusEffect::GetSubPower()
+uint16 CStatusEffect::GetSubPower()
 {
     return m_SubPower;
 }
 
-std::uint16_t CStatusEffect::GetTier()
+uint16 CStatusEffect::GetTier()
 {
     return m_Tier;
 }
@@ -126,7 +126,7 @@ void CStatusEffect::UnsetFlag(uint32 flag)
     m_Flag &= ~flag;
 }
 
-void CStatusEffect::SetIcon(std::uint16_t Icon)
+void CStatusEffect::SetIcon(uint16 Icon)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
@@ -134,22 +134,22 @@ void CStatusEffect::SetIcon(std::uint16_t Icon)
     m_POwner->StatusEffectContainer->UpdateStatusIcons();
 }
 
-void CStatusEffect::SetType(std::uint16_t Type)
+void CStatusEffect::SetType(uint16 Type)
 {
     m_Type = Type;
 }
 
-void CStatusEffect::SetPower(std::uint16_t Power)
+void CStatusEffect::SetPower(uint16 Power)
 {
 	m_Power = Power;
 }
 
-void CStatusEffect::SetSubPower(std::uint16_t subPower)
+void CStatusEffect::SetSubPower(uint16 subPower)
 {
     m_SubPower = subPower;
 }
 
-void CStatusEffect::SetTier(std::uint16_t tier)
+void CStatusEffect::SetTier(uint16 tier)
 {
     m_Tier = tier;
 }
@@ -175,7 +175,7 @@ void CStatusEffect::IncrementElapsedTickCount()
     ++m_tickCount;
 }
 
-void CStatusEffect::SetName(const std::int8_t* name)
+void CStatusEffect::SetName(const int8* name)
 {
 	m_Name.clear();
 	m_Name.insert(0, (const char*)name);
@@ -186,7 +186,7 @@ void CStatusEffect::SetName(string_t name)
 	m_Name = name;
 }
 
-void CStatusEffect::addMod(Mod modType, std::int16_t amount)
+void CStatusEffect::addMod(Mod modType, int16 amount)
 {
 	for (uint32 i = 0; i < modList.size(); ++i)
 	{

@@ -23,23 +23,23 @@
 
 #include "blue_trait.h"
 
-CBlueTrait::CBlueTrait(std::uint8_t category, std::uint8_t id) : CTrait(id)
+CBlueTrait::CBlueTrait(uint8 category, uint8 id) : CTrait(id)
 {
     m_category = category;
     m_points = 0;
 }
 
-std::uint8_t CBlueTrait::getCategory()
+uint8 CBlueTrait::getCategory()
 {
 	return m_category;
 }
 
-std::uint8_t CBlueTrait::getPoints()
+uint8 CBlueTrait::getPoints()
 {
 	return m_points;
 }
 
-void CBlueTrait::setPoints(std::uint8_t points)
+void CBlueTrait::setPoints(uint8 points)
 {
 	m_points = points;
 }

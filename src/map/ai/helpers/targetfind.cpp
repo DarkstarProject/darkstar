@@ -58,7 +58,7 @@ void CTargetFind::reset()
     m_PMasterTarget = nullptr;
 }
 
-void CTargetFind::findSingleTarget(CBattleEntity* PTarget, std::uint8_t flags)
+void CTargetFind::findSingleTarget(CBattleEntity* PTarget, uint8 flags)
 {
     m_findFlags = flags;
     m_zone = m_PBattleEntity->getZone();
@@ -68,7 +68,7 @@ void CTargetFind::findSingleTarget(CBattleEntity* PTarget, std::uint8_t flags)
     addEntity(PTarget, false);
 }
 
-void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, std::uint8_t flags)
+void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags)
 {
     m_findFlags = flags;
     m_radius = radius;
@@ -167,7 +167,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
     }
 }
 
-void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float angle, std::uint8_t flags)
+void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags)
 {
     m_findFlags = flags;
     m_conal = true;
@@ -177,8 +177,8 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 
     float halfAngle = (angle * (256.0f / 360.0f)) / 2.0f;
 
-    float rightAngle = rotationToRadian(m_APoint->rotation + (std::uint8_t)halfAngle);
-    float leftAngle = rotationToRadian(m_APoint->rotation - (std::uint8_t)halfAngle);
+    float rightAngle = rotationToRadian(m_APoint->rotation + (uint8)halfAngle);
+    float leftAngle = rotationToRadian(m_APoint->rotation - (uint8)halfAngle);
 
     // calculate end points for triangle
     m_BPoint.x = cosf((2 * (float)M_PI) - rightAngle) * distance + m_APoint->x;
@@ -463,7 +463,7 @@ bool CTargetFind::canSee(position_t* point)
     return true;
 }
 
-CBattleEntity* CTargetFind::getValidTarget(std::uint16_t actionTargetID, std::uint16_t validTargetFlags)
+CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint16 validTargetFlags)
 {
     CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 

@@ -94,9 +94,9 @@ CAttackRound::~CAttackRound()
 *  Returns the attack swing count.										*
 *																		*
 ************************************************************************/
-std::uint8_t CAttackRound::GetAttackSwingCount()
+uint8 CAttackRound::GetAttackSwingCount()
 {
-    return (std::uint8_t)m_attackSwings.size();
+    return (uint8)m_attackSwings.size();
 }
 
 /************************************************************************
@@ -104,7 +104,7 @@ std::uint8_t CAttackRound::GetAttackSwingCount()
 *  Returns an attack via index.											*
 *																		*
 ************************************************************************/
-CAttack& CAttackRound::GetAttack(std::uint8_t index)
+CAttack& CAttackRound::GetAttack(uint8 index)
 {
     return m_attackSwings[index];
 }
@@ -164,11 +164,11 @@ bool CAttackRound::IsH2H()
 *  Adds an attack swing.												*
 *																		*
 ************************************************************************/
-void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, std::uint8_t count)
+void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count)
 {
     if (m_attackSwings.size() < MAX_ATTACKS)
     {
-        for (std::uint8_t i = 0; i < count; ++i)
+        for (uint8 i = 0; i < count; ++i)
         {
             CAttack attack(m_attacker, m_defender, type, direction, this);
             m_attackSwings.push_back(attack);
@@ -198,7 +198,7 @@ void CAttackRound::DeleteAttackSwing()
 ************************************************************************/
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
-    std::uint8_t num = 1;
+    uint8 num = 1;
     
     bool isPC = m_attacker->objtype == TYPE_PC;
 
@@ -211,7 +211,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
     if (dynamic_cast<CMobEntity*>(m_attacker))
     {
-        auto multiHitMax = (std::uint8_t)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
+        auto multiHitMax = (uint8)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
         
         if (multiHitMax > 0)
             num = 1 + battleutils::getHitCount(multiHitMax);
@@ -220,9 +220,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, num);
 
     // Checking the players triple, double and quadruple attack
-    std::int16_t tripleAttack = m_attacker->getMod(Mod::TRIPLE_ATTACK);
-    std::int16_t doubleAttack = m_attacker->getMod(Mod::DOUBLE_ATTACK);
-    std::int16_t quadAttack = m_attacker->getMod(Mod::QUAD_ATTACK);
+    int16 tripleAttack = m_attacker->getMod(Mod::TRIPLE_ATTACK);
+    int16 doubleAttack = m_attacker->getMod(Mod::DOUBLE_ATTACK);
+    int16 quadAttack = m_attacker->getMod(Mod::QUAD_ATTACK);
 
     //check for merit upgrades
     if (isPC)
@@ -235,14 +235,14 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // TODO: Quadruple attack merits when SE release them.
     }
 
-    quadAttack = std::clamp<std::int16_t>(quadAttack, 0, 100);
-    doubleAttack = std::clamp<std::int16_t>(doubleAttack, 0, 100);
-    tripleAttack = std::clamp<std::int16_t>(tripleAttack, 0, 100);
+    quadAttack = std::clamp<int16>(quadAttack, 0, 100);
+    doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
+    tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
 
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
     {
-        auto shadows = (std::uint8_t)m_attacker->getMod(Mod::UTSUSEMI);
+        auto shadows = (uint8)m_attacker->getMod(Mod::UTSUSEMI);
         //ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, shadows);
     }
@@ -263,9 +263,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
         CItemArmor* PMain = PChar->getEquip(SLOT_MAIN);
         CItemArmor* PSub = PChar->getEquip(SLOT_SUB);
-        std::uint8_t slot = PChar->equip[SLOT_AMMO];
-        std::uint8_t loc = PChar->equipLoc[SLOT_AMMO];
-        std::uint8_t ammoCount = 0;
+        uint8 slot = PChar->equip[SLOT_AMMO];
+        uint8 loc = PChar->equipLoc[SLOT_AMMO];
+        uint8 ammoCount = 0;
 
         // Handedness check, checking mod of the weapon for the purposes of level scaling
         if (battleutils::GetScaledItemModifier(PChar, PMain, Mod::AMMO_SWING_TYPE) == 2 &&
@@ -321,14 +321,14 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        std::uint16_t kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
+        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {
             kickAttack += ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, (CCharEntity*)m_attacker);
         }
 
-        kickAttack = std::clamp<std::uint16_t>(kickAttack, 0, 100);
+        kickAttack = std::clamp<uint16>(kickAttack, 0, 100);
 
         if (dsprand::GetRandomNumber(100) < kickAttack)
         {

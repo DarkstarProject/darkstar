@@ -168,8 +168,8 @@ void CMobEntity::SetDespawnTime(duration _duration)
 uint32 CMobEntity::GetRandomGil()
 {
 
-    std::int16_t min = getMobMod(MOBMOD_GIL_MIN);
-    std::int16_t max = getMobMod(MOBMOD_GIL_MAX);
+    int16 min = getMobMod(MOBMOD_GIL_MIN);
+    int16 max = getMobMod(MOBMOD_GIL_MAX);
 
     if (min && max)
     {
@@ -194,7 +194,7 @@ uint32 CMobEntity::GetRandomGil()
         gil = 1;
     }
 
-    std::uint16_t highGil = (std::uint16_t)(gil / 3 + 4);
+    uint16 highGil = (uint16)(gil / 3 + 4);
 
     if (max)
     {
@@ -266,7 +266,7 @@ bool CMobEntity::CanRoam()
     return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM)) && getMobMod(MOBMOD_NO_MOVE) == 0;
 }
 
-bool CMobEntity::CanLink(position_t* pos, std::int16_t superLink)
+bool CMobEntity::CanLink(position_t* pos, int16 superLink)
 {
     // handle super linking
     if (superLink && getMobMod(MOBMOD_SUPERLINK) == superLink)
@@ -369,7 +369,7 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
-std::uint8_t CMobEntity::TPUseChance()
+uint8 CMobEntity::TPUseChance()
 {
     auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
 
@@ -383,25 +383,25 @@ std::uint8_t CMobEntity::TPUseChance()
         return 100;
     }
 
-    return (std::uint8_t)getMobMod(MOBMOD_TP_USE_CHANCE);
+    return (uint8)getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
-void CMobEntity::setMobMod(std::uint16_t type, std::int16_t value)
+void CMobEntity::setMobMod(uint16 type, int16 value)
 {
     m_mobModStat[type] = value;
 }
 
-std::int16_t CMobEntity::getMobMod(std::uint16_t type)
+int16 CMobEntity::getMobMod(uint16 type)
 {
     return m_mobModStat[type];
 }
 
-void CMobEntity::addMobMod(std::uint16_t type, std::int16_t value)
+void CMobEntity::addMobMod(uint16 type, int16 value)
 {
     m_mobModStat[type] += value;
 }
 
-void CMobEntity::defaultMobMod(std::uint16_t type, std::int16_t value)
+void CMobEntity::defaultMobMod(uint16 type, int16 value)
 {
     if (m_mobModStat[type] == 0)
     {
@@ -409,12 +409,12 @@ void CMobEntity::defaultMobMod(std::uint16_t type, std::int16_t value)
     }
 }
 
-void CMobEntity::resetMobMod(std::uint16_t type)
+void CMobEntity::resetMobMod(uint16 type)
 {
     m_mobModStat[type] = m_mobModStatSave[type];
 }
 
-std::int32_t CMobEntity::getBigMobMod(std::uint16_t type)
+std::int32_t CMobEntity::getBigMobMod(uint16 type)
 {
     return getMobMod(type) * 1000;
 }
@@ -530,7 +530,7 @@ float CMobEntity::GetRoamRate()
     return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }
 
-bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags)
+bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -570,12 +570,12 @@ void CMobEntity::Spawn()
     m_THLvl = 0;
     m_ItemStolen = false;
     m_DropItemTime = 1000;
-    animationsub = (std::uint8_t)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
+    animationsub = (uint8)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
     CallForHelp(false);
 
     PEnmityContainer->Clear();
 
-    std::uint8_t level = m_minLevel;
+    uint8 level = m_minLevel;
 
     // Generate a random level between min and max level
     if (m_maxLevel != m_minLevel)
@@ -602,7 +602,7 @@ void CMobEntity::Spawn()
     // add people to my posse
     if (getMobMod(MOBMOD_ASSIST))
     {
-        for (std::int8_t i = 1; i < getMobMod(MOBMOD_ASSIST) + 1; i++)
+        for (int8 i = 1; i < getMobMod(MOBMOD_ASSIST) + 1; i++)
         {
             CMobEntity* PMob = (CMobEntity*)GetEntity(targid + i, TYPE_MOB);
 
@@ -638,7 +638,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     PAI->TargetFind->reset();
 
     float distance = PSkill->getDistance();
-    std::uint8_t findFlags = 0;
+    uint8 findFlags = 0;
     if (PSkill->getFlag() & SKILLFLAG_HIT_ALL)
     {
         findFlags |= FINDFLAGS_HIT_ALL;
@@ -676,7 +676,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         }
     }
 
-    std::uint16_t targets = (std::uint16_t)PAI->TargetFind->m_targets.size();
+    uint16 targets = (uint16)PAI->TargetFind->m_targets.size();
 
     if (!PTarget || targets == 0)
     {
@@ -693,8 +693,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     PSkill->setTP(state.GetSpentTP());
     PSkill->setHPP(GetHPP());
 
-    std::uint16_t msg = 0;
-    std::uint16_t defaultMessage = PSkill->getMsg();
+    uint16 msg = 0;
+    uint16 defaultMessage = PSkill->getMsg();
 
     bool first {true};
     for (auto&& PTarget : PAI->TargetFind->m_targets)
@@ -808,12 +808,12 @@ void CMobEntity::DropItems()
 
             if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->size())
             {
-                for (std::uint8_t i = 0; i < DropList->size(); ++i)
+                for (uint8 i = 0; i < DropList->size(); ++i)
                 {
                     //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-                    std::uint8_t tries = 0;
-                    std::uint8_t maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-                    std::uint8_t bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+                    uint8 tries = 0;
+                    uint8 maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+                    uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
                     while (tries < maxTries)
                     {
                         if (DropList->at(i).DropRate > 0 && dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
@@ -838,7 +838,7 @@ void CMobEntity::DropItems()
                       >= 90 = High Kindred Crests ID=2956
             */
 
-            std::uint16_t Pzone = PChar->getZone();
+            uint16 Pzone = PChar->getZone();
 
             bool validZone = ((Pzone > 0 && Pzone < 39) || (Pzone > 42 && Pzone < 134) || (Pzone > 135 && Pzone < 185) || (Pzone > 188 && Pzone < 255));
 
@@ -938,7 +938,7 @@ bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>
             auto skill {battleutils::GetMobSkill(skillList.front())};
             if (skill)
             {
-                attack_range = (std::uint8_t)skill->getDistance();
+                attack_range = (uint8)skill->getDistance();
             }
         }
         if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > attack_range ||

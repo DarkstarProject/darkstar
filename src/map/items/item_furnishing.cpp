@@ -24,7 +24,7 @@
 #include "item_furnishing.h"
 #include "../map.h"
 
-CItemFurnishing::CItemFurnishing(std::uint16_t id) : CItem(id)
+CItemFurnishing::CItemFurnishing(uint16 id) : CItem(id)
 {
 	setType(ITEM_FURNISHING);
 
@@ -51,82 +51,82 @@ bool CItemFurnishing::isInstalled()
     return WBUFB(m_extra, 0x01) & 0x40;
 }
 
-void CItemFurnishing::setStorage(std::uint8_t storage)
+void CItemFurnishing::setStorage(uint8 storage)
 {
-	m_storage = std::min<std::uint8_t>(storage, 80);
+	m_storage = std::min<uint8>(storage, 80);
 }
 
-std::uint8_t CItemFurnishing::getStorage()
+uint8 CItemFurnishing::getStorage()
 {
 	return m_storage;
 }
 
-void CItemFurnishing::setMoghancement(std::uint8_t moghancement)
+void CItemFurnishing::setMoghancement(uint8 moghancement)
 {
 	m_moghancement = moghancement;
 }
 
-std::uint8_t CItemFurnishing::getMoghancement()
+uint8 CItemFurnishing::getMoghancement()
 {
 	return m_moghancement;
 }
 
-void CItemFurnishing::setElement(std::uint8_t element)
+void CItemFurnishing::setElement(uint8 element)
 {
 	m_element = element;
 }
 
-std::uint8_t CItemFurnishing::getElement()
+uint8 CItemFurnishing::getElement()
 {
 	return m_element;
 }
 
-void CItemFurnishing::setAura(std::uint8_t aura)
+void CItemFurnishing::setAura(uint8 aura)
 {
 	m_aura = aura;
 }
 
-std::uint8_t CItemFurnishing::getAura()
+uint8 CItemFurnishing::getAura()
 {
 	return m_aura;
 }
 
-void CItemFurnishing::setCol(std::uint8_t col)
+void CItemFurnishing::setCol(uint8 col)
 {
 	WBUFB(m_extra, 0x06) = col;
 }
 	
-std::uint8_t CItemFurnishing::getCol()
+uint8 CItemFurnishing::getCol()
 {
     return RBUFB(m_extra, 0x06);
 }
 
-void CItemFurnishing::setRow(std::uint8_t row)
+void CItemFurnishing::setRow(uint8 row)
 {
     WBUFB(m_extra, 0x08) = row;
 }
 
-std::uint8_t CItemFurnishing::getRow()
+uint8 CItemFurnishing::getRow()
 {
     return RBUFB(m_extra, 0x08);
 }
 
-void CItemFurnishing::setLevel(std::uint8_t level)
+void CItemFurnishing::setLevel(uint8 level)
 {
     WBUFB(m_extra, 0x07) = level;
 }
 
-std::uint8_t CItemFurnishing::getLevel()
+uint8 CItemFurnishing::getLevel()
 {
     return RBUFB(m_extra, 0x07);
 }
 
-void CItemFurnishing::setRotation(std::uint8_t rotation)
+void CItemFurnishing::setRotation(uint8 rotation)
 {
     WBUFB(m_extra, 0x09) = rotation;
 }
 
-std::uint8_t CItemFurnishing::getRotation()
+uint8 CItemFurnishing::getRotation()
 {
     return RBUFB(m_extra, 0x09);
 }

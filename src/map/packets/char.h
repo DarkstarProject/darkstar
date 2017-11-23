@@ -40,7 +40,7 @@ class CCharPacket : public CBasicPacket
 {
 public:
 
-	CCharPacket(CCharEntity* PChar, ENTITYUPDATE type, std::uint8_t updatemask);
+	CCharPacket(CCharEntity* PChar, ENTITYUPDATE type, uint8 updatemask);
 };
 
 #endif

@@ -44,40 +44,40 @@ public:
 
 	CTradeContainer();
 
-	std::uint8_t	getType();
-	std::uint8_t	getItemsCount();
-	std::uint8_t	getSlotCount();									// количество занятых ячеек
+	uint8	getType();
+	uint8	getItemsCount();
+	uint8	getSlotCount();									// количество занятых ячеек
 	uint32	getTotalQuantity();								// общее количество предметов (gil считаются за 1)
-	CItem*	getItem(std::uint8_t slotID);
-	std::uint16_t	getItemID(std::uint8_t slotID);						
-	std::uint8_t	getInvSlotID(std::uint8_t slotID);
-	uint32	getQuantity(std::uint8_t slotID);						// количество предметов в ячейке
-	std::uint8_t	getConfirmedStatus(std::uint8_t slotID);
-	uint32	getItemQuantity(std::uint16_t itemID);					// количество предметов одного типа
-    std::uint8_t   getSize();
+	CItem*	getItem(uint8 slotID);
+	uint16	getItemID(uint8 slotID);						
+	uint8	getInvSlotID(uint8 slotID);
+	uint32	getQuantity(uint8 slotID);						// количество предметов в ячейке
+	uint8	getConfirmedStatus(uint8 slotID);
+	uint32	getItemQuantity(uint16 itemID);					// количество предметов одного типа
+    uint8   getSize();
 
-	void	setType(std::uint8_t type);
-	void	setItemsCount(std::uint8_t count);
-	void	setItem(std::uint8_t slotID, CItem* item);
-	void	setItemID(std::uint8_t slotID, std::uint16_t itemID);
-	void	setInvSlotID(std::uint8_t slotID, std::uint8_t invSlotID);
-	void	setQuantity(std::uint8_t slotID, uint32 quantity);
-	bool	setConfirmedStatus(std::uint8_t slotID, std::uint8_t amount);
-	void	setItem(std::uint8_t slotID, std::uint16_t itemID, std::uint8_t invSlotID, uint32 quantity, CItem* item = nullptr);
-    void    setSize(std::uint8_t size);
+	void	setType(uint8 type);
+	void	setItemsCount(uint8 count);
+	void	setItem(uint8 slotID, CItem* item);
+	void	setItemID(uint8 slotID, uint16 itemID);
+	void	setInvSlotID(uint8 slotID, uint8 invSlotID);
+	void	setQuantity(uint8 slotID, uint32 quantity);
+	bool	setConfirmedStatus(uint8 slotID, uint8 amount);
+	void	setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item = nullptr);
+    void    setSize(uint8 size);
 
 	void	Clean();										// отчищаем контейнер
 
 private:
 
-	std::uint8_t	m_type;											// тип контейнера (тип кристалла, нация магазина и т.д.)
-	std::uint8_t	m_ItemsCount;									// количество предметов в контейнере (устанавливаем самостоятельно)
+	uint8	m_type;											// тип контейнера (тип кристалла, нация магазина и т.д.)
+	uint8	m_ItemsCount;									// количество предметов в контейнере (устанавливаем самостоятельно)
 
 	std::vector<CItem*>     m_PItem;
-    std::vector<std::uint8_t>	    m_slotID;
-    std::vector<std::uint16_t>	    m_itemID;
+    std::vector<uint8>	    m_slotID;
+    std::vector<uint16>	    m_itemID;
     std::vector<uint32>	    m_quantity;
-    std::vector<std::uint8_t>	    m_confirmed;
+    std::vector<uint8>	    m_confirmed;
 };
 
 #endif

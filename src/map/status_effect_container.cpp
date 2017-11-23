@@ -84,7 +84,7 @@ namespace effects
         string_t Name;
         // type will erase all other effects that match
         // example: en- spells, spikes
-        std::uint16_t   Type;
+        uint16   Type;
         // Negative means the new effect can only land if the negative id is weaker
         // example: haste, slow
         EFFECT   NegativeId;
@@ -97,7 +97,7 @@ namespace effects
         // Will always remove this effect when landing
         EFFECT   RemoveId;
         // status effect element, used in resistances
-        std::uint8_t    Element;
+        uint8    Element;
 
         // minimum duration. IE: stun cannot last less than 1 second
         uint32    MinDuration;
@@ -113,7 +113,7 @@ namespace effects
 
     void LoadEffectsParameters()
     {
-        for (std::uint16_t i = 0; i < MAX_EFFECTID; ++i)
+        for (uint16 i = 0; i < MAX_EFFECTID; ++i)
         {
             EffectsParams[i].Flag = 0;
         }
@@ -124,7 +124,7 @@ namespace effects
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t EffectID = (std::uint16_t)Sql_GetIntData(SqlHandle, 0);
+                uint16 EffectID = (uint16)Sql_GetIntData(SqlHandle, 0);
 
                 EffectsParams[EffectID].Name = (const char*)Sql_GetData(SqlHandle, 1);
                 EffectsParams[EffectID].Flag = Sql_GetIntData(SqlHandle, 2);
@@ -142,7 +142,7 @@ namespace effects
     }
 
     // hacky way to get element from status effect
-    std::uint16_t GetEffectElement(std::uint16_t effect)
+    uint16 GetEffectElement(uint16 effect)
     {
         return EffectsParams[effect].Element;
     }
@@ -165,7 +165,7 @@ CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
 
 CStatusEffectContainer::~CStatusEffectContainer()
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         delete m_StatusEffectList.at(i);
     }
@@ -177,11 +177,11 @@ CStatusEffectContainer::~CStatusEffectContainer()
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CStatusEffectContainer::GetEffectsCount(EFFECT ID)
+uint8 CStatusEffectContainer::GetEffectsCount(EFFECT ID)
 {
-    std::uint8_t count = 0;
+    uint8 count = 0;
 
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == ID)
         {
@@ -191,7 +191,7 @@ std::uint8_t CStatusEffectContainer::GetEffectsCount(EFFECT ID)
     return count;
 }
 
-bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, std::uint16_t power)
+bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 power)
 {
     // check for immunities first
     switch (statusEffect) {
@@ -270,7 +270,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, std::uint1
 
     // check overwrite
     if (PStatusEffect != nullptr) {
-        std::uint16_t currentPower = PStatusEffect->GetPower();
+        uint16 currentPower = PStatusEffect->GetPower();
         EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
 
         if (overwrite == EFFECTOVERWRITE_ALWAYS || overwrite == EFFECTOVERWRITE_IGNORE) {
@@ -301,7 +301,7 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, std::uint1
 
 void CStatusEffectContainer::OverwriteStatusEffect(CStatusEffect* StatusEffect)
 {
-    std::uint16_t statusEffect = (std::uint16_t)StatusEffect->GetStatusID();
+    uint16 statusEffect = (uint16)StatusEffect->GetStatusID();
     // remove effect
     EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
     if (overwrite != EFFECTOVERWRITE_IGNORE) {
@@ -335,7 +335,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         return false;
     }
 
-    std::uint16_t statusId = PStatusEffect->GetStatusID();
+    uint16 statusId = PStatusEffect->GetStatusID();
 
     if (statusId >= MAX_EFFECTID) {
         ShowWarning("status_effect_container::AddStatusEffect statusId given is OVER limit %d\n", statusId);
@@ -472,7 +472,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 
 bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
         {
@@ -485,7 +485,7 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID)
 
 bool CStatusEffectContainer::DelStatusEffectSilent(EFFECT StatusID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
         {
@@ -496,9 +496,9 @@ bool CStatusEffectContainer::DelStatusEffectSilent(EFFECT StatusID)
     return false;
 }
 
-bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, std::uint16_t SubID)
+bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, uint16 SubID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
             (m_StatusEffectList.at(i)->GetSubID() == SubID))
@@ -510,9 +510,9 @@ bool CStatusEffectContainer::DelStatusEffect(EFFECT StatusID, std::uint16_t SubI
     return false;
 }
 
-bool CStatusEffectContainer::DelStatusEffectByTier(EFFECT StatusID, std::uint16_t tier)
+bool CStatusEffectContainer::DelStatusEffectByTier(EFFECT StatusID, uint16 tier)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
             (m_StatusEffectList.at(i)->GetTier() == tier))
@@ -531,7 +531,7 @@ bool CStatusEffectContainer::DelStatusEffectByTier(EFFECT StatusID, std::uint16_
 ************************************************************************/
 void CStatusEffectContainer::KillAllStatusEffect()
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
@@ -556,9 +556,9 @@ void CStatusEffectContainer::KillAllStatusEffect()
 *																		*
 ************************************************************************/
 
-void CStatusEffectContainer::DelStatusEffectsByIcon(std::uint16_t IconID)
+void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetIcon() == IconID)
         {
@@ -569,11 +569,11 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(std::uint16_t IconID)
     }
 }
 
-void CStatusEffectContainer::DelStatusEffectsByType(std::uint16_t Type)
+void CStatusEffectContainer::DelStatusEffectsByType(uint16 Type)
 {
     if (Type <= 0) return;
 
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetType() == Type)
         {
@@ -590,7 +590,7 @@ void CStatusEffectContainer::DelStatusEffectsByType(std::uint16_t Type)
 
 void CStatusEffectContainer::DelStatusEffectsByFlag(uint32 flag, bool silent)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag)
         {
@@ -608,8 +608,8 @@ void CStatusEffectContainer::DelStatusEffectsByFlag(uint32 flag, bool silent)
 
 EFFECT CStatusEffectContainer::EraseStatusEffect()
 {
-    std::vector<std::uint16_t> erasableList;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    std::vector<uint16> erasableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
@@ -629,8 +629,8 @@ EFFECT CStatusEffectContainer::EraseStatusEffect()
 
 EFFECT CStatusEffectContainer::HealingWaltz()
 {
-    std::vector<std::uint16_t> waltzableList;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    std::vector<uint16> waltzableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_WALTZABLE ||
             m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE) &&
@@ -653,10 +653,10 @@ EFFECT CStatusEffectContainer::HealingWaltz()
 Erases all negative status effects
 returns number of erased effects
 */
-std::uint8_t CStatusEffectContainer::EraseAllStatusEffect()
+uint8 CStatusEffectContainer::EraseAllStatusEffect()
 {
-    std::uint8_t count = 0;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    uint8 count = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
@@ -677,8 +677,8 @@ std::uint8_t CStatusEffectContainer::EraseAllStatusEffect()
 
 EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 {
-    std::vector<std::uint16_t>	dispelableList;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    std::vector<uint16>	dispelableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
@@ -700,9 +700,9 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 Dispels all positive status effects
 returns number of dispelled effects
 */
-std::uint8_t CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
+uint8 CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 {
-    std::uint8_t count = 0;
+    uint8 count = 0;
     for (size_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
@@ -724,7 +724,7 @@ std::uint8_t CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 
 bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
         {
@@ -737,7 +737,7 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID)
 bool CStatusEffectContainer::HasStatusEffectByFlag(uint32 flag)
 {
 
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag)
         {
@@ -752,7 +752,7 @@ bool CStatusEffectContainer::HasStatusEffectByFlag(uint32 flag)
         Returns true if the effect is applied, false otherwise.
 *************************************************************************/
 
-bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, std::uint8_t maxSongs)
+bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs)
 {
     //if all match tier/id/effect then overwrite
 
@@ -760,9 +760,9 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, std::
     //if targ has <2 of your songs on, then just apply
     //if targ has 2 of your songs, remove oldest one and apply this one.
 
-    std::uint8_t numOfEffects = 0;
+    uint8 numOfEffects = 0;
     CStatusEffect* oldestSong = nullptr;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_REQUIEM &&
             m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NOCTURNE) //is a brd effect
@@ -801,7 +801,7 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, std::
     return false;
 }
 
-bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, std::uint8_t maxRolls, std::uint8_t bustDuration)
+bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration)
 {
     //break if not a COR roll.
     DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
@@ -813,7 +813,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, st
     //if targ has <2 of your rolls on, then just apply
     //if targ has 2 of your rolls, remove oldest one and apply this one.
 
-    std::uint8_t numOfEffects = 0;
+    uint8 numOfEffects = 0;
     CStatusEffect* oldestRoll = nullptr;
     for (auto&& PEffect : m_StatusEffectList)
     {
@@ -837,7 +837,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, st
                     {
                         if (!CheckForElevenRoll())
                         {
-                            std::uint16_t duration = 300;
+                            uint16 duration = 300;
                             duration -= bustDuration;
                             CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
                                 0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
@@ -880,7 +880,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, st
 
 bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
             m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
@@ -899,7 +899,7 @@ bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
 void CStatusEffectContainer::Fold(uint32 charid)
 {
     CStatusEffect* oldestRoll = nullptr;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
             m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
@@ -931,9 +931,9 @@ void CStatusEffectContainer::Fold(uint32 charid)
     }
 }
 
-std::uint8_t CStatusEffectContainer::GetActiveManeuvers()
+uint8 CStatusEffectContainer::GetActiveManeuvers()
 {
-    std::uint8_t count = 0;
+    uint8 count = 0;
     for (auto PStatusEffect : m_StatusEffectList)
     {
         if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
@@ -949,7 +949,7 @@ void CStatusEffectContainer::RemoveOldestManeuver()
 {
     CStatusEffect* oldest = nullptr;
     int index = 0;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
         if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
@@ -970,7 +970,7 @@ void CStatusEffectContainer::RemoveOldestManeuver()
 
 void CStatusEffectContainer::RemoveAllManeuvers()
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
             m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_DARK_MANEUVER)
@@ -986,9 +986,9 @@ void CStatusEffectContainer::RemoveAllManeuvers()
 *                                                                       *
 ************************************************************************/
 
-bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, std::uint16_t SubID)
+bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
             (m_StatusEffectList.at(i)->GetSubID() == SubID))
@@ -1016,7 +1016,7 @@ bool CStatusEffectContainer::HasStatusEffect(std::initializer_list<EFFECT> effec
 
 CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID)
         {
@@ -1034,7 +1034,7 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
 
 CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 SubID)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == StatusID &&
             (m_StatusEffectList.at(i)->GetSubID() == SubID))
@@ -1053,8 +1053,8 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 S
 CStatusEffect* CStatusEffectContainer::StealStatusEffect()
 {
 
-    std::vector<std::uint16_t> dispelableList;
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    std::vector<uint16> dispelableList;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
             m_StatusEffectList.at(i)->GetDuration() > 0)
@@ -1065,7 +1065,7 @@ CStatusEffect* CStatusEffectContainer::StealStatusEffect()
     if (!dispelableList.empty())
     {
         auto rndIdx = dsprand::GetRandomNumber(dispelableList.size());
-        std::uint16_t effectIndex = dispelableList.at(rndIdx);
+        uint16 effectIndex = dispelableList.at(rndIdx);
 
         CStatusEffect* oldEffect = m_StatusEffectList.at(effectIndex);
 
@@ -1094,11 +1094,11 @@ void CStatusEffectContainer::UpdateStatusIcons()
     m_Flags = 0;
     memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
 
-    std::uint8_t count = 0;
+    uint8 count = 0;
 
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        std::uint16_t icon = m_StatusEffectList.at(i)->GetIcon();
+        uint16 icon = m_StatusEffectList.at(i)->GetIcon();
 
         if (icon != 0)
         {
@@ -1112,7 +1112,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
             }
             //Note: it may be possible that having both bits set is for effects over 768, but there aren't
             // that many effects as of this writing
-            m_StatusIcons[count] = (std::uint8_t)icon;
+            m_StatusIcons[count] = (uint8)icon;
 
             if (++count == 32) break;
         }
@@ -1224,13 +1224,13 @@ void CStatusEffectContainer::LoadStatusEffects()
         {
             CStatusEffect* PStatusEffect = new CStatusEffect(
                 (EFFECT)Sql_GetUIntData(SqlHandle, 0),
-                (std::uint16_t)Sql_GetUIntData(SqlHandle, 1),
-                (std::uint16_t)Sql_GetUIntData(SqlHandle, 2),
+                (uint16)Sql_GetUIntData(SqlHandle, 1),
+                (uint16)Sql_GetUIntData(SqlHandle, 2),
                 (uint32)Sql_GetUIntData(SqlHandle, 3),
                 (uint32)Sql_GetUIntData(SqlHandle, 4),
-                (std::uint16_t)Sql_GetUIntData(SqlHandle, 5),
-                (std::uint16_t)Sql_GetUIntData(SqlHandle, 6),
-                (std::uint16_t)Sql_GetUIntData(SqlHandle, 7));
+                (uint16)Sql_GetUIntData(SqlHandle, 5),
+                (uint16)Sql_GetUIntData(SqlHandle, 6),
+                (uint16)Sql_GetUIntData(SqlHandle, 7));
 
             PEffectList.push_back(PStatusEffect);
 
@@ -1264,7 +1264,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
     Sql_Query(SqlHandle, "DELETE FROM char_effects WHERE charid = %u", m_POwner->id);
 
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
@@ -1326,7 +1326,7 @@ void CStatusEffectContainer::CheckEffectsExpiry(time_point tick)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
@@ -1380,15 +1380,15 @@ void CStatusEffectContainer::TickRegen(time_point tick)
             PChar = (CCharEntity*)m_POwner;
         }
 
-        std::int16_t regen = m_POwner->getMod(Mod::REGEN);
-        std::int16_t poison = m_POwner->getMod(Mod::REGEN_DOWN);
-        std::int16_t refresh = m_POwner->getMod(Mod::REFRESH) - m_POwner->getMod(Mod::REFRESH_DOWN);
-        std::int16_t regain = m_POwner->getMod(Mod::REGAIN) - m_POwner->getMod(Mod::REGAIN_DOWN);
+        int16 regen = m_POwner->getMod(Mod::REGEN);
+        int16 poison = m_POwner->getMod(Mod::REGEN_DOWN);
+        int16 refresh = m_POwner->getMod(Mod::REFRESH) - m_POwner->getMod(Mod::REFRESH_DOWN);
+        int16 regain = m_POwner->getMod(Mod::REGAIN) - m_POwner->getMod(Mod::REGAIN_DOWN);
         m_POwner->addHP(regen);
 
         if (poison)
         {
-            std::int16_t damage = battleutils::HandleStoneskin(m_POwner, poison);
+            int16 damage = battleutils::HandleStoneskin(m_POwner, poison);
 
             if (damage > 0)
             {
@@ -1400,7 +1400,7 @@ void CStatusEffectContainer::TickRegen(time_point tick)
 
         if (m_POwner->getMod(Mod::AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
         {
-            std::int16_t perpetuation = m_POwner->getMod(Mod::AVATAR_PERPETUATION);
+            int16 perpetuation = m_POwner->getMod(Mod::AVATAR_PERPETUATION);
 
             if (m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
                 perpetuation = 0;
@@ -1466,7 +1466,7 @@ bool CStatusEffectContainer::HasPreventActionEffect()
         EFFECT_TERROR});
 }
 
-std::uint16_t CStatusEffectContainer::GetConfrontationEffect()
+uint16 CStatusEffectContainer::GetConfrontationEffect()
 {
     for (auto PEffect : m_StatusEffectList)
     {
@@ -1491,7 +1491,7 @@ void CStatusEffectContainer::CopyConfrontationEffect(CBattleEntity* PEntity)
 
 bool CStatusEffectContainer::CheckForElevenRoll()
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
             m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL &&
@@ -1517,9 +1517,9 @@ void CStatusEffectContainer::WakeUp()
     DelStatusEffect(EFFECT_LULLABY);
 }
 
-bool CStatusEffectContainer::HasBustEffect(std::uint16_t id)
+bool CStatusEffectContainer::HasBustEffect(uint16 id)
 {
-    for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST &&
             m_StatusEffectList.at(i)->GetSubPower() == id)

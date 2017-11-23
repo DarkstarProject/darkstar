@@ -46,19 +46,19 @@ public:
     CLinkshell(uint32 id);
 
     uint32      getID();
-    std::uint16_t      getColor();
+    uint16      getColor();
 
-    void        setColor(std::uint16_t color);
+    void        setColor(uint16 color);
 
-    const std::int8_t* getName();
-	void		setName(std::int8_t* name);
-	void		setMessage(const std::int8_t* message, const std::int8_t* poster);
+    const int8* getName();
+	void		setName(int8* name);
+	void		setMessage(const int8* message, const int8* poster);
 
-    void        AddMember(CCharEntity* PChar,std::int8_t type, std::uint8_t lsNum);
+    void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
     bool        DelMember(CCharEntity* PChar);
 
-    void        RemoveMemberByName(std::int8_t* MemberName);
-	void		ChangeMemberRank(std::int8_t* MemberName, std::uint8_t toSack);
+    void        RemoveMemberByName(int8* MemberName);
+	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
 
     void        PushPacket(uint32 senderID, CBasicPacket* packet);
     void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
@@ -68,7 +68,7 @@ public:
 private:
 
     uint32      m_id;
-    std::uint16_t      m_color;
+    uint16      m_color;
 
     string_t    m_name;
 };
@@ -83,10 +83,10 @@ namespace linkshell
 {
     CLinkshell* LoadLinkshell(uint32 id);
 
-    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, std::uint8_t lsNum);
+    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
-    uint32 RegisterNewLinkshell(const std::int8_t* name, std::uint16_t color);
+    uint32 RegisterNewLinkshell(const int8* name, uint16 color);
 	CLinkshell* GetLinkshell(uint32 id);
 };
 

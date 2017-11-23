@@ -27,12 +27,12 @@
 #include "../entities/charentity.h"
 #include "../utils/zoneutils.h"
 
-CServerIPPacket::CServerIPPacket(CCharEntity* PChar, std::uint8_t type, uint64 ipp)
+CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, uint64 ipp)
 {
 	this->type = 0x0B;
 	this->size = 0x0E;
 
 	WBUFB(data,(0x04)) = type;
 	WBUFL(data,(0x08)) = (uint32)ipp;
-	WBUFW(data,(0x0C)) = (std::uint16_t)(ipp >> 32);
+	WBUFW(data,(0x0C)) = (uint16)(ipp >> 32);
 }

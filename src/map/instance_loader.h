@@ -37,7 +37,7 @@ class CZone;
 class CInstanceLoader
 {
 public:
-    CInstanceLoader(std::uint8_t instanceid, CZone* PZone, CCharEntity* PRequester);
+    CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester);
     ~CInstanceLoader();
 
     CInstance* GetInstance();

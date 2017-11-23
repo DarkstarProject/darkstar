@@ -44,8 +44,8 @@ public:
 
 	CEventPacket(
 		CCharEntity* PChar,
-		std::uint16_t EventID, 
-		std::uint8_t  numOfParams = 0, 
+		uint16 EventID, 
+		uint8  numOfParams = 0, 
 		uint32 param0 = 0,
 		uint32 param1 = 0,
 		uint32 param2 = 0,
@@ -54,7 +54,7 @@ public:
 		uint32 param5 = 0,
 		uint32 param6 = 0,
 		uint32 param7 = 0,
-        std::int16_t textTable = -1);
+        int16 textTable = -1);
 };
 
 #endif

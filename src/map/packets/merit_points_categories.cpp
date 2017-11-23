@@ -71,13 +71,13 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar)
 
     WBUFB(data,(0x04)) = MAX_MERITS_IN_PACKET;
 
-    for (std::uint8_t i = 0; i < 5; ++i)
+    for (uint8 i = 0; i < 5; ++i)
     {
         MeritPointsCategoriesPacket(PChar, i * MAX_MERITS_IN_PACKET);
 
         PChar->pushPacket(new CBasicPacket(*this));
     }
-    MeritPointsCategoriesPacket(PChar, (std::uint8_t)(5 * MAX_MERITS_IN_PACKET));
+    MeritPointsCategoriesPacket(PChar, (uint8)(5 * MAX_MERITS_IN_PACKET));
 }
 
 /************************************************************************
@@ -102,17 +102,17 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, M
 ************************************************************************/
 
 
-void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PChar, std::uint8_t offset)
+void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PChar, uint8 offset)
 {
 
-    for (std::uint8_t i = 0; i < MAX_MERITS_IN_PACKET; ++i)
+    for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
     {
 		memcpy(data+(0x08) + sizeof(uint32) * i, &PChar->PMeritPoints->GetMeritByIndex(offset + i)->data, sizeof(uint32));
     }
 
     if (!PChar->m_moghouseID)
     {
-        for (std::uint8_t i = 0; i < MAX_MERITS_IN_PACKET; ++i)
+        for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
         {
             (*(Merit_t*)(data+(0x08) + sizeof(uint32) * i)).next = 0; // обнуляем значение next у всех merit
         }

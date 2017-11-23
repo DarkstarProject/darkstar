@@ -33,7 +33,7 @@
  * in the messageID parameter.
  * Located in 1-27-72.xml if using MassExtractor -full-scan
  */
-enum MSGBASIC_ID : std::uint16_t
+enum MSGBASIC_ID : uint16
 {
 	MSGBASIC_DEFEATS_TARG			= 6, /* The <player> defeats <target>. */
 	MSGBASIC_ALREADY_CLAIMED		= 12, /* Cannot attack. Your target is already claimed. */
@@ -145,8 +145,8 @@ class CMessageBasicPacket : public CBasicPacket
 {
 public:
 
-	CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param, std::int32_t value, std::uint16_t messageID);
-    std::uint16_t getMessageID();
+	CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param, std::int32_t value, uint16 messageID);
+    uint16 getMessageID();
 };
 
 #endif

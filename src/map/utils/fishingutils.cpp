@@ -56,7 +56,7 @@ namespace fishingutils
 *																		*
 ************************************************************************/
 
-std::uint16_t MessageOffset[MAX_ZONEID];
+uint16 MessageOffset[MAX_ZONEID];
 
 void LoadFishingMessages()
 {
@@ -71,7 +71,7 @@ void LoadFishingMessages()
 *																		*
 ************************************************************************/
 
-std::uint16_t GetMessageOffset(std::uint16_t ZoneID)
+uint16 GetMessageOffset(uint16 ZoneID)
 {
 	return MessageOffset[ZoneID];
 }
@@ -91,7 +91,7 @@ void StartFishing(CCharEntity* PChar)
 		return;
 	}
 
-	std::uint16_t MessageOffset = GetMessageOffset(PChar->getZone());
+	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 
 	if (MessageOffset == 0)
 	{
@@ -158,7 +158,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
-	std::uint16_t RodID = WeaponItem->getID();
+	uint16 RodID = WeaponItem->getID();
 
 	WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);	
 							
@@ -166,7 +166,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
 	DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
 
-	std::uint16_t LureID = WeaponItem->getID();
+	uint16 LureID = WeaponItem->getID();
 
 	std::int32_t FishingChance = dsprand::GetRandomNumber(100);
 
@@ -196,13 +196,13 @@ bool CheckFisherLuck(CCharEntity* PChar)
 			{
                 // ловля предметов, необходимых для поисков
 
-                std::uint8_t logid = (std::uint8_t)Sql_GetIntData(SqlHandle,5);
-                std::uint8_t quest = (std::uint8_t)Sql_GetIntData(SqlHandle,6);
+                uint8 logid = (uint8)Sql_GetIntData(SqlHandle,5);
+                uint8 quest = (uint8)Sql_GetIntData(SqlHandle,6);
 
                 if(logid < MAX_QUESTAREA && quest < MAX_QUESTID)
 	            {
-		            std::uint8_t current  = PChar->m_questLog[logid].current [quest/8] & (1 << (quest % 8));
-		            std::uint8_t complete = PChar->m_questLog[logid].complete[quest/8] & (1 << (quest % 8));
+		            uint8 current  = PChar->m_questLog[logid].current [quest/8] & (1 << (quest % 8));
+		            uint8 complete = PChar->m_questLog[logid].complete[quest/8] & (1 << (quest % 8));
 
                     if (complete == 0 && current != 0)
                     {
@@ -299,12 +299,12 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 
 void RodBreaks(CCharEntity* PChar)
 {
-	std::uint8_t  SlotID = PChar->equip[SLOT_RANGED];
+	uint8  SlotID = PChar->equip[SLOT_RANGED];
 	CItem* PRod   = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
 	DSP_DEBUG_BREAK_IF(PRod == nullptr);
 
-	std::uint16_t BrokenRodID = 0;
+	uint16 BrokenRodID = 0;
 
 	switch (PRod->getID())
 	{
@@ -337,9 +337,9 @@ void RodBreaks(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void FishingAction(CCharEntity* PChar, FISHACTION action, std::uint16_t stamina, uint32 special)
+void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32 special)
 {
-	std::uint16_t MessageOffset = GetMessageOffset(PChar->getZone());
+	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 
 	switch (action) 
 	{

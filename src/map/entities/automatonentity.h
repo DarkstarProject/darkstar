@@ -47,9 +47,9 @@ enum AUTOHEADTYPE
 
 struct automaton_equip_t
 {
-    std::uint8_t Frame{ 0 };
-    std::uint8_t Head{ 0 };
-    std::array<std::uint8_t, 12> Attachments {};
+    uint8 Frame{ 0 };
+    uint8 Head{ 0 };
+    std::array<uint8, 12> Attachments {};
 };
 
 class CCharEntity;
@@ -61,40 +61,40 @@ public:
 	~CAutomatonEntity();
 
     automaton_equip_t m_Equip;
-    std::array<std::uint8_t, 8> m_ElementMax {};
-    std::array<std::uint8_t, 8> m_ElementEquip {};
+    std::array<uint8, 8> m_ElementMax {};
+    std::array<uint8, 8> m_ElementEquip {};
 
     void setFrame(AUTOFRAMETYPE frame);
     void setHead(AUTOHEADTYPE head);
-    void setAttachment(std::uint8_t slot, std::uint8_t id);
+    void setAttachment(uint8 slot, uint8 id);
 
-    void setElementMax(std::uint8_t element, std::uint8_t max);
-    void addElementCapacity(std::uint8_t element, std::int8_t value);
+    void setElementMax(uint8 element, uint8 max);
+    void addElementCapacity(uint8 element, int8 value);
 
     AUTOFRAMETYPE getFrame();
     AUTOHEADTYPE getHead();
-    std::uint8_t getAttachment(std::uint8_t slot);
-    bool hasAttachment(std::uint8_t attachment);
+    uint8 getAttachment(uint8 slot);
+    bool hasAttachment(uint8 attachment);
 
-    std::uint8_t getElementMax(std::uint8_t element);
-    std::uint8_t getElementCapacity(std::uint8_t element);
+    uint8 getElementMax(uint8 element);
+    uint8 getElementCapacity(uint8 element);
 
     void burdenTick();
     void setInitialBurden();
-    std::uint8_t addBurden(std::uint8_t element, std::int8_t burden);
+    uint8 addBurden(uint8 element, int8 burden);
 
     void PostTick() override;
 
     virtual void Spawn() override;
     virtual void Die() override;
 
-    virtual bool ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
 
 private:
-    std::array<std::uint8_t, 8> m_Burden {};
+    std::array<uint8, 8> m_Burden {};
 };
 
 #endif

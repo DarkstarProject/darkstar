@@ -61,7 +61,7 @@ CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket)
     m_data = nullptr;
     m_socket = socket;
 
-    std::uint8_t keys[24] =
+    uint8 keys[24] =
     {
         0x30, 0x73, 0x3D, 0x6D,
         0x3C, 0x31, 0x49, 0x5A,
@@ -93,7 +93,7 @@ CTCPRequestPacket::~CTCPRequestPacket()
 *																		*
 ************************************************************************/
 
-std::uint8_t* CTCPRequestPacket::GetData()
+uint8* CTCPRequestPacket::GetData()
 {
     return m_data;
 }
@@ -140,7 +140,7 @@ std::int32_t CTCPRequestPacket::ReceiveFromSocket()
         return 0;
     }
     delete[] m_data;
-    m_data = new std::uint8_t[m_size];
+    m_data = new uint8[m_size];
 
     memcpy(&m_data[0], &recvbuf[0], m_size);
     WBUFL(key, (16)) = RBUFL(m_data, (m_size - 4));
@@ -154,7 +154,7 @@ std::int32_t CTCPRequestPacket::ReceiveFromSocket()
 *                                                                       *
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::SendRawToSocket(std::uint8_t* data, uint32 length)
+std::int32_t CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 {
     std::int32_t iResult;
 
@@ -177,23 +177,23 @@ std::int32_t CTCPRequestPacket::SendRawToSocket(std::uint8_t* data, uint32 lengt
 *																		*
 ************************************************************************/
 
-std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, uint32 length)
+std::int32_t CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 {
     std::int32_t iResult;
 
     WBUFW(data, (0x00)) = length;          // packet size
     WBUFL(data, (0x04)) = 0x46465849;      // "IXFF"
 
-    md5((std::uint8_t*)(key), blowfish.hash, 24);
+    md5((uint8*)(key), blowfish.hash, 24);
 
-    blowfish_init((std::int8_t*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
+    blowfish_init((int8*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
 
     md5(data + 8, data + length - 0x18 + 0x04, length - 0x18 - 0x04);
 
-    std::uint8_t tmp = (length - 12) / 4;
+    uint8 tmp = (length - 12) / 4;
     tmp -= tmp % 2;
 
-    for (std::uint8_t i = 0; i < tmp; i += 2)
+    for (uint8 i = 0; i < tmp; i += 2)
     {
         blowfish_encipher((uint32*)data + i + 2, (uint32*)data + i + 3, blowfish.P, blowfish.S[0]);
     }
@@ -221,7 +221,7 @@ std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, uint32 length)
 
 std::int32_t CTCPRequestPacket::CheckPacketHash()
 {
-    std::uint8_t PacketHash[16];
+    uint8 PacketHash[16];
 
     std::int32_t toHash = m_size;  // whole packet
 
@@ -229,13 +229,13 @@ std::int32_t CTCPRequestPacket::CheckPacketHash()
     toHash -= 0x10;         // -hashsize
     toHash -= 0x04;         // -keysize
 
-    md5((std::uint8_t*)(&m_data[8]), PacketHash, toHash);
+    md5((uint8*)(&m_data[8]), PacketHash, toHash);
 
-    for (std::uint8_t i = 0; i < 16; ++i)
+    for (uint8 i = 0; i < 16; ++i)
     {
-        if ((std::uint8_t)m_data[m_size - 0x14 + i] != PacketHash[i])
+        if ((uint8)m_data[m_size - 0x14 + i] != PacketHash[i])
         {
-            ShowError("Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, PacketHash[i], (std::uint8_t)m_data[m_size - 0x14 + i]);
+            ShowError("Search hash wrong byte %d: 0x%.2X should be 0x%.2x\n", i, PacketHash[i], (uint8)m_data[m_size - 0x14 + i]);
             return 0;
         }
     }
@@ -248,7 +248,7 @@ std::int32_t CTCPRequestPacket::CheckPacketHash()
 *																		*
 ************************************************************************/
 
-std::uint8_t CTCPRequestPacket::GetPacketType()
+uint8 CTCPRequestPacket::GetPacketType()
 {
     DSP_DEBUG_BREAK_IF(m_data == nullptr)
 
@@ -263,14 +263,14 @@ std::uint8_t CTCPRequestPacket::GetPacketType()
 
 std::int32_t CTCPRequestPacket::decipher()
 {
-    md5((std::uint8_t*)(key), blowfish.hash, 20);
+    md5((uint8*)(key), blowfish.hash, 20);
 
-    blowfish_init((std::int8_t*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
+    blowfish_init((int8*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
 
-    std::uint8_t tmp = (m_size - 12) / 4;
+    uint8 tmp = (m_size - 12) / 4;
     tmp -= tmp % 2;
 
-    for (std::uint8_t i = 0; i < tmp; i += 2)
+    for (uint8 i = 0; i < tmp; i += 2)
     {
         blowfish_decipher((uint32*)m_data + i + 2, (uint32*)m_data + i + 3, blowfish.P, blowfish.S[0]);
     }

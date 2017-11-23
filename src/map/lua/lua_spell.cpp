@@ -69,7 +69,7 @@ inline std::int32_t CLuaSpell::setMsg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setMessage((std::uint16_t)lua_tointeger(L, -1));
+    m_PLuaSpell->setMessage((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -78,7 +78,7 @@ inline std::int32_t CLuaSpell::setAoE(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setAOE((std::uint8_t)lua_tointeger(L, -1));
+    m_PLuaSpell->setAOE((uint8)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -87,7 +87,7 @@ inline std::int32_t CLuaSpell::setFlag(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setFlag((std::uint8_t)lua_tointeger(L, -1));
+    m_PLuaSpell->setFlag((uint8)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -105,7 +105,7 @@ inline std::int32_t CLuaSpell::setAnimation(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setAnimationID((std::uint16_t)lua_tonumber(L, -1));
+    m_PLuaSpell->setAnimationID((uint16)lua_tonumber(L, -1));
     return 0;
 }
 
@@ -114,7 +114,7 @@ inline std::int32_t CLuaSpell::setMPCost(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setMPCost((std::uint16_t)lua_tonumber(L, -1));
+    m_PLuaSpell->setMPCost((uint16)lua_tonumber(L, -1));
     return 0;
 }
 
@@ -175,7 +175,7 @@ inline std::int32_t CLuaSpell::tookEffect(lua_State* L)
 inline std::int32_t CLuaSpell::getID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
-    lua_pushinteger(L, static_cast<std::uint16_t>(m_PLuaSpell->getID()));
+    lua_pushinteger(L, static_cast<uint16>(m_PLuaSpell->getID()));
     return 1;
 }
 

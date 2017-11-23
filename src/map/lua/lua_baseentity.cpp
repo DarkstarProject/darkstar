@@ -186,9 +186,9 @@ inline std::int32_t CLuaBaseEntity::bringPlayer(lua_State* L)
             WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
             WBUFW(&buf, 4) = 0; // wanting to bring target char here so wont give our id
             WBUFW(&buf, 8) = m_PBaseEntity->getZone();
-            WBUFW(&buf, 10) = (std::uint16_t)m_PBaseEntity->loc.p.x;
-            WBUFW(&buf, 14) = (std::uint16_t)m_PBaseEntity->loc.p.y;
-            WBUFW(&buf, 18) = (std::uint16_t)m_PBaseEntity->loc.p.z;
+            WBUFW(&buf, 10) = (uint16)m_PBaseEntity->loc.p.x;
+            WBUFW(&buf, 14) = (uint16)m_PBaseEntity->loc.p.y;
+            WBUFW(&buf, 18) = (uint16)m_PBaseEntity->loc.p.z;
             WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
             
             if (m_PBaseEntity->objtype == TYPE_PC)
@@ -241,7 +241,7 @@ inline std::int32_t CLuaBaseEntity::ChangeMusic(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint8_t  BlockID = (uint32)lua_tointeger(L, 1);
+    uint8  BlockID = (uint32)lua_tointeger(L, 1);
     uint32 MusicTrackID = (uint32)lua_tointeger(L, 2);
 
     PChar->pushPacket(new CChangeMusicPacket(BlockID, MusicTrackID));
@@ -546,7 +546,7 @@ inline std::int32_t CLuaBaseEntity::addTP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CBattleEntity*)m_PBaseEntity)->addTP((std::int16_t)lua_tointeger(L, 1));
+    ((CBattleEntity*)m_PBaseEntity)->addTP((int16)lua_tointeger(L, 1));
 
     return 0;
 }
@@ -560,7 +560,7 @@ inline std::int32_t CLuaBaseEntity::delTP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CBattleEntity*)m_PBaseEntity)->addTP((std::int16_t)(-lua_tointeger(L, 1)));
+    ((CBattleEntity*)m_PBaseEntity)->addTP((int16)(-lua_tointeger(L, 1)));
 
     return 0;
 }
@@ -574,7 +574,7 @@ inline std::int32_t CLuaBaseEntity::setTP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::int16_t value = (std::int16_t)((lua_tointeger(L, 1)) - ((CBattleEntity*)m_PBaseEntity)->health.tp);
+    int16 value = (int16)((lua_tointeger(L, 1)) - ((CBattleEntity*)m_PBaseEntity)->health.tp);
     ((CBattleEntity*)m_PBaseEntity)->addTP(value);
 
     return 0;
@@ -682,7 +682,7 @@ inline std::int32_t CLuaBaseEntity::setPos(lua_State *L)
         if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
             m_PBaseEntity->loc.p.z = (float)lua_tonumber(L, 3);
         if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
-            m_PBaseEntity->loc.p.rotation = (std::uint8_t)lua_tointeger(L, 4);
+            m_PBaseEntity->loc.p.rotation = (uint8)lua_tointeger(L, 4);
     }
     else
     {
@@ -700,7 +700,7 @@ inline std::int32_t CLuaBaseEntity::setPos(lua_State *L)
         lua_pop(L, 1);
 
         lua_rawgeti(L, 1, 4);
-        m_PBaseEntity->loc.p.rotation = (std::uint8_t)lua_tointeger(L, -1);
+        m_PBaseEntity->loc.p.rotation = (uint8)lua_tointeger(L, -1);
         lua_pop(L, 1);
     }
 
@@ -708,10 +708,10 @@ inline std::int32_t CLuaBaseEntity::setPos(lua_State *L)
     {
         if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
         {
-            if ((std::uint16_t)lua_tointeger(L, 5) >= MAX_ZONEID)
+            if ((uint16)lua_tointeger(L, 5) >= MAX_ZONEID)
                 return 0;
 
-            ((CCharEntity*)m_PBaseEntity)->loc.destination = (std::uint16_t)lua_tointeger(L, 5);
+            ((CCharEntity*)m_PBaseEntity)->loc.destination = (uint16)lua_tointeger(L, 5);
             ((CCharEntity*)m_PBaseEntity)->status = STATUS_DISAPPEAR;
             ((CCharEntity*)m_PBaseEntity)->loc.boundary = 0;
             ((CCharEntity*)m_PBaseEntity)->m_moghouseID = 0;
@@ -742,7 +742,7 @@ inline std::int32_t CLuaBaseEntity::teleport(lua_State *L)
     m_PBaseEntity->loc.p.z = (float)lua_tonumber(L, -1);
 
     if (lua_isnumber(L, 2))
-        m_PBaseEntity->loc.p.rotation = (std::uint8_t)lua_tonumber(L, 2);
+        m_PBaseEntity->loc.p.rotation = (uint8)lua_tonumber(L, 2);
     else if (lua_isuserdata(L, 2))
     {
         CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
@@ -757,7 +757,7 @@ inline std::int32_t CLuaBaseEntity::teleport(lua_State *L)
 inline std::int32_t CLuaBaseEntity::getPos(lua_State* L)
 {
     lua_createtable(L, 4, 0);
-    std::int8_t newTable = lua_gettop(L);
+    int8 newTable = lua_gettop(L);
 
     lua_pushnumber(L, m_PBaseEntity->loc.p.x);
     lua_setfield(L, newTable, "x");
@@ -784,7 +784,7 @@ inline std::int32_t CLuaBaseEntity::getSpawnPos(lua_State* L)
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
     lua_createtable(L, 4, 0);
-    std::int8_t newTable = lua_gettop(L);
+    int8 newTable = lua_gettop(L);
 
     lua_pushnumber(L, PMob->m_SpawnPoint.x);
     lua_setfield(L, newTable, "x");
@@ -818,11 +818,11 @@ inline std::int32_t CLuaBaseEntity::addTreasure(lua_State *L)
             // The specified PEntity can be a Mob or NPC
             CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
             CBaseEntity* PEntity = PLuaBaseEntity->GetBaseEntity();
-            PChar->PTreasurePool->AddItem((std::uint16_t)lua_tointeger(L, 1), PEntity);
+            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PEntity);
         }
         else // Entity can be nullptr - this is intentional
         {
-            PChar->PTreasurePool->AddItem((std::uint16_t)lua_tointeger(L, 1), nullptr);
+            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), nullptr);
         }
     }
 
@@ -839,13 +839,13 @@ inline std::int32_t CLuaBaseEntity::addItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     bool silence = false;
-    std::uint16_t itemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
     uint32 quantity = 1;
-    std::uint16_t augment0 = 0; std::uint8_t augment0val = 0;
-    std::uint16_t augment1 = 0; std::uint8_t augment1val = 0;
-    std::uint16_t augment2 = 0; std::uint8_t augment2val = 0;
-    std::uint16_t augment3 = 0; std::uint8_t augment3val = 0;
-    std::uint16_t trialNumber = 0;
+    uint16 augment0 = 0; uint8 augment0val = 0;
+    uint16 augment1 = 0; uint8 augment1val = 0;
+    uint16 augment2 = 0; uint8 augment2val = 0;
+    uint16 augment3 = 0; uint8 augment3val = 0;
+    uint16 trialNumber = 0;
 
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         silence = (uint32)lua_toboolean(L, 2);
@@ -853,26 +853,26 @@ inline std::int32_t CLuaBaseEntity::addItem(lua_State *L)
         quantity = (uint32)lua_tointeger(L, 2);
 
     if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
-        augment0 = (std::uint16_t)lua_tointeger(L, 3);
+        augment0 = (uint16)lua_tointeger(L, 3);
     if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
-        augment0val = (std::uint8_t)lua_tointeger(L, 4);
+        augment0val = (uint8)lua_tointeger(L, 4);
     if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
-        augment1 = (std::uint16_t)lua_tointeger(L, 5);
+        augment1 = (uint16)lua_tointeger(L, 5);
     if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
-        augment1val = (std::uint8_t)lua_tointeger(L, 6);
+        augment1val = (uint8)lua_tointeger(L, 6);
     if (!lua_isnil(L, 7) && lua_isnumber(L, 7))
-        augment2 = (std::uint16_t)lua_tointeger(L, 7);
+        augment2 = (uint16)lua_tointeger(L, 7);
     if (!lua_isnil(L, 8) && lua_isnumber(L, 8))
-        augment2val = (std::uint8_t)lua_tointeger(L, 8);
+        augment2val = (uint8)lua_tointeger(L, 8);
     if (!lua_isnil(L, 9) && lua_isnumber(L, 9))
-        augment3 = (std::uint16_t)lua_tointeger(L, 9);
+        augment3 = (uint16)lua_tointeger(L, 9);
     if (!lua_isnil(L, 10) && lua_isnumber(L, 10))
-        augment3val = (std::uint8_t)lua_tointeger(L, 10);
+        augment3val = (uint8)lua_tointeger(L, 10);
 
     if (!lua_isnil(L, 11) && lua_isnumber(L, 11))
-        trialNumber = (std::uint16_t)lua_tointeger(L, 11);
+        trialNumber = (uint16)lua_tointeger(L, 11);
 
-    std::uint8_t SlotID = ERROR_SLOTID;
+    uint8 SlotID = ERROR_SLOTID;
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -912,9 +912,9 @@ inline std::int32_t CLuaBaseEntity::addUsedItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t itemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t SlotID = ERROR_SLOTID;
+    uint8 SlotID = ERROR_SLOTID;
 
     if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
     {
@@ -953,13 +953,13 @@ inline std::int32_t CLuaBaseEntity::addTempItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t itemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
     uint32 quantity = 1;
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
         quantity = (uint32)lua_tointeger(L, 2);
 
-    std::uint8_t SlotID = ERROR_SLOTID;
+    uint8 SlotID = ERROR_SLOTID;
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1010,7 +1010,7 @@ std::int32_t CLuaBaseEntity::delItem(lua_State* L)
     }
 
     auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-    auto SlotID = PChar->getStorage(location)->SearchItem((std::uint16_t)lua_tointeger(L, 1));
+    auto SlotID = PChar->getStorage(location)->SearchItem((uint16)lua_tointeger(L, 1));
     if (SlotID != ERROR_SLOTID)
     {
         charutils::UpdateItem(PChar, location, SlotID, -quantity);
@@ -1118,13 +1118,13 @@ inline std::int32_t CLuaBaseEntity::hasItem(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t ItemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 ItemID = (uint16)lua_tointeger(L, 1);
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
-        std::uint8_t  locationID = LOC_INVENTORY;
+        uint8  locationID = LOC_INVENTORY;
 
-        locationID = (std::uint8_t)lua_tointeger(L, 2);
+        locationID = (uint8)lua_tointeger(L, 2);
         locationID = (locationID < MAX_CONTAINER_ID ? locationID : LOC_INVENTORY);
 
         lua_pushboolean(L, PChar->getStorage(locationID)->SearchItem(ItemID) != ERROR_SLOTID);
@@ -1141,15 +1141,15 @@ inline std::int32_t CLuaBaseEntity::getFreeSlotsCount(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    std::uint8_t  locationID = LOC_INVENTORY;
+    uint8  locationID = LOC_INVENTORY;
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        locationID = (std::uint8_t)lua_tointeger(L, 1);
+        locationID = (uint8)lua_tointeger(L, 1);
         locationID = (locationID < MAX_CONTAINER_ID ? locationID : LOC_INVENTORY);
     }
 
-    std::uint8_t FreeSlots = ((CCharEntity*)m_PBaseEntity)->getStorage(locationID)->GetFreeSlotsCount();
+    uint8 FreeSlots = ((CCharEntity*)m_PBaseEntity)->getStorage(locationID)->GetFreeSlotsCount();
 
     lua_pushinteger(L, FreeSlots);
     return 1;
@@ -1167,7 +1167,7 @@ inline std::int32_t CLuaBaseEntity::createWornItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((std::uint16_t)lua_tointeger(L, 1));
+    uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((uint16)lua_tointeger(L, 1));
 
     if (slotID != -1)
     {
@@ -1200,7 +1200,7 @@ inline std::int32_t CLuaBaseEntity::hasWornItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((std::uint16_t)lua_tointeger(L, 1));
+    uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem((uint16)lua_tointeger(L, 1));
 
     if (slotID != ERROR_SLOTID)
     {
@@ -1226,9 +1226,9 @@ inline std::int32_t CLuaBaseEntity::getStorageItem(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    auto container = (std::uint8_t)lua_tointeger(L, 1); // LOC_INVENTORY etc
-    auto slotID = (std::uint8_t)lua_tointeger(L, 2);   // slot in container
-    auto equipID = (std::uint8_t)(!lua_isnil(L, 3) ? lua_tointeger(L, 3) : 255); // SLOT_MAIN etc
+    auto container = (uint8)lua_tointeger(L, 1); // LOC_INVENTORY etc
+    auto slotID = (uint8)lua_tointeger(L, 2);   // slot in container
+    auto equipID = (uint8)(!lua_isnil(L, 3) ? lua_tointeger(L, 3) : 255); // SLOT_MAIN etc
 
     CItem* PItem = nullptr;
 
@@ -1356,7 +1356,7 @@ inline std::int32_t CLuaBaseEntity::isZoneVisited(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    lua_pushboolean(L, hasBit((std::uint16_t)lua_tointeger(L, 1), PChar->m_ZonesList, sizeof(PChar->m_ZonesList)));
+    lua_pushboolean(L, hasBit((uint16)lua_tointeger(L, 1), PChar->m_ZonesList, sizeof(PChar->m_ZonesList)));
     return 1;
 }
 
@@ -1387,7 +1387,7 @@ inline std::int32_t CLuaBaseEntity::setWeather(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t weather = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 weather = (uint8)lua_tointeger(L, 1);
 
     if (weather < MAX_WEATHER_ID)
     {
@@ -1419,7 +1419,7 @@ inline std::int32_t CLuaBaseEntity::setNation(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->profile.nation = (std::uint8_t)lua_tointeger(L, 1);
+    PChar->profile.nation = (uint8)lua_tointeger(L, 1);
     charutils::SaveCharNation(PChar);
     return 0;
 }
@@ -1446,7 +1446,7 @@ inline std::int32_t CLuaBaseEntity::setCampaignAllegiance(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->profile.campaign_allegiance = (std::uint8_t)lua_tointeger(L, 1);
+    PChar->profile.campaign_allegiance = (uint8)lua_tointeger(L, 1);
     charutils::SaveCampaignAllegiance(PChar);
     return 0;
 }
@@ -1539,13 +1539,13 @@ inline std::int32_t CLuaBaseEntity::addQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t questLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t questID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
     if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        std::uint8_t current = PChar->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
-        std::uint8_t complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = PChar->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if ((current == 0) && (complete == 0))
         {
@@ -1578,13 +1578,13 @@ inline std::int32_t CLuaBaseEntity::delQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t questLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t questID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
     if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        std::uint8_t current = PChar->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
-        std::uint8_t complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = PChar->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if ((current != 0) || (complete != 0))
         {
@@ -1619,13 +1619,13 @@ inline std::int32_t CLuaBaseEntity::getQuestStatus(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t questLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t questID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
     if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        std::uint8_t current = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
-        std::uint8_t complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         lua_pushinteger(L, (complete != 0 ? 2 : (current != 0 ? 1 : 0)));
         return 1;
@@ -1654,12 +1654,12 @@ inline std::int32_t CLuaBaseEntity::completeQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t questLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t questID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
     if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        std::uint8_t complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if (complete == 0)
         {
@@ -1697,12 +1697,12 @@ inline std::int32_t CLuaBaseEntity::hasCompleteQuest(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t questLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t questID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
     if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        std::uint8_t complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         lua_pushboolean(L, (complete != 0));
         return 1;
@@ -1731,8 +1731,8 @@ inline std::int32_t CLuaBaseEntity::addMission(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t missionLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 2);
 
     if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
@@ -1773,14 +1773,14 @@ inline std::int32_t CLuaBaseEntity::delMission(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t missionLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 2);
 
     if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        auto current = (std::uint8_t)PChar->m_missionLog[missionLogID].current;
+        auto current = (uint8)PChar->m_missionLog[missionLogID].current;
         bool complete = (missionLogID == MISSION_COP || MissionID >= 64) ? false : PChar->m_missionLog[missionLogID].complete[MissionID];
 
         if (current == MissionID)
@@ -1821,8 +1821,8 @@ inline std::int32_t CLuaBaseEntity::hasCompletedMission(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t missionLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 2);
 
     bool complete = false;
 
@@ -1857,12 +1857,12 @@ inline std::int32_t CLuaBaseEntity::getCurrentMission(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    std::uint8_t missionLogID = (std::uint8_t)lua_tointeger(L, -1);
-    std::uint8_t MissionID = 0;
+    uint8 missionLogID = (uint8)lua_tointeger(L, -1);
+    uint8 MissionID = 0;
 
     if (missionLogID < MAX_MISSIONAREA)
     {
-        MissionID = (std::uint8_t)((CCharEntity*)m_PBaseEntity)->m_missionLog[missionLogID].current;
+        MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[missionLogID].current;
     }
     else
     {
@@ -1891,8 +1891,8 @@ inline std::int32_t CLuaBaseEntity::completeMission(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t missionLogID = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 2);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 2);
 
     if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
@@ -1929,7 +1929,7 @@ inline std::int32_t CLuaBaseEntity::addAssault(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -1952,11 +1952,11 @@ inline std::int32_t CLuaBaseEntity::delAssault(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    auto current = (std::uint8_t)PChar->m_assaultLog.current;
+    auto current = (uint8)PChar->m_assaultLog.current;
 
     if (current == MissionID)
     {
@@ -1975,7 +1975,7 @@ inline std::int32_t CLuaBaseEntity::hasCompletedAssault(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     bool complete = ((CCharEntity*)m_PBaseEntity)->m_assaultLog.complete[MissionID];
 
@@ -1988,7 +1988,7 @@ inline std::int32_t CLuaBaseEntity::getCurrentAssault(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    std::uint8_t MissionID = (std::uint8_t)((CCharEntity*)m_PBaseEntity)->m_assaultLog.current;
+    uint8 MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_assaultLog.current;
 
     lua_pushinteger(L, MissionID);
     return 1;
@@ -2001,7 +2001,7 @@ inline std::int32_t CLuaBaseEntity::completeAssault(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t MissionID = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 MissionID = (uint8)lua_tointeger(L, 1);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -2030,7 +2030,7 @@ inline std::int32_t CLuaBaseEntity::addKeyItem(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t KeyItemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     charutils::addKeyItem(PChar, KeyItemID);
     PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
@@ -2050,7 +2050,7 @@ inline std::int32_t CLuaBaseEntity::delKeyItem(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t KeyItemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     charutils::delKeyItem(PChar, KeyItemID);
     PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
@@ -2068,7 +2068,7 @@ inline std::int32_t CLuaBaseEntity::hasKeyItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t KeyItemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     lua_pushboolean(L, (charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, KeyItemID) != 0));
     return 1;
@@ -2087,7 +2087,7 @@ inline std::int32_t CLuaBaseEntity::seenKeyItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t KeyItemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     lua_pushboolean(L, (charutils::seenKeyItem((CCharEntity*)m_PBaseEntity, KeyItemID) != 0));
     return 1;
@@ -2109,7 +2109,7 @@ inline std::int32_t CLuaBaseEntity::unseenKeyItem(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t KeyItemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
     charutils::unseenKeyItem(PChar, KeyItemID);
     PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
@@ -2132,7 +2132,7 @@ inline std::int32_t CLuaBaseEntity::getSkillLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_tointeger(L, 1) >= MAX_SKILLTYPE);
 
-    lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->GetSkill((std::uint16_t)lua_tointeger(L, 1)));
+    lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->GetSkill((uint16)lua_tointeger(L, 1)));
     return 1;
 }
 
@@ -2145,8 +2145,8 @@ inline std::int32_t CLuaBaseEntity::setSkillLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_tointeger(L, 1) >= MAX_SKILLTYPE);
 
-    auto SkillID = (std::uint8_t)lua_tointeger(L, 1);
-    auto SkillAmount = (std::uint16_t)lua_tointeger(L, 2);
+    auto SkillID = (uint8)lua_tointeger(L, 1);
+    auto SkillAmount = (uint16)lua_tointeger(L, 2);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -2177,7 +2177,7 @@ inline std::int32_t CLuaBaseEntity::getMaxSkillLevel(lua_State *L)
 
     SKILLTYPE skill = (SKILLTYPE)lua_tointeger(L, -1);
     JOBTYPE job = (JOBTYPE)lua_tointeger(L, -2);
-    auto level = (std::uint8_t)lua_tointeger(L, -3);
+    auto level = (uint8)lua_tointeger(L, -3);
 
     lua_pushinteger(L, battleutils::GetMaxSkill(skill, job, level));
     return 1;
@@ -2194,7 +2194,7 @@ inline std::int32_t CLuaBaseEntity::getSkillRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    std::uint8_t rankID = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 rankID = (uint8)lua_tointeger(L, 1);
 
     lua_pushinteger(L, PChar->RealSkills.rank[rankID]);
     return 1;
@@ -2214,8 +2214,8 @@ inline std::int32_t CLuaBaseEntity::setSkillRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    auto skillID = (std::uint8_t)lua_tointeger(L, 1);
-    auto newrank = (std::uint8_t)lua_tointeger(L, 2);
+    auto skillID = (uint8)lua_tointeger(L, 1);
+    auto newrank = (uint8)lua_tointeger(L, 2);
 
     PChar->WorkingSkills.rank[skillID] = newrank;
     PChar->WorkingSkills.skill[skillID] = (PChar->RealSkills.skill[skillID] / 10) * 0x20 + newrank;
@@ -2246,7 +2246,7 @@ inline std::int32_t CLuaBaseEntity::getCharSkillLevel(lua_State *L)
     else
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-        std::uint8_t skillID = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 skillID = (uint8)lua_tointeger(L, 1);
 
         lua_pushinteger(L, PChar->RealSkills.skill[skillID]);
     }
@@ -2269,7 +2269,7 @@ inline std::int32_t CLuaBaseEntity::getWeaponSkillLevel(lua_State *L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        std::uint8_t SLOT = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
 
         DSP_DEBUG_BREAK_IF(SLOT > 3);
 
@@ -2344,7 +2344,7 @@ inline std::int32_t CLuaBaseEntity::addSpell(lua_State *L)
     }
 
 
-    std::uint16_t SpellID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 SpellID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::addSpell(PChar, SpellID))
     {
@@ -2374,7 +2374,7 @@ inline std::int32_t CLuaBaseEntity::hasSpell(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t SpellID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 SpellID = (uint16)lua_tointeger(L, 1);
 
     lua_pushboolean(L, (charutils::hasSpell((CCharEntity*)m_PBaseEntity, SpellID) != 0));
     return 1;
@@ -2390,7 +2390,7 @@ inline std::int32_t CLuaBaseEntity::canLearnSpell(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     uint32 Message = 0;
-    std::uint16_t spellID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 spellID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::hasSpell((CCharEntity*)m_PBaseEntity, spellID))
     {
@@ -2415,7 +2415,7 @@ inline std::int32_t CLuaBaseEntity::delSpell(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t SpellID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 SpellID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::delSpell(PChar, SpellID))
     {
@@ -2440,7 +2440,7 @@ inline std::int32_t CLuaBaseEntity::addLearnedAbility(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t AbilityID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 AbilityID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::addLearnedAbility(PChar, AbilityID))
     {
@@ -2465,7 +2465,7 @@ inline std::int32_t CLuaBaseEntity::hasLearnedAbility(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t AbilityID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 AbilityID = (uint16)lua_tointeger(L, 1);
 
     lua_pushboolean(L, (charutils::hasLearnedAbility((CCharEntity*)m_PBaseEntity, AbilityID) != 0));
     return 1;
@@ -2481,7 +2481,7 @@ inline std::int32_t CLuaBaseEntity::canLearnAbility(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     uint32 Message = 0;
-    std::uint16_t AbilityID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 AbilityID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::hasLearnedAbility((CCharEntity*)m_PBaseEntity, AbilityID))
     {
@@ -2506,7 +2506,7 @@ inline std::int32_t CLuaBaseEntity::delLearnedAbility(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t AbilityID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 AbilityID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::delLearnedAbility(PChar, AbilityID))
     {
@@ -2525,7 +2525,7 @@ inline std::int32_t CLuaBaseEntity::addLearnedWeaponskill(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    auto wsid = (std::uint8_t)lua_tointeger(L, 1);
+    auto wsid = (uint8)lua_tointeger(L, 1);
 
     charutils::addLearnedWeaponskill(PChar, wsid);
     charutils::BuildingCharWeaponSkills(PChar);
@@ -2541,7 +2541,7 @@ inline std::int32_t CLuaBaseEntity::hasLearnedWeaponskill(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto wsid = (std::uint8_t)lua_tointeger(L, 1);
+    auto wsid = (uint8)lua_tointeger(L, 1);
 
     lua_pushboolean(L, (charutils::hasLearnedWeaponskill((CCharEntity*)m_PBaseEntity, wsid) != 0));
     return 1;
@@ -2558,7 +2558,7 @@ inline std::int32_t CLuaBaseEntity::delLearnedWeaponskill(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    auto wsid = (std::uint8_t)lua_tointeger(L, 1);
+    auto wsid = (uint8)lua_tointeger(L, 1);
 
     charutils::delLearnedWeaponskill(PChar, wsid);
     charutils::BuildingCharWeaponSkills(PChar);
@@ -2656,11 +2656,11 @@ inline std::int32_t CLuaBaseEntity::levelCap(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        std::uint8_t genkai = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 genkai = (uint8)lua_tointeger(L, 1);
 
         if (PChar->jobs.genkai != genkai)
         {
-            PChar->jobs.genkai = (std::uint8_t)lua_tointeger(L, 1);
+            PChar->jobs.genkai = (uint8)lua_tointeger(L, 1);
 
             Sql_Query(SqlHandle, "UPDATE char_jobs SET genkai = %u WHERE charid = %u LIMIT 1", PChar->jobs.genkai, PChar->id);
         }
@@ -2691,7 +2691,7 @@ inline std::int32_t CLuaBaseEntity::levelRestriction(lua_State* L)
     {
         PChar->m_LevelRestriction = (uint32)lua_tointeger(L, 1);
 
-        std::uint8_t NewMLevel = 0;
+        uint8 NewMLevel = 0;
 
         if (PChar->m_LevelRestriction != 0 &&
             PChar->m_LevelRestriction < PChar->jobs.job[PChar->GetMJob()])
@@ -2753,7 +2753,7 @@ inline std::int32_t CLuaBaseEntity::sjRestriction(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint8_t job = (std::uint8_t)lua_tonumber(L, 1);
+    uint8 job = (uint8)lua_tonumber(L, 1);
     bool state = lua_toboolean(L, 2);
 
     if (state)
@@ -2836,7 +2836,7 @@ inline std::int32_t CLuaBaseEntity::startEvent(lua_State *L)
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
 
-    std::uint16_t EventID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 EventID = (uint16)lua_tointeger(L, 1);
 
     uint32 param0 = 0;
     uint32 param1 = 0;
@@ -2846,7 +2846,7 @@ inline std::int32_t CLuaBaseEntity::startEvent(lua_State *L)
     uint32 param5 = 0;
     uint32 param6 = 0;
     uint32 param7 = 0;
-    std::int16_t textTable = -1;
+    int16 textTable = -1;
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
         param0 = (uint32)lua_tointeger(L, 2);
@@ -2865,7 +2865,7 @@ inline std::int32_t CLuaBaseEntity::startEvent(lua_State *L)
     if (!lua_isnil(L, 9) && lua_isnumber(L, 9))
         param7 = (uint32)lua_tointeger(L, 9);
     if (!lua_isnil(L, 10) && lua_isnumber(L, 10))
-        textTable = (std::int16_t)lua_tointeger(L, 10);
+        textTable = (int16)lua_tointeger(L, 10);
 
     ((CCharEntity*)m_PBaseEntity)->pushPacket(
         new CEventPacket(
@@ -2908,7 +2908,7 @@ inline std::int32_t CLuaBaseEntity::startEventString(lua_State *L)
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
 
-    std::uint16_t EventID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 EventID = (uint16)lua_tointeger(L, 1);
 
     string_t string0 = "";
     string_t string1 = "";
@@ -3135,7 +3135,7 @@ inline std::int32_t CLuaBaseEntity::showText(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint16_t messageID = (std::uint16_t)lua_tointeger(L, 2);
+    uint16 messageID = (uint16)lua_tointeger(L, 2);
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
@@ -3231,15 +3231,15 @@ inline std::int32_t CLuaBaseEntity::sendGuild(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
 
-    std::uint16_t GuildID = (std::uint16_t)lua_tonumber(L, 1);
-    std::uint8_t  open = (std::uint8_t)lua_tonumber(L, 2);
-    std::uint8_t  close = (std::uint8_t)lua_tonumber(L, 3);
-    std::uint8_t  holiday = (std::uint8_t)lua_tonumber(L, 4);
+    uint16 GuildID = (uint16)lua_tonumber(L, 1);
+    uint8  open = (uint8)lua_tonumber(L, 2);
+    uint8  close = (uint8)lua_tonumber(L, 3);
+    uint8  holiday = (uint8)lua_tonumber(L, 4);
 
     DSP_DEBUG_BREAK_IF(open > close);
 
-    std::uint8_t VanadielHour = (std::uint8_t)CVanaTime::getInstance()->getHour();
-    std::uint8_t VanadielDay = (std::uint8_t)CVanaTime::getInstance()->getWeekday();
+    uint8 VanadielHour = (uint8)CVanaTime::getInstance()->getHour();
+    uint8 VanadielDay = (uint8)CVanaTime::getInstance()->getWeekday();
 
     GUILDSTATUS status = GUILD_OPEN;
 
@@ -3276,7 +3276,7 @@ inline std::int32_t CLuaBaseEntity::getCurrentGPItem(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto GuildID = (std::uint8_t)lua_tonumber(L, 1);
+    auto GuildID = (uint8)lua_tonumber(L, 1);
 
     CGuild* PGuild = guildutils::GetGuild(GuildID);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -3304,14 +3304,14 @@ inline std::int32_t CLuaBaseEntity::addGuildPoints(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    auto GuildID = (std::uint8_t)lua_tonumber(L, 1);
-    auto slotID = (std::uint8_t)lua_tonumber(L, 2);
+    auto GuildID = (uint8)lua_tonumber(L, 1);
+    auto slotID = (uint8)lua_tonumber(L, 2);
 
     CGuild* PGuild = guildutils::GetGuild(GuildID);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::int16_t points = 0;
-    std::uint8_t items = PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotID), points);
+    int16 points = 0;
+    uint8 items = PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotID), points);
 
     lua_pushinteger(L, items);
     lua_pushinteger(L, points);
@@ -3407,11 +3407,11 @@ inline std::int32_t CLuaBaseEntity::setPetName(lua_State *L)
 
     std::int32_t n = lua_gettop(L);
 
-    std::uint8_t petType = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 petType = (uint8)lua_tointeger(L, 1);
 
     if (n == 2)
     {
-        std::uint16_t value = (std::uint16_t)lua_tointeger(L, 2);
+        uint16 value = (uint16)lua_tointeger(L, 2);
 
         if (petType == PETTYPE_WYVERN)
         {
@@ -3460,7 +3460,7 @@ inline std::int32_t CLuaBaseEntity::clearGearSetMods(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    for (std::uint8_t i = 0; i < PChar->m_GearSetMods.size(); ++i)
+    for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
     {
         GearSetMod_t gearSetMod = PChar->m_GearSetMods.at(i);
         PChar->delModifier(gearSetMod.modId, gearSetMod.modValue);
@@ -3487,13 +3487,13 @@ inline std::int32_t CLuaBaseEntity::addGearSetMod(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
 
     GearSetMod_t gearSetMod;
-    gearSetMod.modNameId = (std::uint8_t)lua_tonumber(L, 1);
+    gearSetMod.modNameId = (uint8)lua_tonumber(L, 1);
     gearSetMod.modId = static_cast<Mod>(lua_tointeger(L, 2));
-    gearSetMod.modValue = (std::uint16_t)lua_tonumber(L, 3);
+    gearSetMod.modValue = (uint16)lua_tonumber(L, 3);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    for (std::uint8_t i = 0; i < PChar->m_GearSetMods.size(); ++i)
+    for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
     {
         GearSetMod_t exsistingMod = PChar->m_GearSetMods.at(i);
 
@@ -3523,10 +3523,10 @@ inline std::int32_t CLuaBaseEntity::hasGearSetMod(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    auto modNameId = (std::uint8_t)lua_tonumber(L, 1);
+    auto modNameId = (uint8)lua_tonumber(L, 1);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    for (std::uint8_t i = 0; i < PChar->m_GearSetMods.size(); ++i)
+    for (uint8 i = 0; i < PChar->m_GearSetMods.size(); ++i)
     {
         GearSetMod_t exsistingMod = PChar->m_GearSetMods.at(i);
 
@@ -3614,7 +3614,7 @@ inline std::int32_t CLuaBaseEntity::getMaskBit(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
 
-    std::uint8_t bit = (std::uint8_t)lua_tointeger(L, -1);
+    uint8 bit = (uint8)lua_tointeger(L, -1);
 
     DSP_DEBUG_BREAK_IF(bit >= 32);
 
@@ -3635,10 +3635,10 @@ inline std::int32_t CLuaBaseEntity::countMaskBits(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t  count = 0;
+    uint8  count = 0;
     uint32 value = (uint32)lua_tointeger(L, 1);
 
-    for (std::uint8_t bit = 0; bit < 32; bit++)
+    for (uint8 bit = 0; bit < 32; bit++)
     {
         if (value & (1 << bit)) count++;
     }
@@ -3663,7 +3663,7 @@ inline std::int32_t CLuaBaseEntity::isMaskFull(lua_State *L)
     bool condition = false;
 
     std::int32_t value = (std::int32_t)lua_tointeger(L, -2);
-    std::int16_t size = (std::int16_t)lua_tointeger(L, -1);
+    int16 size = (int16)lua_tointeger(L, -1);
 
     condition = (value == intpow32(2, size) - 1);
 
@@ -3707,11 +3707,11 @@ inline std::int32_t CLuaBaseEntity::tradeComplete(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    for (std::uint8_t slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
+    for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
     {
         if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF)
         {
-            std::uint8_t invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
+            uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
             std::int32_t quantity = PChar->TradeContainer->getQuantity(slotID);
 
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
@@ -3736,11 +3736,11 @@ inline std::int32_t CLuaBaseEntity::confirmTrade(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    for (std::uint8_t slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
+    for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
     {
         if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
         {
-            std::uint8_t invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
+            uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
             auto quantity = (std::int32_t)std::max<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
 
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
@@ -3764,7 +3764,7 @@ inline std::int32_t CLuaBaseEntity::hasTitle(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t TitleID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 TitleID = (uint16)lua_tointeger(L, 1);
 
     lua_pushboolean(L, (charutils::hasTitle((CCharEntity*)m_PBaseEntity, TitleID) != 0));
     return 1;
@@ -3800,7 +3800,7 @@ inline std::int32_t CLuaBaseEntity::setTitle(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t TitleID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 TitleID = (uint16)lua_tointeger(L, 1);
 
     charutils::setTitle(PChar, TitleID);
 
@@ -3822,7 +3822,7 @@ inline int CLuaBaseEntity::addTitle(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t TitleID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 TitleID = (uint16)lua_tointeger(L, 1);
 
     PChar->profile.title = TitleID;
     PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -3847,7 +3847,7 @@ inline std::int32_t CLuaBaseEntity::delTitle(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t TitleID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 TitleID = (uint16)lua_tointeger(L, 1);
 
     if (charutils::delTitle(PChar, TitleID))
     {
@@ -3984,7 +3984,7 @@ inline std::int32_t CLuaBaseEntity::messageSpecial(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t messageID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 messageID = (uint16)lua_tointeger(L, 1);
 
     uint32 param0 = 0;
     uint32 param1 = 0;
@@ -4029,7 +4029,7 @@ inline std::int32_t CLuaBaseEntity::messageBasic(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t messageID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 messageID = (uint16)lua_tointeger(L, 1);
 
     uint32 param0 = 0;
     uint32 param1 = 0;
@@ -4064,7 +4064,7 @@ inline std::int32_t CLuaBaseEntity::messagePublic(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t messageID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 messageID = (uint16)lua_tointeger(L, 1);
 
     uint32 param0 = 0;
     uint32 param1 = 0;
@@ -4101,7 +4101,7 @@ inline std::int32_t CLuaBaseEntity::capSkill(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto skill = (std::uint8_t)lua_tointeger(L, 1);
+    auto skill = (uint8)lua_tointeger(L, 1);
     if (skill < MAX_SKILLTYPE)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -4113,7 +4113,7 @@ inline std::int32_t CLuaBaseEntity::capSkill(lua_State* L)
             PChar->delModifier(Mod::ACC, PChar->GetSkill(skill));
         }
         */
-        std::uint16_t maxSkill = 10 * battleutils::GetMaxSkill((SKILLTYPE)skill, PChar->GetMJob(), PChar->GetMLevel());
+        uint16 maxSkill = 10 * battleutils::GetMaxSkill((SKILLTYPE)skill, PChar->GetMJob(), PChar->GetMLevel());
         PChar->RealSkills.skill[skill] = maxSkill; //set to capped
         PChar->WorkingSkills.skill[skill] = maxSkill / 10;
         PChar->WorkingSkills.skill[skill] |= 0x8000; //set blue capped flag
@@ -4141,7 +4141,7 @@ inline std::int32_t CLuaBaseEntity::capAllSkills(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    for (std::uint8_t i = 1; i < 45; ++i)
+    for (uint8 i = 1; i < 45; ++i)
     {
         const char* Query = "INSERT INTO char_skills "
             "SET "
@@ -4159,7 +4159,7 @@ inline std::int32_t CLuaBaseEntity::capAllSkills(lua_State* L)
             5000,
             PChar->RealSkills.rank[i]);
 
-        std::uint16_t maxSkill = 10 * battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetMJob(), PChar->GetMLevel());
+        uint16 maxSkill = 10 * battleutils::GetMaxSkill((SKILLTYPE)i, PChar->GetMJob(), PChar->GetMLevel());
         PChar->RealSkills.skill[i] = maxSkill; //set to capped
         PChar->WorkingSkills.skill[i] = maxSkill / 10;
         PChar->WorkingSkills.skill[i] |= 0x8000; //set blue capped flag
@@ -4179,7 +4179,7 @@ inline std::int32_t CLuaBaseEntity::messageSystem(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t messageID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 messageID = (uint16)lua_tointeger(L, 1);
 
     uint32 param0 = 0;
     uint32 param1 = 0;
@@ -4201,12 +4201,12 @@ inline std::int32_t CLuaBaseEntity::createShop(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     ((CCharEntity*)m_PBaseEntity)->Container->Clean();
-    ((CCharEntity*)m_PBaseEntity)->Container->setSize((std::uint8_t)lua_tointeger(L, 1) + 1);
+    ((CCharEntity*)m_PBaseEntity)->Container->setSize((uint8)lua_tointeger(L, 1) + 1);
 
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
-        ((CCharEntity*)m_PBaseEntity)->Container->setType((std::uint8_t)lua_tointeger(L, 2));
+        ((CCharEntity*)m_PBaseEntity)->Container->setType((uint8)lua_tointeger(L, 2));
     }
     return 0;
 }
@@ -4221,10 +4221,10 @@ inline std::int32_t CLuaBaseEntity::addShopItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
 
-    std::uint16_t itemID = (std::uint16_t)lua_tonumber(L, -2);
+    uint16 itemID = (uint16)lua_tonumber(L, -2);
     uint32 price = (uint32)lua_tonumber(L, -1);
 
-    std::uint8_t slotID = ((CCharEntity*)m_PBaseEntity)->Container->getItemsCount();
+    uint8 slotID = ((CCharEntity*)m_PBaseEntity)->Container->getItemsCount();
 
     ((CCharEntity*)m_PBaseEntity)->Container->setItem(slotID, itemID, 0, price);
 
@@ -4249,11 +4249,11 @@ inline std::int32_t CLuaBaseEntity::getFame(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    std::uint8_t fameArea = (std::uint8_t)lua_tointeger(L, -1);
+    uint8 fameArea = (uint8)lua_tointeger(L, -1);
 
     if (fameArea <= 15)
     {
-        std::uint16_t fame = 0;
+        uint16 fame = 0;
         float fameMultiplier = map_config.fame_multiplier;
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -4262,16 +4262,16 @@ inline std::int32_t CLuaBaseEntity::getFame(lua_State *L)
             case 0: // San d'Oria
             case 1: // Bastok
             case 2: // Windurst
-                fame = (std::uint16_t)(PChar->profile.fame[fameArea] * fameMultiplier);
+                fame = (uint16)(PChar->profile.fame[fameArea] * fameMultiplier);
                 break;
             case 3: // Jeuno
-                fame = (std::uint16_t)(PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) * fameMultiplier / 3));
+                fame = (uint16)(PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) * fameMultiplier / 3));
                 break;
             case 4: // Selbina / Rabao
-                fame = (std::uint16_t)((PChar->profile.fame[0] + PChar->profile.fame[1]) * fameMultiplier / 2);
+                fame = (uint16)((PChar->profile.fame[0] + PChar->profile.fame[1]) * fameMultiplier / 2);
                 break;
             case 5: // Norg
-                fame = (std::uint16_t)(PChar->profile.fame[3] * fameMultiplier);
+                fame = (uint16)(PChar->profile.fame[3] * fameMultiplier);
                 break;
             // Abyssea
             case 6: // Konschtat
@@ -4283,10 +4283,10 @@ inline std::int32_t CLuaBaseEntity::getFame(lua_State *L)
             case 12: // Altepa
             case 13: // Grauberg
             case 14: // Uleguerand
-                fame = (std::uint16_t)(PChar->profile.fame[fameArea-1] * fameMultiplier);
+                fame = (uint16)(PChar->profile.fame[fameArea-1] * fameMultiplier);
                 break;
             case 15: // Adoulin
-                fame = (std::uint16_t)(PChar->profile.fame[14] * fameMultiplier);
+                fame = (uint16)(PChar->profile.fame[14] * fameMultiplier);
                 break;
         }
         lua_pushinteger(L, fame);
@@ -4317,13 +4317,13 @@ inline std::int32_t CLuaBaseEntity::getFameLevel(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    std::uint8_t fameArea = (std::uint8_t)lua_tointeger(L, -1);
+    uint8 fameArea = (uint8)lua_tointeger(L, -1);
 
     if (fameArea <= 15)
     {
         this->getFame(L);
-        std::uint16_t fame = (std::uint16_t)lua_tointeger(L, -1);
-        std::uint8_t  fameLevel = 1;
+        uint16 fame = (uint16)lua_tointeger(L, -1);
+        uint8  fameLevel = 1;
 
         if (fame >= 613)
             fameLevel = 9;
@@ -4374,8 +4374,8 @@ inline std::int32_t CLuaBaseEntity::setFame(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t fameArea = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint16_t fame = (std::uint16_t)lua_tointeger(L, 2);
+    uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint16 fame = (uint16)lua_tointeger(L, 2);
 
     if (fameArea <= 15)
     {
@@ -4440,8 +4440,8 @@ inline std::int32_t CLuaBaseEntity::addFame(lua_State *L)
     }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t fameArea = (std::uint8_t)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
-    std::uint16_t fame = (std::uint16_t)lua_tointeger(L, 2);
+    uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint16 fame = (uint16)lua_tointeger(L, 2);
 
     if (fameArea <= 15)
     {
@@ -4507,7 +4507,7 @@ inline std::int32_t CLuaBaseEntity::setAnimation(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t animation = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 animation = (uint8)lua_tointeger(L, 1);
 
     if (m_PBaseEntity->animation != animation)
     {
@@ -4529,7 +4529,7 @@ inline std::int32_t CLuaBaseEntity::speed(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        auto speed = std::min<std::uint8_t>((std::uint8_t)lua_tointeger(L, 1), 255);
+        auto speed = std::min<uint8>((uint8)lua_tointeger(L, 1), 255);
 
         if (m_PBaseEntity->speed != speed)
         {
@@ -4562,7 +4562,7 @@ inline std::int32_t CLuaBaseEntity::AnimationSub(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        std::uint8_t animationsub = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 animationsub = (uint8)lua_tointeger(L, 1);
 
         if (m_PBaseEntity->animationsub != animationsub)
         {
@@ -4598,7 +4598,7 @@ inline std::int32_t CLuaBaseEntity::costume(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        std::uint16_t costum = (std::uint16_t)lua_tointeger(L, 1);
+        uint16 costum = (uint16)lua_tointeger(L, 1);
 
         if (PChar->m_Costum != costum &&
             PChar->status != STATUS_SHUTDOWN &&
@@ -4628,7 +4628,7 @@ inline std::int32_t CLuaBaseEntity::costume2(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        std::uint16_t model = (std::uint16_t)lua_tointeger(L, 1);
+        uint16 model = (uint16)lua_tointeger(L, 1);
 
         if (PChar->m_Monstrosity != model &&
             PChar->status != STATUS_SHUTDOWN &&
@@ -4751,7 +4751,7 @@ inline std::int32_t CLuaBaseEntity::sendTractor(lua_State *L)
         PChar->m_StartActionPos.x = (float)lua_tonumber(L, 1);
         PChar->m_StartActionPos.y = (float)lua_tonumber(L, 2);
         PChar->m_StartActionPos.z = (float)lua_tonumber(L, 3);
-        PChar->m_StartActionPos.rotation = (std::uint8_t)lua_tointeger(L, 4);
+        PChar->m_StartActionPos.rotation = (uint8)lua_tointeger(L, 4);
 
         PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_TRACTOR));
     }
@@ -4772,7 +4772,7 @@ inline std::int32_t CLuaBaseEntity::sendReraise(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint8_t RaiseLevel = (std::uint8_t)lua_tonumber(L, 1);
+    uint8 RaiseLevel = (uint8)lua_tonumber(L, 1);
 
     if (RaiseLevel == 0 || RaiseLevel > 3)
     {
@@ -4794,7 +4794,7 @@ inline std::int32_t CLuaBaseEntity::sendRaise(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint8_t RaiseLevel = (std::uint8_t)lua_tonumber(L, 1);
+    uint8 RaiseLevel = (uint8)lua_tonumber(L, 1);
 
     if (RaiseLevel == 0 || RaiseLevel > 3)
     {
@@ -4837,13 +4837,13 @@ inline std::int32_t CLuaBaseEntity::addStatusEffect(lua_State *L)
 
         CStatusEffect * PEffect = new CStatusEffect(
             (EFFECT)lua_tointeger(L, 1),
-            (std::uint16_t)lua_tointeger(L, 1),
-            (std::uint16_t)lua_tointeger(L, 2),
-            (std::uint16_t)lua_tointeger(L, 3),
-            (std::uint16_t)lua_tointeger(L, 4),
-            (n >= 5 ? (std::uint16_t)lua_tointeger(L, 5) : 0),
-            (n >= 6 ? (std::uint16_t)lua_tointeger(L, 6) : 0),
-            (n >= 7 ? (std::uint16_t)lua_tointeger(L, 7) : 0));
+            (uint16)lua_tointeger(L, 1),
+            (uint16)lua_tointeger(L, 2),
+            (uint16)lua_tointeger(L, 3),
+            (uint16)lua_tointeger(L, 4),
+            (n >= 5 ? (uint16)lua_tointeger(L, 5) : 0),
+            (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),
+            (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0));
 
         lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
     }
@@ -4878,13 +4878,13 @@ inline std::int32_t CLuaBaseEntity::addStatusEffectEx(lua_State *L)
 
     CStatusEffect * PEffect = new CStatusEffect(
         (EFFECT)lua_tointeger(L, 1),
-        (std::uint16_t)lua_tointeger(L, 2),
-        (std::uint16_t)lua_tointeger(L, 3),
-        (std::uint16_t)lua_tointeger(L, 4),
-        (std::uint16_t)lua_tointeger(L, 5),
-        (n >= 6 ? (std::uint16_t)lua_tointeger(L, 6) : 0),
-        (n >= 7 ? (std::uint16_t)lua_tointeger(L, 7) : 0),
-        (n >= 8 ? (std::uint16_t)lua_tointeger(L, 8) : 0));
+        (uint16)lua_tointeger(L, 2),
+        (uint16)lua_tointeger(L, 3),
+        (uint16)lua_tointeger(L, 4),
+        (uint16)lua_tointeger(L, 5),
+        (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),
+        (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0),
+        (n >= 8 ? (uint16)lua_tointeger(L, 8) : 0));
 
     lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect, silent));
     return 1;
@@ -4904,8 +4904,8 @@ inline std::int32_t CLuaBaseEntity::getPartyMember(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, -2));
 
-    std::uint8_t member = (std::uint8_t)lua_tonumber(L, -1);
-    std::uint8_t allianceparty = (std::uint8_t)lua_tonumber(L, -2);
+    uint8 member = (uint8)lua_tonumber(L, -1);
+    uint8 allianceparty = (uint8)lua_tonumber(L, -2);
 
     CBattleEntity* PTargetChar = nullptr;
 
@@ -4941,15 +4941,15 @@ inline std::int32_t CLuaBaseEntity::getPartySize(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t allianceparty = (std::uint8_t)lua_tonumber(L, 1);
-    std::uint8_t partysize = 1;
+    uint8 allianceparty = (uint8)lua_tonumber(L, 1);
+    uint8 partysize = 1;
 
     if (((CBattleEntity*)m_PBaseEntity)->PParty != nullptr)
     {
         if (allianceparty == 0)
-            partysize = (std::uint8_t)((CBattleEntity*)m_PBaseEntity)->PParty->members.size();
+            partysize = (uint8)((CBattleEntity*)m_PBaseEntity)->PParty->members.size();
         else if (((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance != nullptr)
-            partysize = (std::uint8_t)((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.at(allianceparty)->members.size();
+            partysize = (uint8)((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.at(allianceparty)->members.size();
     }
 
     lua_pushnumber(L, partysize);
@@ -4960,12 +4960,12 @@ inline std::int32_t CLuaBaseEntity::getAllianceSize(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    std::uint8_t alliancesize = 1;
+    uint8 alliancesize = 1;
 
     if (((CBattleEntity*)m_PBaseEntity)->PParty != nullptr)
     {
         if (((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance != nullptr)
-            alliancesize = (std::uint8_t)((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.size();
+            alliancesize = (uint8)((CBattleEntity*)m_PBaseEntity)->PParty->m_PAlliance->partyList.size();
     }
     lua_pushnumber(L, alliancesize);
     return 1;
@@ -4987,12 +4987,12 @@ inline std::int32_t CLuaBaseEntity::addPartyEffect(lua_State *L)
 
     CStatusEffect * PEffect = new CStatusEffect(
         (EFFECT)lua_tointeger(L, 1),
-        (std::uint16_t)lua_tointeger(L, 2),
-        (std::uint16_t)lua_tointeger(L, 3),
-        (std::uint16_t)lua_tointeger(L, 4),
-        (n >= 5 ? (std::uint16_t)lua_tointeger(L, 5) : 0),
-        (n >= 6 ? (std::uint16_t)lua_tointeger(L, 6) : 0),
-        (n >= 7 ? (std::uint16_t)lua_tointeger(L, 7) : 0));
+        (uint16)lua_tointeger(L, 2),
+        (uint16)lua_tointeger(L, 3),
+        (uint16)lua_tointeger(L, 4),
+        (n >= 5 ? (uint16)lua_tointeger(L, 5) : 0),
+        (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),
+        (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0));
 
     CBattleEntity* PEntity = ((CBattleEntity*)m_PBaseEntity);
 
@@ -5019,7 +5019,7 @@ inline std::int32_t CLuaBaseEntity::getStatusEffect(lua_State *L)
     CStatusEffect* PStatusEffect;
 
     if (lua_gettop(L) >= 2)
-        PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect((EFFECT)lua_tointeger(L, 1), (std::uint16_t)lua_tointeger(L, 2));
+        PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect((EFFECT)lua_tointeger(L, 1), (uint16)lua_tointeger(L, 2));
     else
         PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetStatusEffect((EFFECT)lua_tointeger(L, 1));
 
@@ -5086,7 +5086,7 @@ inline std::int32_t CLuaBaseEntity::hasStatusEffect(lua_State *L)
     {
         hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->HasStatusEffect(
             (EFFECT)lua_tointeger(L, 1),
-            (std::uint16_t)lua_tointeger(L, 2));
+            (uint16)lua_tointeger(L, 2));
     }
     else
     {
@@ -5122,7 +5122,7 @@ inline std::int32_t CLuaBaseEntity::countEffect(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t numEffects = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetEffectsCount((EFFECT)lua_tointeger(L, 1));
+    uint8 numEffects = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetEffectsCount((EFFECT)lua_tointeger(L, 1));
 
     lua_pushinteger(L, numEffects);
     return 1;
@@ -5149,7 +5149,7 @@ inline std::int32_t CLuaBaseEntity::numBustEffects(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint8_t numEffects = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetEffectsCount(EFFECT_BUST);
+    uint8 numEffects = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetEffectsCount(EFFECT_BUST);
 
     lua_pushinteger(L, numEffects);
     return 1;
@@ -5166,7 +5166,7 @@ inline std::int32_t CLuaBaseEntity::canGainStatusEffect(lua_State *L)
 
     hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->CanGainStatusEffect(
         (EFFECT)lua_tointeger(L, 1),
-        (std::uint16_t)lua_tointeger(L, 2));
+        (uint16)lua_tointeger(L, 2));
 
     lua_pushboolean(L, hasEffect);
     return 1;
@@ -5193,7 +5193,7 @@ inline std::int32_t CLuaBaseEntity::delStatusEffect(lua_State *L)
             /* Delete matching status effect with matching power */
             result = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(
                 (EFFECT)lua_tointeger(L, 1),
-                (std::uint16_t)lua_tointeger(L, 2));
+                (uint16)lua_tointeger(L, 2));
         }
         else
         {
@@ -5302,14 +5302,14 @@ inline std::int32_t CLuaBaseEntity::addBardSong(lua_State *L)
 
     CStatusEffect * PEffect = new CStatusEffect(
         (EFFECT)lua_tointeger(L, 2),
-        (std::uint16_t)lua_tointeger(L, 2),
-        (std::uint16_t)lua_tointeger(L, 3),
-        (std::uint16_t)lua_tointeger(L, 4),
-        (std::uint16_t)lua_tointeger(L, 5),
-        (std::uint16_t)lua_tointeger(L, 6),
-        (std::uint16_t)lua_tointeger(L, 7),
-        (std::uint16_t)lua_tointeger(L, 8));
-    std::uint8_t maxSongs = 2;
+        (uint16)lua_tointeger(L, 2),
+        (uint16)lua_tointeger(L, 3),
+        (uint16)lua_tointeger(L, 4),
+        (uint16)lua_tointeger(L, 5),
+        (uint16)lua_tointeger(L, 6),
+        (uint16)lua_tointeger(L, 7),
+        (uint16)lua_tointeger(L, 8));
+    uint8 maxSongs = 2;
     if (PEntity && PEntity->m_PBaseEntity && PEntity->m_PBaseEntity->objtype == TYPE_PC)
     {
         CCharEntity* PCaster = (CCharEntity*)PEntity->m_PBaseEntity;
@@ -5344,18 +5344,18 @@ inline std::int32_t CLuaBaseEntity::addCorsairRoll(lua_State *L)
     std::int32_t n = lua_gettop(L);
 
     auto casterJob = lua_tointeger(L, 1);
-    auto bustDuration = (std::uint8_t)lua_tointeger(L, 2);
+    auto bustDuration = (uint8)lua_tointeger(L, 2);
 
     CStatusEffect * PEffect = new CStatusEffect(
         (EFFECT)lua_tointeger(L, 3),
-        (std::uint16_t)lua_tointeger(L, 3),
-        (std::uint16_t)lua_tointeger(L, 4),
-        (std::uint16_t)lua_tointeger(L, 5),
-        (std::uint16_t)lua_tointeger(L, 6),
-        (n >= 7 ? (std::uint16_t)lua_tointeger(L, 7) : 0),
-        (n >= 8 ? (std::uint16_t)lua_tointeger(L, 8) : 0),
-        (n >= 9 ? (std::uint16_t)lua_tointeger(L, 9) : 0));
-    std::uint8_t maxRolls = 2;
+        (uint16)lua_tointeger(L, 3),
+        (uint16)lua_tointeger(L, 4),
+        (uint16)lua_tointeger(L, 5),
+        (uint16)lua_tointeger(L, 6),
+        (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0),
+        (n >= 8 ? (uint16)lua_tointeger(L, 8) : 0),
+        (n >= 9 ? (uint16)lua_tointeger(L, 9) : 0));
+    uint8 maxRolls = 2;
     if (casterJob != JOB_COR)
     {
         maxRolls = 1;
@@ -5373,7 +5373,7 @@ inline std::int32_t CLuaBaseEntity::doWildCard(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    battleutils::DoWildCardToEntity(static_cast<CCharEntity*>(m_PBaseEntity), static_cast<CCharEntity*>(PEntity->m_PBaseEntity), (std::uint8_t)lua_tointeger(L, 2));
+    battleutils::DoWildCardToEntity(static_cast<CCharEntity*>(m_PBaseEntity), static_cast<CCharEntity*>(PEntity->m_PBaseEntity), (uint8)lua_tointeger(L, 2));
 
     return 0;
 }
@@ -5479,7 +5479,7 @@ inline std::int32_t CLuaBaseEntity::getStatusEffectElement(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto statusId = (std::uint16_t)lua_tointeger(L, 1);
+    auto statusId = (uint16)lua_tointeger(L, 1);
 
     lua_pushinteger(L, effects::GetEffectElement(statusId));
     return 1;
@@ -5551,7 +5551,7 @@ inline std::int32_t CLuaBaseEntity::addMod(lua_State *L)
 
     ((CBattleEntity*)m_PBaseEntity)->addModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
-        (std::int16_t)lua_tointeger(L, 2));
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5580,7 +5580,7 @@ inline std::int32_t CLuaBaseEntity::delMod(lua_State *L)
 
     ((CBattleEntity*)m_PBaseEntity)->delModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
-        (std::int16_t)lua_tointeger(L, 2));
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5596,7 +5596,7 @@ inline std::int32_t CLuaBaseEntity::setMod(lua_State *L)
 
     ((CBattleEntity*)m_PBaseEntity)->setModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
-        (std::int16_t)lua_tointeger(L, 2));
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5611,7 +5611,7 @@ inline std::int32_t CLuaBaseEntity::addPetMod(lua_State* L)
     ((CBattleEntity*)m_PBaseEntity)->addPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
         PetModType::All,
-        (std::int16_t)lua_tointeger(L, 2));
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5626,7 +5626,7 @@ inline std::int32_t CLuaBaseEntity::delPetMod(lua_State* L)
     ((CBattleEntity*)m_PBaseEntity)->delPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
         PetModType::All,
-        (std::int16_t)lua_tointeger(L, 2));
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5641,7 +5641,7 @@ inline std::int32_t CLuaBaseEntity::setPetMod(lua_State* L)
     ((CBattleEntity*)m_PBaseEntity)->setPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
         PetModType::All,
-        (std::int16_t)lua_tointeger(L, 2));
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5652,7 +5652,7 @@ inline std::int32_t CLuaBaseEntity::getMobMod(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->getMobMod((std::uint16_t)lua_tointeger(L, 1)));
+    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->getMobMod((uint16)lua_tointeger(L, 1)));
     return 1;
 }
 
@@ -5672,8 +5672,8 @@ inline std::int32_t CLuaBaseEntity::setMobMod(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     ((CMobEntity*)m_PBaseEntity)->setMobMod(
-        (std::uint16_t)lua_tointeger(L, 1),
-        (std::int16_t)lua_tointeger(L, 2));
+        (uint16)lua_tointeger(L, 1),
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5693,8 +5693,8 @@ inline std::int32_t CLuaBaseEntity::addMobMod(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     ((CMobEntity*)m_PBaseEntity)->addMobMod(
-        (std::uint16_t)lua_tointeger(L, 1),
-        (std::int16_t)lua_tointeger(L, 2));
+        (uint16)lua_tointeger(L, 1),
+        (int16)lua_tointeger(L, 2));
     return 0;
 }
 
@@ -5714,8 +5714,8 @@ inline std::int32_t CLuaBaseEntity::delMobMod(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     ((CMobEntity*)m_PBaseEntity)->addMobMod(
-        (std::uint16_t)lua_tointeger(L, 1),
-        (std::int16_t)(-lua_tointeger(L, 2)));
+        (uint16)lua_tointeger(L, 1),
+        (int16)(-lua_tointeger(L, 2)));
     return 0;
 }
 
@@ -5751,7 +5751,7 @@ inline std::int32_t CLuaBaseEntity::delExp(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    charutils::DelExperiencePoints(PChar, 0, std::clamp<std::uint16_t>((std::uint16_t)lua_tointeger(L, 1), 0, 65535));
+    charutils::DelExperiencePoints(PChar, 0, std::clamp<uint16>((uint16)lua_tointeger(L, 1), 0, 65535));
     return 0;
 }
 
@@ -5796,8 +5796,8 @@ inline std::int32_t CLuaBaseEntity::changeJob(lua_State *L)
 
     PChar->resetPetZoningInfo();
 
-    PChar->jobs.unlocked |= (1 << (std::uint8_t)lua_tointeger(L, 1));
-    PChar->SetMJob((std::uint8_t)lua_tointeger(L, 1));
+    PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L, 1));
+    PChar->SetMJob((uint8)lua_tointeger(L, 1));
 
     if (lua_tointeger(L, 1) == JOB_BLU)
     {
@@ -5860,8 +5860,8 @@ inline std::int32_t CLuaBaseEntity::changesJob(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->jobs.unlocked |= (1 << (std::uint8_t)lua_tointeger(L, 1));
-    PChar->SetSJob((std::uint8_t)lua_tointeger(L, 1));
+    PChar->jobs.unlocked |= (1 << (uint8)lua_tointeger(L, 1));
+    PChar->SetSJob((uint8)lua_tointeger(L, 1));
     charutils::UpdateSubJob(PChar);
 
     if (lua_tointeger(L, 1) == JOB_BLU)
@@ -5893,7 +5893,7 @@ inline std::int32_t CLuaBaseEntity::setsLevel(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->jobs.job[PChar->GetSJob()] = (std::uint8_t)lua_tointeger(L, 1);
+    PChar->jobs.job[PChar->GetSJob()] = (uint8)lua_tointeger(L, 1);
     PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
     PChar->jobs.exp[PChar->GetSJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetSJob()]) - 1;
 
@@ -5940,8 +5940,8 @@ inline std::int32_t CLuaBaseEntity::setLevel(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->SetMLevel((std::uint8_t)lua_tointeger(L, 1));
-    PChar->jobs.job[PChar->GetMJob()] = (std::uint8_t)lua_tointeger(L, 1);
+    PChar->SetMLevel((uint8)lua_tointeger(L, 1));
+    PChar->jobs.job[PChar->GetMJob()] = (uint8)lua_tointeger(L, 1);
     PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
     PChar->jobs.exp[PChar->GetMJob()] = charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
 
@@ -5988,7 +5988,7 @@ inline std::int32_t CLuaBaseEntity::setMerits(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->PMeritPoints->SetMeritPoints((std::uint8_t)lua_tointeger(L, 1));
+    PChar->PMeritPoints->SetMeritPoints((uint8)lua_tointeger(L, 1));
 
     PChar->pushPacket(new CMenuMeritPacket(PChar));
 
@@ -6111,7 +6111,7 @@ inline std::int32_t CLuaBaseEntity::moghouseFlag(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        PChar->profile.mhflag |= (std::uint8_t)lua_tointeger(L, 1);
+        PChar->profile.mhflag |= (uint8)lua_tointeger(L, 1);
         charutils::SaveCharStats(PChar);
         return 0;
     }
@@ -6128,7 +6128,7 @@ inline std::int32_t CLuaBaseEntity::injectPacket(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
 
-    std::uint8_t size = 0;
+    uint8 size = 0;
     FILE* File = fopen(lua_tostring(L, 1), "rb");
 
     if (File)
@@ -6177,7 +6177,7 @@ inline std::int32_t CLuaBaseEntity::getEquipID(lua_State *L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        std::uint8_t SLOT = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
 
         DSP_DEBUG_BREAK_IF(SLOT > 15);
 
@@ -6224,13 +6224,13 @@ inline std::int32_t CLuaBaseEntity::equipItem(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t itemID = (std::uint16_t)lua_tointeger(L, 1);
-    std::uint8_t containerID;
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
+    uint8 containerID;
     if (lua_isnil(L, 2) || !lua_isnumber(L, 2))
         containerID = LOC_INVENTORY;
     else
-        containerID = (std::uint8_t)lua_tointeger(L, 2);
-    std::uint8_t SLOT = PChar->getStorage(containerID)->SearchItem(itemID);
+        containerID = (uint8)lua_tointeger(L, 2);
+    uint8 SLOT = PChar->getStorage(containerID)->SearchItem(itemID);
     CItemArmor* PItem;
 
     if (SLOT != ERROR_SLOTID)
@@ -6256,7 +6256,7 @@ inline std::int32_t CLuaBaseEntity::lockEquipSlot(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t SLOT = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 SLOT = (uint8)lua_tointeger(L, 1);
 
     DSP_DEBUG_BREAK_IF(SLOT > 15);
 
@@ -6286,7 +6286,7 @@ inline std::int32_t CLuaBaseEntity::unlockEquipSlot(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint8_t SLOT = (std::uint8_t)lua_tointeger(L, 1);
+    uint8 SLOT = (uint8)lua_tointeger(L, 1);
 
     DSP_DEBUG_BREAK_IF(SLOT > 15);
 
@@ -6307,7 +6307,7 @@ inline std::int32_t CLuaBaseEntity::canEquipItem(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    std::uint16_t itemID = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
     DSP_DEBUG_BREAK_IF(itemID > MAX_ITEMID);
 
     bool checkLevel = false;
@@ -6593,7 +6593,7 @@ inline std::int32_t CLuaBaseEntity::lowerEnmity(lua_State *L)
     if (PEntity != nullptr &&
         PEntity->GetBaseEntity()->objtype != TYPE_NPC)
     {
-        ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->LowerEnmityByPercent((CBattleEntity*)PEntity->GetBaseEntity(), (std::uint8_t)lua_tonumber(L, 2), nullptr);
+        ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->LowerEnmityByPercent((CBattleEntity*)PEntity->GetBaseEntity(), (uint8)lua_tonumber(L, 2), nullptr);
     }
     return 0;
 }
@@ -6610,7 +6610,7 @@ std::int32_t CLuaBaseEntity::transferEnmity(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     auto PEntity = Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity;
-    auto percent = (std::uint8_t)lua_tointeger(L, 2);
+    auto percent = (uint8)lua_tointeger(L, 2);
     auto range = lua_tonumber(L, 3);
 
     auto PIterEntity = [&]() -> CCharEntity*
@@ -6721,7 +6721,7 @@ inline std::int32_t CLuaBaseEntity::getSystem(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint8_t system = ((CBattleEntity*)m_PBaseEntity)->m_EcoSystem;
+    uint8 system = ((CBattleEntity*)m_PBaseEntity)->m_EcoSystem;
 
     lua_pushinteger(L, system);
     return 1;
@@ -6732,7 +6732,7 @@ inline std::int32_t CLuaBaseEntity::getFamily(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    std::uint16_t family = ((CMobEntity*)m_PBaseEntity)->m_Family;
+    uint16 family = ((CMobEntity*)m_PBaseEntity)->m_Family;
 
     lua_pushinteger(L, family);
     return 1;
@@ -6778,7 +6778,7 @@ inline std::int32_t CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto amount = (std::uint16_t)lua_tointeger(L, 2);
+    auto amount = (uint16)lua_tointeger(L, 2);
 
     auto PCurer = [&]() -> CCharEntity*
     {
@@ -6818,7 +6818,7 @@ inline std::int32_t CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto damage = (std::uint16_t)lua_tointeger(L, 2);
+    auto damage = (uint16)lua_tointeger(L, 2);
 
     if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
         m_PBaseEntity->objtype == TYPE_PET)
@@ -6884,8 +6884,8 @@ inline std::int32_t CLuaBaseEntity::addEnmity(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto CE = (std::int16_t)lua_tointeger(L, 2);
-    auto VE = (std::int16_t)lua_tointeger(L, 3);
+    auto CE = (int16)lua_tointeger(L, 2);
+    auto VE = (int16)lua_tointeger(L, 3);
 
     if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
         m_PBaseEntity->objtype == TYPE_PET)
@@ -6919,7 +6919,7 @@ inline std::int32_t CLuaBaseEntity::setCE(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto amount = (std::uint16_t)lua_tointeger(L, 2);
+    auto amount = (uint16)lua_tointeger(L, 2);
 
     ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->SetCE((CBattleEntity*)PEntity->GetBaseEntity(), amount);
     return 0;
@@ -6932,7 +6932,7 @@ inline std::int32_t CLuaBaseEntity::setVE(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto amount = (std::uint16_t)lua_tointeger(L, 2);
+    auto amount = (uint16)lua_tointeger(L, 2);
 
     ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->SetVE((CBattleEntity*)PEntity->GetBaseEntity(), amount);
     return 0;
@@ -6973,7 +6973,7 @@ inline std::int32_t CLuaBaseEntity::getContainerSize(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
-    lua_pushinteger(L, PChar->getStorage((std::uint8_t)lua_tointeger(L, 1))->GetSize());
+    lua_pushinteger(L, PChar->getStorage((uint8)lua_tointeger(L, 1))->GetSize());
     return 1;
 }
 
@@ -6991,13 +6991,13 @@ inline std::int32_t CLuaBaseEntity::changeContainerSize(lua_State *L)
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1) &&
         !lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
-        std::uint8_t LocationID = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 LocationID = (uint8)lua_tointeger(L, 1);
 
         if (LocationID < MAX_CONTAINER_ID)
         {
             CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 
-            PChar->getStorage(LocationID)->AddBuff((std::int8_t)lua_tointeger(L, 2));
+            PChar->getStorage(LocationID)->AddBuff((int8)lua_tointeger(L, 2));
             PChar->pushPacket(new CInventorySizePacket(PChar));
             charutils::SaveCharInventoryCapacity(PChar);
         }
@@ -7111,7 +7111,7 @@ inline std::int32_t CLuaBaseEntity::getWeaponDmg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint16_t weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponDmg();
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponDmg();
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -7128,7 +7128,7 @@ inline std::int32_t CLuaBaseEntity::getOffhandDmg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint16_t weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponDmg();
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponDmg();
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -7145,7 +7145,7 @@ inline std::int32_t CLuaBaseEntity::getWeaponDmgRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint16_t weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponRank() * 9;
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetMainWeaponRank() * 9;
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -7162,7 +7162,7 @@ inline std::int32_t CLuaBaseEntity::getOffhandDmgRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint16_t weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponRank() * 9;
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetSubWeaponRank() * 9;
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -7181,7 +7181,7 @@ inline std::int32_t CLuaBaseEntity::getWeaponSkillType(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        std::uint8_t SLOT = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
         if (SLOT > 3)
         {
             lua_pushinteger(L, 0);
@@ -7213,7 +7213,7 @@ inline std::int32_t CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isstring(L, 1))
     {
-        std::uint8_t SLOT = (std::uint8_t)lua_tointeger(L, 1);
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
         if (SLOT > 3)
         {
             ShowDebug(CL_CYAN"lua::getWeaponSubskillType slot not a weapon\n" CL_RESET);
@@ -7267,7 +7267,7 @@ inline std::int32_t CLuaBaseEntity::getRangedDmg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint16_t weapondam = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponDmg();
+    uint16 weapondam = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponDmg();
 
     lua_pushinteger(L, weapondam);
     return 1;
@@ -7278,7 +7278,7 @@ inline std::int32_t CLuaBaseEntity::getRangedDmgForRank(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    std::uint16_t weaponrank = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponRank() * 9;
+    uint16 weaponrank = ((CBattleEntity*)m_PBaseEntity)->GetRangedWeaponRank() * 9;
 
     lua_pushinteger(L, weaponrank);
     return 1;
@@ -7343,7 +7343,7 @@ inline std::int32_t CLuaBaseEntity::getRACC(lua_State *L)
     }
     acc += PEntity->getMod(Mod::RACC);
     acc += PEntity->AGI() / 2;
-    acc = acc + std::min<std::int16_t>(((100 + PEntity->getMod(Mod::FOOD_RACCP)) * acc / 100), PEntity->getMod(Mod::FOOD_RACC_CAP));
+    acc = acc + std::min<int16>(((100 + PEntity->getMod(Mod::FOOD_RACCP)) * acc / 100), PEntity->getMod(Mod::FOOD_RACC_CAP));
 
     lua_pushinteger(L, acc);
     return 1;
@@ -7357,7 +7357,7 @@ inline std::int32_t CLuaBaseEntity::getACC(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-    std::uint16_t ACC = PEntity->ACC(0, 0);
+    uint16 ACC = PEntity->ACC(0, 0);
 
     lua_pushinteger(L, ACC);
     return 1;
@@ -7370,7 +7370,7 @@ inline std::int32_t CLuaBaseEntity::getEVA(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-    std::uint16_t EVA = PEntity->EVA();
+    uint16 EVA = PEntity->EVA();
 
     lua_pushinteger(L, EVA);
     return 1;
@@ -7415,13 +7415,13 @@ inline std::int32_t CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
     auto hitrate = battleutils::GetHitRate(PAttacker, PDefender);
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
-        hitrate = (std::uint8_t)lua_tointeger(L, 2);
+        hitrate = (uint8)lua_tointeger(L, 2);
     }
 
     if (dsprand::GetRandomNumber(100) < hitrate)
     {
         float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 0);
-        int damage = (std::uint16_t)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PDefender, SLOT_MAIN)) * DamageRatio);
+        int damage = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PDefender, SLOT_MAIN)) * DamageRatio);
         lua_pushinteger(L, damage);
         return 1;
     }
@@ -7464,7 +7464,7 @@ inline std::int32_t CLuaBaseEntity::resetRecast(lua_State *L)
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
         RECASTTYPE recastContainer = (RECASTTYPE)lua_tointeger(L, 1);
-        auto recastID = (std::uint16_t)lua_tointeger(L, 2);
+        auto recastID = (uint16)lua_tointeger(L, 2);
 
         if (PChar->PRecastContainer->Has(recastContainer, recastID))
         {
@@ -7491,7 +7491,7 @@ inline std::int32_t CLuaBaseEntity::addRecast(lua_State* L)
     if(PBattleEntity)
     {
         RECASTTYPE recastContainer = (RECASTTYPE)lua_tointeger(L, 1);
-        auto recastID = (std::uint16_t)lua_tointeger(L, 2);
+        auto recastID = (uint16)lua_tointeger(L, 2);
         auto duration = (uint32)lua_tointeger(L, 3);
 
         PBattleEntity->PRecastContainer->Add(recastContainer, recastID, duration);
@@ -7530,10 +7530,10 @@ inline std::int32_t CLuaBaseEntity::bcnmRegister(lua_State *L)
 
     if (ZoneID == 37 || ZoneID == 38)
     {
-        if (PZone->m_BattlefieldHandler->hasFreeSpecialBattlefield((std::uint16_t)lua_tointeger(L, 1)))
+        if (PZone->m_BattlefieldHandler->hasFreeSpecialBattlefield((uint16)lua_tointeger(L, 1)))
         {
             ShowDebug("Free Special Battlefield found for BCNMID %i \n", lua_tointeger(L, 1));
-            bcnm = PZone->m_BattlefieldHandler->registerBcnm((std::uint16_t)lua_tointeger(L, 1), PChar);
+            bcnm = PZone->m_BattlefieldHandler->registerBcnm((uint16)lua_tointeger(L, 1), PChar);
 
             if (bcnm != -1)
             {
@@ -7559,12 +7559,12 @@ inline std::int32_t CLuaBaseEntity::bcnmRegister(lua_State *L)
             if ((ZoneID > 184 && ZoneID < 189) || (ZoneID > 133 && ZoneID < 136) || (ZoneID > 38 && ZoneID < 43))
             {
                 ShowDebug("Free Dynamis Battlefield found for BCNMID %i \n", lua_tointeger(L, 1));
-                bcnm = PZone->m_BattlefieldHandler->registerDynamis((std::uint16_t)lua_tointeger(L, 1), PChar);
+                bcnm = PZone->m_BattlefieldHandler->registerDynamis((uint16)lua_tointeger(L, 1), PChar);
             }
             else
             {
                 ShowDebug("Free BCNM Battlefield found for BCNMID %i \n", lua_tointeger(L, 1));
-                bcnm = PZone->m_BattlefieldHandler->registerBcnm((std::uint16_t)lua_tointeger(L, 1), PChar);
+                bcnm = PZone->m_BattlefieldHandler->registerBcnm((uint16)lua_tointeger(L, 1), PChar);
             }
 
             if (bcnm != -1)
@@ -7609,7 +7609,7 @@ inline std::int32_t CLuaBaseEntity::bcnmEnter(lua_State *L)
     {
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS))
         {
-            std::uint16_t effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS)->GetPower();
+            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS)->GetPower();
             if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
             {
                 lua_pushinteger(L, 1);
@@ -7621,7 +7621,7 @@ inline std::int32_t CLuaBaseEntity::bcnmEnter(lua_State *L)
     {
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
         {
-            std::uint16_t effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
+            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
             if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
             {
                 lua_pushinteger(L, 1);
@@ -7652,7 +7652,7 @@ inline std::int32_t CLuaBaseEntity::bcnmLeave(lua_State *L)
 
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
     {
-        std::uint16_t effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
+        uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
         auto typeOfExit = lua_tointeger(L, 1);
         if (typeOfExit == 1 && PChar->loc.zone->m_BattlefieldHandler->leaveBcnm(effect_bcnmid, PChar))
         {
@@ -7700,7 +7700,7 @@ inline std::int32_t CLuaBaseEntity::getBattlefieldID(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
 
-    std::uint8_t inst = 255;
+    uint8 inst = 255;
 
     if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
     {
@@ -7722,7 +7722,7 @@ inline std::int32_t CLuaBaseEntity::getBCNMloot(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
 
-    std::uint8_t inst = 255;
+    uint8 inst = 255;
 
     if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
     {
@@ -7748,7 +7748,7 @@ inline std::int32_t CLuaBaseEntity::isBcnmsFull(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    std::uint8_t full = 1;
+    uint8 full = 1;
 
     if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr &&
         PZone->m_BattlefieldHandler->hasFreeBattlefield())
@@ -7770,11 +7770,11 @@ inline std::int32_t CLuaBaseEntity::isSpecialBattlefieldEmpty(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    std::uint8_t full = 1;
+    uint8 full = 1;
 
 
     if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr &&
-        PZone->m_BattlefieldHandler->hasSpecialBattlefieldEmpty((std::uint16_t)lua_tointeger(L, 1)))
+        PZone->m_BattlefieldHandler->hasSpecialBattlefieldEmpty((uint16)lua_tointeger(L, 1)))
     {
 
         full = 0;
@@ -7798,7 +7798,7 @@ inline std::int32_t CLuaBaseEntity::getSpecialBattlefieldLeftTime(lua_State *L)
 
     if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr)
     {
-        Leftime = PZone->m_BattlefieldHandler->SpecialBattlefieldLeftTime((std::uint16_t)lua_tointeger(L, 1), server_clock::now());
+        Leftime = PZone->m_BattlefieldHandler->SpecialBattlefieldLeftTime((uint16)lua_tointeger(L, 1), server_clock::now());
     }
 
     lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::seconds>(Leftime).count());
@@ -7815,7 +7815,7 @@ inline std::int32_t CLuaBaseEntity::addTimeToSpecialBattlefield(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    PZone->m_BattlefieldHandler->GiveTimeToBattlefield((std::uint16_t)lua_tointeger(L, 1), std::chrono::minutes(lua_tointeger(L, 2)));
+    PZone->m_BattlefieldHandler->GiveTimeToBattlefield((uint16)lua_tointeger(L, 1), std::chrono::minutes(lua_tointeger(L, 2)));
 
     return 1;
 }
@@ -7828,7 +7828,7 @@ inline std::int32_t CLuaBaseEntity::BCNMSetLoot(lua_State *L)
     DSP_DEBUG_BREAK_IF(PChar->loc.zone->m_BattlefieldHandler == nullptr);
     if (PChar->loc.zone != nullptr && PChar->loc.zone->m_BattlefieldHandler != nullptr)
     {
-        PChar->loc.zone->m_BattlefieldHandler->SetLootToBCNM((std::uint16_t)lua_tointeger(L, 1), (std::uint16_t)lua_tointeger(L, 2), (uint32)lua_tointeger(L, 3));
+        PChar->loc.zone->m_BattlefieldHandler->SetLootToBCNM((uint16)lua_tointeger(L, 1), (uint16)lua_tointeger(L, 2), (uint32)lua_tointeger(L, 3));
     }
     return 0;
 }
@@ -7842,7 +7842,7 @@ inline std::int32_t CLuaBaseEntity::RestoreAndHealOnBattlefield(lua_State *L)
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-        PChar->loc.zone->m_BattlefieldHandler->RestoreOnBattlefield((std::uint16_t)lua_tointeger(L, 1));
+        PChar->loc.zone->m_BattlefieldHandler->RestoreOnBattlefield((uint16)lua_tointeger(L, 1));
         return 0;
     }
     return 0;
@@ -7861,7 +7861,7 @@ inline std::int32_t CLuaBaseEntity::setSpawn(lua_State *L)
     if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
         PMob->m_SpawnPoint.z = (float)lua_tonumber(L, 3);
     if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
-        PMob->m_SpawnPoint.rotation = (std::uint8_t)lua_tointeger(L, 4);
+        PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, 4);
 
     return 0;
 }
@@ -7925,7 +7925,7 @@ inline std::int32_t CLuaBaseEntity::addPlayerToSpecialBattlefield(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    int bcnm = PZone->m_BattlefieldHandler->SpecialBattlefieldAddPlayer((std::uint16_t)lua_tointeger(L, 1), PChar);
+    int bcnm = PZone->m_BattlefieldHandler->SpecialBattlefieldAddPlayer((uint16)lua_tointeger(L, 1), PChar);
 
     if (bcnm != -1)
     {
@@ -7952,7 +7952,7 @@ inline std::int32_t CLuaBaseEntity::getDynamisUniqueID(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    lua_pushinteger(L, PZone->m_BattlefieldHandler->getUniqueDynaID((std::uint16_t)lua_tointeger(L, 1)));
+    lua_pushinteger(L, PZone->m_BattlefieldHandler->getUniqueDynaID((uint16)lua_tointeger(L, 1)));
 
     return 1;
 }
@@ -7968,7 +7968,7 @@ inline std::int32_t CLuaBaseEntity::addTimeToDynamis(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    PZone->m_BattlefieldHandler->dynamisMessage(448, (std::uint16_t)lua_tointeger(L, 1));
+    PZone->m_BattlefieldHandler->dynamisMessage(448, (uint16)lua_tointeger(L, 1));
 
     return 1;
 }
@@ -7997,7 +7997,7 @@ inline std::int32_t CLuaBaseEntity::addPlayerToDynamis(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    int bcnm = PZone->m_BattlefieldHandler->dynamisAddPlayer((std::uint16_t)lua_tointeger(L, 1), PChar);
+    int bcnm = PZone->m_BattlefieldHandler->dynamisAddPlayer((uint16)lua_tointeger(L, 1), PChar);
 
     if (bcnm != -1)
     {
@@ -8143,11 +8143,11 @@ inline std::int32_t CLuaBaseEntity::injectActionPacket(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint16_t action = (std::uint16_t)lua_tointeger(L, 1);
-    std::uint16_t anim = (std::uint16_t)lua_tointeger(L, 2);
+    uint16 action = (uint16)lua_tointeger(L, 1);
+    uint16 anim = (uint16)lua_tointeger(L, 2);
     SPECEFFECT speceffect = (SPECEFFECT)lua_tointeger(L, 3);
     REACTION reaction = (REACTION)lua_tointeger(L, 4);
-    std::uint16_t message = (std::uint16_t)lua_tointeger(L, 5);
+    uint16 message = (uint16)lua_tointeger(L, 5);
 
     ACTIONTYPE actiontype = ACTION_MAGIC_FINISH;
     switch (action)
@@ -8723,7 +8723,7 @@ inline std::int32_t CLuaBaseEntity::addNationTeleport(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint16_t nation = (std::uint16_t)lua_tointeger(L, 1);
+    uint16 nation = (uint16)lua_tointeger(L, 1);
     uint32 newTP = (uint32)lua_tointeger(L, 2);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -8757,7 +8757,7 @@ inline std::int32_t CLuaBaseEntity::isBehind(lua_State *L)
 
     auto angle = lua_gettop(L) > 1 ? lua_tointeger(L, 2) : 42;
 
-    std::uint8_t turn = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
+    uint8 turn = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
 
     lua_pushboolean(L, (turn > 128 - angle && turn < 128 + angle));
 
@@ -8777,7 +8777,7 @@ inline std::int32_t CLuaBaseEntity::isFacing(lua_State *L)
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
-    auto angle = (std::uint8_t)(lua_gettop(L) > 1 ? lua_tointeger(L, 2) : 45);
+    auto angle = (uint8)(lua_gettop(L) > 1 ? lua_tointeger(L, 2) : 45);
 
     DSP_DEBUG_BREAK_IF(PLuaBaseEntity == nullptr);
 
@@ -8819,7 +8819,7 @@ inline std::int32_t CLuaBaseEntity::getStealItem(lua_State *L)
 
     if (!(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != nullptr && DropList->size()))
     {
-        for (std::uint8_t i = 0; i < DropList->size(); ++i)
+        for (uint8 i = 0; i < DropList->size(); ++i)
         {
             if (DropList->at(i).DropType == DROP_STEAL)
             {
@@ -8901,7 +8901,7 @@ inline std::int32_t CLuaBaseEntity::checkSoloPartyAlliance(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    std::uint8_t SoloPartyAlliance = 0;
+    uint8 SoloPartyAlliance = 0;
     if (PChar->PParty != nullptr)
     {
         SoloPartyAlliance = 1;
@@ -8922,7 +8922,7 @@ inline std::int32_t CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    std::uint8_t FovAlliance = map_config.fov_allow_alliance;
+    uint8 FovAlliance = map_config.fov_allow_alliance;
 
     lua_pushinteger(L, FovAlliance);
     return 1;
@@ -9029,7 +9029,7 @@ inline std::int32_t CLuaBaseEntity::hasTrait(lua_State *L)
         return 1;
     }
 
-    lua_pushboolean(L, charutils::hasTrait((CCharEntity*)m_PBaseEntity, (std::uint8_t)lua_tointeger(L, 1)));
+    lua_pushboolean(L, charutils::hasTrait((CCharEntity*)m_PBaseEntity, (uint8)lua_tointeger(L, 1)));
     return 1;
 }
 
@@ -9067,7 +9067,7 @@ inline std::int32_t CLuaBaseEntity::setDelay(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)lua_tonumber(L, 1));
+    ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDelay((uint16)lua_tonumber(L, 1));
     return 0;
 }
 
@@ -9078,7 +9078,7 @@ inline std::int32_t CLuaBaseEntity::setDamage(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDamage((std::uint16_t)lua_tonumber(L, 1));
+    ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDamage((uint16)lua_tonumber(L, 1));
     return 0;
 }
 
@@ -9122,7 +9122,7 @@ inline std::int32_t CLuaBaseEntity::useMobAbility(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        auto skillid {(std::uint16_t)lua_tointeger(L, 1)};
+        auto skillid {(uint16)lua_tointeger(L, 1)};
         CBattleEntity* PTarget {nullptr};
         auto PMobSkill {battleutils::GetMobSkill(skillid)};
 
@@ -9166,7 +9166,7 @@ inline std::int32_t CLuaBaseEntity::useJobAbility(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        auto skillid {(std::uint16_t)lua_tointeger(L, 1)};
+        auto skillid {(uint16)lua_tointeger(L, 1)};
         CBattleEntity* PTarget {nullptr};
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
@@ -9241,7 +9241,7 @@ inline std::int32_t CLuaBaseEntity::SetMobSkillAttack(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    static_cast<CMobEntity*>(m_PBaseEntity)->setMobMod(MOBMOD_ATTACK_SKILL_LIST, (std::int16_t)lua_tointeger(L, 1));
+    static_cast<CMobEntity*>(m_PBaseEntity)->setMobMod(MOBMOD_ATTACK_SKILL_LIST, (int16)lua_tointeger(L, 1));
 
     return 0;
 }
@@ -9315,7 +9315,7 @@ inline std::int32_t CLuaBaseEntity::setSpellList(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    mobutils::SetSpellList(static_cast<CMobEntity *>(m_PBaseEntity), (std::uint16_t)lua_tonumber(L, 1));
+    mobutils::SetSpellList(static_cast<CMobEntity *>(m_PBaseEntity), (uint16)lua_tonumber(L, 1));
 
     return 0;
 }
@@ -9388,7 +9388,7 @@ inline std::int32_t CLuaBaseEntity::hasTPMoves(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF((m_PBaseEntity->objtype == TYPE_NPC) || (m_PBaseEntity->objtype == TYPE_PC));
 
-    std::uint16_t familyID = 0;
+    uint16 familyID = 0;
 
     if (m_PBaseEntity->objtype & TYPE_PET)
     {
@@ -9398,7 +9398,7 @@ inline std::int32_t CLuaBaseEntity::hasTPMoves(lua_State* L)
     {
         familyID = ((CMobEntity*)m_PBaseEntity)->m_Family;
     }
-    const std::vector<std::uint16_t>& MobSkills = battleutils::GetMobSkillList(familyID);
+    const std::vector<uint16>& MobSkills = battleutils::GetMobSkillList(familyID);
     lua_pushboolean(L, MobSkills.size() != 0);
     return 1;
 }
@@ -9544,7 +9544,7 @@ inline std::int32_t CLuaBaseEntity::setGMLevel(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->m_GMlevel = (std::uint8_t)lua_tonumber(L, 1);
+    PChar->m_GMlevel = (uint8)lua_tonumber(L, 1);
     charutils::SaveCharGMLevel(PChar);
     return 0;
 }
@@ -9605,12 +9605,12 @@ inline std::int32_t CLuaBaseEntity::pathThrough(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    std::uint8_t length = (std::uint8_t)lua_objlen(L, 1);
+    uint8 length = (uint8)lua_objlen(L, 1);
 
     std::vector<position_t> points;
 
     // Grab points from array and store in points array
-    for (std::uint8_t i = 1; i < length; i += 3)
+    for (uint8 i = 1; i < length; i += 3)
     {
         lua_rawgeti(L, 1, i);
         lua_rawgeti(L, 1, i + 1);
@@ -9621,11 +9621,11 @@ inline std::int32_t CLuaBaseEntity::pathThrough(lua_State* L)
         lua_pop(L, 3);
     }
 
-    std::uint8_t flags = 0;
+    uint8 flags = 0;
 
     if (lua_isnumber(L, 2))
     {
-        flags = (std::uint8_t)lua_tointeger(L, 2);
+        flags = (uint8)lua_tointeger(L, 2);
     }
 
     CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
@@ -9806,7 +9806,7 @@ inline std::int32_t CLuaBaseEntity::unlockAttachment(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    auto itemID = (std::uint16_t)lua_tointeger(L, -1);
+    auto itemID = (uint16)lua_tointeger(L, -1);
 
     CItem* PItem = itemutils::GetItem(itemID);
     lua_pushboolean(L, puppetutils::UnlockAttachment((CCharEntity*)m_PBaseEntity, PItem));
@@ -9818,7 +9818,7 @@ inline std::int32_t CLuaBaseEntity::hasAttachment(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    auto itemID = (std::uint16_t)lua_tointeger(L, -1);
+    auto itemID = (uint16)lua_tointeger(L, -1);
 
     CItem* PItem = itemutils::GetItem(itemID);
     lua_pushboolean(L, puppetutils::HasAttachment((CCharEntity*)m_PBaseEntity, PItem));
@@ -9988,7 +9988,7 @@ inline std::int32_t CLuaBaseEntity::setMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_mentor = (std::uint8_t)lua_tonumber(L, 1);
+    PChar->m_mentor = (uint8)lua_tonumber(L, 1);
     charutils::mentorMode(PChar);
     PChar->updatemask |= UPDATE_HP;
     return 0;
@@ -10212,22 +10212,22 @@ inline std::int32_t CLuaBaseEntity::messageText(lua_State* L)
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
     CBaseEntity* PTarget = PLuaBaseEntity->m_PBaseEntity;
 
-    std::uint16_t messageID = (std::uint16_t)lua_tointeger(L, 2);
+    uint16 messageID = (uint16)lua_tointeger(L, 2);
 
     bool showName = true;
-    std::uint8_t mode = 0;
+    uint8 mode = 0;
 
     if (!lua_isnil(L, 3))
     {
         if (lua_isboolean(L, 3))
             showName = lua_toboolean(L, 3);
         else if (lua_isnumber(L, 3))
-            mode = (std::uint8_t)lua_tointeger(L, 3);
+            mode = (uint8)lua_tointeger(L, 3);
     }
 
     if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
     {
-        mode = (std::uint8_t)lua_tointeger(L, 4);
+        mode = (uint8)lua_tointeger(L, 4);
     }
 
     if (m_PBaseEntity->objtype == TYPE_PC)
@@ -10352,8 +10352,8 @@ inline std::int32_t CLuaBaseEntity::createInstance(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    std::uint8_t instanceid = (std::uint8_t)lua_tonumber(L, 1);
-    std::uint16_t zoneid = (std::uint16_t)lua_tonumber(L, 2);
+    uint8 instanceid = (uint8)lua_tonumber(L, 1);
+    uint16 zoneid = (uint16)lua_tonumber(L, 2);
 
     instanceutils::LoadInstance(instanceid, zoneid, (CCharEntity*)m_PBaseEntity);
 
@@ -10559,7 +10559,7 @@ inline std::int32_t CLuaBaseEntity::setBehaviour(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CMobEntity*)m_PBaseEntity)->m_Behaviour = (std::uint16_t)lua_tointeger(L, 1);
+    ((CMobEntity*)m_PBaseEntity)->m_Behaviour = (uint16)lua_tointeger(L, 1);
 
     return 0;
 }
@@ -10595,28 +10595,28 @@ inline std::int32_t CLuaBaseEntity::setModelId(lua_State* L)
         switch ((SLOTTYPE)lua_tointeger(L, 2))
         {
             case SLOT_MAIN:
-                m_PBaseEntity->look.main = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.main = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_SUB:
-                m_PBaseEntity->look.sub = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.sub = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_RANGED:
-                m_PBaseEntity->look.ranged = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.ranged = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_HEAD:
-                m_PBaseEntity->look.head = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.head = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_BODY:
-                m_PBaseEntity->look.body = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.body = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_HANDS:
-                m_PBaseEntity->look.hands = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.hands = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_LEGS:
-                m_PBaseEntity->look.legs = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.legs = (uint16)lua_tointeger(L, 1);
                 break;
             case SLOT_FEET:
-                m_PBaseEntity->look.feet = (std::uint16_t)lua_tointeger(L, 1);
+                m_PBaseEntity->look.feet = (uint16)lua_tointeger(L, 1);
                 break;
             default:
                 break;
@@ -10627,7 +10627,7 @@ inline std::int32_t CLuaBaseEntity::setModelId(lua_State* L)
     {
         DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-        m_PBaseEntity->SetModelId((std::uint16_t)lua_tointeger(L, 1));
+        m_PBaseEntity->SetModelId((uint16)lua_tointeger(L, 1));
     }
     m_PBaseEntity->updatemask |= UPDATE_LOOK;
 
@@ -10711,7 +10711,7 @@ inline std::int32_t CLuaBaseEntity::addBurden(lua_State* L)
 
     if (((CBattleEntity*)m_PBaseEntity)->PPet && ((CPetEntity*)((CBattleEntity*)m_PBaseEntity)->PPet)->getPetType() == PETTYPE_AUTOMATON)
     {
-        lua_pushinteger(L, ((CAutomatonEntity*)((CBattleEntity*)m_PBaseEntity)->PPet)->addBurden((std::uint8_t)lua_tointeger(L, 1), (std::int8_t)lua_tointeger(L, 2)));
+        lua_pushinteger(L, ((CAutomatonEntity*)((CBattleEntity*)m_PBaseEntity)->PPet)->addBurden((uint8)lua_tointeger(L, 1), (int8)lua_tointeger(L, 2)));
     }
     else
     {
@@ -10744,7 +10744,7 @@ inline std::int32_t CLuaBaseEntity::setElevator(lua_State *L)
     Elevator_t elevator;
 
     // id should be 0 for most elevators, except special ones such as port bastok drawbridge
-    elevator.id = (std::uint8_t)lua_tointeger(L, 1);
+    elevator.id = (uint8)lua_tointeger(L, 1);
     elevator.LowerDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 2), TYPE_NPC);
     elevator.UpperDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 3), TYPE_NPC);
     elevator.Elevator = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 4), TYPE_NPC);
@@ -10780,7 +10780,7 @@ inline std::int32_t CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_istable(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_istable(L, 3));
 
-    auto slipId = (std::uint16_t)lua_tointeger(L, 1);
+    auto slipId = (uint16)lua_tointeger(L, 1);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     auto slipSlotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(slipId);
     if (slipSlotId == 255) { return 0; }
@@ -10790,7 +10790,7 @@ inline std::int32_t CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
     lua_pushnil(L);
     for (size_t i = 0; i < extraSize && lua_next(L, 2) != 0; i++)
     {
-        auto extra = (std::uint8_t)lua_tonumber(L, -1);
+        auto extra = (uint8)lua_tonumber(L, -1);
         if ((slip->m_extra[i] & extra) != 0)
         {
             lua_pushinteger(L, 1);
@@ -10801,12 +10801,12 @@ inline std::int32_t CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
     }
 
     auto storableSize = lua_objlen(L, 3);
-    std::uint16_t storedItemIds[7];
+    uint16 storedItemIds[7];
 
     lua_pushnil(L);
     for (size_t i = 0; i < storableSize && lua_next(L, 3) != 0; i++)
     {
-        auto itemId = (std::uint16_t)lua_tonumber(L, -1);
+        auto itemId = (uint16)lua_tonumber(L, -1);
         if (itemId != 0)
         {
             storedItemIds[i] = itemId;
@@ -10860,7 +10860,7 @@ inline std::int32_t CLuaBaseEntity::getRetrievableItemsForSlip(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto slipId = (std::uint16_t)lua_tointeger(L, 1);
+    auto slipId = (uint16)lua_tointeger(L, 1);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     auto slipSlotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(slipId);
     if (slipSlotId == 255) { return 0; }
@@ -10888,10 +10888,10 @@ inline std::int32_t CLuaBaseEntity::retrieveItemFromSlip(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
 
-    auto slipId = (std::uint16_t)lua_tointeger(L, 1);
-    auto itemId = (std::uint16_t)lua_tointeger(L, 2);
-    auto extraId = (std::uint16_t)lua_tointeger(L, 3);
-    auto extraData = (std::uint8_t)lua_tointeger(L, 4);
+    auto slipId = (uint16)lua_tointeger(L, 1);
+    auto itemId = (uint16)lua_tointeger(L, 2);
+    auto extraId = (uint16)lua_tointeger(L, 3);
+    auto extraData = (uint8)lua_tointeger(L, 4);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     auto slipSlotId = PChar->getStorage(LOC_INVENTORY)->SearchItem(slipId);
@@ -10942,9 +10942,9 @@ inline std::int32_t CLuaBaseEntity::copyConfrontationEffect(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity->GetEntity((std::uint16_t)lua_tointeger(L, 1), TYPE_PC | TYPE_MOB);
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity->GetEntity((uint16)lua_tointeger(L, 1), TYPE_PC | TYPE_MOB);
 
-    std::uint16_t power = 0;
+    uint16 power = 0;
 
     if (PEntity && PEntity->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -11044,10 +11044,10 @@ std::int32_t CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
 
     auto PChar = static_cast<CCharEntity*>(Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity);
     auto damage = (std::int32_t)lua_tointeger(L, 2);
-    auto slot = (std::uint8_t)lua_tointeger(L, 3);
+    auto slot = (uint8)lua_tointeger(L, 3);
     auto primary = lua_toboolean(L, 4);
     auto tpMultiplier = (float)lua_tonumber(L, 5);
-    auto bonusTP = (std::uint16_t)lua_tointeger(L, 6);
+    auto bonusTP = (uint16)lua_tointeger(L, 6);
     auto targetTPMultiplier = (float)lua_tonumber(L, 7);
 
     lua_pushinteger(L, (lua_Integer)battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, slot, primary, tpMultiplier, bonusTP, targetTPMultiplier));
@@ -11075,7 +11075,7 @@ std::int32_t CLuaBaseEntity::setEquipBlock(lua_State* L)
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
         auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
-        PChar->m_EquipBlock = (std::uint16_t)lua_tointeger(L, 1);
+        PChar->m_EquipBlock = (uint16)lua_tointeger(L, 1);
         PChar->pushPacket(new CCharJobsPacket(PChar));
     }
     return 0;
@@ -11088,7 +11088,7 @@ std::int32_t CLuaBaseEntity::setStatDebilitation(lua_State* L)
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
         auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
-        PChar->m_StatsDebilitation = (std::uint16_t)lua_tointeger(L, 1);
+        PChar->m_StatsDebilitation = (uint16)lua_tointeger(L, 1);
         PChar->pushPacket(new CCharJobsPacket(PChar));
     }
     return 0;
@@ -11101,7 +11101,7 @@ std::int32_t CLuaBaseEntity::unequipItem(lua_State* L)
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
         auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
-        charutils::UnequipItem(PChar, (std::uint8_t)lua_tointeger(L, 1));
+        charutils::UnequipItem(PChar, (uint8)lua_tointeger(L, 1));
     }
     return 0;
 }
@@ -11140,7 +11140,7 @@ std::int32_t CLuaBaseEntity::checkImbuedItems(lua_State* L)
 
     auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
 
-    for (std::uint8_t LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
     {
         bool found = false;
         PChar->getStorage(LocID)->ForEachItem([&found](CItem* PItem)
@@ -11251,7 +11251,7 @@ std::int32_t CLuaBaseEntity::getEntity(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto PEntity {m_PBaseEntity->GetEntity((std::uint16_t)lua_tointeger(L,1))};
+    auto PEntity {m_PBaseEntity->GetEntity((uint16)lua_tointeger(L,1))};
     if (PEntity)
     {
         lua_getglobal(L, CLuaBaseEntity::className);
@@ -11295,7 +11295,7 @@ std::int32_t CLuaBaseEntity::engage(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CBattleEntity* battleEntity = static_cast<CBattleEntity*>(m_PBaseEntity);
-    auto requestedTarget = (std::uint16_t)lua_tointeger(L,1);
+    auto requestedTarget = (uint16)lua_tointeger(L,1);
 
     if (requestedTarget > 0)
     {

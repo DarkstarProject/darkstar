@@ -85,7 +85,7 @@ void CNavMesh::ToDetourPos(const position_t* pos, float* out) {
 
 }
 
-CNavMesh::CNavMesh(std::uint16_t zoneID)
+CNavMesh::CNavMesh(uint16 zoneID)
 {
     m_zoneID = zoneID;
     m_navMesh = nullptr;
@@ -295,7 +295,7 @@ std::vector<position_t> CNavMesh::findPath(const position_t& start, const positi
     return ret;
 }
 
-std::pair<std::int16_t, position_t> CNavMesh::findRandomPosition(const position_t& start, float maxRadius)
+std::pair<int16, position_t> CNavMesh::findRandomPosition(const position_t& start, float maxRadius)
 {
     dtStatus status;
 

@@ -32,7 +32,7 @@
 *                                                                       *
 ************************************************************************/
 
-CItem::CItem(std::uint16_t id)
+CItem::CItem(uint16 id)
 {
     m_id = id;
 
@@ -64,12 +64,12 @@ CItem::~CItem()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setID(std::uint16_t id)
+void CItem::setID(uint16 id)
 {
     m_id = id;
 }
 
-std::uint16_t CItem::getID()
+uint16 CItem::getID()
 {
     return m_id;
 }
@@ -80,12 +80,12 @@ std::uint16_t CItem::getID()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setSubID(std::uint16_t subid)
+void CItem::setSubID(uint16 subid)
 {
     m_subid = subid;
 }
 
-std::uint16_t CItem::getSubID()
+uint16 CItem::getSubID()
 {
     return m_subid;
 }
@@ -96,12 +96,12 @@ std::uint16_t CItem::getSubID()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setFlag(std::uint16_t flag)
+void CItem::setFlag(uint16 flag)
 {
     m_flag = flag;
 }
 
-std::uint16_t CItem::getFlag()
+uint16 CItem::getFlag()
 {
     return m_flag;
 }
@@ -112,12 +112,12 @@ std::uint16_t CItem::getFlag()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setAHCat(std::uint8_t ahCat)
+void CItem::setAHCat(uint8 ahCat)
 {
     m_ahCat = ahCat;
 }
 
-std::uint8_t CItem::getAHCat()
+uint8 CItem::getAHCat()
 {
     return m_ahCat;
 }
@@ -128,7 +128,7 @@ std::uint8_t CItem::getAHCat()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setType(std::uint8_t type)
+void CItem::setType(uint8 type)
 {
     m_type |= type;
 }
@@ -144,7 +144,7 @@ bool CItem::isType(ITEM_TYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CItem::setSubType(std::uint8_t subtype)
+void CItem::setSubType(uint8 subtype)
 {
     m_subtype = (subtype > 128 ? m_subtype & subtype : m_subtype | subtype);
 }
@@ -240,12 +240,12 @@ uint32 CItem::getCharPrice()
 *                                                                       *
 ************************************************************************/
 
-const std::int8_t* CItem::getName()
+const int8* CItem::getName()
 {
-    return (const std::int8_t*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
-void CItem::setName(std::int8_t* name)
+void CItem::setName(int8* name)
 {
     m_name.clear();
     m_name.insert(0, (const char*)name);
@@ -257,12 +257,12 @@ void CItem::setName(std::int8_t* name)
 *                                                                       *
 ************************************************************************/
 
-const std::int8_t* CItem::getSender()
+const int8* CItem::getSender()
 {
-    return (const std::int8_t*)m_send.c_str();
+    return (const int8*)m_send.c_str();
 }
 
-void CItem::setSender(std::int8_t* sender)
+void CItem::setSender(int8* sender)
 {
     m_send.clear();
     m_send.insert(0, (const char*)sender);
@@ -274,12 +274,12 @@ void CItem::setSender(std::int8_t* sender)
 *                                                                       *
 ************************************************************************/
 
-const std::int8_t* CItem::getReceiver()
+const int8* CItem::getReceiver()
 {
-    return (const std::int8_t*)m_recv.c_str();
+    return (const int8*)m_recv.c_str();
 }
 
-void CItem::setReceiver(std::int8_t* receiver)
+void CItem::setReceiver(int8* receiver)
 {
     m_recv.clear();
     m_recv.insert(0, (const char*)receiver);
@@ -291,12 +291,12 @@ void CItem::setReceiver(std::int8_t* receiver)
 *                                                                       *
 ************************************************************************/
 
-const std::int8_t* CItem::getSignature()
+const int8* CItem::getSignature()
 {
-    return (std::int8_t*)m_extra+0x0C;
+    return (int8*)m_extra+0x0C;
 }
 
-void CItem::setSignature(std::int8_t* signature)
+void CItem::setSignature(int8* signature)
 {
     memcpy(m_extra + 0x0C, signature, sizeof(m_extra) - 0x0C);
 }
@@ -307,12 +307,12 @@ void CItem::setSignature(std::int8_t* signature)
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CItem::getLocationID()
+uint8 CItem::getLocationID()
 {
     return m_locationID;
 }
 
-void CItem::setLocationID(std::uint8_t locationID)
+void CItem::setLocationID(uint8 locationID)
 {
     m_locationID = locationID;
 }
@@ -323,12 +323,12 @@ void CItem::setLocationID(std::uint8_t locationID)
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CItem::getSlotID()
+uint8 CItem::getSlotID()
 {
     return m_slotID;
 }
 
-void CItem::setSlotID(std::uint8_t slotID)
+void CItem::setSlotID(uint8 slotID)
 {
     m_slotID = slotID;
 }

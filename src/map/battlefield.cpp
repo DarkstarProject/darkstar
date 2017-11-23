@@ -40,7 +40,7 @@
 #include "mob_modifier.h"
 #include "ai/states/death_state.h"
 
-CBattlefield::CBattlefield(CBattlefieldHandler* hand, std::uint16_t id, BATTLEFIELDTYPE type)
+CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type)
 {
     m_Type = type;
     m_BcnmID = id;
@@ -55,12 +55,12 @@ CBattlefield::CBattlefield(CBattlefieldHandler* hand, std::uint16_t id, BATTLEFI
     m_record = BattlefieldRecord();
 }
 
-std::uint16_t CBattlefield::getID()
+uint16 CBattlefield::getID()
 {
     return m_BcnmID;
 }
 
-std::uint8_t CBattlefield::getBattlefieldNumber()
+uint8 CBattlefield::getBattlefieldNumber()
 {
     return m_BattlefieldNumber;
 }
@@ -75,27 +75,27 @@ BATTLEFIELDTYPE CBattlefield::getType()
     return m_Type;
 }
 
-std::uint16_t CBattlefield::getZoneId()
+uint16 CBattlefield::getZoneId()
 {
     return m_ZoneID;
 }
 
-std::uint8_t CBattlefield::getMaxParticipants()
+uint8 CBattlefield::getMaxParticipants()
 {
     return m_MaxParticipants;
 }
 
-std::uint8_t CBattlefield::getMaxPlayerInBCNM()
+uint8 CBattlefield::getMaxPlayerInBCNM()
 {
-    return (std::uint8_t)m_PlayerList.size();
+    return (uint8)m_PlayerList.size();
 }
 
-std::uint8_t CBattlefield::getLevelCap()
+uint8 CBattlefield::getLevelCap()
 {
     return m_LevelCap;
 }
 
-std::uint16_t CBattlefield::getLootId()
+uint16 CBattlefield::getLootId()
 {
     return m_LootId;
 }
@@ -115,12 +115,12 @@ time_point CBattlefield::getDeadTime()
     return m_AllDeadTime;
 }
 
-const std::int8_t* CBattlefield::getBcnmName()
+const int8* CBattlefield::getBcnmName()
 {
-    return (const std::int8_t*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
-std::uint8_t CBattlefield::getEntrance()
+uint8 CBattlefield::getEntrance()
 {
     return m_entrance;
 }
@@ -130,7 +130,7 @@ const BattlefieldRecord& CBattlefield::getRecord() const
     return m_record;
 }
 
-void CBattlefield::setBcnmName(std::int8_t* name)
+void CBattlefield::setBcnmName(int8* name)
 {
     m_name.clear();
     m_name.insert(0, (const char*)name);
@@ -146,37 +146,37 @@ void CBattlefield::setDeadTime(time_point time)
     m_AllDeadTime = time;
 }
 
-void CBattlefield::setBattlefieldNumber(std::uint8_t battlefield)
+void CBattlefield::setBattlefieldNumber(uint8 battlefield)
 {
     m_BattlefieldNumber = battlefield;
 }
 
-void CBattlefield::setZoneId(std::uint16_t zone)
+void CBattlefield::setZoneId(uint16 zone)
 {
     m_ZoneID = zone;
 }
 
-void CBattlefield::setMaxParticipants(std::uint8_t max)
+void CBattlefield::setMaxParticipants(uint8 max)
 {
     m_MaxParticipants = max;
 }
 
-void CBattlefield::setLevelCap(std::uint8_t cap)
+void CBattlefield::setLevelCap(uint8 cap)
 {
     m_LevelCap = cap;
 }
 
-void CBattlefield::setLootId(std::uint16_t id)
+void CBattlefield::setLootId(uint16 id)
 {
     m_LootId = id;
 }
 
-void CBattlefield::setEntrance(std::uint8_t entrance)
+void CBattlefield::setEntrance(uint8 entrance)
 {
     m_entrance = entrance;
 }
 
-void CBattlefield::setRecord(const std::string& name, std::uint8_t partySize, duration clearTime)
+void CBattlefield::setRecord(const std::string& name, uint8 partySize, duration clearTime)
 {
     BattlefieldRecord record;
     record.name = name;
@@ -215,7 +215,7 @@ void CBattlefield::disableSubJob()
     }
 }
 
-std::uint8_t CBattlefield::getPlayerMainJob()
+uint8 CBattlefield::getPlayerMainJob()
 {
     if (m_PlayerList.size() == 0) {
         ShowWarning("battlefield:getPlayerMainJob - No players in battlefield!\n");
@@ -224,7 +224,7 @@ std::uint8_t CBattlefield::getPlayerMainJob()
     return m_PlayerList.at(0)->GetMJob();
 }
 
-std::uint8_t CBattlefield::getPlayerMainLevel()
+uint8 CBattlefield::getPlayerMainLevel()
 {
     if (m_PlayerList.size() == 0)
     {
@@ -241,7 +241,7 @@ void CBattlefield::capPlayerToBCNM()
         ShowWarning("battlefield:getPlayerMainLevel - No players in battlefield!\n");
         return;
     }
-    std::uint8_t cap = getLevelCap();
+    uint8 cap = getLevelCap();
     if (cap != 0)
     {   // Other missions lines and things like dragoon quest battle can be done similarly to CoP_Battle_cap.
         // Might be better to add a type flag to the sql to tell bcnm/isnm/which expansions mission than doing by bcnmID like this.
@@ -285,7 +285,7 @@ bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar)
     return false;
 }
 
-void CBattlefield::pushMessageToAllInBcnm(std::uint16_t msg, uint32 param)
+void CBattlefield::pushMessageToAllInBcnm(uint16 msg, uint32 param)
 {
     for (const auto& player : m_PlayerList)
     {
@@ -415,7 +415,7 @@ void CBattlefield::init()
     m_AllDeadTime = time_point::min();
 }
 
-void CBattlefield::addEnemy(CMobEntity* PMob, std::uint8_t condition)
+void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition)
 {
     m_EnemyList.push_back(PMob);
     PMob->PBCNM = this;
@@ -554,7 +554,7 @@ void CBattlefield::beforeCleanup()
             {
                 if (PChar)
                 {
-                    setRecord((const char*)PChar->GetName(), (std::uint8_t)m_PlayerList.size(), clearTime);
+                    setRecord((const char*)PChar->GetName(), (uint8)m_PlayerList.size(), clearTime);
                     break;
                 }
             }
@@ -608,7 +608,7 @@ bool CBattlefield::loseBcnm()
     return true;
 }
 
-bool CBattlefield::isEnemyBelowHPP(std::uint8_t hpp)
+bool CBattlefield::isEnemyBelowHPP(uint8 hpp)
 {
     for (const auto& enemy: m_EnemyList)
     {
@@ -630,7 +630,7 @@ void CBattlefield::setDynaUniqueID()
     //ShowDebug("uniqueid core: %u\n", m_DynaUniqueID);
 }
 
-std::uint16_t CBattlefield::getDynaUniqueID()
+uint16 CBattlefield::getDynaUniqueID()
 {
     return m_DynaUniqueID;
 }

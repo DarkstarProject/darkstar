@@ -190,12 +190,12 @@ uint32 CZone::GetIP()
     return m_zoneIP;
 }
 
-std::uint16_t CZone::GetPort()
+uint16 CZone::GetPort()
 {
     return m_zonePort;
 }
 
-std::uint16_t CZone::GetTax()
+uint16 CZone::GetTax()
 {
     return m_tax;
 }
@@ -210,32 +210,32 @@ uint32 CZone::GetWeatherChangeTime()
     return m_WeatherChangeTime;
 }
 
-const std::int8_t* CZone::GetName()
+const int8* CZone::GetName()
 {
-    return (const std::int8_t*)m_zoneName.c_str();
+    return (const int8*)m_zoneName.c_str();
 }
 
-std::uint8_t CZone::GetSoloBattleMusic()
+uint8 CZone::GetSoloBattleMusic()
 {
     return m_zoneMusic.m_bSongS;
 }
 
-std::uint8_t CZone::GetPartyBattleMusic()
+uint8 CZone::GetPartyBattleMusic()
 {
     return m_zoneMusic.m_bSongM;
 }
 
-std::uint8_t CZone::GetBackgroundMusicDay()
+uint8 CZone::GetBackgroundMusicDay()
 {
     return m_zoneMusic.m_songDay;
 }
 
-std::uint8_t CZone::GetBackgroundMusicNight()
+uint8 CZone::GetBackgroundMusicNight()
 {
     return m_zoneMusic.m_songNight;
 }
 
-bool CZone::CanUseMisc(std::uint16_t misc)
+bool CZone::CanUseMisc(uint16 misc)
 {
     return (m_miscMask & misc) == misc;
 }
@@ -279,11 +279,11 @@ void CZone::LoadZoneLines()
             zoneLine_t* zl = new zoneLine_t;
 
             zl->m_zoneLineID = (uint32)Sql_GetIntData(SqlHandle, 0);
-            zl->m_toZone = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
+            zl->m_toZone = (uint16)Sql_GetIntData(SqlHandle, 1);
             zl->m_toPos.x = Sql_GetFloatData(SqlHandle, 2);
             zl->m_toPos.y = Sql_GetFloatData(SqlHandle, 3);
             zl->m_toPos.z = Sql_GetFloatData(SqlHandle, 4);
-            zl->m_toPos.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 5);
+            zl->m_toPos.rotation = (uint8)Sql_GetIntData(SqlHandle, 5);
 
             m_zoneLineList.push_back(zl);
         }
@@ -314,7 +314,7 @@ void CZone::LoadZoneWeather()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            m_WeatherVector.insert(std::make_pair((std::uint16_t)Sql_GetUIntData(SqlHandle, 0), zoneWeather_t(Sql_GetIntData(SqlHandle, 1),
+            m_WeatherVector.insert(std::make_pair((uint16)Sql_GetUIntData(SqlHandle, 0), zoneWeather_t(Sql_GetIntData(SqlHandle, 1),
                 Sql_GetIntData(SqlHandle, 2), Sql_GetIntData(SqlHandle, 3))));
         }
     }
@@ -358,13 +358,13 @@ void CZone::LoadZoneSettings()
         m_zoneName.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
         m_zoneIP = inet_addr((const char*)Sql_GetData(SqlHandle, 1));
-        m_zonePort = (std::uint16_t)Sql_GetUIntData(SqlHandle, 2);
-        m_zoneMusic.m_songDay = (std::uint8_t)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
-        m_zoneMusic.m_songNight = (std::uint8_t)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
-        m_zoneMusic.m_bSongS = (std::uint8_t)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
-        m_zoneMusic.m_bSongM = (std::uint8_t)Sql_GetUIntData(SqlHandle, 6);   // party battle music
-        m_tax = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
-        m_miscMask = (std::uint16_t)Sql_GetUIntData(SqlHandle, 8);
+        m_zonePort = (uint16)Sql_GetUIntData(SqlHandle, 2);
+        m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
+        m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
+        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
+        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle, 6);   // party battle music
+        m_tax = (uint16)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
+        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle, 8);
 
         m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
 
@@ -387,7 +387,7 @@ void CZone::LoadNavMesh()
 {
     if (m_navMesh == nullptr)
     {
-        m_navMesh = new CNavMesh((std::uint16_t)GetID());
+        m_navMesh = new CNavMesh((uint16)GetID());
     }
 
     char file[255];
@@ -471,7 +471,7 @@ void CZone::FindPartyForMob(CBaseEntity* PEntity)
 *                                                                       *
 ************************************************************************/
 
-void CZone::TransportDepart(std::uint16_t boundary, std::uint16_t zone)
+void CZone::TransportDepart(uint16 boundary, uint16 zone)
 {
     m_zoneEntities->TransportDepart(boundary, zone);
 }
@@ -504,7 +504,7 @@ void CZone::UpdateWeather()
     uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
     uint32 WeatherNextUpdate = 0;
     uint32 WeatherDay = 0;
-    std::uint8_t WeatherChance = 0;
+    uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
     WeatherNextUpdate = (dsprand::GetRandomNumber(180, 1620));
@@ -533,7 +533,7 @@ void CZone::UpdateWeather()
         weatherType = weather.second;
     }
 
-    std::uint8_t Weather = 0;
+    uint8 Weather = 0;
 
     // 15% chance for rare weather, 35% chance for common weather, 50% chance for normal weather
     // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
@@ -705,7 +705,7 @@ void CZone::SpawnTransport(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-CBaseEntity* CZone::GetEntity(std::uint16_t targid, std::uint8_t filter)
+CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 {
     return m_zoneEntities->GetEntity(targid, filter);
 }
@@ -734,7 +734,7 @@ void CZone::SavePlayTime()
 *                                                                       *
 ************************************************************************/
 
-CCharEntity* CZone::GetCharByName(std::int8_t* name)
+CCharEntity* CZone::GetCharByName(int8* name)
 {
     return m_zoneEntities->GetCharByName(name);
 }
@@ -761,7 +761,7 @@ void CZone::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message_type, C
 *                                                                       *
 ************************************************************************/
 
-void CZone::WideScan(CCharEntity* PChar, std::uint16_t radius)
+void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 {
     m_zoneEntities->WideScan(PChar, radius);
 }
@@ -913,7 +913,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
             }
             if (PChar->PParty->GetSyncTarget() != nullptr)
             {
-                std::uint8_t count = 0;
+                uint8 count = 0;
                 for (uint32 i = 0; i < PChar->PParty->members.size(); ++i)
                 {
                     if (PChar->PParty->members.at(i) != PChar && PChar->PParty->members.at(i)->getZone() == PChar->PParty->GetSyncTarget()->getZone())
@@ -967,7 +967,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID == 0)
     {
-        std::uint8_t data[4] {};
+        uint8 data[4] {};
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     }

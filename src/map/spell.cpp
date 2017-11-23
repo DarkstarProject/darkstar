@@ -45,12 +45,12 @@ CSpell::CSpell(SpellID id)
       return std::unique_ptr<CSpell>(new CSpell(*this));
   }
 
-void CSpell::setTotalTargets(std::uint16_t total)
+void CSpell::setTotalTargets(uint16 total)
 {
     m_totalTargets = total;
 }
 
-std::uint16_t CSpell::getTotalTargets()
+uint16 CSpell::getTotalTargets()
 {
     return m_totalTargets;
 }
@@ -65,12 +65,12 @@ SpellID CSpell::getID()
     return m_ID;
 }
 
-std::uint8_t CSpell::getJob(JOBTYPE JobID)
+uint8 CSpell::getJob(JOBTYPE JobID)
 {
     return (m_job[JobID] == CANNOT_USE_SPELL ? 255 : m_job[JobID]);
 }
 
-void CSpell::setJob(std::int8_t* jobs)
+void CSpell::setJob(int8* jobs)
 {
     memcpy(&m_job[1], jobs, 22);
 }
@@ -95,12 +95,12 @@ void CSpell::setRecastTime(uint32 RecastTime)
     m_recastTime = RecastTime;
 }
 
-const std::int8_t* CSpell::getName()
+const int8* CSpell::getName()
 {
-    return (const std::int8_t*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
-void CSpell::setName(std::int8_t* name)
+void CSpell::setName(int8* name)
 {
     m_name.clear();
     m_name.insert(0, (const char*)name);
@@ -116,12 +116,12 @@ void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
     m_spellGroup = SpellGroup;
 }
 
-std::uint8_t CSpell::getSkillType()
+uint8 CSpell::getSkillType()
 {
     return m_skillType;
 }
 
-void CSpell::setSkillType(std::uint8_t SkillType)
+void CSpell::setSkillType(uint8 SkillType)
 {
     m_skillType = SkillType;
 }
@@ -152,12 +152,12 @@ bool CSpell::isHeal()
 
 bool CSpell::isCure()
 {
-    return ((static_cast<std::uint16_t>(m_ID) >= 1 && static_cast<std::uint16_t>(m_ID) <= 11) || m_ID == SpellID::Cura || m_ID == SpellID::Cura_II || m_ID == SpellID::Cura_III);
+    return ((static_cast<uint16>(m_ID) >= 1 && static_cast<uint16>(m_ID) <= 11) || m_ID == SpellID::Cura || m_ID == SpellID::Cura_II || m_ID == SpellID::Cura_III);
 }
 
 bool CSpell::isNa()
 {
-    return (static_cast<std::uint16_t>(m_ID) >= 14 && static_cast<std::uint16_t>(m_ID) <= 20) || m_ID == SpellID::Erase;
+    return (static_cast<uint16>(m_ID) >= 14 && static_cast<uint16>(m_ID) <= 20) || m_ID == SpellID::Erase;
 }
 
 bool CSpell::canHitShadow()
@@ -176,42 +176,42 @@ float CSpell::getRadius()
     return m_radius;
 }
 
-std::uint16_t CSpell::getZoneMisc()
+uint16 CSpell::getZoneMisc()
 {
     return m_zoneMisc;
 }
 
-void CSpell::setZoneMisc(std::uint16_t Misc)
+void CSpell::setZoneMisc(uint16 Misc)
 {
     m_zoneMisc = Misc;
 }
 
-std::uint16_t CSpell::getAnimationID()
+uint16 CSpell::getAnimationID()
 {
     return m_animation;
 }
 
-void CSpell::setAnimationID(std::uint16_t AnimationID)
+void CSpell::setAnimationID(uint16 AnimationID)
 {
     m_animation = AnimationID;
 }
 
-std::uint16_t CSpell::getAnimationTime()
+uint16 CSpell::getAnimationTime()
 {
     return m_animationTime;
 }
 
-void CSpell::setAnimationTime(std::uint16_t AnimationTime)
+void CSpell::setAnimationTime(uint16 AnimationTime)
 {
     m_animationTime = AnimationTime;
 }
 
-std::uint16_t CSpell::getMPCost()
+uint16 CSpell::getMPCost()
 {
     return m_mpCost;
 }
 
-void CSpell::setMPCost(std::uint16_t MP)
+void CSpell::setMPCost(uint16 MP)
 {
     m_mpCost = MP;
 }
@@ -221,32 +221,32 @@ bool CSpell::canTargetEnemy()
     return (getValidTarget() & TARGET_ENEMY) && !(getValidTarget() & TARGET_SELF);
 }
 
-std::uint8_t CSpell::getAOE()
+uint8 CSpell::getAOE()
 {
     return m_AOE;
 }
 
-void CSpell::setAOE(std::uint8_t AOE)
+void CSpell::setAOE(uint8 AOE)
 {
     m_AOE = AOE;
 }
 
-std::uint16_t CSpell::getBase()
+uint16 CSpell::getBase()
 {
     return m_base;
 }
 
-void CSpell::setBase(std::uint16_t base)
+void CSpell::setBase(uint16 base)
 {
     m_base = base;
 }
 
-std::uint8_t CSpell::getValidTarget()
+uint8 CSpell::getValidTarget()
 {
     return m_ValidTarget;
 }
 
-void CSpell::setValidTarget(std::uint8_t ValidTarget)
+void CSpell::setValidTarget(uint8 ValidTarget)
 {
     m_ValidTarget = ValidTarget;
 }
@@ -261,12 +261,12 @@ void CSpell::setMultiplier(float multiplier)
     m_multiplier = multiplier;
 }
 
-std::uint16_t CSpell::getMessage()
+uint16 CSpell::getMessage()
 {
     return m_message;
 }
 
-std::uint16_t CSpell::getAoEMessage()
+uint16 CSpell::getAoEMessage()
 {
     switch(m_message){
         case 93: // vanishes
@@ -288,37 +288,37 @@ std::uint16_t CSpell::getAoEMessage()
     }
 }
 
-void CSpell::setMessage(std::uint16_t message)
+void CSpell::setMessage(uint16 message)
 {
     m_message = message;
 }
 
-std::uint16_t CSpell::getMagicBurstMessage()
+uint16 CSpell::getMagicBurstMessage()
 {
     return m_MagicBurstMessage;
 }
 
-void CSpell::setMagicBurstMessage(std::uint16_t message)
+void CSpell::setMagicBurstMessage(uint16 message)
 {
     m_MagicBurstMessage = message;
 }
 
-std::uint16_t CSpell::getElement()
+uint16 CSpell::getElement()
 {
     return m_element;
 }
 
-void CSpell::setElement(std::uint16_t element)
+void CSpell::setElement(uint16 element)
 {
     m_element = element;
 }
 
-void CSpell::setCE(std::uint16_t ce)
+void CSpell::setCE(uint16 ce)
 {
     m_CE = ce;
 }
 
-std::uint16_t CSpell::getCE()
+uint16 CSpell::getCE()
 {
     return m_CE;
 }
@@ -328,12 +328,12 @@ void CSpell::setRadius(float radius)
     m_radius = radius;
 }
 
-void CSpell::setVE(std::uint16_t ve)
+void CSpell::setVE(uint16 ve)
 {
     m_VE = ve;
 }
 
-std::uint16_t CSpell::getVE()
+uint16 CSpell::getVE()
 {
     return m_VE;
 }
@@ -348,37 +348,37 @@ uint32 CSpell::getModifiedRecast()
     return m_modifiedRecastTime;
 }
 
-std::uint8_t CSpell::getRequirements()
+uint8 CSpell::getRequirements()
 {
     return m_requirements;
 }
 
-void CSpell::setRequirements(std::uint8_t requirements)
+void CSpell::setRequirements(uint8 requirements)
 {
     m_requirements = requirements;
 }
 
-std::uint16_t CSpell::getMeritId()
+uint16 CSpell::getMeritId()
 {
     return m_meritId;
 }
 
-void CSpell::setMeritId(std::uint16_t meritId)
+void CSpell::setMeritId(uint16 meritId)
 {
     m_meritId = meritId;
 }
 
-std::uint8_t CSpell::getFlag()
+uint8 CSpell::getFlag()
 {
     return m_flag;
 }
 
-void CSpell::setFlag(std::uint8_t flag)
+void CSpell::setFlag(uint8 flag)
 {
     m_flag = flag;
 }
 
-std::int8_t* CSpell::getContentTag()
+int8* CSpell::getContentTag()
 {
     return m_contentTag;
 }
@@ -388,7 +388,7 @@ float CSpell::getRange()
     return m_range;
 }
 
-void CSpell::setContentTag(std::int8_t* contentTag)
+void CSpell::setContentTag(int8* contentTag)
 {
     m_contentTag = contentTag;
 }
@@ -402,7 +402,7 @@ void CSpell::setRange(float range)
 namespace spell
 {
     std::array<CSpell*, 1024> PSpellList; // spell list
-    std::map<std::uint16_t, std::uint16_t> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
+    std::map<uint16, uint16> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
 
     //Load a list of spells
     void LoadSpellList()
@@ -452,7 +452,7 @@ namespace spell
                 PSpell->setRequirements(Sql_GetIntData(SqlHandle,20));
 
                 Sql_GetData(SqlHandle, 21, &contentTag, nullptr);
-                PSpell->setContentTag((std::int8_t*)contentTag);
+                PSpell->setContentTag((int8*)contentTag);
 
                 PSpell->setRange(static_cast<float>(Sql_GetIntData(SqlHandle, 22)) / 10);
 
@@ -462,7 +462,7 @@ namespace spell
                     PSpell->setRadius(10);
                 }
 
-                PSpellList[static_cast<std::uint16_t>(PSpell->getID())] = PSpell;
+                PSpellList[static_cast<uint16>(PSpell->getID())] = PSpell;
             }
         }
 
@@ -485,7 +485,7 @@ namespace spell
                 }
 
                 // Sanity check the spell ID
-                std::uint16_t spellId = Sql_GetIntData(SqlHandle,0);
+                uint16 spellId = Sql_GetIntData(SqlHandle,0);
 
                 if(PSpellList[spellId] == nullptr)
                 {
@@ -508,9 +508,9 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t spellId = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
+                uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
-                std::int16_t  value  = (std::int16_t) Sql_GetIntData (SqlHandle,2);
+                int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
                 if (PSpellList[spellId])
                 {
@@ -532,7 +532,7 @@ namespace spell
                     continue;
                 }
 
-                std::uint16_t spellId = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
+                uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 
                 if (PSpellList[spellId])
                 {
@@ -542,13 +542,13 @@ namespace spell
         }
     }
 
-    CSpell* GetSpellByMonsterSkillId(std::uint16_t SkillID) {
-        std::map<std::uint16_t,std::uint16_t>::iterator it = PMobSkillToBlueSpell.find(SkillID);
+    CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
+        std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell.find(SkillID);
         if (it == PMobSkillToBlueSpell.end()) {
             return nullptr;
         }
         else {
-            std::uint16_t spellId = it->second;
+            uint16 spellId = it->second;
             return PSpellList[spellId];
         }
     }
@@ -572,9 +572,9 @@ namespace spell
 
         if (spell != nullptr)
         {
-            std::uint8_t JobMLVL = spell->getJob(PCaster->GetMJob());
-            std::uint8_t JobSLVL = spell->getJob(PCaster->GetSJob());
-            std::uint8_t requirements = spell->getRequirements();
+            uint8 JobMLVL = spell->getJob(PCaster->GetMJob());
+            uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
+            uint8 requirements = spell->getRequirements();
 
             if (PCaster->objtype == TYPE_MOB || (PCaster->objtype == TYPE_PET && static_cast<CPetEntity*>(PCaster)->getPetType() == PETTYPE_AUTOMATON))
             {
@@ -677,11 +677,11 @@ namespace spell
 
     // This is a utility method for mobutils, when we want to work out if we can give monsters a spell
     // but they are on an odd job (e.g. PLDs getting -ga3)
-    bool CanUseSpellWith(SpellID spellId, JOBTYPE job, std::uint8_t level)
+    bool CanUseSpellWith(SpellID spellId, JOBTYPE job, uint8 level)
     {
         if (GetSpell(spellId) != nullptr)
         {
-            std::uint8_t jobMLevel = PSpellList[static_cast<size_t>(spellId)]->getJob(job);
+            uint8 jobMLevel = PSpellList[static_cast<size_t>(spellId)]->getJob(job);
 
             return level > jobMLevel;
         }

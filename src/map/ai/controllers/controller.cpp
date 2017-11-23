@@ -43,7 +43,7 @@ void CController::Reset()
 {
 }
 
-bool CController::Cast(std::uint16_t targid, SpellID spellid)
+bool CController::Cast(uint16 targid, SpellID spellid)
 {
     if (POwner)
     {
@@ -52,7 +52,7 @@ bool CController::Cast(std::uint16_t targid, SpellID spellid)
     return false;
 }
 
-bool CController::Engage(std::uint16_t targid)
+bool CController::Engage(uint16 targid)
 {
     if (POwner)
     {
@@ -61,7 +61,7 @@ bool CController::Engage(std::uint16_t targid)
     return false;
 }
 
-bool CController::ChangeTarget(std::uint16_t targid)
+bool CController::ChangeTarget(uint16 targid)
 {
     if (POwner)
     {
@@ -79,7 +79,7 @@ bool CController::Disengage()
     return false;
 }
 
-bool CController::WeaponSkill(std::uint16_t targid, std::uint16_t wsid)
+bool CController::WeaponSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {

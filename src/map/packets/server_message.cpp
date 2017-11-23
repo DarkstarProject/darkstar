@@ -26,7 +26,7 @@
 
 #include <string.h>
 
-CServerMessagePacket::CServerMessagePacket(const string_t message, std::int8_t language, std::int32_t timestamp, std::int32_t message_offset)
+CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language, std::int32_t timestamp, std::int32_t message_offset)
 {
     this->type = 0x4D;
     this->size = 0x0E;
@@ -52,7 +52,7 @@ CServerMessagePacket::CServerMessagePacket(const string_t message, std::int8_t l
 
         memcpy((data + (0x18)) , message.c_str() + message_offset, sndLength);
 
-        auto textSize = (std::uint8_t)(sndLength + sndLength % 2);
+        auto textSize = (uint8)(sndLength + sndLength % 2);
         this->size = ((((0x14 + textSize) + 4) >> 1) & 0xFE);
     }
 }

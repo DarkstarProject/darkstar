@@ -91,9 +91,9 @@ public:
     void reset(); // remove all found targets
 
     // Main methods for finding targets
-    void findSingleTarget(CBattleEntity* PTarget, std::uint8_t flags = FINDFLAGS_NONE);
-    void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, std::uint8_t flags = FINDFLAGS_NONE);
-    void findWithinCone(CBattleEntity* PTarget, float distance, float angle, std::uint8_t flags = FINDFLAGS_NONE);
+    void findSingleTarget(CBattleEntity* PTarget, uint8 flags = FINDFLAGS_NONE);
+    void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags = FINDFLAGS_NONE);
+    void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
 
     // add all targets in contexts
 	void addAllInZone(CBattleEntity* PTarget, bool withPet);
@@ -114,7 +114,7 @@ public:
     bool isWithinRange(position_t* pos, float range);
     bool canSee(position_t* point);
 
-    CBattleEntity* getValidTarget(std::uint16_t actionTargetID, std::uint16_t validTargetFlags);
+    CBattleEntity* getValidTarget(uint16 actionTargetID, uint16 validTargetFlags);
 
     std::vector<CBattleEntity*> m_targets; // contains all found entities
 
@@ -129,9 +129,9 @@ protected:
     CBattleEntity* m_PMasterTarget; // mater of target
     CBattleEntity* m_PTarget; // first target
 
-    std::uint16_t m_zone;
+    uint16 m_zone;
     FINDTYPE m_findType;
-    std::uint8_t m_findFlags;
+    uint8 m_findFlags;
 
     // conal vars
     bool m_conal;

@@ -633,12 +633,12 @@ enum ABILITY
 
 struct Charge_t
 {
-    std::uint16_t     ID;          //recastId
+    uint16     ID;          //recastId
     JOBTYPE    job;         //job
-    std::uint8_t      level;       //level
-    std::uint8_t      maxCharges;  //maximum number of stored charges
+    uint8      level;       //level
+    uint8      maxCharges;  //maximum number of stored charges
     uint32     chargeTime;  //time required to restore one charge
-    std::uint16_t     merit;
+    uint16     merit;
 };
 
 /************************************************************************
@@ -651,74 +651,74 @@ class CAbility
 {
 public:
 
-    CAbility(std::uint16_t id);
+    CAbility(uint16 id);
 
     bool        isPetAbility();
     bool        isAoE();
     bool        isConal();
 
-    std::uint16_t      getID();
-    std::uint16_t      getMobSkillID();
+    uint16      getID();
+    uint16      getMobSkillID();
     JOBTYPE     getJob();
-    std::uint8_t       getLevel();
-    std::uint16_t      getAnimationID();
+    uint8       getLevel();
+    uint16      getAnimationID();
     duration    getAnimationTime();
     duration    getCastTime();
     float       getRange();
-    std::uint8_t       getAOE();
-    std::uint16_t      getValidTarget();
-    std::uint16_t      getAddType();
-    std::uint16_t      getMessage();
-    std::uint16_t      getAoEMsg();
-    std::uint16_t      getRecastTime();
-    std::uint16_t      getRecastId();
-    std::uint16_t      getCE();
-    std::uint16_t      getVE();
-    std::uint16_t      getMeritModID();
+    uint8       getAOE();
+    uint16      getValidTarget();
+    uint16      getAddType();
+    uint16      getMessage();
+    uint16      getAoEMsg();
+    uint16      getRecastTime();
+    uint16      getRecastId();
+    uint16      getCE();
+    uint16      getVE();
+    uint16      getMeritModID();
     ACTIONTYPE  getActionType();
 
-    void        setID(std::uint16_t id);
-    void        setMobSkillID(std::uint16_t id);
+    void        setID(uint16 id);
+    void        setMobSkillID(uint16 id);
     void        setJob(JOBTYPE Job);
-    void        setLevel(std::uint8_t level);
-    void        setAnimationID(std::uint16_t animationID);
+    void        setLevel(uint8 level);
+    void        setAnimationID(uint16 animationID);
     void        setAnimationTime(duration time);
     void        setCastTime(duration time);
     void        setRange(float range);
-    void        setAOE(std::uint8_t aoe);
-    void        setValidTarget(std::uint16_t validTarget);
-    void        setAddType(std::uint16_t addtype);
-    void        setMessage(std::uint16_t message);
-    void        setRecastTime(std::uint16_t recastTime);
-    void        setRecastId(std::uint16_t recastId);
-    void        setCE(std::uint16_t CE);
-    void        setVE(std::uint16_t VE);
-    void        setMeritModID(std::uint16_t value);
+    void        setAOE(uint8 aoe);
+    void        setValidTarget(uint16 validTarget);
+    void        setAddType(uint16 addtype);
+    void        setMessage(uint16 message);
+    void        setRecastTime(uint16 recastTime);
+    void        setRecastId(uint16 recastId);
+    void        setCE(uint16 CE);
+    void        setVE(uint16 VE);
+    void        setMeritModID(uint16 value);
     void        setActionType(ACTIONTYPE type);
 
-    const std::int8_t* getName();
-    void        setName(std::int8_t* name);
+    const int8* getName();
+    void        setName(int8* name);
 
 private:
 
-    std::uint16_t      m_ID;
+    uint16      m_ID;
     JOBTYPE     m_Job;
-    std::uint8_t       m_level;
-    std::uint16_t      m_animationID;
+    uint8       m_level;
+    uint16      m_animationID;
     duration    m_animationTime;
     duration    m_castTime;
     float       m_range;
-    std::uint8_t       m_aoe;
-    std::uint16_t      m_validTarget;
-    std::uint16_t      m_addType;
-    std::uint16_t      m_message;
-    std::uint16_t      m_recastTime;
-    std::uint16_t      m_recastId;
-    std::uint16_t      m_CE;
-    std::uint16_t      m_VE;
-    std::uint16_t      m_meritModID;
+    uint8       m_aoe;
+    uint16      m_validTarget;
+    uint16      m_addType;
+    uint16      m_message;
+    uint16      m_recastTime;
+    uint16      m_recastId;
+    uint16      m_CE;
+    uint16      m_VE;
+    uint16      m_meritModID;
     string_t    m_name;
-    std::uint16_t      m_mobskillId;
+    uint16      m_mobskillId;
     ACTIONTYPE  m_actionType;
 };
 
@@ -732,11 +732,11 @@ namespace ability
 {
     void    LoadAbilitiesList();
 
-    CAbility* GetAbility(std::uint16_t AbilityID);
+    CAbility* GetAbility(uint16 AbilityID);
 
     CAbility* GetTwoHourAbility(JOBTYPE JobID);
-    bool CanLearnAbility(CBattleEntity* PUser, std::uint16_t AbilityID);
-    Charge_t* GetCharge(CBattleEntity* PUser, std::uint16_t chargeID);
+    bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID);
+    Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID);
     uint32 GetAbsorbMessage(uint32 message);
 
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID);

@@ -40,7 +40,7 @@ This file is part of DarkStar-server source code.
 #include "../../utils/charutils.h"
 
 
-CItemState::CItemState(CCharEntity* PEntity, std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid) :
+CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
     m_PItem(nullptr),
@@ -196,7 +196,7 @@ void CItemState::TryInterrupt(CBattleEntity * PTarget)
     else
         PTarget = m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg);
 
-    std::uint16_t msg = 445; // you cannot use items at this time
+    uint16 msg = 445; // you cannot use items at this time
 
     if (HasMoved() || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {

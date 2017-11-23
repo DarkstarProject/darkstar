@@ -27,20 +27,20 @@
 
 #include <string.h>
 
-CLinkshellMessagePacket::CLinkshellMessagePacket(const std::int8_t* poster, const std::int8_t* message, const std::int8_t* lsname, uint32 posttime, bool ls1)
+CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, uint32 posttime, bool ls1)
 {
     CBasicPacket::id(id);
 	this->size = 0x58;
 
-    ref<std::uint8_t>(0x04) = 0x03;
-    ref<std::uint8_t>(0x05) = 0x90;
+    ref<uint8>(0x04) = 0x03;
+    ref<uint8>(0x05) = 0x90;
 
-    ref<std::uint8_t>(0x04) = 0x70;
-    ref<std::uint8_t>(0x05) = 0x06;
+    ref<uint8>(0x04) = 0x70;
+    ref<uint8>(0x05) = 0x06;
 
     if (!ls1)
     {
-        ref<std::uint8_t>(0x05) |= 0x40; //LS2
+        ref<uint8>(0x05) |= 0x40; //LS2
     }
     if (message)
     {

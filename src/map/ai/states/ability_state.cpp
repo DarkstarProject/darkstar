@@ -33,7 +33,7 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
 
-CAbilityState::CAbilityState(CBattleEntity* PEntity, std::uint16_t targid, std::uint16_t abilityid) :
+CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abilityid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {

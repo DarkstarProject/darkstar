@@ -31,7 +31,7 @@
 #include "../utils/itemutils.h"
 
 
-CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, std::uint8_t SlotID, std::uint8_t Quantity)
+CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity)
 {
 	this->type = 0x09;  // 0x109
 	this->size = 0x13;
@@ -51,7 +51,7 @@ CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, CItem* 
     if (PItem)
     {
         ref<uint32>(0x04) = PItem->getQuantity();
-        ref<std::uint16_t>(0x08) = PItem->getID();
+        ref<uint16>(0x08) = PItem->getID();
     }
 
     memcpy(data + (0x0A), PChar->GetName(), PChar->name.size());

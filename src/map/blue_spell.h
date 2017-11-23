@@ -33,34 +33,34 @@ public:
     CBlueSpell(SpellID id);
     virtual std::unique_ptr<CSpell> clone() override;
 
-    std::uint16_t		getMonsterSkillId();
-    std::uint8_t       getSetPoints();
-    std::uint8_t       getEcosystem();
-    std::uint8_t       getTraitCategory();
-    std::uint8_t       getTraitWeight();
-    std::uint8_t       getPrimarySkillchain();
-    std::uint8_t       getSecondarySkillchain();
+    uint16		getMonsterSkillId();
+    uint8       getSetPoints();
+    uint8       getEcosystem();
+    uint8       getTraitCategory();
+    uint8       getTraitWeight();
+    uint8       getPrimarySkillchain();
+    uint8       getSecondarySkillchain();
 
-	void		setMonsterSkillId(std::uint16_t skillid);
-    void        setSetPoints(std::uint8_t setpoints);
-    void        setEcosystem(std::uint8_t ecosystem);
-    void        setTraitCategory(std::uint8_t category);
-    void        setTraitWeight(std::uint8_t weight);
-    void        setPrimarySkillchain(std::uint8_t sc);
-    void        setSecondarySkillchain(std::uint8_t sc);
+	void		setMonsterSkillId(uint16 skillid);
+    void        setSetPoints(uint8 setpoints);
+    void        setEcosystem(uint8 ecosystem);
+    void        setTraitCategory(uint8 category);
+    void        setTraitWeight(uint8 weight);
+    void        setPrimarySkillchain(uint8 sc);
+    void        setSecondarySkillchain(uint8 sc);
     void		addModifier(CModifier modifier);
 
 	std::vector<CModifier> modList;					// modifiers added when blue spell is equipped
 
 private:
 
-	std::uint16_t		m_monsterSkillId {};						// matching skill for a blue spell
-    std::uint8_t       m_setPoints {};
-    std::uint8_t       m_ecosystem {};
-    std::uint8_t       m_traitCategory {};
-    std::uint8_t       m_traitWeight {};
-    std::uint8_t       m_PrimarySkillchain {};
-    std::uint8_t       m_SecondarySkillchain {};
+	uint16		m_monsterSkillId {};						// matching skill for a blue spell
+    uint8       m_setPoints {};
+    uint8       m_ecosystem {};
+    uint8       m_traitCategory {};
+    uint8       m_traitWeight {};
+    uint8       m_PrimarySkillchain {};
+    uint8       m_SecondarySkillchain {};
 
 };
 

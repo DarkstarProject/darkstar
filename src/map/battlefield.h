@@ -49,7 +49,7 @@ enum LEAVE_CODE {
     LEAVE_LOSE = 4
 };
 
-enum BATTLEFIELD_RETURN_CODE : std::uint8_t
+enum BATTLEFIELD_RETURN_CODE : uint8
 {
     BATTLEFIELD_RETURN_CODE_WAIT              = 1,
     BATTLEFIELD_RETURN_CODE_CUTSCENE          = 2,
@@ -67,7 +67,7 @@ class CBattlefieldHandler;
 struct BattlefieldRecord
 {
     std::string name;
-    std::uint8_t partySize;
+    uint8 partySize;
     duration clearTime;
     BattlefieldRecord()
     {
@@ -88,35 +88,35 @@ class CBattlefield
 {
 public:
 
-    CBattlefield(CBattlefieldHandler* hand, std::uint16_t bcnmid, BATTLEFIELDTYPE type);
+    CBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type);
 
     //bcnm related functions
-    std::uint16_t		getID();
+    uint16		getID();
     duration		getTimeLimit();
     BATTLEFIELDTYPE		getType();
-    const std::int8_t* getBcnmName();
-    std::uint16_t		getZoneId();
-    std::uint8_t       getBattlefieldNumber();
-    std::uint8_t       getMaxParticipants();
-    std::uint8_t		getMaxPlayerInBCNM();
-    std::uint8_t		getLevelCap();
-    std::uint16_t		getLootId();
+    const int8* getBcnmName();
+    uint16		getZoneId();
+    uint8       getBattlefieldNumber();
+    uint8       getMaxParticipants();
+    uint8		getMaxPlayerInBCNM();
+    uint8		getLevelCap();
+    uint16		getLootId();
     time_point		getStartTime();
     time_point		getWinTime();
     time_point		getDeadTime();
-    std::uint8_t		getEntrance();
+    uint8		getEntrance();
     const BattlefieldRecord& getRecord() const;
 
     void		setTimeLimit(duration time);
-    void		setBcnmName(std::int8_t* name);
-    void		setZoneId(std::uint16_t zone);
-    void		setBattlefieldNumber(std::uint8_t battlefield);
-    void		setMaxParticipants(std::uint8_t max);
-    void		setLevelCap(std::uint8_t cap);
-    void		setLootId(std::uint16_t id);
+    void		setBcnmName(int8* name);
+    void		setZoneId(uint16 zone);
+    void		setBattlefieldNumber(uint8 battlefield);
+    void		setMaxParticipants(uint8 max);
+    void		setLevelCap(uint8 cap);
+    void		setLootId(uint16 id);
     void		setDeadTime(time_point time);
-    void		setEntrance(std::uint8_t entrance);
-    void        setRecord(const std::string& name, std::uint8_t partySize, duration clearTime);
+    void		setEntrance(uint8 entrance);
+    void        setRecord(const std::string& name, uint8 partySize, duration clearTime);
 
     //player related functions
     bool		isValidPlayerForBcnm(CCharEntity* PChar);
@@ -125,12 +125,12 @@ public:
     bool		addPlayerToBcnm(CCharEntity* PChar);					// true if added
     bool		delPlayerFromBcnm(CCharEntity* PChar);					// true if deleted
     bool		allPlayersDead();										// true if all players in the bcnm are dead.
-    std::uint8_t		getPlayerMainJob();										// used for Maat fights
-    std::uint8_t		getPlayerMainLevel();									// used for Maat fights
+    uint8		getPlayerMainJob();										// used for Maat fights
+    uint8		getPlayerMainLevel();									// used for Maat fights
     void		capPlayerToBCNM();										// adjust player's level to the appropriate cap and remove buffs
     void		disableSubJob();										// disable all players subjobs
     void		enableSubJob();											// enable all players subjobs
-    void		pushMessageToAllInBcnm(std::uint16_t msg, uint32 param);
+    void		pushMessageToAllInBcnm(uint16 msg, uint32 param);
 
     //spawning chests + loot
     void		addNpc(CBaseEntity* PNpc);
@@ -141,9 +141,9 @@ public:
     //mob related functions
     //bool		spawnAllEnemies();
     //bool		resetAllEnemySpawnPositions();
-    void		addEnemy(CMobEntity* PMob, std::uint8_t condition);
+    void		addEnemy(CMobEntity* PMob, uint8 condition);
     bool		allEnemiesDefeated();
-    bool		isEnemyBelowHPP(std::uint8_t hpp);
+    bool		isEnemyBelowHPP(uint8 hpp);
     void		addMonsterInList(CMobEntity* PMob);						// add monster to the list
     bool		isMonsterInList(CMobEntity* PMob);						// check if monster is in the list
 
@@ -160,7 +160,7 @@ public:
 
     //Dynamis functions
     void		setDynaUniqueID();										// set unique ID in dynamis battlefield
-    std::uint16_t		getDynaUniqueID();										// get unique ID in dynamis battlefield
+    uint16		getDynaUniqueID();										// get unique ID in dynamis battlefield
     bool		addPlayerToDynamis(CCharEntity* PChar);					// add player to the dynamis
     void		addTimeLimit(duration time);								// add time in dynamis
     bool		finishDynamis();										// finish dynamis
@@ -168,7 +168,7 @@ public:
     bool		delPlayerFromDynamis(CCharEntity* PChar);				// delete player in m_PlayerList
     void		clearPlayerEnmity(CCharEntity* PChar); 					// erase chars enmity
 
-    std::uint16_t		m_RuleMask;
+    uint16		m_RuleMask;
     bool		locked;
     string_t	m_FastestName;
     uint32		m_FastestTime;
@@ -189,20 +189,20 @@ public:
 
 private:
     CBattlefieldHandler* m_Handler;
-    std::uint16_t			m_BcnmID;
+    uint16			m_BcnmID;
     string_t		m_name;
-    std::uint16_t			m_ZoneID;
+    uint16			m_ZoneID;
     BATTLEFIELDTYPE m_Type;
-    std::uint8_t			m_BattlefieldNumber;
+    uint8			m_BattlefieldNumber;
     time_point			m_StartTime;
     time_point 			m_WinTime;
     time_point			m_AllDeadTime;											// time when every pt member has fallen
     duration			m_TimeLimit;
     uint32			m_LootId;
-    std::uint8_t			m_LevelCap;
-    std::uint8_t			m_MaxParticipants;										// 1,3,6,12,18,zone
-    std::uint16_t			m_DynaUniqueID;											// unique ID for dynamis battlefield
-    std::uint8_t			m_entrance;
+    uint8			m_LevelCap;
+    uint8			m_MaxParticipants;										// 1,3,6,12,18,zone
+    uint16			m_DynaUniqueID;											// unique ID for dynamis battlefield
+    uint8			m_entrance;
     CCharEntity*	m_CurrentBattlefieldLeader;
     bool			m_lost;
     bool			m_won;

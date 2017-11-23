@@ -103,7 +103,7 @@ inline std::int32_t CLuaBattlefield::getRecord(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, 3, 0);
-    std::int8_t newTable = lua_gettop(L);
+    int8 newTable = lua_gettop(L);
     const auto& record = m_PLuaBattlefield->getRecord();
 
     lua_pushstring(L, record.name.c_str());
@@ -135,7 +135,7 @@ inline std::int32_t CLuaBattlefield::getEntrance(lua_State* L) {
 inline std::int32_t CLuaBattlefield::setEntrance(lua_State* L) {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
     DSP_DEBUG_BREAK_IF(!lua_isnumber(L, 1) || lua_isnil(L, 1));
-    m_PLuaBattlefield->setEntrance((std::uint8_t)lua_tointeger(L, 1));
+    m_PLuaBattlefield->setEntrance((uint8)lua_tointeger(L, 1));
     return 0;
 }
 

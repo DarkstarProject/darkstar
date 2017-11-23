@@ -45,7 +45,7 @@ class CGuildMenuPacket : public CBasicPacket
 {
 public:
 	
-	CGuildMenuPacket(GUILDSTATUS status, std::uint8_t open, std::uint8_t close, std::uint8_t holiday);
+	CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, uint8 holiday);
 };
 
 #endif

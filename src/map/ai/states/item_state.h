@@ -35,7 +35,7 @@ struct action_t;
 class CItemState : public CState
 {
 public:
-    CItemState(CCharEntity* PEntity, std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid);
+    CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid);
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
@@ -54,8 +54,8 @@ protected:
 
     CCharEntity* m_PEntity;
     CItemUsable* m_PItem;
-    std::uint8_t m_location;
-    std::uint8_t m_slot;
+    uint8 m_location;
+    uint8 m_slot;
     duration m_castTime;
     duration m_animationTime;
     position_t m_startPos;

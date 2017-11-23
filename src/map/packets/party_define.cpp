@@ -50,10 +50,10 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 										allianceid, PParty->GetPartyID(), PARTY_SECOND | PARTY_THIRD);
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
 		{
-			std::uint8_t i = 0;
+			uint8 i = 0;
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
-				std::uint16_t targid = 0;
+				uint16 targid = 0;
 				CCharEntity* PChar = zoneutils::GetChar(Sql_GetUIntData(SqlHandle, 0));
 				if (PChar) targid = PChar->targid;
 				WBUFL(data, 12 * i + (0x08) ) = Sql_GetUIntData(SqlHandle, 0);

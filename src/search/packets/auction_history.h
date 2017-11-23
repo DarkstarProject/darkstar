@@ -30,17 +30,17 @@ class CAHHistoryPacket
 {
 public:
 
-    CAHHistoryPacket(std::uint16_t ItemID);
+    CAHHistoryPacket(uint16 ItemID);
 
     void AddItem(ahHistory* item);
 
-    std::uint8_t* GetData();
-    std::uint16_t GetSize();
+    uint8* GetData();
+    uint16 GetSize();
 
 private:
 
-    std::uint8_t m_count;
-    std::uint8_t m_PData[475];
+    uint8 m_count;
+    uint8 m_PData[475];
 };
 
 #endif

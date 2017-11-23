@@ -32,9 +32,9 @@ public:
 
     void			HealAllMobs();
 
-    CCharEntity*    GetCharByName(std::int8_t* name);                                      // finds the player if exists in zone
+    CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
     CCharEntity*	GetCharByID(uint32 id);
-    CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1); 					// получаем указатель на любую сущность в зоне
+    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
 
     void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
     void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне
@@ -45,7 +45,7 @@ public:
     void			DespawnPC(CCharEntity* PChar);
     void			SavePlayTime();
 
-    void			WideScan(CCharEntity* PChar, std::uint16_t radius);					// сканирование местности с заданным радиусом
+    void			WideScan(CCharEntity* PChar, uint16 radius);					// сканирование местности с заданным радиусом
 
     void			DecreaseZoneCounter(CCharEntity* PChar);						// добавляем персонажа в зону
 
@@ -57,7 +57,7 @@ public:
     void			DeletePET(CBaseEntity* PPet);       	                        // derefs the pet's ID from this zone
 
     void			FindPartyForMob(CBaseEntity* PEntity);                          // ищем группу для монстра
-    void			TransportDepart(std::uint16_t boundary, std::uint16_t zone);                  // транспотр отправляется, необходимо собрать пассажиров
+    void			TransportDepart(uint16 boundary, uint16 zone);                  // транспотр отправляется, необходимо собрать пассажиров
 
     void			TOTDChange(TIMETYPE TOTD);										// обработка реакции мира на смену времени суток
     void			WeatherChange(WEATHER weather);
@@ -69,7 +69,7 @@ public:
 
     EntityList_t	GetCharList();
     bool			CharListEmpty();
-    std::uint16_t			GetNewTargID();
+    uint16			GetNewTargID();
 
     EntityList_t	m_allyList;
     EntityList_t	m_mobList;				// список всех MOBs в зоне

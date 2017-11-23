@@ -41,9 +41,9 @@ public:
 
 	uint32	GetRegionID();
 
-    std::int16_t   GetCount();
-    std::int16_t   AddCount(std::int16_t count);
-    std::int16_t   DelCount(std::int16_t count);
+    int16   GetCount();
+    int16   AddCount(int16 count);
+    int16   DelCount(int16 count);
 
 	void	SetULCorner(float x, float y, float z);		// верхний левый угол (Upper Left)
 	void	SetLRCorner(float x, float y, float z);		// нижний правый угол (Lower Right)
@@ -53,7 +53,7 @@ public:
 private:
 
 	uint32 m_RegionID;									// номер региона
-    std::int16_t  m_Count;                                     // количество персонажей в регионе
+    int16  m_Count;                                     // количество персонажей в регионе
 
 	float x1, y1, z1;									// верхний левый угол
 	float x2, y2, z2;									// лижний правый угол

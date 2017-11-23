@@ -33,7 +33,7 @@ class CBlacklistPacket : public CBasicPacket
 {
 public:
 
-	CBlacklistPacket(uint32 accid, const std::int8_t* targetName, std::int8_t action);
+	CBlacklistPacket(uint32 accid, const int8* targetName, int8 action);
 };
 
 #endif

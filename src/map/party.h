@@ -63,13 +63,13 @@ public:
 	CParty(uint32 id);
 
     uint32 GetPartyID();                                // узнаем уникальный ID группы
-    std::uint16_t GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
-    std::uint8_t  MemberCount(std::uint16_t ZoneID);                   // узнаем количество участников группы в указанной зоне
+    uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
+    uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
-    CBattleEntity* GetMemberByName(const std::int8_t* MemberName);   // Returns entity pointer for member name string
+    CBattleEntity* GetMemberByName(const int8* MemberName);   // Returns entity pointer for member name string
 
 	void DisbandParty(bool playerInitiated = true);		// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
@@ -83,13 +83,13 @@ public:
     void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
     void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
     void SetPartyID(uint32 id);                         // set new party ID
-    void AssignPartyRole(std::int8_t* MemberName, std::uint8_t role);	// назначаем роли участникам группы
+    void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
-    void SetSyncTarget(std::int8_t* MemberName, std::uint16_t message);         // устанавливаем цель синхронизации уровней3
+    void SetSyncTarget(int8* MemberName, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
-    void SetPartyNumber(std::uint8_t number);
+    void SetPartyNumber(uint8 number);
 
-    void PushPacket(uint32 senderID, std::uint16_t ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
     void PushEffectsPacket();
     void EffectsChanged();
 	CAlliance* m_PAlliance;
@@ -103,7 +103,7 @@ private:
     struct partyInfo_t;
     uint32    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
-    std::uint8_t     m_PartyNumber;                            // party number in alliance
+    uint8     m_PartyNumber;                            // party number in alliance
 
 	CBattleEntity* m_PLeader;                           // лидер группы
 	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней

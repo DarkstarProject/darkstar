@@ -49,20 +49,20 @@ namespace zoneutils
     void TOTDChange(TIMETYPE TOTD);                                                 // реакция мира на смену времени суток
     void SavePlayTime();
 
-    REGIONTYPE    GetCurrentRegion(std::uint16_t ZoneID);
-    CONTINENTTYPE GetCurrentContinent(std::uint16_t ZoneID);
+    REGIONTYPE    GetCurrentRegion(uint16 ZoneID);
+    CONTINENTTYPE GetCurrentContinent(uint16 ZoneID);
 
     int GetWeatherElement(WEATHER weather);
 
-    CZone*       GetZone(std::uint16_t ZoneID);                                            // получаем указатель на зону
-    CNpcEntity*  GetTrigger(std::uint16_t TargID, std::uint16_t ZoneID);                          // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
-    CBaseEntity* GetEntity(uint32 ID, std::uint8_t filter = -1);                           // получаем указатель на любую сущность
-    CCharEntity* GetCharByName(std::int8_t* name);                                         // получаем указатель на персонажа по имени
-    CCharEntity* GetCharFromWorld(uint32 charid, std::uint16_t targid);                    // returns pointer to character by id and target id
+    CZone*       GetZone(uint16 ZoneID);                                            // получаем указатель на зону
+    CNpcEntity*  GetTrigger(uint16 TargID, uint16 ZoneID);                          // триггер для старта событий (как побочный эффект - вероятность появления прозрачного орка)
+    CBaseEntity* GetEntity(uint32 ID, uint8 filter = -1);                           // получаем указатель на любую сущность
+    CCharEntity* GetCharByName(int8* name);                                         // получаем указатель на персонажа по имени
+    CCharEntity* GetCharFromWorld(uint32 charid, uint16 targid);                    // returns pointer to character by id and target id
     CCharEntity* GetChar(uint32 id);                                                // returns pointer to character by id
     CCharEntity* GetCharToUpdate(uint32 primary, uint32 ternary);                   // returnes pointer to preferred char to update for party changes
     void         ForEachZone(std::function<void(CZone*)> func);
-    uint64       GetZoneIPP(std::uint16_t zoneid);                                         // returns IPP for zone ID
+    uint64       GetZoneIPP(uint16 zoneid);                                         // returns IPP for zone ID
     bool         IsResidentialArea(CCharEntity*);                                  // returns whether or not the area is a residential zone
 };
 

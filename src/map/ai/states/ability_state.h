@@ -32,7 +32,7 @@ class CCharEntity;
 class CAbilityState : public CState
 {
 public:
-    CAbilityState(CBattleEntity* PEntity, std::uint16_t targid, std::uint16_t abilityid);
+    CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abilityid);
 
     CAbility* GetAbility();
 

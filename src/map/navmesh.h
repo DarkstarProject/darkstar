@@ -58,7 +58,7 @@ struct NavMeshTileHeader
 class CNavMesh
 {
 public:
-    static const std::int8_t ERROR_NEARESTPOLY = -2;
+    static const int8 ERROR_NEARESTPOLY = -2;
     static void ToFFXIPos(const position_t* pos, float* out);
     static void ToFFXIPos(float* out);
     static void ToFFXIPos(position_t* out);
@@ -67,14 +67,14 @@ public:
     static void ToDetourPos(position_t* out);
 
 public:
-    CNavMesh(std::uint16_t zoneID);
+    CNavMesh(uint16 zoneID);
     ~CNavMesh();
 
     bool load(const std::string& path);
     void unload();
 
     std::vector<position_t> findPath(const position_t& start, const position_t& end);
-    std::pair<std::int16_t, position_t> findRandomPosition(const position_t& start, float maxRadius);
+    std::pair<int16, position_t> findRandomPosition(const position_t& start, float maxRadius);
 
     // returns true if the point is in water
     bool inWater(const position_t& point);
@@ -87,7 +87,7 @@ public:
 private:
     void outputError(uint32 status);
 
-    std::uint16_t m_zoneID;
+    uint16 m_zoneID;
     dtRaycastHit m_hit;
     dtPolyRef m_hitPath[20];
     std::unique_ptr<dtNavMesh> m_navMesh;

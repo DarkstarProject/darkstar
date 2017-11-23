@@ -24,7 +24,7 @@
 #include "lua/luautils.h"
 #include "ability.h"
 
-CAbility::CAbility(std::uint16_t id)
+CAbility::CAbility(uint16 id)
 {
     m_ID = id;
 }
@@ -45,22 +45,22 @@ bool CAbility::isConal()
     return false;
 }
 
-void CAbility::setID(std::uint16_t id)
+void CAbility::setID(uint16 id)
 {
     m_ID = id;
 }
 
-void CAbility::setMobSkillID(std::uint16_t id)
+void CAbility::setMobSkillID(uint16 id)
 {
     m_mobskillId = id;
 }
 
-std::uint16_t CAbility::getID()
+uint16 CAbility::getID()
 {
     return m_ID;
 }
 
-std::uint16_t CAbility::getMobSkillID()
+uint16 CAbility::getMobSkillID()
 {
     return m_mobskillId;
 }
@@ -70,7 +70,7 @@ void CAbility::setJob(JOBTYPE Job)
     m_Job = Job;
 }
 
-void CAbility::setMeritModID(std::uint16_t value)
+void CAbility::setMeritModID(uint16 value)
 {
     m_meritModID = value;
 }
@@ -85,12 +85,12 @@ JOBTYPE	CAbility::getJob()
     return m_Job;
 }
 
-void CAbility::setLevel(std::uint8_t level)
+void CAbility::setLevel(uint8 level)
 {
     m_level = level;
 }
 
-std::uint8_t CAbility::getLevel()
+uint8 CAbility::getLevel()
 {
     return m_level;
 }
@@ -105,17 +105,17 @@ float CAbility::getRange()
     return m_range;
 }
 
-void CAbility::setAOE(std::uint8_t aoe)
+void CAbility::setAOE(uint8 aoe)
 {
     m_aoe = aoe;
 }
 
-std::uint8_t CAbility::getAOE()
+uint8 CAbility::getAOE()
 {
     return m_aoe;
 }
 
-void CAbility::setAnimationID(std::uint16_t animationID)
+void CAbility::setAnimationID(uint16 animationID)
 {
     m_animationID = animationID;
 }
@@ -131,7 +131,7 @@ void CAbility::setCastTime(duration time)
     m_castTime = time;
 }
 
-std::uint16_t CAbility::getAnimationID()
+uint16 CAbility::getAnimationID()
 {
     return m_animationID;
 }
@@ -147,17 +147,17 @@ duration CAbility::getCastTime()
     return m_castTime;
 }
 
-void CAbility::setRecastTime(std::uint16_t recastTime)
+void CAbility::setRecastTime(uint16 recastTime)
 {
-    m_recastTime = (std::uint16_t)(recastTime * map_config.ability_recast_multiplier);
+    m_recastTime = (uint16)(recastTime * map_config.ability_recast_multiplier);
 }
 
-std::uint16_t CAbility::getRecastTime()
+uint16 CAbility::getRecastTime()
 {
     return m_recastTime;
 }
 
-std::uint16_t CAbility::getMeritModID()
+uint16 CAbility::getMeritModID()
 {
     return m_meritModID;
 }
@@ -167,63 +167,63 @@ ACTIONTYPE CAbility::getActionType()
     return m_actionType;
 }
 
-void CAbility::setValidTarget(std::uint16_t validTarget)
+void CAbility::setValidTarget(uint16 validTarget)
 {
     m_validTarget = validTarget;
 }
 
-std::uint16_t CAbility::getValidTarget()
+uint16 CAbility::getValidTarget()
 {
     return m_validTarget;
 }
 
-std::uint16_t CAbility::getAddType()
+uint16 CAbility::getAddType()
 {
     return m_addType;
 }
 
-void CAbility::setAddType(std::uint16_t addType)
+void CAbility::setAddType(uint16 addType)
 {
     m_addType = addType;
 }
 
-const std::int8_t* CAbility::getName()
+const int8* CAbility::getName()
 {
-    return (const std::int8_t*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
-void CAbility::setName(std::int8_t* name)
+void CAbility::setName(int8* name)
 {
     m_name.clear();
     m_name.insert(0, (const char*)name);
 }
 
-std::uint16_t CAbility::getRecastId()
+uint16 CAbility::getRecastId()
 {
     return m_recastId;
 }
 
-void CAbility::setRecastId(std::uint16_t recastId)
+void CAbility::setRecastId(uint16 recastId)
 {
     m_recastId = recastId;
 }
 
-void CAbility::setCE(std::uint16_t CE)
+void CAbility::setCE(uint16 CE)
 {
     m_CE = CE;
 }
 
-std::uint16_t CAbility::getCE()
+uint16 CAbility::getCE()
 {
     return m_CE;
 }
 
-void CAbility::setVE(std::uint16_t VE)
+void CAbility::setVE(uint16 VE)
 {
     m_VE = VE;
 }
 
-std::uint16_t CAbility::getVE()
+uint16 CAbility::getVE()
 {
     return m_VE;
 }
@@ -234,17 +234,17 @@ std::uint16_t CAbility::getVE()
 *                                                                       *
 ************************************************************************/
 
-std::uint16_t CAbility::getMessage()
+uint16 CAbility::getMessage()
 {
     return m_message;
 }
 
-void CAbility::setMessage(std::uint16_t message)
+void CAbility::setMessage(uint16 message)
 {
     m_message = message;
 }
 
-std::uint16_t CAbility::getAoEMsg()
+uint16 CAbility::getAoEMsg()
 {
     switch (m_message) {
         case 185:
@@ -420,7 +420,7 @@ namespace ability
     *                                                                       *
     ************************************************************************/
 
-    CAbility* GetAbility(std::uint16_t AbilityID)
+    CAbility* GetAbility(uint16 AbilityID)
     {
         if (AbilityID < MAX_ABILITY_ID)
         {
@@ -469,12 +469,12 @@ namespace ability
         return nullptr;
     }
 
-    bool CanLearnAbility(CBattleEntity* PUser, std::uint16_t AbilityID)
+    bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID)
     {
         if (GetAbility(AbilityID) != nullptr)
         {
-            std::uint8_t Job = PAbilityList[AbilityID]->getJob();
-            std::uint8_t JobLvl = PAbilityList[AbilityID]->getLevel();
+            uint8 Job = PAbilityList[AbilityID]->getJob();
+            uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
 
             return ((PUser->GetMJob() == Job && PUser->GetMLevel() >= JobLvl) ||
                 (PUser->GetSJob() == Job && PUser->GetSLevel() >= JobLvl));
@@ -493,7 +493,7 @@ namespace ability
         return PAbilitiesList[JobID];
     }
 
-    Charge_t* GetCharge(CBattleEntity* PUser, std::uint16_t chargeID)
+    Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID)
     {
         Charge_t* charge = nullptr;
         for (std::vector<Charge_t*>::iterator it = PChargesList.begin(); it != PChargesList.end(); ++it)

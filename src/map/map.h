@@ -60,11 +60,11 @@ struct map_config_t
 {
     uint32 buffer_size;             // max size of recv buffer -> default 1800 bytes
 
-    std::uint16_t usMapPort;               // port of map server      -> xxxxx
+    uint16 usMapPort;               // port of map server      -> xxxxx
     uint32 uiMapIp;                 // ip of map server        -> INADDR_ANY
 
     std::string mysql_host;         // mysql addr     -> localhost:3306
-    std::uint16_t mysql_port;              // mysql port     -> 3306
+    uint16 mysql_port;              // mysql port     -> 3306
     std::string mysql_login;        // mysql login    -> default root
     std::string mysql_password;     // mysql pass     -> default nullptr
     std::string mysql_database;     // mysql database -> default dspdb
@@ -76,23 +76,23 @@ struct map_config_t
     std::int32_t  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
     std::int32_t  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
 
-    std::uint16_t ah_base_fee_single;        // Base AH fee for single items
-    std::uint16_t ah_base_fee_stacks;        // Base AH fee for stacks
+    uint16 ah_base_fee_single;        // Base AH fee for single items
+    uint16 ah_base_fee_stacks;        // Base AH fee for stacks
     float  ah_tax_rate_single;        // Percent of listing price to tax single items
     float  ah_tax_rate_stacks;        // Percent of listing price to tax stacks
     uint32 ah_max_fee;                // Maximum total AH fees/taxes
 
     float  exp_rate;                  // множитель получаемого опыта
     float  exp_loss_rate;             // same as exp rate but applies when player dies
-    std::uint8_t  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
-    std::uint8_t  fov_allow_alliance;        // if 1 allow alliance to farm fov pages
+    uint8  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
+    uint8  fov_allow_alliance;        // if 1 allow alliance to farm fov pages
     float  exp_retain;                // percentage of normally lost experience to retain upon death
-    std::int8_t   exp_loss_level;            // Minimum main job level at which a character may lose experience points.
+    int8   exp_loss_level;            // Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;         // Enable/disable Level Sync
     bool   disable_gear_scaling;      // Disables ability to equip higher level gear when level cap/sync effect is on player.
     bool   all_jobs_widescan;         // Enable/disable jobs other than BST and RNG having widescan.
-    std::int8_t   speed_mod;                 // Modifier to add to player speed
-    std::int8_t   mob_speed_mod;             // Modifier to add to monster speed
+    int8   speed_mod;                 // Modifier to add to player speed
+    int8   mob_speed_mod;             // Modifier to add to monster speed
     float  skillup_chance_multiplier; // Constant used in the skillup formula that has a strong effect on skill-up rates
     float  craft_chance_multiplier;   // Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
     float  skillup_amount_multiplier; // Used to increase the amount of skill gained during skill up
@@ -117,11 +117,11 @@ struct map_config_t
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
-    std::uint8_t  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
-    std::int8_t   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
-    std::int8_t   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
-    std::uint8_t  max_merit_points;          // global variable, amount of merit points players are allowed
-    std::uint16_t yell_cooldown;             // Minimum time between uses of yell command (in seconds).
+    uint8  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
+    int8   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
+    int8   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
+    uint8  max_merit_points;          // global variable, amount of merit points players are allowed
+    uint16 yell_cooldown;             // Minimum time between uses of yell command (in seconds).
     float  fame_multiplier;           // Fame multiplier
     bool   audit_chat;
     bool   audit_say;
@@ -130,8 +130,8 @@ struct map_config_t
     bool   audit_yell;
     bool   audit_linkshell;
     bool   audit_party;
-    std::uint8_t  healing_tick_delay;
-    std::uint16_t msg_server_port;           // central message server port
+    uint8  healing_tick_delay;
+    uint16 msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
 };
 
@@ -144,15 +144,15 @@ struct map_config_t
 struct map_session_data_t
 {
     uint32       client_addr;
-    std::uint16_t       client_port;
-    std::uint16_t       client_packet_id;          // id последнего пакета, пришедшего от клиента
-    std::uint16_t       server_packet_id;          // id последнего пакета, отправленного сервером
-    std::int8_t*        server_packet_data;        // указатель на собранный пакет, который был ранее отправлен клиенту
+    uint16       client_port;
+    uint16       client_packet_id;          // id последнего пакета, пришедшего от клиента
+    uint16       server_packet_id;          // id последнего пакета, отправленного сервером
+    int8*        server_packet_data;        // указатель на собранный пакет, который был ранее отправлен клиенту
     size_t       server_packet_size;        // размер пакета, который был ранее отправлен клиенту
     time_t       last_update;               // time of last packet recv
     blowfish_t   blowfish;                  // unique decypher keys
     CCharEntity* PChar;                     // game char
-    std::uint8_t        shuttingDown;              // prevents double session closing
+    uint8        shuttingDown;              // prevents double session closing
 
     map_session_data_t()
     {
@@ -174,21 +174,21 @@ typedef std::map<uint64,map_session_data_t*> map_session_list_t;
 extern map_session_list_t map_session_list;
 
 extern in_addr map_ip;
-extern std::uint16_t map_port;
+extern uint16 map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(uint64 ipp);
-extern inline map_session_data_t* mapsession_createsession(uint32 ip,std::uint16_t port);
+extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port);
 
 //=======================================================================
 
-std::int32_t recv_parse(std::int8_t *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
-std::int32_t parse(std::int8_t *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
-std::int32_t send_parse(std::int8_t *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
+std::int32_t recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
+std::int32_t parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
+std::int32_t send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
 
 void  map_helpscreen(std::int32_t flag);                                                       // Map-Server Version Screen [venom]
 void  map_versionscreen(std::int32_t flag);                                                    // Map-Server Version Screen [venom]
 
-std::int32_t map_config_read(const std::int8_t *cfgName);                                             // Map-Server Config [venom]
+std::int32_t map_config_read(const int8 *cfgName);                                             // Map-Server Config [venom]
 std::int32_t map_config_default();
 
 std::int32_t map_cleanup(time_point tick,CTaskMgr::CTask *PTask);                              // Clean up timed out players

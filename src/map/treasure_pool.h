@@ -50,14 +50,14 @@ class CMobEntity;
 
 struct LotInfo
 {
-    std::uint16_t lot;
+    uint16 lot;
     CCharEntity* member;
 };
 
 struct TreasurePoolItem
 {
-    std::uint16_t ID;
-    std::uint8_t  SlotID;
+    uint16 ID;
+    uint8  SlotID;
     time_point TimeStamp;
 
     std::vector<LotInfo> Lotters;
@@ -71,33 +71,33 @@ public:
 
     TREASUREPOOLTYPE GetPoolType();
 
-    std::uint8_t AddItem(std::uint16_t ItemID, CBaseEntity*);
+    uint8 AddItem(uint16 ItemID, CBaseEntity*);
 
-    void LotItem(std::uint8_t SlotID, std::uint16_t Lot);
-    void LotItem(CCharEntity* PChar, std::uint8_t SlotID, std::uint16_t Lot);
-    void PassItem(CCharEntity* PChar, std::uint8_t SlotID);
-    bool HasLottedItem(CCharEntity* PChar, std::uint8_t SlotID);
-    bool HasPassedItem(CCharEntity* PChar, std::uint8_t SlotID);
+    void LotItem(uint8 SlotID, uint16 Lot);
+    void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
+    void PassItem(CCharEntity* PChar, uint8 SlotID);
+    bool HasLottedItem(CCharEntity* PChar, uint8 SlotID);
+    bool HasPassedItem(CCharEntity* PChar, uint8 SlotID);
     void AddMember(CCharEntity* PChar);
     void DelMember(CCharEntity* PChar);
     void UpdatePool(CCharEntity* PChar);
 
     void CheckItems(time_point);
 
-    void TreasureWon(CCharEntity* winner, std::uint8_t SlotID);
-    void TreasureError(CCharEntity* winner, std::uint8_t SlotID);
-    void TreasureLost(std::uint8_t SlotID);
+    void TreasureWon(CCharEntity* winner, uint8 SlotID);
+    void TreasureError(CCharEntity* winner, uint8 SlotID);
+    void TreasureLost(uint8 SlotID);
 
     bool CanAddSeal();
 
 private:
 
     time_point m_Tick;
-    std::uint8_t  m_count;
+    uint8  m_count;
 
     TREASUREPOOLTYPE m_TreasurePoolType;
 
-    void CheckTreasureItem(time_point tick, std::uint8_t SlotID);
+    void CheckTreasureItem(time_point tick, uint8 SlotID);
 
     TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
 

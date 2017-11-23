@@ -40,7 +40,7 @@ class CCampaingPacket : public CBasicPacket
 {
 public:
 
-	CCampaingPacket(CCharEntity* PChar, std::uint8_t number);
+	CCampaingPacket(CCharEntity* PChar, uint8 number);
 };
 
 #endif

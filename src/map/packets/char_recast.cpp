@@ -37,7 +37,7 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
     this->type = 0x19;
     this->size = 0x7F;
 
-    std::uint8_t count = 0;
+    uint8 count = 0;
 
     RecastList_t* RecastList = PChar->PRecastContainer->GetRecastList(RECAST_ABILITY);
 
@@ -48,7 +48,7 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
         if (recast.ID != 0)
         {
             WBUFL(data, (0x0C + count * 8) ) = recasttime;
-            WBUFB(data, (0x0F + count * 8) ) = (std::uint8_t)recast.ID;
+            WBUFB(data, (0x0F + count * 8) ) = (uint8)recast.ID;
             count++;
         }
         else

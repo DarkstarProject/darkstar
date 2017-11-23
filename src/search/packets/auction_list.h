@@ -31,20 +31,20 @@ class CAHItemsListPacket
 {
 public:
 
-    CAHItemsListPacket(std::uint16_t offset);
+    CAHItemsListPacket(uint16 offset);
 
     void AddItem(ahItem* item);
-    void SetItemCount(std::uint16_t count);
+    void SetItemCount(uint16 count);
 
-    std::uint8_t* GetData();
-    std::uint16_t GetSize();
+    uint8* GetData();
+    uint16 GetSize();
 
 private:
 
-    std::uint8_t  m_count;
-    std::uint16_t m_offset;
+    uint8  m_count;
+    uint16 m_offset;
 
-    std::uint8_t m_PData[256];
+    uint8 m_PData[256];
 };
 
 #endif

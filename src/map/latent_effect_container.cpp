@@ -46,7 +46,7 @@ CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity) :
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, std::uint8_t reqLvl, std::uint8_t slot)
+void CLatentEffectContainer::AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot)
 {
     for (auto& latent : latentList)
     {
@@ -66,7 +66,7 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CItemArmor::itemLatent
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::DelLatentEffects(std::uint8_t reqLvl, std::uint8_t slot)
+void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 {
     m_LatentEffectList.erase(std::remove_if(m_LatentEffectList.begin(), m_LatentEffectList.end(), [slot](auto& latent){
         return latent.GetSlot() == slot;
@@ -154,7 +154,7 @@ void CLatentEffectContainer::CheckLatentsMP()
 *  Checks all latents for a given slot (ie. on equip)					*
 *																		*
 ************************************************************************/
-void CLatentEffectContainer::CheckLatentsEquip(std::uint8_t slot)
+void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 {
     ProcessLatentEffects([this, slot](CLatentEffect& latentEffect)
     {
@@ -545,7 +545,7 @@ void CLatentEffectContainer::CheckLatentsTime()
 *  Checks all latents that are affected by weapon skill points			*
 *																		*
 ************************************************************************/
-void CLatentEffectContainer::CheckLatentsWeaponBreak(std::uint8_t slot)
+void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 {
     ProcessLatentEffects([this, slot](CLatentEffect& latentEffect)
     {
@@ -590,7 +590,7 @@ void CLatentEffectContainer::CheckLatentsWeather()
     CheckLatentsWeather(zoneutils::GetZone(m_POwner->getZone())->GetWeather());
 }
 
-void CLatentEffectContainer::CheckLatentsWeather(std::uint16_t weather)
+void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
 {
     ProcessLatentEffects([this, weather](CLatentEffect& latent)
     {

@@ -134,7 +134,7 @@ CCharEntity::CCharEntity()
     memset(&m_assaultLog, 0, sizeof(m_assaultLog));
     memset(&m_campaignLog, 0, sizeof(m_campaignLog));
 
-    for (std::uint8_t i = 0; i <= 3; ++i)
+    for (uint8 i = 0; i <= 3; ++i)
     {
         m_missionLog[i].current = 0xFFFF;
     }
@@ -218,7 +218,7 @@ CCharEntity::~CCharEntity()
     delete PMeritPoints;
 }
 
-std::uint8_t CCharEntity::GetGender()
+uint8 CCharEntity::GetGender()
 {
     return (look.race) % 2 ^ (look.race > 6);
 }
@@ -267,7 +267,7 @@ size_t CCharEntity::getPacketCount()
     return PacketList.size();
 }
 
-void CCharEntity::erasePackets(std::uint8_t num)
+void CCharEntity::erasePackets(uint8 num)
 {
     for (auto i = 0; i < num; i++)
     {
@@ -314,7 +314,7 @@ void CCharEntity::resetPetZoningInfo()
 *																		*
 ************************************************************************/
 
-CItemContainer* CCharEntity::getStorage(std::uint8_t LocationID)
+CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 {
     switch (LocationID)
     {
@@ -337,7 +337,7 @@ CItemContainer* CCharEntity::getStorage(std::uint8_t LocationID)
     return 0;
 }
 
-std::int8_t CCharEntity::getShieldSize()
+int8 CCharEntity::getShieldSize()
 {
     CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
 
@@ -352,14 +352,14 @@ std::int8_t CCharEntity::getShieldSize()
     return PItem->getShieldSize();
 }
 
-void CCharEntity::SetName(std::int8_t* name)
+void CCharEntity::SetName(int8* name)
 {
     this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
 }
 
-std::int16_t CCharEntity::addTP(std::int16_t tp)
+int16 CCharEntity::addTP(int16 tp)
 {
-    // std::int16_t oldtp = health.tp;
+    // int16 oldtp = health.tp;
     tp = CBattleEntity::addTP(tp);
     //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
     //	{
@@ -435,8 +435,8 @@ uint32 CCharEntity::GetPlayTime(bool needUpdate)
 
 CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
-    std::uint8_t loc = equip[slot];
-    std::uint8_t est = equipLoc[slot];
+    uint8 loc = equip[slot];
+    uint8 est = equipLoc[slot];
     CItemArmor* item = nullptr;
 
     if (loc != 0)
@@ -521,7 +521,7 @@ void CCharEntity::delTrait(CTrait* PTrait)
     charutils::delTrait(this, PTrait->getID());
 }
 
-bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags)
+bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -562,8 +562,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFla
 
 bool CCharEntity::CanUseSpell(CSpell* PSpell)
 {
-    return charutils::hasSpell(this, static_cast<std::uint16_t>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
-        !PRecastContainer->Has(RECAST_MAGIC, static_cast<std::uint16_t>(PSpell->getID()));
+    return charutils::hasSpell(this, static_cast<uint16>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
+        !PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()));
 }
 
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
@@ -648,7 +648,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, static_cast<std::uint16_t>(PSpell->getID()), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
 
     for (auto&& actionList : action.actionLists)
     {
@@ -662,7 +662,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                 SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PBlueSpell->getPrimarySkillchain(), PBlueSpell->getSecondarySkillchain(), 0 );
                 if (effect != SUBEFFECT_NONE)
                 {
-                    std::uint16_t skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
+                    uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
 
                     actionTarget.addEffectParam = skillChainDamage;
                     actionTarget.addEffectMessage = 287 + effect;
@@ -720,7 +720,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     auto PWeaponSkill = state.GetSkill();
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    std::int16_t tp = state.GetSpentTP();
+    int16 tp = state.GetSpentTP();
     tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
 
     PLatentEffectContainer->CheckLatentsTP();
@@ -752,8 +752,8 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             actionTarget_t& actionTarget = actionList.getNewActionTarget();
 
-            std::uint16_t tpHitsLanded;
-            std::uint16_t extraHitsLanded;
+            uint16 tpHitsLanded;
+            uint16 extraHitsLanded;
             std::int32_t damage;
             CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(this, PTarget);
 
@@ -782,7 +782,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             {
                 if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 218)
                 {
-                    std::uint16_t recycleChance = getMod(Mod::RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
+                    uint16 recycleChance = getMod(Mod::RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
 
                     if (StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
                     {
@@ -882,7 +882,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
 
         // get any available merit recast reduction
-        std::uint8_t meritRecastReduction = 0;
+        uint8 meritRecastReduction = 0;
 
         if (PAbility->getMeritModID() > 0 && !(PAbility->getAddType() & ADDTYPE_MERIT))
         {
@@ -1003,7 +1003,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
 
             PAI->TargetFind->findWithinArea(this, AOERADIUS_ATTACKER, distance);
 
-            std::uint16_t msg = 0;
+            uint16 msg = 0;
             for (auto&& PTarget : PAI->TargetFind->m_targets)
             {
                 actionList_t& actionList = action.getNewActionList();
@@ -1075,7 +1075,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             //            this->pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_CANNOT_CHARM));
             //        }
             //        else {
-            //            std::uint16_t baseExp = charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel());
+            //            uint16 baseExp = charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel());
 
             //            if (baseExp >= 400) {//IT
             //                this->pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_VERY_DIFFICULT_CHARM));
@@ -1137,7 +1137,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
     bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
     bool rangedThrowing = PItem ? PItem->isThrowing() : false;
-    std::uint8_t slot = SLOT_RANGED;
+    uint8 slot = SLOT_RANGED;
 
     if (ammoThrowing)
     {
@@ -1149,9 +1149,9 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         PAmmo = nullptr;
     }
 
-    std::uint8_t shadowsTaken = 0;
-    std::uint8_t hitCount = 1;			// 1 hit by default
-    std::uint8_t realHits = 0;			// to store the real number of hit for tp multipler
+    uint8 shadowsTaken = 0;
+    uint8 hitCount = 1;			// 1 hit by default
+    uint8 realHits = 0;			// to store the real number of hit for tp multipler
     auto ammoConsumed = 0;
     bool hitOccured = false;	// track if player hit mob at all
     bool isSange = false;
@@ -1169,7 +1169,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     }
 
     // loop for barrage hits, if a miss occurs, the loop will end
-    for (std::uint8_t i = 1; i <= hitCount; ++i)
+    for (uint8 i = 1; i <= hitCount; ++i)
     {
         if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
         {
@@ -1192,8 +1192,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
                 {
                     pdif *= 1.25; //uncapped
-                    std::int16_t criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = std::clamp<std::int16_t>(criticaldamage, 0, 100);
+                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
+                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
                     pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
@@ -1245,7 +1245,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         }
 
         // check for recycle chance
-        std::uint16_t recycleChance = getMod(Mod::RECYCLE);
+        uint16 recycleChance = getMod(Mod::RECYCLE);
         if (charutils::hasTrait(this, TRAIT_RECYCLE))
         {
             recycleChance += PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
@@ -1322,7 +1322,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     }
     else if (isSange)
     {
-        std::uint16_t power = StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
+        uint16 power = StatusEffectContainer->GetStatusEffect(EFFECT_SANGE)->GetPower();
 
         // remove shadows
         while (realHits-- && dsprand::GetRandomNumber(100) <= power && battleutils::IsAbsorbByShadow(this));
@@ -1338,7 +1338,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     //#TODO: figure out the packet structure of double/triple shot
     //if (this->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !this->secondDoubleShotTaken &&	!isBarrage && !isSange)
     //{
-    //    std::uint16_t doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
+    //    uint16 doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
     //    if (dsprand::GetRandomNumber(100) < doubleShotChance)
     //    {
     //        this->secondDoubleShotTaken = true;
@@ -1386,7 +1386,7 @@ void CCharEntity::OnRaise()
     // TODO: Moghancement Experience needs to be factored in here somewhere.
     if (m_hasRaise > 0)
     {
-        std::uint8_t weaknessLvl = 1;
+        uint8 weaknessLvl = 1;
         if (StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
         {
             //double weakness!
@@ -1401,7 +1401,7 @@ void CCharEntity::OnRaise()
         }
 
         double ratioReturned = 0.0f;
-        std::uint16_t hpReturned = 1;
+        uint16 hpReturned = 1;
 
         action_t action;
         action.id = id;
@@ -1413,19 +1413,19 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (std::uint16_t)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.1);
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (std::uint16_t)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
+            hpReturned = (uint16)((GetLocalVar("MijinGakure") != 0) ? GetMaxHP() * 0.5 : GetMaxHP() * 0.25);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
         {
             actionTarget.animation = 496;
-            hpReturned = (std::uint16_t)(GetMaxHP() * 0.5);
+            hpReturned = (uint16)(GetMaxHP() * 0.5);
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.90f) * (1 - map_config.exp_retain);
         }
         addHP(((hpReturned < 1) ? 1 : hpReturned));
@@ -1434,10 +1434,10 @@ void CCharEntity::OnRaise()
 
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CActionPacket(action));
 
-        std::uint8_t mLevel = (m_LevelRestriction != 0 && m_LevelRestriction < GetMLevel()) ? m_LevelRestriction : GetMLevel();
-        std::uint16_t expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
+        uint8 mLevel = (m_LevelRestriction != 0 && m_LevelRestriction < GetMLevel()) ? m_LevelRestriction : GetMLevel();
+        uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
 
-        std::uint16_t xpNeededToLevel = charutils::GetExpNEXTLevel(jobs.job[GetMJob()]) - jobs.exp[GetMJob()];
+        uint16 xpNeededToLevel = charutils::GetExpNEXTLevel(jobs.job[GetMJob()]) - jobs.exp[GetMJob()];
 
         // Exp is enough to level you and (you're not under a level restriction, or the level restriction is higher than your current main level).
         if (xpNeededToLevel < expLost && (m_LevelRestriction == 0 || GetMLevel() < m_LevelRestriction))
@@ -1446,7 +1446,7 @@ void CCharEntity::OnRaise()
             expLost = GetMLevel() <= 67 ? (charutils::GetExpNEXTLevel(jobs.job[GetMJob()] + 1) * 8) / 100 : 2400;
         }
 
-        std::uint16_t xpReturned = (std::uint16_t)(ceil(expLost * ratioReturned));
+        uint16 xpReturned = (uint16)(ceil(expLost * ratioReturned));
 
         if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {
@@ -1526,7 +1526,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     }
 }
 
-CBattleEntity* CCharEntity::IsValidTarget(std::uint16_t targid, std::uint16_t validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
+CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)

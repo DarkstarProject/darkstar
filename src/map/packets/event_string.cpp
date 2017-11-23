@@ -31,7 +31,7 @@
 
 CEventStringPacket::CEventStringPacket(
 	CCharEntity* PChar,
-	std::uint16_t EventID, 
+	uint16 EventID, 
     const std::string& string0,
     const std::string& string1,
     const std::string& string2,

@@ -42,12 +42,12 @@ CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE Mes
     //this->size = 12 + ((buffSize / 4) + 1) * 2;
     this->size = 0x82;
 
-    ref<std::uint8_t>(0x04) = MessageType;
+    ref<uint8>(0x04) = MessageType;
 
     if (PChar->nameflags.flags & FLAG_GM && sender.empty())
-        ref<std::uint8_t>(0x05) = 0x01;
+        ref<uint8>(0x05) = 0x01;
 
-    ref<std::uint16_t>(0x06) = PChar->getZone();
+    ref<uint16>(0x06) = PChar->getZone();
 
     memcpy(data + (0x08), &name[0], name.size());
     memcpy(data + (0x18), &message[0], buffSize);

@@ -40,7 +40,7 @@ class CInventoryItemPacket: public CBasicPacket
 {
 public:
 
-	CInventoryItemPacket(CItem* PItem, std::uint8_t, std::uint8_t);
+	CInventoryItemPacket(CItem* PItem, uint8, uint8);
 };
 
 #endif

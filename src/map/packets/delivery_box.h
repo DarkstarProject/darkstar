@@ -43,8 +43,8 @@ class CDeliveryBoxPacket : public CBasicPacket
 {
 public:
 
-    CDeliveryBoxPacket(std::uint8_t action, std::uint8_t boxid, std::uint8_t count, std::uint8_t param);
-    CDeliveryBoxPacket(std::uint8_t action, std::uint8_t boxid, CItem* PItem, std::uint8_t slotid, std::uint8_t count, std::uint8_t message);
+    CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, uint8 param);
+    CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, uint8 slotid, uint8 count, uint8 message);
 };
 
 #endif

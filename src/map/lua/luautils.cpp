@@ -83,7 +83,7 @@
 
 namespace luautils
 {
-#define lua_prepscript(n,...) std::int8_t File[255]; \
+#define lua_prepscript(n,...) int8 File[255]; \
                               snprintf((char*)File, sizeof(File), n, ##__VA_ARGS__);
     lua_State*  LuaHandle = nullptr;
 
@@ -237,7 +237,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t prepFile(std::int8_t* File, const char* function)
+    std::int32_t prepFile(int8* File, const char* function)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, function);
@@ -509,7 +509,7 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-        std::uint8_t balance = conquest::GetBalance();
+        uint8 balance = conquest::GetBalance();
         switch (lua_tointeger(L, 1))
         {
             case SANDORIA:
@@ -549,7 +549,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t SetRegionalConquestOverseers(std::uint8_t regionID)
+    std::int32_t SetRegionalConquestOverseers(uint8 regionID)
     {
         char File[255];
         memset(File, 0, sizeof(File));
@@ -776,7 +776,7 @@ namespace luautils
         // Waning (decreasing) from 10% to 0%,
         // Waxing (increasing) from 0% to 5%.
 
-        std::uint8_t phase = CVanaTime::getInstance()->getMoonPhase();
+        uint8 phase = CVanaTime::getInstance()->getMoonPhase();
 
         switch (CVanaTime::getInstance()->getMoonDirection())
         {
@@ -817,7 +817,7 @@ namespace luautils
         // Waxing (increasing) from 90% to 100%,
         // Waning (decending) from 100% to 95%.
 
-        std::uint8_t phase = CVanaTime::getInstance()->getMoonPhase();
+        uint8 phase = CVanaTime::getInstance()->getMoonPhase();
 
         switch (CVanaTime::getInstance()->getMoonDirection())
         {
@@ -978,7 +978,7 @@ namespace luautils
                         PMob->loc.p.z = (float)lua_tonumber(L, 4);
 
                     if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
-                        PMob->loc.p.rotation = (std::uint8_t)lua_tointeger(L, 5);
+                        PMob->loc.p.rotation = (uint8)lua_tointeger(L, 5);
                 }
                 else
                 {
@@ -1004,7 +1004,7 @@ namespace luautils
     {
         if (!lua_isnil(L, -1) && lua_isstring(L, -1))
         {
-            std::int8_t* name = (std::int8_t*)lua_tolstring(L, -1, nullptr);
+            int8* name = (int8*)lua_tolstring(L, -1, nullptr);
 
             CCharEntity* PTargetChar = zoneutils::GetCharByName(name);
 
@@ -1134,7 +1134,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t GetTextIDVariable(std::uint16_t ZoneID, const char* variable)
+    std::int32_t GetTextIDVariable(uint16 ZoneID, const char* variable)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, variable);
@@ -1168,7 +1168,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::uint8_t GetSettingsVariable(const char* variable)
+    uint8 GetSettingsVariable(const char* variable)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, variable);
@@ -1191,7 +1191,7 @@ namespace luautils
             return 0;
         }
 
-        std::uint8_t value = (std::uint8_t)lua_tonumber(LuaHandle, -1);
+        uint8 value = (uint8)lua_tonumber(LuaHandle, -1);
         lua_pop(LuaHandle, -1);
         return value;
     }
@@ -1241,7 +1241,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnZoneInitialise(std::uint16_t ZoneID)
+    std::int32_t OnZoneInitialise(uint16 ZoneID)
     {
         CZone* PZone = zoneutils::GetZone(ZoneID);
 
@@ -1374,7 +1374,7 @@ namespace luautils
         if (PChar->m_event.EventID == -1)
             PChar->m_event.Script.insert(0, filename.c_str());
 
-        if (prepFile((std::int8_t*)filename.c_str(), "onRegionEnter"))
+        if (prepFile((int8*)filename.c_str(), "onRegionEnter"))
         {
             return -1;
         }
@@ -1415,7 +1415,7 @@ namespace luautils
         if (PChar->m_event.EventID == -1)
             PChar->m_event.Script.insert(0, filename.c_str());
 
-        if (prepFile((std::int8_t*)filename.c_str(), "onRegionLeave"))
+        if (prepFile((int8*)filename.c_str(), "onRegionLeave"))
         {
             return -1;
         }
@@ -1500,7 +1500,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnEventUpdate(CCharEntity* PChar, std::uint16_t eventID, uint32 result)
+    std::int32_t OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
@@ -1531,7 +1531,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnEventUpdate(CCharEntity* PChar, std::int8_t* string)
+    std::int32_t OnEventUpdate(CCharEntity* PChar, int8* string)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
@@ -1568,7 +1568,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnEventFinish(CCharEntity* PChar, std::uint16_t eventID, uint32 result)
+    std::int32_t OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventFinish");
@@ -1869,7 +1869,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, std::uint8_t maneuvers)
+    std::int32_t OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
     {
         lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
 
@@ -1893,7 +1893,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, std::uint8_t maneuvers)
+    std::int32_t OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
     {
         lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
 
@@ -2162,7 +2162,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, std::uint16_t PWeaponskill)
+    std::int32_t OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill)
     {
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
         DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
@@ -2320,7 +2320,7 @@ namespace luautils
         CLuaBaseEntity LuaMobEntity(PMob);
         CLuaBaseEntity LuaKillerEntity(PTarget);
 
-        std::int8_t File[255];
+        int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2358,9 +2358,9 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
-        std::uint8_t weather = PMob->loc.zone->GetWeather();
+        uint8 weather = PMob->loc.zone->GetWeather();
 
-        std::int8_t File[255];
+        int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2431,7 +2431,7 @@ namespace luautils
         CLuaBaseEntity LuaMobEntity(PMob);
         CLuaBaseEntity LuaKillerEntity(PTarget);
 
-        std::int8_t File[255];
+        int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2583,7 +2583,7 @@ namespace luautils
         }
         else
         {
-            std::int8_t File[255];
+            int8 File[255];
             memset(File, 0, sizeof(File));
             PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
                 snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());;
@@ -2632,7 +2632,7 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
-        std::int8_t File[255];
+        int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
         if (prepFile(File, "onMobSpawn"))
@@ -2719,7 +2719,7 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
-        std::int8_t File[255];
+        int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -2792,7 +2792,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnZoneWeatherChange(std::uint16_t ZoneID, std::uint8_t weather)
+    std::int32_t OnZoneWeatherChange(uint16 ZoneID, uint8 weather)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
 
@@ -2813,7 +2813,7 @@ namespace luautils
         return 0;
     }
 
-    std::int32_t OnTOTDChange(std::uint16_t ZoneID, std::uint8_t TOTD)
+    std::int32_t OnTOTDChange(uint16 ZoneID, uint8 TOTD)
     {
         lua_prepscript("scripts/zones/%s/Zone.lua", zoneutils::GetZone(ZoneID)->GetName());
 
@@ -2840,13 +2840,13 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::tuple<std::int32_t, std::uint8_t, std::uint8_t> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, std::uint16_t tp, bool primary, action_t& action, CBattleEntity* taChar)
+    std::tuple<std::int32_t, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action, CBattleEntity* taChar)
     {
         lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
 
         if (prepFile(File, "onUseWeaponSkill"))
         {
-            return std::tuple<std::int32_t, std::uint8_t, std::uint8_t>();
+            return std::tuple<std::int32_t, uint8, uint8>();
         }
 
         CLuaBaseEntity LuaBaseEntity(PChar);
@@ -2877,11 +2877,11 @@ namespace luautils
         {
             ShowError("luautils::onUseWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return std::tuple<std::int32_t, std::uint8_t, std::uint8_t>();
+            return std::tuple<std::int32_t, uint8, uint8>();
         }
 
-        std::uint8_t tpHitsLanded = (std::uint8_t)lua_tonumber(LuaHandle, -4);
-        std::uint8_t extraHitsLanded = (std::uint8_t)lua_tonumber(LuaHandle, -3);
+        uint8 tpHitsLanded = (uint8)lua_tonumber(LuaHandle, -4);
+        uint8 extraHitsLanded = (uint8)lua_tonumber(LuaHandle, -3);
         bool criticalHit = lua_toboolean(LuaHandle, -2);
         std::int32_t dmg = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (std::int32_t)lua_tonumber(LuaHandle, -1) : 0);
 
@@ -3373,7 +3373,7 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onInstanceCreated");
 
-        std::int8_t File[255];
+        int8 File[255];
         if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
         {
             memset(File, 0, sizeof(File));
@@ -3677,7 +3677,7 @@ namespace luautils
         This callback is executed for everyone in the BCNM when they leave
         so if they leave via win, this will be called for each char.
     *********************************************************************/
-    std::int32_t OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, std::uint8_t LeaveCode)
+    std::int32_t OnBcnmLeave(CCharEntity* PChar, CBattlefield* PBattlefield, uint8 LeaveCode)
     {
 
         CZone* PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
@@ -3889,13 +3889,13 @@ namespace luautils
 
     std::int32_t SetDropRate(lua_State *L)
     {
-        DropList_t* DropList = itemutils::GetDropList((std::uint16_t)lua_tointeger(L, 1));
+        DropList_t* DropList = itemutils::GetDropList((uint16)lua_tointeger(L, 1));
 
-        for (std::uint8_t i = 0; i < DropList->size(); ++i)
+        for (uint8 i = 0; i < DropList->size(); ++i)
         {
             if (DropList->at(i).ItemID == lua_tointeger(L, 2))
             {
-                DropList->at(i).DropRate = (std::uint16_t)lua_tointeger(L, 3);
+                DropList->at(i).DropRate = (uint16)lua_tointeger(L, 3);
                 return 1;
             }
         }
@@ -3944,7 +3944,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CAbility* PAbility = ability::GetAbility((std::uint16_t)lua_tointeger(L, 1));
+            CAbility* PAbility = ability::GetAbility((uint16)lua_tointeger(L, 1));
 
             lua_getglobal(L, CLuaAbility::className);
             lua_pushstring(L, "new");
@@ -3978,7 +3978,7 @@ namespace luautils
 
     std::int32_t UpdateServerMessage(lua_State* L)
     {
-        std::int8_t line[1024];
+        int8 line[1024];
         FILE* fp;
 
         // Clear old messages..
@@ -4040,7 +4040,7 @@ namespace luautils
         lua_getfield(L, 1, "z");
         center.z = (float)lua_tonumber(L, -1);
         lua_getfield(L, 1, "rot");
-        center.rotation = (std::uint8_t)lua_tonumber(L, -1);
+        center.rotation = (uint8)lua_tonumber(L, -1);
 
         float radius = (float)lua_tonumber(L, 2);
         float theta = (float)lua_tonumber(L, 3);
@@ -4048,7 +4048,7 @@ namespace luautils
         position_t pos = nearPosition(center, radius, theta);
 
         lua_createtable(L, 3, 0);
-        std::int8_t newTable = lua_gettop(L);
+        int8 newTable = lua_gettop(L);
 
         lua_pushnumber(L, pos.x);
         lua_setfield(L, newTable, "x");

@@ -97,37 +97,37 @@ class CItemFurnishing : public CItem
 {
 public:
 
-	CItemFurnishing(std::uint16_t);
+	CItemFurnishing(uint16);
 	virtual ~CItemFurnishing();
 
-	std::uint8_t	getStorage();
-	std::uint8_t	getMoghancement();
-	std::uint8_t	getElement();
-	std::uint8_t	getAura();
+	uint8	getStorage();
+	uint8	getMoghancement();
+	uint8	getElement();
+	uint8	getAura();
 
     bool    isInstalled();
-	std::uint8_t	getCol();
-	std::uint8_t	getRow();
-	std::uint8_t	getLevel();
-	std::uint8_t	getRotation();
+	uint8	getCol();
+	uint8	getRow();
+	uint8	getLevel();
+	uint8	getRotation();
 
     void    setInstalled(bool installed);
-	void	setStorage(std::uint8_t storage);
-	void	setMoghancement(std::uint8_t moghancement);
-	void	setElement(std::uint8_t element);
-	void	setAura(std::uint8_t aura);
+	void	setStorage(uint8 storage);
+	void	setMoghancement(uint8 moghancement);
+	void	setElement(uint8 element);
+	void	setAura(uint8 aura);
 
-	void	setCol(std::uint8_t col);
-	void	setRow(std::uint8_t row);
-	void	setLevel(std::uint8_t level);
-	void	setRotation(std::uint8_t rotation);
+	void	setCol(uint8 col);
+	void	setRow(uint8 row);
+	void	setLevel(uint8 level);
+	void	setRotation(uint8 rotation);
 	
 private:
 
-	std::uint8_t	m_storage;
-	std::uint8_t	m_moghancement;
-	std::uint8_t	m_element;
-	std::uint8_t	m_aura;
+	uint8	m_storage;
+	uint8	m_moghancement;
+	uint8	m_element;
+	uint8	m_aura;
 };
 
 #endif

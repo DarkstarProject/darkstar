@@ -23,7 +23,7 @@
 
 #include "item_currency.h"
 
-CItemCurrency::CItemCurrency(std::uint16_t id) : CItem(id)
+CItemCurrency::CItemCurrency(uint16 id) : CItem(id)
 {
 	setType(ITEM_CURRENCY);
 	setStackSize(999999999);

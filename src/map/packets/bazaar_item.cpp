@@ -31,7 +31,7 @@
 #include "../utils/itemutils.h"
 #include "../vana_time.h"
 
-CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, std::uint8_t SlotID, std::uint16_t Tax) 
+CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax) 
 {
 	this->type = 0x05;	// 0x105
 	this->size = 0x17;

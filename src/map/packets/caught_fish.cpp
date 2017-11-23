@@ -30,7 +30,7 @@
 #include "../entities/charentity.h"
 
 
-CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, std::uint16_t param0, std::uint16_t messageID) 
+CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 messageID) 
 {
 	this->type = 0x27;
 	this->size = 0x38;

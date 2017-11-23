@@ -30,13 +30,13 @@
 
 struct lscolor_t
 {
-	std::uint8_t R:4;
-	std::uint8_t G:4;
-	std::uint8_t B:4;
-	std::uint8_t A:4;
+	uint8 R:4;
+	uint8 G:4;
+	uint8 B:4;
+	uint8 A:4;
 };
 
-enum LSTYPE : std::uint8_t
+enum LSTYPE : uint8
 {
     LSTYPE_NEW_LINKSHELL,
     LSTYPE_LINKSHELL,
@@ -50,17 +50,17 @@ class CItemLinkshell : public CItem
 {
 public:
 
-	CItemLinkshell(std::uint16_t);
+	CItemLinkshell(uint16);
 	virtual ~CItemLinkshell();
 
     uint32      GetLSID();
     LSTYPE      GetLSType();
 	lscolor_t	GetLSColor();
-    std::uint16_t      GetLSRawColor();
+    uint16      GetLSRawColor();
     void        SetLSID(uint32 lsid);
-	void		SetLSColor(std::uint16_t color);	
-    virtual const std::int8_t* getSignature();
-    virtual void setSignature(std::int8_t* signature);
+	void		SetLSColor(uint16 color);	
+    virtual const int8* getSignature();
+    virtual void setSignature(int8* signature);
 	
 private:
 

@@ -28,7 +28,7 @@
 #include "../vana_time.h"
 #include "../map.h"
 
-CItemUsable::CItemUsable(std::uint16_t id) : CItem(id)
+CItemUsable::CItemUsable(uint16 id) : CItem(id)
 {
 	setType(ITEM_USABLE);
 
@@ -47,12 +47,12 @@ CItemUsable::~CItemUsable()
 {
 }
 
-void CItemUsable::setUseDelay(std::uint8_t UseDelay)
+void CItemUsable::setUseDelay(uint8 UseDelay)
 {
 	m_UseDelay = UseDelay;
 }
 
-std::uint8_t CItemUsable::getUseDelay()
+uint8 CItemUsable::getUseDelay()
 {
 	return m_UseDelay;
 }
@@ -82,72 +82,72 @@ uint32 CItemUsable::getNextUseTime()
     return getLastUseTime() + m_ReuseDelay;
 }
 
-void CItemUsable::setCurrentCharges(std::uint8_t CurrCharges)
+void CItemUsable::setCurrentCharges(uint8 CurrCharges)
 {
-	WBUFB(m_extra, 0x01) = std::clamp<std::uint8_t>(CurrCharges, 0, m_MaxCharges);
+	WBUFB(m_extra, 0x01) = std::clamp<uint8>(CurrCharges, 0, m_MaxCharges);
 }
 
-std::uint8_t CItemUsable::getCurrentCharges()
+uint8 CItemUsable::getCurrentCharges()
 {
     return RBUFB(m_extra, 0x01);
 }
 
-void CItemUsable::setMaxCharges(std::uint8_t MaxCharges)
+void CItemUsable::setMaxCharges(uint8 MaxCharges)
 {
 	m_MaxCharges = MaxCharges;
 }
 
-std::uint8_t CItemUsable::getMaxCharges()
+uint8 CItemUsable::getMaxCharges()
 {
 	return m_MaxCharges;
 }
 
-void CItemUsable::setAnimationID(std::uint16_t Animation)
+void CItemUsable::setAnimationID(uint16 Animation)
 {
 	m_Animation = Animation;
 }
 
-std::uint16_t CItemUsable::getAnimationID()
+uint16 CItemUsable::getAnimationID()
 {
 	return m_Animation;
 }
 
-void CItemUsable::setAnimationTime(std::uint16_t AnimationTime)
+void CItemUsable::setAnimationTime(uint16 AnimationTime)
 {
 	m_AnimationTime = AnimationTime;
 }
 
-std::uint16_t CItemUsable::getAnimationTime()
+uint16 CItemUsable::getAnimationTime()
 {
 	return m_AnimationTime;
 }
 
-void CItemUsable::setActivationTime(std::uint16_t ActivationTime)
+void CItemUsable::setActivationTime(uint16 ActivationTime)
 {
 	m_ActivationTime = ActivationTime;
 }
 
-std::uint16_t CItemUsable::getActivationTime()
+uint16 CItemUsable::getActivationTime()
 {
 	return m_ActivationTime;
 }
 
-void CItemUsable::setValidTarget(std::uint8_t ValidTarget)
+void CItemUsable::setValidTarget(uint8 ValidTarget)
 {
 	m_ValidTarget = ValidTarget;
 }
 	
-std::uint8_t CItemUsable::getValidTarget() 
+uint8 CItemUsable::getValidTarget() 
 {
 	return m_ValidTarget;
 }
 
-std::uint16_t CItemUsable::getAoE()
+uint16 CItemUsable::getAoE()
 { 
     return m_AoE; 
 }
 
-void CItemUsable::setAoE(std::uint16_t AoE) 
+void CItemUsable::setAoE(uint16 AoE) 
 { 
     m_AoE = AoE; 
 }

@@ -35,10 +35,10 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
 	this->type = 0x3C;
 	this->size = 0x04;
 
-	std::uint8_t ItemsCount = PChar->Container->getItemsCount();
+	uint8 ItemsCount = PChar->Container->getItemsCount();
 
-    std::uint8_t i = 0;
-	for (std::uint8_t slotID = 0; slotID < ItemsCount; ++slotID)
+    uint8 i = 0;
+	for (uint8 slotID = 0; slotID < ItemsCount; ++slotID)
 	{
         if (i == 20)
         {

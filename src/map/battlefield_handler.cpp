@@ -36,7 +36,7 @@
 #include "recast_container.h"
 #include "status_effect_container.h"
 
-CBattlefieldHandler::CBattlefieldHandler(std::uint16_t zoneid)
+CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
 {
     m_ZoneId = zoneid;
 
@@ -226,7 +226,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warp
     if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
         return false;
     
-    std::uint16_t effectid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
+    uint16 effectid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
 
     for (int i = 0; i < m_MaxBattlefields; i++)
     {
@@ -244,7 +244,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warp
     return false;
 }
 
-bool CBattlefieldHandler::leaveBcnm(std::uint16_t bcnmid, CCharEntity* PChar) {
+bool CBattlefieldHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
             if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
@@ -259,7 +259,7 @@ bool CBattlefieldHandler::leaveBcnm(std::uint16_t bcnmid, CCharEntity* PChar) {
     return false;
 }
 
-bool CBattlefieldHandler::winBcnm(std::uint16_t bcnmid, CCharEntity* PChar) {
+bool CBattlefieldHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
             if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
@@ -271,7 +271,7 @@ bool CBattlefieldHandler::winBcnm(std::uint16_t bcnmid, CCharEntity* PChar) {
     return false;
 }
 
-bool CBattlefieldHandler::enterBcnm(std::uint16_t bcnmid, CCharEntity* PChar) {
+bool CBattlefieldHandler::enterBcnm(uint16 bcnmid, CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
             if (m_Battlefields[i]->isValidPlayerForBcnm(PChar)) {
@@ -284,7 +284,7 @@ bool CBattlefieldHandler::enterBcnm(std::uint16_t bcnmid, CCharEntity* PChar) {
     return false;
 }
 
-int CBattlefieldHandler::registerBcnm(std::uint16_t id, CCharEntity* PChar) {
+int CBattlefieldHandler::registerBcnm(uint16 id, CCharEntity* PChar) {
     if (!hasFreeBattlefield()) {
         return -1;
     }
@@ -414,9 +414,9 @@ int CBattlefieldHandler::registerBcnm(std::uint16_t id, CCharEntity* PChar) {
             else {//alliance entering 18 man bcnm
                 if (PChar->PParty->m_PAlliance != nullptr)
                 {
-                    for (std::uint8_t a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+                    for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
                     {
-                        for (std::uint8_t j = 0; j < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++) {
+                        for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++) {
                             if (PBattlefield->addPlayerToBcnm((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j))) {
                                 ShowDebug("BattlefieldHandler ::18 Added %s to the valid players list for BCNM %i Battlefield %i \n",
                                     PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j)->GetName(), id, PBattlefield->getBattlefieldNumber());
@@ -425,7 +425,7 @@ int CBattlefieldHandler::registerBcnm(std::uint16_t id, CCharEntity* PChar) {
                     }
                 }
                 else {//single party entering 18 man bcnm
-                    for (std::uint8_t j = 0; j < PChar->PParty->members.size(); j++) {
+                    for (uint8 j = 0; j < PChar->PParty->members.size(); j++) {
                         if (PBattlefield->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))) {
                             ShowDebug("BattlefieldHandler ::18 Added %s to the valid players list for BCNM %i Battlefield %i \n",
                                 PChar->PParty->members.at(j)->GetName(), id, PBattlefield->getBattlefieldNumber());
@@ -450,7 +450,7 @@ int CBattlefieldHandler::registerBcnm(std::uint16_t id, CCharEntity* PChar) {
     return PBattlefield->getBattlefieldNumber();
 }
 
-bool CBattlefieldHandler::hasFreeSpecialBattlefield(std::uint16_t id) { //reserved for special battlefield like limbus
+bool CBattlefieldHandler::hasFreeSpecialBattlefield(uint16 id) { //reserved for special battlefield like limbus
 
     switch (id)
     {
@@ -515,7 +515,7 @@ bool CBattlefieldHandler::hasFreeSpecialBattlefield(std::uint16_t id) { //reserv
     return false;
 }
 
-bool CBattlefieldHandler::hasSpecialBattlefieldEmpty(std::uint16_t id) { //reserved for special battlefield like limbus
+bool CBattlefieldHandler::hasSpecialBattlefieldEmpty(uint16 id) { //reserved for special battlefield like limbus
     if (id <= m_MaxBattlefields &&  id != 0) {
         if (m_Battlefields[id - 1] != nullptr) {
             return false;
@@ -523,12 +523,12 @@ bool CBattlefieldHandler::hasSpecialBattlefieldEmpty(std::uint16_t id) { //reser
     }
     return true;
 }
-void CBattlefieldHandler::SetLootToBCNM(std::uint16_t LootID, std::uint16_t id, uint32 npcID) {
+void CBattlefieldHandler::SetLootToBCNM(uint16 LootID, uint16 id, uint32 npcID) {
     m_Battlefields[id - 1]->setLootId(LootID);
     CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcID, TYPE_NPC);
     m_Battlefields[id - 1]->addNpc(PNpc);
 }
-void CBattlefieldHandler::RestoreOnBattlefield(std::uint16_t id) {
+void CBattlefieldHandler::RestoreOnBattlefield(uint16 id) {
     int playermaxMP = 0;
     int playermaxHP = 0;
     if (id <= m_MaxBattlefields &&  id > 0) {
@@ -561,7 +561,7 @@ void CBattlefieldHandler::RestoreOnBattlefield(std::uint16_t id) {
         }
     }
 }
-duration CBattlefieldHandler::SpecialBattlefieldLeftTime(std::uint16_t id, time_point tick) { //reserved for special battlefield like limbus
+duration CBattlefieldHandler::SpecialBattlefieldLeftTime(uint16 id, time_point tick) { //reserved for special battlefield like limbus
 
     if (id <= m_MaxBattlefields &&  id > 0) {
 
@@ -573,7 +573,7 @@ duration CBattlefieldHandler::SpecialBattlefieldLeftTime(std::uint16_t id, time_
     }
     return 0s;
 }
-int CBattlefieldHandler::GiveTimeToBattlefield(std::uint16_t id, duration Time) {
+int CBattlefieldHandler::GiveTimeToBattlefield(uint16 id, duration Time) {
     if (id <= m_MaxBattlefields &&  id > 0) {
         if (m_Battlefields[id - 1] != nullptr) {
             CBattlefield* PBattlefield = m_Battlefields[id - 1];
@@ -592,7 +592,7 @@ bool CBattlefieldHandler::hasFreeBattlefield() {
     return false;
 }
 
-std::uint8_t CBattlefieldHandler::findBattlefieldIDFor(CCharEntity* PChar) {
+uint8 CBattlefieldHandler::findBattlefieldIDFor(CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr) {
             if (m_Battlefields[i]->isValidPlayerForBcnm(PChar)) {
@@ -612,7 +612,7 @@ CBattlefield* CBattlefieldHandler::getBattlefield(CCharEntity* PChar)
     return nullptr;
 }
 
-uint32 CBattlefieldHandler::pollTimeLeft(std::uint16_t id) {
+uint32 CBattlefieldHandler::pollTimeLeft(uint16 id) {
     return 0;
 }
 
@@ -629,13 +629,13 @@ void CBattlefieldHandler::openTreasureChest(CCharEntity* PChar) {
 
 //========================DYNAMIS FUNCTIONS=============================================//
 
-int CBattlefieldHandler::getUniqueDynaID(std::uint16_t id) {
+int CBattlefieldHandler::getUniqueDynaID(uint16 id) {
 
     CBattlefield* PBattlefield = m_Battlefields[0];
     return PBattlefield->getDynaUniqueID();
 }
 
-int CBattlefieldHandler::registerDynamis(std::uint16_t id, CCharEntity* PChar) {
+int CBattlefieldHandler::registerDynamis(uint16 id, CCharEntity* PChar) {
     if (!hasFreeBattlefield()) {
         return -1;
     }
@@ -662,7 +662,7 @@ int CBattlefieldHandler::registerDynamis(std::uint16_t id, CCharEntity* PChar) {
     return PBattlefield->getBattlefieldNumber();
 }
 
-int CBattlefieldHandler::dynamisAddPlayer(std::uint16_t dynaid, CCharEntity* PChar) {
+int CBattlefieldHandler::dynamisAddPlayer(uint16 dynaid, CCharEntity* PChar) {
 
     if (m_Battlefields[0]->addPlayerToDynamis(PChar)) {
         ShowDebug("BattlefieldHandler ::Registration for Dynamis by %s succeeded \n", PChar->GetName());
@@ -671,7 +671,7 @@ int CBattlefieldHandler::dynamisAddPlayer(std::uint16_t dynaid, CCharEntity* PCh
     return 1;
 }
 
-int CBattlefieldHandler::SpecialBattlefieldAddPlayer(std::uint16_t id, CCharEntity* PChar)
+int CBattlefieldHandler::SpecialBattlefieldAddPlayer(uint16 id, CCharEntity* PChar)
 {
     short Inst = 0;
     switch (id)
@@ -701,7 +701,7 @@ int CBattlefieldHandler::SpecialBattlefieldAddPlayer(std::uint16_t id, CCharEnti
     }
     return 1;
 }
-int CBattlefieldHandler::dynamisMessage(std::uint16_t Param1, std::uint16_t Param2) {
+int CBattlefieldHandler::dynamisMessage(uint16 Param1, uint16 Param2) {
 
     CBattlefield* PBattlefield = m_Battlefields[0];
 

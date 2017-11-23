@@ -45,7 +45,7 @@ class CInventoryAssignPacket: public CBasicPacket
 {
 public:
 
-    CInventoryAssignPacket(CItem* PItem, std::uint8_t Flag);
+    CInventoryAssignPacket(CItem* PItem, uint8 Flag);
 };
 
 #endif

@@ -34,13 +34,13 @@ class CCharEntity;
 struct EnmityObject_t
 {
     CBattleEntity* PEnmityOwner;
-	std::int16_t CE;						// Cumulative Enmity
-	std::int16_t VE;						// Volatile Enmity
+	int16 CE;						// Cumulative Enmity
+	int16 VE;						// Volatile Enmity
     bool active;
-	std::uint8_t maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
+	uint8 maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
 };
 
-typedef std::unordered_map<std::uint16_t,EnmityObject_t> EnmityList_t;
+typedef std::unordered_map<uint16,EnmityObject_t> EnmityList_t;
 
 class CEnmityContainer
 {
@@ -55,19 +55,19 @@ public:
     void    Clear(uint32 EntityID = 0);			// Removes Entries from list
     void    LogoutReset(uint32 EntityID);		// Sets entry to inactive
     void    AddBaseEnmity(CBattleEntity* PEntity);
-    void    UpdateEnmity(CBattleEntity* PEntity, std::int16_t CE, std::int16_t VE, bool withMaster = true, bool tameable = false);
-    void    UpdateEnmityFromDamage(CBattleEntity* PEntity, std::uint16_t Damage);
-    void    UpdateEnmityFromCure(CBattleEntity* PEntity, std::uint8_t level, std::uint16_t CureAmount, bool isCureV);
-    void    UpdateEnmityFromAttack(CBattleEntity* PEntity,std::uint16_t Damage);
+    void    UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool tameable = false);
+    void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
+    void    UpdateEnmityFromCure(CBattleEntity* PEntity, uint8 level, uint16 CureAmount, bool isCureV);
+    void    UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
     bool    HasID(uint32 ID); //true if ID is in the container with non-zero enmity level
-    void    LowerEnmityByPercent(CBattleEntity* PEntity, std::uint8_t percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
-    std::uint16_t  GetCE(CBattleEntity* PEntity);
-    std::uint16_t  GetVE(CBattleEntity* PEntity);
-    void    SetCE(CBattleEntity* PEntity, std::uint16_t amount);
-    void    SetVE(CBattleEntity* PEntity, std::uint16_t amount);
+    void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
+    uint16  GetCE(CBattleEntity* PEntity);
+    uint16  GetVE(CBattleEntity* PEntity);
+    void    SetCE(CBattleEntity* PEntity, uint16 amount);
+    void    SetVE(CBattleEntity* PEntity, uint16 amount);
     void    DecayEnmity();
     bool    IsWithinEnmityRange(CBattleEntity* PEntity);
-    std::uint8_t   GetHighestTH();
+    uint8   GetHighestTH();
     EnmityList_t* GetEnmityList();
     bool    IsTameable();
 

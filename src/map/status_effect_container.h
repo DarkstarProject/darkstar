@@ -42,30 +42,30 @@ class CStatusEffectContainer
 public:
 
     uint64	m_Flags {0};											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
-    std::uint8_t m_StatusIcons[32];                  // иконки статус-эффектов
+    uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
-    bool ApplyBardEffect(CStatusEffect* PStatusEffect, std::uint8_t maxSongs);
-    bool CanGainStatusEffect(EFFECT statusEffect, std::uint16_t power); // returns true if the status effect will take effect
+    bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
+    bool CanGainStatusEffect(EFFECT statusEffect, uint16 power); // returns true if the status effect will take effect
     bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
     bool DelStatusEffect(EFFECT StatusID);
     bool DelStatusEffectSilent(EFFECT StatusID);
-    bool DelStatusEffect(EFFECT StatusID, std::uint16_t SubID);
+    bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
     void DelStatusEffectsByFlag(uint32 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
-    void DelStatusEffectsByIcon(std::uint16_t IconID);                 // удаляем все эффекты с указанной иконкой
-    void DelStatusEffectsByType(std::uint16_t Type);
-    bool DelStatusEffectByTier(EFFECT StatusID, std::uint16_t power);
+    void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
+    void DelStatusEffectsByType(uint16 Type);
+    bool DelStatusEffectByTier(EFFECT StatusID, uint16 power);
     void KillAllStatusEffect();
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
-    bool HasStatusEffect(EFFECT StatusID, std::uint16_t SubID);        // проверяем наличие эффекта с уникальным subid
+    bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
     bool HasStatusEffect(std::initializer_list<EFFECT>);
     bool HasStatusEffectByFlag(uint32 flag);
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     EFFECT HealingWaltz();				// dancers healing waltz
-    std::uint8_t EraseAllStatusEffect();               // erases all status effects
+    uint8 EraseAllStatusEffect();               // erases all status effects
     EFFECT DispelStatusEffect(EFFECTFLAG flag);             // удаляем первый положительный эффект
-    std::uint8_t DispelAllStatusEffect(EFFECTFLAG flag);                // dispels all status effects
+    uint8 DispelAllStatusEffect(EFFECTFLAG flag);                // dispels all status effects
     CStatusEffect* StealStatusEffect();             // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID);
@@ -79,15 +79,15 @@ public:
     void LoadStatusEffects();                                   // загружаем эффекты персонажа
     void SaveStatusEffects(bool logout = false);                // сохраняем эффекты персонажа
 
-    std::uint8_t GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
+    uint8 GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
 
-    bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, std::uint8_t maxRolls, std::uint8_t bustDuration);
+    bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
     bool CheckForElevenRoll();
-    bool HasBustEffect(std::uint16_t id);
+    bool HasBustEffect(uint16 id);
     bool HasCorsairEffect(uint32 charid);
     void Fold(uint32 charid);
 
-    std::uint8_t GetActiveManeuvers();
+    uint8 GetActiveManeuvers();
     void RemoveOldestManeuver();
     void RemoveAllManeuvers();
 
@@ -95,7 +95,7 @@ public:
     bool IsAsleep();
     bool HasPreventActionEffect(); // checks if owner has an effect that prevents actions, like stun, petrify, sleep etc
 
-    std::uint16_t GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
+    uint16 GetConfrontationEffect(); // gets confrontation number (bcnm, confrontation, campaign, reive mark)
     void CopyConfrontationEffect(CBattleEntity* PEntity); // copies confrontation status (pet summoning, etc)
 
     template<typename F, typename... Args>
@@ -132,7 +132,7 @@ private:
 namespace effects
 {
     void LoadEffectsParameters();
-    std::uint16_t GetEffectElement(std::uint16_t effect);
+    uint16 GetEffectElement(uint16 effect);
 };
 
 #endif

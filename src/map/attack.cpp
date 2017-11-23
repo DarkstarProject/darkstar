@@ -194,7 +194,7 @@ float CAttack::GetDamageRatio()
 *  Sets the attack type.												*
 *																		*
 ************************************************************************/
-std::uint8_t CAttack::GetWeaponSlot()
+uint8 CAttack::GetWeaponSlot()
 {
     if (m_attackRound->IsH2H())
     {
@@ -208,7 +208,7 @@ std::uint8_t CAttack::GetWeaponSlot()
 *  Returns the animation ID.											*
 *																		*
 ************************************************************************/
-std::uint8_t CAttack::GetAnimationID()
+uint8 CAttack::GetAnimationID()
 {
     // Try normal kick attacks (without footwork)
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
@@ -225,14 +225,14 @@ std::uint8_t CAttack::GetAnimationID()
 *  Returns the hitrate for this swing.									*
 *																		*
 ************************************************************************/
-std::uint8_t CAttack::GetHitRate()
+uint8 CAttack::GetHitRate()
 {
     // Right hand hitrate
     if (m_attackDirection == RIGHTATTACK && m_attackType != PHYSICAL_ATTACK_TYPE::KICK)
     {
         if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
-            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (std::uint8_t)35);
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (uint8)35);
         }
         else
         {
@@ -250,7 +250,7 @@ std::uint8_t CAttack::GetHitRate()
     {
         if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
-            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (std::uint8_t)35);
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (uint8)35);
         }
         else
         {
@@ -346,7 +346,7 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
-    std::uint8_t meritCounter = 0;
+    uint8 meritCounter = 0;
     if (m_victim->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_victim, TRAIT_COUNTER))
     {
         if (m_victim->GetMJob() == JOB_MNK || m_victim->GetMJob() == JOB_PUP)
@@ -357,11 +357,11 @@ bool CAttack::CheckCounter()
 
     //counter check (rate AND your hit rate makes it land, else its just a regular hit)
     //having seigan active gives chance to counter at 25% of the zanshin proc rate
-    std::uint16_t seiganChance = 0;
+    uint16 seiganChance = 0;
     if (m_victim->objtype == TYPE_PC && m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
     {
         seiganChance = m_victim->getMod(Mod::ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
-        seiganChance = std::clamp<std::uint16_t>(seiganChance, 0, 100);
+        seiganChance = std::clamp<uint16>(seiganChance, 0, 100);
         seiganChance /= 4;
     }
     if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(Mod::COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
@@ -409,7 +409,7 @@ void CAttack::ProcessDamage()
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
         m_naturalH2hDamage = (std::int32_t)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
-        m_baseDamage = std::max<std::uint16_t>(m_attacker->GetMainWeaponDmg(), 3);
+        m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;

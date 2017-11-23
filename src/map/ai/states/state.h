@@ -42,12 +42,12 @@ public:
 class CState
 {
 public:
-    CState(CBaseEntity* PEntity, std::uint16_t _targid);
+    CState(CBaseEntity* PEntity, uint16 _targid);
 
     virtual ~CState() = default;
 
     CBaseEntity* GetTarget() const;
-    void SetTarget(std::uint16_t targid);
+    void SetTarget(uint16 targid);
 
     bool HasErrorMsg() const;
     /* Releases ownership to the caller */
@@ -70,17 +70,17 @@ public:
 protected:
     //state logic done per tick - returns whether to exit the state or not
     virtual bool Update(time_point tick) = 0;
-    virtual void UpdateTarget(std::uint16_t targid);
+    virtual void UpdateTarget(uint16 targid);
     virtual void UpdateTarget(CBaseEntity* target);
 
-    std::uint16_t GetTargetID() const;
+    uint16 GetTargetID() const;
     void Complete();
     time_point GetEntryTime() const;
 
     std::unique_ptr<CBasicPacket> m_errorMsg;
 
     CBaseEntity* const m_PEntity;
-    std::uint16_t m_targid {0};
+    uint16 m_targid {0};
 private:
     CBaseEntity* m_PTarget {nullptr};
     bool m_completed {false};

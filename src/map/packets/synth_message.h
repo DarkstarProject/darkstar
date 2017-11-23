@@ -52,7 +52,7 @@ class CSynthMessagePacket : public CBasicPacket
 {
 public:
 	
-	CSynthMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID = 0, std::uint8_t quantity = 0);
+	CSynthMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, uint16 itemID = 0, uint8 quantity = 0);
 };
 
 #endif

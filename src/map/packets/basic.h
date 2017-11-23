@@ -50,32 +50,32 @@ class CBasicPacket
 {
 protected:
 
-    std::uint8_t* data;
-    std::uint8_t& type;
-    std::uint8_t& size;
-    std::uint16_t& code;
+    uint8* data;
+    uint8& type;
+    uint8& size;
+    uint16& code;
     bool owner;
 
 public:
 
     CBasicPacket()
-        : data(new std::uint8_t[PACKET_SIZE]), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(true)
+        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(true)
     {
         std::fill(data, data + PACKET_SIZE, 0);
     }
 
-    CBasicPacket(std::uint8_t* _data)
-        : data(_data), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(false)
+    CBasicPacket(uint8* _data)
+        : data(_data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(false)
     {}
 
     CBasicPacket(const CBasicPacket& other)
-        : data(new std::uint8_t[PACKET_SIZE]), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(true)
+        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(true)
     {
         memcpy(data, other.data, PACKET_SIZE);
     }
 
     CBasicPacket(CBasicPacket&& other)
-        : data(other.data), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(other.owner)
+        : data(other.data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<uint16>(2)), owner(other.owner)
     {
         other.data = nullptr;
     }
@@ -93,17 +93,17 @@ public:
 
     /* Getters for the header */
 
-    std::uint16_t id()
+    uint16 id()
     {
-        return ref<std::uint16_t>(0) & 0x1FF;
+        return ref<uint16>(0) & 0x1FF;
     }
     std::size_t length()
     {
-        return 2 * (ref<std::uint8_t>(1) & ~1);
+        return 2 * (ref<uint8>(1) & ~1);
     }
     unsigned short sequence()
     {
-        return ref<std::uint16_t>(2);
+        return ref<uint16>(2);
     }
 
     /* Setters for the header */
@@ -111,21 +111,21 @@ public:
     // Set the first 9 bits to the ID. The highest bit overflows into the second byte.
     void id(unsigned int new_id)
     {
-        ref<std::uint16_t>(0) &= ~0x1FF;
-        ref<std::uint16_t>(0) |= new_id & 0x1FF;
+        ref<uint16>(0) &= ~0x1FF;
+        ref<uint16>(0) |= new_id & 0x1FF;
     }
 
     // The length "byte" is actually just the highest 7 bits.
     // Need to preserve the lowest bit for the ID.
     void length(std::size_t new_size)
     {
-        ref<std::uint8_t>(1) &= 1;
-        ref<std::uint8_t>(1) |= ((new_size + 3) & ~3) / 2;
+        ref<uint8>(1) &= 1;
+        ref<uint8>(1) |= ((new_size + 3) & ~3) / 2;
     }
 
     void sequence(unsigned short new_sequence)
     {
-        ref<std::uint16_t>(2) = new_sequence;
+        ref<uint16>(2) = new_sequence;
     }
 
     /* Indexer for the data buffer */
@@ -136,14 +136,14 @@ public:
         return *reinterpret_cast<T*>(data + index);
     }
 
-    operator std::uint8_t*()
+    operator uint8*()
     {
         return data;
     }
 
-    std::int8_t* operator[] (const int index)
+    int8* operator[] (const int index)
     {
-        return reinterpret_cast<std::int8_t*>(data)+index;
+        return reinterpret_cast<int8*>(data)+index;
     }
 };
 

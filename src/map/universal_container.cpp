@@ -50,7 +50,7 @@ void CUContainer::Clean()
 {
     if (m_ContainerType == UCONTAINER_DELIVERYBOX)
     {
-        for (std::uint8_t i = 0; i < UCONTAINER_SIZE; ++i)
+        for (uint8 i = 0; i < UCONTAINER_SIZE; ++i)
         {
             delete m_PItem[i];
         }
@@ -81,7 +81,7 @@ void CUContainer::Clean()
 *                                                                       *
 ************************************************************************/
 
-std::uint16_t CUContainer::GetTarget()
+uint16 CUContainer::GetTarget()
 {
     return m_target;
 }
@@ -92,7 +92,7 @@ std::uint16_t CUContainer::GetTarget()
 *                                                                       *
 ************************************************************************/
 	
-void CUContainer::SetTarget(std::uint16_t Target)
+void CUContainer::SetTarget(uint16 Target)
 {
     m_target = Target;
 }
@@ -171,7 +171,7 @@ bool CUContainer::IsContainerEmpty()
 *                                                                       *
 ************************************************************************/
 
-bool CUContainer::IsSlotEmpty(std::uint8_t slotID)
+bool CUContainer::IsSlotEmpty(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -186,7 +186,7 @@ bool CUContainer::IsSlotEmpty(std::uint8_t slotID)
 *																		*
 ************************************************************************/
 
-bool CUContainer::SetItem(std::uint8_t slotID, CItem* PItem)
+bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
 	if (slotID < m_PItem.size() && !m_lock)
 	{
@@ -199,12 +199,12 @@ bool CUContainer::SetItem(std::uint8_t slotID, CItem* PItem)
     return false;
 }
 
-void CUContainer::SetSize(std::uint8_t size)
+void CUContainer::SetSize(uint8 size)
 {
     m_PItem.resize(size, nullptr);
 }
 
-void CUContainer::ClearSlot(std::uint8_t slotID)
+void CUContainer::ClearSlot(uint8 slotID)
 {
     if (slotID < m_PItem.size())
     {
@@ -218,7 +218,7 @@ void CUContainer::ClearSlot(std::uint8_t slotID)
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CUContainer::GetItemsCount()
+uint8 CUContainer::GetItemsCount()
 {
     return m_count;
 }
@@ -229,7 +229,7 @@ std::uint8_t CUContainer::GetItemsCount()
 *																		*
 ************************************************************************/
 
-CItem* CUContainer::GetItem(std::uint8_t slotID)
+CItem* CUContainer::GetItem(uint8 slotID)
 {
 	if (slotID < m_PItem.size())
 	{

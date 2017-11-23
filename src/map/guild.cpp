@@ -28,13 +28,13 @@ This file is part of DarkStar-server source code.
 #include "utils/charutils.h"
 #include "utils/itemutils.h"
 
-CGuild::CGuild(std::uint8_t id, const char* _pointsName)
+CGuild::CGuild(uint8 id, const char* _pointsName)
 {
     m_id = id;
 
     for (size_t i = 0; i < m_GPItemsRank.size(); ++i)
     {
-        m_GPItemsRank[i] = (std::uint8_t)((CVanaTime::getInstance()->getVanaTime() / (60 * 60 * 24)) % (i + 4));
+        m_GPItemsRank[i] = (uint8)((CVanaTime::getInstance()->getVanaTime() / (60 * 60 * 24)) % (i + 4));
     }
 
     pointsName = _pointsName;
@@ -45,12 +45,12 @@ CGuild::~CGuild()
 
 }
 
-std::uint8_t CGuild::id()
+uint8 CGuild::id()
 {
     return m_id;
 }
 
-void CGuild::updateGuildPointsPattern(std::uint8_t pattern)
+void CGuild::updateGuildPointsPattern(uint8 pattern)
 {
     for (auto& GPItems : m_GPItems)
     {
@@ -78,11 +78,11 @@ void CGuild::updateGuildPointsPattern(std::uint8_t pattern)
     }
 }
 
-std::uint8_t CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, std::int16_t& pointsAdded)
+uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdded)
 {
-    std::uint8_t rank = PChar->RealSkills.rank[m_id + 48];
+    uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    rank = std::clamp<std::uint8_t>(rank, 3, 9);
+    rank = std::clamp<uint8>(rank, 3, 9);
 
     if (PItem)
     {
@@ -97,8 +97,8 @@ std::uint8_t CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, std::int16
                     // if a player ranks up to a new pattern whose maxpoints are fewer than the player's current daily points
                     // then we'd be trying to push a negative number into quantity. our edit to CGuild::getDailyGPItem should
                     // prevent this, but let's be doubly sure.
-                    auto quantity = std::max<std::uint8_t>(0, std::min<uint32>((((GPItem.maxpoints - curPoints) / GPItem.points) + 1), PItem->getQuantity()));
-                    std::uint16_t points = GPItem.points * quantity;
+                    auto quantity = std::max<uint8>(0, std::min<uint32>((((GPItem.maxpoints - curPoints) / GPItem.points) + 1), PItem->getQuantity()));
+                    uint16 points = GPItem.points * quantity;
                     if (points > GPItem.maxpoints - curPoints)
                     {
                         points = GPItem.maxpoints - curPoints;
@@ -114,14 +114,14 @@ std::uint8_t CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, std::int16
     return 0;
 }
 
-std::pair<std::uint16_t, std::uint16_t> CGuild::getDailyGPItem(CCharEntity* PChar)
+std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
 {
-    std::uint8_t rank = PChar->RealSkills.rank[m_id + 48];
+    uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    rank = std::clamp<std::uint8_t>(rank, 3, 9);
+    rank = std::clamp<uint8>(rank, 3, 9);
 
     auto GPItem = m_GPItems[rank - 3];
-    auto curPoints = (std::uint16_t)charutils::GetVar(PChar, "[GUILD]daily_points");
+    auto curPoints = (uint16)charutils::GetVar(PChar, "[GUILD]daily_points");
     if (curPoints == -1)
     {
         return std::make_pair(GPItem[0].item->getID(), 0);
@@ -131,6 +131,6 @@ std::pair<std::uint16_t, std::uint16_t> CGuild::getDailyGPItem(CCharEntity* PCha
         // a rank-up can land player in a new pattern that rewards fewer max points than they
         // have traded in today. we prevent remainingPoints from going negative here so that
         // we don't later calculate a negative quantity in CGuild::addGuildPoints
-        return std::make_pair(GPItem[0].item->getID(), std::max<std::uint16_t>(0, (GPItem[0].maxpoints - curPoints)));
+        return std::make_pair(GPItem[0].item->getID(), std::max<uint16>(0, (GPItem[0].maxpoints - curPoints)));
     }
 }

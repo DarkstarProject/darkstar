@@ -30,7 +30,7 @@
 #include "../common/mmo.h"
 
 
-std::int32_t checksum(std::uint8_t* buf,uint32 buflen,char checkhash[16]);
+std::int32_t checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 int config_switch(const char* str);
 bool bin2hex(char* output, unsigned char* input, size_t count);
 
@@ -43,32 +43,32 @@ constexpr float square(float distance)                          // constexpr squ
 
 std::int32_t intpow32(std::int32_t base, std::int32_t exponent);						// Exponential power of integers
 void getMSB(uint32* result,uint32 value);						// fast Most Significant Byte search under GCC or MSVC. Fallback included.
-float rotationToRadian(std::uint8_t rotation);
-std::uint8_t radianToRotation(float radian);
-std::uint8_t getangle(const position_t& A, const position_t& B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
-bool  isFaceing(const position_t& A, const position_t& B, std::uint8_t coneAngle);	// А - основная сущность, B - цель сущности
+float rotationToRadian(uint8 rotation);
+uint8 radianToRotation(float radian);
+uint8 getangle(const position_t& A, const position_t& B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
+bool  isFaceing(const position_t& A, const position_t& B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
 position_t nearPosition(const position_t& A, float offset, float radian); // Returns a position near the given position
 
-std::int32_t hasBit(std::uint16_t value, std::uint8_t* BitArray, uint32 size);		// проверяем наличие бита в массиве
-std::int32_t addBit(std::uint16_t value, std::uint8_t* BitArray, uint32 size);		// добавляем бит в массив
-std::int32_t delBit(std::uint16_t value, std::uint8_t* BitArray, uint32 size);		// удаляем бит из массива
+std::int32_t hasBit(uint16 value, uint8* BitArray, uint32 size);		// проверяем наличие бита в массиве
+std::int32_t addBit(uint16 value, uint8* BitArray, uint32 size);		// добавляем бит в массив
+std::int32_t delBit(uint16 value, uint8* BitArray, uint32 size);		// удаляем бит из массива
 
 	//(un)pack functions for Big Endian(BE) targets
-uint32 packBitsBE(std::uint8_t* target, uint64 value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit);
-uint32 packBitsBE(std::uint8_t* target, uint64 value, std::int32_t bitOffset, std::uint8_t lengthInBit);
-uint64 unpackBitsBE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit);
-uint64 unpackBitsBE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit);
+uint32 packBitsBE(uint8* target, uint64 value, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit);
+uint32 packBitsBE(uint8* target, uint64 value, std::int32_t bitOffset, uint8 lengthInBit);
+uint64 unpackBitsBE(uint8* target, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit);
+uint64 unpackBitsBE(uint8* target, std::int32_t bitOffset, uint8 lengthInBit);
 	//(un)pack functions for Little Endian(LE) targets
-uint32 packBitsLE(std::uint8_t* target, uint64 value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit);
-uint32 packBitsLE(std::uint8_t* target, uint64 value, std::int32_t bitOffset, std::uint8_t lengthInBit);
-uint64 unpackBitsLE(std::uint8_t* target,std::int32_t bitOffset, std::uint8_t lengthInBit);
-uint64 unpackBitsLE(std::uint8_t* target,std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit);
+uint32 packBitsLE(uint8* target, uint64 value, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit);
+uint32 packBitsLE(uint8* target, uint64 value, std::int32_t bitOffset, uint8 lengthInBit);
+uint64 unpackBitsLE(uint8* target,std::int32_t bitOffset, uint8 lengthInBit);
+uint64 unpackBitsLE(uint8* target,std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit);
 
     // Encode/Decode Strings to/from FFXI 6-bit format
-void EncodeStringLinkshell(std::int8_t* signature, std::int8_t* target);
-void DecodeStringLinkshell(std::int8_t* signature, std::int8_t* target);
-std::int8_t* EncodeStringSignature(std::int8_t* signature, std::int8_t* target);
-void DecodeStringSignature(std::int8_t* signature, std::int8_t* target);
+void EncodeStringLinkshell(int8* signature, int8* target);
+void DecodeStringLinkshell(int8* signature, int8* target);
+int8* EncodeStringSignature(int8* signature, int8* target);
+void DecodeStringSignature(int8* signature, int8* target);
 std::string escape(std::string const &s);
 
 #endif

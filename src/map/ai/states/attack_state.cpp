@@ -29,7 +29,7 @@ This file is part of DarkStar-server source code.
 #include "../../packets/action.h"
 #include "../ai_container.h"
 
-CAttackState::CAttackState(CBattleEntity* PEntity, std::uint16_t targid) :
+CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {
@@ -95,7 +95,7 @@ void CAttackState::ResetAttackTimer()
     m_attackTime = std::chrono::milliseconds(m_PEntity->GetWeaponDelay(false));
 }
 
-void CAttackState::UpdateTarget(std::uint16_t targid)
+void CAttackState::UpdateTarget(uint16 targid)
 {
     m_errorMsg.reset();
     auto newTargid {m_PEntity->GetBattleTargetID()};

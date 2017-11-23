@@ -28,12 +28,12 @@
 #include "quest_mission_log.h"
 #include "../entities/charentity.h"
 
-CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, std::uint8_t logID, LOG_TYPE logType)
+CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE logType)
 {
     this->type = 0x56;
     this->size = 0x14;
 
-    std::uint16_t packetType = 0x00;
+    uint16 packetType = 0x00;
 
     // FFXI packs different TOAU information in the same packet as certain other content, so we'll have to work around it.
     // First, deal with all quest areas which aren't TOAU:
@@ -86,7 +86,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, std::uint8_t
                     break;
                 case LOG_CAMPAIGN_TWO:
                     // Second Campaign packet, summoned through logType
-                    generateCampaignMissionPacket(PChar, (std::uint8_t)256);
+                    generateCampaignMissionPacket(PChar, (uint8)256);
                     packetType = CAMPAIGN_MISSION_TWO;
                     break;
                 default:
@@ -121,7 +121,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, std::uint8_t
     WBUFW(data, (0x24)) = packetType;
 }
 
-void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, std::uint8_t logID, LOG_TYPE status)
+void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE status)
 {
     if (status == LOG_QUEST_CURRENT)
         memcpy(data + 4, PChar->m_questLog[logID].current, 32);
@@ -131,7 +131,7 @@ void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, std::uint8
 
 void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 {
-    std::uint16_t add_on_scenarios = 0;
+    uint16 add_on_scenarios = 0;
     
     add_on_scenarios += PChar->m_missionLog[MISSION_ACP].current;
     add_on_scenarios += PChar->m_missionLog[MISSION_AMK].current << 0x04;
@@ -161,8 +161,8 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
 {
     // This packet simultaneously updates completed mission logs for Nation and Zilart missions.
-    for (std::uint8_t logID = MISSION_SANDORIA; logID <= MISSION_ZILART; logID++) {
-        for (std::uint8_t questMissionID = 0; questMissionID < 64; questMissionID++)
+    for (uint8 logID = MISSION_SANDORIA; logID <= MISSION_ZILART; logID++) {
+        for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
             data[(questMissionID / 8) + (logID * 0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
     }
 }
@@ -180,23 +180,23 @@ void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar
 void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar)
 {
     // This packet simultaenously updates completed mission logs for TOAU and WOTG missions.
-    std::uint8_t logID = MISSION_TOAU;
-    for (std::uint8_t questMissionID = 0; questMissionID < 64; questMissionID++)
+    uint8 logID = MISSION_TOAU;
+    for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
         data[(questMissionID / 8) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 
     logID = MISSION_WOTG;
-    for (std::uint8_t questMissionID = 0; questMissionID < 64; questMissionID++)
+    for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
         data[(questMissionID / 8) + 0x08 + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCampaignMissionPacket(CCharEntity * PChar, std::uint8_t startQMID)
+void CQuestMissionLogPacket::generateCampaignMissionPacket(CCharEntity * PChar, uint8 startQMID)
 {
-    for (std::uint16_t questMissionID = startQMID; questMissionID < (startQMID + 256); questMissionID++)
+    for (uint16 questMissionID = startQMID; questMissionID < (startQMID + 256); questMissionID++)
         data[(questMissionID / 8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
 }
 
 void CQuestMissionLogPacket::generateAssaultMissionPacket(CCharEntity * PChar)
 {
-    for (std::uint16_t questMissionID = 0; questMissionID < 128; questMissionID++)
+    for (uint16 questMissionID = 0; questMissionID < 128; questMissionID++)
         data[(questMissionID / 8) + 0x10 + 4] ^= ((PChar->m_assaultLog.complete[questMissionID]) << (questMissionID % 8));
 }

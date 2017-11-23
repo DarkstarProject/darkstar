@@ -33,7 +33,7 @@
 *																		*
 ************************************************************************/
 
-CTradeItemPacket::CTradeItemPacket(CItem* PItem, std::uint8_t slot)
+CTradeItemPacket::CTradeItemPacket(CItem* PItem, uint8 slot)
 {
 	this->type = 0x25;
 	this->size = 0x06;

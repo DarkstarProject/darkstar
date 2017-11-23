@@ -32,7 +32,7 @@ void CCommandHandler::init(lua_State* L)
     m_LState = L;
 }
 
-std::int32_t CCommandHandler::call(CCharEntity* PChar, const std::int8_t* commandline)
+std::int32_t CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 {
     std::istringstream clstream((char*)commandline);
     std::string cmdname;
@@ -83,7 +83,7 @@ std::int32_t CCommandHandler::call(CCharEntity* PChar, const std::int8_t* comman
         return -1;
     }
 
-    std::int8_t permission = (std::int8_t)lua_tonumber(m_LState, -1);
+    int8 permission = (int8)lua_tonumber(m_LState, -1);
     lua_pop(m_LState, 1); // pop number..
 
     // Attempt to obtain the command parameters..

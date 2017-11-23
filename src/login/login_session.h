@@ -33,7 +33,7 @@ struct login_session_data_t {
     uint32 accid;
     uint32 serviced;
     uint32 client_addr;
-    std::uint16_t client_port;
+    uint16 client_port;
     uint32 servip;
 
     char charname[17];

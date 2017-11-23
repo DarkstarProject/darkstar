@@ -104,71 +104,71 @@ namespace battleutils
     void			LoadMobSkillsList();
     void			LoadSkillChainDamageModifiers();
 
-    std::uint8_t			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
+    uint8			CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon);
 
-    std::uint8_t			getHitCount(std::uint8_t hits);
-    std::uint8_t			CheckMobMultiHits(CBattleEntity* PEntity);
+    uint8			getHitCount(uint8 hits);
+    uint8			CheckMobMultiHits(CBattleEntity* PEntity);
 
-    std::int16_t			GetSnapshotReduction(CCharEntity* m_PChar, std::int16_t delay);
+    int16			GetSnapshotReduction(CCharEntity* m_PChar, int16 delay);
     std::int32_t			GetRangedAttackBonuses(CBattleEntity* battleEntity);
     std::int32_t			GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
-    std::uint8_t			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
-    std::uint16_t			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, std::uint8_t level);
-    std::uint16_t          GetMaxSkill(std::uint8_t rank, std::uint8_t level);
+    uint8			GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
+    uint16			GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
+    uint16          GetMaxSkill(uint8 rank, uint8 level);
 
-    CWeaponSkill*	GetWeaponSkill(std::uint16_t WSkillID);
-    CMobSkill*		GetMobSkill(std::uint16_t SkillID);
-    CMobSkill*      GetTwoHourMobSkill(JOBTYPE job, std::uint16_t familyId);
+    CWeaponSkill*	GetWeaponSkill(uint16 WSkillID);
+    CMobSkill*		GetMobSkill(uint16 SkillID);
+    CMobSkill*      GetTwoHourMobSkill(JOBTYPE job, uint16 familyId);
 
-    const std::list<CWeaponSkill*>& GetWeaponSkills(std::uint8_t skill);
-    const std::vector<std::uint16_t>& GetMobSkillList(std::uint16_t ListID);
+    const std::list<CWeaponSkill*>& GetWeaponSkills(uint8 skill);
+    const std::vector<uint16>& GetMobSkillList(uint16 ListID);
 
     void				FreeWeaponSkillsList();
     void				FreeMobSkillList();
 
-    SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, std::uint8_t primary, std::uint8_t secondary, std::uint8_t tertiary);
+    SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, uint8 primary, uint8 secondary, uint8 tertiary);
     SKILLCHAIN_ELEMENT  FormSkillchain(const std::list<SKILLCHAIN_ELEMENT>& resonance, const std::list<SKILLCHAIN_ELEMENT>& skill);
-    std::uint8_t				GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain);
-    std::uint8_t				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
-    std::int16_t				GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender, ELEMENT* appliedEle);
+    uint8				GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain);
+    uint8				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
+    int16				GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender, ELEMENT* appliedEle);
 
     bool			IsParalyzed(CBattleEntity* PAttacker);
     bool			IsAbsorbByShadow(CBattleEntity* PDefender);
     bool			IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 
-    std::int32_t				GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t SlotID);
-    std::uint8_t				GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber, std::int8_t offsetAccuracy);
-    std::uint8_t				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-    std::uint8_t				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber);
-    std::uint8_t				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber, std::int8_t offsetAccuracy);
-    std::uint8_t				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakTrickAttack);
-    std::uint8_t				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-    std::uint8_t				GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-    std::uint8_t				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
-    float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, std::uint16_t bonusAttPercent);
+    std::int32_t				GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID);
+    uint8				GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, int8 offsetAccuracy);
+    uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber);
+    uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, int8 offsetAccuracy);
+    uint8				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakTrickAttack);
+    uint8				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    uint8				GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    uint8				GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
+    float				GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent);
 
-    std::int32_t				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, std::int32_t damage, bool isBlocked, std::uint8_t slot, std::uint16_t tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
-    std::int32_t				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, std::int32_t damage, std::uint8_t slot, bool primary, float tpMultiplier, std::uint16_t bonusTP, float targetTPMultiplier);
+    std::int32_t				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, std::int32_t damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
+    std::int32_t				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, std::int32_t damage, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier);
     std::int32_t				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::int32_t lastSkillDamage, CBattleEntity* taChar);
 
     bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender, CSpell* PSpell);
     float				GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action);
-    std::uint16_t              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, std::uint16_t damageTaken);
+    uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken);
     bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, std::int32_t damage);
-    bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, std::uint8_t damage, SUBEFFECT spikesType, std::uint8_t chance);
+    bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action);
     void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, bool isFirstSwing, CItemWeapon* weapon, std::int32_t damage);
-    std::uint8_t				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
-    std::int32_t				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t Tier, std::uint8_t element);
+    uint8				GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
+    std::int32_t				CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
-    std::uint8_t				GetEnmityModDamage(std::uint8_t level);
-    std::uint8_t				GetEnmityModCure(std::uint8_t level);
+    uint8				GetEnmityModDamage(uint8 level);
+    uint8				GetEnmityModCure(uint8 level);
     bool				isValidSelfTargetWeaponskill(int wsid);
-    std::int16_t				CalculateBaseTP(int delay);
-    void				GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, std::uint16_t amount);
-    void                GenerateInRangeEnmity(CBattleEntity* PSource, std::int16_t CE, std::int16_t VE);
+    int16				CalculateBaseTP(int delay);
+    void				GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount);
+    void                GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE);
 
     CItemWeapon*		GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
     CItemArmor*			GetEntityArmor(CBattleEntity* PEntity, SLOTTYPE Slot);
@@ -184,13 +184,13 @@ namespace battleutils
     void                applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, duration charmTime = 0s);
     void                unCharm(CBattleEntity* PEntity);
 
-    std::uint16_t				doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
-    std::uint16_t				getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, std::uint16_t damage);
-    std::uint16_t				jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, std::uint8_t tier);
+    uint16				doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
+    uint16				getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage);
+    uint16				jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 
-    void				TransferEnmity(CBattleEntity* PHateReceiver, CBattleEntity* PHateGiver, CMobEntity* PMob, std::uint8_t percentToTransfer);
-    std::uint8_t				getBarrageShotCount(CCharEntity* PChar);
-    std::uint8_t				getStoreTPbonusFromMerit(CBattleEntity* PEntity);
+    void				TransferEnmity(CBattleEntity* PHateReceiver, CBattleEntity* PHateGiver, CMobEntity* PMob, uint8 percentToTransfer);
+    uint8				getBarrageShotCount(CCharEntity* PChar);
+    uint8				getStoreTPbonusFromMerit(CBattleEntity* PEntity);
 
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 
@@ -219,21 +219,21 @@ namespace battleutils
     // handles enmity loss calculations for tranquil heart
     float               HandleTranquilHeart(CBattleEntity* PEntity);
 
-    void				assistTarget(CCharEntity* PChar, std::uint16_t TargID);
+    void				assistTarget(CCharEntity* PChar, uint16 TargID);
 
-    std::uint8_t               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
+    uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
     WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);
-    WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar, std::uint16_t zoneWeather);
-    bool                WeatherMatchesElement(WEATHER weather, std::uint8_t element);
+    WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather);
+    bool                WeatherMatchesElement(WEATHER weather, uint8 element);
     bool				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
-    void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, std::uint8_t roll);
-    void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, std::uint8_t level);
+    void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);
+    void                AddTraits(CBattleEntity* PEntity, TraitList_t* TraitList, uint8 level);
     bool                HasClaim(CBattleEntity* PEntity, CBattleEntity* PTarget);
 
     uint32              CalculateSpellCastTime(CBattleEntity*, CSpell*);
-    std::uint16_t              CalculateSpellCost(CBattleEntity*, CSpell*);
+    uint16              CalculateSpellCost(CBattleEntity*, CSpell*);
     uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
-    std::int16_t               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, std::int16_t);
+    int16               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
     bool                RemoveAmmo(CCharEntity*, int quantity = 1);
     std::int32_t               GetMeritValue(CBattleEntity*, MERIT_TYPE);
 

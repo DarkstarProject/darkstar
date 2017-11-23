@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 
-CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, std::uint16_t conditionsValue, std::uint8_t slot, Mod modValue, std::int16_t modPower) :
+CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, uint16 conditionsValue, uint8 slot, Mod modValue, int16 modPower) :
     m_POwner(owner),
     m_ConditionsID(conditionsId),
     m_ConditionsValue(conditionsValue),
@@ -49,12 +49,12 @@ LATENT CLatentEffect::GetConditionsID() const
     return m_ConditionsID;
 }
 
-std::uint16_t CLatentEffect::GetConditionsValue() const
+uint16 CLatentEffect::GetConditionsValue() const
 {
     return m_ConditionsValue;
 }
 
-std::uint8_t CLatentEffect::GetSlot() const
+uint8 CLatentEffect::GetSlot() const
 {
     return m_SlotID;
 }
@@ -64,7 +64,7 @@ Mod CLatentEffect::GetModValue() const
     return m_ModValue;
 }
 
-std::int16_t CLatentEffect::GetModPower() const
+int16 CLatentEffect::GetModPower() const
 {
     return m_ModPower;
 }
@@ -84,12 +84,12 @@ void CLatentEffect::SetConditionsId(LATENT id)
     m_ConditionsID = id;
 }
 
-void CLatentEffect::SetConditionsValue(std::uint16_t value)
+void CLatentEffect::SetConditionsValue(uint16 value)
 {
     m_ConditionsValue = value;
 }
 
-void CLatentEffect::SetSlot(std::uint8_t slot)
+void CLatentEffect::SetSlot(uint8 slot)
 {
     m_SlotID = slot;
 }
@@ -99,7 +99,7 @@ void CLatentEffect::SetModValue(Mod value)
     m_ModValue = value;
 }
 
-void CLatentEffect::SetModPower(std::int16_t power)
+void CLatentEffect::SetModPower(int16 power)
 {
     m_ModPower = power;
 }
@@ -136,13 +136,13 @@ void CLatentEffect::Deactivate()
             CCharEntity* PChar = (CCharEntity*)m_POwner;
 			CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
-            std::int16_t modPower = GetModPower();
+            int16 modPower = GetModPower();
 
             if (weapon != nullptr && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
             {
                 if (GetModValue() == Mod::ADDITIONAL_EFFECT)
                 {
-                    for (std::uint8_t i = 0; i < weapon->modList.size(); ++i)
+                    for (uint8 i = 0; i < weapon->modList.size(); ++i)
                     {
                         //ensure the additional effect is fully removed from the weapon
                         if (weapon->modList.at(i).getModID() == Mod::ADDITIONAL_EFFECT)

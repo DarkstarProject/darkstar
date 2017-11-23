@@ -75,7 +75,7 @@ enum ELEMENTS
 	DARK		= 0x80,
 };
 
-enum MSGSERVTYPE : std::uint8_t
+enum MSGSERVTYPE : uint8
 {
     MSG_LOGIN,
     MSG_CHAT_TELL,
@@ -102,14 +102,14 @@ typedef std::string string_t;
 
 struct look_t 
 {
-	std::uint16_t size;
+	uint16 size;
     union {
         struct {
-            std::uint8_t  face, race;
+            uint8  face, race;
         };
-        std::uint16_t modelid;
+        uint16 modelid;
     };
-	std::uint16_t head, body, hands, legs, feet, main, sub, ranged;
+	uint16 head, body, hands, legs, feet, main, sub, ranged;
 };
 
 struct skills_t 
@@ -117,33 +117,33 @@ struct skills_t
 	union {
 		struct {
 			// SkillID 0
-			std::uint16_t unknown1;
+			uint16 unknown1;
 			// SkillID  1-12
-			std::uint16_t h2h, dagger, sword, gsword, axe, gaxe, scythe, polearm, katana, gkatana, club, staff;
+			uint16 h2h, dagger, sword, gsword, axe, gaxe, scythe, polearm, katana, gkatana, club, staff;
 			// SkillID 13-21
-			std::uint16_t reserved1[9];
+			uint16 reserved1[9];
             // SkillID 22-24
-            std::uint16_t automaton_melee, automaton_ranged, automaton_magic;
+            uint16 automaton_melee, automaton_ranged, automaton_magic;
 			// SkillID 25-33
-			std::uint16_t archery, marksmanship, throwing, guarding, evasion, shield, parrying, divine, healing;
+			uint16 archery, marksmanship, throwing, guarding, evasion, shield, parrying, divine, healing;
 			// SkillID 34-43
-			std::uint16_t enhancing, enfeebling, elemental, dark, summoning, ninjutsu, singing, string, wind, blue;
+			uint16 enhancing, enfeebling, elemental, dark, summoning, ninjutsu, singing, string, wind, blue;
 			// SkillID 44-47
-			std::uint16_t reserved2[4];
+			uint16 reserved2[4];
 			// SkillID 48-54
-			std::uint16_t fishing, woodworking, smithing, goldsmithing, clothcraft, leathercraft, bonecraft;
+			uint16 fishing, woodworking, smithing, goldsmithing, clothcraft, leathercraft, bonecraft;
 			// SkillID 55-58
-			std::uint16_t alchemy, cooking, synergy, riding;
+			uint16 alchemy, cooking, synergy, riding;
 			// SkillID 59-62
-			std::uint16_t reserved3[4];
+			uint16 reserved3[4];
 			// SkillID 63
-			std::uint16_t unknown2;
+			uint16 unknown2;
 		};
 		// index SkillID 0-63
-		std::uint16_t skill[64];
+		uint16 skill[64];
 	};
 	// ранг используется только в ремеслах. размер 64 необходим для совместимости ID
-	std::uint8_t rank[64];
+	uint8 rank[64];
 };
 
 struct keyitems_table_t
@@ -159,39 +159,39 @@ struct keyitems_t
 
 struct position_t 
 {
-	std::uint8_t rotation;			// угол поворота сущности относительно своей позиции (используется 255 система, место 360°)
+	uint8 rotation;			// угол поворота сущности относительно своей позиции (используется 255 система, место 360°)
 	float x;			
 	float y;				// высота расположения сущности относительно "уровня моря"
 	float z;
-	std::uint16_t moving;			// что-то вроде расстояния перемещения, необходимое для правильной отрисовки в клиенте количества шагов сущности 
+	uint16 moving;			// что-то вроде расстояния перемещения, необходимое для правильной отрисовки в клиенте количества шагов сущности 
 };
 
 struct stats_t
 {
-	std::uint16_t STR,DEX,VIT,AGI,INT,MND,CHR;
+	uint16 STR,DEX,VIT,AGI,INT,MND,CHR;
 };
 
 struct questlog_t 
 {
-	std::uint8_t current [32];
-	std::uint8_t complete[32];
+	uint8 current [32];
+	uint8 complete[32];
 };
 
 struct missionlog_t 
 {
-	std::uint16_t current;
+	uint16 current;
 	bool   complete[64];
 };
 
 struct assaultlog_t 
 {
-	std::uint16_t current;
+	uint16 current;
 	bool   complete[128];
 };
 
 struct campaignlog_t 
 {
-	std::uint16_t current;
+	uint16 current;
 	bool   complete[512];
 };
 
@@ -199,10 +199,10 @@ struct nameflags_t
 {
 	union {
 		struct {
-			std::uint8_t byte1;
-			std::uint8_t byte2;
-			std::uint8_t byte3;
-			std::uint8_t byte4;
+			uint8 byte1;
+			uint8 byte2;
+			uint8 byte3;
+			uint8 byte4;
 		};
 		uint32 flags;
 	};
@@ -211,8 +211,8 @@ struct nameflags_t
 // информация для окна поиска
 struct search_t 
 {
-	std::uint8_t language;			// предпочтительный язык общения
-	std::uint8_t messagetype;		// тип комментария
+	uint8 language;			// предпочтительный язык общения
+	uint8 messagetype;		// тип комментария
 
 	string_t message;	// комментарий поиска
 };
@@ -227,7 +227,7 @@ struct bazaar_t
 // через 4-ре байта начинается заголовк 0x49, 0x58, 0x46, 0x46 - IXFF
 // после заголовка идет предположительно тип сообщения:
 // 0x03 - положительный результат
-// 0x04 - ошибка (в случае ошибки начиная с 33 байта идет код ошибки std::uint16_t) 
+// 0x04 - ошибка (в случае ошибки начиная с 33 байта идет код ошибки uint16) 
 
 #define LOBBY_A1_RESERVEPACKET(a)\
 unsigned char a[] = { \
@@ -286,13 +286,13 @@ unsigned char a[]={ \
 struct lan_config_t
 {
 	uint32 uiLoginLanIP;
-	std::uint16_t usLoginLanPort;
+	uint16 usLoginLanPort;
 
 	uint32 uiMapLanIP;
-	std::uint16_t usMapLanPort;
+	uint16 usMapLanPort;
 
 	uint32 wait_time;
-	std::uint8_t  connect_try_num;
+	uint8  connect_try_num;
 };
 
 
@@ -300,11 +300,11 @@ class char_mini
 {
 public:
 
-	std::int8_t	m_name[16];
+	int8	m_name[16];
 
-	std::uint8_t	m_mjob;
-	std::uint16_t	m_zone;
-	std::uint8_t	m_nation;
+	uint8	m_mjob;
+	uint16	m_zone;
+	uint8	m_nation;
 
 	look_t	m_look;	
 

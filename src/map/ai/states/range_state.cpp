@@ -30,7 +30,7 @@ This file is part of DarkStar-server source code.
 #include "../../status_effect_container.h"
 #include "../../utils/charutils.h"
 
-CRangeState::CRangeState(CCharEntity* PEntity, std::uint16_t targid) :
+CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {
@@ -55,7 +55,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, std::uint16_t targid) :
         if (dsprand::GetRandomNumber(100) < chance)
         {
             //reduce delay by 10%-50%
-            delay = (std::int16_t)(delay * (10 - dsprand::GetRandomNumber(1, 6)) / 10.f);
+            delay = (int16)(delay * (10 - dsprand::GetRandomNumber(1, 6)) / 10.f);
             m_rapidShot = true;
         }
     }

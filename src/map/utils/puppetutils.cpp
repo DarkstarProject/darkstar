@@ -150,16 +150,16 @@ void SaveAutomaton(CCharEntity* PChar)
 
 bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 {
-	std::uint16_t id = PItem->getID();
+	uint16 id = PItem->getID();
 
 	if (!PItem->isType(ITEM_PUPPET))
 		return false;
 
-    std::uint8_t slot = ((CItemPuppet*)PItem)->getEquipSlot();
+    uint8 slot = ((CItemPuppet*)PItem)->getEquipSlot();
 	
 	if (slot == 3) //automaton attachment
 	{
-		if (addBit(id & 0xFF, (std::uint8_t*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
+		if (addBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
 		{
 			SaveAutomaton(PChar);
             PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
@@ -192,16 +192,16 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 
 bool HasAttachment(CCharEntity* PChar, CItem* PItem)
 {
-    std::uint16_t id = PItem->getID();
+    uint16 id = PItem->getID();
 
     if (!PItem->isType(ITEM_PUPPET))
         return false;
 
-    std::uint8_t slot = ((CItemPuppet*)PItem)->getEquipSlot();
+    uint8 slot = ((CItemPuppet*)PItem)->getEquipSlot();
 
     if (slot == 3) //automaton attachment
     {
-        return hasBit(id & 0xFF, (std::uint8_t*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments));
+        return hasBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments));
     }
     else if (slot == 2) //automaton frame
     {
@@ -214,7 +214,7 @@ bool HasAttachment(CCharEntity* PChar, CItem* PItem)
     return false;
 }
 
-void setAttachment(CCharEntity* PChar, std::uint8_t slotId, std::uint8_t attachment)
+void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
 {
     CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
 
@@ -230,7 +230,7 @@ void setAttachment(CCharEntity* PChar, std::uint8_t slotId, std::uint8_t attachm
         }
     }
 
-    std::uint8_t oldAttachment = PChar->PAutomaton->getAttachment(slotId);
+    uint8 oldAttachment = PChar->PAutomaton->getAttachment(slotId);
     if (attachment != 0 && oldAttachment != 0)
     {
         setAttachment(PChar, slotId, 0);
@@ -279,7 +279,7 @@ void setAttachment(CCharEntity* PChar, std::uint8_t slotId, std::uint8_t attachm
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    PChar->PAutomaton->addElementCapacity(i, -(std::int8_t)((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
+                    PChar->PAutomaton->addElementCapacity(i, -(int8)((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
                 }
                 luautils::OnAttachmentUnequip(PChar->PAutomaton, PAttachment);
                 PChar->PAutomaton->setAttachment(slotId, 0);
@@ -288,9 +288,9 @@ void setAttachment(CCharEntity* PChar, std::uint8_t slotId, std::uint8_t attachm
     }
 }
 
-void setFrame(CCharEntity* PChar, std::uint8_t frame)
+void setFrame(CCharEntity* PChar, uint8 frame)
 {
-    std::uint8_t tempElementMax[8];
+    uint8 tempElementMax[8];
 
     for (int i = 0; i < 8; i++)
         tempElementMax[i] = PChar->PAutomaton->getElementMax(i);
@@ -327,7 +327,7 @@ void setFrame(CCharEntity* PChar, std::uint8_t frame)
     if (valid)
     {
         PChar->PAutomaton->setFrame((AUTOFRAMETYPE)frame);
-        std::uint8_t head = PChar->PAutomaton->getHead();
+        uint8 head = PChar->PAutomaton->getHead();
         PChar->PAutomaton->look.race = 0x07;
         if (head == 3)
             PChar->PAutomaton->look.face = 0xBC + ((frame - 32) * 5);
@@ -344,9 +344,9 @@ void setFrame(CCharEntity* PChar, std::uint8_t frame)
     }
 }
 
-void setHead(CCharEntity* PChar, std::uint8_t head)
+void setHead(CCharEntity* PChar, uint8 head)
 {
-    std::uint8_t tempElementMax[8];
+    uint8 tempElementMax[8];
 
     for (int i = 0; i < 8; i++)
         tempElementMax[i] = PChar->PAutomaton->getElementMax(i);
@@ -383,7 +383,7 @@ void setHead(CCharEntity* PChar, std::uint8_t head)
     if (valid)
     {
         PChar->PAutomaton->setHead((AUTOHEADTYPE)head);
-        std::uint8_t frame = PChar->PAutomaton->getFrame();
+        uint8 frame = PChar->PAutomaton->getFrame();
         PChar->PAutomaton->look.race = 0x07;
         if (head == 3)
             PChar->PAutomaton->look.face = 0xBC + ((frame - 32) * 5);
@@ -401,9 +401,9 @@ void setHead(CCharEntity* PChar, std::uint8_t head)
 
 }
 
-std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill, std::uint8_t level)
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
 {
-    std::int8_t rank = 0;
+    int8 rank = 0;
     if (skill < SKILL_AME || skill > SKILL_AMA)
         return 0;
     switch (PChar->PAutomaton->getFrame())
@@ -459,7 +459,7 @@ std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill, std::uint8_t leve
     return battleutils::GetMaxSkill(rank, level);
 }
 
-std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
+uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill)
 {
     return getSkillCap(PChar, skill, PChar->PAutomaton->GetMLevel());
 }
@@ -469,7 +469,7 @@ void LoadAutomatonStats(CCharEntity* PChar)
     switch (PChar->PAutomaton->getFrame())
     {
         default: //case FRAME_HARLEQUIN:
-            ShowWarning(CL_YELLOW"puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n" CL_RESET, PChar->GetName(), (std::uint16_t)PChar->PAutomaton->getFrame());
+            ShowWarning(CL_YELLOW"puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n" CL_RESET, PChar->GetName(), (uint16)PChar->PAutomaton->getFrame());
         case FRAME_HARLEQUIN:
             petutils::LoadPet(PChar, PETID_HARLEQUINFRAME, false);
             break;
@@ -486,17 +486,17 @@ void LoadAutomatonStats(CCharEntity* PChar)
     PChar->PPet = nullptr; //already saved as PAutomaton, don't need it twice unless it's summoned
 }
 
-void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, std::uint8_t lvl)
+void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
 {
     DSP_DEBUG_BREAK_IF(!PAutomaton->PMaster || PAutomaton->PMaster->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)PAutomaton->PMaster;
     if (getSkillCap(PChar, SkillID) != 0 && !(PAutomaton->WorkingSkills.skill[SkillID] & 0x8000))
     {
-        std::uint16_t CurSkill = PChar->RealSkills.skill[SkillID];
-        std::uint16_t MaxSkill = getSkillCap(PChar, SkillID, std::min(PAutomaton->GetMLevel(), lvl));
+        uint16 CurSkill = PChar->RealSkills.skill[SkillID];
+        uint16 MaxSkill = getSkillCap(PChar, SkillID, std::min(PAutomaton->GetMLevel(), lvl));
 
-        std::int16_t  Diff = MaxSkill - CurSkill / 10;
+        int16  Diff = MaxSkill - CurSkill / 10;
         double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
 
         double random = dsprand::GetRandomNumber(1.);
@@ -511,10 +511,10 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, std::uint8_t lv
         if (Diff > 0 && random < SkillUpChance)
         {
             double chance = 0;
-            std::uint8_t  SkillAmount = 1;
-            std::uint8_t  tier = std::min(1 + (Diff / 5), 5);
+            uint8  SkillAmount = 1;
+            uint8  tier = std::min(1 + (Diff / 5), 5);
 
-            for (std::uint8_t i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
+            for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
             {
                 random = dsprand::GetRandomNumber(1.);
 
@@ -538,7 +538,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, std::uint8_t lv
             // Do skill amount multiplier (Will only be applied if default setting is changed)
             if (map_config.skillup_amount_multiplier > 1)
             {
-                SkillAmount += (std::uint8_t)(SkillAmount * map_config.skillup_amount_multiplier);
+                SkillAmount += (uint8)(SkillAmount * map_config.skillup_amount_multiplier);
                 if (SkillAmount > 9)
                 {
                     SkillAmount = 9;
@@ -560,7 +560,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, std::uint8_t lv
                 PAutomaton->WorkingSkills.skill[SkillID] += 1;
                 if (SkillID == SKILL_AMA)
                 {
-                    std::uint16_t amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
+                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
                     PAutomaton->WorkingSkills.automaton_magic = amaSkill;
                     PAutomaton->WorkingSkills.healing = amaSkill;
                     PAutomaton->WorkingSkills.enhancing = amaSkill;
@@ -582,8 +582,8 @@ void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
 
     if (PAutomaton)
     {
-        std::uint8_t element = maneuver - EFFECT_FIRE_MANEUVER;
-        for (std::uint8_t i = 0; i < 12; i++)
+        uint8 element = maneuver - EFFECT_FIRE_MANEUVER;
+        for (uint8 i = 0; i < 12; i++)
         {
             if (PAutomaton->getAttachment(i) != 0)
             {

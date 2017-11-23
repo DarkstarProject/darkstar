@@ -694,16 +694,16 @@ class CModifier
 public:
 
     Mod     getModID();
-    std::int16_t   getModAmount();
+    int16   getModAmount();
 
-    void    setModAmount(std::int16_t amount);
+    void    setModAmount(int16 amount);
 
-     CModifier(Mod type, std::int16_t amount = 0);
+     CModifier(Mod type, int16 amount = 0);
 
 private:
 
     Mod     m_id {Mod::NONE};
-    std::int16_t   m_amount {0};
+    int16   m_amount {0};
 };
 
 enum class PetModType
@@ -721,7 +721,7 @@ enum class PetModType
 class CPetModifier : public CModifier
 {
 public:
-    CPetModifier(Mod type, PetModType pettype, std::int16_t amount = 0);
+    CPetModifier(Mod type, PetModType pettype, int16 amount = 0);
     PetModType getPetModType();
 
 private:

@@ -33,16 +33,16 @@ CStatusEffectPacket::CStatusEffectPacket(CCharEntity* PChar)
 
     int i = 0;
 
-    std::fill(reinterpret_cast<std::uint16_t*>(data+0x08), reinterpret_cast<std::uint16_t*>(data+0x08)+32, 0x00FF);
+    std::fill(reinterpret_cast<uint16*>(data+0x08), reinterpret_cast<uint16*>(data+0x08)+32, 0x00FF);
 
-    ref<std::uint8_t>(0x04) = 0x09;
-    ref<std::uint8_t>(0x06) = 0xC4;
+    ref<uint8>(0x04) = 0x09;
+    ref<uint8>(0x06) = 0xC4;
 
     PChar->StatusEffectContainer->ForEachEffect([this, &i](CStatusEffect* PEffect)
     {
         if (PEffect->GetIcon() != 0)
         {
-            ref<std::uint16_t>(0x08 + (i * 0x02)) = PEffect->GetIcon();
+            ref<uint16>(0x08 + (i * 0x02)) = PEffect->GetIcon();
             ref<uint32>(0x48 + (i * 0x04)) = PEffect->GetDuration() == 0 ? 0x7FFFFFFF : 
                 (((PEffect->GetDuration() - (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - PEffect->GetStartTime()).count())/1000) 
                 + CVanaTime::getInstance()->getVanaTime()) * 60;

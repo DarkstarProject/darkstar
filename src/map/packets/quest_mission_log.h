@@ -68,7 +68,7 @@ enum LOG_TYPE
 };
 
 // Quest Log Packet Values
-static const std::unordered_map<std::uint8_t, std::pair<std::uint16_t, std::uint16_t>> questPacketBytes =
+static const std::unordered_map<uint8, std::pair<uint16, uint16>> questPacketBytes =
 {
     // Quest Log ID   , Current, Complete
     { QUESTS_SANDORIA , {0x50  , 0x90   }},
@@ -105,18 +105,18 @@ class CQuestMissionLogPacket : public CBasicPacket
 {
 public:
 
-    CQuestMissionLogPacket(CCharEntity* PChar, std::uint8_t logID, LOG_TYPE logType);
+    CQuestMissionLogPacket(CCharEntity* PChar, uint8 logID, LOG_TYPE logType);
 private:
 
     // формирование пакетов вынес в отдельные функции, специально для тех,
     // кто захочет понять, что же на самом деле происходит в switch(logID)
 
-    void generateQuestPacket(CCharEntity* PChar, std::uint8_t logID, LOG_TYPE logType);
+    void generateQuestPacket(CCharEntity* PChar, uint8 logID, LOG_TYPE logType);
     void generateCurrentMissionPacket(CCharEntity* PChar);
     void generateCompleteMissionPacket(CCharEntity* PChar);
     void generateCurrentExpMissionPacket(CCharEntity* PChar);
     void generateCompleteExpMissionPacket(CCharEntity* PChar);
-    void generateCampaignMissionPacket(CCharEntity* PChar, std::uint8_t startQMID);
+    void generateCampaignMissionPacket(CCharEntity* PChar, uint8 startQMID);
     void generateAssaultMissionPacket(CCharEntity* PChar);
 };
 

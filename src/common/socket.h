@@ -130,21 +130,21 @@ int sSocket(int af, int type, int protocol);
 
 #endif
 // buffer I/O macros
-#define RBUFP(p,pos) (((std::uint8_t*)(p)) + (pos))
-#define RBUFB(p,pos) (*(std::uint8_t*)RBUFP((p),(pos)))
-#define RBUFW(p,pos) (*(std::uint16_t*)RBUFP((p),(pos)))
+#define RBUFP(p,pos) (((uint8*)(p)) + (pos))
+#define RBUFB(p,pos) (*(uint8*)RBUFP((p),(pos)))
+#define RBUFW(p,pos) (*(uint16*)RBUFP((p),(pos)))
 #define RBUFL(p,pos) (*(uint32*)RBUFP((p),(pos)))
 #define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
 
-#define WBUFP(p,pos) (((std::uint8_t*)(p)) + (pos))
-#define WBUFB(p,pos) (*(std::uint8_t*)WBUFP((p),(pos)))
-#define WBUFW(p,pos) (*(std::uint16_t*)WBUFP((p),(pos)))
+#define WBUFP(p,pos) (((uint8*)(p)) + (pos))
+#define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
+#define WBUFW(p,pos) (*(uint16*)WBUFP((p),(pos)))
 #define WBUFL(p,pos) (*(uint32*)WBUFP((p),(pos)))
 #define WBUFU(p,pos) (*(uint64*)WBUFP((p),(pos)))
 #define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
-#define TOB(n) ((std::uint8_t)((n)&std::numeric_limits<std::uint8_t>::max()))
-#define TOW(n) ((std::uint16_t)((n)&std::numeric_limits<std::uint16_t>::max()))
+#define TOB(n) ((uint8)((n)&std::numeric_limits<uint8>::max()))
+#define TOW(n) ((uint16)((n)&std::numeric_limits<uint16>::max()))
 #define TOL(n) ((uint32)((n)&std::numeric_limits<uint32>::max()))
 
 extern fd_set readfds;
@@ -152,7 +152,7 @@ extern int fd_max;
 extern time_t last_tick;
 extern time_t stall_time;
 
-std::int32_t makeConnection(uint32 ip, std::uint16_t port, std::int32_t type);
+std::int32_t makeConnection(uint32 ip, uint16 port, std::int32_t type);
 
 std::int32_t do_sockets(fd_set* rfd,duration next);
 
@@ -172,7 +172,7 @@ uint32 str2ip(const char* ip_str);
 
 #define CONVIP(ip) ((ip)>>24)&0xFF,((ip)>>16)&0xFF,((ip)>>8)&0xFF,((ip)>>0)&0xFF
 
-std::uint16_t ntows(std::uint16_t netshort);
+uint16 ntows(uint16 netshort);
 
 int socket_getips(uint32* ips, int max);
 
@@ -211,10 +211,10 @@ extern std::int32_t naddr_;   // # of ip addresses
 	#define WFIFOP(fd,pos) (session[fd]->wdata + session[fd]->wdata_size + (pos))
 
 
-	#define RFIFOB(fd,pos) (*(std::uint8_t*)RFIFOP(fd,pos))
-	#define WFIFOB(fd,pos) (*(std::uint8_t*)WFIFOP(fd,pos))
-	#define RFIFOW(fd,pos) (*(std::uint16_t*)RFIFOP(fd,pos))
-	#define WFIFOW(fd,pos) (*(std::uint16_t*)WFIFOP(fd,pos))
+	#define RFIFOB(fd,pos) (*(uint8*)RFIFOP(fd,pos))
+	#define WFIFOB(fd,pos) (*(uint8*)WFIFOP(fd,pos))
+	#define RFIFOW(fd,pos) (*(uint16*)RFIFOP(fd,pos))
+	#define WFIFOW(fd,pos) (*(uint16*)WFIFOP(fd,pos))
 	#define RFIFOL(fd,pos) (*(uint32*)RFIFOP(fd,pos))
 	#define WFIFOL(fd,pos) (*(uint32*)WFIFOP(fd,pos))
 
@@ -266,9 +266,9 @@ extern std::int32_t naddr_;   // # of ip addresses
 
 	std::int32_t connect_client(std::int32_t listen_fd, sockaddr_in& client_address);
 
-	std::int32_t makeConnection_tcp(uint32 ip, std::uint16_t port);
+	std::int32_t makeConnection_tcp(uint32 ip, uint16 port);
 
-	std::int32_t makeListenBind_tcp(const char* ip, std::uint16_t port,RecvFunc connect_client);
+	std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
 
 	std::int32_t RFIFOSKIP(std::int32_t fd, size_t len);
 
@@ -293,7 +293,7 @@ extern std::int32_t naddr_;   // # of ip addresses
 	*
 	*/
 	extern std::int32_t listen_fd;
-	std::int32_t makeBind_udp(uint32 ip, std::uint16_t port);
+	std::int32_t makeBind_udp(uint32 ip, uint16 port);
 
 	void socket_init_udp(void);
 	void do_close_udp(std::int32_t fd);

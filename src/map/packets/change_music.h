@@ -38,7 +38,7 @@ class CChangeMusicPacket : public CBasicPacket
 {
 public:
 
-    CChangeMusicPacket(std::uint8_t BlockID, std::uint8_t MusicTrackID);
+    CChangeMusicPacket(uint8 BlockID, uint8 MusicTrackID);
 };
 
 #endif

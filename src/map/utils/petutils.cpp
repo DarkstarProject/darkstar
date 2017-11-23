@@ -62,63 +62,63 @@ struct Pet_t
     string_t	name;		// имя
     ECOSYSTEM	EcoSystem;	// эко-система
 
-    std::uint8_t		minLevel;	// минимально-возможный  уровень
-    std::uint8_t		maxLevel;	// максимально-возможный уровень
+    uint8		minLevel;	// минимально-возможный  уровень
+    uint8		maxLevel;	// максимально-возможный уровень
 
-    std::uint8_t       name_prefix;
-    std::uint8_t		size;		// размер модели
-    std::uint16_t		m_Family;
+    uint8       name_prefix;
+    uint8		size;		// размер модели
+    uint16		m_Family;
     uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
-    std::uint8_t		mJob;
-    std::uint8_t		m_Element;
+    uint8		mJob;
+    uint8		m_Element;
     float       HPscale;                             // HP boost percentage
     float       MPscale;                             // MP boost percentage
 
-    std::uint16_t      cmbDelay;
-    std::uint8_t 		speed;
+    uint16      cmbDelay;
+    uint8 		speed;
     // stat ranks
-    std::uint8_t        strRank;
-    std::uint8_t        dexRank;
-    std::uint8_t        vitRank;
-    std::uint8_t        agiRank;
-    std::uint8_t        intRank;
-    std::uint8_t        mndRank;
-    std::uint8_t        chrRank;
-    std::uint8_t        attRank;
-    std::uint8_t        defRank;
-    std::uint8_t        evaRank;
-    std::uint8_t        accRank;
+    uint8        strRank;
+    uint8        dexRank;
+    uint8        vitRank;
+    uint8        agiRank;
+    uint8        intRank;
+    uint8        mndRank;
+    uint8        chrRank;
+    uint8        attRank;
+    uint8        defRank;
+    uint8        evaRank;
+    uint8        accRank;
 
-    std::uint16_t       m_MobSkillList;
+    uint16       m_MobSkillList;
 
     // magic stuff
     bool hasSpellScript;
-    std::uint16_t spellList;
+    uint16 spellList;
 
     // resists
-    std::int16_t slashres;
-    std::int16_t pierceres;
-    std::int16_t hthres;
-    std::int16_t impactres;
+    int16 slashres;
+    int16 pierceres;
+    int16 hthres;
+    int16 impactres;
 
-    std::int16_t firedef;
-    std::int16_t icedef;
-    std::int16_t winddef;
-    std::int16_t earthdef;
-    std::int16_t thunderdef;
-    std::int16_t waterdef;
-    std::int16_t lightdef;
-    std::int16_t darkdef;
+    int16 firedef;
+    int16 icedef;
+    int16 winddef;
+    int16 earthdef;
+    int16 thunderdef;
+    int16 waterdef;
+    int16 lightdef;
+    int16 darkdef;
 
-    std::int16_t fireres;
-    std::int16_t iceres;
-    std::int16_t windres;
-    std::int16_t earthres;
-    std::int16_t thunderres;
-    std::int16_t waterres;
-    std::int16_t lightres;
-    std::int16_t darkres;
+    int16 fireres;
+    int16 iceres;
+    int16 windres;
+    int16 earthres;
+    int16 thunderres;
+    int16 waterres;
+    int16 lightres;
+    int16 darkres;
 
 };
 
@@ -179,41 +179,41 @@ namespace petutils
                 Pet->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
                 memcpy(&Pet->look, Sql_GetData(SqlHandle, 1), 20);
-                Pet->minLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
-                Pet->maxLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 3);
+                Pet->minLevel = (uint8)Sql_GetIntData(SqlHandle, 2);
+                Pet->maxLevel = (uint8)Sql_GetIntData(SqlHandle, 3);
                 Pet->time = Sql_GetUIntData(SqlHandle, 4);
                 Pet->size = Sql_GetUIntData(SqlHandle, 5);
                 Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 6);
-                Pet->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 7);
-                Pet->mJob = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
-                Pet->m_Element = (std::uint8_t)Sql_GetIntData(SqlHandle, 9);
+                Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle, 7);
+                Pet->mJob = (uint8)Sql_GetIntData(SqlHandle, 8);
+                Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
 
                 Pet->HPscale = Sql_GetFloatData(SqlHandle, 10);
                 Pet->MPscale = Sql_GetFloatData(SqlHandle, 11);
 
-                Pet->speed = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
+                Pet->speed = (uint8)Sql_GetIntData(SqlHandle, 12);
 
-                Pet->strRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
-                Pet->dexRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 14);
-                Pet->vitRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 15);
-                Pet->agiRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 16);
-                Pet->intRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 17);
-                Pet->mndRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 18);
-                Pet->chrRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 19);
-                Pet->defRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 20);
-                Pet->attRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 21);
-                Pet->accRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 22);
-                Pet->evaRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 23);
+                Pet->strRank = (uint8)Sql_GetIntData(SqlHandle, 13);
+                Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle, 14);
+                Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle, 15);
+                Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle, 16);
+                Pet->intRank = (uint8)Sql_GetIntData(SqlHandle, 17);
+                Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle, 18);
+                Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle, 19);
+                Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
+                Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
+                Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
+                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
 
                 Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
 
-                Pet->spellList = (std::uint8_t)Sql_GetIntData(SqlHandle, 25);
+                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
 
                 // resistances
-                Pet->slashres = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 26) * 1000);
-                Pet->pierceres = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 27) * 1000);
-                Pet->hthres = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 28) * 1000);
-                Pet->impactres = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 29) * 1000);
+                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
+                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
+                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
 
                 Pet->firedef = 0;
                 Pet->icedef = 0;
@@ -224,18 +224,18 @@ namespace petutils
                 Pet->lightdef = 0;
                 Pet->darkdef = 0;
 
-                Pet->fireres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
-                Pet->iceres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
-                Pet->windres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
-                Pet->earthres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
-                Pet->thunderres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
-                Pet->waterres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
-                Pet->lightres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
-                Pet->darkres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
+                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
+                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
+                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
 
-                Pet->cmbDelay = (std::uint16_t)Sql_GetIntData(SqlHandle, 38);
-                Pet->name_prefix = (std::uint8_t)Sql_GetUIntData(SqlHandle, 39);
-                Pet->m_MobSkillList = (std::uint16_t)Sql_GetUIntData(SqlHandle, 40);
+                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 38);
+                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
+                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 40);
 
                 g_PPetList.push_back(Pet);
             }
@@ -279,54 +279,54 @@ namespace petutils
         }
     }
 
-    std::uint16_t GetJugWeaponDamage(CPetEntity* PPet)
+    uint16 GetJugWeaponDamage(CPetEntity* PPet)
     {
         float MainLevel = PPet->GetMLevel();
-        return (std::uint16_t)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
+        return (uint16)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
     }
-    std::uint16_t GetJugBase(CPetEntity * PMob, std::uint8_t rank)
+    uint16 GetJugBase(CPetEntity * PMob, uint8 rank)
     {
 
-        std::uint8_t lvl = PMob->GetMLevel();
+        uint8 lvl = PMob->GetMLevel();
         if (lvl > 50){
             switch (rank){
             case 1:
-                return (std::uint16_t)(153 + (lvl - 50) * 5.0f);
+                return (uint16)(153 + (lvl - 50) * 5.0f);
             case 2:
-                return (std::uint16_t)(147 + (lvl - 50) * 4.9f);
+                return (uint16)(147 + (lvl - 50) * 4.9f);
             case 3:
-                return (std::uint16_t)(136 + (lvl - 50) * 4.8f);
+                return (uint16)(136 + (lvl - 50) * 4.8f);
             case 4:
-                return (std::uint16_t)(126 + (lvl - 50) * 4.7f);
+                return (uint16)(126 + (lvl - 50) * 4.7f);
             case 5:
-                return (std::uint16_t)(116 + (lvl - 50) * 4.5f);
+                return (uint16)(116 + (lvl - 50) * 4.5f);
             case 6:
-                return (std::uint16_t)(106 + (lvl - 50) * 4.4f);
+                return (uint16)(106 + (lvl - 50) * 4.4f);
             case 7:
-                return (std::uint16_t)(96 + (lvl - 50) * 4.3f);
+                return (uint16)(96 + (lvl - 50) * 4.3f);
             }
         }
         else {
             switch (rank){
             case 1:
-                return (std::uint16_t)(6 + (lvl - 1) * 3.0f);
+                return (uint16)(6 + (lvl - 1) * 3.0f);
             case 2:
-                return (std::uint16_t)(5 + (lvl - 1) * 2.9f);
+                return (uint16)(5 + (lvl - 1) * 2.9f);
             case 3:
-                return (std::uint16_t)(5 + (lvl - 1) * 2.8f);
+                return (uint16)(5 + (lvl - 1) * 2.8f);
             case 4:
-                return (std::uint16_t)(4 + (lvl - 1) * 2.7f);
+                return (uint16)(4 + (lvl - 1) * 2.7f);
             case 5:
-                return (std::uint16_t)(4 + (lvl - 1) * 2.5f);
+                return (uint16)(4 + (lvl - 1) * 2.5f);
             case 6:
-                return (std::uint16_t)(3 + (lvl - 1) * 2.4f);
+                return (uint16)(3 + (lvl - 1) * 2.4f);
             case 7:
-                return (std::uint16_t)(3 + (lvl - 1) * 2.3f);
+                return (uint16)(3 + (lvl - 1) * 2.3f);
             }
         }
         return 0;
     }
-    std::uint16_t GetBaseToRank(std::uint8_t rank, std::uint16_t lvl)
+    uint16 GetBaseToRank(uint8 rank, uint16 lvl)
     {
         switch (rank)
         {
@@ -345,7 +345,7 @@ namespace petutils
         //follows monster formulas but jugs have no subjob
 
         float growth = 1.0;
-        std::uint8_t lvl = PMob->GetMLevel();
+        uint8 lvl = PMob->GetMLevel();
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
@@ -371,7 +371,7 @@ namespace petutils
             growth = 1.07f;
         }
 
-        PMob->health.maxhp = (std::int16_t)(17.0 * pow(lvl, growth) * petStats->HPscale);
+        PMob->health.maxhp = (int16)(17.0 * pow(lvl, growth) * petStats->HPscale);
 
         switch (PMob->GetMJob()){
         case JOB_PLD:
@@ -381,7 +381,7 @@ namespace petutils
         case JOB_DRK:
         case JOB_BLU:
         case JOB_SCH:
-            PMob->health.maxmp = (std::int16_t)(15.2 * pow(lvl, 1.1075) * petStats->MPscale);
+            PMob->health.maxmp = (int16)(15.2 * pow(lvl, 1.1075) * petStats->MPscale);
             break;
         default:
             break;
@@ -407,29 +407,29 @@ namespace petutils
             PMob->m_Weapons[SLOT_MAIN]->resetDelay();
         }
 
-        std::uint16_t fSTR = GetBaseToRank(petStats->strRank, PMob->GetMLevel());
-        std::uint16_t fDEX = GetBaseToRank(petStats->dexRank, PMob->GetMLevel());
-        std::uint16_t fVIT = GetBaseToRank(petStats->vitRank, PMob->GetMLevel());
-        std::uint16_t fAGI = GetBaseToRank(petStats->agiRank, PMob->GetMLevel());
-        std::uint16_t fINT = GetBaseToRank(petStats->intRank, PMob->GetMLevel());
-        std::uint16_t fMND = GetBaseToRank(petStats->mndRank, PMob->GetMLevel());
-        std::uint16_t fCHR = GetBaseToRank(petStats->chrRank, PMob->GetMLevel());
+        uint16 fSTR = GetBaseToRank(petStats->strRank, PMob->GetMLevel());
+        uint16 fDEX = GetBaseToRank(petStats->dexRank, PMob->GetMLevel());
+        uint16 fVIT = GetBaseToRank(petStats->vitRank, PMob->GetMLevel());
+        uint16 fAGI = GetBaseToRank(petStats->agiRank, PMob->GetMLevel());
+        uint16 fINT = GetBaseToRank(petStats->intRank, PMob->GetMLevel());
+        uint16 fMND = GetBaseToRank(petStats->mndRank, PMob->GetMLevel());
+        uint16 fCHR = GetBaseToRank(petStats->chrRank, PMob->GetMLevel());
 
-        std::uint16_t mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 2), PMob->GetMLevel());
-        std::uint16_t mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 3), PMob->GetMLevel());
-        std::uint16_t mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 4), PMob->GetMLevel());
-        std::uint16_t mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 5), PMob->GetMLevel());
-        std::uint16_t mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 6), PMob->GetMLevel());
-        std::uint16_t mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 7), PMob->GetMLevel());
-        std::uint16_t mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 8), PMob->GetMLevel());
+        uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 2), PMob->GetMLevel());
+        uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 3), PMob->GetMLevel());
+        uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 4), PMob->GetMLevel());
+        uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 5), PMob->GetMLevel());
+        uint16 mINT = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 6), PMob->GetMLevel());
+        uint16 mMND = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 7), PMob->GetMLevel());
+        uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PMob->GetMJob(), 8), PMob->GetMLevel());
 
-        PMob->stats.STR = (std::uint16_t)((fSTR + mSTR) * 0.9f);
-        PMob->stats.DEX = (std::uint16_t)((fDEX + mDEX) * 0.9f);
-        PMob->stats.VIT = (std::uint16_t)((fVIT + mVIT) * 0.9f);
-        PMob->stats.AGI = (std::uint16_t)((fAGI + mAGI) * 0.9f);
-        PMob->stats.INT = (std::uint16_t)((fINT + mINT) * 0.9f);
-        PMob->stats.MND = (std::uint16_t)((fMND + mMND) * 0.9f);
-        PMob->stats.CHR = (std::uint16_t)((fCHR + mCHR) * 0.9f);
+        PMob->stats.STR = (uint16)((fSTR + mSTR) * 0.9f);
+        PMob->stats.DEX = (uint16)((fDEX + mDEX) * 0.9f);
+        PMob->stats.VIT = (uint16)((fVIT + mVIT) * 0.9f);
+        PMob->stats.AGI = (uint16)((fAGI + mAGI) * 0.9f);
+        PMob->stats.INT = (uint16)((fINT + mINT) * 0.9f);
+        PMob->stats.MND = (uint16)((fMND + mMND) * 0.9f);
+        PMob->stats.CHR = (uint16)((fCHR + mCHR) * 0.9f);
 
     }
 
@@ -449,7 +449,7 @@ namespace petutils
         PPet->WorkingSkills.automaton_melee += PMaster->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
         PPet->WorkingSkills.automaton_ranged += PMaster->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
         // Share its magic skills to prevent needing separate spells or checks to see which skill to use
-        std::uint16_t amaSkill = PPet->WorkingSkills.automaton_magic + PMaster->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
+        uint16 amaSkill = PPet->WorkingSkills.automaton_magic + PMaster->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
         PPet->WorkingSkills.automaton_magic = amaSkill;
         PPet->WorkingSkills.healing = amaSkill;
         PPet->WorkingSkills.enhancing = amaSkill;
@@ -470,9 +470,9 @@ namespace petutils
         std::int32_t scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
         // std::int32_t scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
-        std::uint8_t grade;
+        uint8 grade;
 
-        std::uint8_t mlvl = PPet->GetMLevel();
+        uint8 mlvl = PPet->GetMLevel();
         JOBTYPE mjob = PPet->GetMJob();
         JOBTYPE sjob = PPet->GetSJob();
         // Расчет прироста HP от main job
@@ -550,29 +550,29 @@ namespace petutils
         PPet->health.maxmp = (std::int32_t)((raceStat + jobStat + sJobStat) * petStats->MPscale);
         PPet->health.mp = PPet->health.maxmp;
 
-        std::uint16_t fSTR = GetBaseToRank(petStats->strRank, PPet->GetMLevel());
-        std::uint16_t fDEX = GetBaseToRank(petStats->dexRank, PPet->GetMLevel());
-        std::uint16_t fVIT = GetBaseToRank(petStats->vitRank, PPet->GetMLevel());
-        std::uint16_t fAGI = GetBaseToRank(petStats->agiRank, PPet->GetMLevel());
-        std::uint16_t fINT = GetBaseToRank(petStats->intRank, PPet->GetMLevel());
-        std::uint16_t fMND = GetBaseToRank(petStats->mndRank, PPet->GetMLevel());
-        std::uint16_t fCHR = GetBaseToRank(petStats->chrRank, PPet->GetMLevel());
+        uint16 fSTR = GetBaseToRank(petStats->strRank, PPet->GetMLevel());
+        uint16 fDEX = GetBaseToRank(petStats->dexRank, PPet->GetMLevel());
+        uint16 fVIT = GetBaseToRank(petStats->vitRank, PPet->GetMLevel());
+        uint16 fAGI = GetBaseToRank(petStats->agiRank, PPet->GetMLevel());
+        uint16 fINT = GetBaseToRank(petStats->intRank, PPet->GetMLevel());
+        uint16 fMND = GetBaseToRank(petStats->mndRank, PPet->GetMLevel());
+        uint16 fCHR = GetBaseToRank(petStats->chrRank, PPet->GetMLevel());
 
-        std::uint16_t mSTR = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 2), PPet->GetMLevel());
-        std::uint16_t mDEX = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 3), PPet->GetMLevel());
-        std::uint16_t mVIT = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 4), PPet->GetMLevel());
-        std::uint16_t mAGI = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 5), PPet->GetMLevel());
-        std::uint16_t mINT = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 6), PPet->GetMLevel());
-        std::uint16_t mMND = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 7), PPet->GetMLevel());
-        std::uint16_t mCHR = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 8), PPet->GetMLevel());
+        uint16 mSTR = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 2), PPet->GetMLevel());
+        uint16 mDEX = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 3), PPet->GetMLevel());
+        uint16 mVIT = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 4), PPet->GetMLevel());
+        uint16 mAGI = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 5), PPet->GetMLevel());
+        uint16 mINT = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 6), PPet->GetMLevel());
+        uint16 mMND = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 7), PPet->GetMLevel());
+        uint16 mCHR = GetBaseToRank(grade::GetJobGrade(PPet->GetMJob(), 8), PPet->GetMLevel());
 
-        std::uint16_t sSTR = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 2), PPet->GetSLevel());
-        std::uint16_t sDEX = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 3), PPet->GetSLevel());
-        std::uint16_t sVIT = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 4), PPet->GetSLevel());
-        std::uint16_t sAGI = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 5), PPet->GetSLevel());
-        std::uint16_t sINT = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 6), PPet->GetSLevel());
-        std::uint16_t sMND = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 7), PPet->GetSLevel());
-        std::uint16_t sCHR = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 8), PPet->GetSLevel());
+        uint16 sSTR = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 2), PPet->GetSLevel());
+        uint16 sDEX = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 3), PPet->GetSLevel());
+        uint16 sVIT = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 4), PPet->GetSLevel());
+        uint16 sAGI = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 5), PPet->GetSLevel());
+        uint16 sINT = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 6), PPet->GetSLevel());
+        uint16 sMND = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 7), PPet->GetSLevel());
+        uint16 sCHR = GetBaseToRank(grade::GetJobGrade(PPet->GetSJob(), 8), PPet->GetSLevel());
 
         PPet->stats.STR = fSTR + mSTR + sSTR;
         PPet->stats.DEX = fDEX + mDEX + sDEX;
@@ -583,7 +583,7 @@ namespace petutils
         PPet->stats.CHR = fCHR + mCHR + sCHR;
 
         PPet->m_Weapons[SLOT_MAIN]->setSkillType(SKILL_AME);
-        PPet->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)(floor(1000.0f * (petStats->cmbDelay / 60.0f)))); //every pet should use this eventually
+        PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0f * (petStats->cmbDelay / 60.0f)))); //every pet should use this eventually
         PPet->m_Weapons[SLOT_MAIN]->setDamage((PPet->GetSkill(SKILL_AME) / 9) * 2 + 3);
 
         PPet->m_Weapons[SLOT_RANGED]->setSkillType(SKILL_ARA);
@@ -631,11 +631,11 @@ namespace petutils
         std::int32_t scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
         std::int32_t scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
-        std::uint8_t grade;
+        uint8 grade;
 
-        std::uint8_t mlvl = PPet->GetMLevel();
+        uint8 mlvl = PPet->GetMLevel();
         JOBTYPE mjob = PPet->GetMJob();
-        std::uint8_t race = 3;					//Tarutaru
+        uint8 race = 3;					//Tarutaru
 
         // Расчет прироста HP от main job
         std::int32_t mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
@@ -674,7 +674,7 @@ namespace petutils
         bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
         if (PPet->m_PetID == PETID_ODIN || PPet->m_PetID == PETID_ALEXANDER)
             bonusStat += 6800;
-        PPet->health.maxhp = (std::int16_t)(raceStat + jobStat + bonusStat + sJobStat);
+        PPet->health.maxhp = (int16)(raceStat + jobStat + bonusStat + sJobStat);
         PPet->health.hp = PPet->health.maxhp;
 
         //Начало расчера MP
@@ -705,20 +705,20 @@ namespace petutils
                 grade::GetMPScale(grade, scaleOver60) * mainLevelOver60;
         }
 
-        PPet->health.maxmp = (std::int16_t)(raceStat + jobStat + sJobStat); // результат расчета MP
+        PPet->health.maxmp = (int16)(raceStat + jobStat + sJobStat); // результат расчета MP
         PPet->health.mp = PPet->health.maxmp;
         //add in evasion from skill
-        std::int16_t evaskill = PPet->GetSkill(SKILL_EVA);
-        std::int16_t eva = evaskill;
+        int16 evaskill = PPet->GetSkill(SKILL_EVA);
+        int16 eva = evaskill;
         if (evaskill > 200){ //Evasion skill is 0.9 evasion post-200
-            eva = (std::int16_t)(200 + (evaskill - 200) * 0.9);
+            eva = (int16)(200 + (evaskill - 200) * 0.9);
         }
         PPet->setModifier(Mod::EVA, eva);
 
 
         //Начало расчета характеристик
-        std::uint8_t counter = 0;
-        for (std::uint8_t StatIndex = 2; StatIndex <= 8; ++StatIndex)
+        uint8 counter = 0;
+        for (uint8 StatIndex = 2; StatIndex <= 8; ++StatIndex)
         {
             // расчет по расе
             grade = grade::GetRaceGrades(race, StatIndex);
@@ -750,7 +750,7 @@ namespace petutils
             jobStat = jobStat * 1.5f; //stats from subjob (assuming BLM/BLM for avatars)
 
             // Вывод значения
-            WBUFW(&PPet->stats, counter) = (std::uint16_t)(raceStat + jobStat);
+            WBUFW(&PPet->stats, counter) = (uint16)(raceStat + jobStat);
             counter += 2;
         }
     }
@@ -806,7 +806,7 @@ namespace petutils
             // apply stats from previous zone if this pet is being transfered
             if (spawningFromZone == true)
             {
-                PPet->health.tp = (std::int16_t)((CCharEntity*)PMaster)->petZoningInfo.petTP;
+                PPet->health.tp = (int16)((CCharEntity*)PMaster)->petZoningInfo.petTP;
                 PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
                 PPet->health.mp = ((CCharEntity*)PMaster)->petZoningInfo.petMP;
             }
@@ -966,9 +966,9 @@ namespace petutils
         petutils::DetachPet(PMaster);
     }
 
-    std::int16_t PerpetuationCost(uint32 id, std::uint8_t level)
+    int16 PerpetuationCost(uint32 id, uint8 level)
     {
-        std::int16_t cost = 0;
+        int16 cost = 0;
         if (id >= 0 && id <= 7)
         {
             if (level < 19)
@@ -1096,17 +1096,17 @@ namespace petutils
         float rate = 0.10f;
 
         // boost hp by 10%
-        std::uint16_t boost = (std::uint16_t)(PPet->health.maxhp * rate);
+        uint16 boost = (uint16)(PPet->health.maxhp * rate);
 
         PPet->health.maxhp += boost;
         PPet->health.hp += boost;
         PPet->UpdateHealth();
 
         // boost stats by 10%
-        PPet->addModifier(Mod::ATTP, (std::int16_t)(rate * 100.0f));
-        PPet->addModifier(Mod::ACC, (std::int16_t)(rate * 100.0f));
-        PPet->addModifier(Mod::EVA, (std::int16_t)(rate * 100.0f));
-        PPet->addModifier(Mod::DEFP, (std::int16_t)(rate * 100.0f));
+        PPet->addModifier(Mod::ATTP, (int16)(rate * 100.0f));
+        PPet->addModifier(Mod::ACC, (int16)(rate * 100.0f));
+        PPet->addModifier(Mod::EVA, (int16)(rate * 100.0f));
+        PPet->addModifier(Mod::DEFP, (int16)(rate * 100.0f));
 
     }
 
@@ -1147,7 +1147,7 @@ namespace petutils
             {
                 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    std::uint16_t wyvernid = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
+                    uint16 wyvernid = (uint16)Sql_GetIntData(SqlHandle, 1);
 
                     if (wyvernid != 0)
                     {
@@ -1173,7 +1173,7 @@ namespace petutils
             {
                 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    std::uint16_t adventuringfellowid = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
+                    uint16 adventuringfellowid = (uint16)Sql_GetIntData(SqlHandle, 1);
 
                     if (adventuringfellowid != 0)
                     {
@@ -1202,8 +1202,8 @@ namespace petutils
 
                     if (chocoboid != 0)
                     {
-                        std::uint16_t chocoboname1 = chocoboid & 0x0000FFFF;
-                        std::uint16_t chocoboname2 = chocoboid >>= 16;
+                        uint16 chocoboname1 = chocoboid & 0x0000FFFF;
+                        uint16 chocoboname2 = chocoboid >>= 16;
 
                         g_PPetList.at(PetID)->name.clear();
 
@@ -1292,13 +1292,13 @@ namespace petutils
             else if (PPet->GetMLevel() >= 10){
                 PPet->setModifier(Mod::MATT, 20);
             }
-            PPet->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)(floor(1000.0f * (320.0f / 60.0f))));
+            PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0f * (320.0f / 60.0f))));
             if (PetID == PETID_FENRIR){
-                PPet->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)(floor(1000.0 * (280.0f / 60.0f))));
+                PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0 * (280.0f / 60.0f))));
             }
-            PPet->m_Weapons[SLOT_MAIN]->setDamage((std::uint16_t)(floor(PPet->GetMLevel() * 0.74f)));
+            PPet->m_Weapons[SLOT_MAIN]->setDamage((uint16)(floor(PPet->GetMLevel() * 0.74f)));
             if (PetID == PETID_CARBUNCLE){
-                PPet->m_Weapons[SLOT_MAIN]->setDamage((std::uint16_t)(floor(PPet->GetMLevel() * 0.67f)));
+                PPet->m_Weapons[SLOT_MAIN]->setDamage((uint16)(floor(PPet->GetMLevel() * 0.67f)));
             }
 
             //Set B+ weapon skill (assumed capped for level derp)
@@ -1310,14 +1310,14 @@ namespace petutils
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
             // cap all magic skills so they play nice with spell scripts
             for (int i = SKILL_DIV; i <= SKILL_BLU; i++) {
-                std::uint16_t maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetMJob(), PPet->GetMLevel());
+                uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetMJob(), PPet->GetMLevel());
                 if (maxSkill != 0) {
                     PPet->WorkingSkills.skill[i] = maxSkill;
                 }
                 else //if the mob is WAR/BLM and can cast spell
                 {
                     // set skill as high as main level, so their spells won't get resisted
-                    std::uint16_t maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetSJob(), PPet->GetMLevel());
+                    uint16 maxSubSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetSJob(), PPet->GetMLevel());
 
                     if (maxSubSkill != 0)
                     {
@@ -1339,10 +1339,10 @@ namespace petutils
             PMaster->addModifier(Mod::AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
-            PPet->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)(floor(1000.0f*(240.0f / 60.0f))));
+            PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0f*(240.0f / 60.0f))));
 
             //Get the Jug pet cap level
-            std::uint8_t highestLvl = PPetData->maxLevel;
+            uint8 highestLvl = PPetData->maxLevel;
 
             // Increase the pet's level cal by the bonus given by BEAST AFFINITY merits.
             CCharEntity* PChar = (CCharEntity*)PMaster;
@@ -1355,7 +1355,7 @@ namespace petutils
             }
 
             // Randomize: 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
-            highestLvl -= dsprand::GetRandomNumber(3 - std::clamp<std::int16_t>(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
+            highestLvl -= dsprand::GetRandomNumber(3 - std::clamp<int16>(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
@@ -1427,8 +1427,8 @@ namespace petutils
         PPet->SetMLevel(PMaster->GetMLevel());
 
         LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
-        PPet->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)(floor(1000.0f * (320.0f / 60.0f)))); //320 delay
-        PPet->m_Weapons[SLOT_MAIN]->setDamage((std::uint16_t)(1 + floor(PPet->GetMLevel() * 0.9f)));
+        PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0f * (320.0f / 60.0f)))); //320 delay
+        PPet->m_Weapons[SLOT_MAIN]->setDamage((uint16)(1 + floor(PPet->GetMLevel() * 0.9f)));
         //Set A+ weapon skill
         PPet->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
         PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
@@ -1467,7 +1467,7 @@ namespace petutils
             }
             if (petmod >= PetModType::Automaton && petmod <= PetModType::Stormwaker && PPetEntity->getPetType() == PETTYPE_AUTOMATON)
             {
-                if (petmod == PetModType::Automaton || (std::uint16_t)petmod + 28 == (std::uint16_t)static_cast<CAutomatonEntity*>(PPetEntity)->getFrame())
+                if (petmod == PetModType::Automaton || (uint16)petmod + 28 == (uint16)static_cast<CAutomatonEntity*>(PPetEntity)->getFrame())
                 {
                     return true;
                 }

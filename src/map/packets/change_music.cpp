@@ -25,7 +25,7 @@
 
 #include "change_music.h"
 
-CChangeMusicPacket::CChangeMusicPacket(std::uint8_t BlockID, std::uint8_t MusicTrackID)
+CChangeMusicPacket::CChangeMusicPacket(uint8 BlockID, uint8 MusicTrackID)
 {
     // Block IDs:
     // 0 Background Music (Day time, 7:00 -> 18:00)

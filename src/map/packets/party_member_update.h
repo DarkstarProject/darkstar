@@ -42,8 +42,8 @@ class CPartyMemberUpdatePacket : public CBasicPacket
 {
 public:
 
-	CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint8_t MemberNumber, std::uint16_t memberflags, std::uint16_t zoneid);
-	CPartyMemberUpdatePacket(uint32 id, const std::int8_t* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID);
+	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 zoneid);
+	CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID);
 };
 
 #endif

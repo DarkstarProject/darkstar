@@ -51,7 +51,7 @@ enum SPECIALFLAG
     SPECIALFLAG_HIDDEN = 0x1  // only use special when hidden
 };
 
-enum ROAMFLAG : std::uint16_t
+enum ROAMFLAG : uint16
 {
     ROAMFLAG_NONE    = 0x00,
     ROAMFLAG_NONE0   = 0x01,  //
@@ -78,7 +78,7 @@ enum MOBTYPE
     MOBTYPE_EVENT       = 0x20
 };
 
-enum DETECT : std::uint16_t
+enum DETECT : uint16
 {
     DETECT_NONE        = 0x00,
     DETECT_SIGHT       = 0x01,
@@ -92,7 +92,7 @@ enum DETECT : std::uint16_t
     DETECT_SCENT       = 0x100
 };
 
-enum BEHAVIOUR : std::uint16_t
+enum BEHAVIOUR : uint16
 {
     BEHAVIOUR_NONE         = 0x000,
     BEHAVIOUR_NO_DESPAWN   = 0x001, // mob does not despawn on death
@@ -127,7 +127,7 @@ public:
     bool      IsFarFromHome();                         // check if mob is too far from spawn
     bool      CanBeNeutral();                          // check if mob can have killing pause
 
-    std::uint8_t     TPUseChance();                           // return % chance to use TP move
+    uint8     TPUseChance();                           // return % chance to use TP move
 
     bool      CanDeaggro();
     time_point GetDespawnTime();
@@ -136,18 +136,18 @@ public:
     bool      CanRoamHome();                           // is it possible for me to walk back?
     bool      CanRoam();                               // check if mob can walk around
 
-    bool      CanLink(position_t* pos, std::int16_t superLink = 0);
+    bool      CanLink(position_t* pos, int16 superLink = 0);
 
     bool      CanDropGil();                            // mob has gil to drop
     bool      CanStealGil();                           // can steal gil from mob
     void      ResetGilPurse();                         // reset total gil held
 
-    void      setMobMod(std::uint16_t type, std::int16_t value);
-    std::int16_t     getMobMod(std::uint16_t type);
-    void      addMobMod(std::uint16_t type, std::int16_t value);     // add
-    void      defaultMobMod(std::uint16_t type, std::int16_t value); // set value if value has not been already set
-    void      resetMobMod(std::uint16_t type);                // resets mob mod to original value
-    std::int32_t     getBigMobMod(std::uint16_t type);               // multiplies mod by 1000
+    void      setMobMod(uint16 type, int16 value);
+    int16     getMobMod(uint16 type);
+    void      addMobMod(uint16 type, int16 value);     // add
+    void      defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
+    void      resetMobMod(uint16 type);                // resets mob mod to original value
+    std::int32_t     getBigMobMod(uint16 type);               // multiplies mod by 1000
     void      saveMobModifiers();                      // save current state of modifiers
     void      restoreMobModifiers();                   // restore to saved state
 
@@ -163,7 +163,7 @@ public:
     void      PostTick() override;
     float     GetRoamDistance();
     float     GetRoamRate();
-    virtual bool ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
     virtual void HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override {}
     virtual void Die() override;
@@ -190,71 +190,71 @@ public:
 
     uint32    m_DropID;                   // dropid of items to be dropped. dropid in Database (mob_droplist)
 
-    std::uint8_t     m_minLevel;                 // lowest possible level of the mob
-    std::uint8_t     m_maxLevel;                 // highest possible level of the mob
+    uint8     m_minLevel;                 // lowest possible level of the mob
+    uint8     m_maxLevel;                 // highest possible level of the mob
     uint32    HPmodifier;                 // HP in Database (mob_groups)
     uint32    MPmodifier;                 // MP in Database (mob_groups)
 
     float     HPscale;                    // HP boost percentage
     float     MPscale;                    // MP boost percentage
 
-    std::uint16_t    m_roamFlags;                // defines its roaming behaviour
-    std::uint8_t     m_specialFlags;             // flags for special skill
+    uint16    m_roamFlags;                // defines its roaming behaviour
+    uint8     m_specialFlags;             // flags for special skill
 
     bool      m_StatPoppedMobs;           // true if dyna statue has popped mobs
 
-    std::uint8_t     strRank;
-    std::uint8_t     dexRank;
-    std::uint8_t     vitRank;
-    std::uint8_t     agiRank;
-    std::uint8_t     intRank;
-    std::uint8_t     mndRank;
-    std::uint8_t     chrRank;
-    std::uint8_t     attRank;
-    std::uint8_t     defRank;
-    std::uint8_t     accRank;
-    std::uint8_t     evaRank;
+    uint8     strRank;
+    uint8     dexRank;
+    uint8     vitRank;
+    uint8     agiRank;
+    uint8     intRank;
+    uint8     mndRank;
+    uint8     chrRank;
+    uint8     attRank;
+    uint8     defRank;
+    uint8     accRank;
+    uint8     evaRank;
 
-    std::uint16_t	  m_dmgMult;
+    uint16	  m_dmgMult;
 
     // aggro ranges
     bool      m_disableScent;             // stop detecting by scent
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
-    std::uint8_t     m_Type;                     // mob type
+    uint8     m_Type;                     // mob type
     bool	  m_Aggro;
     bool	  m_TrueDetection;   // Has true sight or sound
-    std::uint16_t	  m_Detects;                // mobs detection methods, sight, sound, etc
-    std::uint8_t     m_Link;                     // link with mobs of it's family
-    std::uint16_t    m_Behaviour;                // mob behaviour
+    uint16	  m_Detects;                // mobs detection methods, sight, sound, etc
+    uint8     m_Link;                     // link with mobs of it's family
+    uint16    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
 
-    std::int8_t      m_battlefieldID;            // battlefield belonging to
-    std::uint16_t    m_bcnmID;                   // belongs to which battlefield
+    int8      m_battlefieldID;            // battlefield belonging to
+    uint16    m_bcnmID;                   // belongs to which battlefield
     bool      m_giveExp;                  // prevent exp gain
     bool      m_neutral;                  // stop linking / aggroing
 
     position_t  m_SpawnPoint;           // spawn point of mob
 
-    std::uint8_t     m_Element;
-    std::uint8_t     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
-    std::uint8_t     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
+    uint8     m_Element;
+    uint8     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
+    uint8     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
     bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
-    std::uint16_t    m_Family;
-    std::uint16_t    m_MobSkillList;             // Mob skill list defined from mob_pools
+    uint16    m_Family;
+    uint16    m_MobSkillList;             // Mob skill list defined from mob_pools
     uint32    m_Pool;                     // pool the mob came from
 
     CMobSpellList*        m_SpellListContainer;        // The spells list container for this mob
-    std::map<std::uint16_t, std::uint16_t>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
+    std::map<uint16, uint16>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
     uint32    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
-    std::uint8_t     m_name_prefix;                           // The ding bats VS Ding bats
+    uint8     m_name_prefix;                           // The ding bats VS Ding bats
     string_t  packetName;                              // Used for battle allies
 
     CEnmityContainer* PEnmityContainer;                // система ненависти монстров
 
     CMobSpellContainer* SpellContainer;                // retrieves spells for the mob
-    std::uint8_t     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
+    uint8     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
 
     static constexpr float sound_range {8.f};
     static constexpr float sight_range {15.f};
@@ -269,8 +269,8 @@ private:
 
     bool      m_RageMode;                              // Mode rage
     time_point    m_DespawnTimer {time_point::min()};  // Despawn Timer to despawn mob after set duration
-    std::unordered_map<int, std::int16_t>     m_mobModStat;
-    std::unordered_map<int, std::int16_t>     m_mobModStatSave;
+    std::unordered_map<int, int16>     m_mobModStat;
+    std::unordered_map<int, int16>     m_mobModStatSave;
     static constexpr float roam_home_distance {60.f};
 };
 

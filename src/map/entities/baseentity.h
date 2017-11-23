@@ -147,7 +147,7 @@ struct EntityID_t
     }
 
     uint32 id;
-    std::uint16_t targid;
+    uint16 targid;
 };
 
 class CZone;
@@ -155,11 +155,11 @@ class CZone;
 struct location_t
 {
     position_t	p;              // позиция сущности
-    std::uint16_t		destination;    // текущая зона
+    uint16		destination;    // текущая зона
     CZone*      zone;           // текущая зона
-    std::uint16_t		prevzone;       // предыдущая зона (для монстров и npc не используется)
+    uint16		prevzone;       // предыдущая зона (для монстров и npc не используется)
     bool		zoning;         // флаг сбрасывается при каждом входе в новую зону. необходим для реализации логики игровых задач ("quests")
-    std::uint16_t		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
+    uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
 };
 
 class CAIContainer;
@@ -181,16 +181,16 @@ public:
 
     virtual void    Spawn();
     virtual void    FadeOut();
-    virtual const std::int8_t* GetName();      // имя сущности
-    std::uint16_t			getZone();			// текущая зона
+    virtual const int8* GetName();      // имя сущности
+    uint16			getZone();			// текущая зона
     float			GetXPos();			// позиция по координате X
     float			GetYPos();			// позиция по координате Y
     float			GetZPos();			// позиция по координате Z
-    std::uint8_t			GetRotPos();
+    uint8			GetRotPos();
     void			HideName(bool hide); // hide / show name
     bool			IsNameHidden();		// checks if name is hidden
 
-    CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1);
+    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
     void            ResetLocalVars();
     uint32          GetLocalVar(const char* var);
@@ -201,27 +201,27 @@ public:
     //post-tick update
     virtual void    PostTick() = 0;
 
-    void            SetModelId(std::uint16_t modelId);     // Set new modelid
-    std::uint16_t          GetModelId();                   // Get the modelid
+    void            SetModelId(uint16 modelId);     // Set new modelid
+    uint16          GetModelId();                   // Get the modelid
 
     virtual void    HandleErrorMessage(std::unique_ptr<CBasicPacket>&) {};
 
     uint32			id;					// глобальный идентификатор, уникальный на сервере
-    std::uint16_t			targid;				// локалный идентификатор, уникальный в зоне
+    uint16			targid;				// локалный идентификатор, уникальный в зоне
     ENTITYTYPE		objtype;			// тип сущности
     STATUSTYPE		status;				// статус сущности (разные сущности - разные статусы)
-    std::uint16_t			m_TargID;			// targid объекта, на который смотрит сущность
+    uint16			m_TargID;			// targid объекта, на который смотрит сущность
     string_t		name;				// имя сущности
     look_t			look;				// внешний вид всех сущностей
     look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
     location_t		loc;				// местоположение сущности
-    std::uint8_t			animation;			// анимация
-    std::uint8_t			animationsub;		// дополнительный параметры анимации
-    std::uint8_t			speed;				// скорость передвижения
-    std::uint8_t			speedsub;			// подолнительный параметр скорости передвижения
-    std::uint8_t			namevis;
-    std::uint8_t			allegiance;			// what types of targets the entity can fight
-    std::uint8_t           updatemask;         // what to update next server tick to players nearby
+    uint8			animation;			// анимация
+    uint8			animationsub;		// дополнительный параметры анимации
+    uint8			speed;				// скорость передвижения
+    uint8			speedsub;			// подолнительный параметр скорости передвижения
+    uint8			namevis;
+    uint8			allegiance;			// what types of targets the entity can fight
+    uint8           updatemask;         // what to update next server tick to players nearby
 
     std::unique_ptr<CAIContainer> PAI;       // AI container
     CBattlefield*	PBCNM;              // pointer to bcnm (if in one)

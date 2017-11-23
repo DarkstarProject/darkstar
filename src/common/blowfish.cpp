@@ -25,7 +25,7 @@
 
 #include <string.h>
 
-std::uint8_t subkey[4168] =
+uint8 subkey[4168] =
 {
 	0x88, 0x6A, 0x3F, 0x24, 0xD3, 0x08, 0xA3, 0x85, 0x2E, 0x8A, 0x19, 0x13, 0x44, 0x73, 0x70, 0x03,
 	0x22, 0x38, 0x09, 0xA4, 0xD0, 0x31, 0x9F, 0x29, 0x98, 0xFA, 0x2E, 0x08, 0x89, 0x6C, 0x4E, 0xEC, 
@@ -365,7 +365,7 @@ cycle:
 	uint32 Xl;
 	uint32 Xr;
 	uint32 temp;
-	std::uint16_t	      i;
+	uint16	      i;
 	
 	const std::int32_t N = 16;
 	Xl = *xl;
@@ -464,7 +464,7 @@ cycle:
 	uint32 Xl;
 	uint32 Xr;
 	uint32 temp;
-	std::uint16_t i;
+	uint16 i;
 
 	Xl = *xl;
 	Xr = *xr;
@@ -494,11 +494,11 @@ cycle:
 #endif
 }
 
-uint32* blowfish_init(std::int8_t key[], std::int16_t keybytes, uint32* P, uint32* S)
+uint32* blowfish_init(int8 key[], int16 keybytes, uint32* P, uint32* S)
 {
-	std::int16_t          i;
-	std::int16_t          j;
-	std::int16_t          k;
+	int16          i;
+	int16          j;
+	int16          k;
 	uint32		 data;
 	uint32		 datal;
 	uint32		 datar;

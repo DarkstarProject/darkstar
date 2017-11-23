@@ -32,7 +32,7 @@ class CItemCurrency : public CItem
 {
 public:
 
-	CItemCurrency(std::uint16_t);
+	CItemCurrency(uint16);
 	virtual ~CItemCurrency();
 	
 private:

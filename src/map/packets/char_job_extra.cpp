@@ -93,18 +93,18 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
 
         // TODO: this is a lot of calculations that could be avoided if these were properly initialized in the Automaton when first loading your character
         std::int32_t meritbonus = PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PChar);
-        std::uint16_t ameCap = puppetutils::getSkillCap(PChar, SKILL_AME);
-        std::uint16_t ameBonus = PChar->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
+        uint16 ameCap = puppetutils::getSkillCap(PChar, SKILL_AME);
+        uint16 ameBonus = PChar->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
         WBUFW(data,(0x70)) = std::min(ameCap, PChar->GetSkill(SKILL_AME)) + ameBonus;
         WBUFW(data,(0x72)) = ameCap + ameBonus;
 
-        std::uint16_t araCap = puppetutils::getSkillCap(PChar, SKILL_ARA);
-        std::uint16_t araBonus = PChar->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
+        uint16 araCap = puppetutils::getSkillCap(PChar, SKILL_ARA);
+        uint16 araBonus = PChar->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
         WBUFW(data,(0x74)) = std::min(araCap, PChar->GetSkill(SKILL_ARA)) + araBonus;
         WBUFW(data,(0x76)) = araCap + araBonus;
 
-        std::uint16_t amaCap = puppetutils::getSkillCap(PChar, SKILL_AMA);
-        std::uint16_t amaBonus = PChar->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
+        uint16 amaCap = puppetutils::getSkillCap(PChar, SKILL_AMA);
+        uint16 amaBonus = PChar->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
         WBUFW(data,(0x78)) = std::min(amaCap, PChar->GetSkill(SKILL_AMA)) + amaBonus;
         WBUFW(data,(0x7A)) = amaCap + amaBonus;
 

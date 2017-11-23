@@ -158,29 +158,29 @@ class CTrait
 {
 public:
 
-    CTrait(std::uint8_t id);
+    CTrait(uint8 id);
 
-    std::uint8_t   getID();
-    std::uint8_t   getJob();
-    std::uint8_t   getLevel();
+    uint8   getID();
+    uint8   getJob();
+    uint8   getLevel();
     Mod     getMod();
-    std::int16_t   getValue();
-    std::uint8_t   getRank();
+    int16   getValue();
+    uint8   getRank();
 
-    void    setJob(std::int8_t job);
-    void    setLevel(std::uint8_t level);
+    void    setJob(int8 job);
+    void    setLevel(uint8 level);
     void    setMod(Mod mod);
-    void    setValue(std::int16_t value);
-    void    setRank(std::uint8_t rank);
+    void    setValue(int16 value);
+    void    setRank(uint8 rank);
 
 private:
 
-    std::uint8_t   m_id;
-    std::uint8_t   m_job;
-    std::uint8_t   m_level;
+    uint8   m_id;
+    uint8   m_job;
+    uint8   m_level;
     Mod     m_mod;
-    std::int16_t   m_value;
-    std::uint8_t   m_rank;
+    int16   m_value;
+    uint8   m_rank;
 };
 
 /************************************************************************
@@ -195,7 +195,7 @@ namespace traits
 {
     void LoadTraitsList();
 
-    TraitList_t* GetTraits(std::uint8_t JobID);
+    TraitList_t* GetTraits(uint8 JobID);
 };
 
 #endif

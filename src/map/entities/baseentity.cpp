@@ -69,12 +69,12 @@ void CBaseEntity::FadeOut()
     updatemask |= UPDATE_HP;
 }
 
-const std::int8_t* CBaseEntity::GetName()
+const int8* CBaseEntity::GetName()
 {
-	return (const std::int8_t*)name.c_str();
+	return (const int8*)name.c_str();
 }
 
-std::uint16_t CBaseEntity::getZone()
+uint16 CBaseEntity::getZone()
 {
     return loc.zone != nullptr ? loc.zone->GetID() : loc.destination;
 }
@@ -94,7 +94,7 @@ float CBaseEntity::GetZPos()
 	return loc.p.z;
 }
 
-std::uint8_t CBaseEntity::GetRotPos()
+uint8 CBaseEntity::GetRotPos()
 {
 	return loc.p.rotation;
 }
@@ -118,7 +118,7 @@ bool CBaseEntity::IsNameHidden()
 	return namevis & FLAG_HIDE_NAME;
 }
 
-CBaseEntity* CBaseEntity::GetEntity(std::uint16_t targid, std::uint8_t filter)
+CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 {
 	if (PInstance)
 		return PInstance->GetEntity(targid, filter);
@@ -148,12 +148,12 @@ void CBaseEntity::SetLocalVar(const char* var, uint32 val)
     m_localVars[var] = val;
 }
 
-void CBaseEntity::SetModelId(std::uint16_t modelid)
+void CBaseEntity::SetModelId(uint16 modelid)
 {
     look.modelid = modelid;
 }
 
-std::uint16_t CBaseEntity::GetModelId()
+uint16 CBaseEntity::GetModelId()
 {
     return look.modelid;
 }

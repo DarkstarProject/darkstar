@@ -67,7 +67,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
     if (playerInitiated)
     {
         //Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
-        std::uint8_t data[8] {};
+        uint8 data[8] {};
         WBUFL(data, 0) = m_AllianceID;
         WBUFL(data, 4) = m_AllianceID;
         message::send(MSG_PT_DISBAND, data, sizeof data, nullptr);
@@ -142,11 +142,11 @@ void CAlliance::removeParty(CParty * party)
     delParty(party);
 
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
-    std::uint8_t data[4] {};
+    uint8 data[4] {};
 	WBUFL(data, 0) = m_AllianceID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
-    std::uint8_t data2[4] {};
+    uint8 data2[4] {};
     WBUFL(data2, 0) = party->GetPartyID();
     message::send(MSG_PT_RELOAD, data2, sizeof data2, nullptr);
 }
@@ -154,13 +154,13 @@ void CAlliance::removeParty(CParty * party)
 void CAlliance::delParty(CParty* party)
 {
     //delete the party from the alliance list
-    for (std::uint8_t i = 0; i < party->m_PAlliance->partyList.size(); ++i)
+    for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
     {
         if (party == party->m_PAlliance->partyList.at(i))
             party->m_PAlliance->partyList.erase(partyList.begin() + i);
     }
 
-    for (std::uint8_t i = 0; i < party->m_PAlliance->partyList.size(); ++i)
+    for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
     {
         party->m_PAlliance->partyList.at(i)->ReloadParty();
     }
@@ -169,7 +169,7 @@ void CAlliance::delParty(CParty* party)
     party->SetPartyNumber(0);
 
     //remove party members from the alliance treasure pool
-    for (std::uint8_t i = 0; i < party->members.size(); ++i)
+    for (uint8 i = 0; i < party->members.size(); ++i)
     {
         CCharEntity* PChar = (CCharEntity*)party->members.at(i);
 
@@ -194,7 +194,7 @@ void CAlliance::delParty(CParty* party)
     PChar->PTreasurePool->AddMember(PChar);
     PChar->PTreasurePool->UpdatePool(PChar);
 
-    for (std::uint8_t i = 0; i < party->members.size(); ++i)
+    for (uint8 i = 0; i < party->members.size(); ++i)
     {
         CCharEntity* PMember = (CCharEntity*)party->members.at(i);
         //party->ReloadPartyMembers((CCharEntity*)party->members.at(i));
@@ -213,7 +213,7 @@ void CAlliance::addParty(CParty * party)
 	party->m_PAlliance = this;
 	partyList.push_back(party);
 	
-    std::uint8_t newparty = 0;
+    uint8 newparty = 0;
 
     int ret = Sql_Query(SqlHandle, "SELECT partyflag & %d FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", PARTY_SECOND | PARTY_THIRD, m_AllianceID, PARTY_SECOND | PARTY_THIRD);
 
@@ -228,7 +228,7 @@ void CAlliance::addParty(CParty * party)
         }
     }
 
-	for (std::uint8_t i = 0; i < party->members.size(); ++i)
+	for (uint8 i = 0; i < party->members.size(); ++i)
 	{
 		party->ReloadTreasurePool((CCharEntity*)party->members.at(i));
 		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
@@ -236,7 +236,7 @@ void CAlliance::addParty(CParty * party)
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, party->GetPartyID());
     party->SetPartyNumber(newparty);
 
-    std::uint8_t data[4] {};
+    uint8 data[4] {};
 	WBUFL(data, 0) = m_AllianceID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
@@ -252,8 +252,8 @@ void CAlliance::addParty(uint32 partyid)
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            std::uint8_t partyflag = Sql_GetUIntData(SqlHandle, 0);
-            std::uint8_t oldparty = partyflag & (PARTY_SECOND | PARTY_THIRD);
+            uint8 partyflag = Sql_GetUIntData(SqlHandle, 0);
+            uint8 oldparty = partyflag & (PARTY_SECOND | PARTY_THIRD);
             if (oldparty == newparty)
             {
                 newparty++;
@@ -261,19 +261,19 @@ void CAlliance::addParty(uint32 partyid)
         }
     }
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, partyid);
-    std::uint8_t data[8] {};
+    uint8 data[8] {};
 	WBUFL(data, 0) = m_AllianceID;
     WBUFL(data, 4) = partyid;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 }
 
-void CAlliance::pushParty(CParty* PParty, std::uint8_t number)
+void CAlliance::pushParty(CParty* PParty, uint8 number)
 {
     PParty->m_PAlliance = this;
     partyList.push_back(PParty);
     PParty->SetPartyNumber(number);
 
-    for (std::uint8_t i = 0; i < PParty->members.size(); ++i)
+    for (uint8 i = 0; i < PParty->members.size(); ++i)
     {
         PParty->ReloadTreasurePool((CCharEntity*)PParty->members.at(i));
         charutils::SaveCharStats((CCharEntity*)PParty->members.at(i));
@@ -308,7 +308,7 @@ void CAlliance::assignAllianceLeader(const char* name)
 
         for (auto PParty : partyList)
         {
-            if (PParty->GetMemberByName((const std::int8_t*)name))
+            if (PParty->GetMemberByName((const int8*)name))
             {
                 this->aLeader = PParty;
                 break;

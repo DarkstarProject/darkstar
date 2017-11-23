@@ -32,7 +32,7 @@ CTradeContainer::CTradeContainer()
 	Clean();
 }
 
-CItem* CTradeContainer::getItem(std::uint8_t slotID)
+CItem* CTradeContainer::getItem(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -41,7 +41,7 @@ CItem* CTradeContainer::getItem(std::uint8_t slotID)
 	return 0;
 }
 
-std::uint16_t CTradeContainer::getItemID(std::uint8_t slotID)
+uint16 CTradeContainer::getItemID(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -50,7 +50,7 @@ std::uint16_t CTradeContainer::getItemID(std::uint8_t slotID)
 	return 0;
 }
 
-std::uint8_t CTradeContainer::getInvSlotID(std::uint8_t slotID)
+uint8 CTradeContainer::getInvSlotID(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -59,7 +59,7 @@ std::uint8_t CTradeContainer::getInvSlotID(std::uint8_t slotID)
 	return 0xFF;
 }
 
-uint32 CTradeContainer::getQuantity(std::uint8_t slotID)
+uint32 CTradeContainer::getQuantity(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -68,7 +68,7 @@ uint32 CTradeContainer::getQuantity(std::uint8_t slotID)
 	return 0;
 }
 
-std::uint8_t CTradeContainer::getConfirmedStatus(std::uint8_t slotID)
+uint8 CTradeContainer::getConfirmedStatus(uint8 slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -77,10 +77,10 @@ std::uint8_t CTradeContainer::getConfirmedStatus(std::uint8_t slotID)
 	return false;
 }
 
-uint32 CTradeContainer::getItemQuantity(std::uint16_t itemID)
+uint32 CTradeContainer::getItemQuantity(uint16 itemID)
 {
 	uint32 quantity = 0;
-    for (std::uint8_t slotID = 0; slotID < m_PItem.size(); ++slotID)
+    for (uint8 slotID = 0; slotID < m_PItem.size(); ++slotID)
 	{
 		if( m_itemID[slotID] == itemID)
 		{
@@ -93,17 +93,17 @@ uint32 CTradeContainer::getItemQuantity(std::uint16_t itemID)
 uint32 CTradeContainer::getTotalQuantity() 
 {
 	uint32 quantity = 0;
-    for (std::uint8_t slotID = 0; slotID < m_PItem.size(); ++slotID)
+    for (uint8 slotID = 0; slotID < m_PItem.size(); ++slotID)
 	{
 		quantity += (m_itemID[slotID] == 0xFFFF ? 1 : m_quantity[slotID]);
 	}
 	return quantity;
 }
 
-std::uint8_t CTradeContainer::getSlotCount() 
+uint8 CTradeContainer::getSlotCount() 
 {
-	std::uint8_t count = 0;
-    for (std::uint8_t slotID = 0; slotID < m_PItem.size(); ++slotID)
+	uint8 count = 0;
+    for (uint8 slotID = 0; slotID < m_PItem.size(); ++slotID)
 	{
 		if (m_itemID[slotID] != 0)
 		{
@@ -113,7 +113,7 @@ std::uint8_t CTradeContainer::getSlotCount()
 	return count;
 }
 
-void CTradeContainer::setItem(std::uint8_t slotID, CItem* item)
+void CTradeContainer::setItem(uint8 slotID, CItem* item)
 {
     if (slotID < m_PItem.size())
 	{
@@ -122,7 +122,7 @@ void CTradeContainer::setItem(std::uint8_t slotID, CItem* item)
 	return;
 }
 
-void CTradeContainer::setItemID(std::uint8_t slotID, std::uint16_t itemID)
+void CTradeContainer::setItemID(uint8 slotID, uint16 itemID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -131,7 +131,7 @@ void CTradeContainer::setItemID(std::uint8_t slotID, std::uint16_t itemID)
 	return;
 }
 
-void CTradeContainer::setInvSlotID(std::uint8_t slotID, std::uint8_t invSlotID)
+void CTradeContainer::setInvSlotID(uint8 slotID, uint8 invSlotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -140,7 +140,7 @@ void CTradeContainer::setInvSlotID(std::uint8_t slotID, std::uint8_t invSlotID)
 	return;
 }
 
-void CTradeContainer::setQuantity(std::uint8_t slotID, uint32 quantity)
+void CTradeContainer::setQuantity(uint8 slotID, uint32 quantity)
 {
     if (slotID < m_PItem.size())
 	{
@@ -149,17 +149,17 @@ void CTradeContainer::setQuantity(std::uint8_t slotID, uint32 quantity)
 	return;
 }
 
-bool CTradeContainer::setConfirmedStatus(std::uint8_t slotID, std::uint8_t amount)
+bool CTradeContainer::setConfirmedStatus(uint8 slotID, uint8 amount)
 {
     if (slotID < m_PItem.size() && m_PItem[slotID] && m_PItem[slotID]->getQuantity() >= amount)
 	{
-		m_confirmed[slotID] = std::min<std::uint8_t>(amount, m_PItem[slotID]->getQuantity());
+		m_confirmed[slotID] = std::min<uint8>(amount, m_PItem[slotID]->getQuantity());
         return true;
 	}
     return false;
 }
 
-void CTradeContainer::setItem(std::uint8_t slotID, std::uint16_t itemID, std::uint8_t invSlotID, uint32 quantity, CItem* item)
+void CTradeContainer::setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item)
 {
 	if (slotID < m_PItem.size())
 	{
@@ -173,12 +173,12 @@ void CTradeContainer::setItem(std::uint8_t slotID, std::uint16_t itemID, std::ui
 	return;
 }
 
-std::uint8_t CTradeContainer::getSize()
+uint8 CTradeContainer::getSize()
 {
-    return (std::uint8_t)m_PItem.size();
+    return (uint8)m_PItem.size();
 }
 
-void CTradeContainer::setSize(std::uint8_t size)
+void CTradeContainer::setSize(uint8 size)
 {
     m_PItem.resize(size, nullptr);
     m_itemID.resize(size, 0);
@@ -187,22 +187,22 @@ void CTradeContainer::setSize(std::uint8_t size)
     m_confirmed.resize(size, 0);
 }
 
-std::uint8_t CTradeContainer::getItemsCount()
+uint8 CTradeContainer::getItemsCount()
 {
 	return m_ItemsCount;
 }
 
-void CTradeContainer::setItemsCount(std::uint8_t count)
+void CTradeContainer::setItemsCount(uint8 count)
 {
 	m_ItemsCount = count;
 }
 
-std::uint8_t CTradeContainer::getType()
+uint8 CTradeContainer::getType()
 {
 	return m_type;
 }
 
-void CTradeContainer::setType(std::uint8_t type)
+void CTradeContainer::setType(uint8 type)
 {
 	m_type = type;
 }

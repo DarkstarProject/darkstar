@@ -24,7 +24,7 @@
 #include "item_shop.h"
 
 
-CItemShop::CItemShop(std::uint16_t id) : CItem(id)
+CItemShop::CItemShop(uint16 id) : CItem(id)
 {
 	// SetType(ITEM_SHOP);
 
@@ -69,31 +69,31 @@ void CItemShop::setMaxPrice(uint32 price)
 	m_MaxPrice = price;
 }
 
-void CItemShop::setDailyIncrease(std::uint16_t increase)
+void CItemShop::setDailyIncrease(uint16 increase)
 {
     m_DailyIncrease = increase;
 }
 
-std::uint16_t CItemShop::getDailyIncrease()
+uint16 CItemShop::getDailyIncrease()
 {
     return m_DailyIncrease;
 }
 
-void CItemShop::setInitialQuantity(std::uint16_t increase)
+void CItemShop::setInitialQuantity(uint16 increase)
 {
     m_InitialQuantity = increase;
 }
 
-std::uint16_t CItemShop::getInitialQuantity()
+uint16 CItemShop::getInitialQuantity()
 {
     return m_InitialQuantity;
 }
 
-std::uint16_t CItemShop::getSellPrice()
+uint16 CItemShop::getSellPrice()
 {
 	if (getID() >= 0x2800 && getID() <= 0x6FFF)
 	{
-		return (std::uint16_t)((getMinPrice() + (getQuantity() / getStackSize()) * (getMinPrice() * 0.10f)) / 12);
+		return (uint16)((getMinPrice() + (getQuantity() / getStackSize()) * (getMinPrice() * 0.10f)) / 12);
 	}
 	else
 	{

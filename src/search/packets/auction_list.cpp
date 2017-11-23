@@ -37,7 +37,7 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-CAHItemsListPacket::CAHItemsListPacket(std::uint16_t offset)
+CAHItemsListPacket::CAHItemsListPacket(uint16 offset)
 {
     m_count = 0;
     m_offset = offset;
@@ -69,7 +69,7 @@ void CAHItemsListPacket::AddItem(ahItem* item)
 *                                                                       *
 ************************************************************************/
 
-void CAHItemsListPacket::SetItemCount(std::uint16_t count)
+void CAHItemsListPacket::SetItemCount(uint16 count)
 {
     WBUFW(m_PData, (0x0E)) = count;
 
@@ -90,7 +90,7 @@ void CAHItemsListPacket::SetItemCount(std::uint16_t count)
 *																		*
 ************************************************************************/
 
-std::uint8_t* CAHItemsListPacket::GetData()
+uint8* CAHItemsListPacket::GetData()
 {
     return m_PData;
 }
@@ -101,7 +101,7 @@ std::uint8_t* CAHItemsListPacket::GetData()
 *																		*
 ************************************************************************/
 
-std::uint16_t CAHItemsListPacket::GetSize()
+uint16 CAHItemsListPacket::GetSize()
 {
     return 0x18 + 0x0A * m_count + 28;
 }

@@ -75,7 +75,7 @@ void CPartyListPacket::AddPlayer(SearchEntity* PPlayer)
 
     m_offset = packBitsLE(m_data, strlen((const char*)PPlayer->name), m_offset, 4);
 
-    for (std::uint8_t c = 0; c < strlen((const char*)PPlayer->name); ++c)
+    for (uint8 c = 0; c < strlen((const char*)PPlayer->name); ++c)
     {
         m_offset = packBitsLE(m_data, PPlayer->name[c], m_offset, 7);
     }
@@ -140,7 +140,7 @@ void CPartyListPacket::AddPlayer(SearchEntity* PPlayer)
 *																		*
 ************************************************************************/
 
-std::uint8_t* CPartyListPacket::GetData()
+uint8* CPartyListPacket::GetData()
 {
     /*
     std::ifstream fileBufferHere("C:/party.dat", std::ios::in|std::ios::binary);
@@ -153,7 +153,7 @@ std::uint8_t* CPartyListPacket::GetData()
     }
     fileBufferHere.close();
 
-    std::uint8_t* packet = (std::uint8_t*)m_content;
+    uint8* packet = (uint8*)m_content;
     ShowMessage("done work \n");
 
     memcpy(m_data, packet, 588);*/
@@ -167,7 +167,7 @@ std::uint8_t* CPartyListPacket::GetData()
 *																		*
 ************************************************************************/
 
-std::uint16_t CPartyListPacket::GetSize()
+uint16 CPartyListPacket::GetSize()
 {
     return m_offset / 8 + 20;
 }

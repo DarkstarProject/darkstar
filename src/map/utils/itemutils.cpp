@@ -50,7 +50,7 @@ namespace itemutils
     *                                                                       *
     ************************************************************************/
 
-    CItem* CreateItem(std::uint16_t ItemID)
+    CItem* CreateItem(uint16 ItemID)
     {
         if( (ItemID >= 0x0200) && (ItemID <= 0x0206) )
         {
@@ -99,7 +99,7 @@ namespace itemutils
     *                                                                       *
     ************************************************************************/
 
-    CItem* GetItem(std::uint16_t ItemID)
+    CItem* GetItem(uint16 ItemID)
     {
         if( (ItemID == 0xFFFF) )
         {
@@ -198,7 +198,7 @@ namespace itemutils
     *                                                                       *
     ************************************************************************/
 
-    CItem* GetItemPointer(std::uint16_t ItemID)
+    CItem* GetItemPointer(uint16 ItemID)
     {
         if (ItemID < MAX_ITEMID)
         {
@@ -230,7 +230,7 @@ namespace itemutils
     *                                                                       *
     ************************************************************************/
 
-    DropList_t* GetDropList(std::uint16_t DropID)
+    DropList_t* GetDropList(uint16 DropID)
     {
         if (DropID < MAX_DROPID)
         {
@@ -246,7 +246,7 @@ namespace itemutils
     *                                                                       *
     ************************************************************************/
 
-    LootList_t* GetLootList(std::uint16_t LootID)
+    LootList_t* GetLootList(uint16 LootID)
     {
         if (LootID < MAX_LOOTID)
         {
@@ -403,9 +403,9 @@ namespace itemutils
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t ItemID = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
+                uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle,0);
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
-                std::int16_t  value  = (std::int16_t) Sql_GetIntData (SqlHandle,2);
+                int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
                 if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
                 {
@@ -420,9 +420,9 @@ namespace itemutils
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t ItemID = (std::uint16_t)Sql_GetUIntData(SqlHandle, 0);
+                uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
                 Mod modID = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 1));
-                std::int16_t value = (std::int16_t)Sql_GetIntData(SqlHandle, 2);
+                int16 value = (int16)Sql_GetIntData(SqlHandle, 2);
                 PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 3));
 
                 if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
@@ -438,11 +438,11 @@ namespace itemutils
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t ItemID = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
+                uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle,0);
                 Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
-                std::int16_t  value  = (std::int16_t) Sql_GetIntData (SqlHandle,2);
-                std::uint16_t latentId = (std::uint16_t) Sql_GetIntData(SqlHandle,3);
-                std::uint16_t latentParam = (std::uint16_t) Sql_GetIntData(SqlHandle,4);
+                int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
+                uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
+                uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
 
                 if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
                 {
@@ -466,7 +466,7 @@ namespace itemutils
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t DropID  = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
+                uint16 DropID  = (uint16)Sql_GetUIntData(SqlHandle,0);
 
                 if (g_pDropList[DropID] == 0)
                 {
@@ -475,11 +475,11 @@ namespace itemutils
 
                 DropItem_t DropItem;
 
-                DropItem.ItemID  = (std::uint16_t)Sql_GetIntData(SqlHandle,1);
-                DropItem.DropType = (std::uint8_t)Sql_GetIntData(SqlHandle,2);
-                DropItem.DropRate = (std::uint16_t)Sql_GetIntData(SqlHandle,3);
-                DropItem.GroupId = (std::uint8_t)Sql_GetIntData(SqlHandle,4);
-                DropItem.GroupRate = (std::uint16_t)Sql_GetIntData(SqlHandle,5);
+                DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
+                DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
+                DropItem.DropRate = (uint16)Sql_GetIntData(SqlHandle,3);
+                DropItem.GroupId = (uint8)Sql_GetIntData(SqlHandle,4);
+                DropItem.GroupRate = (uint16)Sql_GetIntData(SqlHandle,5);
 
                 g_pDropList[DropID]->push_back(DropItem);
             }
@@ -502,7 +502,7 @@ namespace itemutils
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                std::uint16_t LootID  = (std::uint16_t)Sql_GetUIntData(SqlHandle,0);
+                uint16 LootID  = (uint16)Sql_GetUIntData(SqlHandle,0);
 
                 if (g_pLootList[LootID] == 0)
                 {
@@ -511,9 +511,9 @@ namespace itemutils
 
                 LootItem_t LootItem;
 
-                LootItem.ItemID  = (std::uint16_t)Sql_GetIntData(SqlHandle,1);
-                LootItem.Rolls = (std::uint16_t)Sql_GetIntData(SqlHandle,2);
-                LootItem.LootGroupId = (std::uint8_t)Sql_GetIntData(SqlHandle,3);
+                LootItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
+                LootItem.Rolls = (uint16)Sql_GetIntData(SqlHandle,2);
+                LootItem.LootGroupId = (uint8)Sql_GetIntData(SqlHandle,3);
 
                 g_pLootList[LootID]->push_back(LootItem);
             }

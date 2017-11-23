@@ -53,7 +53,7 @@ public:
 	~CPetEntity();						// деструктор
 	PETTYPE getPetType();
     bool isBstPet();
-	std::uint8_t m_Element;
+	uint8 m_Element;
 	uint32 m_PetID;
     std::string GetScriptName();
 
@@ -63,7 +63,7 @@ public:
     virtual void Die() override;
     virtual void Spawn() override;
     virtual void OnAbility(CAbilityState&, action_t&) override;
-    virtual bool ValidTarget(CBattleEntity* PInitiator, std::uint16_t targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc

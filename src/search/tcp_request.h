@@ -62,23 +62,23 @@ public:
     CTCPRequestPacket(SOCKET* socket);
     ~CTCPRequestPacket();
 
-    std::uint8_t* GetData();
+    uint8* GetData();
     std::int32_t GetSize();
-    std::uint8_t GetPacketType();
+    uint8 GetPacketType();
 
     std::int32_t ReceiveFromSocket();
-    std::int32_t SendToSocket(std::uint8_t* data, uint32 length);
-    std::int32_t SendRawToSocket(std::uint8_t* data, uint32 length);
+    std::int32_t SendToSocket(uint8* data, uint32 length);
+    std::int32_t SendRawToSocket(uint8* data, uint32 length);
 
 private:
 
-    std::uint8_t*   m_data;
+    uint8*   m_data;
     std::int32_t   m_size;
     SOCKET* m_socket;
 
     blowfish_t blowfish;
 
-    std::int8_t key[24];
+    int8 key[24];
 
     std::int32_t decipher();
     std::int32_t CheckPacketHash();

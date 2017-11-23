@@ -59,11 +59,11 @@ CActionPacket::CActionPacket(action_t& action)
     {
     case ACTION_ATTACK:
     {
-        ref<std::uint8_t>(0x0A) = 0x44;
-        ref<std::uint8_t>(0x0B) = 0x18;
-        ref<std::uint8_t>(0x0C) = 0xDD;
-        ref<std::uint8_t>(0x0D) = 0x1A;
-        ref<std::uint8_t>(0x0E) = 0x0C;
+        ref<uint8>(0x0A) = 0x44;
+        ref<uint8>(0x0B) = 0x18;
+        ref<uint8>(0x0C) = 0xDD;
+        ref<uint8>(0x0D) = 0x1A;
+        ref<uint8>(0x0E) = 0x0C;
     }
     break;
     case ACTION_WEAPONSKILL_FINISH:
@@ -86,28 +86,28 @@ CActionPacket::CActionPacket(action_t& action)
     case ACTION_WEAPONSKILL_START:
     case ACTION_MOBABILITY_START:
     {
-        ref<std::uint8_t>(0x0A) = 0xDC;
-        ref<std::uint8_t>(0x0B) = 0x58;
-        ref<std::uint8_t>(0x0C) = 0x18;
-        ref<std::uint8_t>(0x0D) = 0x5D;
-        ref<std::uint8_t>(0x0E) = 0x19;
+        ref<uint8>(0x0A) = 0xDC;
+        ref<uint8>(0x0B) = 0x58;
+        ref<uint8>(0x0C) = 0x18;
+        ref<uint8>(0x0D) = 0x5D;
+        ref<uint8>(0x0E) = 0x19;
 
         ActionType = ACTION_WEAPONSKILL_START;
     }
     break;
     case ACTION_MOBABILITY_INTERRUPT:
     {
-        ref<std::uint8_t>(0x0A) = 0xDC;
-        ref<std::uint8_t>(0x0B) = 0x1C;
-        ref<std::uint8_t>(0x0C) = 0x1C;
-        ref<std::uint8_t>(0x0D) = 0x5D;
-        ref<std::uint8_t>(0x0E) = 0x19;
+        ref<uint8>(0x0A) = 0xDC;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x1C;
+        ref<uint8>(0x0D) = 0x5D;
+        ref<uint8>(0x0E) = 0x19;
     }
     break;
     case ACTION_MOBABILITY_FINISH:
     case ACTION_PET_MOBABILITY_FINISH:
     {
-        std::uint16_t id = action.actionid;
+        uint16 id = action.actionid;
 
         //higher number of bits than anything else that we know of. CAP OF 4095 (2300ish is abyssea tp moves)!
         packBitsBE(data, id, 86, 12);
@@ -115,107 +115,107 @@ CActionPacket::CActionPacket(action_t& action)
     break;
     case ACTION_ITEM_START:
     {
-        ref<std::uint8_t>(0x0A) = 0xE4;
-        ref<std::uint8_t>(0x0B) = 0x58;
-        ref<std::uint8_t>(0x0C) = 0x58;
-        ref<std::uint8_t>(0x0D) = 0x1A;
-        ref<std::uint8_t>(0x0E) = 0x1D;
+        ref<uint8>(0x0A) = 0xE4;
+        ref<uint8>(0x0B) = 0x58;
+        ref<uint8>(0x0C) = 0x58;
+        ref<uint8>(0x0D) = 0x1A;
+        ref<uint8>(0x0E) = 0x1D;
     }
     break;
     case ACTION_ITEM_INTERRUPT:
     {
-        ref<std::uint8_t>(0x0A) = 0xE4;
-        ref<std::uint8_t>(0x0B) = 0x1C;
-        ref<std::uint8_t>(0x0C) = 0x5C;
-        ref<std::uint8_t>(0x0D) = 0x1A;
-        ref<std::uint8_t>(0x0E) = 0x1D;
+        ref<uint8>(0x0A) = 0xE4;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x5C;
+        ref<uint8>(0x0D) = 0x1A;
+        ref<uint8>(0x0E) = 0x1D;
 
         ActionType = ACTION_ITEM_START;
     }
     break;
     case ACTION_RANGED_START:
     {
-        ref<std::uint8_t>(0x0A) = 0xF0;
-        ref<std::uint8_t>(0x0B) = 0x58;
-        ref<std::uint8_t>(0x0C) = 0x18;
-        ref<std::uint8_t>(0x0D) = 0xDB;
-        ref<std::uint8_t>(0x0E) = 0x19;
+        ref<uint8>(0x0A) = 0xF0;
+        ref<uint8>(0x0B) = 0x58;
+        ref<uint8>(0x0C) = 0x18;
+        ref<uint8>(0x0D) = 0xDB;
+        ref<uint8>(0x0E) = 0x19;
     }
     break;
     case ACTION_RANGED_FINISH:
     {
-        ref<std::uint8_t>(0x0A) = 0xC8;
-        ref<std::uint8_t>(0x0B) = 0x1C;
-        ref<std::uint8_t>(0x0C) = 0x1A;
-        ref<std::uint8_t>(0x0D) = 0xDB;
-        ref<std::uint8_t>(0x0E) = 0x19;
+        ref<uint8>(0x0A) = 0xC8;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x1A;
+        ref<uint8>(0x0D) = 0xDB;
+        ref<uint8>(0x0E) = 0x19;
     }
     break;
     case ACTION_RANGED_INTERRUPT:
     {
-        ref<std::uint8_t>(0x0A) = 0xF0;
-        ref<std::uint8_t>(0x0B) = 0x1C;
-        ref<std::uint8_t>(0x0C) = 0x1C;
-        ref<std::uint8_t>(0x0D) = 0xDB;
-        ref<std::uint8_t>(0x0E) = 0x19;
+        ref<uint8>(0x0A) = 0xF0;
+        ref<uint8>(0x0B) = 0x1C;
+        ref<uint8>(0x0C) = 0x1C;
+        ref<uint8>(0x0D) = 0xDB;
+        ref<uint8>(0x0E) = 0x19;
 
         ActionType = ACTION_RANGED_START;
     }
     break;
     case ACTION_RAISE_MENU_SELECTION:
     {
-        ref<std::uint8_t>(0x0A) = 0x10;
+        ref<uint8>(0x0A) = 0x10;
 
         ActionType = ACTION_MAGIC_FINISH;
     }
     break;
     case ACTION_MAGIC_START:
     {
-        ref<std::uint8_t>(0x0A) = 0xE0;
-        ref<std::uint8_t>(0x0B) = 0x58;
+        ref<uint8>(0x0A) = 0xE0;
+        ref<uint8>(0x0B) = 0x58;
 
         switch (action.spellgroup)
         {
         case SPELLGROUP_WHITE:
         {
-            ref<std::uint8_t>(0x0C) = 0xD8;
-            ref<std::uint8_t>(0x0D) = 0x1D;
-            ref<std::uint8_t>(0x0E) = 0x1A;
+            ref<uint8>(0x0C) = 0xD8;
+            ref<uint8>(0x0D) = 0x1D;
+            ref<uint8>(0x0E) = 0x1A;
         }
         break;
         case SPELLGROUP_BLACK:
         {
-            ref<std::uint8_t>(0x0C) = 0x98;
-            ref<std::uint8_t>(0x0D) = 0xD8;
-            ref<std::uint8_t>(0x0E) = 0x1A;
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0xD8;
+            ref<uint8>(0x0E) = 0x1A;
         }
         break;
         case SPELLGROUP_BLUE:
         {
-            ref<std::uint8_t>(0x0C) = 0x98;
-            ref<std::uint8_t>(0x0D) = 0x18;
-            ref<std::uint8_t>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0x18;
+            ref<uint8>(0x0E) = 0x1B;
         }
         break;
         case SPELLGROUP_SONG:
         {
-            ref<std::uint8_t>(0x0C) = 0xD8;
-            ref<std::uint8_t>(0x0D) = 0xDC;
-            ref<std::uint8_t>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0xD8;
+            ref<uint8>(0x0D) = 0xDC;
+            ref<uint8>(0x0E) = 0x1B;
         }
         break;
         case SPELLGROUP_NINJUTSU:
         {
-            ref<std::uint8_t>(0x0C) = 0x98;
-            ref<std::uint8_t>(0x0D) = 0x9B;
-            ref<std::uint8_t>(0x0E) = 0x1A;
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0x9B;
+            ref<uint8>(0x0E) = 0x1A;
         }
         break;
         case SPELLGROUP_SUMMONING:
         {
-            ref<std::uint8_t>(0x0C) = 0xD8;
-            ref<std::uint8_t>(0x0D) = 0x5C;
-            ref<std::uint8_t>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0xD8;
+            ref<uint8>(0x0D) = 0x5C;
+            ref<uint8>(0x0E) = 0x1B;
         }
         break;
         default:
@@ -234,51 +234,51 @@ CActionPacket::CActionPacket(action_t& action)
     break;
     case ACTION_MAGIC_INTERRUPT:
     {
-        ref<std::uint8_t>(0x0A) = 0xE0;
-        ref<std::uint8_t>(0x0B) = 0x1C;
+        ref<uint8>(0x0A) = 0xE0;
+        ref<uint8>(0x0B) = 0x1C;
 
         switch (action.spellgroup)
         {
         case SPELLGROUP_WHITE:
         {
-            ref<std::uint8_t>(0x0C) = 0xDC;
-            ref<std::uint8_t>(0x0D) = 0x1D;
-            ref<std::uint8_t>(0x0E) = 0x1A;
+            ref<uint8>(0x0C) = 0xDC;
+            ref<uint8>(0x0D) = 0x1D;
+            ref<uint8>(0x0E) = 0x1A;
         }
         break;
         case SPELLGROUP_BLACK:
         {
-            ref<std::uint8_t>(0x0C) = 0x9C;
-            ref<std::uint8_t>(0x0D) = 0xD8;
-            ref<std::uint8_t>(0x0E) = 0x1A;
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0xD8;
+            ref<uint8>(0x0E) = 0x1A;
         }
         break;
         case SPELLGROUP_BLUE:
         {
-            ref<std::uint8_t>(0x0C) = 0x9C;
-            ref<std::uint8_t>(0x0D) = 0x18;
-            ref<std::uint8_t>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0x18;
+            ref<uint8>(0x0E) = 0x1B;
         }
         break;
         case SPELLGROUP_SONG:
         {
-            ref<std::uint8_t>(0x0C) = 0xDC;
-            ref<std::uint8_t>(0x0D) = 0xDC;
-            ref<std::uint8_t>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0xDC;
+            ref<uint8>(0x0D) = 0xDC;
+            ref<uint8>(0x0E) = 0x1B;
         }
         break;
         case SPELLGROUP_NINJUTSU:
         {
-            ref<std::uint8_t>(0x0C) = 0x9C;
-            ref<std::uint8_t>(0x0D) = 0x9B;
-            ref<std::uint8_t>(0x0E) = 0x1A;
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0x9B;
+            ref<uint8>(0x0E) = 0x1A;
         }
         break;
         case SPELLGROUP_SUMMONING:
         {
-            ref<std::uint8_t>(0x0C) = 0xDC;
-            ref<std::uint8_t>(0x0D) = 0x5C;
-            ref<std::uint8_t>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0xDC;
+            ref<uint8>(0x0D) = 0x5C;
+            ref<uint8>(0x0E) = 0x1B;
         }
         break;
         default:
@@ -346,12 +346,12 @@ CActionPacket::CActionPacket(action_t& action)
         }
         ++targets;
     }
-    ref<std::uint8_t>(0x09) = targets;
-    std::uint8_t WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
+    ref<uint8>(0x09) = targets;
+    uint8 WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
 
     this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
 
-    ref<std::uint8_t>(0x04) = WorkSize;
+    ref<uint8>(0x04) = WorkSize;
 }
 
 // 0xE0 0x58 0xD8 0x1D 0x1A - White Magic Start

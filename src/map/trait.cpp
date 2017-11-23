@@ -36,7 +36,7 @@
 *                                                                       *
 ************************************************************************/
 
-CTrait::CTrait(std::uint8_t id)
+CTrait::CTrait(uint8 id)
 {
 	m_id = id;
 
@@ -46,7 +46,7 @@ CTrait::CTrait(std::uint8_t id)
     m_value  = 0;
 }
 
-std::uint8_t CTrait::getID()
+uint8 CTrait::getID()
 {
 	return m_id;
 }
@@ -57,12 +57,12 @@ std::uint8_t CTrait::getID()
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CTrait::getJob()
+uint8 CTrait::getJob()
 {
 	return m_job;
 }
 
-void CTrait::setJob(std::int8_t job)
+void CTrait::setJob(int8 job)
 {
     DSP_DEBUG_BREAK_IF(job > MAX_JOBTYPE);
 
@@ -75,12 +75,12 @@ void CTrait::setJob(std::int8_t job)
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CTrait::getLevel()
+uint8 CTrait::getLevel()
 {
 	return m_level;
 }
 
-void CTrait::setLevel(std::uint8_t level)
+void CTrait::setLevel(uint8 level)
 {
 	m_level = level;
 }
@@ -107,12 +107,12 @@ void CTrait::setMod(Mod mod)
 *                                                                       *
 ************************************************************************/
 
-std::int16_t CTrait::getValue()
+int16 CTrait::getValue()
 {
     return m_value;
 }
 
-void CTrait::setValue(std::int16_t value)
+void CTrait::setValue(int16 value)
 {
     m_value = value;
 }
@@ -123,12 +123,12 @@ void CTrait::setValue(std::int16_t value)
 *                                                                       *
 ************************************************************************/
 
-std::uint8_t CTrait::getRank()
+uint8 CTrait::getRank()
 {
     return m_rank;
 }
 
-void CTrait::setRank(std::uint8_t rank)
+void CTrait::setRank(uint8 rank)
 {
     m_rank = rank;
 }
@@ -210,7 +210,7 @@ namespace traits
     *                                                                       *
     ************************************************************************/
 
-    TraitList_t* GetTraits(std::uint8_t JobID)
+    TraitList_t* GetTraits(uint8 JobID)
     {
         DSP_DEBUG_BREAK_IF(JobID >= sizeof(PTraitsList));
 

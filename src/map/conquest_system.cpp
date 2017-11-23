@@ -186,7 +186,7 @@ namespace conquest
     *												                        *
     ************************************************************************/
 
-    std::uint8_t GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf)
+    uint8 GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf)
 	{
         //if all nations and beastmen == 0
         if (san_inf == 0 && bas_inf == 0 && win_inf == 0 && bst_inf == 0)
@@ -209,7 +209,7 @@ namespace conquest
         }
         else
         {
-            std::uint8_t offset = 0;
+            uint8 offset = 0;
             int64 total = san_inf + bas_inf + win_inf;
 
             //Sandoria
@@ -234,7 +234,7 @@ namespace conquest
         }
 	}
 
-    std::uint8_t GetInfluenceGraphics(REGIONTYPE regionid)
+    uint8 GetInfluenceGraphics(REGIONTYPE regionid)
     {
         std::int32_t sandoria = 0;
         std::int32_t bastok = 0;
@@ -256,9 +256,9 @@ namespace conquest
     }
 
     //TODO: figure out what the beastmen-less numbers are for
-    std::uint8_t GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf)
+    uint8 GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf)
     {
-        std::uint8_t ranking = 63;
+        uint8 ranking = 63;
         if (san_inf >= bas_inf)
             ranking -= 1;
 
@@ -280,7 +280,7 @@ namespace conquest
         return ranking;
     }
 
-    std::uint8_t GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf)
+    uint8 GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf)
     {
         return GetInfluenceRanking(san_inf, bas_inf, win_inf, 0);
     }
@@ -330,7 +330,7 @@ namespace conquest
         Sql_Query(SqlHandle, Query);
 
 		//update conquest overseers
-		for (std::uint8_t i=0; i <= 18; i++)
+		for (uint8 i=0; i <= 18; i++)
 		{
             luautils::SetRegionalConquestOverseers(i);
 		}
@@ -358,7 +358,7 @@ namespace conquest
     *   Ranking for the 3 nations                                           *
     ************************************************************************/
 
-    std::uint8_t GetBalance(std::uint8_t sandoria, std::uint8_t bastok, std::uint8_t windurst, std::uint8_t sandoria_prev, std::uint8_t bastok_prev, std::uint8_t windurst_prev)
+    uint8 GetBalance(uint8 sandoria, uint8 bastok, uint8 windurst, uint8 sandoria_prev, uint8 bastok_prev, uint8 windurst_prev)
     {
 		// Based on the below values, it seems to be in pairs of bits.
 		// Order is Windurst, Bastok, San d'Oria
@@ -366,7 +366,7 @@ namespace conquest
 		// 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
 		// 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
 
-		std::uint8_t ranking = 63;
+		uint8 ranking = 63;
         if (sandoria >= bastok)
 			ranking -= 1;
 
@@ -405,11 +405,11 @@ namespace conquest
 		return ranking;
     }
 
-    std::uint8_t GetBalance()
+    uint8 GetBalance()
     {
-        std::uint8_t sandoria = 0;
-        std::uint8_t bastok = 0;
-        std::uint8_t windurst = 0;
+        uint8 sandoria = 0;
+        uint8 bastok = 0;
+        uint8 windurst = 0;
         const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query);
@@ -427,9 +427,9 @@ namespace conquest
             }
         }
 
-        std::uint8_t sandoria_prev = 0;
-        std::uint8_t bastok_prev = 0;
-        std::uint8_t windurst_prev = 0;
+        uint8 sandoria_prev = 0;
+        uint8 bastok_prev = 0;
+        uint8 windurst_prev = 0;
 
         Query = "SELECT region_control_prev, COUNT(*) FROM conquest_system WHERE region_control_prev < 3 GROUP BY region_control_prev;";
 
@@ -450,7 +450,7 @@ namespace conquest
         return GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
     }
 
-    std::uint8_t GetAlliance(std::uint8_t sandoria, std::uint8_t bastok, std::uint8_t windurst)
+    uint8 GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst)
     {
         if (((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9) ||
             ((bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst) && bastok > 9) ||
@@ -461,23 +461,23 @@ namespace conquest
         return 0;
     }
 
-    std::uint8_t GetAlliance(std::uint8_t sandoria, std::uint8_t bastok, std::uint8_t windurst, std::uint8_t sandoria_prev, std::uint8_t bastok_prev, std::uint8_t windurst_prev)
+    uint8 GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst, uint8 sandoria_prev, uint8 bastok_prev, uint8 windurst_prev)
     {
         if (sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst)
         {
-            std::uint8_t ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
+            uint8 ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
             if ((ranking & 0x03) == 0x01)
                 return 1;
         }
         else if (bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst)
         {
-            std::uint8_t ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
+            uint8 ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
             if ((ranking & 0x0C) == 0x04)
                 return 1;
         }
         else if (windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria)
         {
-            std::uint8_t ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
+            uint8 ranking = GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
             if ((ranking & 0x30) == 0x10)
                 return 1;
         }
@@ -486,9 +486,9 @@ namespace conquest
 
     bool IsAlliance()
     {
-        std::uint8_t sandoria = 0;
-        std::uint8_t bastok = 0;
-        std::uint8_t windurst = 0;
+        uint8 sandoria = 0;
+        uint8 bastok = 0;
+        uint8 windurst = 0;
         const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query);
@@ -506,9 +506,9 @@ namespace conquest
             }
         }
 
-        std::uint8_t sandoria_prev = 0;
-        std::uint8_t bastok_prev = 0;
-        std::uint8_t windurst_prev = 0;
+        uint8 sandoria_prev = 0;
+        uint8 bastok_prev = 0;
+        uint8 windurst_prev = 0;
 
         Query = "SELECT region_control_prev, COUNT(*) FROM conquest_system WHERE region_control_prev < 3 GROUP BY region_control_prev;";
 
@@ -536,12 +536,12 @@ namespace conquest
     *                                                                       *
     ************************************************************************/
 
-    std::uint8_t GetNexTally()
+    uint8 GetNexTally()
     {
         auto weekday = CVanaTime::getInstance()->getSysWeekDay();
-        std::uint8_t dayspassed = (weekday == 0 ? 6 : weekday - 1) * 25;
+        uint8 dayspassed = (weekday == 0 ? 6 : weekday - 1) * 25;
         dayspassed += ((CVanaTime::getInstance()->getSysHour() * 60 + CVanaTime::getInstance()->getSysMinute()) * 25 ) / 1440;
-        return (std::uint8_t)(175 - dayspassed);
+        return (uint8)(175 - dayspassed);
     }
 
     /************************************************************************
@@ -550,7 +550,7 @@ namespace conquest
     *                                                                       *
     ************************************************************************/
 
-    std::uint8_t GetRegionOwner(REGIONTYPE RegionID)
+    uint8 GetRegionOwner(REGIONTYPE RegionID)
     {
         const char* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 

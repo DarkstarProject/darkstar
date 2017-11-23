@@ -40,7 +40,7 @@ class CTradeItemPacket : public CBasicPacket
 {
 	public:
 
-	CTradeItemPacket(CItem* PItem, std::uint8_t slot);
+	CTradeItemPacket(CItem* PItem, uint8 slot);
 };
 
 #endif

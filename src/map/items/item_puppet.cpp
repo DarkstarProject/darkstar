@@ -23,7 +23,7 @@
 
 #include "item_puppet.h"
 
-CItemPuppet::CItemPuppet(std::uint16_t id) : CItem(id)
+CItemPuppet::CItemPuppet(uint16 id) : CItem(id)
 {
 	setType(ITEM_PUPPET);
 }
@@ -32,7 +32,7 @@ CItemPuppet::~CItemPuppet()
 {
 }
 
-std::uint8_t CItemPuppet::getEquipSlot()
+uint8 CItemPuppet::getEquipSlot()
 {
     return m_equipSlot;
 }

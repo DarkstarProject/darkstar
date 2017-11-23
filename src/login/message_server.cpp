@@ -81,7 +81,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
 {
     int ret = SQL_ERROR;
     in_addr from_ip;
-    std::uint16_t from_port = 0;
+    uint16 from_port = 0;
     bool ipstring = false;
     if (from)
     {
@@ -96,7 +96,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions LEFT JOIN chars ON \
                       				accounts_sessions.charid = chars.charid WHERE charname = '%s' LIMIT 1; ";
-        ret = Sql_Query(ChatSqlHandle, query, (std::int8_t*)extra->data() + 4);
+        ret = Sql_Query(ChatSqlHandle, query, (int8*)extra->data() + 4);
         if (Sql_NumRows(ChatSqlHandle) == 0)
         {
             query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d LIMIT 1;";
@@ -164,7 +164,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
             uint64 ip = 0;
             if (ipstring)
             {
-                std::int8_t* ip_string = Sql_GetData(ChatSqlHandle, 0);
+                int8* ip_string = Sql_GetData(ChatSqlHandle, 0);
                 ip = inet_addr((const char*)ip_string);
             }
             else

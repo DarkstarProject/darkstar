@@ -36,12 +36,12 @@ public:
 
     virtual void Tick(time_point) override;
 
-    virtual bool Cast(std::uint16_t targid, SpellID spellid) override { return false; }
-    virtual bool ChangeTarget(std::uint16_t targid) override { return false; }
-    virtual bool WeaponSkill(std::uint16_t targid, std::uint16_t wsid) override { return false; }
+    virtual bool Cast(uint16 targid, SpellID spellid) override { return false; }
+    virtual bool ChangeTarget(uint16 targid) override { return false; }
+    virtual bool WeaponSkill(uint16 targid, uint16 wsid) override { return false; }
 
-    virtual bool Ability(std::uint16_t targid, std::uint16_t abilityid) override { return false; }
-    virtual bool RangedAttack(std::uint16_t targid) override { return false; }
+    virtual bool Ability(uint16 targid, uint16 abilityid) override { return false; }
+    virtual bool RangedAttack(uint16 targid) override { return false; }
 
 private:
     static constexpr float RoamDistance {2.1f};

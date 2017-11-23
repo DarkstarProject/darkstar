@@ -28,7 +28,7 @@
 #include "inventory_assign.h"
 
 
-CInventoryAssignPacket::CInventoryAssignPacket(CItem* PItem, std::uint8_t Flag)
+CInventoryAssignPacket::CInventoryAssignPacket(CItem* PItem, uint8 Flag)
 {
 	this->type = 0x1F;
 	this->size = 0x08;

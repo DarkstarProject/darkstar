@@ -149,7 +149,7 @@ void CMobController::TryLink()
     // Handle monster linking if they are close enough
     if (PMob->PParty != nullptr)
     {
-        for (std::uint16_t i = 0; i < PMob->PParty->members.size(); ++i)
+        for (uint16 i = 0; i < PMob->PParty->members.size(); ++i)
         {
             CMobEntity* PPartyMember = (CMobEntity*)PMob->PParty->members[i];
 
@@ -437,7 +437,7 @@ void CMobController::CastSpell(SpellID spellid)
     CSpell* PSpell = spell::GetSpell(spellid);
     if (PSpell == nullptr)
     {
-        ShowWarning(CL_YELLOW"ai_mob_dummy::CastSpell: SpellId <%i> is not found\n" CL_RESET, static_cast<std::uint16_t>(spellid));
+        ShowWarning(CL_YELLOW"ai_mob_dummy::CastSpell: SpellId <%i> is not found\n" CL_RESET, static_cast<uint16>(spellid));
     }
     else
     {
@@ -518,7 +518,7 @@ void CMobController::DoCombatTick(time_point tick)
     Move();
 }
 
-void CMobController::FaceTarget(std::uint16_t targid)
+void CMobController::FaceTarget(uint16 targid)
 {
     CBaseEntity* targ = PTarget;
     if (targid != 0 && ((targ && targid != targ->targid ) || !targ))
@@ -793,7 +793,7 @@ void CMobController::DoRoamTick(time_point tick)
                     luautils::OnMobRoamAction(PMob);
                     m_LastActionTime = m_Tick;
                 }
-                else if (PMob->CanRoam() && PMob->PAI->PathFind->RoamAround(PMob->m_SpawnPoint, PMob->GetRoamDistance(), (std::uint8_t)PMob->getMobMod(MOBMOD_ROAM_TURNS), PMob->m_roamFlags))
+                else if (PMob->CanRoam() && PMob->PAI->PathFind->RoamAround(PMob->m_SpawnPoint, PMob->GetRoamDistance(), (uint8)PMob->getMobMod(MOBMOD_ROAM_TURNS), PMob->m_roamFlags))
                 {
                     //#TODO: #AIToScript (event probably)
                     if (PMob->m_roamFlags & ROAMFLAG_WORM)
@@ -855,7 +855,7 @@ void CMobController::FollowRoamPath()
         // if I just finished reset my last action time
         if (!PMob->PAI->PathFind->IsFollowingPath())
         {
-            std::uint16_t roamRandomness = (std::uint16_t)(PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate());
+            uint16 roamRandomness = (uint16)(PMob->getBigMobMod(MOBMOD_ROAM_COOL) / PMob->GetRoamRate());
             m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(roamRandomness));
 
             // i'm a worm pop back up
@@ -901,7 +901,7 @@ void CMobController::Reset()
     PTarget = nullptr;
 }
 
-bool CMobController::MobSkill(std::uint16_t targid, std::uint16_t wsid)
+bool CMobController::MobSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {
@@ -936,7 +936,7 @@ bool CMobController::Disengage()
     return CController::Disengage();
 }
 
-bool CMobController::Engage(std::uint16_t targid)
+bool CMobController::Engage(uint16 targid)
 {
     auto ret = CController::Engage(targid);
     if (ret)
@@ -989,7 +989,7 @@ void CMobController::TapDeaggroTime()
     m_DeaggroTime = m_Tick;
 }
 
-bool CMobController::Cast(std::uint16_t targid, SpellID spellid)
+bool CMobController::Cast(uint16 targid, SpellID spellid)
 {
     FaceTarget(targid);
     return CController::Cast(targid, spellid);

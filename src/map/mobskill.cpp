@@ -24,7 +24,7 @@
 #include <string.h>
 #include "mobskill.h"
 
-CMobSkill::CMobSkill(std::uint16_t id)
+CMobSkill::CMobSkill(uint16 id)
 {
 	m_ID = id;
 	m_AnimID = 0;
@@ -80,38 +80,38 @@ bool CMobSkill::isSpecial() const
   return m_Flag & SKILLFLAG_SPECIAL;
 }
 
-void CMobSkill::setID(std::uint16_t id)
+void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;
 }
 
-void CMobSkill::setMsg(std::uint16_t msg)
+void CMobSkill::setMsg(uint16 msg)
 {
 	m_Message = msg;
 }
 
-void CMobSkill::setTotalTargets(std::uint16_t targets)
+void CMobSkill::setTotalTargets(uint16 targets)
 {
     m_TotalTargets = targets;
 }
 
-void CMobSkill::setAnimationID(std::uint16_t animID)
+void CMobSkill::setAnimationID(uint16 animID)
 {
 	m_AnimID = animID;
 }
 
-const std::int8_t* CMobSkill::getName() const
+const int8* CMobSkill::getName() const
 {
-	return (const std::int8_t*)m_name.c_str();
+	return (const int8*)m_name.c_str();
 }
 
-void CMobSkill::setName(std::int8_t* name)
+void CMobSkill::setName(int8* name)
 {
 	m_name.clear();
 	m_name.insert(0, (const char*)name);
 }
 
-void CMobSkill::setAoe(std::uint8_t aoe)
+void CMobSkill::setAoe(uint8 aoe)
 {
 	m_Aoe = aoe;
 }
@@ -121,48 +121,48 @@ void CMobSkill::setDistance(float distance)
 	m_Distance = distance;
 }
 
-void CMobSkill::setFlag(std::uint8_t flag)
+void CMobSkill::setFlag(uint8 flag)
 {
 	m_Flag = flag;
 }
 
-void CMobSkill::setTP(std::int16_t tp)
+void CMobSkill::setTP(int16 tp)
 {
 	m_TP = tp;
 }
 
-void CMobSkill::setHPP(std::uint8_t hpp)
+void CMobSkill::setHPP(uint8 hpp)
 {
     m_HPP = hpp;
 }
 
-void CMobSkill::setAnimationTime(std::uint16_t AnimationTime)
+void CMobSkill::setAnimationTime(uint16 AnimationTime)
 {
     m_AnimationTime = AnimationTime;
 }
 
-void CMobSkill::setActivationTime(std::uint16_t ActivationTime)
+void CMobSkill::setActivationTime(uint16 ActivationTime)
 {
     m_ActivationTime = ActivationTime;
 }
 
-void CMobSkill::setValidTargets(std::uint16_t targ)
+void CMobSkill::setValidTargets(uint16 targ)
 {
     m_ValidTarget = targ;
 }
 
 
-std::uint16_t CMobSkill::getID() const
+uint16 CMobSkill::getID() const
 {
 	return m_ID;
 }
 
-std::uint16_t CMobSkill::getAnimationID() const
+uint16 CMobSkill::getAnimationID() const
 {
 	return m_AnimID;
 }
 
-std::uint16_t CMobSkill::getPetAnimationID() const
+uint16 CMobSkill::getPetAnimationID() const
 {
     // levi
     if (m_AnimID >= 552 && m_AnimID <= 560)
@@ -214,32 +214,32 @@ std::uint16_t CMobSkill::getPetAnimationID() const
   return m_AnimID;
 }
 
-std::int16_t CMobSkill::getTP() const
+int16 CMobSkill::getTP() const
 {
     return m_TP;
 }
 
-std::uint8_t CMobSkill::getHPP() const
+uint8 CMobSkill::getHPP() const
 {
     return m_HPP;
 }
 
-std::uint16_t CMobSkill::getTotalTargets() const
+uint16 CMobSkill::getTotalTargets() const
 {
     return m_TotalTargets;
 }
 
-std::uint16_t CMobSkill::getMsg() const
+uint16 CMobSkill::getMsg() const
 {
     return m_Message;
 }
 
-std::uint16_t CMobSkill::getMsgForAction() const
+uint16 CMobSkill::getMsgForAction() const
 {
     return getID();
 }
 
-std::uint16_t CMobSkill::getAoEMsg() const
+uint16 CMobSkill::getAoEMsg() const
 {
 
     switch(m_Message){
@@ -282,12 +282,12 @@ std::uint16_t CMobSkill::getAoEMsg() const
     }
 }
 
-std::uint8_t CMobSkill::getFlag() const
+uint8 CMobSkill::getFlag() const
 {
 	return m_Flag;
 }
 
-std::uint8_t CMobSkill::getAoe() const
+uint8 CMobSkill::getAoe() const
 {
 	return m_Aoe;
 }
@@ -308,12 +308,12 @@ float CMobSkill::getRadius() const
   return m_Distance;
 }
 
-std::int16_t CMobSkill::getParam() const
+int16 CMobSkill::getParam() const
 {
   return m_Param;
 }
 
-std::uint8_t CMobSkill::getKnockback() const
+uint8 CMobSkill::getKnockback() const
 {
     return m_knockback;
 }
@@ -323,57 +323,57 @@ bool CMobSkill::isDamageMsg()
   return m_Message == 110 || m_Message == 185 || m_Message == 197 || m_Message == 264 || m_Message == 187 || m_Message == 225 || m_Message == 226;
 }
 
-void CMobSkill::setParam(std::int16_t value)
+void CMobSkill::setParam(int16 value)
 {
   m_Param = value;
 }
 
-void CMobSkill::setKnockback(std::uint8_t knockback)
+void CMobSkill::setKnockback(uint8 knockback)
 {
     m_knockback = knockback;
 }
 
-std::uint16_t CMobSkill::getValidTargets() const
+uint16 CMobSkill::getValidTargets() const
 {
 	return m_ValidTarget;
 }
 
-std::uint16_t CMobSkill::getAnimationTime() const
+uint16 CMobSkill::getAnimationTime() const
 {
     return m_AnimationTime;
 }
 
-std::uint16_t CMobSkill::getActivationTime() const
+uint16 CMobSkill::getActivationTime() const
 {
     return m_ActivationTime;
 }
 
-std::uint8_t CMobSkill::getPrimarySkillchain() const
+uint8 CMobSkill::getPrimarySkillchain() const
 {
     return m_primarySkillchain;
 }
 
-std::uint8_t CMobSkill::getSecondarySkillchain() const
+uint8 CMobSkill::getSecondarySkillchain() const
 {
     return m_secondarySkillchain;
 }
 
-std::uint8_t CMobSkill::getTertiarySkillchain() const
+uint8 CMobSkill::getTertiarySkillchain() const
 {
     return m_tertiarySkillchain;
 }
 
-void CMobSkill::setPrimarySkillchain(std::uint8_t skillchain)
+void CMobSkill::setPrimarySkillchain(uint8 skillchain)
 {
     m_primarySkillchain = skillchain;
 }
 
-void CMobSkill::setSecondarySkillchain(std::uint8_t skillchain)
+void CMobSkill::setSecondarySkillchain(uint8 skillchain)
 {
     m_secondarySkillchain = skillchain;
 }
 
-void CMobSkill::setTertiarySkillchain(std::uint8_t skillchain)
+void CMobSkill::setTertiarySkillchain(uint8 skillchain)
 {
     m_tertiarySkillchain = skillchain;
 }

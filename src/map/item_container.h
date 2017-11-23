@@ -59,32 +59,32 @@ class CItemContainer
 {
 public:
 
-	CItemContainer(std::uint16_t LocationID);
+	CItemContainer(uint16 LocationID);
    ~CItemContainer();
 
-	std::uint16_t	GetID();
-    std::uint16_t  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
-	std::uint8_t	GetSize();
-	std::uint8_t	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
-    std::uint8_t   AddBuff(std::int8_t buff);                     // планируемый размер хранилища (размер без ограничений)
-    std::uint8_t   AddSize(std::int8_t size);                     // увеличиваем/уменьшаем размер контейнера
-	std::uint8_t	SetSize(std::uint8_t size);
-	std::uint8_t	SearchItem(std::uint16_t ItemID);				// поиск предмета в хранилище
-    std::uint8_t   SearchItemWithSpace(std::uint16_t ItemID, uint32 quantity); //search for item that has space to accomodate x items added
+	uint16	GetID();
+    uint16  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
+	uint8	GetSize();
+	uint8	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
+    uint8   AddBuff(int8 buff);                     // планируемый размер хранилища (размер без ограничений)
+    uint8   AddSize(int8 size);                     // увеличиваем/уменьшаем размер контейнера
+	uint8	SetSize(uint8 size);
+	uint8	SearchItem(uint16 ItemID);				// поиск предмета в хранилище
+    uint8   SearchItemWithSpace(uint16 ItemID, uint32 quantity); //search for item that has space to accomodate x items added
 
-	std::uint8_t	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
-	std::uint8_t	InsertItem(CItem* PItem, std::uint8_t slotID);	// добавляем заранее созданный предмет в выбранную ячейку
+	uint8	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
+	uint8	InsertItem(CItem* PItem, uint8 slotID);	// добавляем заранее созданный предмет в выбранную ячейку
 
     uint32  SortingPacket;                          // количество запросов на сортировку за такт
     uint32  LastSortingTime;                        // время последней сортировки контейнера
 
-	CItem*	GetItem(std::uint8_t slotID);					// получаем указатель на предмет, находящийся в указанной ячейка.
+	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка.
 	void	Clear();								// Remove all items from container
 
     template<typename F, typename... Args>
     void ForEachItem(F func, Args&&... args)
     {
-        for (std::uint8_t SlotID = 0; SlotID <= m_size; ++SlotID)
+        for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
         {
             if (m_ItemList[SlotID])
             {
@@ -95,10 +95,10 @@ public:
 
 private:
 
-	std::uint16_t	m_id;
-    std::uint16_t  m_buff;
-	std::uint8_t	m_size;
-    std::uint8_t   m_count;
+	uint16	m_id;
+    uint16  m_buff;
+	uint8	m_size;
+    uint8   m_count;
 
 	CItem*	m_ItemList[MAX_CONTAINER_SIZE+1];
 };

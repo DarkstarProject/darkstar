@@ -169,7 +169,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 			// from here, we will skip the '\033['
 			// we break at the first unprocessible position
 			// assuming regular text is starting there
-			std::uint8_t numbers[16], numpoint=0;
+			uint8 numbers[16], numpoint=0;
 			CONSOLE_SCREEN_BUFFER_INFO info;
 
 			// initialize
@@ -205,7 +205,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 				}
 				else if( *q == 'm' )
 				{	// \033[#;...;#m - Set Graphics Rendition (SGR)
-					for(std::uint8_t i = 0; i <= numpoint; ++i)
+					for(uint8 i = 0; i <= numpoint; ++i)
 					{
 						if( 0x00 == (0xF0 & numbers[i]) )
 						{	// upper nibble 0
@@ -252,7 +252,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 						}
 						else if( 0x30 == (0xF0 & numbers[i]) )
 						{	// foreground
-							std::uint8_t num = numbers[i]&0x0F;
+							uint8 num = numbers[i]&0x0F;
 							if(num==9) info.wAttributes |= FOREGROUND_INTENSITY;
 							if(num>7) num=7;	// set white for 37, 38 and 39
 							info.wAttributes &= ~(FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
@@ -265,7 +265,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 						}
 						else if( 0x40 == (0xF0 & numbers[i]) )
 						{	// background
-							std::uint8_t num = numbers[i]&0x0F;
+							uint8 num = numbers[i]&0x0F;
 							if(num==9) info.wAttributes |= BACKGROUND_INTENSITY;
 							if(num>7) num=7;	// set white for 47, 48 and 49
 							info.wAttributes &= ~(BACKGROUND_RED|BACKGROUND_GREEN|BACKGROUND_BLUE);
@@ -285,7 +285,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 					//    \033[0J - Clears the screen from cursor to end of display. The cursor position is unchanged.
 					//    \033[1J - Clears the screen from start to cursor. The cursor position is unchanged.
 					//    \033[2J - Clears the screen and moves the cursor to the home position (line 1, column 1).
-					std::uint8_t num = (numbers[numpoint]>>4)*10+(numbers[numpoint]&0x0F);
+					uint8 num = (numbers[numpoint]>>4)*10+(numbers[numpoint]&0x0F);
 					int cnt;
 					DWORD tmp;
 					COORD origin = {0,0};
@@ -312,7 +312,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 					//    \033[1K - Clears all characters from start of line to the cursor position.
 					//    \033[2K - Clears all characters of the whole line.
 
-					std::uint8_t num = (numbers[numpoint]>>4)*10+(numbers[numpoint]&0x0F);
+					uint8 num = (numbers[numpoint]>>4)*10+(numbers[numpoint]&0x0F);
 					COORD origin = {0,info.dwCursorPosition.Y}; //warning C4204
 					SHORT cnt;
 					DWORD tmp;

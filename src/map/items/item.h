@@ -80,73 +80,73 @@ class CItem
 {
 public:
 
-    CItem(std::uint16_t id);
+    CItem(uint16 id);
     virtual ~CItem();
 
-    std::uint16_t      getID();
-    std::uint16_t      getSubID();
-    std::uint16_t      getFlag();
-    std::uint8_t       getAHCat();
+    uint16      getID();
+    uint16      getSubID();
+    uint16      getFlag();
+    uint8       getAHCat();
     uint32      getReserve();
     uint32      getQuantity();
     uint32      getStackSize();
     uint32      getBasePrice();
     uint32      getCharPrice();
-    std::uint8_t       getLocationID();
-    std::uint8_t       getSlotID();
+    uint8       getLocationID();
+    uint8       getSlotID();
 
     bool        isSent();
     bool        isType(ITEM_TYPE);
     bool        isSubType(ITEM_SUBTYPE);
 
-    void        setID(std::uint16_t );
-    void        setSubID(std::uint16_t);
-    void        setSubType(std::uint8_t);
-    void        setFlag(std::uint16_t);
-    void        setAHCat(std::uint8_t);
+    void        setID(uint16 );
+    void        setSubID(uint16);
+    void        setSubType(uint8);
+    void        setFlag(uint16);
+    void        setAHCat(uint8);
     void        setReserve(uint32);
     void        setQuantity(uint32);
     void        setStackSize(uint32);
     void        setBasePrice(uint32);
     void        setCharPrice(uint32);
-    void        setLocationID(std::uint8_t LocationID);
-    void        setSlotID(std::uint8_t SlotID);
+    void        setLocationID(uint8 LocationID);
+    void        setSlotID(uint8 SlotID);
     void        setSent(bool sent);
 
-    const std::int8_t* getName();
-    void        setName(std::int8_t* name);
+    const int8* getName();
+    void        setName(int8* name);
 
-    const std::int8_t* getSender();
-    void        setSender(std::int8_t* sender);
+    const int8* getSender();
+    void        setSender(int8* sender);
 
-    const std::int8_t* getReceiver();
-    void        setReceiver(std::int8_t* receiver);
+    const int8* getReceiver();
+    void        setReceiver(int8* receiver);
 
-    virtual const std::int8_t* getSignature();
-    virtual void setSignature(std::int8_t* signature);
+    virtual const int8* getSignature();
+    virtual void setSignature(int8* signature);
 
-    std::uint8_t       m_extra[0x18];  // any extra data pertaining to item (augments, furniture location, etc)
+    uint8       m_extra[0x18];  // any extra data pertaining to item (augments, furniture location, etc)
 
 protected:
 
-    void        setType(std::uint8_t);
+    void        setType(uint8);
 
 private:
 
-    std::uint16_t      m_id;
-    std::uint16_t      m_subid;
-    std::uint8_t       m_type;
-    std::uint8_t       m_subtype;
+    uint16      m_id;
+    uint16      m_subid;
+    uint8       m_type;
+    uint8       m_subtype;
     uint32      m_quantity;     // текущее количество предметов
     uint32      m_reserve;      // зарезервированное количество предметов
     uint32      m_stackSize;    // максимальное количество предметов
     uint32      m_BasePrice;
     uint32      m_CharPrice;    // стоимость предмета в bazaar
-    std::uint8_t       m_ahCat;        // категоряи предмета на укционе
-    std::uint16_t      m_flag;
+    uint8       m_ahCat;        // категоряи предмета на укционе
+    uint16      m_flag;
 
-    std::uint8_t       m_slotID;       // ячейка предмета в хранилище
-    std::uint8_t       m_locationID;   // номер хранилища предмета
+    uint8       m_slotID;       // ячейка предмета в хранилище
+    uint8       m_locationID;   // номер хранилища предмета
 
     bool        m_sent;
 
