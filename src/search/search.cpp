@@ -144,7 +144,7 @@ void PrintPacket(char* data, int size)
 *																		*
 ************************************************************************/
 
-std::int32_t main(std::int32_t argc, std::int8_t **argv)
+std::int32_t main(std::int32_t argc, char **argv)
 {
 #ifdef WIN32
     WSADATA wsaData;
@@ -161,8 +161,8 @@ std::int32_t main(std::int32_t argc, std::int8_t **argv)
 
     for (int i = 0; i < argc; i++)
     {
-        if (strcmp((const char*)argv[i], "--log") == 0)
-            logFile = (const char*)argv[i + 1];
+        if (strcmp(argv[i], "--log") == 0)
+            logFile = argv[i + 1];
     }
 
     InitializeLog(logFile);

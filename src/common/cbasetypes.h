@@ -30,21 +30,6 @@
 #define stricmp				strcasecmp
 #endif
 
-//////////////////////////////////////////////////////////////////////////
-// Assert
-
-#if ! defined(Assert)
-	#if defined(RELEASE)
-		#define Assert(EX)
-	#else
-		#include <assert.h>
-		#if !defined(DEFCPP) && defined(WIN32) && !defined(MINGW)
-			#include <crtdbg.h>
-		#endif
-		#define Assert(EX) assert(EX)
-	#endif
-#endif /* ! defined(Assert) */
-
 #include <chrono>
 
 using namespace std::literals::chrono_literals;

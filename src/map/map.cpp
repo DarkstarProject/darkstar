@@ -464,7 +464,7 @@ std::int32_t recv_parse(std::int8_t* buff, size_t* buffsize, sockaddr_in* from, 
         return -1;
     }
 #else
-    checksumResult = checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+    checksumResult = checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), (char*)(buff + size - 16));
 #endif
 
     if (checksumResult == 0)
