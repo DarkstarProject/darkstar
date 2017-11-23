@@ -494,7 +494,7 @@ cycle:
 #endif
 }
 
-std::uint32_t* blowfish_init(int8 key[], std::int16_t keybytes, std::uint32_t* P, std::uint32_t* S)
+std::uint32_t* blowfish_init(std::int8_t key[], std::int16_t keybytes, std::uint32_t* P, std::uint32_t* S)
 {
 	std::int16_t          i;
 	std::int16_t          j;

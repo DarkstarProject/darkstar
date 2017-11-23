@@ -128,7 +128,7 @@ std::int32_t zlib_init()
     return 0;
 }
 
-static std::int32_t zlib_compress_sub(const std::uint8_t *b32, const std::uint32_t read, const std::uint32_t elem, int8 *out, const std::uint32_t out_sz)
+static std::int32_t zlib_compress_sub(const std::uint8_t *b32, const std::uint32_t read, const std::uint32_t elem, std::int8_t *out, const std::uint32_t out_sz)
 {
     assert(b32 && out);
 
@@ -156,7 +156,7 @@ static std::int32_t zlib_compress_sub(const std::uint8_t *b32, const std::uint32
     return 0;
 }
 
-std::int32_t zlib_compress(const int8 *in, const std::uint32_t in_sz, int8 *out, const std::uint32_t out_sz)
+std::int32_t zlib_compress(const std::int8_t *in, const std::uint32_t in_sz, std::int8_t *out, const std::uint32_t out_sz)
 {
     assert(in && out);
     assert(zlib.enc.size());
@@ -165,10 +165,10 @@ std::int32_t zlib_compress(const int8 *in, const std::uint32_t in_sz, int8 *out,
     const std::uint32_t max_sz = (out_sz - 1) * 8; // Output buffer may be at least 8 times big than original
     for (std::uint32_t i = 0; i < in_sz; ++i)
     {
-        const std::uint32_t elem = zlib.enc[static_cast<int8>(in[i]) + 0x180];
+        const std::uint32_t elem = zlib.enc[static_cast<std::int8_t>(in[i]) + 0x180];
         if (elem + read < max_sz)
         {
-            const std::uint32_t index = static_cast<int8>(in[i]) + 0x80;
+            const std::uint32_t index = static_cast<std::int8_t>(in[i]) + 0x80;
             assert(index < zlib.enc.size());
             std::uint32_t v = zlib.enc[index];
             swap32_if_be(&v, 1);
@@ -197,7 +197,7 @@ std::int32_t zlib_compress(const int8 *in, const std::uint32_t in_sz, int8 *out,
     return read + 8;
 }
 
-std::uint32_t zlib_decompress(const int8 *in, const std::uint32_t in_sz, int8 *out, const std::uint32_t out_sz)
+std::uint32_t zlib_decompress(const std::int8_t *in, const std::uint32_t in_sz, std::int8_t *out, const std::uint32_t out_sz)
 {
     assert(in && out);
     assert(zlib.jump.size());
@@ -212,7 +212,7 @@ std::uint32_t zlib_decompress(const int8 *in, const std::uint32_t in_sz, int8 *o
     }
 
     std::uint32_t w = 0;
-    const int8 *data = in + 1;
+    const std::int8_t *data = in + 1;
     for (std::uint32_t i = 0; i < in_sz && w < out_sz; ++i)
     {
         jmp = static_cast<const struct zlib_jump*>(jmp[JMPBIT(data, i)].ptr);

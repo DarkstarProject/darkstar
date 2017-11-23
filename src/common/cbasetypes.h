@@ -12,11 +12,6 @@
 #define DEBUG
 #endif
 
-// disable attributed stuff on non-GNU
-#if !defined(__GNUC__) && !defined(MINGW)
-#  define  __attribute__(x)
-#endif
-
 // define a break macro for debugging.
 #if defined(DEBUG)
 #if defined(_MSC_VER)
@@ -32,13 +27,11 @@
 //////////////////////////////////////////////////////////////////////////
 // Integers with guaranteed _exact_ size.
 //////////////////////////////////////////////////////////////////////////
-typedef char				int8;
+//typedef char				std::int8_t;
 
 typedef signed char			sint8;
 typedef signed short		sint16;
 typedef signed int			sint32;
-
-//typedef unsigned char		std::uint8_t;
 
 //////////////////////////////////////////////////////////////////////////
 // Assert

@@ -103,7 +103,7 @@ inline std::int32_t CLuaBattlefield::getRecord(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, 3, 0);
-    int8 newTable = lua_gettop(L);
+    std::int8_t newTable = lua_gettop(L);
     const auto& record = m_PLuaBattlefield->getRecord();
 
     lua_pushstring(L, record.name.c_str());
@@ -254,7 +254,7 @@ inline std::int32_t CLuaBattlefield::win(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaBattlefield::className[] = "CBattlefield";
+const char CLuaBattlefield::className[] = "CBattlefield";
 Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getBattlefieldNumber),

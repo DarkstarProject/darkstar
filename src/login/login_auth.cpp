@@ -82,7 +82,7 @@ std::int32_t login_parse(std::int32_t fd)
     if (session[fd]->rdata.size() == 33)
     {
         char* buff = &session[fd]->rdata[0];
-        int8 code = RBUFB(buff, 32);
+        std::int8_t code = RBUFB(buff, 32);
 
         std::string name(buff, buff + 16);
         std::string password(buff + 16, buff + 32);
@@ -104,7 +104,7 @@ std::int32_t login_parse(std::int32_t fd)
         {
         case LOGIN_ATTEMPT:
         {
-            const int8* fmtQuery = "SELECT accounts.id,accounts.status \
+            const char* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
             std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());

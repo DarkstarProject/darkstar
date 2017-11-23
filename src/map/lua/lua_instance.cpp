@@ -190,7 +190,7 @@ inline std::int32_t CLuaInstance::getTimeLimit(lua_State* L)
 inline std::int32_t CLuaInstance::getEntryPos(lua_State* L)
 {
     lua_createtable(L, 4, 0);
-    int8 newTable = lua_gettop(L);
+    std::int8_t newTable = lua_gettop(L);
 
     position_t entry = m_PLuaInstance->GetEntryLoc();
 
@@ -395,7 +395,7 @@ inline std::int32_t CLuaInstance::insertAlly(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaInstance::className[] = "CInstance";
+const char CLuaInstance::className[] = "CInstance";
 Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaInstance, getID),

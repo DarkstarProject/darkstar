@@ -1068,7 +1068,7 @@ void LoadCustomMods()
 {
 
 	// load family mods
-	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
+	const char QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
     std::int32_t ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
@@ -1081,7 +1081,7 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(static_cast<Mod>(Sql_GetUIntData(SqlHandle,1)));
 			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
 
-			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			std::int8_t isMobMod = Sql_GetIntData(SqlHandle,3);
 			if(isMobMod == 1)
 			{
 				familyMods->mobMods.push_back(mod);
@@ -1094,7 +1094,7 @@ void LoadCustomMods()
 	}
 
 	// load pool mods
-	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
+	const char QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
 
     ret = Sql_Query(SqlHandle, QueryPoolMods);
 
@@ -1111,7 +1111,7 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(id);
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			std::int8_t isMobMod = Sql_GetIntData(SqlHandle,3);
 			if(isMobMod == 1)
 			{
 				poolMods->mobMods.push_back(mod);
@@ -1124,7 +1124,7 @@ void LoadCustomMods()
 	}
 
 	// load spawn mods
-	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
+	const char QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
 
     ret = Sql_Query(SqlHandle, QuerySpawnMods);
 
@@ -1137,7 +1137,7 @@ void LoadCustomMods()
 			CModifier* mod = new CModifier(static_cast<Mod>(Sql_GetUIntData(SqlHandle,1)));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
-			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
+			std::int8_t isMobMod = Sql_GetIntData(SqlHandle,3);
 			if(isMobMod == 1)
 			{
 				spawnMods->mobMods.push_back(mod);
@@ -1315,7 +1315,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
 
 CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstance* instance)
 {
-	const int8* Query =
+	const char* Query =
 		"SELECT zoneid, name, \
 		respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
 		modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
@@ -1341,8 +1341,8 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob = new CMobEntity;
             PMob->PInstance = instance;
 
-			PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
-            PMob->packetName.insert(0, Sql_GetData(SqlHandle, 61));
+			PMob->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
+            PMob->packetName.insert(0, (const char*)Sql_GetData(SqlHandle, 61));
 
 			PMob->m_RespawnTime = Sql_GetUIntData(SqlHandle, 2) * 1000;
 			PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);

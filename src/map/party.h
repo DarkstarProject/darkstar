@@ -69,7 +69,7 @@ public:
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
     CBattleEntity* GetQuaterMaster();                   // узнаем владельца сокровищ
-    CBattleEntity* GetMemberByName(const int8* MemberName);   // Returns entity pointer for member name string
+    CBattleEntity* GetMemberByName(const std::int8_t* MemberName);   // Returns entity pointer for member name string
 
 	void DisbandParty(bool playerInitiated = true);		// распускаем группу
 	void ReloadParty();                                 // перезагружаем карту группы для всех участников группы
@@ -83,9 +83,9 @@ public:
     void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
     void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
     void SetPartyID(std::uint32_t id);                         // set new party ID
-    void AssignPartyRole(int8* MemberName, std::uint8_t role);	// назначаем роли участникам группы
+    void AssignPartyRole(std::int8_t* MemberName, std::uint8_t role);	// назначаем роли участникам группы
     void DisableSync();
-    void SetSyncTarget(int8* MemberName, std::uint16_t message);         // устанавливаем цель синхронизации уровней3
+    void SetSyncTarget(std::int8_t* MemberName, std::uint16_t message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
     void SetPartyNumber(std::uint8_t number);
 

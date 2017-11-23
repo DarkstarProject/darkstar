@@ -536,7 +536,7 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
     std::vector<SpellID> castPriority;
     std::vector<SpellID> defaultPriority;
 
-    int8 tier = 4;
+    std::int8_t tier = 4;
     std::int32_t hp = PTarget->health.hp;
     std::int32_t selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
     if (selfmp < 4)
@@ -601,7 +601,7 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
         defaultPriority = { SpellID::Thunder, SpellID::Blizzard, SpellID::Fire, SpellID::Aero, SpellID::Water, SpellID::Stone };
     }
 
-    for (int8 i = tier; i >= 0; --i)
+    for (std::int8_t i = tier; i >= 0; --i)
     {
         for (SpellID& id : castPriority)
             if (Cast(PTarget->targid, static_cast<SpellID>(static_cast<std::uint16_t>(id) + i)))
@@ -1270,7 +1270,7 @@ bool CAutomatonController::TryTPMove()
 
         std::int16_t currentSkill = -1;
         CMobSkill* PWSkill = nullptr;
-        int8 currentManeuvers = -1;
+        std::int8_t currentManeuvers = -1;
 
         bool attemptChain = (PAutomaton->getMod(Mod::AUTO_TP_EFFICIENCY) != 0);
 
@@ -1327,7 +1327,7 @@ bool CAutomatonController::TryTPMove()
         {
             for (auto PSkill : validSkills)
             {
-                int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
+                std::int8_t maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
                 if (maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))
                 {
                     currentManeuvers = maneuvers;
@@ -1404,7 +1404,7 @@ namespace autoSpell
 
     void LoadAutomatonSpellList()
     {
-        const int8* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
+        const char* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query);
 

@@ -103,7 +103,7 @@ namespace battleutils
 
     void LoadSkillTable()
     {
-        const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
+        const char* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
 						    FROM skill_caps \
 							ORDER BY level \
 							LIMIT 100";
@@ -147,7 +147,7 @@ namespace battleutils
 
     void LoadWeaponSkillsList()
     {
-        const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
+        const char* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
                             "animationTime, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only, unlock_id "
 							"FROM weapon_skills "
 							"WHERE weaponskillid < %u "
@@ -193,7 +193,7 @@ namespace battleutils
     {
 
         // Load all mob skills
-        const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
+        const char* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
         mob_valid_targets, mob_skill_flag, mob_skill_param, knockback, primary_sc, secondary_sc, tertiary_sc \
         FROM mob_skills;";
@@ -223,7 +223,7 @@ namespace battleutils
             }
         }
 
-        const int8* fmtQuery = "SELECT skill_list_id, mob_skill_id \
+        const char* fmtQuery = "SELECT skill_list_id, mob_skill_id \
         FROM mob_skill_lists;";
 
         ret = Sql_Query(SqlHandle, fmtQuery);
@@ -243,7 +243,7 @@ namespace battleutils
 
     void LoadSkillChainDamageModifiers()
     {
-        const int8* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
+        const char* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
                            FROM skillchain_damage_modifiers \
                            ORDER BY chain_level, chain_count";
 
@@ -1142,10 +1142,10 @@ namespace battleutils
                 if (daze == EFFECT_DRAIN_DAZE)
                 {
                     std::uint16_t multiplier = (std::uint16_t)(3 + (5.5f * power - 1));
-                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    std::int8_t Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     // vary damage based on lvl diff
-                    int8 lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
+                    std::int8_t lvlDiff = (PDefender->GetMLevel() - PAttacker->GetMLevel()) / 2;
 
                     if (lvlDiff < -5) {
                         lvlDiff = -5;
@@ -1178,7 +1178,7 @@ namespace battleutils
                 else if (daze == EFFECT_ASPIR_DAZE)
                 {
                     std::uint16_t multiplier = 1 + (2 * power - 1);
-                    int8 Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
+                    std::int8_t Samba = dsprand::GetRandomNumber(1, (delay * multiplier) / 100 + 1);
 
                     if (Samba >= finaldamage / 4) { Samba = finaldamage / 4; }
 
@@ -1702,7 +1702,7 @@ namespace battleutils
     ************************************************************************/
     std::uint8_t GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     {
-        int8 shieldSize = 3;
+        std::int8_t shieldSize = 3;
         std::int32_t base = 0;
         float blockRateMod = (100.0f + PDefender->getMod(Mod::SHIELDBLOCKRATE)) / 100.0f;
         std::uint16_t attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
@@ -1759,7 +1759,7 @@ namespace battleutils
         }
 
         float skillmodifier = (blockskill - attackskill) * 0.215f;
-        return (int8)std::clamp((std::int32_t)((base + (std::int32_t)skillmodifier) * blockRateMod), 5, (shieldSize == 6 ? 100 : std::max<std::int32_t>((std::int32_t)(65 * blockRateMod), 100)));
+        return (std::int8_t)std::clamp((std::int32_t)((base + (std::int32_t)skillmodifier) * blockRateMod), 5, (shieldSize == 6 ? 100 : std::max<std::int32_t>((std::int32_t)(65 * blockRateMod), 100)));
     }
 
     std::uint8_t GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -2227,7 +2227,7 @@ namespace battleutils
     *																		*
     ************************************************************************/
 
-    std::uint8_t GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber, int8 offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
+    std::uint8_t GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber, std::int8_t offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
     {
         std::int32_t hitrate = 75;
 
@@ -2285,7 +2285,7 @@ namespace battleutils
     {
         return GetHitRateEx(PAttacker, PDefender, attackNumber, 0);
     }
-    std::uint8_t GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber, int8 offsetAccuracy)
+    std::uint8_t GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, std::uint8_t attackNumber, std::int8_t offsetAccuracy)
     {
         return GetHitRateEx(PAttacker, PDefender, attackNumber, offsetAccuracy);
     }

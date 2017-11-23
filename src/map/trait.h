@@ -167,7 +167,7 @@ public:
     std::int16_t   getValue();
     std::uint8_t   getRank();
 
-    void    setJob(int8 job);
+    void    setJob(std::int8_t job);
     void    setLevel(std::uint8_t level);
     void    setMod(Mod mod);
     void    setValue(std::int16_t value);

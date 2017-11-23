@@ -59,8 +59,8 @@ public:
     std::uint16_t      GetLSRawColor();
     void        SetLSID(std::uint32_t lsid);
 	void		SetLSColor(std::uint16_t color);	
-    virtual const int8* getSignature();
-    virtual void setSignature(int8* signature);
+    virtual const std::int8_t* getSignature();
+    virtual void setSignature(std::int8_t* signature);
 	
 private:
 

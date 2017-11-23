@@ -33,7 +33,7 @@ class CZoneInstance : public CZone
 {
 public:
 
-    virtual CCharEntity*    GetCharByName(int8* name) override;                             // finds the player if exists in zone
+    virtual CCharEntity*    GetCharByName(std::int8_t* name) override;                             // finds the player if exists in zone
     virtual CCharEntity*	GetCharByID(std::uint32_t id) override;
     virtual CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1) override; 			// получаем указатель на любую сущность в зоне
 

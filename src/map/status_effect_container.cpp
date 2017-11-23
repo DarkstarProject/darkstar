@@ -126,7 +126,7 @@ namespace effects
             {
                 std::uint16_t EffectID = (std::uint16_t)Sql_GetIntData(SqlHandle, 0);
 
-                EffectsParams[EffectID].Name = Sql_GetData(SqlHandle, 1);
+                EffectsParams[EffectID].Name = (const char*)Sql_GetData(SqlHandle, 1);
                 EffectsParams[EffectID].Flag = Sql_GetIntData(SqlHandle, 2);
                 EffectsParams[EffectID].Type = Sql_GetIntData(SqlHandle, 3);
                 EffectsParams[EffectID].NegativeId = (EFFECT)Sql_GetIntData(SqlHandle, 4);
@@ -1152,7 +1152,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
         if (Ptem != nullptr)
         {
             name.insert(0, "globals/items/");
-            name.insert(name.size(), Ptem->getName());
+            name.insert(name.size(), (const char*)Ptem->getName());
         }
     }
     StatusEffect->SetName(name);
@@ -1201,7 +1201,7 @@ void CStatusEffectContainer::LoadStatusEffects()
 {
     DSP_DEBUG_BREAK_IF(m_POwner->objtype != TYPE_PC);
 
-    const int8* Query =
+    const char* Query =
         "SELECT "
         "effectid,"
         "icon,"
@@ -1276,7 +1276,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
         if (realduration > 0s)
         {
-            const int8* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
+            const char* Query = "INSERT INTO char_effects (charid, effectid, icon, power, tick, duration, subid, subpower, tier) VALUES(%u,%u,%u,%u,%u,%u,%u,%u,%u);";
 
             // save power of utsusemi and blink
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {

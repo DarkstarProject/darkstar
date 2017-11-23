@@ -27,7 +27,7 @@
 
 #include <string.h>
 
-CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, std::uint32_t posttime, bool ls1)
+CLinkshellMessagePacket::CLinkshellMessagePacket(const std::int8_t* poster, const std::int8_t* message, const std::int8_t* lsname, std::uint32_t posttime, bool ls1)
 {
     CBasicPacket::id(id);
 	this->size = 0x58;
@@ -44,9 +44,9 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8*
     }
     if (message)
     {
-        memcpy(data + (0x08), message, std::min<size_t>(strlen(message), 115));
-        memcpy(data + (0x8C), poster, std::min<size_t>(strlen(poster), 15));
-        memcpy(data + (0xA0), lsname, std::min<size_t>(strlen(lsname), 16));
+        memcpy(data + (0x08), message, std::min<size_t>(strlen((const char*)message), 115));
+        memcpy(data + (0x8C), poster, std::min<size_t>(strlen((const char*)poster), 15));
+        memcpy(data + (0xA0), lsname, std::min<size_t>(strlen((const char*)lsname), 16));
 
         ref<std::uint32_t>(0x88) = posttime;
     }

@@ -300,7 +300,7 @@ class char_mini
 {
 public:
 
-	int8	m_name[16];
+	std::int8_t	m_name[16];
 
 	std::uint8_t	m_mjob;
 	std::uint16_t	m_zone;

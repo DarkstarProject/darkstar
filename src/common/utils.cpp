@@ -187,7 +187,7 @@ std::uint8_t getangle(const position_t& A, const position_t& B)
 bool isFaceing(const position_t& A, const position_t& B, std::uint8_t coneAngle)
 {
     std::int32_t angle = getangle(A, B);
-    return abs(int8(angle - A.rotation)) < (coneAngle >> 1);
+    return abs(std::int8_t(angle - A.rotation)) < (coneAngle >> 1);
 }
 
 /**
@@ -462,7 +462,7 @@ std::uint64_t unpackBitsLE(std::uint8_t* target, std::int32_t byteOffset, std::i
     return retVal;
 }
 
-int8* EncodeStringLinkshell(int8* signature, int8* target)
+void EncodeStringLinkshell(std::int8_t* signature, std::int8_t* target)
 {
     std::uint8_t encodedSignature[16];
     memset(encodedSignature, 0, sizeof encodedSignature);
@@ -485,10 +485,10 @@ int8* EncodeStringLinkshell(int8* signature, int8* target)
     leftover = (leftover == 8 || leftover == 2 ? 6 : leftover);
     packBitsLE(encodedSignature, 0xFF, 6 * chars, leftover);
 
-    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+    strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeStringLinkshell(int8* signature, int8* target)
+void DecodeStringLinkshell(std::int8_t* signature, std::int8_t* target)
 {
     std::uint8_t decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
@@ -517,10 +517,10 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
         else
             decodedSignature[currChar] = tempChar;
     }
-    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+    strncpy((char*)target, (const char*)decodedSignature, sizeof decodedSignature);
 }
 
-int8* EncodeStringSignature(int8* signature, int8* target)
+std::int8_t* EncodeStringSignature(std::int8_t* signature, std::int8_t* target)
 {
     std::uint8_t encodedSignature[12];
     memset(encodedSignature, 0, sizeof encodedSignature);
@@ -543,10 +543,10 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     //leftover = (leftover == 8 ? 6 : leftover);
     //packBitsLE(encodedSignature,0xFF,6*chars, leftover);
 
-    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+    return (std::int8_t*)strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeStringSignature(int8* signature, int8* target)
+void DecodeStringSignature(std::int8_t* signature, std::int8_t* target)
 {
     std::uint8_t decodedSignature[16];
     memset(decodedSignature, 0, sizeof decodedSignature);
@@ -564,7 +564,7 @@ int8* DecodeStringSignature(int8* signature, int8* target)
 
         decodedSignature[currChar] = tempChar;
     }
-    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+    strncpy((char*)target, (const char*)decodedSignature, sizeof decodedSignature);
 }
 
 std::string escape(std::string const &s)

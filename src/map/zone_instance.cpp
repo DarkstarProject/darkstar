@@ -48,7 +48,7 @@ CZoneInstance::~CZoneInstance()
     }
 }
 
-CCharEntity* CZoneInstance::GetCharByName(int8* name)
+CCharEntity* CZoneInstance::GetCharByName(std::int8_t* name)
 {
     CCharEntity* PEntity = nullptr;
     for (auto instance : instanceList)

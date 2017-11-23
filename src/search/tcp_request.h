@@ -78,7 +78,7 @@ private:
 
     blowfish_t blowfish;
 
-    int8 key[24];
+    std::int8_t key[24];
 
     std::int32_t decipher();
     std::int32_t CheckPacketHash();

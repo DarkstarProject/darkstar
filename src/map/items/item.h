@@ -113,17 +113,17 @@ public:
     void        setSlotID(std::uint8_t SlotID);
     void        setSent(bool sent);
 
-    const int8* getName();
-    void        setName(int8* name);
+    const std::int8_t* getName();
+    void        setName(std::int8_t* name);
 
-    const int8* getSender();
-    void        setSender(int8* sender);
+    const std::int8_t* getSender();
+    void        setSender(std::int8_t* sender);
 
-    const int8* getReceiver();
-    void        setReceiver(int8* receiver);
+    const std::int8_t* getReceiver();
+    void        setReceiver(std::int8_t* receiver);
 
-    virtual const int8* getSignature();
-    virtual void setSignature(int8* signature);
+    virtual const std::int8_t* getSignature();
+    virtual void setSignature(std::int8_t* signature);
 
     std::uint8_t       m_extra[0x18];  // any extra data pertaining to item (augments, furniture location, etc)
 

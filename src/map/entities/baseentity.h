@@ -181,7 +181,7 @@ public:
 
     virtual void    Spawn();
     virtual void    FadeOut();
-    virtual const int8* GetName();      // имя сущности
+    virtual const std::int8_t* GetName();      // имя сущности
     std::uint16_t			getZone();			// текущая зона
     float			GetXPos();			// позиция по координате X
     float			GetYPos();			// позиция по координате Y

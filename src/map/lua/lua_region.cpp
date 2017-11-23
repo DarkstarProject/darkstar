@@ -120,7 +120,7 @@ inline std::int32_t CLuaRegion::DelCount(lua_State *L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaRegion::className[] = "CRegion";
+const char CLuaRegion::className[] = "CRegion";
 
 Lunar<CLuaRegion>::Register_t CLuaRegion::methods[] =
 {

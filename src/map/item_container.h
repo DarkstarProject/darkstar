@@ -66,8 +66,8 @@ public:
     std::uint16_t  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
 	std::uint8_t	GetSize();
 	std::uint8_t	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
-    std::uint8_t   AddBuff(int8 buff);                     // планируемый размер хранилища (размер без ограничений)
-    std::uint8_t   AddSize(int8 size);                     // увеличиваем/уменьшаем размер контейнера
+    std::uint8_t   AddBuff(std::int8_t buff);                     // планируемый размер хранилища (размер без ограничений)
+    std::uint8_t   AddSize(std::int8_t size);                     // увеличиваем/уменьшаем размер контейнера
 	std::uint8_t	SetSize(std::uint8_t size);
 	std::uint8_t	SearchItem(std::uint16_t ItemID);				// поиск предмета в хранилище
     std::uint8_t   SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity); //search for item that has space to accomodate x items added

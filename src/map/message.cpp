@@ -94,7 +94,7 @@ namespace message
         }
         case MSG_CHAT_TELL:
         {
-            CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
+            CCharEntity* PChar = zoneutils::GetCharByName((std::int8_t*)extra->data() + 4);
             if (PChar && PChar->status != STATUS_DISAPPEAR && !jailutils::InPrison(PChar))
             {
                 std::unique_ptr<CBasicPacket> newPacket = std::make_unique<CBasicPacket>();
@@ -357,13 +357,13 @@ namespace message
 
             if (PLinkshell)
             {
-                PLinkshell->ChangeMemberRank((int8*)extra->data() + 4, RBUFB(extra->data(), 28));
+                PLinkshell->ChangeMemberRank((std::int8_t*)extra->data() + 4, RBUFB(extra->data(), 28));
             }
             break;
         }
         case MSG_LINKSHELL_REMOVE:
         {
-            CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
+            CCharEntity* PChar = zoneutils::GetCharByName((std::int8_t*)extra->data() + 4);
 
             if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == RBUFL(extra->data(), 24))
             {
@@ -371,7 +371,7 @@ namespace message
                 CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
                 if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                 {
-                    PChar->PLinkshell1->RemoveMemberByName((int8*)extra->data() + 4);
+                    PChar->PLinkshell1->RemoveMemberByName((std::int8_t*)extra->data() + 4);
                 }
             }
             else if (PChar && PChar->PLinkshell2 && PChar->PLinkshell2->getID() == RBUFL(extra->data(), 24))
@@ -380,7 +380,7 @@ namespace message
                 CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
                 if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                 {
-                    PChar->PLinkshell2->RemoveMemberByName((int8*)extra->data() + 4);
+                    PChar->PLinkshell2->RemoveMemberByName((std::int8_t*)extra->data() + 4);
                 }
             }
             break;
@@ -517,7 +517,7 @@ namespace message
             int ret = Sql_Query(SqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                ipp = inet_addr(Sql_GetData(SqlHandle, 0));
+                ipp = inet_addr((const char*)Sql_GetData(SqlHandle, 0));
                 port = Sql_GetUIntData(SqlHandle, 1);
             }
         }

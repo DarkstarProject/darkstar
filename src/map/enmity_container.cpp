@@ -98,7 +98,7 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 ************************************************************************/
 
 float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
-    int8 enmityBonus = 0;
+    std::int8_t enmityBonus = 0;
     if (PEntity->objtype & TYPE_PC)
     {
         enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, (CCharEntity*)PEntity) -

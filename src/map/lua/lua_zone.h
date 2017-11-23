@@ -33,7 +33,7 @@ class CLuaZone
     CZone* m_pLuaZone;
 public:
 
-    static const int8 className[];
+    static const char className[];
     static Lunar<CLuaZone>::Register_t methods[];
 
     CLuaZone(lua_State*);

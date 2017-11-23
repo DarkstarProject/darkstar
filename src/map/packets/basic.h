@@ -141,9 +141,9 @@ public:
         return data;
     }
 
-    int8* operator[] (const int index)
+    std::int8_t* operator[] (const int index)
     {
-        return reinterpret_cast<int8*>(data)+index;
+        return reinterpret_cast<std::int8_t*>(data)+index;
     }
 };
 

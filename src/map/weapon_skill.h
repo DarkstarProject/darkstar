@@ -54,7 +54,7 @@ public:
     std::uint8_t       getUnlockId();
 
 	void		setID(std::uint16_t id);
-	void		setJob(int8* jobs);
+	void		setJob(std::int8_t* jobs);
 	void		setSkillLevel(std::uint16_t level);
 	void		setRange(std::uint8_t range);
     void        setElement(std::uint8_t element);
@@ -62,7 +62,7 @@ public:
     void		setSecondarySkillchain(std::uint8_t skillchain);
     void		setTertiarySkillchain(std::uint8_t skillchain);
 	void		setAoe(std::uint8_t aoe);
-	void        setAnimationId(int8 animation);
+	void        setAnimationId(std::int8_t animation);
     void        setAnimationTime(duration time);
 	void		setType(std::uint8_t type);
     void        setMainOnly(std::uint8_t main);
@@ -72,8 +72,8 @@ public:
     std::uint8_t       getSecondarySkillchain();
     std::uint8_t       getTertiarySkillchain();
 
-	const int8* getName();
-	void		setName(int8* name);
+	const std::int8_t* getName();
+	void		setName(std::int8_t* name);
 
 private:
 

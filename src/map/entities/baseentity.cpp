@@ -69,9 +69,9 @@ void CBaseEntity::FadeOut()
     updatemask |= UPDATE_HP;
 }
 
-const int8* CBaseEntity::GetName()
+const std::int8_t* CBaseEntity::GetName()
 {
-	return name.c_str();
+	return (const std::int8_t*)name.c_str();
 }
 
 std::uint16_t CBaseEntity::getZone()

@@ -77,7 +77,7 @@ std::uint16_t CItemContainer::GetBuff()
     return m_buff;
 }
 
-std::uint8_t CItemContainer::AddBuff(int8 buff)
+std::uint8_t CItemContainer::AddBuff(std::int8_t buff)
 {
     m_buff += buff;
     return SetSize(std::min<std::uint8_t>((std::uint8_t)m_buff, 80)); // ограничение в 80 ячеек для персонажа
@@ -113,7 +113,7 @@ std::uint8_t CItemContainer::SetSize(std::uint8_t size)
 
 // контейнер не несет ответственности за то, что предметы могут остаться за пределами размера
 
-std::uint8_t CItemContainer::AddSize(int8 size)
+std::uint8_t CItemContainer::AddSize(std::int8_t size)
 {
     std::uint8_t newsize = m_size + size;
 

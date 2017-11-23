@@ -769,9 +769,9 @@ public:
     void    addMod(Mod modType, std::int16_t amount);
 
     void    SetName(string_t name);
-    void    SetName(const int8* name);
+    void    SetName(const std::int8_t* name);
 
-    const int8* GetName();
+    const std::int8_t* GetName();
 
     std::vector<CModifier> modList;    // список модификаторов
 

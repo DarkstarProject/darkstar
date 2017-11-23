@@ -71,7 +71,7 @@ void CWeaponSkill::setUnlockId(std::uint8_t id)
     m_unlockId = id;
 }
 
-void CWeaponSkill::setJob(int8* jobs)
+void CWeaponSkill::setJob(std::int8_t* jobs)
 {
 	memcpy(&m_Job[1], jobs, 22);
 }
@@ -81,9 +81,9 @@ void CWeaponSkill::setSkillLevel(std::uint16_t level)
 	m_Skilllevel = level;
 }
 
-const int8* CWeaponSkill::getName()
+const std::int8_t* CWeaponSkill::getName()
 {
-	return m_name.c_str();
+	return (const std::int8_t*)m_name.c_str();
 }
 
 void CWeaponSkill::setElement(std::uint8_t element)
@@ -106,13 +106,13 @@ void CWeaponSkill::setTertiarySkillchain(std::uint8_t skillchain)
     m_TertiarySkillchain = skillchain;
 }
 
-void CWeaponSkill::setName(int8* name)
+void CWeaponSkill::setName(std::int8_t* name)
 {
 	m_name.clear();
-	m_name.insert(0,name);
+	m_name.insert(0, (const char*)name);
 }
 
-void CWeaponSkill::setAnimationId(int8 id)
+void CWeaponSkill::setAnimationId(std::int8_t id)
 {
 	m_AnimationId = id;
 }

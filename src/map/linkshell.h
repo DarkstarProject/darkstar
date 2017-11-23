@@ -50,15 +50,15 @@ public:
 
     void        setColor(std::uint16_t color);
 
-    const int8* getName();
-	void		setName(int8* name);
-	void		setMessage(const int8* message, const int8* poster);
+    const std::int8_t* getName();
+	void		setName(std::int8_t* name);
+	void		setMessage(const std::int8_t* message, const std::int8_t* poster);
 
-    void        AddMember(CCharEntity* PChar,int8 type, std::uint8_t lsNum);
+    void        AddMember(CCharEntity* PChar,std::int8_t type, std::uint8_t lsNum);
     bool        DelMember(CCharEntity* PChar);
 
-    void        RemoveMemberByName(int8* MemberName);
-	void		ChangeMemberRank(int8* MemberName, std::uint8_t toSack);
+    void        RemoveMemberByName(std::int8_t* MemberName);
+	void		ChangeMemberRank(std::int8_t* MemberName, std::uint8_t toSack);
 
     void        PushPacket(std::uint32_t senderID, CBasicPacket* packet);
     void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
@@ -86,7 +86,7 @@ namespace linkshell
     bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, std::uint8_t lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
-    std::uint32_t RegisterNewLinkshell(const int8* name, std::uint16_t color);
+    std::uint32_t RegisterNewLinkshell(const std::int8_t* name, std::uint16_t color);
 	CLinkshell* GetLinkshell(std::uint32_t id);
 };
 

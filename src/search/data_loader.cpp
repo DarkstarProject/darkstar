@@ -61,7 +61,7 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(std::uint16_t ItemID, bool
 {
     std::vector<ahHistory*> HistoryList;
 
-    const int8* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name "
+    const char* fmtQuery = "SELECT sale, sell_date, seller_name, buyer_name "
         "FROM auction_house "
         "WHERE itemid = %u AND stack = %u AND buyer_name IS NOT NULL "
         "ORDER BY sell_date DESC "
@@ -78,8 +78,8 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(std::uint16_t ItemID, bool
             PAHHistory->Price = Sql_GetUIntData(SqlHandle, 0);
             PAHHistory->Data = Sql_GetUIntData(SqlHandle, 1);
 
-            snprintf((int8*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle, 2));
-            snprintf((int8*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle, 3));
+            snprintf((char*)PAHHistory->Name1, 15, "%s", Sql_GetData(SqlHandle, 2));
+            snprintf((char*)PAHHistory->Name2, 15, "%s", Sql_GetData(SqlHandle, 3));
 
             HistoryList.push_back(PAHHistory);
         }
@@ -94,13 +94,13 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(std::uint16_t ItemID, bool
 *  The list of items sold in this category                              *
 ************************************************************************/
 
-std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(std::uint8_t AHCategoryID, int8* OrderByString)
+std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(std::uint8_t AHCategoryID, std::int8_t* OrderByString)
 {
     ShowDebug("try find category %u\n", AHCategoryID);
 
     std::vector<ahItem*> ItemList;
 
-    const int8* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) "
+    const char* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) "
         "FROM item_basic "
         "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
         "LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid "
@@ -296,7 +296,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
             // filter by name
             if (sr.nameLen > 0){
                 string_t dbname;
-                dbname.insert(0, (int8*)PPlayer->name);
+                dbname.insert(0, (char*)PPlayer->name);
 
                 //can't be this name, too long
                 if (sr.nameLen > dbname.length()){
@@ -344,7 +344,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::u
 {
     std::list<SearchEntity*> PartyList;
 
-    const int8* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl "
+    const char* Query = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, mlvl, slvl "
         "FROM accounts_sessions "
         "LEFT JOIN accounts_parties USING(charid) "
         "LEFT JOIN chars USING(charid) "
@@ -402,7 +402,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::u
 std::list<SearchEntity*> CDataLoader::GetLinkshellList(std::uint32_t LinkshellID)
 {
     std::list<SearchEntity*> LinkshellList;
-    const int8* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
+    const char* fmtQuery = "SELECT charid, partyid, charname, pos_zone, nation, rank_sandoria, rank_bastok, rank_windurst, race, nameflags, mjob, sjob, "
         "mlvl, slvl, linkshellid1, linkshellid2, "
         "linkshellrank1, linkshellrank2 "
         "FROM accounts_sessions "

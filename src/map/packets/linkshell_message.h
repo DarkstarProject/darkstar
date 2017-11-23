@@ -40,7 +40,7 @@ class CLinkshellMessagePacket : public CBasicPacket
 {
 public:
     static const std::uint16_t id {0xCC};
-    CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, std::uint32_t posttime, bool ls1);
+    CLinkshellMessagePacket(const std::int8_t* poster, const std::int8_t* message, const std::int8_t* lsname, std::uint32_t posttime, bool ls1);
 };
 
 #endif

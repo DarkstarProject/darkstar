@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 #include "blacklist.h"
 #include "../entities/charentity.h"
 
-CBlacklistPacket::CBlacklistPacket(std::uint32_t accid, const int8* targetName, int8 action)
+CBlacklistPacket::CBlacklistPacket(std::uint32_t accid, const std::int8_t* targetName, std::int8_t action)
 {
 	this->type = 0x42;
 	this->size = 0x0E;
@@ -37,7 +37,7 @@ CBlacklistPacket::CBlacklistPacket(std::uint32_t accid, const int8* targetName, 
 	case 0x01: // Removed successfully..
 		WBUFL(data, 0x04 ) = accid;
 		WBUFB(data, 0x18 ) = action;
-		memcpy(data + 0x08 , targetName, strlen(targetName));
+		memcpy(data + 0x08 , targetName, strlen((const char*)targetName));
 		break;
 
 	case 0x02: // Command error..

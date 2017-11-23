@@ -67,12 +67,12 @@ void CItemLinkshell::SetLSColor(std::uint16_t color)
 	WBUFW(m_extra,0x06) = color;
 }
 
-const int8* CItemLinkshell::getSignature()
+const std::int8_t* CItemLinkshell::getSignature()
 {
-    return (int8*)m_extra + 0x09;
+    return (std::int8_t*)m_extra + 0x09;
 }
 
-void CItemLinkshell::setSignature(int8* signature)
+void CItemLinkshell::setSignature(std::int8_t* signature)
 {
     memcpy(m_extra + 0x09, signature, sizeof(m_extra) - 0x09);
 }

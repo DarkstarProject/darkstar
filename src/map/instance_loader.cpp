@@ -127,7 +127,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         {
             CMobEntity* PMob = new CMobEntity;
 
-            PMob->name.insert(0, Sql_GetData(SqlInstanceHandle, 0));
+            PMob->name.insert(0, (const char*)Sql_GetData(SqlInstanceHandle, 0));
             PMob->id = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 1);
             PMob->targid = (std::uint16_t)PMob->id & 0x0FFF;
 
@@ -260,7 +260,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
                 PNpc->id = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 0);
                 PNpc->targid = PNpc->id & 0xFFF;
 
-                PNpc->name.insert(0, Sql_GetData(SqlInstanceHandle, 1));
+                PNpc->name.insert(0, (const char*)Sql_GetData(SqlInstanceHandle, 1));
 
                 PNpc->loc.p.rotation = (std::uint8_t)Sql_GetIntData(SqlInstanceHandle, 2);
                 PNpc->loc.p.x = Sql_GetFloatData(SqlInstanceHandle, 3);

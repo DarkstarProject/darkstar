@@ -696,8 +696,8 @@ public:
     void        setMeritModID(std::uint16_t value);
     void        setActionType(ACTIONTYPE type);
 
-    const int8* getName();
-    void        setName(int8* name);
+    const std::int8_t* getName();
+    void        setName(std::int8_t* name);
 
 private:
 

@@ -390,13 +390,13 @@ std::int32_t Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_le
 *																		*
 ************************************************************************/
 
-int8* Sql_GetData(Sql_t* self, size_t col)
+std::int8_t* Sql_GetData(Sql_t* self, size_t col)
 {
 	if( self && self->row )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
-			return self->row[col];
+			return (std::int8_t*)self->row[col];
 		}
 	}
 	ShowFatalError("Sql_GetData: SQL_ERROR\n");

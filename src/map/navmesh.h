@@ -58,7 +58,7 @@ struct NavMeshTileHeader
 class CNavMesh
 {
 public:
-    static const int8 ERROR_NEARESTPOLY = -2;
+    static const std::int8_t ERROR_NEARESTPOLY = -2;
     static void ToFFXIPos(const position_t* pos, float* out);
     static void ToFFXIPos(float* out);
     static void ToFFXIPos(position_t* out);

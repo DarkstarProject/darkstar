@@ -38,7 +38,7 @@
 class CServerMessagePacket: public CBasicPacket
 {
 public:
-    CServerMessagePacket(const string_t message, int8 language, std::int32_t timestamp, std::int32_t message_offset);
+    CServerMessagePacket(const string_t message, std::int8_t language, std::int32_t timestamp, std::int32_t message_offset);
 };
 
 #endif

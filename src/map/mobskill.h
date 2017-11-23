@@ -94,8 +94,8 @@ public:
     void        setSecondarySkillchain(std::uint8_t skillchain);
     void        setTertiarySkillchain(std::uint8_t skillchain);
 
-    const int8* getName() const;
-    void        setName(int8* name);
+    const std::int8_t* getName() const;
+    void        setName(std::int8_t* name);
 
 private:
 

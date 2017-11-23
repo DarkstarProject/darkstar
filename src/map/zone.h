@@ -515,14 +515,14 @@ public:
     std::uint16_t          GetTax();
     WEATHER         GetWeather();
     std::uint32_t          GetWeatherChangeTime();
-    const int8*     GetName();
+    const std::int8_t*     GetName();
     std::uint8_t           GetSoloBattleMusic();
     std::uint8_t           GetPartyBattleMusic();
     std::uint8_t           GetBackgroundMusicDay();
     std::uint8_t           GetBackgroundMusicNight();
     zoneLine_t*     GetZoneLine(std::uint32_t zoneLineID);
 
-    virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
+    virtual CCharEntity*    GetCharByName(std::int8_t* name);                              // finds the player if exists in zone
     virtual CCharEntity*    GetCharByID(std::uint32_t id);
     // Gets an entity - ignores instances (use CBaseEntity->GetEntity if possible)
     virtual CBaseEntity*    GetEntity(std::uint16_t targid, std::uint8_t filter = -1);            // получаем указатель на любую сущность в зоне

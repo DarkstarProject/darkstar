@@ -249,7 +249,7 @@ public:
     SpawnIDList_t	  SpawnPETList;					// список видимых питомцев
     SpawnIDList_t	  SpawnNPCList;					// список видимых npc
 
-    void			  SetName(int8* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
+    void			  SetName(std::int8_t* name);			// устанавливаем имя персонажа (имя ограничивается 15-ю символами)
 
     EntityID_t        TradePending;                 // ID персонажа, предлагающего обмен
     EntityID_t        InvitePending;                // ID персонажа, отправившего приглашение в группу
@@ -281,7 +281,7 @@ public:
     bool              m_isNewPlayer;                // New player flag..
     std::uint32_t            m_moghouseID;
 
-    int8			  getShieldSize();
+    std::int8_t			  getShieldSize();
 
     bool			  getWeaponSkillKill();
     void			  setWeaponSkillKill(bool isWeaponSkillKill);

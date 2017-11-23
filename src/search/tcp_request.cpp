@@ -117,7 +117,7 @@ std::int32_t CTCPRequestPacket::GetSize()
 
 std::int32_t CTCPRequestPacket::ReceiveFromSocket()
 {
-    int8 recvbuf[DEFAULT_BUFLEN];
+    char recvbuf[DEFAULT_BUFLEN];
 
     m_size = recv(*m_socket, recvbuf, DEFAULT_BUFLEN, 0);
     if (m_size == -1)
@@ -158,7 +158,7 @@ std::int32_t CTCPRequestPacket::SendRawToSocket(std::uint8_t* data, std::uint32_
 {
     std::int32_t iResult;
 
-    iResult = send(*m_socket, (const int8*)data, length, 0);
+    iResult = send(*m_socket, (const char*)data, length, 0);
     if (iResult == SOCKET_ERROR)
     {
 #ifdef WIN32
@@ -186,7 +186,7 @@ std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, std::uint32_t l
 
     md5((std::uint8_t*)(key), blowfish.hash, 24);
 
-    blowfish_init((int8*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
+    blowfish_init((std::int8_t*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
 
     md5(data + 8, data + length - 0x18 + 0x04, length - 0x18 - 0x04);
 
@@ -200,7 +200,7 @@ std::int32_t CTCPRequestPacket::SendToSocket(std::uint8_t* data, std::uint32_t l
 
     memcpy(&data[length] - 0x04, key + 16, 4);
 
-    iResult = send(*m_socket, (const int8*)data, length, 0);
+    iResult = send(*m_socket, (const char*)data, length, 0);
     if (iResult == SOCKET_ERROR)
     {
 #ifdef WIN32
@@ -265,7 +265,7 @@ std::int32_t CTCPRequestPacket::decipher()
 {
     md5((std::uint8_t*)(key), blowfish.hash, 20);
 
-    blowfish_init((int8*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
+    blowfish_init((std::int8_t*)blowfish.hash, 16, blowfish.P, blowfish.S[0]);
 
     std::uint8_t tmp = (m_size - 12) / 4;
     tmp -= tmp % 2;

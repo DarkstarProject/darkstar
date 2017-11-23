@@ -131,7 +131,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
             CharList[0] = 0xE0; CharList[1] = 0x08;
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
-            const int8 *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
+            const char *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
             std::int32_t ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
@@ -287,7 +287,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
                 //new char only (first login from char create)
                 if (PrevZone == 0)  key3[16] += 6;
 
-                ZoneIP = inet_addr(Sql_GetData(SqlHandle, 0));
+                ZoneIP = inet_addr((const char*)Sql_GetData(SqlHandle, 0));
                 ZonePort = (std::uint16_t)Sql_GetUIntData(SqlHandle, 1);
                 WBUFL(ReservePacket, (0x38)) = ZoneIP;
                 WBUFW(ReservePacket, (0x3C)) = ZonePort;
@@ -311,7 +311,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
             // необходиму одалять сессию, необработанную игровым сервером
             Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
 
-            int8 session_key[sizeof(key3) * 2 + 1];
+            char session_key[sizeof(key3) * 2 + 1];
             bin2hex(session_key, key3, sizeof(key3));
 
             fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
@@ -495,7 +495,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             }
             else
             {
-                const int8 *pfmtQuery = "SELECT expansions,features FROM accounts WHERE id = %u;";
+                const char *pfmtQuery = "SELECT expansions,features FROM accounts WHERE id = %u;";
                 std::int32_t ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
@@ -605,7 +605,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
         {
 
             //creating new char
-            if (lobby_createchar(sd, (char*)session[fd]->rdata.data()) == -1)
+            if (lobby_createchar(sd, (std::int8_t*)session[fd]->rdata.data()) == -1)
             {
                 do_close_lobbyview(sd, fd);
                 return -1;
@@ -705,7 +705,7 @@ std::int32_t do_close_lobbyview(login_session_data_t* sd, std::int32_t fd)
 *                                                                       *
 ************************************************************************/
 
-std::int32_t lobby_createchar(login_session_data_t *loginsd, char *buf)
+std::int32_t lobby_createchar(login_session_data_t *loginsd, std::int8_t *buf)
 {
     // инициализируем генератор случайных чисел
     srand(clock());
@@ -750,7 +750,7 @@ std::int32_t lobby_createchar(login_session_data_t *loginsd, char *buf)
         break;
     }
 
-    const int8* fmtQuery = "SELECT max(charid) FROM chars";
+    const char* fmtQuery = "SELECT max(charid) FROM chars";
 
     if (Sql_Query(SqlHandle, fmtQuery) == SQL_ERROR)
     {
@@ -783,7 +783,7 @@ std::int32_t lobby_createchar(login_session_data_t *loginsd, char *buf)
 
 std::int32_t lobby_createchar_save(std::uint32_t accid, std::uint32_t charid, char_mini* createchar)
 {
-    const int8* Query = "INSERT INTO chars(charid,accid,charname,pos_zone,nation) VALUES(%u,%u,'%s',%u,%u);";
+    const char* Query = "INSERT INTO chars(charid,accid,charname,pos_zone,nation) VALUES(%u,%u,'%s',%u,%u);";
 
     if (Sql_Query(SqlHandle, Query, charid, accid, createchar->m_name, createchar->m_zone, createchar->m_nation) == SQL_ERROR)
     {

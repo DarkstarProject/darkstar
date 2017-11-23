@@ -785,7 +785,7 @@ public:
     std::uint8_t       getRequirements();
     std::uint16_t      getMeritId();
     std::uint8_t       getFlag();
-    int8*       getContentTag();
+    std::int8_t*       getContentTag();
     float       getRange();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
@@ -797,7 +797,7 @@ public:
     void        setRadius(float radius);
     void        setTotalTargets(std::uint16_t total);
     void        setID(SpellID id);
-    void        setJob(int8* jobs);
+    void        setJob(std::int8_t* jobs);
     void        setMPCost(std::uint16_t MP);
     void        setCastTime(std::uint32_t CastTime);
     void        setRecastTime(std::uint32_t RecastTime);
@@ -819,11 +819,11 @@ public:
     void        setMeritId(std::uint16_t meritId);
     void        setModifiedRecast(std::uint32_t mrec);
     void        setFlag(std::uint8_t flag);
-    void        setContentTag(int8* contentTag);
+    void        setContentTag(std::int8_t* contentTag);
     void        setRange(float range);
 
-    const int8* getName();
-    void        setName(int8* name);
+    const std::int8_t* getName();
+    void        setName(std::int8_t* name);
 
 protected:
 
@@ -858,7 +858,7 @@ private:
     std::uint8_t       m_requirements {};                         // requirements before being able to cast spell
     std::uint16_t      m_meritId {};                              // associated merit (if applicable)
     std::uint8_t       m_flag {};
-    int8*       m_contentTag {};
+    std::int8_t*       m_contentTag {};
 };
 
 //Namestpace to work with spells

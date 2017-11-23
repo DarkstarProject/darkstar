@@ -337,7 +337,7 @@ CItemContainer* CCharEntity::getStorage(std::uint8_t LocationID)
     return 0;
 }
 
-int8 CCharEntity::getShieldSize()
+std::int8_t CCharEntity::getShieldSize()
 {
     CItemArmor* PItem = (CItemArmor*)(getEquip(SLOT_SUB));
 
@@ -352,9 +352,9 @@ int8 CCharEntity::getShieldSize()
     return PItem->getShieldSize();
 }
 
-void CCharEntity::SetName(int8* name)
+void CCharEntity::SetName(std::int8_t* name)
 {
-    this->name.insert(0, name, std::clamp<size_t>(strlen((const int8*)name), 0, 15));
+    this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
 }
 
 std::int16_t CCharEntity::addTP(std::int16_t tp)
@@ -1497,10 +1497,10 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
         }
         PItem->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 
-        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        char extra[sizeof(PItem->m_extra) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
-        const int8* Query =
+        const char* Query =
             "UPDATE char_inventory "
             "SET extra = '%s' "
             "WHERE charid = %u AND location = %u AND slot = %u;";

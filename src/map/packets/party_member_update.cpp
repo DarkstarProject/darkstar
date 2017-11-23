@@ -67,7 +67,7 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint
 
     memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
 }
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const std::int8_t* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID)
 {
 
     this->type = 0xDD;
@@ -78,5 +78,5 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8*
     ref<std::uint16_t>(0x14) = memberFlags;
     ref<std::uint16_t>(0x20) = ZoneID;
 
-    memcpy(data + (0x26), name, strlen(name));
+    memcpy(data + (0x26), name, strlen((const char*)name));
 }

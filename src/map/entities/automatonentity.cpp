@@ -98,7 +98,7 @@ std::uint8_t CAutomatonEntity::getElementMax(std::uint8_t element)
     return m_ElementMax[element];
 }
 
-void CAutomatonEntity::addElementCapacity(std::uint8_t element, int8 value)
+void CAutomatonEntity::addElementCapacity(std::uint8_t element, std::int8_t value)
 {
     m_ElementEquip[element] += value;
 }
@@ -124,7 +124,7 @@ void CAutomatonEntity::setInitialBurden()
     m_Burden.fill(30);
 }
 
-std::uint8_t CAutomatonEntity::addBurden(std::uint8_t element, int8 burden)
+std::uint8_t CAutomatonEntity::addBurden(std::uint8_t element, std::int8_t burden)
 {
     m_Burden[element] = std::clamp(m_Burden[element] + burden, 0, 255);
 

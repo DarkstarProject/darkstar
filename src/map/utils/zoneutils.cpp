@@ -72,7 +72,7 @@ void UpdateTreasureSpawnPoint(std::uint32_t npcid, std::uint32_t respawnTime)
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        const char* contentTag = Sql_GetData(SqlHandle, 5);
+        const char* contentTag = (const char*)Sql_GetData(SqlHandle, 5);
 
         if (luautils::IsContentEnabled(contentTag) == false)
         {
@@ -200,7 +200,7 @@ CBaseEntity* GetEntity(std::uint32_t ID, std::uint8_t filter)
 *                                                                       *
 ************************************************************************/
 
-CCharEntity* GetCharByName(int8* name)
+CCharEntity* GetCharByName(std::int8_t* name)
 {
     for (auto PZone : g_PZoneList)
     {
@@ -288,7 +288,7 @@ CCharEntity* GetCharToUpdate(std::uint32_t primary, std::uint32_t ternary)
 
 void LoadNPCList()
 {
-    const int8* Query =
+    const char* Query =
         "SELECT \
           npcid,\
           npc_list.name,\
@@ -318,7 +318,7 @@ void LoadNPCList()
     {
         while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            const char* contentTag = Sql_GetData(SqlHandle, 16);
+            const char* contentTag = (const char*)Sql_GetData(SqlHandle, 16);
 
             if (luautils::IsContentEnabled(contentTag) == false)
             {
@@ -334,7 +334,7 @@ void LoadNPCList()
                 PNpc->targid = NpcID & 0xFFF;
                 PNpc->id = NpcID;
 
-                PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
+                PNpc->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
 
                 PNpc->loc.p.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
                 PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
@@ -385,7 +385,7 @@ void LoadMOBList()
     std::uint8_t normalLevelRangeMin = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MIN");
     std::uint8_t normalLevelRangeMax = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MAX");
 
-    const int8* Query =
+    const char* Query =
         "SELECT mob_groups.zoneid, mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
             respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
             modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
@@ -416,7 +416,7 @@ void LoadMOBList()
             {
                 CMobEntity* PMob = new CMobEntity;
 
-                PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
+                PMob->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
                 PMob->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 2);
 
                 PMob->targid = (std::uint16_t)PMob->id & 0x0FFF;
@@ -568,7 +568,7 @@ void LoadMOBList()
     });
 
     // attach pets to mobs
-    const int8* PetQuery =
+    const char* PetQuery =
         "SELECT mob_groups.zoneid, mob_mobid, pet_offset \
         FROM mob_pets \
         LEFT JOIN mob_spawn_points ON mob_pets.mob_mobid = mob_spawn_points.mobid \
@@ -623,7 +623,7 @@ void LoadMOBList()
 
 CZone* CreateZone(std::uint16_t ZoneID)
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT zonetype FROM zone_settings "
         "WHERE zoneid = %u LIMIT 1";
 
@@ -658,7 +658,7 @@ void LoadZoneList()
     g_PTrigger = new CNpcEntity();  // нужно в конструкторе CNpcEntity задавать модель по умолчанию
 
     std::vector<std::uint16_t> zones;
-    const int8* query = "SELECT zoneid FROM zone_settings WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
+    const char* query = "SELECT zoneid FROM zone_settings WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
     int ret = Sql_Query(SqlHandle, query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
@@ -1062,13 +1062,13 @@ void ForEachZone(std::function<void(CZone*)> func)
 std::uint64_t GetZoneIPP(std::uint16_t zoneID)
 {
     std::uint64_t ipp = 0;
-    const int8* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %u;";
+    const char* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %u;";
 
     int ret = Sql_Query(SqlHandle, query, zoneID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        ipp = inet_addr(Sql_GetData(SqlHandle, 0));
+        ipp = inet_addr((const char*)Sql_GetData(SqlHandle, 0));
         std::uint64_t port = Sql_GetUIntData(SqlHandle, 1);
         ipp |= (port << 32);
     }

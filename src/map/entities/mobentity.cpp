@@ -602,7 +602,7 @@ void CMobEntity::Spawn()
     // add people to my posse
     if (getMobMod(MOBMOD_ASSIST))
     {
-        for (int8 i = 1; i < getMobMod(MOBMOD_ASSIST) + 1; i++)
+        for (std::int8_t i = 1; i < getMobMod(MOBMOD_ASSIST) + 1; i++)
         {
             CMobEntity* PMob = (CMobEntity*)GetEntity(targid + i, TYPE_MOB);
 

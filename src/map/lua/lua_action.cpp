@@ -266,7 +266,7 @@ std::int32_t CLuaAction::addEffectMessage(lua_State* L)
 }
 
 // Initialize Lua Methods
-const int8 CLuaAction::className[] = "CAction";
+const char CLuaAction::className[] = "CAction";
 
 Lunar<CLuaAction>::Register_t CLuaAction::methods[] =
 {

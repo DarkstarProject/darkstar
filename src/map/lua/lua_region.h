@@ -34,7 +34,7 @@ class CLuaRegion
 
 public:
 
-    static const int8 className[];
+    static const char className[];
     static Lunar<CLuaRegion>::Register_t methods[];
 
     CLuaRegion(lua_State*);

@@ -94,7 +94,7 @@ public:
     std::uint16_t		getID();
     duration		getTimeLimit();
     BATTLEFIELDTYPE		getType();
-    const int8* getBcnmName();
+    const std::int8_t* getBcnmName();
     std::uint16_t		getZoneId();
     std::uint8_t       getBattlefieldNumber();
     std::uint8_t       getMaxParticipants();
@@ -108,7 +108,7 @@ public:
     const BattlefieldRecord& getRecord() const;
 
     void		setTimeLimit(duration time);
-    void		setBcnmName(int8* name);
+    void		setBcnmName(std::int8_t* name);
     void		setZoneId(std::uint16_t zone);
     void		setBattlefieldNumber(std::uint8_t battlefield);
     void		setMaxParticipants(std::uint8_t max);

@@ -206,7 +206,7 @@ inline std::int32_t CLuaSpell::getFlag(lua_State *L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaSpell::className[] = "CSpell";
+const char CLuaSpell::className[] = "CSpell";
 Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaSpell,setMsg),

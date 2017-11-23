@@ -69,7 +69,7 @@ namespace synthutils
 
 bool isRightRecipe(CCharEntity* PChar)
 {
-	const int8* fmtQuery =
+	const char* fmtQuery =
 
 		"SELECT ID, KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, \
 			Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty \
@@ -889,13 +889,13 @@ std::int32_t doSynthResult(CCharEntity* PChar)
 		{
 			if ((PItem->getFlag() & ITEM_FLAG_INSCRIBABLE) && (PChar->CraftContainer->getItemID(0) > 0x1080))
 			{
-                int8 encodedSignature [12];
-				PItem->setSignature(EncodeStringSignature((int8*)PChar->name.c_str(), encodedSignature));
+                std::int8_t encodedSignature [12];
+				PItem->setSignature(EncodeStringSignature((std::int8_t*)PChar->name.c_str(), encodedSignature));
 
-                int8 signature_esc[31]; //max charname: 15 chars * 2 + 1
+                char signature_esc[31]; //max charname: 15 chars * 2 + 1
 				Sql_EscapeStringLen(SqlHandle,signature_esc,PChar->name.c_str(),strlen(PChar->name.c_str()));
 
-				int8 fmtQuery[] = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;\0";
+				char fmtQuery[] = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = 0 AND slot = %u;\0";
 
 				Sql_Query(SqlHandle,fmtQuery,signature_esc,PChar->id, invSlotID);
 			}

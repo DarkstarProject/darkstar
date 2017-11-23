@@ -764,14 +764,14 @@ void CZoneEntities::SavePlayTime()
     }
 }
 
-CCharEntity* CZoneEntities::GetCharByName(int8* name)
+CCharEntity* CZoneEntities::GetCharByName(std::int8_t* name)
 {
     if (!m_charList.empty())
     {
         for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
         {
             CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-            if (stricmp(PCurrentChar->GetName(), name) == 0)
+            if (stricmp((char*)PCurrentChar->GetName(), (const char*)name) == 0)
             {
                 return PCurrentChar;
             }

@@ -87,12 +87,12 @@ struct map_config_t
     std::uint8_t  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
     std::uint8_t  fov_allow_alliance;        // if 1 allow alliance to farm fov pages
     float  exp_retain;                // percentage of normally lost experience to retain upon death
-    int8   exp_loss_level;            // Minimum main job level at which a character may lose experience points.
+    std::int8_t   exp_loss_level;            // Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;         // Enable/disable Level Sync
     bool   disable_gear_scaling;      // Disables ability to equip higher level gear when level cap/sync effect is on player.
     bool   all_jobs_widescan;         // Enable/disable jobs other than BST and RNG having widescan.
-    int8   speed_mod;                 // Modifier to add to player speed
-    int8   mob_speed_mod;             // Modifier to add to monster speed
+    std::int8_t   speed_mod;                 // Modifier to add to player speed
+    std::int8_t   mob_speed_mod;             // Modifier to add to monster speed
     float  skillup_chance_multiplier; // Constant used in the skillup formula that has a strong effect on skill-up rates
     float  craft_chance_multiplier;   // Constant used in the crafting skill-up formula that has a strong effect on skill-up rates
     float  skillup_amount_multiplier; // Used to increase the amount of skill gained during skill up
@@ -118,8 +118,8 @@ struct map_config_t
     std::uint32_t all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     std::uint32_t max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
     std::uint8_t  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
-    int8   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
-    int8   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
+    std::int8_t   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
+    std::int8_t   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
     std::uint8_t  max_merit_points;          // global variable, amount of merit points players are allowed
     std::uint16_t yell_cooldown;             // Minimum time between uses of yell command (in seconds).
     float  fame_multiplier;           // Fame multiplier
@@ -147,7 +147,7 @@ struct map_session_data_t
     std::uint16_t       client_port;
     std::uint16_t       client_packet_id;          // id последнего пакета, пришедшего от клиента
     std::uint16_t       server_packet_id;          // id последнего пакета, отправленного сервером
-    int8*        server_packet_data;        // указатель на собранный пакет, который был ранее отправлен клиенту
+    std::int8_t*        server_packet_data;        // указатель на собранный пакет, который был ранее отправлен клиенту
     size_t       server_packet_size;        // размер пакета, который был ранее отправлен клиенту
     time_t       last_update;               // time of last packet recv
     blowfish_t   blowfish;                  // unique decypher keys
@@ -181,14 +181,14 @@ extern inline map_session_data_t* mapsession_createsession(std::uint32_t ip,std:
 
 //=======================================================================
 
-std::int32_t recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
-std::int32_t parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
-std::int32_t send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
+std::int32_t recv_parse(std::int8_t *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
+std::int32_t parse(std::int8_t *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
+std::int32_t send_parse(std::int8_t *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
 
 void  map_helpscreen(std::int32_t flag);                                                       // Map-Server Version Screen [venom]
 void  map_versionscreen(std::int32_t flag);                                                    // Map-Server Version Screen [venom]
 
-std::int32_t map_config_read(const int8 *cfgName);                                             // Map-Server Config [venom]
+std::int32_t map_config_read(const std::int8_t *cfgName);                                             // Map-Server Config [venom]
 std::int32_t map_config_default();
 
 std::int32_t map_cleanup(time_point tick,CTaskMgr::CTask *PTask);                              // Clean up timed out players

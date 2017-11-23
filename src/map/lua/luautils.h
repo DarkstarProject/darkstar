@@ -82,7 +82,7 @@ namespace luautils
     int register_fp(int index);
     void unregister_fp(int);
     std::int32_t print(lua_State*);
-    std::int32_t prepFile(int8*, const char*);
+    std::int32_t prepFile(std::int8_t*, const char*);
 
     template<class T, class L>
     void pushLuaType(T* obj) { Lunar<L>::push(LuaHandle, new L(obj), true); }
@@ -189,7 +189,7 @@ namespace luautils
 
     std::int32_t OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
     std::int32_t OnEventUpdate(CCharEntity* PChar, std::uint16_t eventID, std::uint32_t result);     // triggered when game triggers event update during cutscene
-    std::int32_t OnEventUpdate(CCharEntity* PChar, int8* string);                      // triggered when game triggers event update during cutscene
+    std::int32_t OnEventUpdate(CCharEntity* PChar, std::int8_t* string);                      // triggered when game triggers event update during cutscene
     std::int32_t OnEventFinish(CCharEntity* PChar, std::uint16_t eventID, std::uint32_t result);     // triggered when cutscene/event is completed
     std::int32_t OnTrade(CCharEntity* PChar, CBaseEntity* PNpc);                       // triggers when a trade completes with an npc
 

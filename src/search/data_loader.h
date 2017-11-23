@@ -91,7 +91,7 @@ public:
     std::list<SearchEntity*> GetPartyList(std::uint16_t PartyID, std::uint16_t AllianceID);
     std::list<SearchEntity*> GetLinkshellList(std::uint32_t LinkshellID);
     std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
-    std::vector<ahItem*>     GetAHItemsToCategory(std::uint8_t AHCategoryID, int8* OrderByString);
+    std::vector<ahItem*>     GetAHItemsToCategory(std::uint8_t AHCategoryID, std::int8_t* OrderByString);
     void					 ExpireAHItems();
 
 private:

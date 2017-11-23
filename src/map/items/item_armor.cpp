@@ -282,7 +282,7 @@ void CItemArmor::SetAugmentMod(std::uint16_t type, std::uint8_t value)
 
 
     // obtain augment info by querying the db
-    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `isPet`, `petType` FROM augments WHERE augmentId = %u";
+    const char* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `isPet`, `petType` FROM augments WHERE augmentId = %u";
 
     std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, type);
 

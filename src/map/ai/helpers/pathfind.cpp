@@ -276,7 +276,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
 
     float speed = GetRealSpeed();
 
-    int8 mode = 2;
+    std::int8_t mode = 2;
 
     if (!run)
     {
@@ -354,7 +354,7 @@ bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, std::ui
     position_t startPosition = start;
 
     // find end points for turns
-    for (int8 i = 0; i < m_turnLength; i++) {
+    for (std::int8_t i = 0; i < m_turnLength; i++) {
         // look for new point centered around the last point
         auto status = m_PTarget->loc.zone->m_navMesh->findRandomPosition(startPosition, maxRadius);
 

@@ -62,6 +62,6 @@ std::int32_t do_close_lobbydata(login_session_data_t* loginsd, std::int32_t fd);
 std::int32_t do_close_lobbyview(login_session_data_t*, std::int32_t fd);
 
 
-std::int32_t lobby_createchar(login_session_data_t* loginsd, int8* buf);
+std::int32_t lobby_createchar(login_session_data_t* loginsd, std::int8_t* buf);
 std::int32_t lobby_createchar_save(std::uint32_t accid, std::uint32_t charid, char_mini* createchar);
 #endif

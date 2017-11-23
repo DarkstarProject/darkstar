@@ -85,7 +85,7 @@ static std::uint8_t cap[100] =
 
 struct MeritCategoryInfo_t
 {
-    int8 MeritsInCat;  // количество элементов в группе
+    std::int8_t MeritsInCat;  // количество элементов в группе
     std::uint8_t MaxPoints;    // максимальное количество points, которые можно вложить в группу
     std::uint8_t UpgradeID;    // индекс группы в массиве upgrade
 };
@@ -506,8 +506,8 @@ namespace meritNameSpace
 
             std::uint16_t index = 0;			// global merit template count (to 255)
 			std::uint8_t catIndex = 0;			// global merit catagory count (to 51)
-			int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
-			int8 catMeritIndex = 0;		// counts number of merits in a catagory
+			std::int8_t previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
+			std::int8_t catMeritIndex = 0;		// counts number of merits in a catagory
 
 
 		    while( Sql_NextRow(SqlHandle) == SQL_SUCCESS )

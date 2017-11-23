@@ -264,7 +264,7 @@ namespace itemutils
 
     void LoadItemList()
     {
-        const int8* Query =
+        const char* Query =
             "SELECT "
                 "b.itemId,"         //  0
                 "b.name,"           //  1

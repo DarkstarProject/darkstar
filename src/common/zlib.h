@@ -10,7 +10,7 @@ static inline size_t zlib_compressed_size(const size_t sz)
 }
 
 std::int32_t zlib_init();
-std::int32_t zlib_compress(const int8 *in, const std::uint32_t in_sz, int8 *out, const std::uint32_t out_sz);
-std::uint32_t zlib_decompress(const int8 *in, const std::uint32_t in_sz, int8 *out, const std::uint32_t out_sz);
+std::int32_t zlib_compress(const std::int8_t *in, const std::uint32_t in_sz, std::int8_t *out, const std::uint32_t out_sz);
+std::uint32_t zlib_decompress(const std::int8_t *in, const std::uint32_t in_sz, std::int8_t *out, const std::uint32_t out_sz);
 
 #endif

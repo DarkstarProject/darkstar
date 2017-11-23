@@ -229,7 +229,7 @@ public:
     std::uint16_t    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
 
-    int8      m_battlefieldID;            // battlefield belonging to
+    std::int8_t      m_battlefieldID;            // battlefield belonging to
     std::uint16_t    m_bcnmID;                   // belongs to which battlefield
     bool      m_giveExp;                  // prevent exp gain
     bool      m_neutral;                  // stop linking / aggroing

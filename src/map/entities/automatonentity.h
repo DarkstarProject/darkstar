@@ -69,7 +69,7 @@ public:
     void setAttachment(std::uint8_t slot, std::uint8_t id);
 
     void setElementMax(std::uint8_t element, std::uint8_t max);
-    void addElementCapacity(std::uint8_t element, int8 value);
+    void addElementCapacity(std::uint8_t element, std::int8_t value);
 
     AUTOFRAMETYPE getFrame();
     AUTOHEADTYPE getHead();
@@ -81,7 +81,7 @@ public:
 
     void burdenTick();
     void setInitialBurden();
-    std::uint8_t addBurden(std::uint8_t element, int8 burden);
+    std::uint8_t addBurden(std::uint8_t element, std::int8_t burden);
 
     void PostTick() override;
 

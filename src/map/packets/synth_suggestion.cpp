@@ -32,7 +32,7 @@ CSynthSuggestionPacket::CSynthSuggestionPacket(std::uint32_t synthID)
 	this->type = 0x31;
 	this->size = 0x1A;
 
-	const int8* fmtQuery =
+	const char* fmtQuery =
 
 		"SELECT KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, Crystal, \
 			Result, Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8 \

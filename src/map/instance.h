@@ -43,7 +43,7 @@ public:
 
     std::uint8_t GetID();
     std::uint8_t GetLevelCap();
-    const int8* GetName();
+    const std::int8_t* GetName();
     position_t GetEntryLoc();								// Get entry location
     duration GetTimeLimit();								// Get instance time limit
     duration GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed

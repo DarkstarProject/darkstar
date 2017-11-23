@@ -240,7 +240,7 @@ namespace conquest
         std::int32_t bastok = 0;
         std::int32_t windurst = 0;
         std::int32_t beastmen = 0;
-        const int8* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
+        const char* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query, regionid);
@@ -319,7 +319,7 @@ namespace conquest
             }
         });
 
-        const int8* Query = "UPDATE conquest_system SET region_control = \
+        const char* Query = "UPDATE conquest_system SET region_control = \
                             IF(sandoria_influence > bastok_influence AND sandoria_influence > windurst_influence AND \
                             sandoria_influence > beastmen_influence, 0, \
                             IF(bastok_influence > sandoria_influence AND bastok_influence > windurst_influence AND \
@@ -410,7 +410,7 @@ namespace conquest
         std::uint8_t sandoria = 0;
         std::uint8_t bastok = 0;
         std::uint8_t windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query);
 
@@ -489,7 +489,7 @@ namespace conquest
         std::uint8_t sandoria = 0;
         std::uint8_t bastok = 0;
         std::uint8_t windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query);
 
@@ -552,7 +552,7 @@ namespace conquest
 
     std::uint8_t GetRegionOwner(REGIONTYPE RegionID)
     {
-        const int8* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
+        const char* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
         std::int32_t ret = Sql_Query(SqlHandle, Query, RegionID);
 

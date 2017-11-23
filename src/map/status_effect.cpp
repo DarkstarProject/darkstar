@@ -41,9 +41,9 @@ CStatusEffect::~CStatusEffect()
 {
 }
 
-const int8* CStatusEffect::GetName()
+const std::int8_t* CStatusEffect::GetName()
 {
-	return m_Name.c_str();
+	return (const std::int8_t*)m_Name.c_str();
 }
 
 void CStatusEffect::SetOwner(CBattleEntity* Owner)
@@ -175,10 +175,10 @@ void CStatusEffect::IncrementElapsedTickCount()
     ++m_tickCount;
 }
 
-void CStatusEffect::SetName(const int8* name)
+void CStatusEffect::SetName(const std::int8_t* name)
 {
 	m_Name.clear();
-	m_Name.insert(0,name);
+	m_Name.insert(0, (const char*)name);
 }
 
 void CStatusEffect::SetName(string_t name)
