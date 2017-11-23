@@ -73,13 +73,13 @@ typedef u_int SOCKET;
 struct SearchCommInfo
 {
     SOCKET socket;
-    uint32 ip;
+    std::uint32_t ip;
     uint16 port;
 };
 
 void TaskManagerThread();
 
-int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
+std::int32_t ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
 
 
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
@@ -117,7 +117,7 @@ void PrintPacket(char* data, int size)
 
     printf("\n");
 
-    for (int32 y = 0; y < size; y++)
+    for (std::int32_t y = 0; y < size; y++)
     {
         int8 msgtmp[50];
         memset(&msgtmp, 0, 50);
@@ -144,7 +144,7 @@ void PrintPacket(char* data, int size)
 *																		*
 ************************************************************************/
 
-int32 main(int32 argc, int8 **argv)
+std::int32_t main(std::int32_t argc, int8 **argv)
 {
 #ifdef WIN32
     WSADATA wsaData;
@@ -526,8 +526,8 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 
     uint16 partyid = RBUFW(data, (0x10));
     uint16 allianceid = RBUFW(data, (0x14));
-    uint32 linkshellid1 = RBUFL(data, (0x18));
-    uint32 linkshellid2 = RBUFL(data, (0x1C));
+    std::uint32_t linkshellid1 = RBUFL(data, (0x18));
+    std::uint32_t linkshellid2 = RBUFL(data, (0x1C));
 
     ShowMessage("SEARCH::PartyID = %u\n", partyid);
     ShowMessage("SEARCH::LinkshellIDs = %u, %u\n", linkshellid1, linkshellid2);
@@ -538,7 +538,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
     {
         std::list<SearchEntity*> PartyList = PDataLoader.GetPartyList(partyid, allianceid);
 
-        CPartyListPacket PPartyPacket(partyid, (uint32)PartyList.size());
+        CPartyListPacket PPartyPacket(partyid, (std::uint32_t)PartyList.size());
 
         for (std::list<SearchEntity*>::iterator it = PartyList.begin(); it != PartyList.end(); ++it)
         {
@@ -550,10 +550,10 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
     }
     else if (linkshellid1 != 0 || linkshellid2 != 0)
     {
-        uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
+        std::uint32_t linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
         std::list<SearchEntity*> LinkshellList = PDataLoader.GetLinkshellList(linkshellid);
 
-        CLinkshellListPacket PLinkshellPacket(linkshellid, (uint32)LinkshellList.size());
+        CLinkshellListPacket PLinkshellPacket(linkshellid, (std::uint32_t)LinkshellList.size());
 
         for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
         {
@@ -715,7 +715,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     // суть в том, чтобы заполнить некоторую структуру, на основании которой будет создан запрос к базе
     // результат поиска в базе отправляется клиенту
 
-    uint32 bitOffset = 0;
+    std::uint32_t bitOffset = 0;
 
     unsigned char sortDescending = 0;
     unsigned char isPresent = 0;
@@ -736,7 +736,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 
     uint16 areas[10];
 
-    uint32 flags = 0;
+    std::uint32_t flags = 0;
 
 
     uint8* data = (uint8*)PTCPRequest.GetData();
@@ -997,7 +997,7 @@ void TaskManagerThread()
 *                                                                       *
 ************************************************************************/
 
-int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
+std::int32_t ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 {
     //ShowMessage(CL_YELLOW"[TASK] ah_cleanup tick..\n" CL_RESET);
 

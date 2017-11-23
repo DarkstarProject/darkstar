@@ -45,10 +45,10 @@ public:
         return m_PLuaRegion;
     }
 
-    int32 GetRegionID(lua_State*);
-    int32 GetCount(lua_State*);
-    int32 AddCount(lua_State*);
-    int32 DelCount(lua_State*);
+    std::int32_t GetRegionID(lua_State*);
+    std::int32_t GetCount(lua_State*);
+    std::int32_t AddCount(lua_State*);
+    std::int32_t DelCount(lua_State*);
 };
 
 #endif

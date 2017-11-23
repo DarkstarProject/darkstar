@@ -62,7 +62,7 @@ CLuaRegion::CLuaRegion(CRegion* PRegion)
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaRegion::GetRegionID(lua_State *L)
+inline std::int32_t CLuaRegion::GetRegionID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
 
@@ -76,7 +76,7 @@ inline int32 CLuaRegion::GetRegionID(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaRegion::GetCount(lua_State *L)
+inline std::int32_t CLuaRegion::GetCount(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
 
@@ -90,7 +90,7 @@ inline int32 CLuaRegion::GetCount(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaRegion::AddCount(lua_State *L)
+inline std::int32_t CLuaRegion::AddCount(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -105,7 +105,7 @@ inline int32 CLuaRegion::AddCount(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaRegion::DelCount(lua_State *L)
+inline std::int32_t CLuaRegion::DelCount(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaRegion == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));

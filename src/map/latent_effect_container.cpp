@@ -740,7 +740,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         break;
     case LATENT_TIME_OF_DAY:
     {
-        uint32 VanadielHour = CVanaTime::getInstance()->getHour();
+        std::uint32_t VanadielHour = CVanaTime::getInstance()->getHour();
         switch (latentEffect.GetConditionsValue())
         {
         case 0:
@@ -760,7 +760,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
     }
     case LATENT_HOUR_OF_DAY:
     {
-        uint32 VanadielHour = CVanaTime::getInstance()->getHour();
+        std::uint32_t VanadielHour = CVanaTime::getInstance()->getHour();
         switch (latentEffect.GetConditionsValue())
         {
         case 1:
@@ -816,8 +816,8 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         break;
     case LATENT_MOON_PHASE:
     {
-        uint32 MoonPhase = CVanaTime::getInstance()->getMoonPhase();
-        uint32 MoonDirection = CVanaTime::getInstance()->getMoonDirection(); //directions: 1 = waning, 2 = waxing, 0 = neither
+        std::uint32_t MoonPhase = CVanaTime::getInstance()->getMoonPhase();
+        std::uint32_t MoonDirection = CVanaTime::getInstance()->getMoonDirection(); //directions: 1 = waning, 2 = waxing, 0 = neither
         switch (latentEffect.GetConditionsValue())
         {
         case 0:
@@ -881,7 +881,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         //CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
         //CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-        //int32 visibleMp = 0;
+        //std::int32_t visibleMp = 0;
         //visibleMp += (head ? head->getModifier(Mod::MP) : 0);
         //visibleMp += (body ? body->getModifier(Mod::MP) : 0);
         //visibleMp += (hands ? hands->getModifier(Mod::MP) : 0);
@@ -907,7 +907,7 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         //CItemArmor* legs = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_LEGS]));
         //CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
-        //int32 visibleHp = 0;
+        //std::int32_t visibleHp = 0;
         //visibleHp += (head ? head->getModifier(Mod::HP) : 0);
         //visibleHp += (body ? body->getModifier(Mod::HP) : 0);
         //visibleHp += (hands ? hands->getModifier(Mod::HP) : 0);

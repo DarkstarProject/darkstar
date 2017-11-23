@@ -44,32 +44,32 @@ public:
         return m_PLuaInstance;
     }
 
-    int32 getID(lua_State*);
-    int32 getAllies(lua_State*);
-    int32 getChars(lua_State*);
-    int32 getMobs(lua_State*);
-    int32 getNpcs(lua_State*);
-    int32 getPets(lua_State*);
-    int32 getTimeLimit(lua_State*);
-    int32 getEntryPos(lua_State*);
-    int32 getLastTimeUpdate(lua_State*);
-    int32 getProgress(lua_State*);
-    int32 getWipeTime(lua_State*);
-    int32 getEntity(lua_State*);
-    int32 getStage(lua_State*);
+    std::int32_t getID(lua_State*);
+    std::int32_t getAllies(lua_State*);
+    std::int32_t getChars(lua_State*);
+    std::int32_t getMobs(lua_State*);
+    std::int32_t getNpcs(lua_State*);
+    std::int32_t getPets(lua_State*);
+    std::int32_t getTimeLimit(lua_State*);
+    std::int32_t getEntryPos(lua_State*);
+    std::int32_t getLastTimeUpdate(lua_State*);
+    std::int32_t getProgress(lua_State*);
+    std::int32_t getWipeTime(lua_State*);
+    std::int32_t getEntity(lua_State*);
+    std::int32_t getStage(lua_State*);
 
-    int32 setLevelCap(lua_State*);
-    int32 setLastTimeUpdate(lua_State*);
-    int32 setProgress(lua_State*);
-    int32 setWipeTime(lua_State*);
-    int32 setStage(lua_State*);
+    std::int32_t setLevelCap(lua_State*);
+    std::int32_t setLastTimeUpdate(lua_State*);
+    std::int32_t setProgress(lua_State*);
+    std::int32_t setWipeTime(lua_State*);
+    std::int32_t setStage(lua_State*);
 
-    int32 fail(lua_State*);
-    int32 failed(lua_State*);
-    int32 complete(lua_State*);
-    int32 completed(lua_State*);
+    std::int32_t fail(lua_State*);
+    std::int32_t failed(lua_State*);
+    std::int32_t complete(lua_State*);
+    std::int32_t completed(lua_State*);
 
-    int32 insertAlly(lua_State*);
+    std::int32_t insertAlly(lua_State*);
 };
 
 #endif

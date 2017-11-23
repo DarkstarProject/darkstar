@@ -44,23 +44,23 @@ public:
         return m_PLuaSpell;
     }
 
-    int32 setMsg(lua_State*);
-    int32 setAoE(lua_State*);
-    int32 setFlag(lua_State*);
-    int32 setRadius(lua_State*);
-    int32 setAnimation(lua_State*);
-    int32 setMPCost(lua_State*);
-    int32 canTargetEnemy(lua_State*);
-    int32 isAoE(lua_State*);
-    int32 tookEffect(lua_State*);
-    int32 getTotalTargets(lua_State*);
-    int32 getMagicBurstMessage(lua_State*);
-    int32 getElement(lua_State*);
-    int32 getID(lua_State*);
-    int32 getSkillType(lua_State*);
-    int32 getSpellGroup(lua_State*);
-    int32 getFlag(lua_State*);
-    int32 castTime(lua_State*);
+    std::int32_t setMsg(lua_State*);
+    std::int32_t setAoE(lua_State*);
+    std::int32_t setFlag(lua_State*);
+    std::int32_t setRadius(lua_State*);
+    std::int32_t setAnimation(lua_State*);
+    std::int32_t setMPCost(lua_State*);
+    std::int32_t canTargetEnemy(lua_State*);
+    std::int32_t isAoE(lua_State*);
+    std::int32_t tookEffect(lua_State*);
+    std::int32_t getTotalTargets(lua_State*);
+    std::int32_t getMagicBurstMessage(lua_State*);
+    std::int32_t getElement(lua_State*);
+    std::int32_t getID(lua_State*);
+    std::int32_t getSkillType(lua_State*);
+    std::int32_t getSpellGroup(lua_State*);
+    std::int32_t getFlag(lua_State*);
+    std::int32_t castTime(lua_State*);
 };
 
 #endif

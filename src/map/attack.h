@@ -68,8 +68,8 @@ public:
     PHYSICAL_ATTACK_DIRECTION	GetAttackDirection();	// Returns the attack direction.
     uint8						GetWeaponSlot();		// Returns the attacking slot.
     uint8						GetHitRate();			// Returns the hitrate for this swing.
-    int32						GetDamage();			// Returns the damage for this attack.
-    void						SetDamage(int32);		// Sets the damage for this attack.
+    std::int32_t						GetDamage();			// Returns the damage for this attack.
+    void						SetDamage(std::int32_t);		// Sets the damage for this attack.
     bool						IsCritical();			// Returns the isCritical flag.
     void						SetCritical(bool);		// Sets the isCritical flag;
     bool						IsFirstSwing();			// Returns the isFirstSwing flag.
@@ -104,10 +104,10 @@ private:
     bool                        m_anticipated {false};
     bool						m_isFirstSwing {false};			// Flag: Is this attack the first swing?
     float						m_damageRatio {false};			// The damage ratio.
-    int32						m_damage {0};				// The damage for this attack.
-    int32						m_trickAttackDamage {0};	// The damage from trick attack.
-    int32						m_naturalH2hDamage {0};		// The damage from natural H2H.
-    int32						m_baseDamage {0};			// The base damage.
+    std::int32_t						m_damage {0};				// The damage for this attack.
+    std::int32_t						m_trickAttackDamage {0};	// The damage from trick attack.
+    std::int32_t						m_naturalH2hDamage {0};		// The damage from natural H2H.
+    std::int32_t						m_baseDamage {0};			// The base damage.
 };
 
 #endif

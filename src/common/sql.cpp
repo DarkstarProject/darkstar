@@ -35,15 +35,15 @@
 /************************************************************************
 *																		*
 *  Column length receiver.												*
-*  Takes care of the possible size missmatch between uint32 and			*
+*  Takes care of the possible size missmatch between std::uint32_t and			*
 *  unsigned long.				  										*
 *																		*
 ************************************************************************/
 
 struct s_column_length
 {
-	uint32* out_length;
-	uint32  length;
+	std::uint32_t* out_length;
+	std::uint32_t  length;
 };
 
 /************************************************************************
@@ -70,13 +70,13 @@ Sql_t* Sql_Malloc(void)
 *																		*
 ************************************************************************/
 
-int32 Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db)
+std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db)
 {
 	if( self == NULL )
 		return SQL_ERROR;
 
     self->buf.clear();
-	if( !mysql_real_connect(&self->handle, host, user, passwd, db, (uint32)port, NULL/*unix_socket*/, 0/*clientflag*/) )
+	if( !mysql_real_connect(&self->handle, host, user, passwd, db, (std::uint32_t)port, NULL/*unix_socket*/, 0/*clientflag*/) )
 	{
 		ShowSQL("%s\n", mysql_error(&self->handle));
 		return SQL_ERROR;
@@ -91,7 +91,7 @@ int32 Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char*
 *																		*
 ************************************************************************/
 
-int32 Sql_GetTimeout(Sql_t* self, uint32* out_timeout)
+std::int32_t Sql_GetTimeout(Sql_t* self, std::uint32_t* out_timeout)
 {
 	if( self && out_timeout && SQL_SUCCESS == Sql_Query(self, "SHOW VARIABLES LIKE 'wait_timeout'") )
 	{
@@ -100,7 +100,7 @@ int32 Sql_GetTimeout(Sql_t* self, uint32* out_timeout)
 		if( SQL_SUCCESS == Sql_NextRow(self) &&
 			SQL_SUCCESS == Sql_GetData(self, 1, &data, &len) )
 		{
-			*out_timeout = (uint32)strtoul(data, NULL, 10);
+			*out_timeout = (std::uint32_t)strtoul(data, NULL, 10);
 			Sql_FreeResult(self);
 			return SQL_SUCCESS;
 		}
@@ -116,7 +116,7 @@ int32 Sql_GetTimeout(Sql_t* self, uint32* out_timeout)
 *																		*
 ************************************************************************/
 
-int32 Sql_GetColumnNames(Sql_t* self, const char* table, char* out_buf, size_t buf_len, char sep)
+std::int32_t Sql_GetColumnNames(Sql_t* self, const char* table, char* out_buf, size_t buf_len, char sep)
 {
 	char* data;
 	size_t len;
@@ -150,7 +150,7 @@ int32 Sql_GetColumnNames(Sql_t* self, const char* table, char* out_buf, size_t b
 *																		*
 ************************************************************************/
 
-int32 Sql_SetEncoding(Sql_t* self, const char* encoding)
+std::int32_t Sql_SetEncoding(Sql_t* self, const char* encoding)
 {
 	if( self && mysql_set_character_set(&self->handle, encoding) == 0 )
 	{
@@ -165,7 +165,7 @@ int32 Sql_SetEncoding(Sql_t* self, const char* encoding)
 *																		*
 ************************************************************************/
 
-int32 Sql_Ping(Sql_t* self)
+std::int32_t Sql_Ping(Sql_t* self)
 {
 	if( self && mysql_ping(&self->handle) == 0 )
 	{
@@ -182,7 +182,7 @@ int32 Sql_Ping(Sql_t* self)
 
 // @private
 
-static int32 Sql_P_KeepaliveTimer(time_point tick,CTaskMgr::CTask* PTask)
+static std::int32_t Sql_P_KeepaliveTimer(time_point tick,CTaskMgr::CTask* PTask)
 {
 	Sql_t* self = std::any_cast<Sql_t*>(PTask->m_data);
 	ShowInfo("Pinging SQL server to keep connection alive...\n");
@@ -198,9 +198,9 @@ static int32 Sql_P_KeepaliveTimer(time_point tick,CTaskMgr::CTask* PTask)
 
 /// @return the keepalive timer id, or INVALID_TIMER
 
-int32 Sql_Keepalive(Sql_t* self)
+std::int32_t Sql_Keepalive(Sql_t* self)
 {
-	uint32 timeout, ping_interval;
+	std::uint32_t timeout, ping_interval;
 
 	// set a default value first
 	timeout = 28800; // 8 hours
@@ -227,9 +227,9 @@ int32 Sql_Keepalive(Sql_t* self)
 size_t Sql_EscapeStringLen(Sql_t* self, char *out_to, const char *from, size_t from_len)
 {
 	if( self )
-		return (size_t)mysql_real_escape_string(&self->handle, out_to, from, (uint32)from_len);
+		return (size_t)mysql_real_escape_string(&self->handle, out_to, from, (std::uint32_t)from_len);
 	else
-		return (size_t)mysql_escape_string(out_to, from, (uint32)from_len);
+		return (size_t)mysql_escape_string(out_to, from, (std::uint32_t)from_len);
 }
 
 /************************************************************************
@@ -249,7 +249,7 @@ size_t Sql_EscapeString(Sql_t* self, char *out_to, const char *from)
 *																		*
 ************************************************************************/
 
-int32 Sql_QueryStr(Sql_t* self, const char* query)
+std::int32_t Sql_QueryStr(Sql_t* self, const char* query)
 {
 	if( self == NULL )
 		return SQL_ERROR;
@@ -308,11 +308,11 @@ std::uint64_t Sql_LastInsertId(Sql_t* self)
 *																		*
 ************************************************************************/
 
-uint32 Sql_NumColumns(Sql_t* self)
+std::uint32_t Sql_NumColumns(Sql_t* self)
 {
 	if( self && self->result )
 	{
-		return (uint32)mysql_num_fields(self->result);
+		return (std::uint32_t)mysql_num_fields(self->result);
 	}
 	return 0;
 }
@@ -338,7 +338,7 @@ std::uint64_t Sql_NumRows(Sql_t* self)
 *																		*
 ************************************************************************/
 
-int32 Sql_NextRow(Sql_t* self)
+std::int32_t Sql_NextRow(Sql_t* self)
 {
 	if( self && self->result )
 	{
@@ -364,7 +364,7 @@ int32 Sql_NextRow(Sql_t* self)
 *																		*
 ************************************************************************/
 
-int32 Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_len)
+std::int32_t Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_len)
 {
 	if( self && self->row )
 	{
@@ -409,13 +409,13 @@ int8* Sql_GetData(Sql_t* self, size_t col)
 *																		*
 ************************************************************************/
 
-int32 Sql_GetIntData(Sql_t *self, size_t col)
+std::int32_t Sql_GetIntData(Sql_t *self, size_t col)
 {
 	if( self && self->row )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
-			return (self->row[col] ? (int32)atoi(self->row[col]) : 0);
+			return (self->row[col] ? (std::int32_t)atoi(self->row[col]) : 0);
 		}
 	}
 	ShowFatalError("Sql_GetIntData: SQL_ERROR\n");
@@ -428,13 +428,13 @@ int32 Sql_GetIntData(Sql_t *self, size_t col)
 *																		*
 ************************************************************************/
 
-uint32 Sql_GetUIntData(Sql_t *self, size_t col)
+std::uint32_t Sql_GetUIntData(Sql_t *self, size_t col)
 {
 	if( self && self->row )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
-			return (self->row[col] ? (uint32)strtoul(self->row[col],NULL,10) : 0);
+			return (self->row[col] ? (std::uint32_t)strtoul(self->row[col],NULL,10) : 0);
 		}
 	}
 	ShowFatalError("Sql_GetUIntData: SQL_ERROR\n");
@@ -530,7 +530,7 @@ bool Sql_GetAutoCommit(Sql_t* self)
 {
     if( self )
     {
-        int32 ret = Sql_Query(self, "SELECT @@autocommit;");
+        std::int32_t ret = Sql_Query(self, "SELECT @@autocommit;");
 
         if( ret != SQL_ERROR && 
            Sql_NumRows(self) > 0 && 

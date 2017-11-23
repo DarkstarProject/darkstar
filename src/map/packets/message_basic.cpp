@@ -28,7 +28,7 @@
 #include "../entities/baseentity.h"
 
 
-CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param, int32 value, uint16 messageID)
+CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param, std::int32_t value, uint16 messageID)
 {
 	this->type = 0x29;
 	this->size = 0x0E;

@@ -102,7 +102,7 @@ namespace message
                 auto gm_sent = newPacket->ref<uint8>(0x05);
                 if (PChar->nameflags.flags & FLAG_AWAY && !gm_sent)
                 {
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
+                    send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageStandardPacket(PChar, 0, 0, 181));
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace message
             }
             else
             {
-                send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 125));
+                send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageStandardPacket(PChar, 0, 0, 125));
             }
             break;
         }
@@ -143,7 +143,7 @@ namespace message
         }
         case MSG_CHAT_LINKSHELL:
         {
-            uint32 linkshellID = RBUFL(extra->data(), 0);
+            std::uint32_t linkshellID = RBUFL(extra->data(), 0);
             CLinkshell* PLinkshell = linkshell::GetLinkshell(linkshellID);
             if (PLinkshell)
             {
@@ -189,7 +189,7 @@ namespace message
         }
         case MSG_PT_INVITE:
         {
-            uint32 id = RBUFL(extra->data(), 0);
+            std::uint32_t id = RBUFL(extra->data(), 0);
             // uint16 targid = RBUFW(extra->data(), 4);
             uint8 inviteType = RBUFB(packet->data(), 0x0B);
             CCharEntity* PInvitee = zoneutils::GetChar(id);
@@ -201,7 +201,7 @@ namespace message
                     (inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
                 {
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     return;
                 }
                 // check /blockaid
@@ -209,17 +209,17 @@ namespace message
                 {
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
                     // Target is blocking assistance
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageSystemPacket(0, 0, 225));
+                    send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageSystemPacket(0, 0, 225));
                     // Interaction was blocked
                     PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
                     // You cannot invite that person at this time.
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
-                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
+                    send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageStandardPacket(PInvitee, 0, 0, 236));
                     return;
                 }
 
@@ -233,9 +233,9 @@ namespace message
         }
         case MSG_PT_INV_RES:
         {
-            uint32 inviterId = RBUFL(extra->data(), 0);
+            std::uint32_t inviterId = RBUFL(extra->data(), 0);
             // uint16 inviterTargid = RBUFW(extra->data(), 4);
-            uint32 inviteeId = RBUFL(extra->data(), 6);
+            std::uint32_t inviteeId = RBUFL(extra->data(), 6);
             // uint16 inviteeTargid = RBUFW(extra->data(), 10);
             uint8 inviteAnswer = RBUFB(extra->data(), 12);
             CCharEntity* PInviter = zoneutils::GetChar(inviterId);
@@ -265,7 +265,7 @@ namespace message
                             }
                             else
                             {
-                                send(MSG_DIRECT, (uint8*)extra->data() + 6, sizeof(uint32), new CMessageStandardPacket(PInviter, 0, 0, 14));
+                                send(MSG_DIRECT, (uint8*)extra->data() + 6, sizeof(std::uint32_t), new CMessageStandardPacket(PInviter, 0, 0, 14));
                             }
                         }
                         else
@@ -323,7 +323,7 @@ namespace message
         case MSG_PT_DISBAND:
         {
             CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
-            uint32 id = RBUFL(extra->data(), 4);
+            std::uint32_t id = RBUFL(extra->data(), 4);
             if (PChar)
             {
                 if (PChar->PParty)
@@ -391,7 +391,7 @@ namespace message
 
             if (PChar && PChar->loc.zone)
             {
-                uint32 requester = RBUFL(extra->data(), 4);
+                std::uint32_t requester = RBUFL(extra->data(), 4);
 
                 if (requester != 0)
                 {
@@ -415,7 +415,7 @@ namespace message
                 float y = RBUFF(extra->data(), 14);
                 float z = RBUFF(extra->data(), 18);
                 uint8 rot = RBUFB(extra->data(), 22);
-                uint32 moghouseID = RBUFL(extra->data(), 23);
+                std::uint32_t moghouseID = RBUFL(extra->data(), 23);
 
                 PChar->updatemask = 0;
 
@@ -525,7 +525,7 @@ namespace message
 
         zSocket->setsockopt(ZMQ_IDENTITY, &ipp, sizeof ipp);
 
-        uint32 to = 500;
+        std::uint32_t to = 500;
         zSocket->setsockopt(ZMQ_RCVTIMEO, &to, sizeof to);
 
         string_t server = "tcp://";

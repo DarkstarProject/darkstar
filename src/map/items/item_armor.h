@@ -66,7 +66,7 @@ public:
 
     uint8	getReqLvl();
     uint8   getILvl();
-	uint32	getJobs();
+	std::uint32_t	getJobs();
 	uint16	getModelId();
 	uint16	getScriptType();
 	uint8	getShieldSize();
@@ -82,7 +82,7 @@ public:
 
 	void	setReqLvl(uint8 lvl);
     void    setILvl(uint8 lvl);
-	void	setJobs(uint32 jobs);
+	void	setJobs(std::uint32_t jobs);
 	void	setModelId(uint16 mdl);
 	void	setShieldSize(uint8 shield);
 	void	setScriptType(uint16 isScripted);
@@ -106,7 +106,7 @@ private:
 
 	uint8	m_reqLvl;
     uint8   m_iLvl;
-	uint32  m_jobs;
+	std::uint32_t  m_jobs;
 	uint16	m_modelID;
 	uint16	m_scriptType;
 	uint8	m_shieldSize;

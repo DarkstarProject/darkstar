@@ -398,10 +398,10 @@ struct apAction_t
     uint16			  animation;			// 12 bits
     SPECEFFECT		  speceffect;			// 7 bits
     uint8             knockback;            // 3 bits
-    int32			  param;				// 17 bits
+    std::int32_t			  param;				// 17 bits
     uint16			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
-    int32             addEffectParam;       // 17 bits
+    std::int32_t             addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits
     SUBEFFECT         spikesEffect;         // 10 bits
     uint16            spikesParam;          // 14 bits
@@ -435,9 +435,9 @@ struct apAction_t
 struct health_t
 {
     int16   tp;                 // текущее значение
-    int32   hp, mp;             // текущие значения
-    int32   maxhp, maxmp;       // максимальные значения
-    int32   modhp, modmp;       // модифицированные максимальные значения
+    std::int32_t   hp, mp;             // текущие значения
+    std::int32_t   maxhp, maxmp;       // максимальные значения
+    std::int32_t   modhp, modmp;       // модифицированные максимальные значения
 };
 
 typedef std::vector<apAction_t> ActionList_t;
@@ -480,7 +480,7 @@ public:
     bool		    isDead();					// проверяем, мертва ли сущность
     bool		    isAlive();
     bool			isInDynamis();
-    bool			hasImmunity(uint32 imID);
+    bool			hasImmunity(std::uint32_t imID);
     bool			isAsleep();
 
     JOBTYPE		    GetMJob();					// главная профессия
@@ -494,9 +494,9 @@ public:
     void		    SetSLevel(uint8 slvl);		// уровень дополнительной профессии
 
     uint8		    GetHPP();					// количество hp в процентах
-    int32           GetMaxHP();                 // максимальное количество hp
+    std::int32_t           GetMaxHP();                 // максимальное количество hp
     uint8		    GetMPP();					// количество mp в процентах
-    int32           GetMaxMP();                 // максимальное количество mp
+    std::int32_t           GetMaxMP();                 // максимальное количество mp
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
     int16			GetWeaponDelay(bool tp);		//returns delay of combined weapons
@@ -513,8 +513,8 @@ public:
     uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
 
     virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
-    virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
-    virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
+    virtual std::int32_t	addHP(std::int32_t hp);			// увеличиваем/уменьшаем количество hp
+    virtual std::int32_t 	addMP(std::int32_t mp);			// увеличиваем/уменьшаем количество mp
 
     int16		    getMod(Mod modID);		// величина модификатора
 

@@ -762,8 +762,8 @@ public:
     SpellID     getID();
     uint8       getJob(JOBTYPE JobID);
     uint16      getMPCost();
-    uint32      getCastTime();
-    uint32      getRecastTime();
+    std::uint32_t      getCastTime();
+    std::uint32_t      getRecastTime();
     uint8       getValidTarget();
     uint16      getAnimationID();
     uint16      getAnimationTime();
@@ -779,7 +779,7 @@ public:
     uint16      getMagicBurstMessage();
     uint16      getCE();
     uint16      getVE();
-    uint32      getModifiedRecast();
+    std::uint32_t      getModifiedRecast();
     float       getRadius();
     uint16      getAoEMessage(); // returns the single target message for AoE moves
     uint8       getRequirements();
@@ -799,8 +799,8 @@ public:
     void        setID(SpellID id);
     void        setJob(int8* jobs);
     void        setMPCost(uint16 MP);
-    void        setCastTime(uint32 CastTime);
-    void        setRecastTime(uint32 RecastTime);
+    void        setCastTime(std::uint32_t CastTime);
+    void        setRecastTime(std::uint32_t RecastTime);
     void        setValidTarget(uint8 ValidTarget);
     void        setAnimationID(uint16 AnimationID);
     void        setAnimationTime(uint16 AnimationTime);
@@ -817,7 +817,7 @@ public:
     void        setVE(uint16 ve);
     void        setRequirements(uint8 requirements);
     void        setMeritId(uint16 meritId);
-    void        setModifiedRecast(uint32 mrec);
+    void        setModifiedRecast(std::uint32_t mrec);
     void        setFlag(uint8 flag);
     void        setContentTag(int8* contentTag);
     void        setRange(float range);
@@ -832,8 +832,8 @@ protected:
 
 private:
     SpellID     m_ID;                                      // spell id
-    uint32      m_castTime {};                             // time to cast spell
-    uint32      m_recastTime {};                           // recast time
+    std::uint32_t      m_castTime {};                             // time to cast spell
+    std::uint32_t      m_recastTime {};                           // recast time
     uint16      m_animation {};                            // animation for spell
     uint16      m_animationTime {};
     uint8       m_skillType {};
@@ -854,7 +854,7 @@ private:
     uint16      m_CE {};                                   // cumulative enmity of spell
     uint16      m_VE {};                                   // volatile enmity of spell
     string_t    m_name;                                    // spell name
-    uint32      m_modifiedRecastTime {};                   // recast time after modifications
+    std::uint32_t      m_modifiedRecastTime {};                   // recast time after modifications
     uint8       m_requirements {};                         // requirements before being able to cast spell
     uint16      m_meritId {};                              // associated merit (if applicable)
     uint8       m_flag {};

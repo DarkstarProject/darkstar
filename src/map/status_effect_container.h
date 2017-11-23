@@ -50,7 +50,7 @@ public:
     bool DelStatusEffect(EFFECT StatusID);
     bool DelStatusEffectSilent(EFFECT StatusID);
     bool DelStatusEffect(EFFECT StatusID, uint16 SubID);
-    void DelStatusEffectsByFlag(uint32 flag, bool silent = false);                   // удаляем все эффекты с указанным типом
+    void DelStatusEffectsByFlag(std::uint32_t flag, bool silent = false);                   // удаляем все эффекты с указанным типом
     void DelStatusEffectsByIcon(uint16 IconID);                 // удаляем все эффекты с указанной иконкой
     void DelStatusEffectsByType(uint16 Type);
     bool DelStatusEffectByTier(EFFECT StatusID, uint16 power);
@@ -59,7 +59,7 @@ public:
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
     bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
     bool HasStatusEffect(std::initializer_list<EFFECT>);
-    bool HasStatusEffectByFlag(uint32 flag);
+    bool HasStatusEffectByFlag(std::uint32_t flag);
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     EFFECT HealingWaltz();				// dancers healing waltz
@@ -69,7 +69,7 @@ public:
     CStatusEffect* StealStatusEffect();             // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID);
-    CStatusEffect* GetStatusEffect(EFFECT StatusID, uint32 SubID);
+    CStatusEffect* GetStatusEffect(EFFECT StatusID, std::uint32_t SubID);
 
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
     void CheckEffectsExpiry(time_point tick);
@@ -84,8 +84,8 @@ public:
     bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
     bool CheckForElevenRoll();
     bool HasBustEffect(uint16 id);
-    bool HasCorsairEffect(uint32 charid);
-    void Fold(uint32 charid);
+    bool HasCorsairEffect(std::uint32_t charid);
+    void Fold(std::uint32_t charid);
 
     uint8 GetActiveManeuvers();
     void RemoveOldestManeuver();
@@ -115,7 +115,7 @@ private:
 	CBattleEntity* m_POwner;
 
     // void ReplaceStatusEffect(EFFECT effect); //this needs to be implemented
-	void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
+	void RemoveStatusEffect(std::uint32_t id, bool silent = false);	// удаляем эффект по его номеру в контейнере
 	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
     void OverwriteStatusEffect(CStatusEffect* StatusEffect);

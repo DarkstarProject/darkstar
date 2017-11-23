@@ -31,7 +31,7 @@ static std::uint64_t RDTSC_BEGINTICK = 0,   RDTSC_CLOCK = 0;
 static __inline std::uint64_t _rdtsc(){
 	register union{
 		std::uint64_t	qw;
-		uint32 	dw[2];
+		std::uint32_t 	dw[2];
 	} t;
 
 	asm volatile("rdtsc":"=a"(t.dw[0]), "=d"(t.dw[1]) );
@@ -41,7 +41,7 @@ static __inline std::uint64_t _rdtsc(){
 
 static void rdtsc_calibrate(){
 	std::uint64_t t1, t2;
-	int32 i;
+	std::int32_t i;
 	
 	ShowStatus("Calibrating Timer Source, please wait... ");
 	
@@ -57,19 +57,19 @@ static void rdtsc_calibrate(){
 	
 	RDTSC_BEGINTICK = _rdtsc();	
 	
-	ShowMessage(" done. (Frequency: %u Mhz)\n", (uint32)(RDTSC_CLOCK/1000) );
+	ShowMessage(" done. (Frequency: %u Mhz)\n", (std::uint32_t)(RDTSC_CLOCK/1000) );
 }
 #endif
 
 
 /// platform-abstracted tick retrieval
-static uint32 tick(void)
+static std::uint32_t tick(void)
 {
 #if defined(WIN32)
 	return GetTickCount();
 #elif defined(ENABLE_RDTSC)
 	//
-		return (uint32)((_rdtsc() - RDTSC_BEGINTICK) / RDTSC_CLOCK);
+		return (std::uint32_t)((_rdtsc() - RDTSC_BEGINTICK) / RDTSC_CLOCK);
 	//
 #elif (defined(_POSIX_TIMERS) && _POSIX_TIMERS > 0 && defined(_POSIX_MONOTONIC_CLOCK) /* posix compliant */) || (defined(__FreeBSD_cc_version) && __FreeBSD_cc_version >= 500005 /* FreeBSD >= 5.1.0 */)
 	struct timespec tval;
@@ -86,8 +86,8 @@ static uint32 tick(void)
 #if defined(TICK_CACHE) && TICK_CACHE > 1
 //////////////////////////////////////////////////////////////////////////
 // tick is cached for TICK_CACHE calls
-static uint32 gettick_cache;
-static int32  gettick_count = 1;
+static std::uint32_t gettick_cache;
+static std::int32_t  gettick_count = 1;
 
 unsigned int gettick_nocache(void)
 {
@@ -104,12 +104,12 @@ unsigned int gettick(void)
 #else
 //////////////////////////////
 // tick doesn't get cached
-uint32 gettick_nocache(void)
+std::uint32_t gettick_nocache(void)
 {
 	return tick() + 100000000; // +27 hours for respawn
 }
 
-uint32 gettick(void)
+std::uint32_t gettick(void)
 {
 	return tick() + 100000000; // +27 hours for respawn
 }

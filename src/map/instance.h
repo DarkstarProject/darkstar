@@ -47,16 +47,16 @@ public:
     position_t GetEntryLoc();								// Get entry location
     duration GetTimeLimit();								// Get instance time limit
     duration GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed
-    uint32 GetProgress();									// Tracks the progress through the current stage
-    uint32 GetStage();										// Tracks the progress through the instance (eg. floor #)
+    std::uint32_t GetProgress();									// Tracks the progress through the current stage
+    std::uint32_t GetStage();										// Tracks the progress through the instance (eg. floor #)
     time_point GetWipeTime();									// Stores elapsed time when a wipe is detected
     duration GetElapsedTime(time_point tick);					// Get elapsed time so far
 
     void SetLevelCap(uint8 cap);
     void SetEntryLoc(float x, float y, float z, float rot); // Set entry location
     void SetLastTimeUpdate(duration time);				// Set last time a "Time Remaining:" message was displayed
-    void SetProgress(uint32 progress);						// Set progress through current stage
-    void SetStage(uint32 stage);							// Set current stage (eg. floor #)
+    void SetProgress(std::uint32_t progress);						// Set progress through current stage
+    void SetStage(std::uint32_t stage);							// Set current stage (eg. floor #)
     void SetWipeTime(time_point time);							// Set elapsed time when a wipe is detected
 
     void CheckTime(time_point tick);							// Check time limit (run instance time script)
@@ -67,7 +67,7 @@ public:
     void Complete();										// Completes the instance (onInstanceComplete)
     bool Completed();										// Checks if instance is completed
     void Cancel();											// Sets instance to fail without calling onInstanceFailure
-    bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
+    bool CheckFirstEntry(std::uint32_t id);                             // Checks if this is the first time a char is entering
 
     uint8           GetSoloBattleMusic();
     uint8           GetPartyBattleMusic();
@@ -83,20 +83,20 @@ private:
     uint8 m_instanceid {0};
     uint16 m_entrance {0};
     string_t m_instanceName;
-    uint32 m_commander {0};
+    std::uint32_t m_commander {0};
     uint8 m_levelcap {0};
     duration m_timeLimit {duration::zero()};
     time_point m_startTime;
     duration m_lastTimeUpdate {duration::zero()};
     time_point m_lastTimeCheck;
     time_point m_wipeTimer;
-    uint32 m_progress {0};
-    uint32 m_stage {0};
+    std::uint32_t m_progress {0};
+    std::uint32_t m_stage {0};
     position_t m_entryloc {};
     zoneMusic_t m_zone_music_override {};
     INSTANCE_STATUS m_status {INSTANCE_NORMAL};
-    std::vector<uint32> m_registeredChars;
-    std::set<uint32> m_enteredChars;
+    std::vector<std::uint32_t> m_registeredChars;
+    std::set<std::uint32_t> m_enteredChars;
 };
 
 #endif

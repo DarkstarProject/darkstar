@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../entities/baseentity.h"
 
 
-CInstanceEntryPacket::CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 response)
+CInstanceEntryPacket::CInstanceEntryPacket(CBaseEntity* PEntrance, std::uint32_t response)
 {
 	this->type = 0xBF;
 	this->size = 0x0E;

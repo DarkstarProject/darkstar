@@ -43,10 +43,10 @@ public:
 	CMessageSpecialPacket(
 		CBaseEntity* PEntity, 
 		uint16 messageID,  
-		uint32 param0 = 0, 
-		uint32 param1 = 0, 
-		uint32 param2 = 0, 
-		uint32 param3 = 0, 
+		std::uint32_t param0 = 0, 
+		std::uint32_t param1 = 0, 
+		std::uint32_t param2 = 0, 
+		std::uint32_t param3 = 0, 
 		bool ShowName = false);
 };
 

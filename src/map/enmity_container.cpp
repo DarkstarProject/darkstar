@@ -55,7 +55,7 @@ CEnmityContainer::~CEnmityContainer()
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::Clear(uint32 EntityID)
+void CEnmityContainer::Clear(std::uint32_t EntityID)
 {
     if (EntityID == 0)
     {
@@ -69,7 +69,7 @@ void CEnmityContainer::Clear(uint32 EntityID)
     m_tameable = true;
 }
 
-void CEnmityContainer::LogoutReset(uint32 EntityID)
+void CEnmityContainer::LogoutReset(std::uint32_t EntityID)
 {
     auto enmity_obj = m_EnmityList.find(EntityID);
 
@@ -183,7 +183,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     }
 }
 
-bool CEnmityContainer::HasID(uint32 TargetID)
+bool CEnmityContainer::HasID(std::uint32_t TargetID)
 {
     return std::find_if(m_EnmityList.begin(), m_EnmityList.end(), [TargetID](auto elem)
     {
@@ -376,14 +376,14 @@ CBattleEntity* CEnmityContainer::GetHighestEnmity()
     {
         return nullptr;
     }
-    uint32 HighestEnmity = 0;
+    std::uint32_t HighestEnmity = 0;
     auto highest = m_EnmityList.end();
     bool active = false;
 
     for (auto it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
     {
         const EnmityObject_t& PEnmityObject = it->second;
-        uint32 Enmity = PEnmityObject.CE + PEnmityObject.VE;
+        std::uint32_t Enmity = PEnmityObject.CE + PEnmityObject.VE;
 
         if (Enmity >= HighestEnmity && ((PEnmityObject.active == active) || (PEnmityObject.active && !active)))
         {

@@ -146,7 +146,7 @@ struct EntityID_t
         targid = 0;
     }
 
-    uint32 id;
+    std::uint32_t id;
     uint16 targid;
 };
 
@@ -193,8 +193,8 @@ public:
     CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
 
     void            ResetLocalVars();
-    uint32          GetLocalVar(const char* var);
-    void            SetLocalVar(const char* var, uint32 val);
+    std::uint32_t          GetLocalVar(const char* var);
+    void            SetLocalVar(const char* var, std::uint32_t val);
 
     //pre-tick update
     virtual void    Tick(time_point) = 0;
@@ -206,7 +206,7 @@ public:
 
     virtual void    HandleErrorMessage(std::unique_ptr<CBasicPacket>&) {};
 
-    uint32			id;					// глобальный идентификатор, уникальный на сервере
+    std::uint32_t			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне
     ENTITYTYPE		objtype;			// тип сущности
     STATUSTYPE		status;				// статус сущности (разные сущности - разные статусы)
@@ -227,7 +227,7 @@ public:
     CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
     CInstance*		PInstance;
 protected:
-    std::map<std::string, uint32> m_localVars;
+    std::map<std::string, std::uint32_t> m_localVars;
 };
 
 #endif

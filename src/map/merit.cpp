@@ -195,7 +195,7 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::LoadMeritPoints(uint32 charid)
+void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
 {
     uint8 catNumber = 0;
 
@@ -222,8 +222,8 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
         {
             if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
-                uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
+                std::uint32_t meritID = Sql_GetUIntData(SqlHandle, 0);
+                std::uint32_t upgrades = Sql_GetUIntData(SqlHandle, 1);
                 for (uint16 i = 0; i < MERITS_COUNT; i++)
                 {
                     if (merits[i].id == meritID)
@@ -243,7 +243,7 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
 *                                                                       *
 ************************************************************************/
 
-void CMeritPoints::SaveMeritPoints(uint32 charid)
+void CMeritPoints::SaveMeritPoints(std::uint32_t charid)
 {
     for (uint16 i = 0; i < MERITS_COUNT; ++i)
         if (merits[i].count > 0)
@@ -455,7 +455,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 *                                                                       *
 ************************************************************************/
 
-int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
+std::int32_t CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
 	uint8 meritValue = 0;
@@ -496,7 +496,7 @@ namespace meritNameSpace
     void LoadMeritsList()
     {
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
+        std::int32_t ret = Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
             spell_list sl ON m.name = sl.name ORDER BY m.meritid ASC LIMIT %u", MERITS_COUNT);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != MERITS_COUNT )

@@ -155,7 +155,7 @@ namespace traits
                              WHERE traitid < %u \
 							 ORDER BY job, traitid ASC, rank DESC";
 
-	    int32 ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
+	    std::int32_t ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
 
 	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {

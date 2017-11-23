@@ -64,7 +64,7 @@ CLuaSpell::CLuaSpell(CSpell* PSpell)
 *                                                                       *
 ************************************************************************/
 
-inline int32 CLuaSpell::setMsg(lua_State *L)
+inline std::int32_t CLuaSpell::setMsg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -73,7 +73,7 @@ inline int32 CLuaSpell::setMsg(lua_State *L)
     return 0;
 }
 
-inline int32 CLuaSpell::setAoE(lua_State *L)
+inline std::int32_t CLuaSpell::setAoE(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -82,7 +82,7 @@ inline int32 CLuaSpell::setAoE(lua_State *L)
     return 0;
 }
 
-inline int32 CLuaSpell::setFlag(lua_State *L)
+inline std::int32_t CLuaSpell::setFlag(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -91,7 +91,7 @@ inline int32 CLuaSpell::setFlag(lua_State *L)
     return 0;
 }
 
-inline int32 CLuaSpell::setRadius(lua_State* L)
+inline std::int32_t CLuaSpell::setRadius(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -100,7 +100,7 @@ inline int32 CLuaSpell::setRadius(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaSpell::setAnimation(lua_State* L)
+inline std::int32_t CLuaSpell::setAnimation(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -109,7 +109,7 @@ inline int32 CLuaSpell::setAnimation(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaSpell::setMPCost(lua_State* L)
+inline std::int32_t CLuaSpell::setMPCost(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -118,82 +118,82 @@ inline int32 CLuaSpell::setMPCost(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaSpell::castTime(lua_State* L)
+inline std::int32_t CLuaSpell::castTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        m_PLuaSpell->setCastTime((uint32)lua_tointeger(L, 1));
+        m_PLuaSpell->setCastTime((std::uint32_t)lua_tointeger(L, 1));
     else
         lua_pushinteger(L, m_PLuaSpell->getCastTime());
 
     return 1;
 }
 
-inline int32 CLuaSpell::canTargetEnemy(lua_State* L)
+inline std::int32_t CLuaSpell::canTargetEnemy(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushboolean(L, m_PLuaSpell->canTargetEnemy());
     return 1;
 }
 
-inline int32 CLuaSpell::getTotalTargets(lua_State* L)
+inline std::int32_t CLuaSpell::getTotalTargets(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getTotalTargets());
     return 1;
 }
 
-inline int32 CLuaSpell::getMagicBurstMessage(lua_State* L)
+inline std::int32_t CLuaSpell::getMagicBurstMessage(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getMagicBurstMessage());
     return 1;
 }
 
-inline int32 CLuaSpell::getElement(lua_State *L)
+inline std::int32_t CLuaSpell::getElement(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getElement());
     return 1;
 }
 
-inline int32 CLuaSpell::isAoE(lua_State *L)
+inline std::int32_t CLuaSpell::isAoE(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getAOE());
     return 1;
 }
 
-inline int32 CLuaSpell::tookEffect(lua_State* L)
+inline std::int32_t CLuaSpell::tookEffect(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushboolean(L, m_PLuaSpell->tookEffect());
     return 1;
 }
 
-inline int32 CLuaSpell::getID(lua_State *L)
+inline std::int32_t CLuaSpell::getID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, static_cast<uint16>(m_PLuaSpell->getID()));
     return 1;
 }
 
-inline int32 CLuaSpell::getSkillType(lua_State *L)
+inline std::int32_t CLuaSpell::getSkillType(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getSkillType());
     return 1;
 }
 
-inline int32 CLuaSpell::getSpellGroup(lua_State *L)
+inline std::int32_t CLuaSpell::getSpellGroup(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getSpellGroup());
     return 1;
 }
 
-inline int32 CLuaSpell::getFlag(lua_State *L)
+inline std::int32_t CLuaSpell::getFlag(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     lua_pushinteger(L, m_PLuaSpell->getFlag());

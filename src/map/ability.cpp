@@ -353,7 +353,7 @@ namespace ability
             "WHERE job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
 
-        int32 ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);
+        std::int32_t ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -528,7 +528,7 @@ namespace ability
         return charge;
     }
 
-    uint32 GetAbsorbMessage(uint32 msg)
+    std::uint32_t GetAbsorbMessage(std::uint32_t msg)
     {
         if (msg == 110)
             return 102;

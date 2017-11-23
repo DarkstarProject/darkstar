@@ -41,20 +41,20 @@
 #define LOGIN_ERROR		       0x02
 #define LOGIN_ERROR_CREATE     0x04
 
-extern int32 login_fd;
+extern std::int32_t login_fd;
 /*
 *
 *	Parse connections for authentification
 */
-int32 connect_client_login(int32 listenfd);
+std::int32_t connect_client_login(std::int32_t listenfd);
 
 
-int32 login_parse(int32 fd);
+std::int32_t login_parse(std::int32_t fd);
 
 bool check_string(std::string const& str, std::size_t max_length);
 
 /*=============================================
 * login data close socket
 *-------------------------------------------*/
-int32 do_close_login(login_session_data_t *loginsd, int32 fd);
+std::int32_t do_close_login(login_session_data_t *loginsd, std::int32_t fd);
 #endif

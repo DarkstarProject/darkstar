@@ -44,11 +44,11 @@ public:
         return m_pLuaZone;
     }
 
-    int32 levelRestriction(lua_State*);
-    int32 registerRegion(lua_State*);
-    int32 getPlayers(lua_State*);
-    int32 getID(lua_State*);
-    int32 getRegionID(lua_State*);
+    std::int32_t levelRestriction(lua_State*);
+    std::int32_t registerRegion(lua_State*);
+    std::int32_t getPlayers(lua_State*);
+    std::int32_t getID(lua_State*);
+    std::int32_t getRegionID(lua_State*);
 };
 
 #endif

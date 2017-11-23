@@ -117,8 +117,8 @@ public:
     CMobEntity();
     ~CMobEntity();
 
-    uint32    getEntityFlags();                        // Returns the current value in m_flags
-    void      setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
+    std::uint32_t    getEntityFlags();                        // Returns the current value in m_flags
+    void      setEntityFlags(std::uint32_t EntityFlags);      // Change the current value in m_flags
 
     bool      hasRageMode();                           // If the mob has the rage mode: true
     void      addRageMode();                           // Rage mode ON:  stat x10
@@ -132,7 +132,7 @@ public:
     bool      CanDeaggro();
     time_point GetDespawnTime();
     void      SetDespawnTime(duration _duration);
-    uint32    GetRandomGil();                          // returns a random amount of gil
+    std::uint32_t    GetRandomGil();                          // returns a random amount of gil
     bool      CanRoamHome();                           // is it possible for me to walk back?
     bool      CanRoam();                               // check if mob can walk around
 
@@ -147,7 +147,7 @@ public:
     void      addMobMod(uint16 type, int16 value);     // add
     void      defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
     void      resetMobMod(uint16 type);                // resets mob mod to original value
-    int32     getBigMobMod(uint16 type);               // multiplies mod by 1000
+    std::int32_t     getBigMobMod(uint16 type);               // multiplies mod by 1000
     void      saveMobModifiers();                      // save current state of modifiers
     void      restoreMobModifiers();                   // restore to saved state
 
@@ -185,15 +185,15 @@ public:
     virtual void FadeOut() override;
 
     bool      m_AllowRespawn;             // if true, allow respawn
-    uint32    m_RespawnTime;              // respawn time
-    uint32    m_DropItemTime;             // time until monster death animation
+    std::uint32_t    m_RespawnTime;              // respawn time
+    std::uint32_t    m_DropItemTime;             // time until monster death animation
 
-    uint32    m_DropID;                   // dropid of items to be dropped. dropid in Database (mob_droplist)
+    std::uint32_t    m_DropID;                   // dropid of items to be dropped. dropid in Database (mob_droplist)
 
     uint8     m_minLevel;                 // lowest possible level of the mob
     uint8     m_maxLevel;                 // highest possible level of the mob
-    uint32    HPmodifier;                 // HP in Database (mob_groups)
-    uint32    MPmodifier;                 // MP in Database (mob_groups)
+    std::uint32_t    HPmodifier;                 // HP in Database (mob_groups)
+    std::uint32_t    MPmodifier;                 // MP in Database (mob_groups)
 
     float     HPscale;                    // HP boost percentage
     float     MPscale;                    // MP boost percentage
@@ -242,12 +242,12 @@ public:
     bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
     uint16    m_Family;
     uint16    m_MobSkillList;             // Mob skill list defined from mob_pools
-    uint32    m_Pool;                     // pool the mob came from
+    std::uint32_t    m_Pool;                     // pool the mob came from
 
     CMobSpellList*        m_SpellListContainer;        // The spells list container for this mob
     std::map<uint16, uint16>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
-    uint32    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
+    std::uint32_t    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     uint8     m_name_prefix;                           // The ding bats VS Ding bats
     string_t  packetName;                              // Used for battle allies
 

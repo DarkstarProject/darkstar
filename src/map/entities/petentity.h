@@ -54,7 +54,7 @@ public:
 	PETTYPE getPetType();
     bool isBstPet();
 	uint8 m_Element;
-	uint32 m_PetID;
+	std::uint32_t m_PetID;
     std::string GetScriptName();
 
     WYVERNTYPE getWyvernType();

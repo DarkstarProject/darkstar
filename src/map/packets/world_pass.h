@@ -38,7 +38,7 @@ class CWorldPassPacket : public CBasicPacket
 {
 public:
 
-	CWorldPassPacket(uint32 WorldPass);
+	CWorldPassPacket(std::uint32_t WorldPass);
 };
 
 #endif

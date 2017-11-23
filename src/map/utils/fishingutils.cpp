@@ -168,7 +168,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	uint16 LureID = WeaponItem->getID();
 
-	int32 FishingChance = dsprand::GetRandomNumber(100);
+	std::int32_t FishingChance = dsprand::GetRandomNumber(100);
 
 	if (FishingChance <= 20)
 	{
@@ -188,7 +188,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 			"INNER JOIN fishing_fish AS fish USING (fishid) "
 			"WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck = 0";
 
-		int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
+		std::int32_t ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -236,12 +236,12 @@ bool CheckFisherLuck(CCharEntity* PChar)
 			"WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck != 0 "
 			"ORDER BY luck"; 
 		
-		int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
+		std::int32_t ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
-			int32 FisherLuck = 0;
-            int32 FishingChance = dsprand::GetRandomNumber(1000);
+			std::int32_t FisherLuck = 0;
+            std::int32_t FishingChance = dsprand::GetRandomNumber(1000);
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
 			{
@@ -337,7 +337,7 @@ void RodBreaks(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32 special)
+void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, std::uint32_t special)
 {
 	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 

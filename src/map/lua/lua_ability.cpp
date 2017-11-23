@@ -55,7 +55,7 @@ CLuaAbility::CLuaAbility(CAbility* PAbility)
     m_PLuaAbility = PAbility;
 }
 
-inline int32 CLuaAbility::getID(lua_State *L)
+inline std::int32_t CLuaAbility::getID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
@@ -64,7 +64,7 @@ inline int32 CLuaAbility::getID(lua_State *L)
 }
 
 
-int32 CLuaAbility::getMsg(lua_State* L)
+std::int32_t CLuaAbility::getMsg(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
@@ -72,7 +72,7 @@ int32 CLuaAbility::getMsg(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaAbility::getRecast(lua_State* L)
+inline std::int32_t CLuaAbility::getRecast(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
@@ -80,7 +80,7 @@ inline int32 CLuaAbility::getRecast(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaAbility::getRange(lua_State* L)
+inline std::int32_t CLuaAbility::getRange(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
@@ -88,7 +88,7 @@ inline int32 CLuaAbility::getRange(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaAbility::getName(lua_State* L)
+inline std::int32_t CLuaAbility::getName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
@@ -96,7 +96,7 @@ inline int32 CLuaAbility::getName(lua_State* L)
     return 1;
 }
 
-int32 CLuaAbility::getAnimation(lua_State* L)
+std::int32_t CLuaAbility::getAnimation(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
@@ -104,7 +104,7 @@ int32 CLuaAbility::getAnimation(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaAbility::setMsg(lua_State *L)
+inline std::int32_t CLuaAbility::setMsg(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -113,7 +113,7 @@ inline int32 CLuaAbility::setMsg(lua_State *L)
     return 0;
 }
 
-inline int32 CLuaAbility::setAnimation(lua_State *L)
+inline std::int32_t CLuaAbility::setAnimation(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -122,7 +122,7 @@ inline int32 CLuaAbility::setAnimation(lua_State *L)
     return 0;
 }
 
-inline int32 CLuaAbility::setRecast(lua_State* L)
+inline std::int32_t CLuaAbility::setRecast(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -131,7 +131,7 @@ inline int32 CLuaAbility::setRecast(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaAbility::setCE(lua_State* L)
+inline std::int32_t CLuaAbility::setCE(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -140,7 +140,7 @@ inline int32 CLuaAbility::setCE(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaAbility::setVE(lua_State* L)
+inline std::int32_t CLuaAbility::setVE(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
@@ -149,7 +149,7 @@ inline int32 CLuaAbility::setVE(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaAbility::setRange(lua_State *L)
+inline std::int32_t CLuaAbility::setRange(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));

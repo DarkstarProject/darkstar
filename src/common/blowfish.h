@@ -35,15 +35,15 @@ enum BLOWFISH
 
 struct blowfish_t 
 {
-	uint32 key[5];
+	std::uint32_t key[5];
 	uint8  hash[16];
-	uint32 P[18], S[4][256];
+	std::uint32_t P[18], S[4][256];
     BLOWFISH status;
 };
 
-void blowfish_decipher(uint32* xl, uint32* xr, uint32* P, uint32* S);
-void blowfish_encipher(uint32* xl, uint32* xr, uint32* P, uint32* S);
+void blowfish_decipher(std::uint32_t* xl, std::uint32_t* xr, std::uint32_t* P, std::uint32_t* S);
+void blowfish_encipher(std::uint32_t* xl, std::uint32_t* xr, std::uint32_t* P, std::uint32_t* S);
 
-uint32* blowfish_init(int8 key[], int16 keybytes, uint32* P, uint32* S);
+std::uint32_t* blowfish_init(int8 key[], int16 keybytes, std::uint32_t* P, std::uint32_t* S);
 
 #endif

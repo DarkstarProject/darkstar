@@ -166,7 +166,7 @@ bool CAbilityState::CanUseAbility()
                 }
             }
             CBaseEntity* PMsgTarget = PChar;
-            int32 errNo = luautils::OnAbilityCheck(PChar, PTarget, PAbility, &PMsgTarget);
+            std::int32_t errNo = luautils::OnAbilityCheck(PChar, PTarget, PAbility, &PMsgTarget);
             if (errNo != 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));

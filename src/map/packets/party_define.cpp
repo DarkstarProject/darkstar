@@ -38,7 +38,7 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 
 	if (PParty)
 	{
-		uint32 allianceid = 0;
+		std::uint32_t allianceid = 0;
 		if (PParty->m_PAlliance)
 		{
 			allianceid = PParty->m_PAlliance->m_AllianceID;

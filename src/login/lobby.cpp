@@ -34,8 +34,8 @@
 #include "lobby.h"
 
 
-int32 login_lobbydata_fd;
-int32 login_lobbyview_fd;
+std::int32_t login_lobbydata_fd;
+std::int32_t login_lobbyview_fd;
 
 /************************************************************************
 *                                                                       *
@@ -43,9 +43,9 @@ int32 login_lobbyview_fd;
 *                                                                       *
 ************************************************************************/
 
-int32 connect_client_lobbydata(int32 listenfd)
+std::int32_t connect_client_lobbydata(std::int32_t listenfd)
 {
-    int32 fd = 0;
+    std::int32_t fd = 0;
     struct sockaddr_in client_address;
     if ((fd = connect_client(listenfd, client_address)) != -1)
     {
@@ -64,7 +64,7 @@ int32 connect_client_lobbydata(int32 listenfd)
 *                                                                       *
 ************************************************************************/
 
-int32 lobbydata_parse(int32 fd)
+std::int32_t lobbydata_parse(std::int32_t fd)
 {
     login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
@@ -75,7 +75,7 @@ int32 lobbydata_parse(int32 fd)
         {
             char* buff = &session[fd]->rdata[0];
 
-            uint32 accid = RBUFL(buff, 1);
+            std::uint32_t accid = RBUFL(buff, 1);
 
             sd = find_loginsd_byaccid(accid);
             if (sd == nullptr)
@@ -109,7 +109,7 @@ int32 lobbydata_parse(int32 fd)
         if (RBUFB(buff, 0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET, ip2str(session[fd]->client_addr, nullptr));
         ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", RBUFB(buff, 0), ip2str(sd->client_addr, nullptr));
 
-        int32 code = RBUFB(buff, 0);
+        std::int32_t code = RBUFB(buff, 0);
         switch (code)
         {
         case 0xA1:
@@ -132,7 +132,7 @@ int32 lobbydata_parse(int32 fd)
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
             const int8 *pfmtQuery = "SELECT content_ids FROM accounts WHERE id = %u;";
-            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+            std::int32_t ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 CharList[28] = Sql_GetUIntData(SqlHandle, 0);
@@ -185,7 +185,7 @@ int32 lobbydata_parse(int32 fd)
 
                 Sql_GetData(SqlHandle, 1, &strCharName, nullptr);
 
-                uint32 CharID = Sql_GetIntData(SqlHandle, 0);
+                std::uint32_t CharID = Sql_GetIntData(SqlHandle, 0);
 
                 uint16 zone = (uint16)Sql_GetIntData(SqlHandle, 2);
 
@@ -266,12 +266,12 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
+            std::uint32_t charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
 										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
-            uint32 ZoneIP = sd->servip;
+            std::uint32_t ZoneIP = sd->servip;
             uint16 ZonePort = 54230;
             uint16 ZoneID = 0;
             uint16 PrevZone = 0;
@@ -387,7 +387,7 @@ int32 lobbydata_parse(int32 fd)
 *                                                                       *
 ************************************************************************/
 
-int32 do_close_lobbydata(login_session_data_t *loginsd, int32 fd)
+std::int32_t do_close_lobbydata(login_session_data_t *loginsd, std::int32_t fd)
 {
     if (loginsd != nullptr)
     {
@@ -416,9 +416,9 @@ int32 do_close_lobbydata(login_session_data_t *loginsd, int32 fd)
 *                                                                       *
 ************************************************************************/
 
-int32 connect_client_lobbyview(int32 listenfd)
+std::int32_t connect_client_lobbyview(std::int32_t listenfd)
 {
-    int32 fd = 0;
+    std::int32_t fd = 0;
     struct sockaddr_in client_address;
     if ((fd = connect_client(listenfd, client_address)) != -1)
     {
@@ -435,7 +435,7 @@ int32 connect_client_lobbyview(int32 listenfd)
 *                                                                       *
 ************************************************************************/
 
-int32 lobbyview_parse(int32 fd)
+std::int32_t lobbyview_parse(std::int32_t fd)
 {
     login_session_data_t* sd = (login_session_data_t*)session[fd]->session_data;
 
@@ -466,7 +466,7 @@ int32 lobbyview_parse(int32 fd)
         {
         case 0x26:
         {
-            int32 sendsize = 0x28;
+            std::int32_t sendsize = 0x28;
             unsigned char MainReservePacket[0x28];
 
             string_t client_ver_data((char*)(buff + 0x74), 6); // Full length is 10 but we drop last 4
@@ -496,7 +496,7 @@ int32 lobbyview_parse(int32 fd)
             else
             {
                 const int8 *pfmtQuery = "SELECT expansions,features FROM accounts WHERE id = %u;";
-                int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
+                std::int32_t ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     LOBBY_026_RESERVEPACKET(ReservePacket);
@@ -525,7 +525,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x14:
         {
             //delete char
-            uint32 CharID = RBUFL(session[fd]->rdata.data(), 0x20);
+            std::uint32_t CharID = RBUFL(session[fd]->rdata.data(), 0x20);
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
@@ -554,7 +554,7 @@ int32 lobbyview_parse(int32 fd)
             if (session[sd->login_lobbydata_fd] == nullptr) {
                 ShowInfo("0x1F nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
-                uint32 val = 1337;
+                std::uint32_t val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
                     val = session[sd->login_lobbydata_fd - 1]->client_addr;
                 }
@@ -588,7 +588,7 @@ int32 lobbyview_parse(int32 fd)
             if (session[sd->login_lobbydata_fd] == nullptr) {
                 ShowInfo("0x07 nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
-                uint32 val = 1337;
+                std::uint32_t val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
                     val = session[sd->login_lobbydata_fd - 1]->client_addr;
                 }
@@ -619,7 +619,7 @@ int32 lobbyview_parse(int32 fd)
             LOBBY_ACTION_DONE(ReservePacket);
             unsigned char hash[16];
 
-            int32 sendsize = 32;
+            std::int32_t sendsize = 32;
             //memset(ReservePacket+12,0,sizeof(16));
             md5((unsigned char*)(ReservePacket), hash, sendsize);
 
@@ -641,7 +641,7 @@ int32 lobbyview_parse(int32 fd)
             //find assigns
             const char *fmtQuery = "SELECT charname FROM chars WHERE charname LIKE '%s'";
 
-            int32 sendsize = 0x24;
+            std::int32_t sendsize = 0x24;
             unsigned char MainReservePacket[0x24];
 
 
@@ -692,7 +692,7 @@ int32 lobbyview_parse(int32 fd)
 *                                                                       *
 ************************************************************************/
 
-int32 do_close_lobbyview(login_session_data_t* sd, int32 fd)
+std::int32_t do_close_lobbyview(login_session_data_t* sd, std::int32_t fd)
 {
     ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET": " CL_WHITE"%s" CL_RESET" shutdown the socket\n", sd->login);
     do_close_tcp(fd);
@@ -705,7 +705,7 @@ int32 do_close_lobbyview(login_session_data_t* sd, int32 fd)
 *                                                                       *
 ************************************************************************/
 
-int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
+std::int32_t lobby_createchar(login_session_data_t *loginsd, char *buf)
 {
     // инициализируем генератор случайных чисел
     srand(clock());
@@ -757,13 +757,13 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
         return -1;
     }
 
-    uint32 CharID = 0;
+    std::uint32_t CharID = 0;
 
     if (Sql_NumRows(SqlHandle) != 0)
     {
         Sql_NextRow(SqlHandle);
 
-        CharID = (uint32)Sql_GetUIntData(SqlHandle, 0) + 1;
+        CharID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0) + 1;
     }
 
     CharID = (CharID < 21828 ? 21828 : CharID);
@@ -781,7 +781,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 *                                                                       *
 ************************************************************************/
 
-int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
+std::int32_t lobby_createchar_save(std::uint32_t accid, std::uint32_t charid, char_mini* createchar)
 {
     const int8* Query = "INSERT INTO chars(charid,accid,charname,pos_zone,nation) VALUES(%u,%u,'%s',%u,%u);";
 

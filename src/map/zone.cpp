@@ -78,7 +78,7 @@
 *                                                                       *
 ************************************************************************/
 
-int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
+std::int32_t zone_server(time_point tick, CTaskMgr::CTask* PTask)
 {
     std::any_cast<CZone*>(PTask->m_data)->ZoneServer(tick, false);
     return 0;
@@ -91,7 +91,7 @@ int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
+std::int32_t zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
@@ -113,7 +113,7 @@ int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-int32 zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
+std::int32_t zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
@@ -185,7 +185,7 @@ CONTINENTTYPE CZone::GetContinentID()
     return m_continentID;
 }
 
-uint32 CZone::GetIP()
+std::uint32_t CZone::GetIP()
 {
     return m_zoneIP;
 }
@@ -205,7 +205,7 @@ WEATHER CZone::GetWeather()
     return m_Weather;
 }
 
-uint32 CZone::GetWeatherChangeTime()
+std::uint32_t CZone::GetWeatherChangeTime()
 {
     return m_WeatherChangeTime;
 }
@@ -245,7 +245,7 @@ bool CZone::IsWeatherStatic()
     return m_WeatherVector.empty() || m_WeatherVector.size() == 1;
 }
 
-zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
+zoneLine_t* CZone::GetZoneLine(std::uint32_t zoneLineID)
 {
     for (zoneLineList_t::const_iterator  i = m_zoneLineList.begin();
     i != m_zoneLineList.end();
@@ -270,7 +270,7 @@ void CZone::LoadZoneLines()
 {
     static const int8 fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -278,7 +278,7 @@ void CZone::LoadZoneLines()
         {
             zoneLine_t* zl = new zoneLine_t;
 
-            zl->m_zoneLineID = (uint32)Sql_GetIntData(SqlHandle, 0);
+            zl->m_zoneLineID = (std::uint32_t)Sql_GetIntData(SqlHandle, 0);
             zl->m_toZone = (uint16)Sql_GetIntData(SqlHandle, 1);
             zl->m_toPos.x = Sql_GetFloatData(SqlHandle, 2);
             zl->m_toPos.y = Sql_GetFloatData(SqlHandle, 3);
@@ -308,7 +308,7 @@ void CZone::LoadZoneWeather()
         "WHERE zoneid = %u "
         "ORDER BY weather_day";
 
-    int32 ret = Sql_Query(SqlHandle, Query, m_zoneID);
+    std::int32_t ret = Sql_Query(SqlHandle, Query, m_zoneID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -499,11 +499,11 @@ void CZone::SetWeather(WEATHER weather)
 
 void CZone::UpdateWeather()
 {
-    uint32 CurrentVanaDate = CVanaTime::getInstance()->getDate(); // Current Vanadiel timestamp in minutes
-    uint32 StartFogVanaDate = (CurrentVanaDate - (CurrentVanaDate % VTIME_DAY)) + (VTIME_HOUR * 2); // Vanadiel timestamp of 2 AM in minutes
-    uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
-    uint32 WeatherNextUpdate = 0;
-    uint32 WeatherDay = 0;
+    std::uint32_t CurrentVanaDate = CVanaTime::getInstance()->getDate(); // Current Vanadiel timestamp in minutes
+    std::uint32_t StartFogVanaDate = (CurrentVanaDate - (CurrentVanaDate % VTIME_DAY)) + (VTIME_HOUR * 2); // Vanadiel timestamp of 2 AM in minutes
+    std::uint32_t EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
+    std::uint32_t WeatherNextUpdate = 0;
+    std::uint32_t WeatherDay = 0;
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
@@ -556,7 +556,7 @@ void CZone::UpdateWeather()
         Weather = WEATHER_FOG;
         //Force the weather to change by 7 am
         //  2.4 vanadiel minutes = 1 earth second
-        WeatherNextUpdate = (uint32)((EndFogVanaDate - CurrentVanaDate) * 2.4);
+        WeatherNextUpdate = (std::uint32_t)((EndFogVanaDate - CurrentVanaDate) * 2.4);
     }
 
     SetWeather((WEATHER)Weather);
@@ -739,7 +739,7 @@ CCharEntity* CZone::GetCharByName(int8* name)
     return m_zoneEntities->GetCharByName(name);
 }
 
-CCharEntity* CZone::GetCharByID(uint32 id)
+CCharEntity* CZone::GetCharByID(std::uint32_t id)
 {
     return m_zoneEntities->GetCharByID(id);
 }
@@ -914,7 +914,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
             if (PChar->PParty->GetSyncTarget() != nullptr)
             {
                 uint8 count = 0;
-                for (uint32 i = 0; i < PChar->PParty->members.size(); ++i)
+                for (std::uint32_t i = 0; i < PChar->PParty->members.size(); ++i)
                 {
                     if (PChar->PParty->members.at(i) != PChar && PChar->PParty->members.at(i)->getZone() == PChar->PParty->GetSyncTarget()->getZone())
                     {
@@ -980,7 +980,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
 void CZone::CheckRegions(CCharEntity* PChar)
 {
-    uint32 RegionID = 0;
+    std::uint32_t RegionID = 0;
 
     for (regionList_t::const_iterator region = m_regionList.begin(); region != m_regionList.end(); ++region)
     {

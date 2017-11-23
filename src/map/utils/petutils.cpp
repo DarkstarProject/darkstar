@@ -68,7 +68,7 @@ struct Pet_t
     uint8       name_prefix;
     uint8		size;		// размер модели
     uint16		m_Family;
-    uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
+    std::uint32_t		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
     uint8		mJob;
     uint8		m_Element;
@@ -445,7 +445,7 @@ namespace petutils
                 PPet->WorkingSkills.skill[i] |= 0x8000;
 
         // Add mods/merits
-        int32 meritbonus = PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PMaster);
+        std::int32_t meritbonus = PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PMaster);
         PPet->WorkingSkills.automaton_melee += PMaster->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
         PPet->WorkingSkills.automaton_ranged += PMaster->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
         // Share its magic skills to prevent needing separate spells or checks to see which skill to use
@@ -461,14 +461,14 @@ namespace petutils
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
         float jobStat = 0;			// конечное число HP для уровня на основе первичной профессии.
         float sJobStat = 0;			// коенчное число HP для уровня на основе вторичной профессии.
-        int32 bonusStat = 0;			// бонусное число HP которое добавляется при соблюдении некоторых условий.
-        int32 baseValueColumn = 0;	// номер колонки с базовым количеством HP
-        int32 scaleTo60Column = 1;	// номер колонки с модификатором до 60 уровня
-        int32 scaleOver30Column = 2;	// номер колонки с модификатором после 30 уровня
-        int32 scaleOver60Column = 3;	// номер колонки с модификатором после 60 уровня
-        int32 scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
-        int32 scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
-        // int32 scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
+        std::int32_t bonusStat = 0;			// бонусное число HP которое добавляется при соблюдении некоторых условий.
+        std::int32_t baseValueColumn = 0;	// номер колонки с базовым количеством HP
+        std::int32_t scaleTo60Column = 1;	// номер колонки с модификатором до 60 уровня
+        std::int32_t scaleOver30Column = 2;	// номер колонки с модификатором после 30 уровня
+        std::int32_t scaleOver60Column = 3;	// номер колонки с модификатором после 60 уровня
+        std::int32_t scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
+        std::int32_t scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
+        // std::int32_t scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
         uint8 grade;
 
@@ -476,15 +476,15 @@ namespace petutils
         JOBTYPE mjob = PPet->GetMJob();
         JOBTYPE sjob = PPet->GetSJob();
         // Расчет прироста HP от main job
-        int32 mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
-        int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
-        int32 mainLevelOver60To75 = std::clamp(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
-        int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
+        std::int32_t mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
+        std::int32_t mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
+        std::int32_t mainLevelOver60To75 = std::clamp(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
+        std::int32_t mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
 
         //Расчет бонусного количества HP
-        int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
-        int32 mainLevelOver50andUnder60 = std::clamp(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
-        int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
+        std::int32_t mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
+        std::int32_t mainLevelOver50andUnder60 = std::clamp(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
+        std::int32_t mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
 
         // Расчет raceStat jobStat bonusStat sJobStat
         // Расчет по расе
@@ -497,7 +497,7 @@ namespace petutils
             (grade::GetHPScale(grade, scaleOver60Column) * mainLevelOver60To75) +
             (grade::GetHPScale(grade, scaleOver75Column) * mainLevelOver75);
 
-        // raceStat = (int32)(statScale[grade][baseValueColumn] + statScale[grade][scaleTo60Column] * (mlvl - 1));
+        // raceStat = (std::int32_t)(statScale[grade][baseValueColumn] + statScale[grade][scaleTo60Column] * (mlvl - 1));
 
         // Расчет по main job
         grade = grade::GetJobGrade(mjob, 0);
@@ -510,7 +510,7 @@ namespace petutils
 
         // Расчет бонусных HP
         bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
-        PPet->health.maxhp = (int32)((raceStat + jobStat + bonusStat + sJobStat) * petStats->HPscale);
+        PPet->health.maxhp = (std::int32_t)((raceStat + jobStat + bonusStat + sJobStat) * petStats->HPscale);
         PPet->health.hp = PPet->health.maxhp;
 
         //Начало расчера MP
@@ -547,7 +547,7 @@ namespace petutils
                 grade::GetMPScale(grade, scaleOver60) * mainLevelOver60;
         }
 
-        PPet->health.maxmp = (int32)((raceStat + jobStat + sJobStat) * petStats->MPscale);
+        PPet->health.maxmp = (std::int32_t)((raceStat + jobStat + sJobStat) * petStats->MPscale);
         PPet->health.mp = PPet->health.maxmp;
 
         uint16 fSTR = GetBaseToRank(petStats->strRank, PPet->GetMLevel());
@@ -622,14 +622,14 @@ namespace petutils
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
         float jobStat = 0;			// конечное число HP для уровня на основе первичной профессии.
         float sJobStat = 0;			// коенчное число HP для уровня на основе вторичной профессии.
-        int32 bonusStat = 0;			// бонусное число HP которое добавляется при соблюдении некоторых условий.
-        int32 baseValueColumn = 0;	// номер колонки с базовым количеством HP
-        int32 scaleTo60Column = 1;	// номер колонки с модификатором до 60 уровня
-        int32 scaleOver30Column = 2;	// номер колонки с модификатором после 30 уровня
-        int32 scaleOver60Column = 3;	// номер колонки с модификатором после 60 уровня
-        int32 scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
-        int32 scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
-        int32 scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
+        std::int32_t bonusStat = 0;			// бонусное число HP которое добавляется при соблюдении некоторых условий.
+        std::int32_t baseValueColumn = 0;	// номер колонки с базовым количеством HP
+        std::int32_t scaleTo60Column = 1;	// номер колонки с модификатором до 60 уровня
+        std::int32_t scaleOver30Column = 2;	// номер колонки с модификатором после 30 уровня
+        std::int32_t scaleOver60Column = 3;	// номер колонки с модификатором после 60 уровня
+        std::int32_t scaleOver75Column = 4;	// номер колонки с модификатором после 75 уровня
+        std::int32_t scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
+        std::int32_t scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
         uint8 grade;
 
@@ -638,15 +638,15 @@ namespace petutils
         uint8 race = 3;					//Tarutaru
 
         // Расчет прироста HP от main job
-        int32 mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
-        int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
-        int32 mainLevelOver60To75 = std::clamp(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
-        int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
+        std::int32_t mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
+        std::int32_t mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);			// Первый режим рассчета до 60 уровня (Используется так же и для MP)
+        std::int32_t mainLevelOver60To75 = std::clamp(mlvl - 60, 0, 15);		// Второй режим расчета после 60 уровня
+        std::int32_t mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);			// Третий режим расчета после 75 уровня
 
         //Расчет бонусного количества HP
-        int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
-        int32 mainLevelOver50andUnder60 = std::clamp(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
-        int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
+        std::int32_t mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);			// +2HP на каждом уровне после 10
+        std::int32_t mainLevelOver50andUnder60 = std::clamp(mlvl - 50, 0, 10);	// +2HP на каждом уровне в промежутке от 50 до 60 уровня
+        std::int32_t mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
 
         // Расчет raceStat jobStat bonusStat sJobStat
         // Расчет по расе
@@ -659,7 +659,7 @@ namespace petutils
             (grade::GetHPScale(grade, scaleOver60Column) * mainLevelOver60To75) +
             (grade::GetHPScale(grade, scaleOver75Column) * mainLevelOver75);
 
-        // raceStat = (int32)(statScale[grade][baseValueColumn] + statScale[grade][scaleTo60Column] * (mlvl - 1));
+        // raceStat = (std::int32_t)(statScale[grade][baseValueColumn] + statScale[grade][scaleTo60Column] * (mlvl - 1));
 
         // Расчет по main job
         grade = grade::GetJobGrade(mjob, 0);
@@ -761,7 +761,7 @@ namespace petutils
     *																		*
     ************************************************************************/
 
-    void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
+    void SpawnPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
         if (PMaster->objtype == TYPE_PC && (PetID == PETID_HARLEQUINFRAME || PetID == PETID_VALOREDGEFRAME || PetID == PETID_SHARPSHOTFRAME || PetID == PETID_STORMWAKERFRAME))
@@ -817,7 +817,7 @@ namespace petutils
         }
     }
 
-    void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
+    void SpawnMobPet(CBattleEntity* PMaster, std::uint32_t PetID)
     {
         // this is ONLY used for mob smn elementals / avatars
         /*
@@ -966,7 +966,7 @@ namespace petutils
         petutils::DetachPet(PMaster);
     }
 
-    int16 PerpetuationCost(uint32 id, uint8 level)
+    int16 PerpetuationCost(std::uint32_t id, uint8 level)
     {
         int16 cost = 0;
         if (id >= 0 && id <= 7)
@@ -1110,7 +1110,7 @@ namespace petutils
 
     }
 
-    void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
+    void LoadPet(CBattleEntity* PMaster, std::uint32_t PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
         if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN) {
@@ -1198,7 +1198,7 @@ namespace petutils
             {
                 while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    uint32 chocoboid = (uint32)Sql_GetIntData(SqlHandle, 0);
+                    std::uint32_t chocoboid = (std::uint32_t)Sql_GetIntData(SqlHandle, 0);
 
                     if (chocoboid != 0)
                     {

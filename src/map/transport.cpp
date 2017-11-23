@@ -75,7 +75,7 @@ void CTransportHandler::InitializeTransport()
                             zone_settings ON ((transport >> 12) & 0xFFF) = zoneid WHERE \
                             IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
 	if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -159,12 +159,12 @@ void CTransportHandler::InitializeTransport()
 
 void CTransportHandler::TransportTimer() 
 {
-	uint32 VanaTime = CVanaTime::getInstance()->getDate();
+	std::uint32_t VanaTime = CVanaTime::getInstance()->getDate();
 
     // в портовых зонах необходимо написать макросы на случай, если персонаж вышел из игры в корабле. 
     // при входе в игру он должен оказаться на пристани
 
-    for(uint32 i = 0; i < TransportList.size(); ++i)
+    for(std::uint32_t i = 0; i < TransportList.size(); ++i)
     {
         Transport_t* PTransport = TransportList.at(i);
 
@@ -224,7 +224,7 @@ void CTransportHandler::TransportTimer()
         }
     }
 
-	for(uint32 i = 0; i < ElevatorList.size(); ++i) 
+	for(std::uint32_t i = 0; i < ElevatorList.size(); ++i) 
 	{
 		Elevator_t * elevator = &ElevatorList.at(i);
 
@@ -303,9 +303,9 @@ void CTransportHandler::TransportTimer()
 *                                                                       *
 ************************************************************************/
 
-void CTransportHandler::startElevator(int32 elevatorID)
+void CTransportHandler::startElevator(std::int32_t elevatorID)
 {
-    for(uint32 i = 0; i < ElevatorList.size(); ++i) 
+    for(std::uint32_t i = 0; i < ElevatorList.size(); ++i) 
 	{		
 	    Elevator_t * elevator = &ElevatorList.at(i);
 
@@ -328,7 +328,7 @@ void CTransportHandler::insertElevator(Elevator_t elevator)
     Elevator_t* Elevator = &elevator;
 
     // check to see if this elevator already exists
-    for (uint32 i = 0; i < ElevatorList.size(); ++i)
+    for (std::uint32_t i = 0; i < ElevatorList.size(); ++i)
     {
         Elevator_t* PElevator = &ElevatorList.at(i);
 

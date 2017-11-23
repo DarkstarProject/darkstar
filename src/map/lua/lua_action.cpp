@@ -43,7 +43,7 @@ CLuaAction::CLuaAction(action_t* Action)
 }
 
 
-int32 CLuaAction::ID(lua_State* L)
+std::int32_t CLuaAction::ID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -52,7 +52,7 @@ int32 CLuaAction::ID(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.ActionTargetID = (uint32)lua_tointeger(L, 2);
+                actionList.ActionTargetID = (std::uint32_t)lua_tointeger(L, 2);
                 return 0;
             }
         }
@@ -60,7 +60,7 @@ int32 CLuaAction::ID(lua_State* L)
     return 0;
 }
 
-int32 CLuaAction::recast(lua_State* L)
+std::int32_t CLuaAction::recast(lua_State* L)
 {
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
@@ -74,7 +74,7 @@ int32 CLuaAction::recast(lua_State* L)
     }
 }
 
-int32 CLuaAction::actionID(lua_State* L)
+std::int32_t CLuaAction::actionID(lua_State* L)
 {
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
@@ -88,7 +88,7 @@ int32 CLuaAction::actionID(lua_State* L)
     }
 }
 
-inline int32 CLuaAction::param(lua_State* L)
+inline std::int32_t CLuaAction::param(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -97,7 +97,7 @@ inline int32 CLuaAction::param(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].param = (int32)lua_tointeger(L, 2);
+                actionList.actionTargets[0].param = (std::int32_t)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -110,7 +110,7 @@ inline int32 CLuaAction::param(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaAction::messageID(lua_State* L)
+inline std::int32_t CLuaAction::messageID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -132,7 +132,7 @@ inline int32 CLuaAction::messageID(lua_State* L)
     return 0;
 }
 
-int32 CLuaAction::animation(lua_State* L)
+std::int32_t CLuaAction::animation(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -154,7 +154,7 @@ int32 CLuaAction::animation(lua_State* L)
     return 0;
 }
 
-int32 CLuaAction::speceffect(lua_State* L)
+std::int32_t CLuaAction::speceffect(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -176,7 +176,7 @@ int32 CLuaAction::speceffect(lua_State* L)
     return 0;
 }
 
-int32 CLuaAction::reaction(lua_State* L)
+std::int32_t CLuaAction::reaction(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -198,7 +198,7 @@ int32 CLuaAction::reaction(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaAction::additionalEffect(lua_State* L)
+inline std::int32_t CLuaAction::additionalEffect(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -220,7 +220,7 @@ inline int32 CLuaAction::additionalEffect(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaAction::addEffectParam(lua_State* L)
+inline std::int32_t CLuaAction::addEffectParam(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)
@@ -229,7 +229,7 @@ inline int32 CLuaAction::addEffectParam(lua_State* L)
         {
             if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
             {
-                actionList.actionTargets[0].addEffectParam = (int32)lua_tointeger(L, 2);
+                actionList.actionTargets[0].addEffectParam = (std::int32_t)lua_tointeger(L, 2);
                 return 0;
             }
             else
@@ -243,7 +243,7 @@ inline int32 CLuaAction::addEffectParam(lua_State* L)
 }
 
 
-int32 CLuaAction::addEffectMessage(lua_State* L)
+std::int32_t CLuaAction::addEffectMessage(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     for (auto&& actionList : m_PLuaAction->actionLists)

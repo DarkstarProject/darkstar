@@ -55,9 +55,9 @@ Sql_t *SqlHandle = nullptr;
 std::thread messageThread;
 std::thread consoleInputThread;
 
-int32 do_init(int32 argc, char** argv)
+std::int32_t do_init(std::int32_t argc, char** argv)
 {
-    int32 i;
+    std::int32_t i;
     LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
     VERSION_INFO_FILENAME = "version.info";
 
@@ -289,7 +289,7 @@ int parse_console(char *buf)
     return 0;
 }
 
-int32 login_config_read(const char *cfgName)
+std::int32_t login_config_read(const char *cfgName)
 {
     char line[1024], w1[1024], w2[1024];
     FILE *fp;
@@ -407,7 +407,7 @@ int32 login_config_read(const char *cfgName)
     return 0;
 }
 
-int32 version_info_read(const char *fileName)
+std::int32_t version_info_read(const char *fileName)
 {
     char line[1024], w1[1024], w2[1024];
     FILE *fp;
@@ -447,7 +447,7 @@ int32 version_info_read(const char *fileName)
     return 0;
 }
 
-int32 login_config_default()
+std::int32_t login_config_default()
 {
     login_config.login_data_ip = "127.0.0.1";
     login_config.login_data_port = 54230;
@@ -472,7 +472,7 @@ int32 login_config_default()
     return 0;
 }
 
-int32 version_info_default()
+std::int32_t version_info_default()
 {
     version_info.client_ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
     version_info.enable_ver_lock = true;
@@ -480,7 +480,7 @@ int32 version_info_default()
     return 0;
 }
 
-void login_versionscreen(int32 flag)
+void login_versionscreen(std::int32_t flag)
 {
     ShowInfo(CL_WHITE "Darkstar version %d.%02d.%02d" CL_RESET"\n",
         DARKSTAR_MAJOR_VERSION, DARKSTAR_MINOR_VERSION, DARKSTAR_REVISION);
@@ -488,7 +488,7 @@ void login_versionscreen(int32 flag)
     if (flag) exit(EXIT_FAILURE);
 }
 
-void login_helpscreen(int32 flag)
+void login_helpscreen(std::int32_t flag)
 {
     ShowMessage("Usage: login-server [options]\n");
     ShowMessage("Options:\n");

@@ -107,14 +107,14 @@ void CMeritPointsCategoriesPacket::MeritPointsCategoriesPacket(CCharEntity* PCha
 
     for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
     {
-		memcpy(data+(0x08) + sizeof(uint32) * i, &PChar->PMeritPoints->GetMeritByIndex(offset + i)->data, sizeof(uint32));
+		memcpy(data+(0x08) + sizeof(std::uint32_t) * i, &PChar->PMeritPoints->GetMeritByIndex(offset + i)->data, sizeof(std::uint32_t));
     }
 
     if (!PChar->m_moghouseID)
     {
         for (uint8 i = 0; i < MAX_MERITS_IN_PACKET; ++i)
         {
-            (*(Merit_t*)(data+(0x08) + sizeof(uint32) * i)).next = 0; // обнуляем значение next у всех merit
+            (*(Merit_t*)(data+(0x08) + sizeof(std::uint32_t) * i)).next = 0; // обнуляем значение next у всех merit
         }
     }
 }

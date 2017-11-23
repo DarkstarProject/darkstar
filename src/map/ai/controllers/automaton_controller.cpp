@@ -537,8 +537,8 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
     std::vector<SpellID> defaultPriority;
 
     int8 tier = 4;
-    int32 hp = PTarget->health.hp;
-    int32 selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
+    std::int32_t hp = PTarget->health.hp;
+    std::int32_t selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
     if (selfmp < 4)
         return false;
     else if (hp <= 50 || selfmp < 16)
@@ -1406,7 +1406,7 @@ namespace autoSpell
     {
         const int8* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
 
-        int32 ret = Sql_Query(SqlHandle, Query);
+        std::int32_t ret = Sql_Query(SqlHandle, Query);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -1420,7 +1420,7 @@ namespace autoSpell
                     (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)
                 };
 
-                uint32 removes = Sql_GetUIntData(SqlHandle, 5);
+                std::uint32_t removes = Sql_GetUIntData(SqlHandle, 5);
                 while (removes > 0)
                 {
                     PSpell.removes.push_back((EFFECT)(removes & 0xFF));

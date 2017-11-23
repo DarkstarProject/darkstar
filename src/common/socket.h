@@ -133,52 +133,52 @@ int sSocket(int af, int type, int protocol);
 #define RBUFP(p,pos) (((uint8*)(p)) + (pos))
 #define RBUFB(p,pos) (*(uint8*)RBUFP((p),(pos)))
 #define RBUFW(p,pos) (*(uint16*)RBUFP((p),(pos)))
-#define RBUFL(p,pos) (*(uint32*)RBUFP((p),(pos)))
+#define RBUFL(p,pos) (*(std::uint32_t*)RBUFP((p),(pos)))
 #define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
 
 #define WBUFP(p,pos) (((uint8*)(p)) + (pos))
 #define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
 #define WBUFW(p,pos) (*(uint16*)WBUFP((p),(pos)))
-#define WBUFL(p,pos) (*(uint32*)WBUFP((p),(pos)))
+#define WBUFL(p,pos) (*(std::uint32_t*)WBUFP((p),(pos)))
 #define WBUFU(p,pos) (*(std::uint64_t*)WBUFP((p),(pos)))
 #define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
 #define TOB(n) ((uint8)((n)&std::numeric_limits<std::uint8_t>::max()))
 #define TOW(n) ((uint16)((n)&std::numeric_limits<std::uint16_t>::max()))
-#define TOL(n) ((uint32)((n)&std::numeric_limits<std::uint32_t>::max()))
+#define TOL(n) ((std::uint32_t)((n)&std::numeric_limits<std::uint32_t>::max()))
 
 extern fd_set readfds;
 extern int fd_max;
 extern time_t last_tick;
 extern time_t stall_time;
 
-int32 makeConnection(uint32 ip, uint16 port, int32 type);
+std::int32_t makeConnection(std::uint32_t ip, uint16 port, std::int32_t type);
 
-int32 do_sockets(fd_set* rfd,duration next);
+std::int32_t do_sockets(fd_set* rfd,duration next);
 
-void do_close(int32 fd);
+void do_close(std::int32_t fd);
 
 bool socket_init(void);
 
 bool socket_final(void);
 
 // hostname/ip conversion functions
-uint32 host2ip(const char* hostname);
+std::uint32_t host2ip(const char* hostname);
 
 
-const char* ip2str(uint32 ip, char ip_str[16]);
+const char* ip2str(std::uint32_t ip, char ip_str[16]);
 
-uint32 str2ip(const char* ip_str);
+std::uint32_t str2ip(const char* ip_str);
 
 #define CONVIP(ip) ((ip)>>24)&0xFF,((ip)>>16)&0xFF,((ip)>>8)&0xFF,((ip)>>0)&0xFF
 
 uint16 ntows(uint16 netshort);
 
-int socket_getips(uint32* ips, int max);
+int socket_getips(std::uint32_t* ips, int max);
 
-extern uint32 g_addr_[16];   // ip addresses of local host (host byte order)
+extern std::uint32_t g_addr_[16];   // ip addresses of local host (host byte order)
 
-extern int32 naddr_;   // # of ip addresses
+extern std::int32_t naddr_;   // # of ip addresses
 
 /************************************************/
 #ifdef dsTCPSERV 
@@ -215,8 +215,8 @@ extern int32 naddr_;   // # of ip addresses
 	#define WFIFOB(fd,pos) (*(uint8*)WFIFOP(fd,pos))
 	#define RFIFOW(fd,pos) (*(uint16*)RFIFOP(fd,pos))
 	#define WFIFOW(fd,pos) (*(uint16*)WFIFOP(fd,pos))
-	#define RFIFOL(fd,pos) (*(uint32*)RFIFOP(fd,pos))
-	#define WFIFOL(fd,pos) (*(uint32*)WFIFOP(fd,pos))
+	#define RFIFOL(fd,pos) (*(std::uint32_t*)RFIFOP(fd,pos))
+	#define WFIFOL(fd,pos) (*(std::uint32_t*)WFIFOP(fd,pos))
 
 	#define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata.size() - session[fd]->rdata_pos)
 	#define RFIFOFLUSH(fd) \
@@ -236,7 +236,7 @@ extern int32 naddr_;   // # of ip addresses
 			unsigned char server : 1;
 		} flag;
 
-		uint32 client_addr; // remote client address
+		std::uint32_t client_addr; // remote client address
 
 		std::string rdata, wdata;
 		size_t rdata_pos;
@@ -260,30 +260,30 @@ extern int32 naddr_;   // # of ip addresses
 	int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse);
 	int delete_session(int fd);
 	//////////////////////////////////
-	int32 recv_to_fifo(int32 fd);
+	std::int32_t recv_to_fifo(std::int32_t fd);
 
-	int32 send_from_fifo(int32 fd);
+	std::int32_t send_from_fifo(std::int32_t fd);
 
-	int32 connect_client(int32 listen_fd, sockaddr_in& client_address);
+	std::int32_t connect_client(std::int32_t listen_fd, sockaddr_in& client_address);
 
-	int32 makeConnection_tcp(uint32 ip, uint16 port);
+	std::int32_t makeConnection_tcp(std::uint32_t ip, uint16 port);
 
-	int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
+	std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
 
-	int32 RFIFOSKIP(int32 fd, size_t len);
+	std::int32_t RFIFOSKIP(std::int32_t fd, size_t len);
 
 	void socket_init_tcp(void);
 	void socket_final_tcp(void);
 
-	void do_close_tcp(int32 fd);
+	void do_close_tcp(std::int32_t fd);
 
-	void flush_fifo(int32 fd);
+	void flush_fifo(std::int32_t fd);
 	void flush_fifos(void);
-	//void set_nonblocking(int32 fd, ulong yes);
+	//void set_nonblocking(std::int32_t fd, ulong yes);
 
 	void set_defaultparse(ParseFunc defaultparse);
 
-	void set_eof(int32 fd);
+	void set_eof(std::int32_t fd);
 
 	void set_nonblocking(int fd, unsigned long yes);
 #elif defined(dsUDPSERV)
@@ -292,15 +292,15 @@ extern int32 naddr_;   // # of ip addresses
 	*		UDP LEVEL
 	*
 	*/
-	extern int32 listen_fd;
-	int32 makeBind_udp(uint32 ip, uint16 port);
+	extern std::int32_t listen_fd;
+	std::int32_t makeBind_udp(std::uint32_t ip, uint16 port);
 
 	void socket_init_udp(void);
-	void do_close_udp(int32 fd);
+	void do_close_udp(std::int32_t fd);
 	void socket_final_udp(void);
 
-	int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen);
-	int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen);
+	std::int32_t recvudp(std::int32_t fd,void *buff,size_t nbytes,std::int32_t flags,struct sockaddr *from, socklen_t *addrlen);
+	std::int32_t sendudp(std::int32_t fd,void *buff,size_t nbytes,std::int32_t flags,const struct sockaddr *from,socklen_t addrlen);
 #endif 
 
 

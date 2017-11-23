@@ -26,7 +26,7 @@
 
 login_sd_list_t login_sd_list;
 
-login_session_data_t *find_loginsd_byaccid(uint32 accid)
+login_session_data_t *find_loginsd_byaccid(std::uint32_t accid)
 {
     for (login_sd_list_t::iterator i = login_sd_list.begin();
     i != login_sd_list.end();
@@ -38,7 +38,7 @@ login_session_data_t *find_loginsd_byaccid(uint32 accid)
     return nullptr;
 }
 
-login_session_data_t *find_loginsd_byip(uint32 ip)
+login_session_data_t *find_loginsd_byip(std::uint32_t ip)
 {
     //////// 19/03/2012 Fix for 1 IP -> Many Accounts
     // Simply increases "serviced" by 1 every time a login is returned via an IP address.
@@ -73,7 +73,7 @@ login_session_data_t *find_loginsd_byip(uint32 ip)
     return nullptr;
 }
 
-void erase_loginsd_byaccid(uint32 accid)
+void erase_loginsd_byaccid(std::uint32_t accid)
 {
     for (login_sd_list_t::iterator i = login_sd_list.begin();
     i != login_sd_list.end();
@@ -88,7 +88,7 @@ void erase_loginsd_byaccid(uint32 accid)
     return;
 }
 
-void erase_loginsd(int32 loginfd)
+void erase_loginsd(std::int32_t loginfd)
 {
     for (login_sd_list_t::iterator i = login_sd_list.begin();
     i != login_sd_list.end();

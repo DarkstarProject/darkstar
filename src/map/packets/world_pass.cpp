@@ -26,7 +26,7 @@
 #include "world_pass.h"
 
 
-CWorldPassPacket::CWorldPassPacket(uint32 WorldPass)
+CWorldPassPacket::CWorldPassPacket(std::uint32_t WorldPass)
 {
 	this->type = 0x59;
 	this->size = 0x12; 

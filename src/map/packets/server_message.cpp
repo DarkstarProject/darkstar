@@ -26,7 +26,7 @@
 
 #include <string.h>
 
-CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language, int32 timestamp, int32 message_offset)
+CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language, std::int32_t timestamp, std::int32_t message_offset)
 {
     this->type = 0x4D;
     this->size = 0x0E;
@@ -35,7 +35,7 @@ CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language
     WBUFB(data, (0x05) ) = 1;
     WBUFB(data, (0x06) ) = 1;
     WBUFB(data, (0x07) ) = language;
-    WBUFL(data, (0x08) ) = (uint32)(timestamp == 0 ? time(0) : timestamp);
+    WBUFL(data, (0x08) ) = (std::uint32_t)(timestamp == 0 ? time(0) : timestamp);
     WBUFL(data, (0x0C) ) = 0; // Message Length.. (Total)
     WBUFL(data, (0x10) ) = 0; // Message Offset..
     WBUFL(data, (0x14) ) = 0; // Message Length..
@@ -46,9 +46,9 @@ CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language
         auto msgLength = message.length();
         auto sndLength = (msgLength - message_offset) > 236 ? 236 : (msgLength - message_offset);
 
-        WBUFL(data, (0x0C) ) = (uint32)message.length(); // Message Length.. (Total)
+        WBUFL(data, (0x0C) ) = (std::uint32_t)message.length(); // Message Length.. (Total)
         WBUFL(data, (0x10) ) = message_offset;   // Message Offset..
-        WBUFL(data, (0x14) ) = (uint32)sndLength;        // Message Length..
+        WBUFL(data, (0x14) ) = (std::uint32_t)sndLength;        // Message Length..
 
         memcpy((data + (0x18)) , message.c_str() + message_offset, sndLength);
 

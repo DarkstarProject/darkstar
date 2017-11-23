@@ -49,12 +49,12 @@ CNpcEntity::~CNpcEntity()
 
 }
 
-uint32 CNpcEntity::getEntityFlags()
+std::uint32_t CNpcEntity::getEntityFlags()
 {
     return m_flags;
 }
 
-void CNpcEntity::setEntityFlags(uint32 EntityFlags)
+void CNpcEntity::setEntityFlags(std::uint32_t EntityFlags)
 {
     m_flags = EntityFlags;
 }

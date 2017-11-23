@@ -30,9 +30,9 @@ class CCharEntity;
 
 namespace blacklistutils
 {
-	bool IsBlacklisted(uint32 ownerId, uint32 targetId);
-	bool AddBlacklisted(uint32 ownerId, uint32 targetId);
-	bool DeleteBlacklisted(uint32 ownerId, uint32 targetId);
+	bool IsBlacklisted(std::uint32_t ownerId, std::uint32_t targetId);
+	bool AddBlacklisted(std::uint32_t ownerId, std::uint32_t targetId);
+	bool DeleteBlacklisted(std::uint32_t ownerId, std::uint32_t targetId);
 	void SendBlacklist(CCharEntity* PChar);
 
 } // namespace blacklistutils

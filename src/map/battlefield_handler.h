@@ -53,9 +53,9 @@ public:
     bool    hasSpecialBattlefieldEmpty(uint16 id);                     // return 1 if one or more player is still on the special battlefield
     duration     SpecialBattlefieldLeftTime(uint16 id, time_point tick);         //return left Time of the specific battlefield
     int     GiveTimeToBattlefield(uint16 id, duration Time);              // give time to specific battlefield
-    void    SetLootToBCNM(uint16 LootID, uint16 id, uint32 npcID);
+    void    SetLootToBCNM(uint16 LootID, uint16 id, std::uint32_t npcID);
     void    RestoreOnBattlefield(uint16 id);                          //restor MP HP ability on a specific battlefield
-    uint32	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 battlefields of the given BCNM ID
+    std::uint32_t	pollTimeLeft(uint16 bcnmid);							// returns the shortest time left of all 3 battlefields of the given BCNM ID
     void	openTreasureChest(CCharEntity* PChar);
     void	wipeBattlefield(CBattlefield* inst);
     CBattlefield* getBattlefield(CCharEntity*);                           // returns the battlefield a player is in

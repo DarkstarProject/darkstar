@@ -38,7 +38,7 @@ class CSynthSuggestionPacket : public CBasicPacket
 {
 public:
 
-	CSynthSuggestionPacket(uint32 synthID);
+	CSynthSuggestionPacket(std::uint32_t synthID);
 };
 
 #endif

@@ -56,7 +56,7 @@ struct login_config_t
     std::string mysql_password;     // mysql pass     -> default NULL
     std::string mysql_database;     // mysql database -> default dspdb
 
-    uint32 search_server_port;      // search_server_port -> 54002
+    std::uint32_t search_server_port;      // search_server_port -> 54002
 
     uint16 msg_server_port;         // chat server port
     std::string msg_server_ip;      // chat server IP
@@ -78,19 +78,19 @@ extern Sql_t *SqlHandle;
 /*======================================================
  * Login-Server Version Screen [venom]
  *------------------------------------------------------*/
-void login_helpscreen(int32 flag);
+void login_helpscreen(std::int32_t flag);
 /*======================================================
  * Login-Server Version Screen [venom]
  *------------------------------------------------------*/
-void login_versionscreen(int32 flag);
+void login_versionscreen(std::int32_t flag);
 /*==========================================
  * Login-Server Config [venom]
  *------------------------------------------*/
 
-int32 login_config_read(const char *cfgName);
-int32 login_config_default();
+std::int32_t login_config_read(const char *cfgName);
+std::int32_t login_config_default();
 
-int32 version_info_read(const char *cfgName);
-int32 version_info_default();
+std::int32_t version_info_read(const char *cfgName);
+std::int32_t version_info_default();
 
 #endif

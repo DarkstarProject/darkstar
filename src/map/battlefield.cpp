@@ -285,7 +285,7 @@ bool CBattlefield::isPlayerInBcnm(CCharEntity* PChar)
     return false;
 }
 
-void CBattlefield::pushMessageToAllInBcnm(uint16 msg, uint32 param)
+void CBattlefield::pushMessageToAllInBcnm(uint16 msg, std::uint32_t param)
 {
     for (const auto& player : m_PlayerList)
     {
@@ -682,7 +682,7 @@ void CBattlefield::cleanupDynamis()
                             LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
                             WHERE zoneid = %u";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
 
     if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) {
         ShowError("Dynamis cleanup : SQL error - Cannot find any ID for Dyna %i \n", this->getID());
@@ -691,7 +691,7 @@ void CBattlefield::cleanupDynamis()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
+            std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
             CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
             if (PMob != nullptr) {

@@ -42,7 +42,7 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
 	this->type = 0x23;
 	this->size = 0x14;
 
-	uint32 amount = PItem->getReserve();
+	std::uint32_t amount = PItem->getReserve();
 
     WBUFL(data,(0x04)) = amount;
 	WBUFW(data,(0x0A)) = amount == 0 ? 0 : PItem->getID();

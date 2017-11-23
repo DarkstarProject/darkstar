@@ -83,27 +83,27 @@ struct Sql_t* Sql_Malloc(void);
 /// Establishes a connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db);
+std::int32_t Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db);
 
 /// Retrieves the timeout of the connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_GetTimeout(Sql_t* self, uint32* out_timeout);
+std::int32_t Sql_GetTimeout(Sql_t* self, std::uint32_t* out_timeout);
 
 /// Retrieves the name of the columns of a table into out_buf, with the separator after each name.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_GetColumnNames(Sql_t* self, const char* table, char* out_buf, size_t buf_len, char sep);
+std::int32_t Sql_GetColumnNames(Sql_t* self, const char* table, char* out_buf, size_t buf_len, char sep);
 
 /// Changes the encoding of the connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_SetEncoding(Sql_t* self, const char* encoding);
+std::int32_t Sql_SetEncoding(Sql_t* self, const char* encoding);
 
 /// Pings the connection.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_Ping(Sql_t* self);
+std::int32_t Sql_Ping(Sql_t* self);
 
 /// Escapes a string.
 /// The output buffer must be at least strlen(from)*2+1 in size.
@@ -117,7 +117,7 @@ size_t Sql_EscapeStringLen(Sql_t* self, char *out_to, const char *from, size_t f
 /// The query is used directly.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_QueryStr(Sql_t* self, const char* query);
+std::int32_t Sql_QueryStr(Sql_t* self, const char* query);
 
 /// Executes a query.
 /// Any previous result is freed.
@@ -125,7 +125,7 @@ int32 Sql_QueryStr(Sql_t* self, const char* query);
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
 template<typename... Args>
-int32 Sql_Query(Sql_t* self, const char* query, Args... args)
+std::int32_t Sql_Query(Sql_t* self, const char* query, Args... args)
 {
     std::string query_v = fmt::sprintf(query, args...);
 	return Sql_QueryStr(self, query_v.c_str());
@@ -141,7 +141,7 @@ std::uint64_t Sql_LastInsertId(Sql_t* self);
 /// Returns the number of columns in each row of the result.
 ///
 /// @return Number of columns
-uint32 Sql_NumColumns(Sql_t* self);
+std::uint32_t Sql_NumColumns(Sql_t* self);
 
 /// Returns the number of rows in the result.
 ///
@@ -152,22 +152,22 @@ std::uint64_t Sql_NumRows(Sql_t* self);
 /// The data of the previous row is no longer valid.
 ///
 /// @return SQL_SUCCESS, SQL_ERROR or SQL_NO_DATA
-int32 Sql_NextRow(Sql_t* self);
+std::int32_t Sql_NextRow(Sql_t* self);
 
 /// Establishes keepalive (periodic ping) on the connection
 ///
 /// @return the keepalive timer id, or INVALID_TIMER
-int32 Sql_Keepalive(Sql_t* self);
+std::int32_t Sql_Keepalive(Sql_t* self);
 
 /// Gets the data of a column.
 /// The data remains valid until the next row is fetched or the result is freed.
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
-int32 Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_len);
+std::int32_t Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_len);
 
 int8*  Sql_GetData(Sql_t* self, size_t col);
-int32  Sql_GetIntData(Sql_t *self, size_t col);
-uint32 Sql_GetUIntData(Sql_t *self, size_t col);
+std::int32_t  Sql_GetIntData(Sql_t *self, size_t col);
+std::uint32_t Sql_GetUIntData(Sql_t *self, size_t col);
 float  Sql_GetFloatData(Sql_t *self, size_t col);
 
 

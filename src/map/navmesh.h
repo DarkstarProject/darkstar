@@ -85,7 +85,7 @@ public:
     bool validPosition(const position_t& position);
 
 private:
-    void outputError(uint32 status);
+    void outputError(std::uint32_t status);
 
     uint16 m_zoneID;
     dtRaycastHit m_hit;

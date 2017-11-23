@@ -41,9 +41,9 @@ class CMessageStandardPacket : public CBasicPacket
 public:
 
     CMessageStandardPacket(uint16 MessageID);
-	CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint16 MessageID);
-	CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID);
-	CMessageStandardPacket(uint32 param0, uint32 param1, uint32 param2, uint32 param3, uint16 MessageID);
+	CMessageStandardPacket(CCharEntity* PChar, std::uint32_t param0, uint16 MessageID);
+	CMessageStandardPacket(CCharEntity* PChar, std::uint32_t param0, std::uint32_t param1, uint16 MessageID);
+	CMessageStandardPacket(std::uint32_t param0, std::uint32_t param1, std::uint32_t param2, std::uint32_t param3, uint16 MessageID);
 };
 
 #endif

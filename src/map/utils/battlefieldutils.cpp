@@ -48,7 +48,7 @@ namespace battlefieldutils {
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0 ||
@@ -71,7 +71,7 @@ namespace battlefieldutils {
 
             PBattlefield->setRecord(Sql_GetData(SqlHandle, 2),
                 (uint8)Sql_GetUIntData(SqlHandle, 10),
-                std::chrono::seconds((uint32)Sql_GetUIntData(SqlHandle, 3)));
+                std::chrono::seconds((std::uint32_t)Sql_GetUIntData(SqlHandle, 3)));
 
             return PBattlefield;
         }
@@ -92,7 +92,7 @@ namespace battlefieldutils {
                             FROM bcnm_battlefield \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0)
@@ -102,7 +102,7 @@ namespace battlefieldutils {
         }
         else {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-                uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
+                std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
                 uint8 condition = Sql_GetUIntData(SqlHandle, 1);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
                 if (PMob != nullptr)
@@ -162,7 +162,7 @@ namespace battlefieldutils {
                             FROM bcnm_treasure_chests \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
         if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
         {
@@ -173,7 +173,7 @@ namespace battlefieldutils {
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint32 npcid = Sql_GetUIntData(SqlHandle, 0);
+                std::uint32_t npcid = Sql_GetUIntData(SqlHandle, 0);
                 CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
                 if (PNpc != nullptr)
                 {
@@ -355,7 +355,7 @@ namespace battlefieldutils {
                                 FROM bcnm_battlefield \
                                 WHERE bcnmId = %u AND battlefieldNumber = 2";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0)
@@ -365,7 +365,7 @@ namespace battlefieldutils {
         }
         else {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-                uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
+                std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
                 if (PMob != nullptr)
                 {

@@ -44,42 +44,42 @@ CVanaTime* CVanaTime::getInstance()
     return _instance;
 }
 
-uint32 CVanaTime::getDate()
+std::uint32_t CVanaTime::getDate()
 {
     return m_vanaDate;
 }
 
-uint32 CVanaTime::getYear()
+std::uint32_t CVanaTime::getYear()
 {
     return m_vYear;
 }
 
-uint32 CVanaTime::getMonth()
+std::uint32_t CVanaTime::getMonth()
 {
     return m_vMon;
 }
 
-uint32 CVanaTime::getDayOfTheMonth()
+std::uint32_t CVanaTime::getDayOfTheMonth()
 {
     return m_vDate;
 }
 
-uint32 CVanaTime::getHour()
+std::uint32_t CVanaTime::getHour()
 {
     return m_vHour;
 }
 
-uint32 CVanaTime::getMinute()
+std::uint32_t CVanaTime::getMinute()
 {
     return m_vMin;
 }
 
-uint32 CVanaTime::getWeekday()
+std::uint32_t CVanaTime::getWeekday()
 {
     return m_vDay;
 }
 
-uint32 CVanaTime::getSysHour()
+std::uint32_t CVanaTime::getSysHour()
 {
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -87,7 +87,7 @@ uint32 CVanaTime::getSysHour()
     return ltm->tm_hour;
 }
 
-uint32 CVanaTime::getSysMinute()
+std::uint32_t CVanaTime::getSysMinute()
 {
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -95,7 +95,7 @@ uint32 CVanaTime::getSysMinute()
     return ltm->tm_min;
 }
 
-uint32 CVanaTime::getSysSecond()
+std::uint32_t CVanaTime::getSysSecond()
 {
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -103,7 +103,7 @@ uint32 CVanaTime::getSysSecond()
     return ltm->tm_sec;
 }
 
-uint32 CVanaTime::getSysWeekDay()
+std::uint32_t CVanaTime::getSysWeekDay()
 {
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -111,7 +111,7 @@ uint32 CVanaTime::getSysWeekDay()
     return ltm->tm_wday;
 }
 
-uint32 CVanaTime::getSysYearDay()
+std::uint32_t CVanaTime::getSysYearDay()
 {
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -119,19 +119,19 @@ uint32 CVanaTime::getSysYearDay()
     return ltm->tm_yday;
 }
 
-uint32 CVanaTime::getVanaTime()
+std::uint32_t CVanaTime::getVanaTime()
 {
     //if custom offset is re-implemented here is the place to put it
     //all functions/variables for in game time should be derived from this
-    return (uint32)time(nullptr) - VTIME_BASEDATE;
+    return (std::uint32_t)time(nullptr) - VTIME_BASEDATE;
 }
 
-int32 CVanaTime::getCustomOffset()
+std::int32_t CVanaTime::getCustomOffset()
 {
     return m_customOffset;
 }
 
-void CVanaTime::setCustomOffset(int32 offset)
+void CVanaTime::setCustomOffset(std::int32_t offset)
 {
     m_customOffset = offset;
     m_TimeType = SyncTime();
@@ -142,18 +142,18 @@ TIMETYPE CVanaTime::GetCurrentTOTD()
     return m_TimeType;
 }
 
-uint32 CVanaTime::getMoonPhase()
+std::uint32_t CVanaTime::getMoonPhase()
 {
-    int32 phase = 0;
-    double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
+    std::int32_t phase = 0;
+    double daysmod = (std::int32_t)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
     if (daysmod >= 42)
     {
-        phase = (int32)(100 * ((daysmod - 42) / 42) + 0.5);
+        phase = (std::int32_t)(100 * ((daysmod - 42) / 42) + 0.5);
     }
     else
     {
-        phase = (int32)(100 * (1 - (daysmod / 42)) + 0.5);
+        phase = (std::int32_t)(100 * (1 - (daysmod / 42)) + 0.5);
     }
 
     return phase;
@@ -161,7 +161,7 @@ uint32 CVanaTime::getMoonPhase()
 
 uint8 CVanaTime::getMoonDirection()
 {
-    double daysmod = (int32)(((m_vanaDate / VTIME_DAY) + 26) % 84);
+    double daysmod = (std::int32_t)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
     if (daysmod == 42 || daysmod == 0)
     {
@@ -189,14 +189,14 @@ uint8 CVanaTime::getRSELocation()
 
 TIMETYPE CVanaTime::SyncTime()
 {
-    m_vanaDate  = (uint32)(this->getVanaTime() / 60.0 * 25) + 886 * VTIME_YEAR; //convert vana time (from SE epoch in earth seconds) to vanadiel minutes and add 886 vana years
+    m_vanaDate  = (std::uint32_t)(this->getVanaTime() / 60.0 * 25) + 886 * VTIME_YEAR; //convert vana time (from SE epoch in earth seconds) to vanadiel minutes and add 886 vana years
 
-    m_vYear = (uint32)( m_vanaDate / VTIME_YEAR);
-    m_vMon  = (uint32)((m_vanaDate / VTIME_MONTH) % 12) + 1;
-    m_vDate = (uint32)((m_vanaDate / VTIME_DAY) % 30 ) + 1;
-    m_vDay  = (uint32)((m_vanaDate % VTIME_WEEK)  / VTIME_DAY);
-    m_vHour = (uint32)((m_vanaDate % VTIME_DAY)   / VTIME_HOUR);
-    m_vMin  = (uint32)( m_vanaDate % VTIME_HOUR);
+    m_vYear = (std::uint32_t)( m_vanaDate / VTIME_YEAR);
+    m_vMon  = (std::uint32_t)((m_vanaDate / VTIME_MONTH) % 12) + 1;
+    m_vDate = (std::uint32_t)((m_vanaDate / VTIME_DAY) % 30 ) + 1;
+    m_vDay  = (std::uint32_t)((m_vanaDate % VTIME_WEEK)  / VTIME_DAY);
+    m_vHour = (std::uint32_t)((m_vanaDate % VTIME_DAY)   / VTIME_HOUR);
+    m_vMin  = (std::uint32_t)( m_vanaDate % VTIME_HOUR);
 
     if (m_vMin == 0)
     {

@@ -110,7 +110,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
                       							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
-        uint32 partyid = RBUFL(extra->data(), 0);
+        std::uint32_t partyid = RBUFL(extra->data(), 0);
         ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
         break;
     }
@@ -261,7 +261,7 @@ void message_server_init()
     zContext = zmq::context_t(1);
     zSocket = new zmq::socket_t(zContext, ZMQ_ROUTER);
 
-    uint32 to = 500;
+    std::uint32_t to = 500;
     zSocket->setsockopt(ZMQ_RCVTIMEO, &to, sizeof to);
 
     string_t server = "tcp://";

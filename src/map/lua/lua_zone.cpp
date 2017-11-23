@@ -67,7 +67,7 @@ CLuaZone::CLuaZone(CZone* PZone)
 *																		*
 ************************************************************************/
 
-inline int32 CLuaZone::registerRegion(lua_State *L)
+inline std::int32_t CLuaZone::registerRegion(lua_State *L)
 {
     if (m_pLuaZone != nullptr)
     {
@@ -83,7 +83,7 @@ inline int32 CLuaZone::registerRegion(lua_State *L)
             if (lua_tointeger(L, 5) == 0 && lua_tointeger(L, 6) == 0 && lua_tointeger(L, 7) == 0)
                 circleRegion = true; // Parameters were 0, we must be a circle.
 
-            CRegion* Region = new CRegion((uint32)lua_tointeger(L, 1), circleRegion);
+            CRegion* Region = new CRegion((std::uint32_t)lua_tointeger(L, 1), circleRegion);
 
             // If this is a circle, parameter 3 (which would otherwise be vertical coordinate) will be the radius.
             Region->SetULCorner((float)lua_tointeger(L, 2), (float)lua_tointeger(L, 3), (float)lua_tointeger(L, 4));
@@ -106,7 +106,7 @@ inline int32 CLuaZone::registerRegion(lua_State *L)
 *																		*
 ************************************************************************/
 
-inline int32 CLuaZone::levelRestriction(lua_State *L)
+inline std::int32_t CLuaZone::levelRestriction(lua_State *L)
 {
     if (m_pLuaZone != nullptr)
     {
@@ -116,7 +116,7 @@ inline int32 CLuaZone::levelRestriction(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaZone::getPlayers(lua_State* L)
+inline std::int32_t CLuaZone::getPlayers(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
 
@@ -136,7 +136,7 @@ inline int32 CLuaZone::getPlayers(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaZone::getID(lua_State* L)
+inline std::int32_t CLuaZone::getID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
 
@@ -145,7 +145,7 @@ inline int32 CLuaZone::getID(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaZone::getRegionID(lua_State* L)
+inline std::int32_t CLuaZone::getRegionID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
 

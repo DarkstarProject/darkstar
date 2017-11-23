@@ -41,7 +41,7 @@ class CStopDownloadingPacket : public CBasicPacket
 {
 public:
 
-	CStopDownloadingPacket(CCharEntity* PChar, std::vector< std::pair< uint32, string_t > > blacklist);
+	CStopDownloadingPacket(CCharEntity* PChar, std::vector< std::pair< std::uint32_t, string_t > > blacklist);
 };
 
 #endif

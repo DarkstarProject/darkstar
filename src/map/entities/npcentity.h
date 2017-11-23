@@ -32,11 +32,11 @@
 class CNpcEntity : public CBaseEntity {
 public:
 
-    uint32      m_flags;
+    std::uint32_t      m_flags;
     uint8       name_prefix;
     uint8       widescan;
-    uint32      getEntityFlags();                        // Returns the current value in m_flags
-    void        setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
+    std::uint32_t      getEntityFlags();                        // Returns the current value in m_flags
+    void        setEntityFlags(std::uint32_t EntityFlags);      // Change the current value in m_flags
     void        HideModel(bool hide);                    // hide / show model
     bool        IsModelHidden();
     void        HideHP(bool hide);

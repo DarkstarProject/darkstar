@@ -66,27 +66,27 @@ public:
 	TIMETYPE SyncTime();
 	TIMETYPE GetCurrentTOTD();
 
-	uint32	 getDate();
-	uint32	 getYear();
-	uint32	 getMonth();
-	uint32	 getDayOfTheMonth();
-	uint32	 getHour();
-	uint32	 getMinute();
-	uint32	 getWeekday();
-	uint32	 getMoonPhase();
+	std::uint32_t	 getDate();
+	std::uint32_t	 getYear();
+	std::uint32_t	 getMonth();
+	std::uint32_t	 getDayOfTheMonth();
+	std::uint32_t	 getHour();
+	std::uint32_t	 getMinute();
+	std::uint32_t	 getWeekday();
+	std::uint32_t	 getMoonPhase();
 	uint8	 getMoonDirection();
 	uint8	 getRSERace();
 	uint8	 getRSELocation();
-	uint32	 getSysHour();
-	uint32	 getSysMinute();
-	uint32	 getSysSecond();
-	uint32	 getSysWeekDay();						// Number of day since sunday
-	uint32	 getSysYearDay();						// Number of day since 1st january
+	std::uint32_t	 getSysHour();
+	std::uint32_t	 getSysMinute();
+	std::uint32_t	 getSysSecond();
+	std::uint32_t	 getSysWeekDay();						// Number of day since sunday
+	std::uint32_t	 getSysYearDay();						// Number of day since 1st january
 
-    uint32   getVanaTime();
-	int32	 getCustomOffset();
+    std::uint32_t   getVanaTime();
+	std::int32_t	 getCustomOffset();
 
-	void	 setCustomOffset(int32 offset);
+	void	 setCustomOffset(std::int32_t offset);
 	
 	time_point   lastConquestUpdate;
     time_point   lastVHourlyUpdate;
@@ -100,17 +100,17 @@ private:
 
 	CVanaTime();
 
-	uint32	 m_vYear;								// Vanadiel Year
-	uint32	 m_vMon;								// Vanadiel Month
-	uint32	 m_vDate;								// Vanadiel Date (day of the month)
-	uint32	 m_vHour;								// Vanadiel Hour
-	uint32	 m_vMin;								// Vanadiel Minute
-	uint32	 m_vDay;								// Vanadiel Day (Day of the week, fire,earth,wind)
-	uint32	 m_vanaDate;							// Vanadiel time in integer format
+	std::uint32_t	 m_vYear;								// Vanadiel Year
+	std::uint32_t	 m_vMon;								// Vanadiel Month
+	std::uint32_t	 m_vDate;								// Vanadiel Date (day of the month)
+	std::uint32_t	 m_vHour;								// Vanadiel Hour
+	std::uint32_t	 m_vMin;								// Vanadiel Minute
+	std::uint32_t	 m_vDay;								// Vanadiel Day (Day of the week, fire,earth,wind)
+	std::uint32_t	 m_vanaDate;							// Vanadiel time in integer format
 
 	TIMETYPE m_TimeType;							// текущий тип времени
 
-	int32	 m_customOffset;						// Смещение игрового времени в игровых минутах
+	std::int32_t	 m_customOffset;						// Смещение игрового времени в игровых минутах
 };
 
 #endif

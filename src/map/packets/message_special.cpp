@@ -33,10 +33,10 @@
 CMessageSpecialPacket::CMessageSpecialPacket(
 	CBaseEntity* PEntity, 
 	uint16 messageID,  
-	uint32 param0, 
-	uint32 param1, 
-	uint32 param2, 
-	uint32 param3, 
+	std::uint32_t param0, 
+	std::uint32_t param1, 
+	std::uint32_t param2, 
+	std::uint32_t param3, 
 	bool ShowName)
 {
 	this->type = 0x2A;

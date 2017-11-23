@@ -47,7 +47,7 @@ CSynthResultMessagePacket::CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_M
 		uint8 count = 0;
 		for (uint8 slotID = 1; slotID <= 8; ++slotID)
 		{
-			uint32 quantity = PChar->CraftContainer->getQuantity(slotID);
+			std::uint32_t quantity = PChar->CraftContainer->getQuantity(slotID);
 			if (quantity == 0)
 			{
 				uint16 itemID = PChar->CraftContainer->getItemID(slotID);

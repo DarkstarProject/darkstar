@@ -270,7 +270,7 @@ uint8 CAttack::GetHitRate()
 *  Returns the damage for this swing.									*
 *																		*
 ************************************************************************/
-int32 CAttack::GetDamage()
+std::int32_t CAttack::GetDamage()
 {
     return m_damage;
 }
@@ -280,7 +280,7 @@ int32 CAttack::GetDamage()
 *  Sets the damage for this swing.										*
 *																		*
 ************************************************************************/
-void CAttack::SetDamage(int32 value)
+void CAttack::SetDamage(std::int32_t value)
 {
     m_damage = value;
 }
@@ -408,13 +408,13 @@ void CAttack::ProcessDamage()
     if (m_attackRound->IsH2H())
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
-        m_naturalH2hDamage = (int32)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
+        m_naturalH2hDamage = (std::int32_t)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
         m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;
         }
-        m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
+        m_damage = (std::uint32_t)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
             battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
     }
     // Not H2H.
@@ -422,12 +422,12 @@ void CAttack::ProcessDamage()
     {
         if (GetWeaponSlot() == SLOT_MAIN)
         {
-            m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
+            m_damage = (std::uint32_t)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
                 battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
         }
         else if (GetWeaponSlot() == SLOT_SUB)
         {
-            m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
+            m_damage = (std::uint32_t)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
                 battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
         }
     }
@@ -450,19 +450,19 @@ void CAttack::ProcessDamage()
     // Get critical bonus mods.
     if (m_isCritical)
     {
-        m_damage += (int32)(m_damage * m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100.0f);
+        m_damage += (std::int32_t)(m_damage * m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100.0f);
     }
 
     // Apply Sneak Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
     {
-        m_damage += (int32)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100.0f));
+        m_damage += (std::int32_t)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100.0f));
     }
 
     // Apply Trick Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
-        m_damage += (int32)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100.0f));
+        m_damage += (std::int32_t)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100.0f));
     }
 
     // Try skill up.

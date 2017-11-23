@@ -42,10 +42,10 @@ public:
 	uint16	getAnimationTime();
 	uint16	getActivationTime();
 	uint8	getValidTarget();
-    uint32  getReuseTime();
-	uint32	getReuseDelay();
-	uint32	getLastUseTime();
-    uint32  getNextUseTime();
+    std::uint32_t  getReuseTime();
+	std::uint32_t	getReuseDelay();
+	std::uint32_t	getLastUseTime();
+    std::uint32_t  getNextUseTime();
     uint16  getAoE();
 
 	void	setUseDelay(uint8 UseDelay);
@@ -55,9 +55,9 @@ public:
 	void	setAnimationTime(uint16 AnimationTime);
 	void	setActivationTime(uint16 ActivationTime);
 	void	setValidTarget(uint8 ValidTarget);
-	void	setReuseDelay(uint32 ReuseDelay);
-	void	setLastUseTime(uint32 LastUseTime);
-    void    setAssignTime(uint32 VanaTime);
+	void	setReuseDelay(std::uint32_t ReuseDelay);
+	void	setLastUseTime(std::uint32_t LastUseTime);
+    void    setAssignTime(std::uint32_t VanaTime);
 	void    setAoE(uint16 AoE);
 
 private:
@@ -68,8 +68,8 @@ private:
 	uint16	m_AnimationTime;    // время анимации для правильного отображения сообщения (эффектов)
 	uint16	m_ActivationTime;   // время активации предмета во время использования
 	uint8	m_ValidTarget;
-	uint32	m_ReuseDelay;       // задержка между использованием предмета
-    uint32  m_AssignTime;       // время экипировки предмета
+	std::uint32_t	m_ReuseDelay;       // задержка между использованием предмета
+    std::uint32_t  m_AssignTime;       // время экипировки предмета
     uint16  m_AoE;
 };
 

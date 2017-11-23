@@ -57,27 +57,27 @@ uint8 CItemUsable::getUseDelay()
 	return m_UseDelay;
 }
 
-void CItemUsable::setReuseDelay(uint32 ReuseDelay)
+void CItemUsable::setReuseDelay(std::uint32_t ReuseDelay)
 {
 	m_ReuseDelay = ReuseDelay;
 }
 
-uint32 CItemUsable::getReuseDelay()
+std::uint32_t CItemUsable::getReuseDelay()
 {
 	return m_ReuseDelay;
 }
 
-void CItemUsable::setLastUseTime(uint32 LastUseTime)
+void CItemUsable::setLastUseTime(std::uint32_t LastUseTime)
 {
 	WBUFL(m_extra, 0x04) = LastUseTime;
 }
 
-uint32 CItemUsable::getLastUseTime()
+std::uint32_t CItemUsable::getLastUseTime()
 {
 	return RBUFL(m_extra, 0x04);
 }
 
-uint32 CItemUsable::getNextUseTime()
+std::uint32_t CItemUsable::getNextUseTime()
 {
     return getLastUseTime() + m_ReuseDelay;
 }
@@ -158,7 +158,7 @@ void CItemUsable::setAoE(uint16 AoE)
 *																		*
 ************************************************************************/
 
-void CItemUsable::setAssignTime(uint32 VanaTime)
+void CItemUsable::setAssignTime(std::uint32_t VanaTime)
 {
     m_AssignTime = VanaTime;
 }
@@ -169,10 +169,10 @@ void CItemUsable::setAssignTime(uint32 VanaTime)
 *																		*
 ************************************************************************/
 
-uint32 CItemUsable::getReuseTime()
+std::uint32_t CItemUsable::getReuseTime()
 {
-    uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
-    uint32 ReuseTime   = std::max(m_AssignTime + m_UseDelay, getLastUseTime() + m_ReuseDelay);
+    std::uint32_t CurrentTime = CVanaTime::getInstance()->getVanaTime();
+    std::uint32_t ReuseTime   = std::max(m_AssignTime + m_UseDelay, getLastUseTime() + m_ReuseDelay);
 
     return (ReuseTime > CurrentTime ? (ReuseTime - CurrentTime) * 1000 : 0);
 }

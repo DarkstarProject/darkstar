@@ -1028,7 +1028,7 @@ bool CMobController::IsSpecialSkillReady(float currentDistance)
 
     if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL)) return false;
 
-    int32 bonusTime = 0;
+    std::int32_t bonusTime = 0;
     if (currentDistance > 5)
     {
         // Mobs use ranged attacks quicker when standing back
@@ -1046,7 +1046,7 @@ bool CMobController::IsSpecialSkillReady(float currentDistance)
 bool CMobController::IsSpellReady(float currentDistance)
 {
 
-    int32 bonusTime = 0;
+    std::int32_t bonusTime = 0;
     if (currentDistance > 5)
     {
         // Mobs use ranged attacks quicker when standing back

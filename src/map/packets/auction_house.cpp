@@ -50,22 +50,22 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action)
     }
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity, uint32 price)
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity, std::uint32_t price)
 {
     this->type = 0x4C;
     this->size = 0x1E;
 
-    uint32 auctionFee = 0;
+    std::uint32_t auctionFee = 0;
     if (quantity == 0) // This is a stack..Yes, zero for stacks.. Why is this being called quantity?
     {
-        auctionFee = (uint32)(map_config.ah_base_fee_stacks + (price * map_config.ah_tax_rate_stacks / 100));
+        auctionFee = (std::uint32_t)(map_config.ah_base_fee_stacks + (price * map_config.ah_tax_rate_stacks / 100));
     }
     else // This is a single item.
     {
-        auctionFee = (uint32)(map_config.ah_base_fee_single  + (price * map_config.ah_tax_rate_single / 100));
+        auctionFee = (std::uint32_t)(map_config.ah_base_fee_single  + (price * map_config.ah_tax_rate_single / 100));
     }
 
-    auctionFee = std::clamp<uint32>(auctionFee, 0, map_config.ah_max_fee);
+    auctionFee = std::clamp<std::uint32_t>(auctionFee, 0, map_config.ah_max_fee);
 
     WBUFB(data,(0x04)) = action;
     WBUFB(data,(0x05)) = 0xFF;
@@ -104,7 +104,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* 
     }
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, uint16 itemid, uint32 price)
+CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, uint16 itemid, std::uint32_t price)
 {
     this->type = 0x4C;
     this->size = 0x1E;

@@ -40,7 +40,7 @@ class CMessageDebugPacket : public CBasicPacket
 {
 public:
 
-	CMessageDebugPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param0, int32 param1, uint16 messageID);
+	CMessageDebugPacket(CBaseEntity* PSender, CBaseEntity* PTarget, std::int32_t param0, std::int32_t param1, uint16 messageID);
 };
 
 #endif

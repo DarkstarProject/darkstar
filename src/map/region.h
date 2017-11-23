@@ -37,9 +37,9 @@ class CRegion
 {
 public:
 
-	CRegion(uint32 RegionID, bool isCircle);
+	CRegion(std::uint32_t RegionID, bool isCircle);
 
-	uint32	GetRegionID();
+	std::uint32_t	GetRegionID();
 
     int16   GetCount();
     int16   AddCount(int16 count);
@@ -52,7 +52,7 @@ public:
 	
 private:
 
-	uint32 m_RegionID;									// номер региона
+	std::uint32_t m_RegionID;									// номер региона
     int16  m_Count;                                     // количество персонажей в регионе
 
 	float x1, y1, z1;									// верхний левый угол

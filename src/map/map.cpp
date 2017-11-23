@@ -73,8 +73,8 @@ int8*  PTempBuff = nullptr;                // временный  буфер о�
 
 thread_local Sql_t* SqlHandle = nullptr;
 
-int32  map_fd = 0;                      // main socket
-uint32 map_amntplayers = 0;             // map amnt unique players
+std::int32_t  map_fd = 0;                      // main socket
+std::uint32_t map_amntplayers = 0;             // map amnt unique players
 
 in_addr map_ip;
 uint16 map_port = 0;
@@ -109,7 +109,7 @@ map_session_data_t* mapsession_getbyipp(std::uint64_t ipp)
 *                                                                       *
 ************************************************************************/
 
-map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
+map_session_data_t* mapsession_createsession(std::uint32_t ip, uint16 port)
 {
     map_session_data_t* map_session_data = new map_session_data_t;
     memset(map_session_data, 0, sizeof(map_session_data_t));
@@ -127,7 +127,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 
     const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
 
     if (ret == SQL_ERROR ||
         Sql_NumRows(SqlHandle) == 0)
@@ -144,7 +144,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 *                                                                       *
 ************************************************************************/
 
-int32 do_init(int32 argc, int8** argv)
+std::int32_t do_init(std::int32_t argc, int8** argv)
 {
     ShowStatus("do_init: begin server initialization...\n");
     map_ip.s_addr = 0;
@@ -159,7 +159,7 @@ int32 do_init(int32 argc, int8** argv)
 
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
-    srand((uint32)time(nullptr));
+    srand((std::uint32_t)time(nullptr));
     dsprand::seed();
 
     map_config_default();
@@ -312,10 +312,10 @@ void set_server_type()
 *                                                                       *
 ************************************************************************/
 
-int32 do_sockets(fd_set* rfd, duration next)
+std::int32_t do_sockets(fd_set* rfd, duration next)
 {
     struct timeval timeout;
-    int32 ret;
+    std::int32_t ret;
     memcpy(rfd, &readfds, sizeof(*rfd));
 
     timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
@@ -340,14 +340,14 @@ int32 do_sockets(fd_set* rfd, duration next)
         struct sockaddr_in from;
         socklen_t fromlen = sizeof(from);
 
-        int32 ret = recvudp(map_fd, g_PBuff, map_config.buffer_size, 0, (struct sockaddr*)&from, &fromlen);
+        std::int32_t ret = recvudp(map_fd, g_PBuff, map_config.buffer_size, 0, (struct sockaddr*)&from, &fromlen);
         if (ret != -1)
         {
             // find player char
 #   ifdef WIN32
-            uint32 ip = ntohl(from.sin_addr.S_un.S_addr);
+            std::uint32_t ip = ntohl(from.sin_addr.S_un.S_addr);
 #   else
-            uint32 ip = ntohl(from.sin_addr.s_addr);
+            std::uint32_t ip = ntohl(from.sin_addr.s_addr);
 #   endif
 
             std::uint64_t port = ntohs(from.sin_port);
@@ -400,7 +400,7 @@ int32 do_sockets(fd_set* rfd, duration next)
 *                                                                       *
 ************************************************************************/
 
-int32 parse_console(int8* buf)
+std::int32_t parse_console(int8* buf)
 {
     return 0;
 }
@@ -411,7 +411,7 @@ int32 parse_console(int8* buf)
 *                                                                       *
 ************************************************************************/
 
-int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_session_data_t* map_session_data)
+std::int32_t map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_session_data_t* map_session_data)
 {
     uint16 tmp, i;
 
@@ -420,19 +420,19 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
     tmp -= tmp % 2;
 
 #   ifdef WIN32
-    uint32 ip = ntohl(from->sin_addr.S_un.S_addr);
+    std::uint32_t ip = ntohl(from->sin_addr.S_un.S_addr);
 #   else
-    uint32 ip = ntohl(from->sin_addr.s_addr);
+    std::uint32_t ip = ntohl(from->sin_addr.s_addr);
 #   endif
 
     blowfish_t *pbfkey = &map_session_data->blowfish;
 
     for (i = 0; i < tmp; i += 2)
     {
-        blowfish_decipher((uint32*)buff + i + 7, (uint32*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
+        blowfish_decipher((std::uint32_t*)buff + i + 7, (std::uint32_t*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
     }
 
-    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16) == 0)
+    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16) == 0)
     {
         return 0;
     }
@@ -448,15 +448,15 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
 *                                                                       *
 ************************************************************************/
 
-int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
+std::int32_t recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
 {
     size_t size = *buffsize;
-    int32 checksumResult = -1;
+    std::int32_t checksumResult = -1;
 
 #ifdef WIN32
     try
     {
-        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16);
+        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16);
     }
     catch (...)
     {
@@ -471,11 +471,11 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     {
         if (map_session_data->PChar == nullptr)
         {
-            uint32 CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
+            std::uint32_t CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
 
             const int8* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
 
-            int32 ret = Sql_Query(SqlHandle, fmtQuery, CharID);
+            std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, CharID);
 
             if (ret == SQL_ERROR ||
                 Sql_NumRows(SqlHandle) == 0 ||
@@ -527,7 +527,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             return -1;
         }
         // reading data size
-        uint32 PacketDataSize = RBUFL(buff, *buffsize - sizeof(int32) - 16);
+        std::uint32_t PacketDataSize = RBUFL(buff, *buffsize - sizeof(std::int32_t) - 16);
         // creating buffer for decompress data
         auto PacketDataBuff = std::make_unique<int8[]>(map_config.buffer_size);
         // it's decompressing data and getting new size
@@ -552,7 +552,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 *                                                                       *
 ************************************************************************/
 
-int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
+std::int32_t parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
 {
     // начало обработки входящего пакета
 
@@ -608,7 +608,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
     if (RBUFW(buff, 2) != map_session_data->server_packet_id)
     {
         WBUFW(map_session_data->server_packet_data, 2) = SmallPD_Code;
-        WBUFW(map_session_data->server_packet_data, 8) = (uint32)time(nullptr);
+        WBUFW(map_session_data->server_packet_data, 8) = (std::uint32_t)time(nullptr);
 
         g_PBuff = map_session_data->server_packet_data;
         *buffsize = map_session_data->server_packet_size;
@@ -630,7 +630,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 *                                                                       *
 ************************************************************************/
 
-int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
+std::int32_t send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_data_t* map_session_data)
 {
     // Модификация заголовка исходящего пакета
     // Суть преобразований:
@@ -642,12 +642,12 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     WBUFW(buff, 2) = map_session_data->client_packet_id;
 
     // сохранение текущего времени (32 BIT!)
-    WBUFL(buff, 8) = (uint32)time(nullptr);
+    WBUFL(buff, 8) = (std::uint32_t)time(nullptr);
 
     // собираем большой пакет, состоящий из нескольких маленьких
     CCharEntity *PChar = map_session_data->PChar;
     CBasicPacket* PSmallPacket;
-    uint32 PacketSize = UINT32_MAX;
+    std::uint32_t PacketSize = UINT32_MAX;
     auto PacketCount = PChar->getPacketCount();
     uint8 packets = 0;
 
@@ -674,21 +674,21 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
             //Сжимаем данные без учета заголовка
             //Возвращаемый размер в 8 раз больше реальных данных
-            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, (uint32)(*buffsize - FFXI_HEADER_SIZE), PTempBuff, map_config.buffer_size);
+            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, (std::uint32_t)(*buffsize - FFXI_HEADER_SIZE), PTempBuff, map_config.buffer_size);
 
             // handle compression error
-            if (PacketSize == static_cast<uint32>(-1))
+            if (PacketSize == static_cast<std::uint32_t>(-1))
             {
                 continue;
             }
 
             WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
-            PacketSize = (uint32)zlib_compressed_size(PacketSize) + 4;
+            PacketSize = (std::uint32_t)zlib_compressed_size(PacketSize) + 4;
 
         } while (PacketCount > 0 && PacketSize > 1300 - FFXI_HEADER_SIZE - 16); //max size for client to accept
 
-        if (PacketSize == static_cast<uint32>(-1))
+        if (PacketSize == static_cast<std::uint32_t>(-1))
         {
             if (PChar->getPacketCount() > 0)
             {
@@ -701,7 +701,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 return -1;
             }
         }
-    } while (PacketSize == static_cast<uint32>(-1));
+    } while (PacketSize == static_cast<std::uint32_t>(-1));
     PChar->erasePackets(packets);
 
     //Запись размера данных без учета заголовка
@@ -718,13 +718,13 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     //making total packet
     memcpy(buff + FFXI_HEADER_SIZE, PTempBuff, PacketSize);
 
-    uint32 CypherSize = (PacketSize / 4)&-2;
+    std::uint32_t CypherSize = (PacketSize / 4)&-2;
 
     blowfish_t* pbfkey = &map_session_data->blowfish;
 
-    for (uint32 j = 0; j < CypherSize; j += 2)
+    for (std::uint32_t j = 0; j < CypherSize; j += 2)
     {
-        blowfish_encipher((uint32*)(buff)+j + 7, (uint32*)(buff)+j + 8, pbfkey->P, pbfkey->S[0]);
+        blowfish_encipher((std::uint32_t*)(buff)+j + 7, (std::uint32_t*)(buff)+j + 8, pbfkey->P, pbfkey->S[0]);
     }
 
     // контролируем размер отправляемого пакета. в случае,
@@ -746,7 +746,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 *                                                                       *
 ************************************************************************/
 
-int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
+std::int32_t map_close_session(time_point tick, map_session_data_t* map_session_data)
 {
     if (map_session_data != nullptr &&
         map_session_data->server_packet_data != nullptr &&
@@ -785,7 +785,7 @@ int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
 *                                                                       *
 ************************************************************************/
 
-int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
+std::int32_t map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 {
     map_session_list_t::iterator it = map_session_list.begin();
 
@@ -897,7 +897,7 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 *                                                                       *
 ************************************************************************/
 
-void map_helpscreen(int32 flag)
+void map_helpscreen(std::int32_t flag)
 {
     ShowMessage("Usage: map-server [options]\n");
     ShowMessage("Options:\n");
@@ -919,7 +919,7 @@ void map_helpscreen(int32 flag)
 *                                                                       *
 ************************************************************************/
 
-void map_versionscreen(int32 flag)
+void map_versionscreen(std::int32_t flag)
 {
     ShowInfo(CL_WHITE "Darkstar version %d.%02d.%02d" CL_RESET"\n",
         DARKSTAR_MAJOR_VERSION, DARKSTAR_MINOR_VERSION, DARKSTAR_REVISION);
@@ -935,7 +935,7 @@ void map_versionscreen(int32 flag)
 *                                                                       *
 ************************************************************************/
 
-int32 map_config_default()
+std::int32_t map_config_default()
 {
     map_config.uiMapIp = INADDR_ANY;
     map_config.usMapPort = 54230;
@@ -1011,7 +1011,7 @@ int32 map_config_default()
 *                                                                       *
 ************************************************************************/
 
-int32 map_config_read(const int8* cfgName)
+std::int32_t map_config_read(const int8* cfgName)
 {
     int8 line[1024], w1[1024], w2[1024];
     FILE* fp;
@@ -1376,7 +1376,7 @@ int32 map_config_read(const int8* cfgName)
     return 0;
 }
 
-int32 map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask)
+std::int32_t map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask)
 {
     luautils::garbageCollect();
     return 0;

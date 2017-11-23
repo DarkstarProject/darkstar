@@ -33,14 +33,14 @@ CEventPacket::CEventPacket(
 	CCharEntity* PChar,
 	uint16 EventID, 
 	uint8  numOfParams, 
-	uint32 param0,
-	uint32 param1,
-	uint32 param2,
-	uint32 param3,
-	uint32 param4,
-	uint32 param5,
-	uint32 param6,
-	uint32 param7,
+	std::uint32_t param0,
+	std::uint32_t param1,
+	std::uint32_t param2,
+	std::uint32_t param3,
+	std::uint32_t param4,
+	std::uint32_t param5,
+	std::uint32_t param6,
+	std::uint32_t param7,
     int16 textTable)
 {
 	this->type = 0x32;

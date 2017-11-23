@@ -57,7 +57,7 @@ CAlliance::CAlliance(CBattleEntity* PEntity)
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE partyid = %u AND partyflag & %d;", ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
 }
 
-CAlliance::CAlliance(uint32 id)
+CAlliance::CAlliance(std::uint32_t id)
 {
 	m_AllianceID = id;
 }
@@ -107,13 +107,13 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
 }
 
 
-uint32 CAlliance::partyCount(void) 
+std::uint32_t CAlliance::partyCount(void) 
 {	
     int ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE allianceid = %d GROUP BY partyid;", m_AllianceID, PARTY_SECOND | PARTY_THIRD);
 
     if (ret != SQL_ERROR)
     {
-        return (uint32)Sql_NumRows(SqlHandle);
+        return (std::uint32_t)Sql_NumRows(SqlHandle);
     }
     return 0;
 }
@@ -242,7 +242,7 @@ void CAlliance::addParty(CParty * party)
 
 }
 
-void CAlliance::addParty(uint32 partyid)
+void CAlliance::addParty(std::uint32_t partyid)
 {
     int newparty = 0;
 

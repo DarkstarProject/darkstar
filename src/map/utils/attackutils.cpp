@@ -145,20 +145,20 @@ namespace attackutils
     *  Handles damage multiplier, relic weapons etc.                        *
     *                                                                       *
     ************************************************************************/
-    uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
+    std::uint32_t CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, std::uint32_t damage, PHYSICAL_ATTACK_TYPE attackType)
     {
         if (PWeapon == nullptr)
         {
             return damage;
         }
-        uint32 originalDamage = damage;
+        std::uint32_t originalDamage = damage;
         auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG);
         auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE);
         if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0)
         {
             if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance / 10))
             {
-                return (uint32)(damage * (occ_extra_dmg / 100.f));
+                return (std::uint32_t)(damage * (occ_extra_dmg / 100.f));
             }
         }
 

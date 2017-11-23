@@ -37,12 +37,12 @@ CItemLinkshell::~CItemLinkshell()
 {
 }
 
-uint32 CItemLinkshell::GetLSID()
+std::uint32_t CItemLinkshell::GetLSID()
 {
     return RBUFL(m_extra, 0x00);
 }
 
-void CItemLinkshell::SetLSID(uint32 lsid)
+void CItemLinkshell::SetLSID(std::uint32_t lsid)
 {
     WBUFL(m_extra, 0x00) = lsid;
 }

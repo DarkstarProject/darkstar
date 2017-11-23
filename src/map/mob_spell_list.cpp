@@ -60,7 +60,7 @@ namespace mobSpellList
                             FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id \
                             WHERE spell_list_id < %u;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
+        std::int32_t ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {

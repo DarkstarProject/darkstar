@@ -35,7 +35,7 @@
 *																		*
 ************************************************************************/
 
-CRegion::CRegion(uint32 RegionID, bool isCircle) :
+CRegion::CRegion(std::uint32_t RegionID, bool isCircle) :
     m_RegionID(RegionID),
     m_Count(0),
     circle(isCircle)
@@ -52,7 +52,7 @@ CRegion::CRegion(uint32 RegionID, bool isCircle) :
 *																		*
 ************************************************************************/
 
-uint32 CRegion::GetRegionID()
+std::uint32_t CRegion::GetRegionID()
 {
 	return m_RegionID;
 }

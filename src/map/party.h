@@ -60,9 +60,9 @@ class CParty
 {
 public:
     CParty(CBattleEntity* PEntity);
-	CParty(uint32 id);
+	CParty(std::uint32_t id);
 
-    uint32 GetPartyID();                                // узнаем уникальный ID группы
+    std::uint32_t GetPartyID();                                // узнаем уникальный ID группы
     uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
     uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
 
@@ -77,19 +77,19 @@ public:
 	void ReloadTreasurePool(CCharEntity* PChar);
 
     void AddMember(CBattleEntity* PEntity); // добавляем персонажа в группу
-	void AddMember(uint32 id);	// Add party member from outside this server's scope
+	void AddMember(std::uint32_t id);	// Add party member from outside this server's scope
     void RemoveMember(CBattleEntity* PEntity);          // удаление персонажа из группы
 	void DelMember(CBattleEntity* PEntity);				// remove a member without invoking chat/db
     void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
     void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
-    void SetPartyID(uint32 id);                         // set new party ID
+    void SetPartyID(std::uint32_t id);                         // set new party ID
     void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
     void DisableSync();
     void SetSyncTarget(int8* MemberName, uint16 message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
     void SetPartyNumber(uint8 number);
 
-    void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
+    void PushPacket(std::uint32_t senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
     void PushEffectsPacket();
     void EffectsChanged();
 	CAlliance* m_PAlliance;
@@ -101,7 +101,7 @@ public:
 private:
 
     struct partyInfo_t;
-    uint32    m_PartyID;                                // уникальный ID группы
+    std::uint32_t    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
     uint8     m_PartyNumber;                            // party number in alliance
 

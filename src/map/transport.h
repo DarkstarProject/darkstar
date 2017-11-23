@@ -92,7 +92,7 @@ class CTransportHandler
 public:
 
 	static	CTransportHandler * getInstance();
-	void startElevator(int32 elevatorID);
+	void startElevator(std::int32_t elevatorID);
 	void TransportTimer();
     void insertElevator(Elevator_t elevator);
     void InitializeTransport();

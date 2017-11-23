@@ -68,10 +68,10 @@ struct actionTarget_t
     uint16			  animation;			// 12 bits
     SPECEFFECT		  speceffect;			//  7 bits
     uint8             knockback;            //  3 bits
-    int32			  param;				// 17 bits
+    std::int32_t			  param;				// 17 bits
     uint16			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
-    int32             addEffectParam;       // 17 bits
+    std::int32_t             addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits
     SUBEFFECT         spikesEffect;         // 10 bits
     uint16            spikesParam;          // 14 bits
@@ -93,7 +93,7 @@ struct actionTarget_t
 
 struct actionList_t
 {
-    uint32    ActionTargetID;		    // 32 bits
+    std::uint32_t    ActionTargetID;		    // 32 bits
     std::vector<actionTarget_t> actionTargets;
 
     actionList_t() : ActionTargetID(0) {}
@@ -112,7 +112,7 @@ struct actionList_t
 
 struct action_t
 {
-    uint32 id;
+    std::uint32_t id;
     ACTIONTYPE actiontype;
     uint16 actionid;
     uint16 recast;

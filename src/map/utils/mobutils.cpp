@@ -283,9 +283,9 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.0f);
+            PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * 2.0f);
             if(mLvl > 75){
-                PMob->health.maxhp = (int32)(PMob->health.maxhp * 2.5f);
+                PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * 2.5f);
             }
         }
 
@@ -297,11 +297,11 @@ void CalculateStats(CMobEntity * PMob)
 
     if(isNM)
     {
-        PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.nm_hp_multiplier);
+        PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * map_config.nm_hp_multiplier);
     }
     else
     {
-        PMob->health.maxhp = (int32)(PMob->health.maxhp * map_config.mob_hp_multiplier);
+        PMob->health.maxhp = (std::int32_t)(PMob->health.maxhp * map_config.mob_hp_multiplier);
     }
 
     bool hasMp = false;
@@ -355,10 +355,10 @@ void CalculateStats(CMobEntity * PMob)
             PMob->health.maxmp = (int16)(18.2 * pow(mLvl,1.1075) * scale) + 10;
             if(isNM)
             {
-                PMob->health.maxmp = (int32)(PMob->health.maxmp * 1.5f);
+                PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * 1.5f);
                 if(mLvl>75)
                 {
-                    PMob->health.maxmp = (int32)(PMob->health.maxmp * 1.5f);
+                    PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * 1.5f);
                 }
             }
         }
@@ -369,11 +369,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxmp = (int32)(PMob->health.maxmp * map_config.nm_mp_multiplier);
+            PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * map_config.nm_mp_multiplier);
         }
         else
         {
-            PMob->health.maxmp = (int32)(PMob->health.maxmp * map_config.mob_mp_multiplier);
+            PMob->health.maxmp = (std::int32_t)(PMob->health.maxmp * map_config.mob_mp_multiplier);
         }
     }
 
@@ -1070,7 +1070,7 @@ void LoadCustomMods()
 	// load family mods
 	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
-    int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
+    std::int32_t ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
 	if(ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	{
@@ -1171,7 +1171,7 @@ ModsList_t* GetMobFamilyMods(uint16 familyId, bool create)
 	return nullptr;
 }
 
-ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
+ModsList_t* GetMobPoolMods(std::uint32_t poolId, bool create)
 {
 	if(mobPoolModsList[poolId])
 	{
@@ -1192,7 +1192,7 @@ ModsList_t* GetMobPoolMods(uint32 poolId, bool create)
 	return nullptr;
 }
 
-ModsList_t* GetMobSpawnMods(uint32 mobId, bool create)
+ModsList_t* GetMobSpawnMods(std::uint32_t mobId, bool create)
 {
 	if(mobSpawnModsList[mobId])
 	{
@@ -1313,7 +1313,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
     PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
 }
 
-CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
+CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* instance)
 {
 	const int8* Query =
 		"SELECT zoneid, name, \
@@ -1330,7 +1330,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
 
-	int32 ret = Sql_Query(SqlHandle, Query, groupid);
+	std::int32_t ret = Sql_Query(SqlHandle, Query, groupid);
 
 	CMobEntity* PMob = nullptr;
 
@@ -1348,8 +1348,8 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);
 			PMob->m_DropID = Sql_GetUIntData(SqlHandle, 4);
 
-			PMob->HPmodifier = (uint32)Sql_GetIntData(SqlHandle, 5);
-			PMob->MPmodifier = (uint32)Sql_GetIntData(SqlHandle, 6);
+			PMob->HPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 5);
+			PMob->MPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 6);
 
 			PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle, 7);
 			PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle, 8);
@@ -1411,12 +1411,12 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
 			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 44);
 			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 45);
-			PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 46);
+			PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlHandle, 46);
 
 			//Special sub animation for Mob (yovra, jailer of love, phuabo)
 			// yovra 1: en hauteur, 2: en bas, 3: en haut
 			// phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
-			PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 47);
+			PMob->animationsub = (std::uint32_t)Sql_GetIntData(SqlHandle, 47);
 
 			// Setup HP / MP Stat Percentage Boost
 			PMob->HPscale = Sql_GetFloatData(SqlHandle, 48);

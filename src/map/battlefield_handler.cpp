@@ -92,11 +92,11 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
 
                 //New message (in yellow) at the end of dynamis (5min before the end)
                 if ((time_elapsed % 60) == 0s && (PBattlefield->getTimeLimit() - time_elapsed) <= 5min) {
-                    PBattlefield->pushMessageToAllInBcnm(449, (uint32)((time_remaining) / 60));
+                    PBattlefield->pushMessageToAllInBcnm(449, (std::uint32_t)((time_remaining) / 60));
                 }
                 else {
                     if (time_elapsed % 60 == 0s) {
-                        PBattlefield->pushMessageToAllInBcnm(202, (uint32)time_remaining);
+                        PBattlefield->pushMessageToAllInBcnm(202, (std::uint32_t)time_remaining);
                     }
                 }
 
@@ -123,7 +123,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                     }
 
                     if (time_elapsed % 60 == 0s) {
-                        PBattlefield->pushMessageToAllInBcnm(202, (uint32)time_remaining);
+                        PBattlefield->pushMessageToAllInBcnm(202, (std::uint32_t)time_remaining);
                     }
 
                     //if the time is finished, exiting Limbus
@@ -157,7 +157,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                     }
                     //handle time remaining prompts (since its useful!) Prompts every minute
                     if (time_elapsed % 60 == 0s) {
-                        PBattlefield->pushMessageToAllInBcnm(202, (uint32)time_remaining);
+                        PBattlefield->pushMessageToAllInBcnm(202, (std::uint32_t)time_remaining);
                     }
 
                     //handle win conditions
@@ -523,7 +523,7 @@ bool CBattlefieldHandler::hasSpecialBattlefieldEmpty(uint16 id) { //reserved for
     }
     return true;
 }
-void CBattlefieldHandler::SetLootToBCNM(uint16 LootID, uint16 id, uint32 npcID) {
+void CBattlefieldHandler::SetLootToBCNM(uint16 LootID, uint16 id, std::uint32_t npcID) {
     m_Battlefields[id - 1]->setLootId(LootID);
     CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcID, TYPE_NPC);
     m_Battlefields[id - 1]->addNpc(PNpc);
@@ -612,7 +612,7 @@ CBattlefield* CBattlefieldHandler::getBattlefield(CCharEntity* PChar)
     return nullptr;
 }
 
-uint32 CBattlefieldHandler::pollTimeLeft(uint16 id) {
+std::uint32_t CBattlefieldHandler::pollTimeLeft(uint16 id) {
     return 0;
 }
 

@@ -126,12 +126,12 @@ CMobEntity::CMobEntity()
         std::make_unique<CTargetFind>(this));
 }
 
-uint32 CMobEntity::getEntityFlags()
+std::uint32_t CMobEntity::getEntityFlags()
 {
     return m_flags;
 }
 
-void CMobEntity::setEntityFlags(uint32 EntityFlags)
+void CMobEntity::setEntityFlags(std::uint32_t EntityFlags)
 {
     m_flags = EntityFlags;
 }
@@ -165,7 +165,7 @@ void CMobEntity::SetDespawnTime(duration _duration)
     }
 }
 
-uint32 CMobEntity::GetRandomGil()
+std::uint32_t CMobEntity::GetRandomGil()
 {
 
     int16 min = getMobMod(MOBMOD_GIL_MIN);
@@ -218,7 +218,7 @@ uint32 CMobEntity::GetRandomGil()
         gil *= (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
-    return (uint32)gil;
+    return (std::uint32_t)gil;
 }
 
 bool CMobEntity::CanDropGil()
@@ -242,7 +242,7 @@ bool CMobEntity::CanStealGil()
 
 void CMobEntity::ResetGilPurse()
 {
-    uint32 purse = GetRandomGil() / ((dsprand::GetRandomNumber(4, 7)));
+    std::uint32_t purse = GetRandomGil() / ((dsprand::GetRandomNumber(4, 7)));
     if (purse == 0)
         purse = GetRandomGil();
     setMobMod(MOBMOD_MUG_GIL, purse);
@@ -414,7 +414,7 @@ void CMobEntity::resetMobMod(uint16 type)
     m_mobModStat[type] = m_mobModStatSave[type];
 }
 
-int32 CMobEntity::getBigMobMod(uint16 type)
+std::int32_t CMobEntity::getBigMobMod(uint16 type)
 {
     return getMobMod(type) * 1000;
 }
@@ -763,7 +763,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                         PSkill->getSecondarySkillchain(), PSkill->getTertiarySkillchain());
                     if (effect != SUBEFFECT_NONE)
                     {
-                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
+                        std::int32_t skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
                         if (skillChainDamage < 0)
                         {
                             target.addEffectParam = -skillChainDamage;

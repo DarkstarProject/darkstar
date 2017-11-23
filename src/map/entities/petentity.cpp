@@ -211,7 +211,7 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
         actionTarget.param = 0;
         auto prevMsg = actionTarget.messageID;
 
-        int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
+        std::int32_t value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
         if (prevMsg == actionTarget.messageID) actionTarget.messageID = PAbility->getMessage();
         if (actionTarget.messageID == 0) actionTarget.messageID = MSGBASIC_USES_JA;
         actionTarget.param = value;

@@ -50,7 +50,7 @@ CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, CItem* 
 
     if (PItem)
     {
-        ref<uint32>(0x04) = PItem->getQuantity();
+        ref<std::uint32_t>(0x04) = PItem->getQuantity();
         ref<uint16>(0x08) = PItem->getID();
     }
 

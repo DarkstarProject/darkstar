@@ -148,20 +148,20 @@ int sSocket(int af, int type, int protocol)
 *
 */
 fd_set readfds;
-int32 fd_max;
+std::int32_t fd_max;
 time_t last_tick;
 time_t tick_time;
 time_t stall_time = 60;
 
-uint32 g_addr_[16];   // ip addresses of local host (host byte order)
+std::uint32_t g_addr_[16];   // ip addresses of local host (host byte order)
 
-int32 naddr_;   // # of ip addresses
+std::int32_t naddr_;   // # of ip addresses
 
-int32 makeConnection(uint32 ip, uint16 port, int32 type)
+std::int32_t makeConnection(std::uint32_t ip, uint16 port, std::int32_t type)
 {
 	struct sockaddr_in remote_address;
-	int32 fd;
-	int32 result;
+	std::int32_t fd;
+	std::int32_t result;
 
 	fd = sSocket(AF_INET, type, 0);
 
@@ -215,7 +215,7 @@ int32 makeConnection(uint32 ip, uint16 port, int32 type)
 	return fd;
 }
 
-void do_close(int32 fd)
+void do_close(std::int32_t fd)
 {
 	sFD_CLR(fd, &readfds);// this needs to be done before closing the socket
 	sShutdown(fd, SHUT_RDWR); // Disallow further reads/writes
@@ -224,7 +224,7 @@ void do_close(int32 fd)
 
 /// Retrieve local ips in host byte order.
 /// Uses loopback is no address is found.
-int socket_getips(uint32* ips, int max)
+int socket_getips(std::uint32_t* ips, int max)
 {
 	int num = 0;
 
@@ -255,7 +255,7 @@ int socket_getips(uint32* ips, int max)
 			}
 			a = (u_long**)hent->h_addr_list;
 			for( ; a[num] != NULL && num < max; ++num)
-				ips[num] = (uint32)ntohl(*a[num]);
+				ips[num] = (std::uint32_t)ntohl(*a[num]);
 		}
 	}
 #else // not WIN32
@@ -290,7 +290,7 @@ int socket_getips(uint32* ips, int max)
 				if( a->sin_family == AF_INET ){
 					ad = ntohl(a->sin_addr.s_addr);
 					if( ad != INADDR_LOOPBACK && ad != INADDR_ANY )
-						ips[num++] = (uint32)ad;
+						ips[num++] = (std::uint32_t)ad;
 				}
 	#if (defined(BSD) && BSD >= 199103) || defined(_AIX) || defined(__APPLE__)
 				pos += ir->ifr_addr.sa_len + sizeof(ir->ifr_name);
@@ -305,7 +305,7 @@ int socket_getips(uint32* ips, int max)
 
 	// Use loopback if no ips are found
 	if( num == 0 )
-		ips[num++] = (uint32)INADDR_LOOPBACK;
+		ips[num++] = (std::uint32_t)INADDR_LOOPBACK;
 
 	return num;
 }
@@ -372,20 +372,20 @@ bool _vsocket_final(void){
 }
 
 // hostname/ip conversion functions
-uint32 host2ip(const char* hostname)
+std::uint32_t host2ip(const char* hostname)
 {
 	struct hostent* h = gethostbyname(hostname);
-	return (h != NULL) ? ntohl(*(uint32*)h->h_addr) : 0;
+	return (h != NULL) ? ntohl(*(std::uint32_t*)h->h_addr) : 0;
 }
 
-const char* ip2str(uint32 ip, char ip_str[16])
+const char* ip2str(std::uint32_t ip, char ip_str[16])
 {
 	struct in_addr addr;
 	addr.s_addr = htonl(ip);
 	return (ip_str == NULL) ? inet_ntoa(addr) : strncpy(ip_str, inet_ntoa(addr), 16);
 }
 
-uint32 str2ip(const char* ip_str)
+std::uint32_t str2ip(const char* ip_str)
 {
 	return ntohl(inet_addr(ip_str));
 }
@@ -407,7 +407,7 @@ uint16 ntows(uint16 netshort)
 
 #ifndef MINICORE
 	int ip_rules = 1;
-	static int connect_check(uint32 ip);
+	static int connect_check(std::uint32_t ip);
 #endif
 
 //////////////////////////////
@@ -417,15 +417,15 @@ uint16 ntows(uint16 netshort)
 
 typedef struct _connect_history {
 	struct _connect_history* next;
-	uint32 ip;
+	std::uint32_t ip;
 	time_point tick;
 	int count;
 	unsigned ddos : 1;
 } ConnectHistory;
 
 typedef struct _access_control {
-	uint32 ip;
-	uint32 mask;
+	std::uint32_t ip;
+	std::uint32_t mask;
 } AccessControl;
 
 enum _aco {
@@ -448,11 +448,11 @@ static duration ddos_autoreset = 10min;
 static ConnectHistory* connect_history[0x10000];
 
 
-static int connect_check_(uint32 ip);
+static int connect_check_(std::uint32_t ip);
 
 /// Verifies if the IP can connect. (with debug info)
 /// @see connect_check_()
-static int connect_check(uint32 ip)
+static int connect_check(std::uint32_t ip)
 {
 	int result = connect_check_(ip);
 	if( access_debug ) {
@@ -464,7 +464,7 @@ static int connect_check(uint32 ip)
 /// Verifies if the IP can connect.
 ///  0      : Connection Rejected
 ///  1 or 2 : Connection Accepted
-static int connect_check_(uint32 ip)
+static int connect_check_(std::uint32_t ip)
 {
 	ConnectHistory* hist = connect_history[ip&0xFFFF];
 	size_t i;
@@ -603,8 +603,8 @@ static int connect_check_clear(time_point tick,CTaskMgr::CTask* PTask)
 /// Returns 1 is successful, 0 otherwise.
 int access_ipmask(const char* str, AccessControl* acc)
 {
-	uint32 ip;
-	uint32 mask;
+	std::uint32_t ip;
+	std::uint32_t mask;
 	unsigned int a[4];
 	unsigned int m[4];
 	int n;
@@ -621,10 +621,10 @@ int access_ipmask(const char* str, AccessControl* acc)
 				(n == 5 && m[0] > 32) ){ // invalid bit mask
 			return 0;
 		}
-		ip = (uint32)(a[0] | (a[1] << 8) | (a[2] << 16) | (a[3] << 24));
+		ip = (std::uint32_t)(a[0] | (a[1] << 8) | (a[2] << 16) | (a[3] << 24));
 		if( n == 8 )
 		{// standard mask
-			mask = (uint32)(a[0] | (a[1] << 8) | (a[2] << 16) | (a[3] << 24));
+			mask = (std::uint32_t)(a[0] | (a[1] << 8) | (a[2] << 16) | (a[3] << 24));
 		} else if( n == 5 )
 		{// bit mask
 			mask = 0;
@@ -734,7 +734,7 @@ bool session_isActive(int fd)
 	return ( session_isValid(fd) && !session[fd]->flag.eof );
 }
 
-int32 makeConnection_tcp(uint32 ip, uint16 port)
+std::int32_t makeConnection_tcp(std::uint32_t ip, uint16 port)
 {
 	int fd = makeConnection(ip,port,SOCK_STREAM);
 	if( fd > 0 )
@@ -792,7 +792,7 @@ int connect_client(int listen_fd, sockaddr_in& client_address)
 	return fd;
 }
 
-int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
+std::int32_t makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
 {
 	struct sockaddr_in server_address;
 	int fd;
@@ -846,7 +846,7 @@ int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
 	return fd;
 }
 
-int32 RFIFOSKIP(int32 fd, size_t len)
+std::int32_t RFIFOSKIP(std::int32_t fd, size_t len)
 {
 	  struct socket_data *s;
 
@@ -864,7 +864,7 @@ int32 RFIFOSKIP(int32 fd, size_t len)
 	return 0;
 }
 
-void do_close_tcp(int32 fd)
+void do_close_tcp(std::int32_t fd)
 {
 	flush_fifo(fd);
 	do_close(fd);
@@ -973,7 +973,7 @@ void socket_final_tcp(void)
 		if(session[i])
 			do_close_tcp(i);
 }
-void flush_fifo(int32 fd)
+void flush_fifo(std::int32_t fd)
 {
 	if(session[fd] != NULL)
 		session[fd]->func_send(fd);
@@ -992,7 +992,7 @@ void set_defaultparse(ParseFunc defaultparse)
 	default_func_parse = defaultparse;
 }
 
-void set_eof(int32 fd)
+void set_eof(std::int32_t fd)
 {
 	if( session_isActive(fd) )
 	{
@@ -1038,7 +1038,7 @@ void set_nonblocking(int fd, unsigned long yes)
 *
 */
 static int access_debug    = 0;
-int32 makeBind_udp(uint32 ip, uint16 port)
+std::int32_t makeBind_udp(std::uint32_t ip, uint16 port)
 {
 	struct sockaddr_in server_address;
 	int fd;
@@ -1112,7 +1112,7 @@ void socket_init_udp(void)
 	socket_config_read(SOCKET_CONF_FILENAME);
 }
 
-void do_close_udp(int32 fd)
+void do_close_udp(std::int32_t fd)
 {
 	do_close(fd);
 }
@@ -1122,11 +1122,11 @@ void socket_final_udp(void)
 		return;
 	//do_close_udp(listen_fd);
 }
-int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen)
+std::int32_t recvudp(std::int32_t fd,void *buff,size_t nbytes,std::int32_t flags,struct sockaddr *from, socklen_t *addrlen)
 {
 	return sRecvfrom(fd,(char*)buff,(int)nbytes,flags,from,addrlen);
 }
-int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen)
+std::int32_t sendudp(std::int32_t fd,void *buff,size_t nbytes,std::int32_t flags,const struct sockaddr *from,socklen_t addrlen)
 {
 	return sSendto(fd,(const char*)buff,(int)nbytes,flags,from,addrlen);
 }

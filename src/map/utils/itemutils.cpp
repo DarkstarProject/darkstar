@@ -318,7 +318,7 @@ namespace itemutils
             "LEFT JOIN item_puppet AS p USING (itemId) "
             "WHERE itemId < %u;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, MAX_ITEMID);
+        std::int32_t ret = Sql_Query(SqlHandle, Query, MAX_ITEMID);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -460,7 +460,7 @@ namespace itemutils
 
     void LoadDropList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, dropType, itemRate, groupId, groupRate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
+        std::int32_t ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, dropType, itemRate, groupId, groupRate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -496,7 +496,7 @@ namespace itemutils
 
     void LoadLootList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
+        std::int32_t ret = Sql_Query(SqlHandle, "SELECT LootDropId, itemId, rolls, lootGroupId FROM bcnm_loot WHERE LootDropId < %u;", MAX_LOOTID);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -553,12 +553,12 @@ namespace itemutils
 
     void FreeItemList()
     {
-        for(int32 ItemID = 0; ItemID < MAX_ITEMID; ++ItemID)
+        for(std::int32_t ItemID = 0; ItemID < MAX_ITEMID; ++ItemID)
         {
             delete g_pItemList[ItemID];
         }
 
-        for(int32 DropID = 0; DropID < MAX_DROPID; ++DropID)
+        for(std::int32_t DropID = 0; DropID < MAX_DROPID; ++DropID)
         {
             delete g_pDropList[DropID];
         }

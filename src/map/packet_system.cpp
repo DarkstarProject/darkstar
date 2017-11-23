@@ -229,7 +229,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         md5((uint8*)(session->blowfish.key), session->blowfish.hash, 20);
 
-        for (uint32 i = 0; i < 16; ++i)
+        for (std::uint32_t i = 0; i < 16; ++i)
         {
             if (session->blowfish.hash[i] == 0)
             {
@@ -266,11 +266,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->id);
 
         fmtQuery = "SELECT death FROM char_stats WHERE charid = %u;";
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PChar->m_DeathTimestamp = (uint32)time(nullptr);
+            PChar->m_DeathCounter = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
+            PChar->m_DeathTimestamp = (std::uint32_t)time(nullptr);
             if (PChar->health.hp == 0)
                 PChar->Die(std::chrono::seconds(PChar->m_DeathCounter));
         }
@@ -484,7 +484,7 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     // todo: kill player til theyre dead and bsod
     const int8* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         // On zone change, only sending a version message if mismatch
@@ -595,7 +595,7 @@ void SmallPacket0x016(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x017(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint16 targid = RBUFW(data, (0x04));
-    uint32 npcid = RBUFL(data, (0x08));
+    std::uint32_t npcid = RBUFL(data, (0x08));
     uint8  type = RBUFB(data, (0x12));
 
     ShowError(CL_RED"SmallPacket0x17: Incorrect NPC(%u,%u) type(%u)\n" CL_RESET, targid, npcid, type);
@@ -610,7 +610,7 @@ void SmallPacket0x017(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    // uint32 ID = RBUFL(data, (0x04));
+    // std::uint32_t ID = RBUFL(data, (0x04));
     uint16 TargID = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0A));
 
@@ -849,7 +849,7 @@ void SmallPacket0x01B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     // 0 - world pass, 2 - gold world pass; +1 - purchase
 
-    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? (uint32)dsprand::GetRandomNumber(9999999999) : 0));
+    PChar->pushPacket(new CWorldPassPacket(RBUFB(data, (0x04)) & 1 ? (std::uint32_t)dsprand::GetRandomNumber(9999999999) : 0));
     return;
 }
 
@@ -874,7 +874,7 @@ void SmallPacket0x01C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    int32  quantity = RBUFB(data, (0x04));
+    std::int32_t  quantity = RBUFB(data, (0x04));
     uint8 container = RBUFB(data, (0x08));
     uint8    slotID = RBUFB(data, (0x09));
 
@@ -905,7 +905,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 quantity = RBUFB(data, (0x04));
+    std::uint32_t quantity = RBUFB(data, (0x04));
     uint8  FromLocationID = RBUFB(data, (0x08));
     uint8  ToLocationID = RBUFB(data, (0x09));
     uint8  FromSlotID = RBUFB(data, (0x0A));
@@ -945,13 +945,13 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    uint32 NewQuantity = PItem->getQuantity() - quantity;
+    std::uint32_t NewQuantity = PItem->getQuantity() - quantity;
 
     if (NewQuantity != 0) // split item stack
     {
         if (charutils::AddItem(PChar, ToLocationID, PItem->getID(), quantity) != ERROR_SLOTID)
         {
-            charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(int32)quantity);
+            charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(std::int32_t)quantity);
         }
     }
     else // move stack / combine items into stack
@@ -1013,7 +1013,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 charid = RBUFL(data, (0x04));
+    std::uint32_t charid = RBUFL(data, (0x04));
     uint16 targid = RBUFW(data, (0x08));
 
     CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
@@ -1170,7 +1170,7 @@ void SmallPacket0x033(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 quantity = RBUFL(data, (0x04));
+    std::uint32_t quantity = RBUFL(data, (0x04));
     uint16 itemID = RBUFW(data, (0x08));
     uint8  invSlotID = RBUFB(data, (0x0A));
     uint8  tradeSlotID = RBUFB(data, (0x0B));
@@ -1221,7 +1221,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 npcid = RBUFL(data, (0x04));
+    std::uint32_t npcid = RBUFL(data, (0x04));
     uint16 targid = RBUFW(data, (0x3A));
 
     CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC);
@@ -1232,10 +1232,10 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         PChar->TradeContainer->Clean();
 
-        for (int32 slotID = 0; slotID < numItems; ++slotID)
+        for (std::int32_t slotID = 0; slotID < numItems; ++slotID)
         {
             uint8  invSlotID = RBUFB(data, (0x30 + slotID));
-            uint32 Quantity = RBUFL(data, (0x08 + slotID * 4));
+            std::uint32_t Quantity = RBUFL(data, (0x08 + slotID * 4));
 
             CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
 
@@ -1259,7 +1259,7 @@ void SmallPacket0x036(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    // uint32 EntityID = RBUFL(data, (0x04));
+    // std::uint32_t EntityID = RBUFL(data, (0x04));
     uint16 TargetID = RBUFW(data, (0x0C));
     uint8  SlotID = RBUFB(data, (0x0E));
     uint8  StorageID = RBUFB(data, (0x10));
@@ -1286,7 +1286,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (gettick() - PItemContainer->LastSortingTime < 1000)
     {
-        if (map_config.lightluggage_block == (int32)(++PItemContainer->SortingPacket))
+        if (map_config.lightluggage_block == (std::int32_t)(++PItemContainer->SortingPacket))
         {
             ShowWarning(CL_YELLOW"lightluggage detected: <%s> will be removed from server\n" CL_RESET, PChar->GetName());
 
@@ -1317,8 +1317,8 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     (PItem2->getQuantity() < PItem2->getStackSize()) &&
                     !PItem2->isSubType(ITEM_LOCKED))
                 {
-                    uint32 totalQty = PItem->getQuantity() + PItem2->getQuantity();
-                    uint32 moveQty = 0;
+                    std::uint32_t totalQty = PItem->getQuantity() + PItem2->getQuantity();
+                    std::uint32_t moveQty = 0;
 
                     if (totalQty >= PItem->getStackSize()) {
                         moveQty = PItem->getStackSize() - PItem->getQuantity();
@@ -1329,7 +1329,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     if (moveQty > 0)
                     {
                         charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID, moveQty);
-                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID2, -(int32)moveQty);
+                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID2, -(std::int32_t)moveQty);
                     }
                 }
             }
@@ -1365,7 +1365,7 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     // Attempt to locate the character by their name..
     const int8* sql = "SELECT charid, accid FROM chars WHERE charname = '%s' LIMIT 1";
-    int32 ret = Sql_Query(SqlHandle, sql, name);
+    std::int32_t ret = Sql_Query(SqlHandle, sql, name);
     if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) != 1 || Sql_NextRow(SqlHandle) != SQL_SUCCESS)
     {
         // Send failed..
@@ -1374,8 +1374,8 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     // Retrieve the data from Sql..
-    uint32 charid = Sql_GetUIntData(SqlHandle, 0);
-    uint32 accid = Sql_GetUIntData(SqlHandle, 1);
+    std::uint32_t charid = Sql_GetUIntData(SqlHandle, 0);
+    std::uint32_t accid = Sql_GetUIntData(SqlHandle, 1);
 
     // User is trying to add someone to their blacklist..
     if (cmd == 0x00)
@@ -1471,10 +1471,10 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     // uint8   msg_unknown1 = RBUFB(data, (0x05)); // Unknown.. always 0
     // uint8   msg_unknown2 = RBUFB(data, (0x06)); // Unknown.. always 1
     uint8   msg_language = RBUFB(data, (0x07)); // Language request id (2 = English, 4 = French)
-    uint32  msg_timestamp = RBUFL(data, (0x08)); // The message timestamp being requested..
-    // uint32  msg_size_total = RBUFL(data, (0x0C)); // The total length of the requested server message..
-    uint32  msg_offset = RBUFL(data, (0x10)); // The offset to start obtaining the server message..
-    // uint32  msg_request_len = RBUFL(data, (0x14)); // The total requested size of send to the client..
+    std::uint32_t  msg_timestamp = RBUFL(data, (0x08)); // The message timestamp being requested..
+    // std::uint32_t  msg_size_total = RBUFL(data, (0x0C)); // The total length of the requested server message..
+    std::uint32_t  msg_offset = RBUFL(data, (0x10)); // The offset to start obtaining the server message..
+    // std::uint32_t  msg_request_len = RBUFL(data, (0x14)); // The total requested size of send to the client..
 
     if (msg_language == 0x02)
         PChar->pushPacket(new CServerMessagePacket(map_config.server_message, msg_language, msg_timestamp, msg_offset));
@@ -1485,7 +1485,7 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     // todo: kill player til theyre dead and bsod
     const int8* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         if ((bool)Sql_GetUIntData(SqlHandle, 0))
@@ -1533,7 +1533,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         const char* fmtQuery = "SELECT itemid, itemsubid, slot, quantity, sent, extra, sender, charname FROM delivery_box WHERE charid = %u AND box = %d AND slot < 8 ORDER BY slot;";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, boxtype);
 
         if (ret != SQL_ERROR)
         {
@@ -1587,23 +1587,23 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x02: //add items to send box
     {
         uint8 invslot = RBUFB(data, (0x07));
-        uint32 quantity = RBUFL(data, (0x08));
+        std::uint32_t quantity = RBUFL(data, (0x08));
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invslot);
 
         if (quantity > 0 && PItem && PItem->getQuantity() >= quantity && PChar->UContainer->IsSlotEmpty(slotID))
         {
-            int32 ret = Sql_Query(SqlHandle, "SELECT charid, accid FROM chars WHERE charname = '%s' LIMIT 1;", data[0x10]);
+            std::int32_t ret = Sql_Query(SqlHandle, "SELECT charid, accid FROM chars WHERE charname = '%s' LIMIT 1;", data[0x10]);
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                std::uint32_t charid = Sql_GetUIntData(SqlHandle, 0);
 
                 if (PItem->getFlag() & ITEM_FLAG_NODELIVERY)
                 {
                     if (!(PItem->getFlag() & ITEM_FLAG_MAIL2ACCOUNT))
                         return;
 
-                    uint32 accid = Sql_GetUIntData(SqlHandle, 1);
-                    int32 ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
+                    std::uint32_t accid = Sql_GetUIntData(SqlHandle, 1);
+                    std::int32_t ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
                     if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS || Sql_GetUIntData(SqlHandle, 0) == 0)
                         return;
                 }
@@ -1630,7 +1630,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     charid,
                     data[0x10]);
 
-                if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1 && charutils::UpdateItem(PChar, LOC_INVENTORY, invslot, -(int32)quantity))
+                if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1 && charutils::UpdateItem(PChar, LOC_INVENTORY, invslot, -(std::int32_t)quantity))
                 {
                     PChar->UContainer->SetItem(slotID, PUBoxItem);
                     PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PUBoxItem, slotID, PChar->UContainer->GetItemsCount(), 1));
@@ -1666,11 +1666,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
                 {
-                    int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PItem->getReceiver());
+                    std::int32_t ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PItem->getReceiver());
 
                     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                     {
-                        uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                        std::uint32_t charid = Sql_GetUIntData(SqlHandle, 0);
 
                         ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 1 WHERE charid = %u AND senderid = %u AND slot = %u AND box = 2;", PChar->id, charid, slotID);
 
@@ -1723,16 +1723,16 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
-                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PChar->UContainer->GetItem(slotID)->getReceiver());
+                std::int32_t ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PChar->UContainer->GetItem(slotID)->getReceiver());
 
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                    std::uint32_t charid = Sql_GetUIntData(SqlHandle, 0);
                     ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET sent = 0 WHERE charid = %u AND box = 2 AND slot = %u AND sent = 1 AND received = 0 LIMIT 1;", PChar->id, slotID);
 
                     if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                     {
-                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 1 AND charid = %u AND itemid = %u AND quantity = %u AND slot >= 8 LIMIT 1;",
+                        std::int32_t ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 1 AND charid = %u AND itemid = %u AND quantity = %u AND slot >= 8 LIMIT 1;",
                             PChar->id, charid, PItem->getID(), PItem->getQuantity());
 
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
@@ -1756,7 +1756,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     if (orphan)
                     {
                         Sql_SetAutoCommit(SqlHandle, true);
-                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE box = 2 AND charid = %u AND itemid = %u AND quantity = %u AND slot = %u LIMIT 1;",
+                        std::int32_t ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE box = 2 AND charid = %u AND itemid = %u AND quantity = %u AND slot = %u LIMIT 1;",
                             PChar->id, PItem->getID(), PItem->getQuantity(), slotID);
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                         {
@@ -1780,7 +1780,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             return;
 
         uint8 received_items = 0;
-        int32 ret = SQL_ERROR;
+        std::int32_t ret = SQL_ERROR;
 
         if (boxtype == 0x01)
         {
@@ -1821,7 +1821,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 std::string Query = "SELECT itemid, itemsubid, quantity, extra, sender, senderid FROM delivery_box WHERE charid = %u AND box = 1 AND slot >= 8 ORDER BY slot ASC LIMIT 1;";
 
-                int32 ret = Sql_Query(SqlHandle, Query.c_str(), PChar->id);
+                std::int32_t ret = Sql_Query(SqlHandle, Query.c_str(), PChar->id);
 
                 CItem* PItem = nullptr;
 
@@ -1892,7 +1892,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint8 received_items = 0;
         uint8 slotID = 0;
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT slot FROM delivery_box WHERE charid = %u AND received = 1 AND box = 2 ORDER BY slot ASC;", PChar->id);
+        std::int32_t ret = Sql_Query(SqlHandle, "SELECT slot FROM delivery_box WHERE charid = %u AND received = 1 AND box = 2 ORDER BY slot ASC;", PChar->id);
 
         if (ret != SQL_ERROR)
         {
@@ -1939,13 +1939,13 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CItem* PItem = PChar->UContainer->GetItem(slotID);
             auto item_id = PItem->getID();
             auto quantity = PItem->getQuantity();
-            uint32 senderID = 0;
+            std::uint32_t senderID = 0;
             string_t senderName;
 
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
                 // Get sender of delivery record
-                int32 ret = Sql_Query(SqlHandle, "SELECT senderid, sender FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1;", PChar->id, slotID);
+                std::int32_t ret = Sql_Query(SqlHandle, "SELECT senderid, sender FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1;", PChar->id, slotID);
 
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
@@ -2020,7 +2020,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
-                int32 ret = SQL_ERROR;
+                std::int32_t ret = SQL_ERROR;
                 if (boxtype == 0x01)
                 {
                     ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = %u LIMIT 1", PChar->id, slotID, boxtype);
@@ -2065,7 +2065,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->UContainer->GetType() == UCONTAINER_DELIVERYBOX &&
             !PChar->UContainer->IsSlotEmpty(slotID))
         {
-            int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1", PChar->id, slotID);
+            std::int32_t ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND slot = %u AND box = 1 LIMIT 1", PChar->id, slotID);
 
             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
@@ -2080,11 +2080,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
     case 0x0C: // Confirm name (send box)
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT accid FROM chars WHERE charname = '%s' LIMIT 1", data[0x10]);
+        std::int32_t ret = Sql_Query(SqlHandle, "SELECT accid FROM chars WHERE charname = '%s' LIMIT 1", data[0x10]);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            uint32 accid = Sql_GetUIntData(SqlHandle, 0);
+            std::uint32_t accid = Sql_GetUIntData(SqlHandle, 0);
             ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
             if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0))
             {
@@ -2138,7 +2138,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     uint8  action = RBUFB(data, (0x04));
     uint8  slotid = RBUFB(data, (0x05));
-    uint32 price = RBUFL(data, (0x08));
+    std::uint32_t price = RBUFL(data, (0x08));
     uint8  slot = RBUFB(data, (0x0C));
     uint16 itemid = RBUFW(data, (0x0E));
     uint8  quantity = RBUFB(data, (0x10));
@@ -2171,7 +2171,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x05:
     {
-        uint32 curTick = gettick();
+        std::uint32_t curTick = gettick();
 
         if (curTick - PChar->m_AHHistoryTimestamp > 5000)
         {
@@ -2182,7 +2182,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             // A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
             const int8* Query = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 ORDER BY id ASC LIMIT 7;";
 
-            int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
+            std::int32_t ret = Sql_Query(SqlHandle, Query, PChar->id);
 
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
             {
@@ -2190,7 +2190,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 {
                     AuctionHistory_t ah;
                     ah.itemid = (uint16)Sql_GetIntData(SqlHandle, 0);
-                    ah.price = (uint32)Sql_GetUIntData(SqlHandle, 1);
+                    ah.price = (std::uint32_t)Sql_GetUIntData(SqlHandle, 1);
                     ah.stack = (uint8)Sql_GetIntData(SqlHandle, 2);
                     ah.status = 0;
                     PChar->m_ah_history.push_back(ah);
@@ -2222,7 +2222,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
-            uint32 auctionFee = 0;
+            std::uint32_t auctionFee = 0;
             if (quantity == 0)
             {
                 if (PItem->getStackSize() == 1 || PItem->getStackSize() != PItem->getQuantity())
@@ -2231,14 +2231,14 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); // Failed to place up
                     return;
                 }
-                auctionFee = (uint32)(map_config.ah_base_fee_stacks + (price * map_config.ah_tax_rate_stacks / 100));
+                auctionFee = (std::uint32_t)(map_config.ah_base_fee_stacks + (price * map_config.ah_tax_rate_stacks / 100));
             }
             else
             {
-                auctionFee = (uint32)(map_config.ah_base_fee_single + (price * map_config.ah_tax_rate_single / 100));
+                auctionFee = (std::uint32_t)(map_config.ah_base_fee_single + (price * map_config.ah_tax_rate_single / 100));
             }
 
-            auctionFee = std::clamp<uint32>(auctionFee, 0, map_config.ah_max_fee);
+            auctionFee = std::clamp<std::uint32_t>(auctionFee, 0, map_config.ah_max_fee);
 
             if (PChar->getStorage(LOC_INVENTORY)->GetItem(0)->getQuantity() < auctionFee)
             {
@@ -2262,15 +2262,15 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 quantity == 0,
                 PChar->id,
                 PChar->GetName(),
-                (uint32)time(nullptr),
+                (std::uint32_t)time(nullptr),
                 price) == SQL_ERROR)
             {
                 ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot insert item %s to database\n" CL_RESET, PItem->getName());
                 PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); //failed to place up
                 return;
             }
-            charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(int32)(quantity != 0 ? 1 : PItem->getStackSize()));
-            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)auctionFee); // Deduct AH fee
+            charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -(std::int32_t)(quantity != 0 ? 1 : PItem->getStackSize()));
+            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(std::int32_t)auctionFee); // Deduct AH fee
 
             PChar->pushPacket(new CAuctionHousePacket(action, 1, 0, 0)); // Merchandise put up on auction msg
             PChar->pushPacket(new CAuctionHousePacket(0x0C, (uint8)PChar->m_ah_history.size(), PChar)); // Inform history of slot
@@ -2314,7 +2314,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         fmtQuery,
                         PChar->GetName(),
                         price,
-                        (uint32)time(nullptr),
+                        (std::uint32_t)time(nullptr),
                         itemid,
                         quantity == 0,
                         price) != SQL_ERROR &&
@@ -2324,7 +2324,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                         if (SlotID != ERROR_SLOTID)
                         {
-                            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price));
+                            charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(std::int32_t)(price));
 
                             PChar->pushPacket(new CAuctionHousePacket(action, 0x01, itemid, price));
                             PChar->pushPacket(new CInventoryFinishPacket());
@@ -2347,7 +2347,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
                 const int8* fmtQuery = "DELETE FROM auction_house WHERE seller = %u AND itemid = %u AND stack = %u AND price = %u AND sale = 0 LIMIT 1;";
-                int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, canceledItem.itemid, canceledItem.stack, canceledItem.price);
+                std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, canceledItem.itemid, canceledItem.stack, canceledItem.price);
                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle))
                 {
                     CItem* PDelItem = itemutils::GetItemPointer(canceledItem.itemid);
@@ -2588,7 +2588,7 @@ void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint16 EventID = RBUFW(data, (0x12));
-    uint32 Result = RBUFL(data, (0x08));
+    std::uint32_t Result = RBUFL(data, (0x08));
 
     if (PChar->m_event.EventID == EventID)
     {
@@ -2683,7 +2683,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         petutils::DespawnPet(PChar);
     }
 
-    uint32 zoneLineID = RBUFL(data, (0x04));
+    std::uint32_t zoneLineID = RBUFL(data, (0x04));
     //TODO: verify packet in adoulin expansion
     uint8  town = RBUFB(data, (0x16));
     uint8  zone = RBUFB(data, (0x17));
@@ -2792,7 +2792,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x060(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    // uint32 charid = RBUFL(data, 0x04);
+    // std::uint32_t charid = RBUFL(data, 0x04);
     int8* string = data[12];
     luautils::OnEventUpdate(PChar, string);
 
@@ -2859,13 +2859,13 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     //PrintPacket(data);
 
-    //uint32 charid = data.ref<uint32>(0x04);
+    //std::uint32_t charid = data.ref<std::uint32_t>(0x04);
     uint16 stamina = data.ref<uint16>(0x08);
     //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
     //uint16 targetid = data.ref<uint16>(0x0C);
     uint8  action = data.ref<uint8>(0x0E);
     //uint8 ukn2 = data.ref<uint8>(0x0F);
-    uint32 special = data.ref<uint32>(0x10);
+    std::uint32_t special = data.ref<std::uint32_t>(0x10);
 
     if ((FISHACTION)action != FISHACTION_FINISH || PChar->animation == ANIMATION_FISHING_FISH)
         fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
@@ -2881,7 +2881,7 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 charid = RBUFL(data, 0x04);
+    std::uint32_t charid = RBUFL(data, 0x04);
     uint16 targid = RBUFW(data, 0x08);
     // cannot invite yourself
     if (PChar->id == charid)
@@ -3184,10 +3184,10 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 char victimName[31]{};
                 Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], std::min<size_t>(strlen(data[0x0C]), 15));
-                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
+                std::int32_t ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    uint32 id = Sql_GetUIntData(SqlHandle, 0);
+                    std::uint32_t id = Sql_GetUIntData(SqlHandle, 0);
                     if (Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE partyid = %u AND charid = %u;", PChar->id, id) == SQL_SUCCESS && Sql_AffectedRows(SqlHandle))
                     {
                         ShowDebug(CL_CYAN"%s has removed %s from party\n" CL_RESET, PChar->GetName(), data[0x0C]);
@@ -3263,10 +3263,10 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 char victimName[31]{};
                 Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], std::min<size_t>(strlen(data[0x0C]), 15));
-                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
+                std::int32_t ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
-                    uint32 id = Sql_GetUIntData(SqlHandle, 0);
+                    std::uint32_t id = Sql_GetUIntData(SqlHandle, 0);
                     ret = Sql_Query(SqlHandle, "SELECT partyid FROM accounts_parties WHERE charid = %u AND allianceid = %u AND partyflag & %d AND partyflag & %d", id, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER, PARTY_SECOND | PARTY_THIRD);
                     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                     {
@@ -3520,7 +3520,7 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     uint16 itemID = PChar->Container->getItemID(shopSlotID);
-    uint32 price = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
+    std::uint32_t price = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
     CItem* PItem = itemutils::GetItemPointer(itemID);
 
@@ -3540,7 +3540,7 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (SlotID != ERROR_SLOTID)
             {
-                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
+                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(std::int32_t)(price * quantity));
 
                 PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
@@ -3560,7 +3560,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     if (PChar->animation != ANIMATION_SYNTH)
     {
-        uint32 quantity = RBUFL(data, (0x04));
+        std::uint32_t quantity = RBUFL(data, (0x04));
         uint16 itemID = RBUFW(data, (0x08));
         uint8  slotID = RBUFB(data, (0x0A));
 
@@ -3586,7 +3586,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 quantity = PChar->Container->getQuantity(PChar->Container->getSize() - 1);
+    std::uint32_t quantity = PChar->Container->getQuantity(PChar->Container->getSize() - 1);
     uint16 itemID = PChar->Container->getItemID(PChar->Container->getSize() - 1);
     uint8  slotID = PChar->Container->getInvSlotID(PChar->Container->getSize() - 1);
 
@@ -3596,7 +3596,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if ((PItem != nullptr) && ((gil != nullptr) && gil->isType(ITEM_CURRENCY)))
     {
         charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
-        charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
+        charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(std::int32_t)quantity);
 
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
         PChar->pushPacket(new CInventoryFinishPacket());
@@ -3645,7 +3645,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->CraftContainer->setItem(0, ItemID, invSlotID, 0);
 
-    for (int32 SlotID = 0; SlotID < numItems; ++SlotID)
+    for (std::int32_t SlotID = 0; SlotID < numItems; ++SlotID)
     {
         ItemID = RBUFW(data, (0x0A + SlotID * 2));
         invSlotID = RBUFB(data, (0x1A + SlotID));
@@ -3694,7 +3694,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (SlotID != ERROR_SLOTID)
             {
-                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
+                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(std::int32_t)(item->getBasePrice() * quantity));
 
                 PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() - quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
@@ -4119,7 +4119,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // Create new linkshell..
         if (PItemLinkshell->getID() == 512)
         {
-            uint32   LinkshellID = 0;
+            std::uint32_t   LinkshellID = 0;
             uint16   LinkshellColor = RBUFW(data, (0x04));
             string_t LinkshellName = data[12];
             int8     DecodedName[21];
@@ -4372,7 +4372,7 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint32 id = RBUFL(data, (0x04));
+    std::uint32_t id = RBUFL(data, (0x04));
     uint16 targid = RBUFW(data, (0x08));
     uint8 type = RBUFB(data, (0x0C));
 
@@ -4464,7 +4464,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                uint32 baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
+                std::uint32_t baseExp = charutils::GetRealExp(PChar->GetMLevel(), PTarget->GetMLevel());
                 uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
                 uint16 charAtt = PChar->ATT();
                 uint8 mobLvl = PTarget->GetMLevel();
@@ -5380,7 +5380,7 @@ void SmallPacket0x105(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     DSP_DEBUG_BREAK_IF(PChar->BazaarID.id != 0);
     DSP_DEBUG_BREAK_IF(PChar->BazaarID.targid != 0);
 
-    uint32 charid = RBUFL(data, (0x04));
+    std::uint32_t charid = RBUFL(data, (0x04));
 
     CCharEntity* PTarget = charid != 0 ? (CCharEntity*)PChar->loc.zone->GetCharByID(charid) : (CCharEntity*)PChar->GetEntity(PChar->m_TargID, TYPE_PC);
 
@@ -5467,10 +5467,10 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (charutils::AddItem(PChar, LOC_INVENTORY, PItem) == ERROR_SLOTID)
             return;
 
-        uint32 Price1 = (PBazaarItem->getCharPrice() * Quantity);
-        uint32 Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;
+        std::uint32_t Price1 = (PBazaarItem->getCharPrice() * Quantity);
+        std::uint32_t Price2 = (PChar->loc.zone->GetTax() * Price1) / 10000 + Price1;
 
-        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)Price2);
+        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(std::int32_t)Price2);
         charutils::UpdateItem(PTarget, LOC_INVENTORY, 0, Price1);
 
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));
@@ -5556,7 +5556,7 @@ void SmallPacket0x109(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x10A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint8  slotID = RBUFB(data, (0x04));
-    uint32 price = RBUFL(data, (0x08));
+    std::uint32_t price = RBUFL(data, (0x08));
 
     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
@@ -5621,13 +5621,13 @@ void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->animation != ANIMATION_FISHING_START)
         return;
 
-    //uint32 charid = data.ref<uint32>(0x04);
+    //std::uint32_t charid = data.ref<std::uint32_t>(0x04);
     uint16 stamina = data.ref<uint16>(0x08);
     //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
     //uint16 targetid = data.ref<uint16>(0x0C);
     uint8 action = data.ref<uint8>(0x0E);
     //uint8 ukn2 = data.ref<uint8>(0x0F);
-    uint32 special = data.ref<uint32>(0x10);
+    std::uint32_t special = data.ref<std::uint32_t>(0x10);
     fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
 
     return;

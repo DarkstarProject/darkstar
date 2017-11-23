@@ -33,7 +33,7 @@
 *																		*
 ************************************************************************/
 
-CTradeActionPacket::CTradeActionPacket(CCharEntity* PChar, uint32 action) 
+CTradeActionPacket::CTradeActionPacket(CCharEntity* PChar, std::uint32_t action) 
 {
 	this->type = 0x22;
 	this->size = 0x08;

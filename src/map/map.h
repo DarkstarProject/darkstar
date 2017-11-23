@@ -58,10 +58,10 @@ enum SKILLUP_STYLE
 
 struct map_config_t
 {
-    uint32 buffer_size;             // max size of recv buffer -> default 1800 bytes
+    std::uint32_t buffer_size;             // max size of recv buffer -> default 1800 bytes
 
     uint16 usMapPort;               // port of map server      -> xxxxx
-    uint32 uiMapIp;                 // ip of map server        -> INADDR_ANY
+    std::uint32_t uiMapIp;                 // ip of map server        -> INADDR_ANY
 
     std::string mysql_host;         // mysql addr     -> localhost:3306
     uint16 mysql_port;              // mysql port     -> 3306
@@ -72,15 +72,15 @@ struct map_config_t
     std::string server_message;
     std::string server_message_fr;
 
-    uint32 max_time_lastupdate;       // max interval wait of last update player char
-    int32  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
-    int32  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
+    std::uint32_t max_time_lastupdate;       // max interval wait of last update player char
+    std::int32_t  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
+    std::int32_t  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
 
     uint16 ah_base_fee_single;        // Base AH fee for single items
     uint16 ah_base_fee_stacks;        // Base AH fee for stacks
     float  ah_tax_rate_single;        // Percent of listing price to tax single items
     float  ah_tax_rate_stacks;        // Percent of listing price to tax stacks
-    uint32 ah_max_fee;                // Maximum total AH fees/taxes
+    std::uint32_t ah_max_fee;                // Maximum total AH fees/taxes
 
     float  exp_rate;                  // множитель получаемого опыта
     float  exp_loss_rate;             // same as exp rate but applies when player dies
@@ -115,8 +115,8 @@ struct map_config_t
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
     float  ability_recast_multiplier; // Adjust ability recast time
     float  drop_rate_multiplier;      // Multiplier for drops
-    uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
-    uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
+    std::uint32_t all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
+    std::uint32_t max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
     uint8  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
@@ -143,7 +143,7 @@ struct map_config_t
 
 struct map_session_data_t
 {
-    uint32       client_addr;
+    std::uint32_t       client_addr;
     uint16       client_port;
     uint16       client_packet_id;          // id последнего пакета, пришедшего от клиента
     uint16       server_packet_id;          // id последнего пакета, отправленного сервером
@@ -161,8 +161,8 @@ struct map_session_data_t
 };
 
 extern map_config_t map_config;
-extern uint32 map_amntplayers;
-extern int32 map_fd;
+extern std::uint32_t map_amntplayers;
+extern std::int32_t map_fd;
 
 static constexpr float server_tick_rate = 2.5f;
 
@@ -177,23 +177,23 @@ extern in_addr map_ip;
 extern uint16 map_port;
 
 extern inline map_session_data_t* mapsession_getbyipp(std::uint64_t ipp);
-extern inline map_session_data_t* mapsession_createsession(uint32 ip,uint16 port);
+extern inline map_session_data_t* mapsession_createsession(std::uint32_t ip,uint16 port);
 
 //=======================================================================
 
-int32 recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
-int32 parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
-int32 send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
+std::int32_t recv_parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);    // main function to parse recv packets
+std::int32_t parse(int8 *buff,size_t* buffsize,sockaddr_in *from,map_session_data_t*);         // main function parsing the packets
+std::int32_t send_parse(int8 *buff,size_t* buffsize, sockaddr_in *from,map_session_data_t*);   // main function is building big packet
 
-void  map_helpscreen(int32 flag);                                                       // Map-Server Version Screen [venom]
-void  map_versionscreen(int32 flag);                                                    // Map-Server Version Screen [venom]
+void  map_helpscreen(std::int32_t flag);                                                       // Map-Server Version Screen [venom]
+void  map_versionscreen(std::int32_t flag);                                                    // Map-Server Version Screen [venom]
 
-int32 map_config_read(const int8 *cfgName);                                             // Map-Server Config [venom]
-int32 map_config_default();
+std::int32_t map_config_read(const int8 *cfgName);                                             // Map-Server Config [venom]
+std::int32_t map_config_default();
 
-int32 map_cleanup(time_point tick,CTaskMgr::CTask *PTask);                              // Clean up timed out players
-int32 map_close_session(time_point tick, map_session_data_t* map_session_data);
+std::int32_t map_cleanup(time_point tick,CTaskMgr::CTask *PTask);                              // Clean up timed out players
+std::int32_t map_close_session(time_point tick, map_session_data_t* map_session_data);
 
-int32 map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask);
+std::int32_t map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask);
 
 #endif //_MAP_H

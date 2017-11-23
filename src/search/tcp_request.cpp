@@ -104,7 +104,7 @@ uint8* CTCPRequestPacket::GetData()
 *																		*
 ************************************************************************/
 
-int32 CTCPRequestPacket::GetSize()
+std::int32_t CTCPRequestPacket::GetSize()
 {
     return m_size;
 }
@@ -115,7 +115,7 @@ int32 CTCPRequestPacket::GetSize()
 *																		*
 ************************************************************************/
 
-int32 CTCPRequestPacket::ReceiveFromSocket()
+std::int32_t CTCPRequestPacket::ReceiveFromSocket()
 {
     int8 recvbuf[DEFAULT_BUFLEN];
 
@@ -154,9 +154,9 @@ int32 CTCPRequestPacket::ReceiveFromSocket()
 *                                                                       *
 ************************************************************************/
 
-int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
+std::int32_t CTCPRequestPacket::SendRawToSocket(uint8* data, std::uint32_t length)
 {
-    int32 iResult;
+    std::int32_t iResult;
 
     iResult = send(*m_socket, (const int8*)data, length, 0);
     if (iResult == SOCKET_ERROR)
@@ -177,9 +177,9 @@ int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 *																		*
 ************************************************************************/
 
-int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
+std::int32_t CTCPRequestPacket::SendToSocket(uint8* data, std::uint32_t length)
 {
-    int32 iResult;
+    std::int32_t iResult;
 
     WBUFW(data, (0x00)) = length;          // packet size
     WBUFL(data, (0x04)) = 0x46465849;      // "IXFF"
@@ -195,7 +195,7 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 
     for (uint8 i = 0; i < tmp; i += 2)
     {
-        blowfish_encipher((uint32*)data + i + 2, (uint32*)data + i + 3, blowfish.P, blowfish.S[0]);
+        blowfish_encipher((std::uint32_t*)data + i + 2, (std::uint32_t*)data + i + 3, blowfish.P, blowfish.S[0]);
     }
 
     memcpy(&data[length] - 0x04, key + 16, 4);
@@ -219,11 +219,11 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 *																		*
 ************************************************************************/
 
-int32 CTCPRequestPacket::CheckPacketHash()
+std::int32_t CTCPRequestPacket::CheckPacketHash()
 {
     uint8 PacketHash[16];
 
-    int32 toHash = m_size;  // whole packet
+    std::int32_t toHash = m_size;  // whole packet
 
     toHash -= 0x08;         // -headersize
     toHash -= 0x10;         // -hashsize
@@ -261,7 +261,7 @@ uint8 CTCPRequestPacket::GetPacketType()
 *																		*
 ************************************************************************/
 
-int32 CTCPRequestPacket::decipher()
+std::int32_t CTCPRequestPacket::decipher()
 {
     md5((uint8*)(key), blowfish.hash, 20);
 
@@ -272,7 +272,7 @@ int32 CTCPRequestPacket::decipher()
 
     for (uint8 i = 0; i < tmp; i += 2)
     {
-        blowfish_decipher((uint32*)m_data + i + 2, (uint32*)m_data + i + 3, blowfish.P, blowfish.S[0]);
+        blowfish_decipher((std::uint32_t*)m_data + i + 2, (std::uint32_t*)m_data + i + 3, blowfish.P, blowfish.S[0]);
     }
     WBUFL(key, (20)) = RBUFL(m_data, (m_size - 0x18));
 

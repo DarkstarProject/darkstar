@@ -45,7 +45,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	uint8 count = 0;
 
-	for (int32 i = 0; i < 16; ++i)
+	for (std::int32_t i = 0; i < 16; ++i)
 	{
 		CItem* PItem = PTarget->getEquip((SLOTTYPE)i);
 
@@ -56,8 +56,8 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 			if (PItem->isSubType(ITEM_CHARGED))
 			{
-                uint32 currentTime = CVanaTime::getInstance()->getVanaTime();
-				uint32 nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
+                std::uint32_t currentTime = CVanaTime::getInstance()->getVanaTime();
+				std::uint32_t nextUseTime = ((CItemUsable*)PItem)->getLastUseTime() + ((CItemUsable*)PItem)->getReuseDelay();
 
 				WBUFB(data,(size*2+0x04)) = 0x01;
 				WBUFB(data,(size*2+0x05)) = ((CItemUsable*)PItem)->getCurrentCharges();

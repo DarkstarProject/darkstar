@@ -76,7 +76,7 @@ uint8 CItemArmor::getILvl()
     return m_iLvl;
 }
 
-uint32 CItemArmor::getJobs()
+std::uint32_t CItemArmor::getJobs()
 {
 	return m_jobs;
 }
@@ -91,7 +91,7 @@ void CItemArmor::setILvl(uint8 lvl)
     m_iLvl = lvl;
 }
 
-void CItemArmor::setJobs(uint32 jobs)
+void CItemArmor::setJobs(std::uint32_t jobs)
 {
 	m_jobs = jobs;
 }
@@ -118,8 +118,8 @@ void CItemArmor::setRemoveSlotId(uint16 removSlot)
 
 uint8 CItemArmor::getSlotType()
 {
-	uint32 result = 0;
-	getMSB(&result,(uint32)m_equipSlotID);
+	std::uint32_t result = 0;
+	getMSB(&result,(std::uint32_t)m_equipSlotID);
 	return result;
 }
 
@@ -284,7 +284,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
     // obtain augment info by querying the db
     const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `isPet`, `petType` FROM augments WHERE augmentId = %u";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
+    std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, type);
 
     while (ret != SQL_ERROR &&
         Sql_NumRows(SqlHandle) != 0 &&

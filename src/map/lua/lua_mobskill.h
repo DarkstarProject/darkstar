@@ -44,17 +44,17 @@ public:
     {
         return m_PLuaMobSkill;
     }
-    int32 getTP(lua_State*);
-    int32 getHPP(lua_State*);
-    int32 getID(lua_State*);
-    int32 getParam(lua_State*);
-    int32 isAoE(lua_State*);
-    int32 isConal(lua_State*);
-    int32 isSingle(lua_State*);
-    int32 hasMissMsg(lua_State*);
-    int32 setMsg(lua_State*);
-    int32 getMsg(lua_State*);
-    int32 getTotalTargets(lua_State*);
+    std::int32_t getTP(lua_State*);
+    std::int32_t getHPP(lua_State*);
+    std::int32_t getID(lua_State*);
+    std::int32_t getParam(lua_State*);
+    std::int32_t isAoE(lua_State*);
+    std::int32_t isConal(lua_State*);
+    std::int32_t isSingle(lua_State*);
+    std::int32_t hasMissMsg(lua_State*);
+    std::int32_t setMsg(lua_State*);
+    std::int32_t getMsg(lua_State*);
+    std::int32_t getTotalTargets(lua_State*);
 };
 
 #endif

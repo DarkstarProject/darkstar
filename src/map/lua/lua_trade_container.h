@@ -44,16 +44,16 @@ public:
         return m_pMyTradeContainer;
     }
 
-    int32 getGil(lua_State*);
-    int32 getItem(lua_State*);
-    int32 getItemId(lua_State*);
-    int32 getItemSubId(lua_State*);
-    int32 getItemQty(lua_State*);
-    int32 hasItemQty(lua_State*);
-    int32 getSlotQty(lua_State*);		// количество предметов в указанной ячейке
-    int32 getItemCount(lua_State*);		// общее количество предметов
-    int32 getSlotCount(lua_State*);
-    int32 confirmItem(lua_State*);
+    std::int32_t getGil(lua_State*);
+    std::int32_t getItem(lua_State*);
+    std::int32_t getItemId(lua_State*);
+    std::int32_t getItemSubId(lua_State*);
+    std::int32_t getItemQty(lua_State*);
+    std::int32_t hasItemQty(lua_State*);
+    std::int32_t getSlotQty(lua_State*);		// количество предметов в указанной ячейке
+    std::int32_t getItemCount(lua_State*);		// общее количество предметов
+    std::int32_t getSlotCount(lua_State*);
+    std::int32_t confirmItem(lua_State*);
 };
 
 #endif

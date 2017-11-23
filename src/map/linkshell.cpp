@@ -50,12 +50,12 @@
 *                                                                       *
 ************************************************************************/
 
-CLinkshell::CLinkshell(uint32 id)
+CLinkshell::CLinkshell(std::uint32_t id)
 {
     m_id = id;
 }
 
-uint32 CLinkshell::getID()
+std::uint32_t CLinkshell::getID()
 {
     return m_id;
 }
@@ -86,7 +86,7 @@ void CLinkshell::setMessage(const int8* message, const int8* poster)
     int8 sqlMessage[256];
     Sql_EscapeString(SqlHandle, sqlMessage, message);
     Sql_Query(SqlHandle, "UPDATE linkshells SET poster = '%s', message = '%s', messagetime = %u WHERE linkshellid = %d;",
-        poster, sqlMessage , static_cast<uint32>(time(nullptr)), m_id);
+        poster, sqlMessage , static_cast<std::uint32_t>(time(nullptr)), m_id);
 
     int8 packetData[8] {};
     WBUFL(packetData, 0) = m_id;
@@ -123,7 +123,7 @@ void CLinkshell::AddMember(CCharEntity* PChar, int8 type, uint8 lsNum)
 
 bool CLinkshell::DelMember(CCharEntity* PChar)
 {
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
 	{
         if (members.at(i) == PChar)
         {
@@ -159,7 +159,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 	
     if (newId == 514 || newId == 515)
     {
-	    for (uint32 i = 0; i < members.size(); ++i) 
+	    for (std::uint32_t i = 0; i < members.size(); ++i) 
 	    {
 		    if (strcmp(MemberName, members.at(i)->GetName()) == 0)
 		    {
@@ -225,7 +225,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 
 void CLinkshell::RemoveMemberByName(int8* MemberName)
 {
-	for (uint32 i = 0; i < members.size(); ++i) 
+	for (std::uint32_t i = 0; i < members.size(); ++i) 
 	{
 		if (strcmp(MemberName, members.at(i)->GetName()) == 0)
 		{
@@ -294,9 +294,9 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
+void CLinkshell::PushPacket(std::uint32_t senderID, CBasicPacket* packet)
 {
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
 	{
         if (members.at(i)->id != senderID &&
             members.at(i)->status != STATUS_DISAPPEAR &&
@@ -337,7 +337,7 @@ void CLinkshell::PushLinkshellMessage(CCharEntity* PChar, bool ls1)
 
 namespace linkshell
 {
-    std::map<uint32, std::unique_ptr<CLinkshell>> LinkshellList;
+    std::map<std::uint32_t, std::unique_ptr<CLinkshell>> LinkshellList;
 
     /************************************************************************
     *                                                                       *
@@ -345,9 +345,9 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    CLinkshell* LoadLinkshell(uint32 id)
+    CLinkshell* LoadLinkshell(std::uint32_t id)
     {
-	    int32 ret = Sql_Query(SqlHandle, "SELECT linkshellid, color, name FROM linkshells WHERE linkshellid = %d", id);
+	    std::int32_t ret = Sql_Query(SqlHandle, "SELECT linkshellid, color, name FROM linkshells WHERE linkshellid = %d", id);
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	    {
@@ -436,19 +436,19 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    uint32 RegisterNewLinkshell(const int8* name, uint16 color)
+    std::uint32_t RegisterNewLinkshell(const int8* name, uint16 color)
     {
         if (IsValidLinkshellName(name))
         {
 		    if (Sql_Query(SqlHandle, "INSERT INTO linkshells (name, color) VALUES ('%s', %u)", name, color) != SQL_ERROR)
             {
-                return LoadLinkshell((uint32)Sql_LastInsertId(SqlHandle))->getID();
+                return LoadLinkshell((std::uint32_t)Sql_LastInsertId(SqlHandle))->getID();
             }
         }
         return 0;
     }
 
-	CLinkshell* GetLinkshell(uint32 id)
+	CLinkshell* GetLinkshell(std::uint32_t id)
 	{
 		try
 		{

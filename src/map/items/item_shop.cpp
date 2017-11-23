@@ -38,13 +38,13 @@ CItemShop::~CItemShop()
 {
 }
 
-uint32 CItemShop::getMinPrice()
+std::uint32_t CItemShop::getMinPrice()
 {
 	return m_MinPrice;
 }
 
 
-uint32 CItemShop::getMaxPrice()
+std::uint32_t CItemShop::getMaxPrice()
 {
 	return m_MaxPrice;
 }
@@ -59,12 +59,12 @@ bool CItemShop::IsDailyIncrease()
 	return m_DailyIncrease;
 }
 
-void CItemShop::setMinPrice(uint32 price)
+void CItemShop::setMinPrice(std::uint32_t price)
 {
 	m_MinPrice = price;
 }
 
-void CItemShop::setMaxPrice(uint32 price)
+void CItemShop::setMaxPrice(std::uint32_t price)
 {
 	m_MaxPrice = price;
 }

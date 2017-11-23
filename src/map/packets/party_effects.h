@@ -42,7 +42,7 @@ public:
 
     CPartyEffectsPacket();
     void AddMemberEffects(CBattleEntity* PMember);
-    void AddMemberEffects(uint32 id);
+    void AddMemberEffects(std::uint32_t id);
 
 private:
     int members {0};

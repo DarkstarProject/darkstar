@@ -52,14 +52,14 @@ public:
     CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
 
     float   CalculateEnmityBonus(CBattleEntity* PEntity);
-    void    Clear(uint32 EntityID = 0);			// Removes Entries from list
-    void    LogoutReset(uint32 EntityID);		// Sets entry to inactive
+    void    Clear(std::uint32_t EntityID = 0);			// Removes Entries from list
+    void    LogoutReset(std::uint32_t EntityID);		// Sets entry to inactive
     void    AddBaseEnmity(CBattleEntity* PEntity);
     void    UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool tameable = false);
     void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
     void    UpdateEnmityFromCure(CBattleEntity* PEntity, uint8 level, uint16 CureAmount, bool isCureV);
     void    UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
-    bool    HasID(uint32 ID); //true if ID is in the container with non-zero enmity level
+    bool    HasID(std::uint32_t ID); //true if ID is in the container with non-zero enmity level
     void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
     uint16  GetCE(CBattleEntity* PEntity);
     uint16  GetVE(CBattleEntity* PEntity);

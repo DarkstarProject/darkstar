@@ -42,8 +42,8 @@ struct Recast_t
 {
     uint16     ID;
     time_t     TimeStamp;
-    uint32     RecastTime;
-    uint32     chargeTime;
+    std::uint32_t     RecastTime;
+    std::uint32_t     chargeTime;
     uint8      maxCharges;
 };
 
@@ -67,9 +67,9 @@ class CRecastContainer
     virtual void Del(RECASTTYPE type, uint16 id);
 	virtual void DeleteByIndex(RECASTTYPE type, uint8 index);
     bool Has(RECASTTYPE type, uint16 id);
-    bool HasRecast(RECASTTYPE type, uint16 id, uint32 recast);
-    virtual void Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
-    Recast_t* Load(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
+    bool HasRecast(RECASTTYPE type, uint16 id, std::uint32_t recast);
+    virtual void Add(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime = 0, uint8 maxCharges = 0);
+    Recast_t* Load(RECASTTYPE type, uint16 id, std::uint32_t duration, std::uint32_t chargeTime = 0, uint8 maxCharges = 0);
     virtual void ResetAbilities();
     virtual void ChangeJob() {}
 

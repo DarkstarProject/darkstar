@@ -119,7 +119,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
 
-    int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
+    std::int32_t ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
 
     if (!instance->Failed() && ret != SQL_ERROR /*&& Sql_NumRows(SqlInstanceHandle) != 0*/)
     {
@@ -128,7 +128,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             CMobEntity* PMob = new CMobEntity;
 
             PMob->name.insert(0, Sql_GetData(SqlInstanceHandle, 0));
-            PMob->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 1);
+            PMob->id = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 1);
             PMob->targid = (uint16)PMob->id & 0x0FFF;
 
             PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlInstanceHandle, 2);
@@ -140,8 +140,8 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlInstanceHandle, 7);
             PMob->m_DropID = Sql_GetUIntData(SqlInstanceHandle, 8);
 
-            PMob->HPmodifier = (uint32)Sql_GetIntData(SqlInstanceHandle, 9);
-            PMob->MPmodifier = (uint32)Sql_GetIntData(SqlInstanceHandle, 10);
+            PMob->HPmodifier = (std::uint32_t)Sql_GetIntData(SqlInstanceHandle, 9);
+            PMob->MPmodifier = (std::uint32_t)Sql_GetIntData(SqlInstanceHandle, 10);
 
             PMob->m_minLevel = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
             PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlInstanceHandle, 12);
@@ -196,12 +196,12 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
             PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
             PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 49);
-            PMob->m_flags = (uint32)Sql_GetIntData(SqlInstanceHandle, 50);
+            PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlInstanceHandle, 50);
 
             //Special sub animation for Mob (yovra, jailer of love, phuabo)
             // yovra 1: en hauteur, 2: en bas, 3: en haut
             // phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
-            PMob->animationsub = (uint32)Sql_GetIntData(SqlInstanceHandle, 51);
+            PMob->animationsub = (std::uint32_t)Sql_GetIntData(SqlInstanceHandle, 51);
 
             // Setup HP / MP Stat Percentage Boost
             PMob->HPscale = Sql_GetFloatData(SqlInstanceHandle, 52);
@@ -217,7 +217,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
             PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
 
-            uint32 aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
+            std::uint32_t aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
             PMob->m_Aggro = aggro;
 
             // If a special instanced mob aggros, it should always aggro regardless of level.
@@ -247,8 +247,8 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 			(instance_entities.id = npc_list.npcid) \
 			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
 
-        uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
-        uint32 zoneMax = zoneMin + 1024;
+        std::uint32_t zoneMin = (zone->GetID() << 12) + 0x1000000;
+        std::uint32_t zoneMax = zoneMin + 1024;
 
         ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID(), zoneMin, zoneMax);
 
@@ -257,7 +257,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
             {
                 CNpcEntity* PNpc = new CNpcEntity;
-                PNpc->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 0);
+                PNpc->id = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 0);
                 PNpc->targid = PNpc->id & 0xFFF;
 
                 PNpc->name.insert(0, Sql_GetData(SqlInstanceHandle, 1));
@@ -268,7 +268,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
                 PNpc->loc.p.z = Sql_GetFloatData(SqlInstanceHandle, 5);
                 PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlInstanceHandle, 6);
 
-                PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
+                PNpc->m_TargID = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
 
                 PNpc->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 7);
                 PNpc->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 8);
@@ -277,7 +277,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
                 PNpc->namevis = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
                 PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlInstanceHandle, 12);
-                PNpc->m_flags = (uint32)Sql_GetUIntData(SqlInstanceHandle, 13);
+                PNpc->m_flags = (std::uint32_t)Sql_GetUIntData(SqlInstanceHandle, 13);
 
                 PNpc->name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 15);
                 PNpc->widescan = (uint8)Sql_GetIntData(SqlInstanceHandle, 16);

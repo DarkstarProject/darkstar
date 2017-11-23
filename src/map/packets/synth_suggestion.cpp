@@ -27,7 +27,7 @@ This file is part of DarkStar-server source code.
 #include "synth_suggestion.h"
 
 
-CSynthSuggestionPacket::CSynthSuggestionPacket(uint32 synthID)
+CSynthSuggestionPacket::CSynthSuggestionPacket(std::uint32_t synthID)
 {
 	this->type = 0x31;
 	this->size = 0x1A;
@@ -40,7 +40,7 @@ CSynthSuggestionPacket::CSynthSuggestionPacket(uint32 synthID)
 		WHERE ID = %u \
 		LIMIT 1";
 
-	int32 ret = Sql_Query(
+	std::int32_t ret = Sql_Query(
 		SqlHandle,
 		fmtQuery,
 		synthID);

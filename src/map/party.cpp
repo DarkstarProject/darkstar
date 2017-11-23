@@ -52,9 +52,9 @@
 //should have brace-or-equal initializers when MSVC supports it
 struct CParty::partyInfo_t
 {
-    uint32 id;
-    uint32 partyid;
-    uint32 allianceid;
+    std::uint32_t id;
+    std::uint32_t partyid;
+    std::uint32_t allianceid;
     std::string name;
     uint16 flags;
     uint16 zone;
@@ -86,7 +86,7 @@ CParty::CParty(CBattleEntity* PEntity)
     SetLeader((int8*)PEntity->name.c_str());
 }
 
-CParty::CParty(uint32 id)
+CParty::CParty(std::uint32_t id)
 {
     m_PartyID = id;
     m_PartyType = PARTY_PCS;
@@ -196,7 +196,7 @@ uint8 CParty::MemberCount(uint16 ZoneID)
 {
     uint8 count = 0;
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         if (members.at(i)->getZone() == ZoneID)
         {
@@ -216,7 +216,7 @@ CBattleEntity* CParty::GetMemberByName(const int8* MemberName)
 {
     DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
         if (strcmp(MemberName, members.at(i)->GetName()) == 0)
             return members.at(i);
 
@@ -240,7 +240,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
     }
     else
     {
-        for (uint32 i = 0; i < members.size(); ++i)
+        for (std::uint32_t i = 0; i < members.size(); ++i)
         {
             if (PEntity == members.at(i))
             {
@@ -318,7 +318,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
     }
     else
     {
-        for (uint32 i = 0; i < members.size(); ++i)
+        for (std::uint32_t i = 0; i < members.size(); ++i)
         {
             if (PEntity == members.at(i))
             {
@@ -382,7 +382,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
 
 void CParty::PopMember(CBattleEntity* PEntity)
 {
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         if (PEntity == members.at(i))
         {
@@ -479,7 +479,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
 
         CCharEntity* PChar = (CCharEntity*)PEntity;
 
-        uint32 allianceid = 0;
+        std::uint32_t allianceid = 0;
         if (m_PAlliance)
         {
             allianceid = m_PAlliance->m_AllianceID;
@@ -523,11 +523,11 @@ void CParty::AddMember(CBattleEntity* PEntity)
     }
 }
 
-void CParty::AddMember(uint32 id)
+void CParty::AddMember(std::uint32_t id)
 {
     if (m_PartyType == PARTY_PCS)
     {
-        uint32 allianceid = 0;
+        std::uint32_t allianceid = 0;
         uint16 Flags = 0;
         if (m_PAlliance)
         {
@@ -591,7 +591,7 @@ void CParty::PushMember(CBattleEntity* PEntity)
     ReloadTreasurePool((CCharEntity*)PEntity);
 }
 
-void CParty::SetPartyID(uint32 id)
+void CParty::SetPartyID(std::uint32_t id)
 {
     m_PartyID = id;
 }
@@ -602,7 +602,7 @@ void CParty::SetPartyID(uint32 id)
 *																		*
 ************************************************************************/
 
-uint32 CParty::GetPartyID()
+std::uint32_t CParty::GetPartyID()
 {
     return m_PartyID;
 }
@@ -877,7 +877,7 @@ void CParty::SetLeader(const char* MemberName)
 {
     if (m_PartyType == PARTY_PCS)
     {
-        uint32 newId = 0;
+        std::uint32_t newId = 0;
         int ret = Sql_Query(SqlHandle, "SELECT chars.charid from accounts_sessions JOIN chars ON chars.charid = accounts_sessions.charid WHERE charname = ('%s')", MemberName);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -1026,9 +1026,9 @@ void CParty::SetQuarterMaster(const char* MemberName)
 *																		*
 ************************************************************************/
 
-void CParty::PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet)
+void CParty::PushPacket(std::uint32_t senderID, uint16 ZoneID, CBasicPacket* packet)
 {
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         if (members.at(i) == nullptr || members.at(i)->objtype != TYPE_PC)
         {

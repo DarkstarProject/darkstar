@@ -43,7 +43,7 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 
     for (auto&& recast : *RecastList)
     {
-        uint32 recasttime = (recast.RecastTime == 0 ? 0 : ((recast.RecastTime - (uint32)(time(0) - recast.TimeStamp))));
+        std::uint32_t recasttime = (recast.RecastTime == 0 ? 0 : ((recast.RecastTime - (std::uint32_t)(time(0) - recast.TimeStamp))));
 
         if (recast.ID != 0)
         {

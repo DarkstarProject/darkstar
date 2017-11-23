@@ -26,7 +26,7 @@
 #include "weather.h"
 
 
-CWeatherPacket::CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect) 
+CWeatherPacket::CWeatherPacket(std::uint32_t ChangeTime, WEATHER WeatherEffect) 
 {
     this->type = 0x57;
     this->size = 0x06;

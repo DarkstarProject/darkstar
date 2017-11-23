@@ -49,13 +49,13 @@ struct zlib_jump
 
 struct zlib
 {
-    std::vector<uint32> enc;
+    std::vector<std::uint32_t> enc;
     std::vector<struct zlib_jump> jump;
 };
 
 static struct zlib zlib;
 
-static void swap32_if_be(uint32 *v, const size_t memb)
+static void swap32_if_be(std::uint32_t *v, const size_t memb)
 {
 #if DSP_BIG_ENDIAN
     for (size_t i = 0; i < memb; ++i)
@@ -65,7 +65,7 @@ static void swap32_if_be(uint32 *v, const size_t memb)
 #endif
 }
 
-static bool read_to_vector(const std::string &file, std::vector<uint32> &vec)
+static bool read_to_vector(const std::string &file, std::vector<std::uint32_t> &vec)
 {
     FILE *f;
     if (!(f = fopen(file.c_str(), "rb")))
@@ -78,8 +78,8 @@ static bool read_to_vector(const std::string &file, std::vector<uint32> &vec)
     const size_t size = ftell(f);
     fseek(f, 0, SEEK_SET);
 
-    vec.resize(size / sizeof(uint32));
-    if (fread(vec.data(), sizeof(uint32), vec.size(), f) != vec.size())
+    vec.resize(size / sizeof(std::uint32_t));
+    if (fread(vec.data(), sizeof(std::uint32_t), vec.size(), f) != vec.size())
     {
         ShowFatalError("zlib: can't read file <%s>: %s\n", file.c_str(), strerror(errno));
         return false;
@@ -90,13 +90,13 @@ static bool read_to_vector(const std::string &file, std::vector<uint32> &vec)
     return true;
 }
 
-static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::vector<uint32> &dec)
+static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::vector<std::uint32_t> &dec)
 {
     jump.resize(dec.size());
 
     // Base address of dec table, if we substract pointer in dec table, we should should be
     // able to normalize them to offsets starting from 0.
-    const uint32 base = dec[0] - sizeof(uint32);
+    const std::uint32_t base = dec[0] - sizeof(std::uint32_t);
 
     for (size_t i = 0; i < dec.size(); ++i)
     {
@@ -118,9 +118,9 @@ static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::
     }
 }
 
-int32 zlib_init()
+std::int32_t zlib_init()
 {
-    std::vector<uint32> dec;
+    std::vector<std::uint32_t> dec;
     if (!read_to_vector("compress.dat", zlib.enc) || !read_to_vector("decompress.dat", dec))
         return -1;
 
@@ -128,11 +128,11 @@ int32 zlib_init()
     return 0;
 }
 
-static int32 zlib_compress_sub(const uint8 *b32, const uint32 read, const uint32 elem, int8 *out, const uint32 out_sz)
+static std::int32_t zlib_compress_sub(const uint8 *b32, const std::uint32_t read, const std::uint32_t elem, int8 *out, const std::uint32_t out_sz)
 {
     assert(b32 && out);
 
-    if (zlib_compressed_size(elem) > sizeof(uint32))
+    if (zlib_compressed_size(elem) > sizeof(std::uint32_t))
     {
         ShowWarning("zlib_compress_sub: element exceeds 4 bytes (%u)\n", elem);
         return -1;
@@ -144,11 +144,11 @@ static int32 zlib_compress_sub(const uint8 *b32, const uint32 read, const uint32
         return -1;
     }
 
-    for (uint32 i = 0; i < elem; ++i)
+    for (std::uint32_t i = 0; i < elem; ++i)
     {
         const uint8 shift = (read + i) & 7;
-        const uint32 v = (read + i) / 8;
-        const uint32 inv_mask = ~(1 << shift);
+        const std::uint32_t v = (read + i) / 8;
+        const std::uint32_t inv_mask = ~(1 << shift);
         assert(shift < 8);
         out[v] = (inv_mask & out[v]) + (JMPBIT(b32, i) << shift);
     }
@@ -156,21 +156,21 @@ static int32 zlib_compress_sub(const uint8 *b32, const uint32 read, const uint32
     return 0;
 }
 
-int32 zlib_compress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz)
+std::int32_t zlib_compress(const int8 *in, const std::uint32_t in_sz, int8 *out, const std::uint32_t out_sz)
 {
     assert(in && out);
     assert(zlib.enc.size());
 
-    uint32 read = 0;
-    const uint32 max_sz = (out_sz - 1) * 8; // Output buffer may be at least 8 times big than original
-    for (uint32 i = 0; i < in_sz; ++i)
+    std::uint32_t read = 0;
+    const std::uint32_t max_sz = (out_sz - 1) * 8; // Output buffer may be at least 8 times big than original
+    for (std::uint32_t i = 0; i < in_sz; ++i)
     {
-        const uint32 elem = zlib.enc[static_cast<int8>(in[i]) + 0x180];
+        const std::uint32_t elem = zlib.enc[static_cast<int8>(in[i]) + 0x180];
         if (elem + read < max_sz)
         {
-            const uint32 index = static_cast<int8>(in[i]) + 0x80;
+            const std::uint32_t index = static_cast<int8>(in[i]) + 0x80;
             assert(index < zlib.enc.size());
-            uint32 v = zlib.enc[index];
+            std::uint32_t v = zlib.enc[index];
             swap32_if_be(&v, 1);
             uint8 b32[sizeof(v)];
             memcpy(b32, &v, sizeof(b32));
@@ -197,7 +197,7 @@ int32 zlib_compress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 
     return read + 8;
 }
 
-uint32 zlib_decompress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz)
+std::uint32_t zlib_decompress(const int8 *in, const std::uint32_t in_sz, int8 *out, const std::uint32_t out_sz)
 {
     assert(in && out);
     assert(zlib.jump.size());
@@ -211,9 +211,9 @@ uint32 zlib_decompress(const int8 *in, const uint32 in_sz, int8 *out, const uint
         return -1;
     }
 
-    uint32 w = 0;
+    std::uint32_t w = 0;
     const int8 *data = in + 1;
-    for (uint32 i = 0; i < in_sz && w < out_sz; ++i)
+    for (std::uint32_t i = 0; i < in_sz && w < out_sz; ++i)
     {
         jmp = static_cast<const struct zlib_jump*>(jmp[JMPBIT(data, i)].ptr);
         assert(jmp >= zlib.jump.data() && jmp <= zlib.jump.data() + zlib.jump.size());

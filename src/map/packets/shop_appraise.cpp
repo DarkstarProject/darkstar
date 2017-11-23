@@ -26,7 +26,7 @@
 #include "shop_appraise.h"
 
 
-CShopAppraisePacket::CShopAppraisePacket(uint8 slotID, uint32 sellPrice)
+CShopAppraisePacket::CShopAppraisePacket(uint8 slotID, std::uint32_t sellPrice)
 {
 	this->type = 0x3D;
 	this->size = 0x08;

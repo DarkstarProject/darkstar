@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 
 
-CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier) :
+CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, std::uint32_t tick, std::uint32_t duration, std::uint32_t subid, uint16 subPower, uint16 tier) :
     m_StatusID(id), m_SubID(subid), m_Icon(icon), m_Power(power), m_SubPower(subPower), m_Tier(tier), m_TickTime(tick * 1000), m_Duration(duration * 1000)
 {
     if (m_TickTime < 3000 && m_TickTime != 0)
@@ -61,7 +61,7 @@ CBattleEntity* CStatusEffect::GetOwner()
 	return m_POwner;
 }
 
-uint32 CStatusEffect::GetSubID()
+std::uint32_t CStatusEffect::GetSubID()
 {
 	return m_SubID;
 }
@@ -91,17 +91,17 @@ uint16 CStatusEffect::GetTier()
     return m_Tier;
 }
 
-uint32 CStatusEffect::GetFlag()
+std::uint32_t CStatusEffect::GetFlag()
 {
 	return m_Flag;
 }
 
-uint32 CStatusEffect::GetTickTime()
+std::uint32_t CStatusEffect::GetTickTime()
 {
 	return m_TickTime;
 }
 
-uint32 CStatusEffect::GetDuration()
+std::uint32_t CStatusEffect::GetDuration()
 {
 	return m_Duration;
 }
@@ -116,12 +116,12 @@ time_point CStatusEffect::GetStartTime()
 	return m_StartTime;
 }
 
-void CStatusEffect::SetFlag(uint32 Flag)
+void CStatusEffect::SetFlag(std::uint32_t Flag)
 {
     m_Flag |= Flag;
 }
 
-void CStatusEffect::UnsetFlag(uint32 flag)
+void CStatusEffect::UnsetFlag(std::uint32_t flag)
 {
     m_Flag &= ~flag;
 }
@@ -154,7 +154,7 @@ void CStatusEffect::SetTier(uint16 tier)
     m_Tier = tier;
 }
 
-void CStatusEffect::SetDuration(uint32 Duration)
+void CStatusEffect::SetDuration(std::uint32_t Duration)
 {
 	m_Duration = Duration;
 }
@@ -165,7 +165,7 @@ void CStatusEffect::SetStartTime(time_point StartTime)
 	m_StartTime = StartTime;
 }
 
-void CStatusEffect::SetTickTime(uint32 tick)
+void CStatusEffect::SetTickTime(std::uint32_t tick)
 {
 	m_TickTime = tick;
 }
@@ -188,7 +188,7 @@ void CStatusEffect::SetName(string_t name)
 
 void CStatusEffect::addMod(Mod modType, int16 amount)
 {
-	for (uint32 i = 0; i < modList.size(); ++i)
+	for (std::uint32_t i = 0; i < modList.size(); ++i)
 	{
 		if (modList.at(i).getModID() == modType)
 		{

@@ -45,32 +45,32 @@ public:
         return m_PLuaItem;
     }
 
-    int32 getID(lua_State*);                // get the item's id
-    int32 getSubID(lua_State*);             // get the item's subid
+    std::int32_t getID(lua_State*);                // get the item's id
+    std::int32_t getSubID(lua_State*);             // get the item's subid
 
-    int32 getFlag(lua_State*);              // get the item flag
-    int32 getAHCat(lua_State*);             // get the ah category
+    std::int32_t getFlag(lua_State*);              // get the item flag
+    std::int32_t getAHCat(lua_State*);             // get the ah category
 
-    int32 getQuantity(lua_State*);          // get the quantity of item
+    std::int32_t getQuantity(lua_State*);          // get the quantity of item
 
-    int32 getLocationID(lua_State*);        // get the location id (container id)
-    int32 getSlotID(lua_State*);            // get the slot id
-    int32 getWornItem(lua_State*);          // check if the item has been used
+    std::int32_t getLocationID(lua_State*);        // get the location id (container id)
+    std::int32_t getSlotID(lua_State*);            // get the slot id
+    std::int32_t getWornItem(lua_State*);          // check if the item has been used
 
-    int32 isType(lua_State*);               // check the item type
-    int32 isSubType(lua_State*);            // check the item's sub type
+    std::int32_t isType(lua_State*);               // check the item type
+    std::int32_t isSubType(lua_State*);            // check the item's sub type
 
-    int32 getName(lua_State*);              // get the item's name
+    std::int32_t getName(lua_State*);              // get the item's name
 
-    int32 getMod(lua_State*);               // get the power of a mod
-    int32 addMod(lua_State*);               // add mod to item (or add to a mod already applied on item)
-    int32 delMod(lua_State*);               // remove power from mod
+    std::int32_t getMod(lua_State*);               // get the power of a mod
+    std::int32_t addMod(lua_State*);               // add mod to item (or add to a mod already applied on item)
+    std::int32_t delMod(lua_State*);               // remove power from mod
 
-    int32 getAugment(lua_State*);           // get the augment id and power in slot
-    //int32 setAugment(lua_State*);           // set the augment id and power in slot
+    std::int32_t getAugment(lua_State*);           // get the augment id and power in slot
+    //std::int32_t setAugment(lua_State*);           // set the augment id and power in slot
 
-    int32 getSkillType(lua_State*);         // get skill type
-    int32 getWeaponskillPoints(lua_State*); // get current ws points
+    std::int32_t getSkillType(lua_State*);         // get skill type
+    std::int32_t getWeaponskillPoints(lua_State*); // get current ws points
 };
 
 #endif

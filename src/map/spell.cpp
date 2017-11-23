@@ -75,22 +75,22 @@ void CSpell::setJob(int8* jobs)
     memcpy(&m_job[1], jobs, 22);
 }
 
-uint32 CSpell::getCastTime()
+std::uint32_t CSpell::getCastTime()
 {
     return m_castTime;
 }
 
-void CSpell::setCastTime(uint32 CastTime)
+void CSpell::setCastTime(std::uint32_t CastTime)
 {
     m_castTime = CastTime;
 }
 
-uint32 CSpell::getRecastTime()
+std::uint32_t CSpell::getRecastTime()
 {
     return m_recastTime;
 }
 
-void CSpell::setRecastTime(uint32 RecastTime)
+void CSpell::setRecastTime(std::uint32_t RecastTime)
 {
     m_recastTime = RecastTime;
 }
@@ -338,12 +338,12 @@ uint16 CSpell::getVE()
     return m_VE;
 }
 
-void CSpell::setModifiedRecast(uint32 mrec)
+void CSpell::setModifiedRecast(std::uint32_t mrec)
 {
     m_modifiedRecastTime = mrec;
 }
 
-uint32 CSpell::getModifiedRecast()
+std::uint32_t CSpell::getModifiedRecast()
 {
     return m_modifiedRecastTime;
 }
@@ -411,7 +411,7 @@ namespace spell
                              AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range \
                              FROM spell_list;";
 
-        int32 ret = Sql_Query(SqlHandle, Query);
+        std::int32_t ret = Sql_Query(SqlHandle, Query);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {

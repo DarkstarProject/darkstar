@@ -47,7 +47,7 @@ CLuaItem::CLuaItem(CItem* PItem)
     m_PLuaItem = PItem;
 }
 
-inline int32 CLuaItem::getID(lua_State* L)
+inline std::int32_t CLuaItem::getID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -55,7 +55,7 @@ inline int32 CLuaItem::getID(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getSubID(lua_State* L)
+inline std::int32_t CLuaItem::getSubID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -63,7 +63,7 @@ inline int32 CLuaItem::getSubID(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getFlag(lua_State* L)
+inline std::int32_t CLuaItem::getFlag(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -71,7 +71,7 @@ inline int32 CLuaItem::getFlag(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getAHCat(lua_State* L)
+inline std::int32_t CLuaItem::getAHCat(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -79,7 +79,7 @@ inline int32 CLuaItem::getAHCat(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getQuantity(lua_State* L)
+inline std::int32_t CLuaItem::getQuantity(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -87,7 +87,7 @@ inline int32 CLuaItem::getQuantity(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getLocationID(lua_State* L)
+inline std::int32_t CLuaItem::getLocationID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -95,7 +95,7 @@ inline int32 CLuaItem::getLocationID(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getSlotID(lua_State* L)
+inline std::int32_t CLuaItem::getSlotID(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -103,7 +103,7 @@ inline int32 CLuaItem::getSlotID(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getWornItem(lua_State* L)
+inline std::int32_t CLuaItem::getWornItem(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -111,7 +111,7 @@ inline int32 CLuaItem::getWornItem(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::isType(lua_State* L)
+inline std::int32_t CLuaItem::isType(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -122,7 +122,7 @@ inline int32 CLuaItem::isType(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::isSubType(lua_State* L)
+inline std::int32_t CLuaItem::isSubType(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -133,7 +133,7 @@ inline int32 CLuaItem::isSubType(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getName(lua_State* L)
+inline std::int32_t CLuaItem::getName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -141,7 +141,7 @@ inline int32 CLuaItem::getName(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getMod(lua_State* L)
+inline std::int32_t CLuaItem::getMod(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -154,7 +154,7 @@ inline int32 CLuaItem::getMod(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::addMod(lua_State* L)
+inline std::int32_t CLuaItem::addMod(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -169,7 +169,7 @@ inline int32 CLuaItem::addMod(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaItem::delMod(lua_State* L)
+inline std::int32_t CLuaItem::delMod(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -184,7 +184,7 @@ inline int32 CLuaItem::delMod(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaItem::getAugment(lua_State* L)
+inline std::int32_t CLuaItem::getAugment(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -202,7 +202,7 @@ inline int32 CLuaItem::getAugment(lua_State* L)
     return 2;
 }
 
-inline int32 CLuaItem::getSkillType(lua_State* L)
+inline std::int32_t CLuaItem::getSkillType(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
@@ -216,7 +216,7 @@ inline int32 CLuaItem::getSkillType(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
+inline std::int32_t CLuaItem::getWeaponskillPoints(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 

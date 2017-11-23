@@ -33,6 +33,6 @@ CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, std::uint64_t i
 	this->size = 0x0E;
 
 	WBUFB(data,(0x04)) = type;
-	WBUFL(data,(0x08)) = (uint32)ipp;
+	WBUFL(data,(0x08)) = (std::uint32_t)ipp;
 	WBUFW(data,(0x0C)) = (uint16)(ipp >> 32);
 }

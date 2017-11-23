@@ -92,7 +92,7 @@ void Initialize()
 					WHERE guildid = %u \
                     LIMIT %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PGuildShop->GetID(), MAX_CONTAINER_SIZE);
+        std::int32_t ret = Sql_Query(SqlHandle, fmtQuery, PGuildShop->GetID(), MAX_CONTAINER_SIZE);
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
@@ -109,7 +109,7 @@ void Initialize()
 				PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
 
 				PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
-				PItem->setBasePrice((uint32)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
+				PItem->setBasePrice((std::uint32_t)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
 
                 PGuildShop->InsertItem(PItem);
 			}
@@ -133,7 +133,7 @@ void UpdateGuildsStock()
         {
             CItemShop* PItem = (CItemShop*)PGuildShop->GetItem(slotid);
 
-            PItem->setBasePrice((uint32)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
+            PItem->setBasePrice((std::uint32_t)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
 
             if (PItem->IsDailyIncrease())
             {

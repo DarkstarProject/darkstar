@@ -87,11 +87,11 @@ public:
     uint16      getSubID();
     uint16      getFlag();
     uint8       getAHCat();
-    uint32      getReserve();
-    uint32      getQuantity();
-    uint32      getStackSize();
-    uint32      getBasePrice();
-    uint32      getCharPrice();
+    std::uint32_t      getReserve();
+    std::uint32_t      getQuantity();
+    std::uint32_t      getStackSize();
+    std::uint32_t      getBasePrice();
+    std::uint32_t      getCharPrice();
     uint8       getLocationID();
     uint8       getSlotID();
 
@@ -104,11 +104,11 @@ public:
     void        setSubType(uint8);
     void        setFlag(uint16);
     void        setAHCat(uint8);
-    void        setReserve(uint32);
-    void        setQuantity(uint32);
-    void        setStackSize(uint32);
-    void        setBasePrice(uint32);
-    void        setCharPrice(uint32);
+    void        setReserve(std::uint32_t);
+    void        setQuantity(std::uint32_t);
+    void        setStackSize(std::uint32_t);
+    void        setBasePrice(std::uint32_t);
+    void        setCharPrice(std::uint32_t);
     void        setLocationID(uint8 LocationID);
     void        setSlotID(uint8 SlotID);
     void        setSent(bool sent);
@@ -137,11 +137,11 @@ private:
     uint16      m_subid;
     uint8       m_type;
     uint8       m_subtype;
-    uint32      m_quantity;     // текущее количество предметов
-    uint32      m_reserve;      // зарезервированное количество предметов
-    uint32      m_stackSize;    // максимальное количество предметов
-    uint32      m_BasePrice;
-    uint32      m_CharPrice;    // стоимость предмета в bazaar
+    std::uint32_t      m_quantity;     // текущее количество предметов
+    std::uint32_t      m_reserve;      // зарезервированное количество предметов
+    std::uint32_t      m_stackSize;    // максимальное количество предметов
+    std::uint32_t      m_BasePrice;
+    std::uint32_t      m_CharPrice;    // стоимость предмета в bazaar
     uint8       m_ahCat;        // категоряи предмета на укционе
     uint16      m_flag;
 

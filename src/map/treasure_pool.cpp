@@ -116,7 +116,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
         }
     //}
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         if (PChar == members.at(i))
         {
@@ -154,7 +154,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
         case 1127:  //kindred seal
         case 2955:  //kindred crest
         case 2956:  //high kindred crest
-            for (uint32 i = 0; i < members.size(); ++i)
+            for (std::uint32_t i = 0; i < members.size(); ++i)
             {
                 members[i]->PRecastContainer->Add(RECAST_LOOT, 1, 300); //300 = 5 min cooldown
             }
@@ -222,7 +222,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
     m_PoolItems[FreeSlotID].ID = ItemID;
     m_PoolItems[FreeSlotID].TimeStamp = server_clock::now() - treasure_checktime;
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         members[i]->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[FreeSlotID], PEntity));
     }
@@ -273,7 +273,7 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
     m_PoolItems[SlotID].Lotters.push_back(li);
 
     //Player lots Item for XXX message
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
     }
@@ -312,7 +312,7 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
 
     uint16 PassedLot = 65535; // passed mask is FF FF
     //Player lots Item for XXX message
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,PassedLot));
     }
@@ -499,7 +499,7 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         members[i]->pushPacket(new CTreasureLotItemPacket(winner, SlotID, 0, ITEMLOT_WIN));
     }
@@ -523,7 +523,7 @@ void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         members[i]->pushPacket(new CTreasureLotItemPacket(winner, SlotID, -1, ITEMLOT_WINERROR));
     }
@@ -545,7 +545,7 @@ void CTreasurePool::TreasureLost(uint8 SlotID)
 
     m_PoolItems[SlotID].TimeStamp = get_server_start_time();
 
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
     {
         members[i]->pushPacket(new CTreasureLotItemPacket(SlotID, ITEMLOT_WINERROR));
     }
@@ -563,7 +563,7 @@ void CTreasurePool::TreasureLost(uint8 SlotID)
 
 bool CTreasurePool::CanAddSeal()
 {
-    for (uint32 i = 0; i < members.size(); ++i)
+    for (std::uint32_t i = 0; i < members.size(); ++i)
         if (members[i]->PRecastContainer->Has(RECAST_LOOT, 1))
             return false;
 

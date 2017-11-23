@@ -780,7 +780,7 @@ CCharEntity* CZoneEntities::GetCharByName(int8* name)
     return nullptr;
 }
 
-CCharEntity* CZoneEntities::GetCharByID(uint32 id)
+CCharEntity* CZoneEntities::GetCharByID(std::uint32_t id)
 {
     for (auto PChar : m_charList)
     {
@@ -830,7 +830,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
                             if (packet->id() == 0x00E &&
                                 (packet->ref<uint8>(0x0A) != 0x20 || packet->ref<uint8>(0x0A) != 0x0F))
                             {
-                                uint32 id = packet->ref<uint32>(0x04);
+                                std::uint32_t id = packet->ref<std::uint32_t>(0x04);
                                 uint16 targid = packet->ref<uint16>(0x08);
 
                                 CBaseEntity* entity = GetEntity(targid);

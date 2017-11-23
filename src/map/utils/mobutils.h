@@ -34,14 +34,14 @@
 
 typedef struct
 {
-  uint32 id;
+  std::uint32_t id;
   std::vector<CModifier*> mods;
   std::vector<CModifier*> mobMods;
 } ModsList_t;
 
 enum class WeaknessType {YELLOW, BLUE, RED, WHITE};
 
-typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
+typedef std::unordered_map<std::uint32_t,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
@@ -67,8 +67,8 @@ namespace mobutils
 
 	// get modifiers for pool / family / spawn
 	ModsList_t* GetMobFamilyMods(uint16 familyId, bool create = false);
-	ModsList_t* GetMobPoolMods(uint32 poolId, bool create = false);
-	ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
+	ModsList_t* GetMobPoolMods(std::uint32_t poolId, bool create = false);
+	ModsList_t* GetMobSpawnMods(std::uint32_t mobId, bool create = false);
 
 	void  AddCustomMods(CMobEntity* PMob);
 
@@ -76,7 +76,7 @@ namespace mobutils
 	void  InitializeMaat(CMobEntity* PMob, JOBTYPE job);
 
 	void  SetSpellList(CMobEntity*, uint16);
-	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);
+	CMobEntity* InstantiateAlly(std::uint32_t groupid, uint16 zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
 };
 
