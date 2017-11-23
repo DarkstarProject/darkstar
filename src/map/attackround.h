@@ -48,14 +48,14 @@ public:
     CAttackRound(CBattleEntity* attacker, CBattleEntity* defender);
     ~CAttackRound();
 
-    void						AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count); // Adds an attack swing.
+    void						AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, std::uint8_t count); // Adds an attack swing.
     void						CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction);	// Creates up to many attacks for a particular hand.
     void						DeleteAttackSwing();		// Deletes the first attack in the list.
     void						CreateKickAttacks();		// Creates kick attacks for the round.
 
-    uint8						GetAttackSwingCount();		// Returns the attack list count.
+    std::uint8_t						GetAttackSwingCount();		// Returns the attack list count.
     bool						IsH2H();					// Flag: Is the attacker using H2H?
-    CAttack& 					GetAttack(uint8);			// Returns an attack object.
+    CAttack& 					GetAttack(std::uint8_t);			// Returns an attack object.
     CAttack& 					GetCurrentAttack();			// Returns the current attack.
     void						SetSATA(bool value);		// Sets the SATA flag.
     bool						GetSATAOccured();			// Returns the SATA flag.

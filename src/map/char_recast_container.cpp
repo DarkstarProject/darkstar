@@ -45,7 +45,7 @@ CCharRecastContainer::CCharRecastContainer(CCharEntity* PChar) : CRecastContaine
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
+void CCharRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, std::uint8_t maxCharges)
 {
     Recast_t* recast = Load(type, id, duration, chargeTime, maxCharges);
 
@@ -89,7 +89,7 @@ void CCharRecastContainer::Del(RECASTTYPE type, std::uint16_t id)
 *                                                                       *
 ************************************************************************/
 
-void CCharRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
+void CCharRecastContainer::DeleteByIndex(RECASTTYPE type, std::uint8_t index)
 {
     RecastList_t* PRecastList = GetRecastList(type);
     if (type == RECAST_ABILITY)
@@ -150,7 +150,7 @@ RecastList_t* CCharRecastContainer::GetRecastList(RECASTTYPE type)
 
 void CCharRecastContainer::Check()
 {
-    for (uint8 type = 0; type < MAX_RECASTTPE_SIZE; ++type)
+    for (std::uint8_t type = 0; type < MAX_RECASTTPE_SIZE; ++type)
     {
         RecastList_t* PRecastList = GetRecastList((RECASTTYPE)type);
 
@@ -162,7 +162,7 @@ void CCharRecastContainer::Check()
             {
                 if (type == RECAST_ITEM)
                 {
-                    auto id = (uint8)recast->ID;
+                    auto id = (std::uint8_t)recast->ID;
                     CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(id);
 
                     m_PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, id));

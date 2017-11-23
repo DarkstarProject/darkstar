@@ -97,7 +97,7 @@ namespace effects
         // Will always remove this effect when landing
         EFFECT   RemoveId;
         // status effect element, used in resistances
-        uint8    Element;
+        std::uint8_t    Element;
 
         // minimum duration. IE: stun cannot last less than 1 second
         std::uint32_t    MinDuration;
@@ -177,9 +177,9 @@ CStatusEffectContainer::~CStatusEffectContainer()
 *                                                                       *
 ************************************************************************/
 
-uint8 CStatusEffectContainer::GetEffectsCount(EFFECT ID)
+std::uint8_t CStatusEffectContainer::GetEffectsCount(EFFECT ID)
 {
-    uint8 count = 0;
+    std::uint8_t count = 0;
 
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -653,9 +653,9 @@ EFFECT CStatusEffectContainer::HealingWaltz()
 Erases all negative status effects
 returns number of erased effects
 */
-uint8 CStatusEffectContainer::EraseAllStatusEffect()
+std::uint8_t CStatusEffectContainer::EraseAllStatusEffect()
 {
-    uint8 count = 0;
+    std::uint8_t count = 0;
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_ERASABLE &&
@@ -700,9 +700,9 @@ EFFECT CStatusEffectContainer::DispelStatusEffect(EFFECTFLAG flag)
 Dispels all positive status effects
 returns number of dispelled effects
 */
-uint8 CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
+std::uint8_t CStatusEffectContainer::DispelAllStatusEffect(EFFECTFLAG flag)
 {
-    uint8 count = 0;
+    std::uint8_t count = 0;
     for (size_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if (m_StatusEffectList.at(i)->GetFlag() & flag &&
@@ -752,7 +752,7 @@ bool CStatusEffectContainer::HasStatusEffectByFlag(std::uint32_t flag)
         Returns true if the effect is applied, false otherwise.
 *************************************************************************/
 
-bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs)
+bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, std::uint8_t maxSongs)
 {
     //if all match tier/id/effect then overwrite
 
@@ -760,7 +760,7 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
     //if targ has <2 of your songs on, then just apply
     //if targ has 2 of your songs, remove oldest one and apply this one.
 
-    uint8 numOfEffects = 0;
+    std::uint8_t numOfEffects = 0;
     CStatusEffect* oldestSong = nullptr;
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -801,7 +801,7 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
     return false;
 }
 
-bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration)
+bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, std::uint8_t maxRolls, std::uint8_t bustDuration)
 {
     //break if not a COR roll.
     DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
@@ -813,7 +813,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
     //if targ has <2 of your rolls on, then just apply
     //if targ has 2 of your rolls, remove oldest one and apply this one.
 
-    uint8 numOfEffects = 0;
+    std::uint8_t numOfEffects = 0;
     CStatusEffect* oldestRoll = nullptr;
     for (auto&& PEffect : m_StatusEffectList)
     {
@@ -931,9 +931,9 @@ void CStatusEffectContainer::Fold(std::uint32_t charid)
     }
 }
 
-uint8 CStatusEffectContainer::GetActiveManeuvers()
+std::uint8_t CStatusEffectContainer::GetActiveManeuvers()
 {
-    uint8 count = 0;
+    std::uint8_t count = 0;
     for (auto PStatusEffect : m_StatusEffectList)
     {
         if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
@@ -1094,7 +1094,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     m_Flags = 0;
     memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
 
-    uint8 count = 0;
+    std::uint8_t count = 0;
 
     for (std::uint16_t i = 0; i < m_StatusEffectList.size(); ++i)
     {
@@ -1112,7 +1112,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
             }
             //Note: it may be possible that having both bits set is for effects over 768, but there aren't
             // that many effects as of this writing
-            m_StatusIcons[count] = (uint8)icon;
+            m_StatusIcons[count] = (std::uint8_t)icon;
 
             if (++count == 32) break;
         }

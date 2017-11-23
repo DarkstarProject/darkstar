@@ -33,14 +33,12 @@
 // Integers with guaranteed _exact_ size.
 //////////////////////////////////////////////////////////////////////////
 typedef char				int8;
-//typedef short				std::int16_t;
 
 typedef signed char			sint8;
 typedef signed short		sint16;
 typedef signed int			sint32;
 
-typedef unsigned char		uint8;
-//typedef unsigned short		std::uint16_t;
+//typedef unsigned char		std::uint8_t;
 
 //////////////////////////////////////////////////////////////////////////
 // Assert

@@ -31,12 +31,12 @@
 
 namespace grade
 {
-	uint8 GetJobGrade(JOBTYPE job, uint8 stat);
-	uint8 GetRaceGrades(uint8 race, uint8 stat);
+	std::uint8_t GetJobGrade(JOBTYPE job, std::uint8_t stat);
+	std::uint8_t GetRaceGrades(std::uint8_t race, std::uint8_t stat);
 
-	float GetHPScale(uint8 rank, uint8 scale);
-	float GetMPScale(uint8 rank, uint8 scale);
-	float GetStatScale(uint8 rank, uint8 scale);
+	float GetHPScale(std::uint8_t rank, std::uint8_t scale);
+	float GetMPScale(std::uint8_t rank, std::uint8_t scale);
+	float GetStatScale(std::uint8_t rank, std::uint8_t scale);
 };
 
 #endif

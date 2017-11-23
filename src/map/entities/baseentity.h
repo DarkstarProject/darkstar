@@ -186,11 +186,11 @@ public:
     float			GetXPos();			// позиция по координате X
     float			GetYPos();			// позиция по координате Y
     float			GetZPos();			// позиция по координате Z
-    uint8			GetRotPos();
+    std::uint8_t			GetRotPos();
     void			HideName(bool hide); // hide / show name
     bool			IsNameHidden();		// checks if name is hidden
 
-    CBaseEntity*	GetEntity(std::uint16_t targid, uint8 filter = -1);
+    CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1);
 
     void            ResetLocalVars();
     std::uint32_t          GetLocalVar(const char* var);
@@ -215,13 +215,13 @@ public:
     look_t			look;				// внешний вид всех сущностей
     look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
     location_t		loc;				// местоположение сущности
-    uint8			animation;			// анимация
-    uint8			animationsub;		// дополнительный параметры анимации
-    uint8			speed;				// скорость передвижения
-    uint8			speedsub;			// подолнительный параметр скорости передвижения
-    uint8			namevis;
-    uint8			allegiance;			// what types of targets the entity can fight
-    uint8           updatemask;         // what to update next server tick to players nearby
+    std::uint8_t			animation;			// анимация
+    std::uint8_t			animationsub;		// дополнительный параметры анимации
+    std::uint8_t			speed;				// скорость передвижения
+    std::uint8_t			speedsub;			// подолнительный параметр скорости передвижения
+    std::uint8_t			namevis;
+    std::uint8_t			allegiance;			// what types of targets the entity can fight
+    std::uint8_t           updatemask;         // what to update next server tick to players nearby
 
     std::unique_ptr<CAIContainer> PAI;       // AI container
     CBattlefield*	PBCNM;              // pointer to bcnm (if in one)

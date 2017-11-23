@@ -52,9 +52,9 @@ enum DROP_TYPE
 struct DropItem_t
 {
     std::uint16_t ItemID;
-    uint8  DropType;
+    std::uint8_t  DropType;
     std::uint16_t DropRate;
-    uint8  GroupId;
+    std::uint8_t  GroupId;
     std::uint16_t GroupRate;
 };
 
@@ -62,7 +62,7 @@ struct LootItem_t
 {
     std::uint16_t ItemID;
     std::uint16_t Rolls;
-    uint8  LootGroupId;
+    std::uint8_t  LootGroupId;
 };
 
 

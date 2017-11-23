@@ -37,7 +37,7 @@
 
 // массив больше на одно значение, заполняемое нулем
 
-static uint8 upgrade[10][16] =
+static std::uint8_t upgrade[10][16] =
 {
     {1,2,3,4,5,5,5,5,5,7,7,7,9,9,9},             // HP-MP
     {3,6,9,9,9,12,12,12,12,15,15,15,15,19,18},   // Attributes
@@ -60,7 +60,7 @@ static uint8 upgrade[10][16] =
 *                                                                       *
 ************************************************************************/
 
-static uint8 cap[100] =
+static std::uint8_t cap[100] =
 {
     0,0,0,0,0,0,0,0,0,0,    // 0-9   0
     1,1,1,1,1,1,1,1,1,1,    // 10-19 1
@@ -86,8 +86,8 @@ static uint8 cap[100] =
 struct MeritCategoryInfo_t
 {
     int8 MeritsInCat;  // количество элементов в группе
-    uint8 MaxPoints;    // максимальное количество points, которые можно вложить в группу
-    uint8 UpgradeID;    // индекс группы в массиве upgrade
+    std::uint8_t MaxPoints;    // максимальное количество points, которые можно вложить в группу
+    std::uint8_t UpgradeID;    // индекс группы в массиве upgrade
 };
 
 static const MeritCategoryInfo_t meritCatInfo[] =
@@ -165,11 +165,11 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 
     memcpy(merits, merits::GMeritsTemplate, sizeof(merits));
 
-    for (uint8 m = 0, i = 0; i < sizeof(Categories)/sizeof(Merit_t*); ++i)
+    for (std::uint8_t m = 0, i = 0; i < sizeof(Categories)/sizeof(Merit_t*); ++i)
     {
         Categories[i] = &merits[m];
 
-        for (uint8 t = 0; t < count[i].MaxMerits; ++t)
+        for (std::uint8_t t = 0; t < count[i].MaxMerits; ++t)
         {
             merits[m].next = upgrade[count[i].UpgradeID][0];
             merits[m++].id = ((i + 1) << 6) + (t << 1);
@@ -197,7 +197,7 @@ CMeritPoints::CMeritPoints(CCharEntity* PChar)
 
 void CMeritPoints::LoadMeritPoints(std::uint32_t charid)
 {
-    uint8 catNumber = 0;
+    std::uint8_t catNumber = 0;
 
     for (std::uint16_t i = 0; i < MERITS_COUNT; ++i)
     {
@@ -269,7 +269,7 @@ std::uint16_t CMeritPoints::GetLimitPoints()
 *                                                                       *
 ************************************************************************/
 
-uint8 CMeritPoints::GetMeritPoints()
+std::uint8_t CMeritPoints::GetMeritPoints()
 {
     return m_MeritPoints;
 }
@@ -296,7 +296,7 @@ bool CMeritPoints::AddLimitPoints(std::uint16_t points)
 			return false;
 		}
 
-        uint8 MeritPoints = std::min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
+        std::uint8_t MeritPoints = std::min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 
         m_LimitPoints = m_LimitPoints % MAX_LIMIT_POINTS;
 
@@ -328,7 +328,7 @@ void CMeritPoints::SetLimitPoints(std::uint16_t points)
 
 void CMeritPoints::SetMeritPoints(std::uint16_t points)
 {
-    m_MeritPoints = std::min<uint8>((uint8)points, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
+    m_MeritPoints = std::min<std::uint8_t>((std::uint8_t)points, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 }
 
 /************************************************************************
@@ -458,7 +458,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 std::int32_t CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
-	uint8 meritValue = 0;
+	std::uint8_t meritValue = 0;
 
     if (PMerit)
     {
@@ -505,7 +505,7 @@ namespace meritNameSpace
 			// issue with unknown catagories causing massive confusion
 
             std::uint16_t index = 0;			// global merit template count (to 255)
-			uint8 catIndex = 0;			// global merit catagory count (to 51)
+			std::uint8_t catIndex = 0;			// global merit catagory count (to 51)
 			int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
 			int8 catMeritIndex = 0;		// counts number of merits in a catagory
 

@@ -28,38 +28,38 @@
 #include "../trade_container.h"
 
 
-CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID, uint8 quantity)
+CSynthMessagePacket::CSynthMessagePacket(CCharEntity * PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID, std::uint8_t quantity)
 {
     id(0x6F);
     length(0x38);
 
-    ref<uint8>(0x04) = messageID;
+    ref<std::uint8_t>(0x04) = messageID;
 
     if (itemID != 0)
     {
-        ref<uint8>(0x06) = quantity;
+        ref<std::uint8_t>(0x06) = quantity;
         ref<std::uint16_t>(0x08) = itemID;
     } 
 
-    for (uint8 i = 0; i < 4; i++)
+    for (std::uint8_t i = 0; i < 4; i++)
     {
-        uint8 skillValue = 0;
-        for (uint8 skillID = 49; skillID < 57; skillID++)
+        std::uint8_t skillValue = 0;
+        for (std::uint8_t skillID = 49; skillID < 57; skillID++)
         {
-            if (skillID == ref<uint8>(0x1A) || skillID == ref<uint8>(0x1B) ||
-                skillID == ref<uint8>(0x1C) || skillID == ref<uint8>(0x1D))
+            if (skillID == ref<std::uint8_t>(0x1A) || skillID == ref<std::uint8_t>(0x1B) ||
+                skillID == ref<std::uint8_t>(0x1C) || skillID == ref<std::uint8_t>(0x1D))
                 continue;
             if (PChar->CraftContainer->getQuantity(skillID - 40) > skillValue)
             {
                 skillValue = PChar->CraftContainer->getQuantity(skillID - 40);
-                ref<uint8>(0x1A + i) = skillID;
+                ref<std::uint8_t>(0x1A + i) = skillID;
             }
         }
     }
 
     ref<std::uint16_t>(0x22) = PChar->CraftContainer->getItemID(0); //crystal
 
-    for(uint8 slotID = 1; slotID <= 8; ++slotID) //recipe materials
+    for(std::uint8_t slotID = 1; slotID <= 8; ++slotID) //recipe materials
     {
         std::uint16_t itemID = PChar->CraftContainer->getItemID(slotID);
         ref<std::uint16_t>(0x24 + ((slotID - 1) * 2)) = itemID;

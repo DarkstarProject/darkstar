@@ -61,7 +61,7 @@ public:
     bool Ability(std::uint16_t targid, std::uint16_t abilityid);
     bool RangedAttack(std::uint16_t targid);
     bool Trigger(std::uint16_t targid);
-    bool UseItem(std::uint16_t targid, uint8 loc, uint8 slotid);
+    bool UseItem(std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid);
     bool Inactive(duration _duration, bool canChangeState);
 
     /* Internal Controller functions */
@@ -75,7 +75,7 @@ public:
     bool Internal_RangedAttack(std::uint16_t targetid);
     bool Internal_Die(duration);
     bool Internal_Raise();
-    bool Internal_UseItem(std::uint16_t targetid, uint8 loc, uint8 slotid);
+    bool Internal_UseItem(std::uint16_t targetid, std::uint8_t loc, std::uint8_t slotid);
     bool Internal_Despawn();
     bool Internal_Respawn(duration _duration);
 

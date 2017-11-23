@@ -30,17 +30,17 @@ class CBlueTrait : public CTrait
 {
 public:
 
-    CBlueTrait(uint8 category, uint8 id);
+    CBlueTrait(std::uint8_t category, std::uint8_t id);
 
-    void setPoints(uint8 points);
+    void setPoints(std::uint8_t points);
 
-    uint8 getCategory();
-    uint8 getPoints();
+    std::uint8_t getCategory();
+    std::uint8_t getPoints();
 
 private:
 
-    uint8 m_points;
-    uint8 m_category;
+    std::uint8_t m_points;
+    std::uint8_t m_category;
 };
 
 #endif

@@ -635,8 +635,8 @@ struct Charge_t
 {
     std::uint16_t     ID;          //recastId
     JOBTYPE    job;         //job
-    uint8      level;       //level
-    uint8      maxCharges;  //maximum number of stored charges
+    std::uint8_t      level;       //level
+    std::uint8_t      maxCharges;  //maximum number of stored charges
     std::uint32_t     chargeTime;  //time required to restore one charge
     std::uint16_t     merit;
 };
@@ -660,12 +660,12 @@ public:
     std::uint16_t      getID();
     std::uint16_t      getMobSkillID();
     JOBTYPE     getJob();
-    uint8       getLevel();
+    std::uint8_t       getLevel();
     std::uint16_t      getAnimationID();
     duration    getAnimationTime();
     duration    getCastTime();
     float       getRange();
-    uint8       getAOE();
+    std::uint8_t       getAOE();
     std::uint16_t      getValidTarget();
     std::uint16_t      getAddType();
     std::uint16_t      getMessage();
@@ -680,12 +680,12 @@ public:
     void        setID(std::uint16_t id);
     void        setMobSkillID(std::uint16_t id);
     void        setJob(JOBTYPE Job);
-    void        setLevel(uint8 level);
+    void        setLevel(std::uint8_t level);
     void        setAnimationID(std::uint16_t animationID);
     void        setAnimationTime(duration time);
     void        setCastTime(duration time);
     void        setRange(float range);
-    void        setAOE(uint8 aoe);
+    void        setAOE(std::uint8_t aoe);
     void        setValidTarget(std::uint16_t validTarget);
     void        setAddType(std::uint16_t addtype);
     void        setMessage(std::uint16_t message);
@@ -703,12 +703,12 @@ private:
 
     std::uint16_t      m_ID;
     JOBTYPE     m_Job;
-    uint8       m_level;
+    std::uint8_t       m_level;
     std::uint16_t      m_animationID;
     duration    m_animationTime;
     duration    m_castTime;
     float       m_range;
-    uint8       m_aoe;
+    std::uint8_t       m_aoe;
     std::uint16_t      m_validTarget;
     std::uint16_t      m_addType;
     std::uint16_t      m_message;

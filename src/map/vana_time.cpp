@@ -159,7 +159,7 @@ std::uint32_t CVanaTime::getMoonPhase()
     return phase;
 }
 
-uint8 CVanaTime::getMoonDirection()
+std::uint8_t CVanaTime::getMoonDirection()
 {
     double daysmod = (std::int32_t)(((m_vanaDate / VTIME_DAY) + 26) % 84);
 
@@ -177,14 +177,14 @@ uint8 CVanaTime::getMoonDirection()
     }
 }
 
-uint8 CVanaTime::getRSERace()
+std::uint8_t CVanaTime::getRSERace()
 {
-    return (uint8)(((m_vanaDate / VTIME_WEEK) - 22) % 8) + 1;
+    return (std::uint8_t)(((m_vanaDate / VTIME_WEEK) - 22) % 8) + 1;
 }
 
-uint8 CVanaTime::getRSELocation()
+std::uint8_t CVanaTime::getRSELocation()
 {
-    return (uint8)(((m_vanaDate / VTIME_WEEK) - 21) % 3);
+    return (std::uint8_t)(((m_vanaDate / VTIME_WEEK) - 21) % 3);
 }
 
 TIMETYPE CVanaTime::SyncTime()

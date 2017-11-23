@@ -48,7 +48,7 @@ public:
 	void setMainParty(CParty * aLeader);
     void addParty(CParty * party);
 	void addParty(std::uint32_t partyid);
-    void pushParty(CParty* PParty, uint8 number);
+    void pushParty(CParty* PParty, std::uint8_t number);
 	void removeParty(CParty * party);
     void delParty(CParty* party);
     void dissolveAlliance(bool playerInitiated = true);

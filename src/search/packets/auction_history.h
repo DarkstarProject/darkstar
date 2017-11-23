@@ -34,13 +34,13 @@ public:
 
     void AddItem(ahHistory* item);
 
-    uint8* GetData();
+    std::uint8_t* GetData();
     std::uint16_t GetSize();
 
 private:
 
-    uint8 m_count;
-    uint8 m_PData[475];
+    std::uint8_t m_count;
+    std::uint8_t m_PData[475];
 };
 
 #endif

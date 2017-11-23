@@ -34,7 +34,7 @@ public:
 
     CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
     CCharEntity*	GetCharByID(std::uint32_t id);
-    CBaseEntity*	GetEntity(std::uint16_t targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
+    CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1); 					// получаем указатель на любую сущность в зоне
 
     void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
     void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне

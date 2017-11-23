@@ -99,7 +99,7 @@ namespace message
             {
                 std::unique_ptr<CBasicPacket> newPacket = std::make_unique<CBasicPacket>();
                 memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
-                auto gm_sent = newPacket->ref<uint8>(0x05);
+                auto gm_sent = newPacket->ref<std::uint8_t>(0x05);
                 if (PChar->nameflags.flags & FLAG_AWAY && !gm_sent)
                 {
                     send(MSG_DIRECT, extra->data(), sizeof(std::uint32_t), new CMessageStandardPacket(PChar, 0, 0, 181));
@@ -124,7 +124,7 @@ namespace message
                 {
                     if (PChar->PParty->m_PAlliance != nullptr)
                     {
-                        for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+                        for (std::uint8_t i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
                         {
                             CBasicPacket* newPacket = new CBasicPacket();
                             memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
@@ -191,7 +191,7 @@ namespace message
         {
             std::uint32_t id = RBUFL(extra->data(), 0);
             // std::uint16_t targid = RBUFW(extra->data(), 4);
-            uint8 inviteType = RBUFB(packet->data(), 0x0B);
+            std::uint8_t inviteType = RBUFB(packet->data(), 0x0B);
             CCharEntity* PInvitee = zoneutils::GetChar(id);
 
             if (PInvitee)
@@ -237,7 +237,7 @@ namespace message
             // std::uint16_t inviterTargid = RBUFW(extra->data(), 4);
             std::uint32_t inviteeId = RBUFL(extra->data(), 6);
             // std::uint16_t inviteeTargid = RBUFW(extra->data(), 10);
-            uint8 inviteAnswer = RBUFB(extra->data(), 12);
+            std::uint8_t inviteAnswer = RBUFB(extra->data(), 12);
             CCharEntity* PInviter = zoneutils::GetChar(inviterId);
 
             if (PInviter)
@@ -265,7 +265,7 @@ namespace message
                             }
                             else
                             {
-                                send(MSG_DIRECT, (uint8*)extra->data() + 6, sizeof(std::uint32_t), new CMessageStandardPacket(PInviter, 0, 0, 14));
+                                send(MSG_DIRECT, (std::uint8_t*)extra->data() + 6, sizeof(std::uint32_t), new CMessageStandardPacket(PInviter, 0, 0, 14));
                             }
                         }
                         else
@@ -367,7 +367,7 @@ namespace message
 
             if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == RBUFL(extra->data(), 24))
             {
-                uint8 kickerRank = RBUFB(extra->data(), 28);
+                std::uint8_t kickerRank = RBUFB(extra->data(), 28);
                 CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
                 if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                 {
@@ -376,7 +376,7 @@ namespace message
             }
             else if (PChar && PChar->PLinkshell2 && PChar->PLinkshell2->getID() == RBUFL(extra->data(), 24))
             {
-                uint8 kickerRank = RBUFB(extra->data(), 28);
+                std::uint8_t kickerRank = RBUFB(extra->data(), 28);
                 CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
                 if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                 {
@@ -414,7 +414,7 @@ namespace message
                 float x = RBUFF(extra->data(), 10);
                 float y = RBUFF(extra->data(), 14);
                 float z = RBUFF(extra->data(), 18);
-                uint8 rot = RBUFB(extra->data(), 22);
+                std::uint8_t rot = RBUFB(extra->data(), 22);
                 std::uint32_t moghouseID = RBUFL(extra->data(), 23);
 
                 PChar->updatemask = 0;
@@ -569,7 +569,7 @@ namespace message
 
         if (packet)
         {
-            msg.packet = new zmq::message_t(*packet, packet->length(), [](void *data, void *hint) {delete[](uint8*) data; });
+            msg.packet = new zmq::message_t(*packet, packet->length(), [](void *data, void *hint) {delete[](std::uint8_t*) data; });
         }
         else
         {

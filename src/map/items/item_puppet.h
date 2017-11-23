@@ -42,13 +42,13 @@ public:
 	CItemPuppet(std::uint16_t);
 	virtual ~CItemPuppet();
 
-    uint8  getEquipSlot();
+    std::uint8_t  getEquipSlot();
     void   setEquipSlot(std::uint32_t slot);
     std::uint32_t getElementSlots();
     void   setElementSlots(std::uint32_t slots);
 	
 private:
-    uint8  m_equipSlot;
+    std::uint8_t  m_equipSlot;
     std::uint32_t m_elementSlots;
 };
 

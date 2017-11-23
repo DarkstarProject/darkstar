@@ -50,32 +50,32 @@ class CBasicPacket
 {
 protected:
 
-    uint8* data;
-    uint8& type;
-    uint8& size;
+    std::uint8_t* data;
+    std::uint8_t& type;
+    std::uint8_t& size;
     std::uint16_t& code;
     bool owner;
 
 public:
 
     CBasicPacket()
-        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(true)
+        : data(new std::uint8_t[PACKET_SIZE]), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(true)
     {
         std::fill(data, data + PACKET_SIZE, 0);
     }
 
-    CBasicPacket(uint8* _data)
-        : data(_data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(false)
+    CBasicPacket(std::uint8_t* _data)
+        : data(_data), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(false)
     {}
 
     CBasicPacket(const CBasicPacket& other)
-        : data(new uint8[PACKET_SIZE]), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(true)
+        : data(new std::uint8_t[PACKET_SIZE]), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(true)
     {
         memcpy(data, other.data, PACKET_SIZE);
     }
 
     CBasicPacket(CBasicPacket&& other)
-        : data(other.data), type(ref<uint8>(0)), size(ref<uint8>(1)), code(ref<std::uint16_t>(2)), owner(other.owner)
+        : data(other.data), type(ref<std::uint8_t>(0)), size(ref<std::uint8_t>(1)), code(ref<std::uint16_t>(2)), owner(other.owner)
     {
         other.data = nullptr;
     }
@@ -99,7 +99,7 @@ public:
     }
     std::size_t length()
     {
-        return 2 * (ref<uint8>(1) & ~1);
+        return 2 * (ref<std::uint8_t>(1) & ~1);
     }
     unsigned short sequence()
     {
@@ -119,8 +119,8 @@ public:
     // Need to preserve the lowest bit for the ID.
     void length(std::size_t new_size)
     {
-        ref<uint8>(1) &= 1;
-        ref<uint8>(1) |= ((new_size + 3) & ~3) / 2;
+        ref<std::uint8_t>(1) &= 1;
+        ref<std::uint8_t>(1) |= ((new_size + 3) & ~3) / 2;
     }
 
     void sequence(unsigned short new_sequence)
@@ -136,7 +136,7 @@ public:
         return *reinterpret_cast<T*>(data + index);
     }
 
-    operator uint8*()
+    operator std::uint8_t*()
     {
         return data;
     }

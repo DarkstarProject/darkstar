@@ -48,7 +48,7 @@ CTreasurePool::CTreasurePool(TREASUREPOOLTYPE PoolType)
     m_count = 0;
     m_TreasurePoolType = PoolType;
 
-    for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i)
+    for (std::uint8_t i = 0; i < TREASUREPOOL_SIZE; ++i)
     {
         m_PoolItems[i].ID = 0;
         m_PoolItems[i].SlotID = i;
@@ -142,10 +142,10 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-uint8 CTreasurePool::AddItem(std::uint16_t ItemID, CBaseEntity* PEntity)
+std::uint8_t CTreasurePool::AddItem(std::uint16_t ItemID, CBaseEntity* PEntity)
 {
-    uint8  SlotID;
-    uint8  FreeSlotID = -1;
+    std::uint8_t  SlotID;
+    std::uint8_t  FreeSlotID = -1;
     time_point oldest = time_point::max();
 
     switch (ItemID)
@@ -246,7 +246,7 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 
     if (PChar->status != STATUS_DISAPPEAR)
     {
-        for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i)
+        for (std::uint8_t i = 0; i < TREASUREPOOL_SIZE; ++i)
         {
             PChar->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[i], nullptr));
         }
@@ -259,7 +259,7 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, std::uint16_t Lot)
+void CTreasurePool::LotItem(CCharEntity* PChar, std::uint8_t SlotID, std::uint16_t Lot)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
     DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
@@ -285,7 +285,7 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, std::uint16_t Lot)
 
 }
 
-void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
+void CTreasurePool::PassItem(CCharEntity* PChar, std::uint8_t SlotID)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
     DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != this);
@@ -324,7 +324,7 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
 
 }
 
-bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
+bool CTreasurePool::HasLottedItem(CCharEntity* PChar, std::uint8_t SlotID)
 {
     std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
 
@@ -337,7 +337,7 @@ bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
     return false;
 }
 
-bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
+bool CTreasurePool::HasPassedItem(CCharEntity* PChar, std::uint8_t SlotID)
 {
     std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
 
@@ -362,7 +362,7 @@ void CTreasurePool::CheckItems(time_point tick)
     {
         if ((tick - m_Tick > treasure_checktime))
         {
-            for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i)
+            for (std::uint8_t i = 0; i < TREASUREPOOL_SIZE; ++i)
             {
                 CheckTreasureItem(tick, i);
             }
@@ -377,7 +377,7 @@ void CTreasurePool::CheckItems(time_point tick)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
+void CTreasurePool::CheckTreasureItem(time_point tick, std::uint8_t SlotID)
 {
     if (m_PoolItems[SlotID].ID == 0) return;
 
@@ -392,7 +392,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
             highestInfo.lot = 0;
             highestInfo.member = nullptr;
 
-            for(uint8 i = 0; i < m_PoolItems[SlotID].Lotters.size(); i++){
+            for(std::uint8_t i = 0; i < m_PoolItems[SlotID].Lotters.size(); i++){
                 LotInfo curInfo = m_PoolItems[SlotID].Lotters[i];
                 if(curInfo.lot > highestInfo.lot){
                     highestInfo = curInfo;
@@ -419,10 +419,10 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
                 //
                 std::vector<LotInfo> tempLots;
 
-                for (uint8 i = 0; i < members.size(); ++i)
+                for (std::uint8_t i = 0; i < members.size(); ++i)
                 {
                     bool hasPassed = false;
-                    for(uint8 j = 0; j < m_PoolItems[SlotID].Lotters.size(); j++){
+                    for(std::uint8_t j = 0; j < m_PoolItems[SlotID].Lotters.size(); j++){
                         if(m_PoolItems[SlotID].Lotters[j].member->id == members[i]->id){
                             hasPassed = true;
                             break;
@@ -460,7 +460,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
         }
         else
         {
-            for (uint8 i = 0; i < members.size(); ++i)
+            for (std::uint8_t i = 0; i < members.size(); ++i)
             {
                 if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
                 {
@@ -491,7 +491,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
+void CTreasurePool::TreasureWon(CCharEntity* winner, std::uint8_t SlotID)
 {
     DSP_DEBUG_BREAK_IF(winner == nullptr);
     DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
@@ -515,7 +515,7 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
+void CTreasurePool::TreasureError(CCharEntity* winner, std::uint8_t SlotID)
 {
     DSP_DEBUG_BREAK_IF(winner == nullptr);
     DSP_DEBUG_BREAK_IF(winner->PTreasurePool != this);
@@ -539,7 +539,7 @@ void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-void CTreasurePool::TreasureLost(uint8 SlotID)
+void CTreasurePool::TreasureLost(std::uint8_t SlotID)
 {
     DSP_DEBUG_BREAK_IF(m_PoolItems[SlotID].ID == 0);
 

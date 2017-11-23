@@ -96,7 +96,7 @@ void Initialize()
 
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
-            PGuildShop->SetSize((uint8)Sql_NumRows(SqlHandle));
+            PGuildShop->SetSize((std::uint8_t)Sql_NumRows(SqlHandle));
 
 			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
@@ -129,7 +129,7 @@ void UpdateGuildsStock()
 {
     for (auto PGuildShop : g_PGuildShopList)
     {
-        for (uint8 slotid = 1; slotid <= PGuildShop->GetSize(); ++slotid)
+        for (std::uint8_t slotid = 1; slotid <= PGuildShop->GetSize(); ++slotid)
         {
             CItemShop* PItem = (CItemShop*)PGuildShop->GetItem(slotid);
 
@@ -146,7 +146,7 @@ void UpdateGuildsStock()
 
 void UpdateGuildPointsPattern()
 {
-    uint8 pattern = dsprand::GetRandomNumber(8);
+    std::uint8_t pattern = dsprand::GetRandomNumber(8);
 
     const char* query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern_update';";
 
@@ -206,7 +206,7 @@ CItemContainer* GetGuildShop(std::uint16_t GuildShopID)
     return nullptr;
 }
 
-CGuild* GetGuild(uint8 GuildID)
+CGuild* GetGuild(std::uint8_t GuildID)
 {
     try
     {

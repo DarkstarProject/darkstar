@@ -90,7 +90,7 @@ void CAHItemsListPacket::SetItemCount(std::uint16_t count)
 *																		*
 ************************************************************************/
 
-uint8* CAHItemsListPacket::GetData()
+std::uint8_t* CAHItemsListPacket::GetData()
 {
     return m_PData;
 }

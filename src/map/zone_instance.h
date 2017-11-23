@@ -35,7 +35,7 @@ public:
 
     virtual CCharEntity*    GetCharByName(int8* name) override;                             // finds the player if exists in zone
     virtual CCharEntity*	GetCharByID(std::uint32_t id) override;
-    virtual CBaseEntity*	GetEntity(std::uint16_t targid, uint8 filter = -1) override; 			// получаем указатель на любую сущность в зоне
+    virtual CBaseEntity*	GetEntity(std::uint16_t targid, std::uint8_t filter = -1) override; 			// получаем указатель на любую сущность в зоне
 
     virtual void	SpawnPCs(CCharEntity* PChar) override; 									// отображаем персонажей в зоне
     virtual void	SpawnMOBs(CCharEntity* PChar) override;									// отображаем MOBs в зоне
@@ -66,7 +66,7 @@ public:
     virtual void	ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func) override;
     virtual void	ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> func) override;
 
-    CInstance* CreateInstance(uint8 instanceid);
+    CInstance* CreateInstance(std::uint8_t instanceid);
 
     CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID);
     ~CZoneInstance();

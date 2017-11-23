@@ -36,10 +36,10 @@ namespace attackutils
     *  Multihit calculator.											        *
     *                                                                       *
     ************************************************************************/
-    uint8 getHitCount(uint8 hits)
+    std::uint8_t getHitCount(std::uint8_t hits)
     {
-        uint8 distribution = dsprand::GetRandomNumber(100);
-        uint8 num = 1;
+        std::uint8_t distribution = dsprand::GetRandomNumber(100);
+        std::uint8_t num = 1;
 
         switch (hits)
         {
@@ -95,7 +95,7 @@ namespace attackutils
                 else { num += 7; break; }
                 break;
         }
-        return std::min<uint8>(num, 8); // не более восьми ударов за одну атаку
+        return std::min<std::uint8_t>(num, 8); // не более восьми ударов за одну атаку
     }
 
     /************************************************************************

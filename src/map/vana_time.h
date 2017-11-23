@@ -74,9 +74,9 @@ public:
 	std::uint32_t	 getMinute();
 	std::uint32_t	 getWeekday();
 	std::uint32_t	 getMoonPhase();
-	uint8	 getMoonDirection();
-	uint8	 getRSERace();
-	uint8	 getRSELocation();
+	std::uint8_t	 getMoonDirection();
+	std::uint8_t	 getRSERace();
+	std::uint8_t	 getRSELocation();
 	std::uint32_t	 getSysHour();
 	std::uint32_t	 getSysMinute();
 	std::uint32_t	 getSysSecond();

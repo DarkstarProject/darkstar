@@ -100,7 +100,7 @@ void CLinkshell::setMessage(const int8* message, const int8* poster)
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::AddMember(CCharEntity* PChar, int8 type, uint8 lsNum)
+void CLinkshell::AddMember(CCharEntity* PChar, int8 type, std::uint8_t lsNum)
 {
     members.push_back(PChar);
     if (lsNum == 1)
@@ -151,7 +151,7 @@ bool CLinkshell::DelMember(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
+void CLinkshell::ChangeMemberRank(int8* MemberName, std::uint8_t toSack)
 {
 	//topearl = 3
 	//tosack = 2
@@ -183,7 +183,7 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
                     newShellItem->setQuantity(1);
                     memcpy(newShellItem->m_extra, PItemLinkshell->m_extra, 24);
                     newShellItem->setSubType(ITEM_LOCKED);
-                    uint8 SlotID = PItemLinkshell->getSlotID();
+                    std::uint8_t SlotID = PItemLinkshell->getSlotID();
                     delete PItemLinkshell;
                     PItemLinkshell = newShellItem;
 
@@ -260,7 +260,7 @@ void CLinkshell::RemoveMemberByName(int8* MemberName)
             }
 
 			CItemContainer* Inventory = PMember->getStorage(LOC_INVENTORY);
-            for (uint8 SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
+            for (std::uint8_t SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
             {
                     CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
 
@@ -306,10 +306,10 @@ void CLinkshell::PushPacket(std::uint32_t senderID, CBasicPacket* packet)
             if (members.at(i)->PLinkshell2 == this)
             {
                 if (newPacket->id() == CChatMessagePacket::id) {
-                    newPacket->ref<uint8>(0x04) = MESSAGE_LINKSHELL2;
+                    newPacket->ref<std::uint8_t>(0x04) = MESSAGE_LINKSHELL2;
                 }
                 else if (newPacket->id() == CLinkshellMessagePacket::id) {
-                    newPacket->ref<uint8>(0x05) |= 0x40;
+                    newPacket->ref<std::uint8_t>(0x05) |= 0x40;
                 }
             }
             members.at(i)->pushPacket(newPacket);
@@ -370,7 +370,7 @@ namespace linkshell
     *                                                                       *
     ************************************************************************/
 
-    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum)
+    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, std::uint8_t lsNum)
     {
         DSP_DEBUG_BREAK_IF(PChar == nullptr);
         if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))

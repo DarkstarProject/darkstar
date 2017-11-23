@@ -45,7 +45,7 @@ public:
 	CEventPacket(
 		CCharEntity* PChar,
 		std::uint16_t EventID, 
-		uint8  numOfParams = 0, 
+		std::uint8_t  numOfParams = 0, 
 		std::uint32_t param0 = 0,
 		std::uint32_t param1 = 0,
 		std::uint32_t param2 = 0,

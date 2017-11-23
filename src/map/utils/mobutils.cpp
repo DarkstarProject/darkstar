@@ -56,7 +56,7 @@ namespace mobutils
 std::uint16_t GetWeaponDamage(CMobEntity* PMob)
 {
     std::uint16_t lvl = PMob->GetMLevel();
-    uint8 bonus = 0;
+    std::uint8_t bonus = 0;
 
     if (lvl >= 75)
     {
@@ -85,14 +85,14 @@ std::uint16_t GetWeaponDamage(CMobEntity* PMob)
 
 std::uint16_t GetMagicEvasion(CMobEntity* PMob)
 {
-    uint8 mEvaRank = 3;
+    std::uint8_t mEvaRank = 3;
 
     return GetBase(PMob, mEvaRank);
 }
 
 std::uint16_t GetEvasion(CMobEntity* PMob)
 {
-    uint8 evaRank = PMob->evaRank;
+    std::uint8_t evaRank = PMob->evaRank;
 
     // Mob evasion is based on job
     // but occasionally war mobs
@@ -137,7 +137,7 @@ std::uint16_t GetEvasion(CMobEntity* PMob)
 *																		*
 ************************************************************************/
 
-std::uint16_t GetBaseToRank(uint8 rank, std::uint16_t lvl)
+std::uint16_t GetBaseToRank(std::uint8_t rank, std::uint16_t lvl)
 {
 	switch (rank)
 	{
@@ -159,9 +159,9 @@ std::uint16_t GetBaseToRank(uint8 rank, std::uint16_t lvl)
 *																		*
 ************************************************************************/
 
-std::uint16_t GetBase(CMobEntity * PMob, uint8 rank)
+std::uint16_t GetBase(CMobEntity * PMob, std::uint8_t rank)
  {
- 	uint8 lvl = PMob->GetMLevel();
+ 	std::uint8_t lvl = PMob->GetMLevel();
  	if(lvl > 50){
  		switch(rank){
  			case 1: // A
@@ -218,7 +218,7 @@ void CalculateStats(CMobEntity * PMob)
     bool isNM = PMob->m_Type & MOBTYPE_NOTORIOUS;
     JOBTYPE mJob = PMob->GetMJob();
     JOBTYPE sJob = PMob->GetSJob();
-    uint8 mLvl = PMob->GetMLevel();
+    std::uint8_t mLvl = PMob->GetMLevel();
     ZONETYPE zoneType = PMob->loc.zone->GetType();
 
     if(PMob->HPmodifier == 0)
@@ -899,7 +899,7 @@ void SetupEventMob(CMobEntity* PMob)
 void SetupNMMob(CMobEntity* PMob)
 {
     JOBTYPE mJob = PMob->GetMJob();
-    uint8 mLvl = PMob->GetMLevel();
+    std::uint8_t mLvl = PMob->GetMLevel();
 
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
     // enmity range is larger
@@ -1351,8 +1351,8 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->HPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 5);
 			PMob->MPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 6);
 
-			PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle, 7);
-			PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle, 8);
+			PMob->m_minLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 7);
+			PMob->m_maxLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
 
 			memcpy(&PMob->look, Sql_GetData(SqlHandle, 9), 23);
 
@@ -1366,14 +1366,14 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 14) * 1000) / 60);
 
 			PMob->m_Behaviour = (std::uint16_t)Sql_GetIntData(SqlHandle, 15);
-			PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 16);
-			PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
+			PMob->m_Link = (std::uint8_t)Sql_GetIntData(SqlHandle, 16);
+			PMob->m_Type = (std::uint8_t)Sql_GetIntData(SqlHandle, 17);
 			PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
 			PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 19);
-			PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 10);
+			PMob->m_ModelSize = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
 
-			PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 21);
-			PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 21);
+			PMob->speed = (std::uint8_t)Sql_GetIntData(SqlHandle, 21);
+			PMob->speedsub = (std::uint8_t)Sql_GetIntData(SqlHandle, 21);
 
 			/*if(PMob->speed != 0)
 			{
@@ -1382,17 +1382,17 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->speedsub += map_config.speed_mod;
 			}*/
 
-			PMob->strRank = (uint8)Sql_GetIntData(SqlHandle, 22);
-			PMob->dexRank = (uint8)Sql_GetIntData(SqlHandle, 23);
-			PMob->vitRank = (uint8)Sql_GetIntData(SqlHandle, 24);
-			PMob->agiRank = (uint8)Sql_GetIntData(SqlHandle, 25);
-			PMob->intRank = (uint8)Sql_GetIntData(SqlHandle, 26);
-			PMob->mndRank = (uint8)Sql_GetIntData(SqlHandle, 27);
-			PMob->chrRank = (uint8)Sql_GetIntData(SqlHandle, 28);
-			PMob->evaRank = (uint8)Sql_GetIntData(SqlHandle, 29);
-			PMob->defRank = (uint8)Sql_GetIntData(SqlHandle, 30);
-			PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 52);
-			PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 53);
+			PMob->strRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 22);
+			PMob->dexRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 23);
+			PMob->vitRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 24);
+			PMob->agiRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 25);
+			PMob->intRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 26);
+			PMob->mndRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 27);
+			PMob->chrRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 28);
+			PMob->evaRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 29);
+			PMob->defRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 30);
+			PMob->attRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 52);
+			PMob->accRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 53);
 
 			PMob->setModifier(Mod::SLASHRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 31) * 1000));
 			PMob->setModifier(Mod::PIERCERES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 32) * 1000));
@@ -1408,9 +1408,9 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->setModifier(Mod::LIGHTRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
 			PMob->setModifier(Mod::DARKRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
 
-			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
+			PMob->m_Element = (std::uint8_t)Sql_GetIntData(SqlHandle, 43);
 			PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 44);
-			PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 45);
+			PMob->m_name_prefix = (std::uint8_t)Sql_GetIntData(SqlHandle, 45);
 			PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlHandle, 46);
 
 			//Special sub animation for Mob (yovra, jailer of love, phuabo)
@@ -1423,7 +1423,7 @@ CMobEntity* InstantiateAlly(std::uint32_t groupid, std::uint16_t zoneID, CInstan
 			PMob->MPscale = Sql_GetFloatData(SqlHandle, 49);
 
 			// Check if we should be looking up scripts for this mob
-			PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 50);
+			PMob->m_HasSpellScript = (std::uint8_t)Sql_GetIntData(SqlHandle, 50);
 
 			PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle, 51));
 

@@ -94,7 +94,7 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(std::uint16_t ItemID, bool
 *  The list of items sold in this category                              *
 ************************************************************************/
 
-std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString)
+std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(std::uint8_t AHCategoryID, int8* OrderByString)
 {
     ShowDebug("try find category %u\n", AHCategoryID);
 
@@ -141,7 +141,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
 
 std::uint32_t CDataLoader::GetPlayersCount(search_req sr)
 {
-    uint8 jobid = sr.jobid;
+    std::uint8_t jobid = sr.jobid;
     if (jobid > 0 && jobid < 21){
         if (Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u", jobid)
             != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
@@ -224,13 +224,13 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
             PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PPlayer->prevzone = (std::uint16_t)Sql_GetIntData(SqlHandle, 4);
-            PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 5);
-            PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 11);
-            PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 12);
-            PPlayer->mlvl = (uint8)Sql_GetIntData(SqlHandle, 13);
-            PPlayer->slvl = (uint8)Sql_GetIntData(SqlHandle, 14);
-            PPlayer->race = (uint8)Sql_GetIntData(SqlHandle, 9);
-            PPlayer->rank = (uint8)Sql_GetIntData(SqlHandle, 6 + PPlayer->nation);
+            PPlayer->nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 5);
+            PPlayer->mjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 11);
+            PPlayer->sjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
+            PPlayer->mlvl = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
+            PPlayer->slvl = (std::uint8_t)Sql_GetIntData(SqlHandle, 14);
+            PPlayer->race = (std::uint8_t)Sql_GetIntData(SqlHandle, 9);
+            PPlayer->rank = (std::uint8_t)Sql_GetIntData(SqlHandle, 6 + PPlayer->nation);
 
             PPlayer->zone = (PPlayer->zone == 0 ? PPlayer->prevzone : PPlayer->zone);
 
@@ -368,13 +368,13 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(std::uint16_t PartyID, std::u
 
             PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
-            PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 4);
-            PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 10);
-            PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl = (uint8)Sql_GetIntData(SqlHandle, 12);
-            PPlayer->slvl = (uint8)Sql_GetIntData(SqlHandle, 13);
-            PPlayer->race = (uint8)Sql_GetIntData(SqlHandle, 8);
-            PPlayer->rank = (uint8)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
+            PPlayer->nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 4);
+            PPlayer->mjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
+            PPlayer->sjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 11);
+            PPlayer->mlvl = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
+            PPlayer->slvl = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
+            PPlayer->race = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
+            PPlayer->rank = (std::uint8_t)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
 
             std::uint32_t nameflag = (std::uint32_t)Sql_GetUIntData(SqlHandle, 9);
 
@@ -428,13 +428,13 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(std::uint32_t LinkshellID
 
             PPlayer->id = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
             PPlayer->zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
-            PPlayer->nation = (uint8)Sql_GetIntData(SqlHandle, 4);
-            PPlayer->mjob = (uint8)Sql_GetIntData(SqlHandle, 10);
-            PPlayer->sjob = (uint8)Sql_GetIntData(SqlHandle, 11);
-            PPlayer->mlvl = (uint8)Sql_GetIntData(SqlHandle, 12);
-            PPlayer->slvl = (uint8)Sql_GetIntData(SqlHandle, 13);
-            PPlayer->race = (uint8)Sql_GetIntData(SqlHandle, 8);
-            PPlayer->rank = (uint8)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
+            PPlayer->nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 4);
+            PPlayer->mjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
+            PPlayer->sjob = (std::uint8_t)Sql_GetIntData(SqlHandle, 11);
+            PPlayer->mlvl = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
+            PPlayer->slvl = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
+            PPlayer->race = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
+            PPlayer->rank = (std::uint8_t)Sql_GetIntData(SqlHandle, 5 + PPlayer->nation);
             PPlayer->linkshellid1 = Sql_GetIntData(SqlHandle, 14);
             PPlayer->linkshellid2 = Sql_GetIntData(SqlHandle, 15);
             PPlayer->linkshellrank1 = Sql_GetIntData(SqlHandle, 16);
@@ -479,8 +479,8 @@ void CDataLoader::ExpireAHItems()
 			// iterate through the expired auctions and return them to the seller
 			std::uint32_t saleID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
 			std::uint32_t itemID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 1);
-			uint8  itemStack = (uint8)Sql_GetUIntData(SqlHandle, 2);
-			uint8 ahStack = (uint8)Sql_GetUIntData(SqlHandle, 3);
+			std::uint8_t  itemStack = (std::uint8_t)Sql_GetUIntData(SqlHandle, 2);
+			std::uint8_t ahStack = (std::uint8_t)Sql_GetUIntData(SqlHandle, 3);
 			std::uint32_t seller = (std::uint32_t)Sql_GetUIntData(SqlHandle, 4);
 			ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
 				"(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1 );

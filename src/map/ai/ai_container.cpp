@@ -149,7 +149,7 @@ bool CAIContainer::Trigger(std::uint16_t targID)
     return false;
 }
 
-bool CAIContainer::UseItem(std::uint16_t targid, uint8 loc, uint8 slotid)
+bool CAIContainer::UseItem(std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid)
 {
     auto PlayerController = dynamic_cast<CPlayerController*>(PEntity->PAI->GetController());
     if (PlayerController)
@@ -279,7 +279,7 @@ bool CAIContainer::Internal_Raise()
     return false;
 }
 
-bool CAIContainer::Internal_UseItem(std::uint16_t targetid, uint8 loc, uint8 slotid)
+bool CAIContainer::Internal_UseItem(std::uint16_t targetid, std::uint8_t loc, std::uint8_t slotid)
 {
     auto entity {dynamic_cast<CCharEntity*>(PEntity)};
     if (entity)

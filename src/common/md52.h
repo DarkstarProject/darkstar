@@ -30,13 +30,13 @@ typedef struct
 {
     std::uint32_t total[2];
     std::uint32_t state[4];
-    uint8 buffer[64];
+    std::uint8_t buffer[64];
 } md5_context;
 
 
-void md5(uint8 *text, uint8 *hash, std::int32_t size);
+void md5(std::uint8_t *text, std::uint8_t *hash, std::int32_t size);
 void md5_starts( md5_context *ctx );
-void md5_update( md5_context *ctx, uint8 *input, std::uint32_t length );
-void md5_finish( md5_context *ctx, uint8 digest[16] );
+void md5_update( md5_context *ctx, std::uint8_t *input, std::uint32_t length );
+void md5_finish( md5_context *ctx, std::uint8_t digest[16] );
 
 #endif /* md5.h */

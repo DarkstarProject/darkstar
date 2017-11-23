@@ -53,7 +53,7 @@ public:
 	~CPetEntity();						// деструктор
 	PETTYPE getPetType();
     bool isBstPet();
-	uint8 m_Element;
+	std::uint8_t m_Element;
 	std::uint32_t m_PetID;
     std::string GetScriptName();
 

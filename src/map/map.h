@@ -84,8 +84,8 @@ struct map_config_t
 
     float  exp_rate;                  // множитель получаемого опыта
     float  exp_loss_rate;             // same as exp rate but applies when player dies
-    uint8  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
-    uint8  fov_allow_alliance;        // if 1 allow alliance to farm fov pages
+    std::uint8_t  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
+    std::uint8_t  fov_allow_alliance;        // if 1 allow alliance to farm fov pages
     float  exp_retain;                // percentage of normally lost experience to retain upon death
     int8   exp_loss_level;            // Minimum main job level at which a character may lose experience points.
     bool   level_sync_enable;         // Enable/disable Level Sync
@@ -117,10 +117,10 @@ struct map_config_t
     float  drop_rate_multiplier;      // Multiplier for drops
     std::uint32_t all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     std::uint32_t max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
-    uint8  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
+    std::uint8_t  newstyle_skillups;         // Allows failed parries and blocks to trigger skill up chance.
     int8   Battle_cap_tweak;          // Default is 0. Globally adjust the level of level capped fights.
     int8   CoP_Battle_cap;            // Default is 0. Disable/enable old lv caps on Chains of Promathia mission battles.
-    uint8  max_merit_points;          // global variable, amount of merit points players are allowed
+    std::uint8_t  max_merit_points;          // global variable, amount of merit points players are allowed
     std::uint16_t yell_cooldown;             // Minimum time between uses of yell command (in seconds).
     float  fame_multiplier;           // Fame multiplier
     bool   audit_chat;
@@ -130,7 +130,7 @@ struct map_config_t
     bool   audit_yell;
     bool   audit_linkshell;
     bool   audit_party;
-    uint8  healing_tick_delay;
+    std::uint8_t  healing_tick_delay;
     std::uint16_t msg_server_port;           // central message server port
     std::string msg_server_ip;        // central message server IP
 };
@@ -152,7 +152,7 @@ struct map_session_data_t
     time_t       last_update;               // time of last packet recv
     blowfish_t   blowfish;                  // unique decypher keys
     CCharEntity* PChar;                     // game char
-    uint8        shuttingDown;              // prevents double session closing
+    std::uint8_t        shuttingDown;              // prevents double session closing
 
     map_session_data_t()
     {

@@ -46,7 +46,7 @@ public:
 	void CheckLatentsHP();
 	void CheckLatentsTP();
 	void CheckLatentsMP();
-	void CheckLatentsEquip(uint8 slot);
+	void CheckLatentsEquip(std::uint8_t slot);
 	void CheckLatentsWeaponDraw(bool drawn);
 	void CheckLatentsStatusEffect();
 	void CheckLatentsFoodEffect();
@@ -61,13 +61,13 @@ public:
 	void CheckLatentsJobLevel();
 	void CheckLatentsPetType();
 	void CheckLatentsTime();
-	void CheckLatentsWeaponBreak(uint8 slot);
+	void CheckLatentsWeaponBreak(std::uint8_t slot);
 	void CheckLatentsZone();
     void CheckLatentsWeather();
     void CheckLatentsWeather(std::uint16_t weather);
 
-	void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
-	void DelLatentEffects(uint8 reqLvl, uint8 slot);
+	void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, std::uint8_t reqLvl, std::uint8_t slot);
+	void DelLatentEffects(std::uint8_t reqLvl, std::uint8_t slot);
 
 	 CLatentEffectContainer(CCharEntity* PEntity);
 

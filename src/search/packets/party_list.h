@@ -36,7 +36,7 @@ public:
 
     void AddPlayer(SearchEntity* PPlayer);
 
-    uint8* GetData();
+    std::uint8_t* GetData();
     std::uint16_t GetSize();
 
 private:
@@ -44,7 +44,7 @@ private:
     std::uint32_t m_partyid;
     std::uint32_t m_offset;
 
-    uint8 m_data[1024];
+    std::uint8_t m_data[1024];
 };
 
 #endif

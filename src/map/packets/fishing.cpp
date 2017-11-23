@@ -54,7 +54,7 @@
 
 // New Fishing Packet: Mini-Game Data.
 
-CFishingPacket::CFishingPacket(std::uint16_t stamina, std::uint16_t regen, std::uint16_t response, std::uint16_t hitDmg, std::uint16_t arrowDelay, std::uint16_t missRegen, std::uint16_t gameTime, uint8 sense, std::uint32_t special)
+CFishingPacket::CFishingPacket(std::uint16_t stamina, std::uint16_t regen, std::uint16_t response, std::uint16_t hitDmg, std::uint16_t arrowDelay, std::uint16_t missRegen, std::uint16_t gameTime, std::uint8_t sense, std::uint32_t special)
 {
     this->type = 0x15; //0x115
     this->size = 0x0D;
@@ -66,6 +66,6 @@ CFishingPacket::CFishingPacket(std::uint16_t stamina, std::uint16_t regen, std::
     ref<std::uint16_t>(0x0C) = hitDmg;     // fish attack, how much damage is caused to fishes stamina from successful arrows -  Value only changes with fishing rods (decreasing with improved rods)
     ref<std::uint16_t>(0x0E) = missRegen;  // fish heal, how much stamina fish heals from wrong arrow press - Value changes with fishing rods, but also changes with an "angler's discernment" proc, as well as Heron Ring. On angler's discernment proc, this value is decreased by 30%. If Heron Ring is equipped with fishing support in effect, this value also decreases (investigating on decrease amount, seems like 10% decrease rounded to nearest 10 or 20 if not integer result).
     ref<std::uint16_t>(0x10) = gameTime;   // how long you have to reel the fish in (base 60s)
-    ref<uint8>(0x12)  = sense;      // 0 = small fish/item, 1 = large fish/monster (battle music), 2 = small fish/item (lightbulb), 3 = large fish/monster (lightbulb + fight music)
+    ref<std::uint8_t>(0x12)  = sense;      // 0 = small fish/item, 1 = large fish/monster (battle music), 2 = small fish/item (lightbulb), 3 = large fish/monster (lightbulb + fight music)
     ref<std::uint32_t>(0x14) = special;    // value will be returned in 0x110 on catch (LSB represents % chance of getting gold arrows while fishing) - value increases on use of "Duck ring" or on angler's discernment proc, both of which increase chance of gold arrows
 }

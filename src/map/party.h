@@ -64,7 +64,7 @@ public:
 
     std::uint32_t GetPartyID();                                // узнаем уникальный ID группы
     std::uint16_t GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
-    uint8  MemberCount(std::uint16_t ZoneID);                   // узнаем количество участников группы в указанной зоне
+    std::uint8_t  MemberCount(std::uint16_t ZoneID);                   // узнаем количество участников группы в указанной зоне
 
     CBattleEntity* GetLeader();                         // узнаем лидера группы
     CBattleEntity* GetSyncTarget();                     // узнаем цель синхронизации
@@ -83,11 +83,11 @@ public:
     void PopMember(CBattleEntity* PEntity);             // remove a member from memberlist (zoned to different server)
     void PushMember(CBattleEntity* PEntity);            // add a member without invoking chat/db
     void SetPartyID(std::uint32_t id);                         // set new party ID
-    void AssignPartyRole(int8* MemberName, uint8 role);	// назначаем роли участникам группы
+    void AssignPartyRole(int8* MemberName, std::uint8_t role);	// назначаем роли участникам группы
     void DisableSync();
     void SetSyncTarget(int8* MemberName, std::uint16_t message);         // устанавливаем цель синхронизации уровней3
     void RefreshSync();
-    void SetPartyNumber(uint8 number);
+    void SetPartyNumber(std::uint8_t number);
 
     void PushPacket(std::uint32_t senderID, std::uint16_t ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
     void PushEffectsPacket();
@@ -103,7 +103,7 @@ private:
     struct partyInfo_t;
     std::uint32_t    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
-    uint8     m_PartyNumber;                            // party number in alliance
+    std::uint8_t     m_PartyNumber;                            // party number in alliance
 
 	CBattleEntity* m_PLeader;                           // лидер группы
 	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней

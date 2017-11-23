@@ -87,15 +87,15 @@ void CTransportHandler::InitializeTransport()
             PTransport->Dock.p.x  = Sql_GetFloatData(SqlHandle,3);
             PTransport->Dock.p.y  = Sql_GetFloatData(SqlHandle,4);
             PTransport->Dock.p.z  = Sql_GetFloatData(SqlHandle,5);
-            PTransport->Dock.p.rotation = (uint8) Sql_GetIntData(SqlHandle,6);
+            PTransport->Dock.p.rotation = (std::uint8_t) Sql_GetIntData(SqlHandle,6);
             PTransport->Dock.boundary   = (std::uint16_t)Sql_GetIntData(SqlHandle,7);
-            PTransport->Dock.prevzone   = (uint8) Sql_GetIntData(SqlHandle,8);
+            PTransport->Dock.prevzone   = (std::uint8_t) Sql_GetIntData(SqlHandle,8);
 
             PTransport->PDoorNPC      = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,2), TYPE_NPC);
             PTransport->PTransportNPC = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle,1), TYPE_SHIP);
 
-            PTransport->AnimationArrive = (uint8)Sql_GetIntData(SqlHandle, 9);
-            PTransport->AnimationDepart = (uint8)Sql_GetIntData(SqlHandle,10);
+            PTransport->AnimationArrive = (std::uint8_t)Sql_GetIntData(SqlHandle, 9);
+            PTransport->AnimationDepart = (std::uint8_t)Sql_GetIntData(SqlHandle,10);
 
             PTransport->TimeOffset   = (std::uint16_t)Sql_GetIntData(SqlHandle,11);
             PTransport->TimeInterval = (std::uint16_t)Sql_GetIntData(SqlHandle,12);
@@ -106,19 +106,19 @@ void CTransportHandler::InitializeTransport()
             if (PTransport->PDoorNPC == nullptr ||
                 PTransport->PTransportNPC == nullptr)
             {
-                ShowError("Transport <%u>: transport or door not found\n", (uint8)Sql_GetIntData(SqlHandle,0));
+                ShowError("Transport <%u>: transport or door not found\n", (std::uint8_t)Sql_GetIntData(SqlHandle,0));
                 delete PTransport;
                 continue;
             }
             if (PTransport->TimeAnimationArrive < 10)
             {
-                ShowError("Transport <%u>: time_anim_arrive must be > 10\n", (uint8)Sql_GetIntData(SqlHandle,0));
+                ShowError("Transport <%u>: time_anim_arrive must be > 10\n", (std::uint8_t)Sql_GetIntData(SqlHandle,0));
                 delete PTransport;
                 continue;
             }
             if (PTransport->TimeInterval < PTransport->TimeAnimationArrive + PTransport->TimeWaiting + PTransport->TimeAnimationDepart)
             {
-                ShowError("Transport <%u>: time_interval must be > time_anim_arrive + time_waiting + time_anim_depart\n", (uint8)Sql_GetIntData(SqlHandle,0));
+                ShowError("Transport <%u>: time_interval must be > time_anim_arrive + time_waiting + time_anim_depart\n", (std::uint8_t)Sql_GetIntData(SqlHandle,0));
                 delete PTransport;
                 continue;
             }
@@ -141,7 +141,7 @@ void CTransportHandler::InitializeTransport()
 
             TransportZone_t TransportZone;
 
-            TransportZone.zone = (uint8)Sql_GetIntData(SqlHandle, 0);
+            TransportZone.zone = (std::uint8_t)Sql_GetIntData(SqlHandle, 0);
             TransportZone.TimeOffset = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
             TransportZone.TimeInterval = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
             TransportZone.TimeAnimationArrive = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);

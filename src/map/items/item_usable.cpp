@@ -47,12 +47,12 @@ CItemUsable::~CItemUsable()
 {
 }
 
-void CItemUsable::setUseDelay(uint8 UseDelay)
+void CItemUsable::setUseDelay(std::uint8_t UseDelay)
 {
 	m_UseDelay = UseDelay;
 }
 
-uint8 CItemUsable::getUseDelay()
+std::uint8_t CItemUsable::getUseDelay()
 {
 	return m_UseDelay;
 }
@@ -82,22 +82,22 @@ std::uint32_t CItemUsable::getNextUseTime()
     return getLastUseTime() + m_ReuseDelay;
 }
 
-void CItemUsable::setCurrentCharges(uint8 CurrCharges)
+void CItemUsable::setCurrentCharges(std::uint8_t CurrCharges)
 {
-	WBUFB(m_extra, 0x01) = std::clamp<uint8>(CurrCharges, 0, m_MaxCharges);
+	WBUFB(m_extra, 0x01) = std::clamp<std::uint8_t>(CurrCharges, 0, m_MaxCharges);
 }
 
-uint8 CItemUsable::getCurrentCharges()
+std::uint8_t CItemUsable::getCurrentCharges()
 {
     return RBUFB(m_extra, 0x01);
 }
 
-void CItemUsable::setMaxCharges(uint8 MaxCharges)
+void CItemUsable::setMaxCharges(std::uint8_t MaxCharges)
 {
 	m_MaxCharges = MaxCharges;
 }
 
-uint8 CItemUsable::getMaxCharges()
+std::uint8_t CItemUsable::getMaxCharges()
 {
 	return m_MaxCharges;
 }
@@ -132,12 +132,12 @@ std::uint16_t CItemUsable::getActivationTime()
 	return m_ActivationTime;
 }
 
-void CItemUsable::setValidTarget(uint8 ValidTarget)
+void CItemUsable::setValidTarget(std::uint8_t ValidTarget)
 {
 	m_ValidTarget = ValidTarget;
 }
 	
-uint8 CItemUsable::getValidTarget() 
+std::uint8_t CItemUsable::getValidTarget() 
 {
 	return m_ValidTarget;
 }

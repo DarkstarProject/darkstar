@@ -414,9 +414,9 @@ int CBattlefieldHandler::registerBcnm(std::uint16_t id, CCharEntity* PChar) {
             else {//alliance entering 18 man bcnm
                 if (PChar->PParty->m_PAlliance != nullptr)
                 {
-                    for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+                    for (std::uint8_t a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
                     {
-                        for (uint8 j = 0; j < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++) {
+                        for (std::uint8_t j = 0; j < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); j++) {
                             if (PBattlefield->addPlayerToBcnm((CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j))) {
                                 ShowDebug("BattlefieldHandler ::18 Added %s to the valid players list for BCNM %i Battlefield %i \n",
                                     PChar->PParty->m_PAlliance->partyList.at(a)->members.at(j)->GetName(), id, PBattlefield->getBattlefieldNumber());
@@ -425,7 +425,7 @@ int CBattlefieldHandler::registerBcnm(std::uint16_t id, CCharEntity* PChar) {
                     }
                 }
                 else {//single party entering 18 man bcnm
-                    for (uint8 j = 0; j < PChar->PParty->members.size(); j++) {
+                    for (std::uint8_t j = 0; j < PChar->PParty->members.size(); j++) {
                         if (PBattlefield->addPlayerToBcnm((CCharEntity*)PChar->PParty->members.at(j))) {
                             ShowDebug("BattlefieldHandler ::18 Added %s to the valid players list for BCNM %i Battlefield %i \n",
                                 PChar->PParty->members.at(j)->GetName(), id, PBattlefield->getBattlefieldNumber());
@@ -592,7 +592,7 @@ bool CBattlefieldHandler::hasFreeBattlefield() {
     return false;
 }
 
-uint8 CBattlefieldHandler::findBattlefieldIDFor(CCharEntity* PChar) {
+std::uint8_t CBattlefieldHandler::findBattlefieldIDFor(CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr) {
             if (m_Battlefields[i]->isValidPlayerForBcnm(PChar)) {

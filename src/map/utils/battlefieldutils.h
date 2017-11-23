@@ -45,8 +45,8 @@ namespace battlefieldutils
     bool spawnMonstersForBcnm(CBattlefield* battlefield);
     bool spawnTreasureForBcnm(CBattlefield* battlefield);
 
-    uint8 getMaxLootGroups(CBattlefield* battlefield);						// returns maximum number of loot groups for a BCNM battlefield
-    std::uint16_t getRollsPerGroup(CBattlefield* battlefield, uint8 groupID);		// returns the maximum number of "rolls" in a given group
+    std::uint8_t getMaxLootGroups(CBattlefield* battlefield);						// returns maximum number of loot groups for a BCNM battlefield
+    std::uint16_t getRollsPerGroup(CBattlefield* battlefield, std::uint8_t groupID);		// returns the maximum number of "rolls" in a given group
     void getChestItems(CBattlefield* battlefield);
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, std::uint16_t bcnmid, BATTLEFIELDTYPE type);
 

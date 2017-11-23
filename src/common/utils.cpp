@@ -154,14 +154,14 @@ void getMSB(std::uint32_t* result, std::uint32_t value)
 /*
 Rotations of entities are saved in uint8s, which can only hold up to a value of 255. In order to properly calculate rotations you'll need these methods to convert back and forth.
 */
-float rotationToRadian(uint8 rotation)
+float rotationToRadian(std::uint8_t rotation)
 {
     return (float)((rotation / 256.0f) * 2 * M_PI);
 }
 
-uint8 radianToRotation(float radian)
+std::uint8_t radianToRotation(float radian)
 {
-    return (uint8)((radian / (2 * M_PI)) * 256);
+    return (std::uint8_t)((radian / (2 * M_PI)) * 256);
 }
 
 
@@ -171,9 +171,9 @@ uint8 radianToRotation(float radian)
 *																		*
 ************************************************************************/
 
-uint8 getangle(const position_t& A, const position_t& B)
+std::uint8_t getangle(const position_t& A, const position_t& B)
 {
-    uint8 angle = (uint8)(atanf((B.z - A.z) / (B.x - A.x)) * -(128.0f / M_PI));
+    std::uint8_t angle = (std::uint8_t)(atanf((B.z - A.z) / (B.x - A.x)) * -(128.0f / M_PI));
 
     return (A.x > B.x ? angle + 128 : angle);
 }
@@ -184,7 +184,7 @@ uint8 getangle(const position_t& A, const position_t& B)
 *																		*
 ************************************************************************/
 
-bool isFaceing(const position_t& A, const position_t& B, uint8 coneAngle)
+bool isFaceing(const position_t& A, const position_t& B, std::uint8_t coneAngle)
 {
     std::int32_t angle = getangle(A, B);
     return abs(int8(angle - A.rotation)) < (coneAngle >> 1);
@@ -219,7 +219,7 @@ position_t nearPosition(const position_t& A, float offset, float radian)
 *																		*
 ************************************************************************/
 
-std::int32_t hasBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
+std::int32_t hasBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t size)
 {
     if(value >= size * 8)
     {
@@ -229,7 +229,7 @@ std::int32_t hasBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
     return (std::int32_t)(BitArray[value >> 3] & (1 << (value % 8)));
 }
 
-std::int32_t addBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
+std::int32_t addBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t size)
 {
     if(!hasBit(value, BitArray, size) && (value < size * 8))
     {
@@ -239,7 +239,7 @@ std::int32_t addBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
     return 0;
 }
 
-std::int32_t delBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
+std::int32_t delBit(std::uint16_t value, std::uint8_t* BitArray, std::uint32_t size)
 {
     if(hasBit(value, BitArray, size))
     {
@@ -255,12 +255,12 @@ std::int32_t delBit(std::uint16_t value, uint8* BitArray, std::uint32_t size)
 *																		*
 ************************************************************************/
 
-std::uint32_t packBitsBE(uint8* target, std::uint64_t value, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint32_t packBitsBE(std::uint8_t* target, std::uint64_t value, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return packBitsBE(target, value, 0, bitOffset, lengthInBit);
 }
 
-std::uint32_t packBitsBE(uint8* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint32_t packBitsBE(std::uint8_t* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);										//correct bitOffsets>=8
     bitOffset %= 8;
@@ -277,10 +277,10 @@ std::uint32_t packBitsBE(uint8* target, std::uint64_t value, std::int32_t byteOf
 
     if((lengthInBit + bitOffset) <= 8)									//write shifted value to target
     {
-        uint8* dataPointer = (uint8*)&target[byteOffset];
+        std::uint8_t* dataPointer = (std::uint8_t*)&target[byteOffset];
 
-        uint8 bitmaskUC = (uint8)bitmask;
-        uint8 valueUC = (uint8)value;
+        std::uint8_t bitmaskUC = (std::uint8_t)bitmask;
+        std::uint8_t valueUC = (std::uint8_t)value;
 
         *dataPointer &= bitmaskUC;
         *dataPointer |= valueUC;
@@ -320,12 +320,12 @@ std::uint32_t packBitsBE(uint8* target, std::uint64_t value, std::int32_t byteOf
 }
 
 
-std::uint64_t unpackBitsBE(uint8* target, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsBE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return unpackBitsBE(target, 0, bitOffset, lengthInBit);
 }
 
-std::uint64_t unpackBitsBE(uint8* target, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsBE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);
     bitOffset %= 8;
@@ -339,9 +339,9 @@ std::uint64_t unpackBitsBE(uint8* target, std::int32_t byteOffset, std::int32_t 
 
     if((lengthInBit + bitOffset) <= 8)
     {
-        uint8* dataPointer = (uint8*)&target[byteOffset];
+        std::uint8_t* dataPointer = (std::uint8_t*)&target[byteOffset];
 
-        retVal = ((*dataPointer)&(uint8)bitmask) >> bitOffset;
+        retVal = ((*dataPointer)&(std::uint8_t)bitmask) >> bitOffset;
     }
     else if((lengthInBit + bitOffset) <= 16)
     {
@@ -369,17 +369,17 @@ std::uint64_t unpackBitsBE(uint8* target, std::int32_t byteOffset, std::int32_t 
     return retVal;
 }
 
-std::uint32_t packBitsLE(uint8* target, std::uint64_t value, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint32_t packBitsLE(std::uint8_t* target, std::uint64_t value, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return packBitsLE(target, value, 0, bitOffset, lengthInBit);
 }
 
-std::uint32_t packBitsLE(uint8* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint32_t packBitsLE(std::uint8_t* target, std::uint64_t value, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);													//correct bitOffsets >= 8
     bitOffset %= 8;
 
-    uint8 bytesNeeded;																//calculate how many bytes are needed
+    std::uint8_t bytesNeeded;																//calculate how many bytes are needed
     if((bitOffset + lengthInBit) <= 8)
         bytesNeeded = 1;
     else if((bitOffset + lengthInBit) <= 16)
@@ -394,9 +394,9 @@ std::uint32_t packBitsLE(uint8* target, std::uint64_t value, std::int32_t byteOf
         return 0;
     }
 
-    uint8* modifiedTarget = new uint8[bytesNeeded];									//convert byteOrder to Big Endian
+    std::uint8_t* modifiedTarget = new std::uint8_t[bytesNeeded];									//convert byteOrder to Big Endian
 
-    for(uint8 curByte = 0; curByte < bytesNeeded; ++curByte)
+    for(std::uint8_t curByte = 0; curByte < bytesNeeded; ++curByte)
     {
         modifiedTarget[curByte] = target[byteOffset + (bytesNeeded - 1) - curByte];
     }
@@ -405,7 +405,7 @@ std::uint32_t packBitsLE(uint8* target, std::uint64_t value, std::int32_t byteOf
 
     packBitsBE(&modifiedTarget[0], value, 0, newBitOffset, lengthInBit);			//write data to modified array
 
-    for(uint8 curByte = 0; curByte < bytesNeeded; ++curByte)						//copy back to target
+    for(std::uint8_t curByte = 0; curByte < bytesNeeded; ++curByte)						//copy back to target
     {
         target[byteOffset + (bytesNeeded - 1) - curByte] = modifiedTarget[curByte];
     }
@@ -414,17 +414,17 @@ std::uint32_t packBitsLE(uint8* target, std::uint64_t value, std::int32_t byteOf
     return ((byteOffset << 3) + bitOffset + lengthInBit);
 }
 
-std::uint64_t unpackBitsLE(uint8* target, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsLE(std::uint8_t* target, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     return unpackBitsLE(target, 0, bitOffset, lengthInBit);
 }
 
-std::uint64_t unpackBitsLE(uint8* target, std::int32_t byteOffset, std::int32_t bitOffset, uint8 lengthInBit)
+std::uint64_t unpackBitsLE(std::uint8_t* target, std::int32_t byteOffset, std::int32_t bitOffset, std::uint8_t lengthInBit)
 {
     byteOffset += (bitOffset >> 3);
     bitOffset %= 8;
 
-    uint8 bytesNeeded;
+    std::uint8_t bytesNeeded;
     if((bitOffset + lengthInBit) <= 8)
         bytesNeeded = 1;
     else if((bitOffset + lengthInBit) <= 16)
@@ -441,15 +441,15 @@ std::uint64_t unpackBitsLE(uint8* target, std::int32_t byteOffset, std::int32_t 
 
     std::uint64_t retVal;
 
-    uint8* modifiedTarget = new uint8[bytesNeeded];
+    std::uint8_t* modifiedTarget = new std::uint8_t[bytesNeeded];
 
-    for(uint8 curByte = 0; curByte < bytesNeeded; ++curByte)
+    for(std::uint8_t curByte = 0; curByte < bytesNeeded; ++curByte)
     {
         modifiedTarget[curByte] = target[byteOffset + (bytesNeeded - 1) - curByte];
     }
     if(bytesNeeded == 1)
     {
-        uint8 bitmask = 0xFF >> bitOffset;
+        std::uint8_t bitmask = 0xFF >> bitOffset;
         retVal = (modifiedTarget[0] & bitmask) >> (8 - (lengthInBit + bitOffset));
     }
     else
@@ -464,13 +464,13 @@ std::uint64_t unpackBitsLE(uint8* target, std::int32_t byteOffset, std::int32_t 
 
 int8* EncodeStringLinkshell(int8* signature, int8* target)
 {
-    uint8 encodedSignature[16];
+    std::uint8_t encodedSignature[16];
     memset(encodedSignature, 0, sizeof encodedSignature);
-    uint8 chars = 0;
-    uint8 leftover = 0;
-    for(uint8 currChar = 0; currChar < std::min<size_t>(20, strlen((const char*)signature)); ++currChar)
+    std::uint8_t chars = 0;
+    std::uint8_t leftover = 0;
+    for(std::uint8_t currChar = 0; currChar < std::min<size_t>(20, strlen((const char*)signature)); ++currChar)
     {
-        uint8 tempChar = 0;
+        std::uint8_t tempChar = 0;
         if((signature[currChar] >= '0') && (signature[currChar] <= '9'))
             tempChar = signature[currChar] - '0' + 53;
         else if((signature[currChar] >= 'A') && (signature[currChar] <= 'Z'))
@@ -490,13 +490,13 @@ int8* EncodeStringLinkshell(int8* signature, int8* target)
 
 int8* DecodeStringLinkshell(int8* signature, int8* target)
 {
-    uint8 decodedSignature[21];
+    std::uint8_t decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
 
-    for(uint8 currChar = 0; currChar < std::min<size_t>(20, (strlen((const char*)signature) * 8) / 6); ++currChar)
+    for(std::uint8_t currChar = 0; currChar < std::min<size_t>(20, (strlen((const char*)signature) * 8) / 6); ++currChar)
     {
-        uint8 tempChar = '\0';
-        tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
+        std::uint8_t tempChar = '\0';
+        tempChar = (std::uint8_t)unpackBitsLE((std::uint8_t*)signature, currChar * 6, 6);
         if(tempChar >= 1 && tempChar <= 26)
             tempChar = 'a' - 1 + tempChar;
         else if(tempChar >= 27 && tempChar <= 52)
@@ -522,13 +522,13 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
 
 int8* EncodeStringSignature(int8* signature, int8* target)
 {
-    uint8 encodedSignature[12];
+    std::uint8_t encodedSignature[12];
     memset(encodedSignature, 0, sizeof encodedSignature);
-    uint8 chars = 0;
-    // uint8 leftover = 0;
-    for(uint8 currChar = 0; currChar < std::min<size_t>(15, strlen((const char*)signature)); ++currChar)
+    std::uint8_t chars = 0;
+    // std::uint8_t leftover = 0;
+    for(std::uint8_t currChar = 0; currChar < std::min<size_t>(15, strlen((const char*)signature)); ++currChar)
     {
-        uint8 tempChar = 0;
+        std::uint8_t tempChar = 0;
         if((signature[currChar] >= '0') && (signature[currChar] <= '9'))
             tempChar = signature[currChar] - '0' + 1;
         else if((signature[currChar] >= 'A') && (signature[currChar] <= 'Z'))
@@ -548,13 +548,13 @@ int8* EncodeStringSignature(int8* signature, int8* target)
 
 int8* DecodeStringSignature(int8* signature, int8* target)
 {
-    uint8 decodedSignature[16];
+    std::uint8_t decodedSignature[16];
     memset(decodedSignature, 0, sizeof decodedSignature);
 
-    for(uint8 currChar = 0; currChar < std::min<size_t>(15, (strlen((const char*)signature) * 8) / 6); ++currChar)
+    for(std::uint8_t currChar = 0; currChar < std::min<size_t>(15, (strlen((const char*)signature) * 8) / 6); ++currChar)
     {
-        uint8 tempChar = '\0';
-        tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
+        std::uint8_t tempChar = '\0';
+        tempChar = (std::uint8_t)unpackBitsLE((std::uint8_t*)signature, currChar * 6, 6);
         if(tempChar >= 1 && tempChar <= 10)
             tempChar = '0' - 1 + tempChar;
         else if(tempChar >= 11 && tempChar <= 36)

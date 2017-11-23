@@ -55,18 +55,18 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, std::uint16_t roamFlags = 0);
+    bool RoamAround(const position_t& point, float maxRadius, std::uint8_t maxTurns, std::uint16_t roamFlags = 0);
 
     // find and walk to the given point
-    bool PathTo(const position_t& point, uint8 pathFlags = 0, bool clear = true);
+    bool PathTo(const position_t& point, std::uint8_t pathFlags = 0, bool clear = true);
     // walk to the given point until in range
-    bool PathInRange(const position_t& point, float range, uint8 pathFlags = 0, bool clear = true);
+    bool PathInRange(const position_t& point, float range, std::uint8_t pathFlags = 0, bool clear = true);
 
     // move some where around the point
-    bool PathAround(const position_t& point, float distanceFromPoint, uint8 pathFlags = 0);
+    bool PathAround(const position_t& point, float distanceFromPoint, std::uint8_t pathFlags = 0);
 
     // walk through the given points. No new points made.
-    bool PathThrough(std::vector<position_t>&& points, uint8 pathFlags = 0);
+    bool PathThrough(std::vector<position_t>&& points, std::uint8_t pathFlags = 0);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
@@ -129,7 +129,7 @@ class CPathFind
     bool FindClosestPath(const position_t& start, const position_t& end);
 
     // finds a random path around the given point
-    bool FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, std::uint16_t roamFlags);
+    bool FindRandomPath(const position_t& start, float maxRadius, std::uint8_t maxTurns, std::uint16_t roamFlags);
 
     void AddPoints(std::vector<position_t>&& points, bool reverse = false);
 
@@ -141,12 +141,12 @@ class CPathFind
     position_t m_originalPoint;
     float m_distanceFromPoint;
 
-    uint8 m_pathFlags;
+    std::uint8_t m_pathFlags;
     std::uint16_t m_roamFlags;
     bool m_onPoint;
     std::int16_t m_currentPoint;
 
-    uint8 m_currentTurn;
+    std::uint8_t m_currentTurn;
 
     float m_distanceMoved;
     float m_maxDistance;

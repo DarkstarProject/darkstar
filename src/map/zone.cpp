@@ -215,22 +215,22 @@ const int8* CZone::GetName()
     return m_zoneName.c_str();
 }
 
-uint8 CZone::GetSoloBattleMusic()
+std::uint8_t CZone::GetSoloBattleMusic()
 {
     return m_zoneMusic.m_bSongS;
 }
 
-uint8 CZone::GetPartyBattleMusic()
+std::uint8_t CZone::GetPartyBattleMusic()
 {
     return m_zoneMusic.m_bSongM;
 }
 
-uint8 CZone::GetBackgroundMusicDay()
+std::uint8_t CZone::GetBackgroundMusicDay()
 {
     return m_zoneMusic.m_songDay;
 }
 
-uint8 CZone::GetBackgroundMusicNight()
+std::uint8_t CZone::GetBackgroundMusicNight()
 {
     return m_zoneMusic.m_songNight;
 }
@@ -283,7 +283,7 @@ void CZone::LoadZoneLines()
             zl->m_toPos.x = Sql_GetFloatData(SqlHandle, 2);
             zl->m_toPos.y = Sql_GetFloatData(SqlHandle, 3);
             zl->m_toPos.z = Sql_GetFloatData(SqlHandle, 4);
-            zl->m_toPos.rotation = (uint8)Sql_GetIntData(SqlHandle, 5);
+            zl->m_toPos.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 5);
 
             m_zoneLineList.push_back(zl);
         }
@@ -359,10 +359,10 @@ void CZone::LoadZoneSettings()
 
         m_zoneIP = inet_addr(Sql_GetData(SqlHandle, 1));
         m_zonePort = (std::uint16_t)Sql_GetUIntData(SqlHandle, 2);
-        m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
-        m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
-        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
-        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle, 6);   // party battle music
+        m_zoneMusic.m_songDay = (std::uint8_t)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
+        m_zoneMusic.m_songNight = (std::uint8_t)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
+        m_zoneMusic.m_bSongS = (std::uint8_t)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
+        m_zoneMusic.m_bSongM = (std::uint8_t)Sql_GetUIntData(SqlHandle, 6);   // party battle music
         m_tax = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
         m_miscMask = (std::uint16_t)Sql_GetUIntData(SqlHandle, 8);
 
@@ -504,7 +504,7 @@ void CZone::UpdateWeather()
     std::uint32_t EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
     std::uint32_t WeatherNextUpdate = 0;
     std::uint32_t WeatherDay = 0;
-    uint8 WeatherChance = 0;
+    std::uint8_t WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
     WeatherNextUpdate = (dsprand::GetRandomNumber(180, 1620));
@@ -533,7 +533,7 @@ void CZone::UpdateWeather()
         weatherType = weather.second;
     }
 
-    uint8 Weather = 0;
+    std::uint8_t Weather = 0;
 
     // 15% chance for rare weather, 35% chance for common weather, 50% chance for normal weather
     // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
@@ -705,7 +705,7 @@ void CZone::SpawnTransport(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-CBaseEntity* CZone::GetEntity(std::uint16_t targid, uint8 filter)
+CBaseEntity* CZone::GetEntity(std::uint16_t targid, std::uint8_t filter)
 {
     return m_zoneEntities->GetEntity(targid, filter);
 }
@@ -913,7 +913,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
             }
             if (PChar->PParty->GetSyncTarget() != nullptr)
             {
-                uint8 count = 0;
+                std::uint8_t count = 0;
                 for (std::uint32_t i = 0; i < PChar->PParty->members.size(); ++i)
                 {
                     if (PChar->PParty->members.at(i) != PChar && PChar->PParty->members.at(i)->getZone() == PChar->PParty->GetSyncTarget()->getZone())
@@ -967,7 +967,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID == 0)
     {
-        uint8 data[4] {};
+        std::uint8_t data[4] {};
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     }

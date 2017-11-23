@@ -432,7 +432,7 @@ std::int32_t map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map
         blowfish_decipher((std::uint32_t*)buff + i + 7, (std::uint32_t*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
     }
 
-    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16) == 0)
+    if (checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16) == 0)
     {
         return 0;
     }
@@ -456,7 +456,7 @@ std::int32_t recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_ses
 #ifdef WIN32
     try
     {
-        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16);
+        checksumResult = checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), (std::uint32_t)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16);
     }
     catch (...)
     {
@@ -464,7 +464,7 @@ std::int32_t recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_ses
         return -1;
     }
 #else
-    checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+    checksumResult = checksum((std::uint8_t*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
 #endif
 
     if (checksumResult == 0)
@@ -592,7 +592,7 @@ std::int32_t parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_
             }
             else
             {
-                PacketParser[SmallPD_Type](map_session_data, PChar, CBasicPacket(reinterpret_cast<uint8*>(SmallPD_ptr)));
+                PacketParser[SmallPD_Type](map_session_data, PChar, CBasicPacket(reinterpret_cast<std::uint8_t*>(SmallPD_ptr)));
             }
         }
         else
@@ -649,7 +649,7 @@ std::int32_t send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_ses
     CBasicPacket* PSmallPacket;
     std::uint32_t PacketSize = UINT32_MAX;
     auto PacketCount = PChar->getPacketCount();
-    uint8 packets = 0;
+    std::uint8_t packets = 0;
 
     do {
         do {
@@ -705,8 +705,8 @@ std::int32_t send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_ses
     PChar->erasePackets(packets);
 
     //Запись размера данных без учета заголовка
-    uint8 hash[16];
-    md5((uint8*)PTempBuff, hash, PacketSize);
+    std::uint8_t hash[16];
+    md5((std::uint8_t*)PTempBuff, hash, PacketSize);
     memcpy(PTempBuff + PacketSize, hash, 16);
     PacketSize += 16;
 
@@ -1109,11 +1109,11 @@ std::int32_t map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "exp_party_gap_penalties") == 0)
         {
-            map_config.exp_party_gap_penalties = (uint8)atof(w2);
+            map_config.exp_party_gap_penalties = (std::uint8_t)atof(w2);
         }
         else if (strcmp(w1, "fov_allow_alliance") == 0)
         {
-            map_config.fov_allow_alliance = (uint8)atof(w2);
+            map_config.fov_allow_alliance = (std::uint8_t)atof(w2);
         }
         else if (strcmp(w1, "mob_tp_multiplier") == 0)
         {

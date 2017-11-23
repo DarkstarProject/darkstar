@@ -47,7 +47,7 @@ public:
     bool	disconnectFromBcnm(CCharEntity* PChar);					// Disconnects/Warps you from a BCNM
     bool	winBcnm(std::uint16_t bcnmid, CCharEntity* PChar);				// Wins a BCNM battlefield (e.g. the player opening the chest)
 
-    uint8	findBattlefieldIDFor(CCharEntity* PChar);					// returns 1 2 3 or 255 if non-existent
+    std::uint8_t	findBattlefieldIDFor(CCharEntity* PChar);					// returns 1 2 3 or 255 if non-existent
     bool	hasFreeBattlefield();										// returns true if there is a free battlefield available
     bool	hasFreeSpecialBattlefield(std::uint16_t id);
     bool    hasSpecialBattlefieldEmpty(std::uint16_t id);                     // return 1 if one or more player is still on the special battlefield
@@ -75,7 +75,7 @@ public:
     std::uint16_t					m_ZoneId;
 
 private:
-    uint8					m_MaxBattlefields;							// usually 3 except dynamis, einherjar, besieged, ...
+    std::uint8_t					m_MaxBattlefields;							// usually 3 except dynamis, einherjar, besieged, ...
     CBattlefield*				m_Battlefields[8];
 };
 

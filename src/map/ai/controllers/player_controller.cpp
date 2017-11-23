@@ -133,7 +133,7 @@ bool CPlayerController::RangedAttack(std::uint16_t targid)
     return false;
 }
 
-bool CPlayerController::UseItem(std::uint16_t targid, uint8 loc, uint8 slotid)
+bool CPlayerController::UseItem(std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())

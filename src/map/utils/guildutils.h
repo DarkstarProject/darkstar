@@ -42,7 +42,7 @@ namespace guildutils
     void UpdateGuildPointsPattern();
 
 	CItemContainer* GetGuildShop(std::uint16_t GuildShopID);
-    CGuild* GetGuild(uint8 GuildID);
+    CGuild* GetGuild(std::uint8_t GuildID);
 }
 
 #endif

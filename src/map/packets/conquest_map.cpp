@@ -44,12 +44,12 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 
     std::int32_t ret = Sql_Query(SqlHandle, Query);
 
-    uint8 sandoria_regions = 0;
-    uint8 bastok_regions = 0;
-    uint8 windurst_regions = 0;
-    uint8 sandoria_prev = 0;
-    uint8 bastok_prev = 0;
-    uint8 windurst_prev = 0;
+    std::uint8_t sandoria_regions = 0;
+    std::uint8_t bastok_regions = 0;
+    std::uint8_t windurst_regions = 0;
+    std::uint8_t sandoria_prev = 0;
+    std::uint8_t bastok_prev = 0;
+    std::uint8_t windurst_prev = 0;
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -87,13 +87,13 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 
             if (PChar->loc.zone->GetRegionID() == regionid)
             {
-                WBUFB(data, (0x86)) = (uint8)((san_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
-                WBUFB(data, (0x87)) = (uint8)((bas_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
-                WBUFB(data, (0x88)) = (uint8)((win_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
-                WBUFB(data, (0x89)) = (uint8)((san_inf * 100) / (total == 0 ? 1 : total));
-                WBUFB(data, (0x8A)) = (uint8)((bas_inf * 100) / (total == 0 ? 1 : total));
-                WBUFB(data, (0x8B)) = (uint8)((win_inf * 100) / (total == 0 ? 1 : total));
-                WBUFB(data, (0x94)) = (uint8)((bst_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x86)) = (std::uint8_t)((san_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x87)) = (std::uint8_t)((bas_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x88)) = (std::uint8_t)((win_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
+                WBUFB(data, (0x89)) = (std::uint8_t)((san_inf * 100) / (total == 0 ? 1 : total));
+                WBUFB(data, (0x8A)) = (std::uint8_t)((bas_inf * 100) / (total == 0 ? 1 : total));
+                WBUFB(data, (0x8B)) = (std::uint8_t)((win_inf * 100) / (total == 0 ? 1 : total));
+                WBUFB(data, (0x94)) = (std::uint8_t)((bst_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen));
             }
         }
     }
@@ -105,7 +105,7 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
     WBUFL(data,(0x90)) = charutils::GetPoints(PChar, charutils::GetConquestPointsName(PChar).c_str());
 	WBUFB(data,(0x9C)) = 0x01;
 
-	//uint8 packet[] = 
+	//std::uint8_t packet[] = 
     //{
 	//    0x80, 0x78, 0x52, 0x03, 0x1a, 0x46, 0x04, 0x00, 0x42, 0x46, 0x04, 0x00, 0x65, 0x3d, 0x04, 0x00
     //};

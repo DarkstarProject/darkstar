@@ -476,9 +476,9 @@ namespace itemutils
                 DropItem_t DropItem;
 
                 DropItem.ItemID  = (std::uint16_t)Sql_GetIntData(SqlHandle,1);
-                DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
+                DropItem.DropType = (std::uint8_t)Sql_GetIntData(SqlHandle,2);
                 DropItem.DropRate = (std::uint16_t)Sql_GetIntData(SqlHandle,3);
-                DropItem.GroupId = (uint8)Sql_GetIntData(SqlHandle,4);
+                DropItem.GroupId = (std::uint8_t)Sql_GetIntData(SqlHandle,4);
                 DropItem.GroupRate = (std::uint16_t)Sql_GetIntData(SqlHandle,5);
 
                 g_pDropList[DropID]->push_back(DropItem);
@@ -513,7 +513,7 @@ namespace itemutils
 
                 LootItem.ItemID  = (std::uint16_t)Sql_GetIntData(SqlHandle,1);
                 LootItem.Rolls = (std::uint16_t)Sql_GetIntData(SqlHandle,2);
-                LootItem.LootGroupId = (uint8)Sql_GetIntData(SqlHandle,3);
+                LootItem.LootGroupId = (std::uint8_t)Sql_GetIntData(SqlHandle,3);
 
                 g_pLootList[LootID]->push_back(LootItem);
             }

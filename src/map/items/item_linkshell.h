@@ -30,13 +30,13 @@
 
 struct lscolor_t
 {
-	uint8 R:4;
-	uint8 G:4;
-	uint8 B:4;
-	uint8 A:4;
+	std::uint8_t R:4;
+	std::uint8_t G:4;
+	std::uint8_t B:4;
+	std::uint8_t A:4;
 };
 
-enum LSTYPE : uint8
+enum LSTYPE : std::uint8_t
 {
     LSTYPE_NEW_LINKSHELL,
     LSTYPE_LINKSHELL,

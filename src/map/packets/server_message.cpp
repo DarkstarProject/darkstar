@@ -52,7 +52,7 @@ CServerMessagePacket::CServerMessagePacket(const string_t message, int8 language
 
         memcpy((data + (0x18)) , message.c_str() + message_offset, sndLength);
 
-        auto textSize = (uint8)(sndLength + sndLength % 2);
+        auto textSize = (std::uint8_t)(sndLength + sndLength % 2);
         this->size = ((((0x14 + textSize) + 4) >> 1) & 0xFE);
     }
 }

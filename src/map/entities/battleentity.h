@@ -397,7 +397,7 @@ struct apAction_t
     REACTION		  reaction;			    //  5 bits
     std::uint16_t			  animation;			// 12 bits
     SPECEFFECT		  speceffect;			// 7 bits
-    uint8             knockback;            // 3 bits
+    std::uint8_t             knockback;            // 3 bits
     std::int32_t			  param;				// 17 bits
     std::uint16_t			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
@@ -470,12 +470,12 @@ public:
     std::uint16_t          CHR();
     std::uint16_t          DEF();
     std::uint16_t          ATT();
-    std::uint16_t			ACC(uint8 attackNumber, uint8 offsetAccuracy);
+    std::uint16_t			ACC(std::uint8_t attackNumber, std::uint8_t offsetAccuracy);
     std::uint16_t          EVA();
-    std::uint16_t          RATT(uint8 skill, std::uint16_t bonusSkill = 0);
-    std::uint16_t          RACC(uint8 skill, std::uint16_t bonusSkill = 0);
+    std::uint16_t          RATT(std::uint8_t skill, std::uint16_t bonusSkill = 0);
+    std::uint16_t          RACC(std::uint8_t skill, std::uint16_t bonusSkill = 0);
 
-    uint8           GetSpeed();
+    std::uint8_t           GetSpeed();
 
     bool		    isDead();					// проверяем, мертва ли сущность
     bool		    isAlive();
@@ -485,22 +485,22 @@ public:
 
     JOBTYPE		    GetMJob();					// главная профессия
     JOBTYPE		    GetSJob();					// дополнительная профессия
-    uint8		    GetMLevel();				// уровень главной профессии
-    uint8		    GetSLevel();				// уровень дополнительной профессии
+    std::uint8_t		    GetMLevel();				// уровень главной профессии
+    std::uint8_t		    GetSLevel();				// уровень дополнительной профессии
 
-    void		    SetMJob(uint8 mjob);		// главная профессия
-    void		    SetSJob(uint8 sjob);		// дополнительная профессия
-    void		    SetMLevel(uint8 mlvl);		// уровень главной профессии
-    void		    SetSLevel(uint8 slvl);		// уровень дополнительной профессии
+    void		    SetMJob(std::uint8_t mjob);		// главная профессия
+    void		    SetSJob(std::uint8_t sjob);		// дополнительная профессия
+    void		    SetMLevel(std::uint8_t mlvl);		// уровень главной профессии
+    void		    SetSLevel(std::uint8_t slvl);		// уровень дополнительной профессии
 
-    uint8		    GetHPP();					// количество hp в процентах
+    std::uint8_t		    GetHPP();					// количество hp в процентах
     std::int32_t           GetMaxHP();                 // максимальное количество hp
-    uint8		    GetMPP();					// количество mp в процентах
+    std::uint8_t		    GetMPP();					// количество mp в процентах
     std::int32_t           GetMaxMP();                 // максимальное количество mp
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
     std::int16_t			GetWeaponDelay(bool tp);		//returns delay of combined weapons
-    uint8           GetMeleeRange();                //returns the distance considered to be within melee range of the entity
+    std::uint8_t           GetMeleeRange();                //returns the distance considered to be within melee range of the entity
     std::int16_t			GetRangedWeaponDelay(bool tp);	//returns delay of ranged weapon + ammo where applicable
     std::int16_t			GetAmmoDelay();			        //returns delay of ammo (for cooldown between shots)
     std::uint16_t			GetMainWeaponDmg();				//returns total main hand DMG
@@ -525,10 +525,10 @@ public:
     void		    setModifier(Mod type, std::int16_t amount);
     void		    delModifier(Mod type, std::int16_t amount);
     void		    addModifiers(std::vector<CModifier> *modList);
-    void            addEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
+    void            addEquipModifiers(std::vector<CModifier> *modList, std::uint8_t itemLevel, std::uint8_t slotid);
     void		    setModifiers(std::vector<CModifier> *modList);
     void		    delModifiers(std::vector<CModifier> *modList);
-    void            delEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
+    void            delEquipModifiers(std::vector<CModifier> *modList, std::uint8_t itemLevel, std::uint8_t slotid);
     void 		    saveModifiers(); // save current state of modifiers
     void 		    restoreModifiers(); // restore to saved state
 
@@ -619,13 +619,13 @@ public:
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
     std::uint16_t		    m_Immunity;					// Mob immunity
     std::uint16_t			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
+    std::uint8_t			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
     time_point  	charmTime;					// to hold the time entity is charmed
     bool			isCharmed;					// is the battle entity charmed?
 
-    uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
+    std::uint8_t			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
     ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
     CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
@@ -648,8 +648,8 @@ private:
 
     JOBTYPE		m_mjob;						// главная профессия
     JOBTYPE		m_sjob;						// дополнительная профессия
-    uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
-    uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
+    std::uint8_t		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
+    std::uint8_t		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
     std::uint16_t      m_battleTarget {0};
     time_point  m_battleStartTime;
 

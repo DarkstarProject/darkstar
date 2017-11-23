@@ -33,8 +33,8 @@ class CNpcEntity : public CBaseEntity {
 public:
 
     std::uint32_t      m_flags;
-    uint8       name_prefix;
-    uint8       widescan;
+    std::uint8_t       name_prefix;
+    std::uint8_t       widescan;
     std::uint32_t      getEntityFlags();                        // Returns the current value in m_flags
     void        setEntityFlags(std::uint32_t EntityFlags);      // Change the current value in m_flags
     void        HideModel(bool hide);                    // hide / show model

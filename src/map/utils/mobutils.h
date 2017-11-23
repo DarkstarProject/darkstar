@@ -59,8 +59,8 @@ namespace mobutils
 	std::uint16_t	GetWeaponDamage(CMobEntity* PMob);
         std::uint16_t  GetMagicEvasion(CMobEntity* PMob);
         std::uint16_t  GetEvasion(CMobEntity* PMob);
-        std::uint16_t  GetBase(CMobEntity* PMob, uint8 rank);
-        std::uint16_t  GetBaseToRank(uint8 rank, std::uint16_t level);
+        std::uint16_t  GetBase(CMobEntity* PMob, std::uint8_t rank);
+        std::uint16_t  GetBaseToRank(std::uint8_t rank, std::uint16_t level);
 	void    GetAvailableSpells(CMobEntity* PMob);
 	void	InitializeMob(CMobEntity* PMob, CZone* PZone);
 	void	LoadCustomMods();

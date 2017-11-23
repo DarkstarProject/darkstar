@@ -38,7 +38,7 @@ class CShopAppraisePacket: public CBasicPacket
 {
 public:
 
-	CShopAppraisePacket(uint8 slotID, std::uint32_t sellPrice);
+	CShopAppraisePacket(std::uint8_t slotID, std::uint32_t sellPrice);
 };
 
 #endif

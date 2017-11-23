@@ -33,7 +33,7 @@ This file is part of DarkStar-server source code.
 #include "../common/timer.h"
 
 
-CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone),
+CInstance::CInstance(CZone* zone, std::uint8_t instanceid) : CZoneEntities(zone),
     m_instanceid(instanceid)
 {
     LoadInstance();
@@ -57,7 +57,7 @@ CInstance::~CInstance()
     }
 }
 
-uint8 CInstance::GetID()
+std::uint8_t CInstance::GetID()
 {
     return m_instanceid;
 }
@@ -136,7 +136,7 @@ void CInstance::RegisterChar(CCharEntity* PChar)
     m_registeredChars.push_back(PChar->id);
 }
 
-uint8 CInstance::GetLevelCap()
+std::uint8_t CInstance::GetLevelCap()
 {
     return m_levelcap;
 }
@@ -171,7 +171,7 @@ duration CInstance::GetElapsedTime(time_point tick)
     return tick - m_startTime;
 }
 
-void CInstance::SetLevelCap(uint8 cap)
+void CInstance::SetLevelCap(std::uint8_t cap)
 {
     m_levelcap = cap;
 }
@@ -181,7 +181,7 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
     m_entryloc.x = x;
     m_entryloc.y = y;
     m_entryloc.z = z;
-    m_entryloc.rotation = (uint8)rot;
+    m_entryloc.rotation = (std::uint8_t)rot;
 }
 
 void CInstance::SetLastTimeUpdate(duration lastTime)
@@ -285,22 +285,22 @@ bool CInstance::CheckFirstEntry(std::uint32_t id)
     return m_enteredChars.insert(id).second;
 }
 
-uint8 CInstance::GetSoloBattleMusic()
+std::uint8_t CInstance::GetSoloBattleMusic()
 {
-    return m_zone_music_override.m_bSongS != (uint8)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
+    return m_zone_music_override.m_bSongS != (std::uint8_t)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
 }
 
-uint8 CInstance::GetPartyBattleMusic()
+std::uint8_t CInstance::GetPartyBattleMusic()
 {
-    return m_zone_music_override.m_bSongM != (uint8)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
+    return m_zone_music_override.m_bSongM != (std::uint8_t)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
 }
 
-uint8 CInstance::GetBackgroundMusicDay()
+std::uint8_t CInstance::GetBackgroundMusicDay()
 {
-    return m_zone_music_override.m_songDay != (uint8)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
+    return m_zone_music_override.m_songDay != (std::uint8_t)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
 }
 
-uint8 CInstance::GetBackgroundMusicNight()
+std::uint8_t CInstance::GetBackgroundMusicNight()
 {
-    return m_zone_music_override.m_songNight != (uint8)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
+    return m_zone_music_override.m_songNight != (std::uint8_t)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
 }

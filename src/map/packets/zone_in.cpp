@@ -68,7 +68,7 @@ std::uint16_t GetMogHouseID(CCharEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-uint8 GetMogHouseFlag(CCharEntity* PChar)
+std::uint8_t GetMogHouseFlag(CCharEntity* PChar)
 {
     switch (zoneutils::GetCurrentRegion(PChar->getZone()))
     {
@@ -192,8 +192,8 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, std::int16_t csid)
     if (PChar->m_DeathCounter < 3600 && PChar->isDead())
         WBUFL(data,(0xA4)) = 0x03A020 - (60 * PChar->m_DeathCounter);
 
-    ref<uint8>(0xB4) = PChar->GetMJob();
-    ref<uint8>(0xB7) = PChar->GetSJob();
+    ref<std::uint8_t>(0xB4) = PChar->GetMJob();
+    ref<std::uint8_t>(0xB7) = PChar->GetSJob();
 
     memcpy(data+(0xCC), &PChar->stats, 14);
 

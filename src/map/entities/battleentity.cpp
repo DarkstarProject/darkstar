@@ -162,9 +162,9 @@ void CBattleEntity::UpdateHealth()
 *                                                                       *
 ************************************************************************/
 
-uint8 CBattleEntity::GetHPP()
+std::uint8_t CBattleEntity::GetHPP()
 {
-    return (uint8)ceil(((float)health.hp / (float)GetMaxHP()) * 100);
+    return (std::uint8_t)ceil(((float)health.hp / (float)GetMaxHP()) * 100);
 }
 
 std::int32_t CBattleEntity::GetMaxHP()
@@ -178,9 +178,9 @@ std::int32_t CBattleEntity::GetMaxHP()
 *                                                                       *
 ************************************************************************/
 
-uint8 CBattleEntity::GetMPP()
+std::uint8_t CBattleEntity::GetMPP()
 {
-    return (uint8)ceil(((float)health.mp / (float)GetMaxMP()) * 100);
+    return (std::uint8_t)ceil(((float)health.mp / (float)GetMaxMP()) * 100);
 }
 
 std::int32_t CBattleEntity::GetMaxMP()
@@ -194,9 +194,9 @@ std::int32_t CBattleEntity::GetMaxMP()
 *                                                                       *
 ************************************************************************/
 
-uint8 CBattleEntity::GetSpeed()
+std::uint8_t CBattleEntity::GetSpeed()
 {
-    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<uint8>(speed * (100 + getMod(Mod::MOVE)) / 100, std::numeric_limits<std::uint8_t>::min(), std::numeric_limits<std::uint8_t>::max()));
+    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<std::uint8_t>(speed * (100 + getMod(Mod::MOVE)) / 100, std::numeric_limits<std::uint8_t>::min(), std::numeric_limits<std::uint8_t>::max()));
 }
 
 bool CBattleEntity::CanRest()
@@ -261,7 +261,7 @@ std::int16_t CBattleEntity::GetWeaponDelay(bool tp)
     return WeaponDelay;
 }
 
-uint8 CBattleEntity::GetMeleeRange()
+std::uint8_t CBattleEntity::GetMeleeRange()
 {
     return m_ModelSize + 3;
 }
@@ -570,7 +570,7 @@ std::uint16_t CBattleEntity::ATT()
         std::min<std::int16_t>((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
 }
 
-std::uint16_t CBattleEntity::RATT(uint8 skill, std::uint16_t bonusSkill)
+std::uint16_t CBattleEntity::RATT(std::uint8_t skill, std::uint16_t bonusSkill)
 {
     auto PWeakness = StatusEffectContainer->GetStatusEffect(EFFECT_WEAKNESS);
     if (PWeakness && PWeakness->GetPower() >= 2)
@@ -582,7 +582,7 @@ std::uint16_t CBattleEntity::RATT(uint8 skill, std::uint16_t bonusSkill)
         std::min<std::int16_t>((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
 }
 
-std::uint16_t CBattleEntity::RACC(uint8 skill, std::uint16_t bonusSkill)
+std::uint16_t CBattleEntity::RACC(std::uint8_t skill, std::uint16_t bonusSkill)
 {
     auto PWeakness = StatusEffectContainer->GetStatusEffect(EFFECT_WEAKNESS);
     if (PWeakness && PWeakness->GetPower() >= 2)
@@ -601,10 +601,10 @@ std::uint16_t CBattleEntity::RACC(uint8 skill, std::uint16_t bonusSkill)
     return acc + std::min<std::int16_t>(((100 + getMod(Mod::FOOD_RACCP) * acc) / 100), getMod(Mod::FOOD_RACC_CAP));
 }
 
-std::uint16_t CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
+std::uint16_t CBattleEntity::ACC(std::uint8_t attackNumber, std::uint8_t offsetAccuracy)
 {
     if (this->objtype & TYPE_PC) {
-        uint8 skill = 0;
+        std::uint8_t skill = 0;
         std::uint16_t iLvlSkill = 0;
         if (attackNumber == 0)
         {
@@ -689,7 +689,7 @@ JOBTYPE CBattleEntity::GetMJob()
     return m_mjob;
 }
 
-uint8 CBattleEntity::GetMLevel()
+std::uint8_t CBattleEntity::GetMLevel()
 {
     return m_mlvl;
 }
@@ -699,27 +699,27 @@ JOBTYPE CBattleEntity::GetSJob()
     return m_sjob;
 }
 
-uint8 CBattleEntity::GetSLevel()
+std::uint8_t CBattleEntity::GetSLevel()
 {
     if (StatusEffectContainer->HasStatusEffect(EFFECT_OBLIVISCENCE)) { return 0; }
     return m_slvl;
 }
 
-void CBattleEntity::SetMJob(uint8 mjob)
+void CBattleEntity::SetMJob(std::uint8_t mjob)
 {
     DSP_DEBUG_BREAK_IF(mjob == 0 || mjob >= MAX_JOBTYPE);	// выход за пределы доступных профессий
 
     m_mjob = (JOBTYPE)mjob;
 }
 
-void CBattleEntity::SetSJob(uint8 sjob)
+void CBattleEntity::SetSJob(std::uint8_t sjob)
 {
     DSP_DEBUG_BREAK_IF(sjob >= MAX_JOBTYPE);				// выход за пределы доступных профессий
 
     m_sjob = (JOBTYPE)sjob;
 }
 
-void CBattleEntity::SetMLevel(uint8 mlvl)
+void CBattleEntity::SetMLevel(std::uint8_t mlvl)
 {
     m_modStat[Mod::DEF] -= m_mlvl + std::clamp(m_mlvl - 50, 0, 10);
     m_mlvl = (mlvl == 0 ? 1 : mlvl);
@@ -729,7 +729,7 @@ void CBattleEntity::SetMLevel(uint8 mlvl)
         Sql_Query(SqlHandle, "UPDATE char_stats SET mlvl = %u WHERE charid = %u LIMIT 1;", m_mlvl, this->id);
 }
 
-void CBattleEntity::SetSLevel(uint8 slvl)
+void CBattleEntity::SetSLevel(std::uint8_t slvl)
 {
     m_slvl = (slvl > (m_mlvl >> 1) ? (m_mlvl == 1 ? 1 : (m_mlvl >> 1)) : slvl);
 
@@ -762,7 +762,7 @@ void CBattleEntity::addModifiers(std::vector<CModifier> *modList)
     }
 }
 
-void CBattleEntity::addEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid)
+void CBattleEntity::addEquipModifiers(std::vector<CModifier> *modList, std::uint8_t itemLevel, std::uint8_t slotid)
 {
     if (GetMLevel() >= itemLevel)
     {
@@ -902,7 +902,7 @@ void CBattleEntity::delModifiers(std::vector<CModifier> *modList)
     }
 }
 
-void CBattleEntity::delEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid)
+void CBattleEntity::delEquipModifiers(std::vector<CModifier> *modList, std::uint8_t itemLevel, std::uint8_t slotid)
 {
     if (GetMLevel() >= itemLevel)
     {
@@ -1167,7 +1167,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
     // setup special targeting flags
     // can this spell target the dead?
 
-    uint8 flags = FINDFLAGS_NONE;
+    std::uint8_t flags = FINDFLAGS_NONE;
     if (PSpell->getValidTarget() & TARGET_PLAYER_DEAD)
     {
         flags |= FINDFLAGS_DEAD;
@@ -1176,7 +1176,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
     {
         flags |= FINDFLAGS_HIT_ALL;
     }
-    uint8 aoeType = battleutils::GetSpellAoEType(this, PSpell);
+    std::uint8_t aoeType = battleutils::GetSpellAoEType(this, PSpell);
 
     if (aoeType == SPELLAOE_RADIAL) {
         float distance = spell::GetSpellRadius(PSpell, this);
@@ -1452,7 +1452,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                         actionTarget.spikesMessage = 33;
                         if (PTarget->objtype == TYPE_PC)
                         {
-                            uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                            std::uint8_t skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
                             charutils::TrySkillUP((CCharEntity*)PTarget, (SKILLTYPE)skilltype, GetMLevel());
                         } // In case the Automaton can counter
                         else if (PTarget->objtype == TYPE_PET && PTarget->PMaster && PTarget->PMaster->objtype == TYPE_PC &&

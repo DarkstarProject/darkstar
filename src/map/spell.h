@@ -760,17 +760,17 @@ public:
 
     std::uint16_t      getTotalTargets();
     SpellID     getID();
-    uint8       getJob(JOBTYPE JobID);
+    std::uint8_t       getJob(JOBTYPE JobID);
     std::uint16_t      getMPCost();
     std::uint32_t      getCastTime();
     std::uint32_t      getRecastTime();
-    uint8       getValidTarget();
+    std::uint8_t       getValidTarget();
     std::uint16_t      getAnimationID();
     std::uint16_t      getAnimationTime();
     SPELLGROUP  getSpellGroup();
-    uint8       getSkillType();
+    std::uint8_t       getSkillType();
     std::uint16_t      getZoneMisc();
-    uint8       getAOE();
+    std::uint8_t       getAOE();
     std::uint16_t      getBase();
     std::uint16_t      getElement();
     float       getMultiplier();
@@ -782,9 +782,9 @@ public:
     std::uint32_t      getModifiedRecast();
     float       getRadius();
     std::uint16_t      getAoEMessage(); // returns the single target message for AoE moves
-    uint8       getRequirements();
+    std::uint8_t       getRequirements();
     std::uint16_t      getMeritId();
-    uint8       getFlag();
+    std::uint8_t       getFlag();
     int8*       getContentTag();
     float       getRange();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
@@ -801,13 +801,13 @@ public:
     void        setMPCost(std::uint16_t MP);
     void        setCastTime(std::uint32_t CastTime);
     void        setRecastTime(std::uint32_t RecastTime);
-    void        setValidTarget(uint8 ValidTarget);
+    void        setValidTarget(std::uint8_t ValidTarget);
     void        setAnimationID(std::uint16_t AnimationID);
     void        setAnimationTime(std::uint16_t AnimationTime);
     void        setSpellGroup(SPELLGROUP SpellGroup);
-    void        setSkillType(uint8 SkillType);
+    void        setSkillType(std::uint8_t SkillType);
     void        setZoneMisc(std::uint16_t Misc);
-    void        setAOE(uint8 AOE);
+    void        setAOE(std::uint8_t AOE);
     void        setBase(std::uint16_t base);
     void        setElement(std::uint16_t element);
     void        setMultiplier(float multiplier);
@@ -815,10 +815,10 @@ public:
     void        setMagicBurstMessage(std::uint16_t message);
     void        setCE(std::uint16_t ce);
     void        setVE(std::uint16_t ve);
-    void        setRequirements(uint8 requirements);
+    void        setRequirements(std::uint8_t requirements);
     void        setMeritId(std::uint16_t meritId);
     void        setModifiedRecast(std::uint32_t mrec);
-    void        setFlag(uint8 flag);
+    void        setFlag(std::uint8_t flag);
     void        setContentTag(int8* contentTag);
     void        setRange(float range);
 
@@ -836,16 +836,16 @@ private:
     std::uint32_t      m_recastTime {};                           // recast time
     std::uint16_t      m_animation {};                            // animation for spell
     std::uint16_t      m_animationTime {};
-    uint8       m_skillType {};
+    std::uint8_t       m_skillType {};
     float       m_range {};
     float       m_radius {};
     std::uint16_t      m_totalTargets {};
     std::uint16_t      m_mpCost {};                               // mpCost/itemId for ninjitsu tool
-    uint8       m_job[MAX_JOBTYPE]{};                      // job
-    uint8       m_ValidTarget {};                          // target pc/npc/both
+    std::uint8_t       m_job[MAX_JOBTYPE]{};                      // job
+    std::uint8_t       m_ValidTarget {};                          // target pc/npc/both
     SPELLGROUP  m_spellGroup {SPELLGROUP_NONE};            // spellgroup
     std::uint16_t      m_zoneMisc {};                             // условия чтения заклинаний в зонах
-    uint8       m_AOE {};                                  // aoe or single target spell
+    std::uint8_t       m_AOE {};                                  // aoe or single target spell
     std::uint16_t      m_base {};                                 // spell base damage
     float       m_multiplier {};                           // multiplier for upper tier spells
     std::uint16_t      m_element {};                              // element of spell
@@ -855,9 +855,9 @@ private:
     std::uint16_t      m_VE {};                                   // volatile enmity of spell
     string_t    m_name;                                    // spell name
     std::uint32_t      m_modifiedRecastTime {};                   // recast time after modifications
-    uint8       m_requirements {};                         // requirements before being able to cast spell
+    std::uint8_t       m_requirements {};                         // requirements before being able to cast spell
     std::uint16_t      m_meritId {};                              // associated merit (if applicable)
-    uint8       m_flag {};
+    std::uint8_t       m_flag {};
     int8*       m_contentTag {};
 };
 
@@ -870,7 +870,7 @@ namespace spell
     CSpell* GetSpell(SpellID SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, SpellID SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, CSpell* PSpell);
-    bool    CanUseSpellWith(SpellID spellId, JOBTYPE job, uint8 level);
+    bool    CanUseSpellWith(SpellID spellId, JOBTYPE job, std::uint8_t level);
     float   GetSpellRadius(CSpell* spellId, CBattleEntity* PCaster);
 };
 

@@ -50,7 +50,7 @@ void CUContainer::Clean()
 {
     if (m_ContainerType == UCONTAINER_DELIVERYBOX)
     {
-        for (uint8 i = 0; i < UCONTAINER_SIZE; ++i)
+        for (std::uint8_t i = 0; i < UCONTAINER_SIZE; ++i)
         {
             delete m_PItem[i];
         }
@@ -171,7 +171,7 @@ bool CUContainer::IsContainerEmpty()
 *                                                                       *
 ************************************************************************/
 
-bool CUContainer::IsSlotEmpty(uint8 slotID)
+bool CUContainer::IsSlotEmpty(std::uint8_t slotID)
 {
     if (slotID < m_PItem.size())
 	{
@@ -186,7 +186,7 @@ bool CUContainer::IsSlotEmpty(uint8 slotID)
 *																		*
 ************************************************************************/
 
-bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
+bool CUContainer::SetItem(std::uint8_t slotID, CItem* PItem)
 {
 	if (slotID < m_PItem.size() && !m_lock)
 	{
@@ -199,12 +199,12 @@ bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
     return false;
 }
 
-void CUContainer::SetSize(uint8 size)
+void CUContainer::SetSize(std::uint8_t size)
 {
     m_PItem.resize(size, nullptr);
 }
 
-void CUContainer::ClearSlot(uint8 slotID)
+void CUContainer::ClearSlot(std::uint8_t slotID)
 {
     if (slotID < m_PItem.size())
     {
@@ -218,7 +218,7 @@ void CUContainer::ClearSlot(uint8 slotID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CUContainer::GetItemsCount()
+std::uint8_t CUContainer::GetItemsCount()
 {
     return m_count;
 }
@@ -229,7 +229,7 @@ uint8 CUContainer::GetItemsCount()
 *																		*
 ************************************************************************/
 
-CItem* CUContainer::GetItem(uint8 slotID)
+CItem* CUContainer::GetItem(std::uint8_t slotID)
 {
 	if (slotID < m_PItem.size())
 	{

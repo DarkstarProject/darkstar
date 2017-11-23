@@ -32,7 +32,7 @@
 
 #include "../items/item_shop.h"
 
-CGuildMenuBuyUpdatePacket::CGuildMenuBuyUpdatePacket(CCharEntity* PChar, uint8 stock, std::uint16_t itemID, uint8 quantity)
+CGuildMenuBuyUpdatePacket::CGuildMenuBuyUpdatePacket(CCharEntity* PChar, std::uint8_t stock, std::uint16_t itemID, std::uint8_t quantity)
 {
     this->type = 0x82;
     this->size = 0x04;

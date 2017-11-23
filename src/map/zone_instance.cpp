@@ -70,7 +70,7 @@ CCharEntity* CZoneInstance::GetCharByID(std::uint32_t id)
     return PEntity;
 }
 
-CBaseEntity* CZoneInstance::GetEntity(std::uint16_t targid, uint8 filter)
+CBaseEntity* CZoneInstance::GetEntity(std::uint16_t targid, std::uint8_t filter)
 {
     CBaseEntity* PEntity = nullptr;
     if (filter & TYPE_PC)
@@ -358,7 +358,7 @@ void CZoneInstance::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(
     }
 }
 
-CInstance* CZoneInstance::CreateInstance(uint8 instanceid)
+CInstance* CZoneInstance::CreateInstance(std::uint8_t instanceid)
 {
     CInstance* instance = new CInstance(this, instanceid);
     instanceList.push_back(instance);

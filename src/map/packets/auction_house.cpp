@@ -35,7 +35,7 @@
 
 bool IsAuctionOpen = true; // Trading is allowed at the auction
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action)
+CAuctionHousePacket::CAuctionHousePacket(std::uint8_t action)
 {
     this->type = 0x4C;
     this->size = 0x1E;
@@ -50,7 +50,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action)
     }
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quantity, std::uint32_t price)
+CAuctionHousePacket::CAuctionHousePacket(std::uint8_t action, CItem* PItem, std::uint8_t quantity, std::uint32_t price)
 {
     this->type = 0x4C;
     this->size = 0x1E;
@@ -81,7 +81,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quant
 }
 
 //e.g. client history, client probes a slot number which you give the correct itemId+price
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* PChar)
+CAuctionHousePacket::CAuctionHousePacket(std::uint8_t action, std::uint8_t slot, CCharEntity* PChar)
 {
     this->type = 0x4C;
     this->size = 0x1E;
@@ -104,7 +104,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 slot, CCharEntity* 
     }
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, std::uint16_t itemid, std::uint32_t price)
+CAuctionHousePacket::CAuctionHousePacket(std::uint8_t action, std::uint8_t message, std::uint16_t itemid, std::uint32_t price)
 {
     this->type = 0x4C;
     this->size = 0x1E;
@@ -115,7 +115,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, std::uint1
     WBUFW(data,(0x0C)) = itemid;
 }
 
-CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, CCharEntity* PChar, uint8 slot, bool keepItem)
+CAuctionHousePacket::CAuctionHousePacket(std::uint8_t action, std::uint8_t message, CCharEntity* PChar, std::uint8_t slot, bool keepItem)
 {
     this->type = 0x4C;
     this->size = 0x1E;

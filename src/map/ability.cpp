@@ -85,12 +85,12 @@ JOBTYPE	CAbility::getJob()
     return m_Job;
 }
 
-void CAbility::setLevel(uint8 level)
+void CAbility::setLevel(std::uint8_t level)
 {
     m_level = level;
 }
 
-uint8 CAbility::getLevel()
+std::uint8_t CAbility::getLevel()
 {
     return m_level;
 }
@@ -105,12 +105,12 @@ float CAbility::getRange()
     return m_range;
 }
 
-void CAbility::setAOE(uint8 aoe)
+void CAbility::setAOE(std::uint8_t aoe)
 {
     m_aoe = aoe;
 }
 
-uint8 CAbility::getAOE()
+std::uint8_t CAbility::getAOE()
 {
     return m_aoe;
 }
@@ -473,8 +473,8 @@ namespace ability
     {
         if (GetAbility(AbilityID) != nullptr)
         {
-            uint8 Job = PAbilityList[AbilityID]->getJob();
-            uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
+            std::uint8_t Job = PAbilityList[AbilityID]->getJob();
+            std::uint8_t JobLvl = PAbilityList[AbilityID]->getLevel();
 
             return ((PUser->GetMJob() == Job && PUser->GetMLevel() >= JobLvl) ||
                 (PUser->GetSJob() == Job && PUser->GetSLevel() >= JobLvl));

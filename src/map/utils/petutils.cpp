@@ -62,33 +62,33 @@ struct Pet_t
     string_t	name;		// имя
     ECOSYSTEM	EcoSystem;	// эко-система
 
-    uint8		minLevel;	// минимально-возможный  уровень
-    uint8		maxLevel;	// максимально-возможный уровень
+    std::uint8_t		minLevel;	// минимально-возможный  уровень
+    std::uint8_t		maxLevel;	// максимально-возможный уровень
 
-    uint8       name_prefix;
-    uint8		size;		// размер модели
+    std::uint8_t       name_prefix;
+    std::uint8_t		size;		// размер модели
     std::uint16_t		m_Family;
     std::uint32_t		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
-    uint8		mJob;
-    uint8		m_Element;
+    std::uint8_t		mJob;
+    std::uint8_t		m_Element;
     float       HPscale;                             // HP boost percentage
     float       MPscale;                             // MP boost percentage
 
     std::uint16_t      cmbDelay;
-    uint8 		speed;
+    std::uint8_t 		speed;
     // stat ranks
-    uint8        strRank;
-    uint8        dexRank;
-    uint8        vitRank;
-    uint8        agiRank;
-    uint8        intRank;
-    uint8        mndRank;
-    uint8        chrRank;
-    uint8        attRank;
-    uint8        defRank;
-    uint8        evaRank;
-    uint8        accRank;
+    std::uint8_t        strRank;
+    std::uint8_t        dexRank;
+    std::uint8_t        vitRank;
+    std::uint8_t        agiRank;
+    std::uint8_t        intRank;
+    std::uint8_t        mndRank;
+    std::uint8_t        chrRank;
+    std::uint8_t        attRank;
+    std::uint8_t        defRank;
+    std::uint8_t        evaRank;
+    std::uint8_t        accRank;
 
     std::uint16_t       m_MobSkillList;
 
@@ -179,35 +179,35 @@ namespace petutils
                 Pet->name.insert(0, Sql_GetData(SqlHandle, 0));
 
                 memcpy(&Pet->look, Sql_GetData(SqlHandle, 1), 20);
-                Pet->minLevel = (uint8)Sql_GetIntData(SqlHandle, 2);
-                Pet->maxLevel = (uint8)Sql_GetIntData(SqlHandle, 3);
+                Pet->minLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
+                Pet->maxLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 3);
                 Pet->time = Sql_GetUIntData(SqlHandle, 4);
                 Pet->size = Sql_GetUIntData(SqlHandle, 5);
                 Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 6);
                 Pet->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 7);
-                Pet->mJob = (uint8)Sql_GetIntData(SqlHandle, 8);
-                Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
+                Pet->mJob = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
+                Pet->m_Element = (std::uint8_t)Sql_GetIntData(SqlHandle, 9);
 
                 Pet->HPscale = Sql_GetFloatData(SqlHandle, 10);
                 Pet->MPscale = Sql_GetFloatData(SqlHandle, 11);
 
-                Pet->speed = (uint8)Sql_GetIntData(SqlHandle, 12);
+                Pet->speed = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
 
-                Pet->strRank = (uint8)Sql_GetIntData(SqlHandle, 13);
-                Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle, 14);
-                Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle, 15);
-                Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle, 16);
-                Pet->intRank = (uint8)Sql_GetIntData(SqlHandle, 17);
-                Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle, 18);
-                Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle, 19);
-                Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
-                Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
-                Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
-                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
+                Pet->strRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
+                Pet->dexRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 14);
+                Pet->vitRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 15);
+                Pet->agiRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 16);
+                Pet->intRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 17);
+                Pet->mndRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 18);
+                Pet->chrRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 19);
+                Pet->defRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 20);
+                Pet->attRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 21);
+                Pet->accRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 22);
+                Pet->evaRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 23);
 
                 Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
 
-                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
+                Pet->spellList = (std::uint8_t)Sql_GetIntData(SqlHandle, 25);
 
                 // resistances
                 Pet->slashres = (std::uint16_t)(Sql_GetFloatData(SqlHandle, 26) * 1000);
@@ -234,7 +234,7 @@ namespace petutils
                 Pet->darkres = (std::uint16_t)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
 
                 Pet->cmbDelay = (std::uint16_t)Sql_GetIntData(SqlHandle, 38);
-                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
+                Pet->name_prefix = (std::uint8_t)Sql_GetUIntData(SqlHandle, 39);
                 Pet->m_MobSkillList = (std::uint16_t)Sql_GetUIntData(SqlHandle, 40);
 
                 g_PPetList.push_back(Pet);
@@ -284,10 +284,10 @@ namespace petutils
         float MainLevel = PPet->GetMLevel();
         return (std::uint16_t)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
     }
-    std::uint16_t GetJugBase(CPetEntity * PMob, uint8 rank)
+    std::uint16_t GetJugBase(CPetEntity * PMob, std::uint8_t rank)
     {
 
-        uint8 lvl = PMob->GetMLevel();
+        std::uint8_t lvl = PMob->GetMLevel();
         if (lvl > 50){
             switch (rank){
             case 1:
@@ -326,7 +326,7 @@ namespace petutils
         }
         return 0;
     }
-    std::uint16_t GetBaseToRank(uint8 rank, std::uint16_t lvl)
+    std::uint16_t GetBaseToRank(std::uint8_t rank, std::uint16_t lvl)
     {
         switch (rank)
         {
@@ -345,7 +345,7 @@ namespace petutils
         //follows monster formulas but jugs have no subjob
 
         float growth = 1.0;
-        uint8 lvl = PMob->GetMLevel();
+        std::uint8_t lvl = PMob->GetMLevel();
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
@@ -470,9 +470,9 @@ namespace petutils
         std::int32_t scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
         // std::int32_t scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
-        uint8 grade;
+        std::uint8_t grade;
 
-        uint8 mlvl = PPet->GetMLevel();
+        std::uint8_t mlvl = PPet->GetMLevel();
         JOBTYPE mjob = PPet->GetMJob();
         JOBTYPE sjob = PPet->GetSJob();
         // Расчет прироста HP от main job
@@ -631,11 +631,11 @@ namespace petutils
         std::int32_t scaleOver60 = 2;			// номер колонки с модификатором для расчета MP после 60 уровня
         std::int32_t scaleOver75 = 3;			// номер колонки с модификатором для расчета Статов после 75-го уровня
 
-        uint8 grade;
+        std::uint8_t grade;
 
-        uint8 mlvl = PPet->GetMLevel();
+        std::uint8_t mlvl = PPet->GetMLevel();
         JOBTYPE mjob = PPet->GetMJob();
-        uint8 race = 3;					//Tarutaru
+        std::uint8_t race = 3;					//Tarutaru
 
         // Расчет прироста HP от main job
         std::int32_t mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);			// Расчет условия +1HP каждый лвл после 30 уровня
@@ -717,8 +717,8 @@ namespace petutils
 
 
         //Начало расчета характеристик
-        uint8 counter = 0;
-        for (uint8 StatIndex = 2; StatIndex <= 8; ++StatIndex)
+        std::uint8_t counter = 0;
+        for (std::uint8_t StatIndex = 2; StatIndex <= 8; ++StatIndex)
         {
             // расчет по расе
             grade = grade::GetRaceGrades(race, StatIndex);
@@ -966,7 +966,7 @@ namespace petutils
         petutils::DetachPet(PMaster);
     }
 
-    std::int16_t PerpetuationCost(std::uint32_t id, uint8 level)
+    std::int16_t PerpetuationCost(std::uint32_t id, std::uint8_t level)
     {
         std::int16_t cost = 0;
         if (id >= 0 && id <= 7)
@@ -1342,7 +1342,7 @@ namespace petutils
             PPet->m_Weapons[SLOT_MAIN]->setDelay((std::uint16_t)(floor(1000.0f*(240.0f / 60.0f))));
 
             //Get the Jug pet cap level
-            uint8 highestLvl = PPetData->maxLevel;
+            std::uint8_t highestLvl = PPetData->maxLevel;
 
             // Increase the pet's level cal by the bonus given by BEAST AFFINITY merits.
             CCharEntity* PChar = (CCharEntity*)PMaster;

@@ -25,7 +25,7 @@
 
 #include "inventory_modify.h"
 
-CInventoryModifyPacket::CInventoryModifyPacket(uint8 LocationID, uint8 slotID, std::uint32_t quantity) 
+CInventoryModifyPacket::CInventoryModifyPacket(std::uint8_t LocationID, std::uint8_t slotID, std::uint32_t quantity) 
 {
 	this->type = 0x1E;
 	this->size = 0x08;

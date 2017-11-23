@@ -78,7 +78,7 @@ inline std::int32_t CLuaSpell::setAoE(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setAOE((uint8)lua_tointeger(L, -1));
+    m_PLuaSpell->setAOE((std::uint8_t)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -87,7 +87,7 @@ inline std::int32_t CLuaSpell::setFlag(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setFlag((uint8)lua_tointeger(L, -1));
+    m_PLuaSpell->setFlag((std::uint8_t)lua_tointeger(L, -1));
     return 0;
 }
 

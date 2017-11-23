@@ -116,7 +116,7 @@ inline std::int32_t CLuaItem::isType(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto type = (uint8)lua_tointeger(L, 1);
+    auto type = (std::uint8_t)lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isType((ITEM_TYPE)type));
     return 1;
@@ -127,7 +127,7 @@ inline std::int32_t CLuaItem::isSubType(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    auto subtype = (uint8)lua_tointeger(L, 1);
+    auto subtype = (std::uint8_t)lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isSubType((ITEM_SUBTYPE)subtype));
     return 1;
@@ -191,10 +191,10 @@ inline std::int32_t CLuaItem::getAugment(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    auto slot = (uint8)lua_tointeger(L, 1);
+    auto slot = (std::uint8_t)lua_tointeger(L, 1);
     std::uint16_t augment = PItem->getAugment(slot);
-    std::uint16_t augmentid = (std::uint16_t)unpackBitsBE((uint8*)(&augment), 0, 11);
-    uint8 augmentVal = (uint8)unpackBitsBE((uint8*)(&augment), 11, 5);
+    std::uint16_t augmentid = (std::uint16_t)unpackBitsBE((std::uint8_t*)(&augment), 0, 11);
+    std::uint8_t augmentVal = (std::uint8_t)unpackBitsBE((std::uint8_t*)(&augment), 11, 5);
 
     lua_pushinteger(L, augmentid);
     lua_pushinteger(L, augmentVal);

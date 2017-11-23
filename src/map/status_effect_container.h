@@ -42,9 +42,9 @@ class CStatusEffectContainer
 public:
 
     std::uint64_t	m_Flags {0};											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
-    uint8 m_StatusIcons[32];                  // иконки статус-эффектов
+    std::uint8_t m_StatusIcons[32];                  // иконки статус-эффектов
 
-    bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
+    bool ApplyBardEffect(CStatusEffect* PStatusEffect, std::uint8_t maxSongs);
     bool CanGainStatusEffect(EFFECT statusEffect, std::uint16_t power); // returns true if the status effect will take effect
     bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
     bool DelStatusEffect(EFFECT StatusID);
@@ -63,9 +63,9 @@ public:
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
     EFFECT HealingWaltz();				// dancers healing waltz
-    uint8 EraseAllStatusEffect();               // erases all status effects
+    std::uint8_t EraseAllStatusEffect();               // erases all status effects
     EFFECT DispelStatusEffect(EFFECTFLAG flag);             // удаляем первый положительный эффект
-    uint8 DispelAllStatusEffect(EFFECTFLAG flag);                // dispels all status effects
+    std::uint8_t DispelAllStatusEffect(EFFECTFLAG flag);                // dispels all status effects
     CStatusEffect* StealStatusEffect();             // dispels one effect and returns it
 
     CStatusEffect* GetStatusEffect(EFFECT StatusID);
@@ -79,15 +79,15 @@ public:
     void LoadStatusEffects();                                   // загружаем эффекты персонажа
     void SaveStatusEffects(bool logout = false);                // сохраняем эффекты персонажа
 
-    uint8 GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
+    std::uint8_t GetEffectsCount(EFFECT ID);                        // получаем количество эффектов с указанным id
 
-    bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration);
+    bool ApplyCorsairEffect(CStatusEffect* PStatusEffect, std::uint8_t maxRolls, std::uint8_t bustDuration);
     bool CheckForElevenRoll();
     bool HasBustEffect(std::uint16_t id);
     bool HasCorsairEffect(std::uint32_t charid);
     void Fold(std::uint32_t charid);
 
-    uint8 GetActiveManeuvers();
+    std::uint8_t GetActiveManeuvers();
     void RemoveOldestManeuver();
     void RemoveAllManeuvers();
 

@@ -40,22 +40,22 @@ public:
 
 	CItemFish(const CItem &PItem);
     
-    uint8   GetMin();
-    uint8   GetMax();
-    uint8   GetWatertype();
-    uint8   GetSize();
-    uint8   GetStamina();
-    uint8   GetRodFlag();
+    std::uint8_t   GetMin();
+    std::uint8_t   GetMax();
+    std::uint8_t   GetWatertype();
+    std::uint8_t   GetSize();
+    std::uint8_t   GetStamina();
+    std::uint8_t   GetRodFlag();
     std::uint16_t  GetLength();
     std::uint16_t  GetWeight();
     bool    IsRanked();
     
-    void    SetMin(uint8);
-    void    SetMax(uint8);
-    void    SetWatertype(uint8);
-    void    SetSize(uint8);
-    void    SetStamina(uint8);
-    void    SetRodFlag(uint8);
+    void    SetMin(std::uint8_t);
+    void    SetMax(std::uint8_t);
+    void    SetWatertype(std::uint8_t);
+    void    SetSize(std::uint8_t);
+    void    SetStamina(std::uint8_t);
+    void    SetRodFlag(std::uint8_t);
     void    SetLength(std::uint16_t);
     void    SetWeight(std::uint16_t);
     void    SetRank(bool);
@@ -64,12 +64,12 @@ public:
 
 private:
 
-    uint8   m_min;
-    uint8   m_max;
-    uint8   m_watertype;
-    uint8   m_size;
-    uint8   m_stamina;
-    uint8   m_rodflag;
+    std::uint8_t   m_min;
+    std::uint8_t   m_max;
+    std::uint8_t   m_watertype;
+    std::uint8_t   m_size;
+    std::uint8_t   m_stamina;
+    std::uint8_t   m_rodflag;
 };
 
 #endif

@@ -243,10 +243,10 @@ inline std::int32_t CLuaInstance::getEntity(lua_State* L)
 
     auto targid = (std::uint16_t)lua_tointeger(L, 1);
 
-    uint8 filter = -1;
+    std::uint8_t filter = -1;
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
-        filter = (uint8)lua_tointeger(L, 2);
+        filter = (std::uint8_t)lua_tointeger(L, 2);
     }
 
     CBaseEntity* PEntity = m_PLuaInstance->GetEntity(targid, filter);
@@ -281,7 +281,7 @@ inline std::int32_t CLuaInstance::setLevelCap(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetLevelCap((uint8)lua_tonumber(L, 1));
+    m_PLuaInstance->SetLevelCap((std::uint8_t)lua_tonumber(L, 1));
 
     return 0;
 }

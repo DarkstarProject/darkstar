@@ -32,7 +32,7 @@
 
 #define MAX_ACTION_TARGETS	16
 
-enum ACTIONTYPE : uint8
+enum ACTIONTYPE : std::uint8_t
 {
     ACTION_NONE = 0,
     ACTION_ATTACK = 1,
@@ -67,7 +67,7 @@ struct actionTarget_t
     REACTION		  reaction;			    //  5 bits
     std::uint16_t			  animation;			// 12 bits
     SPECEFFECT		  speceffect;			//  7 bits
-    uint8             knockback;            //  3 bits
+    std::uint8_t             knockback;            //  3 bits
     std::int32_t			  param;				// 17 bits
     std::uint16_t			  messageID;			// 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits

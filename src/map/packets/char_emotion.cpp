@@ -30,7 +30,7 @@
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 
-CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff)
+CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, std::uint8_t* buff)
 {
 	this->type = 0x5a;
 	this->size = 0x1C;								// new size to match retail packet
@@ -40,11 +40,11 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff)
 	WBUFW(data,(0x0C)) = PChar->targid;				// player's zone charList index
 	WBUFW(data,(0x0E)) = RBUFW(buff,(0x08));		// target's zone mobList index (?)
 
-	uint8 emoteID = RBUFB(buff,(0x0A));
-	uint8 motion = RBUFB(buff,(0x0B));
+	std::uint8_t emoteID = RBUFB(buff,(0x0A));
+	std::uint8_t motion = RBUFB(buff,(0x0B));
 
 	if (emoteID == 0x4A) { 							// [jobemote] sends job id as extra value
-		uint8 offset = RBUFB(buff,(0x0C)) - 0x1F;
+		std::uint8_t offset = RBUFB(buff,(0x0C)) - 0x1F;
 		WBUFB(data,(0x10)) = emoteID + offset;		// emote Id
 		WBUFB(data,(0x12)) = offset;				// job Id
 	} else if (emoteID == 0x2B) { 					// [hurray] sends weapon as extra value

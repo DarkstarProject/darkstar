@@ -32,7 +32,7 @@ CItemPuppet::~CItemPuppet()
 {
 }
 
-uint8 CItemPuppet::getEquipSlot()
+std::uint8_t CItemPuppet::getEquipSlot()
 {
     return m_equipSlot;
 }

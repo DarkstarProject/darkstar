@@ -180,7 +180,7 @@ CNpcEntity* GetTrigger(std::uint16_t TargID, std::uint16_t ZoneID)
 *                                                                       *
 ************************************************************************/
 
-CBaseEntity* GetEntity(std::uint32_t ID, uint8 filter)
+CBaseEntity* GetEntity(std::uint32_t ID, std::uint8_t filter)
 {
     std::uint16_t zoneID = (ID >> 12) & 0x0FFF;
     CZone* PZone = GetZone(zoneID);
@@ -336,7 +336,7 @@ void LoadNPCList()
 
                 PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
-                PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
+                PNpc->loc.p.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
                 PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
                 PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
                 PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
@@ -344,17 +344,17 @@ void LoadNPCList()
 
                 PNpc->m_TargID = (std::uint32_t)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
 
-                PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 7);
-                PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 8);
-                PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 9);
-                PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 10);
+                PNpc->speed = (std::uint8_t)Sql_GetIntData(SqlHandle, 7);
+                PNpc->speedsub = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
+                PNpc->animation = (std::uint8_t)Sql_GetIntData(SqlHandle, 9);
+                PNpc->animationsub = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
 
-                PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
+                PNpc->namevis = (std::uint8_t)Sql_GetIntData(SqlHandle, 11);
                 PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
                 PNpc->m_flags = (std::uint32_t)Sql_GetUIntData(SqlHandle, 13);
 
-                PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
-                PNpc->widescan = (uint8)Sql_GetIntData(SqlHandle, 17);
+                PNpc->name_prefix = (std::uint8_t)Sql_GetIntData(SqlHandle, 15);
+                PNpc->widescan = (std::uint8_t)Sql_GetIntData(SqlHandle, 17);
 
                 memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
@@ -382,8 +382,8 @@ void LoadNPCList()
 
 void LoadMOBList()
 {
-    uint8 normalLevelRangeMin = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MIN");
-    uint8 normalLevelRangeMax = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MAX");
+    std::uint8_t normalLevelRangeMin = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MIN");
+    std::uint8_t normalLevelRangeMax = luautils::GetSettingsVariable("NORMAL_MOB_MAX_LEVEL_RANGE_MAX");
 
     const int8* Query =
         "SELECT mob_groups.zoneid, mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
@@ -421,7 +421,7 @@ void LoadMOBList()
 
                 PMob->targid = (std::uint16_t)PMob->id & 0x0FFF;
 
-                PMob->m_SpawnPoint.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
+                PMob->m_SpawnPoint.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 3);
                 PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle, 4);
                 PMob->m_SpawnPoint.y = Sql_GetFloatData(SqlHandle, 5);
                 PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle, 6);
@@ -433,8 +433,8 @@ void LoadMOBList()
                 PMob->HPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 10);
                 PMob->MPmodifier = (std::uint32_t)Sql_GetIntData(SqlHandle, 11);
 
-                PMob->m_minLevel = (uint8)Sql_GetIntData(SqlHandle, 12);
-                PMob->m_maxLevel = (uint8)Sql_GetIntData(SqlHandle, 13);
+                PMob->m_minLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
+                PMob->m_maxLevel = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
 
                 memcpy(&PMob->look, Sql_GetData(SqlHandle, 14), 23);
 
@@ -448,14 +448,14 @@ void LoadMOBList()
                 PMob->m_Weapons[SLOT_MAIN]->setBaseDelay((Sql_GetIntData(SqlHandle, 19) * 1000) / 60);
 
                 PMob->m_Behaviour = (std::uint16_t)Sql_GetIntData(SqlHandle, 20);
-                PMob->m_Link = (uint8)Sql_GetIntData(SqlHandle, 21);
-                PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 22);
+                PMob->m_Link = (std::uint8_t)Sql_GetIntData(SqlHandle, 21);
+                PMob->m_Type = (std::uint8_t)Sql_GetIntData(SqlHandle, 22);
                 PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 23);
                 PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 24);
-                PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 25);
+                PMob->m_ModelSize = (std::uint8_t)Sql_GetIntData(SqlHandle, 25);
 
-                PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 26);
-                PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 26);
+                PMob->speed = (std::uint8_t)Sql_GetIntData(SqlHandle, 26);
+                PMob->speedsub = (std::uint8_t)Sql_GetIntData(SqlHandle, 26);
 
                 /*if(PMob->speed != 0)
                 {
@@ -464,17 +464,17 @@ void LoadMOBList()
                 PMob->speedsub += map_config.speed_mod;
                 }*/
 
-                PMob->strRank = (uint8)Sql_GetIntData(SqlHandle, 27);
-                PMob->dexRank = (uint8)Sql_GetIntData(SqlHandle, 28);
-                PMob->vitRank = (uint8)Sql_GetIntData(SqlHandle, 29);
-                PMob->agiRank = (uint8)Sql_GetIntData(SqlHandle, 30);
-                PMob->intRank = (uint8)Sql_GetIntData(SqlHandle, 31);
-                PMob->mndRank = (uint8)Sql_GetIntData(SqlHandle, 32);
-                PMob->chrRank = (uint8)Sql_GetIntData(SqlHandle, 33);
-                PMob->evaRank = (uint8)Sql_GetIntData(SqlHandle, 34);
-                PMob->defRank = (uint8)Sql_GetIntData(SqlHandle, 35);
-                PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 57);
-                PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 58);
+                PMob->strRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 27);
+                PMob->dexRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 28);
+                PMob->vitRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 29);
+                PMob->agiRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 30);
+                PMob->intRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 31);
+                PMob->mndRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 32);
+                PMob->chrRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 33);
+                PMob->evaRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 34);
+                PMob->defRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 35);
+                PMob->attRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 57);
+                PMob->accRank = (std::uint8_t)Sql_GetIntData(SqlHandle, 58);
 
                 PMob->setModifier(Mod::SLASHRES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 36) * 1000));
                 PMob->setModifier(Mod::PIERCERES, (std::uint16_t)(Sql_GetFloatData(SqlHandle, 37) * 1000));
@@ -490,9 +490,9 @@ void LoadMOBList()
                 PMob->setModifier(Mod::LIGHTRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 46) - 1) * -100));
                 PMob->setModifier(Mod::DARKRES, (std::int16_t)((Sql_GetFloatData(SqlHandle, 47) - 1) * -100));
 
-                PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 48);
+                PMob->m_Element = (std::uint8_t)Sql_GetIntData(SqlHandle, 48);
                 PMob->m_Family = (std::uint16_t)Sql_GetIntData(SqlHandle, 49);
-                PMob->m_name_prefix = (uint8)Sql_GetIntData(SqlHandle, 50);
+                PMob->m_name_prefix = (std::uint8_t)Sql_GetIntData(SqlHandle, 50);
                 PMob->m_flags = (std::uint32_t)Sql_GetIntData(SqlHandle, 51);
 
                 // Cap Level if Necessary (Don't Cap NMs)
@@ -519,7 +519,7 @@ void LoadMOBList()
                 PMob->MPscale = Sql_GetFloatData(SqlHandle, 54);
 
                 // Check if we should be looking up scripts for this mob
-                PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 55);
+                PMob->m_HasSpellScript = (std::uint8_t)Sql_GetIntData(SqlHandle, 55);
 
                 PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(Sql_GetIntData(SqlHandle, 56));
 
@@ -1010,7 +1010,7 @@ int GetWeatherElement(WEATHER weather)
 {
     DSP_DEBUG_BREAK_IF(weather >= MAX_WEATHER_ID);
 
-    static uint8 Element[] =
+    static std::uint8_t Element[] =
     {
         0,  //WEATHER_NONE
         0,  //WEATHER_SUNSHINE

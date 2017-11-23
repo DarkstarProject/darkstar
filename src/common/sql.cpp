@@ -514,7 +514,7 @@ void Sql_Free(Sql_t* self)
 
 bool Sql_SetAutoCommit(Sql_t* self, bool value)
 {
-    uint8 val = (value) ? 1 : 0;
+    std::uint8_t val = (value) ? 1 : 0;
 
     //if( self && mysql_autocommit(&self->handle, val) == 0)
     if( self && Sql_Query(self, "SET @@autocommit = %u", val) != SQL_ERROR)

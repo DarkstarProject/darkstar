@@ -74,7 +74,7 @@ void CAHHistoryPacket::AddItem(ahHistory* item)
 *																		*
 ************************************************************************/
 
-uint8* CAHHistoryPacket::GetData()
+std::uint8_t* CAHHistoryPacket::GetData()
 {
     return m_PData;
 }

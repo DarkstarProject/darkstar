@@ -31,7 +31,7 @@
 
 struct map_session_data_t;
 
-extern uint8 PacketSize[512];
+extern std::uint8_t PacketSize[512];
 
 extern void(*PacketParser[512])(map_session_data_t*, CCharEntity*, CBasicPacket);
 

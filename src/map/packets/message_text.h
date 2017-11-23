@@ -40,7 +40,7 @@ class CMessageTextPacket : public CBasicPacket
 {
 public:
 
-	CMessageTextPacket(CBaseEntity* PEntity, std::uint16_t messageID, bool showName = true, uint8 mode = 0);
+	CMessageTextPacket(CBaseEntity* PEntity, std::uint16_t messageID, bool showName = true, std::uint8_t mode = 0);
 };
 
 #endif

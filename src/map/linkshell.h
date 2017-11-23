@@ -54,11 +54,11 @@ public:
 	void		setName(int8* name);
 	void		setMessage(const int8* message, const int8* poster);
 
-    void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
+    void        AddMember(CCharEntity* PChar,int8 type, std::uint8_t lsNum);
     bool        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
-	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
+	void		ChangeMemberRank(int8* MemberName, std::uint8_t toSack);
 
     void        PushPacket(std::uint32_t senderID, CBasicPacket* packet);
     void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
@@ -83,7 +83,7 @@ namespace linkshell
 {
     CLinkshell* LoadLinkshell(std::uint32_t id);
 
-    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, uint8 lsNum);
+    bool AddOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell, std::uint8_t lsNum);
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
     std::uint32_t RegisterNewLinkshell(const int8* name, std::uint16_t color);

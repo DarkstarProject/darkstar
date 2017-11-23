@@ -38,7 +38,7 @@ class CShopBuyPacket: public CBasicPacket
 {
 public:
 
-	CShopBuyPacket(uint8 slotID, std::uint32_t quantity);
+	CShopBuyPacket(std::uint8_t slotID, std::uint32_t quantity);
 };
 
 #endif

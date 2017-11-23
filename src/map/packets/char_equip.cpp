@@ -26,7 +26,7 @@
 #include "char_equip.h"
 
 
-CEquipPacket::CEquipPacket(uint8 EquipSlot, uint8 SlotID, uint8 containerID)
+CEquipPacket::CEquipPacket(std::uint8_t EquipSlot, std::uint8_t SlotID, std::uint8_t containerID)
 {
 	this->type = 0x50;
 	this->size = 0x04;

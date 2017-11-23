@@ -32,7 +32,7 @@
 CEventPacket::CEventPacket(
 	CCharEntity* PChar,
 	std::uint16_t EventID, 
-	uint8  numOfParams, 
+	std::uint8_t  numOfParams, 
 	std::uint32_t param0,
 	std::uint32_t param1,
 	std::uint32_t param2,

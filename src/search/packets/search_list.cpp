@@ -67,7 +67,7 @@ void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
     m_offset = packBitsLE(m_data, SEARCH_NAME, m_offset, 5);
     m_offset = packBitsLE(m_data, strlen((const int8*)PPlayer->name), m_offset, 4);
 
-    for (uint8 c = 0; c < strlen((const int8*)PPlayer->name); ++c)
+    for (std::uint8_t c = 0; c < strlen((const int8*)PPlayer->name); ++c)
     {
         m_offset = packBitsLE(m_data, PPlayer->name[c], m_offset, 7);
     }
@@ -133,7 +133,7 @@ void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
 *																		*
 ************************************************************************/
 
-uint8* CSearchListPacket::GetData()
+std::uint8_t* CSearchListPacket::GetData()
 {
     return m_data;
 }

@@ -40,7 +40,7 @@ This file is part of DarkStar-server source code.
 #include "../../utils/charutils.h"
 
 
-CItemState::CItemState(CCharEntity* PEntity, std::uint16_t targid, uint8 loc, uint8 slotid) :
+CItemState::CItemState(CCharEntity* PEntity, std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
     m_PItem(nullptr),

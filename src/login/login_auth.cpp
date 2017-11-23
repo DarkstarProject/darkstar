@@ -113,7 +113,7 @@ std::int32_t login_parse(std::int32_t fd)
                 ret = Sql_NextRow(SqlHandle);
 
                 sd->accid = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
-                uint8 status = (uint8)Sql_GetUIntData(SqlHandle, 1);
+                std::uint8_t status = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
 
                 if (status & ACCST_NORMAL)
                 {

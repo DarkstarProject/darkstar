@@ -134,7 +134,7 @@ CCharEntity::CCharEntity()
     memset(&m_assaultLog, 0, sizeof(m_assaultLog));
     memset(&m_campaignLog, 0, sizeof(m_campaignLog));
 
-    for (uint8 i = 0; i <= 3; ++i)
+    for (std::uint8_t i = 0; i <= 3; ++i)
     {
         m_missionLog[i].current = 0xFFFF;
     }
@@ -218,7 +218,7 @@ CCharEntity::~CCharEntity()
     delete PMeritPoints;
 }
 
-uint8 CCharEntity::GetGender()
+std::uint8_t CCharEntity::GetGender()
 {
     return (look.race) % 2 ^ (look.race > 6);
 }
@@ -267,7 +267,7 @@ size_t CCharEntity::getPacketCount()
     return PacketList.size();
 }
 
-void CCharEntity::erasePackets(uint8 num)
+void CCharEntity::erasePackets(std::uint8_t num)
 {
     for (auto i = 0; i < num; i++)
     {
@@ -314,7 +314,7 @@ void CCharEntity::resetPetZoningInfo()
 *																		*
 ************************************************************************/
 
-CItemContainer* CCharEntity::getStorage(uint8 LocationID)
+CItemContainer* CCharEntity::getStorage(std::uint8_t LocationID)
 {
     switch (LocationID)
     {
@@ -435,8 +435,8 @@ std::uint32_t CCharEntity::GetPlayTime(bool needUpdate)
 
 CItemArmor* CCharEntity::getEquip(SLOTTYPE slot)
 {
-    uint8 loc = equip[slot];
-    uint8 est = equipLoc[slot];
+    std::uint8_t loc = equip[slot];
+    std::uint8_t est = equipLoc[slot];
     CItemArmor* item = nullptr;
 
     if (loc != 0)
@@ -882,7 +882,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
 
         // get any available merit recast reduction
-        uint8 meritRecastReduction = 0;
+        std::uint8_t meritRecastReduction = 0;
 
         if (PAbility->getMeritModID() > 0 && !(PAbility->getAddType() & ADDTYPE_MERIT))
         {
@@ -1137,7 +1137,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
     bool ammoThrowing = PAmmo ? PAmmo->isThrowing() : false;
     bool rangedThrowing = PItem ? PItem->isThrowing() : false;
-    uint8 slot = SLOT_RANGED;
+    std::uint8_t slot = SLOT_RANGED;
 
     if (ammoThrowing)
     {
@@ -1149,9 +1149,9 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         PAmmo = nullptr;
     }
 
-    uint8 shadowsTaken = 0;
-    uint8 hitCount = 1;			// 1 hit by default
-    uint8 realHits = 0;			// to store the real number of hit for tp multipler
+    std::uint8_t shadowsTaken = 0;
+    std::uint8_t hitCount = 1;			// 1 hit by default
+    std::uint8_t realHits = 0;			// to store the real number of hit for tp multipler
     auto ammoConsumed = 0;
     bool hitOccured = false;	// track if player hit mob at all
     bool isSange = false;
@@ -1169,7 +1169,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     }
 
     // loop for barrage hits, if a miss occurs, the loop will end
-    for (uint8 i = 1; i <= hitCount; ++i)
+    for (std::uint8_t i = 1; i <= hitCount; ++i)
     {
         if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
         {
@@ -1386,7 +1386,7 @@ void CCharEntity::OnRaise()
     // TODO: Moghancement Experience needs to be factored in here somewhere.
     if (m_hasRaise > 0)
     {
-        uint8 weaknessLvl = 1;
+        std::uint8_t weaknessLvl = 1;
         if (StatusEffectContainer->HasStatusEffect(EFFECT_WEAKNESS))
         {
             //double weakness!
@@ -1434,7 +1434,7 @@ void CCharEntity::OnRaise()
 
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CActionPacket(action));
 
-        uint8 mLevel = (m_LevelRestriction != 0 && m_LevelRestriction < GetMLevel()) ? m_LevelRestriction : GetMLevel();
+        std::uint8_t mLevel = (m_LevelRestriction != 0 && m_LevelRestriction < GetMLevel()) ? m_LevelRestriction : GetMLevel();
         std::uint16_t expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
 
         std::uint16_t xpNeededToLevel = charutils::GetExpNEXTLevel(jobs.job[GetMJob()]) - jobs.exp[GetMJob()];

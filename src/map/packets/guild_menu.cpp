@@ -27,7 +27,7 @@
 #include "guild_menu.h"
 
 
-CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, uint8 holiday)
+CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, std::uint8_t open, std::uint8_t close, std::uint8_t holiday)
 {
 	this->type = 0x86;
 	this->size = 0x06;

@@ -48,22 +48,22 @@ struct GPItem_t
 class CGuild
 {
 public:
-    CGuild(uint8 id, const char* pointsName);
+    CGuild(std::uint8_t id, const char* pointsName);
     ~CGuild();
 
     std::vector<CItemContainer*> guildShops;
 
-    uint8 id();
+    std::uint8_t id();
 
-    void updateGuildPointsPattern(uint8 pattern);
-    uint8 addGuildPoints(CCharEntity* PChar, CItem* PItem, std::int16_t& pointsAdded);
+    void updateGuildPointsPattern(std::uint8_t pattern);
+    std::uint8_t addGuildPoints(CCharEntity* PChar, CItem* PItem, std::int16_t& pointsAdded);
     std::pair<std::uint16_t,std::uint16_t> getDailyGPItem(CCharEntity* PChar);
 
 private:
-    uint8 m_id;
+    std::uint8_t m_id;
     std::string pointsName;
 
-    std::array<uint8, GP_ITEM_RANKS> m_GPItemsRank;
+    std::array<std::uint8_t, GP_ITEM_RANKS> m_GPItemsRank;
     std::array<std::vector<GPItem_t>, GP_ITEM_RANKS> m_GPItems;
 };
 

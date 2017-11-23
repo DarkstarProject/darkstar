@@ -37,7 +37,7 @@
 *                                                                       *
 ************************************************************************/
 
-CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
+CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, std::uint8_t SlotID)
 {
 	this->type = 0x23;
 	this->size = 0x14;

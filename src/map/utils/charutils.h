@@ -51,17 +51,17 @@ namespace charutils
     void	CalculateStats(CCharEntity* PChar);
     void    UpdateSubJob(CCharEntity* PChar);
 
-    void	SetLevelRestriction(CCharEntity* PChar, uint8 lvl);
+    void	SetLevelRestriction(CCharEntity* PChar, std::uint8_t lvl);
 
-    std::uint32_t	GetExpNEXTLevel(uint8 charlvl);
-    std::uint32_t	GetRealExp(uint8 charlvl, uint8 moblvl);
+    std::uint32_t	GetExpNEXTLevel(std::uint8_t charlvl);
+    std::uint32_t	GetRealExp(std::uint8_t charlvl, std::uint8_t moblvl);
 
     void	DelExperiencePoints(CCharEntity* PChar, float retainpct, std::uint16_t forcedXpLoss);
     void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
     void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
     void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, std::uint32_t exp, std::uint32_t baseexp = 0, bool isexpchain = false);
 
-    void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);
+    void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, std::uint8_t lvl);
     void	BuildingCharSkillsTable(CCharEntity* PChar);
     void    BuildingCharWeaponSkills(CCharEntity* PChar);
     void	BuildingCharAbilityTable(CCharEntity* PChar);
@@ -71,22 +71,22 @@ namespace charutils
     void    DoTrade(CCharEntity* PChar, CCharEntity* PTarget);
     bool    CanTrade(CCharEntity* PChar, CCharEntity* PTarget);
 
-    void	CheckWeaponSkill(CCharEntity* PChar, uint8 skill);
+    void	CheckWeaponSkill(CCharEntity* PChar, std::uint8_t skill);
     bool    HasItem(CCharEntity* PChar, std::uint16_t ItemID);
-    uint8   AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence = false);
-    uint8	AddItem(CCharEntity* PChar, uint8 LocationID, std::uint16_t itemID, std::uint32_t quantity = 1, bool silence = false);
-    uint8   MoveItem(CCharEntity* PChar, uint8 LocationID, uint8 SlotID, uint8 NewSlotID);
-    std::uint32_t	UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, std::int32_t quantity, bool force = false);
+    std::uint8_t   AddItem(CCharEntity* PChar, std::uint8_t LocationID, CItem* PItem, bool silence = false);
+    std::uint8_t	AddItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint16_t itemID, std::uint32_t quantity = 1, bool silence = false);
+    std::uint8_t   MoveItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t SlotID, std::uint8_t NewSlotID);
+    std::uint32_t	UpdateItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t slotID, std::int32_t quantity, bool force = false);
     void	CheckValidEquipment(CCharEntity* PChar);
     void	CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, std::uint32_t param);
-    void	EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
-    void	UnequipItem(CCharEntity* PChar, uint8 equipSlotID, bool update = true); //call with update == false to prevent calls to UpdateHealth() - used for correct handling of stats on armor swaps
+    void	EquipItem(CCharEntity* PChar, std::uint8_t slotID, std::uint8_t equipSlotID, std::uint8_t containerID);
+    void	UnequipItem(CCharEntity* PChar, std::uint8_t equipSlotID, bool update = true); //call with update == false to prevent calls to UpdateHealth() - used for correct handling of stats on armor swaps
     void    RemoveSub(CCharEntity* PChar);
-    bool    EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID);
+    bool    EquipArmor(CCharEntity* PChar, std::uint8_t slotID, std::uint8_t equipSlotID, std::uint8_t containerID);
     void	CheckUnarmedWeapon(CCharEntity* PChar);
     void    SetStyleLock(CCharEntity* PChar, bool isStyleLocked);
-    void    UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem);
-    void    UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID);
+    void    UpdateWeaponStyle(CCharEntity* PChar, std::uint8_t equipSlotID, CItemWeapon* PItem);
+    void    UpdateArmorStyle(CCharEntity* PChar, std::uint8_t equipSlotID);
 
     bool	hasKeyItem(CCharEntity* PChar, std::uint16_t KeyItemID);	        // проверяем наличие ключевого предмета
     bool	seenKeyItem(CCharEntity* PChar, std::uint16_t KeyItemID);	        // проверяем, было ли описание ключевого предмета прочитано
@@ -102,9 +102,9 @@ namespace charutils
     std::int32_t	addLearnedAbility(CCharEntity* PChar, std::uint16_t AbilityID);	// добавляем заклинание
     std::int32_t	delLearnedAbility(CCharEntity* PChar, std::uint16_t AbilityID);	// улаляем заклинание
 
-    bool	hasLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
-    void	addLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
-    void	delLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
+    bool	hasLearnedWeaponskill(CCharEntity* PChar, std::uint8_t wsid);
+    void	addLearnedWeaponskill(CCharEntity* PChar, std::uint8_t wsid);
+    void	delLearnedWeaponskill(CCharEntity* PChar, std::uint8_t wsid);
 
     std::int32_t	hasAbility(CCharEntity* PChar, std::uint16_t AbilityID);	        // проверяем наличие ключевого предмета
     std::int32_t	addAbility(CCharEntity* PChar, std::uint16_t AbilityID);	        // добавляем ключевой предмет
@@ -119,9 +119,9 @@ namespace charutils
     std::int32_t	addPetAbility(CCharEntity* PChar, std::uint16_t AbilityID);
     std::int32_t	delPetAbility(CCharEntity* PChar, std::uint16_t AbilityID);
 
-    std::int32_t	hasTrait(CCharEntity* PChar, uint8 TraitID);	            // check if pchar has trait by traitid and jobid
-    std::int32_t	addTrait(CCharEntity* PChar, uint8 TraitID);	            // add trait by traitid and jobid
-    std::int32_t	delTrait(CCharEntity* PChar, uint8 TraitID);	            // delete trait by traitid and jobid
+    std::int32_t	hasTrait(CCharEntity* PChar, std::uint8_t TraitID);	            // check if pchar has trait by traitid and jobid
+    std::int32_t	addTrait(CCharEntity* PChar, std::uint8_t TraitID);	            // add trait by traitid and jobid
+    std::int32_t	delTrait(CCharEntity* PChar, std::uint8_t TraitID);	            // delete trait by traitid and jobid
 
     std::int32_t	addWeaponSkill(CCharEntity* PChar, std::uint16_t WeaponSkillID);   // declaration of function to add weapon skill
     std::int32_t	hasWeaponSkill(CCharEntity* PChar, std::uint16_t WeaponSkillID);   // declaration of function to check for weapon skill
@@ -147,7 +147,7 @@ namespace charutils
     void    mentorMode(CCharEntity* PChar);                             // Changes char's mentor status
     void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
     void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.
-    void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
+    void	SaveCharSkills(CCharEntity* PChar, std::uint8_t skillID);	        // сохраняем указанный skill персонажа
     void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
@@ -177,7 +177,7 @@ namespace charutils
     void    SetPoints(CCharEntity* PChar, const char* type, std::int32_t amount);
     std::int32_t   GetPoints(CCharEntity* PChar, const char* type);
     std::string GetConquestPointsName(CCharEntity* PChar);
-    void    SendToZone(CCharEntity* PChar, uint8 type, std::uint64_t ipp);
+    void    SendToZone(CCharEntity* PChar, std::uint8_t type, std::uint64_t ipp);
     void    HomePoint(CCharEntity* PChar);
     void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 

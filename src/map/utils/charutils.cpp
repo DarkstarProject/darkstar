@@ -137,15 +137,15 @@ namespace charutils
         std::int32_t scaleOver60 = 2;          // номер колонки с модификатором для расчета MP после 60 уровня
         std::int32_t scaleOver75 = 3;          // номер колонки с модификатором для расчета Статов после 75-го уровня
 
-        uint8 grade;
+        std::uint8_t grade;
 
-        uint8 mlvl = PChar->GetMLevel();
-        uint8 slvl = PChar->GetSLevel();
+        std::uint8_t mlvl = PChar->GetMLevel();
+        std::uint8_t slvl = PChar->GetSLevel();
         JOBTYPE mjob = PChar->GetMJob();
         JOBTYPE sjob = PChar->GetSJob();
         MERIT_TYPE statMerit[] = {MERIT_STR, MERIT_DEX, MERIT_VIT, MERIT_AGI, MERIT_INT, MERIT_MND, MERIT_CHR};
 
-        uint8 race = 0;                 //Human
+        std::uint8_t race = 0;                 //Human
 
         switch (PChar->look.race)
         {
@@ -261,9 +261,9 @@ namespace charutils
 
         //Начало расчета характеристик
 
-        uint8 counter = 0;
+        std::uint8_t counter = 0;
 
-        for (uint8 StatIndex = 2; StatIndex <= 8; ++StatIndex)
+        for (std::uint8_t StatIndex = 2; StatIndex <= 8; ++StatIndex)
         {
             // расчет по расе
             grade = grade::GetRaceGrades(race, StatIndex);
@@ -321,7 +321,7 @@ namespace charutils
 
     void LoadChar(CCharEntity* PChar)
     {
-        uint8 meritPoints = 0;
+        std::uint8_t meritPoints = 0;
         std::uint16_t limitPoints = 0;
         std::int32_t HP = 0;
         std::int32_t MP = 0;
@@ -370,7 +370,7 @@ namespace charutils
 
             PChar->loc.destination = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
             PChar->loc.prevzone = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
-            PChar->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 3);
+            PChar->loc.p.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 3);
             PChar->loc.p.x = Sql_GetFloatData(SqlHandle, 4);
             PChar->loc.p.y = Sql_GetFloatData(SqlHandle, 5);
             PChar->loc.p.z = Sql_GetFloatData(SqlHandle, 6);
@@ -378,12 +378,12 @@ namespace charutils
             PChar->loc.boundary = (std::uint16_t)Sql_GetIntData(SqlHandle, 8);
 
             PChar->profile.home_point.destination = (std::uint16_t)Sql_GetIntData(SqlHandle, 9);
-            PChar->profile.home_point.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 10);
+            PChar->profile.home_point.p.rotation = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
             PChar->profile.home_point.p.x = Sql_GetFloatData(SqlHandle, 11);
             PChar->profile.home_point.p.y = Sql_GetFloatData(SqlHandle, 12);
             PChar->profile.home_point.p.z = Sql_GetFloatData(SqlHandle, 13);
 
-            PChar->profile.nation = (uint8)Sql_GetIntData(SqlHandle, 14);
+            PChar->profile.nation = (std::uint8_t)Sql_GetIntData(SqlHandle, 14);
 
             size_t length = 0;
             int8* quests = nullptr;
@@ -432,7 +432,7 @@ namespace charutils
 
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
             PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 25) == 1 ? true : false;
-            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 26);
+            PChar->profile.campaign_allegiance = (std::uint8_t)Sql_GetIntData(SqlHandle, 26);
             PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 27) == 1 ? true : false);
         }
 
@@ -470,9 +470,9 @@ namespace charutils
         {
             PChar->profile.rankpoints = Sql_GetUIntData(SqlHandle, 0);
 
-            PChar->profile.rank[0] = (uint8)Sql_GetIntData(SqlHandle, 1);
-            PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle, 2);
-            PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle, 3);
+            PChar->profile.rank[0] = (std::uint8_t)Sql_GetIntData(SqlHandle, 1);
+            PChar->profile.rank[1] = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
+            PChar->profile.rank[2] = (std::uint8_t)Sql_GetIntData(SqlHandle, 3);
 
             PChar->profile.fame[0] = (std::uint16_t)Sql_GetIntData(SqlHandle, 4);    //Sandoria
             PChar->profile.fame[1] = (std::uint16_t)Sql_GetIntData(SqlHandle, 5);    //Bastok
@@ -512,19 +512,19 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->getStorage(LOC_INVENTORY)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 0));
-            PChar->getStorage(LOC_MOGSAFE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 1));
-            PChar->getStorage(LOC_MOGSAFE2)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 1));
+            PChar->getStorage(LOC_INVENTORY)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 0));
+            PChar->getStorage(LOC_MOGSAFE)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 1));
+            PChar->getStorage(LOC_MOGSAFE2)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 1));
             PChar->getStorage(LOC_TEMPITEMS)->AddBuff(50);
-            PChar->getStorage(LOC_MOGLOCKER)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 2));
-            PChar->getStorage(LOC_MOGSATCHEL)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 3));
-            PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 4));
-            PChar->getStorage(LOC_MOGCASE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 5));
+            PChar->getStorage(LOC_MOGLOCKER)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 2));
+            PChar->getStorage(LOC_MOGSATCHEL)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 3));
+            PChar->getStorage(LOC_MOGSACK)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 4));
+            PChar->getStorage(LOC_MOGCASE)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 5));
 
-            PChar->getStorage(LOC_WARDROBE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 6));
-            PChar->getStorage(LOC_WARDROBE2)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 7));
-            PChar->getStorage(LOC_WARDROBE3)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 8));
-            PChar->getStorage(LOC_WARDROBE4)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 9));
+            PChar->getStorage(LOC_WARDROBE)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 6));
+            PChar->getStorage(LOC_WARDROBE2)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 7));
+            PChar->getStorage(LOC_WARDROBE3)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 8));
+            PChar->getStorage(LOC_WARDROBE4)->AddBuff((std::uint8_t)Sql_GetIntData(SqlHandle, 9));
         }
 
         fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged "
@@ -537,9 +537,9 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->look.face = (uint8)Sql_GetIntData(SqlHandle, 0);
-            PChar->look.race = (uint8)Sql_GetIntData(SqlHandle, 1);
-            PChar->look.size = (uint8)Sql_GetIntData(SqlHandle, 2);
+            PChar->look.face = (std::uint8_t)Sql_GetIntData(SqlHandle, 0);
+            PChar->look.race = (std::uint8_t)Sql_GetIntData(SqlHandle, 1);
+            PChar->look.size = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
 
             PChar->look.head = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
             PChar->look.body = (std::uint16_t)Sql_GetIntData(SqlHandle, 4);
@@ -579,30 +579,30 @@ namespace charutils
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
             PChar->jobs.unlocked = (std::uint32_t)Sql_GetUIntData(SqlHandle, 0);
-            PChar->jobs.genkai = (uint8)Sql_GetUIntData(SqlHandle, 1);
+            PChar->jobs.genkai = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
 
-            PChar->jobs.job[JOB_WAR] = (uint8)Sql_GetIntData(SqlHandle, 2);
-            PChar->jobs.job[JOB_MNK] = (uint8)Sql_GetIntData(SqlHandle, 3);
-            PChar->jobs.job[JOB_WHM] = (uint8)Sql_GetIntData(SqlHandle, 4);
-            PChar->jobs.job[JOB_BLM] = (uint8)Sql_GetIntData(SqlHandle, 5);
-            PChar->jobs.job[JOB_RDM] = (uint8)Sql_GetIntData(SqlHandle, 6);
-            PChar->jobs.job[JOB_THF] = (uint8)Sql_GetIntData(SqlHandle, 7);
-            PChar->jobs.job[JOB_PLD] = (uint8)Sql_GetIntData(SqlHandle, 8);
-            PChar->jobs.job[JOB_DRK] = (uint8)Sql_GetIntData(SqlHandle, 9);
-            PChar->jobs.job[JOB_BST] = (uint8)Sql_GetIntData(SqlHandle, 10);
-            PChar->jobs.job[JOB_BRD] = (uint8)Sql_GetIntData(SqlHandle, 11);
-            PChar->jobs.job[JOB_RNG] = (uint8)Sql_GetIntData(SqlHandle, 12);
-            PChar->jobs.job[JOB_SAM] = (uint8)Sql_GetIntData(SqlHandle, 13);
-            PChar->jobs.job[JOB_NIN] = (uint8)Sql_GetIntData(SqlHandle, 14);
-            PChar->jobs.job[JOB_DRG] = (uint8)Sql_GetIntData(SqlHandle, 15);
-            PChar->jobs.job[JOB_SMN] = (uint8)Sql_GetIntData(SqlHandle, 16);
-            PChar->jobs.job[JOB_BLU] = (uint8)Sql_GetIntData(SqlHandle, 17);
-            PChar->jobs.job[JOB_COR] = (uint8)Sql_GetIntData(SqlHandle, 18);
-            PChar->jobs.job[JOB_PUP] = (uint8)Sql_GetIntData(SqlHandle, 19);
-            PChar->jobs.job[JOB_DNC] = (uint8)Sql_GetIntData(SqlHandle, 20);
-            PChar->jobs.job[JOB_SCH] = (uint8)Sql_GetIntData(SqlHandle, 21);
-            PChar->jobs.job[JOB_GEO] = (uint8)Sql_GetIntData(SqlHandle, 22);
-            PChar->jobs.job[JOB_RUN] = (uint8)Sql_GetIntData(SqlHandle, 23);
+            PChar->jobs.job[JOB_WAR] = (std::uint8_t)Sql_GetIntData(SqlHandle, 2);
+            PChar->jobs.job[JOB_MNK] = (std::uint8_t)Sql_GetIntData(SqlHandle, 3);
+            PChar->jobs.job[JOB_WHM] = (std::uint8_t)Sql_GetIntData(SqlHandle, 4);
+            PChar->jobs.job[JOB_BLM] = (std::uint8_t)Sql_GetIntData(SqlHandle, 5);
+            PChar->jobs.job[JOB_RDM] = (std::uint8_t)Sql_GetIntData(SqlHandle, 6);
+            PChar->jobs.job[JOB_THF] = (std::uint8_t)Sql_GetIntData(SqlHandle, 7);
+            PChar->jobs.job[JOB_PLD] = (std::uint8_t)Sql_GetIntData(SqlHandle, 8);
+            PChar->jobs.job[JOB_DRK] = (std::uint8_t)Sql_GetIntData(SqlHandle, 9);
+            PChar->jobs.job[JOB_BST] = (std::uint8_t)Sql_GetIntData(SqlHandle, 10);
+            PChar->jobs.job[JOB_BRD] = (std::uint8_t)Sql_GetIntData(SqlHandle, 11);
+            PChar->jobs.job[JOB_RNG] = (std::uint8_t)Sql_GetIntData(SqlHandle, 12);
+            PChar->jobs.job[JOB_SAM] = (std::uint8_t)Sql_GetIntData(SqlHandle, 13);
+            PChar->jobs.job[JOB_NIN] = (std::uint8_t)Sql_GetIntData(SqlHandle, 14);
+            PChar->jobs.job[JOB_DRG] = (std::uint8_t)Sql_GetIntData(SqlHandle, 15);
+            PChar->jobs.job[JOB_SMN] = (std::uint8_t)Sql_GetIntData(SqlHandle, 16);
+            PChar->jobs.job[JOB_BLU] = (std::uint8_t)Sql_GetIntData(SqlHandle, 17);
+            PChar->jobs.job[JOB_COR] = (std::uint8_t)Sql_GetIntData(SqlHandle, 18);
+            PChar->jobs.job[JOB_PUP] = (std::uint8_t)Sql_GetIntData(SqlHandle, 19);
+            PChar->jobs.job[JOB_DNC] = (std::uint8_t)Sql_GetIntData(SqlHandle, 20);
+            PChar->jobs.job[JOB_SCH] = (std::uint8_t)Sql_GetIntData(SqlHandle, 21);
+            PChar->jobs.job[JOB_GEO] = (std::uint8_t)Sql_GetIntData(SqlHandle, 22);
+            PChar->jobs.job[JOB_RUN] = (std::uint8_t)Sql_GetIntData(SqlHandle, 23);
         }
 
         fmtQuery = "SELECT mode, war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng, sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run, merits, limits "
@@ -615,7 +615,7 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->MeritMode = (uint8)Sql_GetIntData(SqlHandle, 0);
+            PChar->MeritMode = (std::uint8_t)Sql_GetIntData(SqlHandle, 0);
             PChar->jobs.exp[JOB_WAR] = (std::uint16_t)Sql_GetIntData(SqlHandle, 1);
             PChar->jobs.exp[JOB_MNK] = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
             PChar->jobs.exp[JOB_WHM] = (std::uint16_t)Sql_GetIntData(SqlHandle, 3);
@@ -638,8 +638,8 @@ namespace charutils
             PChar->jobs.exp[JOB_SCH] = (std::uint16_t)Sql_GetIntData(SqlHandle, 20);
             PChar->jobs.exp[JOB_GEO] = (std::uint16_t)Sql_GetIntData(SqlHandle, 21);
             PChar->jobs.exp[JOB_RUN] = (std::uint16_t)Sql_GetIntData(SqlHandle, 22);
-            meritPoints = (uint8)Sql_GetIntData(SqlHandle, 23);
-            limitPoints = (uint8)Sql_GetIntData(SqlHandle, 24);
+            meritPoints = (std::uint8_t)Sql_GetIntData(SqlHandle, 23);
+            limitPoints = (std::uint8_t)Sql_GetIntData(SqlHandle, 24);
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
@@ -647,7 +647,7 @@ namespace charutils
             "FROM char_stats WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-        uint8 zoning = 0;
+        std::uint8_t zoning = 0;
 
         if (ret != SQL_ERROR &&
             Sql_NumRows(SqlHandle) != 0 &&
@@ -661,7 +661,7 @@ namespace charutils
             HP = Sql_GetIntData(SqlHandle, 3);
             MP = Sql_GetIntData(SqlHandle, 4);
 
-            PChar->profile.mhflag = (uint8)Sql_GetIntData(SqlHandle, 5);
+            PChar->profile.mhflag = (std::uint8_t)Sql_GetIntData(SqlHandle, 5);
             PChar->profile.title = (std::uint16_t)Sql_GetIntData(SqlHandle, 6);
 
             int8* bazaarMessage = Sql_GetData(SqlHandle, 7);
@@ -704,7 +704,7 @@ namespace charutils
                 std::uint32_t recast = Sql_GetUIntData(SqlHandle, 2);
                 time_t now = time(nullptr);
                 std::uint32_t chargeTime = 0;
-                uint8 maxCharges = 0;
+                std::uint8_t maxCharges = 0;
                 Charge_t* charge = ability::GetCharge(PChar, Sql_GetUIntData(SqlHandle, 0));
                 if (charge != nullptr)
                 {
@@ -728,14 +728,14 @@ namespace charutils
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint8 SkillID = (uint8)Sql_GetUIntData(SqlHandle, 0);
+                std::uint8_t SkillID = (std::uint8_t)Sql_GetUIntData(SqlHandle, 0);
 
                 if (SkillID < MAX_SKILLTYPE)
                 {
                     PChar->RealSkills.skill[SkillID] = (std::uint16_t)Sql_GetUIntData(SqlHandle, 1);
                     if (SkillID >= SKILL_FISHING)
                     {
-                        PChar->RealSkills.rank[SkillID] = (uint8)Sql_GetUIntData(SqlHandle, 2);
+                        PChar->RealSkills.rank[SkillID] = (std::uint8_t)Sql_GetUIntData(SqlHandle, 2);
                     }
                 }
             }
@@ -780,8 +780,8 @@ namespace charutils
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
-            PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
+            PChar->m_GMlevel = (std::uint8_t)Sql_GetUIntData(SqlHandle, 0);
+            PChar->m_mentor = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
         }
 
         charutils::LoadInventory(PChar);
@@ -882,7 +882,7 @@ namespace charutils
 
                 if (PItem != nullptr)
                 {
-                    PItem->setLocationID((uint8)Sql_GetUIntData(SqlHandle, 1));
+                    PItem->setLocationID((std::uint8_t)Sql_GetUIntData(SqlHandle, 1));
                     PItem->setSlotID(Sql_GetUIntData(SqlHandle, 2));
                     PItem->setQuantity(Sql_GetUIntData(SqlHandle, 3));
                     PItem->setCharPrice(Sql_GetUIntData(SqlHandle, 4));
@@ -924,14 +924,14 @@ namespace charutils
 
         // apply augments
         // loop over each container
-        for (uint8 i = 0; i < MAX_CONTAINER_ID; ++i)
+        for (std::uint8_t i = 0; i < MAX_CONTAINER_ID; ++i)
         {
             CItemContainer* PItemContainer = PChar->getStorage(i);
 
             if (PItemContainer != nullptr)
             {
                 // now find each item in the container
-                for (uint8 y = 0; y < MAX_CONTAINER_SIZE; ++y)
+                for (std::uint8_t y = 0; y < MAX_CONTAINER_SIZE; ++y)
                 {
                     CItem* PItem = (CItem*)PItemContainer->GetItem(y);
 
@@ -939,7 +939,7 @@ namespace charutils
                     if (PItem != nullptr && ((PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON)) && !PItem->isSubType(ITEM_CHARGED)))
                     {
                         // check if there are any valid augments to be applied to the item
-                        for (uint8 j = 0; j < 4; ++j)
+                        for (std::uint8_t j = 0; j < 4; ++j)
                         {
                             // found a match, apply the augment
                             if (((CItemArmor*)PItem)->getAugment(j) != 0)
@@ -982,8 +982,8 @@ namespace charutils
                 }
                 else
                 {
-                    uint8 SlotID = Sql_GetUIntData(SqlHandle, 0);
-                    uint8 equipSlot = Sql_GetUIntData(SqlHandle, 1);
+                    std::uint8_t SlotID = Sql_GetUIntData(SqlHandle, 0);
+                    std::uint8_t equipSlot = Sql_GetUIntData(SqlHandle, 1);
                     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
                     if ((PItem != nullptr) && PItem->isType(ITEM_LINKSHELL))
@@ -1069,7 +1069,7 @@ namespace charutils
 
     void SendKeyItems(CCharEntity* PChar)
     {
-        for (uint8 table = 0; table < MAX_KEYS_TABLE; table++)
+        for (std::uint8_t table = 0; table < MAX_KEYS_TABLE; table++)
         {
             PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)table));
         }
@@ -1089,8 +1089,8 @@ namespace charutils
             if (container == nullptr)
                 return;
 
-            uint8 size = container->GetSize();
-            for (uint8 slotID = 0; slotID <= size; ++slotID)
+            std::uint8_t size = container->GetSize();
+            for (std::uint8_t slotID = 0; slotID <= size; ++slotID)
             {
                 CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
                 if (PItem != nullptr)
@@ -1153,7 +1153,7 @@ namespace charutils
 
     // TODO: мне не нравится параметр silens, нужно придумать что-нибудь более элегантное
 
-    uint8 AddItem(CCharEntity* PChar, uint8 LocationID, std::uint16_t ItemID, std::uint32_t quantity, bool silence)
+    std::uint8_t AddItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint16_t ItemID, std::uint32_t quantity, bool silence)
     {
         if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
         {
@@ -1177,7 +1177,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    uint8 AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence)
+    std::uint8_t AddItem(CCharEntity* PChar, std::uint8_t LocationID, CItem* PItem, bool silence)
     {
         if (PItem->isType(ITEM_CURRENCY))
         {
@@ -1196,11 +1196,11 @@ namespace charutils
             }
         }
 
-        uint8 SlotID = PChar->getStorage(LocationID)->InsertItem(PItem);
+        std::uint8_t SlotID = PChar->getStorage(LocationID)->InsertItem(PItem);
 
         if (SlotID != ERROR_SLOTID)
         {
-            // uint8 charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
+            // std::uint8_t charges = (PItem->isType(ITEM_USABLE) ? ((CItemUsable*)PItem)->getCurrentCharges() : 0);
 
             const int8* Query =
                 "INSERT INTO char_inventory("
@@ -1259,7 +1259,7 @@ namespace charutils
 
     bool HasItem(CCharEntity* PChar, std::uint16_t ItemID)
     {
-        for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+        for (std::uint8_t LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
         {
             if (PChar->getStorage(LocID)->SearchItem(ItemID) != ERROR_SLOTID)
             {
@@ -1303,7 +1303,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    uint8 MoveItem(CCharEntity* PChar, uint8 LocationID, uint8 SlotID, uint8 NewSlotID)
+    std::uint8_t MoveItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t SlotID, std::uint8_t NewSlotID)
     {
         CItemContainer* PItemContainer = PChar->getStorage(LocationID);
 
@@ -1346,7 +1346,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, std::int32_t quantity, bool force)
+    std::uint32_t UpdateItem(CCharEntity* PChar, std::uint8_t LocationID, std::uint8_t slotID, std::int32_t quantity, bool force)
     {
         CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 
@@ -1444,7 +1444,7 @@ namespace charutils
             ShowDebug(CL_CYAN"Unable to trade, %s doesn't have enough inventory space\n" CL_RESET, PTarget->GetName());
             return false;
         }
-        for (uint8 slotid = 0; slotid <= 8; ++slotid)
+        for (std::uint8_t slotid = 0; slotid <= 8; ++slotid)
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
 
@@ -1469,7 +1469,7 @@ namespace charutils
     void DoTrade(CCharEntity* PChar, CCharEntity* PTarget)
     {
         ShowDebug(CL_CYAN"%s->%s trade item movement started\n" CL_RESET, PChar->GetName(), PTarget->GetName());
-        for (uint8 slotid = 0; slotid <= 8; ++slotid)
+        for (std::uint8_t slotid = 0; slotid <= 8; ++slotid)
         {
             CItem* PItem = PChar->UContainer->GetItem(slotid);
 
@@ -1504,7 +1504,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void UnequipItem(CCharEntity* PChar, uint8 equipSlotID, bool update)
+    void UnequipItem(CCharEntity* PChar, std::uint8_t equipSlotID, bool update)
     {
         CItem* PItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
@@ -1550,7 +1550,7 @@ namespace charutils
                 PChar->m_EquipFlag = 0;
                 luautils::OnItemCheck(PChar, PItem);
 
-                for (uint8 i = 0; i < 16; ++i)
+                for (std::uint8_t i = 0; i < 16; ++i)
                 {
                     CItem* PItem = PChar->getEquip((SLOTTYPE)i);
 
@@ -1673,7 +1673,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
+    bool EquipArmor(CCharEntity* PChar, std::uint8_t slotID, std::uint8_t equipSlotID, std::uint8_t containerID)
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
         CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
@@ -1740,7 +1740,7 @@ namespace charutils
                 }
             }
 
-            for (uint8 i = 0; i < SLOT_BACK; ++i)
+            for (std::uint8_t i = 0; i < SLOT_BACK; ++i)
             {
                 CItemArmor* armor = PChar->getEquip((SLOTTYPE)i);
                 if (armor && armor->isType(ITEM_ARMOR) && armor->getRemoveSlotId() & PItem->getEquipSlotId())
@@ -1941,7 +1941,7 @@ namespace charutils
         if (PItem == nullptr)
             return true;
 
-        for (uint8 i = 1; i < MAX_JOBTYPE; i++)
+        for (std::uint8_t i = 1; i < MAX_JOBTYPE; i++)
             if (PItem->getJobs() & (1 << (i - 1)) && PItem->getReqLvl() <= PChar->jobs.job[i])
                 return true;
         return false;
@@ -1959,7 +1959,7 @@ namespace charutils
     {
         if (isStyleLocked)
         {
-            for (uint8 i = 0; i < SLOT_LINK1; i++)
+            for (std::uint8_t i = 0; i < SLOT_LINK1; i++)
             {
                 auto PItem = PChar->getEquip((SLOTTYPE)i);
                 PChar->styleItems[i] = (PItem == nullptr) ? 0 : PItem->getID();
@@ -1967,7 +1967,7 @@ namespace charutils
             memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
         }
         else
-            for (uint8 i = 0; i < SLOT_LINK1; i++)
+            for (std::uint8_t i = 0; i < SLOT_LINK1; i++)
                 PChar->styleItems[i] = 0;
 
         if (PChar->getStyleLocked() != isStyleLocked)
@@ -1975,7 +1975,7 @@ namespace charutils
         PChar->setStyleLocked(isStyleLocked);
     }
 
-    void UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem)
+    void UpdateWeaponStyle(CCharEntity* PChar, std::uint8_t equipSlotID, CItemWeapon* PItem)
     {
         if (!PChar->getStyleLocked())
             return;
@@ -2022,7 +2022,7 @@ namespace charutils
         }
     }
 
-    void UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID)
+    void UpdateArmorStyle(CCharEntity* PChar, std::uint8_t equipSlotID)
     {
         if (!PChar->getStyleLocked())
             return;
@@ -2060,7 +2060,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
+    void EquipItem(CCharEntity* PChar, std::uint8_t slotID, std::uint8_t equipSlotID, std::uint8_t containerID)
     {
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
@@ -2157,7 +2157,7 @@ namespace charutils
     {
         CItemArmor* PItem = nullptr;
 
-        for (uint8 slotID = 0; slotID < 16; ++slotID)
+        for (std::uint8_t slotID = 0; slotID < 16; ++slotID)
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
 
@@ -2205,7 +2205,7 @@ namespace charutils
     {
         CItemArmor* PItem = nullptr;
 
-        for (uint8 slotID = 0; slotID < 16; ++slotID)
+        for (std::uint8_t slotID = 0; slotID < 16; ++slotID)
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
 
@@ -2237,7 +2237,7 @@ namespace charutils
         if (!(PChar->m_EquipFlag & ScriptType))
             return;
 
-        for (uint8 slotID = 0; slotID < 16; ++slotID)
+        for (std::uint8_t slotID = 0; slotID < 16; ++slotID)
         {
             CItem* PItem = PChar->getEquip((SLOTTYPE)slotID);
 
@@ -2285,7 +2285,7 @@ namespace charutils
         }
 
         //add in melee ws
-        uint8 skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
+        std::uint8_t skill = PChar->m_Weapons[SLOT_MAIN]->getSkillType();
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
@@ -2487,7 +2487,7 @@ namespace charutils
             MERIT_SHIELD, MERIT_PARRYING, MERIT_DIVINE, MERIT_HEALING, MERIT_ENHANCING, MERIT_ENFEEBLING, MERIT_ELEMENTAL, MERIT_DARK, MERIT_SUMMONING, MERIT_NINJITSU, MERIT_SINGING,
             MERIT_STRING, MERIT_WIND, MERIT_BLUE, MERIT_GEO, MERIT_HANDBELL};
 
-        uint8 meritIndex = 0;
+        std::uint8_t meritIndex = 0;
 
         for (std::int32_t i = 1; i < 48; ++i)
         {
@@ -2510,7 +2510,7 @@ namespace charutils
                 std::uint16_t skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
                 auto currentSkill = std::clamp<std::uint16_t>((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
                 std::uint16_t artsBaseline = 0; // Level based baseline to which to raise skills
-                uint8 mLevel = PChar->GetMLevel();
+                std::uint8_t mLevel = PChar->GetMLevel();
                 if (mLevel < 51)
                 {
                     artsBaseline = (std::uint16_t)(5 + 2.7 * (mLevel - 1));
@@ -2617,7 +2617,7 @@ namespace charutils
 
     void BuildingCharTraitsTable(CCharEntity* PChar)
     {
-        for (uint8 i = 0; i < PChar->TraitList.size(); ++i)
+        for (std::uint8_t i = 0; i < PChar->TraitList.size(); ++i)
         {
             CTrait* PTrait = PChar->TraitList.at(i);
             PChar->delModifier(PTrait->getMod(), PTrait->getValue());
@@ -2645,7 +2645,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl)
+    void TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, std::uint8_t lvl)
     {
 
         // This usually happens after a crash
@@ -2681,10 +2681,10 @@ namespace charutils
             if (Diff > 0 && random < SkillUpChance)
             {
                 double chance = 0;
-                uint8  SkillAmount = 1;
-                uint8  tier = std::min(1 + (Diff / 5), 5);
+                std::uint8_t  SkillAmount = 1;
+                std::uint8_t  tier = std::min(1 + (Diff / 5), 5);
 
-                for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
+                for (std::uint8_t i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
                 {
                     random = dsprand::GetRandomNumber(1.);
 
@@ -2708,7 +2708,7 @@ namespace charutils
                 // Do skill amount multiplier (Will only be applied if default setting is changed)
                 if (map_config.skillup_amount_multiplier > 1)
                 {
-                    SkillAmount += (uint8)(SkillAmount * map_config.skillup_amount_multiplier);
+                    SkillAmount += (std::uint8_t)(SkillAmount * map_config.skillup_amount_multiplier);
                     if (SkillAmount > 9)
                     {
                         SkillAmount = 9;
@@ -2750,7 +2750,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void CheckWeaponSkill(CCharEntity* PChar, uint8 skill)
+    void CheckWeaponSkill(CCharEntity* PChar, std::uint8_t skill)
     {
         if (PChar->m_Weapons[SLOT_MAIN]->getSkillType() != skill)
         {
@@ -2864,17 +2864,17 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    bool hasLearnedWeaponskill(CCharEntity* PChar, uint8 wsid)
+    bool hasLearnedWeaponskill(CCharEntity* PChar, std::uint8_t wsid)
     {
         return PChar->m_LearnedWeaponskills[wsid];
     }
 
-    void addLearnedWeaponskill(CCharEntity* PChar, uint8 wsid)
+    void addLearnedWeaponskill(CCharEntity* PChar, std::uint8_t wsid)
     {
         PChar->m_LearnedWeaponskills[wsid] = true;
     }
 
-    void delLearnedWeaponskill(CCharEntity* PChar, uint8 wsid)
+    void delLearnedWeaponskill(CCharEntity* PChar, std::uint8_t wsid)
     {
         PChar->m_LearnedWeaponskills[wsid] = false;
     }
@@ -2957,7 +2957,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::int32_t hasTrait(CCharEntity* PChar, uint8 TraitID)
+    std::int32_t hasTrait(CCharEntity* PChar, std::uint8_t TraitID)
     {
         if (PChar->objtype != TYPE_PC)
         {
@@ -2967,7 +2967,7 @@ namespace charutils
         return hasBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
     }
 
-    std::int32_t addTrait(CCharEntity* PChar, uint8 TraitID)
+    std::int32_t addTrait(CCharEntity* PChar, std::uint8_t TraitID)
     {
         if (PChar->objtype != TYPE_PC)
         {
@@ -2977,7 +2977,7 @@ namespace charutils
         return addBit(TraitID, PChar->m_TraitList, sizeof(PChar->m_TraitList));
     }
 
-    std::int32_t delTrait(CCharEntity* PChar, uint8 TraitID)
+    std::int32_t delTrait(CCharEntity* PChar, std::uint8_t TraitID)
     {
         if (PChar->objtype != TYPE_PC)
         {
@@ -3039,7 +3039,7 @@ namespace charutils
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                uint8 level = (uint8)Sql_GetIntData(SqlHandle, 0) - 1;
+                std::uint8_t level = (std::uint8_t)Sql_GetIntData(SqlHandle, 0) - 1;
 
                 if (level < 100)
                 {
@@ -3055,7 +3055,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t GetRealExp(uint8 charlvl, uint8 moblvl)
+    std::uint32_t GetRealExp(std::uint8_t charlvl, std::uint8_t moblvl)
     {
         std::int32_t levelDif = moblvl - charlvl + 34;
 
@@ -3072,7 +3072,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    std::uint32_t GetExpNEXTLevel(uint8 charlvl)
+    std::uint32_t GetExpNEXTLevel(std::uint8_t charlvl)
     {
         if ((charlvl > 0) && (charlvl < 100))
         {
@@ -3143,7 +3143,7 @@ namespace charutils
     void DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob)
     {
         auto pcinzone = 0;
-        uint8 minlevel = 0, maxlevel = PChar->GetMLevel();
+        std::uint8_t minlevel = 0, maxlevel = PChar->GetMLevel();
         REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
         if (PChar->PParty != nullptr)
@@ -3432,7 +3432,7 @@ namespace charutils
             return;
         }
 
-        uint8 mLevel = (PChar->m_LevelRestriction != 0 && PChar->m_LevelRestriction < PChar->GetMLevel()) ? PChar->m_LevelRestriction : PChar->GetMLevel();
+        std::uint8_t mLevel = (PChar->m_LevelRestriction != 0 && PChar->m_LevelRestriction < PChar->GetMLevel()) ? PChar->m_LevelRestriction : PChar->GetMLevel();
         std::uint16_t exploss = mLevel <= 67 ? (GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
 
         if (forcedXpLoss > 0)
@@ -3723,7 +3723,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void SetLevelRestriction(CCharEntity* PChar, uint8 lvl)
+    void SetLevelRestriction(CCharEntity* PChar, std::uint8_t lvl)
     {
 
     }
@@ -4021,7 +4021,7 @@ namespace charutils
 
     void SaveCharEquip(CCharEntity* PChar)
     {
-        for (uint8 i = 0; i < 18; ++i)
+        for (std::uint8_t i = 0; i < 18; ++i)
         {
             if (PChar->equip[i] == 0)
             {
@@ -4271,7 +4271,7 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void SaveCharSkills(CCharEntity* PChar, uint8 SkillID)
+    void SaveCharSkills(CCharEntity* PChar, std::uint8_t SkillID)
     {
         DSP_DEBUG_BREAK_IF(SkillID >= MAX_SKILLTYPE);
 
@@ -4392,7 +4392,7 @@ namespace charutils
             WEATHER_AURORAS,
             WEATHER_GLOOM};
 
-        uint8 element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
+        std::uint8_t element = ((CPetEntity*)(PChar->PPet))->m_Element - 1;
 
         DSP_DEBUG_BREAK_IF(element > 7);
 
@@ -4580,7 +4580,7 @@ namespace charutils
 
     void RemoveAllEquipMods(CCharEntity* PChar)
     {
-        for (uint8 slotID = 0; slotID < 16; ++slotID)
+        for (std::uint8_t slotID = 0; slotID < 16; ++slotID)
         {
             CItemArmor* PItem = PChar->getEquip((SLOTTYPE)slotID);
             if (PItem)
@@ -4597,7 +4597,7 @@ namespace charutils
 
     void ApplyAllEquipMods(CCharEntity* PChar)
     {
-        for (uint8 slotID = 0; slotID < 16; ++slotID)
+        for (std::uint8_t slotID = 0; slotID < 16; ++slotID)
         {
             CItemArmor* PItem = (CItemArmor*)PChar->getEquip((SLOTTYPE)slotID);
             if (PItem)
@@ -4803,7 +4803,7 @@ namespace charutils
         }
     }
 
-    void SendToZone(CCharEntity* PChar, uint8 type, std::uint64_t ipp)
+    void SendToZone(CCharEntity* PChar, std::uint8_t type, std::uint64_t ipp)
     {
         if (type == 2)
         {

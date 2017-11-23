@@ -75,7 +75,7 @@ enum ELEMENTS
 	DARK		= 0x80,
 };
 
-enum MSGSERVTYPE : uint8
+enum MSGSERVTYPE : std::uint8_t
 {
     MSG_LOGIN,
     MSG_CHAT_TELL,
@@ -105,7 +105,7 @@ struct look_t
 	std::uint16_t size;
     union {
         struct {
-            uint8  face, race;
+            std::uint8_t  face, race;
         };
         std::uint16_t modelid;
     };
@@ -143,7 +143,7 @@ struct skills_t
 		std::uint16_t skill[64];
 	};
 	// ранг используется только в ремеслах. размер 64 необходим для совместимости ID
-	uint8 rank[64];
+	std::uint8_t rank[64];
 };
 
 struct keyitems_table_t
@@ -159,7 +159,7 @@ struct keyitems_t
 
 struct position_t 
 {
-	uint8 rotation;			// угол поворота сущности относительно своей позиции (используется 255 система, место 360°)
+	std::uint8_t rotation;			// угол поворота сущности относительно своей позиции (используется 255 система, место 360°)
 	float x;			
 	float y;				// высота расположения сущности относительно "уровня моря"
 	float z;
@@ -173,8 +173,8 @@ struct stats_t
 
 struct questlog_t 
 {
-	uint8 current [32];
-	uint8 complete[32];
+	std::uint8_t current [32];
+	std::uint8_t complete[32];
 };
 
 struct missionlog_t 
@@ -199,10 +199,10 @@ struct nameflags_t
 {
 	union {
 		struct {
-			uint8 byte1;
-			uint8 byte2;
-			uint8 byte3;
-			uint8 byte4;
+			std::uint8_t byte1;
+			std::uint8_t byte2;
+			std::uint8_t byte3;
+			std::uint8_t byte4;
 		};
 		std::uint32_t flags;
 	};
@@ -211,8 +211,8 @@ struct nameflags_t
 // информация для окна поиска
 struct search_t 
 {
-	uint8 language;			// предпочтительный язык общения
-	uint8 messagetype;		// тип комментария
+	std::uint8_t language;			// предпочтительный язык общения
+	std::uint8_t messagetype;		// тип комментария
 
 	string_t message;	// комментарий поиска
 };
@@ -292,7 +292,7 @@ struct lan_config_t
 	std::uint16_t usMapLanPort;
 
 	std::uint32_t wait_time;
-	uint8  connect_try_num;
+	std::uint8_t  connect_try_num;
 };
 
 
@@ -302,9 +302,9 @@ public:
 
 	int8	m_name[16];
 
-	uint8	m_mjob;
+	std::uint8_t	m_mjob;
 	std::uint16_t	m_zone;
-	uint8	m_nation;
+	std::uint8_t	m_nation;
 
 	look_t	m_look;	
 

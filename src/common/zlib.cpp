@@ -111,7 +111,7 @@ static void populate_jump_table(std::vector<struct zlib_jump> &jump, const std::
             // Everything equal or less to 0xff is 8bit data.
             // The pointers at offsets -3 and -2 in table must be zero for each non-zero data entry
             // This approach assumes pointers are at least 8bit on the system.
-            static_assert(sizeof(std::uintptr_t) >= sizeof(uint8), "Pointer can't hold a 8bit value");
+            static_assert(sizeof(std::uintptr_t) >= sizeof(std::uint8_t), "Pointer can't hold a 8bit value");
             jump[i].ptr = reinterpret_cast<void*>(static_cast<std::uintptr_t>(dec[i]));
             assert(!jump[i].ptr || (!jump[i-2].ptr && !jump[i-3].ptr));
         }
@@ -128,7 +128,7 @@ std::int32_t zlib_init()
     return 0;
 }
 
-static std::int32_t zlib_compress_sub(const uint8 *b32, const std::uint32_t read, const std::uint32_t elem, int8 *out, const std::uint32_t out_sz)
+static std::int32_t zlib_compress_sub(const std::uint8_t *b32, const std::uint32_t read, const std::uint32_t elem, int8 *out, const std::uint32_t out_sz)
 {
     assert(b32 && out);
 
@@ -146,7 +146,7 @@ static std::int32_t zlib_compress_sub(const uint8 *b32, const std::uint32_t read
 
     for (std::uint32_t i = 0; i < elem; ++i)
     {
-        const uint8 shift = (read + i) & 7;
+        const std::uint8_t shift = (read + i) & 7;
         const std::uint32_t v = (read + i) / 8;
         const std::uint32_t inv_mask = ~(1 << shift);
         assert(shift < 8);
@@ -172,7 +172,7 @@ std::int32_t zlib_compress(const int8 *in, const std::uint32_t in_sz, int8 *out,
             assert(index < zlib.enc.size());
             std::uint32_t v = zlib.enc[index];
             swap32_if_be(&v, 1);
-            uint8 b32[sizeof(v)];
+            std::uint8_t b32[sizeof(v)];
             memcpy(b32, &v, sizeof(b32));
             zlib_compress_sub(b32, read, elem, out + 1, out_sz - 1);
             read += elem;
@@ -224,7 +224,7 @@ std::uint32_t zlib_decompress(const int8 *in, const std::uint32_t in_sz, int8 *o
 
         // The remaining address should be data
         assert(jmp[3].ptr <= reinterpret_cast<void*>(0xff));
-        out[w++] = static_cast<uint8>(reinterpret_cast<std::uintptr_t>(jmp[3].ptr));
+        out[w++] = static_cast<std::uint8_t>(reinterpret_cast<std::uintptr_t>(jmp[3].ptr));
         jmp = static_cast<const struct zlib_jump*>(zlib.jump[0].ptr);
 
         if (w >= out_sz)

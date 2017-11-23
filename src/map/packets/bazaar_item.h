@@ -40,7 +40,7 @@ class CBazaarItemPacket: public CBasicPacket
 {
 public:
 
-	CBazaarItemPacket(CItem* PItem, uint8 SlotID, std::uint16_t Tax);
+	CBazaarItemPacket(CItem* PItem, std::uint8_t SlotID, std::uint16_t Tax);
 };
 
 #endif

@@ -51,82 +51,82 @@ bool CItemFurnishing::isInstalled()
     return WBUFB(m_extra, 0x01) & 0x40;
 }
 
-void CItemFurnishing::setStorage(uint8 storage)
+void CItemFurnishing::setStorage(std::uint8_t storage)
 {
-	m_storage = std::min<uint8>(storage, 80);
+	m_storage = std::min<std::uint8_t>(storage, 80);
 }
 
-uint8 CItemFurnishing::getStorage()
+std::uint8_t CItemFurnishing::getStorage()
 {
 	return m_storage;
 }
 
-void CItemFurnishing::setMoghancement(uint8 moghancement)
+void CItemFurnishing::setMoghancement(std::uint8_t moghancement)
 {
 	m_moghancement = moghancement;
 }
 
-uint8 CItemFurnishing::getMoghancement()
+std::uint8_t CItemFurnishing::getMoghancement()
 {
 	return m_moghancement;
 }
 
-void CItemFurnishing::setElement(uint8 element)
+void CItemFurnishing::setElement(std::uint8_t element)
 {
 	m_element = element;
 }
 
-uint8 CItemFurnishing::getElement()
+std::uint8_t CItemFurnishing::getElement()
 {
 	return m_element;
 }
 
-void CItemFurnishing::setAura(uint8 aura)
+void CItemFurnishing::setAura(std::uint8_t aura)
 {
 	m_aura = aura;
 }
 
-uint8 CItemFurnishing::getAura()
+std::uint8_t CItemFurnishing::getAura()
 {
 	return m_aura;
 }
 
-void CItemFurnishing::setCol(uint8 col)
+void CItemFurnishing::setCol(std::uint8_t col)
 {
 	WBUFB(m_extra, 0x06) = col;
 }
 	
-uint8 CItemFurnishing::getCol()
+std::uint8_t CItemFurnishing::getCol()
 {
     return RBUFB(m_extra, 0x06);
 }
 
-void CItemFurnishing::setRow(uint8 row)
+void CItemFurnishing::setRow(std::uint8_t row)
 {
     WBUFB(m_extra, 0x08) = row;
 }
 
-uint8 CItemFurnishing::getRow()
+std::uint8_t CItemFurnishing::getRow()
 {
     return RBUFB(m_extra, 0x08);
 }
 
-void CItemFurnishing::setLevel(uint8 level)
+void CItemFurnishing::setLevel(std::uint8_t level)
 {
     WBUFB(m_extra, 0x07) = level;
 }
 
-uint8 CItemFurnishing::getLevel()
+std::uint8_t CItemFurnishing::getLevel()
 {
     return RBUFB(m_extra, 0x07);
 }
 
-void CItemFurnishing::setRotation(uint8 rotation)
+void CItemFurnishing::setRotation(std::uint8_t rotation)
 {
     WBUFB(m_extra, 0x09) = rotation;
 }
 
-uint8 CItemFurnishing::getRotation()
+std::uint8_t CItemFurnishing::getRotation()
 {
     return RBUFB(m_extra, 0x09);
 }

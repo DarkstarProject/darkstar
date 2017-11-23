@@ -113,15 +113,15 @@ bool isRightRecipe(CCharEntity* PChar)
 			ShowDebug(CL_CYAN"Recipe matches ID %u.\n" CL_RESET, PChar->CraftContainer->getItemID(9));
 			#endif
 
-			PChar->CraftContainer->setItem(10 + 1, (std::uint16_t)Sql_GetUIntData(SqlHandle,10), (uint8)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
-			PChar->CraftContainer->setItem(10 + 2, (std::uint16_t)Sql_GetUIntData(SqlHandle,11), (uint8)Sql_GetUIntData(SqlHandle,15), 0);	// RESULT_HQ
-			PChar->CraftContainer->setItem(10 + 3, (std::uint16_t)Sql_GetUIntData(SqlHandle,12), (uint8)Sql_GetUIntData(SqlHandle,16), 0);	// RESULT_HQ2
-			PChar->CraftContainer->setItem(10 + 4, (std::uint16_t)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
+			PChar->CraftContainer->setItem(10 + 1, (std::uint16_t)Sql_GetUIntData(SqlHandle,10), (std::uint8_t)Sql_GetUIntData(SqlHandle,14), 0);	// RESULT_SUCCESS
+			PChar->CraftContainer->setItem(10 + 2, (std::uint16_t)Sql_GetUIntData(SqlHandle,11), (std::uint8_t)Sql_GetUIntData(SqlHandle,15), 0);	// RESULT_HQ
+			PChar->CraftContainer->setItem(10 + 3, (std::uint16_t)Sql_GetUIntData(SqlHandle,12), (std::uint8_t)Sql_GetUIntData(SqlHandle,16), 0);	// RESULT_HQ2
+			PChar->CraftContainer->setItem(10 + 4, (std::uint16_t)Sql_GetUIntData(SqlHandle,13), (std::uint8_t)Sql_GetUIntData(SqlHandle,17), 0);	// RESULT_HQ3
 
 			std::uint16_t skillValue   = 0;
 			std::uint16_t currentSkill = 0;
 
-			for (uint8 skillID = 49; skillID < 57; ++skillID)
+			for (std::uint8_t skillID = 49; skillID < 57; ++skillID)
 			{
 				skillValue   = (std::uint16_t)Sql_GetUIntData(SqlHandle,(skillID-49+2));
 				currentSkill = PChar->RealSkills.skill[skillID];
@@ -167,13 +167,13 @@ bool isRightRecipe(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
+double getSynthDifficulty(CCharEntity* PChar, std::uint8_t skillID)
 {
-	uint8  ElementDirection = 0;
-	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
-	uint8  crystalElement = PChar->CraftContainer->getType();
-	uint8  direction = (PChar->loc.p.rotation - 16)/32;
-	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
+	std::uint8_t  ElementDirection = 0;
+	std::uint8_t  WeekDay = (std::uint8_t)CVanaTime::getInstance()->getWeekday();
+	std::uint8_t  crystalElement = PChar->CraftContainer->getType();
+	std::uint8_t  direction = (PChar->loc.p.rotation - 16)/32;
+	std::uint8_t  strongElement[8] = {2,3,5,4,0,1,7,6};
 	Mod ModID = Mod::NONE;
 
 	switch (skillID)
@@ -188,7 +188,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 		case SKILL_COOKING:      ModID = Mod::COOK;		break;
 	}
 
-	uint8 charSkill = PChar->RealSkills.skill[skillID]/10;  //player skill level is truncated before synth difficulty is calced
+	std::uint8_t charSkill = PChar->RealSkills.skill[skillID]/10;  //player skill level is truncated before synth difficulty is calced
 	double difficult = PChar->CraftContainer->getQuantity(skillID-40) - (double)(charSkill + PChar->getMod(ModID));
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
 
@@ -252,7 +252,7 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 *																		*
 ************************************************************************/
 
-bool canSynthesizeHQ(CCharEntity* PChar, uint8 skillID)
+bool canSynthesizeHQ(CCharEntity* PChar, std::uint8_t skillID)
 {
 	Mod ModID = Mod::NONE;
 
@@ -278,12 +278,12 @@ bool canSynthesizeHQ(CCharEntity* PChar, uint8 skillID)
 *																		*
 ************************************************************************/
 
-uint8 getGeneralCraft(CCharEntity* PChar)
+std::uint8_t getGeneralCraft(CCharEntity* PChar)
 {
-	uint8 skillValue   = 0;
-	uint8 generalCraft = 0;
+	std::uint8_t skillValue   = 0;
+	std::uint8_t generalCraft = 0;
 
-	for(uint8 skillID = 49; skillID < 57; skillID ++)
+	for(std::uint8_t skillID = 49; skillID < 57; skillID ++)
 	{
 		if (PChar->CraftContainer->getQuantity(skillID-40) > skillValue)
 		{
@@ -305,23 +305,23 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-uint8 calcSynthResult(CCharEntity* PChar)
+std::uint8_t calcSynthResult(CCharEntity* PChar)
 {
-	uint8 result = SYNTHESIS_SUCCESS;
-	uint8 hqtier = 0;
-	uint8 mainID = getGeneralCraft(PChar);
+	std::uint8_t result = SYNTHESIS_SUCCESS;
+	std::uint8_t hqtier = 0;
+	std::uint8_t mainID = getGeneralCraft(PChar);
 	bool canHQ = true;
 
 	double success = 0;
 	double chance  = 0;
 	double MoonPhase = (double)CVanaTime::getInstance()->getMoonPhase();
-	uint8  WeekDay = (uint8)CVanaTime::getInstance()->getWeekday();
-	uint8  crystalElement = PChar->CraftContainer->getType();
-	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
+	std::uint8_t  WeekDay = (std::uint8_t)CVanaTime::getInstance()->getWeekday();
+	std::uint8_t  crystalElement = PChar->CraftContainer->getType();
+	std::uint8_t  strongElement[8] = {2,3,5,4,0,1,7,6};
 
-	for(uint8 skillID = 49; skillID < 57; ++skillID)
+	for(std::uint8_t skillID = 49; skillID < 57; ++skillID)
 	{
-		uint8 checkSkill = PChar->CraftContainer->getQuantity(skillID-40);
+		std::uint8_t checkSkill = PChar->CraftContainer->getQuantity(skillID-40);
 		if(checkSkill != 0)
 		{
 			double synthDiff = getSynthDifficulty(PChar, skillID);
@@ -498,14 +498,14 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 std::int32_t doSynthSkillUp(CCharEntity* PChar)
 {
-	for(uint8 skillID = 49; skillID < 57; ++skillID)
+	for(std::uint8_t skillID = 49; skillID < 57; ++skillID)
 	{
 		if (PChar->CraftContainer->getQuantity(skillID-40) == 0)	// получаем необходимый уровень умения рецепта
 		{
 			continue;
 		}
 
-		uint8  skillRank = PChar->RealSkills.rank[skillID];
+		std::uint8_t  skillRank = PChar->RealSkills.rank[skillID];
 		std::uint16_t maxSkill  = (skillRank+1)*100;
 
 		std::int32_t  charSkill = PChar->RealSkills.skill[skillID];
@@ -548,7 +548,7 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 				else if (baseDiff >= 10)
 					satier = 5;
 
-				for(uint8 i = 0; i < 4; i ++)
+				for(std::uint8_t i = 0; i < 4; i ++)
 				{
                     random = dsprand::GetRandomNumber(1.);
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -616,7 +616,7 @@ std::int32_t doSynthSkillUp(CCharEntity* PChar)
 
 std::int32_t doSynthFail(CCharEntity* PChar)
 {
-	uint8  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
+	std::uint8_t  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
 	double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
 	double moghouseAura = 0;
 
@@ -666,16 +666,16 @@ std::int32_t doSynthFail(CCharEntity* PChar)
 		}
 	}
 
-	uint8 invSlotID  = 0;
-	uint8 nextSlotID = 0;
-	uint8 lostCount  = 0;
+	std::uint8_t invSlotID  = 0;
+	std::uint8_t nextSlotID = 0;
+	std::uint8_t lostCount  = 0;
 
 	double random   = 0;
 	double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
 
 	invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
-	for(uint8 slotID = 1; slotID <= 8; ++slotID)
+	for(std::uint8_t slotID = 1; slotID <= 8; ++slotID)
 	{
 		if (slotID != 8)
 			nextSlotID = PChar->CraftContainer->getInvSlotID(slotID+1);
@@ -737,7 +737,7 @@ std::int32_t startSynth(CCharEntity* PChar)
 {
     PChar->m_LastSynthTime = server_clock::now();
 	std::uint16_t effect  = 0;
-	uint8  element = 0;
+	std::uint8_t  element = 0;
 
 	std::uint16_t crystalType = PChar->CraftContainer->getItemID(0);
 
@@ -795,14 +795,14 @@ std::int32_t startSynth(CCharEntity* PChar)
 	// удаляем кристалл
 	charutils::UpdateItem(PChar, LOC_INVENTORY, PChar->CraftContainer->getInvSlotID(0), -1);
 
-	uint8 result = calcSynthResult(PChar);
+	std::uint8_t result = calcSynthResult(PChar);
 
-	uint8  invSlotID  = 0;
-	uint8  tempSlotID = 0;
+	std::uint8_t  invSlotID  = 0;
+	std::uint8_t  tempSlotID = 0;
 	// std::uint16_t itemID     = 0;
 	// std::uint32_t quantity   = 0;
 
-	for(uint8 slotID = 1; slotID <= 8; ++slotID)
+	for(std::uint8_t slotID = 1; slotID <= 8; ++slotID)
 	{
 		tempSlotID = PChar->CraftContainer->getInvSlotID(slotID);
 		if ((tempSlotID != 0xFF) && (tempSlotID != invSlotID))
@@ -843,22 +843,22 @@ std::int32_t startSynth(CCharEntity* PChar)
 
 std::int32_t doSynthResult(CCharEntity* PChar)
 {
-	uint8 m_synthResult = PChar->CraftContainer->getQuantity(0);
+	std::uint8_t m_synthResult = PChar->CraftContainer->getQuantity(0);
 
 	if (m_synthResult == SYNTHESIS_FAIL)
 	{
 		doSynthFail(PChar);
 	}else{
 		std::uint16_t itemID   = PChar->CraftContainer->getItemID(10 + m_synthResult);
-		uint8  quantity = PChar->CraftContainer->getInvSlotID(10 + m_synthResult); // к сожалению поле quantity занято
+		std::uint8_t  quantity = PChar->CraftContainer->getInvSlotID(10 + m_synthResult); // к сожалению поле quantity занято
 
-		uint8 invSlotID   = 0;
-		uint8 nextSlotID  = 0;
-		uint8 removeCount = 0;
+		std::uint8_t invSlotID   = 0;
+		std::uint8_t nextSlotID  = 0;
+		std::uint8_t removeCount = 0;
 
 		invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
-		for(uint8 slotID = 1; slotID <= 8; ++slotID)
+		for(std::uint8_t slotID = 1; slotID <= 8; ++slotID)
 		{
 			nextSlotID = (slotID != 8 ? PChar->CraftContainer->getInvSlotID(slotID+1) : 0);
 			removeCount++;

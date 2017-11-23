@@ -41,8 +41,8 @@ public:
 
     void RegisterChar(CCharEntity*);
 
-    uint8 GetID();
-    uint8 GetLevelCap();
+    std::uint8_t GetID();
+    std::uint8_t GetLevelCap();
     const int8* GetName();
     position_t GetEntryLoc();								// Get entry location
     duration GetTimeLimit();								// Get instance time limit
@@ -52,7 +52,7 @@ public:
     time_point GetWipeTime();									// Stores elapsed time when a wipe is detected
     duration GetElapsedTime(time_point tick);					// Get elapsed time so far
 
-    void SetLevelCap(uint8 cap);
+    void SetLevelCap(std::uint8_t cap);
     void SetEntryLoc(float x, float y, float z, float rot); // Set entry location
     void SetLastTimeUpdate(duration time);				// Set last time a "Time Remaining:" message was displayed
     void SetProgress(std::uint32_t progress);						// Set progress through current stage
@@ -69,22 +69,22 @@ public:
     void Cancel();											// Sets instance to fail without calling onInstanceFailure
     bool CheckFirstEntry(std::uint32_t id);                             // Checks if this is the first time a char is entering
 
-    uint8           GetSoloBattleMusic();
-    uint8           GetPartyBattleMusic();
-    uint8           GetBackgroundMusicDay();
-    uint8           GetBackgroundMusicNight();
+    std::uint8_t           GetSoloBattleMusic();
+    std::uint8_t           GetPartyBattleMusic();
+    std::uint8_t           GetBackgroundMusicDay();
+    std::uint8_t           GetBackgroundMusicNight();
 
-    CInstance(CZone*, uint8 instanceid);
+    CInstance(CZone*, std::uint8_t instanceid);
     ~CInstance();
 
 private:
     void LoadInstance();
 
-    uint8 m_instanceid {0};
+    std::uint8_t m_instanceid {0};
     std::uint16_t m_entrance {0};
     string_t m_instanceName;
     std::uint32_t m_commander {0};
-    uint8 m_levelcap {0};
+    std::uint8_t m_levelcap {0};
     duration m_timeLimit {duration::zero()};
     time_point m_startTime;
     duration m_lastTimeUpdate {duration::zero()};

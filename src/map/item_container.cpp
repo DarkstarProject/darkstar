@@ -45,7 +45,7 @@ CItemContainer::CItemContainer(std::uint16_t LocationID)
 
 CItemContainer::~CItemContainer()
 {
-	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
+	for (std::uint8_t SlotID = 0; SlotID <= m_size; ++SlotID)
 	{
         delete m_ItemList[SlotID];
 	}
@@ -56,12 +56,12 @@ std::uint16_t CItemContainer::GetID()
 	return m_id;
 }
 
-uint8 CItemContainer::GetSize()
+std::uint8_t CItemContainer::GetSize()
 {
 	return m_size;
 }
 
-uint8 CItemContainer::GetFreeSlotsCount()
+std::uint8_t CItemContainer::GetFreeSlotsCount()
 {
     return m_size - m_count;
 }
@@ -77,10 +77,10 @@ std::uint16_t CItemContainer::GetBuff()
     return m_buff;
 }
 
-uint8 CItemContainer::AddBuff(int8 buff)
+std::uint8_t CItemContainer::AddBuff(int8 buff)
 {
     m_buff += buff;
-    return SetSize(std::min<uint8>((uint8)m_buff, 80)); // ограничение в 80 ячеек для персонажа
+    return SetSize(std::min<std::uint8_t>((std::uint8_t)m_buff, 80)); // ограничение в 80 ячеек для персонажа
 }
 
 /************************************************************************
@@ -91,7 +91,7 @@ uint8 CItemContainer::AddBuff(int8 buff)
 
 // контейнер не несет ответственности за то, что предметы могут остаться за пределами размера
 
-uint8 CItemContainer::SetSize(uint8 size) 
+std::uint8_t CItemContainer::SetSize(std::uint8_t size) 
 {
 	if (size <= MAX_CONTAINER_SIZE) 
 	{
@@ -113,9 +113,9 @@ uint8 CItemContainer::SetSize(uint8 size)
 
 // контейнер не несет ответственности за то, что предметы могут остаться за пределами размера
 
-uint8 CItemContainer::AddSize(int8 size)
+std::uint8_t CItemContainer::AddSize(int8 size)
 {
-    uint8 newsize = m_size + size;
+    std::uint8_t newsize = m_size + size;
 
     if (newsize <= MAX_CONTAINER_SIZE) 
 	{
@@ -135,18 +135,18 @@ uint8 CItemContainer::AddSize(int8 size)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemContainer::InsertItem(CItem* PItem)
+std::uint8_t CItemContainer::InsertItem(CItem* PItem)
 {
 	DSP_DEBUG_BREAK_IF(PItem == nullptr);
 
-	for (uint8 SlotID = 1; SlotID <= m_size; ++SlotID) 
+	for (std::uint8_t SlotID = 1; SlotID <= m_size; ++SlotID) 
 	{
 		if (m_ItemList[SlotID] == nullptr) 
 		{
             m_count++;
 
 			PItem->setSlotID(SlotID);
-			PItem->setLocationID((uint8)m_id);
+			PItem->setLocationID((std::uint8_t)m_id);
 
 			m_ItemList[SlotID] = PItem;
 			return SlotID;
@@ -164,14 +164,14 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
 *																		*
 ************************************************************************/
 
-uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
+std::uint8_t CItemContainer::InsertItem(CItem* PItem, std::uint8_t SlotID)
 {
 	if (SlotID <= m_size)
 	{
 		if (PItem != nullptr)
 		{
 			PItem->setSlotID(SlotID);
-			PItem->setLocationID((uint8)m_id);
+			PItem->setLocationID((std::uint8_t)m_id);
 
             if (m_ItemList[SlotID] == nullptr && SlotID != 0) m_count++;
 		}
@@ -192,7 +192,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-CItem* CItemContainer::GetItem(uint8 SlotID)
+CItem* CItemContainer::GetItem(std::uint8_t SlotID)
 {
 	if (SlotID <= m_size)
 	{
@@ -207,9 +207,9 @@ CItem* CItemContainer::GetItem(uint8 SlotID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemContainer::SearchItem(std::uint16_t ItemID)
+std::uint8_t CItemContainer::SearchItem(std::uint16_t ItemID)
 {
-	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
+	for (std::uint8_t SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{
 		if ((m_ItemList[SlotID] != nullptr) && 
 			(m_ItemList[SlotID]->getID() == ItemID)) 
@@ -226,9 +226,9 @@ uint8 CItemContainer::SearchItem(std::uint16_t ItemID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemContainer::SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity)
+std::uint8_t CItemContainer::SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t quantity)
 {
-	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID) 
+	for (std::uint8_t SlotID = 0; SlotID <= m_size; ++SlotID) 
 	{
 		if ((m_ItemList[SlotID] != nullptr) && 
 			(m_ItemList[SlotID]->getID() == ItemID) &&
@@ -248,7 +248,7 @@ uint8 CItemContainer::SearchItemWithSpace(std::uint16_t ItemID, std::uint32_t qu
 
 void CItemContainer::Clear()
 {
-	for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
+	for (std::uint8_t SlotID = 0; SlotID <= m_size; ++SlotID)
 	{
 		delete m_ItemList[SlotID];
 		m_ItemList[SlotID] = nullptr;

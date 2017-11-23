@@ -43,7 +43,7 @@ CCheckPacket::CCheckPacket(CCharEntity* PChar, CCharEntity* PTarget)
 
 	WBUFB(data,(0x0A)) = 0x03;
 
-	uint8 count = 0;
+	std::uint8_t count = 0;
 
 	for (std::int32_t i = 0; i < 16; ++i)
 	{

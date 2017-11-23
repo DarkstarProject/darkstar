@@ -40,7 +40,7 @@ class CServerIPPacket : public CBasicPacket
 {
 public:
 
-	CServerIPPacket(CCharEntity* PChar, uint8 type, std::uint64_t ipp);
+	CServerIPPacket(CCharEntity* PChar, std::uint8_t type, std::uint64_t ipp);
 };
 
 #endif

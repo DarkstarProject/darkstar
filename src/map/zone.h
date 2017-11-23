@@ -339,7 +339,7 @@ enum ZONEID : std::uint16_t
 
 #define MAX_ZONEID 294
 
-enum REGIONTYPE : uint8
+enum REGIONTYPE : std::uint8_t
 {
     REGION_RONFAURE         = 0,
     REGION_ZULKHEIM         = 1,
@@ -391,7 +391,7 @@ enum REGIONTYPE : uint8
     REGION_UNKNOWN          = 255
 };
 
-enum CONTINENTTYPE : uint8
+enum CONTINENTTYPE : std::uint8_t
 {
     THE_MIDDLE_LANDS        = 1,
     THE_ARADJIAH_CONTINENT  = 2,
@@ -441,10 +441,10 @@ enum ZONEMISC
 
 struct zoneMusic_t
 {
-    uint8 m_songDay;   // music (daytime)
-    uint8 m_songNight; // music (nighttime)
-    uint8 m_bSongS;     // battle music (solo)
-    uint8 m_bSongM;     // battle music (party)
+    std::uint8_t m_songDay;   // music (daytime)
+    std::uint8_t m_songNight; // music (nighttime)
+    std::uint8_t m_bSongS;     // battle music (solo)
+    std::uint8_t m_bSongM;     // battle music (party)
 };
 
 /************************************************************************
@@ -455,11 +455,11 @@ struct zoneMusic_t
 
 struct zoneWeather_t
 {
-    uint8 normal;     // Normal Weather
-    uint8 common;     // Common Weather
-    uint8 rare;       // Rare Weather
+    std::uint8_t normal;     // Normal Weather
+    std::uint8_t common;     // Common Weather
+    std::uint8_t rare;       // Rare Weather
 
-    zoneWeather_t(uint8 _normal, uint8 _common, uint8 _rare) :
+    zoneWeather_t(std::uint8_t _normal, std::uint8_t _common, std::uint8_t _rare) :
         normal(_normal), common(_common), rare(_rare) {};
 };
 
@@ -516,16 +516,16 @@ public:
     WEATHER         GetWeather();
     std::uint32_t          GetWeatherChangeTime();
     const int8*     GetName();
-    uint8           GetSoloBattleMusic();
-    uint8           GetPartyBattleMusic();
-    uint8           GetBackgroundMusicDay();
-    uint8           GetBackgroundMusicNight();
+    std::uint8_t           GetSoloBattleMusic();
+    std::uint8_t           GetPartyBattleMusic();
+    std::uint8_t           GetBackgroundMusicDay();
+    std::uint8_t           GetBackgroundMusicNight();
     zoneLine_t*     GetZoneLine(std::uint32_t zoneLineID);
 
     virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
     virtual CCharEntity*    GetCharByID(std::uint32_t id);
     // Gets an entity - ignores instances (use CBaseEntity->GetEntity if possible)
-    virtual CBaseEntity*    GetEntity(std::uint16_t targid, uint8 filter = -1);            // получаем указатель на любую сущность в зоне
+    virtual CBaseEntity*    GetEntity(std::uint16_t targid, std::uint8_t filter = -1);            // получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
     bool            CanUseMisc(std::uint16_t misc);

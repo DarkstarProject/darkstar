@@ -43,8 +43,8 @@ struct Transport_t
 {
     location_t   Dock;
 
-    uint8  AnimationArrive;
-    uint8  AnimationDepart;
+    std::uint8_t  AnimationArrive;
+    std::uint8_t  AnimationDepart;
 
     std::uint16_t TimeOffset;
     std::uint16_t TimeAnimationArrive;
@@ -66,7 +66,7 @@ struct TransportZone_t
 
 struct Elevator_t 
 {
-	uint8 id;
+	std::uint8_t id;
 	std::uint16_t zone;
 
 	std::uint16_t interval;

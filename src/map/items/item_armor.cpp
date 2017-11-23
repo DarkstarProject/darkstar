@@ -51,7 +51,7 @@ std::uint16_t CItemArmor::getModelId()
 	return m_modelID;
 }
 
-uint8 CItemArmor::getShieldSize()
+std::uint8_t CItemArmor::getShieldSize()
 {
 	return m_shieldSize;
 }
@@ -66,12 +66,12 @@ std::uint16_t CItemArmor::getRemoveSlotId()
 	return m_removeSlotID;
 }
 
-uint8 CItemArmor::getReqLvl()
+std::uint8_t CItemArmor::getReqLvl()
 {
 	return m_reqLvl;
 }
 
-uint8 CItemArmor::getILvl()
+std::uint8_t CItemArmor::getILvl()
 {
     return m_iLvl;
 }
@@ -81,12 +81,12 @@ std::uint32_t CItemArmor::getJobs()
 	return m_jobs;
 }
 
-void CItemArmor::setReqLvl(uint8 lvl)
+void CItemArmor::setReqLvl(std::uint8_t lvl)
 {
 	m_reqLvl = lvl;
 }
 
-void CItemArmor::setILvl(uint8 lvl)
+void CItemArmor::setILvl(std::uint8_t lvl)
 {
     m_iLvl = lvl;
 }
@@ -101,7 +101,7 @@ void CItemArmor::setModelId(std::uint16_t mdl)
 	m_modelID = mdl;
 }
 
-void CItemArmor::setShieldSize(uint8 shield)
+void CItemArmor::setShieldSize(std::uint8_t shield)
 {
 	m_shieldSize = shield;
 }
@@ -116,7 +116,7 @@ void CItemArmor::setRemoveSlotId(std::uint16_t removSlot)
 	m_removeSlotID = removSlot;
 }
 
-uint8 CItemArmor::getSlotType()
+std::uint8_t CItemArmor::getSlotType()
 {
 	std::uint32_t result = 0;
 	getMSB(&result,(std::uint32_t)m_equipSlotID);
@@ -129,7 +129,7 @@ uint8 CItemArmor::getSlotType()
 *																		*
 ************************************************************************/
 
-uint8 CItemArmor::getShieldAbsorption()
+std::uint8_t CItemArmor::getShieldAbsorption()
 {
     return m_absorption;
 }
@@ -177,7 +177,7 @@ void CItemArmor::addModifier(CModifier modifier)
     {
         // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
         // http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/33/ <~Aegis and Ochain
-		auto pdt = (uint8)(modifier.getModAmount() / 2);
+		auto pdt = (std::uint8_t)(modifier.getModAmount() / 2);
 
         switch(m_shieldSize)
         {
@@ -196,7 +196,7 @@ void CItemArmor::addModifier(CModifier modifier)
                 pdt += 55;
                 break;
         }
-        m_absorption = std::min<uint8>(pdt, 100);
+        m_absorption = std::min<std::uint8_t>(pdt, 100);
     }
     modList.push_back(modifier);
 }
@@ -237,7 +237,7 @@ void CItemArmor::setTrialNumber(std::uint16_t trial)
     else
         WBUFB(m_extra, 0x01) &= ~0x40;
 
-    WBUFB(m_extra, 0x0A) = (uint8)trial;
+    WBUFB(m_extra, 0x0A) = (std::uint8_t)trial;
 }
 
 std::uint16_t CItemArmor::getTrialNumber()
@@ -250,20 +250,20 @@ std::uint16_t CItemArmor::getTrialNumber()
 *  Augments: 5 bits for value, 11 bits for augment ID                   *
 *                                                                       *
 ************************************************************************/
-void CItemArmor::LoadAugment(uint8 slot, std::uint16_t augment)
+void CItemArmor::LoadAugment(std::uint8_t slot, std::uint16_t augment)
 {
     WBUFW(m_extra, 2 + (slot * 2)) = augment;
 }
 
-void CItemArmor::ApplyAugment(uint8 slot)
+void CItemArmor::ApplyAugment(std::uint8_t slot)
 {
     SetAugmentMod(
         (std::uint16_t)unpackBitsBE(m_extra, 2 + (slot * 2), 0, 11),
-        (uint8)unpackBitsBE(m_extra, 2 + (slot * 2), 11, 5)
+        (std::uint8_t)unpackBitsBE(m_extra, 2 + (slot * 2), 11, 5)
         );
 }
 
-void CItemArmor::setAugment(uint8 slot, std::uint16_t type, uint8 value)
+void CItemArmor::setAugment(std::uint8_t slot, std::uint16_t type, std::uint8_t value)
 {
     packBitsBE(m_extra, type, 2 + (slot * 2), 0, 11);
     packBitsBE(m_extra, value, 2 + (slot * 2), 11, 5);
@@ -271,7 +271,7 @@ void CItemArmor::setAugment(uint8 slot, std::uint16_t type, uint8 value)
     SetAugmentMod(type, value);
 }
 
-void CItemArmor::SetAugmentMod(std::uint16_t type, uint8 value)
+void CItemArmor::SetAugmentMod(std::uint16_t type, std::uint8_t value)
 {
     if (type != 0)
     {
@@ -290,12 +290,12 @@ void CItemArmor::SetAugmentMod(std::uint16_t type, uint8 value)
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
+        std::uint8_t multiplier = (std::uint8_t)Sql_GetUIntData(SqlHandle, 1);
         Mod modId = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 2));
         std::int16_t modValue = (std::int16_t)Sql_GetIntData(SqlHandle, 3);
 
         // type is 0 unless mod is for pets
-        uint8 isPet = (uint8)Sql_GetUIntData(SqlHandle, 4);
+        std::uint8_t isPet = (std::uint8_t)Sql_GetUIntData(SqlHandle, 4);
         PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 5));
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
@@ -310,7 +310,7 @@ void CItemArmor::SetAugmentMod(std::uint16_t type, uint8 value)
     }
 }
 
-std::uint16_t CItemArmor::getAugment(uint8 slot)
+std::uint16_t CItemArmor::getAugment(std::uint8_t slot)
 {
     return RBUFW(m_extra, 2 + (slot * 2));
 }

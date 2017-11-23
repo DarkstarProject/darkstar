@@ -130,20 +130,20 @@ int sSocket(int af, int type, int protocol);
 
 #endif
 // buffer I/O macros
-#define RBUFP(p,pos) (((uint8*)(p)) + (pos))
-#define RBUFB(p,pos) (*(uint8*)RBUFP((p),(pos)))
+#define RBUFP(p,pos) (((std::uint8_t*)(p)) + (pos))
+#define RBUFB(p,pos) (*(std::uint8_t*)RBUFP((p),(pos)))
 #define RBUFW(p,pos) (*(std::uint16_t*)RBUFP((p),(pos)))
 #define RBUFL(p,pos) (*(std::uint32_t*)RBUFP((p),(pos)))
 #define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
 
-#define WBUFP(p,pos) (((uint8*)(p)) + (pos))
-#define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
+#define WBUFP(p,pos) (((std::uint8_t*)(p)) + (pos))
+#define WBUFB(p,pos) (*(std::uint8_t*)WBUFP((p),(pos)))
 #define WBUFW(p,pos) (*(std::uint16_t*)WBUFP((p),(pos)))
 #define WBUFL(p,pos) (*(std::uint32_t*)WBUFP((p),(pos)))
 #define WBUFU(p,pos) (*(std::uint64_t*)WBUFP((p),(pos)))
 #define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
-#define TOB(n) ((uint8)((n)&std::numeric_limits<std::uint8_t>::max()))
+#define TOB(n) ((std::uint8_t)((n)&std::numeric_limits<std::uint8_t>::max()))
 #define TOW(n) ((std::uint16_t)((n)&std::numeric_limits<std::uint16_t>::max()))
 #define TOL(n) ((std::uint32_t)((n)&std::numeric_limits<std::uint32_t>::max()))
 
@@ -211,8 +211,8 @@ extern std::int32_t naddr_;   // # of ip addresses
 	#define WFIFOP(fd,pos) (session[fd]->wdata + session[fd]->wdata_size + (pos))
 
 
-	#define RFIFOB(fd,pos) (*(uint8*)RFIFOP(fd,pos))
-	#define WFIFOB(fd,pos) (*(uint8*)WFIFOP(fd,pos))
+	#define RFIFOB(fd,pos) (*(std::uint8_t*)RFIFOP(fd,pos))
+	#define WFIFOB(fd,pos) (*(std::uint8_t*)WFIFOP(fd,pos))
 	#define RFIFOW(fd,pos) (*(std::uint16_t*)RFIFOP(fd,pos))
 	#define WFIFOW(fd,pos) (*(std::uint16_t*)WFIFOP(fd,pos))
 	#define RFIFOL(fd,pos) (*(std::uint32_t*)RFIFOP(fd,pos))

@@ -36,8 +36,8 @@ public:
 	CItemWeapon(std::uint16_t);
 	virtual ~CItemWeapon();
 
-	uint8	getSkillType();
-	uint8	getSubSkillType();
+	std::uint8_t	getSkillType();
+	std::uint8_t	getSubSkillType();
     std::uint16_t  getILvlSkill();
     std::uint16_t  getILvlParry();
     std::uint16_t  getILvlMacc();
@@ -45,8 +45,8 @@ public:
 	std::int16_t	getBaseDelay();
 	std::uint16_t	getDamage();
 	std::uint16_t	getDmgType();
-    uint8   getAdditionalEffect();
-    uint8   getHitCount();
+    std::uint8_t   getAdditionalEffect();
+    std::uint8_t   getHitCount();
 	std::uint16_t  getUnlockPoints();
     std::uint16_t  getCurrentUnlockPoints();
     void    resetDelay();
@@ -58,8 +58,8 @@ public:
 	bool    isUnlockable();
     bool    isUnlocked();
 
-	void	setSkillType(uint8 skillType);
-	void	setSubSkillType(uint8 subSkillType);
+	void	setSkillType(std::uint8_t skillType);
+	void	setSubSkillType(std::uint8_t subSkillType);
     void    setILvlSkill(std::uint16_t skill);
     void    setILvlParry(std::uint16_t parry);
     void    setILvlMacc(std::uint16_t macc);
@@ -67,15 +67,15 @@ public:
 	void	setBaseDelay(std::uint16_t delay); //should ONLY be set by zoneutils!
 	void	setDamage(std::uint16_t damage);
 	void	setDmgType(std::uint16_t dmgType);
-    void    setAdditionalEffect(uint8 effect);
-    void    setMaxHit(uint8 hit);
+    void    setAdditionalEffect(std::uint8_t effect);
+    void    setMaxHit(std::uint8_t hit);
 	void    setUnlockablePoints(std::uint16_t points);
     void    setCurrentUnlockPoints(std::uint16_t points);
 
 private:
 
-	uint8	m_skillType;
-	uint8	m_subSkillType; //gun vs crossbow, any other exclusives
+	std::uint8_t	m_skillType;
+	std::uint8_t	m_subSkillType; //gun vs crossbow, any other exclusives
     std::uint16_t  m_iLvlSkill;
     std::uint16_t  m_iLvlParry;
     std::uint16_t  m_iLvlMacc;
@@ -83,8 +83,8 @@ private:
 	std::int16_t	m_delay;    //can be -ve e.g. ammo/ranged weapons
 	std::int16_t	m_baseDelay;
 	std::uint16_t	m_dmgType;
-    uint8   m_effect;
-    uint8   m_maxHit;
+    std::uint8_t   m_effect;
+    std::uint8_t   m_maxHit;
 
     std::uint16_t  m_wsunlockpoints;
 

@@ -35,8 +35,8 @@ CStatusEffectPacket::CStatusEffectPacket(CCharEntity* PChar)
 
     std::fill(reinterpret_cast<std::uint16_t*>(data+0x08), reinterpret_cast<std::uint16_t*>(data+0x08)+32, 0x00FF);
 
-    ref<uint8>(0x04) = 0x09;
-    ref<uint8>(0x06) = 0xC4;
+    ref<std::uint8_t>(0x04) = 0x09;
+    ref<std::uint8_t>(0x06) = 0xC4;
 
     PChar->StatusEffectContainer->ForEachEffect([this, &i](CStatusEffect* PEffect)
     {

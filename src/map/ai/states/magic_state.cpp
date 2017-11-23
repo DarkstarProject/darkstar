@@ -35,7 +35,7 @@
 #include "../../packets/message_basic.h"
 #include "../../../common/utils.h"
 
-CMagicState::CMagicState(CBattleEntity* PEntity, std::uint16_t targid, SpellID spellid, uint8 flags) :
+CMagicState::CMagicState(CBattleEntity* PEntity, std::uint16_t targid, SpellID spellid, std::uint8_t flags) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
     m_PSpell(nullptr),

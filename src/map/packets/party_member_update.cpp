@@ -31,7 +31,7 @@ This file is part of DarkStar-server source code.
 #include "../alliance.h"
 #include "../party.h"
 
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, std::uint16_t memberflags, std::uint16_t ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, std::uint8_t MemberNumber, std::uint16_t memberflags, std::uint16_t ZoneID)
 {
     this->type = 0xDD;
     this->size = 0x20;
@@ -52,22 +52,22 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
         ref<std::uint32_t>(0x0C) = PChar->health.mp;
         ref<std::uint16_t>(0x10) = PChar->health.tp;
         ref<std::uint16_t>(0x18) = PChar->targid;
-        ref<uint8>(0x1A) = MemberNumber;
-        ref<uint8>(0x1D) = PChar->GetHPP();
-        ref<uint8>(0x1E) = PChar->GetMPP();
+        ref<std::uint8_t>(0x1A) = MemberNumber;
+        ref<std::uint8_t>(0x1D) = PChar->GetHPP();
+        ref<std::uint8_t>(0x1E) = PChar->GetMPP();
 
         if (!(PChar->nameflags.flags & FLAG_ANON))
         {
-            ref<uint8>(0x22) = PChar->GetMJob();
-            ref<uint8>(0x23) = PChar->GetMLevel();
-            ref<uint8>(0x24) = PChar->GetSJob();
-            ref<uint8>(0x25) = PChar->GetSLevel();
+            ref<std::uint8_t>(0x22) = PChar->GetMJob();
+            ref<std::uint8_t>(0x23) = PChar->GetMLevel();
+            ref<std::uint8_t>(0x24) = PChar->GetSJob();
+            ref<std::uint8_t>(0x25) = PChar->GetSLevel();
         }
     }
 
     memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
 }
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8* name, std::uint16_t memberFlags, uint8 MemberNumber, std::uint16_t ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(std::uint32_t id, const int8* name, std::uint16_t memberFlags, std::uint8_t MemberNumber, std::uint16_t ZoneID)
 {
 
     this->type = 0xDD;

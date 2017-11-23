@@ -74,7 +74,7 @@ void CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer)
 
     m_offset = packBitsLE(m_data, strlen((const int8*)PPlayer->name), m_offset, 4);
 
-    for (uint8 c = 0; c < strlen((const int8*)PPlayer->name); ++c)
+    for (std::uint8_t c = 0; c < strlen((const int8*)PPlayer->name); ++c)
     {
         m_offset = packBitsLE(m_data, PPlayer->name[c], m_offset, 7);
     }
@@ -144,7 +144,7 @@ void CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer)
 *																		*
 ************************************************************************/
 
-uint8* CLinkshellListPacket::GetData()
+std::uint8_t* CLinkshellListPacket::GetData()
 {
     return m_data;
 }

@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 
-CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, std::uint16_t conditionsValue, uint8 slot, Mod modValue, std::int16_t modPower) :
+CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, std::uint16_t conditionsValue, std::uint8_t slot, Mod modValue, std::int16_t modPower) :
     m_POwner(owner),
     m_ConditionsID(conditionsId),
     m_ConditionsValue(conditionsValue),
@@ -54,7 +54,7 @@ std::uint16_t CLatentEffect::GetConditionsValue() const
     return m_ConditionsValue;
 }
 
-uint8 CLatentEffect::GetSlot() const
+std::uint8_t CLatentEffect::GetSlot() const
 {
     return m_SlotID;
 }
@@ -89,7 +89,7 @@ void CLatentEffect::SetConditionsValue(std::uint16_t value)
     m_ConditionsValue = value;
 }
 
-void CLatentEffect::SetSlot(uint8 slot)
+void CLatentEffect::SetSlot(std::uint8_t slot)
 {
     m_SlotID = slot;
 }
@@ -142,7 +142,7 @@ void CLatentEffect::Deactivate()
             {
                 if (GetModValue() == Mod::ADDITIONAL_EFFECT)
                 {
-                    for (uint8 i = 0; i < weapon->modList.size(); ++i)
+                    for (std::uint8_t i = 0; i < weapon->modList.size(); ++i)
                     {
                         //ensure the additional effect is fully removed from the weapon
                         if (weapon->modList.at(i).getModID() == Mod::ADDITIONAL_EFFECT)

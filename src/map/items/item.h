@@ -86,14 +86,14 @@ public:
     std::uint16_t      getID();
     std::uint16_t      getSubID();
     std::uint16_t      getFlag();
-    uint8       getAHCat();
+    std::uint8_t       getAHCat();
     std::uint32_t      getReserve();
     std::uint32_t      getQuantity();
     std::uint32_t      getStackSize();
     std::uint32_t      getBasePrice();
     std::uint32_t      getCharPrice();
-    uint8       getLocationID();
-    uint8       getSlotID();
+    std::uint8_t       getLocationID();
+    std::uint8_t       getSlotID();
 
     bool        isSent();
     bool        isType(ITEM_TYPE);
@@ -101,16 +101,16 @@ public:
 
     void        setID(std::uint16_t );
     void        setSubID(std::uint16_t);
-    void        setSubType(uint8);
+    void        setSubType(std::uint8_t);
     void        setFlag(std::uint16_t);
-    void        setAHCat(uint8);
+    void        setAHCat(std::uint8_t);
     void        setReserve(std::uint32_t);
     void        setQuantity(std::uint32_t);
     void        setStackSize(std::uint32_t);
     void        setBasePrice(std::uint32_t);
     void        setCharPrice(std::uint32_t);
-    void        setLocationID(uint8 LocationID);
-    void        setSlotID(uint8 SlotID);
+    void        setLocationID(std::uint8_t LocationID);
+    void        setSlotID(std::uint8_t SlotID);
     void        setSent(bool sent);
 
     const int8* getName();
@@ -125,28 +125,28 @@ public:
     virtual const int8* getSignature();
     virtual void setSignature(int8* signature);
 
-    uint8       m_extra[0x18];  // any extra data pertaining to item (augments, furniture location, etc)
+    std::uint8_t       m_extra[0x18];  // any extra data pertaining to item (augments, furniture location, etc)
 
 protected:
 
-    void        setType(uint8);
+    void        setType(std::uint8_t);
 
 private:
 
     std::uint16_t      m_id;
     std::uint16_t      m_subid;
-    uint8       m_type;
-    uint8       m_subtype;
+    std::uint8_t       m_type;
+    std::uint8_t       m_subtype;
     std::uint32_t      m_quantity;     // текущее количество предметов
     std::uint32_t      m_reserve;      // зарезервированное количество предметов
     std::uint32_t      m_stackSize;    // максимальное количество предметов
     std::uint32_t      m_BasePrice;
     std::uint32_t      m_CharPrice;    // стоимость предмета в bazaar
-    uint8       m_ahCat;        // категоряи предмета на укционе
+    std::uint8_t       m_ahCat;        // категоряи предмета на укционе
     std::uint16_t      m_flag;
 
-    uint8       m_slotID;       // ячейка предмета в хранилище
-    uint8       m_locationID;   // номер хранилища предмета
+    std::uint8_t       m_slotID;       // ячейка предмета в хранилище
+    std::uint8_t       m_locationID;   // номер хранилища предмета
 
     bool        m_sent;
 

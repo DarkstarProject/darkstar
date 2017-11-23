@@ -64,35 +64,35 @@ public:
         std::int16_t ModPower;
     };
 
-    uint8	getReqLvl();
-    uint8   getILvl();
+    std::uint8_t	getReqLvl();
+    std::uint8_t   getILvl();
 	std::uint32_t	getJobs();
 	std::uint16_t	getModelId();
 	std::uint16_t	getScriptType();
-	uint8	getShieldSize();
+	std::uint8_t	getShieldSize();
 	std::uint16_t	getEquipSlotId();
 	std::uint16_t	getRemoveSlotId();
-    uint8   getShieldAbsorption();
+    std::uint8_t   getShieldAbsorption();
 	std::int16_t	getModifier(Mod mod);
-    uint8   getSlotType();
-    std::uint16_t  getAugment(uint8 slot);
+    std::uint8_t   getSlotType();
+    std::uint16_t  getAugment(std::uint8_t slot);
 	std::uint16_t  getTrialNumber();
 
     bool    IsShield();
 
-	void	setReqLvl(uint8 lvl);
-    void    setILvl(uint8 lvl);
+	void	setReqLvl(std::uint8_t lvl);
+    void    setILvl(std::uint8_t lvl);
 	void	setJobs(std::uint32_t jobs);
 	void	setModelId(std::uint16_t mdl);
-	void	setShieldSize(uint8 shield);
+	void	setShieldSize(std::uint8_t shield);
 	void	setScriptType(std::uint16_t isScripted);
 	void	setEquipSlotId(std::uint16_t equipSlot);
 	void	setRemoveSlotId(std::uint16_t removSlot);
-    void    setAugment(uint8 slot, std::uint16_t type, uint8 value);
+    void    setAugment(std::uint8_t slot, std::uint16_t type, std::uint8_t value);
 	void    setTrialNumber(std::uint16_t);
 
-    void    LoadAugment(uint8 slot, std::uint16_t augment);
-    void    ApplyAugment(uint8 slot);
+    void    LoadAugment(std::uint8_t slot, std::uint16_t augment);
+    void    ApplyAugment(std::uint8_t slot);
 
     void    addModifier(CModifier modifier);
     void    addPetModifier(CPetModifier modifier);
@@ -104,17 +104,17 @@ public:
 
 private:
 
-	uint8	m_reqLvl;
-    uint8   m_iLvl;
+	std::uint8_t	m_reqLvl;
+    std::uint8_t   m_iLvl;
 	std::uint32_t  m_jobs;
 	std::uint16_t	m_modelID;
 	std::uint16_t	m_scriptType;
-	uint8	m_shieldSize;
-    uint8   m_absorption;
+	std::uint8_t	m_shieldSize;
+    std::uint8_t   m_absorption;
 	std::uint16_t	m_equipSlotID;
 	std::uint16_t	m_removeSlotID;
 
-    void    SetAugmentMod(std::uint16_t type, uint8 value);
+    void    SetAugmentMod(std::uint16_t type, std::uint8_t value);
 };
 
 #endif

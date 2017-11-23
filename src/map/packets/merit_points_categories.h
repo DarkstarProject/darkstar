@@ -47,7 +47,7 @@ class CMeritPointsCategoriesPacket : public CBasicPacket
 
     private:
       // offset should be a std::uint16_t!!! Why assert fail?!
-    void MeritPointsCategoriesPacket(CCharEntity* PChar, uint8 offset);
+    void MeritPointsCategoriesPacket(CCharEntity* PChar, std::uint8_t offset);
 };
 
 #endif

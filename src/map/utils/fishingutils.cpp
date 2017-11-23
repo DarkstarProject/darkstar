@@ -196,13 +196,13 @@ bool CheckFisherLuck(CCharEntity* PChar)
 			{
                 // ловля предметов, необходимых для поисков
 
-                uint8 logid = (uint8)Sql_GetIntData(SqlHandle,5);
-                uint8 quest = (uint8)Sql_GetIntData(SqlHandle,6);
+                std::uint8_t logid = (std::uint8_t)Sql_GetIntData(SqlHandle,5);
+                std::uint8_t quest = (std::uint8_t)Sql_GetIntData(SqlHandle,6);
 
                 if(logid < MAX_QUESTAREA && quest < MAX_QUESTID)
 	            {
-		            uint8 current  = PChar->m_questLog[logid].current [quest/8] & (1 << (quest % 8));
-		            uint8 complete = PChar->m_questLog[logid].complete[quest/8] & (1 << (quest % 8));
+		            std::uint8_t current  = PChar->m_questLog[logid].current [quest/8] & (1 << (quest % 8));
+		            std::uint8_t complete = PChar->m_questLog[logid].complete[quest/8] & (1 << (quest % 8));
 
                     if (complete == 0 && current != 0)
                     {
@@ -299,7 +299,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 
 void RodBreaks(CCharEntity* PChar)
 {
-	uint8  SlotID = PChar->equip[SLOT_RANGED];
+	std::uint8_t  SlotID = PChar->equip[SLOT_RANGED];
 	CItem* PRod   = PChar->getStorage(LOC_INVENTORY)->GetItem(SlotID);
 
 	DSP_DEBUG_BREAK_IF(PRod == nullptr);

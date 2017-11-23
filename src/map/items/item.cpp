@@ -112,12 +112,12 @@ std::uint16_t CItem::getFlag()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setAHCat(uint8 ahCat)
+void CItem::setAHCat(std::uint8_t ahCat)
 {
     m_ahCat = ahCat;
 }
 
-uint8 CItem::getAHCat()
+std::uint8_t CItem::getAHCat()
 {
     return m_ahCat;
 }
@@ -128,7 +128,7 @@ uint8 CItem::getAHCat()
 *                                                                       *
 ************************************************************************/
 
-void CItem::setType(uint8 type)
+void CItem::setType(std::uint8_t type)
 {
     m_type |= type;
 }
@@ -144,7 +144,7 @@ bool CItem::isType(ITEM_TYPE type)
 *                                                                       *
 ************************************************************************/
 
-void CItem::setSubType(uint8 subtype)
+void CItem::setSubType(std::uint8_t subtype)
 {
     m_subtype = (subtype > 128 ? m_subtype & subtype : m_subtype | subtype);
 }
@@ -307,12 +307,12 @@ void CItem::setSignature(int8* signature)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItem::getLocationID()
+std::uint8_t CItem::getLocationID()
 {
     return m_locationID;
 }
 
-void CItem::setLocationID(uint8 locationID)
+void CItem::setLocationID(std::uint8_t locationID)
 {
     m_locationID = locationID;
 }
@@ -323,12 +323,12 @@ void CItem::setLocationID(uint8 locationID)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItem::getSlotID()
+std::uint8_t CItem::getSlotID()
 {
     return m_slotID;
 }
 
-void CItem::setSlotID(uint8 slotID)
+void CItem::setSlotID(std::uint8_t slotID)
 {
     m_slotID = slotID;
 }

@@ -86,12 +86,12 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, std::uint16_t id)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
+void CRecastContainer::Add(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, std::uint8_t maxCharges)
 {
     Load(type, id, duration, chargeTime, maxCharges);
 }
 
-Recast_t* CRecastContainer::Load(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, uint8 maxCharges)
+Recast_t* CRecastContainer::Load(RECASTTYPE type, std::uint16_t id, std::uint32_t duration, std::uint32_t chargeTime, std::uint8_t maxCharges)
 {
     Recast_t* recast = GetRecast(type, id);
 
@@ -187,7 +187,7 @@ void CRecastContainer::Del(RECASTTYPE type, std::uint16_t id)
 *                                                                       *
 ************************************************************************/
 
-void CRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
+void CRecastContainer::DeleteByIndex(RECASTTYPE type, std::uint8_t index)
 {
     RecastList_t* PRecastList = GetRecastList(type);
     if (type == RECAST_ABILITY)

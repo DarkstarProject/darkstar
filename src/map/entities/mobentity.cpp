@@ -369,7 +369,7 @@ bool CMobEntity::CanBeNeutral()
     return !(m_Type & MOBTYPE_NOTORIOUS);
 }
 
-uint8 CMobEntity::TPUseChance()
+std::uint8_t CMobEntity::TPUseChance()
 {
     auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
 
@@ -383,7 +383,7 @@ uint8 CMobEntity::TPUseChance()
         return 100;
     }
 
-    return (uint8)getMobMod(MOBMOD_TP_USE_CHANCE);
+    return (std::uint8_t)getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
 void CMobEntity::setMobMod(std::uint16_t type, std::int16_t value)
@@ -570,12 +570,12 @@ void CMobEntity::Spawn()
     m_THLvl = 0;
     m_ItemStolen = false;
     m_DropItemTime = 1000;
-    animationsub = (uint8)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
+    animationsub = (std::uint8_t)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
     CallForHelp(false);
 
     PEnmityContainer->Clear();
 
-    uint8 level = m_minLevel;
+    std::uint8_t level = m_minLevel;
 
     // Generate a random level between min and max level
     if (m_maxLevel != m_minLevel)
@@ -638,7 +638,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     PAI->TargetFind->reset();
 
     float distance = PSkill->getDistance();
-    uint8 findFlags = 0;
+    std::uint8_t findFlags = 0;
     if (PSkill->getFlag() & SKILLFLAG_HIT_ALL)
     {
         findFlags |= FINDFLAGS_HIT_ALL;
@@ -808,12 +808,12 @@ void CMobEntity::DropItems()
 
             if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->size())
             {
-                for (uint8 i = 0; i < DropList->size(); ++i)
+                for (std::uint8_t i = 0; i < DropList->size(); ++i)
                 {
                     //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-                    uint8 tries = 0;
-                    uint8 maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-                    uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+                    std::uint8_t tries = 0;
+                    std::uint8_t maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+                    std::uint8_t bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
                     while (tries < maxTries)
                     {
                         if (DropList->at(i).DropRate > 0 && dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
@@ -938,7 +938,7 @@ bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>
             auto skill {battleutils::GetMobSkill(skillList.front())};
             if (skill)
             {
-                attack_range = (uint8)skill->getDistance();
+                attack_range = (std::uint8_t)skill->getDistance();
             }
         }
         if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > attack_range ||

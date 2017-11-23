@@ -471,7 +471,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         if (PMob)
         {
             std::uint16_t highestEnmity = 0;
-            for (uint8 i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
+            for (std::uint8_t i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
             {
                 CBattleEntity* member = PAutomaton->PMaster->PParty->members.at(i);
                 if (member->id != PAutomaton->PMaster->id)
@@ -488,7 +488,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         }
         else
         {
-            for (uint8 i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
+            for (std::uint8_t i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
             {
                 CBattleEntity* member = PAutomaton->PMaster->PParty->members.at(i);
                 if (member->id != PAutomaton->PMaster->id && distance(PAutomaton->loc.p, PAutomaton->PMaster->loc.p) < 20)
@@ -961,7 +961,7 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
 
     if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Water + Soulsoother head -> Remove party's statuses
     {
-        for (uint8 i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
+        for (std::uint8_t i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
         {
             CBattleEntity* member = PAutomaton->PMaster->PParty->members.at(i);
             if (member->id != PAutomaton->PMaster->id)
@@ -1013,9 +1013,9 @@ bool CAutomatonController::TryEnhance()
     CBattleEntity* PPhalanxTarget = nullptr;
 
     bool protect = false;
-    uint8 protectcount = 0;
+    std::uint8_t protectcount = 0;
     bool shell = false;
-    uint8 shellcount = 0;
+    std::uint8_t shellcount = 0;
     bool haste = false;
     bool stoneskin = false;
     bool phalanx = false;
@@ -1133,7 +1133,7 @@ bool CAutomatonController::TryEnhance()
     if (PAutomaton->PMaster->PParty)
     {
         members = PAutomaton->PMaster->PParty->members.size();
-        for (uint8 i = 0; i < members; ++i)
+        for (std::uint8_t i = 0; i < members; ++i)
         {
             CBattleEntity* member = PAutomaton->PMaster->PParty->members.at(i);
             if (member->id != PAutomaton->PMaster->id && distance(PAutomaton->loc.p, member->loc.p) < 20)
@@ -1415,7 +1415,7 @@ namespace autoSpell
                 SpellID id = (SpellID)Sql_GetUIntData(SqlHandle, 0);
                 AutomatonSpell PSpell {
                     (std::uint16_t)Sql_GetUIntData(SqlHandle, 1),
-                    (uint8)Sql_GetUIntData(SqlHandle, 2),
+                    (std::uint8_t)Sql_GetUIntData(SqlHandle, 2),
                     (EFFECT)Sql_GetUIntData(SqlHandle, 3),
                     (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)
                 };
@@ -1440,7 +1440,7 @@ namespace autoSpell
     bool CanUseSpell(CAutomatonEntity* PCaster, SpellID spellid)
     {
         const AutomatonSpell& PSpell = autoSpellList[spellid];
-        return ((PCaster->GetSkill(SKILL_AMA) >= PSpell.skilllevel) && (PSpell.heads & (1 << ((uint8)PCaster->getHead() - 1))));
+        return ((PCaster->GetSkill(SKILL_AMA) >= PSpell.skilllevel) && (PSpell.heads & (1 << ((std::uint8_t)PCaster->getHead() - 1))));
     }
 
     bool CanUseEnfeeble(CBattleEntity* PTarget, SpellID spell)

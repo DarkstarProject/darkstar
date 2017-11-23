@@ -38,7 +38,7 @@ class CAddtoEquipSet : public CBasicPacket
 {
 public:
 
-    CAddtoEquipSet(uint8* data);
+    CAddtoEquipSet(std::uint8_t* data);
 };
 
 #endif

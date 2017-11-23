@@ -55,44 +55,44 @@ public:
     std::uint16_t      getID() const;
     std::uint16_t      getAnimationID() const;
     std::uint16_t      getPetAnimationID() const;
-    uint8       getAoe() const;
+    std::uint8_t       getAoe() const;
     float       getDistance() const;
-    uint8       getFlag() const;
+    std::uint8_t       getFlag() const;
     std::uint16_t      getAnimationTime() const;
     std::uint16_t      getActivationTime() const;
     std::uint16_t      getMsg() const;
     std::uint16_t      getAoEMsg() const;
     std::uint16_t      getValidTargets() const;
     std::int16_t       getTP() const;
-    uint8       getHPP() const;
+    std::uint8_t       getHPP() const;
     std::uint16_t      getTotalTargets() const;
     std::uint16_t      getMsgForAction() const;
     float       getRadius() const;
     std::int16_t       getParam() const;
-    uint8       getKnockback() const;
-    uint8       getPrimarySkillchain() const;
-    uint8       getSecondarySkillchain() const;
-    uint8       getTertiarySkillchain() const;
+    std::uint8_t       getKnockback() const;
+    std::uint8_t       getPrimarySkillchain() const;
+    std::uint8_t       getSecondarySkillchain() const;
+    std::uint8_t       getTertiarySkillchain() const;
 
     bool        isDamageMsg();
 
     void        setID(std::uint16_t id);
     void        setAnimationID(std::uint16_t aid);
-    void        setAoe(uint8 aoe);
+    void        setAoe(std::uint8_t aoe);
     void        setDistance(float distance);
-    void        setFlag(uint8 flag);
+    void        setFlag(std::uint8_t flag);
     void        setAnimationTime(std::uint16_t AnimationTime);
     void        setActivationTime(std::uint16_t ActivationTime);
     void        setMsg(std::uint16_t msg);
     void        setValidTargets(std::uint16_t targ);
     void        setTP(std::int16_t tp);
-    void        setHPP(uint8 hpp);
+    void        setHPP(std::uint8_t hpp);
     void        setTotalTargets(std::uint16_t targets);
     void        setParam(std::int16_t value);
-    void        setKnockback(uint8 knockback);
-    void        setPrimarySkillchain(uint8 skillchain);
-    void        setSecondarySkillchain(uint8 skillchain);
-    void        setTertiarySkillchain(uint8 skillchain);
+    void        setKnockback(std::uint8_t knockback);
+    void        setPrimarySkillchain(std::uint8_t skillchain);
+    void        setSecondarySkillchain(std::uint8_t skillchain);
+    void        setTertiarySkillchain(std::uint8_t skillchain);
 
     const int8* getName() const;
     void        setName(int8* name);
@@ -103,19 +103,19 @@ private:
     std::uint16_t      m_TotalTargets;
     std::int16_t       m_Param;
     std::uint16_t      m_AnimID;           //animation id
-    uint8       m_Aoe;              // не используется
+    std::uint8_t       m_Aoe;              // не используется
     float       m_Distance;         // не используется
-    uint8       m_Flag;             // не используется
+    std::uint8_t       m_Flag;             // не используется
     std::uint16_t      m_ValidTarget;      //same as
     std::uint16_t      m_AnimationTime;    //how long the tp animation lasts for in ms
     std::uint16_t      m_ActivationTime;   //how long the mob prepares the tp move for
     std::uint16_t      m_Message;          //message param, scripters can edit this depending on self/resist/etc.
     std::int16_t       m_TP;               //the tp at the time of finish readying (for scripts)
-    uint8       m_HPP;              // HPP at the time of using mob skill (for scripts)
-    uint8       m_knockback;        //knockback value (0-7)
-    uint8       m_primarySkillchain;       //weaponskill ID of skillchain properties
-    uint8       m_secondarySkillchain;
-    uint8       m_tertiarySkillchain;
+    std::uint8_t       m_HPP;              // HPP at the time of using mob skill (for scripts)
+    std::uint8_t       m_knockback;        //knockback value (0-7)
+    std::uint8_t       m_primarySkillchain;       //weaponskill ID of skillchain properties
+    std::uint8_t       m_secondarySkillchain;
+    std::uint8_t       m_tertiarySkillchain;
 
     string_t    m_name;
 };

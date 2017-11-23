@@ -70,7 +70,7 @@ namespace battlefieldutils {
             PBattlefield->m_RuleMask = (std::uint16_t)Sql_GetUIntData(SqlHandle, 7);
 
             PBattlefield->setRecord(Sql_GetData(SqlHandle, 2),
-                (uint8)Sql_GetUIntData(SqlHandle, 10),
+                (std::uint8_t)Sql_GetUIntData(SqlHandle, 10),
                 std::chrono::seconds((std::uint32_t)Sql_GetUIntData(SqlHandle, 3)));
 
             return PBattlefield;
@@ -103,7 +103,7 @@ namespace battlefieldutils {
         else {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
                 std::uint32_t mobid = Sql_GetUIntData(SqlHandle, 0);
-                uint8 condition = Sql_GetUIntData(SqlHandle, 1);
+                std::uint8_t condition = Sql_GetUIntData(SqlHandle, 1);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
                 if (PMob != nullptr)
                 {
@@ -298,7 +298,7 @@ namespace battlefieldutils {
 
     void getChestItems(CBattlefield* battlefield) {
         int instzone = battlefield->getZoneId();
-        uint8 maxloot = 0;
+        std::uint8_t maxloot = 0;
         LootList_t* LootList = itemutils::GetLootList(battlefield->getLootId());
 
         if (LootList == nullptr) {
@@ -309,7 +309,7 @@ namespace battlefieldutils {
         }
         else
         {
-            for (uint8 sizeoflist = 0; sizeoflist < LootList->size(); ++sizeoflist) {
+            for (std::uint8_t sizeoflist = 0; sizeoflist < LootList->size(); ++sizeoflist) {
                 if (LootList->at(sizeoflist).LootGroupId > maxloot) {
                     maxloot = LootList->at(sizeoflist).LootGroupId;
                 }
@@ -318,12 +318,12 @@ namespace battlefieldutils {
 
         if (maxloot != 0)
         {
-            for (uint8 group = 0; group <= maxloot; ++group)
+            for (std::uint8_t group = 0; group <= maxloot; ++group)
             {
                 std::uint16_t groupRoll = dsprand::GetRandomNumber(1000/* aka 100.0% */);
                 std::uint16_t itemRolls = 0;
 
-                for (uint8 item = 0; item < LootList->size(); ++item)
+                for (std::uint8_t item = 0; item < LootList->size(); ++item)
                 {
                     if (group == LootList->at(item).LootGroupId)
                     {

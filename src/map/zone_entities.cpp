@@ -319,7 +319,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = (uint8)pos[3];
+                PChar->loc.p.rotation = (std::uint8_t)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -342,7 +342,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = (uint8)pos[3];
+                PChar->loc.p.rotation = (std::uint8_t)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -604,7 +604,7 @@ void CZoneEntities::SpawnTransport(CCharEntity* PChar)
     }
 }
 
-CBaseEntity* CZoneEntities::GetEntity(std::uint16_t targid, uint8 filter)
+CBaseEntity* CZoneEntities::GetEntity(std::uint16_t targid, std::uint8_t filter)
 {
     if (targid < 0x400)
     {
@@ -799,7 +799,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
     if (packet->id() == 0x00D && PEntity != nullptr && PEntity->objtype == TYPE_PC && ((CCharEntity*)PEntity)->m_isGMHidden)
     {
         // Ensure this packet is not despawning us..
-        if (packet->ref<uint8>(0x0A) != 0x20)
+        if (packet->ref<std::uint8_t>(0x0A) != 0x20)
         {
             delete packet;
             return;
@@ -828,7 +828,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
                             ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
                         {
                             if (packet->id() == 0x00E &&
-                                (packet->ref<uint8>(0x0A) != 0x20 || packet->ref<uint8>(0x0A) != 0x0F))
+                                (packet->ref<std::uint8_t>(0x0A) != 0x20 || packet->ref<std::uint8_t>(0x0A) != 0x0F))
                             {
                                 std::uint32_t id = packet->ref<std::uint32_t>(0x04);
                                 std::uint16_t targid = packet->ref<std::uint16_t>(0x08);

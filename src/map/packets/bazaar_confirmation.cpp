@@ -31,7 +31,7 @@
 #include "../utils/itemutils.h"
 
 
-CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity)
+CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, std::uint8_t SlotID, std::uint8_t Quantity)
 {
 	this->type = 0x09;  // 0x109
 	this->size = 0x13;

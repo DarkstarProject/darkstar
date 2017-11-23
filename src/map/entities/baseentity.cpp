@@ -94,7 +94,7 @@ float CBaseEntity::GetZPos()
 	return loc.p.z;
 }
 
-uint8 CBaseEntity::GetRotPos()
+std::uint8_t CBaseEntity::GetRotPos()
 {
 	return loc.p.rotation;
 }
@@ -118,7 +118,7 @@ bool CBaseEntity::IsNameHidden()
 	return namevis & FLAG_HIDE_NAME;
 }
 
-CBaseEntity* CBaseEntity::GetEntity(std::uint16_t targid, uint8 filter)
+CBaseEntity* CBaseEntity::GetEntity(std::uint16_t targid, std::uint8_t filter)
 {
 	if (PInstance)
 		return PInstance->GetEntity(targid, filter);

@@ -65,7 +65,7 @@ SpellID CSpell::getID()
     return m_ID;
 }
 
-uint8 CSpell::getJob(JOBTYPE JobID)
+std::uint8_t CSpell::getJob(JOBTYPE JobID)
 {
     return (m_job[JobID] == CANNOT_USE_SPELL ? 255 : m_job[JobID]);
 }
@@ -116,12 +116,12 @@ void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
     m_spellGroup = SpellGroup;
 }
 
-uint8 CSpell::getSkillType()
+std::uint8_t CSpell::getSkillType()
 {
     return m_skillType;
 }
 
-void CSpell::setSkillType(uint8 SkillType)
+void CSpell::setSkillType(std::uint8_t SkillType)
 {
     m_skillType = SkillType;
 }
@@ -221,12 +221,12 @@ bool CSpell::canTargetEnemy()
     return (getValidTarget() & TARGET_ENEMY) && !(getValidTarget() & TARGET_SELF);
 }
 
-uint8 CSpell::getAOE()
+std::uint8_t CSpell::getAOE()
 {
     return m_AOE;
 }
 
-void CSpell::setAOE(uint8 AOE)
+void CSpell::setAOE(std::uint8_t AOE)
 {
     m_AOE = AOE;
 }
@@ -241,12 +241,12 @@ void CSpell::setBase(std::uint16_t base)
     m_base = base;
 }
 
-uint8 CSpell::getValidTarget()
+std::uint8_t CSpell::getValidTarget()
 {
     return m_ValidTarget;
 }
 
-void CSpell::setValidTarget(uint8 ValidTarget)
+void CSpell::setValidTarget(std::uint8_t ValidTarget)
 {
     m_ValidTarget = ValidTarget;
 }
@@ -348,12 +348,12 @@ std::uint32_t CSpell::getModifiedRecast()
     return m_modifiedRecastTime;
 }
 
-uint8 CSpell::getRequirements()
+std::uint8_t CSpell::getRequirements()
 {
     return m_requirements;
 }
 
-void CSpell::setRequirements(uint8 requirements)
+void CSpell::setRequirements(std::uint8_t requirements)
 {
     m_requirements = requirements;
 }
@@ -368,12 +368,12 @@ void CSpell::setMeritId(std::uint16_t meritId)
     m_meritId = meritId;
 }
 
-uint8 CSpell::getFlag()
+std::uint8_t CSpell::getFlag()
 {
     return m_flag;
 }
 
-void CSpell::setFlag(uint8 flag)
+void CSpell::setFlag(std::uint8_t flag)
 {
     m_flag = flag;
 }
@@ -572,9 +572,9 @@ namespace spell
 
         if (spell != nullptr)
         {
-            uint8 JobMLVL = spell->getJob(PCaster->GetMJob());
-            uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
-            uint8 requirements = spell->getRequirements();
+            std::uint8_t JobMLVL = spell->getJob(PCaster->GetMJob());
+            std::uint8_t JobSLVL = spell->getJob(PCaster->GetSJob());
+            std::uint8_t requirements = spell->getRequirements();
 
             if (PCaster->objtype == TYPE_MOB || (PCaster->objtype == TYPE_PET && static_cast<CPetEntity*>(PCaster)->getPetType() == PETTYPE_AUTOMATON))
             {
@@ -677,11 +677,11 @@ namespace spell
 
     // This is a utility method for mobutils, when we want to work out if we can give monsters a spell
     // but they are on an odd job (e.g. PLDs getting -ga3)
-    bool CanUseSpellWith(SpellID spellId, JOBTYPE job, uint8 level)
+    bool CanUseSpellWith(SpellID spellId, JOBTYPE job, std::uint8_t level)
     {
         if (GetSpell(spellId) != nullptr)
         {
-            uint8 jobMLevel = PSpellList[static_cast<size_t>(spellId)]->getJob(job);
+            std::uint8_t jobMLevel = PSpellList[static_cast<size_t>(spellId)]->getJob(job);
 
             return level > jobMLevel;
         }

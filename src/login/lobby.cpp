@@ -189,8 +189,8 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 
                 std::uint16_t zone = (std::uint16_t)Sql_GetIntData(SqlHandle, 2);
 
-                uint8 MainJob = (uint8)Sql_GetIntData(SqlHandle, 4);
-                uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
+                std::uint8_t MainJob = (std::uint8_t)Sql_GetIntData(SqlHandle, 4);
+                std::uint8_t lvlMainJob = (std::uint8_t)Sql_GetIntData(SqlHandle, 13 + MainJob);
 
                 // Update the character and user list content ids..
                 WBUFL(uList, 16 * (i + 1)) = CharID;
@@ -206,8 +206,8 @@ std::int32_t lobbydata_parse(std::int32_t fd)
                 WBUFB(CharList, 46 + 32 + i * 140) = MainJob;
                 WBUFB(CharList, 73 + 32 + i * 140) = lvlMainJob;
 
-                WBUFB(CharList, 44 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 5); // race;
-                WBUFB(CharList, 56 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 6); // face;
+                WBUFB(CharList, 44 + 32 + i * 140) = (std::uint8_t)Sql_GetIntData(SqlHandle, 5); // race;
+                WBUFB(CharList, 56 + 32 + i * 140) = (std::uint8_t)Sql_GetIntData(SqlHandle, 6); // face;
                 WBUFW(CharList, 58 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 7); // head;
                 WBUFW(CharList, 60 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 8); // body;
                 WBUFW(CharList, 62 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 9); // hands;
@@ -216,7 +216,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
                 WBUFW(CharList, 68 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 12); // main;
                 WBUFW(CharList, 70 + 32 + i * 140) = (std::uint16_t)Sql_GetIntData(SqlHandle, 13); // sub;
 
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)zone;
+                WBUFB(CharList, 72 + 32 + i * 140) = (std::uint8_t)zone;
                 WBUFW(CharList, 78 + 32 + i * 140) = zone;
                 ///////////////////////////////////////////////////
                 ++i;
@@ -251,11 +251,11 @@ std::int32_t lobbydata_parse(std::int32_t fd)
         case 0xA2:
         {
             LOBBY_A2_RESERVEPACKET(ReservePacket);
-            uint8 key3[20];
+            std::uint8_t key3[20];
             memset(key3, 0, sizeof(key3));
             memcpy(key3, buff + 1, sizeof(key3));
             key3[16] -= 2;
-            uint8 MainReservePacket[0x48];
+            std::uint8_t MainReservePacket[0x48];
 
             RFIFOSKIP(fd, session[fd]->rdata.size());
             RFIFOFLUSH(fd);
@@ -316,7 +316,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
 
             fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
 
-            if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
+            if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (std::uint8_t)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
             {
                 //отправляем клиенту сообщение об ошибке
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
@@ -330,7 +330,7 @@ std::int32_t lobbydata_parse(std::int32_t fd)
             Sql_Query(SqlHandle, fmtQuery, charid);
 
             unsigned char Hash[16];
-            uint8 SendBuffSize = RBUFB(MainReservePacket, 0);
+            std::uint8_t SendBuffSize = RBUFB(MainReservePacket, 0);
 
             memset(MainReservePacket + 12, 0, sizeof(Hash));
             md5(MainReservePacket, Hash, SendBuffSize);
@@ -461,7 +461,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
     {
         char* buff = &session[fd]->rdata[0];
         ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", RBUFB(buff, 8), ip2str(sd->client_addr, nullptr));
-        uint8 code = RBUFB(buff, 8);
+        std::uint8_t code = RBUFB(buff, 8);
         switch (code)
         {
         case 0x26:
@@ -529,7 +529,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
-            uint8 sendsize = 0x20;
+            std::uint8_t sendsize = 0x20;
 
             LOBBY_ACTION_DONE(ReservePacket);
             unsigned char hash[16];
@@ -576,7 +576,7 @@ std::int32_t lobbyview_parse(std::int32_t fd)
             md5((unsigned char*)(ReservePacket), Hash, 64);
 
             memcpy(ReservePacket + 12, Hash, 16);
-            uint8 SendBuffSize = 64;
+            std::uint8_t SendBuffSize = 64;
             session[fd]->wdata.append((const char*)ReservePacket, SendBuffSize);
             RFIFOSKIP(fd, session[fd]->rdata.size());
             RFIFOFLUSH(fd);
@@ -719,8 +719,8 @@ std::int32_t lobby_createchar(login_session_data_t *loginsd, char *buf)
     createchar.m_look.face = RBUFB(buf, 60);
 
     // Validate that the job is a starting job.
-    uint8 mjob = RBUFB(buf, 50);
-    createchar.m_mjob = std::clamp<uint8>(mjob, 1, 6);
+    std::uint8_t mjob = RBUFB(buf, 50);
+    createchar.m_mjob = std::clamp<std::uint8_t>(mjob, 1, 6);
 
     // Log that the character attempting to create a non-starting job.
     if (mjob != createchar.m_mjob) {

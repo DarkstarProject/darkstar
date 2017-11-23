@@ -34,7 +34,7 @@
 #define BEASTMEN            0x03
 #define NEUTRAL             0xFF
 
-enum ConquestUpdate : uint8
+enum ConquestUpdate : std::uint8_t
 {
     Conquest_Tally_Start = 0,
     Conquest_Tally_End = 1,
@@ -57,23 +57,23 @@ namespace conquest
 	void	GainInfluencePoints(CCharEntity* PChar, std::uint32_t points);		// Gain influence for player's nation (+1)
 	void	LoseInfluencePoints(CCharEntity* PChar);					// Lose influence for player's nation and gain for beastmen influence
 	
-    uint8	GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);	// Get number for graphics in conquest menu (arrows)
-    uint8	GetInfluenceGraphics(REGIONTYPE RegionID);	                // Get number for graphics in conquest menu (arrows)
-    uint8   GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);
-    uint8   GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf);
+    std::uint8_t	GetInfluenceGraphics(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);	// Get number for graphics in conquest menu (arrows)
+    std::uint8_t	GetInfluenceGraphics(REGIONTYPE RegionID);	                // Get number for graphics in conquest menu (arrows)
+    std::uint8_t   GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf, std::int32_t bst_inf);
+    std::uint8_t   GetInfluenceRanking(std::int32_t san_inf, std::int32_t bas_inf, std::int32_t win_inf);
 
     void	UpdateConquestGM(ConquestUpdate type);						// Update conquest system by GM (modify in the DB and use @updateconquest)
 	void	UpdateWeekConquest();										// Update conquest system every sunday
 
-    uint8	GetBalance(uint8 sandoria, uint8 bastok, uint8 windurst,	// Ranking for 3 nations
-                       uint8 sandoria_prev, uint8 bastok_prev, uint8 windurst_prev);
-    uint8   GetBalance();
-    uint8   GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst);  // Determine if losing nations are allied
-    uint8	GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst,	// Determine if losing nations are allied
-        uint8 sandoria_prev, uint8 bastok_prev, uint8 windurst_prev);
+    std::uint8_t	GetBalance(std::uint8_t sandoria, std::uint8_t bastok, std::uint8_t windurst,	// Ranking for 3 nations
+                       std::uint8_t sandoria_prev, std::uint8_t bastok_prev, std::uint8_t windurst_prev);
+    std::uint8_t   GetBalance();
+    std::uint8_t   GetAlliance(std::uint8_t sandoria, std::uint8_t bastok, std::uint8_t windurst);  // Determine if losing nations are allied
+    std::uint8_t	GetAlliance(std::uint8_t sandoria, std::uint8_t bastok, std::uint8_t windurst,	// Determine if losing nations are allied
+        std::uint8_t sandoria_prev, std::uint8_t bastok_prev, std::uint8_t windurst_prev);
     bool    IsAlliance();                                               // Determine if losing nations are allied
-	uint8	GetNexTally();												// Next tally (weekly or every hour ?)
-    uint8	GetRegionOwner(REGIONTYPE RegionID);						// Get owner of the region
+	std::uint8_t	GetNexTally();												// Next tally (weekly or every hour ?)
+    std::uint8_t	GetRegionOwner(REGIONTYPE RegionID);						// Get owner of the region
 
     std::uint32_t	AddConquestPoints(CCharEntity* PChar, std::uint32_t exp);			// Add conquest points
 };

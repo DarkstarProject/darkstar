@@ -63,11 +63,11 @@ public:
     CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type,
         PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound);
 
-    uint8						GetAnimationID();		// Returns the animation ID.
+    std::uint8_t						GetAnimationID();		// Returns the animation ID.
     PHYSICAL_ATTACK_TYPE		GetAttackType();		// Returns the attack type (Double, Triple, Zanshin ect).
     PHYSICAL_ATTACK_DIRECTION	GetAttackDirection();	// Returns the attack direction.
-    uint8						GetWeaponSlot();		// Returns the attacking slot.
-    uint8						GetHitRate();			// Returns the hitrate for this swing.
+    std::uint8_t						GetWeaponSlot();		// Returns the attacking slot.
+    std::uint8_t						GetHitRate();			// Returns the hitrate for this swing.
     std::int32_t						GetDamage();			// Returns the damage for this attack.
     void						SetDamage(std::int32_t);		// Sets the damage for this attack.
     bool						IsCritical();			// Returns the isCritical flag.
@@ -95,7 +95,7 @@ private:
     CAttackRound*				m_attackRound;			// Reference to the parent attack round.
     PHYSICAL_ATTACK_TYPE		m_attackType;			// The attack type (Double, Triple, Zanshin ect).
     PHYSICAL_ATTACK_DIRECTION	m_attackDirection;		// The attack direction (Left, Right).
-    uint8						m_hitRate {0};				// This attack's hitrate.
+    std::uint8_t						m_hitRate {0};				// This attack's hitrate.
     bool						m_isCritical {false};			// Flag: Is this attack a critical attack?
     bool						m_isGuarded {false};			// Flag: Is this attack guarded by the victim?
     bool						m_isBlocked {false};			// Flag: Is this attack blocked by the victim?

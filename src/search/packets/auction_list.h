@@ -36,15 +36,15 @@ public:
     void AddItem(ahItem* item);
     void SetItemCount(std::uint16_t count);
 
-    uint8* GetData();
+    std::uint8_t* GetData();
     std::uint16_t GetSize();
 
 private:
 
-    uint8  m_count;
+    std::uint8_t  m_count;
     std::uint16_t m_offset;
 
-    uint8 m_PData[256];
+    std::uint8_t m_PData[256];
 };
 
 #endif

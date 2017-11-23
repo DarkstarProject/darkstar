@@ -52,7 +52,7 @@ class CEntityUpdatePacket: public CBasicPacket
 {
 public:
 
-	CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask);
+	CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type, std::uint8_t updatemask);
 };
 
 #endif

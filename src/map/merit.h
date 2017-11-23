@@ -511,17 +511,17 @@ struct Merit_t
         struct
         {
             std::uint16_t id;      // id мерита
-            uint8  next;    // required merit points for next upgrade
-            uint8  count;   // number of upgrades
+            std::uint8_t  next;    // required merit points for next upgrade
+            std::uint8_t  count;   // number of upgrades
         };
         std::uint32_t data;        // data sent in packet
     };
 
     std::uint32_t value;           // the coefficient of variation of the parameter that is bound to merit 
-    uint8  upgrade;         // maximum number of upgrades
+    std::uint8_t  upgrade;         // maximum number of upgrades
     std::uint32_t jobs;            // bitmask of jobs for which merit has effect
-	uint8  upgradeid;		// which set of upgrade values the merit will use
-	uint8  catid;			// cat which merit belongs to
+	std::uint8_t  upgradeid;		// which set of upgrade values the merit will use
+	std::uint8_t  catid;			// cat which merit belongs to
     std::uint16_t spellid;         // associated spell ID to learn/unlearn
 };
 
@@ -539,7 +539,7 @@ class CMeritPoints
         CMeritPoints(CCharEntity* PChar);
 
         std::uint16_t      GetLimitPoints();
-        uint8       GetMeritPoints();
+        std::uint8_t       GetMeritPoints();
         std::int32_t       GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar);
 
         bool        AddLimitPoints(std::uint16_t points);                  // automatically adds merit points > 10000
@@ -560,7 +560,7 @@ class CMeritPoints
     private:
 
         std::uint16_t       m_LimitPoints;
-        uint8        m_MeritPoints;
+        std::uint8_t        m_MeritPoints;
         CCharEntity* m_PChar;
 		Merit_t      merits[MERITS_COUNT];
 

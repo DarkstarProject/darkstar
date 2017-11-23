@@ -91,9 +91,9 @@ public:
     void reset(); // remove all found targets
 
     // Main methods for finding targets
-    void findSingleTarget(CBattleEntity* PTarget, uint8 flags = FINDFLAGS_NONE);
-    void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, uint8 flags = FINDFLAGS_NONE);
-    void findWithinCone(CBattleEntity* PTarget, float distance, float angle, uint8 flags = FINDFLAGS_NONE);
+    void findSingleTarget(CBattleEntity* PTarget, std::uint8_t flags = FINDFLAGS_NONE);
+    void findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, float radius, std::uint8_t flags = FINDFLAGS_NONE);
+    void findWithinCone(CBattleEntity* PTarget, float distance, float angle, std::uint8_t flags = FINDFLAGS_NONE);
 
     // add all targets in contexts
 	void addAllInZone(CBattleEntity* PTarget, bool withPet);
@@ -131,7 +131,7 @@ protected:
 
     std::uint16_t m_zone;
     FINDTYPE m_findType;
-    uint8 m_findFlags;
+    std::uint8_t m_findFlags;
 
     // conal vars
     bool m_conal;

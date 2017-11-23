@@ -31,7 +31,7 @@
 #include "../entities/baseentity.h"
 
 
-CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE MessageType) 
+CTreasureLotItemPacket::CTreasureLotItemPacket(std::uint8_t slotID, ITEMLOTTYPE MessageType) 
 {
 	this->type = 0xD3;
 	this->size = 0x1E;
@@ -41,7 +41,7 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE Message
 	
 }
 
-CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotID, std::uint16_t Lot, ITEMLOTTYPE MessageType)
+CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, std::uint8_t slotID, std::uint16_t Lot, ITEMLOTTYPE MessageType)
 {
 	this->type = 0xD3;
 	this->size = 0x1E;
@@ -56,7 +56,7 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotI
 	memcpy(data+(0x16), PWinner->GetName(), PWinner->name.size());
 }
 
-CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID, std::uint16_t Lot) 
+CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, std::uint8_t slotID, std::uint16_t Lot) 
 {
 	
 	this->type = 0xD3;

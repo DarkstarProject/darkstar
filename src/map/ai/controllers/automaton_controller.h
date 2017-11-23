@@ -45,7 +45,7 @@ struct CurrentManeuvers
 struct AutomatonSpell
 {
     std::uint16_t skilllevel{ 0 };
-    uint8 heads{ 0 };
+    std::uint8_t heads{ 0 };
     EFFECT enfeeble{ EFFECT_KO };
     IMMUNITY immunity{ IMMUNITY_NONE };
     std::vector<EFFECT> removes;

@@ -42,62 +42,62 @@ void CBlueSpell::setMonsterSkillId(std::uint16_t skillid)
 	m_monsterSkillId = skillid;
 }
 
-uint8 CBlueSpell::getSetPoints()
+std::uint8_t CBlueSpell::getSetPoints()
 {
 	return m_setPoints;
 }
 
-void CBlueSpell::setSetPoints(uint8 setpoints)
+void CBlueSpell::setSetPoints(std::uint8_t setpoints)
 {
 	m_setPoints = setpoints;
 }
 
-uint8 CBlueSpell::getEcosystem()
+std::uint8_t CBlueSpell::getEcosystem()
 {
 	return m_ecosystem;
 }
 
-void CBlueSpell::setEcosystem(uint8 ecosystem)
+void CBlueSpell::setEcosystem(std::uint8_t ecosystem)
 {
 	m_ecosystem = ecosystem;
 }
 
-uint8 CBlueSpell::getTraitCategory()
+std::uint8_t CBlueSpell::getTraitCategory()
 {
 	return m_traitCategory;
 }
 
-void CBlueSpell::setTraitCategory(uint8 category)
+void CBlueSpell::setTraitCategory(std::uint8_t category)
 {
 	m_traitCategory = category;
 }
 
-uint8 CBlueSpell::getTraitWeight()
+std::uint8_t CBlueSpell::getTraitWeight()
 {
 	return m_traitWeight;
 }
 
-void CBlueSpell::setTraitWeight(uint8 weight)
+void CBlueSpell::setTraitWeight(std::uint8_t weight)
 {
 	m_traitWeight = weight;
 }
 
-uint8 CBlueSpell::getPrimarySkillchain()
+std::uint8_t CBlueSpell::getPrimarySkillchain()
 {
     return m_PrimarySkillchain;
 }
 
-void CBlueSpell::setPrimarySkillchain(uint8 sc)
+void CBlueSpell::setPrimarySkillchain(std::uint8_t sc)
 {
     m_PrimarySkillchain = sc;
 }
 
-uint8 CBlueSpell::getSecondarySkillchain()
+std::uint8_t CBlueSpell::getSecondarySkillchain()
 {
     return m_SecondarySkillchain;
 }
 
-void CBlueSpell::setSecondarySkillchain(uint8 sc)
+void CBlueSpell::setSecondarySkillchain(std::uint8_t sc)
 {
     m_SecondarySkillchain = sc;
 }

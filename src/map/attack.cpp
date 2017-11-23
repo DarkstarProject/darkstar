@@ -194,7 +194,7 @@ float CAttack::GetDamageRatio()
 *  Sets the attack type.												*
 *																		*
 ************************************************************************/
-uint8 CAttack::GetWeaponSlot()
+std::uint8_t CAttack::GetWeaponSlot()
 {
     if (m_attackRound->IsH2H())
     {
@@ -208,7 +208,7 @@ uint8 CAttack::GetWeaponSlot()
 *  Returns the animation ID.											*
 *																		*
 ************************************************************************/
-uint8 CAttack::GetAnimationID()
+std::uint8_t CAttack::GetAnimationID()
 {
     // Try normal kick attacks (without footwork)
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
@@ -225,14 +225,14 @@ uint8 CAttack::GetAnimationID()
 *  Returns the hitrate for this swing.									*
 *																		*
 ************************************************************************/
-uint8 CAttack::GetHitRate()
+std::uint8_t CAttack::GetHitRate()
 {
     // Right hand hitrate
     if (m_attackDirection == RIGHTATTACK && m_attackType != PHYSICAL_ATTACK_TYPE::KICK)
     {
         if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
-            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (uint8)35);
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (std::uint8_t)35);
         }
         else
         {
@@ -250,7 +250,7 @@ uint8 CAttack::GetHitRate()
     {
         if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
-            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (uint8)35);
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (std::uint8_t)35);
         }
         else
         {
@@ -346,7 +346,7 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
-    uint8 meritCounter = 0;
+    std::uint8_t meritCounter = 0;
     if (m_victim->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_victim, TRAIT_COUNTER))
     {
         if (m_victim->GetMJob() == JOB_MNK || m_victim->GetMJob() == JOB_PUP)

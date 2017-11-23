@@ -44,7 +44,7 @@ public:
 
     virtual bool Ability(std::uint16_t targid, std::uint16_t abilityid) override;
     virtual bool RangedAttack(std::uint16_t targid);
-    virtual bool UseItem(std::uint16_t targid, uint8 loc, uint8 slotid);
+    virtual bool UseItem(std::uint16_t targid, std::uint8_t loc, std::uint8_t slotid);
 
     void setLastAttackTime(time_point);
     void setLastErrMsgTime(time_point);

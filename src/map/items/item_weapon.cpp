@@ -127,7 +127,7 @@ bool CItemWeapon::addWsPoints(std::uint16_t points)
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setSkillType(uint8 skillType)
+void CItemWeapon::setSkillType(std::uint8_t skillType)
 {
     switch (skillType)
     {
@@ -148,7 +148,7 @@ void CItemWeapon::setSkillType(uint8 skillType)
 	m_skillType = skillType;
 }
 
-uint8 CItemWeapon::getSkillType()
+std::uint8_t CItemWeapon::getSkillType()
 {
 	return m_skillType;
 }
@@ -160,7 +160,7 @@ uint8 CItemWeapon::getSkillType()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setSubSkillType(uint8 subSkillType)
+void CItemWeapon::setSubSkillType(std::uint8_t subSkillType)
 {
 	m_subSkillType = subSkillType;
 }
@@ -180,7 +180,7 @@ void CItemWeapon::setILvlMacc(std::uint16_t macc)
     m_iLvlMacc = macc;
 }
 
-uint8 CItemWeapon::getSubSkillType()
+std::uint8_t CItemWeapon::getSubSkillType()
 {
 	return m_subSkillType;
 }
@@ -289,12 +289,12 @@ std::uint16_t CItemWeapon::getDmgType()
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setAdditionalEffect(uint8 effect)
+void CItemWeapon::setAdditionalEffect(std::uint8_t effect)
 {
     m_effect = effect;
 }
 
-uint8 CItemWeapon::getAdditionalEffect()
+std::uint8_t CItemWeapon::getAdditionalEffect()
 {
     return m_effect;
 }
@@ -321,9 +321,9 @@ void CItemWeapon::setCurrentUnlockPoints(std::uint16_t points)
 *                                                                       *
 ************************************************************************/
 
-void CItemWeapon::setMaxHit(uint8 hit)
+void CItemWeapon::setMaxHit(std::uint8_t hit)
 {
-    m_maxHit = std::min<uint8>(hit, 8);
+    m_maxHit = std::min<std::uint8_t>(hit, 8);
 }
 
 /************************************************************************
@@ -332,7 +332,7 @@ void CItemWeapon::setMaxHit(uint8 hit)
 *                                                                       *
 ************************************************************************/
 
-uint8 CItemWeapon::getHitCount()
+std::uint8_t CItemWeapon::getHitCount()
 {
 	return battleutils::getHitCount(m_maxHit);
 }

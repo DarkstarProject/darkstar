@@ -32,7 +32,7 @@
 #include "../vana_time.h"
 
 
-CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8 SlotID) 
+CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, std::uint8_t LocationID, std::uint8_t SlotID) 
 {
 	this->type = 0x20;
 	this->size = 0x16;

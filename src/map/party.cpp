@@ -120,7 +120,7 @@ void CParty::DisbandParty(bool playerInitiated)
     {
         PushPacket(0, 0, new CPartyDefinePacket(nullptr));
 
-        for (uint8 i = 0; i < members.size(); ++i)
+        for (std::uint8_t i = 0; i < members.size(); ++i)
         {
             CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -153,7 +153,7 @@ void CParty::DisbandParty(bool playerInitiated)
         // make sure chat server isn't notified of a disband if this came from the chat server already
         if (playerInitiated)
         {
-            uint8 data[8] {};
+            std::uint8_t data[8] {};
             WBUFL(data, 0) = m_PartyID;
             WBUFL(data, 4) = m_PartyID;
             message::send(MSG_PT_DISBAND, data, sizeof data, nullptr);
@@ -168,7 +168,7 @@ void CParty::DisbandParty(bool playerInitiated)
 *                                                                       *
 ************************************************************************/
 
-void CParty::AssignPartyRole(int8* MemberName, uint8 role)
+void CParty::AssignPartyRole(int8* MemberName, std::uint8_t role)
 {
     DSP_DEBUG_BREAK_IF(m_PartyType != PARTY_PCS);
 
@@ -180,7 +180,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
         case 6: SetSyncTarget(MemberName, 238);	break;
         case 7: SetSyncTarget(nullptr, 553);       break;
     }
-    uint8 data[4] {};
+    std::uint8_t data[4] {};
     WBUFL(data, 0) = m_PartyID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     return;
@@ -192,9 +192,9 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
 *																		*
 ************************************************************************/
 
-uint8 CParty::MemberCount(std::uint16_t ZoneID)
+std::uint8_t CParty::MemberCount(std::uint16_t ZoneID)
 {
-    uint8 count = 0;
+    std::uint8_t count = 0;
 
     for (std::uint32_t i = 0; i < members.size(); ++i)
     {
@@ -288,7 +288,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
                     Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
 
-                    uint8 data[4] {};
+                    std::uint8_t data[4] {};
                     WBUFL(data, 0) = m_PartyID;
                     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
@@ -398,7 +398,7 @@ void CParty::PopMember(CBattleEntity* PEntity)
             {
                 m_PAlliance->setMainParty(nullptr);
             }
-            for (uint8 i = 0; i < m_PAlliance->partyList.size(); ++i)
+            for (std::uint8_t i = 0; i < m_PAlliance->partyList.size(); ++i)
             {
                 if (this == m_PAlliance->partyList.at(i))
                     m_PAlliance->partyList.erase(m_PAlliance->partyList.begin() + i);
@@ -486,7 +486,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
         }
 
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", PChar->id, m_PartyID, allianceid, GetMemberFlags(PChar));
-        uint8 data[4] {};
+        std::uint8_t data[4] {};
         WBUFL(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
         ReloadTreasurePool(PChar);
@@ -538,7 +538,7 @@ void CParty::AddMember(std::uint32_t id)
                 Flags = PARTY_THIRD;
         }
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, Flags);
-        uint8 data[8] {};
+        std::uint8_t data[8] {};
         WBUFL(data, 0) = m_PartyID;
         WBUFL(data, 4) = id;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
@@ -694,7 +694,7 @@ void CParty::ReloadParty()
                 std::uint16_t alliance = 0;
                 PChar->pushPacket(new CPartyDefinePacket(party));
                 //auto effects = std::make_unique<CPartyEffectsPacket>();
-                uint8 j = 0;
+                std::uint8_t j = 0;
                 for (auto&& memberinfo : info)
                 {
                     if ((memberinfo.flags & (PARTY_SECOND | PARTY_THIRD)) != alliance)
@@ -726,7 +726,7 @@ void CParty::ReloadParty()
     {
         RefreshFlags(info);
         //regular party
-        for (uint8 i = 0; i < members.size(); ++i)
+        for (std::uint8_t i = 0; i < members.size(); ++i)
         {
             CCharEntity* PChar = (CCharEntity*)members.at(i);
 
@@ -736,7 +736,7 @@ void CParty::ReloadParty()
             PChar->ReloadPartyDec();
             PChar->pushPacket(new CPartyDefinePacket(this));
             //auto effects = std::make_unique<CPartyEffectsPacket>();
-            uint8 j = 0;
+            std::uint8_t j = 0;
             for (auto&& memberinfo : info)
             {
                 auto PPartyMember = zoneutils::GetChar(memberinfo.id);
@@ -776,7 +776,7 @@ void CParty::ReloadPartyMembers(CCharEntity* PChar)
     int alliance = 0;
 
     auto info = GetPartyInfo();
-    uint8 j = 0;
+    std::uint8_t j = 0;
     for (auto&& memberinfo : info)
     {
         if ((memberinfo.flags & (PARTY_SECOND | PARTY_THIRD)) != alliance)
@@ -820,9 +820,9 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
     {
         if (PChar->PParty->m_PAlliance != nullptr)
         {
-            for (uint8 a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
+            for (std::uint8_t a = 0; a < PChar->PParty->m_PAlliance->partyList.size(); ++a)
             {
-                for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
+                for (std::uint8_t i = 0; i < PChar->PParty->m_PAlliance->partyList.at(a)->members.size(); ++i)
                 {
                     CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
@@ -841,7 +841,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
             }//regular party
         }
         else if (PChar->PParty->m_PAlliance == nullptr) {
-            for (uint8 i = 0; i < members.size(); ++i) {
+            for (std::uint8_t i = 0; i < members.size(); ++i) {
                 CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
 
                 if (PPartyMember != PChar &&
@@ -938,7 +938,7 @@ void CParty::SetSyncTarget(int8* MemberName, std::uint16_t message)
             }
             else
             {
-                for (uint8 i = 0; i < members.size(); ++i)
+                for (std::uint8_t i = 0; i < members.size(); ++i)
                 {
                     if (members.at(i)->StatusEffectContainer->HasStatusEffect({EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_SYNC}))
                     {
@@ -947,7 +947,7 @@ void CParty::SetSyncTarget(int8* MemberName, std::uint16_t message)
                     }
                 }
                 m_PSyncTarget = PChar;
-                for (uint8 i = 0; i < members.size(); ++i)
+                for (std::uint8_t i = 0; i < members.size(); ++i)
                 {
                     if (members.at(i)->objtype != TYPE_PC) continue;
 
@@ -976,7 +976,7 @@ void CParty::SetSyncTarget(int8* MemberName, std::uint16_t message)
             if (m_PSyncTarget != nullptr)
             {
                 //disable level sync
-                for (uint8 i = 0; i < members.size(); ++i)
+                for (std::uint8_t i = 0; i < members.size(); ++i)
                 {
                     if (members.at(i)->objtype != TYPE_PC) continue;
 
@@ -1091,18 +1091,18 @@ void CParty::DisableSync()
 void CParty::RefreshSync()
 {
     CCharEntity* sync = (CCharEntity*)m_PSyncTarget;
-    uint8 syncLevel = sync->jobs.job[sync->GetMJob()];
+    std::uint8_t syncLevel = sync->jobs.job[sync->GetMJob()];
     if (syncLevel < 10)
     {
         SetSyncTarget(nullptr, 554);
     }
-    for (uint8 i = 0; i < members.size(); ++i)
+    for (std::uint8_t i = 0; i < members.size(); ++i)
     {
         if (members.at(i)->objtype != TYPE_PC || members.at(i)->getZone() != sync->getZone()) continue;
 
         CCharEntity* member = (CCharEntity*)members.at(i);
 
-        uint8 NewMLevel = 0;
+        std::uint8_t NewMLevel = 0;
 
         if (syncLevel < member->jobs.job[member->GetMJob()])
         {
@@ -1132,7 +1132,7 @@ void CParty::RefreshSync()
     m_PSyncTarget = sync;
 }
 
-void CParty::SetPartyNumber(uint8 number)
+void CParty::SetPartyNumber(std::uint8_t number)
 {
     m_PartyNumber = number;
 }

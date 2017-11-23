@@ -32,7 +32,7 @@ struct search_config_t
     std::string mysql_password;     // mysql pass     -> default root
     std::string mysql_database;     // mysql database -> default dspdb
     bool		expire_auctions;	// If true, then start task to expire old auctions off the auction house
-    uint8		expire_days;		// Number of days to keep stuff on the auction house
+    std::uint8_t		expire_days;		// Number of days to keep stuff on the auction house
     std::int16_t		expire_interval;	// How often the task should run (time * 1000) in seconds
 };
 
@@ -44,16 +44,16 @@ struct login_config_t
 struct search_req
 {
     std::uint16_t zoneid[10];
-    uint8 jobid;
-    uint8 minlvl;
-    uint8 maxlvl;
-    uint8 race;
-    uint8 nation;
-    uint8 minRank;
-    uint8 maxRank;
+    std::uint8_t jobid;
+    std::uint8_t minlvl;
+    std::uint8_t maxlvl;
+    std::uint8_t race;
+    std::uint8_t nation;
+    std::uint8_t minRank;
+    std::uint8_t maxRank;
     std::uint32_t flags;
     string_t name;
-    uint8 nameLen;
+    std::uint8_t nameLen;
 };
 
 extern search_config_t search_config;

@@ -66,17 +66,17 @@ AUTOHEADTYPE CAutomatonEntity::getHead()
     return (AUTOHEADTYPE)m_Equip.Head;
 }
 
-void CAutomatonEntity::setAttachment(uint8 slotid, uint8 id)
+void CAutomatonEntity::setAttachment(std::uint8_t slotid, std::uint8_t id)
 {
     m_Equip.Attachments[slotid] = id;
 }
 
-uint8 CAutomatonEntity::getAttachment(uint8 slotid)
+std::uint8_t CAutomatonEntity::getAttachment(std::uint8_t slotid)
 {
     return m_Equip.Attachments[slotid];
 }
 
-bool CAutomatonEntity::hasAttachment(uint8 attachment)
+bool CAutomatonEntity::hasAttachment(std::uint8_t attachment)
 {
     for (auto&& attachmentid : m_Equip.Attachments)
     {
@@ -88,22 +88,22 @@ bool CAutomatonEntity::hasAttachment(uint8 attachment)
     return false;
 }
 
-void CAutomatonEntity::setElementMax(uint8 element, uint8 max)
+void CAutomatonEntity::setElementMax(std::uint8_t element, std::uint8_t max)
 {
     m_ElementMax[element] = max;
 }
 
-uint8 CAutomatonEntity::getElementMax(uint8 element)
+std::uint8_t CAutomatonEntity::getElementMax(std::uint8_t element)
 {
     return m_ElementMax[element];
 }
 
-void CAutomatonEntity::addElementCapacity(uint8 element, int8 value)
+void CAutomatonEntity::addElementCapacity(std::uint8_t element, int8 value)
 {
     m_ElementEquip[element] += value;
 }
 
-uint8 CAutomatonEntity::getElementCapacity(uint8 element)
+std::uint8_t CAutomatonEntity::getElementCapacity(std::uint8_t element)
 {
     return m_ElementEquip[element];
 }
@@ -114,7 +114,7 @@ void CAutomatonEntity::burdenTick()
     {
         if (burden > 0)
         {
-            burden -= std::clamp<uint8>(1 + PMaster->getMod(Mod::BURDEN_DECAY) + this->getMod(Mod::BURDEN_DECAY), 1, burden);
+            burden -= std::clamp<std::uint8_t>(1 + PMaster->getMod(Mod::BURDEN_DECAY) + this->getMod(Mod::BURDEN_DECAY), 1, burden);
         }
     }
 }
@@ -124,7 +124,7 @@ void CAutomatonEntity::setInitialBurden()
     m_Burden.fill(30);
 }
 
-uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
+std::uint8_t CAutomatonEntity::addBurden(std::uint8_t element, int8 burden)
 {
     m_Burden[element] = std::clamp(m_Burden[element] + burden, 0, 255);
 

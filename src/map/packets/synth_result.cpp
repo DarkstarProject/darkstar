@@ -29,7 +29,7 @@ This file is part of DarkStar-server source code.
 #include "../trade_container.h"
 
 
-CSynthResultMessagePacket::CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID, uint8 quantity)
+CSynthResultMessagePacket::CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, std::uint16_t itemID, std::uint8_t quantity)
 {
 	this->type = 0x70;
 	this->size = 0x30;
@@ -44,8 +44,8 @@ CSynthResultMessagePacket::CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_M
 	}
 	if (messageID == SYNTH_FAIL)
 	{
-		uint8 count = 0;
-		for (uint8 slotID = 1; slotID <= 8; ++slotID)
+		std::uint8_t count = 0;
+		for (std::uint8_t slotID = 1; slotID <= 8; ++slotID)
 		{
 			std::uint32_t quantity = PChar->CraftContainer->getQuantity(slotID);
 			if (quantity == 0)

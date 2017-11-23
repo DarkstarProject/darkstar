@@ -111,7 +111,7 @@ void CMobSkill::setName(int8* name)
 	m_name.insert(0,name);
 }
 
-void CMobSkill::setAoe(uint8 aoe)
+void CMobSkill::setAoe(std::uint8_t aoe)
 {
 	m_Aoe = aoe;
 }
@@ -121,7 +121,7 @@ void CMobSkill::setDistance(float distance)
 	m_Distance = distance;
 }
 
-void CMobSkill::setFlag(uint8 flag)
+void CMobSkill::setFlag(std::uint8_t flag)
 {
 	m_Flag = flag;
 }
@@ -131,7 +131,7 @@ void CMobSkill::setTP(std::int16_t tp)
 	m_TP = tp;
 }
 
-void CMobSkill::setHPP(uint8 hpp)
+void CMobSkill::setHPP(std::uint8_t hpp)
 {
     m_HPP = hpp;
 }
@@ -219,7 +219,7 @@ std::int16_t CMobSkill::getTP() const
     return m_TP;
 }
 
-uint8 CMobSkill::getHPP() const
+std::uint8_t CMobSkill::getHPP() const
 {
     return m_HPP;
 }
@@ -282,12 +282,12 @@ std::uint16_t CMobSkill::getAoEMsg() const
     }
 }
 
-uint8 CMobSkill::getFlag() const
+std::uint8_t CMobSkill::getFlag() const
 {
 	return m_Flag;
 }
 
-uint8 CMobSkill::getAoe() const
+std::uint8_t CMobSkill::getAoe() const
 {
 	return m_Aoe;
 }
@@ -313,7 +313,7 @@ std::int16_t CMobSkill::getParam() const
   return m_Param;
 }
 
-uint8 CMobSkill::getKnockback() const
+std::uint8_t CMobSkill::getKnockback() const
 {
     return m_knockback;
 }
@@ -328,7 +328,7 @@ void CMobSkill::setParam(std::int16_t value)
   m_Param = value;
 }
 
-void CMobSkill::setKnockback(uint8 knockback)
+void CMobSkill::setKnockback(std::uint8_t knockback)
 {
     m_knockback = knockback;
 }
@@ -348,32 +348,32 @@ std::uint16_t CMobSkill::getActivationTime() const
     return m_ActivationTime;
 }
 
-uint8 CMobSkill::getPrimarySkillchain() const
+std::uint8_t CMobSkill::getPrimarySkillchain() const
 {
     return m_primarySkillchain;
 }
 
-uint8 CMobSkill::getSecondarySkillchain() const
+std::uint8_t CMobSkill::getSecondarySkillchain() const
 {
     return m_secondarySkillchain;
 }
 
-uint8 CMobSkill::getTertiarySkillchain() const
+std::uint8_t CMobSkill::getTertiarySkillchain() const
 {
     return m_tertiarySkillchain;
 }
 
-void CMobSkill::setPrimarySkillchain(uint8 skillchain)
+void CMobSkill::setPrimarySkillchain(std::uint8_t skillchain)
 {
     m_primarySkillchain = skillchain;
 }
 
-void CMobSkill::setSecondarySkillchain(uint8 skillchain)
+void CMobSkill::setSecondarySkillchain(std::uint8_t skillchain)
 {
     m_secondarySkillchain = skillchain;
 }
 
-void CMobSkill::setTertiarySkillchain(uint8 skillchain)
+void CMobSkill::setTertiarySkillchain(std::uint8_t skillchain)
 {
     m_tertiarySkillchain = skillchain;
 }

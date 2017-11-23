@@ -36,7 +36,7 @@
 *																		*
 ************************************************************************/
 
-std::array<std::array<uint8, 9>, 23> JobGrades =
+std::array<std::array<std::uint8_t, 9>, 23> JobGrades =
 {{
     //HP,MP,STR,DEX,VIT,AGI,INT,MND,CHR
     {0, 0, 0, 0, 0, 0, 0, 0, 0}, //NON
@@ -70,7 +70,7 @@ std::array<std::array<uint8, 9>, 23> JobGrades =
 *																		*
 ************************************************************************/
 
-std::array<std::array<uint8, 9>, 5> RaceGrades =
+std::array<std::array<std::uint8_t, 9>, 5> RaceGrades =
 {{
     //HP,MP,STR,DEX,VIT,AGI,INT,MND
     {4, 4, 4, 4, 4, 4, 4, 4, 4}, //Hume
@@ -152,7 +152,7 @@ namespace grade
     *																		*
     ************************************************************************/
 
-    uint8 GetJobGrade(JOBTYPE job, uint8 stat)
+    std::uint8_t GetJobGrade(JOBTYPE job, std::uint8_t stat)
     {
         return JobGrades[job][stat];
     }
@@ -163,7 +163,7 @@ namespace grade
     *																		*
     ************************************************************************/
 
-    uint8 GetRaceGrades(uint8 race, uint8 stat)
+    std::uint8_t GetRaceGrades(std::uint8_t race, std::uint8_t stat)
     {
         return RaceGrades[race][stat];
     }
@@ -174,7 +174,7 @@ namespace grade
     *																		*
     ************************************************************************/
 
-    float GetHPScale(uint8 rank, uint8 scale)
+    float GetHPScale(std::uint8_t rank, std::uint8_t scale)
     {
         return HPScale[rank][scale];
     }
@@ -185,7 +185,7 @@ namespace grade
     *																		*
     ************************************************************************/
 
-    float GetMPScale(uint8 rank, uint8 scale)
+    float GetMPScale(std::uint8_t rank, std::uint8_t scale)
     {
         return MPScale[rank][scale];
     }
@@ -196,7 +196,7 @@ namespace grade
     *																		*
     ************************************************************************/
 
-    float GetStatScale(uint8 rank, uint8 scale)
+    float GetStatScale(std::uint8_t rank, std::uint8_t scale)
     {
         return StatScale[rank][scale];
     }

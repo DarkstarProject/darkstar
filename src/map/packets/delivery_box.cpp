@@ -30,7 +30,7 @@
 #include "delivery_box.h"
 
 
-CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, uint8 param)
+CDeliveryBoxPacket::CDeliveryBoxPacket(std::uint8_t action, std::uint8_t boxid, std::uint8_t count, std::uint8_t param)
 {
     this->type = 0x4B;
     this->size = 0x0A;
@@ -54,7 +54,7 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, uint8 count, u
     WBUFB(data, (0x0C) ) = param;
 }
 
-CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, uint8 slotid, uint8 count, uint8 message)
+CDeliveryBoxPacket::CDeliveryBoxPacket(std::uint8_t action, std::uint8_t boxid, CItem* PItem, std::uint8_t slotid, std::uint8_t count, std::uint8_t message)
 {
     this->type = 0x4B;
     this->size = 0x2C;

@@ -36,7 +36,7 @@ enum BLOWFISH
 struct blowfish_t 
 {
 	std::uint32_t key[5];
-	uint8  hash[16];
+	std::uint8_t  hash[16];
 	std::uint32_t P[18], S[4][256];
     BLOWFISH status;
 };

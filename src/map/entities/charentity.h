@@ -43,9 +43,9 @@ This file is part of DarkStar-server source code.
 struct jobs_t
 {
     std::uint32_t unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
-    uint8  job[MAX_JOBTYPE];		// текущий уровень для каждой из профессий
+    std::uint8_t  job[MAX_JOBTYPE];		// текущий уровень для каждой из профессий
     std::uint16_t exp[MAX_JOBTYPE];		// текущее количество опыта для каждой из профессий
-    uint8  genkai;					// максимальный уровень профессий персонажа
+    std::uint8_t  genkai;					// максимальный уровень профессий персонажа
 };
 
 
@@ -71,14 +71,14 @@ struct event_t
 
 struct profile_t
 {
-    uint8	   nation;			// принадлежность к государству
-    uint8	   mhflag;			// флаг выхода из MogHouse
+    std::uint8_t	   nation;			// принадлежность к государству
+    std::uint8_t	   mhflag;			// флаг выхода из MogHouse
     std::uint16_t	   title;			// звание
     std::uint16_t     fame[15];		// известность
-    uint8 	   rank[3];			// рагн в трех государствах
+    std::uint8_t 	   rank[3];			// рагн в трех государствах
     std::uint32_t	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
-    uint8      campaign_allegiance;
+    std::uint8_t      campaign_allegiance;
 };
 
 
@@ -104,7 +104,7 @@ struct NationTP_t
 struct PetInfo_t
 {
     bool		respawnPet;		// used for spawning pet on zone
-    uint8		petID;			// id as in wyvern(48) , carbuncle(8) ect..
+    std::uint8_t		petID;			// id as in wyvern(48) , carbuncle(8) ect..
     PETTYPE		petType;		// type of pet being transfered
     std::int16_t		petHP;			// pets hp
     std::int16_t       petMP;
@@ -114,21 +114,21 @@ struct PetInfo_t
 struct AuctionHistory_t
 {
     std::uint16_t		itemid;
-    uint8		stack;
+    std::uint8_t		stack;
     std::uint32_t		price;
-    uint8		status; //e.g. if sold/not sold/on market
+    std::uint8_t		status; //e.g. if sold/not sold/on market
 };
 
 struct UnlockedAttachments_t
 {
-    uint8 heads;
-    uint8 frames;
+    std::uint8_t heads;
+    std::uint8_t frames;
     std::uint32_t attachments[8];
 };
 
 struct GearSetMod_t
 {
-    uint8	modNameId;
+    std::uint8_t	modNameId;
     Mod  	modId;
     std::uint16_t	modValue;
 };
@@ -174,19 +174,19 @@ public:
     std::uint16_t					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     std::uint16_t					m_EquipBlock;					// заблокированные ячейки экипировки
     std::uint16_t                  m_StatsDebilitation;            // Debilitation arrows
-    uint8					equip[18];						//      SlotID where equipment is
-    uint8					equipLoc[18];					// ContainerID where equipment is
+    std::uint8_t					equip[18];						//      SlotID where equipment is
+    std::uint8_t					equipLoc[18];					// ContainerID where equipment is
     std::uint16_t                  styleItems[16];                 // Item IDs for items that are style locked.
 
-    uint8					m_ZonesList[36];				// список посещенных персонажем зон
+    std::uint8_t					m_ZonesList[36];				// список посещенных персонажем зон
     std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
-    uint8					m_TitleList[94];				// список заслуженных завний
-    uint8					m_Abilities[62];				// список текущих способностей
-    uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
+    std::uint8_t					m_TitleList[94];				// список заслуженных завний
+    std::uint8_t					m_Abilities[62];				// список текущих способностей
+    std::uint8_t					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
     std::bitset<49>         m_LearnedWeaponskills;          // learnable weaponskills
-    uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
-    uint8					m_PetCommands[32];				// список доступных команд питомцу
-    uint8					m_WeaponSkills[32];
+    std::uint8_t					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
+    std::uint8_t					m_PetCommands[32];				// список доступных команд питомцу
+    std::uint8_t					m_WeaponSkills[32];
     questlog_t				m_questLog[MAX_QUESTAREA];		// список всех квестов
     missionlog_t			m_missionLog[MAX_MISSIONAREA];	// список миссий
     assaultlog_t			m_assaultLog;					// список assault миссий
@@ -195,7 +195,7 @@ public:
     PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
     void					setPetZoningInfo();				// set pet zoning info (when zoning and logging out)
     void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
-    uint8					m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
+    std::uint8_t					m_SetBlueSpells[20];			// The 0x200 offsetted blue magic spell IDs which the user has set. (1 byte per spell)
 
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
@@ -214,7 +214,7 @@ public:
     //currency_t        m_currency;                   // conquest points, imperial standing points etc
     NationTP_t		  nationtp;						// supply tp, runic portal, campaign tp,...
 
-    uint8             GetGender();                  // узнаем пол персонажа
+    std::uint8_t             GetGender();                  // узнаем пол персонажа
 
     void              clearPacketList();            // отчистка PacketList
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
@@ -223,7 +223,7 @@ public:
     CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
     PacketList_t      getPacketList();              // returns a COPY of packet list
     size_t            getPacketCount();
-    void              erasePackets(uint8 num);      // erase num elements from front of packet list
+    void              erasePackets(std::uint8_t num);      // erase num elements from front of packet list
     virtual void      HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override;
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
@@ -235,7 +235,7 @@ public:
     CLatentEffectContainer* PLatentEffectContainer;
 
     CItemContainer*   PGuildShop;					// текущий магазин гильдии, в котором персонаж производит закупки
-    CItemContainer*	  getStorage(uint8 LocationID);	// получение указателя на соответствующее хранилище
+    CItemContainer*	  getStorage(std::uint8_t LocationID);	// получение указателя на соответствующее хранилище
 
     CTradeContainer*  TradeContainer;               // Container used specifically for trading.
     CTradeContainer*  Container;                    // универсальный контейнер для обмена, синтеза, магазина и т.д.
@@ -257,16 +257,16 @@ public:
     BazaarList_t	  BazaarCustomers;              // Array holding the IDs of the current customers
 
     std::uint32_t			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
-    uint8			  m_LevelRestriction;			// ограничение уровня персонажа
+    std::uint8_t			  m_LevelRestriction;			// ограничение уровня персонажа
     std::uint16_t            m_Costum;                     // карнавальный костюм персонажа (модель)
     std::uint16_t			  m_Monstrosity;				// Monstrosity model ID
     std::uint32_t			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
     std::uint32_t            m_DeathCounter;               // Counter when you last died. This is set when you first login
     std::uint32_t            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
 
-    uint8			  m_hasTractor;					// checks if player has tractor already
-    uint8			  m_hasRaise;					// checks if player has raise already
-    uint8             m_hasAutoTarget;              // возможность использования AutoTarget функции
+    std::uint8_t			  m_hasTractor;					// checks if player has tractor already
+    std::uint8_t			  m_hasRaise;					// checks if player has raise already
+    std::uint8_t             m_hasAutoTarget;              // возможность использования AutoTarget функции
     position_t		  m_StartActionPos;				// позиция начала действия (использование предмета, начало стрельбы, позиция tractor)
 
     std::uint32_t			  m_PlayTime;
@@ -274,10 +274,10 @@ public:
 
     std::uint32_t            m_LastYell;
 
-    uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
+    std::uint8_t			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
-    uint8             m_mentor;                     // Mentor flag status.
+    std::uint8_t             m_mentor;                     // Mentor flag status.
     bool              m_isNewPlayer;                // New player flag..
     std::uint32_t            m_moghouseID;
 

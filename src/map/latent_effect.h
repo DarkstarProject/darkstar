@@ -107,7 +107,7 @@ public:
 
     LATENT      GetConditionsID() const;
     std::uint16_t      GetConditionsValue() const;
-    uint8       GetSlot() const;
+    std::uint8_t       GetSlot() const;
     Mod         GetModValue() const;
     std::int16_t       GetModPower() const;
     bool        IsActivated() const;
@@ -116,7 +116,7 @@ public:
 
     void    SetConditionsId(LATENT id);
     void    SetConditionsValue(std::uint16_t value);
-    void    SetSlot(uint8 slot);
+    void    SetSlot(std::uint8_t slot);
     void    SetModValue(Mod value);
     void    SetModPower(std::int16_t power);
     void    Activate();
@@ -126,7 +126,7 @@ public:
          CBattleEntity* owner,
          LATENT conditionsId,
          std::uint16_t conditionsValue,
-         uint8 slot, 
+         std::uint8_t slot, 
          Mod modValue, 
          std::int16_t modPower
     );
@@ -162,7 +162,7 @@ private:
 
     LATENT      m_ConditionsID{LATENT_HP_UNDER_PERCENT};         //condition type to be true
     std::uint16_t      m_ConditionsValue{0};      //condition parameter to be met
-    uint8       m_SlotID{0};               //slot associated with latent
+    std::uint8_t       m_SlotID{0};               //slot associated with latent
     Mod         m_ModValue{Mod::NONE};     //mod ID to be applied when active
     std::int16_t       m_ModPower{0};             //power of mod to be applied when active
     bool        m_Activated{false};        //active or not active

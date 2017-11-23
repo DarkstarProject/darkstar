@@ -34,12 +34,12 @@ namespace puppetutils
 	void SaveAutomaton(CCharEntity* PChar);
 	bool UnlockAttachment(CCharEntity* PChar, CItem* PItem);
     bool HasAttachment(CCharEntity* PChar, CItem* PItem);
-    void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment);
-    void setFrame(CCharEntity* PChar, uint8 frame);
-    void setHead(CCharEntity* PChar, uint8 head);
-    std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level);
+    void setAttachment(CCharEntity* PChar, std::uint8_t slotId, std::uint8_t attachment);
+    void setFrame(CCharEntity* PChar, std::uint8_t frame);
+    void setHead(CCharEntity* PChar, std::uint8_t head);
+    std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill, std::uint8_t level);
     std::uint16_t getSkillCap(CCharEntity* PChar, SKILLTYPE skill);
-    void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl);
+    void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, std::uint8_t lvl);
     void LoadAutomatonStats(CCharEntity* PChar);
     void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain);
 };

@@ -127,7 +127,7 @@ public:
     bool      IsFarFromHome();                         // check if mob is too far from spawn
     bool      CanBeNeutral();                          // check if mob can have killing pause
 
-    uint8     TPUseChance();                           // return % chance to use TP move
+    std::uint8_t     TPUseChance();                           // return % chance to use TP move
 
     bool      CanDeaggro();
     time_point GetDespawnTime();
@@ -190,8 +190,8 @@ public:
 
     std::uint32_t    m_DropID;                   // dropid of items to be dropped. dropid in Database (mob_droplist)
 
-    uint8     m_minLevel;                 // lowest possible level of the mob
-    uint8     m_maxLevel;                 // highest possible level of the mob
+    std::uint8_t     m_minLevel;                 // lowest possible level of the mob
+    std::uint8_t     m_maxLevel;                 // highest possible level of the mob
     std::uint32_t    HPmodifier;                 // HP in Database (mob_groups)
     std::uint32_t    MPmodifier;                 // MP in Database (mob_groups)
 
@@ -199,21 +199,21 @@ public:
     float     MPscale;                    // MP boost percentage
 
     std::uint16_t    m_roamFlags;                // defines its roaming behaviour
-    uint8     m_specialFlags;             // flags for special skill
+    std::uint8_t     m_specialFlags;             // flags for special skill
 
     bool      m_StatPoppedMobs;           // true if dyna statue has popped mobs
 
-    uint8     strRank;
-    uint8     dexRank;
-    uint8     vitRank;
-    uint8     agiRank;
-    uint8     intRank;
-    uint8     mndRank;
-    uint8     chrRank;
-    uint8     attRank;
-    uint8     defRank;
-    uint8     accRank;
-    uint8     evaRank;
+    std::uint8_t     strRank;
+    std::uint8_t     dexRank;
+    std::uint8_t     vitRank;
+    std::uint8_t     agiRank;
+    std::uint8_t     intRank;
+    std::uint8_t     mndRank;
+    std::uint8_t     chrRank;
+    std::uint8_t     attRank;
+    std::uint8_t     defRank;
+    std::uint8_t     accRank;
+    std::uint8_t     evaRank;
 
     std::uint16_t	  m_dmgMult;
 
@@ -221,11 +221,11 @@ public:
     bool      m_disableScent;             // stop detecting by scent
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
-    uint8     m_Type;                     // mob type
+    std::uint8_t     m_Type;                     // mob type
     bool	  m_Aggro;
     bool	  m_TrueDetection;   // Has true sight or sound
     std::uint16_t	  m_Detects;                // mobs detection methods, sight, sound, etc
-    uint8     m_Link;                     // link with mobs of it's family
+    std::uint8_t     m_Link;                     // link with mobs of it's family
     std::uint16_t    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
 
@@ -236,9 +236,9 @@ public:
 
     position_t  m_SpawnPoint;           // spawn point of mob
 
-    uint8     m_Element;
-    uint8     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
-    uint8     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
+    std::uint8_t     m_Element;
+    std::uint8_t     m_HiPCLvl;                  // Highest Level of Player Character that hit the Monster
+    std::uint8_t     m_THLvl;                    // Highest Level of Treasure Hunter that apply to drops
     bool      m_ItemStolen;               // if true, mob has already been robbed. reset on respawn. also used for thf maat fight
     std::uint16_t    m_Family;
     std::uint16_t    m_MobSkillList;             // Mob skill list defined from mob_pools
@@ -248,13 +248,13 @@ public:
     std::map<std::uint16_t, std::uint16_t>    m_UsedSkillIds;        // mob skill ids used (key) along with mob level (value)
 
     std::uint32_t    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
-    uint8     m_name_prefix;                           // The ding bats VS Ding bats
+    std::uint8_t     m_name_prefix;                           // The ding bats VS Ding bats
     string_t  packetName;                              // Used for battle allies
 
     CEnmityContainer* PEnmityContainer;                // система ненависти монстров
 
     CMobSpellContainer* SpellContainer;                // retrieves spells for the mob
-    uint8     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
+    std::uint8_t     m_HasSpellScript;                        // 1 if they have a spell script to use for working out what to cast.
 
     static constexpr float sound_range {8.f};
     static constexpr float sight_range {15.f};
