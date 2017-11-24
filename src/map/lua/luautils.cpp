@@ -1296,6 +1296,27 @@ namespace luautils
         return 0;
     }
 
+    void AfterCharZoneIn(CBaseEntity* PChar)
+    {
+        lua_prepscript("scripts/globals/player.lua");
+
+        if (prepFile(File, "afterCharZoneIn"))
+        {
+            return;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::afterCharZoneIn: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return;
+        }
+
+        return;
+    }
 
     /************************************************************************
     *                                                                       *

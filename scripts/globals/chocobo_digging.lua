@@ -18,7 +18,7 @@ local function canDig(player)
     local DigCount = player:getVar('[DIG]DigCount');
     local LastDigTime = player:getLocalVar('[DIG]LastDigTime');
     local ZoneItemsDug = GetServerVariable('[DIG]ZONE'..player:getZoneID()..'_ITEMS');
-    local ZoneInTime = player:getLocalVar('[DIG]ZoneInTime');
+    local ZoneInTime = player:getLocalVar('ZoneInTime');
     local CurrentTime = os.time();
 
     local SkillRank = player:getSkillRank(SKILL_DIG);
@@ -39,7 +39,7 @@ local function canDig(player)
 
     if ((DigCount < 100 and ZoneItemsDug < 20) or DIG_FATIGUE == 0 ) then
         -- pesky delays
-        if ((ZoneInTime <= AreaDigDelay + CurrentTime) and (LastDigTime + DigDelay <= CurrentTime)) then
+        if ((ZoneInTime + AreaDigDelay <= CurrentTime) and (LastDigTime + DigDelay <= CurrentTime)) then
             return true;
         end
     end
