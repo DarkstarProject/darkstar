@@ -65,14 +65,7 @@ function onGameIn(player, firstlogin, zoning)
     if (player:getVar("GMHidden") == 1) then
         player:setGMHidden(true);
     end
-end;
 
------------------------------------
--- afterCharZoneIn
--- Called after zoning in, for example, so local vars can be set here and not immediately cleared
------------------------------------
-
-function afterCharZoneIn(player)
     -- Remember time player zoned in (e.g., to support zone-in delays)
     player:setLocalVar("ZoneInTime", os.time());
 end;
