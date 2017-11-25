@@ -24,7 +24,7 @@ function onTrigger(player)
         player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
         player:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,0);
         player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,300,3,0);
+        player:addStatusEffect(EFFECT_REGAIN,300,0,0);
         player:addStatusEffect(EFFECT_REFRESH,99,0,0);
         player:addStatusEffect(EFFECT_REGEN,99,0,0);
 

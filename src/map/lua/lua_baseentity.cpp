@@ -190,7 +190,7 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
             WBUFW(&buf, 14) = (uint16)m_PBaseEntity->loc.p.y;
             WBUFW(&buf, 18) = (uint16)m_PBaseEntity->loc.p.z;
             WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
-            
+
             if (m_PBaseEntity->objtype == TYPE_PC)
                 WBUFL(&buf, 23) = ((CCharEntity*)m_PBaseEntity)->m_moghouseID;
 
@@ -220,7 +220,7 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
 
             WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
             WBUFW(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
-            
+
             message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
             found = true;
         }
