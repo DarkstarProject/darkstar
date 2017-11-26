@@ -712,7 +712,7 @@ int32 doSynthFail(CCharEntity* PChar)
 			}
 			invSlotID  = nextSlotID;
 		}
-                nextSlotID = 0;
+			nextSlotID = 0;
 		if(invSlotID == 0xFF)
 			break;
 	}
