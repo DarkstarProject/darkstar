@@ -67,7 +67,7 @@ function onSpellCast(caster,target,spell)
     local dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
 
     -- Do it!
-    if (dia == nil or (BIO_OVERWRITE == 0 and dia:getPower() <= 3) or (BIO_OVERWRITE == 1 and dia:getPower() < 3)) then
+    if (dia == nil or (BIO_OVERWRITE == 0 and dia:getTier() <= 3) or (BIO_OVERWRITE == 1 and dia:getTier() < 3)) then
         target:delStatusEffect(EFFECT_BIO); -- delete old bio
         target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 15);
     end

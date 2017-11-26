@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
     local bio = target:getStatusEffect(EFFECT_BIO);
 
     -- Do it!
-    if (bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 3) or (DIA_OVERWRITE == 1 and bio:getPower() < 3)) then
+    if (bio == nil or (DIA_OVERWRITE == 0 and bio:getTier() <= 3) or (DIA_OVERWRITE == 1 and bio:getTier() < 3)) then
         target:addStatusEffect(EFFECT_DIA,3+dotBonus,3,duration,FLAG_ERASABLE, 15);
         spell:setMsg(msgBasic.MAGIC_DMG);
     else
