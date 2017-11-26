@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
 
     -- Do it!
     if (BIO_OVERWRITE == 0 or (BIO_OVERWRITE == 1 and dia == nil)) then
-        target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 5);
+        target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 5,0,1);
     end
 
     --Try to kill same tier Dia (default behavior)
