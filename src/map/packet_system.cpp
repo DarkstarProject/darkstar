@@ -598,7 +598,7 @@ void SmallPacket0x017(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint32 npcid = RBUFL(data, (0x08));
     uint8  type = RBUFB(data, (0x12));
 
-    ShowError(CL_RED"SmallPacket0x17: Incorrect NPC(%u,%u) type(%u)\n" CL_RESET, targid, npcid, type);
+    ShowWarning(CL_YELLOW"SmallPacket0x17: Incorrect NPC(%u,%u) type(%u)\n" CL_RESET, targid, npcid, type);
     return;
 }
 
@@ -4326,7 +4326,7 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->nameflags.flags & FLAG_ANON)
         {
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 175));
-        } 
+        }
         else
         {
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 176));

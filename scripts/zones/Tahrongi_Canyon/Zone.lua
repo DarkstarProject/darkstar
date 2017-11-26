@@ -6,11 +6,12 @@
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
+require("scripts/zones/Tahrongi_Canyon/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/weather");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -131,5 +132,18 @@ function onEventFinish( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 35) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    end
+end;
+
+function isHabrokWeather(weather)
+    return (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM or weather == WEATHER_WIND or weather == WEATHER_GALES);
+end
+
+function onZoneWeatherChange(weather)
+    local habrok = GetMobByID(HABROK);
+    if (habrok:isSpawned() and not isHabrokWeather(weather)) then
+        DespawnMob(HABROK);
+    elseif (not habrok:isSpawned() and isHabrokWeather(weather) and os.time() > habrok:getLocalVar("pop")) then
+        SpawnMob(HABROK);
     end
 end;

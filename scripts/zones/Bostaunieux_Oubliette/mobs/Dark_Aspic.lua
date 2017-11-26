@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,SHII_PH,10,math.random(7200,14400)); -- 2 to 4 hours
+    phOnDespawn(mob,SEWER_SYRUP_PH,10,math.random(7200,14400)); -- 2 to 4 hours
 end;
