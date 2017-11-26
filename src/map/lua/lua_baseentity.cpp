@@ -5163,10 +5163,10 @@ inline int32 CLuaBaseEntity::canGainStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     bool hasEffect = false;
+    
+    CStatusEffect effect((EFFECT)lua_tointeger(L, 1), 0, (uint16)lua_tointeger(L, 2), 0, 0);
 
-    hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->CanGainStatusEffect(
-        (EFFECT)lua_tointeger(L, 1),
-        (uint16)lua_tointeger(L, 2));
+    hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->CanGainStatusEffect(&effect);
 
     lua_pushboolean(L, hasEffect);
     return 1;
