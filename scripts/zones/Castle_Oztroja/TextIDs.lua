@@ -6,6 +6,7 @@ FULL_INVENTORY_AFTER_TRADE = 6570; -- You cannot obtain the #. Try trading again
              ITEM_OBTAINED = 6572; -- Obtained: <item>.
               GIL_OBTAINED = 6573; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6575; -- Obtained key item: <keyitem>.
+            NOT_ENOUGH_GIL = 6577; -- You do not have enough gil.
             ITEMS_OBTAINED = 6578; -- You obtain
     FISHING_MESSAGE_OFFSET = 7252; -- You can't fish here.
 
