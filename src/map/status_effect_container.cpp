@@ -191,8 +191,9 @@ uint8 CStatusEffectContainer::GetEffectsCount(EFFECT ID)
     return count;
 }
 
-bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 power)
+bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
 {
+    EFFECT statusEffect = PStatusEffect->GetStatusID();
     // check for immunities first
     switch (statusEffect) {
         case EFFECT_SLEEP:
@@ -240,8 +241,6 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         return false;
     }
 
-    CStatusEffect* PStatusEffect;
-
     // check if a status effect blocks this
     EFFECT blockId = effects::EffectsParams[statusEffect].BlockId;
     if (blockId != 0 && HasStatusEffect(blockId)) {
@@ -251,26 +250,30 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
     // check if negative is strong enough to stop this
     EFFECT negativeId = effects::EffectsParams[statusEffect].NegativeId;
     if (negativeId != 0) {
-        PStatusEffect = GetStatusEffect(negativeId);
+        CStatusEffect* negativeEffect = GetStatusEffect(negativeId);
 
-        if (PStatusEffect != nullptr) {
+        if (negativeEffect != nullptr) {
 
-            if (statusEffect == EFFECT_HASTE && PStatusEffect->GetStatusID() == EFFECT_SLOW && PStatusEffect->GetSubPower() == 1)
+            if (statusEffect == EFFECT_HASTE && negativeEffect->GetStatusID() == EFFECT_SLOW && negativeEffect->GetSubPower() == 1)
             {
                 // slow i remote
                 return true;
             }
+            else if (statusEffect == EFFECT_DIA || statusEffect == EFFECT_BIO)
+            {
+                return PStatusEffect->GetTier() == negativeEffect->GetTier() ? statusEffect > negativeId : PStatusEffect->GetTier() > negativeEffect->GetTier();
+            }
 
             // new status effect must be stronger
-            return power >= PStatusEffect->GetPower();
+            return PStatusEffect->GetPower() >= negativeEffect->GetPower();
         }
     }
 
-    PStatusEffect = GetStatusEffect(statusEffect);
+    CStatusEffect* existingEffect = GetStatusEffect(statusEffect);
 
     // check overwrite
-    if (PStatusEffect != nullptr) {
-        uint16 currentPower = PStatusEffect->GetPower();
+    if (existingEffect != nullptr) {
+        uint16 currentPower = existingEffect->GetPower();
         EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
 
         if (overwrite == EFFECTOVERWRITE_ALWAYS || overwrite == EFFECTOVERWRITE_IGNORE) {
@@ -282,13 +285,13 @@ bool CStatusEffectContainer::CanGainStatusEffect(EFFECT statusEffect, uint16 pow
         }
 
         if (overwrite == EFFECTOVERWRITE_EQUAL_HIGHER) {
-            if (power >= currentPower) {
+            if (PStatusEffect->GetPower() >= currentPower) {
                 return true;
             }
         }
         else if (overwrite == EFFECTOVERWRITE_HIGHER) {
             // overwrite only if higher
-            if (power > currentPower) {
+            if (PStatusEffect->GetPower() > currentPower) {
                 return true;
             }
         }
@@ -342,7 +345,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         return false;
     }
 
-    if (CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
+    if (CanGainStatusEffect(PStatusEffect))
     {
 
         // check for minimum duration
@@ -403,6 +406,10 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         m_POwner->updatemask |= UPDATE_HP;
 
         return true;
+    }
+    else
+    {
+        delete PStatusEffect;
     }
 
     return false;
