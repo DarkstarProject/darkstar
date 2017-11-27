@@ -62,15 +62,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
-    if (option == 1) then
-        ShowOPVendorShop(player);
-    elseif (option == 2) then
-        if (player:delGil(OP_TeleFee(player,region))) then
-            toHomeNation(player);
-        end
-    elseif (option == 6) then
-        player:delCP(OP_TeleFee(player,region));
-        toHomeNation(player);
+    if option == 1 then
+        ShowOPVendorShop(player)
+    elseif option == 2 and player:delGil(OP_TeleFee(player,region)) then
+        toHomeNation(player)
+    elseif option == 6 then
+        player:delCP(OP_TeleFee(player,region))
+        toHomeNation(player)
     end
-
-end;
+end

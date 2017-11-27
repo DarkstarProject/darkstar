@@ -196,7 +196,7 @@ int32 CBattleEntity::GetMaxMP()
 
 uint8 CBattleEntity::GetSpeed()
 {
-    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<uint8>(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
+    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : std::clamp<uint16>(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
 }
 
 bool CBattleEntity::CanRest()
@@ -1127,10 +1127,10 @@ bool CBattleEntity::CanUseSpell(CSpell* PSpell)
 
 void CBattleEntity::Spawn()
 {
-    CBaseEntity::Spawn();
     animation = ANIMATION_NONE;
-    m_OwnerID.clean();
     HideName(false);
+    CBaseEntity::Spawn();
+    m_OwnerID.clean();
 }
 
 void CBattleEntity::Die()
