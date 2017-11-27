@@ -2275,6 +2275,7 @@ ANIMATION_ELEVATOR_UP              = 10;
 ANIMATION_ELEVATOR_DOWN            = 11;
 -- seems to be WALLHACK               = 28;
 -- seems to be WALLHACK also..        = 31;
+ANIMATION_FISHING_NPC              = 32;
 ANIMATION_HEALING                  = 33;
 ANIMATION_FISHING_FISH             = 38;
 ANIMATION_FISHING_CAUGHT           = 39;
@@ -2286,6 +2287,13 @@ ANIMATION_SYNTH                    = 44;
 ANIMATION_SIT                      = 47;
 ANIMATION_RANGED                   = 48;
 ANIMATION_FISHING_START            = 50;
+ANIMATION_NEW_FISHING_START        = 56;
+ANIMATION_NEW_FISHING_FISH         = 57;
+ANIMATION_NEW_FISHING_CAUGHT       = 58;
+ANIMATION_NEW_FISHING_ROD_BREAK    = 59;
+ANIMATION_NEW_FISHING_LINE_BREAK   = 60;
+ANIMATION_NEW_FISHING_MONSTER      = 61;
+ANIMATION_NEW_FISHING_STOP         = 62;
 -- 63 through 72 are used with /sitchair
 -- 73 through 83 sitting on air (guessing future use for more chairs..)
 ANIMATION_MOUNT                    = 85;
