@@ -259,7 +259,8 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
                 // slow i remote
                 return true;
             }
-            else if (statusEffect == EFFECT_DIA || statusEffect == EFFECT_BIO)
+
+            if (PStatusEffect->GetTier() != 0 && negativeEffect->GetTier() != 0)
             {
                 return PStatusEffect->GetTier() == negativeEffect->GetTier() ? statusEffect > negativeId : PStatusEffect->GetTier() > negativeEffect->GetTier();
             }
@@ -273,7 +274,6 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
 
     // check overwrite
     if (existingEffect != nullptr) {
-        uint16 currentPower = existingEffect->GetPower();
         EFFECTOVERWRITE overwrite = effects::EffectsParams[statusEffect].Overwrite;
 
         if (overwrite == EFFECTOVERWRITE_ALWAYS || overwrite == EFFECTOVERWRITE_IGNORE) {
@@ -285,15 +285,19 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
         }
 
         if (overwrite == EFFECTOVERWRITE_EQUAL_HIGHER) {
-            if (PStatusEffect->GetPower() >= currentPower) {
-                return true;
+            if (PStatusEffect->GetTier() != 0 && existingEffect->GetTier() != 0)
+            {
+                return PStatusEffect->GetTier() >= existingEffect->GetTier();
             }
+            return PStatusEffect->GetPower() >= existingEffect->GetPower();
         }
         else if (overwrite == EFFECTOVERWRITE_HIGHER) {
             // overwrite only if higher
-            if (PStatusEffect->GetPower() > currentPower) {
-                return true;
+            if (PStatusEffect->GetTier() != 0 && existingEffect->GetTier() != 0)
+            {
+                return PStatusEffect->GetTier() > existingEffect->GetTier();
             }
+            return PStatusEffect->GetPower() > existingEffect->GetPower();
         }
 
         return false;
