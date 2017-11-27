@@ -26,6 +26,21 @@ function onMonsterMagicPrepare(mob, target)
 end;
 
 -----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function onMobSpawn(mob)
+
+    local KingArthroID = mob:getID();
+
+    -- Use King Arthro ID to determine Knight Crab Id's, then set their respawn to 0 so they don't spawn while KA is up
+    for offset = 1, 10 do
+        GetMobByID(KingArthroID - offset):setRespawnTime(0);
+    end 
+
+end
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 
@@ -37,5 +52,14 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    SetServerVariable("[POP]King_Arthro",0);
+  
+    local KingArthroID = mob:getID();
+ 
+    GetMobByID(KingArthroID):setLocalVar("[POP]King_Arthro", 0);
+
+    -- Set temporary respawn of 24 hours + 5 minutes
+    for offset = 1, 10 do
+        GetMobByID(KingArthroID - offset):setRespawnTime(86700);
+    end
+   
 end;
