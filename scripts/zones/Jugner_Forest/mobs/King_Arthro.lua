@@ -58,8 +58,8 @@ function onMobDespawn(mob)
     GetMobByID(KingArthroID):setLocalVar("[POP]King_Arthro", 0);
 
     -- Set temporary respawn of 24 hours + 5 minutes
-    for KnightCrabID = KingArthroID - 1, KingArthroID - 10 do
-        GetMobByID(KnightCrabID):setRespawnTime(86700);
+    for offset = 1, 10 do
+        GetMobByID(KingArthroID - offset):setRespawnTime(86700);
     end
    
 end;
