@@ -13,7 +13,7 @@ function onMobSpawn(mob)
     --If respawn and variable is not 0, then it respawned before someone killed all 10 crabs
     local KingArthro = GetMobByID(KING_ARTHRO);
 
-    if (KingArthro:getLocalVar("[POP]King_Arthro")) then
+    if (KingArthro:getLocalVar("[POP]King_Arthro") > 0) then
         KingArthro:setLocalVar("[POP]King_Arthro", KingArthro:getLocalVar("[POP]King_Arthro")  - 1);
     end
 
