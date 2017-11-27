@@ -276,7 +276,6 @@ function npcUtil.fishingAnimation(npc, phaseDuration)
             end
         end
         npc:setAnimation(nextAnimationId)
-        npc:lookAt(-17, -2, -35)
         npcUtil.fishingAnimation(npc, nextAnimationDuration)
     end)
 end
