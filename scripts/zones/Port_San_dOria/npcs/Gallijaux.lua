@@ -13,6 +13,14 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 
 -----------------------------------
+-- onSpawn
+-----------------------------------
+
+function onSpawn(npc)
+    npcUtil.fishingAnimation(npc, 1)
+end
+
+-----------------------------------
 -- onTrade Action
 -----------------------------------
 
@@ -48,10 +56,22 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
-        player:startEvent(300);
+
+    if (npc:getAnimation() ~= 0) then
+        npc:setAnimation(ANIMATION_FISHING_STOP);
     end
-    -- Cannot find his "default" dialogue so he will not respond to being activated unless he is starting the quest event.
+
+    npc:timer(5000, function(npc)
+        npc:lookAt(-14,-2,-42);
+    end)
+
+    if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
+        player:startEvent(300, 4401, 4289); -- 4401 = Moat Carp, 4289 = Forest Carp
+    elseif (player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED) then
+        player:showText(npc, GALLIJAUX_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
+    elseif ((player:getQuestStatus(SANDORIA,THE_COMPETITION)) == QUEST_ACCEPTED) then
+        player:showText(npc, GALLIJAUX_HELP_OTHER_BROTHER);
+    end
 end;
 
 -----------------------------------
