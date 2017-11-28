@@ -5,8 +5,6 @@
 -- !pos 168 0 -440 81
 -----------------------------------
 
-require("scripts/zones/East_Ronfaure_[S]/MobIDs");
-
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -19,9 +17,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
+    
     SetServerVariable("[POP]Goblintrap", os.time() + 3600);
     GetMobByID(mob:getID()):setRespawnTime(0);
-    DisallowRespawn(GOBLIN_TRAP_PH, false);
+    DisallowRespawn(mob:getID() - 1, false); --Let the Placeholder Respawn
     
 end;

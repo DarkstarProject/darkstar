@@ -20,6 +20,8 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
+    local GOBLIN_TRAP_PH = GOBLIN_TRAP - 1;
+
     if (mob:getID() == GOBLIN_TRAP_PH) then
 
         local ToD = GetServerVariable("[POP]Goblintrap");
