@@ -45,7 +45,7 @@ public:
     uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
     bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
-    bool CanGainStatusEffect(EFFECT statusEffect, uint16 power); // returns true if the status effect will take effect
+    bool CanGainStatusEffect(CStatusEffect* PStatusEffect); // returns true if the status effect will take effect
     bool AddStatusEffect(CStatusEffect* StatusEffect, bool silent = false);
     bool DelStatusEffect(EFFECT StatusID);
     bool DelStatusEffectSilent(EFFECT StatusID);

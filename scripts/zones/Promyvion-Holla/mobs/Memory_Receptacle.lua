@@ -59,7 +59,11 @@ function onMobDeath(mob, player, isKiller)
             end
         end
         if (math.random(numAlive) == 1) then
-            local stream = GetNPCByID(MEMORY_RECEPTACLES[mobId][3]);
+            local streamId = MEMORY_RECEPTACLES[mobId][3];
+            local stream = GetNPCByID(streamId);
+            local events = MEMORY_STREAMS[streamId][7];
+            local event = events[math.random(#events)];
+            stream:setLocalVar("destination",event);
             stream:openDoor(180);
         end
     end

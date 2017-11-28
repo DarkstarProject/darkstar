@@ -11,6 +11,11 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
+require("scripts/globals/status")
+
+function onSpawn(npc)
+    npcUtil.fishingAnimation(npc, 1)
+end
 
 -----------------------------------
 -- onTrade Action
@@ -41,6 +46,7 @@ function onTrade(player,npc,trade)
             player:startEvent(306);
         end
     end
+    npc:setAnimation(0)
 end;
 
 -----------------------------------
@@ -51,6 +57,7 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
         player:startEvent(304);
     end
+    npc:setAnimation(0)
     -- Cannot find his "default" dialogue so he will not respond to being activated unless he is starting the quest event.
 end;
 
