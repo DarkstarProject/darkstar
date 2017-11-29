@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm13 (???)
 -- Spawns Eccentric Eve
--- !pos ? ? ? 15
+-- !pos 230 32 280 15
 -----------------------------------
 require("scripts/globals/abyssea");
 

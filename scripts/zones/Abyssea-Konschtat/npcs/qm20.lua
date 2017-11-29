@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm20 (???)
 -- Spawns Kukulkan
--- !pos ? ? ? 15
+-- !pos -25 68 559 15
 -----------------------------------
 require("scripts/globals/abyssea");
 

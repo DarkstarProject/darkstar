@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm18 (???)
 -- Spawns Bloodeye Vileberry
--- !pos ? ? ? 15
+-- !pos 538 24 713 15
 -----------------------------------
 require("scripts/globals/abyssea");
 
