@@ -116,7 +116,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)..\ &amp;&amp; $(SolutionDir)..\get_git_ver_win.bat</Command>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
       <Message>log git rev to GIT_VER</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -143,7 +143,7 @@
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)..\ &amp;&amp; $(SolutionDir)..\get_git_ver_win.bat</Command>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>log git rev to GIT_VER</Message>
@@ -178,7 +178,7 @@
       <AdditionalOptions>/EDITANDCONTINUE /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)..\ &amp;&amp; $(SolutionDir)..\get_git_ver_win.bat</Command>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
       <Message>log git rev to GIT_VER</Message>
     </PostBuildEvent>
     <CustomBuildStep>
@@ -213,7 +213,7 @@
       <AdditionalOptions>/EDITANDCONTINUE /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(SolutionDir)..\ &amp;&amp; $(SolutionDir)..\get_git_ver_win.bat</Command>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
       <Message>log git rev to GIT_VER</Message>
     </PostBuildEvent>
     <CustomBuildStep>
