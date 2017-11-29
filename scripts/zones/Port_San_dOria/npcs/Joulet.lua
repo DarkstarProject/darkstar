@@ -18,7 +18,9 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onSpawn(npc)
-    npcUtil.fishingAnimation(npc, 1)
+    npcUtil.fishingAnimation(npc, 2, function(npc)
+        npc:lookAt(-18,-2,-42);
+    end)
 end
 
 -----------------------------------
@@ -62,10 +64,6 @@ function onTrigger(player,npc)
     if (npc:getAnimation() ~= 0) then
         npc:setAnimation(ANIMATION_FISHING_STOP);
     end
-
-    npc:timer(5000, function(npc)
-        npc:lookAt(-18,-2,-42);
-    end)
 
     if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
         player:startEvent(304, 4401, 4289); -- Moat Carp = 4401, 4289 = Forest Carp
