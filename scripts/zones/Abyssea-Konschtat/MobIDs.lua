@@ -18,5 +18,11 @@ NM_POPS =
 --  [16839089] = {'qm12', {2905},                                                                                                        {}, 16839033}, -- Fear Gorta
 --  [16839090] = {'qm13',     {}, {FRAGRANT_TREANT_PETAL,FETID_RAFFLESIA_STALK,DECAYING_MORBOL_TOOTH,TURBID_SLIME_OIL,VENOMOUS_PEISTE_CLAW}, 16839007}, -- Eccentric Eve
 --  [16839091] = {'qm14',     {},                                       {TATTERED_HIPPOGRAPH_WING,CRACKED_WIVRE_HORN,MUCID_AHRIMAN_EYEBALL}, 16838872}, -- Kukulkan
---  [16839095] = {'qm18',     {},                                                                                  {TWISTED_TONBERRY_CROWN}, 16839068}, -- Bloodeye Vileberry
+--  [16839092] = {'qm15',     {},                                                                                  {TWISTED_TONBERRY_CROWN}, 16839068}, -- Bloodeye Vileberry
+--	[16839093] = {'qm16',     {}, {FRAGRANT_TREANT_PETAL,FETID_RAFFLESIA_STALK,DECAYING_MORBOL_TOOTH,TURBID_SLIME_OIL,VENOMOUS_PEISTE_CLAW}, 16839069}, -- Eccentric Eve
+--  [16839094] = {'qm17',     {},                                       {TATTERED_HIPPOGRAPH_WING,CRACKED_WIVRE_HORN,MUCID_AHRIMAN_EYEBALL}, 16839070}, -- Kukulkan
+--  [16839095] = {'qm18',     {},                                                                                  {TWISTED_TONBERRY_CROWN}, 16839071}, -- Bloodeye Vileberry
+--	[16839096] = {'qm19',     {}, {FRAGRANT_TREANT_PETAL,FETID_RAFFLESIA_STALK,DECAYING_MORBOL_TOOTH,TURBID_SLIME_OIL,VENOMOUS_PEISTE_CLAW}, 16839072}, -- Eccentric Eve
+--  [16839097] = {'qm20',     {},                                       {TATTERED_HIPPOGRAPH_WING,CRACKED_WIVRE_HORN,MUCID_AHRIMAN_EYEBALL}, 16839073}, -- Kukulkan
+--  [16839098] = {'qm21',     {},                                                                                  {TWISTED_TONBERRY_CROWN}, 16839074}, -- Bloodeye Vileberry
 }
