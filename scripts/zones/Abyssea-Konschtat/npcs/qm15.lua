@@ -1,6 +1,6 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
---  NPC: qm18 (???)
+--  NPC: qm15 (???)
 -- Spawns Bloodeye Vileberry
 -- !pos ? ? ? 15
 -----------------------------------
