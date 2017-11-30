@@ -4632,7 +4632,7 @@ namespace battleutils
     bool DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset)
     {
         position_t& pos = PMob->loc.p;
-        position_t nearEntity = nearPosition(pos, offset, (float)M_PI);
+        position_t nearEntity = nearPosition(pos, offset, (float)0);
 
         // validate the drawin position before continuing
         if (!PMob->PAI->PathFind->ValidPosition(pos))

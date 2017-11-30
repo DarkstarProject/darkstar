@@ -3,16 +3,13 @@
 --  MOB: Salamander
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobSpawn(mob)
+    DespawnMob(mob:getID(), 180);
+end;
 
 function onMobDeath(mob, player, isKiller)
 end;
