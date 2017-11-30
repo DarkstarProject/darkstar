@@ -3724,7 +3724,7 @@ inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  Used in place of traceComplete when a trade uses confirmItem to      *
+*  Used in place of tradeComplete when a trade uses confirmItem to      *
 *  confirm traded items.                                                *
 *                                                                       *
 ************************************************************************/
