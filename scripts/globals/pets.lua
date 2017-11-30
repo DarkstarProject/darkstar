@@ -21,6 +21,8 @@ PETTYPE_CHOCOBO           = 6;
 -- PETNAME
 -----------------------------------
 
+--WYVERN NAMES
+
 PETNAME_AZURE         = 1;
 PETNAME_CERULEAN      = 2;
 PETNAME_RYGOR         = 3;
@@ -138,6 +140,9 @@ PETNAME_RURUMO        = 114;
 PETNAME_TUPAH         = 115;
 PETNAME_JYUBIH        = 116;
 PETNAME_MAJHA         = 117;
+
+--AUTOMATION NAMES
+
 PETNAME_LURON         = 118;
 PETNAME_DRILLE        = 119;
 PETNAME_TOURNEFOUX    = 120;
@@ -316,6 +321,9 @@ PETNAME_SANCHO        = 292;
 PETNAME_SARUMARO      = 293;
 PETNAME_PICKET        = 294;
 PETNAME_MUSHROOM      = 295;
+
+--CHOCOBO NAMES
+
 PETNAME_G             = 296;
 PETNAME_I             = 297;
 PETNAME_Q             = 298;
