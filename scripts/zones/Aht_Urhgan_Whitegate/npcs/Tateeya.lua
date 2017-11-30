@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
                 if (player:unlockAttachment(subid)) then
                     player:setVar('TateeyaUnlock', subid);
                     player:startEventString(651, automatonName, automatonName, automatonName, automatonName, subid); --unlock attachment event
-                    if trade:confirmItem(i) then
+                    if trade:confirmSlot(i) then
                         player:confirmTrade();
                     end
                 else
