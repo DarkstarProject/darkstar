@@ -69,7 +69,7 @@ bool CPlayerController::Engage(uint16 targid)
     {
         if (distance(PChar->loc.p, PTarget->loc.p) < 30)
         {
-			auto nextAttack = map_config.reengage_delay ? m_LastAttackTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) : m_LastAttackTime;
+            auto nextAttack = map_config.reengage_delay ? m_LastAttackTime + std::chrono::milliseconds(PChar->GetWeaponDelay(false)) : m_LastAttackTime;
             if (nextAttack < server_clock::now())
             {
                 if (CController::Engage(targid))
