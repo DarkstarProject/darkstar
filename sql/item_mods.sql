@@ -44713,6 +44713,35 @@ INSERT INTO `item_mods` VALUES (28137,31,80);
 INSERT INTO `item_mods` VALUES (28137,68,37);
 INSERT INTO `item_mods` VALUES (28137,296,7);
 INSERT INTO `item_mods` VALUES (28137,384,40);
+INSERT INTO `item_mods` VALUES (28138,1,55); -- Perle Brayettes +1 DEF+55
+INSERT INTO `item_mods` VALUES (28138,9,7); -- DEX+7
+INSERT INTO `item_mods` VALUES (28138,10,7); -- VIT+7
+INSERT INTO `item_mods` VALUES (28138,25,15); -- Accuracy+15
+INSERT INTO `item_mods` VALUES (28138,27,4); -- Enmity+4 
+INSERT INTO `item_mods` VALUES (28138,384,30); -- Haste+3%
+INSERT INTO `item_mods` VALUES (28139,1,48); -- Aurore Brais +1 DEF+48
+INSERT INTO `item_mods` VALUES (28139,25,15); -- Accuracy+15
+INSERT INTO `item_mods` VALUES (28139,26,15); -- Ranged Accuracy+15
+INSERT INTO `item_mods` VALUES (28139,384,41); -- Haste+4% 
+INSERT INTO `item_mods` VALUES (28139,289,7); -- "Subtle Blow"+7
+INSERT INTO `item_mods` VALUES (28140,1,43); -- Teal Slops +1 DEF+43
+INSERT INTO `item_mods` VALUES (28140,2,30); -- HP+30
+INSERT INTO `item_mods` VALUES (28140,12,12); -- INT+12
+INSERT INTO `item_mods` VALUES (28140,14,12); -- CHR+12
+INSERT INTO `item_mods` VALUES (28140,30,5); -- Magic Accuracy+5
+INSERT INTO `item_mods` VALUES (28140,28,5); -- "Magic Atk. Bonus"+5
+INSERT INTO `item_mods` VALUES (28141,1,114); -- Wisent Kecks DEF+114
+INSERT INTO `item_mods` VALUES (28141,2,47); -- HP+47
+INSERT INTO `item_mods` VALUES (28141,8,29); -- STR+29
+INSERT INTO `item_mods` VALUES (28141,10,16); -- VIT+16
+INSERT INTO `item_mods` VALUES (28141,11,20); -- AGI+20
+INSERT INTO `item_mods` VALUES (28141,12,30); -- INT+30 
+INSERT INTO `item_mods` VALUES (28141,13,17); -- MND+17
+INSERT INTO `item_mods` VALUES (28141,14,11); -- CHR+11
+INSERT INTO `item_mods` VALUES (28141,68,38); -- Evasion+38
+INSERT INTO `item_mods` VALUES (28141,31,69); -- Magic Evasion+69 
+INSERT INTO `item_mods` VALUES (28141,29,5); -- "Magic Def. Bonus"+5
+INSERT INTO `item_mods` VALUES (28141,384,61); -- Haste+6%
 INSERT INTO `item_mods` VALUES (28142,1,125); -- Brontes cuisses DEF:125
 INSERT INTO `item_mods` VALUES (28142,2,112); -- HP+112
 INSERT INTO `item_mods` VALUES (28142,8,35); -- STR+35
