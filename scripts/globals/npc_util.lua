@@ -241,7 +241,15 @@ function npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
     end)
 end;
 
-function npcUtil.fishingAnimation(npc, phaseDuration)
+function npcUtil.fishingAnimation(npc, phaseDuration, func)
+    func = func or function(npc)
+        -- return true to not loop again
+        return false
+    end
+
+    if func(npc) then
+        return
+    end
     npc:timer(phaseDuration * 1000, function(npc)
         local anims =
         {
@@ -276,6 +284,6 @@ function npcUtil.fishingAnimation(npc, phaseDuration)
             end
         end
         npc:setAnimation(nextAnimationId)
-        npcUtil.fishingAnimation(npc, nextAnimationDuration)
+        npcUtil.fishingAnimation(npc, nextAnimationDuration, func)
     end)
 end
