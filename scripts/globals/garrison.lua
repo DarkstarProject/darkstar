@@ -12,12 +12,7 @@ function getGarrisonWave(player, wave)
 
     local zone = player:getZoneID();
 
-    local waves = {[1] = { 2, 4, 6, 6}, -- 1 Party
-                  [2] = { 4, 6, 8, 6}, -- 2 Parties
-                  [3] = { 6, 8, 10, 10}}; -- 3 parties
-                      
-
-    local mob_count = waves[player:getAllianceSize()];   
+    local mob_count = ((2 * player:getAllianceSize()) + ((wave - 1) * 2))  
     local wave_mobs = {'frontrow': {},
                   'backrow': {},
                   'delayed': {} };
@@ -128,6 +123,10 @@ function applyGarrisonCap(player)
 
     
 
-    player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[zone_id],0,0);
+    for _,alliance_member in player:getAlliance() do
+        alliance_member:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[zone_id],0,1800);
+        alliance_member:addStatusEffectEx(EFFECT_CONFRONTATION,0,1,0,1800);
+    end
+    
     return false
 end
