@@ -136,17 +136,7 @@ WindInv = {0x80A1,0x000A,0x1055,0x8044,0x3E80,0x31BE,0x8025,0x0FA0,0x32B6,
 DonateCrys = {4096,4097,4098,4099,4100,4101,4102,4103,4238,4239,4240,4241,4242,4243,4244,4245};
 XpRing = {350,700,600}; RingCharg = {7,7,3};
 supplyReward = {10,30,40,10,40,10,40,40,70,50,60,40,70,70,70,70,70,70,70};
-tpFees = {
-            -- options 1~4 are '.'
-            -- 0, 0, 0, 0, -- unknown
-            100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250,
-            300, 500, 250, 350, 500,
-            -- option after tu'lia is blank
-            0,
-            300,
-            -- options after tavnazia are blank
-            -- 0, 0, 0, 0,
-         }
+tpFees = { 100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500, 250, 350, 500, 0, 300 }
 
 ----------------------------------------------------------------
 -- function tradeConquestGuard()
@@ -320,29 +310,50 @@ sandy_windurst_ally = 0;
 sandy_bastok_ally = 0;
 
 function getArg1(guardnation,player)
-    -- todo: this function really needs cleaning up
-    local pNation = player:getNation()
-    local output = (0x10 * guardnation) + 1
-    local signet = 7
-    if guardnation == pNation then
-        signet = 0
-    elseif pNation == NATION_WINDURST and (guardnation == NATION_BASTOK and windurst_bastok_ally == 1) or
-            (guardnation == NATION_SANDORIA and sandy_windurst_ally == 1) then
-        signet = 1
-    elseif pNation == NATION_BASTOK and (guardnation == NATION_WINDURST and windurst_bastok_ally == 1) or
-            (guardnation == NATION_SANDORIA and sandy_bastok_ally == 1) then
-        signet = 2
-    elseif pNation == NATION_SANDORIA and (guardnation == NATION_WINDURST and sandy_windurst_ally == 1) or
-            (guardnation == NATION_BASTOK and sandy_bastok_ally == 1) then
-        signet = 4
+
+    local pNation = player:getNation();
+    local output = 0;
+    local signet = 0;
+
+    if (guardnation == NATION_WINDURST) then
+        output = 33;
+    elseif (guardnation == NATION_SANDORIA) then
+        output = 1;
+    elseif (guardnation == NATION_BASTOK) then
+        output = 17;
     end
-    if guardnation == OTHER then
-        output = (pNation * 16) + (3 * 256)  + 65537
+
+    if (guardnation == pNation) then
+        signet = 0;
+    elseif (pNation == NATION_WINDURST) then
+        if (guardnation == NATION_BASTOK and windurst_bastok_ally == 1) or (guardnation == NATION_SANDORIA and sandy_windurst_ally == 1) then
+            signet = 1;
+        else
+            signet = 7;
+        end
+    elseif (pNation == NATION_BASTOK) then
+        if (guardnation == NATION_WINDURST and windurst_bastok_ally == 1) or (guardnation == NATION_SANDORIA and sandy_bastok_ally == 1) then
+            signet = 2;
+        else
+            signet = 7;
+        end
+    elseif (pNation == NATION_SANDORIA) then
+        if (guardnation == NATION_WINDURST and sandy_windurst_ally == 1) or (guardnation == NATION_BASTOK and sandy_bastok_ally == 1) then
+            signet = 4;
+        else
+            signet = 7;
+        end
+    end
+
+    if (guardnation == OTHER) then
+        output = (pNation * 16) + (3 * 256)  + 65537;
     else
-        output = output + 256 * signet
+        output = output + 256 * signet;
     end
-    return output
-end
+
+    return output;
+
+end;
 
 ------------------------------------------------
 -- function getExForceAvailable(guardnation,player) Expeditionary Force Menu [NOT IMPLEMENTED]
@@ -370,15 +381,15 @@ function getSupplyAvailable(nation,player)
     local mask = 2130706463;
 
     if (player:getVar("supplyQuest_started") == vanaDay()) then
-        mask = 0xFFFFFFFF; -- Need to wait 1 vanadiel day
+        mask = 4294967295; -- Need to wait 1 vanadiel day
     end
 
     for nb = 0,15 do
-        if player:hasKeyItem(getSupplyKey(nb)) then
+        if (player:hasKeyItem(getSupplyKey(nb))) then
             mask = -1; -- if you have supply run already activated
         end
     end
-    if player:hasKeyItem(getSupplyKey(18)) then -- we need to skip 16 and 17 for now
+    if (player:hasKeyItem(getSupplyKey(18))) then -- we need to skip 16 and 17 for now
         mask = -1;
     end
 
@@ -473,54 +484,57 @@ end;
 -----------------------------------------------------------------
 
 function hasOutpost(player, region)
+
     local nation = player:getNation()
+    local bit = {};
 
-    if nation == NATION_BASTOK then
-        supply_quests = player:getNationTeleport(NATION_BASTOK)
-    elseif nation == NATION_SANDORIA then
-        supply_quests = player:getNationTeleport(NATION_SANDORIA)
-    elseif nation == NATION_WINDURST then
-        supply_quests = player:getNationTeleport(NATION_WINDURST)
-    end
-    return bit.band(supply_quests, bit.lshift(1, region))
-end
+    if (nation == NATION_BASTOK) then
+        supply_quests = player:getNationTeleport(NATION_BASTOK);
+    elseif (nation == NATION_SANDORIA) then
+        supply_quests = player:getNationTeleport(NATION_SANDORIA);
+    elseif (nation == NATION_WINDURST) then
+        supply_quests = player:getNationTeleport(NATION_WINDURST);
+    end;
 
------------------------------------------------------------------
--- function OP_TeleFee(player,region, fromCity)
------------------------------------------------------------------
-
-function OP_TeleFee(player, region, fromCity)
-    -- todo: this is so fuckin retarded, our regions dont match conquest npc regions
-    local outpostOffset = 4
-    local feeOffset = 1
-    local regionOwnerOffset = 0
-
-    if fromCity then
-        outpostOffset = -5
-        feeOffset = -4
-        regionOwnerOffset = outpostOffset
-        -- todo: this is fuckin retarded but i dont care to change all our region enums
-        if region - outpostOffset < 1 or region - feeOffset < 1 then
-            return 0
-        end
-    end
-
-    if hasOutpost(player, region + outpostOffset) then
-        if GetRegionOwner(region + regionOwnerOffset) == player:getNation() then
-            return tpFees[region + feeOffset]
+    for i = 23,5,-1 do
+        twop = 2^i
+        if (supply_quests >= twop) then
+            bit[i]=1;
+            supply_quests = supply_quests - twop;
         else
-            return tpFees[region + feeOffset] * 3
+            bit[i]=0;
+        end;
+        --printf("bit %u: %u \n",i,bit[i]);
+    end;
+
+    return bit[region];
+
+end;
+
+-----------------------------------------------------------------
+-- function OP_TeleFee(player,region)
+-----------------------------------------------------------------
+
+function OP_TeleFee(player,region)
+
+    if (hasOutpost(player, region+5) == 1) then
+        if (GetRegionOwner(region) == player:getNation()) then
+            return tpFees[region + 1];
+        else
+            return tpFees[region + 1] * 3;
         end
     else
-        return 0
+        return 0;
     end
-end
+
+end;
 
 -----------------------------------------------------------------
 -- Teleport Outpost > Nation
 -----------------------------------------------------------------
 
 function toHomeNation(player)
+
     if (player:getNation() == NATION_BASTOK) then
         player:setPos(89, 0 , -66, 0, 234);
     elseif (player:getNation() == NATION_SANDORIA) then
@@ -528,95 +542,26 @@ function toHomeNation(player)
     else
         player:setPos(193, -12 , 220, 64, 240);
     end
-end
+
+end;
 
 -----------------------------------------------------------------
 -- function getTeleAvailable(nation)
 -----------------------------------------------------------------
 
-local function getTeleMask()
-    local ret = {}
-    ret.invalid_bits =
-    {
-        [ 0] = 1, [ 1] = 1, [ 2] = 1, [ 3] = 1, [ 4] = 1,
-        [22] = 1, [24] = 1, [25] = 1, [26] = 1,
-        [27] = 1, [28] = 1, [29] = 1,
-    }
-    --[[
-    ret.invalid_location_mask = 0
-    for b, _ in pairs(ret.invalid_bits) do
-        ret.invalid_location_mask = bit.bor(ret.invalid_location_mask, bit.lshift(1, b))
-    end
-    --]]
-
-    -- mask defined below is exactly the same as result of bit shit above
-    ret.invalid_location_mask = 0x3F40001F
-
-    -- bits 31 and 32 are for last two options
-    ret.tele_nothing_option = bit.bor(bit.lshift(1, 30), bit.lshift(1, 31))
-    return ret
-end
-
 function getTeleAvailable(nation)
-    local invalidTeles = getTeleMask().invalid_bits
-    local mask = 0
-    for i = 0, 31 do
-        if not invalidTeles[i]  then
-            if GetRegionOwner(i) ~= nation then
-                mask = bit.bor(mask, bit.lshift(2, i))
-            end
-        end
+
+    local mask = 2145386527;
+
+    for i = 5,23 do
+        if (GetRegionOwner(i - 5) ~= nation) then
+            mask = mask + 2^i;
+        end;
     end
-    return bit.bnot(mask)
-end
 
-function getRegionsSuppliedMask(player, nation)
-    local teleMask = getTeleMask()
-    -- invert the result of the following operations (cutscene param returning 0 is show all, 0xFFFFFFFF is hide all)
-    return bit.bnot(
-               -- assign teleMask, bit.band(...)
-               bit.bor(
-                  -- enable "teleport?" and "nothing" options (bits 31 and 32)
-                  teleMask.tele_nothing_option,
-                  -- mask &= ~bitsToUnset
-                  bit.band(
-                      player:getNationTeleport(nation),
-                      -- invert invalid_location_mask bits
-                      bit.bnot(teleMask.invalid_location_mask)
-                  )
-               )
-            )
-end
+    return mask;
 
-function nationTeleportNpcTrigger(player, npc, csid, nation)
-    local regionsControlled = getTeleAvailable(nation);
-    local regionsSupplied = getRegionsSuppliedMask(player, nation)
-
-    if player:getNation() == nation then
-        player:startEvent(csid, 0, 0, regionsControlled, 0, 0, 514, player:getMainLvl(), regionsSupplied);
-    else
-        player:startEvent(csid, 0, 0, 0, 0, 0, 256, 0, 0);
-    end
-end
-
-function nationTeleportNpcEventUpdate(player, csid, option)
-    option = bit.band(option, 0xFF)
-    player:updateEvent(player:getGil(), OP_TeleFee(player, option, true), 0, OP_TeleFee(player, option, true), player:getCP())
-end
-
-function nationTeleportNpcEventFinish(player, csid, option)
-    local region = bit.band(option, 0xFF)
-    local useCP = bit.rshift(option, 10) ~= 0
-
-    if useCP then
-        if player:getCP() >= OP_TeleFee(player, region, true) then
-            player:delCP(cpCost)
-            toOutpost(player, region)
-        end
-    elseif player:delGil(OP_TeleFee(player, region, true)) then
-        toOutpost(player, region);
-    end
-end
+end;
 
 ---------------------------------
 -- Teleport Nation > Outpost

@@ -229,6 +229,43 @@ inline int32 CLuaTradeContainer::confirmItem(lua_State *L)
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
+            uint8 itemID = (uint8)lua_tonumber(L, 1);
+            uint8 amount = 1;
+            if (lua_isnumber(L, 2))
+            {
+                amount = (uint8)lua_tonumber(L, 2);
+            }
+            for (uint8 slotid = 1; slotid < 8; ++slotid)
+            {
+                if (m_pMyTradeContainer->getItemID(slotid) == itemID)
+                {
+                    if (m_pMyTradeContainer->getQuantity(slotid) < amount)
+                    {
+                        m_pMyTradeContainer->setConfirmedStatus(slotid, m_pMyTradeContainer->getQuantity(slotid));
+                        amount -= m_pMyTradeContainer->getQuantity(slotid);
+                    }
+                    else
+                    {
+                        m_pMyTradeContainer->setConfirmedStatus(slotid, amount);
+                        lua_pushboolean(L, true);
+                        return 1;
+                    }
+                }
+            }
+            lua_pushboolean(L, false);
+            return 1;
+        }
+    }
+    lua_pushnil(L);
+    return 1;
+}
+
+inline int32 CLuaTradeContainer::confirmSlot(lua_State *L)
+{
+    if (m_pMyTradeContainer != nullptr)
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
             uint8 slotID = (uint8)lua_tonumber(L, 1);
             uint8 amount = 1;
             if (lua_isnumber(L, 2))
@@ -258,5 +295,6 @@ Lunar<CLuaTradeContainer>::Register_t CLuaTradeContainer::methods[] =
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotQty),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,hasItemQty),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,confirmItem),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,confirmSlot),
     {nullptr,nullptr}
 };
