@@ -4,6 +4,11 @@ require("scripts/globals/common");
 --* Force confrontation on players/npcs/mobs inside garrison. player:addStatusEffectEx(EFFECT_CONFRONTATION) --find the param for icon to set to 0
 --* Prevent Fellows/trusts
 
+--## Garrison Scenarios to gather
+--* Cutscene ID/params on entrance, not qualified for trading/rank, on finish csid
+--* Mob spawn order (front line, backline, delayed) for 1 party, 2 party, 3 party
+--* Will the mobs with delay spawn if all 8 mobs are already spawned?
+
 ------------------------
 -- getGarrisonMobs
 ------------------------
