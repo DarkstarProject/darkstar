@@ -560,6 +560,14 @@ INSERT INTO `item_mods_pet` VALUES (21167,28,110,1); -- Avatar:"Magic Atk. Bonus
 -- INSERT INTO `item_mods_pet` VALUES (21167,Blood Pact,3,1); -- Avatar:"Blood Pact" damage +3 [unassign mod]
 INSERT INTO `item_mods_pet` VALUES (21167,27,5,1); -- Avatar: Enmity+5
 
+-- Wisent Kecks
+INSERT INTO `item_mods_pet` VALUES (28141,25,20,0); -- Pet: Accuracy+20 
+INSERT INTO `item_mods_pet` VALUES (28141,23,10,0); -- Pet: Attack+10
+INSERT INTO `item_mods_pet` VALUES (28141,26,20,0); -- Pet: Ranged Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (28141,24,10,0); -- Pet: Ranged Attack+10 
+INSERT INTO `item_mods_pet` VALUES (28141,68,20,0); -- Pet: Evasion+20
+INSERT INTO `item_mods_pet` VALUES (28141,384,30,0); -- Pet: Haste+3%
+
 -- Ukko Sash
 INSERT INTO `item_mods_pet` VALUES (28432,25,15,3); -- Automaton: Accuracy+15
 INSERT INTO `item_mods_pet` VALUES (28432,26,15,3); -- Automaton: Ranged Accuracy+15
