@@ -28,3 +28,6 @@ CONQUEST_BASE = 7070; -- Tallying conquest results...
 -- chocobo digging
 DIG_THROW_AWAY = 7242; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
 FIND_NOTHING = 7244;  -- You dig and you dig, but find nothing.
+
+-- garrion
+GARRISON_PROMPT = 8088;

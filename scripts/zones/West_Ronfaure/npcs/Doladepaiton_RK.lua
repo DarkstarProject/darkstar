@@ -9,6 +9,7 @@ package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 
 require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
+require("scripts/globals/garrison");
 
 local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +21,13 @@ local csid        = 0x7ffb;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    print("onTrade: init\n");
+    if (onGarrisonTrade(player, trade)) then
+        player:showText(npc, GARRISON_PROMPT);--player:startEvent();
+    else
+        print("onTrade: failed garrison trade.\n");
+        tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    end
 end;
 
 -----------------------------------
