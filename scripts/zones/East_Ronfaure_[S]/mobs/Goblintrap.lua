@@ -17,9 +17,4 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    
-    SetServerVariable("[POP]Goblintrap", os.time() + 3600);
-    GetMobByID(mob:getID()):setRespawnTime(0);
-    DisallowRespawn(mob:getID() - 1, false); --Let the Placeholder Respawn
-    
 end;

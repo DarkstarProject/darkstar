@@ -6575,6 +6575,8 @@ INSERT INTO `nm_spawn_points` VALUES (17403939,1,209.000, 8.000, -151.000);
 INSERT INTO `nm_spawn_points` VALUES (17403939,2,190.750, 8.500, -152.000);
 INSERT INTO `nm_spawn_points` VALUES (17403939,3,200.000, 9.000, -167.000);
 
+-- Globintrap
+INSERT INTO `nm_spawn_points` VALUES (17109296,0,168,0,-440);
 
 /*!40000 ALTER TABLE `nm_spawn_points` ENABLE KEYS */;
 UNLOCK TABLES;

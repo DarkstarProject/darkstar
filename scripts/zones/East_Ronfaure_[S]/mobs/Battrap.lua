@@ -20,23 +20,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    local GOBLIN_TRAP_PH = GOBLIN_TRAP - 1;
+    phOnDespawn(mob,GOBLINTRAP_PH,5,310);
 
-    if (mob:getID() == GOBLIN_TRAP_PH) then
-
-        local ToD = GetServerVariable("[POP]Goblintrap");
-
-        if (ToD <= os.time() and GetMobAction(GOBLIN_TRAP) == 0) then
-
-            if (math.random(1,20) == 5) then
-
-                GetMobByID(GOBLIN_TRAP):setRespawnTime(GetMobRespawnTime(GOLBIN_TRAP_PH));
-                DisallowRespawn(GOBLIN_TRAP_PH, true);
-
-            end
-
-        end
-
-    end
-    
 end;
