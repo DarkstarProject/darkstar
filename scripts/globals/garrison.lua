@@ -1,7 +1,7 @@
 require("scripts/globals/common");
 
 ---## TODO:
---* Force confrontation on players/npcs/mobs inside garrison. player:addStatusEffectEx(EFFECT_CONFRONTATION) --find the param for icon to set to 0
+--* Force confrontation on npcs/mobs inside garrison. player:addStatusEffectEx(EFFECT_CONFRONTATION) --find the param for icon to set to 0
 --* Prevent Fellows/trusts
 
 --## Garrison Scenarios to gather
