@@ -20,7 +20,12 @@ function onTrigger(player, msgId, param1, param2)
         error(player, "You must provide a message ID.");
         return;
     end
+
+    local target = player:getCursorTarget();
+    if target == nil then
+        target = player;
+    end
     
     -- inject message packet
-    player:messageBasic(msgId, param1, param2);
+    player:messageBasic(msgId, param1, param2, target);
 end
