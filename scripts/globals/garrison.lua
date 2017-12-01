@@ -8,6 +8,7 @@ require("scripts/globals/common");
 --* Cutscene ID/params on entrance, not qualified for trading/rank, on finish csid
 --* Mob spawn order (front line, backline, delayed) for 1 party, 2 party, 3 party
 --* Will the mobs with delay spawn if all 8 mobs are already spawned?
+--* All NPC ID's that spawn need to be found
 
 ------------------------
 -- getGarrisonMobs
