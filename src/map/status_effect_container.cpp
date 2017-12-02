@@ -429,18 +429,18 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 void CStatusEffectContainer::DeleteStatusEffects()
 {
     bool update_icons = false;
-    for(auto effect_iter = m_StatusEffectList.begin(); effect_iter != m_StatusEffectList.end();)
+    for (auto effect_iter = m_StatusEffectList.begin(); effect_iter != m_StatusEffectList.end();)
     {
         auto PStatusEffect = *effect_iter;
-        if(PStatusEffect->deleted)
+        if (PStatusEffect->deleted)
         {
-            if(PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
                 PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
                 m_POwner->objtype == TYPE_PC)
             {
                 puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), false);
             }
-            if(PStatusEffect->GetIcon() != 0)
+            if (PStatusEffect->GetIcon() != 0)
             {
                 update_icons = true;
             }
@@ -458,11 +458,11 @@ void CStatusEffectContainer::DeleteStatusEffects()
     }
     m_POwner->UpdateHealth();
 
-    if(m_POwner->objtype == TYPE_PC)
+    if (m_POwner->objtype == TYPE_PC)
     {
         CCharEntity* PChar = (CCharEntity*)m_POwner;
 
-        if(update_icons)
+        if (update_icons)
         {
             UpdateStatusIcons();
         }
@@ -480,11 +480,11 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 {
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
     PStatusEffect->deleted = true;
-    if(m_POwner->objtype == TYPE_PC)
+    if (m_POwner->objtype == TYPE_PC)
     {
         CCharEntity* PChar = (CCharEntity*)m_POwner;
 
-        if(PStatusEffect->GetIcon() != 0)
+        if (PStatusEffect->GetIcon() != 0)
         {
             if (!silent)
             {
@@ -494,7 +494,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
     }
     else
     {
-        if(silent == false && PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
+        if (silent == false && PStatusEffect->GetIcon() != 0 && ((PStatusEffect->GetFlag() & EFFECTFLAG_NO_LOSS_MESSAGE) == 0) && !m_POwner->isDead())
         {
             m_POwner->loc.zone->PushPacket(m_POwner, CHAR_INRANGE, new CMessageBasicPacket(m_POwner, m_POwner, PStatusEffect->GetIcon(), 0, 206));
         }
