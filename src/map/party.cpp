@@ -154,8 +154,8 @@ void CParty::DisbandParty(bool playerInitiated)
         if (playerInitiated)
         {
             uint8 data[8] {};
-            WBUFL(data, 0) = m_PartyID;
-            WBUFL(data, 4) = m_PartyID;
+            ref<uint32>(data, 0) = m_PartyID;
+            ref<uint32>(data, 4) = m_PartyID;
             message::send(MSG_PT_DISBAND, data, sizeof data, nullptr);
         }
     }
@@ -181,7 +181,7 @@ void CParty::AssignPartyRole(int8* MemberName, uint8 role)
         case 7: SetSyncTarget(nullptr, 553);       break;
     }
     uint8 data[4] {};
-    WBUFL(data, 0) = m_PartyID;
+    ref<uint32>(data, 0) = m_PartyID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     return;
 }
@@ -289,7 +289,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
                     Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE charid = %u;", PChar->id);
 
                     uint8 data[4] {};
-                    WBUFL(data, 0) = m_PartyID;
+                    ref<uint32>(data, 0) = m_PartyID;
                     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
                     if (PChar->PTreasurePool != nullptr &&
@@ -487,7 +487,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
 
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", PChar->id, m_PartyID, allianceid, GetMemberFlags(PChar));
         uint8 data[4] {};
-        WBUFL(data, 0) = m_PartyID;
+        ref<uint32>(data, 0) = m_PartyID;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
         ReloadTreasurePool(PChar);
 
@@ -539,8 +539,8 @@ void CParty::AddMember(uint32 id)
         }
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, Flags);
         uint8 data[8] {};
-        WBUFL(data, 0) = m_PartyID;
-        WBUFL(data, 4) = id;
+        ref<uint32>(data, 0) = m_PartyID;
+        ref<uint32>(data, 4) = id;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
         /*if (PChar->nameflags.flags & FLAG_INVITE)

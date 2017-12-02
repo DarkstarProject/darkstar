@@ -248,7 +248,7 @@ uint16 CItemWeapon::getUnlockPoints()
 
 uint16 CItemWeapon::getCurrentUnlockPoints()
 {
-    return RBUFW(m_extra, 0);
+    return ref<uint16>(m_extra, 0);
 }
 
 /************************************************************************
@@ -312,7 +312,7 @@ void CItemWeapon::setUnlockablePoints(uint16 points)
 
 void CItemWeapon::setCurrentUnlockPoints(uint16 points)
 {
-    WBUFW(m_extra, 0) = points;
+    ref<uint16>(m_extra, 0) = points;
 }
 
 /************************************************************************

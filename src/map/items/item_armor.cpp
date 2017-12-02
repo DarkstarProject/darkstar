@@ -233,16 +233,16 @@ void CItemArmor::addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModV
 void CItemArmor::setTrialNumber(uint16 trial)
 {
     if (trial)
-        WBUFB(m_extra, 0x01) |= 0x40;
+        ref<uint8>(m_extra, 0x01) |= 0x40;
     else
-        WBUFB(m_extra, 0x01) &= ~0x40;
+        ref<uint8>(m_extra, 0x01) &= ~0x40;
 
-    WBUFB(m_extra, 0x0A) = (uint8)trial;
+    ref<uint8>(m_extra, 0x0A) = (uint8)trial;
 }
 
 uint16 CItemArmor::getTrialNumber()
 {
-    return RBUFB(m_extra, 0x0A);
+    return ref<uint8>(m_extra, 0x0A);
 }
 
 /************************************************************************
@@ -252,7 +252,7 @@ uint16 CItemArmor::getTrialNumber()
 ************************************************************************/
 void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
 {
-    WBUFW(m_extra, 2 + (slot * 2)) = augment;
+    ref<uint16>(m_extra, 2 + (slot * 2)) = augment;
 }
 
 void CItemArmor::ApplyAugment(uint8 slot)
@@ -276,8 +276,8 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
     if (type != 0)
     {
         setSubType(ITEM_AUGMENTED);
-        WBUFB(m_extra, 0x00) |= 0x02;
-        WBUFB(m_extra, 0x01) |= 0x03;
+        ref<uint8>(m_extra, 0x00) |= 0x02;
+        ref<uint8>(m_extra, 0x01) |= 0x03;
     }
 
 
@@ -312,5 +312,5 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
 uint16 CItemArmor::getAugment(uint8 slot)
 {
-    return RBUFW(m_extra, 2 + (slot * 2));
+    return ref<uint16>(m_extra, 2 + (slot * 2));
 }

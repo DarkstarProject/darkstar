@@ -34,11 +34,11 @@ CCharSyncPacket::CCharSyncPacket(CCharEntity* PChar)
     this->type = 0x67;
     this->size = 0x14;
 
-    WBUFB(data, (0x04)) = 0x02;
-    WBUFB(data, (0x05)) = 0x09;
-    WBUFW(data, (0x06)) = PChar->targid;
-    WBUFL(data, (0x08)) = PChar->id;
-    WBUFB(data, (0x10)) = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) ? 4 : 0; 	// 0x02 - Campaign Battle, 0x04 - Level Sync
-    WBUFB(data, (0x25)) = PChar->jobs.job[PChar->GetMJob()];	// реальный уровень персонажа (при ограничении уровня отличается от m_mlvl)
-    WBUFB(data, (0x27)) = 0x01;
+    ref<uint8>(0x04) = 0x02;
+    ref<uint8>(0x05) = 0x09;
+    ref<uint16>(0x06) = PChar->targid;
+    ref<uint32>(0x08) = PChar->id;
+    ref<uint8>(0x10) = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) ? 4 : 0; 	// 0x02 - Campaign Battle, 0x04 - Level Sync
+    ref<uint8>(0x25) = PChar->jobs.job[PChar->GetMJob()];	// реальный уровень персонажа (при ограничении уровня отличается от m_mlvl)
+    ref<uint8>(0x27) = 0x01;
 }

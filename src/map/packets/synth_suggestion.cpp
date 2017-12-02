@@ -49,19 +49,19 @@ CSynthSuggestionPacket::CSynthSuggestionPacket(uint32 synthID)
 		Sql_NumRows(SqlHandle) != 0 &&
 		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 	{
-		WBUFW(data,(0x04)) = Sql_GetUIntData(SqlHandle,10);
+		ref<uint16>(0x04) = Sql_GetUIntData(SqlHandle,10);
 		//words 0x06, 0x08, 0x0A are subcraft number
-		WBUFW(data,(0x0C)) = Sql_GetUIntData(SqlHandle,9);
-		WBUFW(data,(0x0E)) = Sql_GetUIntData(SqlHandle,0);
-		WBUFW(data,(0x10)) = Sql_GetUIntData(SqlHandle,11);
-		WBUFW(data,(0x12)) = Sql_GetUIntData(SqlHandle,12);
-		WBUFW(data,(0x14)) = Sql_GetUIntData(SqlHandle,13);
-		WBUFW(data,(0x16)) = Sql_GetUIntData(SqlHandle,14);
-		WBUFW(data,(0x18)) = Sql_GetUIntData(SqlHandle,15);
-		WBUFW(data,(0x1A)) = Sql_GetUIntData(SqlHandle,16);
-		WBUFW(data,(0x1C)) = Sql_GetUIntData(SqlHandle,17);
-		WBUFW(data,(0x1E)) = Sql_GetUIntData(SqlHandle,18);
+		ref<uint16>(0x0C) = Sql_GetUIntData(SqlHandle,9);
+		ref<uint16>(0x0E) = Sql_GetUIntData(SqlHandle,0);
+		ref<uint16>(0x10) = Sql_GetUIntData(SqlHandle,11);
+		ref<uint16>(0x12) = Sql_GetUIntData(SqlHandle,12);
+		ref<uint16>(0x14) = Sql_GetUIntData(SqlHandle,13);
+		ref<uint16>(0x16) = Sql_GetUIntData(SqlHandle,14);
+		ref<uint16>(0x18) = Sql_GetUIntData(SqlHandle,15);
+		ref<uint16>(0x1A) = Sql_GetUIntData(SqlHandle,16);
+		ref<uint16>(0x1C) = Sql_GetUIntData(SqlHandle,17);
+		ref<uint16>(0x1E) = Sql_GetUIntData(SqlHandle,18);
 		//TODO: words 0x20 through 0x2E are the quantity per material
-		WBUFW(data,(0x30)) = 0x01;
+		ref<uint16>(0x30) = 0x01;
 	}
 }

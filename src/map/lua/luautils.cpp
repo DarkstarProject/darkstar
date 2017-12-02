@@ -1771,27 +1771,40 @@ namespace luautils
 
     int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
     {
-        lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
-
-        if (prepFile(File, "onEffectTick"))
+        try
         {
-            return -1;
+            ShowMessage("OnEffectTick::%s\n", (const char*)PStatusEffect->GetName());
+            lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
+
+            if (prepFile(File, "onEffectTick"))
+            {
+                return -1;
+            }
+
+            CLuaBaseEntity LuaBaseEntity(PEntity);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+            CLuaStatusEffect LuaStatusEffect(PStatusEffect);
+            Lunar<CLuaStatusEffect>::push(LuaHandle, &LuaStatusEffect);
+
+            if (lua_pcall(LuaHandle, 2, 0, 0))
+            {
+                ShowError("luautils::onEffectTick: %s\n", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+                return -1;
+            }
+
+            return 0;
         }
-
-        CLuaBaseEntity LuaBaseEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
-
-        CLuaStatusEffect LuaStatusEffect(PStatusEffect);
-        Lunar<CLuaStatusEffect>::push(LuaHandle, &LuaStatusEffect);
-
-        if (lua_pcall(LuaHandle, 2, 0, 0))
+        catch (std::exception ex)
         {
-            ShowError("luautils::onEffectTick: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return -1;
-        }
+            if (ex.what() != nullptr)
+            {
 
-        return 0;
+            }
+
+            throw ex;
+        }
     }
 
     /************************************************************************

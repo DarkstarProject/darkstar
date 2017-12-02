@@ -2755,8 +2755,8 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
             char buf[30];
             memset(&buf[0], 0, sizeof(buf));
 
-            WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
-            WBUFW(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
+            ref<uint16>((uint8*)&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
+            ref<uint16>((uint8*)&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
 
             message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
             found = true;
@@ -2788,16 +2788,16 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
             char buf[30];
             memset(&buf[0], 0, sizeof(buf));
 
-            WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
-            WBUFW(&buf, 4) = 0; // wanting to bring target char here so wont give our id
-            WBUFW(&buf, 8) = m_PBaseEntity->getZone();
-            WBUFW(&buf, 10) = (uint16)m_PBaseEntity->loc.p.x;
-            WBUFW(&buf, 14) = (uint16)m_PBaseEntity->loc.p.y;
-            WBUFW(&buf, 18) = (uint16)m_PBaseEntity->loc.p.z;
-            WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
+            ref<uint16>((uint8*)&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
+            ref<uint16>((uint8*)&buf, 4) = 0; // wanting to bring target char here so wont give our id
+            ref<uint16>((uint8*)&buf, 8) = m_PBaseEntity->getZone();
+            ref<uint16>((uint8*)&buf, 10) = (uint16)m_PBaseEntity->loc.p.x;
+            ref<uint16>((uint8*)&buf, 14) = (uint16)m_PBaseEntity->loc.p.y;
+            ref<uint16>((uint8*)&buf, 18) = (uint16)m_PBaseEntity->loc.p.z;
+            ref<uint8>((uint8*)&buf, 22) = m_PBaseEntity->loc.p.rotation;
 
             if (m_PBaseEntity->objtype == TYPE_PC)
-                WBUFL(&buf, 23) = ((CCharEntity*)m_PBaseEntity)->m_moghouseID;
+                ref<uint32>((uint8*)&buf, 23) = ((CCharEntity*)m_PBaseEntity)->m_moghouseID;
 
             message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
             found = true;

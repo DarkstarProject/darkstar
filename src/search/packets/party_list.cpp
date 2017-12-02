@@ -47,11 +47,11 @@ CPartyListPacket::CPartyListPacket(uint32 partyid, uint32 Total)
 
     memset(m_data, 0, sizeof(m_data));
 
-    WBUFB(m_data, (0x0A)) = 0x80;
-    WBUFB(m_data, (0x0B)) = 0x82;                       // packet type
+    ref<uint8>(m_data, (0x0A)) = 0x80;
+    ref<uint8>(m_data, (0x0B)) = 0x82;                       // packet type
 
-    // WBUFB(m_data,(0x0E)) = 0x00;                       // количество персонажей в пакете
-    WBUFB(m_data, (0x0E)) = Total;
+    // ref<uint8>(m_data,(0x0E)) = 0x00;                       // количество персонажей в пакете
+    ref<uint8>(m_data, (0x0E)) = Total;
 }
 
 CPartyListPacket::~CPartyListPacket()
@@ -129,8 +129,8 @@ void CPartyListPacket::AddPlayer(SearchEntity* PPlayer)
 
     if (m_offset % 8 > 0) m_offset += 8 - m_offset % 8;                 // побайтное выравнивание данных
 
-    WBUFB(m_data, size_offset) = m_offset / 8 - size_offset - 1;      // размер данных сущности
-    WBUFW(m_data, (0x08)) = m_offset / 8;                            // размер отправляемых данных
+    ref<uint8>(m_data, size_offset) = m_offset / 8 - size_offset - 1;      // размер данных сущности
+    ref<uint16>(m_data, (0x08)) = m_offset / 8;                            // размер отправляемых данных
     delete PPlayer;
 }
 

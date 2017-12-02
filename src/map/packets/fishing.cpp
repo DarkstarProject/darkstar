@@ -39,17 +39,17 @@
 
     memcpy(data+4, &packet, 20);
     
-    WBUFW(data, (0x04)) = stamina;
-    WBUFB(data, (0x06)) = id3;
-    WBUFB(data, (0x07)) = regen;
-    WBUFB(data, (0x08)) = id1;
-    WBUFB(data, (0x09)) = id2;
-    WBUFB(data, (0x0A)) = id4;
-    WBUFB(data, (0x0B)) = time;
+    ref<uint16>(data, (0x04)) = stamina;
+    ref<uint8>(data, (0x06)) = id3;
+    ref<uint8>(data, (0x07)) = regen;
+    ref<uint8>(data, (0x08)) = id1;
+    ref<uint8>(data, (0x09)) = id2;
+    ref<uint8>(data, (0x0A)) = id4;
+    ref<uint8>(data, (0x0B)) = time;
     	// "Unknown, can be 0x00 or 0x01 but most likely has to do how fast the rod moves around"
-    WBUFB(data, (0x0C)) = unknown1;
+    ref<uint8>(data, (0x0C)) = unknown1;
     	// something to do with stamina
-    WBUFB(data, (0x10)) = unknown2;
+    ref<uint8>(data, (0x10)) = unknown2;
 */
 
 // New Fishing Packet: Mini-Game Data.

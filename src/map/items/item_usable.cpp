@@ -69,12 +69,12 @@ uint32 CItemUsable::getReuseDelay()
 
 void CItemUsable::setLastUseTime(uint32 LastUseTime)
 {
-	WBUFL(m_extra, 0x04) = LastUseTime;
+	ref<uint32>(m_extra, 0x04) = LastUseTime;
 }
 
 uint32 CItemUsable::getLastUseTime()
 {
-	return RBUFL(m_extra, 0x04);
+	return ref<uint32>(m_extra, 0x04);
 }
 
 uint32 CItemUsable::getNextUseTime()
@@ -84,12 +84,12 @@ uint32 CItemUsable::getNextUseTime()
 
 void CItemUsable::setCurrentCharges(uint8 CurrCharges)
 {
-	WBUFB(m_extra, 0x01) = std::clamp<uint8>(CurrCharges, 0, m_MaxCharges);
+	ref<uint8>(m_extra, 0x01) = std::clamp<uint8>(CurrCharges, 0, m_MaxCharges);
 }
 
 uint8 CItemUsable::getCurrentCharges()
 {
-    return RBUFB(m_extra, 0x01);
+    return ref<uint8>(m_extra, 0x01);
 }
 
 void CItemUsable::setMaxCharges(uint8 MaxCharges)
