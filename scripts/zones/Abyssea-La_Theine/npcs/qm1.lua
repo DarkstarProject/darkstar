@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm1 (???)
 -- Spawns Dozing Dorian
--- !pos ? ? ? 132
+-- !pos 703 40 283 132
 -----------------------------------
 require("scripts/globals/abyssea");
 
