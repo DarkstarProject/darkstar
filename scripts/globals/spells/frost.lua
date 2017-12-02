@@ -33,6 +33,7 @@ function onSpellCast(caster,target,spell)
             end;
             local sINT = caster:getStat(MOD_INT);
             local DOT = getElementalDebuffDOT(sINT);
+            local DEBUFF = -getElementalDebuffStatDownFromDOT(effect:getPower());
             local effect = target:getStatusEffect(EFFECT_FROST);
             local noeffect = false;
             if (effect ~= nil) then
@@ -48,11 +49,10 @@ function onSpellCast(caster,target,spell)
                 end;
                 spell:setMsg(msgBasic.MAGIC_ENFEEB);
                 local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
-                target:addStatusEffect(EFFECT_FROST,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
+                target:addStatusEffect(EFFECT_FROST, DOT, 3, ELEMENTAL_DEBUFF_DURATION, FLAG_ERASABLE, DEBUFF);
             end;
         end;
     end;
 
     return EFFECT_FROST;
-
 end;
