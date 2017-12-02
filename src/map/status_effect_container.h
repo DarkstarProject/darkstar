@@ -41,7 +41,7 @@ class CStatusEffectContainer
 {
 public:
 
-    uint64	m_Flags {0};											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
+    uint64	m_Flags{0};											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
     uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
     bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
@@ -107,20 +107,21 @@ public:
         }
     }
 
-	CStatusEffectContainer(CBattleEntity* PEntity);
-	~CStatusEffectContainer();
+    CStatusEffectContainer(CBattleEntity* PEntity);
+    ~CStatusEffectContainer();
 
 private:
 
-	CBattleEntity* m_POwner;
+    CBattleEntity* m_POwner;
 
     // void ReplaceStatusEffect(EFFECT effect); //this needs to be implemented
-	void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
-	void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
+    void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
+    void DeleteStatusEffects();
+    void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
     void OverwriteStatusEffect(CStatusEffect* StatusEffect);
 
-	std::vector<CStatusEffect*>	m_StatusEffectList;
+    std::vector<CStatusEffect*>	m_StatusEffectList;
 };
 
 /************************************************************************

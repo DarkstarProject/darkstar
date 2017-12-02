@@ -18,7 +18,7 @@ local function canDig(player)
     local DigCount = player:getVar('[DIG]DigCount');
     local LastDigTime = player:getLocalVar('[DIG]LastDigTime');
     local ZoneItemsDug = GetServerVariable('[DIG]ZONE'..player:getZoneID()..'_ITEMS');
-    local ZoneInTime = player:getLocalVar('[DIG]ZoneInTime');
+    local ZoneInTime = player:getLocalVar('ZoneInTime');
     local CurrentTime = os.time();
 
     local SkillRank = player:getSkillRank(SKILL_DIG);
@@ -39,7 +39,7 @@ local function canDig(player)
 
     if ((DigCount < 100 and ZoneItemsDug < 20) or DIG_FATIGUE == 0 ) then
         -- pesky delays
-        if ((ZoneInTime <= AreaDigDelay + CurrentTime) and (LastDigTime + DigDelay <= CurrentTime)) then
+        if ((ZoneInTime + AreaDigDelay <= CurrentTime) and (LastDigTime + DigDelay <= CurrentTime)) then
             return true;
         end
     end
@@ -208,8 +208,12 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                     7, -- dark crystal
                     15, -- dark cluster
             };
-            if (weather >= 4 and ItemID == 4096) then
-                ItemID = ItemID + crystalMap[weather-3];
+            if (ItemID == 4096) then
+                if (weather >= 4) then
+                    ItemID = ItemID + crystalMap[weather-3];
+                else
+                    ItemID = 0;
+                end
             end
             local oreMap = {
                     0, -- fire ore
@@ -222,8 +226,12 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                     7, -- dark ore
             };
             -- If the item is an elemental ore, we need to check if the requirements are met
-            if (ItemID == 1255 and weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
-                ItemID = ItemID + oreMap[day+1];
+            if (ItemID == 1255) then
+                if (weather > 1 and (moon >= 10 and moon <= 40) and SkillRank >= 7) then
+                    ItemID = ItemID + oreMap[day+1];
+                else
+                    ItemID = 0;
+                end
             end
 
             -- make sure we have a valid item
