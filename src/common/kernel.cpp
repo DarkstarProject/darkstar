@@ -123,7 +123,7 @@ static void dump_backtrace(void)
 		// NOTE: gdb-7.8 has regression, either update or downgrade.
 		close(fd[0]);
 		char buf[255];
-		snprintf(buf, sizeof(buf), "gdb -p %d -n -batch -ex bt 2>/dev/null | sed -n '/<signal handler/{n;x;b};H;${x;p}' 1>&%d", getppid(), fd[1]);
+		snprintf(buf, sizeof(buf), "gdb -p %d -n -batch -ex generate-core-file -ex bt 2>/dev/null 1>&%d", getppid(), fd[1]);
 		execl("/bin/sh", "/bin/sh", "-c", buf, NULL);
 		ShowError ("Failed to launch gdb for backtrace");
 		_exit(EXIT_FAILURE);
@@ -160,6 +160,7 @@ static void sig_proc(int sn)
 				do_final(EXIT_SUCCESS);
 			runflag = 0;
 			break;
+		case SIGABRT:
 		case SIGSEGV:
 		case SIGFPE:
 			dump_backtrace();
@@ -192,6 +193,7 @@ void signals_init (void)
 	compat_signal(SIGTERM, sig_proc);
 	compat_signal(SIGINT, sig_proc);
 #ifndef _DEBUG // need unhandled exceptions to debug on Windows
+	compat_signal(SIGABRT, sig_proc);
 	compat_signal(SIGSEGV, sig_proc);
 	compat_signal(SIGFPE, sig_proc);
 #endif

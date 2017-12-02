@@ -7,10 +7,6 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
 
------------------------------------
--- onMobInitialize Action
------------------------------------
-
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
     mob:setMobMod(MOBMOD_GA_CHANCE,50);
@@ -20,29 +16,11 @@ function onMobInitialize(mob)
     mob:addMod(MOD_SILENCERES,40);
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
 function onMobEngaged(mob, target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
--- onAdditionalEffect
------------------------------------
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
@@ -61,4 +39,7 @@ function onAdditionalEffect(mob, player)
         end
         return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
     end
+end;
+
+function onMobDeath(mob, player, isKiller)
 end;

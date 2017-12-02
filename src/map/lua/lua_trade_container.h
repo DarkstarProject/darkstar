@@ -54,6 +54,7 @@ public:
     int32 getItemCount(lua_State*);		// общее количество предметов
     int32 getSlotCount(lua_State*);
     int32 confirmItem(lua_State*);
+    int32 confirmSlot(lua_State*);
 };
 
 #endif
