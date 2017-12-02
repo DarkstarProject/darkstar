@@ -6,11 +6,7 @@
 -- Increases rate of high-quality synthesis. (?)
 -- Reduces chance of synthesis material loss. (?)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -20,10 +16,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5782);
@@ -38,11 +30,7 @@ function onEffectGain(target,effect)
     -- target:addMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 1);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     -- target:delMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 1);
     -- target:delMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 1);
 end;

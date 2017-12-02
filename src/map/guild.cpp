@@ -82,7 +82,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdde
 {
     uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    rank = dsp_cap(rank, 3, 9);
+    rank = std::clamp<uint8>(rank, 3, 9);
 
     if (PItem)
     {
@@ -97,7 +97,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdde
                     // if a player ranks up to a new pattern whose maxpoints are fewer than the player's current daily points
                     // then we'd be trying to push a negative number into quantity. our edit to CGuild::getDailyGPItem should
                     // prevent this, but let's be doubly sure.
-                    uint8 quantity = dsp_max(UINT8_MIN,dsp_min((uint32)(((GPItem.maxpoints - curPoints) / GPItem.points) + 1), PItem->getQuantity()));
+                    auto quantity = std::max<uint8>(0, std::min<uint32>((((GPItem.maxpoints - curPoints) / GPItem.points) + 1), PItem->getQuantity()));
                     uint16 points = GPItem.points * quantity;
                     if (points > GPItem.maxpoints - curPoints)
                     {
@@ -118,10 +118,10 @@ std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
 {
     uint8 rank = PChar->RealSkills.rank[m_id + 48];
 
-    rank = dsp_cap(rank, 3, 9);
+    rank = std::clamp<uint8>(rank, 3, 9);
 
     auto GPItem = m_GPItems[rank - 3];
-    int32 curPoints = charutils::GetVar(PChar, "[GUILD]daily_points");
+    auto curPoints = (uint16)charutils::GetVar(PChar, "[GUILD]daily_points");
     if (curPoints == -1)
     {
         return std::make_pair(GPItem[0].item->getID(), 0);
@@ -131,6 +131,6 @@ std::pair<uint16, uint16> CGuild::getDailyGPItem(CCharEntity* PChar)
         // a rank-up can land player in a new pattern that rewards fewer max points than they
         // have traded in today. we prevent remainingPoints from going negative here so that
         // we don't later calculate a negative quantity in CGuild::addGuildPoints
-        return std::make_pair(GPItem[0].item->getID(), dsp_max(0,GPItem[0].maxpoints - curPoints));
+        return std::make_pair(GPItem[0].item->getID(), std::max<uint16>(0, (GPItem[0].maxpoints - curPoints)));
     }
 }

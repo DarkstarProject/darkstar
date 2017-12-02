@@ -65,9 +65,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 0 or failed == 1 then
             if goodtrade then                   -- first or second time trading correctly
-                player:startEvent(0x00DB);
+                player:startEvent(219);
             elseif badtrade then
-                player:startEvent(0x00E5);
+                player:startEvent(229);
             end
         end
     end
@@ -84,36 +84,36 @@ function onTrigger(player,npc)
     local retry = player:getVar("OPO_OPO_RETRY");
 
     if (player:getVar("BathedInScent") == 1 and OpoOpoAndIStatus == QUEST_AVAILABLE) then
-        player:startEvent(0x00D9, 0, 483)  -- 483 broken mithran fishing rod
+        player:startEvent(217, 0, 483)  -- 483 broken mithran fishing rod
         npc:wait();
     elseif (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry == 1 then
-            player:startEvent(0x00EF); -- gave 1st NPC wrong item instead of "Broken Mithran Fishing Rod"
+            player:startEvent(239); -- gave 1st NPC wrong item instead of "Broken Mithran Fishing Rod"
         elseif retry == 2 then
-            player:startEvent(0x00EF, 0, 0, 1); -- gave 2nd NPC wrong item instead of "Workbench"
+            player:startEvent(239, 0, 0, 1); -- gave 2nd NPC wrong item instead of "Workbench"
         elseif retry == 3 then
-            player:startEvent(0x00EF, 0, 0, 2); -- gave 3rd NPC wrong item instead of "Ten of Coins"
+            player:startEvent(239, 0, 0, 2); -- gave 3rd NPC wrong item instead of "Ten of Coins"
         elseif retry == 4 then
-            player:startEvent(0x00EF, 0, 0, 3); -- gave 4th NPC wrong item instead of "Sands of silence"
+            player:startEvent(239, 0, 0, 3); -- gave 4th NPC wrong item instead of "Sands of silence"
         elseif retry == 5 then
-            player:startEvent(0x00EF, 0, 0, 4); -- gave 5th NPC wrong item instead of "Wandering Bulb"
+            player:startEvent(239, 0, 0, 4); -- gave 5th NPC wrong item instead of "Wandering Bulb"
         elseif retry == 6 then
-            player:startEvent(0x00EF, 0, 0, 5); -- gave 6th NPC wrong item instead of "Giant Fish Bones"
+            player:startEvent(239, 0, 0, 5); -- gave 6th NPC wrong item instead of "Giant Fish Bones"
         elseif retry == 7 then
-            player:startEvent(0x00EF, 0, 0, 6); -- gave 7th NPC wrong item instead of "Blackened Toad"
+            player:startEvent(239, 0, 0, 6); -- gave 7th NPC wrong item instead of "Blackened Toad"
         elseif retry == 8 then
-            player:startEvent(0x00EF, 0, 0, 7); -- gave 8th NPC wrong item instead of "Wyvern Skull"
+            player:startEvent(239, 0, 0, 7); -- gave 8th NPC wrong item instead of "Wyvern Skull"
         elseif retry == 9 then
-            player:startEvent(0x00EF, 0, 0, 8); -- gave 9th NPC wrong item instead of "Ancient Salt"
+            player:startEvent(239, 0, 0, 8); -- gave 9th NPC wrong item instead of "Ancient Salt"
         elseif retry == 10 then
-            player:startEvent(0x00EF, 0, 0, 9); -- gave 10th NPC wrong item instead of "Lucky Egg" ... uwot
+            player:startEvent(239, 0, 0, 9); -- gave 10th NPC wrong item instead of "Lucky Egg" ... uwot
         elseif (progress == 0 or failed == 1) then
-            player:startEvent(0x00CF);  -- asking for rod with Opoppo
+            player:startEvent(207);  -- asking for rod with Opoppo
         elseif (progress >= 1 or failed >= 2) then
-            player:startEvent(0x00F2); -- happy with rod
+            player:startEvent(242); -- happy with rod
         end
     else
-        player:startEvent(0x00c5);  -- not sure why but this cs has no text
+        player:startEvent(197);  -- not sure why but this cs has no text
         npc:wait();
     end
 end;
@@ -134,18 +134,18 @@ end;
 function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00D9 and option == 1)  then                   -- Opo Opo and I quest start CS
+    if (csid == 217 and option == 1)  then                   -- Opo Opo and I quest start CS
         player:addQuest(OUTLANDS, THE_OPO_OPO_AND_I);
-    elseif (csid == 0x00DB) then
+    elseif (csid == 219) then
         if (player:getVar("OPO_OPO_PROGRESS") == 0) then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",1);
         else
             player:setVar("OPO_OPO_FAILED",2);
         end
-    elseif (csid == 0x00E5) then                                -- Traded wrong item, saving current progress to not take item up to this point
+    elseif (csid == 229) then                                -- Traded wrong item, saving current progress to not take item up to this point
         player:setVar("OPO_OPO_RETRY",1);
-    elseif (csid == 0x00EF and option == 1) then                -- Traded wrong to another NPC, give a clue
+    elseif (csid == 239 and option == 1) then                -- Traded wrong to another NPC, give a clue
         player:setVar("OPO_OPO_RETRY",0);
         player:setVar("OPO_OPO_FAILED",1);
     else

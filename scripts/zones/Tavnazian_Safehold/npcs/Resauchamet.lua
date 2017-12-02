@@ -23,7 +23,7 @@ function onTrigger(player,npc)
   elseif (kill< 50) then n=2; 
   elseif (kill>= 50) then n=3; 
   end
-player:startEvent(0x0163,n);
+player:startEvent(355,n);
 end; 
 
 -----------------------------------

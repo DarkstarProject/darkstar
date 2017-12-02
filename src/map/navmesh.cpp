@@ -252,7 +252,6 @@ std::vector<position_t> CNavMesh::findPath(const position_t& start, const positi
     float straightPath[MAX_NAV_POLYS * 3];
     unsigned char straightPathFlags[MAX_NAV_POLYS];
     dtPolyRef straightPathPolys[MAX_NAV_POLYS];
-    int nstraightPath = 0;
 
     // not sure what this is for?
     int32 pathCount = 0;

@@ -31,9 +31,9 @@ function onTrade(player,npc,trade)
             player:addFame(SANDORIA,30);
             player:addTitle(PICKPOCKET_PINCHER);
             player:completeQuest(SANDORIA,THE_PICKPOCKET);
-            player:startEvent(0x0226);
+            player:startEvent(550);
         elseif (giltGlasses == false) then
-            player:startEvent(0x0227);
+            player:startEvent(551);
         else
             player:messageSpecial(6402, 579); -- CANNOT_OBTAIN_ITEM
         end;
@@ -44,10 +44,10 @@ function onTrade(player,npc,trade)
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         elseif (MagicFlyer == false) then
-            player:startEvent(0x0227);
+            player:startEvent(551);
         end
     else
-        player:startEvent(0x0227);
+        player:startEvent(551);
     end
 end;
 
@@ -63,14 +63,14 @@ function onTrigger(player,npc)
 
     -- "The Pickpocket" Quest dialog
     if (thePickpocket == 0 and openingCS == 1) then
-        player:startEvent(0x0223);
+        player:startEvent(547);
         player:addQuest(SANDORIA,THE_PICKPOCKET);
     elseif (thePickpocket == 1) then
-        player:startEvent(0x0223);
+        player:startEvent(547);
     elseif (thePickpocket == 2) then
-        player:startEvent(0x0244);
+        player:startEvent(580);
     else
-        player:startEvent(0x022f);
+        player:startEvent(559);
     end;
 end;
 
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" reward with light axe, done with quest
-    if (csid == 0x0226) then
+    if (csid == 550) then
         player:addItem(16667);
         player:messageSpecial(ITEM_OBTAINED, 16667);
     end;

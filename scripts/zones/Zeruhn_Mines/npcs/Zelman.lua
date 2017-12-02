@@ -31,12 +31,12 @@ function onTrigger(player,npc)
     elseif (GroceriesVar == 1) then
         ViewedNote = player:seenKeyItem(TAMIS_NOTE);
         if (ViewedNote == true) then
-            player:startEvent(0x00a2);
+            player:startEvent(162);
         else
-            player:startEvent(0x00a1);
+            player:startEvent(161);
         end
     else
-        player:startEvent(0x00a0);
+        player:startEvent(160);
     end
     
 end;
@@ -58,10 +58,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00a1) then
+    if (csid == 161) then
         player:setVar("Groceries",2);
         player:delKeyItem(TAMIS_NOTE);
-    elseif (csid == 0x00a2) then
+    elseif (csid == 162) then
         player:setVar("GroceriesViewedNote",1);
         player:delKeyItem(TAMIS_NOTE);
     end

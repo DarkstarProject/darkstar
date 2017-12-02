@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
     elseif (trade:hasItemQty(593,1) == true and count == 1) then
         if (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
             player:tradeComplete();
-            player:startEvent(0x0217);
+            player:startEvent(535);
             player:setVar("TheBrugaireConsortium-Parcels", 11);
         end
     end

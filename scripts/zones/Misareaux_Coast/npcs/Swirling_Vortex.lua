@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x022a);
+    player:startEvent(554);
 end;
 
 -----------------------------------
@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x022a and option == 1) then
+    if (csid == 554 and option == 1) then
         toQufimIsland(player);
     end
     

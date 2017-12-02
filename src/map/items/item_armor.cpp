@@ -177,8 +177,7 @@ void CItemArmor::addModifier(CModifier modifier)
     {
         // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
         // http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/33/ <~Aegis and Ochain
-
-		int16 pdt = modifier.getModAmount() / 2;
+		auto pdt = (uint8)(modifier.getModAmount() / 2);
 
         switch(m_shieldSize)
         {
@@ -197,7 +196,7 @@ void CItemArmor::addModifier(CModifier modifier)
                 pdt += 55;
                 break;
         }
-        m_absorption = dsp_min(pdt,100);
+        m_absorption = std::min<uint8>(pdt, 100);
     }
     modList.push_back(modifier);
 }
@@ -219,9 +218,10 @@ void CItemArmor::addPetModifier(CPetModifier modifier)
     petModList.push_back(modifier);
 }
 
-void CItemArmor::addLatent(CLatentEffect latent)
+void CItemArmor::addLatent(LATENT ConditionsID, uint16 ConditionsValue, Mod ModValue, int16 ModPower)
 {
-	latentList.push_back(latent);
+    itemLatent latent{ ConditionsID, ConditionsValue, ModValue, ModPower };
+    latentList.push_back(latent);
 }
 
 /************************************************************************

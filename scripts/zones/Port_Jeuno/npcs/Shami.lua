@@ -26,23 +26,23 @@ function onTrade(player,npc,trade)
 -------- Trading Seals/Crests to Shami -------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     if (trade:hasItemQty(1126,NumberItem) and trade:getItemCount() == NumberItem) then
-        player:startEvent(0x0141,0,BeastmensSeal + NumberItem); -- Giving Shami Beastmen's Seal
+        player:startEvent(321,0,BeastmensSeal + NumberItem); -- Giving Shami Beastmen's Seal
         player:addSeals(NumberItem,0);
         player:tradeComplete(trade);
     elseif (trade:hasItemQty(1127,NumberItem) and trade:getItemCount() == NumberItem) then
-        player:startEvent(0x0141,1,KindredsSeal + NumberItem); -- Giving Shami Kindred's Seal
+        player:startEvent(321,1,KindredsSeal + NumberItem); -- Giving Shami Kindred's Seal
         player:addSeals(NumberItem,1);
         player:tradeComplete(trade);
     elseif (trade:hasItemQty(2955,NumberItem) and trade:getItemCount() == NumberItem) then
-        player:startEvent(0x0141,2,KindredsCrest + NumberItem); -- Giving Shami Kindred's Crest
+        player:startEvent(321,2,KindredsCrest + NumberItem); -- Giving Shami Kindred's Crest
         player:addSeals(NumberItem,2);
         player:tradeComplete(trade);
     elseif (trade:hasItemQty(2956,NumberItem) and trade:getItemCount() == NumberItem) then
-        player:startEvent(0x0141,3,HighKindredsCrest + NumberItem); -- Giving Shami High Kindred's Crest
+        player:startEvent(321,3,HighKindredsCrest + NumberItem); -- Giving Shami High Kindred's Crest
         player:addSeals(NumberItem,3);
         player:tradeComplete(trade);
     elseif (trade:hasItemQty(2957,NumberItem) and trade:getItemCount() == NumberItem) then
-        player:startEvent(0x0141,4,SacredKindredsCrest + NumberItem); -- Giving Shami Sacred Kindred's Crest
+        player:startEvent(321,4,SacredKindredsCrest + NumberItem); -- Giving Shami Sacred Kindred's Crest
         player:addSeals(NumberItem,4);
         player:tradeComplete(trade);
 ----------------------------------------------------------------------------------------------------------------------------
@@ -50,105 +50,105 @@ function onTrade(player,npc,trade)
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(1551,1) and NumberItem == 1) then
         if (player:getVar("CloudyOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Cloudy Orb is Cracked
+            player:startEvent(22); -- Cloudy Orb is Cracked
         else
-            player:startEvent(0x0005);  -- Cloudy Orb is ok, List where you can take the orb.
+            player:startEvent(5);  -- Cloudy Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1552,1) and NumberItem == 1) then
         if (player:getVar("SkyOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Sky Orb is Cracked
+            player:startEvent(22); -- Sky Orb is Cracked
         else
-            player:startEvent(0x0009); -- Sky Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Sky Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1131,1) and NumberItem == 1) then
         if (player:getVar("StarOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Star Orb is Cracked
+            player:startEvent(22); -- Star Orb is Cracked
         else
-            player:startEvent(0x0009); -- Star Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Star Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1177,1) and NumberItem == 1) then
         if (player:getVar("CometOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Comet Orb is Cracked
+            player:startEvent(22); -- Comet Orb is Cracked
         else
-            player:startEvent(0x0009); -- Comet Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Comet Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1130,1) and NumberItem == 1) then
         if (player:getVar("MoonOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Moon Orb is Cracked
+            player:startEvent(22); -- Moon Orb is Cracked
         else
-            player:startEvent(0x0009); -- Moon Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Moon Orb is ok, List where you can take the orb.
         end
 ----------------------------------------------------------------------------------------------------------------------------
 -------- Trading Cracked KSNM Orbs or checking where you can bring the Orb -------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(1180,1) and NumberItem == 1) then
         if (player:getVar("AtroposOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Atropos Orb is Cracked
+            player:startEvent(22); -- Atropos Orb is Cracked
         else
-            player:startEvent(0x0009); -- Atropos Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Atropos Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1175,1) and NumberItem == 1) then
         if (player:getVar("ClothoOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Clotho Orb is Cracked
+            player:startEvent(22); -- Clotho Orb is Cracked
         else
-            player:startEvent(0x0009); -- Clotho Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Clotho Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1178,1) and NumberItem == 1) then
         if (player:getVar("LachesisOrbIsCracked") == 1) then
-            player:startEvent(0x0016) -- Lachesis Orb is Cracked
+            player:startEvent(22) -- Lachesis Orb is Cracked
         else
-            player:startEvent(0x0009); -- Lachesis Orb is ok, List where you can take the orb.
+            player:startEvent(9); -- Lachesis Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(1553,1) and NumberItem == 1) then
         if (player:getVar("ThemisOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Themis Orb is Cracked
+            player:startEvent(22); -- Themis Orb is Cracked
         else
-            player:startEvent(0x000b); -- Themis Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Themis Orb is ok, List where you can take the orb.
         end
 ----------------------------------------------------------------------------------------------------------------------------
 -------- Trading Cracked KCNM Orbs or checking where you can bring the Orb -------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(3351,1) and NumberItem == 1) then
         if (player:getVar("PhobosOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Phobos Orb is Cracked
+            player:startEvent(22); -- Phobos Orb is Cracked
         else
-            player:startEvent(0x000b); -- Phobos Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Phobos Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(3352,1) and NumberItem == 1) then
         if (player:getVar("DeimosOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Deimos Orb is Cracked
+            player:startEvent(22); -- Deimos Orb is Cracked
         else
-            player:startEvent(0x000b); -- Deimos Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Deimos Orb is ok, List where you can take the orb.
         end
 ----------------------------------------------------------------------------------------------------------------------------
 -------- Trading Cracked HKCNM Orbs or checking where you can bring the Orb ------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(3454,1) and NumberItem == 1) then
         if (player:getVar("ZelosOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Zelos Orb is Cracked
+            player:startEvent(22); -- Zelos Orb is Cracked
         else
-            player:startEvent(0x000b); -- Zelos Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Zelos Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(3455,1) and NumberItem == 1) then
         if (player:getVar("BiaOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Bia Orb is Cracked
+            player:startEvent(22); -- Bia Orb is Cracked
         else
-            player:startEvent(0x000b); -- Bia Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Bia Orb is ok, List where you can take the orb.
         end
 ----------------------------------------------------------------------------------------------------------------------------
 -------- Trading Cracked SKCNM Orbs or checking where you can bring the Orb ------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
     elseif (trade:hasItemQty(4062,1) and NumberItem == 1) then
         if (player:getVar("MicrocosmicOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Microcosmic Orb is Cracked
+            player:startEvent(22); -- Microcosmic Orb is Cracked
         else
-            player:startEvent(0x000b); -- Microcosmic Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Microcosmic Orb is ok, List where you can take the orb.
         end
     elseif (trade:hasItemQty(4063,1) and NumberItem == 1) then
         if (player:getVar("MacrocosmicOrbIsCracked") == 1) then
-            player:startEvent(0x0016); -- Macrocosmic Orb is Cracked
+            player:startEvent(22); -- Macrocosmic Orb is Cracked
         else
-            player:startEvent(0x000b); -- Macrocosmic Orb is ok, List where you can take the orb.
+            player:startEvent(11); -- Macrocosmic Orb is ok, List where you can take the orb.
         end
 -- TODO : find cutscene that tells you where you can bring it
     end
@@ -191,13 +191,13 @@ function onTrigger(player,npc)
         player:addSeals(oldSacredKindredsCrest,4);
         player:setVar("ShamiSacredKindredsCrest",0);
     end
-    -- TODO: player:startEvent(0x0142,0,0,0,0,1,0,1) -- First time talking to him WITH  beastmen seal in inventory
+    -- TODO: player:startEvent(322,0,0,0,0,1,0,1) -- First time talking to him WITH  beastmen seal in inventory
     if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,17) == false) then
         player:startEvent(317);
     elseif (BeastmensSeal + KindredsSeal + KindredsCrest + HighKindredsCrest + SacredKindredsCrest == 0) then
-        player:startEvent(0x0017); -- Standard dialog ?
+        player:startEvent(23); -- Standard dialog ?
     else
-        player:startEvent(0x0142,(KindredsSeal * 65536) + BeastmensSeal,(HighKindredsCrest * 65536) + KindredsCrest,SacredKindredsCrest,0,1,0,0); -- Standard dialog with menu
+        player:startEvent(322,(KindredsSeal * 65536) + BeastmensSeal,(HighKindredsCrest * 65536) + KindredsCrest,SacredKindredsCrest,0,1,0,0); -- Standard dialog with menu
     end
 end;
 
@@ -206,14 +206,14 @@ end;
 -- 0x0008 : Après achat d'un orb (yughott, palborough, giddeus, qu'bia, ghelsba)
 -- 0x0004 : Après achat d'un orb (yughott, palborough, giddeus, ghelsba)
 -- 0x000a : Après achat d'un orb (yughott, palborough, giddeus)
--- 0x0009 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
--- 0x0005 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
--- 0x000b : Trade d'un orb ? (yughott, palborough, giddeus)
+-- 9 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
+-- 5 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
+-- 11 : Trade d'un orb ? (yughott, palborough, giddeus)
 -- 0x001a : Trade d'un orb ? (qu'bia, yughott, palborough, giddeus)
 -- 0x001b : Trade d'un orb ? (qu'bia, chambre des oracles)
--- 0x0016 : Trade d'un orb utilisé (il le recup)
+-- 22 : Trade d'un orb utilisé (il le recup)
 -- 0x0019 : Un seul échange autorisé par semaine
--- 0x0141 : trade sceau + nombre player:startEvent(0x0141,0,15);
+-- 321 : trade sceau + nombre player:startEvent(321,0,15);
 --          0 shbete, 1 s-confrerie, 2 s-demons, 3 s-seigneurdes hombre
 
 -----------------------------------
@@ -238,7 +238,7 @@ function onEventFinish(player,csid,option)
     local HighKindredsCrest = player:getSeals(3);
     local SacredKindredsCrest = player:getSeals(4);
 
-    if (csid == 0x0016) then  -- Player gave Shami a cracked orb
+    if (csid == 22) then  -- Player gave Shami a cracked orb
         player:tradeComplete();
     elseif (option >= 508 and option ~= 1073741824) then  -- Player has asked to retrieve seals (1073741824 means someone hit escape during cutscene, don't remove this or people will get free seals)
         local takingSealCount = 0;
@@ -296,7 +296,7 @@ function onEventFinish(player,csid,option)
 ----------------------------------------------------------------------------------------------------------------------------
 -------- Begin BCNM orb Handout --------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
-    elseif (csid == 0x0142) then
+    elseif (csid == 322) then
         if (option == 1 and BeastmensSeal >= 20) then  -- Player asked for Cloudy orb
             if (player:getFreeSlotsCount() >= 1 and player:hasItem(1551) == false) then
                 player:delSeals(20,0);

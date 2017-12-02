@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1) then
-        cs = 0x044d;
+        cs = 1101;
     end
 
     return cs;
@@ -61,7 +61,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-    player:startEvent(0x00c8);
+    player:startEvent(200);
 end;
 
 -----------------------------------
@@ -81,9 +81,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00c8) then
+    if (csid == 200) then
         player:setPos(0,0,0,0,221);
-    elseif (csid == 0x044d) then
+    elseif (csid == 1101) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
         else

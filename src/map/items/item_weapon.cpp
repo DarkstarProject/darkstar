@@ -323,7 +323,7 @@ void CItemWeapon::setCurrentUnlockPoints(uint16 points)
 
 void CItemWeapon::setMaxHit(uint8 hit)
 {
-    m_maxHit = dsp_min(hit, 8);
+    m_maxHit = std::min<uint8>(hit, 8);
 }
 
 /************************************************************************

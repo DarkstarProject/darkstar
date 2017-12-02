@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 
     if (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:getVar("MissionStatus") == 1) then
         if (trade:getItemQty(613,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x01fa);
+            player:startEvent(506);
         end
     end
 
@@ -45,17 +45,17 @@ function onTrigger(player,npc)
     local LouverancePath = player:getVar("COP_Louverance_s_Path");
     local TreePathAv=0;
     if (currentCOPMission == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day")~=currentday and player:getVar("COP_tenzen_story")== 0 ) then
-           player:startEvent(0x0381); -- COP event
+           player:startEvent(897); -- COP event
     elseif (currentCOPMission == CALM_BEFORE_THE_STORM and player:hasKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2) then
-            player:startEvent(0x037C); -- COP event
+            player:startEvent(892); -- COP event
     elseif (currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=VanadielDayOfTheYear()) then
-            player:startEvent(0x037A); -- COP event
+            player:startEvent(890); -- COP event
     elseif (currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1) then
-              player:startEvent(0x0359); -- COP event
+              player:startEvent(857); -- COP event
     elseif (currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==0) then
-            player:startEvent(0x0358); -- COP event
+            player:startEvent(856); -- COP event
     elseif (currentCOPMission == THREE_PATHS and LouverancePath == 6 ) then
-            player:startEvent(0x0354); -- COP event
+            player:startEvent(852); -- COP event
     elseif (currentCOPMission == THREE_PATHS and LouverancePath == 9 ) then
             if (TenzenPath==11 and UlmiaPath==8) then
                TreePathAv=6;
@@ -66,7 +66,7 @@ function onTrigger(player,npc)
             else
                TreePathAv=1;
             end
-            player:startEvent(0x0355,TreePathAv); -- COP event
+            player:startEvent(853,TreePathAv); -- COP event
     elseif (currentCOPMission == THREE_PATHS and TenzenPath == 10 ) then
             if (UlmiaPath==8 and LouverancePath==10) then
                TreePathAv=5;
@@ -77,7 +77,7 @@ function onTrigger(player,npc)
             else
                TreePathAv=1;
             end
-            player:startEvent(0x0356,TreePathAv); -- COP event
+            player:startEvent(854,TreePathAv); -- COP event
     elseif (currentCOPMission == THREE_PATHS and UlmiaPath == 7 ) then
             if (TenzenPath==11 and LouverancePath==10) then
                TreePathAv=3;
@@ -88,54 +88,54 @@ function onTrigger(player,npc)
             else
                TreePathAv=0;
             end
-            player:startEvent(0x0357,TreePathAv); -- COP event
+            player:startEvent(855,TreePathAv); -- COP event
     elseif (currentCOPMission == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") > 8) then
-            player:startEvent(0x0352); -- COP event
+            player:startEvent(850); -- COP event
     elseif (currentCOPMission == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==1) then
-            player:startEvent(0x0351); -- COP event
+            player:startEvent(849); -- COP event
     elseif (currentCOPMission == THE_CALL_OF_THE_WYRMKING and player:getVar("PromathiaStatus")==1) then
-            player:startEvent(0x034D); -- COP event
+            player:startEvent(845); -- COP event
     elseif (currentCOPMission == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
-            player:startEvent(0x034F); -- COP event 3.3
+            player:startEvent(847); -- COP event 3.3
     elseif (player:getMainJob() == JOBS.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and
        player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
-        player:startEvent(0x02f8); -- Start Quest "Dark Puppet"
+        player:startEvent(760); -- Start Quest "Dark Puppet"
     elseif (currentMission == GEOLOGICAL_SURVEY) then
         if (player:hasKeyItem(RED_ACIDITY_TESTER)) then
-            player:startEvent(0x01f8);
+            player:startEvent(504);
         elseif (player:hasKeyItem(BLUE_ACIDITY_TESTER) == false) then
-            player:startEvent(0x01f7);
+            player:startEvent(503);
         end
     elseif (currentMission == THE_CRYSTAL_LINE) then
         if (player:hasKeyItem(C_L_REPORTS)) then
             player:showText(npc,MISSION_DIALOG_CID_TO_AYAME);
         else
-            player:startEvent(0x01f9);
+            player:startEvent(505);
         end
     elseif (currentMission == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 0) then
-        player:startEvent(0x02fb); -- Bastok Mission 7-1
+        player:startEvent(763); -- Bastok Mission 7-1
     elseif (currentMission == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 2) then
-        player:startEvent(0x02fc); -- Bastok Mission 7-1 (with Ki)
+        player:startEvent(764); -- Bastok Mission 7-1 (with Ki)
     --Begin Cid's Secret
     elseif (player:getFameLevel(BASTOK) >= 4 and CidsSecret == QUEST_AVAILABLE) then
-        player:startEvent(0x01fb);
+        player:startEvent(507);
     elseif (CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false and player:getVar("CidsSecret_Event") == 1) then
-        player:startEvent(0x01fc); --After talking to Hilda, Cid gives information on the item she needs
+        player:startEvent(508); --After talking to Hilda, Cid gives information on the item she needs
     elseif (CidsSecret == QUEST_ACCEPTED and LetterKeyItem == false) then
-        player:startEvent(0x01f6); --Reminder dialogue from Cid if you have not spoken to Hilda
+        player:startEvent(502); --Reminder dialogue from Cid if you have not spoken to Hilda
     elseif (CidsSecret == QUEST_ACCEPTED and LetterKeyItem) then
-        player:startEvent(0x01fd);
+        player:startEvent(509);
     --End Cid's Secret
     else
-        player:startEvent(0x01f4); -- Standard Dialogue
+        player:startEvent(500); -- Standard Dialogue
     end
 
 end;
 
--- 0x01f7  0x01f8  0x01f9  0x01fa  0x01f4  0x01f6  0x02d0  0x01fb  0x01fc  0x01fd  0x025b  0x02f3  0x02f8  0x03f2  0x02fb  0x02fc
+-- 503  504  505  506  500  502  0x02d0  507  508  509  0x025b  0x02f3  760  0x03f2  763  764
 -- 0x030c  0x030e  0x031b  0x031c  0x031d  0x031e  0x031f  0x035d  0x034e  0x0350  0x035e  0x035f  0x0353  0x035a  0x034d  0x034f
--- 0x0351  0x0352  0x0354  0x0355  0x0356  0x0357  0x0358  0x0359  0x0364  0x0365  0x0373  0x0374  0x037a  0x037b  0x037c  0x037d
--- 0x037e  0x037f  0x0381  0x0382
+-- 849  850  852  853  854  855  856  857  0x0364  0x0365  0x0373  0x0374  0x037a  0x037b  0x037c  0x037d
+-- 0x037e  0x037f  897  0x0382
 
 -----------------------------------
 -- onEventUpdate
@@ -156,40 +156,40 @@ function onEventFinish(player,csid,option)
 
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0381) then
+    if (csid == 897) then
             player:setVar("COP_tenzen_story",1);
-    elseif (csid == 0x037C) then
+    elseif (csid == 892) then
             player:addKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE);
             player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_ULMIA_AND_PRISHE);
-    elseif (csid == 0x037A) then
+    elseif (csid == 890) then
             player:setVar("PromathiaStatus",0);
             player:setVar("Promathia_CID_timer",0);
             player:completeMission(COP,FIRE_IN_THE_EYES_OF_MEN);
             player:addMission(COP,CALM_BEFORE_THE_STORM);
-    elseif (csid == 0x0359) then
+    elseif (csid == 857) then
             player:setVar("PromathiaStatus",2);
             player:setVar("Promathia_CID_timer",VanadielDayOfTheYear());
-    elseif (csid == 0x0357) then
+    elseif (csid == 855) then
             player:setVar("COP_Ulmia_s_Path",8);
-    elseif (csid == 0x0356) then
+    elseif (csid == 854) then
             player:setVar("COP_Tenzen_s_Path",11);
-    elseif (csid == 0x0355) then
+    elseif (csid == 853) then
             player:setVar("COP_Louverance_s_Path",10);
-    elseif (csid == 0x0354) then
+    elseif (csid == 852) then
             player:setVar("COP_Louverance_s_Path",7);
-    elseif (csid == 0x0352) then
+    elseif (csid == 850) then
              player:setVar("PromathiaStatus",0);
             player:completeMission(COP,DESIRES_OF_EMPTINESS);
             player:addMission(COP,THREE_PATHS);
-    elseif (csid == 0x0351) then
+    elseif (csid == 849) then
             player:setVar("PromathiaStatus",2);
-        elseif (csid == 0x0358) then
+        elseif (csid == 856) then
             player:setVar("PromathiaStatus",1);
-    elseif (csid == 0x034D) then
+    elseif (csid == 845) then
             player:setVar("PromathiaStatus",0);
             player:completeMission(COP,THE_CALL_OF_THE_WYRMKING);
             player:addMission(COP,A_VESSEL_WITHOUT_A_CAPTAIN);
-    elseif (csid == 0x034F) then
+    elseif (csid == 847) then
             -- finishing mission 3.3 and all sub missions
             player:setVar("EMERALD_WATERS_Status",0);
             player:setVar("MEMORIES_OF_A_MAIDEN_Status",0);
@@ -199,15 +199,15 @@ function onEventFinish(player,csid,option)
             player:addMission(COP,COMEDY_OF_ERRORS_ACT_I);
             player:completeMission(COP,COMEDY_OF_ERRORS_ACT_I);
             player:addMission(COP,TENDING_AGED_WOUNDS ); --starting 3.4 COP mission
-    elseif (csid == 0x02f8) then
+    elseif (csid == 760) then
         player:addQuest(BASTOK,DARK_PUPPET);
         player:setVar("darkPuppetCS",1);
-    elseif (csid == 0x01f7) then
+    elseif (csid == 503) then
         player:addKeyItem(BLUE_ACIDITY_TESTER);
         player:messageSpecial(KEYITEM_OBTAINED, BLUE_ACIDITY_TESTER);
-    elseif (csid == 0x01f8 or csid == 0x02fc) then
+    elseif (csid == 504 or csid == 764) then
         finishMissionTimeline(player,1,csid,option);
-    elseif (csid == 0x01f9 and option == 0) then
+    elseif (csid == 505 and option == 0) then
         if (player:getVar("MissionStatus") == 0) then
             if (player:getFreeSlotsCount(0) >= 1) then
                 crystal = math.random(4096,4103);
@@ -218,15 +218,15 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
             end
         end
-    elseif (csid == 0x01fa and option == 0) then
+    elseif (csid == 506 and option == 0) then
         player:tradeComplete();
         player:addKeyItem(C_L_REPORTS);
         player:messageSpecial(KEYITEM_OBTAINED, C_L_REPORTS);
-    elseif (csid == 0x02fb) then
+    elseif (csid == 763) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x01fb) then
+    elseif (csid == 507) then
         player:addQuest(BASTOK,CID_S_SECRET);
-    elseif (csid == 0x01fd) then
+    elseif (csid == 509) then
             if (player:getFreeSlotsCount(0) >= 1) then
                 player:delKeyItem(UNFINISHED_LETTER);
                 player:setVar("CidsSecret_Event",0);
@@ -239,7 +239,7 @@ function onEventFinish(player,csid,option)
         end
      end
      -- complete chapter "tree path"
-     if (csid == 0x0355 or csid == 0x0356 or csid == 0x0357) then
+     if (csid == 853 or csid == 854 or csid == 855) then
        if (player:getVar("COP_Tenzen_s_Path")==11 and player:getVar("COP_Ulmia_s_Path")==8 and player:getVar("COP_Louverance_s_Path")==10) then
          player:completeMission(COP,THREE_PATHS);
          player:addMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG);

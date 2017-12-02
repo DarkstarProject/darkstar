@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(717,1) and trade:getItemCount() == 1 and ANewDawnEvent == 3) then
         player:tradeComplete();
-        player:startEvent(0x0094);
+        player:startEvent(148);
     end
     
 end;
@@ -41,36 +41,36 @@ function onTrigger(player,npc)
     -- A New Dawn
     if (ANewDawn == QUEST_ACCEPTED) then
         if (ANewDawnEvent == 2 or ANewDawnEvent == 3) then
-            player:startEvent(0x0092);
+            player:startEvent(146);
         elseif (ANewDawnEvent >= 4) then
-            player:startEvent(0x0093);
+            player:startEvent(147);
         end
         
     -- Chocobos Wounds
     elseif (ChocobosWounds == 0) then
-        player:startEvent(0x003e);
+        player:startEvent(62);
     elseif (ChocobosWounds == 1) then
         if (feed == 1) then
-            player:startEvent(0x0067);
+            player:startEvent(103);
         elseif (feed == 2) then
-            player:startEvent(0x0033);
+            player:startEvent(51);
         elseif (feed == 3) then
-            player:startEvent(0x0034);
+            player:startEvent(52);
         elseif (feed == 4) then
-            player:startEvent(0x003b);
+            player:startEvent(59);
         elseif (feed == 5) then
-            player:startEvent(0x002e);
+            player:startEvent(46);
         elseif (feed == 6) then
-            player:startEvent(0x0037);
+            player:startEvent(55);
         end
     elseif (ChocobosWounds == 2) then
-        player:startEvent(0x0037);
+        player:startEvent(55);
         
     -- Standard Dialog 0036 probably isnt correct
     elseif (ANewDawn == QUEST_COMPLETED) then
-        player:startEvent(0x0091);
+        player:startEvent(145);
     else
-        player:startEvent(0x0036);
+        player:startEvent(54);
     end
 end;
 
@@ -93,11 +93,11 @@ function onEventFinish(player,csid,option)
 
     local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
-    if (csid == 0x0092) then
+    if (csid == 146) then
         if (ANewDawnEvent == 2) then
             player:setVar("ANewDawn_Event",3);
         end
-    elseif (csid == 0x0094) then
+    elseif (csid == 148) then
         player:addKeyItem(217); 
         player:messageSpecial(KEYITEM_OBTAINED, 217); 
         player:setVar("ANewDawn_Event",4);

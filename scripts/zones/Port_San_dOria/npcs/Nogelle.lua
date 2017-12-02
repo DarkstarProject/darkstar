@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
             player:addGil(GIL_RATE*600);
             player:addTitle(BEAN_CUISINE_SALTER);
             player:completeQuest(SANDORIA,LUFET_S_LAKE_SALT);
-            player:startEvent(0x000b);
+            player:startEvent(11);
         end
     end
 end; 
@@ -48,11 +48,11 @@ function onTrigger(player,npc)
     local LufetsLakeSalt = player:getQuestStatus(SANDORIA,LUFET_S_LAKE_SALT);
 
     if (LufetsLakeSalt == 0) then
-        player:startEvent(0x000c);
+        player:startEvent(12);
     elseif (LufetsLakeSalt == 1) then
-        player:startEvent(0x000a);
+        player:startEvent(10);
     elseif (LufetsLakeSalt == 2) then
-        player:startEvent(0x020a);
+        player:startEvent(522);
     end
 
 end;
@@ -74,9 +74,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000c and option == 1) then
+    if (csid == 12 and option == 1) then
         player:addQuest(SANDORIA,LUFET_S_LAKE_SALT);
-    elseif (csid == 0x000b) then
+    elseif (csid == 11) then
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*600);
     end
 end;

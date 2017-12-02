@@ -28,9 +28,9 @@ function onTrade(player,npc,trade)
                 player:getMainJob() == JOBS.RDM or
                 player:getMainJob() == JOBS.SMN or
                 player:getMainJob() == JOBS.BLU) then
-                player:startEvent(0x000C, 1);
+                player:startEvent(12, 1);
             else
-                player:startEvent(0x000C);
+                player:startEvent(12);
             end
         end
     end
@@ -52,45 +52,45 @@ function onTrigger(player,npc)
 
     if (ALittleKnowledge == QUEST_AVAILABLE) then
         if (mLvl >= ADVANCED_JOB_LEVEL) then
-            player:startEvent(0x000A,1);
+            player:startEvent(10,1);
         else
-            player:startEvent(0x000A);
+            player:startEvent(10);
         end
     elseif (ALittleKnowledgeProgress == 1 and ALittleKnowledge == QUEST_ACCEPTED) then
-        player:startEvent(0x000B);
+        player:startEvent(11);
     elseif (ALittleKnowledgeProgress == 2 and ALittleKnowledge == QUEST_ACCEPTED) then
         if (player:hasStatusEffect(EFFECT_MANAFONT) or
             player:hasStatusEffect(EFFECT_CHAINSPELL) or
             player:hasStatusEffect(EFFECT_ASTRAL_FLOW) or
             player:hasStatusEffect(EFFECT_AZURE_LORE)) then
-            player:startEvent(0x000E);
+            player:startEvent(14);
         else
-            player:startEvent(0x000D);
+            player:startEvent(13);
         end
     elseif (ALittleKnowledge == QUEST_COMPLETED and mJob == JOBS.SCH and mLvl >= 5 and not (player:hasSpell(478) and player:hasSpell(502))) then
-            player:startEvent(0x002F);
+            player:startEvent(47);
     elseif (onSabbatical == QUEST_AVAILABLE and mJob == JOBS.SCH and mLvl >= AF1_QUEST_LEVEL) then
-            player:startEvent(0x0012);
+            player:startEvent(18);
     elseif (onSabbatical == QUEST_ACCEPTED) then
         if (onSabbaticalProgress < 3) then
-            player:startEvent(0x0013);
+            player:startEvent(19);
         else
-            player:startEvent(0x0014);
+            player:startEvent(20);
         end
     elseif (onSabbatical == QUEST_COMPLETED and player:getVar("Erlene_Sabbatical_Timer")~=VanadielDayOfTheYear() and mJob == JOBS.SCH and mLvl >= AF2_QUEST_LEVEL and downwardHelix == QUEST_AVAILABLE) then
-        player:startEvent(0x0017);
+        player:startEvent(23);
     elseif (downwardHelix == QUEST_ACCEPTED) then
         if (player:getVar("DownwardHelix") == 0) then
-            player:startEvent(0x0018);
+            player:startEvent(24);
         elseif (player:getVar("DownwardHelix") == 1) then
-            player:startEvent(0x0019);
+            player:startEvent(25);
         elseif (player:getVar("DownwardHelix") < 4) then
-            player:startEvent(0x001A);
+            player:startEvent(26);
         else
-            player:startEvent(0x001B);
+            player:startEvent(27);
         end
     else
-        player:startEvent(0x000F);
+        player:startEvent(15);
     end
 
 end;
@@ -112,13 +112,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000A and option == 0) then
+    if (csid == 10 and option == 0) then
         player:addQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
         player:setVar("ALittleKnowledge", 1);
-    elseif (csid == 0x000C) then
+    elseif (csid == 12) then
         player:tradeComplete();
         player:setVar("ALittleKnowledge", 2);
-    elseif (csid == 0x000E) then
+    elseif (csid == 14) then
         player:addKeyItem(GRIMOIRE);
         player:unlockJob(JOBS.SCH);
         player:addTitle(SCHULTZ_SCHOLAR);
@@ -126,18 +126,18 @@ function onEventFinish(player,csid,option)
         player:setVar("SheetsofVellum", 0);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_SCHOLAR);
         player:completeQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
-    elseif (csid == 0x002F) then
+    elseif (csid == 47) then
         if (player:canLearnSpell(478) and player:canLearnSpell(502)) then
             player:addSpell(478, true);
             player:addSpell(502, true);
             player:messageSpecial(YOU_LEARN_EMBRAVA_AND_KAUSTRA);
         end
-    elseif (csid == 0x0012) then
+    elseif (csid == 18) then
         player:addQuest(CRYSTAL_WAR, ON_SABBATICAL);
         player:addKeyItem(ULBRECHTS_SEALED_LETTER);
         player:messageSpecial(KEYITEM_OBTAINED, ULBRECHTS_SEALED_LETTER);
         player:setVar("OnSabbatical", 1);
-    elseif (csid == 0x0014) then
+    elseif (csid == 20) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         else
@@ -149,12 +149,12 @@ function onEventFinish(player,csid,option)
             player:setVar("onSabbatical",0);
             player:setVar("Erlene_Sabbatical_Timer",VanadielDayOfTheYear());
         end
-    elseif (csid == 0x0017) then
+    elseif (csid == 23) then
         player:setVar("Erlene_Sabbatical_Timer",0);
         player:addQuest(CRYSTAL_WAR, DOWNWARD_HELIX);
-    elseif (csid == 0x0019) then
+    elseif (csid == 25) then
         player:setVar("DownwardHelix",2);
-    elseif (csid == 0x001B) then
+    elseif (csid == 27) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         else

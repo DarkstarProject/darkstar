@@ -22,9 +22,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getZPos() > -28.750) then
-        player:startEvent(0x00dd,player:getGil(),100);
+        player:startEvent(221,player:getGil(),100);
     else
-        player:startEvent(0x00eb);
+        player:startEvent(235);
     end
 
 end;
@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00dd and player:getZPos() < -28.750) then
+    if (csid == 221 and player:getZPos() < -28.750) then
         player:delGil(100);
     end
 

@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
             SlimeOil = trade:hasItemQty(637,1);
 
             if (SlimeOil == true and count == 1) then
-                player:startEvent(0x022d);
+                player:startEvent(557);
             end
         else
             player:messageSpecial(FULL_INVENTORY_AFTER_TRADE, 4731);
@@ -44,11 +44,11 @@ function onTrigger(player,npc)
     local Fame = player:getFameLevel(BASTOK);
 
     if (MeanMachine == QUEST_AVAILABLE and Fame >= 2) then
-        player:startEvent(0x022c);
+        player:startEvent(556);
     elseif (MeanMachine == QUEST_ACCEPTED) then
-        player:startEvent(0x022f);
+        player:startEvent(559);
     else
-        player:startEvent(0x0226);
+        player:startEvent(550);
     end
     
 end;
@@ -71,9 +71,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x022c) then
+    if (csid == 556) then
         player:addQuest(BASTOK,MEAN_MACHINE);            
-    elseif (csid == 0x022d) then
+    elseif (csid == 557) then
         player:completeQuest(BASTOK,MEAN_MACHINE);
         player:addFame(BASTOK,120);
         player:tradeComplete();

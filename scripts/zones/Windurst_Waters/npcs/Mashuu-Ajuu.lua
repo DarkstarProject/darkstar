@@ -21,9 +21,9 @@ function onTrade(player,npc,trade)
     local reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
     if (reapstatus >= 1 and trade:getItemCount() == 1 and trade:getGil() == 0) then
         if (trade:hasItemQty(4565,1) == true) then
-            player:startEvent(0x01db,500,131);                     -- REAP WHAT YOU SOW + GIL: Quest Turn In: Sobbing Fungus turned in
+            player:startEvent(475,500,131);                     -- REAP WHAT YOU SOW + GIL: Quest Turn In: Sobbing Fungus turned in
         elseif (trade:hasItemQty(4566,1) == true) then
-            player:startEvent(0x01dd,700);                     -- REAP WHAT YOU SOW + GIL + Stationary Set: Deathball turned in
+            player:startEvent(477,700);                     -- REAP WHAT YOU SOW + GIL + Stationary Set: Deathball turned in
         end
     end
 end;
@@ -35,39 +35,39 @@ end;
 function onTrigger(player,npc)
     local reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-        player:startEvent(0x01c0); -- During Making the GRADE
+        player:startEvent(448); -- During Making the GRADE
     elseif (reapstatus == QUEST_AVAILABLE) then
         rand = math.random(1,2);
         if (rand == 1) then
-            player:startEvent(0x01cf,0,4565,572);                 -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START
+            player:startEvent(463,0,4565,572);                 -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START
         else
-            player:startEvent(0x01ad);                          -- Standard Conversation
+            player:startEvent(429);                          -- Standard Conversation
         end
     elseif (reapstatus == QUEST_ACCEPTED) then
         rand = math.random(1,2);
         if (rand == 1) then
-            player:startEvent(0x01d0,0,4565,572);                  -- REAP WHAT YOU SOW + HERB SEEDS: OBJECTIVE REMINDER
+            player:startEvent(464,0,4565,572);                  -- REAP WHAT YOU SOW + HERB SEEDS: OBJECTIVE REMINDER
         else
-            player:startEvent(0x01dc);                          -- Another Conversation During Quest
+            player:startEvent(476);                          -- Another Conversation During Quest
         end
     elseif (reapstatus == QUEST_COMPLETED and player:needToZone()) then
-        player:startEvent(0x01de);                              -- REAP WHAT YOU SOW: After Quest
+        player:startEvent(478);                              -- REAP WHAT YOU SOW: After Quest
     elseif (reapstatus == QUEST_COMPLETED and player:needToZone() == false and player:getVar("QuestReapSow_var") == 0) then
         rand = math.random(1,2);
         if (rand == 1) then
-            player:startEvent(0x01df,0,4565,572);                -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START
+            player:startEvent(479,0,4565,572);                -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START
         else
-            player:startEvent(0x01ad);                          -- Standard Conversation
+            player:startEvent(429);                          -- Standard Conversation
         end
     elseif (reapstatus == QUEST_COMPLETED and player:getVar("QuestReapSow_var") == 1) then
         rand = math.random(1,2);
         if (rand == 1) then
-            player:startEvent(0x01d0,0,4565,572);                  -- REAP WHAT YOU SOW + HERB SEEDS: OBJECTIVE REMINDER
+            player:startEvent(464,0,4565,572);                  -- REAP WHAT YOU SOW + HERB SEEDS: OBJECTIVE REMINDER
         else
-            player:startEvent(0x01dc);                          -- Another Conversation During Quest
+            player:startEvent(476);                          -- Another Conversation During Quest
         end
     else
-        player:startEvent(0x01ad);                              -- Standard Conversation
+        player:startEvent(429);                              -- Standard Conversation
     end
 end;
 
@@ -87,15 +87,15 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (((csid == 0x01cf and option == 3) or (csid == 0x01df and option == 3)) and player:getFreeSlotsCount() == 0) then  -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED - INVENTORY FULL
+    if (((csid == 463 and option == 3) or (csid == 479 and option == 3)) and player:getFreeSlotsCount() == 0) then  -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED - INVENTORY FULL
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,572);
-    elseif (csid == 0x01cf and option == 3) then                      -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED
+    elseif (csid == 463 and option == 3) then                      -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED
         player:addQuest(WINDURST,REAP_WHAT_YOU_SOW);
         player:addItem(572);
         player:messageSpecial(ITEM_OBTAINED,572);
-    elseif ((csid == 0x01db or csid == 0x01dd) and player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED and player:getFreeSlotsCount() == 0) then -- inventory full on quest turn in
+    elseif ((csid == 475 or csid == 477) and player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED and player:getFreeSlotsCount() == 0) then -- inventory full on quest turn in
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,131);
-    elseif (csid == 0x01db) then                                -- REAP WHAT YOU SOW + 500 GIL: Quest Turn In: Sobbing Fungus turned in
+    elseif (csid == 475) then                                -- REAP WHAT YOU SOW + 500 GIL: Quest Turn In: Sobbing Fungus turned in
         player:addGil(GIL_RATE*500);
         player:tradeComplete(trade);
         player:needToZone(true);
@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,8);
             player:setVar("QuestReapSow_var",0);
         end
-    elseif (csid == 0x01dd) then                                -- REAP WHAT YOU SOW + GIL + Stationary Set: Quest Turn In: Deathball turned in
+    elseif (csid == 477) then                                -- REAP WHAT YOU SOW + GIL + Stationary Set: Quest Turn In: Deathball turned in
         player:addGil(GIL_RATE*700);
         player:tradeComplete(trade);
         player:needToZone(true);
@@ -121,7 +121,7 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,8);
             player:setVar("QuestReapSow_var",0);
         end
-    elseif (csid == 0x01df and option == 3) then                 -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START - ACCEPTED
+    elseif (csid == 479 and option == 3) then                 -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START - ACCEPTED
         player:setVar("QuestReapSow_var",1);
         player:addItem(572);
         player:messageSpecial(ITEM_OBTAINED,572);

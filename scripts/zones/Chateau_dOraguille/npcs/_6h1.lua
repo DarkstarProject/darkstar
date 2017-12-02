@@ -31,14 +31,14 @@ function onTrigger(player,npc)
 
     if (player:getMainJob() == JOBS.WHM and player:getMainLvl() >= AF2_QUEST_LEVEL) then
         if (messengerFromBeyond == QUEST_COMPLETED and preludeOfBandW == QUEST_AVAILABLE) then
-            player:startEvent(0x0227); -- Start Quest "Prelude of Black and White"
+            player:startEvent(551); -- Start Quest "Prelude of Black and White"
         elseif (preludeOfBandW == QUEST_COMPLETED and pieujesDecision == QUEST_AVAILABLE) then
-            player:startEvent(0x0228); -- Start Quest "Pieuje's Decision"
+            player:startEvent(552); -- Start Quest "Pieuje's Decision"
         end
     elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 1) then
-        player:startEvent(0x004A);
+        player:startEvent(74);
     else
-        player:startEvent(0x020b);
+        player:startEvent(523);
     end
 
     return 1;
@@ -62,11 +62,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0227) then
+    if (csid == 551) then
         player:addQuest(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
-    elseif (csid == 0x0228) then
+    elseif (csid == 552) then
         player:addQuest(SANDORIA,PIEUJE_S_DECISION);
-    elseif (csid == 0x004A) then
+    elseif (csid == 74) then
         player:setVar("Cutscenes_8-2",2);
     end
 

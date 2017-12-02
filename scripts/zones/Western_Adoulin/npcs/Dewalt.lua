@@ -25,21 +25,21 @@ function onTrigger(player,npc)
     local FOOL = player:getQuestStatus(ADOULIN, FLAVORS_OF_OUR_LIVES);
     if ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Dewalt_Branch") < 1)) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
-        player:startEvent(0x1395);
+        player:startEvent(5013);
     elseif ((FOOL == QUEST_ACCEPTED) and ((player:getVar("FOOL_Status") == 1) or (player:getVar("FOOL_Status") == 2)))  then
         if (player:getVar("FOOL_Status") == 1) then
             -- Progresses Quest: 'Flavors of Our Lives'
-            player:startEvent(0x0055);
+            player:startEvent(85);
         else
             -- Reminds player of hint for Quest: 'Flavors of Our Lives'
-            player:startEvent(0x0069);
+            player:startEvent(105);
         end
     elseif ((DELM == QUEST_ACCEPTED) and (player:getVar("DELM_Dewalt_Branch") < 2)) then
         -- Reminds player of hint for Quest: 'Dont Ever Leaf Me'
-        player:startEvent(0x1396);
+        player:startEvent(5014);
     else
         -- Standard dialogue
-        player:startEvent(0x1399);
+        player:startEvent(5017);
     end
 end;
 
@@ -55,10 +55,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x1395) then
+    if (csid == 5013) then
         -- Progresses Quest: 'Dont Ever Leaf Me'
         player:setVar("DELM_Dewalt_Branch", 1);
-    elseif (csid == 0x0055) then
+    elseif (csid == 85) then
         -- Progresses Quest: 'Flavors of Our Lives'
         player:setVar("FOOL_Status", 3);
     end

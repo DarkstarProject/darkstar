@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
 
-    homepointMenu( player, 0x21ff, 100);
+    homepointMenu( player, 8703, 100);
 end;
 
 -----------------------------------
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x21ff) then
+    if (csid == 8703) then
 
         if (option == 1) then
             player:setHomePoint();

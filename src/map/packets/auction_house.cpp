@@ -65,7 +65,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quant
         auctionFee = (uint32)(map_config.ah_base_fee_single  + (price * map_config.ah_tax_rate_single / 100));
     }
 
-    auctionFee = dsp_cap(auctionFee, 0, map_config.ah_max_fee);
+    auctionFee = std::clamp<uint32>(auctionFee, 0, map_config.ah_max_fee);
 
     WBUFB(data,(0x04)) = action;
     WBUFB(data,(0x05)) = 0xFF;
@@ -130,7 +130,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, CCharEntit
         WBUFB(data,(0x14)) = 0x03;
         WBUFB(data,(0x16)) = 0x01; // Value is changed, the purpose is unknown UNKNOWN
 
-        memcpy(data+(0x18), PChar->GetName(), dsp_cap(strlen(PChar->GetName()), 0, 16));
+        memcpy(data+(0x18), PChar->GetName(), std::clamp<size_t>(strlen(PChar->GetName()), 0, 16));
 
         WBUFW(data,(0x28)) = PChar->m_ah_history.at(slot).itemid;    // Id sell items item id
         WBUFB(data,(0x2A)) = 1 - PChar->m_ah_history.at(slot).stack; // Number of items stack size

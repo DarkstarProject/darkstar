@@ -10,11 +10,7 @@
 -- Ranged ACC % 16
 -- Sleep Resist 2
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,19 +21,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,3600,5162);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_HP, 30);
     target:addMod(MOD_DEX, 6);
     target:addMod(MOD_AGI, 5);
@@ -48,11 +36,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SLEEPRES, 2);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 30);
     target:delMod(MOD_DEX, 6);
     target:delMod(MOD_AGI, 5);

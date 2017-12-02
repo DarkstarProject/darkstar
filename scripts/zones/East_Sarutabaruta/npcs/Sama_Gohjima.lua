@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") ~= 1) then
         player:messageSpecial(SAMA_GOHJIMA_POSTDIALOG);
     else
-        player:startEvent(0x002b);
+        player:startEvent(43);
     end
 
 end;

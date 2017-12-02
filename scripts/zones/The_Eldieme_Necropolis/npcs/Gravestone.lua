@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     -- rng af2
     local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");    
     if (FireAndBrimstoneCS == 3) then
-        player:startEvent(0x0005);
+        player:startEvent(5);
     end
 
 end;

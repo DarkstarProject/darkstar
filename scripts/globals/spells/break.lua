@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = 35;
     params.bonus = 0;
     params.effect = EFFECT_PETRIFICATION;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     -- Duration, including resistance.  Unconfirmed.
     local duration = 30 * resist;
 

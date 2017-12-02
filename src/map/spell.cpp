@@ -146,7 +146,7 @@ bool CSpell::hasMPCost()
 
 bool CSpell::isHeal()
 {
-    return (getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
+    return ((getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA) || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
 }
 
 

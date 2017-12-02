@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,2) == false) then
         player:startEvent(10093);
     else
-        player:startEvent(0x0098);
+        player:startEvent(152);
     end
 end;
 

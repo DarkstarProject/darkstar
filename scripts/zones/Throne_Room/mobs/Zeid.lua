@@ -16,7 +16,7 @@ end;
 -- onMobDeath
 -----------------------------------
 function onMobDeath(mob, player, isKiller)
-    player:startEvent(0x7d04,3,3,1,3,3,3,3,3);
+    player:startEvent(32004,3,3,1,3,3,3,3,3);
 end;
 
 -----------------------------------
@@ -35,7 +35,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("finishCSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x7d04) then
+    if (csid == 32004) then
         if (player:getVar("bcnm_instanceid") == 1) then
         SpawnMob(17453064);
         local volker = player:getBattlefield():insertAlly(14182)

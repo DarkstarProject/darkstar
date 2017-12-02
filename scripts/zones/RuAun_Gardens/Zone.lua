@@ -111,7 +111,7 @@ function onZoneIn(player,prevZone)
         player:setPos(333.017,-44.896,-458.35,164);
     end
     if (player:getCurrentMission(ZILART) == THE_GATE_OF_THE_GODS and player:getVar("ZilartStatus") == 1) then
-        cs = 0x0033;
+        cs = 51;
     end
 
     return cs;
@@ -127,239 +127,239 @@ function onRegionEnter(player,region)
         ---------------------------------
         [1] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0000);
+            player:startEvent(0);
         end,
         ---------------------------------
         [2] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0001);
+            player:startEvent(1);
         end,
         ---------------------------------
         [3] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0002);
+            player:startEvent(2);
         end,
         ---------------------------------
         [4] = function (x)  -- Portal --
         ---------------------------------
             if (math.random(0,1) == 0) then
-                player:startEvent(0x0004);
+                player:startEvent(4);
             else
-                player:startEvent(0x0005);
+                player:startEvent(5);
             end
         end,
         ---------------------------------
         [5] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0006);
+            player:startEvent(6);
         end,
         ---------------------------------
         [6] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0009);
+            player:startEvent(9);
         end,
         ---------------------------------
         [7] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0010);
+            player:startEvent(16);
         end,
         ---------------------------------
         [8] = function (x)  -- Portal --
         ---------------------------------
             if (math.random(0,1) == 0) then
-                player:startEvent(0x0012);
+                player:startEvent(18);
             else
-                player:startEvent(0x0013);
+                player:startEvent(19);
             end
         end,
         ---------------------------------
         [9] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0014);
+            player:startEvent(20);
         end,
         ---------------------------------
         [10] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0017);
+            player:startEvent(23);
         end,
         ---------------------------------
         [11] = function (x)  -- Portal --
         ---------------------------------
             if (math.random(0,1) == 0) then
-                player:startEvent(0x0019);
+                player:startEvent(25);
             else
-                player:startEvent(0x001A);
+                player:startEvent(26);
             end
         end,
         ---------------------------------
         [12] = function (x)  -- Portal --
         ---------------------------------
             if (math.random(0,1) == 0) then
-                player:startEvent(0x0020);
+                player:startEvent(32);
             else
-                player:startEvent(0x0021);
+                player:startEvent(33);
             end
         end,
         ---------------------------------
         [13] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0022);
+            player:startEvent(34);
         end,
         ---------------------------------
         [14] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0024);
+            player:startEvent(36);
         end,
         ---------------------------------
         [15] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0025);
+            player:startEvent(37);
         end,
         ---------------------------------
         [16] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0026);
+            player:startEvent(38);
         end,
         ---------------------------------
         [17] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0027);
+            player:startEvent(39);
         end,
         ---------------------------------
         [18] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0028);
+            player:startEvent(40);
         end,
         ---------------------------------
         [19] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x001B);
+            player:startEvent(27);
         end,
         ---------------------------------
         [20] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x001E);
+            player:startEvent(30);
         end,
         ---------------------------------
         [21] = function (x)  -- Portal --
         ---------------------------------
             if (math.random(0,1) == 0) then
-                player:startEvent(0x000B);
+                player:startEvent(11);
             else
-                player:startEvent(0x000C);
+                player:startEvent(12);
             end
         end,
         ---------------------------------
         [22] = function (x)  -- Portal --
         ---------------------------------
-            player:startEvent(0x0009);
+            player:startEvent(9);
         end,
         ----------- BLUE portals --------------
         ---------------------------------
         [23] = function (x)  -- Portal -- Main To Seriyu
         ---------------------------------
             if (GetNPCByID(17310054):getAnimation() == 8) then
-                player:startEvent(0x0003);
+                player:startEvent(3);
             end
         end,
         ---------------------------------
         [24] = function (x)  -- Portal -- Seriyu to Genbu
         ---------------------------------
             if (GetNPCByID(17310057):getAnimation() == 8) then
-                player:startEvent(0x000A);
+                player:startEvent(10);
             end
         end,
         ---------------------------------
         [25] = function (x)  -- Portal -- Genbu to Byakko
         ---------------------------------
             if (GetNPCByID(17310060):getAnimation() == 8) then
-                player:startEvent(0x0011);
+                player:startEvent(17);
             end
         end,
         ---------------------------------
         [26] = function (x)  -- Portal -- Byakko to Suzaku
         ---------------------------------
             if (GetNPCByID(17310063):getAnimation() == 8) then
-                player:startEvent(0x0018);
+                player:startEvent(24);
             end
         end,
         ---------------------------------
         [27] = function (x)  -- Portal -- Suzaku to Main
         ---------------------------------
             if (GetNPCByID(17310066):getAnimation() == 8) then
-                player:startEvent(0x001F);
+                player:startEvent(31);
             end
         end,
         ---------------------------------
         [28] = function (x)  -- Portal -- Main to Suzaku
         ---------------------------------
             if (GetNPCByID(17310067):getAnimation() == 8) then
-                player:startEvent(0x0023);
+                player:startEvent(35);
             end
         end,
         ---------------------------------
         [29] = function (x)  -- Portal -- Suzaku to Byakko
         ---------------------------------
             if (GetNPCByID(17310064):getAnimation() == 8) then
-                player:startEvent(0x001C);
+                player:startEvent(28);
             end
         end,
         ---------------------------------
         [30] = function (x)  -- Portal -- Byakko to Genbu
         ---------------------------------
             if (GetNPCByID(17310061):getAnimation() == 8) then
-                player:startEvent(0x0015);
+                player:startEvent(21);
             end
         end,
         ---------------------------------
         [31] = function (x)  -- Portal -- Genbu to Seriyu
         ---------------------------------
             if (GetNPCByID(17310058):getAnimation() == 8) then
-                player:startEvent(0x000E);
+                player:startEvent(14);
             end
         end,
         ---------------------------------
         [32] = function (x)  -- Portal -- Seriyu to Main
         ---------------------------------
             if (GetNPCByID(17310055):getAnimation() == 8) then
-                player:startEvent(0x0007);
+                player:startEvent(7);
             end
         end,
         ---------------------------------
         [33] = function (x)  -- Seiryu's Portal --
         ---------------------------------
-            player:startEvent(0x0008);
+            player:startEvent(8);
         end,
 
         ---------------------------------
         [34] = function (x)  -- Genbu's Portal --
         ---------------------------------
-            player:startEvent(0x000f);
+            player:startEvent(15);
         end,
 
         ---------------------------------
         [35] = function (x)  -- Byakko's Portal --
         ---------------------------------
-            player:startEvent(0x0016);
+            player:startEvent(22);
         end,
 
         ---------------------------------
         [36] = function (x)  -- Suzaku's Portal --
         ---------------------------------
-            player:startEvent(0x001d);
+            player:startEvent(29);
         end,
 
         ---------------------------------
         [37] = function (x)
         ---------------------------------
             if (player:getVar("skyShortcut") == 1) then
-                player:startEvent(0x002a);
+                player:startEvent(42);
             else
                 title = player:getTitle();
                 if (title == 401) then
-                    player:startEvent(0x0029,title);
+                    player:startEvent(41,title);
                 else
-                    player:startEvent(0x002b,title);
+                    player:startEvent(43,title);
                 end
             end
         end,
@@ -368,13 +368,13 @@ function onRegionEnter(player,region)
         [38] = function (x)
         ---------------------------------
             if (player:getVar("skyShortcut") == 1) then
-                player:startEvent(0x002a);
+                player:startEvent(42);
             else
                 title = player:getTitle();
                 if (title == 401) then
-                    player:startEvent(0x0029,title);
+                    player:startEvent(41,title);
                 else
-                    player:startEvent(0x002b,title);
+                    player:startEvent(43,title);
                 end
             end
         end,
@@ -408,9 +408,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0029 and option ~= 0) then
+    if (csid == 41 and option ~= 0) then
         player:setVar("skyShortcut",1);
-    elseif (csid == 0x0033) then
+    elseif (csid == 51) then
         player:setVar("ZilartStatus",0);
         player:completeMission(ZILART,THE_GATE_OF_THE_GODS);
         player:addMission(ZILART,ARK_ANGELS);

@@ -54,6 +54,7 @@ RecastList_t* CRecastContainer::GetRecastList(RECASTTYPE type)
     {
         case RECAST_MAGIC:   return &RecastMagicList;
         case RECAST_ABILITY: return &RecastAbilityList;
+        default: break;
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -87,7 +88,7 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
 
 void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
 {
-    Recast_t* recast = Load(type, id, duration, chargeTime, maxCharges);
+    Load(type, id, duration, chargeTime, maxCharges);
 }
 
 Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)

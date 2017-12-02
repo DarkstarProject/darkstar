@@ -22,19 +22,19 @@ function onTrigger(player,npc)
     bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
 
     if (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 3) then
-        player:startEvent(0x018f);
+        player:startEvent(399);
 
     elseif (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 2) then
-        player:startEvent(0x018e);
+        player:startEvent(398);
 
     elseif (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 1) then
-        player:startEvent(0x018c);
+        player:startEvent(396);
 
     elseif (bookwormStatus == QUEST_ACCEPTED and player:hasKeyItem(10) == true) then
-        player:startEvent(0x018b);
+        player:startEvent(395);
 
     else
-        player:startEvent(0x28c);
+        player:startEvent(652);
     end
 
 end;
@@ -56,9 +56,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x018b) then
+    if (csid == 395) then
         player:setVar("EARLY_BIRD_TRACK_BOOK",1);
-    elseif (csid == 0x018e) then
+    elseif (csid == 398) then
         player:setVar("EARLY_BIRD_TRACK_BOOK",3);
     end
 

@@ -1,39 +1,16 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
 --  Mob: Garm
+-- Note: PH for Shii
 -----------------------------------
-
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-
     checkGoVregime(player,mob,612,1);
-
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-
-    if (Shii_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[POP]Shii");
-        if (ToD <= os.time() and GetMobAction(Shii) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Shii);
-                GetMobByID(Shii):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Shii", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,SHII_PH,5,math.random(14400,28800)); -- 4 to 8 hours
 end;
-

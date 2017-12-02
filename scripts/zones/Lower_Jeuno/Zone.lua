@@ -40,14 +40,14 @@ function onZoneIn(player,prevZone)
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(41.2,-5, 84,85);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     elseif (player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==0) then
         player:setVar("PromathiaStatus",1);
         cs = 0x0046;
     elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
-        cs = 0x276E;
+        cs = 10094;
     end
 
     return cs;
@@ -73,7 +73,7 @@ function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
         -- print("entered region 1")
         if (player:getCurrentMission(ZILART) == AWAKENING and player:getVar("ZilartStatus") < 2) then
-            player:startEvent(0x0014);
+            player:startEvent(20);
         end
     end
 end;
@@ -110,7 +110,7 @@ function onGameHour(zone)
     elseif (VanadielHour == 21) then
         local playerOnQuest = GetPlayerByID(GetServerVariable("[JEUNO]CommService"));
         if playerOnQuest then
-            playerOnQuest:startEvent(0x0072);
+            playerOnQuest:startEvent(114);
         end
         
     -- 1AM: if nobody has accepted the quest yet, NPC Vhana Ehgaklywha takes up the task
@@ -145,12 +145,12 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x7534 and option == 0) then
+    if (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x0014) then
+    elseif (csid == 20) then
         player:setVar("ZilartStatus", player:getVar("ZilartStatus")+2);
-    elseif (csid == 0x276E) then
+    elseif (csid == 10094) then
         player:completeMission(ACP,A_CRYSTALLINE_PROPHECY);
         player:addMission(ACP,THE_ECHO_AWAKENS);
     end

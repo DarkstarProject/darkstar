@@ -60,9 +60,19 @@ end;
 function onRegionEnter(player,region)
     if (player:getAnimation() == 0) then
         local regionId = region:GetRegionID();
-        local events = MEMORY_STREAMS[regionId][7];
-        local event = events[math.random(#events)];
-        if (regionId < 100 or GetNPCByID(regionId):getAnimation() == ANIMATION_OPEN_DOOR) then
+        local event = nil;
+        if (regionId < 100) then
+            event = MEMORY_STREAMS[regionId][7][1];
+        else
+            local stream = GetNPCByID(regionId);
+            if (stream ~= nil and stream:getAnimation() == ANIMATION_OPEN_DOOR) then
+                event = stream:getLocalVar("destination");
+                if (event == nil or event == 0) then -- this should never happen, but sanity check
+                    event = MEMORY_STREAMS[regionId][7][1];
+                end
+            end
+        end
+        if (event ~= nil) then
             player:startEvent(event);
         end
     end

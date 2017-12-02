@@ -143,11 +143,11 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x007b;
+        cs = 123;
     elseif ( prevZone == 193 and player:getVar( "darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
-        cs = 0x007a;
+        cs = 122;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x007d;
+        cs = 125;
     end
 
     return cs;
@@ -179,9 +179,9 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007b) then
+    if (csid == 123) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x007d) then
+    elseif (csid == 125) then
         player:updateEvent(0,0,0,0,0,2);
     end
 end;
@@ -193,14 +193,18 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007b) then
+    if (csid == 123) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x007a) then
-        player:addItem( 14096);
-        player:messageSpecial( ITEM_OBTAINED, 14096); -- Chaos Sollerets
-        player:setVar( "darkPuppetCS", 0);
-        player:addFame(BASTOK, AF2_FAME);
-        player:completeQuest(BASTOK,DARK_PUPPET);
+    elseif (csid == 122) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14096);
+        else
+            player:addItem(14096);
+            player:messageSpecial(ITEM_OBTAINED,14096); -- Chaos Sollerets
+            player:setVar("darkPuppetCS", 0);
+            player:addFame(BASTOK, AF2_FAME);
+            player:completeQuest(BASTOK,DARK_PUPPET);
+        end
     end
 end;
 
@@ -209,7 +213,7 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-    local _2u0 = GetNPCByID(17195607);
+    local _2u0 = GetNPCByID(17195608);
     local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
@@ -226,7 +230,7 @@ end;
 -----------------------------------
 
 function onTOTDChange(TOTD)
-    local _2u0 = GetNPCByID(17195607);
+    local _2u0 = GetNPCByID(17195608);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
     if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then

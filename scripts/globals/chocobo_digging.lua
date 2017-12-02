@@ -13,9 +13,6 @@ DIGREQ_BORE     = 2;
 DIGREQ_MODIFIER = 4;
 DIGREQ_NIGHT    = 8;
 
-local DIGABILITY_BURROW = 1;
-local DIGABILITY_BORE   = 2;
-
 local function canDig(player)
 
     local DigCount = player:getVar('[DIG]DigCount');
@@ -53,10 +50,13 @@ end;
 
 local function calculateSkillUp(player)
 
-    -- 59 cause we're gonna use SKILL_DIG for burrow/bore
     local SkillRank = player:getSkillRank(SKILL_DIG);
     local MaxSkill = (SkillRank + 1) * 100;
-    local RealSkill = player:getSkillLevel(SKILL_DIG);
+    local RealSkill = player:getCharSkillLevel(SKILL_DIG);
+
+    if (MaxSkill > 1000) then
+        MaxSkill = 1000;
+    end
 
     local SkillIncrement = 1;
 
@@ -74,16 +74,10 @@ local function calculateSkillUp(player)
             -- skill up!
             player:setSkillLevel(SKILL_DIG, RealSkill + SkillIncrement);
 
-            -- gotta update the skill rank and push packet
-            for i = 0, 10, 1 do
-                if (SkillRank == i and RealSkill >= ((SkillRank * 100) + 100)) then
-                    player:setSkillRank(SKILL_DIG, SkillRank + 1);
-                end
-            end
-
-            if ((RealSkill / 10) < ((RealSkill + SkillIncrement) / 10)) then
-               -- todo: get this working correctly (apparently the lua binding updates RealSkills and WorkingSkills)
-               player:setSkillLevel(SKILL_DIG, player:getSkillLevel(SKILL_DIG) + 0x20);
+            -- update the skill rank
+            -- Digging does not have test items, so increment rank once player hits 10.0, 20.0, .. 100.0
+            if ((RealSkill + SkillIncrement) >= ((SkillRank * 100) + 100)) then
+                player:setSkillRank(SKILL_DIG, SkillRank + 1);
             end
         end
     end
@@ -118,7 +112,7 @@ function updateZoneDigCount(zone, increment)
     end
 end;
 
-function getChocoboDiggingItem(itemMap, chance, digAbility, mod, totd)
+function getChocoboDiggingItem(itemMap, chance, burrowAbility, boreAbility, mod, totd)
     local accum = 0;
 
     for i = 1, #itemMap do
@@ -131,8 +125,8 @@ function getChocoboDiggingItem(itemMap, chance, digAbility, mod, totd)
             local itemReq = item[3];
 
             if ((itemReq == DIGREQ_NONE) or
-                (itemReq == DIGREQ_BURROW and digAbility == DIGABILITY_BURROW) or
-                (itemReq == DIGREQ_BORE and digAbility == DIGABILITY_BORE) or
+                (itemReq == DIGREQ_BURROW and burrowAbility == 1) or
+                (itemReq == DIGREQ_BORE and boreAbility == 1) or
                 (itemReq == DIGREQ_MODIFIER and mod == 1) or
                 (itemReq == DIGREQ_NIGHT and totd == TIME_NIGHT)) then
 
@@ -177,12 +171,23 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 10;
 
-            -- rank 1 is burrow, rank 2 is bore (see DIGABILITY at the top of the file)
-            local DigAbility = player:getSkillRank(SKILL_DIG);
+            local SkillRank = player:getSkillRank(SKILL_DIG);
+
+            -- todo: learn abilities from chocobo raising
+            local burrowAbility = 0;
+            local boreAbility = 0;
+
+            if (DIG_GRANT_BURROW == 1) then
+                burrowAbility = 1;
+            end
+
+            if (DIG_GRANT_BORE == 1) then
+                boreAbility = 1;
+            end
 
             local Mod = player:getMod(MOD_EGGHELM);
 
-            ItemID = getChocoboDiggingItem(itemMap, Chance, DigAbility, Mod, VanadielTOTD());
+            ItemID = getChocoboDiggingItem(itemMap, Chance, burrowAbility, boreAbility, Mod, VanadielTOTD());
 
             -- Let's see if the item should be obtained in this zone with this weather
             local crystalMap = {

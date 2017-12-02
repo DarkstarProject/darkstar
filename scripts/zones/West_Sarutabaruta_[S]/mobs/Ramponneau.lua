@@ -6,27 +6,15 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
 
------------------------------------
--- onMobInitialize Action
------------------------------------
-
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
     mob:addStatusEffect(EFFECT_SHOCK_SPIKES, 10, 0, 0);
     mob:getStatusEffect(EFFECT_SHOCK_SPIKES):setFlag(32);
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
     mob:SetMobAbilityEnabled(false);
 end;
-
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 
 function onAdditionalEffect(mob,target,damage)
     local power = math.random(4,15);
@@ -46,28 +34,8 @@ function onAdditionalEffect(mob,target,damage)
     return SUBEFFECT_ICE_DAMAGE, message, power;
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    -- Set Ramponneau's Window Open Time
-    local wait = 5400 -- 90 minutes
-    SetServerVariable("[POP]Ramponneau", os.time() + wait );
-    DisallowRespawn(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Ramponneau");
-    SetServerVariable("[PH]Ramponneau", 0);
-    DisallowRespawn(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
 end;

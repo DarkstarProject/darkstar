@@ -26,7 +26,7 @@ function onZoneIn(player,prevZone)
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
-            cs = 0x01F4;
+            cs = 500;
         end
         player:setPos(-104, -8, -128, 227);
         player:setHomePoint();
@@ -39,14 +39,14 @@ function onZoneIn(player,prevZone)
         else
             player:setPos(80,-16,-135,165);
             if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-                cs = 0x7534;
+                cs = 30004;
             end
             player:setVar("PlayerMainJob",0);
         end
     end
 
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1) then
-             cs =0x0004;
+             cs =4;
     end
 
     return cs;
@@ -69,7 +69,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-    player:startEvent(0x02BC);
+    player:startEvent(700);
 end;
 
 -----------------------------------
@@ -88,14 +88,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x01F4) then
+    if (csid == 500) then
         player:messageSpecial(ITEM_OBTAINED,536);
-    elseif (csid == 0x02BC) then
+    elseif (csid == 700) then
         player:setPos(0,0,0,0,223);
-    elseif (csid == 0x7534 and option == 0) then
+    elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x0004) then
+    elseif (csid == 4) then
         player:setVar("COP_Ulmia_s_Path",2);
     end
 end;

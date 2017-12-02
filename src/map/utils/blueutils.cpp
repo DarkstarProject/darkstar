@@ -267,7 +267,7 @@ uint8 GetTotalSlots(CCharEntity* PChar)
     if (level == 0)
         return 0;
     else
-        return dsp_cap(((level - 1)/10)*2 + 6, 6, 20);
+        return std::clamp(((level - 1)/10)*2 + 6, 6, 20);
 }
 
 uint8 GetTotalBlueMagicPoints(CCharEntity* PChar)

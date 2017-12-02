@@ -1,1 +1,1 @@
-git rev-parse HEAD > GIT_VER
+@echo off && git rev-parse HEAD > GIT_VER || set errorlevel = 0

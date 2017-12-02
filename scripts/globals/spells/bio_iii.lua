@@ -44,7 +44,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -67,9 +67,10 @@ function onSpellCast(caster,target,spell)
     local dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
 
     -- Do it!
-    if (dia == nil or (BIO_OVERWRITE == 0 and dia:getPower() <= 3) or (BIO_OVERWRITE == 1 and dia:getPower() < 3)) then
-        target:delStatusEffect(EFFECT_BIO); -- delete old bio
-        target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 15);
+    if (target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 15,3)) then
+        spell:setMsg(msgBasic.MAGIC_DMG);
+    else
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
     --Try to kill same tier Dia (default behavior)

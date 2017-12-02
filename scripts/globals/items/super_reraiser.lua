@@ -3,20 +3,12 @@
 -- Item: Super Reraiser
 -- Item Effect: This potion functions the same way as the spell Reraise.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
     return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local duration = 3600;

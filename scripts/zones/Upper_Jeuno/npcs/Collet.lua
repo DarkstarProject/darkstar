@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         a = player:getVar("saveTheClockTowerNPCz1"); -- NPC zone1
         if (a == 0 or (a ~= 2 and a ~= 3 and a ~= 6 and a ~= 10 and a ~= 18 and a ~= 7 and a ~= 26 and a ~= 11 and
            a ~= 22 and a ~= 14 and a ~= 19 and a ~= 15 and a ~= 23 and a ~= 27 and a ~= 30 and a ~= 31)) then
-            player:startEvent(0x0073,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(115,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 end;
@@ -33,13 +33,13 @@ end;
 
 function onTrigger(player,npc)
     if (player:getFameLevel(JEUNO) >= 5 and aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 0) then
-        player:startEvent(0x0070);
+        player:startEvent(112);
     elseif (player:getVar("saveTheClockTowerVar") >= 1) then
-        player:startEvent(0x00a4);
+        player:startEvent(164);
     elseif (player:getQuestStatus(JEUNO,THE_CLOCKMASTER) == QUEST_COMPLETED) then
-        player:startEvent(0x00a3);
+        player:startEvent(163);
     else
-        player:startEvent(0x0072);
+        player:startEvent(114);
     end
 end;
 
@@ -59,9 +59,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0070) then
+    if (csid == 112) then
         player:setVar("aClockMostdelicateVar", 1);
-    elseif (csid == 0x0073) then
+    elseif (csid == 115) then
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 2);
     end

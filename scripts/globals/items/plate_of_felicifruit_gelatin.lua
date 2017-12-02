@@ -7,11 +7,7 @@
 -- Intelligence +7
 -- MP Healing +3
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -22,30 +18,18 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5978);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_MPP, 5);
     target:addMod(MOD_FOOD_MP_CAP, 100);
     target:addMod(MOD_INT, 7);
     target:addMod(MOD_MPHEAL, 3);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_MPP, 5);
     target:delMod(MOD_FOOD_MP_CAP, 100);
     target:delMod(MOD_INT, 7);

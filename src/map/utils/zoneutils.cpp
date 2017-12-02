@@ -554,8 +554,9 @@ void LoadMOBList()
             luautils::ApplyMixins(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
+            PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL;
 
-            if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+            if (PMob->m_AllowRespawn)
             {
                 PMob->Spawn();
             }

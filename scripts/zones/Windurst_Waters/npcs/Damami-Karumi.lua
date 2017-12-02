@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x023f);
+    player:startEvent(575);
 end;
 
 -----------------------------------

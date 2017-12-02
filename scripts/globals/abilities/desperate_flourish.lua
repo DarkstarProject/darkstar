@@ -53,9 +53,12 @@ function onUseAbility(player,target,ability,action)
 
     if (math.random() <= hitrate or isSneakValid) then
 
-        local bonus = 50 - target:getMod(MOD_STUNRES);
         local spell = getSpell(216);
-        local resist = applyResistance(player,spell,target,0,player:getWeaponSkillType(SLOT_MAIN),bonus)
+        local params = {};
+        params.diff = 0;
+        params.attribute = player:getWeaponSkillType(SLOT_MAIN);
+        params.bonus = 50 - target:getMod(MOD_STUNRES);
+        local resist = applyResistance(player, target, spell, params)
 
         if resist > 0.25 then
             target:delStatusEffectSilent(EFFECT_WEIGHT);

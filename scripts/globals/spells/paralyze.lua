@@ -47,7 +47,7 @@ function onSpellCast(caster,target,spell)
         params.skillType = 35;
         params.bonus = 0;
         params.effect = EFFECT_PARALYSIS;
-        resist = applyResistanceEffect(caster, target, spell, params);
+        local resist = applyResistanceEffect(caster, target, spell, params);
 
         if (resist >= 0.5) then -- There are no quarter or less hits, if target resists more than .5 spell is resisted completely
             if (target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then

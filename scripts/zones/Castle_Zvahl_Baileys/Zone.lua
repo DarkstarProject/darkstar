@@ -73,25 +73,25 @@ function onRegionEnter(player,region)
         ---------------------------------
         [1] = function (x)  --
         ---------------------------------
-            player:startEvent(0x0003); -- ports player to NW room of map 3
+            player:startEvent(3); -- ports player to NW room of map 3
         end,
 
         ---------------------------------
         [2] = function (x)  --
         ---------------------------------
-            player:startEvent(0x0002); -- ports player to SW room of map 3
+            player:startEvent(2); -- ports player to SW room of map 3
         end,
 
         ---------------------------------
         [3] = function (x)  --
         ---------------------------------
-            player:startEvent(0x0001); -- ports player to SE room of map 3
+            player:startEvent(1); -- ports player to SE room of map 3
         end,
 
         ---------------------------------
         [4] = function (x)  --
         ---------------------------------
-            player:startEvent(0x0000); -- ports player to NE room of map 3
+            player:startEvent(0); -- ports player to NE room of map 3
         end,
 
         default = function (x)

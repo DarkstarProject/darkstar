@@ -7,11 +7,7 @@
 -- Vitality 4
 -- defense % 16
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -28,10 +24,6 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,300,5122);
 end;
@@ -46,11 +38,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_DEFP, 16);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_DEX, -5);
     target:delMod(MOD_VIT, 4);
     target:delMod(MOD_DEFP, 16);

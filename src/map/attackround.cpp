@@ -64,7 +64,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
         CreateKickAttacks();
     }
     else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
-        attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD))
+        (attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD)))
     {
         CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }
@@ -235,9 +235,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // TODO: Quadruple attack merits when SE release them.
     }
 
-    quadAttack = dsp_cap(quadAttack, 0, 100);
-    doubleAttack = dsp_cap(doubleAttack, 0, 100);
-    tripleAttack = dsp_cap(tripleAttack, 0, 100);
+    quadAttack = std::clamp<int16>(quadAttack, 0, 100);
+    doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
+    tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
 
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
@@ -328,7 +328,7 @@ void CAttackRound::CreateKickAttacks()
             kickAttack += ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, (CCharEntity*)m_attacker);
         }
 
-        kickAttack = dsp_cap(kickAttack, 0, 100);
+        kickAttack = std::clamp<uint16>(kickAttack, 0, 100);
 
         if (dsprand::GetRandomNumber(100) < kickAttack)
         {

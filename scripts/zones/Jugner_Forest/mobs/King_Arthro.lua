@@ -2,14 +2,50 @@
 -- Area: Jugner Forest
 --  MOB: King Arthro
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/titles");
+-----------------------------------
 
------------------------------------
--- onMonsterMagicPrepare
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+end;
+
+function onMobSpawn(mob)
+    local KingArthroID = mob:getID();
+
+    -- Use King Arthro ID to determine Knight Crab Id's, then set their respawn to 0 so they don't spawn while KA is up
+    for offset = 1, 10 do
+        GetMobByID(KingArthroID - offset):setRespawnTime(0);
+    end
+
+    -- Set the hp% to use hundred fists
+    mob:setLocalVar("jobSpecTrigger", math.random(10, 60));
+
+    -- 20 minute rage timer
+    mob:setMobMod(MOBMOD_RAGE, 1200);
+end;
+
+function onMobFight(mob, target)
+    local trigger = mob:getLocalVar("jobSpecTrigger")
+    if (mob:getHPP() <= trigger and mob:getLocalVar("HundredFists") == 0) then
+        mob:useMobAbility(jobSpec.HUNDRED_FISTS);
+        mob:setLocalVar("HundredFists", 1);
+    end
+end;
+
+function onAdditionalEffect(mob,target,damage)
+    local procRate = 10; -- No retail data, so we guessed at it.
+    -- Can't proc it if enwater is up, if player full resists, or is just plain lucky.
+    if (procRate > math.random(1,100) or mob:hasStatusEffect(EFFECT_ENWATER)
+    or applyResistanceAddEffect(mob, target, ELE_ICE, 0) <= 0.5) then
+        return 0,0,0;
+    else
+        target:addStatusEffect(EFFECT_PARALYSIS, 20, 0, 30); -- Potency unconfirmed
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+    end
+end;
 
 function onMonsterMagicPrepare(mob, target)
-
     -- Instant cast on spells - Waterga IV, Poisonga II, Drown, and Enwater
     local rnd = math.random();
 
@@ -22,20 +58,18 @@ function onMonsterMagicPrepare(mob, target)
     else
         return 105; -- Enwater
     end
-
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    SetServerVariable("[POP]King_Arthro",0);
+    local KingArthroID = mob:getID();
+
+    GetMobByID(KingArthroID):setLocalVar("[POP]King_Arthro", 0);
+
+    -- Set temporary respawn of 24 hours + 5 minutes
+    for offset = 1, 10 do
+        GetMobByID(KingArthroID - offset):setRespawnTime(86700);
+    end
 end;

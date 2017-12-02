@@ -504,7 +504,6 @@ void CZone::UpdateWeather()
     uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
     uint32 WeatherNextUpdate = 0;
     uint32 WeatherDay = 0;
-    uint8 WeatherOffset = 0;
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
@@ -843,7 +842,6 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
-    PChar->ResetLocalVars();
 
     //remove temp items
     charutils::ClearTempItems(PChar);

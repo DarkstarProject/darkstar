@@ -4,18 +4,11 @@
 -- 
 -----------------------------------------
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canUseChocobo();
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     if (target:getMainLvl() >= 20) then

@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
-            cs = 0x0217;
+            cs = 535;
         end
         player:setPos(0,0,-11,191);
         player:setHomePoint();
@@ -47,22 +47,22 @@ function onZoneIn(player,prevZone)
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(130,-0.2,-3,160);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     end
     -- RDM AF3 CS
     if (player:getVar("peaceForTheSpiritCS") == 5 and player:getFreeSlotsCount() >= 1) then
-        cs = 0x0031;
+        cs = 49;
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
         player:setVar("EMERALD_WATERS_Status",2);
         cs = 0x000E;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
-        cs = 0x0001;
+        cs = 1;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
-        cs = 0x0000;
+        cs = 0;
     elseif (player:hasCompletedMission(SANDORIA,COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
-        cs = 0x0010;
+        cs = 16;
     end
     return cs;
 end;
@@ -90,9 +90,9 @@ function onRegionEnter(player,region)
         pNation = player:getNation();
         currentMission = player:getCurrentMission(pNation)
             if ((pNation == 0 and player:getRank() >= 2) or (pNation > 0 and player:hasCompletedMission(pNation,5) == 1) or (currentMission >= 5 and currentMission <= 9) or (player:getRank() >= 3)) then
-                player:startEvent(0x0239);
+                player:startEvent(569);
             else
-                player:startEvent(0x0238);
+                player:startEvent(568);
             end
         end,
     }
@@ -122,25 +122,29 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x0217) then
+    if (csid == 535) then
         player:messageSpecial(ITEM_OBTAINED,0x218);
-    elseif (csid == 0x0001) then
+    elseif (csid == 1) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x0000) then
+    elseif (csid == 0) then
         player:setVar("MissionStatus",5);
-    elseif (csid == 0x7534 and option == 0) then
+    elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x0239) then
+    elseif (csid == 569) then
         player:setPos(0,0,-13,192,0xe9);
-    elseif (csid == 0x0031) then
-        player:addTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
-        player:addItem(12513);
-        player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
-        player:setVar("peaceForTheSpiritCS",0);
-        player:addFame(SANDORIA,AF3_FAME);
-        player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
-    elseif (csid == 0x0010) then
+    elseif (csid == 49) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12513);
+        else
+            player:addTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
+            player:addItem(12513);
+            player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
+            player:setVar("peaceForTheSpiritCS",0);
+            player:addFame(SANDORIA,AF3_FAME);
+            player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
+        end
+    elseif (csid == 16) then
         player:setVar("Wait1DayM8-1_date",0);
         player:setVar("Mission8-1Completed",1);
     end

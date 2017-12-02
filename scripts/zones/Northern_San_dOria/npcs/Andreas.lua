@@ -87,7 +87,7 @@ local items = {
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x02dc, 1);
+    unionRepresentativeTrade(player, npc, trade, 732, 1);
 end;
 
 -----------------------------------
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    unionRepresentativeTrigger(player, 1, 0x02db, "guild_woodworking", keyitems);
+    unionRepresentativeTrigger(player, 1, 731, "guild_woodworking", keyitems);
 end;
 
 -----------------------------------
@@ -105,7 +105,7 @@ end;
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x02db) then
+    if (csid == 731) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
     end
 end;
@@ -117,9 +117,9 @@ end;
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x02db) then
+    if (csid == 731) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
-    elseif (csid == 0x02dc) then
+    elseif (csid == 732) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
     end
     if (prevZone == 82) then
         if (player:getCurrentMission(WOTG) == A_TIMESWEPT_BUTTERFLY) then
-            cs = 0x0001;
+            cs = 1;
         end
     end
     return cs;
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0001) then
+    if (csid == 1) then
         player:completeMission(WOTG, A_TIMESWEPT_BUTTERFLY);
         player:addMission(WOTG, PURPLE_THE_NEW_BLACK);
     end

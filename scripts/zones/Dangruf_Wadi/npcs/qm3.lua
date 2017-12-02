@@ -24,9 +24,9 @@ function onTrade(player,npc,trade)
             local rand2 = math.random(1,999);    
 
             if (rand1 > rand2) then
-                player:startEvent(0x0088,1092,0,rand1,rand2); -- complete 1/3 gamble mini quest    
+                player:startEvent(136,1092,0,rand1,rand2); -- complete 1/3 gamble mini quest    
             else
-                player:startEvent(0x008b,0,0,rand1,rand2); -- player looses    
+                player:startEvent(139,0,0,rand1,rand2); -- player looses    
             end
         end
     end
@@ -57,10 +57,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x008b and option == 1) then -- player looses dice game
+    if (csid == 139 and option == 1) then -- player looses dice game
         player:tradeComplete();     
         player:setVar("thickAsThievesGamblingCS",2);        
-    elseif (csid == 0x0088 and option == 0) then -- player wins dice game
+    elseif (csid == 136 and option == 0) then -- player wins dice game
         player:tradeComplete();
         player:setVar("thickAsThievesGamblingCS",3);
     end         

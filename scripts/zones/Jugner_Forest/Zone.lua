@@ -75,7 +75,7 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x000f;
+        cs = 15;
     end
 
     return cs;
@@ -100,7 +100,7 @@ end;
 function onRegionEnter( player, region)
     if (region:GetRegionID() == 1) then
         if (player:getVar("UnderOathCS") == 7) then -- Quest: Under Oath - PLD AF3
-            player:startEvent(0x000E);
+            player:startEvent(14);
         end
     end
 end;
@@ -112,7 +112,7 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x000f) then
+    if (csid == 15) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
@@ -124,9 +124,9 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x000f) then
+    if (csid == 15) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x000E) then
+    elseif (csid == 14) then
         player:setVar("UnderOathCS",8); -- Quest: Under Oath - PLD AF3
     end
 end;

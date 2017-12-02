@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 5) then
         if (trade:hasItemQty(5595,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x0137);
+            player:startEvent(311);
         end
     end
 end;
@@ -32,13 +32,13 @@ function onTrigger(player,npc)
     local ratRaceProg = player:getVar("ratraceCS");
 
     if (ratRaceProg == 5) then
-       player:startEvent(0x0107);
+       player:startEvent(263);
     elseif (ratRaceProg == 6) then
-       player:startEvent(0x0013c);
+       player:startEvent(316);
     elseif (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then
-       player:startEvent(0x013d);
+       player:startEvent(317);
     else
-       player:startEvent(0x0107);
+       player:startEvent(263);
     end
 
 end;
@@ -59,7 +59,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0137) then
+    if (csid == 311) then
        player:tradeComplete();
        player:setVar("ratraceCS",6);
     end

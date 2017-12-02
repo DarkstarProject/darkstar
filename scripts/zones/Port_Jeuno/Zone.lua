@@ -48,13 +48,13 @@ function onZoneIn(player,prevZone)
             local position = math.random(1,3) - 2;
             player:setPos(-192.5 ,-5,position,0);
             if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-                cs = 0x7534;
+                cs = 30004;
             end
             player:setVar("PlayerMainJob",0);
         end
     elseif (ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30
     and player:getQuestStatus(ABYSSEA, A_JOURNEY_BEGINS) == QUEST_AVAILABLE) then
-        cs = 0x0144;
+        cs = 324;
     end
 
     return cs
@@ -82,13 +82,13 @@ end;
 
 function onTransportEvent(player,transport)
     if (transport == 223) then
-        player:startEvent(0x271A);
+        player:startEvent(10010);
     elseif (transport == 224) then
-        player:startEvent(0x271C);
+        player:startEvent(10012);
     elseif (transport == 225) then
-        player:startEvent(0x271B);
+        player:startEvent(10011);
     elseif (transport == 226) then
-        player:startEvent(0x271D);
+        player:startEvent(10013);
     end
 end;
 
@@ -108,18 +108,18 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x271A) then
+    if (csid == 10010) then
         player:setPos(0,0,0,0,223);
-    elseif (csid == 0x271B) then
+    elseif (csid == 10011) then
         player:setPos(0,0,0,0,225);
-    elseif (csid == 0x271C) then
+    elseif (csid == 10012) then
         player:setPos(0,0,0,0,224);
-    elseif (csid == 0x271D) then
+    elseif (csid == 10013) then
         player:setPos(0,0,0,0,226);
-    elseif (csid == 0x7534 and option == 0) then
+    elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
-    elseif (csid == 0x0144) then
+    elseif (csid == 324) then
         player:addQuest(ABYSSEA, A_JOURNEY_BEGINS);
     end
 end;

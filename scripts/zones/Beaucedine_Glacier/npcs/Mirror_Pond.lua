@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 
     if (npc:getID() == 17232193) then -- Mirror Pond at J-8
         if (LoveAndIce == QUEST_ACCEPTED and player:hasKeyItem(CARMELOS_SONG_SHEET) == true) then
-            player:startEvent(0x0064);
+            player:startEvent(100);
         end
     end
 end;
@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("finishRESULT: %u",option);
 
-    if (csid == 0x0064) then
+    if (csid == 100) then
         player:setVar("LoveAndIceProgress",1);
         player:delKeyItem(CARMELOS_SONG_SHEET);
     end

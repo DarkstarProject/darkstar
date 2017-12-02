@@ -26,13 +26,13 @@ function onTrigger(player,npc)
     local Transporting = player:getQuestStatus(ADOULIN, TRANSPORTING);
     if ((Transporting == QUEST_ACCEPTED) and (player:getVar("Transporting_Status") >= 2)) then
         -- Finishing Quest: 'Transporting'
-        player:startEvent(0x0A1F);
+        player:startEvent(2591);
     elseif ((Transporting == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 2)) then
         -- Starts Quest: 'Transporting'
-        player:startEvent(0x0A1E);
+        player:startEvent(2590);
     else
         -- Standard dialogue
-        player:startEvent(0x0208);
+        player:startEvent(520);
     end
 end;
 
@@ -48,10 +48,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0A1E) then
+    if (csid == 2590) then
         -- Starting Quest: 'Transporting'
         player:addQuest(ADOULIN, TRANSPORTING);
-    elseif (csid == 0x0A1F) then
+    elseif (csid == 2591) then
         -- Finishing Quest: 'Transporting'
         player:completeQuest(ADOULIN, TRANSPORTING);
         player:addExp(1000 * EXP_RATE);

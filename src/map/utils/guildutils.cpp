@@ -147,9 +147,6 @@ void UpdateGuildsStock()
 void UpdateGuildPointsPattern()
 {
     uint8 pattern = dsprand::GetRandomNumber(8);
-    
-    bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
-    bool commit = false;
 
     const char* query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern_update';";
 

@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(OTHER_AREAS,THE_SAND_CHARM) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13095,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x007f); -- Finish quest "The Sand Charm"
+            player:startEvent(127); -- Finish quest "The Sand Charm"
         end
     end
 
@@ -46,7 +46,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getVar("theSandCharmVar") == 3) then
-        player:startEvent(0x007e,13095); -- During quest "The Sand Charm" - 3rd dialog
+        player:startEvent(126,13095); -- During quest "The Sand Charm" - 3rd dialog
     elseif (player:sendGuild(528,8,23,4)) then
         player:showText(npc,GOLDSMITHING_GUILD);
     end
@@ -70,9 +70,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x007e and option == 70) then
+    if (csid == 126 and option == 70) then
         player:setVar("theSandCharmVar",4);
-    elseif (csid == 0x007f) then
+    elseif (csid == 127) then
         player:tradeComplete();
         player:setVar("theSandCharmVar",0);
         player:setVar("SmallDialogByBlandine",1);

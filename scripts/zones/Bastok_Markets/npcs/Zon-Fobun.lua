@@ -29,13 +29,13 @@ function onTrigger(player,npc)
 
     local cCollector = player:getQuestStatus(BASTOK,THE_CURSE_COLLECTOR);
     if (cCollector == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >=4) then
-        player:startEvent(0x00fb); -- Quest Start Dialogue
+        player:startEvent(251); -- Quest Start Dialogue
 
     elseif (cCollector == QUEST_ACCEPTED and player:hasKeyItem(CURSEPAPER) == true and player:getVar("cCollectSilence") == 1 and player:getVar("cCollectCurse") == 1) then
-        player:startEvent(0x00fc);        -- Quest Completion Dialogue
+        player:startEvent(252);        -- Quest Completion Dialogue
 
     else
-        player:startEvent(0x00fa);
+        player:startEvent(250);
     end
 end;
 
@@ -57,12 +57,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00fb) then
+    if (csid == 251) then
         player:addQuest(BASTOK,THE_CURSE_COLLECTOR);
         player:addKeyItem(CURSEPAPER); -- Cursepaper
         player:messageSpecial(KEYITEM_OBTAINED,CURSEPAPER);
 
-    elseif (csid == 0x00fc) then
+    elseif (csid == 252) then
         if (player:getFreeSlotsCount() >= 1) then
             player:delKeyItem(CURSEPAPER);
             player:setVar("cCollectSilence",0);

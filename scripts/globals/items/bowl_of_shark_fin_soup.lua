@@ -10,11 +10,7 @@
 -- Attack % 14 (cap 85)
 -- Ranged Attack % 14 (cap 85)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -24,10 +20,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,4452);
@@ -49,11 +41,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_RATT_CAP, 85);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_HPP, 5);
     target:delMod(MOD_FOOD_HP_CAP, 150);
     target:delMod(MOD_DEX, 4);

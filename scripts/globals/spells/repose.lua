@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = DIVINE_MAGIC_SKILL;
     params.bonus = 0;
     params.effect = EFFECT_SLEEP_II;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist < 0.5) then
         spell:setMsg(msgBasic.MAGIC_RESIST); -- Resist
         return EFFECT_SLEEP_II;

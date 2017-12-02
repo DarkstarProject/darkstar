@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 
     if (currentTime >= 22 or currentTime <= 4) then
         if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_ACCEPTED and player:getVar("SaveMySon_Event") == 0) then
-            player:startEvent(0x0000);
+            player:startEvent(0);
         else
             player:messageSpecial(NOW_THAT_NIGHT_HAS_FALLEN);
         end
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0000) then
+    if (csid == 0) then
         player:setVar("SaveMySon_Event",1);
     end
 

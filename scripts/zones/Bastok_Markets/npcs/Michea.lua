@@ -29,7 +29,7 @@ MythrilIngot = trade:hasItemQty(653,1);
             player:addGil(GIL_RATE*180);
             player:completeQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
             player:addFame(BASTOK,100);
-            player:startEvent(0x00d8);
+            player:startEvent(216);
         end
     elseif ((SilverIngot == true) and count == 1) then
         FatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
@@ -38,14 +38,14 @@ MythrilIngot = trade:hasItemQty(653,1);
             player:addGil(GIL_RATE*2200);
             player:completeQuest(BASTOK,FATHER_FIGURE);
             player:addFame(BASTOK,120);
-            player:startEvent(0x00f1);
+            player:startEvent(241);
         end;
     elseif ((MythrilIngot == true) and count == 1) then
         DistantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
         DistantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
         if (DistantLoyalties == 1 and DistantLoyaltiesProgress == 2)        then
             player:tradeComplete();
-            player:startEvent(0x013d);
+            player:startEvent(317);
         end;
     end;
     
@@ -64,22 +64,22 @@ DistantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
 DistantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
 
     if (TheElvaanGoldsmith == 0) then
-        player:startEvent(0x00d7);
+        player:startEvent(215);
     elseif (DistantLoyalties ~= 1) then
             if (FatherFigure == 0 and TheElvaanGoldsmith == 2 and pFame >= 2) then
-                player:startEvent(0x00f0);
+                player:startEvent(240);
             else
-                player:startEvent(0x007d);
+                player:startEvent(125);
             end;
     else
         if (DistantLoyaltiesProgress == 1 and player:hasKeyItem(GOLDSMITHING_ORDER)) then
-            player:startEvent(0x013b);
+            player:startEvent(315);
         elseif (DistantLoyaltiesProgress == 2) then
-            player:startEvent(0x013c);
+            player:startEvent(316);
         elseif (DistantLoyaltiesProgress == 3 and player:needToZone() == true) then
-            player:startEvent(0x013d);
+            player:startEvent(317);
         elseif (DistantLoyaltiesProgress == 3 and player:needToZone() == false) then
-            player:startEvent(0x013e);
+            player:startEvent(318);
         end;
     end;    
 end; 
@@ -101,21 +101,21 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x00d7) then
+    if (csid == 215) then
         player:addQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
-    elseif (csid == 0x00f0) then
+    elseif (csid == 240) then
         player:addQuest(BASTOK,FATHER_FIGURE);
-    elseif (csid == 0x00d8) then
+    elseif (csid == 216) then
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*180);
-    elseif (csid == 0x00f1) then
+    elseif (csid == 241) then
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2200);
-    elseif (csid == 0x013b) then
+    elseif (csid == 315) then
         player:delKeyItem(GOLDSMITHING_ORDER);
         player:setVar("DistantLoyaltiesProgress",2);
-    elseif (csid == 0x013d) then
+    elseif (csid == 317) then
         player:setVar("DistantLoyaltiesProgress",3);
         player:needToZone(true);
-    elseif (csid == 0x013e) then
+    elseif (csid == 318) then
         player:setVar("DistantLoyaltiesProgress",4);
         player:addKeyItem(MYTHRIL_HEARTS);
         player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_HEARTS);

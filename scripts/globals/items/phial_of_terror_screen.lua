@@ -3,11 +3,7 @@
 -- Item: Terror Screen
 -- Effect: 2 Mins of immunity to "Terror" effects.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -16,10 +12,6 @@ function onItemCheck(target)
     end
     return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_NEGATE_TERROR,1,0,120);

@@ -57,8 +57,9 @@ uint16 GetMogHouseID(CCharEntity* PChar)
         return (PChar->profile.nation == 2 ? 0x0123 : 0x0120);
     case REGION_JEUNO:
         return 0x0100;
+    default:
+        return 0x0100;
     }
-    return 0x0100;
 }
 
 /************************************************************************
@@ -81,6 +82,8 @@ uint8 GetMogHouseFlag(CCharEntity* PChar)
         if (PChar->profile.mhflag & 0x04) return 3;
     case REGION_JEUNO:
         if (PChar->profile.mhflag & 0x08) return 4;
+    default:
+        break;
     }
     return 0;
 }

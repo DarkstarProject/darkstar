@@ -28,10 +28,6 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5565);
 end;
@@ -47,11 +43,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_INT, -6);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 10);
     target:delMod(MOD_MP, -10);
     target:delMod(MOD_STR, 6);

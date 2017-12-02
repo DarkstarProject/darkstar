@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)) then
         player:setVar("ShadesOfVengeance",1);
-        player:startEvent(0x008F,79,-6,0,99,3,0);
+        player:startEvent(143,79,-6,0,99,3,0);
     elseif (player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x008F, assaultid, -4, 0, recommendedLevel, 3, armband);
+        player:startEvent(143, assaultid, -4, 0, recommendedLevel, 3, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x85 or (csid == 0x8F and option == 4)) then
+    if (csid == 133 or (csid == 143 and option == 4)) then
         player:setPos(0,0,0,0,56);
     end
 end;
@@ -130,7 +130,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if (v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID()) then
                     v:setInstance(instance);
-                    v:startEvent(0x85);
+                    v:startEvent(133);
                     v:delKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
                 end
             end
@@ -148,7 +148,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if (v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID()) then
                     v:setInstance(instance);
-                    v:startEvent(0x85, 3);
+                    v:startEvent(133, 3);
                     v:delKeyItem(PERIQIA_ASSAULT_ORDERS);
                 end
             end

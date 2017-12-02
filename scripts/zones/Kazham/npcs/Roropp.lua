@@ -185,9 +185,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 3 or failed == 4 then
             if goodtrade then
-                player:startEvent(0x00DE);
+                player:startEvent(222);
             elseif badtrade then
-                player:startEvent(0x00E8);
+                player:startEvent(232);
             end
         end
     end
@@ -205,15 +205,15 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00C8);
+            player:startEvent(200);
             npc:wait();
         elseif (progress == 3 or failed == 4) then
-                player:startEvent(0x00D2);  -- asking for sands of silence
+                player:startEvent(210);  -- asking for sands of silence
         elseif (progress >= 4 or failed >= 5) then
-            player:startEvent(0x00F5); -- happy with sands of silence
+            player:startEvent(245); -- happy with sands of silence
         end
     else
-        player:startEvent(0x00C8);
+        player:startEvent(200);
         npc:wait();
     end
 end;
@@ -234,7 +234,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00DE) then    -- correct trade, onto next opo
+    if (csid == 222) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 3 then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",4);
@@ -242,7 +242,7 @@ function onEventFinish(player,csid,option,npc)
         else
             player:setVar("OPO_OPO_FAILED",5);
         end
-    elseif (csid == 0x00E8) then              -- wrong trade, restart at first opo
+    elseif (csid == 232) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",4);
     else
