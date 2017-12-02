@@ -66,6 +66,8 @@ function onGameIn(player, firstlogin, zoning)
         player:setGMHidden(true);
     end
 
+    -- Remember time player zoned in (e.g., to support zone-in delays)
+    player:setLocalVar("ZoneInTime", os.time());
 end;
 
 -----------------------------------
