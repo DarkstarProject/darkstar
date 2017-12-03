@@ -32,6 +32,7 @@ This file is part of DarkStar-server source code.
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
+#include "../../utils/charutils.h"
 
 CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abilityid) :
     CState(PEntity, targid),
@@ -137,7 +138,7 @@ bool CAbilityState::CanUseAbility()
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
+        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}) || !charutils::hasAbility(PChar, PAbility->getID()))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;
