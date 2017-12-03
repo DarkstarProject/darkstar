@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm11 (???)
 -- Spawns Muscaliet
--- !pos ? ? ? 45
+-- !pos 253 46 291 45
 -----------------------------------
 require("scripts/globals/status");
 

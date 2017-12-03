@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm9 (???)
 -- Spawns Alectryon
--- !pos ? ? ? 45
+-- !pos -42 -8 34 45
 -----------------------------------
 require("scripts/globals/status");
 

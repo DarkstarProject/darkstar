@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm2 (???)
 -- Spawns Vetehinen
--- !pos ? ? ? 45
+-- !pos 74 .001 -435 45
 -----------------------------------
 require("scripts/globals/status");
 

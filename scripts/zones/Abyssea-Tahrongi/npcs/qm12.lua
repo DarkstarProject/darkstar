@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm12 (???)
 -- Spawns Lachrymater
--- !pos ? ? ? 45
+-- !pos -220 -1 -299 45
 -----------------------------------
 require("scripts/globals/status");
 

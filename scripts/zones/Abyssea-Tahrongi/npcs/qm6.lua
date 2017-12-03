@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm6 (???)
 -- Spawns Gancanagh
--- !pos ? ? ? 45
+-- !pos 74 11 -51 45
 -----------------------------------
 require("scripts/globals/status");
 

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm5 (???)
 -- Spawns Treble Noctules
--- !pos ? ? ? 45
+-- !pos 190 -22 -153 45
 -----------------------------------
 require("scripts/globals/status");
 

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm4 (???)
 -- Spawns Cannered Noz
--- !pos ? ? ? 45
+-- !pos -355 4 251 45
 -----------------------------------
 require("scripts/globals/status");
 
