@@ -92,7 +92,7 @@ inline int32 CLuaAbility::getName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
-    lua_pushstring(L, m_PLuaAbility->getName());
+    lua_pushstring(L, (const char*)m_PLuaAbility->getName());
     return 1;
 }
 
@@ -164,7 +164,7 @@ inline int32 CLuaAbility::setRange(lua_State *L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaAbility::className[] = "CAbility";
+const char CLuaAbility::className[] = "CAbility";
 
 Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] =
 {

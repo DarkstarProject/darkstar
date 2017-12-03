@@ -104,7 +104,7 @@ int32 login_parse(int32 fd)
         {
         case LOGIN_ATTEMPT:
         {
-            const int8* fmtQuery = "SELECT accounts.id,accounts.status \
+            const char* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
             int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());

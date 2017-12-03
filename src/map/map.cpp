@@ -66,7 +66,7 @@ This file is part of DarkStar-server source code.
 #include "message.h"
 
 
-const int8* MAP_CONF_FILENAME = nullptr;
+const char* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
@@ -125,7 +125,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
-    const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
+    const char* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
 
@@ -144,7 +144,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 *                                                                       *
 ************************************************************************/
 
-int32 do_init(int32 argc, int8** argv)
+int32 do_init(int32 argc, char** argv)
 {
     ShowStatus("do_init: begin server initialization...\n");
     map_ip.s_addr = 0;
@@ -163,7 +163,7 @@ int32 do_init(int32 argc, int8** argv)
     dsprand::seed();
 
     map_config_default();
-    map_config_read(MAP_CONF_FILENAME);
+    map_config_read((const int8*)MAP_CONF_FILENAME);
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
     ShowStatus("do_init: map_config is reading");
     ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
@@ -432,13 +432,13 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
         blowfish_decipher((uint32*)buff + i + 7, (uint32*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
     }
 
-    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16) == 0)
+    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16)) == 0)
     {
         return 0;
     }
 
     int8 ip_str[16];
-    ShowError("map_encipher_packet: bad packet from <%s>\n", ip2str(ip, ip_str));
+    ShowError("map_encipher_packet: bad packet from <%s>\n", ip2str(ip, (char*)ip_str));
     return -1;
 }
 
@@ -456,7 +456,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 #ifdef WIN32
     try
     {
-        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), buff + size - 16);
+        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16));
     }
     catch (...)
     {
@@ -464,7 +464,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         return -1;
     }
 #else
-    checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+    checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), (char*)(buff + size - 16));
 #endif
 
     if (checksumResult == 0)
@@ -473,7 +473,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         {
             uint32 CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
 
-            const int8* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
+            const char* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
 
             int32 ret = Sql_Query(SqlHandle, fmtQuery, CharID);
 
@@ -497,7 +497,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             }
             else
             {
-                int8* strSessionKey = nullptr;
+                char* strSessionKey = nullptr;
                 Sql_GetData(SqlHandle, 0, &strSessionKey, nullptr);
 
                 memcpy(map_session_data->blowfish.key, strSessionKey, 20);
@@ -865,7 +865,7 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 
                     ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);
 
-                    const int8* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
+                    const char* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
                     Sql_Query(SqlHandle, Query, map_session_data->client_addr, map_session_data->client_port);
 
                     delete[] map_session_data->server_packet_data;
@@ -1013,10 +1013,10 @@ int32 map_config_default()
 
 int32 map_config_read(const int8* cfgName)
 {
-    int8 line[1024], w1[1024], w2[1024];
+    char line[1024], w1[1024], w2[1024];
     FILE* fp;
 
-    fp = fopen(cfgName, "r");
+    fp = fopen((const char*)cfgName, "r");
     if (fp == nullptr)
     {
         ShowError("Map configuration file not found at: %s\n", cfgName);
@@ -1025,7 +1025,7 @@ int32 map_config_read(const int8* cfgName)
 
     while (fgets(line, sizeof(line), fp))
     {
-        int8* ptr;
+        char* ptr;
 
         if (line[0] == '#')
         {
@@ -1257,7 +1257,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmpi(w1, "import") == 0)
         {
-            map_config_read(w2);
+            map_config_read((const int8*)w2);
         }
         else if (strcmpi(w1, "newstyle_skillups") == 0)
         {

@@ -1404,7 +1404,7 @@ namespace autoSpell
 
     void LoadAutomatonSpellList()
     {
-        const int8* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
+        const char* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
 

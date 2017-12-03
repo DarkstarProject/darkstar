@@ -44,6 +44,6 @@ CWorldPassPacket::CWorldPassPacket(uint32 WorldPass)
         WBUFB(data,(0x08)) = 167;     // pass becomes invalid in (hours)
 
         WBUFB(data,(0x20)) = 0x06;
-        snprintf((int8*)data+(0x10), 10, "%u", WorldPass);
+        snprintf((char*)data+(0x10), 10, "%u", WorldPass);
     }
 }

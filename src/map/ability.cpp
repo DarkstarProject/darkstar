@@ -189,13 +189,13 @@ void CAbility::setAddType(uint16 addType)
 
 const int8* CAbility::getName()
 {
-    return m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
 void CAbility::setName(int8* name)
 {
     m_name.clear();
-    m_name.insert(0, name);
+    m_name.insert(0, (const char*)name);
 }
 
 uint16 CAbility::getRecastId()
@@ -324,7 +324,7 @@ namespace ability
 
         memset(PAbilityList, 0, sizeof(PAbilityList));
 
-        const int8* Query =
+        const char* Query =
             "SELECT "
             "abilityId,"
             "IFNULL(min_id,0),"
@@ -359,7 +359,7 @@ namespace ability
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* contentTag;
+                char* contentTag = nullptr;
                 Sql_GetData(SqlHandle, 20, &contentTag, nullptr);
 
                 if (luautils::IsContentEnabled(contentTag) == false) {
@@ -393,7 +393,7 @@ namespace ability
             }
         }
 
-        const int8* Query2 = "SELECT recastId, job, level, maxCharges, chargeTime, meritModId FROM abilities_charges ORDER BY job, level ASC;";
+        const char* Query2 = "SELECT recastId, job, level, maxCharges, chargeTime, meritModId FROM abilities_charges ORDER BY job, level ASC;";
 
         ret = Sql_Query(SqlHandle, Query2);
 

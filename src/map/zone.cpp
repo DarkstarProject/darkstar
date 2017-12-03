@@ -212,7 +212,7 @@ uint32 CZone::GetWeatherChangeTime()
 
 const int8* CZone::GetName()
 {
-    return m_zoneName.c_str();
+    return (const int8*)m_zoneName.c_str();
 }
 
 uint8 CZone::GetSoloBattleMusic()
@@ -268,7 +268,7 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 
 void CZone::LoadZoneLines()
 {
-    static const int8 fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
+    static const char fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
@@ -298,7 +298,7 @@ void CZone::LoadZoneLines()
 
 void CZone::LoadZoneWeather()
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT "
         "weather_day,"
         "normal,"
@@ -332,7 +332,7 @@ void CZone::LoadZoneWeather()
 
 void CZone::LoadZoneSettings()
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT "
         "zone.name,"
         "zone.zoneip,"
@@ -355,9 +355,9 @@ void CZone::LoadZoneSettings()
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        m_zoneName.insert(0, Sql_GetData(SqlHandle, 0));
+        m_zoneName.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
-        m_zoneIP = inet_addr(Sql_GetData(SqlHandle, 1));
+        m_zoneIP = inet_addr((const char*)Sql_GetData(SqlHandle, 1));
         m_zonePort = (uint16)Sql_GetUIntData(SqlHandle, 2);
         m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
         m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
@@ -390,7 +390,7 @@ void CZone::LoadNavMesh()
         m_navMesh = new CNavMesh((uint16)GetID());
     }
 
-    int8 file[255];
+    char file[255];
     memset(file, 0, sizeof(file));
     snprintf(file, sizeof(file), "navmeshes/%s.nav", GetName());
 

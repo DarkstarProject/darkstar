@@ -82,8 +82,8 @@ void TaskManagerThread();
 int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
 
 
-const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
-const int8* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
+const char* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
+const char* LOGIN_CONF_FILENAME = "./conf/login_darkstar.conf";
 
 void TCPComm(SOCKET socket);
 
@@ -112,14 +112,14 @@ void login_config_read(const int8* file);		// We only need the search server por
 
 void PrintPacket(char* data, int size)
 {
-    int8 message[50];
+    char message[50];
     memset(&message, 0, 50);
 
     printf("\n");
 
     for (int32 y = 0; y < size; y++)
     {
-        int8 msgtmp[50];
+        char msgtmp[50];
         memset(&msgtmp, 0, 50);
         sprintf(msgtmp, "%s %02hx", message, (uint8)data[y]);
         strncpy(message, msgtmp, 50);
@@ -144,7 +144,7 @@ void PrintPacket(char* data, int size)
 *																		*
 ************************************************************************/
 
-int32 main(int32 argc, int8 **argv)
+int32 main(int32 argc, char **argv)
 {
 #ifdef WIN32
     WSADATA wsaData;
@@ -176,8 +176,8 @@ int32 main(int32 argc, int8 **argv)
     struct addrinfo  hints;
 
     search_config_default();
-    search_config_read(SEARCH_CONF_FILENAME);
-    login_config_read(LOGIN_CONF_FILENAME);
+    search_config_read((const int8*)SEARCH_CONF_FILENAME);
+    login_config_read((const int8*)LOGIN_CONF_FILENAME);
 
 #ifdef WIN32
     // Initialize Winsock
@@ -341,10 +341,10 @@ void search_config_default()
 
 void search_config_read(const int8* file)
 {
-    int8 line[1024], w1[1024], w2[1024];
+    char line[1024], w1[1024], w2[1024];
     FILE* fp;
 
-    fp = fopen(file, "r");
+    fp = fopen((const char*)file, "r");
     if (fp == nullptr)
     {
         ShowError("configuration file not found at: %s\n", file);
@@ -353,7 +353,7 @@ void search_config_read(const int8* file)
 
     while (fgets(line, sizeof(line), fp))
     {
-        int8* ptr;
+        char* ptr;
 
         if (line[0] == '#')
             continue;
@@ -426,10 +426,10 @@ void login_config_default()
 
 void login_config_read(const int8* file)
 {
-    int8 line[1024], w1[1024], w2[1024];
+    char line[1024], w1[1024], w2[1024];
     FILE* fp;
 
-    fp = fopen(file, "r");
+    fp = fopen((const char*)file, "r");
     if (fp == nullptr)
     {
         ShowError("configuration file not found at: %s\n", file);
@@ -438,7 +438,7 @@ void login_config_read(const int8* file)
 
     while (fgets(line, sizeof(line), fp))
     {
-        int8* ptr;
+        char* ptr;
 
         if (line[0] == '#')
             continue;
@@ -545,7 +545,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
             PPartyPacket.AddPlayer(*it);
         }
 
-        PrintPacket((int8*)PPartyPacket.GetData(), PPartyPacket.GetSize());
+        PrintPacket((char*)PPartyPacket.GetData(), PPartyPacket.GetSize());
         PTCPRequest.SendToSocket(PPartyPacket.GetData(), PPartyPacket.GetSize());
     }
     else if (linkshellid1 != 0 || linkshellid2 != 0)
@@ -560,7 +560,7 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
             PLinkshellPacket.AddPlayer(*it);
         }
 
-        PrintPacket((int8*)PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
+        PrintPacket((char*)PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
         PTCPRequest.SendToSocket(PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
     }
 }
@@ -721,7 +721,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     unsigned char isPresent = 0;
     unsigned char areaCount = 0;
 
-    uint8 name[16];
+    char name[16];
     uint8 nameLen = 0;
 
     uint8 minLvl = 0;
@@ -969,7 +969,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     sr.nameLen = nameLen;
     memcpy(sr.zoneid, areas, sizeof(sr.zoneid));
     if (nameLen > 0){
-        sr.name.insert(0, (int8*)name);
+        sr.name.insert(0, name);
     }
 
     return sr;

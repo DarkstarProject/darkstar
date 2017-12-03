@@ -395,7 +395,7 @@ inline int32 CLuaInstance::insertAlly(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaInstance::className[] = "CInstance";
+const char CLuaInstance::className[] = "CInstance";
 Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaInstance, getID),

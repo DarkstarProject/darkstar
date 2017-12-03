@@ -193,7 +193,7 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint16 messageID = (uint16)lua_tointeger(L, 2);
+    auto messageID = (uint16)lua_tointeger(L, 2);
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
@@ -253,7 +253,7 @@ inline int32 CLuaBaseEntity::messageText(lua_State* L)
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
     CBaseEntity* PTarget = PLuaBaseEntity->m_PBaseEntity;
 
-    uint16 messageID = (uint16)lua_tointeger(L, 2);
+    auto messageID = (uint16)lua_tointeger(L, 2);
 
     bool showName = true;
     uint8 mode = 0;
@@ -463,7 +463,7 @@ inline int32 CLuaBaseEntity::getVar(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-    const int8* varname = lua_tostring(L, 1);
+    const char* varname = lua_tostring(L, 1);
 
     lua_pushinteger(L, charutils::GetVar((CCharEntity*)m_PBaseEntity, varname));
     return 1;
@@ -484,7 +484,7 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isstring(L, -2));
 
-    const int8* varname = lua_tostring(L, -2);
+    const char* varname = lua_tostring(L, -2);
     int32 value = (int32)lua_tointeger(L, -1);
 
     if (value == 0)
@@ -493,7 +493,7 @@ inline int32 CLuaBaseEntity::setVar(lua_State *L)
         return 0;
     }
 
-    const int8* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
+    const char* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
 
     Sql_Query(SqlHandle, fmtQuery, m_PBaseEntity->id, varname, value, value);
 
@@ -516,10 +516,10 @@ inline int32 CLuaBaseEntity::addVar(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isstring(L, -2));
 
-    const int8* varname = lua_tostring(L, -2);
+    const char* varname = lua_tostring(L, -2);
     int32 value = (int32)lua_tointeger(L, -1);
 
-    const int8* Query = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = value + %i;";
+    const char* Query = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = value + %i;";
 
     Sql_Query(SqlHandle, Query,
         m_PBaseEntity->id,
@@ -625,7 +625,7 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -3) || !lua_isstring(L, -3));
 
-    const int8* varname = lua_tostring(L, -3);
+    const char* varname = lua_tostring(L, -3);
     int32 bit = (int32)lua_tointeger(L, -2);
     bool state = (lua_toboolean(L, -1) == 0 ? false : true);
 
@@ -640,7 +640,7 @@ inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
         value &= ~(1 << bit); // Delete
     }
 
-    const int8* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
+    const char* fmtQuery = "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i ON DUPLICATE KEY UPDATE value = %i;";
 
     Sql_Query(SqlHandle, fmtQuery, m_PBaseEntity->id, varname, value, value);
 
@@ -2060,7 +2060,7 @@ inline int32 CLuaBaseEntity::setHomePoint(lua_State *L)
     PChar->profile.home_point.p = PChar->loc.p;
     PChar->profile.home_point.destination = PChar->getZone();
 
-    const int8 *fmtQuery = "UPDATE chars \
+    const char *fmtQuery = "UPDATE chars \
                             SET home_zone = %u, home_rot = %u, home_x = %.3f, home_y = %.3f, home_z = %.3f \
                             WHERE charid = %u;";
 
@@ -2339,7 +2339,7 @@ inline int32 CLuaBaseEntity::getZoneName(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == nullptr);
 
-    lua_pushstring(L, m_PBaseEntity->loc.zone->GetName());
+    lua_pushstring(L, (const char*)m_PBaseEntity->loc.zone->GetName());
     return 1;
 }
 
@@ -2678,11 +2678,11 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
 
-    const int8* charName = lua_tostring(L, 1);
+    const char* charName = lua_tostring(L, 1);
     uint32 id = 0;
 
     // char will not be logged in so get the id manually
-    const int8* Query = "SELECT charid FROM chars WHERE charname = '%s';";
+    const char* Query = "SELECT charid FROM chars WHERE charname = '%s';";
     int32 ret = Sql_Query(SqlHandle, Query, charName);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -2747,7 +2747,7 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
     bool found = false;
     if (!lua_isnil(L, 1) && lua_isstring(L, 1))
     {
-        const int8* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
+        const char* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
         int32 ret = Sql_Query(SqlHandle, fmtQuery, std::string(lua_tostring(L, 1)).c_str());
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -2781,7 +2781,7 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
 
     if (!lua_isnil(L, 1) && lua_isstring(L, 1))
     {
-        const int8* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
+        const char* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
         int32 ret = Sql_Query(SqlHandle, fmtQuery, std::string(lua_tostring(L, 1)).c_str());
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
@@ -3169,10 +3169,10 @@ inline int32 CLuaBaseEntity::createWornItem(lua_State *L)
         CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
         PItem->m_extra[0] = 1;
 
-        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+        char extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
-        const int8* Query =
+        const char* Query =
             "UPDATE char_inventory "
             "SET extra = '%s' "
             "WHERE charid = %u AND location = %u AND slot = %u;";
@@ -3623,6 +3623,7 @@ inline int32 CLuaBaseEntity::getShieldSize(lua_State *L)
         lua_pushinteger(L, ((CCharEntity*)m_PBaseEntity)->getShieldSize());
         return 1;
     }
+
     lua_pushinteger(L, 0);
     return 1;
 }
@@ -3840,10 +3841,10 @@ inline int32 CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
         }
     }
 
-    int8 extra[sizeof(slip->m_extra) * 2 + 1];
-    Sql_EscapeStringLen(SqlHandle, extra, (const int8*)slip->m_extra, sizeof(slip->m_extra));
+    char extra[sizeof(slip->m_extra) * 2 + 1];
+    Sql_EscapeStringLen(SqlHandle, extra, (const char*)slip->m_extra, sizeof(slip->m_extra));
 
-    const int8* Query =
+    const char* Query =
         "UPDATE char_inventory "
         "SET extra = '%s' "
         "WHERE charid = %u AND location = %u AND slot = %u;";
@@ -3916,10 +3917,10 @@ inline int32 CLuaBaseEntity::retrieveItemFromSlip(lua_State *L)
 
     slip->m_extra[extraId] &= extraData;
 
-    int8 extra[sizeof(slip->m_extra) * 2 + 1];
-    Sql_EscapeStringLen(SqlHandle, extra, (const int8*)slip->m_extra, sizeof(slip->m_extra));
+    char extra[sizeof(slip->m_extra) * 2 + 1];
+    Sql_EscapeStringLen(SqlHandle, extra, (const char*)slip->m_extra, sizeof(slip->m_extra));
 
-    const int8* Query =
+    const char* Query =
         "UPDATE char_inventory "
         "SET extra = '%s' "
         "WHERE charid = %u AND location = %u AND slot = %u;";
@@ -3978,7 +3979,7 @@ inline int32 CLuaBaseEntity::getName(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    lua_pushstring(L, m_PBaseEntity->GetName());
+    lua_pushstring(L, (const char*)m_PBaseEntity->GetName());
     return 1;
 }
 
@@ -7176,7 +7177,6 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
-
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     ((CBattleEntity*)m_PBaseEntity)->addMP((int32)(-lua_tointeger(L, 1)));
@@ -7333,7 +7333,7 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
 
     for (uint8 i = 1; i < 45; ++i)
     {
-        const int8* Query = "INSERT INTO char_skills "
+        const char* Query = "INSERT INTO char_skills "
             "SET "
             "charid = %u,"
             "skillid = %u,"
@@ -12072,7 +12072,7 @@ inline int32 CLuaBaseEntity::hasAttachment(lua_State* L)
 inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    const int8* Query =
+    const char* Query =
         "SELECT name FROM "
         "char_pet LEFT JOIN pet_name ON automatonid = id "
         "WHERE charid = %u;";
@@ -12083,7 +12083,7 @@ inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        lua_pushstring(L, Sql_GetData(SqlHandle, 0));
+        lua_pushstring(L, (const char*)Sql_GetData(SqlHandle, 0));
         return 1;
     }
     return 0;
@@ -13535,7 +13535,7 @@ inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
 
 //=======================================================//
 
-const int8 CLuaBaseEntity::className[] = "CBaseEntity";
+const char CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {

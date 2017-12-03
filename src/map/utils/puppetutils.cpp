@@ -38,7 +38,7 @@ namespace puppetutils
 
 void LoadAutomaton(CCharEntity* PChar)
 {
-	const int8* Query =
+	const char* Query =
         "SELECT unlocked_attachments, name, equipped_attachments FROM "
             "char_pet LEFT JOIN pet_name ON automatonid = id "
             "WHERE charid = %u;";
@@ -50,7 +50,7 @@ void LoadAutomaton(CCharEntity* PChar)
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
 		size_t length = 0;
-		int8* attachments = nullptr;
+		char* attachments = nullptr;
 		Sql_GetData(SqlHandle,0,&attachments,&length);
 		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
 
@@ -69,7 +69,7 @@ void LoadAutomaton(CCharEntity* PChar)
         if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
         {
             PChar->PAutomaton = new CAutomatonEntity();
-            PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
+            PChar->PAutomaton->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
             automaton_equip_t tempEquip;
             attachments = nullptr;
             Sql_GetData(SqlHandle,2,&attachments,&length);
@@ -108,19 +108,19 @@ void SaveAutomaton(CCharEntity* PChar)
 {
     if (PChar->PAutomaton)
     {
-        const int8* Query =
+        const char* Query =
             "UPDATE char_pet SET "
             "unlocked_attachments = '%s', "
             "equipped_attachments = '%s' "
             "WHERE charid = %u;";
 
-        int8 unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
-        int8 unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
+        char unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
+        char unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
         memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
         Sql_EscapeStringLen(SqlHandle, unlockedAttachmentsEscaped, unlockedAttachments, sizeof(unlockedAttachments));
 
-        int8 equippedAttachmentsEscaped[sizeof(PChar->PAutomaton->m_Equip) * 2 + 1];
-        int8 equippedAttachments[sizeof(PChar->PAutomaton->m_Equip)];
+        char equippedAttachmentsEscaped[sizeof(PChar->PAutomaton->m_Equip) * 2 + 1];
+        char equippedAttachments[sizeof(PChar->PAutomaton->m_Equip)];
         memcpy(equippedAttachments, &PChar->PAutomaton->m_Equip, sizeof(equippedAttachments));
         Sql_EscapeStringLen(SqlHandle, equippedAttachmentsEscaped, equippedAttachments, sizeof(equippedAttachments));
 
@@ -131,13 +131,13 @@ void SaveAutomaton(CCharEntity* PChar)
     }
     else
     {
-        const int8* Query =
+        const char* Query =
             "UPDATE char_pet SET "
             "unlocked_attachments = '%s' "
             "WHERE charid = %u;";
 
-        int8 unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
-        int8 unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
+        char unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
+        char unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
         memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
         Sql_EscapeStringLen(SqlHandle, unlockedAttachmentsEscaped, unlockedAttachments, sizeof(unlockedAttachments));
 

@@ -62,14 +62,14 @@ namespace guildutils
 
 void Initialize()
 {
-    const int8* fmtQuery = "SELECT DISTINCT id, points_name FROM guilds ORDER BY id ASC;";
+    const char* fmtQuery = "SELECT DISTINCT id, points_name FROM guilds ORDER BY id ASC;";
     if (Sql_Query(SqlHandle, fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
         g_PGuildList.reserve((const unsigned int)Sql_NumRows(SqlHandle));
 
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            g_PGuildList.push_back(new CGuild(Sql_GetIntData(SqlHandle, 0), Sql_GetData(SqlHandle, 1)));
+            g_PGuildList.push_back(new CGuild(Sql_GetIntData(SqlHandle, 0), (const char*)Sql_GetData(SqlHandle, 1)));
         }
     }
     DSP_DEBUG_BREAK_IF(g_PGuildShopList.size() != 0);

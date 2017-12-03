@@ -97,13 +97,13 @@ void CSpell::setRecastTime(uint32 RecastTime)
 
 const int8* CSpell::getName()
 {
-    return m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
 void CSpell::setName(int8* name)
 {
     m_name.clear();
-    m_name.insert(0,name);
+    m_name.insert(0, (const char*)name);
 }
 
 SPELLGROUP CSpell::getSpellGroup()
@@ -407,7 +407,7 @@ namespace spell
     //Load a list of spells
     void LoadSpellList()
     {
-        const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
+        const char* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
                              AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range \
                              FROM spell_list;";
 
@@ -417,7 +417,7 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* contentTag;
+                char* contentTag;
                 CSpell* PSpell = nullptr;
                 SpellID id = (SpellID)Sql_GetUIntData(SqlHandle,0);
 
@@ -452,7 +452,7 @@ namespace spell
                 PSpell->setRequirements(Sql_GetIntData(SqlHandle,20));
 
                 Sql_GetData(SqlHandle, 21, &contentTag, nullptr);
-                PSpell->setContentTag(contentTag);
+                PSpell->setContentTag((int8*)contentTag);
 
                 PSpell->setRange(static_cast<float>(Sql_GetIntData(SqlHandle, 22)) / 10);
 
@@ -466,7 +466,7 @@ namespace spell
             }
         }
 
-        const int8* blueQuery = "SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, \
+        const char* blueQuery = "SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, \
                                 blue_spell_list.trait_category, blue_spell_list.trait_category_weight, blue_spell_list.primary_sc, \
                                 blue_spell_list.secondary_sc, spell_list.content_tag \
                              FROM blue_spell_list JOIN spell_list on blue_spell_list.spellid = spell_list.spellid;";
@@ -477,7 +477,7 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* contentTag;
+                char* contentTag;
                 Sql_GetData(SqlHandle, 7, &contentTag, nullptr);
 
                 if (luautils::IsContentEnabled(contentTag) == false){
@@ -525,7 +525,7 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* contentTag;
+                char* contentTag;
                 Sql_GetData(SqlHandle, 2, &contentTag, nullptr);
 
                 if (luautils::IsContentEnabled(contentTag) == false){

@@ -137,7 +137,7 @@ namespace petutils
     {
         FreePetList();
 
-        const int8* Query =
+        const char* Query =
             "SELECT\
                 pet_list.name,\
                 modelid,\
@@ -176,7 +176,7 @@ namespace petutils
             {
                 Pet_t* Pet = new Pet_t();
 
-                Pet->name.insert(0, Sql_GetData(SqlHandle, 0));
+                Pet->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
                 memcpy(&Pet->look, Sql_GetData(SqlHandle, 1), 20);
                 Pet->minLevel = (uint8)Sql_GetIntData(SqlHandle, 2);
@@ -1135,7 +1135,7 @@ namespace petutils
         {
             petType = PETTYPE_WYVERN;
 
-            const int8* Query =
+            const char* Query =
                 "SELECT\
                 pet_name.name,\
                 char_pet.wyvernid\
@@ -1152,7 +1152,7 @@ namespace petutils
                     if (wyvernid != 0)
                     {
                         g_PPetList.at(PetID)->name.clear();
-                        g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+                        g_PPetList.at(PetID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
                     }
                 }
             }
@@ -1162,7 +1162,7 @@ namespace petutils
         {
             petType = PETTYPE_ADVENTURING_FELLOW;
 
-            const int8* Query =
+            const char* Query =
             "SELECT\
             pet_name.name,\
             char_pet.adventuringfellowid\
@@ -1188,7 +1188,7 @@ namespace petutils
         {
             petType = PETTYPE_CHOCOBO;
 
-            const int8* Query =
+            const char* Query =
                 "SELECT\
                 char_pet.chocoboid\
                 FROM char_pet\
@@ -1219,7 +1219,7 @@ namespace petutils
                             {
                                 if (chocoboname1 != 0 && chocoboname2 != 0)
                                 {
-                                    g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+                                    g_PPetList.at(PetID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
                                 }
                             }
                         }

@@ -240,7 +240,7 @@ namespace conquest
         int32 bastok = 0;
         int32 windurst = 0;
         int32 beastmen = 0;
-        const int8* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
+        const char* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
         int32 ret = Sql_Query(SqlHandle, Query, regionid);
@@ -319,7 +319,7 @@ namespace conquest
             }
         });
 
-        const int8* Query = "UPDATE conquest_system SET region_control = \
+        const char* Query = "UPDATE conquest_system SET region_control = \
                             IF(sandoria_influence > bastok_influence AND sandoria_influence > windurst_influence AND \
                             sandoria_influence > beastmen_influence, 0, \
                             IF(bastok_influence > sandoria_influence AND bastok_influence > windurst_influence AND \
@@ -410,7 +410,7 @@ namespace conquest
         uint8 sandoria = 0;
         uint8 bastok = 0;
         uint8 windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -489,7 +489,7 @@ namespace conquest
         uint8 sandoria = 0;
         uint8 bastok = 0;
         uint8 windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -552,7 +552,7 @@ namespace conquest
 
     uint8 GetRegionOwner(REGIONTYPE RegionID)
     {
-        const int8* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
+        const char* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
         int32 ret = Sql_Query(SqlHandle, Query, RegionID);
 

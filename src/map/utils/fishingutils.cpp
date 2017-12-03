@@ -172,7 +172,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	if (FishingChance <= 20)
 	{
-		const int8* Query = 
+		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
                 "fish.max,"         // 1
@@ -219,7 +219,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	}
 	else
 	{
-		const int8* Query = 
+		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
                 "fish.min,"         // 1

@@ -56,12 +56,12 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 
 			WBUFB(data,(0x0C)) = 0x10;
 
-			snprintf((int8*)data+(0x0D), 24, "string2 %s", PChar->GetName());
+			snprintf((char*)data+(0x0D), 24, "string2 %s", PChar->GetName());
 		}
 	}
 	else
 	{
-		snprintf((int8*)data+(0x0D), 20, "Para0 %d Para1 %d", param0, param1);
+		snprintf((char*)data+(0x0D), 20, "Para0 %d Para1 %d", param0, param1);
 	}
 }
 
@@ -72,9 +72,9 @@ CMessageStandardPacket::CMessageStandardPacket(uint32 param0, uint32 param1, uin
 
 	WBUFW(data,(0x0A)) = MessageID;
 
-	snprintf((int8*)data+(0x0D), 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
+	snprintf((char*)data+(0x0D), 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
 
-	this->size += (strlen((int8*)data+(0x0D)) >> 1) & 0xFE;
+	this->size += (strlen((char*)data+(0x0D)) >> 1) & 0xFE;
 }
 
 /************************************************************************
@@ -92,7 +92,7 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 
 	WBUFW(data,(0x0A)) = MessageID;
 
-	snprintf((int8*)data+(0x0D), 40, "string2 %s string3 %u", PChar->GetName(), param0);
+	snprintf((char*)data+(0x0D), 40, "string2 %s string3 %u", PChar->GetName(), param0);
 
 	//WBUFB(data,(0x2F)) = 0x02;
 }

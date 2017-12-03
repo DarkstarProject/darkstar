@@ -37,7 +37,7 @@ CBlacklistPacket::CBlacklistPacket(uint32 accid, const int8* targetName, int8 ac
 	case 0x01: // Removed successfully..
 		WBUFL(data, 0x04 ) = accid;
 		WBUFB(data, 0x18 ) = action;
-		memcpy(data + 0x08 , targetName, strlen(targetName));
+		memcpy(data + 0x08 , targetName, strlen((const char*)targetName));
 		break;
 
 	case 0x02: // Command error..

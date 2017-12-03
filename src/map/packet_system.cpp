@@ -157,7 +157,7 @@ void(*PacketParser[512])(map_session_data_t*, CCharEntity*, CBasicPacket);
 
 void PrintPacket(CBasicPacket data)
 {
-    int8 message[50];
+    char message[50];
     memset(&message, 0, 50);
 
     for (size_t y = 0; y < data.length(); y++)
@@ -239,7 +239,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         blowfish_init((int8*)session->blowfish.hash, 16, session->blowfish.P, session->blowfish.S[0]);
 
-        int8 session_key[20 * 2 + 1];
+        char session_key[20 * 2 + 1];
         bin2hex(session_key, (uint8*)session->blowfish.key, 20);
 
         uint16 destination = PChar->loc.destination;
@@ -253,7 +253,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
 
-        const int8* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
+        const char* fmtQuery = "UPDATE accounts_sessions SET targid = %u, session_key = x'%s', server_addr = %u, client_port = %u WHERE charid = %u";
 
         // Current zone could either be current zone or destination
         CZone* currentZone = zoneutils::GetZone(PChar->getZone());
@@ -483,7 +483,7 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     // todo: kill player til theyre dead and bsod
-    const int8* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
+    const char* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
     int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
@@ -966,7 +966,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (NewSlotID != ERROR_SLOTID)
         {
-            const int8* Query = "UPDATE char_inventory SET location = %u, slot = %u WHERE charid = %u AND location = %u AND slot = %u;";
+            const char* Query = "UPDATE char_inventory SET location = %u, slot = %u WHERE charid = %u AND location = %u AND slot = %u;";
 
             if (Sql_Query(SqlHandle, Query, ToLocationID, NewSlotID, PChar->id, FromLocationID, FromSlotID) != SQL_ERROR &&
                 Sql_AffectedRows(SqlHandle) != 0)
@@ -1364,12 +1364,12 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 cmd = RBUFB(data, 0x18);
 
     // Attempt to locate the character by their name..
-    const int8* sql = "SELECT charid, accid FROM chars WHERE charname = '%s' LIMIT 1";
+    const char* sql = "SELECT charid, accid FROM chars WHERE charname = '%s' LIMIT 1";
     int32 ret = Sql_Query(SqlHandle, sql, name);
     if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) != 1 || Sql_NextRow(SqlHandle) != SQL_SUCCESS)
     {
         // Send failed..
-        PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+        PChar->pushPacket(new CBlacklistPacket(0, (const int8*)"", 0x02));
         return;
     }
 
@@ -1383,7 +1383,7 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (blacklistutils::IsBlacklisted(PChar->id, charid))
         {
             // We cannot readd this person, fail to add..
-            PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+            PChar->pushPacket(new CBlacklistPacket(0, (const int8*)"", 0x02));
             return;
         }
 
@@ -1391,7 +1391,7 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (blacklistutils::AddBlacklisted(PChar->id, charid))
             PChar->pushPacket(new CBlacklistPacket(accid, name, cmd));
         else
-            PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+            PChar->pushPacket(new CBlacklistPacket(0, (const int8*)"", 0x02));
     }
 
     // User is trying to remove someone from their blacklist..
@@ -1400,7 +1400,7 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (!blacklistutils::IsBlacklisted(PChar->id, charid))
         {
             // We cannot remove this person, fail to remove..
-            PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+            PChar->pushPacket(new CBlacklistPacket(0, (const int8*)"", 0x02));
             return;
         }
 
@@ -1408,12 +1408,12 @@ void SmallPacket0x03D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (blacklistutils::DeleteBlacklisted(PChar->id, charid))
             PChar->pushPacket(new CBlacklistPacket(accid, name, cmd));
         else
-            PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+            PChar->pushPacket(new CBlacklistPacket(0, (const int8*)"", 0x02));
     }
     else
     {
         // Send failed..
-        PChar->pushPacket(new CBlacklistPacket(0, "", 0x02));
+        PChar->pushPacket(new CBlacklistPacket(0, (const int8*)"", 0x02));
     }
 }
 
@@ -1484,7 +1484,7 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CCharSyncPacket(PChar));
 
     // todo: kill player til theyre dead and bsod
-    const int8* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
+    const char* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
     int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
@@ -1556,7 +1556,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         }
 
                         size_t length = 0;
-                        int8* extra = nullptr;
+                        char* extra = nullptr;
                         Sql_GetData(SqlHandle, 5, &extra, &length);
                         memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
@@ -1615,8 +1615,8 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PUBoxItem->setSlotID(PItem->getSlotID());
                 memcpy(PUBoxItem->m_extra, PItem->m_extra, sizeof(PUBoxItem->m_extra));
 
-                int8 extra[sizeof(PItem->m_extra) * 2 + 1];
-                Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+                char extra[sizeof(PItem->m_extra) * 2 + 1];
+                Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
                 ret = Sql_Query(SqlHandle,
                     "INSERT INTO delivery_box(charid, charname, box, slot, itemid, itemsubid, quantity, extra, senderid, sender) VALUES(%u, '%s', 2, %u, %u, %u, %u, '%s', %u, '%s'); ",
@@ -1676,8 +1676,8 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                         if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                         {
-                            int8 extra[sizeof(PItem->m_extra) * 2 + 1];
-                            Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+                            char extra[sizeof(PItem->m_extra) * 2 + 1];
+                            Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
                             ret = Sql_Query(SqlHandle,
                                 "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, extra, senderid, sender) VALUES(%u, '%s', 1, %u, %u, %u, '%s', %u, '%s'); ",
@@ -1835,7 +1835,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         PItem->setQuantity(Sql_GetUIntData(SqlHandle, 2));
 
                         size_t length = 0;
-                        int8* extra = nullptr;
+                        char* extra = nullptr;
                         Sql_GetData(SqlHandle, 3, &extra, &length);
                         memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
@@ -1950,12 +1950,12 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     senderID = Sql_GetUIntData(SqlHandle, 0);
-                    senderName.insert(0, Sql_GetData(SqlHandle, 1));
+                    senderName.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
 
                     if (senderID != 0)
                     {
-                        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
-                        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+                        char extra[sizeof(PItem->m_extra) * 2 + 1];
+                        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
                         // Insert a return record into delivery_box
                         ret = Sql_Query(SqlHandle,
@@ -2180,7 +2180,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CAuctionHousePacket(action));
 
             // A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
-            const int8* Query = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 ORDER BY id ASC LIMIT 7;";
+            const char* Query = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 ORDER BY id ASC LIMIT 7;";
 
             int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
 
@@ -2254,7 +2254,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 return;
             }
 
-            const int8* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(%u,%u,%u,'%s',%u,%u)";
+            const char* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(%u,%u,%u,'%s',%u,%u)";
 
             if (Sql_Query(SqlHandle,
                 fmtQuery,
@@ -2308,7 +2308,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     gil->isType(ITEM_CURRENCY) &&
                     gil->getQuantity() >= price)
                 {
-                    const int8* fmtQuery = "UPDATE auction_house SET buyer_name = '%s', sale = %u, sell_date = %u WHERE itemid = %u AND buyer_name IS NULL AND stack = %u AND price <= %u ORDER BY price LIMIT 1";
+                    const char* fmtQuery = "UPDATE auction_house SET buyer_name = '%s', sale = %u, sell_date = %u WHERE itemid = %u AND buyer_name IS NULL AND stack = %u AND price <= %u ORDER BY price LIMIT 1";
 
                     if (Sql_Query(SqlHandle,
                         fmtQuery,
@@ -2346,7 +2346,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
-                const int8* fmtQuery = "DELETE FROM auction_house WHERE seller = %u AND itemid = %u AND stack = %u AND price = %u AND sale = 0 LIMIT 1;";
+                const char* fmtQuery = "DELETE FROM auction_house WHERE seller = %u AND itemid = %u AND stack = %u AND price = %u AND sale = 0 LIMIT 1;";
                 int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, canceledItem.itemid, canceledItem.stack, canceledItem.price);
                 if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle))
                 {
@@ -3183,7 +3183,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else
             {
                 char victimName[31]{};
-                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], std::min<size_t>(strlen(data[0x0C]), 15));
+                Sql_EscapeStringLen(SqlHandle, victimName, (const char*)data[0x0C], std::min<size_t>(strlen((const char*)data[0x0C]), 15));
                 int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
@@ -3262,7 +3262,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
             {
                 char victimName[31]{};
-                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], std::min<size_t>(strlen(data[0x0C]), 15));
+                Sql_EscapeStringLen(SqlHandle, victimName, (const char*)data[0x0C], std::min<size_t>(strlen((const char*)data[0x0C]), 15));
                 int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
@@ -3474,7 +3474,7 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
         {
             ShowDebug(CL_CYAN"(Alliance)Changing leader to %s\n" CL_RESET, data[0x04]);
-            PChar->PParty->m_PAlliance->assignAllianceLeader(data[0x04]);
+            PChar->PParty->m_PAlliance->assignAllianceLeader((const char*)data[0x04]);
             uint8 data[4] {};
             WBUFL(data, 0) = PChar->PParty->m_PAlliance->m_AllianceID;
             message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
@@ -3806,7 +3806,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
     else if (RBUFB(data, (0x06)) == '#' && PChar->m_GMlevel > 0)
     {
-        message::send(MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, data[7]));
+        message::send(MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, (const char*)data[7]));
     }
     else
     {
@@ -3814,7 +3814,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             if (RBUFB(data, (0x04)) == MESSAGE_SAY)
             {
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, data[6]));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, (const char*)data[6]));
             }
             else
             {
@@ -3830,30 +3830,30 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (map_config.audit_chat == 1 && map_config.audit_say == 1)
                 {
                     std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                    qStr += PChar->GetName();
+                    qStr += (const char*)PChar->GetName();
                     qStr += "','SAY','";
-                    qStr += escape(data[6]);
+                    qStr += escape((const char*)data[6]);
                     qStr += "',current_timestamp());";
                     const char * cC = qStr.c_str();
                     Sql_QueryStr(SqlHandle, cC);
                 }
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, data[6]));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, (const char*)data[6]));
             }
             break;
-            case MESSAGE_EMOTION:    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, data[6])); break;
+            case MESSAGE_EMOTION:    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, (const char*)data[6])); break;
             case MESSAGE_SHOUT:
             {
                 if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
                 {
                     std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                    qStr += PChar->GetName();
+                    qStr += (const char*)PChar->GetName();
                     qStr += "','SHOUT','";
-                    qStr += escape(data[6]);
+                    qStr += escape((const char*)data[6]);
                     qStr += "',current_timestamp());";
                     const char * cC = qStr.c_str();
                     Sql_QueryStr(SqlHandle, cC);
                 }
-                PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT, data[6]));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT, (const char*)data[6]));
             }
             break;
             case MESSAGE_LINKSHELL:
@@ -3863,18 +3863,18 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     int8 packetData[8] {};
                     WBUFL(packetData, 0) = PChar->PLinkshell1->getID();
                     WBUFL(packetData, 4) = PChar->id;
-                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data[6]));
+                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, (const char*)data[6]));
 
                     if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
                     {
-                        std::string name(PChar->PLinkshell1->getName());
-                        DecodeStringLinkshell(&name[0], &name[0]);
+                        std::string name((const char*)PChar->PLinkshell1->getName());
+                        DecodeStringLinkshell((int8*)&name[0], (int8*)&name[0]);
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
-                        qStr += PChar->GetName();
+                        qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
                         qStr += name.c_str();
                         qStr += "','";
-                        qStr += escape(data[6]);
+                        qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
                         Sql_QueryStr(SqlHandle, qStr.c_str());
                     }
@@ -3888,19 +3888,19 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     int8 packetData[8] {};
                     WBUFL(packetData, 0) = PChar->PLinkshell2->getID();
                     WBUFL(packetData, 4) = PChar->id;
-                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, data[6]));
+                    message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, (const char*)data[6]));
 
                     if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
                     {
-                        std::string name(PChar->PLinkshell2->getName());
-                        DecodeStringLinkshell(&name[0], &name[0]);
+                        std::string name((const char*)PChar->PLinkshell2->getName());
+                        DecodeStringLinkshell((int8*)&name[0], (int8*)&name[0]);
 
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
-                        qStr += PChar->GetName();
+                        qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
                         qStr += name.c_str();
                         qStr += "','";
-                        qStr += escape(data[6]);
+                        qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
                         Sql_QueryStr(SqlHandle, qStr.c_str());
                     }
@@ -3914,14 +3914,14 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     int8 packetData[8] {};
                     WBUFL(packetData, 0) = PChar->PParty->GetPartyID();
                     WBUFL(packetData, 4) = PChar->id;
-                    message::send(MSG_CHAT_PARTY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_PARTY, data[6]));
+                    message::send(MSG_CHAT_PARTY, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_PARTY, (const char*)data[6]));
 
                     if (map_config.audit_chat == 1 && map_config.audit_party == 1)
                     {
                         std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                        qStr += PChar->GetName();
+                        qStr += (const char*)PChar->GetName();
                         qStr += "','PARTY','";
-                        qStr += escape(data[6]);
+                        qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
                         Sql_QueryStr(SqlHandle, cC);
@@ -3940,7 +3940,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         int8 packetData[4] {};
                         WBUFL(packetData, 0) = PChar->id;
 
-                        message::send(MSG_CHAT_YELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_YELL, data[6]));
+                        message::send(MSG_CHAT_YELL, packetData, sizeof packetData, new CChatMessagePacket(PChar, MESSAGE_YELL, (const char*)data[6]));
                     }
                     else // You must wait longer to perform that action.
                     {
@@ -3950,9 +3950,9 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
                     {
                         std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                        qStr += PChar->GetName();
+                        qStr += (const char*)PChar->GetName();
                         qStr += "','YELL','";
-                        qStr += escape(data[6]);
+                        qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
                         Sql_QueryStr(SqlHandle, cC);
@@ -3984,21 +3984,21 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
     }
-    string_t RecipientName = string_t(data[5], 15);
+    string_t RecipientName = string_t((const char*)data[5], 15);
 
     int8 packetData[64];
-    strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length() + 1);
+    strncpy((char*)packetData + 4, RecipientName.c_str(), RecipientName.length() + 1);
     WBUFL(packetData, 0) = PChar->id;
-    message::send(MSG_CHAT_TELL, packetData, RecipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, data[20]));
+    message::send(MSG_CHAT_TELL, packetData, RecipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, (const char*)data[20]));
 
     if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
     {
         std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
-        qStr += PChar->GetName();
+        qStr += (const char*)PChar->GetName();
         qStr += "','TELL','";
         qStr += RecipientName.c_str();
         qStr += "','";
-        qStr += escape(data[20]);
+        qStr += escape((const char*)data[20]);
         qStr += "',current_timestamp());";
         const char * cC = qStr.c_str();
         Sql_QueryStr(SqlHandle, cC);
@@ -4121,7 +4121,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             uint32   LinkshellID = 0;
             uint16   LinkshellColor = RBUFW(data, (0x04));
-            string_t LinkshellName = data[12];
+            string_t LinkshellName = (const char*)data[12];
             int8     DecodedName[21];
             int8     EncodedName[16];
 
@@ -4142,10 +4142,10 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
                 PItemLinkshell->SetLSColor(LinkshellColor);
 
-                int8 extra[sizeof(PItemLinkshell->m_extra) * 2 + 1];
+                char extra[sizeof(PItemLinkshell->m_extra) * 2 + 1];
                 Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItemLinkshell->m_extra, sizeof(PItemLinkshell->m_extra));
 
-                const int8* Query = "UPDATE char_inventory SET signature = '%s', extra = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
+                const char* Query = "UPDATE char_inventory SET signature = '%s', extra = '%s', itemId = 513 WHERE charid = %u AND location = 0 AND slot = %u LIMIT 1";
 
                 if (Sql_Query(SqlHandle, Query, DecodedName, extra, PChar->id, SlotID) != SQL_ERROR &&
                     Sql_AffectedRows(SqlHandle) != 0)
@@ -4531,10 +4531,10 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x0DE(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     PChar->bazaar.message.clear();
-    PChar->bazaar.message.insert(0, data[4]);
+    PChar->bazaar.message.insert(0, (const char*)data[4]);
 
-    int8 message[256];
-    Sql_EscapeString(SqlHandle, message, data[4]);
+    char message[256];
+    Sql_EscapeString(SqlHandle, message, (const char*)data[4]);
 
     Sql_Query(SqlHandle, "UPDATE char_stats SET bazaar_message = '%s' WHERE charid = %u;", message, PChar->id);
     return;
@@ -4549,7 +4549,7 @@ void SmallPacket0x0DE(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x0E0(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     PChar->search.message.clear();
-    PChar->search.message.insert(0, data[4]);
+    PChar->search.message.insert(0, (const char*)data[4]);
 
     PChar->search.messagetype = RBUFB(data, (0xA4));
 
@@ -5034,10 +5034,10 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         PItem->setSubType(ITEM_LOCKED);
 
-        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
-        Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+        char extra[sizeof(PItem->m_extra) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
-        const int8* Query =
+        const char* Query =
             "UPDATE char_inventory "
             "SET "
             "extra = '%s' "
@@ -5095,10 +5095,10 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             PItem->setSubType(ITEM_UNLOCKED);
 
-            int8 extra[sizeof(PItem->m_extra) * 2 + 1];
-            Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PItem->m_extra, sizeof(PItem->m_extra));
+            char extra[sizeof(PItem->m_extra) * 2 + 1];
+            Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
-            const int8* Query =
+            const char* Query =
                 "UPDATE char_inventory "
                 "SET "
                 "extra = '%s' "

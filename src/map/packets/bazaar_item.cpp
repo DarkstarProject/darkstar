@@ -57,6 +57,6 @@ CBazaarItemPacket::CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax)
 	        WBUFL(data,(0x15)) = nextUseTime;												// таймер следующего использования
 		    WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + currentTime;		// таймер задержки использования
 	    }
-	    memcpy(data+(0x1D), PItem->getSignature(), std::min<size_t>(strlen(PItem->getSignature()), 12));
+	    memcpy(data+(0x1D), PItem->getSignature(), std::min<size_t>(strlen((const char*)PItem->getSignature()), 12));
     }
 }

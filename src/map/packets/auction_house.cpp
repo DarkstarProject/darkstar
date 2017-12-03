@@ -130,7 +130,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, uint8 message, CCharEntit
         WBUFB(data,(0x14)) = 0x03;
         WBUFB(data,(0x16)) = 0x01; // Value is changed, the purpose is unknown UNKNOWN
 
-        memcpy(data+(0x18), PChar->GetName(), std::clamp<size_t>(strlen(PChar->GetName()), 0, 16));
+        memcpy(data+(0x18), PChar->GetName(), std::clamp<size_t>(strlen((const char*)PChar->GetName()), 0, 16));
 
         WBUFW(data,(0x28)) = PChar->m_ah_history.at(slot).itemid;    // Id sell items item id
         WBUFB(data,(0x2A)) = 1 - PChar->m_ah_history.at(slot).stack; // Number of items stack size

@@ -32,7 +32,7 @@ namespace blacklistutils
 {
 	bool IsBlacklisted(uint32 ownerId, uint32 targetId)
 	{
-		const int8* sql = "SELECT * FROM char_blacklist WHERE charid_owner = %u AND charid_target = %u;";
+		const char* sql = "SELECT * FROM char_blacklist WHERE charid_owner = %u AND charid_target = %u;";
 		int32 ret = Sql_Query(SqlHandle, sql, ownerId, targetId);
 
 		return (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1);
@@ -43,7 +43,7 @@ namespace blacklistutils
 		if (IsBlacklisted(ownerId, targetId))
 			return false;
 
-		const int8* sql = "INSERT INTO char_blacklist (charid_owner, charid_target) VALUES (%u, %u);";
+		const char* sql = "INSERT INTO char_blacklist (charid_owner, charid_target) VALUES (%u, %u);";
 		return (Sql_Query(SqlHandle, sql, ownerId, targetId) != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1);
 	}
 
@@ -52,7 +52,7 @@ namespace blacklistutils
 		if (!IsBlacklisted(ownerId, targetId))
 			return false;
 
-		const int8* sql = "DELETE FROM char_blacklist WHERE charid_owner = %u AND charid_target = %u;";
+		const char* sql = "DELETE FROM char_blacklist WHERE charid_owner = %u AND charid_target = %u;";
 		return (Sql_Query(SqlHandle, sql, ownerId, targetId) != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1);
 	}
 
@@ -61,7 +61,7 @@ namespace blacklistutils
 		std::vector< std::pair< uint32, string_t > > blacklist;
 
 		// Obtain this users blacklist info..
-		const int8* sql = "SELECT c.charid, c.charname FROM char_blacklist AS b INNER JOIN chars AS c ON b.charid_target = c.charid WHERE charid_owner = %u;";
+		const char* sql = "SELECT c.charid, c.charname FROM char_blacklist AS b INNER JOIN chars AS c ON b.charid_target = c.charid WHERE charid_owner = %u;";
 		if (Sql_Query(SqlHandle, sql, PChar->id) == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) 
 		{
 			PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
@@ -73,7 +73,7 @@ namespace blacklistutils
 		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		{
 			uint32 accid_target = Sql_GetUIntData(SqlHandle, 0);
-			string_t targetName = string_t(Sql_GetData(SqlHandle, 1));
+			string_t targetName = (const char*)(Sql_GetData(SqlHandle, 1));
 
 			blacklist.push_back(std::make_pair(accid_target, targetName));
 			currentCount++;

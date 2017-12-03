@@ -308,7 +308,7 @@ inline int32 CLuaStatusEffect::unsetFlag(lua_State* L)
 
 //======================================================//
 
-const int8 CLuaStatusEffect::className[] = "CLuaStatusEffect";
+const char CLuaStatusEffect::className[] = "CLuaStatusEffect";
 
 Lunar<CLuaStatusEffect>::Register_t CLuaStatusEffect::methods[] =
 {

@@ -65,9 +65,9 @@ void CSearchListPacket::AddPlayer(SearchEntity* PPlayer)
     m_offset += 8;
 
     m_offset = packBitsLE(m_data, SEARCH_NAME, m_offset, 5);
-    m_offset = packBitsLE(m_data, strlen((const int8*)PPlayer->name), m_offset, 4);
+    m_offset = packBitsLE(m_data, strlen((const char*)PPlayer->name), m_offset, 4);
 
-    for (uint8 c = 0; c < strlen((const int8*)PPlayer->name); ++c)
+    for (uint8 c = 0; c < strlen((const char*)PPlayer->name); ++c)
     {
         m_offset = packBitsLE(m_data, PPlayer->name[c], m_offset, 7);
     }
