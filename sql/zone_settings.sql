@@ -178,7 +178,7 @@ INSERT INTO `zone_settings` VALUES (129,6,'127.0.0.1',54230,'Ghoyus_Reverie',0,0
 INSERT INTO `zone_settings` VALUES (130,2,'127.0.0.1',54230,'RuAun_Gardens',210,210,101,191,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (131,3,'127.0.0.1',54230,'Mordion_Gaol',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (132,2,'127.0.0.1',54230,'Abyssea-La_Theine',51,51,52,52,0,0.00,154);
-INSERT INTO `zone_settings` VALUES (133,0,'127.0.0.1',0,'133',0,0,0,0,00,0); -- Not a real zone, this is the character selection background before you are in game.
+INSERT INTO `zone_settings` VALUES (133,0,'127.0.0.1',0,'133',0,0,0,0,0.00,0); -- Not a real zone, this is the character selection background before you are in game.
 INSERT INTO `zone_settings` VALUES (134,5,'127.0.0.1',54230,'Dynamis-Beaucedine',121,121,121,121,0,0.00,400);
 INSERT INTO `zone_settings` VALUES (135,5,'127.0.0.1',54230,'Dynamis-Xarcabard',119,119,119,119,0,0.00,400);
 INSERT INTO `zone_settings` VALUES (136,2,'127.0.0.1',54230,'Beaucedine_Glacier_[S]',0,0,101,215,0,0.00,152);
