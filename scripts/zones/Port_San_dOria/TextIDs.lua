@@ -62,3 +62,10 @@ DEGUERENDARS_COP_NOT_COMPLETED = 7945; -- Why must I wait for the Kingdom to iss
 
 -- conquest Base
 CONQUEST_BASE = 7065; -- Tallying conquest results...
+
+-- Lu Shang Brothers
+GALLIJAUX_CARP_STATUS = 8108;
+GALLIJAUX_HELP_OTHER_BROTHER = 8111;
+
+JOULET_CARP_STATUS = 8120;
+JOULET_HELP_OTHER_BROTHER = 8123;

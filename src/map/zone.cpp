@@ -842,7 +842,6 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
-    PChar->ResetLocalVars();
 
     //remove temp items
     charutils::ClearTempItems(PChar);
