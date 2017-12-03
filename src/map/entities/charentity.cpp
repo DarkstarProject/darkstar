@@ -709,7 +709,7 @@ void CCharEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGBAS
 
     if (message)
     {
-        static_cast<CCharEntity*>(this)->pushPacket(message);
+        pushPacket(message);
     }
 }
 
