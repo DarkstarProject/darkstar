@@ -130,7 +130,6 @@ public:
     }
 
     /* Indexer for the data buffer */
-
     template<typename T>
     T& ref(std::size_t index)
     {

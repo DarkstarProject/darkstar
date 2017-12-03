@@ -71,11 +71,11 @@ int32 lobbydata_parse(int32 fd)
     if (sd == nullptr)
     {
         if (RFIFOREST(fd) >= 5 &&
-            ref<uint8>((uint8*)session[fd]->rdata.data(), 0) == 0xA1)
+            ref<uint8>(session[fd]->rdata.data(), 0) == 0xA1)
         {
             char* buff = &session[fd]->rdata[0];
 
-            uint32 accid = ref<uint32>((uint8*)buff, 1);
+            uint32 accid = ref<uint32>(buff, 1);
 
             sd = find_loginsd_byaccid(accid);
             if (sd == nullptr)
@@ -106,10 +106,10 @@ int32 lobbydata_parse(int32 fd)
     if (RFIFOREST(fd) >= 1)
     {
         char* buff = &session[fd]->rdata[0];
-        if (ref<uint8>((uint8*)buff, 0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET, ip2str(session[fd]->client_addr, nullptr));
-        ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", ref<uint8>((uint8*)buff, 0), ip2str(sd->client_addr, nullptr));
+        if (ref<uint8>(buff, 0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET, ip2str(session[fd]->client_addr, nullptr));
+        ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", ref<uint8>(buff, 0), ip2str(sd->client_addr, nullptr));
 
-        int32 code = ref<uint8>((uint8*)buff, 0);
+        int32 code = ref<uint8>(buff, 0);
         switch (code)
         {
         case 0xA1:
@@ -123,7 +123,7 @@ int32 lobbydata_parse(int32 fd)
             char uList[500];
             memset(uList, 0, sizeof(uList));
 
-            sd->servip = ref<uint32>((uint8*)buff, 5);
+            sd->servip = ref<uint32>(buff, 5);
 
             unsigned char CharList[2500];
             memset(CharList, 0, sizeof(CharList));
@@ -193,10 +193,10 @@ int32 lobbydata_parse(int32 fd)
                 uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
 
                 // Update the character and user list content ids..
-                ref<uint32>((uint8*)uList, 16 * (i + 1)) = CharID;
-                ref<uint32>((uint8*)CharList, 32 + 140 * i) = CharID;
+                ref<uint32>(uList, 16 * (i + 1)) = CharID;
+                ref<uint32>(CharList, 32 + 140 * i) = CharID;
 
-                ref<uint32>((uint8*)uList, 20 * (i + 1)) = CharID;
+                ref<uint32>(uList, 20 * (i + 1)) = CharID;
 
                 ////////////////////////////////////////////////////
                 ref<uint32>(CharList, 4 + 32 + i * 140) = CharID;
@@ -266,7 +266,7 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = ref<uint32>((uint8*)session[sd->login_lobbyview_fd]->rdata.data(), 28);
+            uint32 charid = ref<uint32>(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
@@ -460,8 +460,8 @@ int32 lobbyview_parse(int32 fd)
     if (RFIFOREST(fd) >= 9)
     {
         char* buff = &session[fd]->rdata[0];
-        ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", ref<uint8>((uint8*)buff, 8), ip2str(sd->client_addr, nullptr));
-        uint8 code = ref<uint8>((uint8*)buff, 8);
+        ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", ref<uint8>(buff, 8), ip2str(sd->client_addr, nullptr));
+        uint8 code = ref<uint8>(buff, 8);
         switch (code)
         {
         case 0x26:
@@ -525,7 +525,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x14:
         {
             //delete char
-            uint32 CharID = ref<uint32>((uint8*)session[fd]->rdata.data(), 0x20);
+            uint32 CharID = ref<uint32>(session[fd]->rdata.data(), 0x20);
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
@@ -563,7 +563,7 @@ int32 lobbyview_parse(int32 fd)
                 return -1;
             }
             session[sd->login_lobbydata_fd]->wdata.resize(5);
-            ref<uint8>((uint8*)session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x01;
+            ref<uint8>(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x01;
         }
         break;
         case 0x24:
@@ -598,7 +598,7 @@ int32 lobbyview_parse(int32 fd)
             }
 
             session[sd->login_lobbydata_fd]->wdata.resize(5);
-            ref<uint8>((uint8*)session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x02;
+            ref<uint8>(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x02;
         }
         break;
         case 0x21:
@@ -714,12 +714,12 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
     memcpy(createchar.m_name, loginsd->charname, 16);
     memset(&createchar.m_look, 0, sizeof(look_t));
 
-    createchar.m_look.race = ref<uint8>((uint8*)buf, 48);
-    createchar.m_look.size = ref<uint8>((uint8*)buf, 57);
-    createchar.m_look.face = ref<uint8>((uint8*)buf, 60);
+    createchar.m_look.race = ref<uint8>(buf, 48);
+    createchar.m_look.size = ref<uint8>(buf, 57);
+    createchar.m_look.face = ref<uint8>(buf, 60);
 
     // Validate that the job is a starting job.
-    uint8 mjob = ref<uint8>((uint8*)buf, 50);
+    uint8 mjob = ref<uint8>(buf, 50);
     createchar.m_mjob = std::clamp<uint8>(mjob, 1, 6);
 
     // Log that the character attempting to create a non-starting job.
@@ -734,7 +734,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
             createchar.m_mjob);
     }
 
-    createchar.m_nation = ref<uint8>((uint8*)buf, 54);
+    createchar.m_nation = ref<uint8>(buf, 54);
 
     switch (createchar.m_nation)
     {

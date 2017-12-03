@@ -290,10 +290,16 @@ extern int32 naddr_;   // # of ip addresses
 	int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen);
 #endif 
 
-template<typename T>
-T& ref(uint8* buf, std::size_t index)
+template<typename T, typename U>
+T& ref(U* buf, std::size_t index)
 {
     return *reinterpret_cast<T*>(buf + index);
+}
+
+template<typename T, typename U = void*>
+T& ref(void* buf, std::size_t index)
+{
+    return ref<T>((uint8*)buf, index);
 }
 
 #endif // _SOCKET_H //

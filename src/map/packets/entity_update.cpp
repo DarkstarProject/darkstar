@@ -163,7 +163,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         case MODEL_UNK_5:
         case MODEL_AUTOMATON:
         {
-            ref<uint32>(0x30) = ::ref<uint32>((uint8*)&PEntity->look, 0);
+            ref<uint32>(0x30) = ::ref<uint32>(&PEntity->look, 0);
         }
         break;
         case MODEL_EQUIPED:
