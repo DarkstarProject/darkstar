@@ -13549,6 +13549,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messagePublic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
     
     // Variables
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
