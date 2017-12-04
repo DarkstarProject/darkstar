@@ -146,7 +146,7 @@ int32 login_parse(int32 fd)
                             ip |= (port << 32);
 
                             zmq::message_t chardata(sizeof(charid));
-                            ref<uint32>(chardata.data(), 0) = charid;
+                            ref<uint32>((uint8*)chardata.data(), 0) = charid;
                             zmq::message_t empty(0);
 
                             queue_message(ip, MSG_LOGIN, &chardata, &empty);

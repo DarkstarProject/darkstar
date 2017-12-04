@@ -296,10 +296,4 @@ T& ref(U* buf, std::size_t index)
     return *reinterpret_cast<T*>(buf + index);
 }
 
-template<typename T, typename U = void*>
-T& ref(void* buf, std::size_t index)
-{
-    return ref<T>((uint8*)buf, index);
-}
-
 #endif // _SOCKET_H //
