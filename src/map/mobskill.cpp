@@ -102,13 +102,13 @@ void CMobSkill::setAnimationID(uint16 animID)
 
 const int8* CMobSkill::getName() const
 {
-	return m_name.c_str();
+	return (const int8*)m_name.c_str();
 }
 
 void CMobSkill::setName(int8* name)
 {
 	m_name.clear();
-	m_name.insert(0,name);
+	m_name.insert(0, (const char*)name);
 }
 
 void CMobSkill::setAoe(uint8 aoe)

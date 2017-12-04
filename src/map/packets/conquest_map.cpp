@@ -38,7 +38,7 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
 	this->type = 0x5E; 
 	this->size = 0x5A;
 
-    const int8* Query = "SELECT region_id, region_control, region_control_prev, \
+    const char* Query = "SELECT region_id, region_control, region_control_prev, \
                          sandoria_influence, bastok_influence, windurst_influence, \
                          beastmen_influence FROM conquest_system;";
 

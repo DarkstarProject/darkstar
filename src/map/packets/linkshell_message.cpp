@@ -44,9 +44,9 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8*
     }
     if (message)
     {
-        memcpy(data + (0x08), message, std::min<size_t>(strlen(message), 115));
-        memcpy(data + (0x8C), poster, std::min<size_t>(strlen(poster), 15));
-        memcpy(data + (0xA0), lsname, std::min<size_t>(strlen(lsname), 16));
+        memcpy(data + (0x08), message, std::min<size_t>(strlen((const char*)message), 115));
+        memcpy(data + (0x8C), poster, std::min<size_t>(strlen((const char*)poster), 15));
+        memcpy(data + (0xA0), lsname, std::min<size_t>(strlen((const char*)lsname), 16));
 
         ref<uint32>(0x88) = posttime;
     }

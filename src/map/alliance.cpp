@@ -129,7 +129,7 @@ void CAlliance::removeParty(CParty * party)
                                 AND partyid != %d ORDER BY timestamp ASC LIMIT 1;", m_AllianceID, PARTY_LEADER, party->GetPartyID());
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            std::string newLeader(Sql_GetData(SqlHandle, 0));
+            std::string newLeader((const char*)Sql_GetData(SqlHandle, 0));
             assignAllianceLeader(newLeader.c_str());
         }
         if (this->getMainParty() == party)
@@ -308,7 +308,7 @@ void CAlliance::assignAllianceLeader(const char* name)
 
         for (auto PParty : partyList)
         {
-            if (PParty->GetMemberByName(name))
+            if (PParty->GetMemberByName((const int8*)name))
             {
                 this->aLeader = PParty;
                 break;

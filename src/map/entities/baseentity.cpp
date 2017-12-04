@@ -71,7 +71,7 @@ void CBaseEntity::FadeOut()
 
 const int8* CBaseEntity::GetName()
 {
-	return name.c_str();
+	return (const int8*)name.c_str();
 }
 
 uint16 CBaseEntity::getZone()

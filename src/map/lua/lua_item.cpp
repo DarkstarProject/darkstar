@@ -137,7 +137,7 @@ inline int32 CLuaItem::getName(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
-    lua_pushstring(L, m_PLuaItem->getName());
+    lua_pushstring(L, (const char*)m_PLuaItem->getName());
     return 1;
 }
 
@@ -231,7 +231,7 @@ inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
 }
 //==========================================================//
 
-const int8 CLuaItem::className[] = "CItem";
+const char CLuaItem::className[] = "CItem";
 
 Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
 {

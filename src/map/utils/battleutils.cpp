@@ -103,7 +103,7 @@ namespace battleutils
 
     void LoadSkillTable()
     {
-        const int8* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
+        const char* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
 						    FROM skill_caps \
 							ORDER BY level \
 							LIMIT 100";
@@ -147,7 +147,7 @@ namespace battleutils
 
     void LoadWeaponSkillsList()
     {
-        const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
+        const char* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
                             "animationTime, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only, unlock_id "
 							"FROM weapon_skills "
 							"WHERE weaponskillid < %u "
@@ -193,7 +193,7 @@ namespace battleutils
     {
 
         // Load all mob skills
-        const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
+        const char* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
         mob_valid_targets, mob_skill_flag, mob_skill_param, knockback, primary_sc, secondary_sc, tertiary_sc \
         FROM mob_skills;";
@@ -223,7 +223,7 @@ namespace battleutils
             }
         }
 
-        const int8* fmtQuery = "SELECT skill_list_id, mob_skill_id \
+        const char* fmtQuery = "SELECT skill_list_id, mob_skill_id \
         FROM mob_skill_lists;";
 
         ret = Sql_Query(SqlHandle, fmtQuery);
@@ -243,7 +243,7 @@ namespace battleutils
 
     void LoadSkillChainDamageModifiers()
     {
-        const int8* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
+        const char* fmtQuery = "SELECT chain_level, chain_count, initial_modifier, magic_burst_modifier \
                            FROM skillchain_damage_modifiers \
                            ORDER BY chain_level, chain_count";
 

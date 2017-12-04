@@ -130,9 +130,9 @@ int sSocket(int af, int type, int protocol);
 
 #endif
 
-#define TOB(n) ((uint8)((n)&UINT8_MAX))
-#define TOW(n) ((uint16)((n)&UINT16_MAX))
-#define TOL(n) ((uint32)((n)&UINT32_MAX))
+#define TOB(n) ((uint8)((n)&std::numeric_limits<uint8>::max()))
+#define TOW(n) ((uint16)((n)&std::numeric_limits<uint16>::max()))
+#define TOL(n) ((uint32)((n)&std::numeric_limits<uint32>::max()))
 
 extern fd_set readfds;
 extern int fd_max;

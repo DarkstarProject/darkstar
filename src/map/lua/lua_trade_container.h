@@ -33,7 +33,7 @@ class CLuaTradeContainer
     CTradeContainer *m_pMyTradeContainer;
 public:
 
-    static const int8 className[];
+    static const char className[];
     static Lunar<CLuaTradeContainer>::Register_t methods[];
 
     CLuaTradeContainer(lua_State*);

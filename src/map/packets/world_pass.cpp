@@ -44,6 +44,6 @@ CWorldPassPacket::CWorldPassPacket(uint32 WorldPass)
         ref<uint8>(0x08) = 167;     // pass becomes invalid in (hours)
 
         ref<uint8>(0x20) = 0x06;
-        snprintf((int8*)data+(0x10), 10, "%u", WorldPass);
+        snprintf((char*)data+(0x10), 10, "%u", WorldPass);
     }
 }

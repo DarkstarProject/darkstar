@@ -35,9 +35,9 @@ CBlacklistPacket::CBlacklistPacket(uint32 accid, const int8* targetName, int8 ac
 	{
 	case 0x00: // Added successfully..
 	case 0x01: // Removed successfully..
-		ref<uint32>(0x04) = accid;
-		ref<uint8>(0x18) = action;
-		memcpy(data + 0x08 , targetName, strlen(targetName));
+        ref<uint32>(0x04) = accid;
+        ref<uint8>(0x18) = action;
+		memcpy(data + 0x08 , targetName, strlen((const char*)targetName));
 		break;
 
 	case 0x02: // Command error..

@@ -165,7 +165,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
             if (ipstring)
             {
                 int8* ip_string = Sql_GetData(ChatSqlHandle, 0);
-                ip = inet_addr(ip_string);
+                ip = inet_addr((const char*)ip_string);
             }
             else
             {

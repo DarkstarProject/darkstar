@@ -228,7 +228,7 @@ const char* get_git_revision(void)
     // GIT_VER was copied in to working dir post-build
     if ((fp = fopen("GIT_VER", "r")) != NULL)
     {
-        int8 line[1024], w1[1024], w2[1024];
+        char line[1024], w1[1024], w2[1024];
 
         if (fgets(line, 1024, fp) == nullptr)
         {

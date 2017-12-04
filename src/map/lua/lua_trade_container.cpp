@@ -282,7 +282,7 @@ inline int32 CLuaTradeContainer::confirmSlot(lua_State *L)
 
 //======================================================//
 
-const int8 CLuaTradeContainer::className[] = "TradeContainer";
+const char CLuaTradeContainer::className[] = "TradeContainer";
 Lunar<CLuaTradeContainer>::Register_t CLuaTradeContainer::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getGil),

@@ -117,7 +117,7 @@ time_point CBattlefield::getDeadTime()
 
 const int8* CBattlefield::getBcnmName()
 {
-    return m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
 uint8 CBattlefield::getEntrance()
@@ -133,7 +133,7 @@ const BattlefieldRecord& CBattlefield::getRecord() const
 void CBattlefield::setBcnmName(int8* name)
 {
     m_name.clear();
-    m_name.insert(0, name);
+    m_name.insert(0, (const char*)name);
 }
 
 void CBattlefield::setTimeLimit(duration time)
@@ -522,7 +522,7 @@ void CBattlefield::cleanup()
         ShowError("Battlefield handler is null from Battlefield BCNM %i Inst %i \n", m_BcnmID, m_BattlefieldNumber);
     }
 
-    const int8* fmtQuery = "UPDATE bcnm_info SET fastestTime = %u, fastestPartySize =  %u, fastestName = '%s' WHERE bcnmId = %u";
+    const char* fmtQuery = "UPDATE bcnm_info SET fastestTime = %u, fastestPartySize =  %u, fastestName = '%s' WHERE bcnmId = %u";
     Sql_Query(SqlHandle, fmtQuery, std::chrono::duration_cast<std::chrono::seconds>(m_record.clearTime).count(), m_record.partySize, m_record.name.c_str(), m_BcnmID);
 
     m_Handler->wipeBattlefield(this);
@@ -554,7 +554,7 @@ void CBattlefield::beforeCleanup()
             {
                 if (PChar)
                 {
-                    setRecord(PChar->GetName(), (uint8)m_PlayerList.size(), clearTime);
+                    setRecord((const char*)PChar->GetName(), (uint8)m_PlayerList.size(), clearTime);
                     break;
                 }
             }
@@ -677,7 +677,7 @@ void CBattlefield::cleanupDynamis()
     ShowDebug("Dynamis cleanup id:%i \n", this->getID());
 
     //get all mob of this dyna zone
-    const int8* fmtQuery = "SELECT msp.mobid \
+    const char* fmtQuery = "SELECT msp.mobid \
                             FROM mob_spawn_points msp \
                             LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
                             WHERE zoneid = %u";

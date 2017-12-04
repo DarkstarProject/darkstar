@@ -69,7 +69,7 @@ void CTransportHandler::InitializeTransport()
 {
     DSP_DEBUG_BREAK_IF(TransportList.size() != 0);
 
-    const int8* fmtQuery = "SELECT id, transport, door, dock_x, dock_y, dock_z, dock_rot, \
+    const char* fmtQuery = "SELECT id, transport, door, dock_x, dock_y, dock_z, dock_rot, \
                             boundary, zone, anim_arrive, anim_depart, time_offset, time_interval, \
                             time_waiting, time_anim_arrive, time_anim_depart FROM transport LEFT JOIN \
                             zone_settings ON ((transport >> 12) & 0xFFF) = zoneid WHERE \

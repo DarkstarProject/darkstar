@@ -117,7 +117,7 @@ int32 CTCPRequestPacket::GetSize()
 
 int32 CTCPRequestPacket::ReceiveFromSocket()
 {
-    int8 recvbuf[DEFAULT_BUFLEN];
+    char recvbuf[DEFAULT_BUFLEN];
 
     m_size = recv(*m_socket, recvbuf, DEFAULT_BUFLEN, 0);
     if (m_size == -1)
@@ -158,7 +158,7 @@ int32 CTCPRequestPacket::SendRawToSocket(uint8* data, uint32 length)
 {
     int32 iResult;
 
-    iResult = send(*m_socket, (const int8*)data, length, 0);
+    iResult = send(*m_socket, (const char*)data, length, 0);
     if (iResult == SOCKET_ERROR)
     {
 #ifdef WIN32
@@ -200,7 +200,7 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 
     memcpy(&data[length] - 0x04, key + 16, 4);
 
-    iResult = send(*m_socket, (const int8*)data, length, 0);
+    iResult = send(*m_socket, (const char*)data, length, 0);
     if (iResult == SOCKET_ERROR)
     {
 #ifdef WIN32

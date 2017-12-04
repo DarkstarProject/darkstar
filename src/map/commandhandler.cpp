@@ -34,7 +34,7 @@ void CCommandHandler::init(lua_State* L)
 
 int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 {
-    std::istringstream clstream(commandline);
+    std::istringstream clstream((char*)commandline);
     std::string cmdname;
     clstream >> cmdname;
 
@@ -49,7 +49,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    int8 filePath[255] = { 0 };
+    char filePath[255] = { 0 };
     snprintf(filePath, sizeof(filePath), "scripts/commands/%s.lua", cmdname.c_str());
 
     if (luaL_loadfile(m_LState, filePath) || lua_pcall(m_LState, 0, 0, 0))
@@ -102,7 +102,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         return -1;
     }
 
-    const int8* parameters = luaL_checkstring(m_LState, -1);
+    const char* parameters = luaL_checkstring(m_LState, -1);
     if (parameters == nullptr)
     {
         lua_pop(m_LState, -1);
@@ -164,7 +164,7 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
         switch (*parameter)
         {
         case 'b':
-            lua_pushstring(m_LState, commandline);
+            lua_pushstring(m_LState, (const char*)commandline);
             ++cntparam;
             break;
 

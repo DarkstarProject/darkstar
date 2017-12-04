@@ -462,7 +462,7 @@ uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
     return retVal;
 }
 
-int8* EncodeStringLinkshell(int8* signature, int8* target)
+void EncodeStringLinkshell(int8* signature, int8* target)
 {
     uint8 encodedSignature[16];
     memset(encodedSignature, 0, sizeof encodedSignature);
@@ -485,10 +485,10 @@ int8* EncodeStringLinkshell(int8* signature, int8* target)
     leftover = (leftover == 8 || leftover == 2 ? 6 : leftover);
     packBitsLE(encodedSignature, 0xFF, 6 * chars, leftover);
 
-    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+    strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeStringLinkshell(int8* signature, int8* target)
+void DecodeStringLinkshell(int8* signature, int8* target)
 {
     uint8 decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
@@ -517,7 +517,7 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
         else
             decodedSignature[currChar] = tempChar;
     }
-    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+    strncpy((char*)target, (const char*)decodedSignature, sizeof decodedSignature);
 }
 
 int8* EncodeStringSignature(int8* signature, int8* target)
@@ -543,10 +543,10 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     //leftover = (leftover == 8 ? 6 : leftover);
     //packBitsLE(encodedSignature,0xFF,6*chars, leftover);
 
-    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+    return (int8*)strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeStringSignature(int8* signature, int8* target)
+void DecodeStringSignature(int8* signature, int8* target)
 {
     uint8 decodedSignature[16];
     memset(decodedSignature, 0, sizeof decodedSignature);
@@ -564,7 +564,7 @@ int8* DecodeStringSignature(int8* signature, int8* target)
 
         decodedSignature[currChar] = tempChar;
     }
-    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+    strncpy((char*)target, (const char*)decodedSignature, sizeof decodedSignature);
 }
 
 std::string escape(std::string const &s)

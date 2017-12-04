@@ -254,7 +254,7 @@ inline int32 CLuaBattlefield::win(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaBattlefield::className[] = "CBattlefield";
+const char CLuaBattlefield::className[] = "CBattlefield";
 Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getBattlefieldNumber),

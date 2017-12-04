@@ -83,7 +83,7 @@ void CWeaponSkill::setSkillLevel(uint16 level)
 
 const int8* CWeaponSkill::getName()
 {
-	return m_name.c_str();
+	return (const int8*)m_name.c_str();
 }
 
 void CWeaponSkill::setElement(uint8 element)
@@ -109,7 +109,7 @@ void CWeaponSkill::setTertiarySkillchain(uint8 skillchain)
 void CWeaponSkill::setName(int8* name)
 {
 	m_name.clear();
-	m_name.insert(0,name);
+	m_name.insert(0, (const char*)name);
 }
 
 void CWeaponSkill::setAnimationId(int8 id)
