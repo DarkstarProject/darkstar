@@ -134,7 +134,7 @@ function onSpellCast(caster,target,spell)
 
     local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
     if (mpBonusPercent > 0) then
-        caster:addMp(mpBonusPercent);
+        caster:addMP(mpBonusPercent);
     end
 
     return final;
