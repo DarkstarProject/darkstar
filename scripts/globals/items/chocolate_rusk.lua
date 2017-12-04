@@ -3,8 +3,8 @@
 -- Item: chocolate_rusk
 -- Food Effect: 30 Min, All Races
 -----------------------------------------
--- Increases rate of high-quality synthesis. (?)
--- Reduces chance of synthesis material loss. (?)
+-- High-quality success rate +2
+-- Synthesis failure rate -4%
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------
@@ -26,11 +26,11 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    -- target:addMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 2);
-    -- target:addMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 2);
+    target:addMod(MOD_SYNTH_HQ_RATE, 2);
+    target:addMod(MOD_SYNTH_FAIL_RATE, -4);
 end;
 
 function onEffectLose(target, effect)
-    -- target:delMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 2);
-    -- target:delMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 2);
+    target:delMod(MOD_SYNTH_HQ_RATE, 2);
+    target:delMod(MOD_SYNTH_FAIL_RATE, -4);
 end;
