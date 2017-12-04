@@ -89,8 +89,8 @@ void CLinkshell::setMessage(const int8* message, const int8* poster)
         poster, sqlMessage , static_cast<uint32>(time(nullptr)), m_id);
 
     int8 packetData[8] {};
-    WBUFL(packetData, 0) = m_id;
-    WBUFL(packetData, 4) = 0;
+    ref<uint32>(packetData, 0) = m_id;
+    ref<uint32>(packetData, 4) = 0;
     message::send(MSG_CHAT_LINKSHELL, packetData, sizeof packetData, new CLinkshellMessagePacket(poster, message, (const int8*)m_name.c_str(), std::numeric_limits<uint32>::min(), true));
 }
 

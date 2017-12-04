@@ -524,10 +524,10 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
 {
     uint8* data = (uint8*)PTCPRequest.GetData();
 
-    uint16 partyid = RBUFW(data, (0x10));
-    uint16 allianceid = RBUFW(data, (0x14));
-    uint32 linkshellid1 = RBUFL(data, (0x18));
-    uint32 linkshellid2 = RBUFL(data, (0x1C));
+    uint16 partyid = ref<uint16>(data, 0x10);
+    uint16 allianceid = ref<uint16>(data, 0x14);
+    uint32 linkshellid1 = ref<uint32>(data, 0x18);
+    uint32 linkshellid2 = ref<uint32>(data, 0x1C);
 
     ShowMessage("SEARCH::PartyID = %u\n", partyid);
     ShowMessage("SEARCH::LinkshellIDs = %u, %u\n", linkshellid1, linkshellid2);
@@ -628,7 +628,7 @@ void HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
 {
     uint8* data = (uint8*)PTCPRequest.GetData();
-    uint8  AHCatID = RBUFB(data, (0x16));
+    uint8  AHCatID = ref<uint8>(data, 0x16);
 
     //2 - уровень -- level
     //3 - раса -- race
@@ -639,10 +639,10 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
     //8 - сопротивление -- resistance
     //9 - название -- name
     string_t OrderByString = "ORDER BY";
-    uint8 paramCount = RBUFB(data, 0x12);
+    uint8 paramCount = ref<uint8>(data, 0x12);
     for (uint8 i = 0; i < paramCount; ++i) // параметры сортировки предметов
     {
-        uint8 param = RBUFL(data, (0x18) + 8 * i);
+        uint8 param = ref<uint32>(data, 0x18 + 8 * i);
         ShowMessage(" Param%u: %u\n", i, param);
         switch (param) {
         case 2:
@@ -688,8 +688,8 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
 void HandleAuctionHouseHistory(CTCPRequestPacket& PTCPRequest)
 {
     uint8* data = (uint8*)PTCPRequest.GetData();
-    uint16 ItemID = RBUFW(data, (0x12));
-    uint8  stack = RBUFB(data, (0x15));
+    uint16 ItemID = ref<uint16>(data, 0x12);
+    uint8  stack = ref<uint8>(data, 0x15);
 
     CAHHistoryPacket PAHPacket(ItemID);
 
@@ -740,7 +740,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 
 
     uint8* data = (uint8*)PTCPRequest.GetData();
-    uint8  size = RBUFB(data, (0x10));
+    uint8  size = ref<uint8>(data, 0x10);
 
     uint16 workloadBits = size * 8;
 

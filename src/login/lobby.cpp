@@ -71,11 +71,11 @@ int32 lobbydata_parse(int32 fd)
     if (sd == nullptr)
     {
         if (RFIFOREST(fd) >= 5 &&
-            RBUFB(session[fd]->rdata.data(), 0) == 0xA1)
+            ref<uint8>(session[fd]->rdata.data(), 0) == 0xA1)
         {
             char* buff = &session[fd]->rdata[0];
 
-            uint32 accid = RBUFL(buff, 1);
+            uint32 accid = ref<uint32>(buff, 1);
 
             sd = find_loginsd_byaccid(accid);
             if (sd == nullptr)
@@ -106,10 +106,10 @@ int32 lobbydata_parse(int32 fd)
     if (RFIFOREST(fd) >= 1)
     {
         char* buff = &session[fd]->rdata[0];
-        if (RBUFB(buff, 0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET, ip2str(session[fd]->client_addr, nullptr));
-        ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", RBUFB(buff, 0), ip2str(sd->client_addr, nullptr));
+        if (ref<uint8>(buff, 0) == 0x0d) ShowDebug(CL_RED"Posible Crash Attempt from IP: " CL_WHITE"<%s>\n" CL_RESET, ip2str(session[fd]->client_addr, nullptr));
+        ShowDebug("lobbydata_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", ref<uint8>(buff, 0), ip2str(sd->client_addr, nullptr));
 
-        int32 code = RBUFB(buff, 0);
+        int32 code = ref<uint8>(buff, 0);
         switch (code)
         {
         case 0xA1:
@@ -123,7 +123,7 @@ int32 lobbydata_parse(int32 fd)
             char uList[500];
             memset(uList, 0, sizeof(uList));
 
-            sd->servip = RBUFL(buff, 5);
+            sd->servip = ref<uint32>(buff, 5);
 
             unsigned char CharList[2500];
             memset(CharList, 0, sizeof(CharList));
@@ -193,31 +193,31 @@ int32 lobbydata_parse(int32 fd)
                 uint8 lvlMainJob = (uint8)Sql_GetIntData(SqlHandle, 13 + MainJob);
 
                 // Update the character and user list content ids..
-                WBUFL(uList, 16 * (i + 1)) = CharID;
-                WBUFL(CharList, 32 + 140 * i) = CharID;
+                ref<uint32>(uList, 16 * (i + 1)) = CharID;
+                ref<uint32>(CharList, 32 + 140 * i) = CharID;
 
-                WBUFL(uList, 20 * (i + 1)) = CharID;
+                ref<uint32>(uList, 20 * (i + 1)) = CharID;
 
                 ////////////////////////////////////////////////////
-                WBUFL(CharList, 4 + 32 + i * 140) = CharID;
+                ref<uint32>(CharList, 4 + 32 + i * 140) = CharID;
 
                 memcpy(CharList + 12 + 32 + i * 140, strCharName, 15);
 
-                WBUFB(CharList, 46 + 32 + i * 140) = MainJob;
-                WBUFB(CharList, 73 + 32 + i * 140) = lvlMainJob;
+                ref<uint8>(CharList, 46 + 32 + i * 140) = MainJob;
+                ref<uint8>(CharList, 73 + 32 + i * 140) = lvlMainJob;
 
-                WBUFB(CharList, 44 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 5); // race;
-                WBUFB(CharList, 56 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 6); // face;
-                WBUFW(CharList, 58 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 7); // head;
-                WBUFW(CharList, 60 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 8); // body;
-                WBUFW(CharList, 62 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 9); // hands;
-                WBUFW(CharList, 64 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 10); // legs;
-                WBUFW(CharList, 66 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 11); // feet;
-                WBUFW(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
-                WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
+                ref<uint8>(CharList, 44 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 5); // race;
+                ref<uint8>(CharList, 56 + 32 + i * 140) = (uint8)Sql_GetIntData(SqlHandle, 6); // face;
+                ref<uint16>(CharList, 58 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 7); // head;
+                ref<uint16>(CharList, 60 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 8); // body;
+                ref<uint16>(CharList, 62 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 9); // hands;
+                ref<uint16>(CharList, 64 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 10); // legs;
+                ref<uint16>(CharList, 66 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 11); // feet;
+                ref<uint16>(CharList, 68 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 12); // main;
+                ref<uint16>(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)zone;
-                WBUFW(CharList, 78 + 32 + i * 140) = zone;
+                ref<uint8>(CharList, 72 + 32 + i * 140) = (uint8)zone;
+                ref<uint16>(CharList, 78 + 32 + i * 140) = zone;
                 ///////////////////////////////////////////////////
                 ++i;
             }
@@ -266,7 +266,7 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = RBUFL(session[sd->login_lobbyview_fd]->rdata.data(), 28);
+            uint32 charid = ref<uint32>(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
@@ -289,24 +289,24 @@ int32 lobbydata_parse(int32 fd)
 
                 ZoneIP = inet_addr((const char*)Sql_GetData(SqlHandle, 0));
                 ZonePort = (uint16)Sql_GetUIntData(SqlHandle, 1);
-                WBUFL(ReservePacket, (0x38)) = ZoneIP;
-                WBUFW(ReservePacket, (0x3C)) = ZonePort;
+                ref<uint32>(ReservePacket, (0x38)) = ZoneIP;
+                ref<uint16>(ReservePacket, (0x3C)) = ZonePort;
                 ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);
             }
             else
             {
                 ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
-                WBUFL(ReservePacket, (0x38)) = sd->servip;  // map-server ip
-              //WBUFW(ReservePacket,(0x3C)) = port;         // map-server port
+                ref<uint32>(ReservePacket, (0x38)) = sd->servip;  // map-server ip
+              //ref<uint16>(ReservePacket,(0x3C)) = port;         // map-server port
             }
 
             if (PrevZone == 0)
                 Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
 
-            WBUFL(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
-            WBUFW(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
+            ref<uint32>(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
+            ref<uint16>(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
 
-            memcpy(MainReservePacket, ReservePacket, RBUFB(ReservePacket, 0));
+            memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
 
             // необходиму одалять сессию, необработанную игровым сервером
             Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE accid = %u and client_port = 0", sd->accid);
@@ -322,15 +322,15 @@ int32 lobbydata_parse(int32 fd)
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
                 // устанавливаем код ошибки
                 // Unable to connect to world server. Specified operation failed
-                WBUFW(ReservePacket, 32) = 305;
-                memcpy(MainReservePacket, ReservePacket, RBUFB(ReservePacket, 0));
+                ref<uint16>(ReservePacket, 32) = 305;
+                memcpy(MainReservePacket, ReservePacket, ref<uint8>(ReservePacket, 0));
             }
 
             fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
             Sql_Query(SqlHandle, fmtQuery, charid);
 
             unsigned char Hash[16];
-            uint8 SendBuffSize = RBUFB(MainReservePacket, 0);
+            uint8 SendBuffSize = ref<uint8>(MainReservePacket, 0);
 
             memset(MainReservePacket + 12, 0, sizeof(Hash));
             md5(MainReservePacket, Hash, SendBuffSize);
@@ -460,8 +460,8 @@ int32 lobbyview_parse(int32 fd)
     if (RFIFOREST(fd) >= 9)
     {
         char* buff = &session[fd]->rdata[0];
-        ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", RBUFB(buff, 8), ip2str(sd->client_addr, nullptr));
-        uint8 code = RBUFB(buff, 8);
+        ShowDebug("lobbyview_parse:Incoming Packet:" CL_WHITE"<%x>" CL_RESET" from ip:<%s>\n", ref<uint8>(buff, 8), ip2str(sd->client_addr, nullptr));
+        uint8 code = ref<uint8>(buff, 8);
         switch (code)
         {
         case 0x26:
@@ -490,7 +490,7 @@ int32 lobbyview_parse(int32 fd)
                 sendsize = 0x24;
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
 
-                WBUFW(ReservePacket, 32) = 331;
+                ref<uint16>(ReservePacket, 32) = 331;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
             }
             else
@@ -500,8 +500,8 @@ int32 lobbyview_parse(int32 fd)
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     LOBBY_026_RESERVEPACKET(ReservePacket);
-                    WBUFW(ReservePacket, 32) = Sql_GetUIntData(SqlHandle, 0); // Expansion Bitmask
-                    WBUFW(ReservePacket, 36) = Sql_GetUIntData(SqlHandle, 1); // Feature Bitmask
+                    ref<uint16>(ReservePacket, 32) = Sql_GetUIntData(SqlHandle, 0); // Expansion Bitmask
+                    ref<uint16>(ReservePacket, 36) = Sql_GetUIntData(SqlHandle, 1); // Feature Bitmask
                     memcpy(MainReservePacket, ReservePacket, sendsize);
                 }
                 else
@@ -525,7 +525,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x14:
         {
             //delete char
-            uint32 CharID = RBUFL(session[fd]->rdata.data(), 0x20);
+            uint32 CharID = ref<uint32>(session[fd]->rdata.data(), 0x20);
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
@@ -563,7 +563,7 @@ int32 lobbyview_parse(int32 fd)
                 return -1;
             }
             session[sd->login_lobbydata_fd]->wdata.resize(5);
-            WBUFB(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x01;
+            ref<uint8>(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x01;
         }
         break;
         case 0x24:
@@ -598,7 +598,7 @@ int32 lobbyview_parse(int32 fd)
             }
 
             session[sd->login_lobbydata_fd]->wdata.resize(5);
-            WBUFB(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x02;
+            ref<uint8>(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x02;
         }
         break;
         case 0x21:
@@ -660,7 +660,7 @@ int32 lobbyview_parse(int32 fd)
 
                 // The character name you entered is unavailable. Please choose another name.
                 // сообщение отображается на японском
-                WBUFW(ReservePacket, 32) = 313;
+                ref<uint16>(ReservePacket, 32) = 313;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
             }
             else {
@@ -714,12 +714,12 @@ int32 lobby_createchar(login_session_data_t *loginsd, int8 *buf)
     memcpy(createchar.m_name, loginsd->charname, 16);
     memset(&createchar.m_look, 0, sizeof(look_t));
 
-    createchar.m_look.race = RBUFB(buf, 48);
-    createchar.m_look.size = RBUFB(buf, 57);
-    createchar.m_look.face = RBUFB(buf, 60);
+    createchar.m_look.race = ref<uint8>(buf, 48);
+    createchar.m_look.size = ref<uint8>(buf, 57);
+    createchar.m_look.face = ref<uint8>(buf, 60);
 
     // Validate that the job is a starting job.
-    uint8 mjob = RBUFB(buf, 50);
+    uint8 mjob = ref<uint8>(buf, 50);
     createchar.m_mjob = std::clamp<uint8>(mjob, 1, 6);
 
     // Log that the character attempting to create a non-starting job.
@@ -734,7 +734,7 @@ int32 lobby_createchar(login_session_data_t *loginsd, int8 *buf)
             createchar.m_mjob);
     }
 
-    createchar.m_nation = RBUFB(buf, 54);
+    createchar.m_nation = ref<uint8>(buf, 54);
 
     switch (createchar.m_nation)
     {

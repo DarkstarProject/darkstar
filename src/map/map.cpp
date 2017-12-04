@@ -471,7 +471,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     {
         if (map_session_data->PChar == nullptr)
         {
-            uint32 CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
+            uint32 CharID = ref<uint32>(buff, FFXI_HEADER_SIZE + 0x0C);
 
             const char* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
 
@@ -527,7 +527,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             return -1;
         }
         // reading data size
-        uint32 PacketDataSize = RBUFL(buff, *buffsize - sizeof(int32) - 16);
+        uint32 PacketDataSize = ref<uint32>(buff, *buffsize - sizeof(int32) - 16);
         // creating buffer for decompress data
         auto PacketDataBuff = std::make_unique<int8[]>(map_config.buffer_size);
         // it's decompressing data and getting new size
@@ -563,28 +563,28 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
     uint16 SmallPD_Size = 0;
     uint16 SmallPD_Type = 0;
-    uint16 SmallPD_Code = RBUFW(buff, 0);
+    uint16 SmallPD_Code = ref<uint16>(buff, 0);
 
     for (int8* SmallPD_ptr = PacketData_Begin;
-        SmallPD_ptr + (RBUFB(SmallPD_ptr, 1) & 0xFE) * 2 <= PacketData_End && (RBUFB(SmallPD_ptr, 1) & 0xFE);
+        SmallPD_ptr + (ref<uint8>(SmallPD_ptr, 1) & 0xFE) * 2 <= PacketData_End && (ref<uint8>(SmallPD_ptr, 1) & 0xFE);
         SmallPD_ptr = SmallPD_ptr + SmallPD_Size * 2)
     {
-        SmallPD_Size = (RBUFB(SmallPD_ptr, 1) & 0x0FE);
-        SmallPD_Type = (RBUFW(SmallPD_ptr, 0) & 0x1FF);
+        SmallPD_Size = (ref<uint8>(SmallPD_ptr, 1) & 0x0FE);
+        SmallPD_Type = (ref<uint16>(SmallPD_ptr, 0) & 0x1FF);
 
         if (PacketSize[SmallPD_Type] == SmallPD_Size || PacketSize[SmallPD_Type] == 0) // Tests incoming packets for the correct size prior to processing
         {
             // если код текущего пакета меньше либо равен последнему полученному
             // или больше глобального то игнорируем пакет
 
-            if ((RBUFW(SmallPD_ptr, 2) <= map_session_data->client_packet_id) ||
-                (RBUFW(SmallPD_ptr, 2) > SmallPD_Code))
+            if ((ref<uint16>(SmallPD_ptr, 2) <= map_session_data->client_packet_id) ||
+                (ref<uint16>(SmallPD_ptr, 2) > SmallPD_Code))
             {
                 continue;
             }
             if (SmallPD_Type != 0x15)
             {
-                ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr, 2), RBUFW(buff, 2), SmallPD_Size, PChar->GetName());
+                ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, ref<uint16>(SmallPD_ptr, 2), ref<uint16>(buff, 2), SmallPD_Size, PChar->GetName());
             }
             if (PChar->loc.zone == nullptr && SmallPD_Type != 0x0A)
             {
@@ -597,7 +597,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
         }
         else
         {
-            ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr, 2), RBUFW(buff, 2), SmallPD_Size, PChar->GetName());
+            ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, ref<uint16>(SmallPD_ptr, 2), ref<uint16>(buff, 2), SmallPD_Size, PChar->GetName());
         }
     }
     map_session_data->client_packet_id = SmallPD_Code;
@@ -605,10 +605,10 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
     // здесь мы проверяем, получил ли клиент предыдущий пакет
     // если не получил, то мы не создаем новый, а отправляем предыдущий
 
-    if (RBUFW(buff, 2) != map_session_data->server_packet_id)
+    if (ref<uint16>(buff, 2) != map_session_data->server_packet_id)
     {
-        WBUFW(map_session_data->server_packet_data, 2) = SmallPD_Code;
-        WBUFW(map_session_data->server_packet_data, 8) = (uint32)time(nullptr);
+        ref<uint16>(map_session_data->server_packet_data, 2) = SmallPD_Code;
+        ref<uint16>(map_session_data->server_packet_data, 8) = (uint32)time(nullptr);
 
         g_PBuff = map_session_data->server_packet_data;
         *buffsize = map_session_data->server_packet_size;
@@ -638,11 +638,11 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     //  - присвоить исходящему пакету номер последнего отправленного клиенту пакета +1
     //  - записать текущее время отправки пакета
 
-    WBUFW(buff, 0) = map_session_data->server_packet_id;
-    WBUFW(buff, 2) = map_session_data->client_packet_id;
+    ref<uint16>(buff, 0) = map_session_data->server_packet_id;
+    ref<uint16>(buff, 2) = map_session_data->client_packet_id;
 
     // сохранение текущего времени (32 BIT!)
-    WBUFL(buff, 8) = (uint32)time(nullptr);
+    ref<uint32>(buff, 8) = (uint32)time(nullptr);
 
     // собираем большой пакет, состоящий из нескольких маленьких
     CCharEntity *PChar = map_session_data->PChar;
@@ -682,7 +682,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 continue;
             }
 
-            WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
+            ref<uint32>(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
             PacketSize = (uint32)zlib_compressed_size(PacketSize) + 4;
 

@@ -60,7 +60,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
         zSocket->send(to, ZMQ_SNDMORE);
 
         zmq::message_t newType(sizeof(MSGSERVTYPE));
-        WBUFB(newType.data(), 0) = type;
+        ref<uint8>((uint8*)newType.data(), 0) = type;
         zSocket->send(newType, ZMQ_SNDMORE);
 
         zmq::message_t newExtra(extra->size());
@@ -85,8 +85,8 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     bool ipstring = false;
     if (from)
     {
-        from_ip.s_addr = RBUFL(from->data(), 0);
-        from_port = RBUFW(from->data(), 4);
+        from_ip.s_addr = ref<uint32>((uint8*)from->data(), 0);
+        from_port = ref<uint16>((uint8*)from->data(), 4);
     }
     switch (type)
     {
@@ -100,7 +100,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
         if (Sql_NumRows(ChatSqlHandle) == 0)
         {
             query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d LIMIT 1;";
-            ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+            ret = Sql_Query(ChatSqlHandle, query, ref<uint32>((uint8*)extra->data(), 0));
         }
         break;
     }
@@ -110,7 +110,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
                       							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
-        uint32 partyid = RBUFL(extra->data(), 0);
+        uint32 partyid = ref<uint32>((uint8*)extra->data(), 0);
         ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
         break;
     }
@@ -118,7 +118,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions \
                       						WHERE linkshellid1 = %d OR linkshellid2 = %d GROUP BY server_addr, server_port; ";
-        ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0), RBUFL(extra->data(), 0));
+        ret = Sql_Query(ChatSqlHandle, query, ref<uint32>((uint8*)extra->data(), 0), ref<uint32>((uint8*)extra->data(), 0));
         break;
     }
     case MSG_CHAT_YELL:
@@ -141,7 +141,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_SEND_TO_ZONE:
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
-        ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
+        ret = Sql_Query(ChatSqlHandle, query, ref<uint32>((uint8*)extra->data(), 0));
         break;
     }
     case MSG_LOGIN:
@@ -178,7 +178,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
             ip |= (port << 32);
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
             {
-                WBUFL(extra->data(), 0) = Sql_GetUIntData(ChatSqlHandle, 2);
+                ref<uint32>((uint8*)extra->data(), 0) = Sql_GetUIntData(ChatSqlHandle, 2);
             }
             message_server_send(ip, type, extra, packet);
         }
@@ -240,7 +240,7 @@ void message_server_listen()
             ShowError("Message: %s\n", e.what());
             continue;
         }
-        message_server_parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet, &from);
+        message_server_parse((MSGSERVTYPE)ref<uint8>((uint8*)type.data(), 0), &extra, &packet, &from);
     }
 }
 

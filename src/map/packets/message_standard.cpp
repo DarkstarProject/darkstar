@@ -35,7 +35,7 @@ CMessageStandardPacket::CMessageStandardPacket(uint16 MessageID)
     this->type = 0x09;
 	this->size = 0x08;
 
-    WBUFW(data,(0x0A)) = MessageID;
+    ref<uint16>(0x0A) = MessageID;
 }
 
 CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID)
@@ -43,18 +43,18 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 	this->type = 0x09;
 	this->size = 0x12;
 
-	WBUFW(data,(0x0A)) = MessageID;
+	ref<uint16>(0x0A) = MessageID;
 
 	if (PChar != nullptr)
 	{
-		WBUFL(data,(0x04)) = PChar->id;
-		WBUFW(data,(0x08)) = PChar->targid;
+		ref<uint32>(0x04) = PChar->id;
+		ref<uint16>(0x08) = PChar->targid;
 		
 		if (MessageID == 0x59) 
 		{
 			this->size = 0x30;
 
-			WBUFB(data,(0x0C)) = 0x10;
+			ref<uint8>(0x0C) = 0x10;
 
 			snprintf((char*)data+(0x0D), 24, "string2 %s", PChar->GetName());
 		}
@@ -70,7 +70,7 @@ CMessageStandardPacket::CMessageStandardPacket(uint32 param0, uint32 param1, uin
 	this->type = 0x09;
 	this->size = 0x08;
 
-	WBUFW(data,(0x0A)) = MessageID;
+	ref<uint16>(0x0A) = MessageID;
 
 	snprintf((char*)data+(0x0D), 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
 
@@ -90,9 +90,9 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 
 	//DSP_DEBUG_BREAK_IF(MessageID != 0x58);
 
-	WBUFW(data,(0x0A)) = MessageID;
+	ref<uint16>(0x0A) = MessageID;
 
 	snprintf((char*)data+(0x0D), 40, "string2 %s string3 %u", PChar->GetName(), param0);
 
-	//WBUFB(data,(0x2F)) = 0x02;
+	//ref<uint8>(data,(0x2F)) = 0x02;
 }

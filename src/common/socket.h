@@ -129,19 +129,6 @@ int sSocket(int af, int type, int protocol);
 #define sFD_ZERO FD_ZERO
 
 #endif
-// buffer I/O macros
-#define RBUFP(p,pos) (((uint8*)(p)) + (pos))
-#define RBUFB(p,pos) (*(uint8*)RBUFP((p),(pos)))
-#define RBUFW(p,pos) (*(uint16*)RBUFP((p),(pos)))
-#define RBUFL(p,pos) (*(uint32*)RBUFP((p),(pos)))
-#define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
-
-#define WBUFP(p,pos) (((uint8*)(p)) + (pos))
-#define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
-#define WBUFW(p,pos) (*(uint16*)WBUFP((p),(pos)))
-#define WBUFL(p,pos) (*(uint32*)WBUFP((p),(pos)))
-#define WBUFU(p,pos) (*(uint64*)WBUFP((p),(pos)))
-#define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
 
 #define TOB(n) ((uint8)((n)&std::numeric_limits<uint8>::max()))
 #define TOW(n) ((uint16)((n)&std::numeric_limits<uint16>::max()))
@@ -303,5 +290,10 @@ extern int32 naddr_;   // # of ip addresses
 	int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen);
 #endif 
 
+template<typename T, typename U>
+T& ref(U* buf, std::size_t index)
+{
+    return *reinterpret_cast<T*>(buf + index);
+}
 
 #endif // _SOCKET_H //

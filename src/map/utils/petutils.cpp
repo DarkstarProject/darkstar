@@ -750,7 +750,7 @@ namespace petutils
             jobStat = jobStat * 1.5f; //stats from subjob (assuming BLM/BLM for avatars)
 
             // Вывод значения
-            WBUFW(&PPet->stats, counter) = (uint16)(raceStat + jobStat);
+            ref<uint16>(&PPet->stats, counter) = (uint16)(raceStat + jobStat);
             counter += 2;
         }
     }

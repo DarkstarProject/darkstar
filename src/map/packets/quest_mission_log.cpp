@@ -118,7 +118,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
     }
 
     // Write the byte that informs FFXI client what kind of Quest/Mission log update this packet is.
-    WBUFW(data, (0x24)) = packetType;
+    ref<uint16>(0x24) = packetType;
 }
 
 void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE status)
@@ -146,16 +146,16 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
     uint32 rov = PChar->m_missionLog[MISSION_ROV].current + 0x6C;
 
     // While current National Missions + Zilart Mission are updated in this packet, completed missions are sent in a separate one.
-    WBUFB(data, (0x04)) = PChar->profile.nation;                                // Nation
-    WBUFW(data, (0x08)) = PChar->m_missionLog[PChar->profile.nation].current;   // National Missions
-    WBUFW(data, (0x0C)) = PChar->m_missionLog[MISSION_ZILART].current;          // Rise of the Zilart
+    ref<uint8>(0x04) = PChar->profile.nation;                                // Nation
+    ref<uint16>(0x08) = PChar->m_missionLog[PChar->profile.nation].current;   // National Missions
+    ref<uint16>(0x0C) = PChar->m_missionLog[MISSION_ZILART].current;          // Rise of the Zilart
 
     // But for COP, Add-On Scenarios, SOA, and ROV, sending the current mission will also update that log's completed missions.
-    WBUFL(data, (0x10)) = chains;												// Chains of Promathia Missions
-    //WBUFB(data,(0x16)) = 0x30;                                                // назначение неизвестно
-    WBUFW(data, (0x18)) = add_on_scenarios;                                     // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
-    WBUFW(data, (0x1C)) = soa;                                                  // Seekers of Adoulin
-    WBUFW(data, (0x20)) = rov;                                                  // Rhapsodies of Vana'diel
+    ref<uint32>(0x10) = chains;												// Chains of Promathia Missions
+    //ref<uint8>(data,(0x16)) = 0x30;                                                // назначение неизвестно
+    ref<uint16>(0x18) = add_on_scenarios;                                     // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
+    ref<uint16>(0x1C) = soa;                                                  // Seekers of Adoulin
+    ref<uint16>(0x20) = rov;                                                  // Rhapsodies of Vana'diel
 }
 
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
@@ -171,10 +171,10 @@ void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar
 {
     // This function writes the current Assault, TOAU, WOTG, and Campaign mission onto a packet already
     // being prepared by generateQuestPacket for TOAU quests, since they're all updated simultaneously.
-    WBUFW(data, (0x14)) = PChar->m_assaultLog.current;                  // Assault Missions
-    WBUFW(data, (0x18)) = PChar->m_missionLog[MISSION_TOAU].current;    // Treasures of Aht Urhgan
-    WBUFW(data, (0x1C)) = PChar->m_missionLog[MISSION_WOTG].current;    // Wings of the Goddess
-    WBUFW(data, (0x20)) = PChar->m_campaignLog.current;                 // Campaign Operations
+    ref<uint16>(0x14) = PChar->m_assaultLog.current;                  // Assault Missions
+    ref<uint16>(0x18) = PChar->m_missionLog[MISSION_TOAU].current;    // Treasures of Aht Urhgan
+    ref<uint16>(0x1C) = PChar->m_missionLog[MISSION_WOTG].current;    // Wings of the Goddess
+    ref<uint16>(0x20) = PChar->m_campaignLog.current;                 // Campaign Operations
 }
 
 void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar)

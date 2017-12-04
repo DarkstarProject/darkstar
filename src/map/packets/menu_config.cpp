@@ -33,14 +33,14 @@ CMenuConfigPacket::CMenuConfigPacket(CCharEntity* PChar)
     this->type = 0xB4;
     this->size = 0x0C;
 	
-    WBUFB(data,(0x04)) = 0x18 + (PChar->nameflags.flags & FLAG_INVITE ? 1 : 0);
-    WBUFB(data,(0x05))|= PChar->m_hasAutoTarget ? 0 : 0x40;
-  //WBUFB(data,(0x05))|= PChar->nameflags.flags & FLAG_AUTOGROUP ? 0x80 : 0;  
-    WBUFB(data,(0x07)) = 0x04;
-  //WBUFB(data, (0x07)) |= party request mode ? 0x20 : 0;
+    ref<uint8>(0x04) = 0x18 + (PChar->nameflags.flags & FLAG_INVITE ? 1 : 0);
+    ref<uint8>(0x05)|= PChar->m_hasAutoTarget ? 0 : 0x40;
+  //ref<uint8>(0x05)|= PChar->nameflags.flags & FLAG_AUTOGROUP ? 0x80 : 0;  
+    ref<uint8>(0x07) = 0x04;
+  //ref<uint8>(0x07) |= party request mode ? 0x20 : 0;
 
-    WBUFB(data,(0x12)) = 0x02;
-    WBUFB(data,(0x14)) = 0x02;
+    ref<uint8>(0x12) = 0x02;
+    ref<uint8>(0x14) = 0x02;
 }
 
 // активные поля data[0x07]

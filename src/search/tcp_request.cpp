@@ -134,16 +134,16 @@ int32 CTCPRequestPacket::ReceiveFromSocket()
         //ShowError("TCP Connection closing...\n");
         return 0;
     }
-    if (m_size != RBUFW(recvbuf, (0x00)) || m_size < 28)
+    if (m_size != ref<uint16>(recvbuf, (0x00)) || m_size < 28)
     {
-        ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n" CL_RESET, m_size, RBUFW(recvbuf, (0x00)));
+        ShowError(CL_RED"Search packetsize wrong. Size %d should be %d.\n" CL_RESET, m_size, ref<uint16>(recvbuf, (0x00)));
         return 0;
     }
     delete[] m_data;
     m_data = new uint8[m_size];
 
     memcpy(&m_data[0], &recvbuf[0], m_size);
-    WBUFL(key, (16)) = RBUFL(m_data, (m_size - 4));
+    ref<uint32>(key, (16)) = ref<uint32>(m_data, (m_size - 4));
 
     return decipher();
 }
@@ -181,8 +181,8 @@ int32 CTCPRequestPacket::SendToSocket(uint8* data, uint32 length)
 {
     int32 iResult;
 
-    WBUFW(data, (0x00)) = length;          // packet size
-    WBUFL(data, (0x04)) = 0x46465849;      // "IXFF"
+    ref<uint16>(data, (0x00)) = length;          // packet size
+    ref<uint32>(data, (0x04)) = 0x46465849;      // "IXFF"
 
     md5((uint8*)(key), blowfish.hash, 24);
 
@@ -274,7 +274,7 @@ int32 CTCPRequestPacket::decipher()
     {
         blowfish_decipher((uint32*)m_data + i + 2, (uint32*)m_data + i + 3, blowfish.P, blowfish.S[0]);
     }
-    WBUFL(key, (20)) = RBUFL(m_data, (m_size - 0x18));
+    ref<uint32>(key, (20)) = ref<uint32>(m_data, (m_size - 0x18));
 
     return CheckPacketHash();
 }
