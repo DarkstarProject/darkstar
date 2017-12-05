@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm10 (???)
 -- Spawns Poroggo Dom Juan
--- !pos 275 24 -558 132
+-- !pos 405.785 26.404 -543.056 132
 -----------------------------------
 require("scripts/globals/abyssea");
 
