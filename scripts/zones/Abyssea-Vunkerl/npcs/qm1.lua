@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm1 (???)
 -- Spawns Khalkotaur
--- !pos -240 -39 -166 217
+-- !pos -115.911 -40.034 -201.988 217
 -----------------------------------
 require("scripts/globals/abyssea");
 
