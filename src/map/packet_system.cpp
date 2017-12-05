@@ -1017,9 +1017,10 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 targid = data.ref<uint16>(0x08);
 
     CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
-    ShowDebug(CL_CYAN"%s initiated trade request with %s\n" CL_RESET, PChar->GetName(), PTarget->GetName());
+
     if ((PTarget != nullptr) && (PTarget->id == charid))
     {
+        ShowDebug(CL_CYAN"%s initiated trade request with %s\n" CL_RESET, PChar->GetName(), PTarget->GetName());
         if (jailutils::InPrison(PChar) || jailutils::InPrison(PTarget))
         {
             // If either player is in prison don't allow the trade.
