@@ -4,7 +4,7 @@ require("scripts/globals/keyitems");
 -- uncomment lines as NMs are implemented
 NM_POPS = 
 {
---  [17818081] = { 'qm1',           {3260},                                                {}, 17818041}, -- Ironclad Sunderer
+--  [17818081] = { 'qm1',      {3260,3266},                                                {}, 17818041}, -- Ironclad Sunderer
 --  [17818082] = { 'qm2', {3261,3262,3268},                                                {}, 17818042}, -- Ningishzida
 --  [17818083] = { 'qm3',      {3263,3272},                                                {}, 17818043}, -- Teugghia
 --  [17818084] = { 'qm4',      {3264,3274},                                                {}, 17818044}, -- Bomblix Flamefinger
