@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Misareaux
 --  NPC: qm6 (???)
 -- Spawns Ironclad Observer
--- !pos -198 32 77 216
+-- !pos -198.742 -32.162 77.431 216
 -----------------------------------
 require("scripts/globals/abyssea");
 
