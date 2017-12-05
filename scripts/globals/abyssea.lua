@@ -322,11 +322,11 @@ local POP_EVENTS =
      [45] = {1010, 1020, 1021}, -- Abyssea-Tahrongi
     [132] = {1010, 1020, 1021}, -- Abyssea-La Theine
     [215] = {1010, 1022, 1023}, -- Abyssea-Attohwa
-    [216] = {1010, 1020, 1021}, -- Abyssea-Misareaux
+    [216] = {1010, 1022, 1021}, -- Abyssea-Misareaux
     [217] = {1010, 1015, 1120}, -- Abyssea-Vunkerl
     [218] = {1010, 1020, 1021}, -- Abyssea-Altepa
     [253] = {1010, 1020, 1025}, -- Abyssea-Uleguerand
-    [253] = {1010, 1020, 1021}, -- Abyssea-Grauberg
+    [254] = {1010, 1020, 1021}, -- Abyssea-Grauberg
     [255] = {1010, 1020, 1021}, -- Abyssea-Empyreal Paradox
 }
 
