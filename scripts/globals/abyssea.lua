@@ -326,7 +326,7 @@ local POP_EVENTS =
     [217] = {1010, 1015, 1120}, -- Abyssea-Vunkerl
     [218] = {1010, 1020, 1021}, -- Abyssea-Altepa
     [253] = {1010, 1020, 1025}, -- Abyssea-Uleguerand
-    [253] = {1010, 1020, 1021}, -- Abyssea-Grauberg
+    [254] = {1010, 1020, 1021}, -- Abyssea-Grauberg
     [255] = {1010, 1020, 1021}, -- Abyssea-Empyreal Paradox
 }
 
