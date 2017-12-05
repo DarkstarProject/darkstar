@@ -7,9 +7,10 @@
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/zones/RoMaeve/TextIDs");
+require("scripts/zones/RoMaeve/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RoMaeve/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -25,8 +26,8 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
-        if (GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
-            if (player:getVar("Mission7-1MobKilled") >= 1) then
+        if (not GetMobByID(MOKKURKALFI_I):isSpawned() and not GetMobByID(MOKKURKALFI_II):isSpawned()) then
+            if (player:getVar("Mission7-1MobKilled") == 1) then
                 player:addKeyItem(REINFORCED_CERMET);
                 player:messageSpecial(KEYITEM_OBTAINED,REINFORCED_CERMET);
                 player:setVar("Mission7-1MobKilled",0);
@@ -37,10 +38,14 @@ function onTrigger(player,npc)
                 local y = npc:getYPos();
                 local z = npc:getZPos();
 
-                SpawnMob(17276929):setPos(x+1,y,z+1);
-                GetMobByID(17276929):updateClaim(player);
-                SpawnMob(17276930):setPos(x-1,y,z-1);
-                GetMobByID(17276930):updateClaim(player);
+                GetMobByID(MOKKURKALFI_I):setSpawn(x+1, y, z+1);
+                GetMobByID(MOKKURKALFI_II):setSpawn(x-1, y, z-1);
+                SpawnMob(MOKKURKALFI_I):lookAt(player:getPos());
+                SpawnMob(MOKKURKALFI_II):lookAt(player:getPos());
+
+                local newPosition = npcUtil.pickNewPosition(bastok71QM, bastok71QMPos, true);
+                npc:setStatus(STATUS_DISAPPEAR);
+                GetNPCByID(bastok71QM):setPos(newPosition.x, newPosition.y, newPosition.z);
             end
         end
     else
