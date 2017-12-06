@@ -2,72 +2,45 @@
 -- Area: Zeruhn Mines
 -- NPC:  Zelman
 -- Involved In Quest: Groceries
+-- !pos 17.095 7.704 -52.995 172
 -----------------------------------
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Zeruhn_Mines/TextIDs");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
+    local groceries = player:getVar("Groceries");
 
-    local GroceriesVar = player:getVar("Groceries");
-    local GroceriesViewedNote = player:getVar("GroceriesViewedNote");
-
-    if (GroceriesVar == 2) then
-        player:showText(npc,7279);
-    elseif (GroceriesVar == 1) then
-        ViewedNote = player:seenKeyItem(TAMIS_NOTE);
-        if (ViewedNote == true) then
+    -- GROCERIES
+    if (groceries == 1) then
+        if (player:seenKeyItem(TAMIS_NOTE)) then
             player:startEvent(162);
         else
             player:startEvent(161);
         end
+    elseif (groceries >= 2) then
+        player:showText(npc,ZELMAN_CANT_RUN_AROUND);
+        
+    -- DEFAULT DIALOG
     else
         player:startEvent(160);
     end
-    
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
+    -- GROCERIES
     if (csid == 161) then
         player:setVar("Groceries",2);
         player:delKeyItem(TAMIS_NOTE);
     elseif (csid == 162) then
-        player:setVar("GroceriesViewedNote",1);
+        player:setVar("Groceries",3);
         player:delKeyItem(TAMIS_NOTE);
     end
-    
 end;
-
-
-
-

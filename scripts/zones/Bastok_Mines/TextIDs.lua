@@ -19,6 +19,9 @@
 -- Conquest System
 CONQUEST = 11110; --You've earned conquest points!
 
+-- Quest Dialogs
+TAMI_MY_HUSBAND = 10784; -- My husband's name is Zelman. You'll find him in the Zeruhn Mines. He's a miner. All right, then, off you go!
+
 -- Mission Dialogs
       YOU_ACCEPT_THE_MISSION =  6507; -- You have accepted the mission.
        ORIGINAL_MISSION_OFFSET =  6512; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
