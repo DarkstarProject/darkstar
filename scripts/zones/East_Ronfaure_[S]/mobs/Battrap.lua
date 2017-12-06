@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/zones/East_Ronfaure_[S]/MobIDs");
+require("scripts/globals/mobs");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -19,7 +20,15 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
 
-    phOnDespawn(mob,GOBLINTRAP_PH,5,310);
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
+    phOnDespawn(mob,GOBLINTRAP_PH,5,3600);
 
 end;
+
