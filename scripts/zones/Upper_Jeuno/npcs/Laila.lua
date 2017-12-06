@@ -13,11 +13,11 @@
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Upper_Jeuno/TextIDs");
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/globals/titles");
 require("scripts/globals/status");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Lakeside_Minuet_Progress",0);
         player:completeQuest(JEUNO,LAKESIDE_MINUET);
         player:addTitle(TROUPE_BRILIOTH_DANCER);
-        player:unlockJob(19);
+        player:unlockJob(JOBS.DNC);
         player:messageSpecial(UNLOCK_DANCER);
         player:addFame(JEUNO, 30);
         player:delKeyItem(STARDUST_PEBBLE);

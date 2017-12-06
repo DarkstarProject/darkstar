@@ -5,11 +5,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/zones/Ghelsba_Outpost/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 require("scripts/globals/pets");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
 
@@ -54,7 +55,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
         player:addTitle(HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(DRAGON_CURSE_REMEDY);
-        player:unlockJob(14);
+        player:unlockJob(JOBS.DRG);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);

@@ -6,10 +6,11 @@
 package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -----------------------------------
-
 require("scripts/zones/Talacca_Cove/TextIDs");
-require("scripts/globals/bcnm");
 require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/bcnm");
 
 -----------------------------------
 -- onTrade Action
@@ -65,7 +66,7 @@ function onEventFinish(player,csid,option)
             player:addItem(5493);
             player:messageSpecial(ITEM_OBTAINED,5493);
             player:delKeyItem(FORGOTTEN_HEXAGUN);
-            player:unlockJob(17);
+            player:unlockJob(JOBS.COR);
             player:messageSpecial(YOU_CAN_NOW_BECOME_A_CORSAIR);
             player:completeQuest(AHT_URHGAN,LUCK_OF_THE_DRAW);
         end

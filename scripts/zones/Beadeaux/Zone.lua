@@ -5,12 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/titles");
+require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Beadeaux/TextIDs");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onInitialize
@@ -103,7 +102,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);
 
     if (csid == 121) then
-        player:unlockJob(8);
+        player:unlockJob(JOBS.DRK);
         player:addTitle(DARK_SIDER);
         player:setVar("ZeruhnMines_Zeid_CS", 0);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT);

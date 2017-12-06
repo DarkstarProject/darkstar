@@ -6,12 +6,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action
@@ -159,7 +160,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(BUSHIDO_BLADE);
         player:addItem(17809);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_SAMURAI, 17809); -- You can now become a samurai
-        player:unlockJob(12); -- Samurai Job Unlocked
+        player:unlockJob(JOBS.SAM);
         player:setVar("ForgeYourDestiny_timer",0);
         player:setVar("ForgeYourDestiny_Event",0);
         player:addFame(NORG, 30);
