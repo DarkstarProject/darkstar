@@ -293,7 +293,7 @@ extern int32 naddr_;   // # of ip addresses
 template<typename T, typename U>
 T& ref(U* buf, std::size_t index)
 {
-    return *reinterpret_cast<T*>(buf + index);
+    return *reinterpret_cast<T*>(reinterpret_cast<uint8*>(buf) + index);
 }
 
 #endif // _SOCKET_H //
