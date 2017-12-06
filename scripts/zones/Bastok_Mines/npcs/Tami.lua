@@ -1,102 +1,71 @@
 -----------------------------------
 -- Area: Bastok Mines
 -- NPC: Tami
--- Starts & Finishes Repeatable Quest: Groceries
--- Note: Repeatable until proper completion
+-- Involved In Quest: Groceries
+-- !pos 62.617 0.000 -68.222 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-
-ViewedNote = player:getVar("GroceriesViewedNote");
-
-    if (ViewedNote == 1) then
-        count = trade:getItemCount();
-        MeatJerky = trade:hasItemQty(4376,1);
-
-        if (MeatJerky == true and count == 1) then
-            player:startEvent(113);
-        end
-    end
+    local groceries = player:getQuestStatus(BASTOK, GROCERIES);
+    local groceriesProgress = player:getVar("Groceries");
     
+    -- GROCERIES (trade meat jerky)
+    if (groceries == QUEST_ACCEPTED and groceriesProgress == 3 and trade:getItemCount() == 1 and trade:hasItemQty(4376,1)) then
+        player:startEvent(113);
+    end
 end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
+    local groceries = player:getQuestStatus(BASTOK, GROCERIES);
+    local groceriesProgress = player:getVar("Groceries");
 
-Groceries = player:getQuestStatus(BASTOK,GROCERIES);
-GroceriesVar = player:getVar("Groceries");
-
-    if (Groceries == QUEST_COMPLETED) then
-        player:startEvent(115);
-    elseif (Groceries == QUEST_AVAILABLE or GroceriesVar == 0) then
+    -- GROCERIES
+    if (groceries == QUEST_AVAILABLE or (groceries == QUEST_ACCEPTED and groceriesProgress == 0)) then
         player:startEvent(110);
-    elseif (GroceriesVar == 1) then
-        player:showText(npc,10510);
-    elseif (GroceriesVar == 2) then
+    elseif (groceries == QUEST_ACCEPTED and groceriesProgress == 1) then
+        player:showText(npc, TAMI_MY_HUSBAND);
+    elseif (groceries == QUEST_ACCEPTED and groceriesProgress == 2) then
         player:startEvent(112);
+    elseif (groceries == QUEST_ACCEPTED and groceriesProgress == 3) then
+        player:startEvent(111);
+
+    -- DEFAULT DIALOG        
+    else
+        player:startEvent(115);
     end
-
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
+    -- GROCERIES
     if (csid == 110) then
-        Groceries = player:getQuestStatus(BASTOK,GROCERIES);
-        
-        if (Groceries == QUEST_AVAILABLE) then
-            player:addQuest(BASTOK,GROCERIES);
-        end
-        player:addKeyItem(0x98);
-        player:messageSpecial(KEYITEM_OBTAINED,0x98);
-        player:setVar("Groceries",1);
+        player:addQuest(BASTOK, GROCERIES);
+        player:addKeyItem(TAMIS_NOTE);
+        player:messageSpecial(KEYITEM_OBTAINED, TAMIS_NOTE);
+        player:setVar("Groceries", 1);
     elseif (csid == 112) then
         player:addFame(BASTOK,8);
         player:setVar("Groceries",0);
         player:addGil(GIL_RATE*10);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*10);
     elseif (csid == 113) then
-        FreeSlots = player:getFreeSlotsCount();
-    
-        if (FreeSlots >= 1) then
+        if (player:getFreeSlotsCount() >= 1) then
             player:tradeComplete();
             player:setVar("Groceries",0);
-            player:setVar("GroceriesViewedNote",0);
             player:completeQuest(BASTOK,GROCERIES);
             player:addFame(BASTOK,75); 
-            player:addItem(13594);
+            player:addItem(13594); -- Rabbit Mantle
             player:messageSpecial(ITEM_OBTAINED,13594);
         else
             player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,13594);
         end
     end
-    
 end;
-
-
