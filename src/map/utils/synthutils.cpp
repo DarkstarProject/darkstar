@@ -400,7 +400,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
                     // Using x/512 calculation for HQ success rate modifier
                     // see: https://www.bluegartr.com/threads/130586-CraftyMath-v2-Post-September-2017-Update
-                    chance += (double)modSynthHqRate * 0.001953125;
+                    chance += (double)modSynthHqRate / 512.;
 
                     if(chance > 0)
                     {
