@@ -5,11 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 require("scripts/globals/icanheararainbow");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:completeQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
         player:addTitle(RAINBOW_WEAVER);
-        player:unlockJob(15);
+        player:unlockJob(JOBS.SMN);
         player:addSpell(296);
         player:messageSpecial(UNLOCK_SUMMONER);
         player:messageSpecial(UNLOCK_CARBUNCLE);

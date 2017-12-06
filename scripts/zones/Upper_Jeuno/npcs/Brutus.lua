@@ -7,10 +7,11 @@
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Upper_Jeuno/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
+require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -149,7 +150,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 70) then
         player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
         player:addTitle(ANIMAL_TRAINER);
-        player:unlockJob(9); -- Beastmaster
+        player:unlockJob(JOBS.BST);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
         player:addFame(JEUNO, 30);
         player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);

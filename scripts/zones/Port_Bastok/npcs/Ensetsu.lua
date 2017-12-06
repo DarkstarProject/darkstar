@@ -7,11 +7,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -85,8 +86,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 246) then
         player:delKeyItem(SEALED_DAGGER);
         player:addTitle(SHADOW_WALKER);
-        player:unlockJob(13);
-        player:messageSpecial(UNLOCK_NINJA); -- You can now become a Ninja
+        player:unlockJob(JOBS.NIN);
+        player:messageSpecial(UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
         player:completeQuest(BASTOK,AYAME_AND_KAEDE);

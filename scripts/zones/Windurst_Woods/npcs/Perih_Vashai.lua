@@ -7,11 +7,12 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/globals/titles");
+require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -127,7 +128,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(THE_FANGED_ONE);
             player:addItem(13117);
             player:messageSpecial(ITEM_OBTAINED,13117);
-            player:unlockJob(11);
+            player:unlockJob(JOBS.RNG);
             player:messageSpecial(PERIH_VASHAI_DIALOG);
             player:addFame(WINDURST, 30);
             player:completeQuest(WINDURST,THE_FANGED_ONE);
