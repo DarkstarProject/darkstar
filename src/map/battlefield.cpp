@@ -413,6 +413,11 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
     auto found = false;
     if (PEntity->objtype == TYPE_PC)
     {
+        if (!(m_Rules & BCRULES::RULES_ALLOW_SUBJOBS))
+            static_cast<CCharEntity*>(PEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_SJ_RESTRICTION);
+        if (m_LevelCap)
+            static_cast<CCharEntity*>(PEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_RESTRICTION);
+
         m_EnteredPlayers.erase(m_EnteredPlayers.find(PEntity->id), m_EnteredPlayers.end());
 
         if (leavecode == BATTLEFIELD_LEAVE_CODE_EXIT)

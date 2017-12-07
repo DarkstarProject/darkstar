@@ -52,12 +52,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1000);
         if (player:getCurrentMission(COP) == THE_WARRIOR_S_PATH) then
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
             player:setVar("PromathiaStatus",0);
             player:completeMission(COP,THE_WARRIOR_S_PATH);
             player:addMission(COP,GARDEN_OF_ANTIQUITY);
         else
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),1);
         end
     elseif (leavecode == 4) then
            player:startEvent(32002);

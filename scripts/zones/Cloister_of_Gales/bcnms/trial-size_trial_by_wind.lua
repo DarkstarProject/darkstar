@@ -35,25 +35,25 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
+
         local name, clearTime, partySize = battlefield:getRecord()
-        player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+        player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
     elseif (leavecode == 4) then
         player:setVar("TrialSizeWind_date",tonumber(os.date("%j"))); -- If you loose, you need to wait 1 real day
         player:startEvent(32002);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 32001) then
         if (player:hasSpell(301) == false) then
         player:addSpell(301); -- Garuda
@@ -67,5 +67,5 @@ function onEventFinish(player,csid,option)
         player:addFame(RABAO,30);
         player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
     end
-    
+
 end;

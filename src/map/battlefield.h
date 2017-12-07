@@ -109,7 +109,6 @@ public:
     CBattlefield(uint16 id, CZone* PZone, uint8 area, CCharEntity* PInitiator);
     ~CBattlefield();
 
-    //bcnm related functions
     uint16                 GetID() const;
     CZone*                 GetZone() const;
     uint16                 GetZoneID() const;

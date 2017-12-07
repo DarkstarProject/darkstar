@@ -890,6 +890,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
 
             local battlefield = player:getBattlefield()
             if battlefield then
+                battlefield:setLocalVar("[cs]bit", battlefieldIndex)
                 name, clearTime, partySize = battlefield:getRecord()
                 initiatorId, initiatorName = battlefield:getInitiator()
             end

@@ -14,13 +14,13 @@ require("scripts/globals/keyitems");
 
 -- Death cutscenes:
 
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0); -- Hume
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0); -- taru
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,2,0); -- mithra
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,3,0); -- elvan
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0); -- galka
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,5,0); -- divine might
--- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,6,0); -- skip ending cs
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- Hume
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- taru
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- mithra
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- elvan
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- galka
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- divine might
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0); -- skip ending cs
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -55,7 +55,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         else
             player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,0,0);        -- winning CS (allow player to skip)
         end
-        
+
     elseif (leavecode == 4) then
         player:startEvent(32002, 0, 0, 0, 0, 0, battlefield:getArea(), 180);    -- player lost
     end

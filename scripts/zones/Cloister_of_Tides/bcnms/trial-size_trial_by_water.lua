@@ -35,11 +35,11 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
     trialLightning = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER)
-    
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
+
         local name, clearTime, partySize = battlefield:getRecord()
-        player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+        player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
     elseif (leavecode == 4) then
         player:setVar("TrialSizeWater_date",tonumber(os.date("%j"))); -- If you loose, you need to wait 1 real day
         player:startEvent(32002);
@@ -49,7 +49,7 @@ end;
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
@@ -66,4 +66,4 @@ function onEventFinish(player,csid,option)
         player:addFame(NORG,30);
         player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
     end
-end;    
+end;

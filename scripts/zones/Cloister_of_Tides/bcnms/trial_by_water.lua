@@ -34,25 +34,25 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
+
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WATER) == QUEST_COMPLETED) then
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),1);
         else
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
@@ -61,5 +61,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(WHISPER_OF_TIDES);
         player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_TIDES);
     end
-    
-end;    
+
+end;

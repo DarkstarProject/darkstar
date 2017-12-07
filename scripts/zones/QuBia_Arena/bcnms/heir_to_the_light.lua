@@ -39,13 +39,13 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
     --print("leave code "..leavecode);
     local currentMission = player:getCurrentMission(SANDORIA);
-    if leavecode == 2 then 
+    if leavecode == 2 then
         local name, clearTime, partySize = battlefield:getRecord()
         --printf("win");
         if (currentMission == THE_HEIR_TO_THE_LIGHT)    then
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
         else
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),1);
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
@@ -55,13 +55,13 @@ end;
 function onEventUpdate(player,csid,option)
     --print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
     --print("bc finish csid "..csid.." and option "..option);
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (csid == 32001) then 
+    if (csid == 32001) then
         if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 3)    then
             player:setVar("MissionStatus",4);
         end

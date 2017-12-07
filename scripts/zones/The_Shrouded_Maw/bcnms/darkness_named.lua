@@ -23,38 +23,38 @@ function onBattlefieldRegister(player,battlefield)
     local inst = player:getBattlefield():getArea();
 
     if (inst == 1) then
-    
+
         local TileOffset = 16818258;
-        
-        for i = TileOffset, TileOffset+7 do 
-            local TileOffsetA = GetNPCByID(i):getAnimation();                
+
+        for i = TileOffset, TileOffset+7 do
+            local TileOffsetA = GetNPCByID(i):getAnimation();
             if (TileOffsetA == 8) then
                 GetNPCByID(i):setAnimation(9);
             end
         end
 
     elseif (inst == 2) then
-    
+
         local TileOffset = 16818266;
-        
-        for i = TileOffset, TileOffset+7 do 
-            local TileOffsetA = GetNPCByID(i):getAnimation();                
+
+        for i = TileOffset, TileOffset+7 do
+            local TileOffsetA = GetNPCByID(i):getAnimation();
             if (TileOffsetA == 8) then
                 GetNPCByID(i):setAnimation(9);
             end
         end
-        
+
     elseif (inst == 3) then
-    
+
         local TileOffset = 16818274;
-        
-        for i = TileOffset, TileOffset+7 do 
-            local TileOffsetA = GetNPCByID(i):getAnimation();                
+
+        for i = TileOffset, TileOffset+7 do
+            local TileOffsetA = GetNPCByID(i):getAnimation();
             if (TileOffsetA == 8) then
                 GetNPCByID(i):setAnimation(9);
             end
         end
-        
+
     end
 end;
 
@@ -72,28 +72,28 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
+
         local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1000);
         if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
             player:addTitle(TRANSIENT_DREAMER);
             player:setVar("PromathiaStatus",3);
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
         else
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0); 
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-end;    
+end;

@@ -17,7 +17,7 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -43,14 +43,14 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
     trialLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING)
-    
+
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
-    
+
         local name, clearTime, partySize = battlefield:getRecord()
         if (trialLightning == QUEST_COMPLETED) then
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),1);
         else
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,battlefield:getLocalVar("[cs]bit"),0);
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
@@ -60,7 +60,7 @@ end;
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
@@ -69,4 +69,4 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(WHISPER_OF_STORMS);
         player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_STORMS);
     end
-end;    
+end;
