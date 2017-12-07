@@ -57,15 +57,15 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
     [1] = function (x)
-    player:startEvent(0x000A);
+    player:startEvent(10);
     SendEntityVisualPacket(17559897, "kkj2");
     end,
     [2] = function (x)
-    player:startEvent(0x000B);
+    player:startEvent(11);
     SendEntityVisualPacket(17559898, "kkj1");
     end,
     [3] = function (x)
-    player:startEvent(0x000C);
+    player:startEvent(12);
     SendEntityVisualPacket(17559899, "kkj3");
     end,
     }

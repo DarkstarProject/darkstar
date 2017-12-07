@@ -155,7 +155,7 @@ function onTrigger(player,npc)
         seconds = math.floor(2.4 * (vHour * 60 - vMin + 30));
     end
 
-    player:startEvent( 0x0012, seconds, depart, arrive, description, 0, 0, 0, 0);
+    player:startEvent( 18, seconds, depart, arrive, description, 0, 0, 0, 0);
 end;
 
 -----------------------------------

@@ -3,36 +3,14 @@
 --  MOB: Carrion Crow
 -- Note: PH for Nunyenunc
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
 require("scripts/zones/West_Sarutabaruta/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/fieldsofvalor");
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,28,2);
-
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-
-    if (Nunyenunc_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[POP]Nunyenunc");
-        if (ToD <= os.time() and GetMobAction(Nunyenunc) == 0) then
-            if (math.random(1,10) == 5) then
-                UpdateNMSpawnPoint(Nunyenunc);
-                GetMobByID(Nunyenunc):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Nunyenunc", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,NUNYENUNC_PH,10,math.random(7200,10800)); -- 2 to 3 hours
 end;

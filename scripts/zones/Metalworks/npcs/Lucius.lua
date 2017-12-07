@@ -37,9 +37,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 0) then
-        player:startEvent(0x0142);
+        player:startEvent(322);
     else
-        player:startEvent(0x0140);
+        player:startEvent(320);
     end
 
 end;
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0142) then
+    if (csid == 322) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
         player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);

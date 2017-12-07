@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             player:startEvent(1081, cost);
         end
     else
-        player:startEvent(0x118);
+        player:startEvent(280);
     end
 end; 
 

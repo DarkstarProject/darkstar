@@ -8,11 +8,7 @@
 -- Attack 3
 -- Ranged Attack 2
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -22,10 +18,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,4487);
@@ -42,11 +34,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_RATT, 2);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 20);
     target:delMod(MOD_MP, 20);
     target:delMod(MOD_ATT, 3);

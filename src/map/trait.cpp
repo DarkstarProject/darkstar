@@ -150,7 +150,7 @@ namespace traits
 
     void LoadTraitsList()
     {
-	    const int8* Query = "SELECT traitid, job, level, rank, modifier, value, content_tag \
+	    const char* Query = "SELECT traitid, job, level, rank, modifier, value, content_tag \
 							 FROM traits \
                              WHERE traitid < %u \
 							 ORDER BY job, traitid ASC, rank DESC";
@@ -161,7 +161,7 @@ namespace traits
 	    {
 		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
-				int8* contentTag;
+				char* contentTag = nullptr;
 				Sql_GetData(SqlHandle, 6, &contentTag, nullptr);
 
 				if (luautils::IsContentEnabled(contentTag)==false){

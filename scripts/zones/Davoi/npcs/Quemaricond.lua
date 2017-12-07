@@ -46,8 +46,8 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 3) then
-        player:startEvent(0x0075);
-        npc:wait(-1);
+        player:startEvent(117);
+        npc:wait();
     else
         player:showText(npc, QUEMARICOND_DIALOG);
         npc:wait(2000);
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0075) then
+    if (csid == 117) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
         player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);

@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
         a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
         if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and
            a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then
-            player:startEvent(0x0032,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(50,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 
@@ -59,27 +59,27 @@ function onTrigger(player,npc)
     -- quest has already been accepted.
     if currCommService == 1 then
         if playerOnQuestId ~= player:getID() then
-            player:startEvent(0x0077); -- quest left over from previous day. fail quest.
+            player:startEvent(119); -- quest left over from previous day. fail quest.
         else
             if hour >= 20 and hour < 21 then
-                player:startEvent(0x0073); -- tell player it's too early to start lighting lamps.
+                player:startEvent(115); -- tell player it's too early to start lighting lamps.
             elseif allLampsLit then
-                player:startEvent(0x0075,doneCommService); -- all lamps are lit. win quest.
+                player:startEvent(117,doneCommService); -- all lamps are lit. win quest.
             elseif hour >= 21 or hour < 1 then
-                player:startEvent(0x0072); -- tell player they can start lighting lamps.
+                player:startEvent(114); -- tell player they can start lighting lamps.
             else
                 SetServerVariable("[JEUNO]CommService",-1); -- frees player from quest, but don't allow anyone else to take it today.
-                player:startEvent(0x0077); -- player didn't light lamps in time. fail quest.
+                player:startEvent(119); -- player didn't light lamps in time. fail quest.
             end
         end
 
     -- quest is available to player, nobody is currently on it, and the hour is right
     elseif player:getFameLevel(JEUNO) >= 1 and playerOnQuestId == 0 and (hour >= 20 or hour < 1) then
-        player:startEvent(0x0074,doneCommService);
+        player:startEvent(116,doneCommService);
 
     -- default dialog including option to drop membership card
     else
-        player:startEvent(0x0076,hasMembershipCard);
+        player:startEvent(118,hasMembershipCard);
 
     end
 end;
@@ -89,7 +89,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    if csid == 0x0074 and option == 0 then
+    if csid == 116 and option == 0 then
         -- player accepts quest
         -- if nobody else has already been assigned to the quest, including Vhana, give it to this player
 
@@ -117,13 +117,13 @@ end;
 function onEventFinish(player,csid,option)
 
     -- ClockTower Quest --
-    if (csid == 0x0032) then
+    if (csid == 50) then
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 256);
 
     ---- Community Service Quest ----
 
-    elseif csid == 0x0075 then
+    elseif csid == 117 then
         if player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED then
             -- first victory
             player:addFame(JEUNO,30);
@@ -139,11 +139,11 @@ function onEventFinish(player,csid,option)
         player:addTitle(TORCHBEARER);
         player:setVar("currCommService",0);
 
-    elseif csid == 0x0076 and option == 1 then
+    elseif csid == 118 and option == 1 then
         -- player drops membership card
         player:delKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD);
 
-    elseif csid == 0x0077 then
+    elseif csid == 119 then
         -- player fails quest
         player:setVar("currCommService",0);
 

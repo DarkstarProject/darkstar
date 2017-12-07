@@ -5,11 +5,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/zones/Ghelsba_Outpost/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 require("scripts/globals/pets");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
 
@@ -34,12 +35,12 @@ function onBcnmLeave(player,instance,leavecode)
 
     if (leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
         if (player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,1);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 
 end;
@@ -51,10 +52,10 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid: "..csid.."and option: "..option);
 
-    if (csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
+    if (csid == 32001 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
         player:addTitle(HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(DRAGON_CURSE_REMEDY);
-        player:unlockJob(14);
+        player:unlockJob(JOBS.DRG);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);

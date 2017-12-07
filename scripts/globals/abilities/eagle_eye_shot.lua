@@ -5,13 +5,10 @@
 -- Recast Time: 1:00:00
 -- Duration: Instant
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -29,10 +26,6 @@ function onAbilityCheck(player,target,ability)
 
     return msgBasic.NO_RANGED_WEAPON, 0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     if (player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK) then
@@ -52,7 +45,7 @@ function onUseAbility(player,target,ability,action)
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
 
     if not (tpHits + extraHits > 0) then
-        ability:setMsg(msgBasic.USES_BUT_MISSES)
+        ability:setMsg(msgBasic.JA_MISS_2)
         action:speceffect(target:getID(), 0)
     end
 

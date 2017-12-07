@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0054);
-npc:wait(-1);
+player:startEvent(84);
+npc:wait();
 end;
 
 -----------------------------------

@@ -1,8 +1,9 @@
 
-
-
 function onTrigger(entity, npc)
     entity:startEvent(300)
+end
+
+function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(entity, eventid, result, door)

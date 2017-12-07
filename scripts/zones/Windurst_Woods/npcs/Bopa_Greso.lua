@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     thickAsThievesCS = player:getVar("thickAsThievesCS");
 
     if (thickAsThieves == QUEST_ACCEPTED) then
-        player:startEvent(0x01FA);
+        player:startEvent(506);
             if (thickAsThievesCS == 1) then
                 player:setVar("thickAsThievesCS",2);
             elseif (thickAsThievesCS == 3) then
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
                 player:setVar("thickAsThievesGamblingCS",1);
             end
     else
-        player:startEvent(0x004d); -- standard cs
+        player:startEvent(77); -- standard cs
     end
 
 end;

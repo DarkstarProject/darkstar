@@ -38,13 +38,13 @@ function onTrigger(player,npc)
     local TheMissingPiece = player:getQuestStatus(OUTLANDS,THE_MISSING_PIECE);
     
     if (TheMissingPiece == QUEST_ACCEPTED and player:hasKeyItem(TABLET_OF_ANCIENT_MAGIC) and player:hasKeyItem(LETTER_FROM_ALFESAR)) then
-        player:startEvent(0x02bf); -- Continuing the Quest
+        player:startEvent(703); -- Continuing the Quest
     elseif (TheMissingPiece == QUEST_ACCEPTED and realday < player:getVar("TheMissingPiece_date")) then
-        player:startEvent(0x02c0); -- didn't wait a day yet
+        player:startEvent(704); -- didn't wait a day yet
     elseif (TheMissingPiece == QUEST_ACCEPTED and realday >= player:getVar("TheMissingPiece_date")) then
-        player:startEvent(0x02c1); -- Quest Completed
+        player:startEvent(705); -- Quest Completed
     else
-        player:startEvent(0x02be); -- standard dialogue
+        player:startEvent(702); -- standard dialogue
     end;
 
 end; 
@@ -66,12 +66,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x02bf) then
+    if (csid == 703) then
         player:setVar("TheMissingPiece_date", tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d") + 1);
         player:addTitle(ACQUIRER_OF_ANCIENT_ARCANUM);
         player:delKeyItem(TABLET_OF_ANCIENT_MAGIC);
         player:delKeyItem(LETTER_FROM_ALFESAR);
-    elseif (csid == 0x02c1) then
+    elseif (csid == 705) then
         if (player:getFreeSlotsCount() == 0) then -- does the player have space
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4729);
         else -- give player teleport-altep

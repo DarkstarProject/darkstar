@@ -1,8 +1,8 @@
 ---------------------------------------------
---  Enervation
+-- Enervation
 --
---  Description: Lowers the defense and magical defense of enemies within range.
---  Type: Magical (Dark)
+-- Description: Lowers the defense and magical defense of enemies within range.
+-- Type: Magical (Dark)
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -11,7 +11,7 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-  if(mob:getFamily() == 91) then
+  if (mob:getFamily() == 91) then
     local mobSkin = mob:getModelId();
 
     if (mobSkin == 1680) then
@@ -33,15 +33,15 @@ function onMobWeaponSkill(target, mob, skill)
 
     blinded = MobStatusEffectMove(mob, target, EFFECT_MAGIC_DEF_DOWN, 8, 0, 120);
 
-    skill:setMsg(msgBasic.ENFEEB_IS);
+    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
 
     -- display silenced first, else blind
-    if (silenced == msgBasic.ENFEEB_IS) then
+    if (silenced == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_DEFENSE_DOWN;
-    elseif (blinded == msgBasic.ENFEEB_IS) then
+    elseif (blinded == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_MAGIC_DEF_DOWN;
     else
-        skill:setMsg(msgBasic.MISS);
+        skill:setMsg(msgBasic.SKILL_MISS);
     end
 
     return typeEffect;

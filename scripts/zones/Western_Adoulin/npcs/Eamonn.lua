@@ -24,21 +24,21 @@ function onTrigger(player,npc)
     local Scaredycats_Status = player:getVar("Scaredycats_Status");
     if ((Scaredycats_Status < 1) and (Scaredycats == QUEST_AVAILABLE)) then
         -- Dialogue before seeing the initial walk-in CS with Bilp, Eamonn, and Lhe.
-        player:startEvent(0x13A7);
+        player:startEvent(5031);
     elseif (Scaredycats_Status == 1) then
         if (Scaredycats == QUEST_ACCEPTED) then
             -- Reminder for Quest: 'Scaredy-Cats', go to Ceizak Battlegrounds
-            player:startEvent(0x13A1);
+            player:startEvent(5025);
         else
             -- Starts Quest: 'Scaredy-Cats', after first refusal.
-            player:startEvent(0x13A0);
+            player:startEvent(5024);
         end
     elseif (Scaredycats_Status == 2) then
         -- Reminder for Quest: 'Scaredy-Cats', go to Sih Gates.
-        player:startEvent(0x13A3);
+        player:startEvent(5027);
     else
         -- Dialogue after completeing Quest: 'Scaredy-Cats'
-        player:startEvent(0x13A6);
+        player:startEvent(5030);
     end
 end;
 
@@ -54,7 +54,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if ((csid == 0x13A0) and (option == 1)) then
+    if ((csid == 5024) and (option == 1)) then
         -- Starts Quest: 'Scaredy-Cats', after first refusal.
         player:setVar("Scaredycats_Status", 2);
         player:addQuest(ADOULIN, SCAREDYCATS);

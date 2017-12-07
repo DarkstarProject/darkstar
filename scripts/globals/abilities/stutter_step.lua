@@ -6,13 +6,10 @@
 -- Recast Time: 00:05
 -- Duration: First Step lasts 1 minute, each following Step extends its current duration by 30 seconds.
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -28,10 +25,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     -- Only remove TP if the player doesn't have Trance.
@@ -177,7 +170,7 @@ function onUseAbility(player,target,ability,action)
         end;
 
     else
-        ability:setMsg(158);
+        ability:setMsg(msgBasic.JA_MISS);
     end
 
     action:animation(target:getID(), getStepAnimation(player:getWeaponSkillType(SLOT_MAIN)))

@@ -30,19 +30,19 @@ itemid_bcnmid_map =
     67,  {0, 0}, -- Jade Sepulcher
     139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
     140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
-    144, {1166, 68, 1178, 81, 1553, 76, 1180, 82, 1130, 79, 1552, 73}, -- Waughroon Shrine
-    146, {1553, 107, 1551, 105, 1177, 100}, -- Balgas Dias
+    144, {1166, 68, 1553, 76, 1130, 79, 1178, 81, 1180, 82}, -- Waughroon Shrine
+    146, {1551, 105, 1553, 107}, -- Balgas Dias
     163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
     168, {0, 0}, -- Chamber of Oracles
     170, {0, 0}, -- Full Moon Fountain
     180, {1550, 293}, -- LaLoff Amphitheater
     181, {0, 0}, -- The Celestial Nexus
-    201, {1546, 418, 1174, 417}, -- Cloister of Gales
-    202, {1548, 450, 1172, 449}, -- Cloister of Storms
-    203, {1545, 482, 1171, 481}, -- Cloister of Frost
+    201, {1174, 417, 1546, 418}, -- Cloister of Gales
+    202, {1172, 449, 1548, 450}, -- Cloister of Storms
+    203, {1171, 481, 1545, 482}, -- Cloister of Frost
     206, {0, 0}, -- Qu'Bia Arena
     207, {1544, 545}, -- Cloister of Flames
-    209, {1547, 578, 1169, 577}, -- Cloister of Tremors
+    209, {1169, 577, 1547, 578}, -- Cloister of Tremors
     211, {1549, 609} -- Cloister of Tides
 }
 
@@ -232,18 +232,16 @@ function EventUpdateBCNM(player, csid, option, entrance)
             local name = 'Meme';
             local partySize = 5;
             local clearTime = 260;
-            
+
             if battlefield then
                 local record = battlefield:getRecord()
                 name = record.name
                 partySize = record.partySize
                 clearTime = record.clearTime
             end
-            print("aaaaaaaaaaaaaaaaasssssssssssss " ..partySize)
-            print("shiiiiiiiiiiiiiiiiiiiiiiiiiiit "..clearTime)
             if (mask < playerbcnmid) then
                 mask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+                player:updateEvent(2, mask - 1, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
                 player:updateEventString(name);
                 player:bcnmEnter(id)
                 player:setVar("bcnm_instanceid_tick", 0)
@@ -252,7 +250,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
 
             elseif (mask >= playerbcnmid) then
                 mask = GetBattleBitmask(id, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+                player:updateEvent(2, mask - 1, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
                 player:updateEventString(name);
                 player:bcnmEnter(id)
                 player:setVar("bcnm_instanceid_tick", 0)
@@ -372,16 +370,16 @@ function GetBattleBitmask(id, zone, mode)
         for index, battlefield in ipairs(battlefield_bitmask_map[zone]) do
             if id == battlefield then
                 if mode == 1 then
-                    ret = mask + bit.lshift(index + 1, 2);
+                    return math.pow(2, index - 1);
                 else
-                    ret = mask + index;
+                    return index;
                 end
             end
         end
     else
         printf("[bcnm] unable to get bitmask for battlefield: %u, zone: %u", id, zone);
     end
-    
+
     return ret
 end
 
@@ -450,7 +448,7 @@ function checkNonTradeBCNM(player, npc, mode)
     local Zone = player:getZoneID()
     mode = mode or 2;
 
-    local checks = 
+    local checks =
     {
         [6] =   {
                     [640] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6)  end, -- flames_for_the_dead
@@ -468,18 +466,16 @@ function checkNonTradeBCNM(player, npc, mode)
                     [736] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Louverance_s_Path") == 5)  end, -- century_of_hardship
                 },
         [17] = {
-                    [768] = function()
-                                return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
-                                       (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false)
-                            end, -- light of holla
+                    [768] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
+                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) end, -- light of holla
                },
         [19] = {
-                    [800] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  end,
-                    [800] = function() return (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false)  end, -- light of dem
+                    [800] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
+                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false)  end, -- light of dem
                },
         [21] = {
-                    [832] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  end,
-                    [832] = function() return (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false)  end, -- light of mea
+                    [832] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
+                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false)  end, -- light of mea
                },
         [23] = {
                     [864] = function() return (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8)  end, -- desires of emptiness
@@ -512,7 +508,7 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
         [139] = {
                     [0] = function()
-                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or 
+                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
                                   player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9)
                           end, -- Mission 2-3
                     [3] = function() return (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2)  end,
@@ -576,7 +572,7 @@ function checkNonTradeBCNM(player, npc, mode)
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
                     [516] = function() return (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
-                --[[ 
+                --[[
                     Temp disabled pending BCNM mob fixes
                     [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED))  end, -- ACP Mission 7
                 ]]
@@ -594,7 +590,7 @@ function checkNonTradeBCNM(player, npc, mode)
                     [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_CERULEAN_SEAL))  end,
                 },
     }
-    
+
     for keyid, condition in pairs(checks[Zone]) do
         if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
             mask = mask + GetBattleBitmask(keyid, Zone, mode);
@@ -605,7 +601,7 @@ function checkNonTradeBCNM(player, npc, mode)
             break;
         end;
     end;
-    
+
     if mode == 2 then
         player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0);
     end

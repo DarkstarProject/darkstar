@@ -73,12 +73,12 @@ function onBcnmLeave(player,instance,leavecode)
         if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
             player:addTitle(TRANSIENT_DREAMER);
             player:setVar("PromathiaStatus",3);
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0); 
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0); 
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;

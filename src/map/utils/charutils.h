@@ -153,7 +153,7 @@ namespace charutils
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
     bool	hasMogLockerAccess(CCharEntity* PChar);						// true if have access, false otherwise.
 
-    uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);
+    float  AddExpBonus(CCharEntity* PChar, float exp);
 
     void    RemoveAllEquipment(CCharEntity* PChar);
 

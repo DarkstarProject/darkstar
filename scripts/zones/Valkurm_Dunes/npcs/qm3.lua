@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             player:messageSpecial(KEYITEM_OBTAINED,FADED_YOMOTSU_HIRASAKA);
             player:setVar("OkuriNMKilled",0);
         else
-            player:startEvent(0x000a);
+            player:startEvent(10);
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000a and option == 1) then
+    if (csid == 10 and option == 1) then
         player:needToZone(true); -- If you zone, you will need to repeat the fight.
         player:setVar("OkuriNMKilled",0);
         SpawnMob(17199567):updateClaim(player); -- Doman

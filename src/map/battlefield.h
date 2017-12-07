@@ -130,7 +130,7 @@ public:
     void		capPlayerToBCNM();										// adjust player's level to the appropriate cap and remove buffs
     void		disableSubJob();										// disable all players subjobs
     void		enableSubJob();											// enable all players subjobs
-    void		pushMessageToAllInBcnm(uint16 msg, uint16 param);
+    void		pushMessageToAllInBcnm(uint16 msg, uint32 param);
 
     //spawning chests + loot
     void		addNpc(CBaseEntity* PNpc);

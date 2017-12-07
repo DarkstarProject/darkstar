@@ -3,12 +3,8 @@
 -- Item: East Wind
 -- Additional Effect: Removes Byakko's Light Damage
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)

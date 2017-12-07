@@ -28,17 +28,17 @@ function onTrigger(player,npc)
     local notmeanttobe = player:getQuestStatus(AHT_URHGAN,NOT_MEANT_TO_BE);
     local notMeantToBeProg = player:getVar("notmeanttobeCS");
     if (notmeanttobe == QUEST_AVAILABLE) then
-        player:startEvent(0x0125);
+        player:startEvent(293);
     elseif (notMeantToBeProg == 1) then
-        player:startEvent(0x0127);
+        player:startEvent(295);
     elseif (notMeantToBeProg == 2) then
-        player:startEvent(0x0126);
+        player:startEvent(294);
     elseif (notMeantToBeProg == 3) then
-        player:startEvent(0x0128);
+        player:startEvent(296);
     elseif (notMeantToBeProg == 5) then
-        player:startEvent(0x0129);
+        player:startEvent(297);
     elseif (notmeanttobe == QUEST_COMPLETED) then
-        player:startEvent(0x012a);
+        player:startEvent(298);
     end
 end;
 
@@ -58,12 +58,12 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0125) then
+    if (csid == 293) then
        player:setVar("notmeanttobeCS",1);
        player:addQuest(AHT_URHGAN,NOT_MEANT_TO_BE);
-    elseif (csid == 0x0126) then
+    elseif (csid == 294) then
        player:setVar("notmeanttobeCS",3);
-    elseif (csid == 0x0129) then
+    elseif (csid == 297) then
         if (player:getFreeSlotsCount() == 0) then
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2187,3);
         else

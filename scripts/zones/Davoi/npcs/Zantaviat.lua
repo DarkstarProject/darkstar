@@ -28,15 +28,15 @@ function onTrigger(player,npc)
     local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
 
     if (CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
-        player:startEvent(0x0064);
+        player:startEvent(100);
     elseif (CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(LOST_DOCUMENT)) then
-        player:startEvent(0x0068);
+        player:startEvent(104);
     elseif (CurrentMission == INFILTRATE_DAVOI and infiltrateDavoi and player:getVar("MissionStatus") == 0) then
-        player:startEvent(0x0066);
+        player:startEvent(102);
     elseif (CurrentMission == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 9) then
-        player:startEvent(0x0069);
+        player:startEvent(105);
     else
-        player:startEvent(0x0065);
+        player:startEvent(101);
     end
 
 end;
@@ -58,16 +58,16 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0064) then
+    if (csid == 100) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x0068) then
+    elseif (csid == 104) then
         player:setVar("MissionStatus",3);
         player:delKeyItem(LOST_DOCUMENT);
         player:addKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
         player:messageSpecial(KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);
-    elseif (csid == 0x0066) then
+    elseif (csid == 102) then
         player:setVar("MissionStatus",6);
-    elseif (csid == 0x0069) then
+    elseif (csid == 105) then
         player:setVar("MissionStatus",10);
         player:delKeyItem(EAST_BLOCK_CODE);
         player:delKeyItem(SOUTH_BLOCK_CODE);

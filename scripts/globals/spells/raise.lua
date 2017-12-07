@@ -1,11 +1,8 @@
 -----------------------------------------
 -- Spell: Raise
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -21,7 +18,7 @@ function onSpellCast(caster,target,spell)
             target:setLocalVar("Raise", 1);
         end
     end
-    spell:setMsg(309);
+    spell:setMsg(msgBasic.MAGIC_CASTS_ON);
 
     return 1;
 end;

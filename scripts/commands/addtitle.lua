@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
--- func: title
--- desc: Sets a players title.
+-- func: addtitle
+-- desc: Add and set player title.
 ---------------------------------------------------------------------------------------------------
 
 require("scripts/globals/titles");
@@ -13,7 +13,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("!title <title ID> {player}");
+    player:PrintToPlayer("!addtitle <title ID> {player}");
 end;
 
 function onTrigger(player, titleId, target)

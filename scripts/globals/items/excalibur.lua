@@ -6,10 +6,8 @@
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
 require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 

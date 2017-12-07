@@ -38,12 +38,12 @@ CCurrencyPacket2::CCurrencyPacket2(CCharEntity* PChar)
     int ret = Sql_Query(SqlHandle, query, PChar->id);
     if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        WBUFL(data, (0x04)) = Sql_GetIntData(SqlHandle, 0);
-        WBUFW(data, (0x08)) = Sql_GetUIntData(SqlHandle, 1);
-        WBUFB(data, (0x0A)) = Sql_GetUIntData(SqlHandle, 2);
-        WBUFL(data, (0x0C)) = Sql_GetIntData(SqlHandle, 3);
-        WBUFW(data, (0x10)) = Sql_GetUIntData(SqlHandle, 4);
-        WBUFW(data, (0x12)) = Sql_GetUIntData(SqlHandle, 5);
-        WBUFL(data, (0x14)) = Sql_GetIntData(SqlHandle, 6);
+        ref<uint32>(0x04) = Sql_GetIntData(SqlHandle, 0);
+        ref<uint16>(0x08) = Sql_GetUIntData(SqlHandle, 1);
+        ref<uint8>(0x0A) = Sql_GetUIntData(SqlHandle, 2);
+        ref<uint32>(0x0C) = Sql_GetIntData(SqlHandle, 3);
+        ref<uint16>(0x10) = Sql_GetUIntData(SqlHandle, 4);
+        ref<uint16>(0x12) = Sql_GetUIntData(SqlHandle, 5);
+        ref<uint32>(0x14) = Sql_GetIntData(SqlHandle, 6);
     }
 }

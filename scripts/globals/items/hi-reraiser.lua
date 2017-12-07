@@ -3,20 +3,12 @@
 -- Item: Hi-Reraiser
 -- Item Effect: This potion functions inthe same way as the spell Reraise II.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
     return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local duration = 5400;

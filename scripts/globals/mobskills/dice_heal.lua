@@ -1,8 +1,8 @@
 ---------------------------------------------
---  Goblin Dice
+-- Goblin Dice
 --
---  Description: Benediction for party members within area of effect.
---  Type: Magical (Wind)
+-- Description: Benediction for party members within area of effect.
+-- Type: Magical (Wind)
 --
 --
 ---------------------------------------------
@@ -17,7 +17,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local heal = target:getMaxHP() - target:getHP();
 
     skill:setMsg(msgBasic.SELF_HEAL);

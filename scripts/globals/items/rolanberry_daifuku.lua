@@ -15,11 +15,7 @@
 -- Ranged Accuracy +10% (cap 75)
 -- Magic Accuracy +14
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -30,19 +26,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,6339);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_HP, 20);
     target:addMod(MOD_VIT, 3);
     target:addMod(MOD_FOOD_ACCP, 10);
@@ -59,11 +47,7 @@ function onEffectGain(target,effect)
     target:addPetMod(MOD_MACC, 14);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 20);
     target:delMod(MOD_VIT, 3);
     target:delMod(MOD_FOOD_ACCP, 10);

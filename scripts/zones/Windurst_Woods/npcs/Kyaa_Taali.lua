@@ -29,12 +29,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_BONECRAFT_IMAGERY) == false) then
-            player:startEvent(0x2724,SkillCap,SkillLevel,2,509,player:getGil(),0,0,0);
+            player:startEvent(10020,SkillCap,SkillLevel,2,509,player:getGil(),0,0,0);
         else
-            player:startEvent(0x2724,SkillCap,SkillLevel,2,511,player:getGil(),7147,0,0);
+            player:startEvent(10020,SkillCap,SkillLevel,2,511,player:getGil(),7147,0,0);
         end
     else
-        player:startEvent(0x2724); -- Standard Dialogue
+        player:startEvent(10020); -- Standard Dialogue
     end
 end;
 
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x2724 and option == 1) then
+    if (csid == 10020 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,6,2);
         player:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,1,0,120);
     end

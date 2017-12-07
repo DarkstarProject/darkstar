@@ -30,24 +30,24 @@ function onTrade(player,npc,trade)
 
                 --Rock Racketeer
                 if (RRvar == 5) then
-                    player:startEvent(0x0033,12,598); -- Sharp Stone (598)
+                    player:startEvent(51,12,598); -- Sharp Stone (598)
 
                 -- Standard
                 else
-                    player:startEvent(0x002b,12,0,597); -- chunk of mine gravel (597)
+                    player:startEvent(43,12,0,597); -- chunk of mine gravel (597)
                 end
             else
-                player:startEvent(0x0034,8,598); -- pickaxe breaks
+                player:startEvent(52,8,598); -- pickaxe breaks
                 player:tradeComplete();
             end
 
         else
-            player:startEvent(0x0035); -- cannot carry any more
+            player:startEvent(53); -- cannot carry any more
         end
 
     -- need a pickaxe
     else
-        player:startEvent(0x0020);
+        player:startEvent(32);
     end
 end;
 
@@ -56,7 +56,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x001e,12,0,597);
+    player:startEvent(30,12,0,597);
 end;
 
 -----------------------------------
@@ -75,13 +75,13 @@ end;
 function onEventFinish(player,csid,option)
 
     -- Rock Racketeer
-    if (csid == 0x0033) then
+    if (csid == 51) then
         player:tradeComplete();
         player:addItem(598);
         player:messageSpecial(ITEM_OBTAINED, 598);
 
     -- Standard
-    elseif (csid == 0x002b) then
+    elseif (csid == 43) then
         player:tradeComplete();
         player:addItem(597);
         player:messageSpecial(ITEM_OBTAINED,597); -- Mine Gravel

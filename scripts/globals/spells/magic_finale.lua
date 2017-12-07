@@ -1,13 +1,10 @@
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 -----------------------------------------
 -- Spell: Magic Finale
 --
 -----------------------------------------
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -30,18 +27,18 @@ function onSpellCast(caster,target,spell)
 
     params.effect = nil;
 
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     local effect = EFFECT_NONE;
 
     if (resist > 0.0625) then
-        spell:setMsg(341);
+        spell:setMsg(msgBasic.MAGIC_ERASE);
         effect = target:dispelStatusEffect();
         if (effect == EFFECT_NONE) then
             -- no effect
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return effect;

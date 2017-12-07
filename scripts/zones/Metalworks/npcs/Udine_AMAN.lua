@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     elseif (player:getMentor() >= 1) then
         var = 2;
     end
-    player:startEvent(0x033A, var);
+    player:startEvent(826, var);
 end;
 
 -----------------------------------
@@ -47,7 +47,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0X033A and option == 0) then
+    if (csid == 826 and option == 0) then
         player:setMentor(1);
     end
 end;

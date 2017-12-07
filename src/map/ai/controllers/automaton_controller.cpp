@@ -147,8 +147,9 @@ bool CAutomatonController::isRanged()
     case HEAD_SOULSOOTHER:
     case HEAD_SPIRITREAVER:
         return true;
+    default:
+        return false;
     }
-    return false;
 }
 
 CurrentManeuvers CAutomatonController::GetCurrentManeuvers() const
@@ -173,7 +174,6 @@ void CAutomatonController::DoCombatTick(time_point tick)
         return;
     }
 
-    auto PPrevTarget = PTarget;
     PTarget = static_cast<CBattleEntity*>(PAutomaton->GetEntity(PAutomaton->GetBattleTargetID()));
 
     if (TryDeaggro())
@@ -217,7 +217,7 @@ void CAutomatonController::DoCombatTick(time_point tick)
 void CAutomatonController::Move()
 {
     float currentDistance = distanceSquared(PAutomaton->loc.p, PTarget->loc.p);
-    if (isRanged() && (currentDistance > 225) || (PAutomaton->health.mp < 8 && PAutomaton->health.maxmp > 8))
+    if ((isRanged() && (currentDistance > 225)) || (PAutomaton->health.mp < 8 && PAutomaton->health.maxmp > 8))
     {
         PAutomaton->m_Behaviour &= ~BEHAVIOUR_STANDBACK;
     }
@@ -425,7 +425,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         break;
     }
 
-    threshold = dsp_cap(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30, 90);
+    threshold = std::clamp<float>(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30.f, 90.f);
     CBattleEntity* PCastTarget = nullptr;
 
     bool haveHate = false;
@@ -506,7 +506,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     // This might be wrong
     if (PCastTarget)
     {
-        float missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
+        auto missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
         if (missinghp > 850 && Cast(PCastTarget->targid, SpellID::Cure_VI ))
             return true;
         else if (missinghp > 600 && Cast(PCastTarget->targid, SpellID::Cure_V))
@@ -1127,7 +1127,7 @@ bool CAutomatonController::TryEnhance()
     if (!PHasteTarget && !haste)
         PHasteTarget = PAutomaton;
 
-    uint8 members = 0;
+    size_t members = 0;
 
     // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
     if (PAutomaton->PMaster->PParty)
@@ -1277,7 +1277,7 @@ bool CAutomatonController::TryTPMove()
         if (attemptChain)
         {
             CStatusEffect* PSCEffect = PTarget->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
-            if (PSCEffect)
+            if (PSCEffect && PSCEffect->GetStartTime() + 3s < server_clock::now())
             {
                 std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
                 if (PSCEffect->GetTier() == 0)
@@ -1404,7 +1404,7 @@ namespace autoSpell
 
     void LoadAutomatonSpellList()
     {
-        const int8* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
+        const char* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
 

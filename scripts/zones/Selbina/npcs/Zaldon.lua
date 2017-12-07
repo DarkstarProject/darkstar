@@ -22,13 +22,13 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(4501,1) == true and trade:getItemCount() == 1) then
             rand = math.random(1,5);
             if (rand == 3) then
-                player:startEvent(0x0023); -- Ring found !
+                player:startEvent(35); -- Ring found !
             else
-                player:startEvent(0x0024); -- Ring not found...
+                player:startEvent(36); -- Ring not found...
             end
         end
     elseif (player:getVar("aBoysDreamCS") == 5 and trade:hasItemQty(4562,1) == true and trade:getItemCount() == 1) then
-        player:startEvent(0x0055); -- CS for the quest "A Boy's Dream"
+        player:startEvent(85); -- CS for the quest "A Boy's Dream"
     -------------------------
     -- Begin Inside the Belly
     -------------------------
@@ -37,429 +37,429 @@ function onTrade(player,npc,trade)
             rand = math.random(1,1000);
             if (rand > 1 and rand <= 107) then -- 10.7% chance
                 player:setVar("ItB_Var",1);
-                player:startEvent(0x00a6,0,2886); -- Mildewy Ingot
+                player:startEvent(166,0,2886); -- Mildewy Ingot
             elseif (rand > 107 and rand <= 301) then -- 19.4% chance
                 player:setVar("ItB_Var",2);
-                player:startEvent(0x00a6,0,2887); -- Decayed Ingot
+                player:startEvent(166,0,2887); -- Decayed Ingot
             else
                 player:setVar("ItB_Var",3);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4316,1) == true and trade:getItemCount() == 1) then -- Armored Pisces
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 4) then -- 0.4% chance
                 player:setVar("ItB_Var",4);
-                player:startEvent(0x00a6,0,13736); -- Stolid Breastplate
+                player:startEvent(166,0,13736); -- Stolid Breastplate
             else
                 player:setVar("ItB_Var",5);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
 ----------- This section designed to conform to data found at http://wiki.ffxiclopedia.org/wiki/Inside_the_Belly regarding Drop Rates of Charts --
         elseif (trade:hasItemQty(4479,1) == true and trade:getItemCount() == 1) then -- Bhefhel Marlin
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 143 and player:hasItem(1873) == false) then -- 14.3% chance
                 player:setVar("ItB_Var",6);
-                player:startEvent(0x00a6,0,1873); -- Brigand's Chart
+                player:startEvent(166,0,1873); -- Brigand's Chart
             elseif (rand > 143 and rand <= 187 and player:hasItem(1874) == false) then -- 4.4% chance
                 player:setVar("ItB_Var",7);
-                player:startEvent(0x00a6,0,1874); -- Pirate's Chart
+                player:startEvent(166,0,1874); -- Pirate's Chart
             else
                 player:setVar("ItB_Var",8);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
 -------------------------------------------------------------------------------------------------------------------------------------------------
         elseif (trade:hasItemQty(4471,1) == true and trade:getItemCount() == 1) then -- Bladefish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 109) then -- 10.9% chance
                 player:setVar("ItB_Var",9);
-                player:startEvent(0x00a6,0,17002); -- Robber Rig
+                player:startEvent(166,0,17002); -- Robber Rig
             else
                 player:setVar("ItB_Var",10);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4309,1) == true and trade:getItemCount() == 1) then -- Cave Cherax
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 237) then -- 23.7% chance
                 player:setVar("ItB_Var",11);
-                player:startEvent(0x00a6,0,17007); -- Dwarf Pugil
+                player:startEvent(166,0,17007); -- Dwarf Pugil
             else
                 player:setVar("ItB_Var",12);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5814,1) == true and trade:getItemCount() == 1) then -- Crocodilos
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 30) then -- 3.0% chance
                 player:setVar("ItB_Var",13);
-                player:startEvent(0x00a6,0,11654); -- Puffin Ring
+                player:startEvent(166,0,11654); -- Puffin Ring
             else
                 player:setVar("ItB_Var",14);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4428,1) == true and trade:getItemCount() == 1) then -- Dark Bass
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 46) then -- 4.6% chance
                 player:setVar("ItB_Var",15);
-                player:startEvent(0x00a6,0,772); -- Green Rock
+                player:startEvent(166,0,772); -- Green Rock
             else
                 player:setVar("ItB_Var",16);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4454,1) == true and trade:getItemCount() == 1) then -- Emperor Fish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 10) then -- 1.0% chance; The wiki says 0%...
                 player:setVar("ItB_Var",17);
-                player:startEvent(0x00a6,0,12955); -- Cuir Highboots
+                player:startEvent(166,0,12955); -- Cuir Highboots
             else
                 player:setVar("ItB_Var",18);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4477,1) == true and trade:getItemCount() == 1) then -- Gavial Fish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 50) then -- 5.0% chance
                 player:setVar("ItB_Var",19);
-                player:startEvent(0x00a6,0,13361); -- Drone Earring
+                player:startEvent(166,0,13361); -- Drone Earring
             else
                 player:setVar("ItB_Var",20);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5471,1) == true and trade:getItemCount() == 1) then -- Gerrothorax
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 12) then -- 1.2% chance
                 player:setVar("ItB_Var",21);
-                player:startEvent(0x00a6,0,11492); -- Risky Patch
+                player:startEvent(166,0,11492); -- Risky Patch
             else
                 player:setVar("ItB_Var",22);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5799,1) == true and trade:getItemCount() == 1) then -- Giant Catfish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 66) then -- 6.6% chance
                 player:setVar("ItB_Var",23);
-                player:startEvent(0x00a6,0,17076); -- Earth Wand
+                player:startEvent(166,0,17076); -- Earth Wand
             else
                 player:setVar("ItB_Var",24);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4308,1) == true and trade:getItemCount() == 1) then -- Giant Chirai
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 12) then -- 1.2% chance
                 player:setVar("ItB_Var",25);
-                player:startEvent(0x00a6,0,1278); -- Spool of Twinthread
+                player:startEvent(166,0,1278); -- Spool of Twinthread
             else
                 player:setVar("ItB_Var",26);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4306,1) == true and trade:getItemCount() == 1) then -- Giant Donko
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 48) then -- 4.8% chance
                 player:setVar("ItB_Var",27);
-                player:startEvent(0x00a6,0,1833); -- Broken Halcyon Fishing Rod
+                player:startEvent(166,0,1833); -- Broken Halcyon Fishing Rod
             else
                 player:setVar("ItB_Var",28);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5475,1) == true and trade:getItemCount() == 1) then -- Gigant Octopus
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 100) then -- 10.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",29);
-                player:startEvent(0x00a6,0,929); -- Jar of Black Ink
+                player:startEvent(166,0,929); -- Jar of Black Ink
             else
                 player:setVar("ItB_Var",30);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4474,1) == true and trade:getItemCount() == 1) then -- Gigant Squid
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 25) then -- 2.5% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",31);
-                player:startEvent(0x00a6,0,12317); -- Flame shield
+                player:startEvent(166,0,12317); -- Flame shield
             else
                 player:setVar("ItB_Var",32);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4304,1) == true and trade:getItemCount() == 1) then -- Grimmonite
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 50) then -- 5.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",33);
-                player:startEvent(0x00a6,0,13456); -- Silver Ring
+                player:startEvent(166,0,13456); -- Silver Ring
             else
                 player:setVar("ItB_Var",34);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5127,1) == true and trade:getItemCount() == 1) then -- Gugrusaurus
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 4) then -- 0.4% chance
                 player:setVar("ItB_Var",35);
-                player:startEvent(0x00a6,0,1837); -- Saber Shoot
+                player:startEvent(166,0,1837); -- Saber Shoot
             else
                 player:setVar("ItB_Var",36);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4480,1) == true and trade:getItemCount() == 1) then -- Gugru Tuna
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 50) then -- 5.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",37);
-                player:startEvent(0x00a6,0,19186); -- Tiny Tathlum
+                player:startEvent(166,0,19186); -- Tiny Tathlum
             else
                 player:setVar("ItB_Var",38);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5136,1) == true and trade:getItemCount() == 1) then -- Istavrit
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 100) then -- 10.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",39);
-                player:startEvent(0x00a6,0,944); -- Pinch of Venom Dust
+                player:startEvent(166,0,944); -- Pinch of Venom Dust
             else
                 player:setVar("ItB_Var",40);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4307,1) == true and trade:getItemCount() == 1) then -- Jungle Catfish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 30) then -- 3.0% chance
                 player:setVar("ItB_Var",41);
-                player:startEvent(0x00a6,0,1832); -- Broken Hume Fishing Rod
+                player:startEvent(166,0,1832); -- Broken Hume Fishing Rod
             else
                 player:setVar("ItB_Var",42);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5140,1) == true and trade:getItemCount() == 1) then -- Kalkanbaligi
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 33) then -- 3.3% chance
                 player:setVar("ItB_Var",43);
-                player:startEvent(0x00a6,0,16184); -- Flat Shield
+                player:startEvent(166,0,16184); -- Flat Shield
             else
                 player:setVar("ItB_Var",44);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5451,1) == true and trade:getItemCount() == 1) then -- Kilicbaligi
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 25) then -- 2.5% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",45);
-                player:startEvent(0x00a6,0,16606); -- Rusty Greatsword
+                player:startEvent(166,0,16606); -- Rusty Greatsword
             else
                 player:setVar("ItB_Var",46);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5450,1) == true and trade:getItemCount() == 1) then -- Lakerda
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 19) then -- 1.9% chance
                 player:setVar("ItB_Var",47);
-                player:startEvent(0x00a6,0,793); -- Black Pearl
+                player:startEvent(166,0,793); -- Black Pearl
             elseif (rand >= 20 and rand <= 69) then -- 5.0% chance; The wiki has an unknown percentage, but pearl should be greater than black pearl
                 player:setVar("ItB_Var",48);
-                player:startEvent(0x00a6,0,792); -- Pearl
+                player:startEvent(166,0,792); -- Pearl
             else
                 player:setVar("ItB_Var",49);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5129,1) == true and trade:getItemCount() == 1) then -- Lik
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 5) then -- 0.5% chance
                 player:setVar("ItB_Var",50);
-                player:startEvent(0x00a6,0,1826); -- Spool of Opal Silk
+                player:startEvent(166,0,1826); -- Spool of Opal Silk
             else
                 player:setVar("ItB_Var",51);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5467,1) == true and trade:getItemCount() == 1) then -- Megalodon
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 30) then -- 3.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",52);
-                player:startEvent(0x00a6,0,483); -- Broken Mithran Fishing Rod
+                player:startEvent(166,0,483); -- Broken Mithran Fishing Rod
             else
                 player:setVar("ItB_Var",53);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4462,1) == true and trade:getItemCount() == 1) then -- Monke-Onke
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 100) then -- 10.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",54);
-                player:startEvent(0x00a6,0,943); -- Pinch of Poison Dust
+                player:startEvent(166,0,943); -- Pinch of Poison Dust
             else
                 player:setVar("ItB_Var",55);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5134,1) == true and trade:getItemCount() == 1) then -- Mola Mola
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 18) then -- 1.8% chance
                 player:setVar("ItB_Var",56);
-                player:startEvent(0x00a6,0,16850); -- Mercurial Spear
+                player:startEvent(166,0,16850); -- Mercurial Spear
             else
                 player:setVar("ItB_Var",57);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4481,1) == true and trade:getItemCount() == 1) then -- Ogre Eel
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 25) then -- 2.5% chance
                 player:setVar("ItB_Var",58);
-                player:startEvent(0x00a6,0,13480); -- Turquoise Ring
+                player:startEvent(166,0,13480); -- Turquoise Ring
             else
                 player:setVar("ItB_Var",59);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5815,1) == true and trade:getItemCount() == 1) then -- Pelazoea
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 16) then -- 1.6% chance
                 player:setVar("ItB_Var",60);
-                player:startEvent(0x00a6,0,11655); -- Noddy Ring
+                player:startEvent(166,0,11655); -- Noddy Ring
             else
                 player:setVar("ItB_Var",61);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5470,1) == true and trade:getItemCount() == 1) then -- Pirarucu
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 50) then -- 5.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",62);
-                player:startEvent(0x00a6,0,1122); -- Wyvern Skin
+                player:startEvent(166,0,1122); -- Wyvern Skin
             elseif (rand >= 51 and rand <= 75) then -- 2.5% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",63);
-                player:startEvent(0x00a6,0,2523); -- Peiste Skin
+                player:startEvent(166,0,2523); -- Peiste Skin
             else
                 player:setVar("ItB_Var",64);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5133,1) == true and trade:getItemCount() == 1) then -- Pterygotus
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 68) then -- 6.8% chance
                 player:setVar("ItB_Var",65);
-                player:startEvent(0x00a6,0,795); -- Lapis Lazuli
+                player:startEvent(166,0,795); -- Lapis Lazuli
             else
                 player:setVar("ItB_Var",66);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5135,1) == true and trade:getItemCount() == 1) then -- Rhinochimera
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 13) then -- 1.3% chance
                 player:setVar("ItB_Var",67);
-                player:startEvent(0x00a6,0,11624); -- Solon Torque
+                player:startEvent(166,0,11624); -- Solon Torque
             else
                 player:setVar("ItB_Var",68);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4305,1) == true and trade:getItemCount() == 1) then -- Ryugu Titan
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 13) then -- 1.3% chance
                 player:setVar("ItB_Var",69);
-                player:startEvent(0x00a6,0,18377); -- Mercurial Sword
+                player:startEvent(166,0,18377); -- Mercurial Sword
             else
                 player:setVar("ItB_Var",70);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4475,1) == true and trade:getItemCount() == 1) then -- Sea Zombie
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 238) then -- 23.8% chance
                 player:setVar("ItB_Var",71);
-                player:startEvent(0x00a6,0,17006); -- Drill Calamary
+                player:startEvent(166,0,17006); -- Drill Calamary
             else
                 player:setVar("ItB_Var",72);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4451,1) == true and trade:getItemCount() == 1) then -- Silver Shark
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 13) then -- 1.3% chance
                 player:setVar("ItB_Var",73);
-                player:startEvent(0x00a6,0,16837); -- Trident
+                player:startEvent(166,0,16837); -- Trident
             else
                 player:setVar("ItB_Var",74);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4463,1) == true and trade:getItemCount() == 1) then -- Takitaro
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 22) then -- 2.2% chance
                 player:setVar("ItB_Var",75);
-                player:startEvent(0x00a6,0,942); -- Philosopher's Stone
+                player:startEvent(166,0,942); -- Philosopher's Stone
             else
                 player:setVar("ItB_Var",76);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4478,1) == true and trade:getItemCount() == 1) then -- Three-eyed Fish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 100) then -- 10.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",77);
-                player:startEvent(0x00a6,0,945); -- Pinch of Paralysis Dust
+                player:startEvent(166,0,945); -- Pinch of Paralysis Dust
             else
                 player:setVar("ItB_Var",78);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5120,1) == true and trade:getItemCount() == 1) then -- Titanic Sawfish
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 7) then -- 0.7% chance
                 player:setVar("ItB_Var",79);
-                player:startEvent(0x00a6,0,19290); -- Aizenkunitoshi
+                player:startEvent(166,0,19290); -- Aizenkunitoshi
             else
                 player:setVar("ItB_Var",80);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4476,1) == true and trade:getItemCount() == 1) then -- Titanictus
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 13) then -- 1.3% chance
                 player:setVar("ItB_Var",81);
-                player:startEvent(0x00a6,0,16533); -- Ancient Sword
+                player:startEvent(166,0,16533); -- Ancient Sword
             else
                 player:setVar("ItB_Var",82);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4319,1) == true and trade:getItemCount() == 1) then -- Tricorn
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 40) then -- 4.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",83);
-                player:startEvent(0x00a6,0,645); -- Chunk of Darksteel Ore
+                player:startEvent(166,0,645); -- Chunk of Darksteel Ore
             else
                 player:setVar("ItB_Var",84);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5137,1) == true and trade:getItemCount() == 1) then -- Turnabaligi
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 10) then -- 1.0% chance
                 player:setVar("ItB_Var",85);
-                player:startEvent(0x00a6,0,1262); -- Chunk of Dark Ore
+                player:startEvent(166,0,1262); -- Chunk of Dark Ore
             elseif (rand >= 11 and rand <= 24) then -- 1.4% chance
                 player:setVar("ItB_Var",86);
-                player:startEvent(0x00a6,0,1256); -- Chunk of Ice Ore
+                player:startEvent(166,0,1256); -- Chunk of Ice Ore
             elseif (rand >= 25 and rand <= 38) then -- 1.4% chance
                 player:setVar("ItB_Var",87);
-                player:startEvent(0x00a6,0,1260); -- Chunk of Water Ore
+                player:startEvent(166,0,1260); -- Chunk of Water Ore
             else
                 player:setVar("ItB_Var",88);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5141,1) == true and trade:getItemCount() == 1) then -- Veydal Wrasse
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 50) then -- 5.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",89);
-                player:startEvent(0x00a6,0,4361); -- Nebimonite
+                player:startEvent(166,0,4361); -- Nebimonite
             elseif (rand >= 51 and rand <= 100) then -- 5.0% chance; The wiki has an unknown percentage
                 player:setVar("ItB_Var",90);
-                player:startEvent(0x00a6,0,888); -- Seashell
+                player:startEvent(166,0,888); -- Seashell
             else
                 player:setVar("ItB_Var",91);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(4385,1) == true and trade:getItemCount() == 1) then -- Zafmlug Bass
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 14) then -- 1.4% chance
                 player:setVar("ItB_Var",92);
-                player:startEvent(0x00a6,0,770); -- Blue Rock
+                player:startEvent(166,0,770); -- Blue Rock
             else
                 player:setVar("ItB_Var",93);
-                player:startEvent(0x00a7); -- Gil Only
+                player:startEvent(167); -- Gil Only
             end
         elseif (trade:hasItemQty(5476,1) == true and trade:getItemCount() == 1) then -- Abaia
             rand = math.random(1,1000);
             if (rand >= 1 and rand <= 125) then -- 12.5% chance
                 player:setVar("ItB_Var",94);
-                player:startEvent(0x00a6,0,5818); -- Aurora Bass
+                player:startEvent(166,0,5818); -- Aurora Bass
             elseif (rand >= 126 and rand <= 204) then -- 7.8% chance
                 player:setVar("ItB_Var",95);
-                player:startEvent(0x00a6,0,5818); -- Aurora Bass x2
+                player:startEvent(166,0,5818); -- Aurora Bass x2
             elseif (rand >= 205 and rand <= 230) then -- 2.5% chance
                 player:setVar("ItB_Var",96);
-                player:startEvent(0x00a6,0,5818); -- Aurora Bass x3
+                player:startEvent(166,0,5818); -- Aurora Bass x3
             elseif (rand >= 231 and rand <= 238) then -- 0.7% chance
                 player:setVar("ItB_Var",97);
-                player:startEvent(0x00a6,0,10372); -- Plumb Boots
+                player:startEvent(166,0,10372); -- Plumb Boots
             else
                 player:setVar("ItB_Var",98);
-                player:startEvent (0x00a7); -- Gil Only
+                player:startEvent (167); -- Gil Only
             end
         end
     end
@@ -474,19 +474,19 @@ function onTrigger(player,npc)
     mLvl = player:getMainLvl(); -- This should be fishingLvl = player:getSkillLevel(SKILL_FISHING); but fishing doesn't work yet.
 
     if (player:getVar("underTheSeaVar") == 3) then
-        player:startEvent(0x0022,4501); -- During quest "Under the sea" - 3rd dialog
+        player:startEvent(34,4501); -- During quest "Under the sea" - 3rd dialog
     elseif (mLvl >= 30 and TheRealGift == QUEST_COMPLETED and InsideTheBelly == QUEST_AVAILABLE) then -- This should be (fishingLvl >= 30)
-        player:startEvent(0x00a1);
+        player:startEvent(161);
     elseif ((mLvl >= 30 and mLvl < 39) and (InsideTheBelly == QUEST_ACCEPTED or InsideTheBelly == QUEST_COMPLETED)) then -- This should be (fishingLvl >= 30 and fishingLvl < 39)
-        player:startEvent(0x00a2,5799,4481,5802,4428);
+        player:startEvent(162,5799,4481,5802,4428);
     elseif ((mLvl >= 40 and mLvl < 49) and (InsideTheBelly == QUEST_ACCEPTED or InsideTheBelly == QUEST_COMPLETED)) then -- This should be (fishingLvl >= 40 and fishingLvl < 49)
-        player:startEvent(0x00a3,5805,4385,5800,5802,5450); -- 5802(Istavrit) is skill cap 41, and therefore is used in this and the previous csid
+        player:startEvent(163,5805,4385,5800,5802,5450); -- 5802(Istavrit) is skill cap 41, and therefore is used in this and the previous csid
     elseif ((mLvl >= 50 and mLvl <= 74) and (InsideTheBelly == QUEST_ACCEPTED or InsideTheBelly == QUEST_COMPLETED)) then -- This should be (fishingLvl >= 50 and fishingLvl < 75)
-        player:startEvent(0x00a4,5806,5451,5801,5804,5807,5135);
+        player:startEvent(164,5806,5451,5801,5804,5807,5135);
     elseif (mLvl >= 75 and (InsideTheBelly == QUEST_ACCEPTED or InsideTheBelly == QUEST_COMPLETED)) then -- This should be (fishingLvl >= 75)
-        player:startEvent(0x00a5,4451,4477,5803,4307,4478,5467,4304,4474);
+        player:startEvent(165,4451,4477,5803,4307,4478,5467,4304,4474);
     else
-        player:startEvent(0x0096); -- Standard dialog
+        player:startEvent(150); -- Standard dialog
     end
 end;
 
@@ -506,26 +506,26 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0022) then
+    if (csid == 34) then
         player:setVar("underTheSeaVar",4);
-    elseif (csid == 0x0024) then
+    elseif (csid == 36) then
         player:tradeComplete();
-    elseif (csid == 0x0023) then
+    elseif (csid == 35) then
         player:addKeyItem(ETCHED_RING);
         player:messageSpecial(KEYITEM_OBTAINED,ETCHED_RING);
         player:tradeComplete();
-    elseif (csid == 0x0055) then
+    elseif (csid == 85) then
         player:addKeyItem(KNIGHTS_BOOTS);
         player:messageSpecial(KEYITEM_OBTAINED,KNIGHTS_BOOTS);
         player:setVar("aBoysDreamCS",6);
         player:tradeComplete();
 --------------------- Inside the Belly -----------------------------------------------------------------------------
-    elseif (csid == 0x00a1) then
+    elseif (csid == 161) then
         player:addQuest(OTHER_AREAS,INSIDE_THE_BELLY);
 --------------------------------------------------------------------------------------------------------------------
 --------------------- Gil + Item(s) --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
-    elseif (csid == 0x00a6) then
+    elseif (csid == 166) then
         if (player:getVar("ItB_Var") == 1) then
             player:tradeComplete();
             player:addItem(2886);
@@ -1081,7 +1081,7 @@ function onEventFinish(player,csid,option)
 --------------------------------------------------------------------------------------------------------------------
 ------------------------------------- Gil Only ---------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
-    elseif (csid == 0x00a7) then
+    elseif (csid == 167) then
         if (player:getVar("ItB_Var") == 3) then
             player:tradeComplete();
             player:addGil(GIL_RATE*350);

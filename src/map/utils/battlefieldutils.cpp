@@ -44,7 +44,7 @@ namespace battlefieldutils {
         a new Battlefield object.
     ****************************************************************/
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
-        const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
+        const char* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
@@ -59,9 +59,9 @@ namespace battlefieldutils {
         else
         {
             CBattlefield* PBattlefield = new CBattlefield(hand, Sql_GetUIntData(SqlHandle, 1), type);
-            int8* tmpName;
+            char* tmpName = nullptr;
             Sql_GetData(SqlHandle, 0, &tmpName, nullptr);
-            PBattlefield->setBcnmName(tmpName);
+            PBattlefield->setBcnmName((int8*)tmpName);
             PBattlefield->setTimeLimit(std::chrono::seconds(Sql_GetUIntData(SqlHandle, 4)));
             PBattlefield->setLevelCap(Sql_GetUIntData(SqlHandle, 5));
             PBattlefield->setLootId(Sql_GetUIntData(SqlHandle, 6));
@@ -69,7 +69,7 @@ namespace battlefieldutils {
             PBattlefield->setZoneId(Sql_GetUIntData(SqlHandle, 9));
             PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle, 7);
 
-            PBattlefield->setRecord(Sql_GetData(SqlHandle, 2),
+            PBattlefield->setRecord((const char*)Sql_GetData(SqlHandle, 2),
                 (uint8)Sql_GetUIntData(SqlHandle, 10),
                 std::chrono::seconds((uint32)Sql_GetUIntData(SqlHandle, 3)));
 
@@ -88,7 +88,7 @@ namespace battlefieldutils {
         DSP_DEBUG_BREAK_IF(battlefield == nullptr);
 
         //get ids from DB
-        const int8* fmtQuery = "SELECT monsterId, conditions \
+        const char* fmtQuery = "SELECT monsterId, conditions \
                             FROM bcnm_battlefield \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
@@ -115,7 +115,7 @@ namespace battlefieldutils {
                     {
                         if (!PMob->PAI->IsSpawned())
                         {
-                            if (strcmp(PMob->GetName(), "Maat") == 0) {
+                            if (strcmp((const char*)PMob->GetName(), "Maat") == 0) {
                                 mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
                                 // disallow subjob, this will enable for later
@@ -158,7 +158,7 @@ namespace battlefieldutils {
         DSP_DEBUG_BREAK_IF(battlefield == nullptr);
 
         //get ids from DB
-        const int8* fmtQuery = "SELECT npcId \
+        const char* fmtQuery = "SELECT npcId \
                             FROM bcnm_treasure_chests \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
@@ -257,7 +257,7 @@ namespace battlefieldutils {
         }
     }
 
-    void getStartPosition(uint16 zoneid, int(&pPosition)[4]) {
+    void getStartPosition(uint16 zoneid, float(&pPosition)[4]) {
 
         switch (zoneid) {
             case 139: //Horlais Peak
@@ -292,41 +292,6 @@ namespace battlefieldutils {
         }
     }
 
-
-    uint8 getMaxLootGroups(CBattlefield* battlefield) {
-        const int8* fmtQuery = "SELECT MAX(lootGroupId) \
-                        FROM bcnm_loot \
-                        JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
-                        WHERE bcnm_info.LootDropId = %u LIMIT 1";
-
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId());
-        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
-            ShowError("SQL error occured \n");
-            return 0;
-        }
-        else {
-            return (uint8)Sql_GetUIntData(SqlHandle, 0);
-        }
-    }
-
-    uint16 getRollsPerGroup(CBattlefield* battlefield, uint8 groupID) {
-        const int8* fmtQuery = "SELECT SUM(CASE \
-            WHEN LootDropID = %u \
-            AND lootGroupId = %u \
-            THEN rolls  \
-            ELSE 0 END) \
-            FROM bcnm_loot;";
-
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId(), groupID);
-        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
-            ShowError("SQL error occured \n");
-            return 0;
-        }
-        else {
-            return (uint16)Sql_GetUIntData(SqlHandle, 0);
-        }
-    }
-
     /*************************************************************
     Get loot from the armoury crate
     ****************************************************************/
@@ -350,11 +315,12 @@ namespace battlefieldutils {
                 }
             }
         }
-        //getMaxLootGroups(battlefield);
-        if (maxloot != 0) {
-            for (uint8 group = 0; group <= maxloot; ++group) {
-                uint16 maxRolls = getRollsPerGroup(battlefield, group);
-                uint16 groupRoll = dsprand::GetRandomNumber(maxRolls);
+
+        if (maxloot != 0)
+        {
+            for (uint8 group = 0; group <= maxloot; ++group)
+            {
+                uint16 groupRoll = dsprand::GetRandomNumber(1000/* aka 100.0% */);
                 uint16 itemRolls = 0;
 
                 for (uint8 item = 0; item < LootList->size(); ++item)
@@ -385,7 +351,7 @@ namespace battlefieldutils {
         DSP_DEBUG_BREAK_IF(battlefield == nullptr);
 
         //get ids from DB
-        const int8* fmtQuery = "SELECT monsterId \
+        const char* fmtQuery = "SELECT monsterId \
                                 FROM bcnm_battlefield \
                                 WHERE bcnmId = %u AND battlefieldNumber = 2";
 

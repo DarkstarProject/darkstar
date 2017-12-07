@@ -39,12 +39,12 @@ CItemLinkshell::~CItemLinkshell()
 
 uint32 CItemLinkshell::GetLSID()
 {
-    return RBUFL(m_extra, 0x00);
+    return ref<uint32>(m_extra, 0x00);
 }
 
 void CItemLinkshell::SetLSID(uint32 lsid)
 {
-    WBUFL(m_extra, 0x00) = lsid;
+    ref<uint32>(m_extra, 0x00) = lsid;
 }
 
 LSTYPE CItemLinkshell::GetLSType()
@@ -59,12 +59,12 @@ lscolor_t CItemLinkshell::GetLSColor()
 
 uint16 CItemLinkshell::GetLSRawColor()
 {
-    return RBUFW(m_extra, 0x06);
+    return ref<uint16>(m_extra, 0x06);
 }
 
 void CItemLinkshell::SetLSColor(uint16 color)
 {
-	WBUFW(m_extra,0x06) = color;
+	ref<uint16>(m_extra,0x06) = color;
 }
 
 const int8* CItemLinkshell::getSignature()

@@ -8,11 +8,7 @@
 -- Store TP 6
 -- Resist sleep 10
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,19 +19,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,3600,5214);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_HPP, 25);
     target:addMod(MOD_FOOD_HP_CAP, 105);
     target:addMod(MOD_VIT, 2);
@@ -43,11 +31,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SLEEPRES, 10);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_HPP, 25);
     target:delMod(MOD_FOOD_HP_CAP, 105);
     target:delMod(MOD_VIT, 2);

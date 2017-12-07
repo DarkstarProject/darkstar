@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_ACCEPTED and player:getVar("NavigatingtheUnfriendlySeas") == 3) then
         if (player:getVar("Leypoint_waitJTime") <= os.time()) then
-            player:startEvent(0x01FC);
+            player:startEvent(508);
             player:setVar("NavigatingtheUnfriendlySeas",4);   -- play cs for having waited enough time
         else
             player:messageSpecial(ENIGMATIC_LIGHT,2341);    -- play cs for not waiting long enough

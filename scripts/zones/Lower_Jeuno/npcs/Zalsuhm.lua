@@ -35,13 +35,13 @@ function onTrade(player,npc,trade)
                     --printf("\twsPoints = %u", wsPoints);
                     
                     if (wsPoints >= 0 and wsPoints <= 49) then
-                        player:startEvent(0x276B); -- Lowest Tier Dialog
+                        player:startEvent(10091); -- Lowest Tier Dialog
                     elseif (wsPoints <= 200) then
-                        player:startEvent(0x276C); -- Mid Tier Dialog
+                        player:startEvent(10092); -- Mid Tier Dialog
                     elseif (wsPoints <= 249) then
-                        player:startEvent(0x276D); -- High Tier Dialog
+                        player:startEvent(10093); -- High Tier Dialog
                     elseif (wsPoints >= 250) then
-                        player:startEvent(0x2768, i); -- Quest Complete!
+                        player:startEvent(10088, i); -- Quest Complete!
                     end
                 end
                 
@@ -74,22 +74,22 @@ function onTrigger(player,npc)
     if (unlockingAMyth == QUEST_AVAILABLE) then
         local zalsuhmUpset = player:getVar("Upset_Zalsuhm");
         if (player:needToZone() and zalsuhmUpset > 0) then -- Zalsuhm is still angry
-            player:startEvent(0x276A);
+            player:startEvent(10090);
         else
             if (zalsuhmUpset > 0) then
                 player:setVar("Upset_Zalsuhm", 0);
             end
             
             if (nyzulWeapon) then -- The player has a Nyzul weapon in the mainHand, try to initiate quest
-                player:startEvent(0x2766, mainJobId);
+                player:startEvent(10086, mainJobId);
             else
-                player:startEvent(0x2765); -- Default dialog
+                player:startEvent(10085); -- Default dialog
             end
         end
     elseif (unlockingAMyth == QUEST_ACCEPTED) then -- Quest is active for current job
-        player:startEvent(0x2767); -- Zalsuhm asks for the player to show him the weapon if they sense a change
+        player:startEvent(10087); -- Zalsuhm asks for the player to show him the weapon if they sense a change
     else -- Quest is complete for the current job
-        player:startEvent(0x2769);
+        player:startEvent(10089);
     end
 	
 end; 
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
     --printf("\tRESULT: %u", option);
     
     -- Zalsuhm wants to research the player's Nyzul Weapon
-    if (csid == 0x2766) then	
+    if (csid == 10086) then	
         -- The player chose "He has shifty eyes" (turns down the quest)
         if (option == 53) then
             player:setVar("Upset_Zalsuhm", 1);
@@ -127,7 +127,7 @@ function onEventFinish(player,csid,option)
             local questId = getQuestId(option);
             player:addQuest(JEUNO, questId);
         end
-    elseif (csid == 0x2768 and option <= JOBS["SCH"]) then -- The quest is completed
+    elseif (csid == 10088 and option <= JOBS["SCH"]) then -- The quest is completed
         local questId = getQuestId(option);
         player:completeQuest(JEUNO, questId);
     end

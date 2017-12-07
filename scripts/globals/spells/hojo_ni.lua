@@ -3,12 +3,9 @@
 -- Description: Inflicts Slow on target.
 -- Edited from slow.lua
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -16,7 +13,6 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Power for Hojo is a flat 19.5% reduction
     local power = 200;
@@ -33,15 +29,15 @@ function onSpellCast(caster,target,spell)
         if (duration >= 150) then
 
             if (target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
-                spell:setMsg(236);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(75);
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
     return EFFECT_SLOW;
 end;

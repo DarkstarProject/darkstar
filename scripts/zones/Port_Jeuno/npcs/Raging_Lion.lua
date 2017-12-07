@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 
     local seconds = math.floor(2.4 * ((vHour * 60) + vMin));
 
-    player:startEvent( 0x0011, seconds, 0, 0, 0, 0, 0, 0, 0);
+    player:startEvent( 17, seconds, 0, 0, 0, 0, 0, 0, 0);
 end; 
 
 -----------------------------------

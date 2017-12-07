@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Hex Eye
+-- Hex Eye
 --
---  Description: Paralyzes with a gaze.
---  Type: Gaze
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Line of sight
---  Notes:
+-- Description: Paralyzes with a gaze.
+-- Type: Gaze
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Line of sight
+-- Notes:
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -18,8 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
-    local message = msgBasic.MISS;
+    local message = msgBasic.SKILL_MISS;
     local typeEffect = EFFECT_PARALYSIS;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 25, 0, 120));

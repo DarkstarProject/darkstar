@@ -18,11 +18,7 @@
 -- Attack 9
 -- Ranged ATT  9
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -32,10 +28,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,4395);
@@ -61,11 +53,7 @@ function onEffectGain(target,effect)
     end
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     if (target:getRace() ~= 8) then
         target:delMod(MOD_STR, 3);
         target:delMod(MOD_INT, -4);

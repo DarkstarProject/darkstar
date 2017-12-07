@@ -2,29 +2,16 @@
 -- Area: The Sanctuary of Zi'Tah
 --  MOB: Doomed Pilgrims
 -----------------------------------
-
+package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/MobIDs"] = nil;
 -----------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/zones/The_Sanctuary_of_ZiTah/MobIDs");
 
-function onMobSpawn(mob)
+function onMobDisengage(mob)
+    DespawnMob(mob:getID(), 120);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
--- onMobDespawn Action
------------------------------------
-
-function onMobDespawn(mob)
-
-    if (GetServerVariable("[ZM4]Light_Headstone_Active") == 0) then
-        SetServerVariable("[ZM4]Light_Headstone_Active",os.time()+ 900);
+    if (isKiller) then
+        GetNPCByID(CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
     end
-
 end;

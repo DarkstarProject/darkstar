@@ -106,13 +106,13 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
         nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
-        
+
         if (nativecrit > 0.2) then -- caps only apply to base rate, not merits and mods
             nativecrit = 0.2;
         elseif (nativecrit < 0.05) then
             nativecrit = 0.05;
         end
-        
+
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
@@ -766,13 +766,13 @@ end;
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
-        
+
         if (nativecrit > 0.2) then -- caps only apply to base rate, not merits and mods
             nativecrit = 0.2;
         elseif (nativecrit < 0.05) then
             nativecrit = 0.05;
         end
-        
+
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
@@ -986,6 +986,7 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
             else
                 action:messageID(defender:getID(), msgBasic.DAMAGE_SECONDARY)
             end
+
             if finaldmg > 0 then
                 action:reaction(defender:getID(), REACTION_HIT)
                 action:speceffect(defender:getID(), SPECEFFECT_RECOIL)
@@ -1003,9 +1004,9 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
         action:param(defender:getID(), shadowsAbsorbed)
     else
         if primary then
-            action:messageID(defender:getID(), msgBasic.MISS)
+            action:messageID(defender:getID(), msgBasic.SKILL_MISS)
         else
-            action:messageID(defender:getID(), msgBasic.MISS_SECONDARY)
+            action:messageID(defender:getID(), msgBasic.EVADES)
         end
         action:reaction(defender:getID(), REACTION_EVADE)
     end

@@ -2,11 +2,8 @@
 -- Spell: Paralyna
 -- Removes paralysis from target.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -16,9 +13,9 @@ end;
 function onSpellCast(caster,target,spell)
     if (target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then
         target:delStatusEffect(EFFECT_PARALYSIS);
-        spell:setMsg(83);
+        spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
     return EFFECT_PARALYSIS;
 end;

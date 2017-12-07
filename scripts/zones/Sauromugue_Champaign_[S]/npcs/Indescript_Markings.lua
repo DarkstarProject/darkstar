@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 3) then
-        player:startEvent(0x0004);
+        player:startEvent(4);
     end
 end;
 
@@ -47,7 +47,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
-    if (csid == 0x0004) then
+    if (csid == 4) then
         player:setVar("DownwardHelix",4);
     end
 end;

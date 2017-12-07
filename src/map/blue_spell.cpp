@@ -27,10 +27,10 @@ CBlueSpell::CBlueSpell(SpellID id) : CSpell(id)
 {
 }
 
-  std::unique_ptr<CSpell> CBlueSpell::clone()
-  {
-      return std::unique_ptr<CBlueSpell>(new CBlueSpell(*this));
-  }
+std::unique_ptr<CSpell> CBlueSpell::clone()
+{
+  return std::unique_ptr<CBlueSpell>(new CBlueSpell(*this));
+}
 
 uint16 CBlueSpell::getMonsterSkillId()
 {
@@ -102,7 +102,7 @@ void CBlueSpell::setSecondarySkillchain(uint8 sc)
     m_SecondarySkillchain = sc;
 }
 
-void CBlueSpell::addModifier(CModifier* modifier)
+void CBlueSpell::addModifier(CModifier modifier)
 {
     modList.push_back(modifier);
 }

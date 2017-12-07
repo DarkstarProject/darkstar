@@ -37,10 +37,10 @@ CPartyInvitePacket::CPartyInvitePacket(uint32 id, uint16 targid, CCharEntity* PI
 
 	//DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
 	
-	WBUFL(data,(0x04)) = id;
-	WBUFW(data,(0x08)) = targid;
+	ref<uint32>(0x04) = id;
+	ref<uint16>(0x08) = targid;
 
-	WBUFB(data,(0x0B)) = InviteType;
+	ref<uint8>(0x0B) = InviteType;
 
 	memcpy(data+(0x0C), PInviter->GetName(), PInviter->name.size()); 
 }

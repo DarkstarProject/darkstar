@@ -773,7 +773,8 @@ public:
 
     const int8* GetName();
 
-    std::vector<CModifier*> modList;    // список модификаторов
+    std::vector<CModifier> modList;    // список модификаторов
+    bool deleted{false};
 
     CStatusEffect(
          EFFECT id,

@@ -20,7 +20,7 @@ function startAllyAssist(entity, assistMode)
         players = entity:getInstance():getChars();
     end
 
-    print("start inserting mob")
+--    print("start inserting mob")
     local targetMobs = {}
     for j,mob in pairs(mobs) do
         if (mob:isSpawned() and mob:isAlive()) then
@@ -28,7 +28,7 @@ function startAllyAssist(entity, assistMode)
                 table.insert(allies, mob)
             else
                 table.insert(targetMobs, mob)
-                print("inserting mob")
+ --               print("inserting mob")
             end
         end
     end
@@ -47,7 +47,7 @@ function startAllyAssist(entity, assistMode)
             end
         end
 
-        printf("startAllyAssist: target = %u (ALLY_ASSIST_PLAYER)", assistTarget);
+        --printf("startAllyAssist: target = %u (ALLY_ASSIST_PLAYER)", assistTarget);
 
         -- Attack their target if found. If none found, we'll fall to ALLY_ASSIST_RANDOM.
         -- A variety of reasons could cause this - players have hate but are not engaged is one.
@@ -66,6 +66,10 @@ function startAllyAssist(entity, assistMode)
 
 
     local target = targetMobs[math.random(#targetMobs)]
+
+    if not target then
+        return;
+    end
 
     for _,ally in ipairs(allies) do
         ally:engage(target:getShortID())

@@ -839,7 +839,7 @@ private:
     uint8       m_skillType {};
     float       m_range {};
     float       m_radius {};
-    uint8       m_totalTargets {};
+    uint16      m_totalTargets {};
     uint16      m_mpCost {};                               // mpCost/itemId for ninjitsu tool
     uint8       m_job[MAX_JOBTYPE]{};                      // job
     uint8       m_ValidTarget {};                          // target pc/npc/both

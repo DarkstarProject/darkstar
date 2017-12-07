@@ -2,13 +2,10 @@
 -- Spell: Drown
 -- Deals water damage that lowers an enemy's strength and gradually reduces its HP.
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -16,10 +13,10 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    
+
     if (target:getStatusEffect(EFFECT_SHOCK) ~= nil) then
-        spell:setMsg(75); -- no effect
-    else        
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+    else
         local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
         local params = {};
         params.diff = nil;
@@ -27,9 +24,9 @@ function onSpellCast(caster,target,spell)
         params.skillType = 36;
         params.bonus = 0;
         params.effect = nil;
-        resist = applyResistance(caster, target, spell, params);
+        local resist = applyResistance(caster, target, spell, params);
         if (resist <= 0.125) then
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         else
             if (target:getStatusEffect(EFFECT_BURN) ~= nil) then
                 target:delStatusEffect(EFFECT_BURN);
@@ -44,12 +41,12 @@ function onSpellCast(caster,target,spell)
                 end;
             end;
             if (noeffect) then
-                spell:setMsg(75); -- no effect
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
             else
                 if (effect ~= nil) then
                     target:delStatusEffect(EFFECT_DROWN);
                 end;
-                spell:setMsg(237);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB);
                 local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
                 target:addStatusEffect(EFFECT_DROWN,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
             end;

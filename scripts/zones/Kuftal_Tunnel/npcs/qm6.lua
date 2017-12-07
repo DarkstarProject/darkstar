@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             SpawnMob(17489928, 180); -- Gizerl's Ghost
             
         elseif (player:getVar("MissionStatus") == 3) then
-            player:startEvent(0x00D);
+            player:startEvent(13);
         else
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         end
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
     
-    if (csid == 0x00D) then
+    if (csid == 13) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(OLD_PIECE_OF_WOOD);
         player:messageSpecial(KEYITEM_OBTAINED,OLD_PIECE_OF_WOOD);

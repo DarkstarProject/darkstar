@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x000a);
+    player:startEvent(10);
 end;
 
 -----------------------------------
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 
 -- TODO: Missing teleport-animation. Might be a core issue as to why it wont display.
 
-    if (csid == 0x000a and option == 100) then
+    if (csid == 10 and option == 100) then
         player:setPos(-81.5,7.297,-127.919,71);
     end
 

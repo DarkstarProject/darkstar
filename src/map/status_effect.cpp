@@ -31,19 +31,19 @@
 CStatusEffect::CStatusEffect(EFFECT id, uint16 icon, uint16 power, uint32 tick, uint32 duration, uint32 subid, uint16 subPower, uint16 tier) :
     m_StatusID(id), m_SubID(subid), m_Icon(icon), m_Power(power), m_SubPower(subPower), m_Tier(tier), m_TickTime(tick * 1000), m_Duration(duration * 1000)
 {
+    if (m_TickTime < 3000 && m_TickTime != 0)
+    {
+        ShowWarning("Status Effect tick time less than 3s is no longer supported.  Effect ID: %d\n", id);
+    }
 }
 
 CStatusEffect::~CStatusEffect()
 {
-	for (uint32 i = 0; i < modList.size(); ++i)
-	{
-		delete modList.at(i);
-	}
 }
 
 const int8* CStatusEffect::GetName()
 {
-	return m_Name.c_str();
+	return (const int8*)m_Name.c_str();
 }
 
 void CStatusEffect::SetOwner(CBattleEntity* Owner)
@@ -178,7 +178,7 @@ void CStatusEffect::IncrementElapsedTickCount()
 void CStatusEffect::SetName(const int8* name)
 {
 	m_Name.clear();
-	m_Name.insert(0,name);
+	m_Name.insert(0, (const char*)name);
 }
 
 void CStatusEffect::SetName(string_t name)
@@ -190,11 +190,11 @@ void CStatusEffect::addMod(Mod modType, int16 amount)
 {
 	for (uint32 i = 0; i < modList.size(); ++i)
 	{
-		if (modList.at(i)->getModID() == modType)
+		if (modList.at(i).getModID() == modType)
 		{
-			modList.at(i)->setModAmount(modList.at(i)->getModAmount() + amount);
+			modList.at(i).setModAmount(modList.at(i).getModAmount() + amount);
 			return;
 		}
 	}
-	modList.push_back(new CModifier(modType, amount));
+	modList.push_back(CModifier(modType, amount));
 }

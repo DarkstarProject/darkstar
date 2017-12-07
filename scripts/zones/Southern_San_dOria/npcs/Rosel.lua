@@ -42,14 +42,14 @@ function onTrigger(player,npc)
     local receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
 
     if (player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE) then
-        player:startEvent(0x020c);
+        player:startEvent(524);
     elseif (RoselTheArmorer == QUEST_AVAILABLE) then
-        player:startEvent(0x020b);
+        player:startEvent(523);
         player:setVar("RefuseRoselTheArmorerQuest",1);
     elseif (RoselTheArmorer == QUEST_ACCEPTED and receiprForThePrince) then
-        player:startEvent(0x020c);
+        player:startEvent(524);
     elseif (RoselTheArmorer == QUEST_ACCEPTED and receiprForThePrince == false) then
-        player:startEvent(0x020f);
+        player:startEvent(527);
     end
 
 end;
@@ -72,13 +72,13 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- Rosel the Armorer, get quest and receipt for prince
-    if ((csid == 0x020b or csid == 0x020c) and option == 0) then
+    if ((csid == 523 or csid == 524) and option == 0) then
         player:addQuest(SANDORIA, ROSEL_THE_ARMORER);
         player:setVar("RefuseRoselTheArmorerQuest",0);
         player:addKeyItem(RECEIPT_FOR_THE_PRINCE);
         player:messageSpecial(KEYITEM_OBTAINED,RECEIPT_FOR_THE_PRINCE);
     -- Rosel the Armorer, finished quest, recieve 200gil
-    elseif (csid == 0x020f) then
+    elseif (csid == 527) then
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
             title= ENTRANCE_DENIED,
             gil= 200

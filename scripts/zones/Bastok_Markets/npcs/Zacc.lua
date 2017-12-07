@@ -23,11 +23,11 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK, WISH_UPON_A_STAR) == QUEST_COMPLETED) then -- Quest: Wish Upon a Star - Quest has been completed.
-        player:startEvent(0x0150);
+        player:startEvent(336);
     elseif (player:getFameLevel(BASTOK) > 4 and player:getQuestStatus(BASTOK, WISH_UPON_A_STAR) == QUEST_AVAILABLE) then -- Quest: Wish Upon a Star - Start quest.
-        player:startEvent(0x0149);
+        player:startEvent(329);
     else -- Standard dialog
-        player:startEvent(0x0148);
+        player:startEvent(328);
     end
 end;
 
@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0149) then -- Quest: Wish Upon a Star
+    if (csid == 329) then -- Quest: Wish Upon a Star
         player:addQuest(BASTOK, WISH_UPON_A_STAR);
         player:setVar("WishUponAStar_Status", 1);
     end

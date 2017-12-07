@@ -28,9 +28,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-260.136,2.09,-325.702,188);
     end    
     if (player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
-        cs = 0x0032;
+        cs = 50;
     elseif (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 7) then
-            cs = 0x003D;
+            cs = 61;
     end
     return cs;
 end;        
@@ -81,9 +81,9 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
     
-    if (csid == 0x0032) then
+    if (csid == 50) then
         finishMissionTimeline(player,3,csid,option);
-    elseif (csid == 0x003D) then
+    elseif (csid == 61) then
         player:addTitle(GUIDING_STAR);
         finishMissionTimeline(player,3,csid,option);
     end

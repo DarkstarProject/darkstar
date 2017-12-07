@@ -23,9 +23,9 @@ end;
 function onTrigger(player,npc) 
     local posZ=player:getZPos();
     if (player:hasKeyItem(PSOXJA_PASS)==true and posZ >= 25) then
-        player:startEvent(0x000E);
+        player:startEvent(14);
     elseif (posZ < 25) then
-        player:startEvent(0x0011);
+        player:startEvent(17);
     else
         player:messageSpecial(DOOR_LOCKED);
     end

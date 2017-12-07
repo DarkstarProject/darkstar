@@ -31,11 +31,11 @@ function onTrigger(player,npc)
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
     if ((TrialByWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4) or (TrialByWater == QUEST_COMPLETED and realday ~= player:getVar("TrialByWater_date"))) then
-        player:startEvent(0x006d,0,TUNING_FORK_OF_WATER); -- Start and restart quest "Trial by Water"
+        player:startEvent(109,0,TUNING_FORK_OF_WATER); -- Start and restart quest "Trial by Water"
     elseif (TrialByWater == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_WATER) == false and WhisperOfTides == false) then
-        player:startEvent(0x00be,0,TUNING_FORK_OF_WATER); -- Defeat against Avatar : Need new Fork
+        player:startEvent(190,0,TUNING_FORK_OF_WATER); -- Defeat against Avatar : Need new Fork
     elseif (TrialByWater == QUEST_ACCEPTED and WhisperOfTides == false) then
-        player:startEvent(0x006e,0,TUNING_FORK_OF_WATER,2);
+        player:startEvent(110,0,TUNING_FORK_OF_WATER,2);
     elseif (TrialByWater == QUEST_ACCEPTED and WhisperOfTides) then
         numitem = 0;
 
@@ -45,9 +45,9 @@ function onTrigger(player,npc)
         if (player:hasItem(1204)) then numitem = numitem + 8; end   -- Eye of Nept
         if (player:hasSpell(300)) then numitem = numitem + 32; end  -- Ability to summon Leviathan
 
-        player:startEvent(0x0070,0,TUNING_FORK_OF_WATER,2,0,numitem);
+        player:startEvent(112,0,TUNING_FORK_OF_WATER,2,0,numitem);
     else
-        player:startEvent(0x0071); -- Standard dialog
+        player:startEvent(113); -- Standard dialog
     end
 
 end;
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x006d and option == 1) then
+    if (csid == 109 and option == 1) then
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WATER) == QUEST_COMPLETED) then
             player:delQuest(OUTLANDS,TRIAL_BY_WATER);
         end
@@ -77,10 +77,10 @@ function onEventFinish(player,csid,option)
         player:setVar("TrialByWater_date", 0);
         player:addKeyItem(TUNING_FORK_OF_WATER);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WATER);
-    elseif (csid == 0x00be) then
+    elseif (csid == 190) then
         player:addKeyItem(TUNING_FORK_OF_WATER);
         player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WATER);
-    elseif (csid == 0x0070) then
+    elseif (csid == 112) then
         local item = 0;
         if (option == 1) then item = 17439;         -- Leviathan's Rod
         elseif (option == 2) then item = 13246;  -- Water Belt

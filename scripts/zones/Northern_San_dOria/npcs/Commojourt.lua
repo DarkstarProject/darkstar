@@ -34,9 +34,9 @@ function onTrigger(player,npc)
     rand = math.random(1,2);
     
     if (rand == 1) then
-        player:startEvent(0x028d);
+        player:startEvent(653);
     else
-        player:startEvent(0x0291);
+        player:startEvent(657);
     end
 end; 
 

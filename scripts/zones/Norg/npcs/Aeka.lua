@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 
     if (checkItem == true) then
         if (trade:hasItemQty(645,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x002f,0,1151,645); -- Oriental Steel, Darksteel Ore
+            player:startEvent(47,0,1151,645); -- Oriental Steel, Darksteel Ore
         end
     end
 
@@ -46,23 +46,23 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and swordTimer == 0) then
         if (player:hasItem(1152)) then
-            player:startEvent(0x0030,1152); -- Bomb Steel
+            player:startEvent(48,1152); -- Bomb Steel
         elseif (player:hasItem(1151) == false) then
             questItem = player:getVar("ForgeYourDestiny_Event");
             checkItem = testflag(tonumber(questItem),0x01);
 
             if (checkItem == false) then
-                player:startEvent(0x002c,1152,1151); -- Bomb Steel, Oriental Steel
+                player:startEvent(44,1152,1151); -- Bomb Steel, Oriental Steel
             elseif (checkItem == true) then
-                player:startEvent(0x002e,0,1151,645); -- Oriental Steel, Darksteel Ore
+                player:startEvent(46,0,1151,645); -- Oriental Steel, Darksteel Ore
             end
         elseif (player:hasItem(1151)) then
-            player:startEvent(0x002d,1152,1151); -- Bomb Steel, Oriental Steel
+            player:startEvent(45,1152,1151); -- Bomb Steel, Oriental Steel
         end
     elseif (swordTimer > 0) then
-        player:startEvent(0x0032);
+        player:startEvent(50);
     else
-        player:startEvent(0x0078);
+        player:startEvent(120);
     end
 
 end;
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
 
     questItem = player:getVar("ForgeYourDestiny_Event");
 
-    if (csid == 0x002c) then
+    if (csid == 44) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1151);
             player:messageSpecial(ITEM_OBTAINED, 1151); -- Oriental Steel
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end
-    elseif (csid == 0x002f) then
+    elseif (csid == 47) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
             player:addItem(1151);

@@ -3,26 +3,17 @@
 -- Item: Silencing Potion
 -- Item Effect: This potion induces silence.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_SILENCE) == false) then
+    if (not target:hasStatusEffect(EFFECT_SILENCE)) then
         target:addStatusEffect(EFFECT_SILENCE,1,3,180);
     else
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;
-

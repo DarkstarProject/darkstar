@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (newRank ~= 0) then
         player:setSkillRank(SKILL_LEATHERCRAFT,newRank);
-        player:startEvent(0x0289,0,0,0,0,newRank);
+        player:startEvent(649,0,0,0,0,newRank);
     end
 end;
 
@@ -49,13 +49,13 @@ function onTrigger(player,npc)
             end
 
             -- The Parameters are Item IDs for the Recipe
-            player:startEvent(0x03b0, item, 2773, 917, 917, 2776, 4103);
+            player:startEvent(944, item, 2773, 917, 917, 2776, 4103);
     else
-        player:startEvent(0x0288,testItem,getNewRank,30,guildMember,44,0,0,0);
+        player:startEvent(648,testItem,getNewRank,30,guildMember,44,0,0,0);
     end
 end;
 
--- 0x0288  0x0289  0x02f8  0x02f9  0x02fa  0x02fb  0x02fc  0x02fd  0x0302  0x0303  0x0304  0x0305  0x0306  0x0307  0x03b0  0x0392
+-- 648  649  0x02f8  0x02f9  0x02fa  0x02fb  0x02fc  0x02fd  0x0302  0x0303  0x0304  0x0305  0x0306  0x0307  944  0x0392
 
 -----------------------------------
 -- onEventUpdate
@@ -73,7 +73,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0288 and option == 1) then
+    if (csid == 648 and option == 1) then
         local crystal = 4103; -- dark crystal
 
         if (player:getFreeSlotsCount() == 0) then

@@ -77,11 +77,11 @@ namespace message
         {
         case MSG_LOGIN:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+            CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra->data(), 0));
 
             if (!PChar)
             {
-                Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", RBUFL(extra->data(), 0));
+                Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %d;", ref<uint32>((uint8*)extra->data(), 0));
             }
             else
             {
@@ -97,15 +97,16 @@ namespace message
             CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
             if (PChar && PChar->status != STATUS_DISAPPEAR && !jailutils::InPrison(PChar))
             {
-                if (PChar->nameflags.flags & FLAG_AWAY)
+                std::unique_ptr<CBasicPacket> newPacket = std::make_unique<CBasicPacket>();
+                memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
+                auto gm_sent = newPacket->ref<uint8>(0x05);
+                if (PChar->nameflags.flags & FLAG_AWAY && !gm_sent)
                 {
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PChar, 0, 0, 181));
                 }
                 else
                 {
-                    CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
-                    PChar->pushPacket(newPacket);
+                    PChar->pushPacket(std::move(newPacket));
                 }
             }
             else
@@ -116,7 +117,7 @@ namespace message
         }
         case MSG_CHAT_PARTY:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+            CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra->data(), 0));
             if (PChar)
             {
                 if (PChar->PParty)
@@ -126,15 +127,15 @@ namespace message
                         for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
                         {
                             CBasicPacket* newPacket = new CBasicPacket();
-                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
-                            ((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(RBUFL(extra->data(), 4), 0, newPacket);
+                            memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
+                            ((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(ref<uint32>((uint8*)extra->data(), 4), 0, newPacket);
                         }
                     }
                     else
                     {
                         CBasicPacket* newPacket = new CBasicPacket();
-                        memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
-                        PChar->PParty->PushPacket(RBUFL(extra->data(), 4), 0, newPacket);
+                        memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
+                        PChar->PParty->PushPacket(ref<uint32>((uint8*)extra->data(), 4), 0, newPacket);
                     }
                 }
             }
@@ -142,13 +143,13 @@ namespace message
         }
         case MSG_CHAT_LINKSHELL:
         {
-            uint32 linkshellID = RBUFL(extra->data(), 0);
+            uint32 linkshellID = ref<uint32>((uint8*)extra->data(), 0);
             CLinkshell* PLinkshell = linkshell::GetLinkshell(linkshellID);
             if (PLinkshell)
             {
                 CBasicPacket* newPacket = new CBasicPacket();
-                memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
-                PLinkshell->PushPacket(RBUFL(extra->data(), 4), newPacket);
+                memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
+                PLinkshell->PushPacket(ref<uint32>((uint8*)extra->data(), 4), newPacket);
             }
             break;
         }
@@ -161,10 +162,10 @@ namespace message
                     PZone->ForEachChar([&packet, &extra](CCharEntity* PChar)
                     {
                         // don't push to sender
-                        if (PChar->id != RBUFL(extra->data(), 0))
+                        if (PChar->id != ref<uint32>((uint8*)extra->data(), 0))
                         {
                             CBasicPacket* newPacket = new CBasicPacket();
-                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+                            memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
 
                             PChar->pushPacket(newPacket);
                         }
@@ -180,7 +181,7 @@ namespace message
                 PZone->ForEachChar([&packet](CCharEntity* PChar)
                 {
                     CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+                    memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
                     PChar->pushPacket(newPacket);
                 });
             });
@@ -188,9 +189,9 @@ namespace message
         }
         case MSG_PT_INVITE:
         {
-            uint32 id = RBUFL(extra->data(), 0);
-            uint16 targid = RBUFW(extra->data(), 4);
-            uint8 inviteType = RBUFB(packet->data(), 0x0B);
+            uint32 id = ref<uint32>((uint8*)extra->data(), 0);
+            // uint16 targid = ref<uint16>((uint8*)extra->data(), 4);
+            uint8 inviteType = ref<uint8>((uint8*)packet->data(), 0x0B);
             CCharEntity* PInvitee = zoneutils::GetChar(id);
 
             if (PInvitee)
@@ -199,14 +200,14 @@ namespace message
                 if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || (PInvitee->PParty && inviteType == INVITE_PARTY) ||
                     (inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)))
                 {
-                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    ref<uint32>((uint8*)extra->data(), 0) = ref<uint32>((uint8*)extra->data(), 6);
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     return;
                 }
                 // check /blockaid
                 if (PInvitee->getBlockingAid())
                 {
-                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    ref<uint32>((uint8*)extra->data(), 0) = ref<uint32>((uint8*)extra->data(), 6);
                     // Target is blocking assistance
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageSystemPacket(0, 0, 225));
                     // Interaction was blocked
@@ -217,26 +218,26 @@ namespace message
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
-                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    ref<uint32>((uint8*)extra->data(), 0) = ref<uint32>((uint8*)extra->data(), 6);
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 236));
                     return;
                 }
 
-                PInvitee->InvitePending.id = RBUFL(extra->data(), 6);
-                PInvitee->InvitePending.targid = RBUFW(extra->data(), 10);
+                PInvitee->InvitePending.id = ref<uint32>((uint8*)extra->data(), 6);
+                PInvitee->InvitePending.targid = ref<uint16>((uint8*)extra->data(), 10);
                 CBasicPacket* newPacket = new CBasicPacket();
-                memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+                memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
                 PInvitee->pushPacket(newPacket);
             }
             break;
         }
         case MSG_PT_INV_RES:
         {
-            uint32 inviterId = RBUFL(extra->data(), 0);
-            uint16 inviterTargid = RBUFW(extra->data(), 4);
-            uint32 inviteeId = RBUFL(extra->data(), 6);
-            uint16 inviteeTargid = RBUFW(extra->data(), 10);
-            uint8 inviteAnswer = RBUFB(extra->data(), 12);
+            uint32 inviterId = ref<uint32>((uint8*)extra->data(), 0);
+            // uint16 inviterTargid = ref<uint16>((uint8*)extra->data(), 4);
+            uint32 inviteeId = ref<uint32>((uint8*)extra->data(), 6);
+            // uint16 inviteeTargid = ref<uint16>((uint8*)extra->data(), 10);
+            uint8 inviteAnswer = ref<uint8>((uint8*)extra->data(), 12);
             CCharEntity* PInviter = zoneutils::GetChar(inviterId);
 
             if (PInviter)
@@ -278,9 +279,9 @@ namespace message
                     {
                         if (PInviter->PParty == nullptr)
                         {
-                            CParty* PParty = new CParty(PInviter);
+                            // PInviter->PParty = new CParty(PInviter);
                         }
-                        if (PInviter->PParty->GetLeader() == PInviter)
+                        if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter)
                         {
                             ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
                                                        															charid = %u;", inviteeId);
@@ -298,7 +299,7 @@ namespace message
         {
             if (extra->size() == 8)
             {
-                CCharEntity* PChar = zoneutils::GetCharToUpdate(RBUFL(extra->data(), 4), RBUFL(extra->data(), 0));
+                CCharEntity* PChar = zoneutils::GetCharToUpdate(ref<uint32>((uint8*)extra->data(), 4), ref<uint32>((uint8*)extra->data(), 0));
                 if (PChar)
                 {
                     PChar->ReloadPartyInc();
@@ -307,7 +308,7 @@ namespace message
             }
             else
             {
-                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra->data(), 0));
                 if (PChar)
                 {
                     PChar->ForAlliance([](CBattleEntity* PMember)
@@ -321,8 +322,8 @@ namespace message
         }
         case MSG_PT_DISBAND:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
-            uint32 id = RBUFL(extra->data(), 4);
+            CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra->data(), 0));
+            uint32 id = ref<uint32>((uint8*)extra->data(), 4);
             if (PChar)
             {
                 if (PChar->PParty)
@@ -341,22 +342,22 @@ namespace message
         }
         case MSG_DIRECT:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+            CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra->data(), 0));
             if (PChar)
             {
                 CBasicPacket* newPacket = new CBasicPacket();
-                memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+                memcpy(*newPacket, packet->data(), std::min<size_t>(packet->size(), PACKET_SIZE));
                 PChar->pushPacket(newPacket);
             }
             break;
         }
         case MSG_LINKSHELL_RANK_CHANGE:
         {
-            CLinkshell* PLinkshell = linkshell::GetLinkshell(RBUFL(extra->data(), 24));
+            CLinkshell* PLinkshell = linkshell::GetLinkshell(ref<uint32>((uint8*)extra->data(), 24));
 
             if (PLinkshell)
             {
-                PLinkshell->ChangeMemberRank((int8*)extra->data() + 4, RBUFB(extra->data(), 28));
+                PLinkshell->ChangeMemberRank((int8*)extra->data() + 4, ref<uint8>((uint8*)extra->data(), 28));
             }
             break;
         }
@@ -364,18 +365,18 @@ namespace message
         {
             CCharEntity* PChar = zoneutils::GetCharByName((int8*)extra->data() + 4);
 
-            if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == RBUFL(extra->data(), 24))
+            if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == ref<uint32>((uint8*)extra->data(), 24))
             {
-                uint8 kickerRank = RBUFB(extra->data(), 28);
+                uint8 kickerRank = ref<uint8>((uint8*)extra->data(), 28);
                 CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
                 if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                 {
                     PChar->PLinkshell1->RemoveMemberByName((int8*)extra->data() + 4);
                 }
             }
-            else if (PChar && PChar->PLinkshell2 && PChar->PLinkshell2->getID() == RBUFL(extra->data(), 24))
+            else if (PChar && PChar->PLinkshell2 && PChar->PLinkshell2->getID() == ref<uint32>((uint8*)extra->data(), 24))
             {
-                uint8 kickerRank = RBUFB(extra->data(), 28);
+                uint8 kickerRank = ref<uint8>((uint8*)extra->data(), 28);
                 CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
                 if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
                 {
@@ -386,35 +387,35 @@ namespace message
         }
         case MSG_SEND_TO_ZONE:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+            CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra->data(), 0));
 
             if (PChar && PChar->loc.zone)
             {
-                uint32 requester = RBUFL(extra->data(), 4);
+                uint32 requester = ref<uint32>((uint8*)extra->data(), 4);
 
                 if (requester != 0)
                 {
                     char buf[30];
                     memset(&buf[0], 0, sizeof(buf));
 
-                    WBUFL(&buf, 0) = requester;
-                    WBUFW(&buf, 8) = PChar->getZone();
-                    WBUFF(&buf, 10) = PChar->loc.p.x;
-                    WBUFF(&buf, 14) = PChar->loc.p.y;
-                    WBUFF(&buf, 18) = PChar->loc.p.z;
-                    WBUFB(&buf, 22) = PChar->loc.p.rotation;
-                    WBUFL(&buf, 23) = PChar->m_moghouseID;
+                    ref<uint32>(&buf, 0) = requester;
+                    ref<uint16>(&buf, 8) = PChar->getZone();
+                    ref<float>(&buf, 10) = PChar->loc.p.x;
+                    ref<float>(&buf, 14) = PChar->loc.p.y;
+                    ref<float>(&buf, 18) = PChar->loc.p.z;
+                    ref<uint8>(&buf, 22) = PChar->loc.p.rotation;
+                    ref<uint32>(&buf, 23) = PChar->m_moghouseID;
 
                     message::send(MSG_SEND_TO_ZONE, &buf, sizeof(buf), nullptr);
                     break;
                 }
 
-                uint16 zoneId = RBUFW(extra->data(), 8);
-                float x = RBUFF(extra->data(), 10);
-                float y = RBUFF(extra->data(), 14);
-                float z = RBUFF(extra->data(), 18);
-                uint8 rot = RBUFB(extra->data(), 22);
-                uint32 moghouseID = RBUFL(extra->data(), 23);
+                uint16 zoneId = ref<uint16>((uint8*)extra->data(), 8);
+                float x = ref<float>((uint8*)extra->data(), 10);
+                float y = ref<float>((uint8*)extra->data(), 14);
+                float z = ref<float>((uint8*)extra->data(), 18);
+                uint8 rot = ref<uint8>((uint8*)extra->data(), 22);
+                uint32 moghouseID = ref<uint32>((uint8*)extra->data(), 23);
 
                 PChar->updatemask = 0;
 
@@ -486,7 +487,7 @@ namespace message
                 continue;
             }
 
-            parse((MSGSERVTYPE)RBUFB(type.data(), 0), &extra, &packet);
+            parse((MSGSERVTYPE)ref<uint8>((uint8*)type.data(), 0), &extra, &packet);
         }
     }
 
@@ -516,7 +517,7 @@ namespace message
             int ret = Sql_Query(SqlHandle, "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport ORDER BY COUNT(*) DESC;");
             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                ipp = inet_addr(Sql_GetData(SqlHandle, 0));
+                ipp = inet_addr((const char*)Sql_GetData(SqlHandle, 0));
                 port = Sql_GetUIntData(SqlHandle, 1);
             }
         }
@@ -560,7 +561,7 @@ namespace message
         std::lock_guard<std::mutex> lk(send_mutex);
         chat_message_t msg;
         msg.type = new zmq::message_t(sizeof(MSGSERVTYPE));
-        WBUFB(msg.type->data(), 0) = type;
+        ref<uint8>((uint8*)msg.type->data(), 0) = type;
 
         msg.data = new zmq::message_t(datalen);
         if (datalen > 0)

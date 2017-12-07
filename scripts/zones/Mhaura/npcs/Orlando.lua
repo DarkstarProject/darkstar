@@ -39,10 +39,10 @@ function onTrade(player,npc,trade)
                 if (trade:hasItemQty(itemID, 8) and trade:getItemCount() == 8) then
                 -- Correct amount, valid item.
                     player:setVar("ANTIQUE_PAYOUT", (GIL_RATE*item[2]));
-                    player:startEvent(0x0066, GIL_RATE*item[2], itemID);
+                    player:startEvent(102, GIL_RATE*item[2], itemID);
                 elseif (trade:getItemCount() < 8) then
                  -- Wrong amount, but valid item.
-                    player:startEvent(0x0068);
+                    player:startEvent(104);
                 end
             end
         end
@@ -59,15 +59,15 @@ function onTrigger(player,npc)
     if (player:getFameLevel(WINDURST) >= 2) then
         if (player:hasKeyItem(CHOCOBO_LICENSE)) then
             if (QuestStatus ~= QUEST_AVAILABLE) then
-                player:startEvent(0x0067);
+                player:startEvent(103);
             elseif (QuestStatus == QUEST_AVAILABLE) then
-                player:startEvent(0x0065);
+                player:startEvent(101);
             end
         else
-            player:startEvent(0x0064);
+            player:startEvent(100);
         end
     else
-        player:startEvent(0x006A);
+        player:startEvent(106);
     end
 end;
 
@@ -90,9 +90,9 @@ function onEventFinish(player,csid,option)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
     local payout = player:getVar("ANTIQUE_PAYOUT");
 
-    if (csid == 0x0065) then
+    if (csid == 101) then
         player:addQuest(OTHER_AREAS, ORLANDO_S_ANTIQUES);
-    elseif (csid == 0x0066) then
+    elseif (csid == 102) then
         player:tradeComplete();
         player:addFame(WINDURST,10);
         player:addGil(payout);
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(OTHER_AREAS, ORLANDO_S_ANTIQUES);
         player:setVar("ANTIQUE_PAYOUT", 0);
         player:setLocalVar("OrlandoRepeat", 0);
-    elseif (csid == 0x0067) then
+    elseif (csid == 103) then
         if (QuestStatus == QUEST_COMPLETED) then
             player:setLocalVar("OrlandoRepeat", 1);
         end

@@ -14,11 +14,7 @@
 -- Attack 18% Cap 60
 -- Evasion +6
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -29,19 +25,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,5548);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_HPP, 10);
     target:addMod(MOD_FOOD_HP_CAP, 75);
     target:addMod(MOD_MP, 15);
@@ -55,11 +43,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_EVA, 6);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_HPP, 10);
     target:delMod(MOD_FOOD_HP_CAP, 75);
     target:delMod(MOD_MP, 15);

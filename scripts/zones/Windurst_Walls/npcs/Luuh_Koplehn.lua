@@ -22,9 +22,9 @@ function onTrigger(player,npc)
     local qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
 
     if (qStarStruck == QUEST_ACCEPTED) then
-        player:startEvent(0x00c8);
+        player:startEvent(200);
     else
-        player:startEvent(0x142);
+        player:startEvent(322);
     end
 end;
 

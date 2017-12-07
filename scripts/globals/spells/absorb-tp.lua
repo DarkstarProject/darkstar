@@ -1,14 +1,11 @@
 --------------------------------------
---  Spell: Absorb-TP
---  Steals an enemy's TP.
+-- Spell: Absorb-TP
+-- Steals an enemy's TP.
 --------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -16,10 +13,9 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
     local cap = 1200
     local dmg = math.random(100, 1200);
-    
+
     --get resist multiplier (1x if no resist)
     local params = {};
     params.attribute = MOD_INT;
@@ -37,10 +33,10 @@ function onSpellCast(caster,target,spell)
 
     --add in final adjustments
     if (resist <= 0.125) then
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
         dmg = 0
     else
-        spell:setMsg(454);
+        spell:setMsg(msgBasic.MSGIC_ABSORB_TP);
 
         dmg = dmg * ((100 + caster:getMod(MOD_AUGMENTS_ABSORB)) / 100)
 
@@ -51,11 +47,11 @@ function onSpellCast(caster,target,spell)
         if (dmg > cap) then
             dmg = cap;
         end
-      
+
         -- drain
         caster:addTP(dmg);
         target:addTP(-dmg);
     end
-  
+
     return dmg;
 end;

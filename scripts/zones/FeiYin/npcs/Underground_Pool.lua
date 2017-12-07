@@ -36,12 +36,12 @@ function onTrigger(player,npc)
         local X = player:getXPos();
 
         if ((Z > 20 and Z < 40) and (X > -.3 and X < 19.7) and (aquaKI1)) then
-            player:startEvent(0x0015);
+            player:startEvent(21);
         elseif ((Z > 242 and Z < 256) and (X > -2 and X < 16) and (aquaKI2)) then
-            player:startEvent(0x0014);
+            player:startEvent(20);
         elseif ((Z > 239 and Z < 259) and (X > -180 and X < -160) and (aquaKI3)) then
             if (player:getVar("DabotzKilled") == 1) then
-                player:startEvent(0x0012);
+                player:startEvent(18);
             else
                 SpawnMob(17613129):updateClaim(player);
             end
@@ -71,11 +71,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0015) then
+    if (csid == 21) then
         player:delKeyItem(AQUAFLORA1);
-    elseif (csid == 0x0014) then
+    elseif (csid == 20) then
         player:delKeyItem(AQUAFLORA2);
-    elseif (csid == 0x0012) then
+    elseif (csid == 18) then
         player:delKeyItem(AQUAFLORA3);
         player:setVar("DabotzKilled",0);
     end

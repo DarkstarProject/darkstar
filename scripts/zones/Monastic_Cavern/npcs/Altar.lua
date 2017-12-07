@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         if (player:getVar("circleTime") == 7 and GetMobByID(BUGABOO):isDead()) then
             SpawnMob(BUGABOO):updateClaim(player);
         elseif (player:getVar("circleTime") == 8) then
-            player:startEvent(0x03); -- Show final CS
+            player:startEvent(3); -- Show final CS
         else
             player:messageSpecial(ALTAR);
         end;
@@ -55,7 +55,7 @@ end;
 
 function onEventFinish(player,csid,option)
     -- CIRCLE OF TIME
-    if (csid == 0x03) then
+    if (csid == 3) then
         player:setVar("circleTime",9); -- After bugaboo is killed, and final CS shows up
         player:delKeyItem(MOON_RING);
         player:delKeyItem(STAR_RING1);

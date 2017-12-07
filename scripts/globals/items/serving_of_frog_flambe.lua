@@ -10,11 +10,7 @@
 -- Ranged Attack +14% (cap 80)
 -- Evasion 5
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -24,10 +20,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,3600,4326);
@@ -48,11 +40,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_RATT_CAP, 80);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_DEX, 3);
     target:delMod(MOD_AGI, 2);
     target:delMod(MOD_MND, -2);

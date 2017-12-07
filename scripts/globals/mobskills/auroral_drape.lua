@@ -1,9 +1,9 @@
 ---------------------------------------------
---  Auroral Drape
+-- Auroral Drape
 --
---  Description: Silence and Blind Area of Effect (10.0')
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
+-- Description: Silence and Blind Area of Effect (10.0')
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -23,15 +23,15 @@ function onMobWeaponSkill(target, mob, skill)
 
     blinded = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 60, 0, 60);
 
-    skill:setMsg(msgBasic.ENFEEB_IS);
+    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
 
     -- display silenced first, else blind
-    if (silenced == msgBasic.ENFEEB_IS) then
+    if (silenced == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_SILENCE;
-    elseif (blinded == msgBasic.ENFEEB_IS) then
+    elseif (blinded == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_BLINDNESS;
     else
-        skill:setMsg(msgBasic.MISS);
+        skill:setMsg(msgBasic.SKILL_MISS);
     end
 
     return typeEffect;

@@ -33,15 +33,15 @@ function onZoneIn(player,prevZone)
     end
     
     if (prevZone == 231 and currentMission == THE_CRYSTAL_SPRING and player:getVar("MissionStatus") == 2) then    
-        cs = 0x022b;
+        cs = 555;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 1) then
-        cs = 0x000a;
+        cs = 10;
     elseif (prevZone == 231 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
-        cs = 0x01FD;
+        cs = 509;
     elseif (player:getVar("SecretWeaponStatus") == 1) then
         cs = 0x0000;
     elseif (currentMission == COMING_OF_AGE and MissionStatus == 0) then
-        cs = 0x0074;
+        cs = 116;
     end
     
     return cs;
@@ -84,16 +84,16 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);    
     -- printf("RESULT: %u",option);    
     
-    if (csid == 0x022b) then    
+    if (csid == 555) then    
         player:setVar("MissionStatus",3);
-    elseif (csid == 0x01FD) then
+    elseif (csid == 509) then
         player:setVar("MissionStatus",9);
         player:delKeyItem(MESSAGE_TO_JEUNO_SANDORIA);
     elseif (csid == 0) then
         player:setVar("SecretWeaponStatus",2)
-    elseif (csid == 0x000a) then
+    elseif (csid == 10) then
         player:setVar("MissionStatus",2)
-    elseif (csid == 0x0074) then
+    elseif (csid == 116) then
         player:setVar("MissionStatus",1)
     end
     

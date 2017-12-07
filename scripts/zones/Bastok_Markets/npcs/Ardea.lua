@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
     -- Rock Racketeer
     if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(SHARP_GRAY_STONE)) then
-        player:startEvent(0x0105);
+        player:startEvent(261);
 
     elseif (Quotas_Status == 3) then
         player:startEvent(264); -- Someone was just asking about that earring.
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         player:startEvent(265); -- They'll be happy if you return it.
     -- Standard dialog
     else
-        player:startEvent(0x104);
+        player:startEvent(260);
     end
 end;
 
@@ -59,11 +59,11 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- Rock Racketeer
-    if (csid == 0x0105 and option ~= 1) then
+    if (csid == 261 and option ~= 1) then
         player:delKeyItem(SHARP_GRAY_STONE);
         player:addGil(GIL_RATE*10);
         player:setVar("rockracketeer_sold",1);
-    elseif (csid == 0x0105 and option ~= 2) then
+    elseif (csid == 261 and option ~= 2) then
         player:setVar("rockracketeer_sold",2);
 
     elseif (csid == 264) then

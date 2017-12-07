@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0231);
+    player:startEvent(561);
 end;
 
 -----------------------------------

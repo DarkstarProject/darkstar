@@ -13,13 +13,13 @@ require("scripts/globals/keyitems");
 
 -- Death cutscenes:
 
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0); -- Hume
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0); -- taru
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,2,0); -- mithra
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0); -- elvan
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0); -- galka
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
--- player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0); -- Hume
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0); -- taru
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,2,0); -- mithra
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,0); -- elvan
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,0); -- galka
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
+-- player:startEvent(32001,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -42,15 +42,17 @@ function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        local record = instance:getRecord();
+        local clearTime = record.clearTime;
     
         if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-            player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,1);        -- winning CS (allow player to skip)
+            player:startEvent(32001,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,4,1);        -- winning CS (allow player to skip)
         else
-            player:startEvent(0x7d01,instance:getEntrance(),instance:getFastestTime(),1,instance:getTimeInside(),180,4,0);        -- winning CS (allow player to skip)
+            player:startEvent(32001,instance:getEntrance(),clearTime,1,instance:getTimeInside(),180,4,0);        -- winning CS (allow player to skip)
         end
         
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02, 0, 0, 0, 0, 0, instance:getEntrance(), 180);    -- player lost
+        player:startEvent(32002, 0, 0, 0, 0, 0, instance:getEntrance(), 180);    -- player lost
     end
 end;
 
@@ -65,7 +67,7 @@ function onEventFinish(player,csid,option)
    local AAKeyitems = (player:hasKeyItem(SHARD_OF_APATHY) and player:hasKeyItem(SHARD_OF_ARROGANCE)
          and player:hasKeyItem(SHARD_OF_COWARDICE) and player:hasKeyItem(SHARD_OF_ENVY));
 
-   if (csid == 0x7d01) then
+   if (csid == 32001) then
       if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
          player:addKeyItem(SHARD_OF_RAGE);
          player:messageSpecial(KEYITEM_OBTAINED,SHARD_OF_RAGE);

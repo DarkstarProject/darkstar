@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local Menu6 = getArg6(player);
     local Menu7 = player:getCP();
 
-    player:startEvent(0x7ffb,Menu1,0,Menu3,0,0,Menu6,Menu7,0);
+    player:startEvent(32763,Menu1,0,Menu3,0,0,Menu6,Menu7,0);
 end;
 
 -----------------------------------

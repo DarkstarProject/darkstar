@@ -14,7 +14,7 @@ require("scripts/zones/Konschtat_Highlands/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

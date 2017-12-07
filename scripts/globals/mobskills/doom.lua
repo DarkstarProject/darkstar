@@ -1,14 +1,12 @@
 ---------------------------------------------
---  Doom
+-- Doom
 --
---  Description: Inflicts Doom upon an enemy.
---  Type: Magical (Dark)
+-- Description: Inflicts Doom upon an enemy.
+-- Type: Magical (Dark)
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

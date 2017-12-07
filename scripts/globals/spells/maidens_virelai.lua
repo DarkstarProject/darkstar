@@ -6,9 +6,6 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/pets");
 require("scripts/globals/msg");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -34,11 +31,11 @@ function onSpellCast(caster,target,spell)
     params.skillType = SINGING_SKILL;
     params.bonus = bonus;
     params.effect = EFFECT_CHARM_I;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     -- print(resist);
     if (resist >= 0.25 and caster:getCharmChance(target, false) > 0) then
-        spell:setMsg(236);
-        if (caster:isMob())then
+        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        if (caster:isMob()) then
             target:addStatusEffect(EFFECT_CHARM_I, 0, 0, 30*resist);
             caster:charm(target);
         else
@@ -46,7 +43,7 @@ function onSpellCast(caster,target,spell)
         end
     else
         -- Resist
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
     return EFFECT_CHARM_I;

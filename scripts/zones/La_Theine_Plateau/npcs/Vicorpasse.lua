@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         local MissionStatus = player:getVar("MissionStatus");
 
         if (MissionStatus == 4) then
-            player:startEvent(0x006c);
+            player:startEvent(108);
         elseif (MissionStatus >= 5 and MissionStatus <= 7) then
             player:showText(npc, RESCUE_DRILL + 19);
         elseif (MissionStatus == 8) then
@@ -36,14 +36,14 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 9) then
             player:showText(npc, RESCUE_DRILL + 26);
         elseif (MissionStatus == 10) then
-            player:startEvent(0x0073);
+            player:startEvent(115);
         elseif (MissionStatus == 11) then
             player:showText(npc, RESCUE_DRILL + 30);
         else
-            player:startEvent(0x0005);
+            player:startEvent(5);
         end
     else
-        player:startEvent(0x0005);
+        player:startEvent(5);
     end
 
 end;
@@ -65,9 +65,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x006c) then
+    if (csid == 108) then
         player:setVar("MissionStatus",5);
-    elseif (csid == 0x0073) then
+    elseif (csid == 115) then
         player:addKeyItem(RESCUE_TRAINING_CERTIFICATE);
         player:messageSpecial(KEYITEM_OBTAINED,RESCUE_TRAINING_CERTIFICATE);
         player:setVar("theRescueDrillRandomNPC",0);

@@ -55,7 +55,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.125) then
         local typeEffect = EFFECT_BIND;

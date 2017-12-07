@@ -30,10 +30,10 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("PathOfDarkness",1);
-        player:startEvent(0x0195, 58, -6, 0, 99, 5, 0);
+        player:startEvent(405, 58, -6, 0, 99, 5, 0);
     elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("NashmeirasPlea",1);
-        player:startEvent(0x0195, 59, -10, 0, 99, 5, 0);
+        player:startEvent(405, 59, -10, 0, 99, 5, 0);
     elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x0195, assaultid, -4, 0, recommendedLevel, 5, armband);
+        player:startEvent(405, assaultid, -4, 0, recommendedLevel, 5, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -55,7 +55,7 @@ function onEventUpdate(player,csid,option,target)
     -- printf("UPDATE CSID: %u",csid);
     -- printf("UPDATE RESULT: %u",option);
 
-    if(not(csid == 0x0195)) then
+    if(not(csid == 405)) then
         return;
     end
 
@@ -72,7 +72,7 @@ function onEventUpdate(player,csid,option,target)
     local nyzulReady = player:getVar("NyzulReady");
 
     if(player:getVar("NyzulReady")==1) then -- Latch 2
-        player:updateEvent(0x0195,3,3,3,3,3,3,3); -- Force terminate the event
+        player:updateEvent(405,3,3,3,3,3,3,3); -- Force terminate the event
         return;
     elseif(player:getVar("NyzulLoopGuard")==1) then
         return; -- Suppress Update Spam
@@ -109,7 +109,7 @@ function onEventUpdate(player,csid,option,target)
                         player:messageText(target,MEMBER_NO_REQS, false);
                         player:instanceEntry(target,1);
                         return;
-                    elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+                    elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
                         player:messageText(target,MEMBER_TOO_FAR, false);
                         player:instanceEntry(target,1);
                         return;
@@ -129,7 +129,7 @@ function onEventUpdate(player,csid,option,target)
                         player:messageText(target,MEMBER_NO_REQS, false);
                         player:instanceEntry(target,1);
                         return;
-                    elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+                    elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
                         player:messageText(target,MEMBER_TOO_FAR, false);
                         player:instanceEntry(target,1);
                         return;
@@ -150,7 +150,7 @@ function onEventUpdate(player,csid,option,target)
                         player:messageText(target,MEMBER_NO_REQS, false);
                         player:instanceEntry(target,1);
                         return;
-                    elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+                    elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
                         player:messageText(target,MEMBER_TOO_FAR, false);
                         player:instanceEntry(target,1);
                         return;
@@ -172,9 +172,9 @@ function onEventFinish(player,csid,option,target)
     -- printf("FINISH CSID: %u",csid);
     -- printf("FINISH RESULT: %u",option);
 
-    if (csid == 0x195 and option == 1073741824 and player:getVar("NyzulReady") == 1) then
-        player:startEvent(0x74, 2); -- This means the event was force terminated. Loop into the entrance animation.
-    elseif (csid == 0x74 or (csid == 0x195 and option == 4) and not(option == 1073741824)) then
+    if (csid == 405 and option == 1073741824 and player:getVar("NyzulReady") == 1) then
+        player:startEvent(116, 2); -- This means the event was force terminated. Loop into the entrance animation.
+    elseif (csid == 116 or (csid == 405 and option == 4) and not(option == 1073741824)) then
         player:setPos(0,0,0,0,77);
     end
 end;
@@ -204,11 +204,12 @@ function onInstanceCreated(player,target,instance)
         player:setInstance(instance);
         player:instanceEntry(target,4);
 
+        local party = player:getParty();
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
+                if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
-                    v:startEvent(0x74, 2);
+                    v:startEvent(116, 2);
 
                     if (pathOfDarkness == 1) then
                         v:delKeyItem(NYZUL_ISLE_ROUTE);

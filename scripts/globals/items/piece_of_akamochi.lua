@@ -10,11 +10,7 @@
 -- Attack + 16% Cap: 50 (Pet & Master) Pet Cap: 75
 -- R. Attack + 16% Cap: 50 (Pet & Master) Pet Cap: 75
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,19 +21,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,6260);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_HP, 20)
     target:addMod(MOD_VIT, 3)
     target:addMod(MOD_FOOD_ACCP, 10)
@@ -60,11 +48,7 @@ function onEffectGain(target,effect)
     target:addPetMod(MOD_FOOD_RATT_CAP, 75)
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 20)
     target:delMod(MOD_VIT, 3)
     target:delMod(MOD_FOOD_ACCP, 10)

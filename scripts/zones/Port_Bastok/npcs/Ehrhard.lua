@@ -24,9 +24,9 @@ function onTrigger(player,npc)
     local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
 
     if (StampHunt == QUEST_ACCEPTED and player:getMaskBit(player:getVar("StampHunt_Mask"),5) == false) then
-        player:startEvent(0x0079);
+        player:startEvent(121);
     else
-        player:startEvent(0x002f);
+        player:startEvent(47);
     end
 end;
 
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0079) then
+    if (csid == 121) then
         player:setMaskBit(player:getVar("StampHunt_Mask"),"StampHunt_Mask",5,true);
     end
 

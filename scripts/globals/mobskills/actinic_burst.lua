@@ -1,15 +1,15 @@
 ---------------------------------------------
---  Actinic Burst
---  Family: Ghrah
---  Description: Greatly lowers the accuracy of enemies within range for a brief period of time.
---  Type: Magical (Light)
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown
---  Notes:
+-- Actinic Burst
+-- Family: Ghrah
+-- Description: Greatly lowers the accuracy of enemies within range for a brief period of time.
+-- Type: Magical (Light)
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Unknown
+-- Notes:
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

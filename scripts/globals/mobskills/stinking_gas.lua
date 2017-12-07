@@ -1,15 +1,16 @@
 ---------------------------------------------
---  Stinking Gas
+-- Stinking Gas
 --
---  Description: Lowers Vitality of enemies within range.
---  Type: Magical (Wind)
+-- Description: Lowers Vitality of enemies within range.
+-- Type: Magical (Wind)
 --
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

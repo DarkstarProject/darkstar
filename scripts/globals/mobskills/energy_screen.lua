@@ -1,14 +1,14 @@
 ---------------------------------------------
---  Energy_Screen 
+-- Energy_Screen
 --
---  Description: Invincible 
+-- Description: Invincible
 
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     local phase = mob:getLocalVar("battlePhase");
     if (phase >= 3) then

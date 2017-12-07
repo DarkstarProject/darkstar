@@ -30,22 +30,22 @@ function onTrigger(player,npc)
     
     if (Guardian == QUEST_ACCEPTED) then
         if (Pamamas == 1) then
-            player:startEvent(0x0047); --Finish Quest
+            player:startEvent(71); --Finish Quest
         else
-            player:startEvent(0x0045,0,4596); --Reminder Dialogue
+            player:startEvent(69,0,4596); --Reminder Dialogue
         end
     elseif (Guardian == QUEST_AVAILABLE and pfame >= 7) then
-        player:startEvent(0x0044,4596,4596,4596); --Start Quest
+        player:startEvent(68,4596,4596,4596); --Start Quest
     elseif (Guardian == QUEST_COMPLETED and needToZone == false) then
         if (Pamamas == 2) then
-            player:startEvent(0x0047); --Finish quest dialogue (no different csid between initial and repeats)
+            player:startEvent(71); --Finish quest dialogue (no different csid between initial and repeats)
         else
-            player:startEvent(0x0048); --Dialogue for after completion of quest
+            player:startEvent(72); --Dialogue for after completion of quest
         end
     elseif (Guardian == QUEST_COMPLETED and needToZone == true) then
-        player:startEvent(0x0048);
+        player:startEvent(72);
     else
-        player:startEvent(0x0054); --Standard Dialogue
+        player:startEvent(84); --Standard Dialogue
     end
 end;
 -----------------------------------
@@ -64,10 +64,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0044 and option == 1) then
+    if (csid == 68 and option == 1) then
         player:addQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
         player:setVar("PamamaVar",0);
-    elseif (csid == 0x0047) then
+    elseif (csid == 71) then
         if (Pamamas == 1) then --First completion of quest; set title, complete quest, and give higher fame
             player:addGil(GIL_RATE*5000);
             player:messageSpecial(GIL_OBTAINED, 5000);

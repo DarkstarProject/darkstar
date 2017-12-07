@@ -5,12 +5,9 @@
 -- Recast Time: 5:00
 -- Duration: 00:30
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -20,10 +17,6 @@ function onAbilityCheck(player,target,ability)
     end
     return 216,0; -- You do not have an appropriate ranged weapon equipped.
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
 
@@ -41,9 +34,9 @@ function onUseAbility(player,target,ability,action)
      -- TODO: Acc penalty for /RNG, acc vs. mob level?
     if (math.random(0, 99) >= target:getMod(MOD_BINDRES) and target:hasStatusEffect(EFFECT_BIND) == false) then
         target:addStatusEffect(EFFECT_BIND, 0, 0, duration);
-        ability:setMsg(277); -- Target is bound.
+        ability:setMsg(msgBasic.IS_EFFECT); -- Target is bound.
     else
-        ability:setMsg(158); -- Player uses Shadowbind, but misses.
+        ability:setMsg(msgBasic.JA_MISS); -- Player uses Shadowbind, but misses.
     end
 
     if (math.random(0, 99) >= recycleChance) then

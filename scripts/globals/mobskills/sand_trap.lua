@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Sand Trap
+-- Sand Trap
 --
---  Description: AOE Petrify and resets hate.
---  Type: Physical
---  Utsusemi/Blink absorb: Ignore
---  Range: 15' radial
---  Notes:
+-- Description: AOE Petrify and resets hate.
+-- Type: Physical
+-- Utsusemi/Blink absorb: Ignore
+-- Range: 15' radial
+-- Notes:
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

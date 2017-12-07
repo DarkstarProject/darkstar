@@ -91,7 +91,7 @@ This file is part of DarkStar-server source code.
 
 extern int32 stdout_with_ansisequence;		// If the color ansi sequences are to be used. [flaviojs]
 extern int32 msg_silent;					// Specifies how silent the console is. [Skotlex]
-extern int8  timestamp_format[20];			// For displaying Timestamps [Skotlex]
+extern char timestamp_format[20];			// For displaying Timestamps [Skotlex]
 
 enum MSGTYPE 
 {

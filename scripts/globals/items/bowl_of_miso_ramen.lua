@@ -11,11 +11,7 @@
 -- Magic Def. Bonus +5
 -- Resist Slow +10
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,10 +21,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,6460);
@@ -50,11 +42,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SLOWRES, 10);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 100);
     target:delMod(MOD_STR, 5);
     target:delMod(MOD_VIT, 5);

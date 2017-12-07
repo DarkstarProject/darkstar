@@ -34,7 +34,7 @@ class CLuaBattlefield
     CBattlefield *m_PLuaBattlefield;
 public:
 
-    static const int8 className[];
+    static const char className[];
     static Lunar<CLuaBattlefield>::Register_t methods[];
 
     CLuaBattlefield(lua_State*);

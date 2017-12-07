@@ -10,35 +10,27 @@
 -- Casting Time: 7 seconds
 -- Recast Time: 1 minute 30 seconds
 -- 5 minutes
--- 
+--
 -- Combos: None
 -----------------------------------------
-
+require("scripts/globals/bluemagic");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_STONESKIN;
     local blueskill = caster:getSkillLevel(BLUE_SKILL);
     local power = ((blueskill)/3) *2;
     local duration = 300;
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

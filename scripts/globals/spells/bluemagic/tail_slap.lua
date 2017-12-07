@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = SKILL_BLU;
     params.bonus = 0;
     params.effect = EFFECT_STUN;
-    resist = applyResistanceEffect(caster, target, spell, params)
+    local resist = applyResistanceEffect(caster, target, spell, params)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.tpmod = TPMOD_ATTACK;

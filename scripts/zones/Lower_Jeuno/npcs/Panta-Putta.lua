@@ -33,31 +33,31 @@ function onTrigger(player,npc)
     TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 
     if (player:getFameLevel(JEUNO) >= 4 and TheWonderMagicSet == QUEST_AVAILABLE) then
-        player:startEvent(0x004D); -- Start quest "The wonder magic set"
+        player:startEvent(77); -- Start quest "The wonder magic set"
     elseif (TheWonderMagicSet == QUEST_ACCEPTED and WonderMagicSetKI == false) then
-        player:startEvent(0x0037); -- During quest "The wonder magic set"
+        player:startEvent(55); -- During quest "The wonder magic set"
     elseif (WonderMagicSetKI == true) then
-        player:startEvent(0x0021); -- Finish quest "The wonder magic set"
+        player:startEvent(33); -- Finish quest "The wonder magic set"
     elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,COOK_S_PRIDE) ~= QUEST_COMPLETED) then
-        player:startEvent(0x0028); -- Standard dialog
+        player:startEvent(40); -- Standard dialog
     elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
         if (TheLostCardianCS >= 1) then
-            player:startEvent(0x001E); -- Second dialog for "The lost cardien" quest
+            player:startEvent(30); -- Second dialog for "The lost cardien" quest
         else
-            player:startEvent(0x0028); -- Standard dialog
+            player:startEvent(40); -- Standard dialog
         end
     elseif (TheKindCardian == QUEST_ACCEPTED and player:getVar("theKindCardianVar") == 2) then
-        player:startEvent(0x0023); -- Finish quest "The kind cardien"
+        player:startEvent(35); -- Finish quest "The kind cardien"
     elseif (TheKindCardian == QUEST_COMPLETED) then
-        player:startEvent(0x004C); -- New standard dialog after "The kind cardien"
+        player:startEvent(76); -- New standard dialog after "The kind cardien"
     else
-        player:startEvent(0x004E); -- Base standard dialog
+        player:startEvent(78); -- Base standard dialog
     end
 end;
 
--- 0x004E oh zut j'ai besoin de cette marmite
--- 0x001E j'ai été trop dur avec two... et percé la marmite
--- 0x0028 du moment que j'ai cette boite et la marmite je vais enfin battre ce gars
+-- 78 oh zut j'ai besoin de cette marmite
+-- 30 j'ai été trop dur avec two... et percé la marmite
+-- 40 du moment que j'ai cette boite et la marmite je vais enfin battre ce gars
 
 -----------------------------------
 -- onEventUpdate
@@ -75,9 +75,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x004D and option == 1) then
+    if (csid == 77 and option == 1) then
         player:addQuest(JEUNO,THE_WONDER_MAGIC_SET);
-    elseif (csid == 0x0021) then
+    elseif (csid == 33) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13328);
         else
@@ -89,9 +89,9 @@ function onEventFinish(player,csid,option)
             player:needToZone(true);
             player:completeQuest(JEUNO,THE_WONDER_MAGIC_SET);
         end
-    elseif (csid == 0x001E) then
+    elseif (csid == 30) then
         player:setVar("theLostCardianVar",2);
-    elseif (csid == 0x0023) then
+    elseif (csid == 35) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13596);
         else

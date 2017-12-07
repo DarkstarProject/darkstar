@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x006E);
+    player:startEvent(110);
 end;
 
 -----------------------------------
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
      --printf("CSID: %u",csid);
      --printf("RESULT: %u",option);
 
-    if (csid == 0x006E and option == 0) then
+    if (csid == 110 and option == 0) then
         if (player:getFreeSlotsCount() > 0) then
             if (player:addItem(553)) then
                 player:messageSpecial(ITEM_OBTAINED,553);

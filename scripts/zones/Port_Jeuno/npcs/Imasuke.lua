@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 
     -- THE ANTIQUE COLLECTOR (kaiser sword)
     if (theAntiqueCollector == QUEST_ACCEPTED and trade:hasItemQty(16631,1) and trade:getItemCount() == 1) then
-        player:startEvent(0x000f); -- End quest
+        player:startEvent(15); -- End quest
     end;
 end;
 
@@ -38,26 +38,26 @@ function onTrigger(player,npc)
     -- CIRCLE OF TIME
     if (circleOfTime == QUEST_ACCEPTED) then
         if (circleProgress == 1) then
-            player:startEvent(0x1E);
+            player:startEvent(30);
         elseif (circleProgress == 2) then
-            player:startEvent(0x1D);
+            player:startEvent(29);
         elseif (circleProgress == 3) then
-            player:startEvent(0x20);
+            player:startEvent(32);
         elseif (circleProgress == 4) then
-            player:startEvent(0x21);
+            player:startEvent(33);
         elseif (circleProgress == 5) then
-            player:startEvent(0x1F);
+            player:startEvent(31);
         end;
 
     -- THE ANTIQUE COLLECTOR
     elseif (theAntiqueCollector == QUEST_AVAILABLE and player:getFameLevel(JEUNO) >= 3) then
-        player:startEvent(0x000d); -- Start quest
+        player:startEvent(13); -- Start quest
     elseif (theAntiqueCollector == QUEST_ACCEPTED) then
-        player:startEvent(0x000e); -- Mid CS
+        player:startEvent(14); -- Mid CS
 
     -- DEFAULT DIALOG
     else
-        player:startEvent(0x000c);
+        player:startEvent(12);
     end;
 end;
 
@@ -75,9 +75,9 @@ end;
 
 function onEventFinish(player,csid,option)
     -- THE ANTIQUE COLLECTOR
-    if (csid == 0x000d and option == 1) then
+    if (csid == 13 and option == 1) then
         player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
-    elseif (csid == 0x000f) then
+    elseif (csid == 15) then
         player:addTitle(TRADER_OF_ANTIQUITIES);
         if (player:hasKeyItem(MAP_OF_DELKFUTTS_TOWER) == false) then
             player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
@@ -88,13 +88,13 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
 
     -- CIRCLE OF TIME
-    elseif (csid == 0x1D and option == 1) then
+    elseif (csid == 29 and option == 1) then
         player:setVar("circleTime",3);
-    elseif (csid == 0x1E and option == 1) then
+    elseif (csid == 30 and option == 1) then
         player:setVar("circleTime",3);
-    elseif (csid == 0x1E and option == 0) then
+    elseif (csid == 30 and option == 0) then
         player:setVar("circleTime",2);
-    elseif (csid == 0x21) then
+    elseif (csid == 33) then
         player:setVar("circleTime",5);
     end;
 end;

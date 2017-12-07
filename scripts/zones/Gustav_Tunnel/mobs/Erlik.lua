@@ -3,37 +3,14 @@
 --  MOB: Erlik
 -- Note: Place holder Baobhan Sith
 -----------------------------------
-
-require("scripts/globals/groundsofvalor");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/groundsofvalor");
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-
     checkGoVregime(player,mob,767,2);
-
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-
-    if (Baobhan_Sith_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[POP]Baobhan_Sith");
-        if (ToD <= os.time() and GetMobAction(Baobhan_Sith) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Baobhan_Sith);
-                GetMobByID(Baobhan_Sith):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Baobhan_Sith", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,BAOBHAN_SITH_PH,5,math.random(14400,28800)); -- 4 to 8 hours
 end;

@@ -12,6 +12,7 @@ local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
 
 function onMobSpawn(mob)
     mob:setUnkillable(true);
+    mob:setMobMod(MOBMOD_SCRIPTED_2HOUR, 1);
 end;
 
 -----------------------------------

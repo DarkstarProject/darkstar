@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(600,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x0064);
+            player:startEvent(100);
         else
             player:startEvent(118);
         end
@@ -32,7 +32,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0065);
+    player:startEvent(101);
 end;
 
 -----------------------------------
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0064) then
+    if (csid == 100) then
         player:tradeComplete();
         player:addItem(601);
         player:messageSpecial(ITEM_OBTAINED,601);

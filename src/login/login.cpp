@@ -32,6 +32,13 @@
 #include <thread>
 #include <iostream>
 
+#ifdef WIN32
+#include <io.h>
+#define isatty _isatty
+#else
+#include <unistd.h>
+#endif
+
 #include "login.h"
 #include "login_auth.h"
 #include "lobby.h"
@@ -54,7 +61,6 @@ int32 do_init(int32 argc, char** argv)
     LOGIN_CONF_FILENAME = "conf/login_darkstar.conf";
     VERSION_INFO_FILENAME = "version.info";
 
-    const char *lan_cfgName = LAN_CONFIG_NAME;
     //srand(gettick());
 
     for (i = 1; i < argc; i++) {
@@ -64,14 +70,9 @@ int32 do_init(int32 argc, char** argv)
             login_versionscreen(1);
         else if (strcmp(argv[i], "--login_config") == 0 || strcmp(argv[i], "--login-config") == 0)
             LOGIN_CONF_FILENAME = argv[i + 1];
-        else if (strcmp(argv[i], "--lan_config") == 0 || strcmp(argv[i], "--lan-config") == 0)
-            lan_cfgName = argv[i + 1];
         else if (strcmp(argv[i], "--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
             runflag = 0;
     }
-
-    //lan_config_default(&lan_config);
-    //lan_config_read(lan_cfgName,&lan_config);
 
     login_config_default();
     login_config_read(LOGIN_CONF_FILENAME);
@@ -112,31 +113,36 @@ int32 do_init(int32 argc, char** argv)
     messageThread = std::thread(message_server_init);
     ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
 
-    consoleInputThread = std::thread([&]()
-    {
-        ShowStatus("Console input thread is ready..\r\n");
-        // ctrl c apparently causes log spam
-        auto lastInputTime = server_clock::now();
-        while (true)
-        {
-            if ((server_clock::now() - lastInputTime) > 1s)
-            {
-                std::string input;
-                std::cin >> input;
+    bool attached = isatty(0);
 
-                if (strcmp(input.c_str(), "verlock") == 0)
+    if (attached)
+    {
+        consoleInputThread = std::thread([&]()
+        {
+            ShowStatus("Console input thread is ready..\r\n");
+            // ctrl c apparently causes log spam
+            auto lastInputTime = server_clock::now();
+            while (true)
+            {
+                if ((server_clock::now() - lastInputTime) > 1s)
                 {
-                    version_info.enable_ver_lock = !version_info.enable_ver_lock;
-                    ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    std::string input;
+                    std::cin >> input;
+
+                    if (strcmp(input.c_str(), "verlock") == 0)
+                    {
+                        version_info.enable_ver_lock = !version_info.enable_ver_lock;
+                        ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                    }
+                    else
+                    {
+                        ShowStatus("Unknown console input command\r\n");
+                    }
+                    lastInputTime = server_clock::now();
                 }
-                else
-                {
-                    ShowStatus("Unknown console input command\r\n");
-                }
-                lastInputTime = server_clock::now();
-            }
-        };
-    });
+            };
+        });
+    }
     return 0;
 }
 

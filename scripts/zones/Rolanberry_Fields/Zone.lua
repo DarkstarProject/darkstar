@@ -5,11 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Rolanberry_Fields/TextIDs");
+require("scripts/zones/Rolanberry_Fields/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/missions");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -56,8 +58,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Simurgh
-    SetRespawnTime(17228242, 900, 10800);
+    UpdateNMSpawnPoint(SIMURGH);
+    GetMobByID(SIMURGH):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------
@@ -72,9 +74,9 @@ function onZoneIn( player, prevZone)
     end
 
     if ( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0002;
+        cs = 2;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0004;
+        cs = 4;
     end
 
     return cs;
@@ -104,16 +106,14 @@ end;
 -----------------------------------
 
 function onGameHour(zone)
-
     local vanadielHour = VanadielHour();
-    local silkCaterpillarId = 17227782;
+
     --Silk Caterpillar should spawn every 6 hours from 03:00
     --this is approximately when the Jeuno-Bastok airship is flying overhead towards Jeuno.
-    if (vanadielHour % 6 == 3 and GetMobAction(silkCaterpillarId) == ACTION_NONE) then
+    if (vanadielHour % 6 == 3 and not GetMobByID(SILK_CATERPILLAR):isSpawned()) then
         -- Despawn set to 210 seconds (3.5 minutes, approx when the Jeuno-Bastok airship is flying back over to Bastok).
-        SpawnMob(silkCaterpillarId, 210);
+        SpawnMob(SILK_CATERPILLAR, 210);
     end
-
 end;
 
 -----------------------------------
@@ -123,9 +123,9 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ( csid == 0x0002) then
+    if ( csid == 2) then
         lightCutsceneUpdate( player);  -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0004) then
+    elseif (csid == 4) then
         if (player:getZPos() <  75) then
             player:updateEvent(0,0,0,0,0,1);
         else
@@ -141,7 +141,7 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ( csid == 0x0002) then
+    if ( csid == 2) then
         lightCutsceneFinish( player);  -- Quest: I Can Hear A Rainbow
     end
 end;

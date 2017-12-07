@@ -30,7 +30,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-    player:startEvent(0x0064);
+    player:startEvent(100);
 end;
 
 -----------------------------------
@@ -49,7 +49,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0064) then
+    if (csid == 100) then
         local prevzone = player:getPreviousZone();
         if (prevzone == 246) then
             player:setPos(0,0,0,0,236);

@@ -31,9 +31,9 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0,0);
+        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0,0);
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 
 end;
@@ -45,7 +45,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
         player:setVar("CarbuncleDebacleProgress",7);
         player:delKeyItem(DAZEBREAKER_CHARM);
     end;
