@@ -1,3 +1,4 @@
+BEHEMOTH                = 17297440;
 ANCIENT_WEAPON          = 17297449;
 LEGENDARY_WEAPON        = 17297450;
 

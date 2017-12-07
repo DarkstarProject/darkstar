@@ -39,12 +39,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
    
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:hasCompletedMission(TOAU,LEGACY_OF_THE_LOST)) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,1);
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;

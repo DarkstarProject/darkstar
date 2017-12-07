@@ -29,9 +29,9 @@ function onTrade(player,npc,trade)
     end
     if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == NATION_WINDURST and player:getRank() >= 2 and player:hasKeyItem(PORTAL_CHARM) == false) then -- Trade Rolanberry
         if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
-            player:startEvent(0x0123); -- Qualifies for the reward immediately
+            player:startEvent(291); -- Qualifies for the reward immediately
         else
-            player:startEvent(0x0124); -- Kupipi owes you the portal charm later
+            player:startEvent(292); -- Kupipi owes you the portal charm later
         end
     end
 end;
@@ -50,71 +50,71 @@ function onTrigger(player,npc)
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if (currentMission == JOURNEY_TO_WINDURST) then
             if (MissionStatus == 4) then
-                player:startEvent(0x00ee,1,1,1,1,pNation);
+                player:startEvent(238,1,1,1,1,pNation);
             elseif (MissionStatus == 5) then
-                player:startEvent(0x00f0);
+                player:startEvent(240);
             elseif (MissionStatus == 6) then
-                player:startEvent(0x00f1);
+                player:startEvent(241);
             end
         -- San d'Oria Mission 2-3 Part II - Bastok > Windurst
         elseif (currentMission == JOURNEY_TO_WINDURST2) then
             if (MissionStatus == 7) then
-                player:startEvent(0x00f2,1,1,1,1,0);
+                player:startEvent(242,1,1,1,1,0);
             elseif (MissionStatus == 8) then
-                player:startEvent(0x00f3);
+                player:startEvent(243);
             elseif (MissionStatus == 9) then
-                player:startEvent(0x00f6);
+                player:startEvent(246);
             elseif (MissionStatus == 10) then
-                player:startEvent(0x00f7);
+                player:startEvent(247);
             end
         else
-            player:startEvent(0x00fb);
+            player:startEvent(251);
         end
     elseif (pNation == NATION_BASTOK) then
         -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
         if (currentMission == THE_EMISSARY_WINDURST) then
             if (MissionStatus == 3) then
-                player:startEvent(0x00ee,1,1,1,1,pNation);
+                player:startEvent(238,1,1,1,1,pNation);
             elseif (MissionStatus <= 5) then
-                player:startEvent(0x00f0);
+                player:startEvent(240);
             elseif (MissionStatus == 6) then
-                player:startEvent(0x00f1);
+                player:startEvent(241);
             end
         -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
         elseif (currentMission == THE_EMISSARY_WINDURST2) then
             if (MissionStatus == 7) then
-                player:startEvent(0x00f2,1,1,1,1,pNation);
+                player:startEvent(242,1,1,1,1,pNation);
             elseif (MissionStatus == 8) then
-                player:startEvent(0x00f3);
+                player:startEvent(243);
             elseif (MissionStatus == 9) then
-                player:startEvent(0x00f4);
+                player:startEvent(244);
             elseif (MissionStatus == 10) then
-                player:startEvent(0x00f5);
+                player:startEvent(245);
             end
         else
-            player:startEvent(0x00fb);
+            player:startEvent(251);
         end
     elseif (pNation == NATION_WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
-            player:startEvent(0x005F,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
+            player:startEvent(95,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
         elseif (currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
-            player:startEvent(0x0065,0,0,ADVENTURERS_CERTIFICATE);
+            player:startEvent(101,0,0,ADVENTURERS_CERTIFICATE);
         elseif (currentMission == THE_THREE_KINGDOMS) then
-            player:startEvent(0x0061);
+            player:startEvent(97);
         elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
-            player:startEvent(0x0067,0,0,STARWAY_STAIRWAY_BAUBLE);
+            player:startEvent(103,0,0,STARWAY_STAIRWAY_BAUBLE);
         elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
-            player:startEvent(0x0068);
+            player:startEvent(104);
         elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
-            player:startEvent(0x0146);
+            player:startEvent(326);
         elseif (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
-            player:startEvent(0x0125); -- Kupipi repays your favor
+            player:startEvent(293); -- Kupipi repays your favor
         else
-            player:startEvent(0x00fb);
+            player:startEvent(251);
         end
 
     else
-        player:startEvent(0x00fb);
+        player:startEvent(251);
     end
 
 end;
@@ -136,7 +136,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00ee) then
+    if (csid == 238) then
         if (player:getNation() == NATION_BASTOK) then
             player:setVar("MissionStatus",4);
             player:addKeyItem(SWORD_OFFERING);
@@ -146,34 +146,34 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(SHIELD_OFFERING);
             player:messageSpecial(KEYITEM_OBTAINED,SHIELD_OFFERING);
         end
-    elseif (csid == 0x00f4 or csid == 0x00f6) then
+    elseif (csid == 244 or csid == 246) then
         player:setVar("MissionStatus",10);
-    elseif (csid == 0x00f2) then
+    elseif (csid == 242) then
         player:addKeyItem(DARK_KEY);
         player:messageSpecial(KEYITEM_OBTAINED,DARK_KEY);
         player:setVar("MissionStatus",8);
-    elseif (csid == 0x005F) then
+    elseif (csid == 95) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
         player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_WINDURST);
-    elseif (csid == 0x0067) then
+    elseif (csid == 103) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(STARWAY_STAIRWAY_BAUBLE);
         player:messageSpecial(KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
-    elseif (csid == 0x0065) then
+    elseif (csid == 101) then
         finishMissionTimeline(player,1,csid,option);
-    elseif (csid == 0x0123) then -- All condition met, grant Portal Charm
+    elseif (csid == 291) then -- All condition met, grant Portal Charm
         player:tradeComplete();
         player:addKeyItem(PORTAL_CHARM);
         player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
-    elseif (csid == 0x0124) then -- Traded rolanberry, but not all conditions met
+    elseif (csid == 292) then -- Traded rolanberry, but not all conditions met
         player:tradeComplete();
         player:setVar("OwesPortalCharm",1);
-    elseif (csid == 0x0125) then -- Traded rolanberry before, and all conditions are now met
+    elseif (csid == 293) then -- Traded rolanberry before, and all conditions are now met
         player:setVar("OwesPortalCharm",0);
         player:addKeyItem(PORTAL_CHARM);
         player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
-    elseif (csid == 0x0146) then
+    elseif (csid == 326) then
         player:setVar("MissionStatus",4);
     end
 

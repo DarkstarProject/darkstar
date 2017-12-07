@@ -5,18 +5,18 @@
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/Castle_Oztroja/TextIDs");
+require("scripts/zones/Castle_Oztroja/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Yagudo Avatar
-    SetRespawnTime(17396134, 900, 10800);
+    UpdateNMSpawnPoint(YAGUDO_AVATAR);
+    GetMobByID(YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(17396210);
     UpdateTreasureSpawnPoint(17396211);

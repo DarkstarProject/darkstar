@@ -28,9 +28,9 @@ function onTrigger(player,npc)
         local price = getChocoboPrice(player);
         player:setLocalVar("chocoboPriceOffer",price);
 
-        player:startEvent(0x0009,price,gil);
+        player:startEvent(9,price,gil);
     else
-        player:startEvent(0x000a);
+        player:startEvent(10);
     end
 end;
 
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
 
     local price = player:getLocalVar("chocoboPriceOffer");
 
-    if (csid == 0x0009 and option == 0) then
+    if (csid == 9 and option == 0) then
         if (player:delGil(price)) then
             updateChocoboPrice(player, price);
 

@@ -8,11 +8,7 @@
 -- Health Regen While Healing 3
 -- Ranged ACC 6
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -22,10 +18,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,4327);
@@ -42,11 +34,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_RACC, 6);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_AGI, 2);
     target:delMod(MOD_VIT, -1);
     target:delMod(MOD_HPHEAL, 3);

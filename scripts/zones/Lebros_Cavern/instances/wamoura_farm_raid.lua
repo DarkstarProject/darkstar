@@ -106,7 +106,7 @@ function onInstanceFailure(instance)
 
     for i,v in pairs(chars) do
         v:messageSpecial(Lebros.text.MISSION_FAILED,10,10);
-        v:startEvent(0x66);
+        v:startEvent(102);
     end
 end;
 
@@ -142,3 +142,8 @@ function onInstanceComplete(instance)
     box:setStatus(STATUS_NORMAL);
     
 end;
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+end

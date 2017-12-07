@@ -40,12 +40,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 
 end;
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
         if (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES) then
             player:completeMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             player:addMission(ZILART,THE_CHAMBER_OF_ORACLES);

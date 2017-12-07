@@ -49,12 +49,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (trialLightning == QUEST_COMPLETED) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 end;
 
@@ -65,7 +65,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
         if (player:hasSpell(303) == false) then
             player:addSpell(303) -- Ramuh
             player:messageSpecial(RAMUH_UNLOCKED,0,0,5);            

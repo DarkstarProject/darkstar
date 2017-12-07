@@ -134,9 +134,9 @@ end;
 
 function onTransportEvent(player,transport)
     if (transport == 46 or transport == 47) then
-        player:startEvent(0x00c8);
+        player:startEvent(200);
     elseif (transport == 58 or transport == 59) then
-        player:startEvent(0x00cb);
+        player:startEvent(203);
     end
 end;
 

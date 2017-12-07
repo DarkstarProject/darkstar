@@ -34,37 +34,37 @@ function onTrigger(player,npc)
     -- In a Stew
     if (IAS == QUEST_AVAILABLE and chocobilious == QUEST_COMPLETED and player:getFameLevel(WINDURST) >= 3) then
         if (player:needToZone()) then
-            player:startEvent(0x00E8); -- Post quest dialog from Chocobilious
+            player:startEvent(232); -- Post quest dialog from Chocobilious
         else
-            player:startEvent(0x00EB); -- IAS start
+            player:startEvent(235); -- IAS start
         end
 
     elseif (IASvar == 4 and player:hasKeyItem(RANPIMONPIS_SPECIAL_STEW)) then
-        player:startEvent(0x00EF);    -- IAS turn in
+        player:startEvent(239);    -- IAS turn in
 
     elseif (IAS == QUEST_ACCEPTED) then
-        player:startEvent(0x00EC); -- reminder dialog
+        player:startEvent(236); -- reminder dialog
 
 
     -- Uncomment once conquest tally in place
     --elseif (IAS == QUEST_COMPLETED) then
-        --player:startEvent(0x00F0); -- new dialog between repeats
+        --player:startEvent(240); -- new dialog between repeats
 
     elseif (IAS == QUEST_COMPLETED) then
-        player:startEvent(0x00EA);    -- start repeat
+        player:startEvent(234);    -- start repeat
 
     -- Chocobilious
     elseif (chocobilious == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then
-        player:startEvent(0x00e0); -- Start quest
+        player:startEvent(224); -- Start quest
     elseif (chocobilious == QUEST_COMPLETED and player:needToZone() == true) then
-        player:startEvent(0x00e8); -- Quest complete
+        player:startEvent(232); -- Quest complete
     elseif (chocobilious == QUEST_ACCEPTED and player:getVar("ChocobiliousQuest") == 2) then
-        player:startEvent(0x00e7); -- Talked to Tapoh
+        player:startEvent(231); -- Talked to Tapoh
     elseif (chocobilious == QUEST_ACCEPTED) then
-        player:startEvent(0x00e1); -- Post quest accepted
+        player:startEvent(225); -- Post quest accepted
     else
         -- Standard dialog
-        player:startEvent(0x00de);
+        player:startEvent(222);
     end
 
 end;
@@ -87,9 +87,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     --Chocobilious
-    if (csid == 0x00e0 and option == 1) then            -- Quest start
+    if (csid == 224 and option == 1) then            -- Quest start
         player:addQuest(WINDURST,CHOCOBILIOUS);
-    elseif (csid == 0x00e7) then                        -- finish Quest
+    elseif (csid == 231) then                        -- finish Quest
         player:completeQuest(WINDURST,CHOCOBILIOUS);
         player:addFame(WINDURST,220);
         player:addGil(GIL_RATE*1500);
@@ -99,17 +99,17 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
 
     -- In a Stew
-    elseif (csid == 0x00EB) then
+    elseif (csid == 235) then
         player:addQuest(WINDURST,IN_A_STEW);    -- Quest start
         player:setVar("IASvar",1);
-    elseif (csid == 0x00EF) then
+    elseif (csid == 239) then
         player:completeQuest(WINDURST,IN_A_STEW);    -- finish Quest
         player:setVar("IASvar",0);
         player:addFame(WINDURST,50);
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
         player:delKeyItem(RANPIMONPIS_SPECIAL_STEW);
-    elseif (csid == 0x0EA and option == 1) then        -- start repeat
+    elseif (csid == 234 and option == 1) then        -- start repeat
         player:setVar("IASvar",3);
 
     end

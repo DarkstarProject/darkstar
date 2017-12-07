@@ -40,13 +40,13 @@ struct queueAction_t
     std::function<void(CBaseEntity*)> func {};
 
     queueAction_t(int _ms, bool _checkstate, int _lua_func) :
-        delay(std::chrono::milliseconds(_ms)), 
-        lua_func(_lua_func), 
-        checkState(_checkstate) {}
+        delay(std::chrono::milliseconds(_ms)),
+        checkState(_checkstate),
+        lua_func(_lua_func) {}
     queueAction_t(duration _ms, bool _checkstate, std::function<void(CBaseEntity*)> _func) :
         delay(_ms),
-        func(_func),
-        checkState(_checkstate) {}
+        checkState(_checkstate),
+        func(_func) {}
 };
 
 inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }

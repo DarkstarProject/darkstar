@@ -32,11 +32,11 @@ function onTrigger(player,npc)
     if (soul or rusty) then
         player:messageSpecial(NO_REASON_TO_INVESTIGATE);
     elseif (npc:getID() == Book1) then
-        player:startEvent(0x003D); -- First Book
+        player:startEvent(61); -- First Book
     elseif (npc:getID() == Book2) then
-        player:startEvent(0x003E); -- Second Book
+        player:startEvent(62); -- Second Book
     elseif (npc:getID() == Book3) then
-        player:startEvent(0x003F); -- Third Book
+        player:startEvent(63); -- Third Book
     end
 end;
 
@@ -58,11 +58,11 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local book = player:getVar("paintbrushOfSouls_book");
 
-    if (csid == 0x003d and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6)) then
+    if (csid == 61 and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6)) then
         player:setVar("paintbrushOfSouls_book",book + 1);
-    elseif (csid == 0x003e and option == 1 and (book == 0 or book == 1 or book == 4 or book == 5)) then
+    elseif (csid == 62 and option == 1 and (book == 0 or book == 1 or book == 4 or book == 5)) then
         player:setVar("paintbrushOfSouls_book",book + 2);
-    elseif (csid == 0x003f and option == 1 and (book == 0 or book == 1 or book == 2 or book == 3)) then
+    elseif (csid == 63 and option == 1 and (book == 0 or book == 1 or book == 2 or book == 3)) then
         player:setVar("paintbrushOfSouls_book",book + 4);
     end
 

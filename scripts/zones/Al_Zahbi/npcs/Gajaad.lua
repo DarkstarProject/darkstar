@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
                 player:setVar("walahraCoinCount", walahraCoinCount - (1000 - TradeCount));
                 player:tradeComplete();
                 player:messageSpecial(ITEM_OBTAINED,15270);
-                player:startEvent(0x0066, 2184, 0, TradeCount);
+                player:startEvent(102, 2184, 0, TradeCount);
             else
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15270);
             end
@@ -32,11 +32,11 @@ function onTrade(player,npc,trade)
                 player:setVar("walahraCoinCount", walahraCoinCount + TradeCount);
                 player:addItem(5354);
                 player:messageSpecial(ITEM_OBTAINED,5354);
-                player:startEvent(0x0066, 2184, 0, TradeCount);
+                player:startEvent(102, 2184, 0, TradeCount);
             else
                 player:tradeComplete();
                 player:setVar("walahraCoinCount", walahraCoinCount + TradeCount);
-                player:startEvent(0x0066, 2184, 0, TradeCount);
+                player:startEvent(102, 2184, 0, TradeCount);
             end
         end
     end
@@ -48,7 +48,7 @@ end;
 
 function onTrigger(player,npc)
     -- TODO besiege result can effect if this NPC will accept trades
-    player:startEvent(0x0066, 2184);
+    player:startEvent(102, 2184);
 end;
 
 -----------------------------------

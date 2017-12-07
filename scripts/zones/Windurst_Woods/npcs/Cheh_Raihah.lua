@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    --player:startEvent(0xf7); or player:showText(npc,801); ???
+    --player:startEvent(247); or player:showText(npc,801); ???
 end;
 
 -----------------------------------

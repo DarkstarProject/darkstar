@@ -7,7 +7,7 @@
 -- onTrigger Action
 -----------------------------------
 function onTrigger(player,npc)
-    player:startEvent(0x2759);
+    player:startEvent(10073);
 end; 
  
 
@@ -21,6 +21,9 @@ end;
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("RESULT:",option);

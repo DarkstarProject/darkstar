@@ -40,12 +40,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then --play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 
 end;
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
 
-    if (csid == 0x7d01 and option == 0 and player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") == 2) then
+    if (csid == 32001 and option == 0 and player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") == 2) then
         player:setTitle(FODDERCHIEF_FLAYER);
         player:addKeyItem(ORCISH_HUT_KEY);
         player:messageSpecial(KEYITEM_OBTAINED,ORCISH_HUT_KEY);

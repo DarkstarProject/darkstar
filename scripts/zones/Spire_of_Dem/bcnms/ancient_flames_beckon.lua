@@ -53,17 +53,17 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then    
             if (player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA)) then 
-                player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,3);
+                player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,3);
             elseif (player:hasKeyItem(LIGHT_OF_MEA) or player:hasKeyItem(LIGHT_OF_HOLLA)) then 
-                player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,2); 
+                player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,2); 
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
-                player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); 
+                player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); 
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 
 end;
@@ -75,7 +75,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
 
-    if (csid == 0x7D01) then
+    if (csid == 32001) then
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then 
             if (player:hasKeyItem(LIGHT_OF_MEA) and player:hasKeyItem(LIGHT_OF_HOLLA)) then
                 player:addExp(1500);

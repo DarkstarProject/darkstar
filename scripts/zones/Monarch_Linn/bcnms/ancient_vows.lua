@@ -35,12 +35,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,0);
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;
@@ -51,7 +51,7 @@ end;
     
 function onEventFinish(player,csid,option)
 
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
         player:addExp(1000);
         player:addTitle(TAVNAZIAN_TRAVELER); 
         if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then

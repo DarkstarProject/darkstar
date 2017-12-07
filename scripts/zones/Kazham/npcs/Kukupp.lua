@@ -101,9 +101,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 1 or failed == 2 then
             if goodtrade then
-                player:startEvent(0x00DC);
+                player:startEvent(220);
             elseif badtrade then
-                player:startEvent(0x00E6);
+                player:startEvent(230);
             end
         end
     end
@@ -121,15 +121,15 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00C6);
+            player:startEvent(198);
             npc:wait();
         elseif (progress == 1 or failed == 2) then
-                player:startEvent(0x00D0);  -- asking for workbench
+                player:startEvent(208);  -- asking for workbench
         elseif (progress >= 2 or failed >= 3) then
-            player:startEvent(0x00F3); -- happy with workbench
+            player:startEvent(243); -- happy with workbench
         end
     else
-        player:startEvent(0x00C6);
+        player:startEvent(198);
         npc:wait();
     end
 end;
@@ -150,7 +150,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00DC) then    -- correct trade, onto next opo
+    if (csid == 220) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 1 then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",2);
@@ -158,7 +158,7 @@ function onEventFinish(player,csid,option,npc)
         else
             player:setVar("OPO_OPO_FAILED",3);
         end
-    elseif (csid == 0x00E6) then              -- wrong trade, restart at first opo
+    elseif (csid == 230) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",2);
     else

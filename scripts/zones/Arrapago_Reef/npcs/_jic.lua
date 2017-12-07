@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(0x00DB, assaultid, -4, 0, recommendedLevel, 2, armband);
+        player:startEvent(219, assaultid, -4, 0, recommendedLevel, 2, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x6C or (csid == 0xDB and option == 4)) then
+    if (csid == 108 or (csid == 219 and option == 4)) then
         player:setPos(0,0,0,0,55);
     end
 end;
@@ -111,7 +111,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
-                    v:startEvent(0x6C, 2);
+                    v:startEvent(108, 2);
                     v:delKeyItem(ILRUSI_ASSAULT_ORDERS);
                 end
             end

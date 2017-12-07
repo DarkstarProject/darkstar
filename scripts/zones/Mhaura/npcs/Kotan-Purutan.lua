@@ -26,15 +26,15 @@ function onTrigger(player,npc)
     local HourOfTheDay = VanadielHour();
 
     if (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == false and (KenapaOvernight >= 4 and KenapaOvernight <= 7) and (HourOfTheDay < 6 or HourOfTheDay >= 18)) then
-        player:startEvent(0x008d); -- Gives Key Item at correct times of night
+        player:startEvent(141); -- Gives Key Item at correct times of night
     elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == false and (KenapaOvernight >= 4 and KenapaOvernight <= 7) and (HourOfTheDay >= 6 or HourOfTheDay < 18)) then
-        player:startEvent(0x0090); -- Only at night
+        player:startEvent(144); -- Only at night
     elseif (player:hasKeyItem(SMALL_BAG) == true) then
-        player:startEvent(0x008e);  -- Reminder Dialogue
+        player:startEvent(142);  -- Reminder Dialogue
     elseif (OvernightDelivery == QUEST_COMPLETED) then
-        player:startEvent(0x008f); -- Post quest
+        player:startEvent(143); -- Post quest
     else
-        player:startEvent(0x008c); -- Standard
+        player:startEvent(140); -- Standard
     end
 end;
 
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x008d) then
+    if (csid == 141) then
         player:addKeyItem(SMALL_BAG);
         player:setVar("Kenapa_Overnight_Day_var",VanadielDayOfTheYear());
         player:setVar("Kenapa_Overnight_Hour_var",VanadielHour());

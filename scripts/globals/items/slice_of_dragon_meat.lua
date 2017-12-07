@@ -7,11 +7,7 @@
 -- Intelligence -8
 -- Demon Killer +2 (?)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -28,10 +24,6 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,300,4272);
 end;
@@ -46,11 +38,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_DEMON_KILLER,2);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_STR, 6);
     target:delMod(MOD_INT, -8);
     target:delMod(MOD_DEMON_KILLER,2);

@@ -33,11 +33,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x35b);
--- player:startEvent(0x0356)  --chocobo dig game
--- player:startEvent(0x0358)  -- play the chocobo game
--- player:startEvent(0x0359)  -- rules for choc game
--- player:startEvent(0x035a)  -- cant give more greens
+    player:startEvent(859);
+-- player:startEvent(854)  --chocobo dig game
+-- player:startEvent(856)  -- play the chocobo game
+-- player:startEvent(857)  -- rules for choc game
+-- player:startEvent(858)  -- cant give more greens
 end;
 
 -----------------------------------

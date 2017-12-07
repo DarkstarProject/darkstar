@@ -480,6 +480,9 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 
 void CBattlefield::onTick(time_point time)
 {
+    if (!m_Attacked)
+        CheckInProgress();
+
     if (time > m_Tick + 1s)
     {
         //todo : bcnm - update tick, fight tick, end if time is up
@@ -487,7 +490,6 @@ void CBattlefield::onTick(time_point time)
         m_FightTick = m_Status == BATTLEFIELD_STATUS_LOCKED ? m_FightTick : time;
         m_FinishTime = m_Status >= BATTLEFIELD_STATUS_WON ? m_FightTick - m_StartTime : m_FinishTime;
 
-        CheckInProgress();
         luautils::OnBattlefieldTick(this);
 
         // todo: handle this in global
@@ -550,10 +552,21 @@ void CBattlefield::Cleanup()
 
     if (m_Attacked && m_Status == BATTLEFIELD_STATUS_WON)
     {
-        const int8* query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u AND zoneid = %u";
-        auto timeThing = std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
+        const char* query = "SELECT fastestTime FROM bcnm_info WHERE bcnmId = %u AND zoneId = %u";
+        auto ret = Sql_Query(SqlHandle, query, this->GetID(), this->GetZoneID());
+        bool updateRecord = true;
+        if (ret != SQL_ERROR)
+        {
+            updateRecord = Sql_GetUIntData(SqlHandle, 0) > std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
+        }
 
-        Sql_Query(SqlHandle, query, m_Record.name.c_str(), timeThing, m_Record.partySize, this->GetID(), GetZoneID());
+        if (updateRecord)
+        {
+            query = "UPDATE bcnm_info SET fastestName = '%s', fastestTime = %u, fastestPartySize = %u WHERE bcnmId = %u AND zoneid = %u";
+            auto timeThing = std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
+
+            Sql_Query(SqlHandle, query, m_Record.name.c_str(), timeThing, m_Record.partySize, this->GetID(), GetZoneID());
+        }
     }
 }
 

@@ -52,7 +52,7 @@ namespace mobSpellList
         memset(PMobSpellList, 0, sizeof(PMobSpellList));
         PMobSpellList[0] = new CMobSpellList();
 
-        const int8* Query = "SELECT mob_spell_lists.spell_list_id, \
+        const char* Query = "SELECT mob_spell_lists.spell_list_id, \
                             mob_spell_lists.spell_id, \
                             mob_spell_lists.min_level, \
                             mob_spell_lists.max_level, \

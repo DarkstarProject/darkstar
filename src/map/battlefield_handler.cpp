@@ -132,8 +132,8 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
 
             auto PBattlefield = new CBattlefield(battlefieldID, m_PZone, area, PChar);
 
-            PBattlefield->SetName(name);
-            PBattlefield->SetRecord(recordholder, recordtime, recordPartySize);
+            PBattlefield->SetName((char*)name);
+            PBattlefield->SetRecord((char*)recordholder, recordtime, recordPartySize);
             PBattlefield->SetTimeLimit(timelimit);
             PBattlefield->SetLevelCap(levelcap);
 

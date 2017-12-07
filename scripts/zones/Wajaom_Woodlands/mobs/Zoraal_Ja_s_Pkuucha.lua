@@ -2,52 +2,43 @@
 -- Area: Wajaom Woodlands
 -- Mob:  Zoraal Ja's Pkuucha
 -----------------------------------
-
 require("scripts/zones/Wajaom_Woodlands/MobIDs");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
-    mob:setLocalVar("Pop_Zoraal_Ja", math.random(20,50));
+    mob:setLocalVar("whenToPopZoraal", math.random(20,50));
+    mob:setLocalVar("hasPoppedZoraal",0);
 end;
 
------------------------------------
--- OnMobFight Action
------------------------------------
-
-function onMobFight(mob, target)
-    if (mob:getHPP() <= mob:getLocalVar("Pop_Zoraal_Ja") and GetMobAction(Percipient_Zoraal_Ja) == ACTION_NONE
-        and GetServerVariable("[POP]Percipient_Zoraal_Ja") == 0) then
-
-        GetMobByID(Percipient_Zoraal_Ja):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
-        SpawnMob(Percipient_Zoraal_Ja):updateEnmity(target);
-        mob:setHP(mob:getMaxHP());
-        mob:setUnkillable(true);
-        SetServerVariable("[POP]Percipient_Zoraal_Ja", os.time());
+function onMobDisengage(mob)
+    mob:setLocalVar("hasPoppedZoraal", 0);
+    if(GetMobByID(PERCIPIENT_ZORAAL_JA):isSpawned()) then
+        DespawnMob(PERCIPIENT_ZORAAL_JA);
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobRoam(mob)
+    mob:setLocalVar("hasPoppedZoraal",0);
+    if(GetMobByID(PERCIPIENT_ZORAAL_JA):isSpawned()) then
+        DespawnMob(PERCIPIENT_ZORAAL_JA);
+    end
+end;
+
+function onMobFight(mob, target)
+    if (
+        mob:getHPP() <= mob:getLocalVar("whenToPopZoraal") and
+        not GetMobByID(PERCIPIENT_ZORAAL_JA):isSpawned() and
+        mob:getLocalVar("hasPoppedZoraal") == 0
+    ) then
+        GetMobByID(PERCIPIENT_ZORAAL_JA):setSpawn(mob:getXPos()+math.random(-2,2), mob:getYPos(), mob:getZPos()+math.random(-2,2));
+        SpawnMob(PERCIPIENT_ZORAAL_JA):updateEnmity(target);
+        mob:setHP(mob:getMaxHP());
+        mob:setUnkillable(true);
+        mob:setLocalVar("hasPoppedZoraal", 1);
+    end
+end;
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    SetServerVariable("[POP]Percipient_Zoraal_Ja", 0 );
-
-    SetServerVariable("[POP]Zoraal_Ja_s_Pkuucha", os.time() + math.random(1800, 43200)); -- 30min to 12h
-    DisallowRespawn(mob:getID(), true);
-
-    local PH = GetServerVariable("[PH]Zoraal_Ja_s_Pkuucha");
-    SetServerVariable("[PH]Zoraal_Ja_s_Pkuucha", 0);
-    DisallowRespawn(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 end;

@@ -31,23 +31,23 @@ function onTrigger(player,npc)
 
     -- Curses, Foiled A_Golem!?
     if (player:hasKeyItem(SHANTOTTOS_EXSPELL) and FoiledAGolem == QUEST_ACCEPTED) then
-        player:startEvent(0x006C); -- key item taken, wait one game day for new spell
+        player:startEvent(108); -- key item taken, wait one game day for new spell
     elseif (player:getVar("golemwait") == 1 and FoiledAGolem == QUEST_ACCEPTED) then
         local gDay = VanadielDayOfTheYear();
         local gYear = VanadielYear();
         local dFinished = player:getVar("golemday");
         local yFinished = player:getVar("golemyear");
         if (gDay == dFinished and gYear == yFinished) then
-            player:startEvent(0x0071); -- re-write reminder
+            player:startEvent(113); -- re-write reminder
         elseif (gDay == dFinished + 1 and gYear == yFinished) then
-            player:startEvent(0x006D); -- re-write done
+            player:startEvent(109); -- re-write done
         end
     elseif (player:getVar("foiledagolemdeliverycomplete") == 1) then
-        player:startEvent(0x006E); -- talk to Shantotto reminder
+        player:startEvent(110); -- talk to Shantotto reminder
     elseif (FoiledAGolem == QUEST_ACCEPTED) then
-        player:startEvent(0x0068); -- receive key item
+        player:startEvent(104); -- receive key item
     else
-        player:startEvent(0x0065); -- standard dialog
+        player:startEvent(101); -- standard dialog
     end
 end;
 
@@ -69,15 +69,15 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- Curses, Foiled A_Golem!?
-    if (csid == 0x0068 and option == 1) then
+    if (csid == 104 and option == 1) then
         player:addKeyItem(SHANTOTTOS_NEW_SPELL);
         player:messageSpecial(KEYITEM_OBTAINED,SHANTOTTOS_NEW_SPELL);  -- add new spell key item
-    elseif (csid == 0x006C) then                                       -- start wait for new scroll
+    elseif (csid == 108) then                                       -- start wait for new scroll
         player:delKeyItem(SHANTOTTOS_EXSPELL);
         player:setVar("golemday",VanadielDayOfTheYear());
         player:setVar("golemyear",VanadielYear());
         player:setVar("golemwait",1);
-    elseif (csid == 0x006D) then
+    elseif (csid == 109) then
         player:addKeyItem(SHANTOTTOS_NEW_SPELL);
         player:messageSpecial(KEYITEM_OBTAINED,SHANTOTTOS_NEW_SPELL);  -- add new spell key item
         player:setVar("golemday",0);

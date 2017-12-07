@@ -83,10 +83,10 @@ function onBattlefieldLeave(player,battlefield,leavecode)
             player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);
         end
         player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
         
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;

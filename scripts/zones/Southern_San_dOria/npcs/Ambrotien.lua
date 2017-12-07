@@ -26,22 +26,22 @@ function onTrade(player,npc,trade)
 
     if (CurrentMission ~= 255) then
         if (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
-            player:startEvent(0x07e4); -- Finish Mission "Smash the Orcish scouts" (First Time)
+            player:startEvent(2020); -- Finish Mission "Smash the Orcish scouts" (First Time)
         elseif (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1) then -- Trade Orcish Axe
-            player:startEvent(0x07d2); -- Finish Mission "Smash the Orcish scouts" (Repeat)
+            player:startEvent(2002); -- Finish Mission "Smash the Orcish scouts" (Repeat)
         elseif (CurrentMission == BAT_HUNT and trade:hasItemQty(1112,1) and Count == 1 and BatHuntCompleted == false and MissionStatus == 2) then -- Trade Orcish Mail Scales
-            player:startEvent(0x07e7); -- Finish Mission "Bat Hunt"
+            player:startEvent(2023); -- Finish Mission "Bat Hunt"
         elseif (CurrentMission == BAT_HUNT and trade:hasItemQty(891,1) and Count == 1 and BatHuntCompleted and MissionStatus == 2) then -- Trade Bat Fang
-            player:startEvent(0x07d3); -- Finish Mission "Bat Hunt" (repeat)
+            player:startEvent(2003); -- Finish Mission "Bat Hunt" (repeat)
         elseif (CurrentMission == THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted == false) then -- Trade Crystal Bass
-            player:startEvent(0x07ee); -- Dialog During Mission "The Crystal Spring"
+            player:startEvent(2030); -- Dialog During Mission "The Crystal Spring"
         elseif (CurrentMission == THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted) then -- Trade Crystal Bass
-            player:startEvent(0x07dd); -- Finish Mission "The Crystal Spring" (repeat)
+            player:startEvent(2013); -- Finish Mission "The Crystal Spring" (repeat)
         else
-            player:startEvent(0x07d8); -- Wrong Item
+            player:startEvent(2008); -- Wrong Item
         end
     else
-        player:startEvent(0x07da); -- Mission not activated
+        player:startEvent(2010); -- Mission not activated
     end
 
 end;
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
 local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
 
     if (player:getNation() ~= NATION_SANDORIA) then
-        player:startEvent(0x07db); -- for Non-San d'Orians
+        player:startEvent(2011); -- for Non-San d'Orians
     else
         CurrentMission = player:getCurrentMission(SANDORIA);
         MissionStatus = player:getVar("MissionStatus");
@@ -69,26 +69,26 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
       elseif (pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
-            player:startEvent(0x07d0); -- Start First Mission "Smash the Orcish scouts"
+            player:startEvent(2000); -- Start First Mission "Smash the Orcish scouts"
         elseif (player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
-            player:startEvent(0x040c);
+            player:startEvent(1036);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then -- Not ready yet
-            player:startEvent(0x040e);
+            player:startEvent(1038);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getVar("Wait1DayForRanperre_date")) then -- Ready now.
-            player:startEvent(0x0410);
+            player:startEvent(1040);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
-            player:startEvent(0x0410);
+            player:startEvent(1040);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
-            player:startEvent(0x040a);
+            player:startEvent(1034);
         elseif (CurrentMission ~= THE_SECRET_WEAPON and pRank == 7 and PresOfPapsqueCompleted == true and getMissionRankPoints(player,19) == 1 and player:getVar("SecretWeaponStatus") == 0) then
-            player:startEvent(0x003e);
+            player:startEvent(62);
         elseif (CurrentMission == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 3) then
-            player:startEvent(0x0414);
+            player:startEvent(1044);
         elseif (CurrentMission ~= 255) then
-            player:startEvent(0x07d1); -- Have mission already activated
+            player:startEvent(2001); -- Have mission already activated
         else
             mission_mask, repeat_mask = getMissionMask(player);
-            player:startEvent(0x07d9,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
+            player:startEvent(2009,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
         end
     end
 
@@ -112,20 +112,20 @@ function onEventFinish(player,csid,option)
     -- printf("onFinishOPTION: %u",option);
 
     finishMissionTimeline(player,2,csid,option);
-    if (csid == 0x040c) then
+    if (csid == 1036) then
        player:setVar("MissionStatus",4);
        player:delKeyItem(ANCIENT_SANDORIAN_BOOK);
        player:setVar("Wait1DayForRanperre_date", os.date("%j"));
-    elseif (csid == 0x040e) then
+    elseif (csid == 1038) then
        player:setVar("MissionStatus",6);
-    elseif (csid == 0x0410) then
+    elseif (csid == 1040) then
        player:setVar("MissionStatus",7);
        player:setVar("Wait1DayForRanperre_date",0);
-    elseif (csid == 0x040a) then
+    elseif (csid == 1034) then
        finishMissionTimeline(player,1,csid,option);
-    elseif (csid == 0x003e) then
+    elseif (csid == 62) then
         player:setVar("SecretWeaponStatus",1);
-    elseif (csid == 0x0414) then
+    elseif (csid == 1044) then
         finishMissionTimeline(player,1,csid,option);
     end
 

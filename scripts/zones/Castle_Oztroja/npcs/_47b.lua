@@ -32,7 +32,7 @@ function onTrigger(player,npc)
                 GetNPCByID(TrapDoor):openDoor(6);
             end
             if (player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 3) then
-                player:startEvent(0x002B);
+                player:startEvent(43);
             end
         else
             if (BrassA == 9 and npc:getAnimation() == 9) then
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x002B) then
+    if (csid == 43) then
         player:setVar("MissionStatus",4);
     end
 

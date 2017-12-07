@@ -69,7 +69,7 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar)
     this->type = 0x8C;
 	this->size = 0x80;
 
-    WBUFB(data,(0x04)) = MAX_MERITS_IN_PACKET;
+    ref<uint8>(0x04) = MAX_MERITS_IN_PACKET;
 
     for (uint8 i = 0; i < 5; ++i)
     {
@@ -91,8 +91,8 @@ CMeritPointsCategoriesPacket::CMeritPointsCategoriesPacket(CCharEntity* PChar, M
     this->type = 0x8C;
 	this->size = 0x08;
 
-    WBUFB(data,(0x04)) = 1;
-    WBUFL(data,(0x08)) = PChar->PMeritPoints->GetMerit(merit)->data;
+    ref<uint8>(0x04) = 1;
+    ref<uint32>(0x08) = PChar->PMeritPoints->GetMerit(merit)->data;
 }
 
 /************************************************************************

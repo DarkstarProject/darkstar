@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         rank = rank + 1;
     end;
 
-    player:startEvent(0x0096,rank-1,badges[rank],player:getCurrency("imperial_standing"),0,39183,10577,4095,0,0); -- Unsure of what other params mean
+    player:startEvent(150,rank-1,badges[rank],player:getCurrency("imperial_standing"),0,39183,10577,4095,0,0); -- Unsure of what other params mean
 end;
 
 -----------------------------------
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("Quantity - %u CoinType - %u\n",Quantity, CoinType);
     -- printf("Stacks - %u Remainder - %u\n",Stacks, Remainder);
 
-    if (csid ==0x0096) then
+    if (csid ==150) then
         if (CoinType == 1) then -- Bronze Pieces
             if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then

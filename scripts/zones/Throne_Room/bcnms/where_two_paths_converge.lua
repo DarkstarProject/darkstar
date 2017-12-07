@@ -38,12 +38,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == 2 then
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0);
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 end;
 

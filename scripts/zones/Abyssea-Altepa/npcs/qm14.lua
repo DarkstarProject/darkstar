@@ -2,45 +2,22 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm14 (???)
 -- Spawns Bennu
--- !pos ? ? ? 218
+-- !pos 91 -1 -140 218
 -----------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/status");
+require("scripts/globals/abyssea");
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrade(player,npc,trade)
+    abysseaOnTrade(player,npc,trade);
+end;
 
 function onTrigger(player,npc)
---[[
-    if (GetMobAction(17670554) == ACTION_NONE) then -- NM not already spawned from this
-        if (player:hasKeyItem(RESPLENDENT_ROC_QUILL)) then
-            player:startEvent(1020, RESPLENDENT_ROC_QUILL); -- Ask if player wants to use KIs
-        else
-            player:startEvent(1021, RESPLENDENT_ROC_QUILL); -- Do not ask, because player is missing at least 1.
-        end
-    end
-]]
+    abysseaOnTrigger(player,npc);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+    abysseaOnEventUpdate(player,csid,option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 1020 and option == 1) then
-        SpawnMob(17670554):updateEnmity(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-        player:delKeyItem(RESPLENDENT_ROC_QUILL);
-    end
+    abysseaOnEventFinish(player,csid,option);
 end;

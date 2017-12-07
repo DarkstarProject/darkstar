@@ -44,28 +44,28 @@ function onTrigger(player,npc)
         Message = math.random(0,1)
 
         if (Message == 1) then
-            player:startEvent(0x0211);
+            player:startEvent(529);
         else
-            player:startEvent(0x021d);
+            player:startEvent(541);
         end
     elseif (player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS) == QUEST_ACCEPTED) then
-        player:startEvent(0x01f8);
+        player:startEvent(504);
     elseif (OnionRings == QUEST_COMPLETED) then
-        player:startEvent(0x01be);
+        player:startEvent(446);
     elseif (OnionRings == QUEST_ACCEPTED ) then
-        player:startEvent(0x01b7);
+        player:startEvent(439);
     elseif (InspectorsGadget == QUEST_COMPLETED) then
-        player:startEvent(0x01ac);
+        player:startEvent(428);
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
-        player:startEvent(0x01a4);
+        player:startEvent(420);
     elseif (player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS) == QUEST_COMPLETED) then
-        player:startEvent(0x019c);
+        player:startEvent(412);
     elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
-        player:startEvent(0x0180);
+        player:startEvent(384);
     elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
-        player:startEvent(0x0179);
+        player:startEvent(377);
     else
-        player:startEvent(0x016f);
+        player:startEvent(367);
     end
 
 end;

@@ -30,14 +30,14 @@ function onTrigger(player,npc)
         if (MissionStatus == 2) then
             -- Entered a Dark Orb
             if (player:getVar("MissionStatus_orb6") == 1) then
-                player:startEvent(0x0033);
+                player:startEvent(51);
             else
                 player:messageSpecial(ORB_ALREADY_PLACED);
             end
         elseif (MissionStatus == 4) then
             -- Took out a Glowing Orb
             if (player:getVar("MissionStatus_orb6") == 2) then
-                player:startEvent(0x0033);
+                player:startEvent(51);
             else
                 player:messageSpecial(G_ORB_ALREADY_GOTTEN);
             end
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x0033) then
+    if (csid == 51) then
         orb_value = player:getVar("MissionStatus_orb6");
         
         if (orb_value == 1) then

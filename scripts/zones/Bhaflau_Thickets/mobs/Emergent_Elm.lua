@@ -4,29 +4,8 @@
 -- !pos 71.000 -33.000 627.000 52
 -----------------------------------
 
-require("scripts/zones/Bhaflau_Thickets/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    -- Set EE's ToD
-    SetServerVariable("[POP]Emergent_Elm", os.time() + 14400); -- 4 hours
-    DisallowRespawn(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Emergent_Elm");
-    SetServerVariable("[PH]Emergent_Elm", 0);
-    DisallowRespawn(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
 end;

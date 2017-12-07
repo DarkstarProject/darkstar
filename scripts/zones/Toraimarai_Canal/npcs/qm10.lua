@@ -28,12 +28,12 @@ function onTrigger(player,npc)
     if (player:getVar("rootProblem") == 2) then
         if (player:getVar("rootProblemQ2") <= 1) then
             if (player:hasStatusEffect(EFFECT_MANAFONT) == true) then
-                player:startEvent(0x2F);
+                player:startEvent(47);
             else
-                player:startEvent(0x2E);
+                player:startEvent(46);
             end
         else
-            player:startEvent(0x2A);
+            player:startEvent(42);
         end
     end
 end;
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x2F) then
+    if (csid == 47) then
         player:setVar("rootProblemQ2",2);
     end
 end;

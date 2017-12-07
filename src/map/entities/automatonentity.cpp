@@ -114,7 +114,7 @@ void CAutomatonEntity::burdenTick()
     {
         if (burden > 0)
         {
-            burden -= dsp_cap(1 + PMaster->getMod(Mod::BURDEN_DECAY) + this->getMod(Mod::BURDEN_DECAY), 1, burden);
+            burden -= std::clamp<uint8>(1 + PMaster->getMod(Mod::BURDEN_DECAY) + this->getMod(Mod::BURDEN_DECAY), 1, burden);
         }
     }
 }
@@ -126,7 +126,7 @@ void CAutomatonEntity::setInitialBurden()
 
 uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
 {
-    m_Burden[element] = dsp_cap(m_Burden[element] + burden, 0, 255);
+    m_Burden[element] = std::clamp(m_Burden[element] + burden, 0, 255);
 
     if (burden > 0)
     {

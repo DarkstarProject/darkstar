@@ -50,9 +50,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 8 or failed == 9 then
             if goodtrade then
-                player:startEvent(0x00E3);
+                player:startEvent(227);
             elseif badtrade then
-                player:startEvent(0x00ED);
+                player:startEvent(237);
             end
         end
     end
@@ -70,15 +70,15 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00CD);
+            player:startEvent(205);
             npc:wait();
         elseif (progress == 8 or failed == 9) then
-                player:startEvent(0x00D6);  -- asking for ancient salt
+                player:startEvent(214);  -- asking for ancient salt
         elseif (progress >= 9 or failed >= 10) then
-            player:startEvent(0x00FA); -- happy with ancient salt
+            player:startEvent(250); -- happy with ancient salt
         end
     else
-        player:startEvent(0x00CD);
+        player:startEvent(205);
         npc:wait();
     end
 end;
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00E3) then    -- correct trade, onto next opo
+    if (csid == 227) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 8 then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",9);
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option,npc)
         else
             player:setVar("OPO_OPO_FAILED",10);
         end
-    elseif (csid == 0x00ED) then              -- wrong trade, restart at first opo
+    elseif (csid == 237) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",9);
     else

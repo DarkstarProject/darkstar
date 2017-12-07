@@ -90,7 +90,7 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x000b;
+        cs = 11;
     end
 
     return cs;
@@ -111,7 +111,7 @@ function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000b) then
+    if (csid == 11) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
@@ -124,7 +124,7 @@ function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000b) then
+    if (csid == 11) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

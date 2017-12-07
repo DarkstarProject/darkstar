@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
         if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
             if (trade:hasItemQty(567,1) and trade:getItemCount() == 1) then -- Trade Well Water
-            player:startEvent(0x0003);
+            player:startEvent(3);
             end
         end
 end;
@@ -38,12 +38,12 @@ function onTrigger(player,npc)
 
     if (X >= -1 and X <= 1 and Z >= -106 and Z <= -102) then
         if (currentMission == BAT_HUNT and MissionStatus <= 1) then
-            player:startEvent(0x0004);
+            player:startEvent(4);
         else
-            player:startEvent(0x0002);
+            player:startEvent(2);
         end
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
-        player:startEvent(0x0008);
+        player:startEvent(8);
     end
 
 end;
@@ -65,9 +65,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0004) then
+    if (csid == 4) then
         player:setVar("MissionStatus",2);
-    elseif (csid == 0x0002) then
+    elseif (csid == 2) then
         local graveConcerns = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
 
         if (graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then
@@ -78,12 +78,12 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
             end
         end
-    elseif (csid == 0x0003) then
+    elseif (csid == 3) then
         player:tradeComplete();
         player:setVar("OfferingWaterOK",1);
         player:addItem(547);
         player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
-    elseif (csid == 0x0008) then
+    elseif (csid == 8) then
         player:setVar("MissionStatus",3);
         player:addKeyItem(ANCIENT_SANDORIAN_BOOK);
         player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_BOOK);

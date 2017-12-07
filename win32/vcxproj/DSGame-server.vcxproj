@@ -115,6 +115,10 @@
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PostBuildEvent>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
+      <Message>log git rev to GIT_VER</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,6 +142,12 @@
       <SubSystem>Console</SubSystem>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
+    <PostBuildEvent>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>log git rev to GIT_VER</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -168,7 +178,7 @@
       <AdditionalOptions>/EDITANDCONTINUE /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(OutDir) &amp;&amp; get_git_ver_win.bat</Command>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
       <Message>log git rev to GIT_VER</Message>
     </PostBuildEvent>
     <CustomBuildStep>
@@ -203,7 +213,7 @@
       <AdditionalOptions>/EDITANDCONTINUE /SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>cd $(OutDir) &amp;&amp; get_git_ver_win.bat</Command>
+      <Command>cd "$(SolutionDir)..\" &amp;&amp; "$(SolutionDir)..\get_git_ver_win.bat"</Command>
       <Message>log git rev to GIT_VER</Message>
     </PostBuildEvent>
     <CustomBuildStep>

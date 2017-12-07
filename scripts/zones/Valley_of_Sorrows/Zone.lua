@@ -5,10 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Valley_of_Sorrows/TextIDs");
+require("scripts/zones/Valley_of_Sorrows/MobIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -16,7 +17,8 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
 function onInitialize(zone)
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17301537, 900, 10800); -- Adamantoise
+        UpdateNMSpawnPoint(ADAMANTOISE);
+        GetMobByID(ADAMANTOISE):setRespawnTime(math.random(900, 10800));
     end
 end;
 

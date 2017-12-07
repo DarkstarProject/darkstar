@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
                 docStatus = 1; -- Doctor
             end
 
-            player:startEvent(0x0037, drop, dropQty, INFINITY_CORE, 0, 0, 0, docStatus, 0);
+            player:startEvent(55, drop, dropQty, INFINITY_CORE, 0, 0, 0, docStatus, 0);
         else -- wrong chip, spawn elemental nm
 
             spawnElementalNM(player);
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
         player:setLocalVar( "strAppPass", 1);
     end
 
-    player:startEvent(0x0035, docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(53, docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------
@@ -66,7 +66,7 @@ function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u", option);
 
-    if (csid == 0x0035) then
+    if (csid == 53) then
 
         if (hasStrAppDocStatus(player) == false) then
 
@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0037) then
+    if (csid == 55) then
 
         local drop    = player:getLocalVar("strAppDrop");
         local dropQty = player:getLocalVar("strAppDropQty");
@@ -100,10 +100,14 @@ function onEventFinish(player,csid,option)
                 dropQty = 1;
             end
 
-            player:addItem(drop, dropQty);
-
-            player:setLocalVar("strAppDrop", 0);
-            player:setLocalVar("strAppDropQty", 0);
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,drop);
+            else
+                player:addItem(drop, dropQty);
+                player:messageSpecial(ITEM_OBTAINED,drop);
+                player:setLocalVar("strAppDrop", 0);
+                player:setLocalVar("strAppDropQty", 0);
+            end
         end
     end
 end;

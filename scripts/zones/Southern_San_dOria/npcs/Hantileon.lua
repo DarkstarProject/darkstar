@@ -28,11 +28,11 @@ function onTrigger(player,npc)
     local chocoboOnTheLoose = player:getVar("ChocoboOnTheLoose");
 
     if (chocoboOnTheLoose == 3 or chocoboOnTheLoose == 4) then
-        player:startEvent(0x0335);
+        player:startEvent(821);
     elseif (chocoboOnTheLoose == 5) then
-        player:startEvent(0x0336);
+        player:startEvent(822);
     else
-        player:startEvent(0x0331);
+        player:startEvent(817);
     end
 end;
 
@@ -53,9 +53,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0335) then
+    if (csid == 821) then
         player:setVar("ChocoboOnTheLoose", 5);
-    elseif (csid == 0x0336) then
+    elseif (csid == 822) then
         player:setVar("ChocoboOnTheLoose", 6);
     end
 end;

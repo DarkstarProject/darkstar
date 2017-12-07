@@ -28,15 +28,14 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 
-CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, Mod modValue, int16 modPower)
+CLatentEffect::CLatentEffect(CBattleEntity* owner, LATENT conditionsId, uint16 conditionsValue, uint8 slot, Mod modValue, int16 modPower) :
+    m_POwner(owner),
+    m_ConditionsID(conditionsId),
+    m_ConditionsValue(conditionsValue),
+    m_SlotID(slot),
+    m_ModValue(modValue),
+    m_ModPower(modPower)
 {
-    m_ConditionsID      = conditionsId;
-    m_ConditionsValue   = conditionsValue;
-    m_SlotID            = slot;
-    m_ModValue          = modValue;
-    m_ModPower          = modPower;
-    m_Activated         = false;
-    m_POwner            = nullptr;
 }
 
 CLatentEffect::~CLatentEffect()
@@ -167,9 +166,4 @@ void CLatentEffect::Deactivate()
         m_Activated = false;
         //printf("LATENT DEACTIVATED: %d\n", m_ModValue);
     }
-}
-
-void CLatentEffect::SetOwner(CBattleEntity* Owner)
-{
-    m_POwner = Owner;
 }

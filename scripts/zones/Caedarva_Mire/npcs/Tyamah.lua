@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 
     if (trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
         player:tradeComplete();
-        player:startEvent(0x00a3);
+        player:startEvent(163);
     end
 
 end;
@@ -30,9 +30,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getXPos() > 320) then
-        player:startEvent(0x00a4);
+        player:startEvent(164);
     else
-        player:startEvent(0x00a2);
+        player:startEvent(162);
     end
 
 end;
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00a3) then
+    if (csid == 163) then
         player:setPos(-20,-4,835,64,72);
     end
 

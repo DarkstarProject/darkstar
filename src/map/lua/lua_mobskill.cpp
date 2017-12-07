@@ -164,7 +164,7 @@ inline int32 CLuaMobSkill::getHPP(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaMobSkill::className[] = "CMobSkill";
+const char CLuaMobSkill::className[] = "CMobSkill";
 Lunar<CLuaMobSkill>::Register_t CLuaMobSkill::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaMobSkill,setMsg),

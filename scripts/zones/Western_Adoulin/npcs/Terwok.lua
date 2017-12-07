@@ -25,10 +25,10 @@ function onTrigger(player,npc)
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Terwok)) then
         -- Progresses Quest: 'Order Up'
-        player:startEvent(0x0043);
+        player:startEvent(67);
     else
         -- Standard Dialogue
-        player:startEvent(0x0214);
+        player:startEvent(532);
     end
 end;
 
@@ -44,7 +44,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0043) then
+    if (csid == 67) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 7, true);
     end

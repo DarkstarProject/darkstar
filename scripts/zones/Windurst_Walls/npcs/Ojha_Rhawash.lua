@@ -54,20 +54,20 @@ itemQuality = 0;
 
     if (itemQuality == 2) then
         if (FlowerChild == QUEST_COMPLETED) then
-            player:startEvent(0x2710, 0, 239, 4);
+            player:startEvent(10000, 0, 239, 4);
         else
-            player:startEvent(0x2710, 0, 239, 2);
+            player:startEvent(10000, 0, 239, 2);
         end
     elseif (itemQuality == 1) then
         if (FlowerChild == QUEST_COMPLETED) then
-            player:startEvent(0x2710, 0, 239, 5);
+            player:startEvent(10000, 0, 239, 5);
         elseif (FlowerChild == QUEST_ACCEPTED) then
-            player:startEvent(0x2710, 0, 239, 3);
+            player:startEvent(10000, 0, 239, 3);
         else
-            player:startEvent(0x2710, 0, 239, 1);
+            player:startEvent(10000, 0, 239, 1);
         end
     else
-        player:startEvent(0x2710, 0, 239, 0);
+        player:startEvent(10000, 0, 239, 0);
     end
 
 end;
@@ -78,7 +78,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2710, 0, 239, 10);
+    player:startEvent(10000, 0, 239, 10);
 end;
 
 
@@ -100,13 +100,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x2710 and option == 3002) then
+    if (csid == 10000 and option == 3002) then
         player:tradeComplete();
         player:completeQuest(WINDURST,FLOWER_CHILD);
         player:addFame(WINDURST,120);
         player:moghouseFlag(4);
         player:messageSpecial(MOGHOUSE_EXIT);
-    elseif (csid == 0x2710 and option == 1) then
+    elseif (csid == 10000 and option == 1) then
         player:tradeComplete();
         player:addQuest(WINDURST,FLOWER_CHILD);
     end

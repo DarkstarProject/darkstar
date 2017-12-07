@@ -19,7 +19,7 @@ require("scripts/zones/Mhaura/TextIDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN) then
-        player:startEvent(0x272a,0,1548,5,20);
+        player:startEvent(10026,0,1548,5,20);
     end
 end; 
 
@@ -32,19 +32,19 @@ function onTrigger(player,npc)
     local TrialSizeLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
 
     if (player:getMainLvl() >= 20 and player:getMainJob() == JOBS.SMN and TrialSizeLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then --Requires player to be Summoner at least lvl 20
-        player:startEvent(0x2729,0,1548,5,20);     --mini tuning fork of lightning, zone, level
+        player:startEvent(10025,0,1548,5,20);     --mini tuning fork of lightning, zone, level
     elseif (TrialSizeLightning == QUEST_ACCEPTED) then
         local LightningFork = player:hasItem(1548);
         
         if (LightningFork == true) then 
-            player:startEvent(0x2722); --Dialogue given to remind player to be prepared
+            player:startEvent(10018); --Dialogue given to remind player to be prepared
         elseif (LightningFork == false and tonumber(os.date("%j")) ~= player:getVar("TrialSizeLightning_date")) then
-            player:startEvent(0x272d,0,1548,5,20); --Need another mini tuning fork
+            player:startEvent(10029,0,1548,5,20); --Need another mini tuning fork
         end
     elseif (TrialSizeLightning == QUEST_COMPLETED) then
-        player:startEvent(0x272c); --Defeated Ramuh
+        player:startEvent(10028); --Defeated Ramuh
     else
-        player:startEvent(0x2725); --Standard dialogue
+        player:startEvent(10021); --Standard dialogue
     end
 end;
 
@@ -64,7 +64,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x2729 and option == 1) then
+    if (csid == 10025 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork 
         else
@@ -73,14 +73,14 @@ function onEventFinish(player,csid,option)
             player:addItem(1548); 
             player:messageSpecial(ITEM_OBTAINED,1548); 
         end
-    elseif (csid == 0x272d and option == 1) then
+    elseif (csid == 10029 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork 
         else
             player:addItem(1548); 
             player:messageSpecial(ITEM_OBTAINED,1548); 
         end
-    elseif (csid == 0x272a and option == 1) then
+    elseif (csid == 10026 and option == 1) then
         toCloisterOfStorms(player);
     end    
 end;

@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x001e);
+    player:startEvent(30);
 end;
 
 -----------------------------------
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x002a and option == 0) then
+    if (csid == 42 and option == 0) then
         player:messageSpecial(POWER_OF_THE_ORB_ALLOW_PASS);
     end
 

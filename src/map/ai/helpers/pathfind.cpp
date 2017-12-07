@@ -134,8 +134,7 @@ bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, uin
     Clear();
     //position_t* lastPoint = &point;
 
-    float randomRadian = dsprand::GetRandomNumber<float>(0, 2 * (float)M_PI);
-
+    //float randomRadian = dsprand::GetRandomNumber<float>(0, 2 * (float)M_PI);
     //lastPoint->x += cosf(randomRadian) * distanceFromPoint;
     //lastPoint->z += sinf(randomRadian) * distanceFromPoint;
 

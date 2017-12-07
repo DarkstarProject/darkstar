@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
 
         if (checkFirstDyna(player,7)) then
-             player:startEvent(0x0021);
+             player:startEvent(33);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
             player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay) then
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
      printf("CSID: %u",csid);
      printf("finishRESULT: %u",option);
 
-    if (csid == 0x0021) then
+    if (csid == 33) then
         if (checkFirstDyna(player,7)) then
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),128));
         end

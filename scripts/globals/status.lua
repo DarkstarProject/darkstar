@@ -1364,6 +1364,8 @@ MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 -- Crafting food effects
 MOD_SYNTH_SUCCESS    = 851 -- Rate of synthesis success
 MOD_SYNTH_SKILL_GAIN = 852 -- Synthesis skill gain rate
+MOD_SYNTH_FAIL_RATE  = 861 -- Synthesis failure rate (percent)
+MOD_SYNTH_HQ_RATE    = 862 -- High-quality success rate (not a percent)
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
 MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.
@@ -1380,9 +1382,9 @@ MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 861 -- stuff
--- SPARE = 862 -- stuff
 -- SPARE = 863 -- stuff
+-- SPARE = 864 -- stuff
+-- SPARE = 865 -- stuff
 
 ------------------------------------
 -- Merit Definitions
@@ -2275,6 +2277,7 @@ ANIMATION_ELEVATOR_UP              = 10;
 ANIMATION_ELEVATOR_DOWN            = 11;
 -- seems to be WALLHACK               = 28;
 -- seems to be WALLHACK also..        = 31;
+ANIMATION_FISHING_NPC              = 32;
 ANIMATION_HEALING                  = 33;
 ANIMATION_FISHING_FISH             = 38;
 ANIMATION_FISHING_CAUGHT           = 39;
@@ -2286,6 +2289,13 @@ ANIMATION_SYNTH                    = 44;
 ANIMATION_SIT                      = 47;
 ANIMATION_RANGED                   = 48;
 ANIMATION_FISHING_START            = 50;
+ANIMATION_NEW_FISHING_START        = 56;
+ANIMATION_NEW_FISHING_FISH         = 57;
+ANIMATION_NEW_FISHING_CAUGHT       = 58;
+ANIMATION_NEW_FISHING_ROD_BREAK    = 59;
+ANIMATION_NEW_FISHING_LINE_BREAK   = 60;
+ANIMATION_NEW_FISHING_MONSTER      = 61;
+ANIMATION_NEW_FISHING_STOP         = 62;
 -- 63 through 72 are used with /sitchair
 -- 73 through 83 sitting on air (guessing future use for more chairs..)
 ANIMATION_MOUNT                    = 85;

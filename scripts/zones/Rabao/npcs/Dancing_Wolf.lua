@@ -23,15 +23,15 @@ end;
 
 function onTrigger(player,npc)
 if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 1) then
-player:startEvent(0x0066);
+player:startEvent(102);
 elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 2) then
-player:startEvent(0x0067);
+player:startEvent(103);
 elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 3 and player:hasKeyItem(MIRACLESALT)) then
-player:startEvent(0x0068);
+player:startEvent(104);
 elseif (player:getVar("BASTOK91") == 4) then
-player:startEvent(0x0069);
+player:startEvent(105);
 else
-player:startEvent(0x006A);
+player:startEvent(106);
 end
 end;
 -----------------------------------
@@ -50,9 +50,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-if (csid == 0x0066) then
+if (csid == 102) then
 player:setVar("BASTOK91",2);
-elseif (csid == 0x0068) then
+elseif (csid == 104) then
 player:setVar("BASTOK91",4);
 end
 end;

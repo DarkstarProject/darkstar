@@ -15,13 +15,13 @@ require("scripts/globals/keyitems");
 
 -- Death cutscenes:
 
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0); -- Hume
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0); -- taru
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,2,0); -- mithra
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,3,0); -- elvan
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0); -- galka
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,5,0); -- divine might
--- player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,6,0); -- skip ending cs
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,0,0); -- Hume
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,0); -- taru
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,2,0); -- mithra
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,3,0); -- elvan
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,4,0); -- galka
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,5,0); -- divine might
+-- player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,6,0); -- skip ending cs
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
@@ -33,7 +33,7 @@ end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-    player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,1);
+    player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),1,1,1);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -53,9 +53,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local clearTime = record.clearTime;
     
         if (player:hasCompletedMission(ZILART,ARK_ANGELS)) then
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,5,1);        -- winning CS (allow player to skip)
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,5,1);        -- winning CS (allow player to skip)
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,5,0);        -- winning CS (allow player to skip)
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),180,5,0);        -- winning CS (allow player to skip)
         end
 
     --[[ caps:
@@ -67,7 +67,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     ]]
         
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02, 0, 0, 0, 0, 0, battlefield:getArea(), 180);    -- player lost
+        player:startEvent(32002, 0, 0, 0, 0, 0, battlefield:getArea(), 180);    -- player lost
     end
 end;
 
@@ -79,7 +79,7 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
-   if (csid == 0x7d01) then
+   if (csid == 32001) then
       if (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED) then
          player:setVar("DivineMight",2); -- Used to use 2 to track completion, so that's preserved to maintain compatibility
          for i=SHARD_OF_APATHY, SHARD_OF_RAGE do

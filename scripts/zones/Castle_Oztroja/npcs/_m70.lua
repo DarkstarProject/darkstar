@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(YAGUDO_TORCH)) then
-        player:startEvent(0x000b);
+        player:startEvent(11);
     else
         player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
     end

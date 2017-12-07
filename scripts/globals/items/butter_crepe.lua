@@ -7,11 +7,7 @@
 -- Magic Accuracy +20% (cap 25)
 -- Magic Defense +1
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -21,10 +17,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5766);
@@ -42,11 +34,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_MACC_CAP, 25);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_HPP, 10);
     target:delMod(MOD_FOOD_HP_CAP, 10);
     target:delMod(MOD_MDEF, 1);

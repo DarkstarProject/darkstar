@@ -68,16 +68,16 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0030;
+        cs = 48;
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 238 ) then
-        cs = 0x003e;
+        cs = 62;
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 240 ) then
-        cs = 0x003f;
+        cs = 63;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0032;
+        cs = 50;
     -- removed only "cs =" works onzonein and can't take parameters atm
     -- elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        -- player:startEvent(0x0032,0,0,0,0,0,2); -- talking doll go east
+        -- player:startEvent(50,0,0,0,0,0,2); -- talking doll go east
     end
 
     return cs;
@@ -109,11 +109,11 @@ end;
 function onEventUpdate( player, csid, option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-    if (csid == 0x0030) then
+    if (csid == 48) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x003e or csid == 0x003f) then
+    elseif (csid == 62 or csid == 63) then
         player:setVar("ASA_Status",option);
-    elseif (csid == 0x0032) then
+    elseif (csid == 50) then
         if (player:getZPos() > 470) then
             player:updateEvent(0,0,0,0,0,2);
         else
@@ -129,9 +129,9 @@ end;
 function onEventFinish( player, csid, option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-    if (csid == 0x0030) then
+    if (csid == 48) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x003e or csid == 0x003f) then
+    elseif (csid == 62 or csid == 63) then
         player:completeMission(ASA,BURGEONING_DREAD);
         player:addMission(ASA,THAT_WHICH_CURDLES_BLOOD);
     end

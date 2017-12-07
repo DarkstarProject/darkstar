@@ -38,6 +38,9 @@ function onTrigger(player,npc)
     end;
 end;
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
     if (csid == 430) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",10,true);

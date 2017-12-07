@@ -24,9 +24,9 @@ function onTrigger(player,npc)
     local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
 
     if (SirensTear == QUEST_ACCEPTED and player:getVar("SirensTear") == 0) then
-        player:startEvent(0x0005);
+        player:startEvent(5);
     else
-        player:startEvent(0x0014);
+        player:startEvent(20);
     end
 end;
 

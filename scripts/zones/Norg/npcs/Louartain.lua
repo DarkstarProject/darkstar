@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0054);
+player:startEvent(84);
 npc:wait();
 end;
 

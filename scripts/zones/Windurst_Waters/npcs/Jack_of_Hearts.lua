@@ -15,7 +15,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrade(player,npc,trade) 
     if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
-        player:startEvent(0x271c,GIL_RATE*50);
+        player:startEvent(10012,GIL_RATE*50);
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
     end
@@ -26,7 +26,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-    player:startEvent(0x271b,0,1);
+    player:startEvent(10011,0,1);
 end; 
 
 -----------------------------------

@@ -32,12 +32,12 @@ function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
     local lakeProg = player:getVar("Lakeside_Minuet_Progress");
     if (lakeProg == 1) then
-        player:startEvent(0x0378); -- Dance for the drunks!
+        player:startEvent(888); -- Dance for the drunks!
         player:setVar("Lakeside_Minuet_Progress",2);
     elseif (lakeProg >= 2) then
-        player:startEvent(0x0379); -- Immediate regret of failure!
+        player:startEvent(889); -- Immediate regret of failure!
     else
-        player:startEvent(0x03A);
+        player:startEvent(58);
     end
 end;
 

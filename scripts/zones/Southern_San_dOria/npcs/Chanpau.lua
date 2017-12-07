@@ -36,16 +36,16 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
-        player:startEvent(0x275);
+        player:startEvent(629);
     elseif (player:getQuestStatus(SANDORIA, THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED) then
         Fired = player:getVar("Fired")
         if Fired == 1 then
-            player:startEvent(0x0237) -- i got fired in a day
+            player:startEvent(567) -- i got fired in a day
             else
-            player:startEvent(0x01f9) -- theres work ill go check it out
+            player:startEvent(505) -- theres work ill go check it out
         end
     else
-        player:startEvent(0x0236);
+        player:startEvent(566);
     end
 
 end;
@@ -66,11 +66,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x01f9) then
+    if (csid == 505) then
         player:setVar("Fired", 1)
     end
 end;
 
 -------for future use
---    player:startEvent(0x7fb3) -- starlight celebration
+--    player:startEvent(32691) -- starlight celebration
 

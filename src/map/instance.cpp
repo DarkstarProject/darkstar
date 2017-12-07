@@ -80,7 +80,7 @@ uint32 CInstance::GetStage()
 
 void CInstance::LoadInstance()
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT "
         "instance_name, "
         "time_limit, "
@@ -101,7 +101,7 @@ void CInstance::LoadInstance()
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        m_instanceName.insert(0, Sql_GetData(SqlHandle, 0));
+        m_instanceName.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
         m_timeLimit = std::chrono::minutes(Sql_GetUIntData(SqlHandle, 1));
         m_entrance = Sql_GetUIntData(SqlHandle, 2);
@@ -143,7 +143,7 @@ uint8 CInstance::GetLevelCap()
 
 const int8* CInstance::GetName()
 {
-    return m_instanceName.c_str();
+    return (const int8*)m_instanceName.c_str();
 }
 
 position_t CInstance::GetEntryLoc()

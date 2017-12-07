@@ -9,7 +9,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
----------------------------------------------
+require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     -- Check for Grah Family id 122,123,124
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
     if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 1) then
         return 1;
     elseif (mob:getPool() ~= 4249) then
-        mob:messageBasic(43, 0, 40);
+        mob:messageBasic(msgBasic.READIES_WS, 0, 40);
     end
 
     return 0;

@@ -139,7 +139,7 @@ function onTrigger(player,npc)
         gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
     end
 
-    player:startEvent(0x0146,BastokMissions,BastokQuests,OtherQuests,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,10,gil);
+    player:startEvent(326,BastokMissions,BastokQuests,OtherQuests,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,10,gil);
 end;
 
 -----------------------------------
@@ -168,69 +168,69 @@ function onEventFinish(player,csid,option)
 
     if (player:getLocalVar("Lamepaue_PlayCutscene") < 2) then
         if (option ==   1) then        -- Fetichism.
-            player:startEvent(0x03F0);
+            player:startEvent(1008);
         elseif (option ==   2) then        -- To the Forsaken Mines.
-            player:startEvent(0x03F2);
+            player:startEvent(1010);
         elseif (option ==  33) then        -- The Return of the Adventurer
-            player:startEvent(0x00F3);
+            player:startEvent(243);
 --        elseif (option ==  34) then        -- The First Meeting
 --            player:startEvent(CSID);
         elseif (option ==  35) then        -- Wish Upon a Star (pt.1)
-            player:startEvent(0x0149);
+            player:startEvent(329);
         elseif (option ==  36) then        -- Wish Upon a Star (pt.2)
-            player:startEvent(0x014C);
+            player:startEvent(332);
         elseif (option ==  37) then        -- Wish Upon a Star (pt.3)
-            player:startEvent(0x014E);
+            player:startEvent(334);
 --        elseif (option ==  38) then        -- All by Myself
---            player:startEvent(0x00B9);
+--            player:startEvent(185);
         elseif (option ==  39) then        -- Achieving True Power
-            player:startEvent(0x01B9);
+            player:startEvent(441);
         elseif (option ==  40) then        -- Too Many Chefs
-            player:startEvent(0x019B);
+            player:startEvent(411);
         elseif (option ==  41) then        -- A Proper Burial (pt.1)
-            player:startEvent(0x01DB);
+            player:startEvent(475);
         elseif (option ==  42) then        -- A Proper Burial (pt.2)
-            player:startEvent(0x01DD);
+            player:startEvent(477);
         elseif (option ==  43) then        -- A Proper Burial (pt.3)
-            player:startEvent(0x01DF);
+            player:startEvent(479);
         elseif (option ==  44) then        -- A Proper Burial (pt.4)
-            player:startEvent(0x01E1);
+            player:startEvent(481);
         elseif (option ==  45) then        -- A Proper Burial (pt.5)
-            player:startEvent(0x01E3);
+            player:startEvent(483);
         elseif (option ==  46) then        -- A Proper Burial (pt.6)
-            player:startEvent(0x01E5);
+            player:startEvent(485);
         elseif (option ==  65) then        -- Beat Around the Bushin
-            player:startEvent(0x0156);
+            player:startEvent(342);
         elseif (option ==  66) then        -- Confessions of a Bellmaker
-            player:startEvent(0x0192);
+            player:startEvent(402);
 -- Picture Perfect cutscenes need to be verified.
         elseif (option ==  67) then        -- Picture Perfect (pt.1)
-            player:startEvent(0x0193);
+            player:startEvent(403);
         elseif (option ==  68) then        -- Picture Perfect (pt.2)
-            player:startEvent(0x0194);
+            player:startEvent(404);
         elseif (option ==  69) then        -- Picture Perfect (pt.3)
-            player:startEvent(0x0195);
+            player:startEvent(405);
         elseif (option ==  70) then        -- Picture Perfect (pt.4)
-            player:startEvent(0x0196);
+            player:startEvent(406);
         elseif (option ==  71) then        -- No Strings Attached
-            player:startEvent(0x01B2);
+            player:startEvent(434);
         elseif (option ==  72) then        -- Puppetmaster Blues (pt.1)
-            player:startEvent(0x01B5);
+            player:startEvent(437);
         elseif (option ==  73) then        -- Puppetmaster Blues (pt.2)
-            player:startEvent(0x01B7);
+            player:startEvent(439);
         elseif (option ==  74) then        -- Comeback Queen
-            player:startEvent(0x01EA);
+            player:startEvent(490);
 --        elseif (option ==  75) then        -- Dancer Attire (pt.1)
 --            player:startEvent(CSID);
 --        elseif (option ==  76) then        -- Dancer Attire (pt.2)
 --            player:startEvent(CSID);
 -- Drafted by the Duchy and Battle on a New Front cutscenes need to be verified,ids may need to be changed or have additional parameters.
         elseif (option ==  77) then        -- Drafted by the Duchy
-            player:startEvent(0x0012);
+            player:startEvent(18);
         elseif (option ==  78) then        -- Battle on a New Front
-            player:startEvent(0x000C);
+            player:startEvent(12);
         elseif (option ==  79) then        -- VW Op. #126: Qufim Incursion
-            player:startEvent(0x0102);
+            player:startEvent(258);
 --        elseif (option ==  80) then        -- Records of Eminence
 --            player:startEvent(CSID);
 --        elseif (option ==  81) then        -- Trust (Mumor)

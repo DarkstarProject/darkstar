@@ -25,10 +25,10 @@ function onTrigger(player,npc)
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Oka_Qhantari)) then
         -- Progresses Quest: 'Order Up'
-        player:startEvent(0x0047);
+        player:startEvent(71);
     else
         -- Standard Dialogue
-        player:startEvent(0x01FF);
+        player:startEvent(511);
     end
 end;
 
@@ -44,7 +44,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0047) then
+    if (csid == 71) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 9, true);
     end

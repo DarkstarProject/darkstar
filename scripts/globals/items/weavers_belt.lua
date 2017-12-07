@@ -8,11 +8,7 @@
 -- Duration: 2Min
 -- Clothcraft Skill +3
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -22,10 +18,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,3,0,120);
@@ -39,10 +31,6 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SKILL_CLT, 1);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_SKILL_CLT, 1);
 end;

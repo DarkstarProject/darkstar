@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             armband = 1;
         end
         if (assaultid ~= 0) then
-            player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 0, armband);
+            player:startEvent(140, assaultid, -4, 0, recommendedLevel, 0, armband);
         else
             player:messageSpecial(NOTHING_HAPPENS);
         end
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x82 or (csid == 0x8C and option == 4)) then
+    if (csid == 130 or (csid == 140 and option == 4)) then
         player:setPos(0,0,0,0,69);
     end
 end;
@@ -113,7 +113,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0x82, 0);
+                    v:startEvent(130, 0);
                     v:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
                 end
             end

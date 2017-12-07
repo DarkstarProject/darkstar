@@ -97,3 +97,9 @@ function onInstanceComplete(instance)
         v:setPos(0,0,0,0,72);
     end
 end;
+
+function onEventUpdate(player,csid,option)
+end
+
+function onEventFinish(player,csid,option)
+end

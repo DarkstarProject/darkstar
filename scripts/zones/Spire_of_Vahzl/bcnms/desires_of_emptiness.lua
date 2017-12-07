@@ -51,13 +51,13 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         player:addExp(1500);
         if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8) then    
             player:setVar("PromathiaStatus",9);
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,0); 
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,0); 
             
         else
-            player:startEvent(0x7d01,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- Alreday finished this promy
+            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- Alreday finished this promy
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;
@@ -68,7 +68,7 @@ end;
     
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
     player:addTitle(FROZEN_DEAD_BODY);
     player:setPos(-340 ,-100 ,137 ,67 ,111);
     end

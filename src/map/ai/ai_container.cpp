@@ -51,13 +51,13 @@ CAIContainer::CAIContainer(CBaseEntity* _PEntity) :
 
 CAIContainer::CAIContainer(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _pathfind,
     std::unique_ptr<CController>&& _controller, std::unique_ptr<CTargetFind>&& _targetfind) :
+    TargetFind(std::move(_targetfind)),
+    PathFind(std::move(_pathfind)),
+    Controller(std::move(_controller)),
     m_Tick(server_clock::now()),
     m_PrevTick(server_clock::now()),
     PEntity(_PEntity),
-    ActionQueue(_PEntity),
-    PathFind(std::move(_pathfind)),
-    Controller(std::move(_controller)),
-    TargetFind(std::move(_targetfind))
+    ActionQueue(_PEntity)
 {
 }
 

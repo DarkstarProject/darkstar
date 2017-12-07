@@ -32,11 +32,11 @@ function onTrigger(player,npc)
     BorghertzCS = player:getVar("BorghertzCS");
 
     if (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 1) then
-        player:startEvent(0x0014);
+        player:startEvent(20);
     elseif (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 2) then
-        player:startEvent(0x0031);
+        player:startEvent(49);
     elseif (OldGauntlets == true and ShadowFlames == true) then
-        player:startEvent(0x0030);
+        player:startEvent(48);
     end
 end;
 
@@ -56,9 +56,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0014 and option == 1) then
+    if (csid == 20 and option == 1) then
         player:setVar("BorghertzCS",2);
-    elseif (csid == 0x0030) then
+    elseif (csid == 48) then
         NumQuest = 43 + player:getVar("BorghertzAlreadyActiveWithJob");
         NumHands = 13960 + player:getVar("BorghertzAlreadyActiveWithJob");
         if (player:getFreeSlotsCount() == 0) then

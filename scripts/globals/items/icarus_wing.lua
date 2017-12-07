@@ -3,24 +3,15 @@
 -- Icarus Wing
 -- Increases TP of the user by 100
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
-        result = 111;
+    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+        return msgBasic.ITEM_NO_USE_MEDICATED;
     end
-    return result;
+    return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addTP(1000);

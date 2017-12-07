@@ -188,7 +188,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
             if (PCurrentMob->allegiance == PMob->allegiance &&
                 (forceLink ||
                     PCurrentMob->m_Family == PMob->m_Family ||
-                    sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK)))
+                    (sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))))
             {
 
                 if (PCurrentMob->PMaster == nullptr || PCurrentMob->PMaster->objtype == TYPE_MOB)
@@ -696,6 +696,8 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             }
         }
         break;
+        default:
+            break;
     }
     if (ScriptType != SCRIPT_NONE)
     {
@@ -725,7 +727,7 @@ CCharEntity* CZoneEntities::GetCharByName(int8* name)
         for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
         {
             CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-            if (stricmp(PCurrentChar->GetName(), name) == 0)
+            if (stricmp((char*)PCurrentChar->GetName(), (const char*)name) == 0)
             {
                 return PCurrentChar;
             }

@@ -29,12 +29,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_GOLDSMITHING_IMAGERY) == false) then
-            player:startEvent(0x012F,SkillCap,SkillLevel,1,201,player:getGil(),0,3,0);
+            player:startEvent(303,SkillCap,SkillLevel,1,201,player:getGil(),0,3,0);
         else
-            player:startEvent(0x012F,SkillCap,SkillLevel,1,201,player:getGil(),7054,3,0);
+            player:startEvent(303,SkillCap,SkillLevel,1,201,player:getGil(),7054,3,0);
         end
     else
-        player:startEvent(0x012F);
+        player:startEvent(303);
     end
 end;
 
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x012F and option == 1) then
+    if (csid == 303 and option == 1) then
         player:messageSpecial(GOLDSMITHING_SUPPORT,0,3,1);
         player:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,1,0,120);
     end

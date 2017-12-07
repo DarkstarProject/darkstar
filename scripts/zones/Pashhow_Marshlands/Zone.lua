@@ -75,14 +75,14 @@ function onZoneIn( player, prevZone)
     if (prevZone == 147 and player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
         missionStatus = player:getVar("MissionStatus");
         if (missionStatus < 22) then
-            cs = 0x000a;
+            cs = 10;
         elseif (missionStatus == 22) then
-            cs = 0x000b;
+            cs = 11;
         end
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x000d;
+        cs = 13;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x000f;
+        cs = 15;
     end
 
     return cs;
@@ -116,9 +116,9 @@ function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000d) then
+    if (csid == 13) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x000f) then
+    elseif (csid == 15) then
         if (player:getXPos() <  362) then
             player:updateEvent(0,0,0,0,0,2);
         end
@@ -134,12 +134,12 @@ function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000a) then
+    if (csid == 10) then
         player:setPos( 578, 25, -376, 126);
-    elseif (csid == 0x000b) then
+    elseif (csid == 11) then
         finishMissionTimeline( player, 1, csid, option);
         player:setPos( 578, 25, -376, 126);
-    elseif (csid == 0x000d) then
+    elseif (csid == 13) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

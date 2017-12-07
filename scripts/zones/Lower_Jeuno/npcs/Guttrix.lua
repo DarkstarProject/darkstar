@@ -77,17 +77,17 @@ function onTrigger(player,npc)
     if (pLevel >= 10 and pFame >= 3) then
         if (rseGear < 15 ) then
             if (questStatus == QUEST_AVAILABLE) then
-                player:startEvent(0x2720,rseLocation,rseRace);
+                player:startEvent(10016,rseLocation,rseRace);
             elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(MAGICAL_PATTERN) and rseRace == pRace) then
-                player:startEvent(0x2722,rseGear);
+                player:startEvent(10018,rseGear);
             else
-                player:startEvent(0x2721,rseLocation,rseRace);
+                player:startEvent(10017,rseLocation,rseRace);
             end
         else
-            player:startEvent(0x2723);
+            player:startEvent(10019);
         end
     else
-        player:startEvent(0x2724);
+        player:startEvent(10020);
     end
 end;
 
@@ -109,9 +109,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local questStatus = player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR);
 
-    if (csid == 0x2720) then
+    if (csid == 10016) then
         player:addQuest(JEUNO,THE_GOBLIN_TAILOR);
-    elseif (csid == 0x2722 and option >= 1 and option <= 4) then
+    elseif (csid == 10018 and option >= 1 and option <= 4) then
         local rseGear = getRSE(player,option);
 
         if (player:getFreeSlotsCount() < 1) then

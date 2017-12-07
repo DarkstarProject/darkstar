@@ -462,13 +462,13 @@ uint64 unpackBitsLE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
     return retVal;
 }
 
-int8* EncodeStringLinkshell(int8* signature, int8* target)
+void EncodeStringLinkshell(int8* signature, int8* target)
 {
     uint8 encodedSignature[16];
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     uint8 leftover = 0;
-    for(uint8 currChar = 0; currChar < dsp_min(20, strlen((const char*)signature)); ++currChar)
+    for(uint8 currChar = 0; currChar < std::min<size_t>(20, strlen((const char*)signature)); ++currChar)
     {
         uint8 tempChar = 0;
         if((signature[currChar] >= '0') && (signature[currChar] <= '9'))
@@ -485,15 +485,15 @@ int8* EncodeStringLinkshell(int8* signature, int8* target)
     leftover = (leftover == 8 || leftover == 2 ? 6 : leftover);
     packBitsLE(encodedSignature, 0xFF, 6 * chars, leftover);
 
-    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+    strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeStringLinkshell(int8* signature, int8* target)
+void DecodeStringLinkshell(int8* signature, int8* target)
 {
     uint8 decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
 
-    for(uint8 currChar = 0; currChar < dsp_min(20, (strlen((const char*)signature) * 8) / 6); ++currChar)
+    for(uint8 currChar = 0; currChar < std::min<size_t>(20, (strlen((const char*)signature) * 8) / 6); ++currChar)
     {
         uint8 tempChar = '\0';
         tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
@@ -517,7 +517,7 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
         else
             decodedSignature[currChar] = tempChar;
     }
-    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+    strncpy((char*)target, (const char*)decodedSignature, sizeof decodedSignature);
 }
 
 int8* EncodeStringSignature(int8* signature, int8* target)
@@ -526,7 +526,7 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     // uint8 leftover = 0;
-    for(uint8 currChar = 0; currChar < dsp_min(15, strlen((const char*)signature)); ++currChar)
+    for(uint8 currChar = 0; currChar < std::min<size_t>(15, strlen((const char*)signature)); ++currChar)
     {
         uint8 tempChar = 0;
         if((signature[currChar] >= '0') && (signature[currChar] <= '9'))
@@ -543,15 +543,15 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     //leftover = (leftover == 8 ? 6 : leftover);
     //packBitsLE(encodedSignature,0xFF,6*chars, leftover);
 
-    return strncpy(target, (int8*)encodedSignature, sizeof encodedSignature);
+    return (int8*)strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
 
-int8* DecodeStringSignature(int8* signature, int8* target)
+void DecodeStringSignature(int8* signature, int8* target)
 {
     uint8 decodedSignature[16];
     memset(decodedSignature, 0, sizeof decodedSignature);
 
-    for(uint8 currChar = 0; currChar < dsp_min(15, (strlen((const char*)signature) * 8) / 6); ++currChar)
+    for(uint8 currChar = 0; currChar < std::min<size_t>(15, (strlen((const char*)signature) * 8) / 6); ++currChar)
     {
         uint8 tempChar = '\0';
         tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
@@ -564,7 +564,7 @@ int8* DecodeStringSignature(int8* signature, int8* target)
 
         decodedSignature[currChar] = tempChar;
     }
-    return strncpy(target, (int8*)decodedSignature, sizeof decodedSignature);
+    strncpy((char*)target, (const char*)decodedSignature, sizeof decodedSignature);
 }
 
 std::string escape(std::string const &s)

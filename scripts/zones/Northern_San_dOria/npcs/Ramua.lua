@@ -29,12 +29,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_WOODWORKING_IMAGERY) == false) then
-            player:startEvent(0x0271,SkillCap,SkillLevel,2,207,player:getGil(),0,0,0);
+            player:startEvent(625,SkillCap,SkillLevel,2,207,player:getGil(),0,0,0);
         else
-            player:startEvent(0x0271,SkillCap,SkillLevel,2,207,player:getGil(),6857,0,0);
+            player:startEvent(625,SkillCap,SkillLevel,2,207,player:getGil(),6857,0,0);
         end
     else
-        player:startEvent(0x0271,SkillCap,SkillLevel,2,201,player:getGil(),0,0,0); -- Standard Dialogue
+        player:startEvent(625,SkillCap,SkillLevel,2,201,player:getGil(),0,0,0); -- Standard Dialogue
     end
 end;
 
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0271 and option == 1) then
+    if (csid == 625 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,1,2);
         player:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,1,0,120);
     end

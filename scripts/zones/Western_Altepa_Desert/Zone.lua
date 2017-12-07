@@ -6,12 +6,13 @@
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Western_Altepa_Desert/TextIDs");
+require("scripts/zones/Western_Altepa_Desert/MobIDs");
 require("scripts/globals/icanheararainbow");
+require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
-require("scripts/globals/chocobo_digging");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -63,8 +64,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- King Vinegarroon
-    SetRespawnTime(17289575, 900, 10800);
+    UpdateNMSpawnPoint(KING_VINEGARROON);
+    GetMobByID(KING_VINEGARROON):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------
@@ -79,7 +80,7 @@ function onZoneIn( player, prevZone)
     end
 
     if ( triggerLightCutscene( player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0002;
+        cs = 2;
     end
 
     return cs;
@@ -111,7 +112,7 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ( csid == 0x0002) then
+    if ( csid == 2) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
@@ -123,15 +124,15 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0002) then
+    if (csid == 2) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(17289575) == 24 and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
-        SpawnMob(17289575); -- King Vinegarroon
-    elseif (GetMobAction(17289575) == 16 and (weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM)) then
-        DespawnMob(17289575);
+    if (GetMobAction(KING_VINEGARROON) == 24 and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
+        SpawnMob(KING_VINEGARROON); -- King Vinegarroon
+    elseif (GetMobAction(KING_VINEGARROON) == 16 and (weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM)) then
+        DespawnMob(KING_VINEGARROON);
     end
 end;

@@ -6,20 +6,11 @@
 require("scripts/globals/settings");
 require("scripts/globals/msg");
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     return 0;
 end;
 
-
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_QUICKENING, 10, 0, 3600);
-    target:messageBasic(msgBasic.GAINS_EFFECT,0, EFFECT_QUICKENING);
+    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_QUICKENING);
 end;

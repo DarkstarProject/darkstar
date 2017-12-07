@@ -4,10 +4,6 @@
 -- Dispense: Crystals
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     local result = 0;
     if (target:getFreeSlotsCount() == 0) then
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local day = VanadielDayElement()+1;

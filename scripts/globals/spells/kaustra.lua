@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 0;
     params.effect = nil;
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     local dmg = base * resist;
     duration = duration * resist;
     dmg = addBonuses(caster, spell, target, dmg);

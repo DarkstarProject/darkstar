@@ -20,7 +20,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     --Adventurer coupon
     if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
-        player:startEvent(0x028f);
+        player:startEvent(655);
     end
     -- "Flyers for Regine" conditional script
    local count = trade:getItemCount();
@@ -39,7 +39,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0267); -- i know a thing or 2 about these streets
+    player:startEvent(615); -- i know a thing or 2 about these streets
 end;
 
 -----------------------------------
@@ -58,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x028f) then
+    if (csid == 655) then
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);

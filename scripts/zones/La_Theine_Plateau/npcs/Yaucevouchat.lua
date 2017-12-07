@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         local MissionStatus = player:getVar("MissionStatus");
 
         if (MissionStatus >= 5 and MissionStatus <= 7) then
-            player:startEvent(0x0068);
+            player:startEvent(104);
         elseif (MissionStatus == 8) then
             player:showText(npc, RESCUE_DRILL + 21);
         elseif (MissionStatus >= 9) then

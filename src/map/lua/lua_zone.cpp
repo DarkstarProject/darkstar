@@ -130,7 +130,7 @@ inline int32 CLuaZone::getPlayers(lua_State* L)
         lua_insert(L, -2);
         lua_pushlightuserdata(L, (void*)PChar);
         lua_pcall(L, 2, 1, 0);
-        lua_setfield(L, newTable, PChar->GetName());
+        lua_setfield(L, newTable, (const char*)PChar->GetName());
     });
 
     return 1;
@@ -160,7 +160,7 @@ inline int32 CLuaZone::getBattlefieldByInitiator(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     if (m_pLuaZone->m_BattlefieldHandler)
-        lua_pushlightuserdata(L, m_pLuaZone->m_BattlefieldHandler->GetBattlefieldByInitiator(lua_tointeger(L, 1)));
+        lua_pushlightuserdata(L, (void*)m_pLuaZone->m_BattlefieldHandler->GetBattlefieldByInitiator((uint32)lua_tointeger(L, 1)));
     else
         lua_pushnil(L);
     return 1;
@@ -172,7 +172,7 @@ inline int32 CLuaZone::getBattlefieldByInitiator(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaZone::className[] = "CZone";
+const char CLuaZone::className[] = "CZone";
 Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),

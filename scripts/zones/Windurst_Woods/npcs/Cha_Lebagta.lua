@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
     -- As Thick As Thieves (THF AF)
     if (thickAsThieves == QUEST_ACCEPTED) then
-        player:startEvent(0x01FB,0,17474);
+        player:startEvent(507,0,17474);
             if (thickAsThievesCS == 1) then
                 player:setVar("thickAsThievesCS",3);
             elseif (thickAsThievesCS == 2) then
@@ -40,13 +40,13 @@ function onTrigger(player,npc)
 
     -- Mihgo's Amigo
     elseif (MihgosAmigo == QUEST_ACCEPTED) then
-        player:startEvent(0x0055,0,498);        -- hint dialog
+        player:startEvent(85,0,498);        -- hint dialog
 
     -- standard dialog
     elseif (MihgosAmigo == QUEST_COMPLETED) then
-        player:startEvent(0x005B,0,498)         -- new standard dialog after Mihgo's Amigo
+        player:startEvent(91,0,498)         -- new standard dialog after Mihgo's Amigo
     else
-        player:startEvent(0x004e);                -- normal dialog
+        player:startEvent(78);                -- normal dialog
     end
 end;
 

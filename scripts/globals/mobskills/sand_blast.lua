@@ -17,11 +17,12 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120));
 
     if (mob:getPool() == 1318 and mob:getLocalVar("SAND_BLAST") == 1) then -- Feeler Anltion
-        if (GetMobAction(mob:getID()+6) == 0) then -- Alastor Antlion
+        local alastorId = mob:getID()+6;
+        local alastor = GetMobByID(alastorId);
+        if (not alastor:isSpawned()) then -- Alastor Antlion
             mob:setLocalVar("SAND_BLAST",0); -- Don't spawn more NMs
-            local alastorAntlion = GetMobByID(mob:getID() + 6);
-            alastorAntlion:setSpawn(mob:getXPos() + 1, mob:getYPos() + 1, mob:getZPos() + 1); -- Set its spawn location.
-            SpawnMob((mob:getID() + 6), 120):updateClaim(target);
+            alastor:setSpawn(mob:getXPos() + 1, mob:getYPos() + 1, mob:getZPos() + 1); -- Set its spawn location.
+            SpawnMob(alastorId, 120):updateClaim(target);
         end
     end
 

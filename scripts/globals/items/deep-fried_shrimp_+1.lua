@@ -9,11 +9,7 @@
 -- Ranged Accuracy +21% (cap 75)
 -- Subtle Blow +9
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,10 +19,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,3600,6277);
@@ -46,11 +38,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SUBTLE_BLOW, 9);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_VIT, 4);
     target:delMod(MOD_FIRERES, 21);
     target:delMod(MOD_FOOD_ACCP, 21);

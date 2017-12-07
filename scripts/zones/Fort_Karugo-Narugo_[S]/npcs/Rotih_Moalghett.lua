@@ -26,9 +26,9 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
         if (player:getVar("TigressStrikesProg") == 1) then
-        player:startEvent(0x0065);
+        player:startEvent(101);
         else
-        player:startEvent(0x0068);
+        player:startEvent(104);
         end
     end
 end;
@@ -49,7 +49,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0066) then
+    if (csid == 102) then
         player:setVar("TigressStrikesProg",1);
     end
 end;
