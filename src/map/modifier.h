@@ -658,6 +658,8 @@ enum class Mod
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
     SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate
+    SYNTH_FAIL_RATE           = 861, // Synthesis failure rate (percent)
+    SYNTH_HQ_RATE             = 862, // High-quality success rate (not a percent)
 
     // Weaponskill %damage modifiers
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
@@ -670,9 +672,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 861, // stuff
-    // SPARE = 862, // stuff
     // SPARE = 863, // stuff
+    // SPARE = 864, // stuff
+    // SPARE = 865, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

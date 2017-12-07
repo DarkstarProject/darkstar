@@ -396,6 +396,12 @@ uint8 calcSynthResult(CCharEntity* PChar)
                         default: chance = 0.000; break;
                     }
 
+                    int16 modSynthHqRate = PChar->getMod(Mod::SYNTH_HQ_RATE);
+
+                    // Using x/512 calculation for HQ success rate modifier
+                    // see: https://www.bluegartr.com/threads/130586-CraftyMath-v2-Post-September-2017-Update
+                    chance += (double)modSynthHqRate / 512.;
+
                     if(chance > 0)
                     {
                         if (map_config.craft_moonphase_matters)
@@ -619,6 +625,7 @@ int32 doSynthFail(CCharEntity* PChar)
     uint8  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
     double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
     double moghouseAura = 0;
+    int16 modSynthFailRate = PChar->getMod(Mod::SYNTH_FAIL_RATE);
 
     if (PChar->m_moghouseID) // неправильное условие, т.к. аура действует лишь в собственном доме
     {
@@ -672,6 +679,10 @@ int32 doSynthFail(CCharEntity* PChar)
 
     double random   = 0;
     double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
+
+    // Translation of JP wiki for the "Synthesis failure rate" modifier is "Synthetic material loss rate"
+    // see: http://wiki.ffo.jp/html/18416.html
+    lostItem += (double)modSynthFailRate * 0.01;
 
     invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
