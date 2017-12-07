@@ -47,6 +47,7 @@
 
 #include "entities/npcentity.h"
 #include "entities/petentity.h"
+#include "entities/automatonentity.h"
 
 #include "lua/luautils.h"
 
@@ -974,6 +975,11 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     if (PChar->PParty)
     {
         PChar->PParty->PopMember(PChar);
+    }
+
+    if (PChar->PAutomaton)
+    {
+        PChar->PAutomaton->PMaster = nullptr;
     }
 }
 
