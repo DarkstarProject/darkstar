@@ -119,8 +119,8 @@ public:
     void    SetSlot(uint8 slot);
     void    SetModValue(Mod value);
     void    SetModPower(int16 power);
-    void    Activate();
-    void    Deactivate();
+    bool    Activate();
+    bool    Deactivate();
 
     CLatentEffect(
          CBattleEntity* owner,
