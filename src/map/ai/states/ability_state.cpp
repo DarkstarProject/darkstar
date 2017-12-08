@@ -138,7 +138,9 @@ bool CAbilityState::CanUseAbility()
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}) || !charutils::hasAbility(PChar, PAbility->getID()))
+        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}) ||
+            (!PAbility->isPetAbility() && !charutils::hasAbility(PChar, PAbility->getID())) ||
+            (PAbility->isPetAbility() && !charutils::hasPetAbility(PChar, PAbility->getID() - 496)))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;
