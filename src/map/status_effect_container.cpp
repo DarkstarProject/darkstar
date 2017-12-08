@@ -429,6 +429,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 void CStatusEffectContainer::DeleteStatusEffects()
 {
     bool update_icons = false;
+    bool effects_removed = false;
     for (auto effect_iter = m_StatusEffectList.begin(); effect_iter != m_StatusEffectList.end();)
     {
         auto PStatusEffect = *effect_iter;
@@ -450,13 +451,13 @@ void CStatusEffectContainer::DeleteStatusEffects()
 
             m_POwner->delModifiers(&PStatusEffect->modList);
             delete PStatusEffect;
+            effects_removed = true;
         }
         else
         {
             ++effect_iter;
         }
     }
-    m_POwner->UpdateHealth();
 
     if (m_POwner->objtype == TYPE_PC)
     {
@@ -470,9 +471,12 @@ void CStatusEffectContainer::DeleteStatusEffects()
         PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
         PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
         PChar->PLatentEffectContainer->CheckLatentsRollSong();
-        PChar->UpdateHealth();
 
         PChar->pushPacket(new CCharSyncPacket(PChar));
+    }
+    if (effects_removed)
+    {
+        m_POwner->UpdateHealth();
     }
 }
 
