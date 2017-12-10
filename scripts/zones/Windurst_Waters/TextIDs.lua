@@ -2,9 +2,11 @@
 
 -- General Texts
  ITEM_CANNOT_BE_OBTAINED = 6540; -- Come back after sorting your inventory.
+          INVENTORY_FULL = 6542; -- You cannot obtain the item.
            ITEM_OBTAINED = 6546; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
             GIL_OBTAINED = 6547; -- Obtained <<<Numeric Parameter 0>>> gil.
         KEYITEM_OBTAINED = 6549; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+     NOT_HAVE_ENOUGH_GIL = 6551; -- You do not have enough gil.
            HOMEPOINT_SET = 6637; -- Home point set!
          MOG_LOCKER_OFFSET = 6806; -- Your Mog Locker lease is valid until <timestamp>, kupo.
   FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here.
