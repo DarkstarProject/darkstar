@@ -13,7 +13,7 @@ NyzulIsle = {
 
         -- Assault Texts
         TIME_TO_COMPLETE       = 7302, -- You have <number> [minute/minutes] (Earth time) to complete this mission
-        MISSION_FAILED         = 7302, -- The mission has failed. Leaving area
+        MISSION_FAILED         = 7303, -- The mission has failed. Leaving area
         TIME_REMAINING_MINUTES = 7307, -- Time remaining: <number> [minute/minutes] (Earth time).
         TIME_REMAINING_SECONDS = 7308, -- Time remaining: <number> [second/seconds] (Earth time).
         PARTY_FALLEN           = 7310, -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
