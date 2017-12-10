@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6388; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7048; -- You can't fish here
+         MOG_LOCKER_OFFSET = 7382; -- Your Mog Locker lease is valid until <timestamp>, kupo.
           HOMEPOINT_SET = 7528; -- Home point set!
    IMAGE_SUPPORT_ACTIVE = 7551; -- You have to wait a bit longer before asking for synthesis image support again.
           IMAGE_SUPPORT = 7553; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...

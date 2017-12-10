@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item>. Come back 
            GIL_OBTAINED = 6388; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>.
           HOMEPOINT_SET = 6637; -- Home point set!
+         MOG_LOCKER_OFFSET = 6750; -- Your Mog Locker lease is valid until <timestamp>, kupo.
  FISHING_MESSAGE_OFFSET = 6896; -- You can't fish here.
           MOGHOUSE_EXIT = 7167; -- You have learned your way through the back alleys of Jeuno! Now you can exit to any area from your residence.
      WEATHER_DIALOG = 6848; -- Your fate rides on the changing winds of Vana'diel. I can give you insight on the local weather.<Prompt>

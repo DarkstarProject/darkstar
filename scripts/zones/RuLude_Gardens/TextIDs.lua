@@ -1,12 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6521; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+   ITEM_CANNOT_BE_OBTAINED = 6521; -- You cannot obtain the <item>. Come back after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE = 6525; -- You cannot obtain the <item>. Try trading again after sorting your inventory.
              ITEM_OBTAINED = 6527; -- Obtained: <item>.
               GIL_OBTAINED = 6528; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6530; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED = 6536; -- You obtain <param2 number> <param1 item>!
+         MOG_LOCKER_OFFSET = 6691; -- Your Mog Locker lease is valid until <timestamp>, kupo.
              HOMEPOINT_SET = 10270; -- Home point set!
 
 -- Conquest system
@@ -45,7 +46,6 @@ MACCHI_GAZLITAH_SHOP_DIALOG1 = 10900; -- Hello therrre. I work for the Buffalo B
 MACCHI_GAZLITAH_SHOP_DIALOG2 = 10901; -- The Buffalo Bonanza Ranch has a lot of useful items, just for you!
 MACCHI_GAZLITAH_SHOP_DIALOG3 = 10902; -- Business is booming! The Buffalo Bonanza Ranch even made me managerrr of this local shop!
 MACCHI_GAZLITAH_SHOP_DIALOG4 = 10897; -- My new shipment has finally come in. Talk to me, and I can show you what we have!
-
 
 -- conquest Base
 CONQUEST_BASE = 0;

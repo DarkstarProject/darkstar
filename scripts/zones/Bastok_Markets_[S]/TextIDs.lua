@@ -6,6 +6,8 @@ ITEM_CANNOT_BE_OBTAINED = 11220; -- You cannot obtain the item <item> come back 
            GIL_OBTAINED = 6388; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7048; -- You can't fish here
+         MOG_LOCKER_OFFSET = 7459; -- Your Mog Locker lease is valid until <timestamp>, kupo.
+             HOMEPOINT_SET = 10826; -- Home point set!
 
 -- Other Texts
 KARLOTTE_DELIVERY_DIALOG = 10860; -- I am here to help with all your parcel delivery needs.

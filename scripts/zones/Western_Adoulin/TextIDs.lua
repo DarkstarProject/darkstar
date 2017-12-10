@@ -11,6 +11,7 @@ ITEM_CANNOT_BE_OBTAINED_3 = 6382; -- You cannot obtain the %. Come back after so
       NOT_HAVE_ENOUGH_GIL = 6392; -- You do not have enough gil.
            BAYLD_OBTAINED = 7004; -- You have obtainedbayld!
        RETRIEVE_DIALOG_ID = 7741; -- You retrieve$ from the porter moogle's care.
+         MOG_LOCKER_OFFSET = 7568; -- Your Mog Locker lease is valid until <timestamp>, kupo.
             HOMEPOINT_SET = 8300; -- Home point set!
 
 -- Shop Texts

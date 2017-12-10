@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6387; -- Obtained: <item>
            GIL_OBTAINED = 6388; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
+         MOG_LOCKER_OFFSET = 7359; -- Your Mog Locker lease is valid until <timestamp>, kupo.
 
            ALLIED_SIGIL = 12910; -- You have received the Allied Sigil!
 

@@ -7,6 +7,7 @@ FULL_INVENTORY_AFTER_TRADE = 6429; -- Try trading again after sorting your inven
               GIL_OBTAINED = 6432; -- Obtained <<<Numeric Parameter 0>>> gil.
           KEYITEM_OBTAINED = 6434; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
               KEYITEM_LOST = 6435; -- Lost key item:
+         MOG_LOCKER_OFFSET = 6672; -- Your Mog Locker lease is valid until <timestamp>, kupo.
              HOMEPOINT_SET = 24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6436; -- You do not have enough gil.
            LEATHER_SUPPORT = 6774; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?

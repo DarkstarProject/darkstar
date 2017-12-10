@@ -7,6 +7,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item>. Come back 
        KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>.
     NOT_HAVE_ENOUGH_GIL = 6394; -- You do not have enough gil.
           HOMEPOINT_SET = 6516; -- Home point set!
+         MOG_LOCKER_OFFSET = 6805; -- Your Mog Locker lease is valid until <timestamp>, kupo.
  FISHING_MESSAGE_OFFSET = 6920; -- You can't fish here.
     INVENTORY_INCREASED = 7778; -- Your inventory capacity has increased.
              ITS_LOCKED = 7583; -- It's locked.
