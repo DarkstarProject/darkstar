@@ -2,29 +2,33 @@ Lebros = {
 
     text = {
         -- General Texts
-        ITEM_CANNOT_BE_OBTAINED = 6376, -- You cannot obtain the item <item> come back again after sorting your inventory
-        ITEM_OBTAINED = 6379, -- Obtained: <item>
-        GIL_OBTAINED = 6380, -- Obtained <number> gil
-        KEYITEM_OBTAINED = 6382, -- Obtained key item: <keyitem>
+        ITEM_CANNOT_BE_OBTAINED    = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE = 6385, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+        ITEM_OBTAINED              = 6387, -- Obtained: <item>.
+        GIL_OBTAINED               = 6388, -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6390, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST               = 6391, -- Lost key item: <keyitem>.
+        NOT_HAVE_ENOUGH_GIL        = 6392, -- You do not have enough gil.
+        ITEMS_OBTAINED             = 6396, -- You obtain <number> <item>!
 
         -- Assault Texts
-        ASSAULT_21_START = 7338,
-        ASSAULT_22_START = 7339,
-        ASSAULT_23_START = 7340,
-        ASSAULT_24_START = 7341,
-        ASSAULT_25_START = 7342,
-        ASSAULT_26_START = 7343,
-        ASSAULT_27_START = 7344,
-        ASSAULT_28_START = 7345,
-        ASSAULT_29_START = 7346,
-        ASSAULT_30_START = 7347,
-        TIME_TO_COMPLETE = 7378,
-        MISSION_FAILED = 7379,
-        RUNE_UNLOCKED = 7380,
-        ASSAULT_POINTS_OBTAINED = 7382,
-        TIME_REMAINING_MINUTES = 7383,
-        TIME_REMAINING_SECONDS = 7384,
-        PARTY_FALLEN = 7386
+        ASSAULT_21_START        = 7366, -- Commencing <assault>! Objective: Remove the obstructions
+        ASSAULT_22_START        = 7367, -- Commencing <assault>! Objective: Deliver the provisions
+        ASSAULT_23_START        = 7368, -- Commencing <assault>! Objective: Destroy the Troll fugitives
+        ASSAULT_24_START        = 7369, -- Commencing <assault>! Objective: Discover alternate route
+        ASSAULT_25_START        = 7370, -- Commencing <assault>! Objective: Assassinate Borgerlur
+        ASSAULT_26_START        = 7371, -- Commencing <assault>! Objective: Match the Apkallu
+        ASSAULT_27_START        = 7372, -- Commencing <assault>! Objective: Remove the threat
+        ASSAULT_28_START        = 7373, -- Commencing <assault>! Objective: Drive out the hunters
+        ASSAULT_29_START        = 7374, -- Commencing <assault>! Objective: Rescue Princess Kadjaya
+        ASSAULT_30_START        = 7375, -- Commencing <assault>! Objective: Defeat Black Shuck
+        TIME_TO_COMPLETE        = 7406, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
+        MISSION_FAILED          = 7407, -- The mission has failed. Leaving area.
+        RUNE_UNLOCKED           = 7408, -- Mission objective completed. Unlocking Rune of Release.
+        ASSAULT_POINTS_OBTAINED = 7409, -- You gain <number> [Assault point/Assault points]!
+        TIME_REMAINING_MINUTES  = 7410, -- Time remaining: <number> [minute/minutes] (Earth time).
+        TIME_REMAINING_SECONDS  = 7411, -- Time remaining: <number> [second/seconds] (Earth time).
+        PARTY_FALLEN            = 7414  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
     
     mobs = {
