@@ -14,6 +14,7 @@
                 GP_OBTAINED =  6986;  -- Obtained: ?Numeric Parameter 0? guild points.
          NOT_HAVE_ENOUGH_GP =  6987;  -- You do not have enough guild points.
               MOGHOUSE_EXIT = 12354;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
+         MOG_LOCKER_OFFSET = 6828; -- Your Mog Locker lease is valid until <timestamp>, kupo.
      FISHING_MESSAGE_OFFSET =  7416;  -- You can't fish here.
       
 -- Conquest System

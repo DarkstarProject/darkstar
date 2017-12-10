@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE =  6385; --Try trading again after sorting your inven
        NOT_HAVE_ENOUGH_GIL =  6392; --You do not have enough gil.
             ITEMS_OBTAINED =  6396; --You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
              HOMEPOINT_SET =  6478; --Home point set!
+         MOG_LOCKER_OFFSET = 6869; -- Your Mog Locker lease is valid until <timestamp>, kupo.
       GOLDSMITHING_SUPPORT =  7074; --Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
   GUILD_TERMINATE_CONTRACT =  7088; --You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
 

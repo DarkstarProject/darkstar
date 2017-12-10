@@ -8,6 +8,7 @@
               KEYITEM_OBTAINED = 10973; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
            NOT_HAVE_ENOUGH_GIL = 10975; -- You do not have enough gil.
                  HOMEPOINT_SET = 11061; -- Home point set!
+         MOG_LOCKER_OFFSET = 11473; -- Your Mog Locker lease is valid until <timestamp>, kupo.
         FISHING_MESSAGE_OFFSET = 11571; -- You can't fish here.
                FISHING_SUPPORT = 11675; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
       GUILD_TERMINATE_CONTRACT = 11689; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild

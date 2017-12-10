@@ -9,6 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6385; -- You cannot obtain the item (item>. Try tra
               KEYITEM_LOST = 6391; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
        NOT_HAVE_ENOUGH_GIL = 6392; -- You do not have enough gil.
              HOMEPOINT_SET = 6505; -- Home point set!
+         MOG_LOCKER_OFFSET = 6819; -- Your Mog Locker lease is valid until <timestamp>, kupo.
     FISHING_MESSAGE_OFFSET = 7081; -- You can't fish here.
              MOGHOUSE_EXIT = 7944; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 

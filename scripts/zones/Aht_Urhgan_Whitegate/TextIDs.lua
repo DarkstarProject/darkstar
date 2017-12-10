@@ -9,6 +9,7 @@ ITEM_CANNOT_BE_OBTAINEDX = 222; -- You cannot obtain the ?Possible Special Code:
        KEYITEM_OBTAINED = 227; -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL = 229; -- You do not have enough gil
  FISHING_MESSAGE_OFFSET = 885; -- You can't fish here
+         MOG_LOCKER_OFFSET = 1224; -- Your Mog Locker lease is valid until <timestamp>, kupo.
           HOMEPOINT_SET = 1365; -- Home point set!
           IMAGE_SUPPORT = 1406; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
 

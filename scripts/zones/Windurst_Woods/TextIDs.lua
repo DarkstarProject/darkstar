@@ -8,6 +8,7 @@
               KEYITEM_LOST = 6550; -- Lost key item: <<<Unknown Parameter (Type: 80) 1>>>
        NOT_HAVE_ENOUGH_GIL = 6551; -- You do not have enough gil.
              HOMEPOINT_SET = 6637; -- Home point set!
+         MOG_LOCKER_OFFSET = 6997; -- Your Mog Locker lease is valid until <timestamp>, kupo.
     FISHING_MESSAGE_OFFSET = 7095; -- You can't fish here.
              IMAGE_SUPPORT = 7199; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
        NO_MORE_GP_ELIGIBLE = 7228; -- You are not eligible to receive guild points at this time.
