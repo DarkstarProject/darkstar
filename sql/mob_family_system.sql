@@ -535,6 +535,7 @@ INSERT INTO `mob_family_system` VALUES (497,'Cloud_of_Darkness',18,'Unclassified
 INSERT INTO `mob_family_system` VALUES (498,'Doll',3,'Arcana',1,40,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,33,0);
 INSERT INTO `mob_family_system` VALUES (499,'Stray',12,'Empty',0,40,20,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
 INSERT INTO `mob_family_system` VALUES (500,'Mokkurkalfi',3,'Arcana',1,40,130,130,2,3,3,3,3,6,5,3,2,3,3,1,1,1,1,1,1,1,1,1.125,1,1,1,7,34,0);
+INSERT INTO `mob_family_system` VALUES (501,'NioA_NioHum',3,'Arcana',1,40,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,34,0);
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
