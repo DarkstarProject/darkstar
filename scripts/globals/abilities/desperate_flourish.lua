@@ -56,7 +56,7 @@ function onUseAbility(player,target,ability,action)
         local spell = getSpell(216);
         local params = {};
         params.diff = 0;
-        params.attribute = player:getWeaponSkillType(SLOT_MAIN);
+        params.skillType = player:getWeaponSkillType(SLOT_MAIN);
         params.bonus = 50 - target:getMod(MOD_STUNRES);
         local resist = applyResistance(player, target, spell, params)
 
