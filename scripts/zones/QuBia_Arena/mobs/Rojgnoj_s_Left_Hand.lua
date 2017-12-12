@@ -3,46 +3,27 @@
 -- Mission 9-2 SANDO
 -----------------------------------
 
+require("scripts/globals/status");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("2HGO",math.random(40,80));
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_SCRIPTED_2HOUR, 1);
+    mob:addMod(MOD_SLEEPRES,50);
 end;
 
------------------------------------
--- onMobFight
------------------------------------
+function onMobSpawn(mob)
+    mob:setLocalVar("2HOUR_HPP",math.random(35,60));
+end;
+
 function onMobFight(mob,target)
-    if (mob:getLocalVar("2HOUR") == 0) then
-        if (mob:getHPP() < mob:getLocalVar("2HGO")) then
-            mob:setLocalVar("2HOUR",1);
-            mob:useMobAbility(691);
-        end
+    if (mob:getLocalVar("2HOUR_USED") == 0 and mob:getHPP() <= mob:getLocalVar("2HOUR_HPP")) then
+        mob:setLocalVar("2HOUR_USED", 1);
+        mob:useMobAbility(jobSpec.MANAFONT);
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDisengage(mob, weather)
+    mob:setLocalVar("2HOUR_USED", 0);
+end;
+
 function onMobDeath(mob, player, isKiller)
-    mob:setLocalVar("2HOUR",0);
-    mob:setLocalVar("2HGO",0);
-end;
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    printf("finishCSID: %u",csid);
-    printf("RESULT: %u",option);
 end;
