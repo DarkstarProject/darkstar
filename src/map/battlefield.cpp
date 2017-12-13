@@ -560,7 +560,7 @@ void CBattlefield::Cleanup()
         const char* query = "SELECT fastestTime FROM bcnm_info WHERE bcnmId = %u AND zoneId = %u";
         auto ret = Sql_Query(SqlHandle, query, this->GetID(), this->GetZoneID());
         bool updateRecord = true;
-        if (ret != SQL_ERROR)
+        if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
             updateRecord = Sql_GetUIntData(SqlHandle, 0) > std::chrono::duration_cast<std::chrono::seconds>(m_Record.time).count();
         }

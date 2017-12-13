@@ -71,14 +71,12 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
     if leavecode ~= -1 then
         battlefield:setLocalVar("cutsceneTimer", cutsceneTimer + 1)
 
-        local canLeave = true
-        if status == g_Battlefield.STATUS.WON then
-            if battlefield:getLocalVar("loot") ~= 0 then
-                if canLeave and battlefield:getLocalVar("lootSpawned") == 0 and battlefield:spawnLoot() then
-                    canLeave = false
-                elseif battlefield:getLocalVar("lootSeen") == 1 then
-                    canLeave = true
-                end
+        local canLeave = battlefield:getLocalVar("loot") == 0
+        if status == g_Battlefield.STATUS.WON and not canLeave then
+            if battlefield:getLocalVar("lootSpawned") == 0 and battlefield:spawnLoot() then
+                canLeave = false
+            elseif battlefield:getLocalVar("lootSeen") == 1 then
+                canLeave = true
             end
         end
         if canLeave and cutsceneTimer >= 15 then
