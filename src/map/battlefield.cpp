@@ -419,7 +419,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 
         m_EnteredPlayers.erase(m_EnteredPlayers.find(PEntity->id), m_EnteredPlayers.end());
 
-        if (leavecode == BATTLEFIELD_LEAVE_CODE_EXIT || leavecode == BATTLEFIELD_LEAVE_CODE_LOSE)
+        if (leavecode != BATTLEFIELD_LEAVE_CODE_WARPDC)
             m_RegisteredPlayers.erase(m_RegisteredPlayers.find(PEntity->id), m_RegisteredPlayers.end());
 
         if (leavecode != 255)
