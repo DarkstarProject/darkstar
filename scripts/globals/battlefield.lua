@@ -90,7 +90,7 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
             break
         end
     end
-
+    print("fuck")
     g_Battlefield.HandleWipe(battlefield, players)
 
     -- if we cant send anymore time prompts theyre out of time

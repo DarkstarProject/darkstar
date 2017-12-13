@@ -297,7 +297,6 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
     else if (PEntity->objtype == TYPE_NPC)
     {
         PEntity->status = STATUS_NORMAL;
-        PEntity->animation = 0;
         PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB));
         m_NpcList.push_back(static_cast<CNpcEntity*>(PEntity));
     }
@@ -420,7 +419,7 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
 
         m_EnteredPlayers.erase(m_EnteredPlayers.find(PEntity->id), m_EnteredPlayers.end());
 
-        if (leavecode == BATTLEFIELD_LEAVE_CODE_EXIT)
+        if (leavecode == BATTLEFIELD_LEAVE_CODE_EXIT || leavecode == BATTLEFIELD_LEAVE_CODE_LOSE)
             m_RegisteredPlayers.erase(m_RegisteredPlayers.find(PEntity->id), m_RegisteredPlayers.end());
 
         if (leavecode != 255)
@@ -442,7 +441,6 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         if (PEntity->objtype == TYPE_NPC)
         {
             PEntity->status = STATUS_DISAPPEAR;
-            PEntity->animation = ANIMATION_CLOSE_DOOR;
             PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_DESPAWN, UPDATE_ALL_MOB));
             m_NpcList.erase(std::remove_if(m_NpcList.begin(), m_NpcList.end(), check), m_NpcList.end());
         }

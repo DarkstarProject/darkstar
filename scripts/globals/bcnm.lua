@@ -854,15 +854,17 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
 
     -- requesting a battlefield
     if csid == 32000 then
-        local area = player:getLocalVar("[battlefield]area")
-        player:setLocalVar("[battlefield]area", player:getLocalVar("[battlefield]area") + 1)
         if option == 0 then
+            printf(player:getName()..option)
             -- todo: check if battlefields full, check party member requiremenst
             return 0
         elseif option == 255 then
+            printf(player:getName()..option)
             -- todo: check if battlefields full, check party member requirements
             return 0
         end
+        local area = player:getLocalVar("[battlefield]area")
+        area = area + 1
         local battlefieldIndex = bit.rshift(option, 4)
         local battlefieldId = getBattlefieldIdByBit(player, battlefieldIndex)
         local effect = player:getStatusEffect(EFFECT_BATTLEFIELD)
@@ -879,8 +881,17 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         result = player:registerBattlefield(id, area)
 
         print("AREAAAAAAAAAAA "..area.."res "..result)
+        local status = g_Battlefield.STATUS.OPEN
         if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
-
+            if result == g_Battlefield.RETURNCODE.INCREMENT_REQUEST then
+                if area < 2 then
+                    player:setLocalVar("[battlefield]area", area)
+                else
+                    result = g_Battlefield.RETURNCODE.WAIT
+                    player:updateEvent(result)
+                end
+            end
+            return false
         else
             if not player:getBattlefield() then
                 player:enterBattlefield()
@@ -907,7 +918,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         end
         player:updateEvent(result, battlefieldIndex, 0, clearTime, partySize, skip)
         player:updateEventString(name)
-        return result < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
+        return status < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
 
     -- leaving a battlefield
     elseif csid == 32003 and option == 2 then
