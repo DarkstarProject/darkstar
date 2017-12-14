@@ -24,12 +24,12 @@ function onMobDeath(mob, player, isKiller)
     if effect then
         if mob:getMainLvl() < 85 then
             if not player:hasKeyItem(CRIMSON_GRANULES_OF_TIME) then
-                effect:setDuration(effect:getDuration + 10 * 60 * 1000)
+                effect:setDuration(effect:getDuration() + 10 * 60 * 1000)
                 player:messageSpecial(DYNAMIS_TIME_EXTEND,10)
             end
         else
             if not player:hasKeyItem(OBSIDIAN_GRANULES_OF_TIME) then
-                effect:setDuration(effect:getDuration + 20 * 60 * 1000)
+                effect:setDuration(effect:getDuration() + 20 * 60 * 1000)
                 player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
             end
         end

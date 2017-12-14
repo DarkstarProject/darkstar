@@ -36,8 +36,13 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     player:addListener("DYNAMIS_EXPIRE", "DYNAMIS_EXPIRE", function(player)
+        player:messageSpecial(DYNAMIS_TIME_EXPIRED)
         player:setPos(117,-9,132,162,103)
     end)
+
+    if not player:hasStatusEffect(EFFECT_DYNAMIS) then
+        player:addStatusEffectEx(EFFECT_DYNAMIS, 0, 0, 0, 30)
+    end
 
     return cs;
 end;

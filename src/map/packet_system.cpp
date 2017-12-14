@@ -300,9 +300,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CZoneInPacket(PChar, PChar->m_event.EventID));
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
 
-    if (!PChar->loc.zoning)
-        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
-
     PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
 
