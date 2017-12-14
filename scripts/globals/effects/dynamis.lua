@@ -30,6 +30,7 @@ function onEffectLose(target,effect)
     target:delKeyItem(OBSIDIAN_GRANULES_OF_TIME)
     if effect:getTimeRemaining() == 0 then
         target:triggerListener("DYNAMIS_EXPIRE", target)
+        target:startEvent(100)
     end
 end;
 

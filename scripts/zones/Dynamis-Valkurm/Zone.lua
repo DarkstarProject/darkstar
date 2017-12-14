@@ -37,11 +37,10 @@ function onZoneIn(player,prevZone)
 
     player:addListener("DYNAMIS_EXPIRE", "DYNAMIS_EXPIRE", function(player)
         player:messageSpecial(DYNAMIS_TIME_EXPIRED)
-        player:setPos(117,-9,132,162,103)
     end)
 
     if not player:hasStatusEffect(EFFECT_DYNAMIS) then
-        player:addStatusEffectEx(EFFECT_DYNAMIS, 0, 0, 0, 30)
+        player:addStatusEffectEx(EFFECT_DYNAMIS, 0, 0, 0, 3600)
     end
 
     return cs;
@@ -70,4 +69,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+    if csid == 100 then
+        player:setPos(117,-9,132,162,103)
+    end
 end;
