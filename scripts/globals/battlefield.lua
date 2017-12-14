@@ -186,7 +186,7 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
 
     if battlefield:getStatus() == g_Battlefield.STATUS.WON and battlefield:getLocalVar("lootSeen") == 0 then
         if npc then
-            npc:setAnimation(8)
+            npc:setAnimation(90)
         end
         if lootGroup then
             for _, entry in pairs(lootGroup) do
