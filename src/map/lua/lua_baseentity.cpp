@@ -12495,14 +12495,37 @@ inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
 
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
-    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        PMob->m_SpawnPoint.x = (float)lua_tonumber(L, 1);
-    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
-        PMob->m_SpawnPoint.y = (float)lua_tonumber(L, 2);
-    if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
-        PMob->m_SpawnPoint.z = (float)lua_tonumber(L, 3);
-    if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
-        PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, 4);
+
+    if (lua_isnumber(L, 1))
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+            PMob->m_SpawnPoint.x = (float)lua_tonumber(L, 1);
+        if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            PMob->m_SpawnPoint.y = (float)lua_tonumber(L, 2);
+        if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+            PMob->m_SpawnPoint.z = (float)lua_tonumber(L, 3);
+        if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+            PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, 4);
+    }
+    else
+    {
+        // its a table
+        lua_rawgeti(L, 1, 1);
+        PMob->m_SpawnPoint.x = (float)lua_tonumber(L, -1);
+        lua_pop(L, 1);
+
+        lua_rawgeti(L, 1, 2);
+        PMob->m_SpawnPoint.y = (float)lua_tonumber(L, -1);
+        lua_pop(L, 1);
+
+        lua_rawgeti(L, 1, 3);
+        PMob->m_SpawnPoint.z = (float)lua_tonumber(L, -1);
+        lua_pop(L, 1);
+
+        lua_rawgeti(L, 1, 4);
+        PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, -1);
+        lua_pop(L, 1);
+    }
 
     return 0;
 }
