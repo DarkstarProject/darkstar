@@ -1007,6 +1007,18 @@ void CZone::CheckRegions(CCharEntity* PChar)
     PChar->m_InsideRegionID = RegionID;
 }
 
+bool CZone::CheckRegion(CCharEntity * PChar, uint32_t regionId)
+{
+    if (PChar->m_InsideRegionID == regionId)
+        return true;
+
+    for (const auto& region : m_regionList)
+        if (region->GetRegionID() == regionId && region->isPointInside(PChar->loc.p))
+            return true;
+
+    return false;
+}
+
 //====================================1=======================
 
 /*

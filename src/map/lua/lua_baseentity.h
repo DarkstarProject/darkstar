@@ -152,6 +152,7 @@ public:
     int32 getCurrentRegion(lua_State*);      // Get Entity conquest region
     int32 getContinentID(lua_State*);        // узнаем континент, на котором находится сущность    
     int32 isInMogHouse(lua_State*);          // Check if entity inside a mog house
+    int32 isInZoneRegion(lua_State*);        // check if entity is inside a region inside a zone
     
     int32 getPos(lua_State*);                // Get Entity position (x,y,z)    
     int32 showPosition(lua_State*);          // Display current position of character

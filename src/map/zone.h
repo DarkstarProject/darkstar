@@ -563,6 +563,7 @@ public:
 
     virtual void    ZoneServer(time_point tick, bool check_regions);
     void            CheckRegions(CCharEntity* PChar);
+    bool            CheckRegion(CCharEntity* PChar, uint32_t regionId);
 
     virtual void    ForEachChar(std::function<void(CCharEntity*)> func);
     virtual void    ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> func);
