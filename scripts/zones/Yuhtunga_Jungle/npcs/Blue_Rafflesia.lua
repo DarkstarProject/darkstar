@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     local scentReady = ((scentDay < currentDay) or (scentDay > currentDay and player:getVar("RafflesiaScentYear") < VanadielYear()));
     local npcId = npc:getID();
 
-    if (npcId == 17281586) then
+    if (npcId == 17281580) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Player is on quest, first time.
             player:startEvent(21);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Repeating
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
-    elseif (npcId == 17281587) then
+    elseif (npcId == 17281580) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("SecondBlueRafflesiaCS") == 0) then
             player:startEvent(22);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("SecondBlueRafflesiaCS") == 0) then
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
-    elseif (npcId == 17281588) then
+    elseif (npcId == 17281581) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("ThirdBlueRafflesiaCS") == 0) then
             player:startEvent(23);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("ThirdBlueRafflesiaCS") == 0) then

@@ -98,7 +98,7 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-    local mirrorPond = GetNPCByID(17232198); -- Quest: Love And Ice
+    local mirrorPond = GetNPCByID(17232196); -- Quest: Love And Ice
 
     if (weather == WEATHER_GLOOM or weather == WEATHER_DARKNESS) then
         mirrorPond:setStatus(STATUS_NORMAL);

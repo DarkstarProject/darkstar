@@ -4,12 +4,12 @@
 ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
           ITEM_OBTAINED = 6387; -- Obtained: <item>
            GIL_OBTAINED = 6388; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
+       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
 
-            PRISHE_TEXT =  7683; -- You're about to learn how strong the will to live makes us!
-          SELHTEUS_TEXT = 7696; -- The...Emptiness... Is this...how it was meant...to be...?
-         PROMATHIA_TEXT = 7699; -- Give thyself to the apathy within...
+            PRISHE_TEXT = 7682; -- You're about to learn how strong the will to live makes us!
+          SELHTEUS_TEXT = 7695; -- The...Emptiness... Is this...how it was meant...to be...?
+         PROMATHIA_TEXT = 7698; -- Give thyself to the apathy within...
 
 
 -- conquest Base
-CONQUEST_BASE = 7418; -- Tallying conquest results...
+          CONQUEST_BASE = 7417; -- Tallying conquest results...

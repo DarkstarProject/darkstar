@@ -15,7 +15,7 @@ require("scripts/globals/settings");
 -- Zone, {npcid,npcid,npcid,..}
 local npcid = {7,{16806369,16806370,16806371,16806372,16806373,16806374},    -- Attohwa Chasm
          68,{17056388,17056389,17056390},                               -- Aydeewa Subterrane
-         117,{17257055,17257056,17257057,17257058,17257059,17257060},  -- Tahrongi Canyon
+         117,{17257054,17257054,17257054,17257054,17257054,17257044},  -- Tahrongi Canyon
          173,{17486253,17486254,17486255,17486256,17486257,17486258},  -- Korroloka Tunnel
          198,{17588774,17588775,17588776,17588777,17588778,17588779}}; -- Maze of Shakhrami
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
