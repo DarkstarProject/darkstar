@@ -5,13 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -31,10 +27,6 @@ function onInitialize(zone)
     SetServerVariable("[SEA]Jailer_of_Temperance_PH", Jailer_of_Temperance_PH[JoT_PH]);
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -42,11 +34,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -60,20 +47,12 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- afterZoneIn
------------------------------------
-
 function afterZoneIn(player)
     player:entityVisualPacket("door");
     player:entityVisualPacket("dtuk");
     player:entityVisualPacket("2dor");
     player:entityVisualPacket("cryq");
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     if (player:getVar("Hu-Xzoi-TP") == 0 and player:getAnimation() == 0) then -- prevent 2cs at same time
@@ -92,16 +71,9 @@ function onRegionEnter(player,region)
         }
     end
 end;
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -111,10 +83,6 @@ function onEventUpdate(player,csid,option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -122,10 +90,6 @@ function onEventFinish(player,csid,option)
         player:setVar("Hu-Xzoi-TP",0);
     end
 end;
-
------------------------------------
--- onGameHour
------------------------------------
 
 function onGameHour(zone)
     local VanadielHour = VanadielHour();

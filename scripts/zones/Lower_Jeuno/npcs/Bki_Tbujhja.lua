@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Bki Tbujhja
+--  NPC: Bki Tbujhja
 -- Involved in Quest: The Old Monument
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
 -- !pos -22 0 -60 245
@@ -13,9 +13,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,10 +23,6 @@ function onTrade(player,npc,trade)
         player:startEvent(151);
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local aMinstrelInDespair = player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR);
@@ -70,16 +63,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- THE OLD MONUMENT

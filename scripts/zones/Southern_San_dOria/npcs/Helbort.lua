@@ -7,22 +7,15 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -38,21 +31,14 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
 function onEventFinish(player,csid,option)
---print("CSID:",csid);
---print("RESULT:",option);
+    -- printf("CSID:",csid);
+    -- printf("RESULT:",option);
 
     if (csid == 594 and option == 0) then
         player:addQuest(SANDORIA, A_PURCHASE_OF_ARMS);

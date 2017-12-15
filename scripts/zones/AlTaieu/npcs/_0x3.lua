@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Al'Taieu
---  NPC:  Rubious Crystal (East Tower)
+-- Area: Al'Taieu
+--  NPC: Rubious Crystal (East Tower)
 -- !pos 683.718 -6.250 -222.167 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
@@ -8,22 +8,14 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
-----------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    if (
-            player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]EastTower") == 0
         and player:getVar("[SEA][AlTieu]EastTowerCS") == 0
@@ -36,8 +28,7 @@ function onTrigger(player,npc)
         SpawnMob(AERNS_TOWER_EAST+1):updateClaim(player);
         SpawnMob(AERNS_TOWER_EAST+2):updateClaim(player);
 
-    elseif (
-            player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+    elseif (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]EastTower") == 1
         and player:getVar("[SEA][AlTieu]EastTowerCS") == 0
@@ -49,18 +40,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

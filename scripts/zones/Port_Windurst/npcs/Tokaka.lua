@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Tokaka
+--  NPC: Tokaka
 -- Starts & Finishes Repeatable Quest: Something Fishy
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -8,9 +8,6 @@ package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,17 +18,13 @@ NeedToZone     = player:needToZone();
     if (TokakaSpokenTo == 1 and NeedToZone == false) then
         count = trade:getItemCount();
         BastoreSardine = trade:hasItemQty(4360,1);
-        
+
         if (BastoreSardine == true and count == 1) then
-            player:startEvent(210,GIL_RATE*70,4360);    
+            player:startEvent(210,GIL_RATE*70,4360);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -53,22 +46,14 @@ SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
     else
         player:startEvent(207);
     end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -79,14 +64,14 @@ function onEventFinish(player,csid,option)
         player:setVar("TokakaSpokenTo",1);
     elseif (csid == 210) then
         SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
-        
+
         if (SomethingFishy == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,SOMETHING_FISHY);
             player:addFame(WINDURST,60);
         else
             player:addFame(WINDURST,10);
         end
-        
+
         player:tradeComplete();
         player:addGil(GIL_RATE*70);
         player:setVar("TokakaSpokenTo",0);

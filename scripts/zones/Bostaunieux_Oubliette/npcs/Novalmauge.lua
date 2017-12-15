@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Obliette
--- NPC:  Novalmauge
+--  NPC: Novalmauge
 -- Starts and Finishes Quest: The Rumor
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
 -- !pos 70 -24 21 167
@@ -14,8 +14,10 @@ require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 require("scripts/globals/pathfind");
+-----------------------------------
 
-local path = {
+local path =
+{
 41.169430, -24.000000, 19.860674,
 42.256676, -24.000000, 19.885197,
 41.168694, -24.000000, 19.904638,
@@ -35,10 +37,6 @@ function onPath(npc)
     pathfind.patrol(npc, path);
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (player:getVar("troubleAtTheSluiceVar") == 2) then
@@ -56,10 +54,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -96,18 +90,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);

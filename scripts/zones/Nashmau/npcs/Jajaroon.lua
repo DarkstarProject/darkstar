@@ -1,30 +1,24 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Jajaroon
+--  NPC: Jajaroon
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Nashmau/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,JAJAROON_SHOP_DIALOG);
 
-stock = {0x0880,48,        -- Fire Card
+    player:showText(npc,JAJAROON_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x0880,48,        -- Fire Card
      0x0881,48,        -- Ice Card
      0x0882,48,        -- Wind Card
      0x0883,48,        -- Earth Card
@@ -40,22 +34,14 @@ stock = {0x0880,48,        -- Fire Card
      0x1574,3525,        -- Blue Mage Die
      0x1575,316,        -- Corsar Die
      0x1576,9216}        -- Puppetmaster Die
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Lusiane
+--  NPC: Lusiane
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,14 +22,10 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
+
     player:showText(npc,LUSIANE_SHOP_DIALOG);
 
     local stock = {0x43ed,496,1,        -- Bamboo Fishing Rod
@@ -45,23 +37,15 @@ function onTrigger(player,npc)
              0x13cc,110,3,        -- Scroll of Light Threnoldy
              0x13ca,1265,3,        -- Scroll of Lightning Threnoldy
              0x43ef,66,3}        -- Willow Fishing Rod
-     
+
     showNationShop(player, NATION_SANDORIA, stock);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

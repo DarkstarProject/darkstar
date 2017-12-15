@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 --   NPC: Laila
---  Type: Job Quest Giver
+-- Type: Job Quest Giver
 -- @zone 244
 -- !pos -54.045 -1 100.996
 --
@@ -18,17 +18,10 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
@@ -91,18 +84,11 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);

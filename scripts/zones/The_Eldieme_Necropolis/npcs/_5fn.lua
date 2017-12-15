@@ -1,19 +1,11 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC:  North Plate
+--  NPC: North Plate
 -- !pos 180 -34 71 195
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local state0 = 8;
@@ -66,18 +58,10 @@ function onTrigger(player,npc)
     return 0;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,12 +1,12 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Macuillie
---  Type: Guildworker's Union Representative
+-- Type: Guildworker's Union Representative
 --  @zone 231
 -- !pos -191.738 11.001 138.656
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 require("scripts/zones/Northern_San_dOria/TextIDs");
@@ -82,25 +82,13 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 730, 2);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 2, 729, "guild_smithing", keyitems);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -109,10 +97,6 @@ function onEventUpdate(player,csid,option,target)
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);

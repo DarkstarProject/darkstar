@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Flapno
---  Type: Standard NPC, Quest NPC, and Shop NPC
+-- Type: Standard NPC, Quest NPC, and Shop NPC
 --  Starts, Involved with, and Finishes Quest: 'Exotic Delicacies'
 --  Involved with Quest: 'All the Way to the Bank'
 --  @zone 256
@@ -14,9 +14,6 @@ require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,10 +36,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Exotic_Delicacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
@@ -84,16 +77,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2860) then

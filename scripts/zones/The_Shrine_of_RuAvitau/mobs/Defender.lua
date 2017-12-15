@@ -2,19 +2,11 @@
 -- Area: The Shrine of Ru'Avitau
 --  MOB: Defender
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn
------------------------------------
 
 function onMobSpawn(mob)
 
@@ -22,10 +14,6 @@ function onMobSpawn(mob)
     GetMobByID(Defender):setLocalVar("1",1);
 
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
 
@@ -54,10 +42,6 @@ function onMobFight(mob,target)
 
 end;
 
------------------------------------
--- onMobDisengage
------------------------------------
-
 function onMobDisengage(mob)
 
     local Defender = mob:getID();
@@ -71,17 +55,10 @@ function onMobDisengage(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,749,1);
 end;
 
------------------------------------
--- OnMobDespawn
------------------------------------
 function onMobDespawn( mob )
 
     local Defender = mob:getID();

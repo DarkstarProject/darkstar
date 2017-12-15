@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Port Bastok
+-- Area: Port Bastok
 --  NPC: Khel Pahlhama
 --  Linkshell merchant
 -- !pos 21 -2 -20 240
@@ -7,20 +7,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     player:showText(npc,KHEL_PAHLHAMA_SHOP_DIALOG,513);
@@ -33,18 +25,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

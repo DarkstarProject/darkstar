@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Pso'Xja
--- NPC:  Avatars Gate
+--  NPC: Avatars Gate
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger
------------------------------------
-
-function onTrigger(player,npc) 
+function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 1) then
         player:startEvent(3);
     else
@@ -29,21 +21,13 @@ function onTrigger(player,npc)
     return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-   if (csid == 3) then
+    if (csid == 3) then
      player:setVar("COP_Tenzen_s_Path",2);
-   end   
+    end
 end;

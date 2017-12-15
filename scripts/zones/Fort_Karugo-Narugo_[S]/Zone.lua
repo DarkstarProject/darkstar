@@ -5,22 +5,14 @@
 -----------------------------------
 package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
 require("scripts/globals/status");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -30,16 +22,8 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
-
------------------------------------
--- onZoneWeatherChange
------------------------------------
 
 function onZoneWeatherChange(weather)
 
@@ -53,18 +37,10 @@ function onZoneWeatherChange(weather)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

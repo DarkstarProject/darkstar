@@ -2,11 +2,7 @@
 -- Area: Fei'Yin
 --  MOB: Wekufe
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

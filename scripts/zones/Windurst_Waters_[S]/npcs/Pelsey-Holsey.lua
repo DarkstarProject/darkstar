@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Windurst Waters (S)
+-- Area: Windurst Waters (S)
 --   NPC: Pelsey-Holsey
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 94
 -- !pos 119.755 -4.5 209.754
 --
@@ -10,33 +10,17 @@
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(419);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

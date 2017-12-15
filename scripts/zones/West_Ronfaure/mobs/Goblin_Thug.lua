@@ -2,11 +2,7 @@
 -- Area: West Ronfaure
 --  MOB: Goblin Thug
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

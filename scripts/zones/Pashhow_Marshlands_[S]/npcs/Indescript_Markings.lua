@@ -5,26 +5,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -92,24 +82,16 @@ function onTrigger(player,npc)
 
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
         -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
-    else        
+    else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/RoMaeve/TextIDs");
 require("scripts/zones/RoMaeve/MobIDs");
 require("scripts/globals/settings");
@@ -42,7 +41,7 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-0.008,-33.595,123.478,62);
     end
     if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
@@ -76,11 +75,11 @@ function onZoneWeatherChange(weather)
 end;
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

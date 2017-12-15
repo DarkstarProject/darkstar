@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- MOB:  Taisai
+--  MOB: Taisai
 -----------------------------------
-
 require("scripts/zones/Ranguemont_Pass/MobIDs");
 
 function disturbMob(mob)

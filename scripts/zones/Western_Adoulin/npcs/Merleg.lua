@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Merleg
---  Type: Standard NPC and Quest Giver
+-- Type: Standard NPC and Quest Giver
 --  Starts, Involved with, and Finishes Quest: 'A Pioneers Best (Imaginary) Friend'
 --  @zone 256
 --  !pos 34 0 -131 256
@@ -12,17 +12,10 @@ require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local APBIF = player:getQuestStatus(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
@@ -42,16 +35,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2520) then

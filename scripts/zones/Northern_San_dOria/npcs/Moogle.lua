@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil
 -----------------------------------

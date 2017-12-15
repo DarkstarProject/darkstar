@@ -1,23 +1,15 @@
 -----------------------------------
 -- Area: San d'Oria-Jeuno Airship
--- NPC:  Nigel
+--  NPC: Nigel
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/San_dOria-Jeuno_Airship/TextIDs"] = nil;
-
-require("scripts/zones/San_dOria-Jeuno_Airship/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/San_dOria-Jeuno_Airship/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -42,7 +34,7 @@ function onTrigger(player,npc)
         message = WILL_REACH_JEUNO;
     elseif (vHour == -1) then
         vHour = 1;
-        message = WILL_REACH_JEUNO;    
+        message = WILL_REACH_JEUNO;
     elseif (vHour == 0) then
         if (vMin <= 11) then
             vHour = 0;
@@ -77,18 +69,10 @@ function onTrigger(player,npc)
     player:messageSpecial( message, math.floor((2.4 * vMinutes) / 60), math.floor( vMinutes / 60 + 0.5));
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

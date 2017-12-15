@@ -2,11 +2,7 @@
 -- Area: Rolanberry Fields
 --  MOB: Death Wasp
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

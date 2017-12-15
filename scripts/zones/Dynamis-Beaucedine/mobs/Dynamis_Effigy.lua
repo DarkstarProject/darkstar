@@ -1,11 +1,7 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Dynamis Effigy
+--  NPC: Dynamis Effigy
 -- Trigger for Petro Pukis respawn
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,10 +10,6 @@ function onMobEngaged(mob,target)
     SpawnMob(17326156):updateEnmity(target);
     SpawnMob(17326168):updateEnmity(target);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

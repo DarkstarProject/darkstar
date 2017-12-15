@@ -1,27 +1,17 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Carmelo
+--  NPC: Carmelo
 -- Start & Finishes Quest: Love and Ice, A Test of True Love
 -- Start Quest: Lovers in the Dusk
 -- Involved in Quest: The Siren's Tear
 -- @zone 236
 -- !pos -146.476 -7.48 -10.889
 -----------------------------------
-
 require("scripts/globals/quests");
 
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
@@ -66,20 +56,10 @@ function onTrigger(player,npc)
     end
 end;
 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

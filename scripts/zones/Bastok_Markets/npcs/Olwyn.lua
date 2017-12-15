@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Olwyn
+--  NPC: Olwyn
 -- Standard Merchant NPC
 -- !pos -322.123 -10.319 -169.418 235
 -----------------------------------

@@ -2,7 +2,6 @@
 -- Area: Horlais Peak
 --  MOB: Darokbok of Clan Reaper
 -----------------------------------
-
 require("scripts/globals/status");
 
 function onMobInitialize(mob)

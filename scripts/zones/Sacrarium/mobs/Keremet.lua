@@ -2,20 +2,12 @@
 -- Area: Sacrarium
 --  MOB: Keremet
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
 
@@ -30,10 +22,6 @@ function onMobFight(mob,target)
     end
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(RELIQUIARIUM_KEY)==false) then

@@ -2,11 +2,7 @@
 -- Area: Dangruf Wadi
 --  MOB: Goblin Bushwhacker
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

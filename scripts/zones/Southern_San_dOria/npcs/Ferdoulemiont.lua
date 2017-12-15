@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Ferdoulemiont
+--  NPC: Ferdoulemiont
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,23 +22,19 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
+
     player:showText(npc,FERDOULEMIONT_SHOP_DIALOG);
 
     local stock = {0x034d,1125,1,  --Black Chocobo Feather
 
-             0x439b,9,2,     --Dart 
-            
+             0x439b,9,2,     --Dart
+
              0x45c6,680,3,   --Bug Broth
              0x45ca,680,3,   --Carrion Broth
-             0x45c4,81,3,    --Carrot Broth 
+             0x45c4,81,3,    --Carrot Broth
              0x45c8,124,3,   --Herbal Broth
              0x0348,7,3,     --Chocobo Feather
              0x11c1,61,3,    --Gysahl Greens
@@ -53,23 +45,15 @@ function onTrigger(player,npc)
              0x1386,864,3,   --Scroll of Knight's Minne II
              0x1387,5148,3,  --Scroll of Knight's Minne III
              0x0927,1984,3}  --La Theine Millet
-     
+
     showNationShop(player, NATION_SANDORIA, stock);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

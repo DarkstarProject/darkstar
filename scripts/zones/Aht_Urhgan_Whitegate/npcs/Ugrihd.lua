@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Ugrihd
+--  NPC: Ugrihd
 -- Coin Exchange Vendor
 -- !pos -63.079 -6 -28.571 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local badges = { 0, 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 };
@@ -33,18 +25,10 @@ function onTrigger(player,npc)
     player:startEvent(150,rank-1,badges[rank],player:getCurrency("imperial_standing"),0,39183,10577,4095,0,0); -- Unsure of what other params mean
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);

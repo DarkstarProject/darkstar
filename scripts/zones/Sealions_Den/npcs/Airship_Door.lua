@@ -1,42 +1,26 @@
 -----------------------------------
--- Area: 
--- NPC:  Airship_Door 
+-- Area:
+--  NPC: Airship_Door
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)  
+function onTrigger(player,npc)
     if (npc:getID() == 16908420) then -- First door..
         player:startEvent(32003, 1);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    
-end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
+end;
 
 function onEventFinish(player,csid,option)
     local mammet_1_1    = GetMobAction(16908289);
@@ -46,21 +30,21 @@ function onEventFinish(player,csid,option)
     local mammet_1_5    = GetMobAction(16908293);
     local omega1        = GetMobAction(16908294);
     local ultima1       = GetMobAction(16908295);
-    
+
     if (csid == 32003 and option == 100) then
-    
+
         -- Are any mammets alive still..
         if (mammet_1_1 > 0 or mammet_1_2 > 0 or mammet_1_3 > 0 or mammet_1_4 > 0 or mammet_1_5 > 0) then
             player:startEvent(0, 1);
-            
+
         -- Is Omega alive..
         elseif (omega1 > 0) then
             player:startEvent(1, 1);
-            
+
         -- Is Ultima alive..
         elseif (ultima1 > 0) then
             player:startEvent(2, 1);
         end
     end
-    
+
 end;

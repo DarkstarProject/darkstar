@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lower Jeuno
---  NPC:  Faursel
---  Type: Aht Urhgan Quest NPC
+--  NPC: Faursel
+-- Type: Aht Urhgan Quest NPC
 -- Involved in Quests: The Road to Aht Urhgan
 -- !pos 37.985 3.118 -45.208 245
 -----------------------------------
@@ -11,9 +11,6 @@ require("scripts/globals/teleports");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,10 +38,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -79,10 +72,6 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 
     if (csid == 10063 or csid == 10064) then
@@ -100,10 +89,6 @@ function onEventUpdate(player,csid,option)
     end
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 

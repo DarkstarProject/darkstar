@@ -2,20 +2,12 @@
 -- Area: Dynamis Jeuno
 --  MOB: Goblin Golem
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

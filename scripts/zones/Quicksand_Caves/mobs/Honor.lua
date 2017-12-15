@@ -3,7 +3,6 @@
 --  MOB: Honor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
-
 require("scripts/zones/Quicksand_Caves/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");

@@ -1,40 +1,25 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Inhumer
+--  NPC: Inhumer
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/zones/Apollyon/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
- local mobID = mob:getID();    
+ local mobID = mob:getID();
  if (mobID ==16933025) then -- time
     GetNPCByID(16932864+246):setPos(343,-1,-296);
     GetNPCByID(16932864+246):setStatus(STATUS_NORMAL);
@@ -45,5 +30,5 @@ function onMobDespawn(mob)
     GetNPCByID(16932864+247):setPos(307,-1,-309);
     GetNPCByID(16932864+247):setStatus(STATUS_NORMAL);
  end
- 
+
 end;

@@ -5,14 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Periqia/IDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Periqia/IDs");
 require("scripts/globals/instance")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions")
-require("scripts/zones/Periqia/IDs");
-
------------------------------------
--- afterInstanceRegister
 -----------------------------------
 
 function afterInstanceRegister(player)
@@ -20,27 +16,15 @@ function afterInstanceRegister(player)
     player:messageSpecial(Periqia.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 
------------------------------------
--- onInstanceCreated
------------------------------------
-
 function onInstanceCreated(instance)
     for i,v in pairs(Periqia.mobs[79]) do
         SpawnMob(v, instance);
     end
 end;
 
------------------------------------
--- onInstanceTimeUpdate
------------------------------------
-
 function onInstanceTimeUpdate(instance, elapsed)
     updateInstanceTime(instance, elapsed, Periqia.text)
 end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
 
 function onInstanceFailure(instance)
 
@@ -52,10 +36,6 @@ function onInstanceFailure(instance)
     end
 end;
 
------------------------------------
--- onInstanceProgressUpdate
------------------------------------
-
 function onInstanceProgressUpdate(instance, progress)
 
     if (progress >= 10 and instance:completed() == false) then
@@ -63,10 +43,6 @@ function onInstanceProgressUpdate(instance, progress)
     end
 
 end;
-
-------------------------------
--- onInstanceComplete
------------------------------------
 
 function onInstanceComplete(instance)
 

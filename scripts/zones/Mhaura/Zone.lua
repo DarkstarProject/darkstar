@@ -5,14 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
 require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,14 +17,10 @@ function onInitialize(zone)
 
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
     local currentday = tonumber(os.date("%j"));
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 221 or prevZone == 47) then
             cs = 0x00ca;
             player:setPos(14.960,-3.430,18.423,192);
@@ -42,10 +34,6 @@ function onZoneIn(player,prevZone)
 return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -53,10 +41,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onTransportEvent
------------------------------------
 
 function onTransportEvent(player,transport)
     if ((transport == 47) or (transport == 46)) then
@@ -71,18 +55,10 @@ function onTransportEvent(player,transport)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

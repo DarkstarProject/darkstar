@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil
 -----------------------------------

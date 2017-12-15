@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  ???
+--  NPC: ???
 -- !pos 456.993 -7.000 -270.815 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
@@ -9,15 +9,9 @@ require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local notMeantToBeProg = player:getVar("notmeanttobeCS");
@@ -32,19 +26,11 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Bibiki Bay
--- NPC:  Toh Zonikki
+--  NPC: Toh Zonikki
 -- Type: Clamming NPC
 -- !pos -371 -1 -421 4
 -----------------------------------
-
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/keyitems");
-
 -----------------------------------
 -- Local Variables
 -----------------------------------
@@ -79,16 +77,8 @@ local function owePlayerClammedItems(player)
     return false;
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -109,10 +99,6 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -130,10 +116,6 @@ function onEventUpdate(player,csid,option)
         player:updateEvent( player:getVar("ClammingKitWeight"), clammingKitSize, clammingKitSize, clammingKitSize + 50, 0, 0, 0, 0);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

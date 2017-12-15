@@ -2,11 +2,7 @@
 -- Area: Valkurm Dunes
 --  MOB: Sand Hare
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

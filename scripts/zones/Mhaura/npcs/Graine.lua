@@ -1,30 +1,24 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC: Graine
+--  NPC: Graine
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,GRAINE_SHOP_DIALOG);
 
-stock = {0x3098,457,  --Leather Bandana
+    player:showText(npc,GRAINE_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x3098,457,  --Leather Bandana
          0x30a0,174,  --Bronze Cap
          0x30a1,1700, --Brass Cap
          0x3118,698,  --Leather Vest
@@ -39,22 +33,14 @@ stock = {0x3098,457,  --Leather Bandana
          0x3298,349,  --Leather Highboots
          0x32a0,117,  --Bronze Leggings
          0x32a1,1140} --Brass Leggings
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,28 +1,18 @@
 -----------------------------------
---  Area: Nashmau
---  NPC:  Fhe Maksojha
---  Type: Standard NPC
+-- Area: Nashmau
+--  NPC: Fhe Maksojha
+-- Type: Standard NPC
 -- !pos 19.084 -7 71.287 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Nashmau/TextIDs");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local notmeanttobe = player:getQuestStatus(AHT_URHGAN,NOT_MEANT_TO_BE);
@@ -42,18 +32,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

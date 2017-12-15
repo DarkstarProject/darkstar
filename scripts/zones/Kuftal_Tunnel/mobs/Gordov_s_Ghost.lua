@@ -2,11 +2,7 @@
 -- Area: Kuftal Tunnel
 --  MOB: Gordov's Ghost
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

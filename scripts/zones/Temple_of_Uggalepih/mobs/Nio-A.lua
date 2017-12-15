@@ -2,7 +2,6 @@
 -- Area: Temple of Uggalepih
 --  MOB: Nio A
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");

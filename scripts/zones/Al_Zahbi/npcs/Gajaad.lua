@@ -6,10 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs")
-
------------------------------------
--- onTrade Action
+require("scripts/zones/Al_Zahbi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,27 +39,15 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     -- TODO besiege result can effect if this NPC will accept trades
     player:startEvent(102, 2184);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

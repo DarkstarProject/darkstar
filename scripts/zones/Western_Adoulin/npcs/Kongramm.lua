@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Kongramm
---  Type: Standard NPC, Mission NPC, and Quest NPC
+-- Type: Standard NPC, Mission NPC, and Quest NPC
 --  Involved with Mission: 'A Curse From The Past'
 --  Involved with Quests: 'A Certain Substitute Patrolman' and 'Transporting'
 --  @zone 256
@@ -10,17 +10,10 @@
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
@@ -47,16 +40,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 148) then

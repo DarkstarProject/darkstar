@@ -2,11 +2,7 @@
 -- Area: Dangruf Wadi
 --  MOB: Witchetty Grub
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

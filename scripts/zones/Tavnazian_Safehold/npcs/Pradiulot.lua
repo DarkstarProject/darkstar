@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Pradiulot
+--  NPC: Pradiulot
 -- Involved in Quest: Unforgiven
 -- @zone 26
 -- !pos -20.814 -22 8.399
@@ -18,10 +18,6 @@ require("scripts/globals/quests");
 -- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
 -- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
 if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and trade:getGil() == 1 == true) then
@@ -29,10 +25,6 @@ if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and trade:getGil() == 1 =
         end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -49,18 +41,10 @@ else
 end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
