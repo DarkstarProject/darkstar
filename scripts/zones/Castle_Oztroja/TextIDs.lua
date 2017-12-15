@@ -6,6 +6,7 @@
                      ITEM_OBTAINED = 6572; -- Obtained: <item>.
                       GIL_OBTAINED = 6573; -- Obtained <number> gil.
                   KEYITEM_OBTAINED = 6574; -- Obtained key item: <keyitem>.
+                    NOT_ENOUGH_GIL = 6576; -- You do not have enough gil.
                     ITEMS_OBTAINED = 6580; -- You obtain
             FISHING_MESSAGE_OFFSET = 7251; -- You can't fish here.
 
