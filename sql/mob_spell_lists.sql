@@ -2441,6 +2441,9 @@ INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,246,1,255); -- Drain II
 INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,275,1,255); -- Absorb-TP
 INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,242,1,255); -- Absorb-ACC
 
+INSERT INTO `mob_spell_lists` VALUES ('Honor',294,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Honor',294,359,1,255); -- silencega
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
