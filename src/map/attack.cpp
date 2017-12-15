@@ -353,6 +353,7 @@ bool CAttack::CheckCounter()
 {
     if (!m_victim->PAI->IsEngaged())
     {
+        m_isCountered = false;
         return m_isCountered;
     }
 
