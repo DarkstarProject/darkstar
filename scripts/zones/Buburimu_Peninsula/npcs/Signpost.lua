@@ -20,15 +20,15 @@ end;
 
 function onTrigger(player,npc)
 
-    if (npc:getID() == 17261165) then
+    if (npc:getID() == 17261141) then
         player:messageSpecial(SIGN_5);    
-    elseif (npc:getID() == 17261166) then
+    elseif (npc:getID() == 17261141) then
         player:messageSpecial(SIGN_4);            
-    elseif (npc:getID() == 17261167) then
+    elseif (npc:getID() == 17261141) then
         player:messageSpecial(SIGN_3);
-    elseif (npc:getID() == 17261168) then
+    elseif (npc:getID() == 17261141) then
         player:messageSpecial(SIGN_2);
-    elseif (npc:getID() == 17261169) or (npc:getID() == 17261170) or (npc:getID() == 17261171) then
+    elseif (npc:getID() == 17261141) or (npc:getID() == 17261141) or (npc:getID() == 17261136) then
         player:messageSpecial(SIGN_1);            
     end
     

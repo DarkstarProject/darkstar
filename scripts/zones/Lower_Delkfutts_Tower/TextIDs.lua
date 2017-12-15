@@ -1,15 +1,15 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6570; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6576; -- Obtained: <item>.
-           GIL_OBTAINED = 6577; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6579; -- Obtained key item: <keyitem>.
- FISHING_MESSAGE_OFFSET = 7237; -- You can't fish here.
+         ITEM_CANNOT_BE_OBTAINED = 6570; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+                   ITEM_OBTAINED = 6576; -- Obtained: <item>.
+                    GIL_OBTAINED = 6577; -- Obtained <number> gil.
+                KEYITEM_OBTAINED = 6578; -- Obtained key item: <keyitem>.
+          FISHING_MESSAGE_OFFSET = 7236; -- You can't fish here.
 
 -- Other dialog
-THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY = 159; -- The door is firmly shut. You might be able to open it if you had the key.
-                DOOR_FIRMLY_SHUT = 160; -- The door is firmly shut.
+THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY =  159; -- The door is firmly shut. You might be able to open it if you had the key.
+                DOOR_FIRMLY_SHUT =  160; -- The door is firmly shut.
 
 -- conquest Base
-CONQUEST_BASE = 0;
+                   CONQUEST_BASE =    0;

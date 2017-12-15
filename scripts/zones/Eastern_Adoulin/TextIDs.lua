@@ -4,6 +4,6 @@
 ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
           ITEM_OBTAINED = 6387; -- Obtained: <item>
            GIL_OBTAINED = 6388; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
-         MOG_LOCKER_OFFSET = 7568; -- Your Mog Locker lease is valid until <timestamp>, kupo.
-          HOMEPOINT_SET = 8284; -- Home point set!
+       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
+      MOG_LOCKER_OFFSET = 7567; -- Your Mog Locker lease is valid until <timestamp>, kupo.
+          HOMEPOINT_SET = 8283; -- Home point set!
