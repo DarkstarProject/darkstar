@@ -17,7 +17,7 @@ require("scripts/zones/Xarcabard/TextIDs");
 function onMobSpawn(mob)
     -- Failsafe to make sure NPC is down when NM is up
     if (OldSchoolG2) then
-        GetNPCByID(17236281):showNPC(0);
+        GetNPCByID(17236310):showNPC(0);
     end
 end;
 
@@ -29,7 +29,7 @@ function onMobDeath(mob, player, isKiller)
     if (OldSchoolG2) then
         -- show ??? for desired duration
         -- notify people on the quest who need the KI
-        GetNPCByID(17236281):showNPC(FrigiciteDuration);
+        GetNPCByID(17236310):showNPC(FrigiciteDuration);
         if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
             player:messageSpecial(BLOCKS_OF_ICE);
         end

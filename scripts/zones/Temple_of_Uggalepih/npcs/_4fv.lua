@@ -8,46 +8,32 @@ package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 5) then
-        if (player:hasKeyItem(PIECE_OF_A_BROKEN_KEY1) and player:hasKeyItem(PIECE_OF_A_BROKEN_KEY2) and player:hasKeyItem(PIECE_OF_A_BROKEN_KEY3)) then
-            if (player:getVar("Mission8-2Kills") >= 1) then
+        if (player:hasKeyItem(PIECE_OF_A_BROKEN_KEY1) and player:hasKeyItem(PIECE_OF_A_BROKEN_KEY2)
+            and player:hasKeyItem(PIECE_OF_A_BROKEN_KEY3) and not GetMobByID(NIO_A):isSpawned()
+            and not GetMobByID(NIO_HUM):isSpawned()) then
+            if (player:getVar("Mission8-2Kills") > 0) then
                 player:startEvent(65);
             else
-                SpawnMob(17428495)
-                SpawnMob(17428496)
+                SpawnMob(NIO_A);
+                SpawnMob(NIO_HUM);
             end
         end
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -57,5 +43,4 @@ function onEventFinish(player,csid,option)
         player:setVar("Mission8-2Kills",0);
         player:setVar("MissionStatus",6);
     end
-
 end;

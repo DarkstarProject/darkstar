@@ -14,3 +14,6 @@ TRIARIUS_IV_XIV         = 17629188;
 PRINCEPS_IV_XLV         = 17629189;
 
 QM6                     = 17629738;
+
+VALOR = 17629185;
+HONOR = 17629186;
