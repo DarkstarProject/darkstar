@@ -48,8 +48,6 @@ function onTrigger(player,npc)
     end
 end;
 
-end;
-
 function onEventUpdate(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
