@@ -1,51 +1,38 @@
 -----------------------------------
 --  Area: Batallia Downs
 --  NPC: qm3 (???)
---    Involved in Mission 9-1 (San dOria)
+--  Involved in Mission 9-1 (San dOria)
+--  !pos 210 17 -615 105
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Batallia_Downs/TextIDs");
+require("scripts/zones/Batallia_Downs/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 
------------------------------------
--- onTrigger
------------------------------------
-
 function onTrigger(player,npc)
-    local Sturmtiger = player:getVar("SturmtigerKilled");
-    
-    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3 and player:getVar("Mission9-1Kills") < 2) then
-        SpawnMob(17207697):updateClaim(player); -- 10 min despawn so others can pop
-        SpawnMob(17207698):updateClaim(player); -- 10 min despawn so others can pop
-    elseif (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("Mission9-1Kills") == 2) then
-        player:startEvent(904);
+    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
+        and not GetMobByID(SUPARNA):isSpawned() and not GetMobByID(SUPARNA_FLEDGLING):isSpawned()) then
+        if (player:getVar("Mission9-1Kills") > 0) then
+            player:startEvent(904);
+        else 
+            SpawnMob(SUPARNA);
+            SpawnMob(SUPARNA_FLEDGLING);
+        end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
------------------------------------
--- onTrade
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
