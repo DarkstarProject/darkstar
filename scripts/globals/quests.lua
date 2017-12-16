@@ -1,6 +1,191 @@
 require("scripts/globals/log_ids")
 require("scripts/globals/zone")
 
+dsp = dsp or {}
+dsp.quests = dsp.quests or {}
+
+dsp.quests.enums =
+{
+    log_ids =
+    {
+        sandoria  = 0, bastok      = 1, windurst = 2,
+        jeuno     = 3, other_areas = 4, outlands = 5,
+        aht_urgan = 6, crystal_war = 7, abyssea  = 8,
+        adoulin   = 9, coalition   = 10
+    }
+
+    var_types =
+    {
+        char_var   = 1
+        local_var  = 2,
+        server_var = 3,
+    }
+}
+
+local check_enum =
+{
+    onTrigger = 1,
+    onTrade = 2,
+    onEventUpdate = 3,
+    onEventFinish = 4,
+    onMobDeath = 5,
+    onZoneIn = 6
+}
+
+local function handleQuestVar(entity, quest, varname, val, caller, get)
+    local ret = {}
+    if not quest then
+        ret.message = " cannot find quest (caller: "..caller..")"
+    else
+        local var, vartype;
+        if quest.vars.main == varname and varname then
+            var = quest.vars.main
+            vartype = dsp.quests.enums.var_types.char_var
+        elseif var = quest.vars.additional[varname] then
+            vartype = var.type
+        end
+
+        if not var then
+            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (logid: "..quest.log_id..")"
+        else
+            if vartype == dsp.quests.enums.var_types.char_var then
+                if get then
+                    ret.val = entity:getVar(varname)
+                else
+                    entity:setVar(varname, val)
+                end
+            elseif vartype == dsp.quests.enums.var_types.local_var then
+                if get then
+                    ret.val = entity:getLocalVar(varname)
+                else
+                    entity:setLocalVar(varname, val)
+                end
+            elseif vartype == dsp.quests.enums.var_types.server_var then
+                if get then
+                    ret.val = GetServerVariable(varname)
+                else
+                    SetServerVariable(varname, val)
+                end
+            end
+        end
+    end
+    return ret
+end
+
+local function error(entity, message)
+    if entity:isPC() then
+        entity:PrintToPlayer(message)
+    end
+    print("[Quest Error] "..entity:getName()..": "..message)
+end
+
+dsp.quests.setVar = function(entity, quest, varname, val, caller)
+    local message = "dsp.quests.setVar "
+    local ret = handleQuestVar(entity, quest, varname, val, caller, false)
+    if ret.message then
+        error(message..ret.message)
+    end
+end
+
+dsp.quests.getVar = function(entity, quest, varname, val, caller)
+    local message = "dsp.quests.getVar "
+    local ret = handleQuestVar(entity, quest, varname, val, caller, true)
+    if ret.message then
+        error(message..ret.message)
+    else
+        return ret.val
+    end
+end
+
+dsp.quests.complete = function(player, quest, reward_set)
+    if quest then
+        if quest.rewards and reward_set then
+            -- todo: check inventory (including stack space), award items, return false if cant complete
+        end
+
+        -- clear main char_var if shouldnt be preserved
+        if not quest.vars.preserve_main_on_complete then
+            player:setVar(quest.vars.main, 0)
+        end
+        for name, var in pairs(quest.vars.additional) do
+            if not var.preserve_on_complete then
+                handleQuestVar(player, quest, name, 0, "dsp.quests.complete ", nil)
+            end
+        end
+    end
+end
+
+local function dsp.quests.check(player, params)
+    local zone = player:getZone()
+    local zoneid = player:getZoneID()
+
+    local cycle = player:getLocalVar("[quests]cycle")
+    local needsCycling = cycle < #questTable
+    local checkType = params.checkType
+
+    local targetName
+    if params.target then
+        targetName = params.target:getName()
+    end
+    if cycle > 0 and not needsCycling then
+        player:setLocalVar("[quests]cycle", 0)
+    end
+
+    for i, quest in pairs(questTable) do
+        local quest = dsp.quests.quests[quest.log_id][quest.name]
+        if quest and cycle < i then
+            local exitLoop
+            local checks =
+            {
+                [check_enum.onTrade] = function(player, params) return quest.npcs[zoneid][targetName].onTrade(player, params.target, params.trade) end,
+                [check_enum.onTrigger] = function(player, params) return quest.npcs[zoneid][targetName].onTrigger(player, params.target) end,
+                [check_enum.onEventUpdate] = function(player, params) return quest.npcs[zoneid][targetName].onEventUpdate(player, params.csid, params.option) end,
+                [check_enum.onEventFinish] = function(player, params) return quest.npcs[zoneid][targetName].onEventFinish(player, params.csid, params.option) end,
+                [check_enum.onZoneIn] = function(player, params) return quest.onZoneIn(player, params.zone) end,
+                [check_enum.onMobDeath] = function(player, params) return quest.mobs[zoneid][targetName].onMobDeath(params.target, player, params.isKiller, params.isWeaponSkillKill) end,
+            }
+            exitLoop = checks[params.checkType](player, params)
+            player:setLocalVar("[quests]cycle", i)
+            if exitLoop then
+                return true
+            end
+        end
+    end
+end
+
+dsp.quests.onTrade = function(player, npc, trade, questTable)
+    local params = {}
+    params.target = npc
+    params.trade = trade
+    params.checkType = check_enum.onTrade
+    params.questTable = questTable
+    return dsp.quests.check(player, params)
+end
+
+dsp.quests.onTrigger = function(player, npc, questTable)
+    local params = {}
+    params.target = npc
+    params.trade = trade
+    params.checkType = check_enum.onTrigger
+    params.questTable = questTable
+    return dsp.quests.check(player, params)
+end
+
+dsp.quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, questTable)
+    local params = {}
+    params.target = mob
+    params.isKiller = isKiller
+    params.isWeaponSkillKill = isWeaponSkillKill
+    params.type = check_enum.onMobDeath
+    params.questTable = questTable
+
+    if not entity:isPC() then
+        print("what the fuck even")
+        return false
+    end
+    return dsp.quests.check(entity, params)
+end
+
 -----------------------------------
 --
 --  QUESTS ID
