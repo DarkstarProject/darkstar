@@ -1,12 +1,8 @@
 require("scripts/globals/quests")
--- require("scripts/quests/common")
-
-dsp = dsp or {}
-dsp.quests = dsp.quests or {}
 
 local this_quest = {}
 local name = "LURE_OF_THE_WILDCAT"
-local logid = quests.enums.log_ids.sandoria
+local logid = dsp.quests.enums.log_ids.sandoria
 local id = 113
 
 this_quest.id = id
@@ -46,7 +42,7 @@ this_quest.vars =
     preserve_main_on_complete = false, -- do we keep main var on quest completion
     additional =
     {
-        ["name"] = { id = 1, type = quests.enums.var_types.local_var, repeatable = false, preserve_on_complete = false },
+        ["name"] = { id = 1, type = dsp.quests.enums.var_types.local_var, repeatable = false, preserve_on_complete = false },
     }
 }
 

@@ -31,43 +31,63 @@ local check_enum =
     onZoneIn = 6
 }
 
-local function handleQuestVar(entity, quest, varname, val, caller, get)
-    local ret = {}
-    if not quest then
-        ret.message = " cannot find quest (caller: "..caller..")"
-    else
-        local var, vartype;
-        if quest.vars.main == varname and varname then
-            var = quest.vars.main
-            vartype = dsp.quests.enums.var_types.char_var
-        elseif var = quest.vars.additional[varname] then
-            vartype = var.type
-        end
+local function validateQuest(entity, quest, varname, val, caller, get)
+    local bad_params = false
+    local prefix = "[Quest Parameter Error] "
 
-        if not var then
-            ret.message = " unable to find "..varname.." for quest: "..quest.name.." (logid: "..quest.log_id..")"
-        else
-            if vartype == dsp.quests.enums.var_types.char_var then
-                if get then
-                    ret.val = entity:getVar(varname)
-                else
-                    entity:setVar(varname, val)
-                end
-            elseif vartype == dsp.quests.enums.var_types.local_var then
-                if get then
-                    ret.val = entity:getLocalVar(varname)
-                else
-                    entity:setLocalVar(varname, val)
-                end
-            elseif vartype == dsp.quests.enums.var_types.server_var then
-                if get then
-                    ret.val = GetServerVariable(varname)
-                else
-                    SetServerVariable(varname, val)
-                end
+    if entity == nil then
+        print(prefix .. "entity cannot be nil")
+        bad_params = true
+    elseif quest == nil then
+        print(prefix .. "quest cannot be nil")
+        bad_params = true
+    elseif varname == nil or varname == '' then
+        print(prefix .. "varname cannot be nil or empty")
+        bad_params = true
+    end
+    -- todo what is caller?
+
+    return bad_params
+end
+
+local function handleQuestVar(entity, quest, varname, val, caller, get)
+    if not validateQuest(entity, quest, varname, val, caller, get) then
+        return nil
+    end
+
+    local ret = {}
+    local var, vartype;
+    if quest.vars.main == varname then
+        var = quest.vars.main
+        vartype = dsp.quests.enums.var_types.char_var
+    elseif var == quest.vars.additional[varname] then
+        vartype = var.type
+    end
+
+    if not var then
+        ret.message = " unable to find "..varname.." for quest: "..quest.name.." (logid: "..quest.log_id..")"
+    else
+        if vartype == dsp.quests.enums.var_types.char_var then
+            if get then
+                ret.val = entity:getVar(varname)
+            else
+                entity:setVar(varname, val)
+            end
+        elseif vartype == dsp.quests.enums.var_types.local_var then
+            if get then
+                ret.val = entity:getLocalVar(varname)
+            else
+                entity:setLocalVar(varname, val)
+            end
+        elseif vartype == dsp.quests.enums.var_types.server_var then
+            if get then
+                ret.val = GetServerVariable(varname)
+            else
+                SetServerVariable(varname, val)
             end
         end
     end
+
     return ret
 end
 
