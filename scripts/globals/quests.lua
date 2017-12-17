@@ -32,36 +32,35 @@ local check_enum =
     onZoneIn = 6
 }
 
-local function validateQuest(entity, quest, varname, val, caller, get)
-    local success = true
+local function validateQuest(entity, quest, varname, val, get)
+    local msg = ""
     local prefix = "[Quest Parameter Error] "
 
     if entity == nil then
-        print(prefix .. "entity cannot be nil")
-        success = false
+        msg = prefix .. "entity cannot be nil"
     elseif quest == nil then
-        print(prefix .. "quest cannot be nil")
-        success = false
+        msg = prefix .. "quest cannot be nil"
     elseif varname == nil or varname == '' then
-        print(prefix .. "varname cannot be nil or empty")
-        success = false
+        msg = prefix .. "varname cannot be nil or empty"
     end
-    -- todo what is caller?
 
-    return success
+    return msg
 end
 
-local function handleQuestVar(entity, quest, varname, val, caller, get)
-    if not validateQuest(entity, quest, varname, val, caller, get) then
-        return nil
+local function handleQuestVar(entity, quest, varname, val, get)
+    local ret = {}
+    local validateMsg = validateQuest(entity, quest, varname, val, get)
+    if validateMsg ~= '' then
+        ret.message = validateMsg
+        return ret
     end
 
-    local ret = {}
     local var, vartype;
     if quest.vars.main == varname then
         var = quest.vars.main
         vartype = dsp.quests.enums.var_types.char_var
-    elseif var == quest.vars.additional[varname] then
+    else
+        var = quest.vars.additional[varname]
         vartype = var.type
     end
 
@@ -99,17 +98,17 @@ local function error(entity, message)
     print("[Quest Error] "..entity:getName()..": "..message)
 end
 
-dsp.quests.setVar = function(entity, quest, varname, val, caller)
+dsp.quests.setVar = function(entity, quest, varname, val)
     local message = "dsp.quests.setVar "
-    local ret = handleQuestVar(entity, quest, varname, val, caller, false)
+    local ret = handleQuestVar(entity, quest, varname, val, false)
     if ret.message then
         error(message..ret.message)
     end
 end
 
-dsp.quests.getVar = function(entity, quest, varname, val, caller)
+dsp.quests.getVar = function(entity, quest, varname, val)
     local message = "dsp.quests.getVar "
-    local ret = handleQuestVar(entity, quest, varname, val, caller, true)
+    local ret = handleQuestVar(entity, quest, varname, val, true)
     if ret.message then
         error(message..ret.message)
     else
