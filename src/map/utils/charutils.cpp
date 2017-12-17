@@ -1548,7 +1548,7 @@ namespace charutils
             if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
             {
                 PChar->m_EquipFlag = 0;
-                luautils::OnItemCheck(PChar, PItem);
+                luautils::OnItemCheck(PChar, PItem, nullptr);
 
                 for (uint8 i = 0; i < 16; ++i)
                 {
@@ -2088,7 +2088,7 @@ namespace charutils
                 {
                     if (PItem->getScriptType() & SCRIPT_EQUIP)
                     {
-                        luautils::OnItemCheck(PChar, PItem);
+                        luautils::OnItemCheck(PChar, PItem, nullptr);
                         PChar->m_EquipFlag |= PItem->getScriptType();
                     }
                     if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
@@ -2245,7 +2245,7 @@ namespace charutils
             {
                 if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
                 {
-                    luautils::OnItemCheck(PChar, PItem, param);
+                    luautils::OnItemCheck(PChar, PItem, nullptr, param);
                 }
             }
         }
