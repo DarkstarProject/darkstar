@@ -33,22 +33,22 @@ local check_enum =
 }
 
 local function validateQuest(entity, quest, varname, val, caller, get)
-    local bad_params = false
+    local success = true
     local prefix = "[Quest Parameter Error] "
 
     if entity == nil then
         print(prefix .. "entity cannot be nil")
-        bad_params = true
+        success = false
     elseif quest == nil then
         print(prefix .. "quest cannot be nil")
-        bad_params = true
+        success = false
     elseif varname == nil or varname == '' then
         print(prefix .. "varname cannot be nil or empty")
-        bad_params = true
+        success = false
     end
     -- todo what is caller?
 
-    return bad_params
+    return success
 end
 
 local function handleQuestVar(entity, quest, varname, val, caller, get)
