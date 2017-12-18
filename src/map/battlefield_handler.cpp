@@ -166,7 +166,7 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
 CBattlefield* CBattlefieldHandler::GetBattlefield(CBaseEntity* PEntity, bool checkRegistered)
 {
     auto entity = dynamic_cast<CBattleEntity*>(PEntity);
-    
+
     if (checkRegistered && entity && entity->objtype == TYPE_PC)
     {
         for (auto& battlefield : m_Battlefields)
@@ -183,6 +183,12 @@ CBattlefield* CBattlefieldHandler::GetBattlefield(CBaseEntity* PEntity, bool che
             return battlefield.second;
     }
     return nullptr;
+}
+
+CBattlefield* CBattlefieldHandler::GetBattlefieldByArea(uint8 area) const
+{
+    const auto it = m_Battlefields.find(area);
+    return it != m_Battlefields.end() ? it->second : nullptr;
 }
 
 CBattlefield* CBattlefieldHandler::GetBattlefieldByInitiator(uint32 charID)
@@ -252,5 +258,32 @@ bool CBattlefieldHandler::IsRegistered(CCharEntity * PChar)
         if (battlefield.second->IsRegistered(PChar))
             return true;
     }
+    return false;
+}
+
+bool CBattlefieldHandler::ReachedMaxCapacity(int battlefieldId) const
+{
+    // area all areas full
+    if (m_Battlefields.size() >= (size_t)m_MaxBattlefields)
+        return true;
+
+    // we have at least one free area and id has been passed so lets look it up
+    if (battlefieldId != -1)
+    {
+        std::string query("SELECT battlefieldNumber FROM bcnm_battlefield WHERE bcnmId = %i;");
+        auto ret = Sql_Query(SqlHandle, query.c_str(), battlefieldId);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                auto area = Sql_GetUIntData(SqlHandle, 0);
+                if (m_Battlefields.find(area) == m_Battlefields.end())
+                    return false; // this area hasnt been loaded in for this battlefield
+            }
+        }
+        // all areas for this battlefield are full
+        return true;
+    }
+    // we have a free battlefield
     return false;
 }

@@ -8529,9 +8529,9 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
 }
 
 /************************************************************************
-*  Function: enterBattlefield()
-*  Purpose : Places an entity into a battlefield they are registered for
-*  Example : player:enterBattlefield()
+*  Function: enterBattlefield(area)
+*  Purpose : Places an entity into a battlefield they are registered for (or tries enter a specific area if not full)
+*  Example : player:enterBattlefield(area)
 *  Notes   : 
 ************************************************************************/
 
@@ -8540,7 +8540,12 @@ inline int32 CLuaBaseEntity::enterBattlefield(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    auto PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity, true);
+    CBattlefield* PBattlefield = nullptr;
+    if (lua_isnil(L, 1) || !lua_isnumber(L, 1))
+        PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefield(m_PBaseEntity, true);
+    else
+        PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->GetBattlefieldByArea((uint8)lua_tointeger(L, 1));
+
     lua_pushboolean(L, PBattlefield ? PBattlefield->InsertEntity(m_PBaseEntity, true) : false);
     return 1;
 }

@@ -48,27 +48,29 @@ function onZoneIn(player,prevZone)
 
     player:delStatusEffect(EFFECT_LIMBUS);
     local inst = belongsInBattlefield(player);
-    
+    local zone = player:getZone()
+
     -- player is returning from disconnect, so add them to matching run in progress
-    if (inst > 0 and not player:isBattlefieldFree(inst)) then
-        player:addPlayerToBattlefield(inst);
-        local x, y, z = getBattlefieldEntrance(player, inst);
-        printf("%s reconnected to battlefield. Moving to x=%f y=%f z=%f",player:getName(),x,y,z);
-        player:setPos(x,y,z);
-        cs = -1;
-    
+    if (inst > 0 and not zone:battlefieldsFull(inst)) then
+        if player:enterBattlefield(inst) then
+            local x, y, z = getBattlefieldEntrance(player, inst);
+            printf("%s reconnected to battlefield. Moving to x=%f y=%f z=%f",player:getName(),x,y,z);
+            player:setPos(x,y,z);
+            cs = -1;
+        end
+
     -- GM can goto players in battlefield, and should not be set to entrance
     elseif (player:getGMLevel() > 0) then
         if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
             player:setPos(580,-1.5,4.452,192);
         end
 
-    -- everyone else should be put at the entrance        
+    -- everyone else should be put at the entrance
     else
         player:setPos(580,-1.5,4.452,192);
-        
+
     end
-    
+
     return cs;
 end;
 

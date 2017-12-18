@@ -166,6 +166,14 @@ inline int32 CLuaZone::getBattlefieldByInitiator(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaZone::battlefieldsFull(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    int battlefieldId = lua_isnil(L, 1) ? -1 : (int)lua_tointeger(L, 1);
+    lua_pushboolean(L, (int)m_pLuaZone->m_BattlefieldHandler && m_pLuaZone->m_BattlefieldHandler->ReachedMaxCapacity(battlefieldId));
+    return 1;
+}
+
 /************************************************************************
 *																		*
 *  Инициализация методов в lua											*
@@ -181,5 +189,6 @@ Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
     LUNAR_DECLARE_METHOD(CLuaZone,getID),
     LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
     LUNAR_DECLARE_METHOD(CLuaZone,getBattlefieldByInitiator),
+    LUNAR_DECLARE_METHOD(CLuaZone,battlefieldsFull),
     {nullptr,nullptr}
 };
