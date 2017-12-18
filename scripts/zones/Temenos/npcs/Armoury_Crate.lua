@@ -948,7 +948,7 @@ function onTrigger(player,npc)
                 SpawnMob(MimicList[randmimic]):setPos(X,Y,Z);
                 GetMobByID(MimicList[randmimic]):updateClaim(player);
             else
-                battlefield:setLocaVar("loot", 1)
+                battlefield:setLocalVar("loot", 1)
                 battlefield:spawnLoot()
                 g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
             end
@@ -959,7 +959,7 @@ function onTrigger(player,npc)
                 end
             end
         else
-            battlefield:setLocaVar("loot", 1)
+            battlefield:setLocalVar("loot", 1)
             battlefield:spawnLoot()
             g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
         end

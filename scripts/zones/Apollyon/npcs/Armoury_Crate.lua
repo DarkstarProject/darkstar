@@ -731,7 +731,7 @@ function onTrigger(player, npc)
     if (CofferType == cTIME) then
         g_Battlefield.ExtendTimeLimit(battlefield, addtime)
     elseif (CofferType == cITEM) then
-        battlefield:setLocaVar("loot", 1)
+        battlefield:setLocalVar("loot", 1)
         battlefield:spawnLoot()
         g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
     elseif (CofferType == cRESTORE) then
