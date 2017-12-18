@@ -170,7 +170,7 @@ inline int32 CLuaZone::battlefieldsFull(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
     int battlefieldId = lua_isnil(L, 1) ? -1 : (int)lua_tointeger(L, 1);
-    lua_pushboolean(L, (int)m_pLuaZone->m_BattlefieldHandler && m_pLuaZone->m_BattlefieldHandler->ReachedMaxCapacity(battlefieldId));
+    lua_pushboolean(L, (int)(m_pLuaZone->m_BattlefieldHandler && m_pLuaZone->m_BattlefieldHandler->ReachedMaxCapacity(battlefieldId)));
     return 1;
 }
 
