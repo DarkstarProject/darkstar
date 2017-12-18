@@ -2,12 +2,12 @@
 -- Area: Boneyard Gully
 -- NPC:  Armoury Crate
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
+package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Balgas_Dais/TextIDs");
+require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
 -----------------------------------
 local loot =
