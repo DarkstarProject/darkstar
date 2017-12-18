@@ -324,8 +324,8 @@ int32 main(int32 argc, int8 **argv)
 void search_config_default()
 {
     search_config.mysql_host = "127.0.0.1";
-    search_config.mysql_login = "root";
-    search_config.mysql_password = "root";
+    search_config.mysql_login = "darkstar";
+    search_config.mysql_password = "AlexMark";
     search_config.mysql_database = "dspdb";
     search_config.mysql_port = 3306;
     search_config.expire_auctions = 1;

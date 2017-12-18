@@ -31,7 +31,7 @@
 
 #include "spell.h"
 #include "entities/mobentity.h"
-#include <optional>
+#include <experimental/optional>
 
 class CMobSpellContainer
 {
@@ -41,13 +41,13 @@ public:
 
 
   // These methods return a random spell
-  std::optional<SpellID> GetAggroSpell(); // -ga spell, dia, bio, paralyze, silence, blind
-  std::optional<SpellID> GetGaSpell(); // AoE damage spells, stonega, diaga
-  std::optional<SpellID> GetDamageSpell(); // Single target damage spells, stone
-  std::optional<SpellID> GetBuffSpell(); // stoneskin, utsusemi, blink
-  std::optional<SpellID> GetHealSpell(); // cures, regen, armys paeon
-  std::optional<SpellID> GetNaSpell(); // silena, blindna etc
-  std::optional<SpellID> GetSpell(); // return a random spell
+  std::experimental::optional<SpellID> GetAggroSpell(); // -ga spell, dia, bio, paralyze, silence, blind
+  std::experimental::optional<SpellID> GetGaSpell(); // AoE damage spells, stonega, diaga
+  std::experimental::optional<SpellID> GetDamageSpell(); // Single target damage spells, stone
+  std::experimental::optional<SpellID> GetBuffSpell(); // stoneskin, utsusemi, blink
+  std::experimental::optional<SpellID> GetHealSpell(); // cures, regen, armys paeon
+  std::experimental::optional<SpellID> GetNaSpell(); // silena, blindna etc
+  std::experimental::optional<SpellID> GetSpell(); // return a random spell
 
   bool HasSpells() const;
   bool HasMPSpells() const;
