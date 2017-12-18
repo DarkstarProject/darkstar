@@ -97,7 +97,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
         }
         else
         {
-            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, param, 0, error == -1 ? 0 : error));
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget ? PTarget : m_PEntity, param, 0, error == -1 ? 0 : error));
         }
     }
 
