@@ -14,7 +14,7 @@ require("scripts/globals/limbus");
 
 local loot =
 {
-    -- 130
+    -- northern tower floor 1
     [130] =
     {
         {
@@ -36,7 +36,7 @@ local loot =
             {itemid = 2716, droprate = 98},
         },
     },
-    -- 131
+    -- northern tower floor 2
     [131] =
     {
         {
@@ -61,7 +61,7 @@ local loot =
             {itemid = 1956, droprate = 167},
         },
     },
-    -- 132
+    -- northern tower floor 3
     [132] =
     {
         {
@@ -89,7 +89,7 @@ local loot =
             {itemid = 2714, droprate = 108},
         },
     },
-    -- 133
+    -- northern tower floor 4
     [133] =
     {
         {
@@ -114,7 +114,7 @@ local loot =
             {itemid = 2658, droprate = 261},
         },
     },
-    -- 134
+    -- northern tower floor 5
     [134] =
     {
         {
@@ -142,7 +142,7 @@ local loot =
             {itemid = 2714, droprate = 110},
         },
     },
-    -- 135
+    -- northern tower floor 6
     [135] =
     {
         {
@@ -171,7 +171,7 @@ local loot =
             {itemid = 2716, droprate = 105},
         },
     },
-    -- 136
+    -- northern tower floor 7
     [136] =
     {
         {
@@ -211,7 +211,7 @@ local loot =
             {itemid = 1904, droprate = 1000},
         },
     },
-    -- 137
+    -- western tower floor 1
     [137] =
     {
         {
@@ -241,7 +241,7 @@ local loot =
             {itemid = 2656, droprate = 172},
         },
     },
-    -- 138
+    -- western tower floor 2
     [138] =
     {
         {
@@ -272,7 +272,7 @@ local loot =
             {itemid = 2660, droprate = 143},
         },
     },
-    -- 139
+    -- western tower floor 3
     [139] =
     {
         {
@@ -307,63 +307,7 @@ local loot =
             {itemid = 2716, droprate = 350},
         },
     },
-    -- 14
-    [14] =
-    {
-        {
-            {itemid = 939, droprate = 50},
-            {itemid = 13254, droprate = 95},
-            {itemid = 13253, droprate = 95},
-            {itemid = 13255, droprate = 95},
-            {itemid = 13252, droprate = 95},
-            {itemid = 13256, droprate = 95},
-            {itemid = 13259, droprate = 95},
-            {itemid = 13258, droprate = 95},
-            {itemid = 13260, droprate = 95},
-            {itemid = 13257, droprate = 95},
-        },
-        {
-            {itemid = 13292, droprate = 64},
-            {itemid = 13287, droprate = 65},
-            {itemid = 13300, droprate = 65},
-            {itemid = 13298, droprate = 65},
-            {itemid = 13293, droprate = 65},
-            {itemid = 13289, droprate = 65},
-            {itemid = 13286, droprate = 64},
-            {itemid = 13294, droprate = 65},
-            {itemid = 13296, droprate = 64},
-            {itemid = 13299, droprate = 65},
-            {itemid = 13290, droprate = 65},
-            {itemid = 13295, droprate = 65},
-            {itemid = 13288, droprate = 64},
-            {itemid = 13291, droprate = 65},
-            {itemid = 13297, droprate = 64},
-            {itemid = 13447, droprate = 30},
-        },
-        {
-            {itemid = 939, droprate = 166},
-            {itemid = 4902, droprate = 10},
-            {itemid = 4814, droprate = 176},
-            {itemid = 4719, droprate = 176},
-            {itemid = 4172, droprate = 60},
-            {itemid = 4174, droprate = 60},
-            {itemid = 4621, droprate = 176},
-        },
-        {
-            {itemid = 895, droprate = 59},
-            {itemid = 700, droprate = 59},
-            {itemid = 653, droprate = 200},
-            {itemid = 1116, droprate = 59},
-            {itemid = 866, droprate = 90},
-            {itemid = 1122, droprate = 90},
-            {itemid = 703, droprate = 176},
-            {itemid = 654, droprate = 59},
-            {itemid = 749, droprate = 59},
-            {itemid = 859, droprate = 59},
-            {itemid = 746, droprate = 90},
-        },
-    },
-    -- 140
+    -- western tower floor 4
     [140] =
     {
         {
@@ -392,7 +336,7 @@ local loot =
             {itemid = 2660, droprate = 33},
         },
     },
-    -- 141
+    -- western tower floor 5
     [141] =
     {
         {
@@ -428,7 +372,7 @@ local loot =
             {itemid = 2656, droprate = 294},
         },
     },
-    -- 142
+    -- western tower floor 6
     [142] =
     {
         {
@@ -463,7 +407,7 @@ local loot =
             {itemid = 1952, droprate = 200},
         },
     },
-    -- 143
+    -- western tower floor 7
     [143] =
     {
         {
@@ -500,7 +444,7 @@ local loot =
             {itemid = 1906, droprate = 1000},
         },
     },
-    -- 144
+    -- eastern tower floor 1
     [144] =
     {
         {
@@ -533,7 +477,7 @@ local loot =
             {itemid = 2656, droprate = 210},
         },
     },
-    -- 145
+    -- eastern tower floor 2
     [145] =
     {
         {
@@ -570,7 +514,7 @@ local loot =
             {itemid = 1946, droprate = 133},
         },
     },
-    -- 146
+    -- eastern tower floor 3
     [146] =
     {
         {
@@ -609,7 +553,7 @@ local loot =
             {itemid = 2660, droprate = 292},
         },
     },
-    -- 147
+    -- eastern tower floor 4
     [147] =
     {
         {
@@ -644,7 +588,7 @@ local loot =
             {itemid = 2658, droprate = 83},
         },
     },
-    -- 148
+    -- eastern tower floor 5
     [148] =
     {
         {
@@ -683,7 +627,7 @@ local loot =
             {itemid = 2714, droprate = 458},
         },
     },
-    -- 149
+    -- eastern tower floor 6
     [149] =
     {
         {
@@ -721,7 +665,7 @@ local loot =
             {itemid = 1946, droprate = 333},
         },
     },
-    -- 150
+    -- eastern tower floor 7
     [150] =
     {
         {
@@ -762,7 +706,7 @@ local loot =
             {itemid = 1905, droprate = 1000},
         },
     },
-    -- 151
+    -- central temenos floor 1
     [151] =
     {
         {
@@ -798,7 +742,7 @@ local loot =
             {itemid = 1986, droprate = 1000},
         },
     },
-    -- 152
+    -- central temenos floor 2
     [152] =
     {
         {
@@ -835,7 +779,7 @@ local loot =
             {itemid = 1908, droprate = 1000},
         },
     },
-    -- 153
+    -- central temenos floor 3
     [153] =
     {
         {
@@ -873,7 +817,7 @@ local loot =
             {itemid = 1907, droprate = 1000},
         },
     },
-    -- 154
+    -- central temenos floor 4
     [154] =
     {
         {
@@ -914,7 +858,7 @@ local loot =
             {itemid = 1875, droprate = 100},
         },
     },
-    -- 155
+    -- central temenos floor 5
     [155] =
     {
         {

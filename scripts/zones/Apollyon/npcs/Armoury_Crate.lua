@@ -13,6 +13,7 @@ require("scripts/globals/limbus");
 
 local loot =
 {
+    --  SE_Apollyon floor 1
     [110] =
     {
         {
@@ -41,7 +42,7 @@ local loot =
             {itemid = 2715, droprate = 407},
         },
     },
-    -- 111
+    -- SE_Apollyon floor 2
     [111] =
     {
         {
@@ -71,7 +72,7 @@ local loot =
             {itemid = 2715, droprate = 120},
         },
     },
-    -- 112
+    -- SE_Apollyon floor 3
     [112] =
     {
         {
@@ -103,7 +104,7 @@ local loot =
             {itemid = 1931, droprate = 200},
         },
     },
-    -- 113
+    -- SE_Apollyon floor 4
     [113] =
     {
         {
@@ -140,7 +141,7 @@ local loot =
             {itemid = 1875, droprate = 100},
         },
     },
-    -- 114
+    -- NE_Apollyon floor 1
     [114] =
     {
         {
@@ -170,7 +171,7 @@ local loot =
             {itemid = 1947, droprate = 18},
         },
     },
-    -- 115
+    -- NE_Apollyon floor 2
     [115] =
     {
         {
@@ -199,7 +200,7 @@ local loot =
             {itemid = 2657, droprate = 477},
         },
     },
-    -- 116
+    -- NE_Apollyon floor 3
     [116] =
     {
         {
@@ -238,7 +239,7 @@ local loot =
             {itemid = 2004, droprate = 20},
         },
     },
-    -- 117
+    -- NE_Apollyon floor 4
     [117] =
     {
         {
@@ -270,7 +271,7 @@ local loot =
             {itemid = 2659, droprate = 326},
         },
     },
-    -- 118
+    -- NE_Apollyon floor 5
     [118] =
     {
         {
@@ -302,7 +303,7 @@ local loot =
             {itemid = 1910, droprate = 1000},
         },
     },
-    -- 119
+    -- SW_Apollyon floor 1
     [119] =
     {
         {
@@ -330,7 +331,7 @@ local loot =
             {itemid = 1935, droprate = 107},
         },
     },
-    -- 120
+    -- SW_Apollyon floor 2
     [120] =
     {
         {
@@ -357,7 +358,7 @@ local loot =
             {itemid = 1957, droprate = 110},
         },
     },
-    -- 121
+    -- SW_Apollyon floor 3
     [121] =
     {
         {
@@ -396,7 +397,7 @@ local loot =
             {itemid = 821, droprate = 63},
         },
     },
-    -- 122
+    -- SW_Apollyon floor 4
     [122] =
     {
         {
@@ -433,7 +434,7 @@ local loot =
             {itemid = 1875, droprate = 100},
         },
     },
-    -- 123
+    -- NW_Apollyon floor 1
     [123] =
     {
         {
@@ -453,7 +454,7 @@ local loot =
             {itemid = 1935, droprate = 50},
         },
     },
-    -- 124
+    -- NW_Apollyon floor 2
     [124] =
     {
         {
@@ -472,7 +473,7 @@ local loot =
             {itemid = 1935, droprate = 110},
         },
     },
-    -- 125
+    -- NW_Apollyon floor 3
     [125] =
     {
         {
@@ -509,7 +510,7 @@ local loot =
             {itemid = 1883, droprate = 50},
         },
     },
-    -- 126
+    -- NW_Apollyon floor 4
     [126] =
     {
         {
@@ -555,7 +556,7 @@ local loot =
             {itemid = 1935, droprate = 48},
         },
     },
-    -- 127
+    -- NW_Apollyon floor 5
     [127] =
     {
         {
@@ -607,7 +608,7 @@ local loot =
             {itemid = 1875, droprate = 100},
         },
     },
-    -- 128
+    -- omega
     [128] =
     {
         {
@@ -642,7 +643,7 @@ local loot =
             {itemid = 1875, droprate = 100},
         },
     },
-    -- 129
+    -- pod
     [129] =
     {
         {
