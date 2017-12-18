@@ -12,6 +12,939 @@ require("scripts/globals/limbus");
 
 -----------------------------------
 
+local loot =
+{
+    -- 130
+    [130] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1954, droprate = 159},
+            {itemid = 1940, droprate = 146},
+            {itemid = 1932, droprate = 85},
+            {itemid = 1956, droprate = 171},
+            {itemid = 1934, droprate = 110},
+            {itemid = 2658, droprate = 220},
+            {itemid = 2716, droprate = 98},
+        },
+    },
+    -- 131
+    [131] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1932, droprate = 333},
+            {itemid = 1954, droprate = 200},
+            {itemid = 1950, droprate = 100},
+            {itemid = 1940, droprate = 90},
+            {itemid = 1942, droprate = 70},
+            {itemid = 1934, droprate = 90},
+            {itemid = 1936, droprate = 100},
+            {itemid = 1958, droprate = 90},
+            {itemid = 2656, droprate = 67},
+            {itemid = 1956, droprate = 167},
+        },
+    },
+    -- 132
+    [132] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1956, droprate = 27},
+            {itemid = 1932, droprate = 324},
+            {itemid = 1950, droprate = 80},
+            {itemid = 1934, droprate = 189},
+            {itemid = 1930, droprate = 50},
+        },
+        {
+            {itemid = 1940, droprate = 27},
+            {itemid = 1936, droprate = 81},
+            {itemid = 1944, droprate = 80},
+            {itemid = 1958, droprate = 81},
+            {itemid = 2658, droprate = 270},
+            {itemid = 2714, droprate = 108},
+        },
+    },
+    -- 133
+    [133] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1942, droprate = 90},
+            {itemid = 1934, droprate = 435},
+            {itemid = 1956, droprate = 80},
+            {itemid = 1940, droprate = 174},
+            {itemid = 1958, droprate = 87},
+            {itemid = 1954, droprate = 90},
+            {itemid = 1936, droprate = 87},
+            {itemid = 1930, droprate = 43},
+            {itemid = 2656, droprate = 27},
+            {itemid = 2658, droprate = 261},
+        },
+    },
+    -- 134
+    [134] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1954, droprate = 67},
+            {itemid = 1940, droprate = 353},
+            {itemid = 1936, droprate = 87},
+            {itemid = 1956, droprate = 110},
+            {itemid = 1958, droprate = 87},
+            {itemid = 1942, droprate = 50},
+            {itemid = 1950, droprate = 60},
+            {itemid = 1932, droprate = 59},
+            {itemid = 2716, droprate = 100},
+            {itemid = 2714, droprate = 110},
+        },
+    },
+    -- 135
+    [135] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1954, droprate = 263},
+            {itemid = 1932, droprate = 59},
+            {itemid = 1942, droprate = 53},
+            {itemid = 1934, droprate = 60},
+            {itemid = 1956, droprate = 526},
+        },
+        {
+            {itemid = 1930, droprate = 60},
+            {itemid = 1936, droprate = 53},
+            {itemid = 1950, droprate = 158},
+            {itemid = 2716, droprate = 105},
+        },
+    },
+    -- 136
+    [136] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1956, droprate = 240},
+            {itemid = 1932, droprate = 120},
+            {itemid = 1940, droprate = 200},
+        },
+        {
+            {itemid = 1934, droprate = 40},
+            {itemid = 1954, droprate = 120},
+            {itemid = 2658, droprate = 200},
+            {itemid = 2716, droprate = 80},
+        },
+        {
+            {itemid = 1875, droprate = 100},
+            {itemid = 2127, droprate = 55},
+        },
+        {
+            {itemid = 1904, droprate = 1000},
+        },
+    },
+    -- 137
+    [137] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1948, droprate = 172},
+            {itemid = 1938, droprate = 138},
+            {itemid = 1952, droprate = 138},
+            {itemid = 1958, droprate = 207},
+            {itemid = 1930, droprate = 241},
+            {itemid = 2656, droprate = 172},
+        },
+    },
+    -- 138
+    [138] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1948, droprate = 179},
+            {itemid = 1938, droprate = 571},
+            {itemid = 1944, droprate = 71},
+            {itemid = 1952, droprate = 179},
+        },
+        {
+            {itemid = 1946, droprate = 120},
+            {itemid = 1934, droprate = 71},
+            {itemid = 1930, droprate = 143},
+            {itemid = 2660, droprate = 143},
+        },
+    },
+    -- 139
+    [139] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1948, droprate = 536},
+            {itemid = 1952, droprate = 107},
+            {itemid = 1938, droprate = 60},
+            {itemid = 1934, droprate = 110},
+            {itemid = 1930, droprate = 80},
+            {itemid = 2660, droprate = 90},
+        },
+        {
+            {itemid = 1946, droprate = 71},
+            {itemid = 1944, droprate = 103},
+            {itemid = 1958, droprate = 160},
+            {itemid = 1954, droprate = 36},
+            {itemid = 2656, droprate = 250},
+            {itemid = 2716, droprate = 350},
+        },
+    },
+    -- 14
+    [14] =
+    {
+        {
+            {itemid = 939, droprate = 50},
+            {itemid = 13254, droprate = 95},
+            {itemid = 13253, droprate = 95},
+            {itemid = 13255, droprate = 95},
+            {itemid = 13252, droprate = 95},
+            {itemid = 13256, droprate = 95},
+            {itemid = 13259, droprate = 95},
+            {itemid = 13258, droprate = 95},
+            {itemid = 13260, droprate = 95},
+            {itemid = 13257, droprate = 95},
+        },
+        {
+            {itemid = 13292, droprate = 64},
+            {itemid = 13287, droprate = 65},
+            {itemid = 13300, droprate = 65},
+            {itemid = 13298, droprate = 65},
+            {itemid = 13293, droprate = 65},
+            {itemid = 13289, droprate = 65},
+            {itemid = 13286, droprate = 64},
+            {itemid = 13294, droprate = 65},
+            {itemid = 13296, droprate = 64},
+            {itemid = 13299, droprate = 65},
+            {itemid = 13290, droprate = 65},
+            {itemid = 13295, droprate = 65},
+            {itemid = 13288, droprate = 64},
+            {itemid = 13291, droprate = 65},
+            {itemid = 13297, droprate = 64},
+            {itemid = 13447, droprate = 30},
+        },
+        {
+            {itemid = 939, droprate = 166},
+            {itemid = 4902, droprate = 10},
+            {itemid = 4814, droprate = 176},
+            {itemid = 4719, droprate = 176},
+            {itemid = 4172, droprate = 60},
+            {itemid = 4174, droprate = 60},
+            {itemid = 4621, droprate = 176},
+        },
+        {
+            {itemid = 895, droprate = 59},
+            {itemid = 700, droprate = 59},
+            {itemid = 653, droprate = 200},
+            {itemid = 1116, droprate = 59},
+            {itemid = 866, droprate = 90},
+            {itemid = 1122, droprate = 90},
+            {itemid = 703, droprate = 176},
+            {itemid = 654, droprate = 59},
+            {itemid = 749, droprate = 59},
+            {itemid = 859, droprate = 59},
+            {itemid = 746, droprate = 90},
+        },
+    },
+    -- 140
+    [140] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1952, droprate = 533},
+            {itemid = 1946, droprate = 90},
+            {itemid = 1938, droprate = 133},
+            {itemid = 1932, droprate = 90},
+        },
+        {
+            {itemid = 1958, droprate = 10},
+            {itemid = 1954, droprate = 133},
+            {itemid = 1944, droprate = 133},
+            {itemid = 1930, droprate = 133},
+            {itemid = 2660, droprate = 33},
+        },
+    },
+    -- 141
+    [141] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1954, droprate = 59},
+            {itemid = 1930, droprate = 294},
+            {itemid = 1946, droprate = 59},
+            {itemid = 1934, droprate = 78},
+            {itemid = 2716, droprate = 59},
+        },
+        {
+            {itemid = 1958, droprate = 176},
+            {itemid = 1938, droprate = 59},
+            {itemid = 1948, droprate = 25},
+            {itemid = 1932, droprate = 118},
+            {itemid = 2656, droprate = 294},
+        },
+    },
+    -- 142
+    [142] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1954, droprate = 200},
+            {itemid = 1958, droprate = 400},
+            {itemid = 1948, droprate = 100},
+            {itemid = 1934, droprate = 150},
+        },
+        {
+            {itemid = 1932, droprate = 50},
+            {itemid = 1930, droprate = 60},
+            {itemid = 1938, droprate = 200},
+            {itemid = 1944, droprate = 60},
+            {itemid = 1952, droprate = 200},
+        },
+    },
+    -- 143
+    [143] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1948, droprate = 36},
+            {itemid = 1952, droprate = 143},
+            {itemid = 1930, droprate = 143},
+            {itemid = 1958, droprate = 214},
+            {itemid = 1938, droprate = 71},
+            {itemid = 2656, droprate = 321},
+        },
+        {
+            {itemid = 1875, droprate = 100},
+            {itemid = 2127, droprate = 55},
+        },
+        {
+            {itemid = 1906, droprate = 1000},
+        },
+    },
+    -- 144
+    [144] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1944, droprate = 65},
+            {itemid = 1936, droprate = 97},
+            {itemid = 1946, droprate = 40},
+            {itemid = 1942, droprate = 95},
+            {itemid = 2660, droprate = 194},
+            {itemid = 2714, droprate = 32},
+            {itemid = 1950, droprate = 161},
+            {itemid = 2716, droprate = 190},
+            {itemid = 2656, droprate = 210},
+        },
+    },
+    -- 145
+    [145] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1936, droprate = 367},
+            {itemid = 1952, droprate = 70},
+            {itemid = 1950, droprate = 40},
+            {itemid = 1942, droprate = 333},
+            {itemid = 1958, droprate = 20},
+        },
+        {
+            {itemid = 1956, droprate = 106},
+            {itemid = 1938, droprate = 33},
+            {itemid = 1944, droprate = 76},
+            {itemid = 1948, droprate = 95},
+            {itemid = 2658, droprate = 67},
+            {itemid = 1946, droprate = 133},
+        },
+    },
+    -- 146
+    [146] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1942, droprate = 625},
+            {itemid = 1944, droprate = 102},
+            {itemid = 1950, droprate = 42},
+            {itemid = 1952, droprate = 83},
+            {itemid = 1946, droprate = 50},
+        },
+        {
+            {itemid = 1940, droprate = 83},
+            {itemid = 1936, droprate = 70},
+            {itemid = 1938, droprate = 42},
+            {itemid = 1948, droprate = 42},
+            {itemid = 2660, droprate = 292},
+        },
+    },
+    -- 147
+    [147] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1950, droprate = 417},
+            {itemid = 1956, droprate = 75},
+            {itemid = 1944, droprate = 208},
+            {itemid = 1940, droprate = 167},
+        },
+        {
+            {itemid = 1946, droprate = 62},
+            {itemid = 1936, droprate = 69},
+            {itemid = 2660, droprate = 208},
+            {itemid = 1952, droprate = 42},
+            {itemid = 2658, droprate = 83},
+        },
+    },
+    -- 148
+    [148] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1944, droprate = 208},
+            {itemid = 1938, droprate = 42},
+            {itemid = 1946, droprate = 36},
+            {itemid = 1940, droprate = 83},
+            {itemid = 1942, droprate = 20},
+        },
+        {
+            {itemid = 1952, droprate = 94},
+            {itemid = 1956, droprate = 42},
+            {itemid = 1936, droprate = 49},
+            {itemid = 1950, droprate = 167},
+            {itemid = 2714, droprate = 458},
+        },
+    },
+    -- 149
+    [149] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1942, droprate = 68},
+            {itemid = 1948, droprate = 74},
+            {itemid = 1936, droprate = 259},
+            {itemid = 1940, droprate = 74},
+            {itemid = 1956, droprate = 74},
+            {itemid = 1950, droprate = 62},
+        },
+        {
+            {itemid = 2656, droprate = 150},
+            {itemid = 1938, droprate = 76},
+            {itemid = 1952, droprate = 53},
+            {itemid = 2658, droprate = 111},
+            {itemid = 2714, droprate = 370},
+            {itemid = 1946, droprate = 333},
+        },
+    },
+    -- 150
+    [150] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1942, droprate = 38},
+            {itemid = 1950, droprate = 67},
+            {itemid = 1944, droprate = 100},
+            {itemid = 1936, droprate = 233},
+            {itemid = 1946, droprate = 80},
+            {itemid = 2660, droprate = 333},
+            {itemid = 2714, droprate = 67},
+        },
+        {
+            {itemid = 1875, droprate = 100},
+            {itemid = 2127, droprate = 55},
+        },
+        {
+            {itemid = 1905, droprate = 1000},
+        },
+    },
+    -- 151
+    [151] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1930, droprate = 265},
+            {itemid = 1938, droprate = 118},
+            {itemid = 1948, droprate = 147},
+            {itemid = 1958, droprate = 147},
+            {itemid = 1952, droprate = 118},
+            {itemid = 2656, droprate = 235},
+        },
+        {
+            {itemid = 1986, droprate = 1000},
+        },
+    },
+    -- 152
+    [152] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1944, droprate = 250},
+            {itemid = 1936, droprate = 94},
+            {itemid = 1950, droprate = 63},
+            {itemid = 1942, droprate = 125},
+            {itemid = 1946, droprate = 63},
+            {itemid = 2660, droprate = 281},
+            {itemid = 2714, droprate = 125},
+        },
+        {
+            {itemid = 1908, droprate = 1000},
+        },
+    },
+    -- 153
+    [153] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1934, droprate = 53},
+            {itemid = 1940, droprate = 132},
+            {itemid = 1954, droprate = 105},
+            {itemid = 1932, droprate = 211},
+            {itemid = 1956, droprate = 211},
+            {itemid = 1930, droprate = 100},
+            {itemid = 2658, droprate = 211},
+            {itemid = 2716, droprate = 105},
+        },
+        {
+            {itemid = 1907, droprate = 1000},
+        },
+    },
+    -- 154
+    [154] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1920, droprate = 659},
+            {itemid = 1924, droprate = 394},
+            {itemid = 1923, droprate = 388},
+            {itemid = 1922, droprate = 404},
+        },
+        {
+            {itemid = 1924, droprate = 394},
+            {itemid = 1922, droprate = 402},
+            {itemid = 1920, droprate = 659},
+            {itemid = 1923, droprate = 383},
+        },
+        {
+            {itemid = 1921, droprate = 265},
+            {itemid = 1875, droprate = 100},
+        },
+    },
+    -- 155
+    [155] =
+    {
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1875, droprate = 1000},
+        },
+        {
+            {itemid = 1934, droprate = 200},
+            {itemid = 1930, droprate = 200},
+            {itemid = 1958, droprate = 200},
+            {itemid = 2658, droprate = 400},
+            {itemid = 1940, droprate = 200},
+        },
+    },
+}
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -24,6 +957,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    local battlefield = player:getBattlefield()
+    if not battlefield then
+        printf("fuck you "..player:getName())
+        return
+    end
     local  CofferID = npc:getID();
     local  CofferType=0;
     local  lootID=0;
@@ -55,7 +993,7 @@ function onTrigger(player,npc)
     local coffer = CofferID-16928768;
 
     if (CofferType == cTIME) then
-        player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
+        g_Battlefield.ExtendTimeLimit(battlefield, addtime)
     elseif (CofferType == cITEM) then
         if (InstanceRegion == Central_Temenos_4th_Floor and coffer~=79) then
             local randmimic = math.random(1,24)
@@ -66,8 +1004,9 @@ function onTrigger(player,npc)
                 SpawnMob(MimicList[randmimic]):setPos(X,Y,Z);
                 GetMobByID(MimicList[randmimic]):updateClaim(player);
             else
-                player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
-                player:getBCNMloot();
+                battlefield:setLocaVar("loot", 1)
+                battlefield:spawnLoot()
+                g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
             end
             -- despawn les coffer du meme groupe
             for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
@@ -76,11 +1015,12 @@ function onTrigger(player,npc)
                 end
             end
         else
-            player:BCNMSetLoot(lootID, InstanceRegion, CofferID);
-            player:getBCNMloot();
+            battlefield:setLocaVar("loot", 1)
+            battlefield:spawnLoot()
+            g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
         end
     elseif (CofferType == cRESTORE) then
-        player:RestoreAndHealOnBattlefield(InstanceRegion);
+        g_Battlefield.HealPlayers(battlefield)
     elseif (CofferType == cMIMIC) then
         if (coffer == 284) then
             GetMobByID(16928844):setSpawn(X,Y,Z);

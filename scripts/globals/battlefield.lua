@@ -1,3 +1,5 @@
+require("scripts/globals/msg")
+
 local MaxAreas =
 {
     -- temenos
@@ -90,7 +92,6 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
             break
         end
     end
-    print("fuck")
     g_Battlefield.HandleWipe(battlefield, players)
 
     -- if we cant send anymore time prompts theyre out of time
@@ -127,7 +128,7 @@ function g_Battlefield.SendTimePrompts(battlefield, players)
 
     if message ~= 0 then
         for i, player in pairs(players) do
-            player:messageBasic(202, remainingTime)
+            player:messageBasic(msgBasic.TIME_REMAINING, remainingTime)
         end
         battlefield:setLastTimeUpdate(message)
     end
@@ -215,5 +216,18 @@ function g_Battlefield.ExtendTimeLimit(battlefield, minutes, message, param, pla
         for _, player in pairs(players) do
             player:messageBasic(message, param or minutes)
         end
+    end
+end
+
+function g_Battlefield.HealPlayers(battlefield, players)
+    players = players or battlefield:getPlayers()
+    for _, player in pairs(players) do
+        local recoverHP = player:getMaxHP() - player:getHP()
+        local recoverMP = player:getMaxMP() - player:getMP()
+        player:addHP(recoverHP)
+        player:addMP(recoverMP)
+        player:resetRecasts()
+        player:messageBasic(msgBasic.RECOVERS_HP_AND_MP, recoverHP, recoverMP)
+        player:messageBasic(msgBasic.ALL_ABILITIES_RECHARGED)
     end
 end

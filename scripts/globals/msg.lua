@@ -230,7 +230,10 @@ msgBasic =
     STATUS_WEARS_OFF        = 206,  -- ${target}'s ${status} effect wears off.
     ABOUT_TO_WEAR_OFF       = 251,  -- The effect of ${status} is about to wear off.
     ALL_ABILITIES_RECHARGED = 361,  -- All of ${target}'s abilities are recharged.
-    
+
+    -- Battlefield
+    TIME_REMAINING         = 202,
+
     -- Charm
     CANNOT_CHARM           = 210, -- <actor> cannot charm <target>!
     VERY_DIFFICULT_CHARM   = 211, -- It would be very difficult for <actor> to charm <target>.
@@ -258,12 +261,12 @@ msgBasic =
     -- DNC
     NO_FINISHINGMOVES      = 524, -- You have not earned enough finishing moves to perform that action.
     SPECTRAL_JIG           = 532, -- <user> uses <ability>. <target> receives the effect of Sneak and Invisible.
-    
+
     -- Fields / Grounds of Valor
     FOV_DEFEATED_TARGET     = 558,  -- You defeated a designated target.${lb}(Progress: ${number}/${number2})
     FOV_COMPLETED_REGIME    = 559,  -- You have successfully completed the training regime.
     FOV_OBTAINS_GIL         = 565,  -- ${target} obtains ${gil}.
     FOV_OBTAINS_TABS        = 566,  -- ${target} obtains ${number} tab.${lb}(Total: ${number})
     FOV_REGIME_BEGINS_ANEW  = 643,  -- Your current training regime will begin anew!
- 
+
 };
