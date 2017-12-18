@@ -87,7 +87,7 @@ local items = {
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    unionRepresentativeTrade(player, npc, trade, 0x2729, 8);
+    unionRepresentativeTrade(player, npc, trade, 10025, 8);
 end;
 
 -----------------------------------
@@ -95,7 +95,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    unionRepresentativeTrigger(player, 8, 0x2728, "guild_cooking", keyitems);
+    unionRepresentativeTrigger(player, 8, 10024, "guild_cooking", keyitems);
 end;
 
 -----------------------------------
@@ -105,7 +105,7 @@ end;
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x2728) then
+    if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);
     end
 end;
@@ -117,9 +117,9 @@ end;
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x2728) then
+    if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);
-    elseif (csid == 0x2729) then
+    elseif (csid == 10025) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

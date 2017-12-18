@@ -47,7 +47,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-    player:startEvent(0x2710);
+    player:startEvent(10000);
 end;
 
 -----------------------------------
@@ -66,7 +66,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x2710) then
+    if (csid == 10000) then
         player:setPos(0,0,0,0,226);
     end
 end;

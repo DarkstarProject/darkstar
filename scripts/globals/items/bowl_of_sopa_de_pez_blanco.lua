@@ -10,11 +10,7 @@
 -- Ranged ACC % 7
 -- Ranged ACC Cap 10
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,19 +21,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,4601);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_HP, 12);
     target:addMod(MOD_DEX, 6);
     target:addMod(MOD_MND, -4);
@@ -46,11 +34,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_RACC_CAP, 10);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 12);
     target:delMod(MOD_DEX, 6);
     target:delMod(MOD_MND, -4);

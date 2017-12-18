@@ -5,6 +5,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -13,6 +14,6 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     mob:useMobAbility(mob:getMobMod(MOBMOD_TELEPORT_END));
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
     return 0;
 end;

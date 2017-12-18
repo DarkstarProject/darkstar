@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
 
     if (resist > 0.0625) then
         if (target:isFacing(caster)) then
-            spell:setMsg(341);
+            spell:setMsg(msgBasic.MAGIC_ERASE);
             effect = target:dispelStatusEffect();
             if (effect == EFFECT_NONE) then
                 spell:setMsg(msgBasic.MAGIC_NO_EFFECT);

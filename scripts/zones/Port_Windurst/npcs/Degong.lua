@@ -29,12 +29,12 @@ function onTrigger(player,npc)
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(EFFECT_FISHING_IMAGERY) == false) then
-            player:startEvent(0x271D,SkillCap,SkillLevel,2,239,player:getGil(),0,30,0); -- p1 = skill level
+            player:startEvent(10013,SkillCap,SkillLevel,2,239,player:getGil(),0,30,0); -- p1 = skill level
         else
-            player:startEvent(0x271D,SkillCap,SkillLevel,2,239,player:getGil(),19293,30,0);
+            player:startEvent(10013,SkillCap,SkillLevel,2,239,player:getGil(),19293,30,0);
         end
     else
-        player:startEvent(0x271D); -- Standard Dialogue
+        player:startEvent(10013); -- Standard Dialogue
     end
 end;
 
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x271D and option == 1) then
+    if (csid == 10013 and option == 1) then
         player:messageSpecial(FISHING_SUPPORT,0,0,2);
         player:addStatusEffect(EFFECT_FISHING_IMAGERY,1,0,3600);
     end

@@ -7,6 +7,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -21,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
     if (mob:hasStatusEffect(EFFECT_PLAGUE) or mob:hasStatusEffect(EFFECT_CURSE_I) or mob:hasStatusEffect(EFFECT_MUTE)) then
         -- use Remedy!
         mob:messageText(mob, PRISHE_TEXT + 12, false);

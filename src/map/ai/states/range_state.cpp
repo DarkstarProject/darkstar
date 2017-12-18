@@ -143,8 +143,8 @@ bool CRangeState::CanUseRangedAttack(CBattleEntity* PTarget)
     CItemWeapon* PRanged = (CItemWeapon*)m_PEntity->getEquip(SLOT_RANGED);
     CItemWeapon* PAmmo = (CItemWeapon*)m_PEntity->getEquip(SLOT_AMMO);
 
-    if (!(PRanged && PRanged->isType(ITEM_WEAPON) ||
-        PAmmo && PAmmo->isThrowing()))
+    if (!((PRanged && PRanged->isType(ITEM_WEAPON)) ||
+        (PAmmo && PAmmo->isThrowing())))
     {
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_NO_RANGED_WEAPON);
         return false;

@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
     -----lady bug
     if (player:getQuestStatus(SANDORIA,ATELLOUNE_S_LAMENT) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(2506,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x037b);
+            player:startEvent(891);
         end
     end
 
@@ -45,13 +45,13 @@ function onTrigger(player,npc)
     sanFame = player:getFameLevel(SANDORIA);
 
     if (atellounesLament == QUEST_AVAILABLE and sanFame >= 2) then
-        player:startEvent(0x037a);
+        player:startEvent(890);
     elseif (atellounesLament == QUEST_ACCEPTED) then
-        player:startEvent(0x037c);
+        player:startEvent(892);
     elseif (atellounesLament == QUEST_COMPLETED) then
-        player:startEvent(0x0374); -- im profesors research
+        player:startEvent(884); -- im profesors research
     elseif (sanFame < 2) then
-        player:startEvent(0x0374);
+        player:startEvent(884);
     end
 
 end;
@@ -73,9 +73,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x037a) then
+    if (csid == 890) then
         player:addQuest(SANDORIA,ATELLOUNE_S_LAMENT);
-    elseif (csid == 0x037b) then
+    elseif (csid == 891) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15008); -- Trainee Gloves
         else

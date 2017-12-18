@@ -61,9 +61,9 @@ function onUseAbility(player,target,ability,action)
 
         player:addItem(stolen);
         target:itemStolen();
-        ability:setMsg(MsgBasic.STEAL_SUCCESS); -- Item stolen successfully
+        ability:setMsg(msgBasic.STEAL_SUCCESS); -- Item stolen successfully
     else
-        ability:setMsg(MsgBasic.STEAL_FAIL); -- Failed to steal
+        ability:setMsg(msgBasic.STEAL_FAIL); -- Failed to steal
         action:animation(target:getID(), 182);
     end
 

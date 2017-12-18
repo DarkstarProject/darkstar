@@ -40,7 +40,7 @@ if (player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) ) then
    player:setVar("Limbus_Trade_Item-T",InstanceTrade);
    player:tradeComplete();
    player:messageSpecial(CHIP_TRADE_T);
-   player:startEvent(0x7d00,0,0,0,InstanceTrade,0,0,0,0);
+   player:startEvent(32000,0,0,0,InstanceTrade,0,0,0,0);
    player:setVar("limbusbitmap",InstanceTrade);
    end
 
@@ -118,7 +118,7 @@ function onTrigger(player,npc)
 
 
        if (limbusbitmap~= 0 ) then
-           player:startEvent(0x7d00,0,0,0,limbusbitmap,0,0,0,0);
+           player:startEvent(32000,0,0,0,limbusbitmap,0,0,0,0);
         player:setVar("limbusbitmap",limbusbitmap);
        else
        player:messageSpecial(CONDITION_FOR_LIMBUS_T);
@@ -132,7 +132,7 @@ function onTrigger(player,npc)
                            limbusbitmap = instancelist[nt+1][4];
                     end
            end
-        player:startEvent(0x7d00,0,0,0,limbusbitmap,0,0,0,0);
+        player:startEvent(32000,0,0,0,limbusbitmap,0,0,0,0);
         player:setVar("limbusbitmap",limbusbitmap);
 
   else
@@ -149,7 +149,7 @@ end;
 function onEventUpdate(player,csid,option)
 
 
-     if (csid == 0x7d00) then
+     if (csid == 32000) then
        if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
            ResetPlayerLimbusVariable(player);
            player:setVar("characterLimbusKey",0);
@@ -173,7 +173,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-   if (csid == 0x7d00) then
+   if (csid == 32000) then
 
    end
 end;

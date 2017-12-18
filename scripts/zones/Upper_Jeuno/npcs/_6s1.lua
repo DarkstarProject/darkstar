@@ -30,11 +30,11 @@ function onTrigger(player,npc)
     local mission = player:getCurrentMission(COP)
 
     if (mission == FOR_WHOM_THE_VERSE_IS_SUNG and status == 1) then
-        player:startEvent(0x271B)
+        player:startEvent(10011)
     elseif (mission == FLAMES_IN_THE_DARKNESS and status == 3) then
-        player:startEvent(0x271C)
+        player:startEvent(10012)
     elseif (mission == DAWN and status == 4) then
-        player:startEvent(0x0081)
+        player:startEvent(129)
     elseif ((mission == DAWN and status > 4) or player:hasCompletedMission(COP,DAWN)) then
         local hasRing = false
 
@@ -50,11 +50,11 @@ function onTrigger(player,npc)
             local dateObtained = player:getVar("COP-lastRingday")
 
             if (ringsTaken == 0) then
-                player:startEvent(0x0054, ring[1], ring[2], ring[3])
+                player:startEvent(84, ring[1], ring[2], ring[3])
             elseif (ringsTaken == 1) then -- First time you throw away, no wait
-                player:startEvent(0x00CC, ring[1], ring[2], ring[3])
+                player:startEvent(204, ring[1], ring[2], ring[3])
             elseif (ringsTaken > 1 and (currentDay - dateObtained) >= 28) then -- Wait time is >= 28 days, not 26
-                player:startEvent(0x00CC, ring[1], ring[2], ring[3])
+                player:startEvent(204, ring[1], ring[2], ring[3])
             end
         end
     end
@@ -66,7 +66,7 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ((csid == 0x0054 or csid == 0x00CC) and option == 4) then
+    if ((csid == 84 or csid == 204) and option == 4) then
         player:updateEvent(ring[1],ring[2],ring[3])
     end
 end;
@@ -77,15 +77,15 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x271B) then
+    if (csid == 10011) then
         player:setVar("PromathiaStatus", 2);
-    elseif (csid == 0x271C) then
+    elseif (csid == 10012) then
         player:setVar("PromathiaStatus", 0);
         player:completeMission(COP, FLAMES_IN_THE_DARKNESS);
         player:addMission(COP, FIRE_IN_THE_EYES_OF_MEN);
-    elseif (csid == 0x0081) then
+    elseif (csid == 129) then
         player:setVar("PromathiaStatus", 5);
-    elseif ((csid == 0x0054 or csid == 0x00CC) and option >= 5 and option <= 7) then
+    elseif ((csid == 84 or csid == 204) and option >= 5 and option <= 7) then
         if (player:getFreeSlotsCount() ~= 0) then
             local currentDay = tonumber(os.date("%j"))
             local ringsTaken = player:getVar("COP-ringsTakenbr")

@@ -28,6 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 #include "utils/puppetutils.h"
+#include "ai/ai_container.h"
 
 #include <math.h>
 
@@ -326,8 +327,12 @@ bool CAttack::CheckAnticipated()
             //chance to counter - 25% base
             if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(Mod::THIRD_EYE_COUNTER_RATE))
             {
-                m_isCountered = true;
-                m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+
+                if (m_victim->PAI->IsEngaged())
+                {
+                    m_isCountered = true;
+                    m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+                }
             }
             m_anticipated = true;
             return true;
@@ -346,6 +351,12 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
+    if (!m_victim->PAI->IsEngaged())
+    {
+        m_isCountered = false;
+        return m_isCountered;
+    }
+
     uint8 meritCounter = 0;
     if (m_victim->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_victim, TRAIT_COUNTER))
     {
@@ -361,7 +372,7 @@ bool CAttack::CheckCounter()
     if (m_victim->objtype == TYPE_PC && m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
     {
         seiganChance = m_victim->getMod(Mod::ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
-        seiganChance = dsp_cap(seiganChance, 0, 100);
+        seiganChance = std::clamp<uint16>(seiganChance, 0, 100);
         seiganChance /= 4;
     }
     if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(Mod::COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
@@ -409,7 +420,7 @@ void CAttack::ProcessDamage()
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
         m_naturalH2hDamage = (int32)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
-        m_baseDamage = dsp_max(m_attacker->GetMainWeaponDmg(), 3);
+        m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;

@@ -65,10 +65,10 @@ uint64 unpackBitsLE(uint8* target,int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsLE(uint8* target,int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 
     // Encode/Decode Strings to/from FFXI 6-bit format
-int8* EncodeStringLinkshell(int8* signature, int8* target);
-int8* DecodeStringLinkshell(int8* signature, int8* target);
+void EncodeStringLinkshell(int8* signature, int8* target);
+void DecodeStringLinkshell(int8* signature, int8* target);
 int8* EncodeStringSignature(int8* signature, int8* target);
-int8* DecodeStringSignature(int8* signature, int8* target);
+void DecodeStringSignature(int8* signature, int8* target);
 std::string escape(std::string const &s);
 
 #endif

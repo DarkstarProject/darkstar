@@ -123,6 +123,8 @@ uint16 GetEvasion(CMobEntity* PMob)
         case JOB_BLM:
             evaRank = 5;
         break;
+        default:
+            break;
     }
 
     return GetBase(PMob, evaRank);
@@ -315,6 +317,8 @@ void CalculateStats(CMobEntity * PMob)
     case JOB_SMN:
         hasMp = true;
         break;
+    default:
+        break;
     }
 
     switch(sJob){
@@ -327,6 +331,8 @@ void CalculateStats(CMobEntity * PMob)
     case JOB_SCH:
     case JOB_SMN:
         hasMp = true;
+        break;
+    default:
         break;
     }
 
@@ -606,7 +612,7 @@ void SetupJob(CMobEntity* PMob)
 
             // only drgs in 3rd expansion calls wyvern as non-NM
             // include fomors
-            if(!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT || PMob->m_Family == 115)
+            if((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
             {
                 // 20 min recast
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
@@ -616,7 +622,7 @@ void SetupJob(CMobEntity* PMob)
         case JOB_RNG:
 
             // giga
-            if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
+            if((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328)
             {
                 // only used while at range
                 // catapult
@@ -707,6 +713,9 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
+            break;
+        default:
+            break;
     }
 
     // Just a fallback at the moment
@@ -727,6 +736,9 @@ void SetupJob(CMobEntity* PMob)
                 PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
                 PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
             }
+            break;
+        default:
+            break;
     }
 }
 
@@ -743,6 +755,8 @@ void SetupRoaming(CMobEntity* PMob)
             distance = 20;
             turns = 5;
             cool = 45;
+            break;
+        default:
             break;
     }
 
@@ -801,8 +815,6 @@ void SetupPetSkills(CMobEntity* PMob)
 
 void SetupDynamisMob(CMobEntity* PMob)
 {
-    JOBTYPE mJob = PMob->GetMJob();
-
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
@@ -946,6 +958,8 @@ void SetupMaat(CMobEntity* PMob)
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             break;
+        default:
+            break;
     }
 }
 
@@ -1028,6 +1042,7 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
         case SYSTEM_PLANTOID: PMob->addModifier(Mod::BEAST_KILLER,    5); break;
         case SYSTEM_UNDEAD:   PMob->addModifier(Mod::ARCANA_KILLER,   5); break;
         case SYSTEM_VERMIN:   PMob->addModifier(Mod::PLANTOID_KILLER, 5); break;
+        default: break;
       }
 
     if (PMob->m_maxLevel == 0 && PMob->m_minLevel == 0)
@@ -1053,7 +1068,7 @@ void LoadCustomMods()
 {
 
 	// load family mods
-	const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
+	const char QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
     int32 ret = Sql_Query(SqlHandle, QueryFamilyMods);
 
@@ -1079,7 +1094,7 @@ void LoadCustomMods()
 	}
 
 	// load pool mods
-	const int8 QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
+	const char QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
 
     ret = Sql_Query(SqlHandle, QueryPoolMods);
 
@@ -1109,7 +1124,7 @@ void LoadCustomMods()
 	}
 
 	// load spawn mods
-	const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
+	const char QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
 
     ret = Sql_Query(SqlHandle, QuerySpawnMods);
 
@@ -1289,6 +1304,8 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
         case JOB_SMN:
             spellList = 141;
             break;
+        default:
+            break;
     }
 
     PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
@@ -1298,7 +1315,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 {
-	const int8* Query =
+	const char* Query =
 		"SELECT zoneid, name, \
 		respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
 		modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
@@ -1324,8 +1341,8 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob = new CMobEntity;
             PMob->PInstance = instance;
 
-			PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
-            PMob->packetName.insert(0, Sql_GetData(SqlHandle, 61));
+			PMob->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
+            PMob->packetName.insert(0, (const char*)Sql_GetData(SqlHandle, 61));
 
 			PMob->m_RespawnTime = Sql_GetUIntData(SqlHandle, 2) * 1000;
 			PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);

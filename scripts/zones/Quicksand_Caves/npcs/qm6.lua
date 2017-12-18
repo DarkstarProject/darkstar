@@ -2,61 +2,48 @@
 -- Area: Quicksand Caves
 -- NPC:  ??? (qm6)
 -- Bastok Mission 8.1 "The Chains That Bind Us"
--- !pos
+-- !pos -469 0 620 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
+package.loaded["scripts/zones/Quicksand_Caves/MobIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
 require("scripts/zones/Quicksand_Caves/TextIDs");
+require("scripts/zones/Quicksand_Caves/MobIDs");
+require("scripts/globals/missions");
 
------------------------------------
--- onTrigger Action
------------------------------------
+function onTrade(player,npc,trade)
+end;
+
 function onTrigger(player,npc)
 
-    local missionStatus = player:getVar("MissionStatus");
-    local timesincelastclear = os.time()-GetServerVariable("Bastok8-1LastClear"); -- how long ago they were last killed.
-
-    local currentMission = player:getCurrentMission(player:getNation())
-    if (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 1) then
-        if (timesincelastclear < QM_RESET_TIME) then
-            player:startEvent(0x0B);
-        elseif (GetMobAction(17629187) == 0) and (GetMobAction(17629188) == 0) and (GetMobAction(17629189) == 0) then
-            SpawnMob(17629187):updateClaim(player); -- Centurio IV-VII
-            SpawnMob(17629188):updateClaim(player); -- Triarius IV-XIV
-            SpawnMob(17629189):updateClaim(player); -- Princeps IV-XLV
-            player:messageSpecial(SENSE_OF_FOREBODING);
-            npc:setStatus(2); -- Disappear
-            SetServerVariable("BastokFight8_1", 3);
+    -- THE CHAINS THAT BIND US
+    if (player:getCurrentMission(player:getNation()) == THE_CHAINS_THAT_BIND_US and player:getVar("MissionStatus") == 1) then
+        if (os.time() >= npc:getLocalVar("cooldown")) then
+            if (GetMobByID(CENTURIO_IV_VII):isSpawned() or GetMobByID(TRIARIUS_IV_XIV):isSpawned() or GetMobByID(PRINCEPS_IV_XLV):isSpawned()) then
+                player:messageSpecial(NOW_IS_NOT_THE_TIME);
+            else
+                player:messageSpecial(SENSE_OF_FOREBODING);
+                SpawnMob(CENTURIO_IV_VII):updateClaim(player);
+                SpawnMob(TRIARIUS_IV_XIV):updateClaim(player);
+                SpawnMob(PRINCEPS_IV_XLV):updateClaim(player);
+            end
+        else
+            player:startEvent(11);
         end
+
+    -- DEFAULT DIALOG        
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
 function onEventFinish(player,csid,option)
-    -- print("CSID:",csid);
-    -- print("RESULT:",option);
-    if (csid == 0x0B) then
+
+    -- THE CHAINS THAT BIND US
+    if (csid == 11) then
         player:setVar("MissionStatus", 2);
     end
 end;

@@ -33,9 +33,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 4 or failed == 5 then
             if goodtrade then
-                player:startEvent(0x00DF);
+                player:startEvent(223);
             elseif badtrade then
-                player:startEvent(0x00E9);
+                player:startEvent(233);
             end
         end
     end
@@ -53,14 +53,14 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00C9);
+            player:startEvent(201);
         elseif (progress == 4 or failed == 5) then
-                player:startEvent(0x00D2);  -- asking for wandering bulb
+                player:startEvent(210);  -- asking for wandering bulb
         elseif (progress >= 5 or failed >= 6) then
-            player:startEvent(0x00F6); -- happy with wandering bulb
+            player:startEvent(246); -- happy with wandering bulb
         end
     else
-        player:startEvent(0x00C9);
+        player:startEvent(201);
     end
 end;
 -----------------------------------
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00DF) then    -- correct trade, onto next opo
+    if (csid == 223) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 4 then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",5);
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("OPO_OPO_FAILED",6);
         end
-    elseif (csid == 0x00E9) then              -- wrong trade, restart at first opo
+    elseif (csid == 233) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",5);
     end

@@ -24,13 +24,13 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
     ---- 9: 
 -- Death cutscenes:
 
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0); -- hume
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0); -- taru
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,2,0); -- mithra
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,3,0); -- elvaan
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0); -- galka
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
---    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0); -- hume
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0); -- taru
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,2,0); -- mithra
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,3,0); -- elvaan
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,0); -- galka
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
+--    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
 -----------------------------------
 -- onTrade Action

@@ -354,12 +354,12 @@ int8 CCharEntity::getShieldSize()
 
 void CCharEntity::SetName(int8* name)
 {
-    this->name.insert(0, name, dsp_cap(strlen((const int8*)name), 0, 15));
+    this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
 }
 
 int16 CCharEntity::addTP(int16 tp)
 {
-    int16 oldtp = health.tp;
+    // int16 oldtp = health.tp;
     tp = CBattleEntity::addTP(tp);
     //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
     //	{
@@ -552,7 +552,7 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     if (((targetFlags & TARGET_PLAYER_PARTY) || ((targetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) &&
         PInitiator->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))) &&
         ((PParty && PInitiator->PParty == PParty) ||
-        PInitiator->PMaster && PInitiator->PMaster->PParty == PParty))
+        (PInitiator->PMaster && PInitiator->PMaster->PParty == PParty)))
     {
         return true;
     }
@@ -709,7 +709,7 @@ void CCharEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGBAS
 
     if (message)
     {
-        static_cast<CCharEntity*>(this)->pushPacket(message);
+        pushPacket(message);
     }
 }
 
@@ -774,7 +774,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             {
                 actionTarget.messageID = primary ? 224 : 276; //restores mp msg
                 actionTarget.reaction = REACTION_HIT;
-                dsp_max(damage, 0);
+                damage = std::max(damage, 0);
                 actionTarget.param = addMP(damage);
             }
 
@@ -1188,17 +1188,15 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             else
             {
                 float pdif = battleutils::GetRangedPDIF(this, PTarget);
-                bool isCrit = false;
 
                 if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
                 {
                     pdif *= 1.25; //uncapped
                     int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = dsp_cap(criticaldamage, 0, 100);
+                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
                     pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
-                    isCrit = true;
                 }
 
                 // at least 1 hit occured
@@ -1499,10 +1497,10 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
         }
         PItem->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
 
-        int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+        char extra[sizeof(PItem->m_extra) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
 
-        const int8* Query =
+        const char* Query =
             "UPDATE char_inventory "
             "SET extra = '%s' "
             "WHERE charid = %u AND location = %u AND slot = %u;";

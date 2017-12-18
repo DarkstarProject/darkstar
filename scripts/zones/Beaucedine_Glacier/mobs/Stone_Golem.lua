@@ -3,35 +3,12 @@
 --  Mob:  Stone_Golem
 -- Note: PH for Gargantua
 -----------------------------------
-
 require("scripts/zones/Beaucedine_Glacier/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    local mobID = mob:getID();
-    if (Gargantua_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Gargantua");
-        if (ToD <= os.time() and GetMobAction(Gargantua) == 0) then
-            if (math.random((1),(20)) == 5) then
-                UpdateNMSpawnPoint(Gargantua);
-                GetMobByID(Gargantua):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Gargantua", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,GARGANTUA_PH,5,math.random(3600,25200)); -- 1 to 7 hours
 end;
-

@@ -36,11 +36,11 @@ function onZoneIn( player, prevZone)
     end
 
     if (player:getCurrentMission( COP) == DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9) then
-        cs = 0x00CE;
+        cs = 206;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0072;
+        cs = 114;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0074;
+        cs = 116;
     end
 
     return cs;
@@ -72,9 +72,9 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0072) then
+    if (csid == 114) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0074) then
+    elseif (csid == 116) then
         player:updateEvent(0,0,0,0,0,4);
     end
 end;
@@ -86,9 +86,9 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00CE) then
+    if (csid == 206) then
         player:setVar("PromathiaStatus",10);
-    elseif (csid == 0x0072) then
+    elseif (csid == 114) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

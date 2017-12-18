@@ -1,36 +1,14 @@
 -----------------------------------
 -- Area: Yughott Grotto (142)
 --  MOB: Orcish_Grunt
+-- Note: PH for Ashmaker Gotblut
 -----------------------------------
-
 require("scripts/zones/Yughott_Grotto/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    local mobID = mob:getID();
-    if (Ashmaker_Gotblut_PH[mobID] ~= nil) then
-
-        local ToD = GetServerVariable("[POP]Ashmaker_Gotblut");
-        if (ToD <= os.time() and GetMobAction(Ashmaker_Gotblut) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Ashmaker_Gotblut);
-                GetMobByID(Ashmaker_Gotblut):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Ashmaker_Gotblut", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,ASHMAKER_GOTBLUT_PH,5,math.random(7200,10800)); -- 2 to 3 hours
 end;
-

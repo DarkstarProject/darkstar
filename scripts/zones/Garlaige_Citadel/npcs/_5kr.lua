@@ -18,7 +18,7 @@ require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(502,1) == true and trade:getItemCount() == 1) then -- Garlaige Key (Not Chest/Coffer)
-        player:startEvent(0x0004); -- Open the door
+        player:startEvent(4); -- Open the door
     end
 end;
 
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local Z = player:getZPos();
 
     if ((X >= 135 and X <= 144) and (Z >= 128 and Z <= 135)) then
-        player:startEvent(0x0005);
+        player:startEvent(5);
     else
         player:messageSpecial(OPEN_WITH_THE_RIGHT_KEY);
         return 0;

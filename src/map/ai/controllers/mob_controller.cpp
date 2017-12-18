@@ -678,7 +678,7 @@ void CMobController::DoRoamTick(time_point tick)
         // i'm claimed by someone and need hate towards this person
         PTarget = (CBattleEntity*)PMob->GetEntity(PMob->m_OwnerID.targid, TYPE_PC | TYPE_MOB | TYPE_PET);
 
-        battleutils::ClaimMob(PMob, PTarget);
+        PMob->PEnmityContainer->AddBaseEnmity(PTarget);
 
         Engage(PTarget->targid);
         return;
@@ -915,7 +915,7 @@ bool CMobController::MobSkill(uint16 targid, uint16 wsid)
 bool CMobController::Disengage()
 {
     // this will let me decide to walk home or despawn
-    m_LastActionTime = m_Tick - (std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10s);
+    m_LastActionTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10s;
     PMob->m_neutral = true;
     m_NeutralTime = m_Tick;
 
@@ -1051,6 +1051,11 @@ bool CMobController::IsSpellReady(float currentDistance)
     {
         // Mobs use ranged attacks quicker when standing back
         bonusTime = PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
+    }
+
+    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    {
+        return true;
     }
 
     return (m_Tick >= m_LastMagicTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_MAGIC_COOL) - bonusTime));

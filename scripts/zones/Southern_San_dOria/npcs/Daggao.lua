@@ -33,13 +33,13 @@ function onTrigger(player,npc)
     local WildcatSandy = player:getVar("WildcatSandy");
 
     if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,0) == false) then
-        player:startEvent(0x032a);
+        player:startEvent(810);
     elseif (player:getVar("peaceForTheSpiritCS") == 3) then
-        player:startEvent(0x0048);
+        player:startEvent(72);
     elseif (player:getVar("peaceForTheSpiritCS") == 5) then
-        player:startEvent(0x0049);
+        player:startEvent(73);
     else
-        player:startEvent(0x003c);
+        player:startEvent(60);
     end
 
 end;
@@ -61,9 +61,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x032a) then
+    if (csid == 810) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",0,true);
-    elseif (csid == 0x0048) then
+    elseif (csid == 72) then
         player:setVar("peaceForTheSpiritCS",4);
     end
 

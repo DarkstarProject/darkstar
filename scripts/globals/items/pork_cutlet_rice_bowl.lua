@@ -14,11 +14,7 @@
 -- Ranged Attack +23% (cap 125)
 -- Store TP +4
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -28,10 +24,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,6406);
@@ -56,11 +48,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_STORETP, 4);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 60);
     target:delMod(MOD_MP, 60);
     target:delMod(MOD_STR, 7);

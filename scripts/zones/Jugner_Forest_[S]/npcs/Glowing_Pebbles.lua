@@ -3,7 +3,7 @@
 --  NPC:  Glowing Pebbles
 --  Type: Involved in Quest
 -- !pos
---  player:startEvent(0x006a); Left over Cutscene
+--  player:startEvent(106); Left over Cutscene
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -38,7 +38,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false) then
-        player:startEvent(0x0064);
+        player:startEvent(100);
         player:addKeyItem(STARDUST_PEBBLE);
         player:messageSpecial(KEYITEM_OBTAINED,STARDUST_PEBBLE);
     elseif (player:getVar("roadToDivadomCS") == 2) then

@@ -63,7 +63,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(JEUNO,DORMANT_POWERS_DISLODGED) == QUEST_ACCEPTED) then
         player:startEvent(10045,0,1,4,1);
     elseif (player:getQuestStatus(JEUNO,BEYOND_INFINITY) == QUEST_ACCEPTED) then
-        player:startEvent(10045,0,1,5,1); -- player:startEvent(0x273d,0,1,6,1);
+        player:startEvent(10045,0,1,5,1); -- player:startEvent(10045,0,1,6,1);
     elseif (player:hasKeyItem(LIMIT_BREAKER) == true and player:getMainLvl() >= 75) then
         player:startEvent(10045,0,1,0,0);
     else
@@ -119,7 +119,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10137) then
         player:tradeComplete();
         player:setMerits(meritCount - 5);
-        player:startEvent(0x27B1); -- this is the scene that is suppose to play and you are suppose to have to do correctly inorder to level cap increase to 90
+        player:startEvent(10161); -- this is the scene that is suppose to play and you are suppose to have to do correctly inorder to level cap increase to 90
         player:addFame(JEUNO,50);
         player:levelCap(90);
         player:completeQuest(JEUNO,BEYOND_THE_STARS);

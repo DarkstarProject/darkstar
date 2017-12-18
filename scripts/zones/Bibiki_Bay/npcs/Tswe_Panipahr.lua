@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     player:messageSpecial(HAVE_BILLET,curentticket);
   else
   local gils=player:getGil();
-    player:startEvent(0x0023,MANACLIPPER_TICKET,MANACLIPPER_MULTITICKET ,80,gils,0,500);
+    player:startEvent(35,MANACLIPPER_TICKET,MANACLIPPER_MULTITICKET ,80,gils,0,500);
   end
 end;
 
@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-     if (csid == 0x0023) then
+     if (csid == 35) then
        if (option==1) then
        player:delGil(80);
        player:addKeyItem(MANACLIPPER_TICKET);

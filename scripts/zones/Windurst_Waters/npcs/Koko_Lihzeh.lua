@@ -37,9 +37,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-        player:startEvent(0x01c3); -- During Making the GRADE
+        player:startEvent(451); -- During Making the GRADE
     else
-        player:startEvent(0x01ac); -- Standard conversation
+        player:startEvent(428); -- Standard conversation
     end
 end;
 

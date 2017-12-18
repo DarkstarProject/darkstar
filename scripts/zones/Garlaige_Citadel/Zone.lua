@@ -6,10 +6,9 @@
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Garlaige_Citadel/TextIDs");
-require("scripts/globals/settings");
+require("scripts/zones/Garlaige_Citadel/MobIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/zone");
-
-banishing_gates_base = 17596761; -- _5k0 (First banishing gate)
 
 -----------------------------------
 -- onInitialize
@@ -32,19 +31,17 @@ function onInitialize(zone)
     zone:registerRegion(21,-190,-1,322,-188,1,324);
     zone:registerRegion(22,-130,-1,322,-128,1,324);
 
-    -- Old Two-Wings
-    SetRespawnTime(17596506, 900, 10800);
+    UpdateNMSpawnPoint(OLD_TWO_WINGS);
+    GetMobByID(OLD_TWO_WINGS):setRespawnTime(math.random(900, 10800));
 
-    -- Skewer Sam
-    SetRespawnTime(17596507, 900, 10800);
+    UpdateNMSpawnPoint(SKEWER_SAM);
+    GetMobByID(SKEWER_SAM):setRespawnTime(math.random(900, 10800));
 
-    -- Serket
-    SetRespawnTime(17596720, 900, 10800);
+    UpdateNMSpawnPoint(SERKET);
+    GetMobByID(SERKET):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(17596812);
-
     UpdateTreasureSpawnPoint(17596813);
-
 end;
 
 -----------------------------------
@@ -79,27 +76,27 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
-
+    local gateid;
     local regionID = region:GetRegionID();
-    local mylever = banishing_gates_base + regionID;
+    local mylever = BANISHING_GATE_OFFSET + regionID;
     GetNPCByID(mylever):setAnimation(8);
 
     if (regionID >= 1 and regionID <= 4) then
-        gateid = banishing_gates_base;
+        gateid = BANISHING_GATE_OFFSET;
         msg_offset = 0;
     elseif (regionID >= 10 and regionID <= 13) then
-        gateid = banishing_gates_base + 9;
+        gateid = BANISHING_GATE_OFFSET + 9;
         msg_offset = 1;
     elseif (regionID >= 19 and regionID <= 22) then
-        gateid = banishing_gates_base + 18;
+        gateid = BANISHING_GATE_OFFSET + 18;
         msg_offset = 2;
     end;
 
     -- Open Gate
-    gate1 = GetNPCByID(gateid + 1);
-    gate2 = GetNPCByID(gateid + 2);
-    gate3 = GetNPCByID(gateid + 3);
-    gate4 = GetNPCByID(gateid + 4);
+    local gate1 = GetNPCByID(gateid + 1);
+    local gate2 = GetNPCByID(gateid + 2);
+    local gate3 = GetNPCByID(gateid + 3);
+    local gate4 = GetNPCByID(gateid + 4);
 
     if (gate1:getAnimation() == 8 and gate2:getAnimation() == 8 and gate3:getAnimation() == 8 and gate4:getAnimation() == 8) then
         player:messageSpecial(BANISHING_GATES + msg_offset); -- Banishing gate opening
@@ -115,7 +112,7 @@ end;
 function onRegionLeave(player,region)
 
     local regionID = region:GetRegionID();
-    local mylever = banishing_gates_base + regionID;
+    local mylever = BANISHING_GATE_OFFSET + regionID;
     GetNPCByID(mylever):setAnimation(9);
 
 end;

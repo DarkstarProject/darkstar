@@ -23,13 +23,13 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(ZILART) == KAZAMS_CHIEFTAINESS) then
-        player:startEvent(0x0072);
+        player:startEvent(114);
     elseif (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-        player:startEvent(0x0073);
+        player:startEvent(115);
     elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
-        player:startEvent(0x0109);
+        player:startEvent(265);
     else
-        player:startEvent(0x0071);
+        player:startEvent(113);
     end
 
 end;
@@ -51,12 +51,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0072) then
+    if (csid == 114) then
         player:addKeyItem(SACRIFICIAL_CHAMBER_KEY);
         player:messageSpecial(KEYITEM_OBTAINED,SACRIFICIAL_CHAMBER_KEY);
         player:completeMission(ZILART,KAZAMS_CHIEFTAINESS);
         player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
-    elseif (csid == 0x0109) then
+    elseif (csid == 265) then
         player:setVar("MissionStatus",3);
     end
 

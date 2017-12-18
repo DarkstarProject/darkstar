@@ -153,7 +153,7 @@ bool CTradeContainer::setConfirmedStatus(uint8 slotID, uint8 amount)
 {
     if (slotID < m_PItem.size() && m_PItem[slotID] && m_PItem[slotID]->getQuantity() >= amount)
 	{
-		m_confirmed[slotID] = dsp_min(amount, m_PItem[slotID]->getQuantity());
+		m_confirmed[slotID] = std::min<uint8>(amount, m_PItem[slotID]->getQuantity());
         return true;
 	}
     return false;

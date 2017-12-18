@@ -43,9 +43,9 @@ This file is part of DarkStar-server source code.
 CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
+    m_PItem(nullptr),
     m_location(loc),
-    m_slot(slotid),
-    m_PItem(nullptr)
+    m_slot(slotid)
 {
     auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
     m_PItem = PItem;

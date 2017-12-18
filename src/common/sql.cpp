@@ -396,7 +396,7 @@ int8* Sql_GetData(Sql_t* self, size_t col)
 	{
 		if( col < Sql_NumColumns(self) )
 		{
-			return self->row[col];
+			return (int8*)self->row[col];
 		}
 	}
 	ShowFatalError("Sql_GetData: SQL_ERROR\n");

@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         player:messageSpecial(SENSE_OF_FOREBODING);
         SpawnMob(17457309):updateClaim(player); -- Spawn Tros NM
     elseif (player:hasKeyItem(MERTAIRES_BRACELET) == true and TrosKilled == 1) then
-        player:startEvent(0x0008); -- Finish Quest "Painful Memory"
+        player:startEvent(8); -- Finish Quest "Painful Memory"
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0008) then
+    if (csid == 8) then
         if (player:getFreeSlotsCount() == 0 or player:hasItem(16766)) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16766);
         else

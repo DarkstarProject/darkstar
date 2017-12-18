@@ -148,8 +148,8 @@ function canGetNewRank(player,skillLvL,craftID)
        Rank == 6 and skillLvL >= 1861 or
        Rank == 7 and skillLvL >= 2182 or
        Rank == 8 and skillLvL >= 2503 or
-       Rank == 9 and skillLvL >= 2824 or
-       Rank == 10 and skillLvL >= 3145) then
+       Rank == 9 and skillLvL >= 2824) then
+--       Rank == 10 and skillLvL >= 3145) then
             canGet = 1;
     end
 

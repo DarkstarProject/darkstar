@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = SINGING_SKILL;
     params.bonus = bonus;
     params.effect = EFFECT_CHARM_I;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     -- print(resist);
     if (resist >= 0.25 and caster:getCharmChance(target, false) > 0) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);

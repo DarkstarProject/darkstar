@@ -180,7 +180,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 			q=q+2;
 			for(;;)
 			{
-				if( ISDIGIT(*q) )
+				if( std::isdigit(*q) )
 				{	// add number to number array, only accept 2digits, shift out the rest
 					// so // \033[123456789m will become \033[89m
 					numbers[numpoint] = (numbers[numpoint]<<4) | (*q-'0');
@@ -490,7 +490,7 @@ int	VFPRINTF(FILE *file, const std::string& fmt)
 			q=q+2;
 			while(1)
 			{
-				if( ISDIGIT(*q) )
+				if( std::isdigit(*q) )
 				{
 					++q;
 					// and next character

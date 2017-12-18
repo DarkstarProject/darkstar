@@ -19,7 +19,7 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
     if (wonderingstatus == 1 and trade:hasItemQty(718,1) == true and trade:getItemCount() == 1 and player:getVar("QuestWonderingMin_var") == 1) then
-        player:startEvent(0x027e);                 -- WONDERING_MINSTREL: Quest Finish
+        player:startEvent(638);                 -- WONDERING_MINSTREL: Quest Finish
     end
 end;
 
@@ -37,24 +37,24 @@ function onTrigger(player,npc)
     if (wonderingstatus == QUEST_AVAILABLE and fame >= 5) then
         rand = math.random(1,2);
         if (rand == 1) then
-            player:startEvent(0x0279);          -- WONDERING_MINSTREL: Before Quest
+            player:startEvent(633);          -- WONDERING_MINSTREL: Before Quest
         else
-            player:startEvent(0x027a);          -- WONDERING_MINSTREL: Quest Start
+            player:startEvent(634);          -- WONDERING_MINSTREL: Quest Start
         end
     elseif (wonderingstatus == QUEST_ACCEPTED) then
-        player:startEvent(0x027b);                 -- WONDERING_MINSTREL: During Quest
+        player:startEvent(635);                 -- WONDERING_MINSTREL: During Quest
     elseif (wonderingstatus == QUEST_COMPLETED and player:needToZone()) then
-        player:startEvent(0x027f);                 -- WONDERING_MINSTREL: After Quest
+        player:startEvent(639);                 -- WONDERING_MINSTREL: After Quest
     else
         hour = VanadielHour();
         if (hour >= 18 or hour <= 6) then
-            player:startEvent(0x0263);             -- Singing 1 (daytime < 6 or daytime >= 18)
+            player:startEvent(611);             -- Singing 1 (daytime < 6 or daytime >= 18)
         else
             rand = math.random(1,2);
             if (rand == 1) then
-                player:startEvent(0x0262);          -- Standard Conversation 1 (daytime)
+                player:startEvent(610);          -- Standard Conversation 1 (daytime)
             else
-                player:startEvent(0x0267);             -- Standard Conversation 2 (daytime)
+                player:startEvent(615);             -- Standard Conversation 2 (daytime)
             end
         end
     end
@@ -76,9 +76,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x027a) then    -- WONDERING_MINSTREL: Quest Start
+    if (csid == 634) then    -- WONDERING_MINSTREL: Quest Start
         player:addQuest(WINDURST,WONDERING_MINSTREL);
-    elseif (csid == 0x027e) then  -- WONDERING_MINSTREL: Quest Finish
+    elseif (csid == 638) then  -- WONDERING_MINSTREL: Quest Finish
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17349);
         else

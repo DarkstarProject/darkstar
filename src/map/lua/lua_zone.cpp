@@ -130,7 +130,7 @@ inline int32 CLuaZone::getPlayers(lua_State* L)
         lua_insert(L, -2);
         lua_pushlightuserdata(L, (void*)PChar);
         lua_pcall(L, 2, 1, 0);
-        lua_setfield(L, newTable, PChar->GetName());
+        lua_setfield(L, newTable, (const char*)PChar->GetName());
     });
 
     return 1;
@@ -160,7 +160,7 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaZone::className[] = "CZone";
+const char CLuaZone::className[] = "CZone";
 Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),

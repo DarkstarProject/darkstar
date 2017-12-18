@@ -32,26 +32,26 @@ function onTrigger(player,npc)
         if (ACSP == QUEST_ACCEPTED) then
             -- Finishing Quest: 'A Certain Substitute Patrolman'
             if (player:getVar("ACSP_NPCs_Visited") >= 8) then
-                player:startEvent(0x09F8);
+                player:startEvent(2552);
             -- During Quest: 'A Certain Substitute Patrolman'
             else
-                player:startEvent(0x09F7);
+                player:startEvent(2551);
             end
         -- Starts Quest: 'A Certain Substitute Patrolman'
         elseif (ACSP == QUEST_AVAILABLE) then
-            player:startEvent(0x09F6);
+            player:startEvent(2550);
         else
             if ((SOA_Mission >= BEAUTY_AND_THE_BEAST) and (SOA_Mission <= SALVATION)) then
                 -- Speech while Arciela is 'kidnapped'
-                player:startEvent(0x0096);
+                player:startEvent(150);
             else
                 -- Standard dialogue, after joining colonization effort
-                player:startEvent(0x0244);
+                player:startEvent(580);
             end
         end
     else
         -- Dialogue prior to joining colonization effort
-        player:startEvent(0x01F6);
+        player:startEvent(502);
     end
 end;
 
@@ -67,13 +67,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x09F6) then
+    if (csid == 2550) then
         -- Starting Quest: 'A Certain Substitute Patrolman'
         player:addQuest(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
         player:addKeyItem(WESTERN_ADOULIN_PATROL_ROUTE);
         player:messageSpecial(KEYITEM_OBTAINED, WESTERN_ADOULIN_PATROL_ROUTE);
         player:setVar("ACSP_NPCs_Visited", 1);
-    elseif (csid == 0x09F8) then
+    elseif (csid == 2552) then
         -- Finishing Quest: 'A Certain Substitute Patrolman'
         player:completeQuest(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
         player:addExp(1000 * EXP_RATE);

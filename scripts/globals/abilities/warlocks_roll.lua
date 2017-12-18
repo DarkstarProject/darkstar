@@ -60,9 +60,9 @@ function applyRoll(caster,target,ability,action,total)
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_WARLOCKS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_MACC) == false) then
-        ability:setMsg(422);
+        ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
     elseif total > 11 then
-        ability:setMsg(426);
+        ability:setMsg(msgBasic.DOUBLEUP_BUST);
     end
     return total;
 end

@@ -4,17 +4,9 @@
 -- Teaches the song Horde Lullaby
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     return target:canLearnSpell(376);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(376);

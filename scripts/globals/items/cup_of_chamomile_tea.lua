@@ -9,11 +9,7 @@
 -- Magic Regen While Healing 1
 -- Sleep resistance -30
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,10 +19,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,4603);
@@ -44,11 +36,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SLEEPRES, -30);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_MP, 8);
     target:delMod(MOD_VIT, -2);
     target:delMod(MOD_CHR, 2);

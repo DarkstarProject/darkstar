@@ -6,7 +6,6 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
------------------------------------
 
 function onAdditionalEffect(player,target,damage)
     local chance = 15;
@@ -38,11 +37,10 @@ end;
 
 function onItemUse(target)
     local hpHeal = math.random(160,220);
-
     local dif = target:getMaxHP() - target:getHP();
     if (hpHeal > dif) then
         hpHeal = dif;
     end
     target:addHP(hpHeal);
-    target:messageBasic(263,0,hpHeal);
+    target:messageBasic(msgBasic.RECOVERS_HP, 0, hpHeal);
 end;

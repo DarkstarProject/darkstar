@@ -27,10 +27,10 @@ FlashInThePan = player:getQuestStatus(BASTOK,A_FLASH_IN_THE_PAN);
             FlintStone = trade:hasItemQty(768,4);
             
             if (FlintStone == true and count == 4) then
-                player:startEvent(0x00db);
+                player:startEvent(219);
             end
         else
-            player:startEvent(0x00da);
+            player:startEvent(218);
         end
     end
 
@@ -45,9 +45,9 @@ function onTrigger(player,npc)
 FlashInThePan = player:getQuestStatus(BASTOK,A_FLASH_IN_THE_PAN);
 
     if (FlashInThePan == QUEST_AVAILABLE) then
-        player:startEvent(0x00d9);
+        player:startEvent(217);
     else
-        player:startEvent(0x0074);
+        player:startEvent(116);
     end
     
 end;
@@ -69,9 +69,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00d9) then
+    if (csid == 217) then
         player:addQuest(BASTOK, A_FLASH_IN_THE_PAN);        
-    elseif (csid == 0x00db) then
+    elseif (csid == 219) then
         FlashInThePan = player:getQuestStatus(BASTOK,A_FLASH_IN_THE_PAN);
         CompleteTime = os.time();
         

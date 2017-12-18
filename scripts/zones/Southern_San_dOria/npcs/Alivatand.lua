@@ -92,7 +92,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     else
-        unionRepresentativeTrade(player, npc, trade, 0x02b3, 5);
+        unionRepresentativeTrade(player, npc, trade, 691, 5);
     end
 end;
 
@@ -101,7 +101,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    unionRepresentativeTrigger(player, 5, 0x02b2, "guild_leathercraft", keyitems);
+    unionRepresentativeTrigger(player, 5, 690, "guild_leathercraft", keyitems);
 end;
 
 -----------------------------------
@@ -111,7 +111,7 @@ end;
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x02b2) then
+    if (csid == 690) then
         unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
     end
 end;
@@ -123,9 +123,9 @@ end;
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x02b2) then
+    if (csid == 690) then
         unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
-    elseif (csid == 0x02b3) then
+    elseif (csid == 691) then
         player:messageSpecial(GP_OBTAINED, option);
     end
 end;

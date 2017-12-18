@@ -31,10 +31,10 @@ function onTrigger(player,npc)
     --player:addMission(COP, WHEN_ANGELS_FALL);
     --player:setVar("PromathiaStatus",3);
    if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==3) then
-      player:startEvent(0x00CB);            
+      player:startEvent(203);            
    elseif (EventTriggerBCNM(player,npc)) then
    elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==5) then
-      player:startEvent(0x00CD);    
+      player:startEvent(205);    
     end
   return 1;
 end;
@@ -59,7 +59,7 @@ function onEventUpdate(player,csid,option)
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
     -- printf("onFinish RESULT: %u",option);
-    if ( csid == 0x00CB) then
+    if ( csid == 203) then
      player:setVar("PromathiaStatus",4);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

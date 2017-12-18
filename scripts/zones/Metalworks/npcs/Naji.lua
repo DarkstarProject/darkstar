@@ -38,49 +38,49 @@ end;
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(YASINS_SWORD)) then -- The Doorman, WAR AF1
-        player:startEvent(0x02ee);
+        player:startEvent(750);
     elseif (player:getCurrentMission(BASTOK) ~= 255) then
         local currentMission = player:getCurrentMission(BASTOK);
 
         if (currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
             if (player:seenKeyItem(ZERUHN_REPORT)) then
-                player:startEvent(0x02C6,0);
+                player:startEvent(710,0);
             else
-                player:startEvent(0x02C6,1);
+                player:startEvent(710,1);
             end
         elseif (currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
-            player:startEvent(0x02c7);
+            player:startEvent(711);
         elseif (currentMission == THE_EMISSARY and player:hasKeyItem(KINDRED_REPORT)) then
-            player:startEvent(0x02ca);
+            player:startEvent(714);
         elseif (currentMission == THE_EMISSARY) then
             if (player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
-                player:startEvent(0x02c9);
+                player:startEvent(713);
             else
                 player:showText(npc,GOOD_LUCK);
             end
         elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
-            player:startEvent(0x02d0);
+            player:startEvent(720);
         elseif (currentMission == DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
-            player:startEvent(0x02d1);
+            player:startEvent(721);
         elseif (player:hasKeyItem(BURNT_SEAL)) then
-            player:startEvent(0x02d2);
+            player:startEvent(722);
         elseif (currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
-            player:startEvent(0x02f9);
+            player:startEvent(761);
         elseif (currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 3) then
-            player:startEvent(0x02fa);
+            player:startEvent(762);
         else
-            player:startEvent(0x02bc);
+            player:startEvent(700);
         end
     elseif (player:hasKeyItem(YASINS_SWORD)) then -- The Doorman
-        player:startEvent(0x02ee);
+        player:startEvent(750);
     else
-        player:startEvent(0x02bc);
+        player:startEvent(700);
     end
 
 end;
 
--- 0x02c6  0x02c7  0x02bc  0x02c9  0x02ca  0x02cb  0x02cd  0x02d0  0x02d1  0x02ee  0x03f0  0x03f1  0x02f9
--- 0x02fa  0x030e  0x0325  0x034d  0x036d  0x03aa  0x03ab  0x03ac  0x03ad  0x03ae  0x03cb  0x03c9  0x03ca
+-- 0x02c6  711  700  713  714  0x02cb  0x02cd  720  721  750  0x03f0  0x03f1  761
+-- 762  0x030e  0x0325  0x034d  0x036d  0x03aa  0x03ab  0x03ac  0x03ad  0x03ae  0x03cb  0x03c9  0x03ca
 
 -----------------------------------
 -- onEventUpdate
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x02ee) then
+    if (csid == 750) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(16678);
             player:messageSpecial(ITEM_OBTAINED, 16678); -- Razor Axe
@@ -109,24 +109,24 @@ function onEventFinish(player,csid,option)
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
-    elseif (csid == 0x02C6) then
+    elseif (csid == 710) then
         player:delKeyItem(ZERUHN_REPORT);
         player:completeMission(BASTOK,THE_ZERUHN_REPORT);
-    elseif (csid == 0x02c9) then
+    elseif (csid == 713) then
         player:addKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
         player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x02d0 and option == 0 or csid == 0x02d1) then
+    elseif (csid == 720 and option == 0 or csid == 721) then
         player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
         player:addKeyItem(NEW_FEIYIN_SEAL);
         player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
         player:setVar("MissionStatus",10);
-    elseif (csid == 0x02d0 and option == 1) then
+    elseif (csid == 720 and option == 1) then
         player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x02f9) then
+    elseif (csid == 761) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 0x02ca or csid == 0x02d2 or csid == 0x02fa) then
+    elseif (csid == 714 or csid == 722 or csid == 762) then
         finishMissionTimeline(player,1,csid,option);
     end
 

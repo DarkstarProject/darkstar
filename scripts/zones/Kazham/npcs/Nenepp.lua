@@ -50,9 +50,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 9 or failed == 10 then
             if goodtrade then
-                player:startEvent(0x00F1);
+                player:startEvent(241);
             elseif badtrade then
-                player:startEvent(0x00EE);
+                player:startEvent(238);
             end
         end
     end
@@ -70,15 +70,15 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00CE);
+            player:startEvent(206);
             npc:wait();
         elseif (progress == 9 or failed == 10) then
-                player:startEvent(0x00D4);  -- asking for lucky egg
+                player:startEvent(212);  -- asking for lucky egg
         elseif (progress >= 10 or failed >= 11) then
-            player:startEvent(0x00FA); -- happy with lucky egg
+            player:startEvent(250); -- happy with lucky egg
         end
     else
-        player:startEvent(0x00CE);
+        player:startEvent(206);
         npc:wait();
     end
 end;
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00F1) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
+    if (csid == 241) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
         local FreeSlots = player:getFreeSlotsCount();
         if (FreeSlots >= 4) then
             player:tradeComplete();
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option,npc)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         end
-    elseif (csid == 0x00EE) then              -- wrong trade, restart at first opo
+    elseif (csid == 238) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",10);
     else

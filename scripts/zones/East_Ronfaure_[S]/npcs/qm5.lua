@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(OXIDIZED_PLATE)) then
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         else
-            player:startEvent(0x0003);
+            player:startEvent(3);
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
-    if (csid == 0x0003) then
+    if (csid == 3) then
         player:addKeyItem(OXIDIZED_PLATE);
         player:messageSpecial(KEYITEM_OBTAINED,OXIDIZED_PLATE);
     end

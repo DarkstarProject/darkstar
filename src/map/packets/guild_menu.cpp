@@ -34,7 +34,7 @@ CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, 
 
 	//DSP_DEBUG_BREAK_IF(open > close);
 
-	WBUFB(data,(0x04)) = status;
+	ref<uint8>(0x04) = status;
 
 	switch (status)
 	{
@@ -46,7 +46,7 @@ CGuildMenuPacket::CGuildMenuPacket(GUILDSTATUS status, uint8 open, uint8 close, 
 		break;
 		case GUILD_HOLYDAY:
 		{
-			WBUFB(data,(0x08)) = holiday;
+			ref<uint8>(0x08) = holiday;
 		}
 		break;
 	}

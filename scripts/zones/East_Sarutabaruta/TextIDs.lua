@@ -1,9 +1,9 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6386; -- Obtained: <item>
-           GIL_OBTAINED = 6387; -- Obtained <number> gil
+ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6387; -- Obtained: <item>
+           GIL_OBTAINED = 6388; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7206; -- You can't fish here
 
@@ -14,11 +14,11 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
 SAMA_GOHJIMA_POSTDIALOG = 7390; -- Were you able to find the laborrratory? There are many such hidden passages in the Horutoto Ruins.
 
 -- Signs
-SIGNPOST_OFFSET = 7376; -- Southeast: South Tower, Horutoto Ruins Southwest: Windurst Woods
+        SIGNPOST_OFFSET = 7376; -- Southeast: South Tower, Horutoto Ruins Southwest: Windurst Woods
 
 -- conquest Base
-CONQUEST_BASE = 7047; -- Tallying conquest results...
+          CONQUEST_BASE = 7047; -- Tallying conquest results...
 
 -- chocobo digging
-DIG_THROW_AWAY = 7219; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
-FIND_NOTHING = 7221; -- You dig and you dig, but find nothing.
+         DIG_THROW_AWAY = 7219; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
+           FIND_NOTHING = 7221; -- You dig and you dig, but find nothing.

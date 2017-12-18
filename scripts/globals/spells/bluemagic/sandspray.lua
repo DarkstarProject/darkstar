@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
     params.effect = typeEffect;
-    resist = applyResistanceEffect(caster, target, spell, params);
+    local resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 120 * resist;
     local power = 25;
 

@@ -29,17 +29,17 @@ function onTrigger(player,npc)
     if (FINAO == QUEST_ACCEPTED) then
         if (player:hasKeyItem(HUNK_OF_BEDROCK)) then
             -- Finishing Quest: 'F.A.I.L.ure Is Not an Option'
-            player:startEvent(0x004C);
+            player:startEvent(76);
         else
             -- Dialgoue during Quest: 'F.A.I.L.ure Is Not an Option'
-            player:startEvent(0x004D);
+            player:startEvent(77);
         end
     elseif ((FINAO == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 4) and player:hasKeyItem(FAIL_BADGE)) then
         -- Starting Quest: 'F.A.I.L.ure Is Not an Option'
-        player:startEvent(0x004E);
+        player:startEvent(78);
     else
         -- Standard dialogue
-        player:startEvent(0x0221);
+        player:startEvent(545);
     end
 end;
 
@@ -55,10 +55,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x004E) then
+    if (csid == 78) then
         -- Starting Quest: 'F.A.I.L.ure Is Not an Option'
         player:addQuest(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
-    elseif (csid == 0x004C) then
+    elseif (csid == 76) then
         -- Finishing Quest: 'F.A.I.L.ure Is Not an Option'
         player:delKeyItem(HUNK_OF_BEDROCK);
         player:completeQuest(ADOULIN, FAILURE_IS_NOT_AN_OPTION);

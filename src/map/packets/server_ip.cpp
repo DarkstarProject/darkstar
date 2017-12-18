@@ -32,7 +32,7 @@ CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, uint64 ipp)
 	this->type = 0x0B;
 	this->size = 0x0E;
 
-	WBUFB(data,(0x04)) = type;
-	WBUFL(data,(0x08)) = (uint32)ipp;
-	WBUFW(data,(0x0C)) = (uint16)(ipp >> 32);
+	ref<uint8>(0x04) = type;
+	ref<uint32>(0x08) = (uint32)ipp;
+	ref<uint16>(0x0C) = (uint16)(ipp >> 32);
 }

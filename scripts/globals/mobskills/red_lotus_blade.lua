@@ -9,12 +9,11 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
--- Can't load 2 zones TextIDs at once, don't move them here!
----------------------------------------------
+require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4006 and mob:getPool() ~= 4249) then
-        mob:messageBasic(43, 0, 34);
+        mob:messageBasic(msgBasic.READIES_WS, 0, 34);
     end
     return 0;
 end;

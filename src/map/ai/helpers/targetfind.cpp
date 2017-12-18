@@ -147,7 +147,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
         }
 
         if (m_findFlags & FINDFLAGS_HIT_ALL ||
-            m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp())
+            (m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp()))
         {
             addAllInZone(m_PMasterTarget, withPet);
         }
@@ -236,8 +236,6 @@ void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
-    CParty* party = nullptr;
-
     PTarget->ForAlliance([this, withPet](CBattleEntity* PMember)
     {
         addEntity(PMember, withPet);

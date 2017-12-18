@@ -26,10 +26,10 @@ function onTrigger(player,npc)
     local Race = player:getRace();
 
     if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 1) then
-        player:startEvent(0x00CA);
+        player:startEvent(202);
     elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL  and player:getVar("PromathiaStatus") == 2) then
         if ( Race==2 or Race==1) then
-            player:startEvent(0x0078);
+            player:startEvent(120);
         else
             player:messageSpecial(NO_NEED_INVESTIGATE);
         end
@@ -54,9 +54,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00CA) then
+    if (csid == 202) then
         player:setVar("PromathiaStatus",2);
-    elseif (0x0078 and option ~=0) then -- Hume
+    elseif (120 and option ~=0) then -- Hume
         player:addTitle(WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);
         player:addKeyItem(LIGHT_OF_VAHZL);

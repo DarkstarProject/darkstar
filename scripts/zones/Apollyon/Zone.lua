@@ -100,10 +100,10 @@ function onRegionEnter(player,region)
   local regionID = region:GetRegionID();
    switch (regionID): caseof {
         [1] = function (x) 
-             player:startEvent(0x0064); -- APPOLLYON_SE_NE exit
+             player:startEvent(100); -- APPOLLYON_SE_NE exit
         end,
         [2] = function (x) 
-             player:startEvent(0x0065); -- APPOLLYON_NW_SW exit
+             player:startEvent(101); -- APPOLLYON_NW_SW exit
             -- print("APPOLLYON_NW_SW");
         end,
         [3] = function (x) 
@@ -140,73 +140,73 @@ function onRegionEnter(player,region)
         -- ///////////////////////APPOLLYON SE TELEPORTER///////////////////////////////////////////
         [20] = function (x) 
              -- print("SE_telporter_f1_to_f2");
-             if (IsMobDead(16932992)==true and player:getAnimation()==0) then player:startEvent(0x00DB);end
+             if (IsMobDead(16932992)==true and player:getAnimation()==0) then player:startEvent(219);end
         end,
         [21] = function (x) 
              -- print("SE_telporter_f2_to_f3");
-              if (IsMobDead(16933006)==true and player:getAnimation()==0) then player:startEvent(0x00DA);end
+              if (IsMobDead(16933006)==true and player:getAnimation()==0) then player:startEvent(218);end
         end,    
         [22] = function (x) 
             --  print("SE_telporter_f3_to_f4");
-              if (IsMobDead(16933020)==true and player:getAnimation()==0) then player:startEvent(0x00D8);end
+              if (IsMobDead(16933020)==true and player:getAnimation()==0) then player:startEvent(216);end
          end,       
         [23] = function (x) 
              -- print("SE_telporter_f3_to_entrance");
-              if (IsMobDead(16933032)==true and player:getAnimation()==0) then player:startEvent(0x00D9);end
+              if (IsMobDead(16933032)==true and player:getAnimation()==0) then player:startEvent(217);end
          end,
          -- ///////////////////////////////////////////////////////////////////////////////////////////      
          -- /////////////////////    APPOLLYON NE TELEPORTER           ////////////////////////////////
         [24] = function (x) 
              -- print("NE_telporter_f1_to_f2");
-              if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(0x00D6);end 
+              if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(214);end 
          end,
          [25] = function (x) 
              -- print("NE_telporter_f2_to_f3");
-              if (IsMobDead(16933064)==true and player:getAnimation()==0) then player:startEvent(0x00D4);end  --212
+              if (IsMobDead(16933064)==true and player:getAnimation()==0) then player:startEvent(212);end  --212
          end,
          [26] = function (x) 
             --  print("NE_telporter_f3_to_f4");
-              if (IsMobDead(16933086)==true and player:getAnimation()==0) then player:startEvent(0x00D2);end  --210
+              if (IsMobDead(16933086)==true and player:getAnimation()==0) then player:startEvent(210);end  --210
          end,
          [27] = function (x) 
             --  print("NE_telporter_f4_to_f5");
-              if (IsMobDead(16933101)==true and player:getAnimation()==0) then player:startEvent(0x00D7);end    --215
+              if (IsMobDead(16933101)==true and player:getAnimation()==0) then player:startEvent(215);end    --215
          end,
          [28] = function (x) 
             --  print("NE_telporter_f5_to_entrance");
-              if ( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0) then player:startEvent(0x00D5);end --213
+              if ( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0) then player:startEvent(213);end --213
          end,
          -- //////////////////////////////////////////////////////////////////////////////////////////////////
          -- /////////////////////    APPOLLYON SW TELEPORTER           //////////////////////////////// 
          [29] = function (x) 
-              if (IsMobDead(16932873)==true and player:getAnimation()==0) then player:startEvent(0x00D0);end --208
+              if (IsMobDead(16932873)==true and player:getAnimation()==0) then player:startEvent(208);end --208
          end,
          [30] = function (x) 
-              if (IsMobDead(16932885)==true and player:getAnimation()==0) then player:startEvent(0x00D1);end --209
+              if (IsMobDead(16932885)==true and player:getAnimation()==0) then player:startEvent(209);end --209
               --printf("Mimics should be 0: %u",GetServerVariable("[SW_Apollyon]MimicTrigger"));
          end,
          [31] = function (x)        
-              if (( IsMobDead(16932896)==true or IsMobDead(16932897)==true or IsMobDead(16932898)==true or  IsMobDead(16932899)==true )and player:getAnimation()==0) then player:startEvent(0x00CF);end -- 207
+              if (( IsMobDead(16932896)==true or IsMobDead(16932897)==true or IsMobDead(16932898)==true or  IsMobDead(16932899)==true )and player:getAnimation()==0) then player:startEvent(207);end -- 207
          end,
          [32] = function (x) 
-              if (IselementalDayAreDead()==true and player:getAnimation()==0) then player:startEvent(0x00CE);end -- 206
+              if (IselementalDayAreDead()==true and player:getAnimation()==0) then player:startEvent(206);end -- 206
          end,        
              -- //////////////////////////////////////////////////////////////////////////////////////////////////
          -- /////////////////////    APPOLLYON NW TELEPORTER           //////////////////////////////// 
          [33] = function (x) 
-              if (IsMobDead(16932937)==true and player:getAnimation()==0) then player:startEvent(0x00CD);end --205
+              if (IsMobDead(16932937)==true and player:getAnimation()==0) then player:startEvent(205);end --205
          end,
          [34] = function (x) 
-              if (IsMobDead(16932950)==true and player:getAnimation()==0) then player:startEvent(0x00CB);end --203
+              if (IsMobDead(16932950)==true and player:getAnimation()==0) then player:startEvent(203);end --203
          end,
          [35] = function (x) 
-              if (IsMobDead(16932963)==true and player:getAnimation()==0) then player:startEvent(0x00C9);end --201
+              if (IsMobDead(16932963)==true and player:getAnimation()==0) then player:startEvent(201);end --201
          end,
          [36] = function (x) 
-              if (IsMobDead(16932976)==true and player:getAnimation()==0) then player:startEvent(0x00C8);end --200
+              if (IsMobDead(16932976)==true and player:getAnimation()==0) then player:startEvent(200);end --200
          end,
          [37] = function (x) 
-              if (IsMobDead(16932985)==true and player:getAnimation()==0) then player:startEvent(0x00CA);end --202
+              if (IsMobDead(16932985)==true and player:getAnimation()==0) then player:startEvent(202);end --202
          end,
     }
     
@@ -225,10 +225,10 @@ end;
 function onEventUpdate(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-   if (csid == 0x00D1 and option == 0 and GetServerVariable("[SW_Apollyon]MimicTrigger")==0) then
+   if (csid == 209 and option == 0 and GetServerVariable("[SW_Apollyon]MimicTrigger")==0) then
     SpawnCofferSWfloor3();
     --printf("Mimics should be 1: %u",GetServerVariable("[SW_Apollyon]MimicTrigger"));
-   elseif (csid == 0x00CF and option == 0 and GetServerVariable("[SW_Apollyon]ElementalTrigger")==0) then 
+   elseif (csid == 207 and option == 0 and GetServerVariable("[SW_Apollyon]ElementalTrigger")==0) then 
     SetServerVariable("[SW_Apollyon]ElementalTrigger",VanadielDayElement()+1);
     -- printf("Elementals should be 1: %u",GetServerVariable("[SW_Apollyon]ElementalTrigger"));
    end
@@ -241,9 +241,9 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-   if (csid == 0x0064 and option == 1) then
+   if (csid == 100 and option == 1) then
     player:setPos(557,-1,441,128,0x21);  -- APPOLLYON_SE_NE exit
-   elseif (csid == 0x0065 and option == 1) then
+   elseif (csid == 101 and option == 1) then
     player:setPos(-561,0,443,242,0x21); -- APPOLLYON_NW_SW exit
    end   
 end;

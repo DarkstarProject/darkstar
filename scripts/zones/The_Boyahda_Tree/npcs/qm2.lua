@@ -41,7 +41,7 @@ function onTrigger(player,npc)
                 player:messageSpecial(CANNOT_SEE_MOON);
 
             elseif (player:getVar("Searching_AgasKilled") == 1) then
-                player:startEvent(0x000e);
+                player:startEvent(14);
 
             else
                 player:messageSpecial(SOMETHING_NOT_RIGHT);
@@ -70,7 +70,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x000e) then
+    if (csid == 14) then
         player:addKeyItem(MOONDROP);
         player:messageSpecial(KEYITEM_OBTAINED, MOONDROP);
         player:setVar("Searching_AgasKilled", 0);

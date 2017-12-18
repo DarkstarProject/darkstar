@@ -23,7 +23,7 @@ BombAsh = trade:hasItemQty(928,1);
         TheWisdomVar = player:getVar("TheWisdomVar");
         if (TheWisdom == 1 and TheWisdomVar == 2) then
             player:tradeComplete();
-            player:startEvent(0x00b0);
+            player:startEvent(176);
         end
     end
     
@@ -39,13 +39,13 @@ TheWisdom = player:getQuestStatus(BASTOK,THE_WISDOM_OF_ELDERS);
 pLevel = player:getMainLvl();
     
     if (TheWisdom == 0 and pLevel >= 6) then
-        player:startEvent(0x00ae);
+        player:startEvent(174);
     else
     rand = math.random(1,2);
         if (rand ==1) then
-            player:startEvent(0x0066);
+            player:startEvent(102);
         else
-            player:startEvent(0x0067);
+            player:startEvent(103);
         end
     end
     
@@ -68,14 +68,18 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00ae) then
+    if (csid == 174) then
         player:addQuest(BASTOK,THE_WISDOM_OF_ELDERS);
         player:setVar("TheWisdomVar",1);
-    elseif (csid == 0x00b0) then
-        player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
-        player:addFame(BASTOK,120);
-        player:addItem(12500);
-        player:messageSpecial(ITEM_OBTAINED,12500);
+    elseif (csid == 176) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12500);
+        else
+            player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
+            player:addFame(BASTOK,120);
+            player:addItem(12500);
+            player:messageSpecial(ITEM_OBTAINED,12500);
+        end
     end
     
 end;

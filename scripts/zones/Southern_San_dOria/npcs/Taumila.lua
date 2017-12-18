@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,TIGER_S_TEETH) ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(884,3) and trade:getItemCount() == 3) then
-            player:startEvent(0x023c);
+            player:startEvent(572);
         end
     end
 
@@ -35,13 +35,13 @@ function onTrigger(player,npc)
     local tigersTeeth = player:getQuestStatus(SANDORIA,TIGER_S_TEETH);
 
     if (player:getFameLevel(SANDORIA) >= 3 and tigersTeeth == QUEST_AVAILABLE) then
-        player:startEvent(0x023e);
+        player:startEvent(574);
     elseif (tigersTeeth == QUEST_ACCEPTED) then
-        player:startEvent(0x023f);
+        player:startEvent(575);
     elseif (tigersTeeth == QUEST_COMPLETED) then
-        player:startEvent(0x023d);
+        player:startEvent(573);
     else
-        player:startEvent(0x023b);
+        player:startEvent(571);
     end
 
 end;
@@ -63,9 +63,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x023e and option == 0) then
+    if (csid == 574 and option == 0) then
         player:addQuest(SANDORIA,TIGER_S_TEETH);
-    elseif (csid == 0x023c) then
+    elseif (csid == 572) then
         player:tradeComplete();
         player:addTitle(FANG_FINDER);
         player:addGil(GIL_RATE*2100);

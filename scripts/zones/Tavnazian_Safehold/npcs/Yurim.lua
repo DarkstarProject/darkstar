@@ -117,62 +117,62 @@ function onTrade(player,npc,trade)
     if ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 2 and itemtarget == 0) then  
         if (trade:hasItemQty(SILVER_EARRING,1)) then 
             if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(RELAXING_EARRING)==false) then 
-                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,BLACK_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,BLACK_CHIP);
             elseif (trade:hasItemQty(WHITE_CHIP,1) and player:hasItem(SANATIVE_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,WHITE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,WHITE_CHIP);
             elseif (trade:hasItemQty(RED_CHIP,1) and player:hasItem(SANATIVE_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,RED_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,RED_CHIP);
             elseif (trade:hasItemQty(YELLOW_CHIP,1) and player:hasItem(RELAXING_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,YELLOW_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,YELLOW_CHIP);
             elseif (trade:hasItemQty(BLUE_CHIP,1) and player:hasItem(RELAXING_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,BLUE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,BLUE_CHIP);
             elseif (trade:hasItemQty(GREEN_CHIP,1) and player:hasItem(SANATIVE_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,GREEN_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,GREEN_CHIP);
             elseif (trade:hasItemQty(CLEAR_CHIP,1) and player:hasItem(RELAXING_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,CLEAR_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,CLEAR_CHIP);
             elseif (trade:hasItemQty(PURPLE_CHIP,1) and player:hasItem(SANATIVE_EARRING)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(0x020E,SILVER_EARRING,PURPLE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,PURPLE_CHIP);
             end
         elseif (trade:hasItemQty(SILVER_OBI,1)) then       
             if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(ANRIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",ANRIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,BLACK_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",ANRIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,BLACK_CHIP);
             elseif (trade:hasItemQty(WHITE_CHIP,1) and player:hasItem(KORIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",KORIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,WHITE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",KORIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,WHITE_CHIP);
             elseif (trade:hasItemQty(RED_CHIP,1) and player:hasItem(KARIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",KARIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,RED_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",KARIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,RED_CHIP);
             elseif (trade:hasItemQty(YELLOW_CHIP,1) and player:hasItem(DORIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",DORIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,YELLOW_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",DORIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,YELLOW_CHIP);
             elseif (trade:hasItemQty(BLUE_CHIP,1) and player:hasItem(SUIRIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SUIRIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,BLUE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SUIRIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,BLUE_CHIP);
             elseif (trade:hasItemQty(GREEN_CHIP,1) and player:hasItem(FURIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",FURIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,GREEN_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",FURIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,GREEN_CHIP);
             elseif (trade:hasItemQty(CLEAR_CHIP,1) and player:hasItem(HYORIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",HYORIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,CLEAR_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",HYORIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,CLEAR_CHIP);
             elseif (trade:hasItemQty(PURPLE_CHIP,1) and player:hasItem(RAIRIN_OBI)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",RAIRIN_OBI); player:tradeComplete(); player:startEvent(0x020E,SILVER_OBI,PURPLE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",RAIRIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,PURPLE_CHIP);
             end
         elseif (trade:hasItemQty(GORGET,1)) then 
             if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(SHADOW_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SHADOW_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,BLACK_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SHADOW_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,BLACK_CHIP);
             elseif (trade:hasItemQty(WHITE_CHIP,1) and player:hasItem(LIGHT_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",LIGHT_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,WHITE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",LIGHT_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,WHITE_CHIP);
             elseif (trade:hasItemQty(RED_CHIP,1) and player:hasItem(FLAME_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",FLAME_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,RED_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",FLAME_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,RED_CHIP);
             elseif (trade:hasItemQty(YELLOW_CHIP,1) and player:hasItem(SOIL_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SOIL_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,YELLOW_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SOIL_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,YELLOW_CHIP);
             elseif (trade:hasItemQty(BLUE_CHIP,1) and player:hasItem(AQUA_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",AQUA_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,BLUE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",AQUA_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,BLUE_CHIP);
             elseif (trade:hasItemQty(GREEN_CHIP,1) and player:hasItem(BREEZE_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",BREEZE_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,GREEN_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",BREEZE_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,GREEN_CHIP);
             elseif (trade:hasItemQty(CLEAR_CHIP,1) and player:hasItem(SNOW_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",SNOW_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,CLEAR_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",SNOW_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,CLEAR_CHIP);
             elseif (trade:hasItemQty(PURPLE_CHIP,1) and player:hasItem(THUNDER_GORGET)==false) then
-                player:setVar("NAME_OF_SCIENCE_target",THUNDER_GORGET); player:tradeComplete(); player:startEvent(0x020E,GORGET,PURPLE_CHIP);
+                player:setVar("NAME_OF_SCIENCE_target",THUNDER_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,PURPLE_CHIP);
             end  
         end
 --------------------------------------------------apple pie trade-------------------------------------------------------------------------------          
     elseif ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 1 and itemtarget > 0 and trade:hasItemQty(APPLE_PIE,1) ) then 
-        player:startEvent(0x0213,APPLE_PIE); player:tradeComplete();
+        player:startEvent(531,APPLE_PIE); player:tradeComplete();
 --------------------------------------------------trade  organe-----------------------------------------------------------------------------------------------    
     elseif ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and itemtarget > 0  ) then    
         if (itemtarget == RELAXING_EARRING and count == 10) then     
@@ -251,7 +251,7 @@ function onTrade(player,npc,trade)
     end       
     --------------------------------------------------------------------------------------------------------------------
     if (reward == true) then
-        player:startEvent(0x0211, GORGET, SILVER_EARRING, SILVER_OBI);
+        player:startEvent(529, GORGET, SILVER_EARRING, SILVER_OBI);
     end
 end; 
 
@@ -267,22 +267,22 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then   --have SEA acces
         if (NameOfScience == QUEST_AVAILABLE) then         
-            player:startEvent(0x020C,13205,13327,13080);
+            player:startEvent(524,13205,13327,13080);
             player:addQuest(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
         elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED  and itemtarget == 0) then         
-            player:startEvent(0x020D,13205,13327,13080);
+            player:startEvent(525,13205,13327,13080);
         elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED and itemtarget > 0) then                
             if (rnd < 0.3) then
-                player:startEvent(0x0214,getNOS(itemtarget,1),getNOS(itemtarget,2));
+                player:startEvent(532,getNOS(itemtarget,1),getNOS(itemtarget,2));
             else
-                player:startEvent(0x0210,getNOS(itemtarget,1),getNOS(itemtarget,2));
+                player:startEvent(528,getNOS(itemtarget,1),getNOS(itemtarget,2));
             end
         end         
     else 
         if (rnd < 0.5) then
-            player:startEvent(0x020F); --no quest
+            player:startEvent(527); --no quest
         else
-            player:startEvent(0x0207); --no quest
+            player:startEvent(519); --no quest
         end
     end
 end; 
@@ -303,7 +303,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0211) then
+    if (csid == 529) then
         local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
         if (player:getFreeSlotsCount()==0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,itemtarget);

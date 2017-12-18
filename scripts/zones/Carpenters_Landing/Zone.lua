@@ -6,11 +6,10 @@
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/Carpenters_Landing/TextIDs");
+require("scripts/zones/Carpenters_Landing/MobIDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -57,10 +56,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-
-    -- Tempest Tigon
-    SetRespawnTime(16785593, 900, 10800);
-
+    UpdateNMSpawnPoint(TEMPEST_TIGON);
+    GetMobByID(TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------

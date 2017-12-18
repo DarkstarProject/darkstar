@@ -1,30 +1,19 @@
 -----------------------------------------
--- ID: 15170
--- Item: Stoneskin torque
+-- ID: 14517
+-- Item: Hydra Haubert
 -- Item Effect: gives refresh
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-
     if (target:hasStatusEffect(EFFECT_REFRESH)) then
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     else
-        -- delete old
-        target:delStatusEffect(EFFECT_REFRESH);
         target:addStatusEffect(EFFECT_REFRESH, 3, 3, 180);
     end
 end;

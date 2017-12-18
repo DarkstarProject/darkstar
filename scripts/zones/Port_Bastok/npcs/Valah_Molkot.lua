@@ -52,20 +52,20 @@ itemQuality = 0;
 
     if (itemQuality == 2) then
         if (ALadysHeart == QUEST_COMPLETED) then
-            player:startEvent(0x00a0, 0, 236, 4);
+            player:startEvent(160, 0, 236, 4);
         else
-            player:startEvent(0x00a0, 0, 236, 2);
+            player:startEvent(160, 0, 236, 2);
         end
     elseif (itemQuality == 1) then
         if (ALadysHeart == QUEST_COMPLETED) then
-            player:startEvent(0x00a0, 0, 236, 5);
+            player:startEvent(160, 0, 236, 5);
         elseif (ALadysHeart == QUEST_ACCEPTED) then
-            player:startEvent(0x00a0, 0, 236, 3);
+            player:startEvent(160, 0, 236, 3);
         else
-            player:startEvent(0x00a0, 0, 236, 1);
+            player:startEvent(160, 0, 236, 1);
         end
     else
-        player:startEvent(0x00a0, 0, 236, 0);
+        player:startEvent(160, 0, 236, 0);
     end
 
 end;
@@ -76,7 +76,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00a0, 0, 236, 10);
+    player:startEvent(160, 0, 236, 10);
 end;
 
 
@@ -98,13 +98,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00a0 and option == 2002) then
+    if (csid == 160 and option == 2002) then
         player:tradeComplete();
         player:completeQuest(BASTOK,A_LADY_S_HEART);
         player:addFame(BASTOK,120);
         player:moghouseFlag(2);
         player:messageSpecial(MOGHOUSE_EXIT);
-    elseif (csid == 0x00a0 and option == 1) then
+    elseif (csid == 160 and option == 1) then
         player:tradeComplete();
         player:addQuest(BASTOK,A_LADY_S_HEART);
     end

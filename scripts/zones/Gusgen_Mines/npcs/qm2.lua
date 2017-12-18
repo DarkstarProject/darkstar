@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 200) then
         if (trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
             player:tradeComplete();
-            player:startEvent(0x000a);
+            player:startEvent(10);
         end
     end
 
@@ -58,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x000a) then
+    if (csid == 10) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(16637);
             player:addTitle(BLACK_DEATH);

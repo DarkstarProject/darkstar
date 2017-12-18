@@ -30,7 +30,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:getVar("ASA4_Amber") == 1) then
-        player:startEvent(0x0002);
+        player:startEvent(2);
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
     --printf("onFinish CSID: %u",csid);
     --printf("onFinish RESULT: %u",option);
 
-    if (csid==0x0002) then
+    if (csid==2) then
         player:delKeyItem(DOMINAS_AMBER_SEAL);
         player:addKeyItem(AMBER_COUNTERSEAL);
         player:messageSpecial(KEYITEM_OBTAINED,AMBER_COUNTERSEAL);

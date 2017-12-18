@@ -27,10 +27,10 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 0) then
-        cs = 0x00C8;
+        cs = 200;
 
     elseif (player:getVar("roadToDivadomCS") == 1) then
-        cs = 0x0069;
+        cs = 105;
     end;
 
     return cs;
@@ -60,9 +60,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00C8) then
+    if (csid == 200) then
         player:setVar("ClawsOfGriffonProg",1);
-    elseif (csid == 0x0069 ) then
+    elseif (csid == 105 ) then
         player:setVar("roadToDivadomCS", 2);
     end;
 

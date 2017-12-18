@@ -22,30 +22,30 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 1) then
-        player:startEvent(0x0017); -- Gifts of Griffon Start
+        player:startEvent(23); -- Gifts of Griffon Start
 
     elseif (player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 2 and player:getVar("GiftsOfGriffonPlumes") == 127) then
-        player:startEvent(0x0018); -- Gifts of Griffon Quest Complete
+        player:startEvent(24); -- Gifts of Griffon Quest Complete
 
     elseif (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_AVAILABLE and player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_COMPLETED and player:getMainLvl() >= 15) then
-        player:startEvent(0x002F) -- Claws of Griffon Start
+        player:startEvent(47) -- Claws of Griffon Start
 
     elseif (player:getVar("BoyAndTheBeast") == 1) then
-        player:startEvent(0x0038);
+        player:startEvent(56);
 
     elseif (player:getVar("BoyAndTheBeast") > 1 and player:getQuestStatus(CRYSTAL_WAR,BOY_AND_THE_BEAST) ~= QUEST_COMPLETED) then
-        player:startEvent(0x0039);
+        player:startEvent(57);
 
     elseif (player:getQuestStatus(CRYSTAL_WAR,BOY_AND_THE_BEAST) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON) == QUEST_AVAILABLE) then
-        player:startEvent(0x003B);
+        player:startEvent(59);
     elseif (player:getQuestStatus(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
         if (player:getVar("WrathOfTheGriffon") < 2) then
-            player:startEvent(0x003D);
+            player:startEvent(61);
         elseif (player:getVar("WrathOfTheGriffon") == 2) then
-            player:startEvent(0x003C);
+            player:startEvent(60);
         end
     else
-        player:startEvent(0x0020); -- Default Dialogue
+        player:startEvent(32); -- Default Dialogue
     end
 end;
 
@@ -65,9 +65,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x002F) then
+    if (csid == 47) then
         player:addQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
-    elseif (csid == 0x0017) then
+    elseif (csid == 23) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2528);
         else
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,2528);
         end
 
-    elseif (csid == 0x0018) then
+    elseif (csid == 24) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,812);
         else
@@ -86,11 +86,11 @@ function onEventFinish(player,csid,option)
             player:setVar("GiftsOfGriffonPlumes",0);
             player:completeQuest(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON);
         end
-    elseif (csid == 0x0038) then
+    elseif (csid == 56) then
         player:setVar("BoyAndTheBeast",2);
-    elseif (csid == 0x003B) then
+    elseif (csid == 59) then
         player:addQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
-    elseif (csid == 0x003C) then
+    elseif (csid == 60) then
         player:completeQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
         player:setVar("WrathOfTheGriffon",0);
         player:addKeyItem(MILITARY_SCRIP);

@@ -28,21 +28,21 @@ function onTrigger(player,npc)
     local deliveryGoodsProg = player:getVar("deliveringTheGoodsCS");
     local vanishActProg = player:getVar("vanishingactCS");
     if (player:getQuestStatus(AHT_URHGAN,DELIVERING_THE_GOODS) == QUEST_AVAILABLE) then
-        player:startEvent(0x0027);
+        player:startEvent(39);
     elseif (deliveryGoodsProg == 1) then
-        player:startEvent(0x002e);
+        player:startEvent(46);
     elseif (deliveryGoodsProg == 2) then
-        player:startEvent(0x0029);
+        player:startEvent(41);
     elseif (vanishingact == QUEST_ACCEPTED and vanishActProg == 2) then
-        player:startEvent(0x002b);
+        player:startEvent(43);
     elseif (vanishActProg == 3) then
-        player:startEvent(0x0030);
+        player:startEvent(48);
     elseif (vanishActProg == 4) then
-        player:startEvent(0x0031);
+        player:startEvent(49);
     elseif (vanishingact == QUEST_COMPLETED) then
-        player:startEvent(0x003b);
+        player:startEvent(59);
     else
-        player:startEvent(0x002f);
+        player:startEvent(47);
     end
 
 end;
@@ -63,10 +63,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0027) then
+    if (csid == 39) then
         player:addQuest(AHT_URHGAN,DELIVERING_THE_GOODS);
         player:setVar("deliveringTheGoodsCS",1);
-    elseif (csid == 0x0029) then
+    elseif (csid == 41) then
         if (player:getFreeSlotsCount() == 0) then
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2184,3);
         else
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
            player:completeQuest(AHT_URHGAN,DELIVERING_THE_GOODS);
            player:setVar("VANISHING_ACT_waitJPMidnight",getMidnight());
         end
-    elseif (csid == 0x002b) then
+    elseif (csid == 43) then
            player:setVar("vanishingactCS",3);
     end
 end;

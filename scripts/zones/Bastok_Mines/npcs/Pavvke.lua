@@ -21,10 +21,10 @@ Fallen = player:getQuestStatus(BASTOK,FALLEN_COMRADES);
 
     if (Fallen == 1 and SilverTag == true and count == 1) then
         player:tradeComplete();
-        player:startEvent(0x005b);
+        player:startEvent(91);
     elseif (Fallen == 2 and SilverTag == true and count == 1) then
         player:tradeComplete();
-        player:startEvent(0x005c);
+        player:startEvent(92);
     end        
             
 end; 
@@ -40,9 +40,9 @@ pLevel = player:getMainLvl(player);
 pFame = player:getFameLevel(BASTOK);
     
     if (Fallen == 0    and pLevel >= 12 and pFame >= 2) then
-        player:startEvent(0x005a);
+        player:startEvent(90);
     else 
-        player:startEvent(0x004b);
+        player:startEvent(75);
     end
 
 end;
@@ -64,14 +64,14 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x005a) then
+    if (csid == 90) then
         player:addQuest(BASTOK,FALLEN_COMRADES);
-    elseif (csid == 0x005b) then
+    elseif (csid == 91) then
         player:completeQuest(BASTOK,FALLEN_COMRADES);
         player:addFame(BASTOK,120);
         player:addGil(GIL_RATE*550);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
-    elseif (csid == 0x005c) then
+    elseif (csid == 92) then
         player:addFame(BASTOK,8);
         player:addGil(GIL_RATE*550);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);

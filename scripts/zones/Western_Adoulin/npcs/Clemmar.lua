@@ -26,14 +26,14 @@ function onTrigger(player,npc)
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
         if ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 2)) then
             -- Progresses Quest: 'A Certain Substitute Patrolman'
-            player:startEvent(0x09FA);
+            player:startEvent(2554);
         else
             -- Standard dialogue
-            player:startEvent(0x023A);
+            player:startEvent(570);
         end
     else
         -- Dialogue prior to joining colonization effort
-        player:startEvent(0x0207);
+        player:startEvent(519);
     end
 end;
 
@@ -49,7 +49,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x09FA) then
+    if (csid == 2554) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
         player:setVar("ACSP_NPCs_Visited", 3);
     end

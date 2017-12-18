@@ -149,7 +149,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-351.136,-2.25,-380,253);
     end    
     if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==0) then
-        cs = 0x00C9 ;
+        cs = 201 ;
     end
     player:setVar("Ru-Hmet-TP",0);
     return cs;    
@@ -165,58 +165,58 @@ function onRegionEnter(player,region)
         {
             [1] = function (x) 
                 if (player:getCurrentMission(COP)==DAWN or player:hasCompletedMission(COP,DAWN) or player:hasCompletedMission(COP,THE_LAST_VERSE) ) then
-                   player:startEvent(0x0065);  
+                   player:startEvent(101);  
                 else
-                   player:startEvent(0x009B); 
+                   player:startEvent(155); 
                 end
             end, --101         
 
             [2] = function (x) 
                 if (player:hasKeyItem(BRAND_OF_DAWN) and player:hasKeyItem(BRAND_OF_TWILIGHT)) then
-                    player:startEvent(0x009C);
+                    player:startEvent(156);
                 else
-                    player:startEvent(0x00B7);
+                    player:startEvent(183);
                 end
             end, --102      
 
             [3] = function (x) 
-                player:startEvent(0x0067);  
+                player:startEvent(103);  
             end, --103        
 
-            [4] = function (x) player:startEvent(0x0096);end,--hume niv 0  150 vers niv 1
-            [5] = function (x) player:startEvent(0x009E);end,--hume niv 1  158 vers niv 0
-            [6] = function (x) player:startEvent(0x009F);end,--hume niv 1  159 vers niv 2
-            [7] = function (x) player:startEvent(0x00A9);end,--hume niv 2  169 vers niv 1                
-            [8] = function (x) player:startEvent(0x00A8);end,--hume niv 2  168 vers niv 3
-            [9] = function (x) player:startEvent(0x00B2);end,--hume niv 3  178 vers niv 2        
+            [4] = function (x) player:startEvent(150);end,--hume niv 0  150 vers niv 1
+            [5] = function (x) player:startEvent(158);end,--hume niv 1  158 vers niv 0
+            [6] = function (x) player:startEvent(159);end,--hume niv 1  159 vers niv 2
+            [7] = function (x) player:startEvent(169);end,--hume niv 2  169 vers niv 1                
+            [8] = function (x) player:startEvent(168);end,--hume niv 2  168 vers niv 3
+            [9] = function (x) player:startEvent(178);end,--hume niv 3  178 vers niv 2        
 
-            [10] = function (x) player:startEvent(0x0097);end,--elvaan niv 0 151 vers niv 1
-            [11] = function (x) player:startEvent(0x00A0);end,--elvaan niv 1 160 vers niv 0
-            [12] = function (x) player:startEvent(0x00A1);end,--elvaan niv 1 161 vers niv 2    
-            [13] = function (x) player:startEvent(0x00AB);end,--elvaan niv 2 171 vers niv 1        
-            [14] = function (x) player:startEvent(0x00AA);end,--elvaan niv 2 170 vers niv 3
-            [15] = function (x) player:startEvent(0x00B3);end,--elvaan niv 3 179 vers niv 2    
+            [10] = function (x) player:startEvent(151);end,--elvaan niv 0 151 vers niv 1
+            [11] = function (x) player:startEvent(160);end,--elvaan niv 1 160 vers niv 0
+            [12] = function (x) player:startEvent(161);end,--elvaan niv 1 161 vers niv 2    
+            [13] = function (x) player:startEvent(171);end,--elvaan niv 2 171 vers niv 1        
+            [14] = function (x) player:startEvent(170);end,--elvaan niv 2 170 vers niv 3
+            [15] = function (x) player:startEvent(179);end,--elvaan niv 3 179 vers niv 2    
 
-            [16] = function (x) player:startEvent(0x0098);end,--galka niv 0 152 vers niv 1
-            [17] = function (x) player:startEvent(0x00A2);end,--galka niv 1 162 vers niv 0
-            [18] = function (x) player:startEvent(0x00A3);end,--galka niv 1 163 vers niv 2    
-            [19] = function (x) player:startEvent(0x00AD);end,--galka niv 2 173 vers niv 1            
-            [20] = function (x) player:startEvent(0x00AC);end,--galka niv 2 172 vers niv 3
-            [21] = function (x) player:startEvent(0x00B4);end,--galka niv 3 180 vers niv 2                    
+            [16] = function (x) player:startEvent(152);end,--galka niv 0 152 vers niv 1
+            [17] = function (x) player:startEvent(162);end,--galka niv 1 162 vers niv 0
+            [18] = function (x) player:startEvent(163);end,--galka niv 1 163 vers niv 2    
+            [19] = function (x) player:startEvent(173);end,--galka niv 2 173 vers niv 1            
+            [20] = function (x) player:startEvent(172);end,--galka niv 2 172 vers niv 3
+            [21] = function (x) player:startEvent(180);end,--galka niv 3 180 vers niv 2                    
 
-            [22] = function (x) player:startEvent(0x0099);end,--taru niv 0 153 vers niv 1
-            [23] = function (x) player:startEvent(0x00A4);end,--taru niv 1 164 vers niv 0
-            [24] = function (x) player:startEvent(0x00A5);end,--taru niv 1 165 vers niv 2
-            [25] = function (x) player:startEvent(0x00AF);end,--taru niv 2 175 vers niv 1    
-            [26] = function (x) player:startEvent(0x00AE);end,--taru niv 2 174 vers niv 3
-            [27] = function (x) player:startEvent(0x00B5);end,--taru niv 3 181 vers niv 2                            
+            [22] = function (x) player:startEvent(153);end,--taru niv 0 153 vers niv 1
+            [23] = function (x) player:startEvent(164);end,--taru niv 1 164 vers niv 0
+            [24] = function (x) player:startEvent(165);end,--taru niv 1 165 vers niv 2
+            [25] = function (x) player:startEvent(175);end,--taru niv 2 175 vers niv 1    
+            [26] = function (x) player:startEvent(174);end,--taru niv 2 174 vers niv 3
+            [27] = function (x) player:startEvent(181);end,--taru niv 3 181 vers niv 2                            
 
-            [28] = function (x) player:startEvent(0x009A);end,--mithra niv 0 154 vers niv 1
-            [29] = function (x) player:startEvent(0x00A6);end,--mithra niv 1 166 vers niv 0    
-            [30] = function (x) player:startEvent(0x00A7);end,--mithra niv 1 167 vers niv 2
-            [31] = function (x) player:startEvent(0x00B1);end,--mithra niv 2 177 vers niv 1    
-            [32] = function (x) player:startEvent(0x00B0);end,--mithra niv 2 176 vers niv 3
-            [33] = function (x) player:startEvent(0x00B6);end,--mithra niv 3 182 vers niv 2    
+            [28] = function (x) player:startEvent(154);end,--mithra niv 0 154 vers niv 1
+            [29] = function (x) player:startEvent(166);end,--mithra niv 1 166 vers niv 0    
+            [30] = function (x) player:startEvent(167);end,--mithra niv 1 167 vers niv 2
+            [31] = function (x) player:startEvent(177);end,--mithra niv 2 177 vers niv 1    
+            [32] = function (x) player:startEvent(176);end,--mithra niv 2 176 vers niv 3
+            [33] = function (x) player:startEvent(182);end,--mithra niv 3 182 vers niv 2    
         }
     end
 end;    
@@ -235,7 +235,7 @@ function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if ((csid >0x0095 and csid < 0x00B8) or csid == 0x0066 or csid == 0x0067 or csid == 0x0065) then
+    if ((csid >0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",1);
     end
 end;    
@@ -248,14 +248,14 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x0065 and option == 1) then
+    if (csid == 101 and option == 1) then
         player:setPos(540,-1,-499.900,62,0x24);
         player:setVar("Ru-Hmet-TP",0);
-    elseif ((csid > 0x0095 and csid < 0x00B8) or csid == 0x0066 or csid == 0x0067 or csid == 0x0065) then
+    elseif ((csid > 0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",0);
-    elseif (csid == 0x00C9) then
+    elseif (csid == 201) then
         player:setVar("PromathiaStatus",1);    
-    elseif (csid == 0x7d00 and option==1) then
+    elseif (csid == 32000 and option==1) then
         player:setPos(420,0,398,68);
     end
 end;

@@ -41,7 +41,7 @@ function onTrigger(player,npc)
 
     -- "Rosel the Armorer" - turn in reciept to prince
     if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
-        player:startEvent(0x01fb);
+        player:startEvent(507);
     else
         player:showText(npc,GUILERME_DIALOG);
     end
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- "Rosel the Armorer", give receipt to NPC:Guilerme
-    if (csid == 0x01fb) then
+    if (csid == 507) then
         player:delKeyItem(RECEIPT_FOR_THE_PRINCE);
     end;
 
