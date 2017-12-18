@@ -639,7 +639,7 @@ namespace charutils
             PChar->jobs.exp[JOB_GEO] = (uint16)Sql_GetIntData(SqlHandle, 21);
             PChar->jobs.exp[JOB_RUN] = (uint16)Sql_GetIntData(SqlHandle, 22);
             meritPoints = (uint8)Sql_GetIntData(SqlHandle, 23);
-            limitPoints = (uint8)Sql_GetIntData(SqlHandle, 24);
+            limitPoints = (uint16)Sql_GetIntData(SqlHandle, 24);
         }
 
         fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
