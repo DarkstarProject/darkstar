@@ -949,7 +949,7 @@ function onTrigger(player,npc)
                 GetMobByID(MimicList[randmimic]):updateClaim(player);
             else
                 battlefield:setLocalVar("loot", 1)
-                battlefield:spawnLoot()
+                battlefield:spawnLoot(npc)
                 g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
             end
             -- despawn les coffer du meme groupe
@@ -960,7 +960,7 @@ function onTrigger(player,npc)
             end
         else
             battlefield:setLocalVar("loot", 1)
-            battlefield:spawnLoot()
+            battlefield:spawnLoot(npc)
             g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
         end
     elseif (CofferType == cRESTORE) then

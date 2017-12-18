@@ -167,7 +167,7 @@ public:
     bool                   CanCleanup(bool cleanup = false);
     void                   Cleanup();
     bool                   LoadMobs();
-    bool                   SpawnLoot();
+    bool                   SpawnLoot(CBaseEntity* PEntity = nullptr);
 
     std::set<uint32>              m_RegisteredPlayers;
     std::set<uint32>              m_EnteredPlayers;

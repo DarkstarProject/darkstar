@@ -732,7 +732,7 @@ function onTrigger(player, npc)
         g_Battlefield.ExtendTimeLimit(battlefield, addtime)
     elseif (CofferType == cITEM) then
         battlefield:setLocalVar("loot", 1)
-        battlefield:spawnLoot()
+        battlefield:spawnLoot(npc)
         g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
     elseif (CofferType == cRESTORE) then
         g_Battlefield.HealPlayers(battlefield)

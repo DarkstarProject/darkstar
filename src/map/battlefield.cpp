@@ -610,29 +610,31 @@ bool CBattlefield::LoadMobs()
     return true;
 }
 
-bool CBattlefield::SpawnLoot()
+bool CBattlefield::SpawnLoot(CBaseEntity* PEntity)
 {
-    auto fmtQuery = "SELECT npcId FROM bcnm_treasure_chests WHERE bcnmId = %u AND battlefieldNumber = %u;";
-    auto ret = Sql_Query(SqlHandle, fmtQuery, this->GetID(), this->GetArea());
+    if (!PEntity)
+    {
+        auto fmtQuery = "SELECT npcId FROM bcnm_treasure_chests WHERE bcnmId = %u AND battlefieldNumber = %u;";
+        auto ret = Sql_Query(SqlHandle, fmtQuery, this->GetID(), this->GetArea());
 
-    if (ret == SQL_ERROR ||
-        Sql_NumRows(SqlHandle) == 0)
-    {
-        ShowError("Battlefield::SpawnLoot() : Cannot find treasure chest for battlefield %i area %i \n",
-            this->GetID(), this->GetArea());
-        return false;
-    }
-    else
-    {
-        if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        if (ret == SQL_ERROR ||
+            Sql_NumRows(SqlHandle) == 0)
         {
-            auto npcId = Sql_GetUIntData(SqlHandle, 0);
-            auto PEntity = zoneutils::GetEntity(npcId);
-            SetLocalVar("lootSpawned", 1);
-            return InsertEntity(PEntity, true);
+            ShowError("Battlefield::SpawnLoot() : Cannot find treasure chest for battlefield %i area %i \n",
+                this->GetID(), this->GetArea());
+            return false;
+        }
+        else
+        {
+            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                auto npcId = Sql_GetUIntData(SqlHandle, 0);
+                PEntity = zoneutils::GetEntity(npcId);
+            }
         }
     }
-    return true;
+    SetLocalVar("lootSpawned", 1);
+    return InsertEntity(PEntity, true);
 }
 
 void CBattlefield::ClearEnmityForEntity(CBattleEntity* PEntity)
