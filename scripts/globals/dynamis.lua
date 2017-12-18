@@ -1,6 +1,7 @@
 require("scripts/globals/status")
 require("scripts/globals/keyitems")
 require("scripts/globals/battlefield")
+require("scripts/globals/msg")
 
 dynamis = {}
 
@@ -944,5 +945,5 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
 end;
 
 function dynamis.extendTimeLimit(battlefield, minutes)
-    g_Battlefield.extendTimeLimit(battlefield, minutes, 448)
+    g_Battlefield.ExtendTimeLimit(battlefield, minutes, msgBasic.TIME_DYNAMIS_EXTENDED)
 end

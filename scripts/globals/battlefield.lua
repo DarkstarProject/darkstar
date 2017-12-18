@@ -128,7 +128,7 @@ function g_Battlefield.SendTimePrompts(battlefield, players)
 
     if message ~= 0 then
         for i, player in pairs(players) do
-            player:messageBasic(msgBasic.TIME_REMAINING, remainingTime)
+            player:messageBasic(msgBasic.TIME_LEFT, remainingTime)
         end
         battlefield:setLastTimeUpdate(message)
     end

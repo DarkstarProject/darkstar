@@ -232,8 +232,11 @@ msgBasic =
     ALL_ABILITIES_RECHARGED = 361,  -- All of ${target}'s abilities are recharged.
 
     -- Battlefield
-    TIME_REMAINING         = 202,
+    TIME_LEFT               = 202,  -- Time left: (0:00:00)
 
+    -- Dynamis
+    TIME_DYNAMIS_EXTENDED  = 448, -- Time allowed in Dynamis has been extended by <param> minutes
+    TIME_DYNAMIS_REMAINING = 449, -- ----== WARNING ==----Time remaining in Dynamis: <param> minutes.
     -- Charm
     CANNOT_CHARM           = 210, -- <actor> cannot charm <target>!
     VERY_DIFFICULT_CHARM   = 211, -- It would be very difficult for <actor> to charm <target>.
