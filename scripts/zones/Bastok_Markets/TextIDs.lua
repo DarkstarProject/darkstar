@@ -16,7 +16,7 @@
          GUILD_NEW_CONTRACT =  7095; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
 
         NO_MORE_GP_ELIGIBLE =  7102; -- You are not eligible to receive guild points at this time.
-                GP_OBTAINED =  6386; -- Obtained: ?Numeric Parameter 0? guild points.
+                GP_OBTAINED =  7107; -- Obtained: ?Numeric Parameter 0? guild points.
          NOT_HAVE_ENOUGH_GP =  7108; -- You do not have enough guild points.
      FISHING_MESSAGE_OFFSET =  7204; -- You can't fish here.
 
