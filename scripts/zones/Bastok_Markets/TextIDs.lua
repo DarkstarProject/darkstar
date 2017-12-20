@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-    ITEM_CANNOT_BE_OBTAINED =  6381; -- Come back after sorting your inventory.
+    ITEM_CANNOT_BE_OBTAINED =  6380; -- Come back after sorting your inventory.
  FULL_INVENTORY_AFTER_TRADE =  6384; -- Try trading again after sorting your inventory.
-              ITEM_OBTAINED =  7107; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-               GIL_OBTAINED =  6388; -- Obtained <<<Numeric Parameter 0>>> gil.
+              ITEM_OBTAINED =  6386; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+               GIL_OBTAINED =  6387; -- Obtained <<<Numeric Parameter 0>>> gil.
            KEYITEM_OBTAINED =  6389; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
         NOT_HAVE_ENOUGH_GIL =  6393; -- You do not have enough gil.
              ITEMS_OBTAINED =  6395; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
@@ -16,7 +16,7 @@
          GUILD_NEW_CONTRACT =  7095; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
 
         NO_MORE_GP_ELIGIBLE =  7102; -- You are not eligible to receive guild points at this time.
-                GP_OBTAINED =  7107; -- Obtained: ?Numeric Parameter 0? guild points.
+                GP_OBTAINED =  6386; -- Obtained: ?Numeric Parameter 0? guild points.
          NOT_HAVE_ENOUGH_GP =  7108; -- You do not have enough guild points.
      FISHING_MESSAGE_OFFSET =  7204; -- You can't fish here.
 

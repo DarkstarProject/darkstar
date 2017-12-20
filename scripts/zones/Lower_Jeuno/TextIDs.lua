@@ -1,11 +1,11 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED =  6381; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED =  6387; -- Obtained: <item>.
-           GIL_OBTAINED =  6388; -- Obtained <number> gil.
+ITEM_CANNOT_BE_OBTAINED =  6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED =  6386; -- Obtained: <item>.
+           GIL_OBTAINED =  6387; -- Obtained <number> gil.
        KEYITEM_OBTAINED =  6389; -- Obtained key item: <keyitem>.
-    NOT_HAVE_ENOUGH_GIL =  9592; -- You do not have enough gil.
+    NOT_HAVE_ENOUGH_GIL =  6393; -- You do not have enough gil.
           HOMEPOINT_SET =  6515; -- Home point set!
       MOG_LOCKER_OFFSET =  6804; -- Your Mog Locker lease is valid until <timestamp>, kupo.
  FISHING_MESSAGE_OFFSET =  6919; -- You can't fish here.

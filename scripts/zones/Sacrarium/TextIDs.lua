@@ -1,9 +1,9 @@
 -- Variable TextID   Description text
 
 -- General Texts
-  ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
-            ITEM_OBTAINED = 6387; -- Obtained: <item>
-             GIL_OBTAINED = 6388; -- Obtained <number> gil
+  ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory
+            ITEM_OBTAINED = 6386; -- Obtained: <item>
+             GIL_OBTAINED = 6387; -- Obtained <number> gil
          KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
 
             LARGE_KEYHOLE = 7213; -- The gate is securely closed with two locks. This keyhole is engraved with a sealion insignia
