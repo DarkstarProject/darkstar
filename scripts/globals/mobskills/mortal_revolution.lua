@@ -11,7 +11,7 @@ function onMobSkillCheck(target,mob,skill)
     -- See PW's script
     local phase = mob:getLocalVar("phase");
 
-    if (phase == 8) then
+    if (phase == 6) then
         return 0;
     else
         return 1;
