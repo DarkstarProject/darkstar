@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- Area: Qu'Bia Arena   
+-- MOB: Nephiyl MoatFiller
+-- Fight:  Demolition Squad
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

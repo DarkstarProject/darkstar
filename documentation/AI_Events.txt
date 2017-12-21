@@ -31,6 +31,7 @@ WEATHER_CHANGE - Entity, weather, weather element
 EXPERIENCE_POINTS - Entity, exp
 
 TICK - Entity
-EFFECTS_TICK - Entity
+COMBAT_TICK - Mob
+ROAM_TICK - Mob
 EFFECT_GAIN - Entity, Effect
 EFFECT_LOSE - Entity, Effect
