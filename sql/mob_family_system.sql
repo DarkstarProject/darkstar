@@ -432,8 +432,8 @@ INSERT INTO `mob_family_system` VALUES (363,'Automaton_Harlequin',18,'Unclassifi
 INSERT INTO `mob_family_system` VALUES (364,'Automaton_Valoredge',18,'Unclassified',0,40,155,0,6,5,6,4,4,5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0);
 INSERT INTO `mob_family_system` VALUES (365,'Automaton_Sharpshot',18,'Unclassified',0,40,115,0,4,5,4,6,5,5,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0);
 INSERT INTO `mob_family_system` VALUES (366,'Automaton_Stormwaker',18,'Unclassified',0,40,90,110,5,5,5,4,5,6,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0);
-INSERT INTO `mob_family_system` VALUES (367,'Doll',3,'Arcana',1,80,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,33,0);
-INSERT INTO `mob_family_system` VALUES (368,'Doll',3,'Arcana',1,45,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,33,0);
+INSERT INTO `mob_family_system` VALUES (367,'Faust',3,'Arcana',1,80,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,33,0);
+INSERT INTO `mob_family_system` VALUES (368,'Despot',3,'Arcana',1,45,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,33,0);
 INSERT INTO `mob_family_system` VALUES (369,'Leech',1,'Amorph',1,40,90,90,1,3,2,3,6,6,5,3,3,3,2,1,1,0.75,0.75,1.25,1.25,1.25,1.25,1.25,0.75,1.5,1.25,6,258,1);
 INSERT INTO `mob_family_system` VALUES (371,'Marid',6,'Beast',2,40,150,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1.125,1,1,1,1,1,1,4,257,0);
 INSERT INTO `mob_family_system` VALUES (372,'Crab',2,'Aquan',0,40,108,120,4,3,1,5,3,3,4,3,2,3,3,0.5,0.5,0.5,0.5,1,1.25,1,1,1.25,0.875,1,1,6,2,1);

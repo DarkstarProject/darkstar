@@ -13201,23 +13201,6 @@ inline int32 CLuaBaseEntity::actionQueueEmpty(lua_State* L)
 }
 
 /************************************************************************
-*  Function: actionQueueAbility()
-*  Purpose : Returns whether the Action is from the Action Queue or not
-*  Example : if (mob:actionQueueAbility() == false) then pwn
-*  Notes   : 
-************************************************************************/
-
-inline int32 CLuaBaseEntity::actionQueueAbility(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-
-    lua_pushboolean(L, m_PBaseEntity->GetLocalVar("actionQueueAction"));
-
-    return 1;
-}
-
-/************************************************************************
 *  Function: castSpell()
 *  Purpose : Prompts an NPC or Mob entity to cast a specified spell
 *  Example : mob:castSpell(spell)
@@ -14187,7 +14170,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTrickAttackChar),
         
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueEmpty),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueAbility),
         
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,useJobAbility),
