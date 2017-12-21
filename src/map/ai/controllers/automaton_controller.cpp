@@ -1450,7 +1450,7 @@ namespace autoSpell
         return (!statuses->HasStatusEffect(PSpell.enfeeble) && !PTarget->hasImmunity(PSpell.immunity));
     }
 
-    std::experimental::optional<SpellID> FindNaSpell(CStatusEffect* PStatus)
+    std::optional<SpellID> FindNaSpell(CStatusEffect* PStatus)
     {
         for (auto spell : naSpells)
         {

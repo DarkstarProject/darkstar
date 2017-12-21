@@ -28,7 +28,7 @@
 #include "../../entities/automatonentity.h"
 #include "../../status_effect.h"
 #include "../../spell.h"
-#include <experimental/optional>
+#include <optional>
 
 struct CurrentManeuvers
 {
@@ -115,7 +115,7 @@ namespace autoSpell
     void LoadAutomatonSpellList();
     bool CanUseSpell(CAutomatonEntity* PCaster, SpellID spellid);
     bool CanUseEnfeeble(CBattleEntity* PTarget, SpellID spell);
-    std::experimental::optional<SpellID> FindNaSpell(CStatusEffect* PStatus);
+    std::optional<SpellID> FindNaSpell(CStatusEffect* PStatus);
 };
 
 #endif
