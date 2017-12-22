@@ -1427,6 +1427,7 @@ void CStatusEffectContainer::TickEffects(time_point tick)
         }
     }
     DeleteStatusEffects();
+    m_POwner->PAI->EventHandler.triggerListener("EFFECTS_TICK", m_POwner);
 }
 
 /************************************************************************
