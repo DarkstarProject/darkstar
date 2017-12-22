@@ -2425,6 +2425,30 @@ inline int32 CLuaBaseEntity::isInMogHouse(lua_State* L)
 }
 
 /************************************************************************
+*  Function: isInZoneRegion(id)
+*  Purpose : Returns true if a entity is within region (defined by zone:registerRegion)
+*  Example : if player:isInZoneRegion() then -- poison and die
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isInZoneRegion(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    bool ret = false;
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+
+    if (lua_isnil(L, 1) || !lua_isnumber(L, 1))
+        ret = PChar->m_InsideRegionID != 0;
+    else if (auto PZone = m_PBaseEntity->loc.zone)
+        ret = PZone->CheckRegion(PChar, (uint32)lua_tointeger(L, 1));
+
+    lua_pushboolean(L, (int)ret);
+    return 1;
+}
+
+/************************************************************************
 *  Function: getPos()
 *  Purpose : Returns a table of signed coordinates (x,y,z,rot)
 *  Example : local pos = battletarget:getPos() -- pos becomes a Lua table
@@ -13650,6 +13674,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentRegion),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContinentID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInMogHouse),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInZoneRegion),
+
     
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
