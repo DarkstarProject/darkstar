@@ -64,8 +64,8 @@ public:
     bool isEmpty();
 private:
     CBaseEntity* PEntity;
-    std::priority_queue<queueAction_t> actionQueue;
-    std::priority_queue<queueAction_t> timerQueue;
+    std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> actionQueue;
+    std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> timerQueue;
 };
 
 #endif
