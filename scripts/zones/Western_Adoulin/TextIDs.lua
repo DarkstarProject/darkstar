@@ -1,11 +1,11 @@
 -- Variable TextID   Description text
 
 -- General Texts
-  ITEM_CANNOT_BE_OBTAINED =  6381; -- You cannot obtain the <item>. Come back after sorting your inventory.
+  ITEM_CANNOT_BE_OBTAINED =  6380; -- You cannot obtain the <item>. Come back after sorting your inventory.
 ITEM_CANNOT_BE_OBTAINED_2 =  6380; -- You cannot obtain the #. Come back after sorting your inventory.
-ITEM_CANNOT_BE_OBTAINED_3 =  6381; -- You cannot obtain the %. Come back after sorting your inventory.
-            ITEM_OBTAINED =  6387; -- Obtained: <item>
-             GIL_OBTAINED =  6388; -- Obtained <number> gil
+ITEM_CANNOT_BE_OBTAINED_3 =  6380; -- You cannot obtain the %. Come back after sorting your inventory.
+            ITEM_OBTAINED =  6386; -- Obtained: <item>
+             GIL_OBTAINED =  6387; -- Obtained <number> gil
          KEYITEM_OBTAINED =  6389; -- Obtained key item: <keyitem>
              KEYITEM_LOST =  6390; -- Lost key item: <keyitem>
       NOT_HAVE_ENOUGH_GIL =  6393; -- You do not have enough gil.
