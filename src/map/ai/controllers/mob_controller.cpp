@@ -791,7 +791,6 @@ void CMobController::DoRoamTick(time_point tick)
                 else if (PMob->m_roamFlags & ROAMFLAG_EVENT)
                 {
                     // allow custom event action
-                    PMob->PAI->EventHandler.triggerListener("ROAM_TICK", PMob);
                     luautils::OnMobRoamAction(PMob);
                     m_LastActionTime = m_Tick;
                 }
