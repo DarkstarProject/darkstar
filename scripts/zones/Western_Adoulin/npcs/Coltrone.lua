@@ -3,7 +3,7 @@
 --  NPC: Coltrone
 --  Type: Standard NPC
 --  @zone 256
--- @pos -30 19 97
+-- !pos -30 19 97
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x022B);
+    player:startEvent(555);
 end;
 
 -----------------------------------

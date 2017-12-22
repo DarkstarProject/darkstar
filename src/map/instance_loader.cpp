@@ -46,11 +46,11 @@ CInstanceLoader::CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PR
 
     SqlInstanceHandle = Sql_Malloc();
 
-    if (Sql_Connect(SqlInstanceHandle, map_config.mysql_login,
-        map_config.mysql_password,
-        map_config.mysql_host,
+    if (Sql_Connect(SqlInstanceHandle, map_config.mysql_login.c_str(),
+        map_config.mysql_password.c_str(),
+        map_config.mysql_host.c_str(),
         map_config.mysql_port,
-        map_config.mysql_database) == SQL_ERROR)
+        map_config.mysql_database.c_str()) == SQL_ERROR)
     {
         do_final(EXIT_FAILURE);
     }
@@ -101,7 +101,7 @@ bool CInstanceLoader::Check()
 
 CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 {
-    int8* Query =
+    const char* Query =
         "SELECT mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
 		respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
 		modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
@@ -127,7 +127,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         {
             CMobEntity* PMob = new CMobEntity;
 
-            PMob->name.insert(0, Sql_GetData(SqlInstanceHandle, 0));
+            PMob->name.insert(0, (const char*)Sql_GetData(SqlInstanceHandle, 0));
             PMob->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 1);
             PMob->targid = (uint16)PMob->id & 0x0FFF;
 
@@ -162,7 +162,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_Type = (uint8)Sql_GetIntData(SqlInstanceHandle, 21);
             PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlInstanceHandle, 22);
             PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlInstanceHandle, 23);
-            PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlInstanceHandle, 24);
+            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlInstanceHandle, 24);
 
             PMob->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 25);
             PMob->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 25);
@@ -260,7 +260,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
                 PNpc->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 0);
                 PNpc->targid = PNpc->id & 0xFFF;
 
-                PNpc->name.insert(0, Sql_GetData(SqlInstanceHandle, 1));
+                PNpc->name.insert(0, (const char*)Sql_GetData(SqlInstanceHandle, 1));
 
                 PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlInstanceHandle, 2);
                 PNpc->loc.p.x = Sql_GetFloatData(SqlInstanceHandle, 3);
@@ -295,8 +295,6 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         instance->Cancel();
         instance = nullptr;
     }
-
-    //TODO: pets
 
     return instance;
 }

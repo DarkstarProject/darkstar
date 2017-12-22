@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4674
---    Scroll of Barfira
---    Teaches the white magic Barfira
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4674
+-- Scroll of Barfira
+-- Teaches the white magic Barfira
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(66);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(66);

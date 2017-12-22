@@ -3,7 +3,7 @@
 --   NPC: Chantain
 --  Type: Consulate Representative
 -- @zone 237
--- @pos 21.729 -17 -30.888
+-- !pos 21.729 -17 -30.888
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00cb);
+    player:startEvent(203);
 end;
 
 -----------------------------------

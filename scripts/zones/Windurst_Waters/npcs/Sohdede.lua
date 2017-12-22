@@ -3,7 +3,7 @@
 --   NPC: Sohdede
 --  Type: Standard NPC
 -- @zone 238
--- @pos -60.601 -7.499 111.639
+-- !pos -60.601 -7.499 111.639
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0176);
+    player:startEvent(374);
 end;
 
 -----------------------------------

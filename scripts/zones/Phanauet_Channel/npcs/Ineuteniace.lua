@@ -2,7 +2,7 @@
 --  Area: Phanauet Channel
 --  NPC:  Ineuteniace
 --  Type: Standard NPC
--- @pos 11.701 -3 1.360 1
+-- !pos 11.701 -3 1.360 1
 -----------------------------------
 package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0065);
+    player:startEvent(101);
 end;
 
 -----------------------------------

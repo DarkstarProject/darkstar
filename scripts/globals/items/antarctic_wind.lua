@@ -3,12 +3,8 @@
 -- Item: Antarctic Wind
 -- Additional Effect: Removes Genbu's Water Damage
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)

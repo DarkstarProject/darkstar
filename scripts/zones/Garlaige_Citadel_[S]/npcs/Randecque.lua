@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Garlaige Citadel [S]
 --  NPC: Randecque
--- @pos 61 -6 137 164
+-- !pos 61 -6 137 164
 -- Notes: Gives Red Letter required to start "Steamed Rams"
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil;

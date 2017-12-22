@@ -2,7 +2,7 @@
 --  Area: Norg
 --  NPC: Chiyo
 --  Type: Tenshodo Merchant
--- @pos 5.801 0.020 -18.739 252
+-- !pos 5.801 0.020 -18.739 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             player:showText(npc, CHIYO_SHOP_DIALOG);
         end
     else
-        -- player:startEvent(0x0096);
+        -- player:startEvent(150);
     end
 end;
 

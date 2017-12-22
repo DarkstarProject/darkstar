@@ -3,8 +3,8 @@
 --   NPC: Nhel Urhahn
 --  Type: Standard NPC
 -- @zone 94
--- @pos -47.348 -4.499 47.117
--- 
+-- !pos -47.348 -4.499 47.117
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01a0);
+    player:startEvent(416);
 end;
 
 -----------------------------------

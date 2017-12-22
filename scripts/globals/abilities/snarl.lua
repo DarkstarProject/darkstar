@@ -5,10 +5,10 @@
 -- Recast Time: 30 seconds
 -- Duration: N/A
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -16,12 +16,12 @@ require("scripts/globals/pets");
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return msgBasic.REQUIRES_A_PET,0;
     else
         if ((player:getPet():getTarget() ~= nil) and (player:isJugPet())) then
             return 0,0;
         else
-            return MSGBASIC_PET_CANNOT_DO_ACTION,0;
+            return msgBasic.PET_CANNOT_DO_ACTION,0;
         end
     end
 end;

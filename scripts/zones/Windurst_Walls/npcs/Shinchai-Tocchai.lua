@@ -3,7 +3,7 @@
 --   NPC: Shinchai-Tocchai
 --  Type: Moghouse Renter
 -- @zone 239
--- @pos -220.551 -0.001 -116.916
+-- !pos -220.551 -0.001 -116.916
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01f9);
+    player:startEvent(505);
 end;
 
 -----------------------------------

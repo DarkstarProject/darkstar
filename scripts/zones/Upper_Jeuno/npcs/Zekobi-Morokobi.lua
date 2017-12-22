@@ -3,7 +3,7 @@
 --   NPC: Zekobi-Morokobi
 --  Type: Standard NPC
 -- @zone 244
--- @pos 41.258 -5.999 -74.105
+-- !pos 41.258 -5.999 -74.105
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0057);
+    player:startEvent(87);
 end;
 
 -----------------------------------

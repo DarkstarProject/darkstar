@@ -3,7 +3,7 @@
 --  NPC: Ledericus
 --  Type: Shop NPC
 --  @zone 256
---  @pos 37 32 117 256
+--  !pos 37 32 117 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

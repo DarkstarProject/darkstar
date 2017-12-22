@@ -3,7 +3,7 @@
 --  NPC: Delionna
 --  Type: Standard NPC
 --  @zone 256
--- @pos 16 0 165
+-- !pos 16 0 165
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0231);
+    player:startEvent(561);
 end;
 
 -----------------------------------

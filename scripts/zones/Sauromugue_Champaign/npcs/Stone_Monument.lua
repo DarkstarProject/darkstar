@@ -2,7 +2,7 @@
 --  Area: Sauromugue Champaign
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos 77.544 -2.746 -184.803 120
+-- !pos 77.544 -2.746 -184.803 120
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Sauromugue_Champaign/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

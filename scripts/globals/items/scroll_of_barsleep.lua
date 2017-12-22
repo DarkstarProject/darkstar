@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4680
---    Scroll of Barsleep
---    Teaches the white magic Barsleep
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4680
+-- Scroll of Barsleep
+-- Teaches the white magic Barsleep
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(72);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(72);

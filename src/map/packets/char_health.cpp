@@ -33,22 +33,22 @@ CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
 	this->type = 0xDF;
 	this->size = 0x12;
 
-	WBUFL(data,(0x04)) = PChar->id;
+	ref<uint32>(0x04) = PChar->id;
 
-	WBUFL(data,(0x08)) = PChar->health.hp;
-	WBUFL(data,(0x0C)) = PChar->health.mp;
-	WBUFL(data,(0x10)) = PChar->health.tp;
+	ref<uint32>(0x08) = PChar->health.hp;
+	ref<uint32>(0x0C) = PChar->health.mp;
+	ref<uint32>(0x10) = PChar->health.tp;
 
-	WBUFW(data,(0x14)) = PChar->targid;
+	ref<uint16>(0x14) = PChar->targid;
 
-	WBUFB(data,(0x16)) = PChar->GetHPP();
-	WBUFB(data,(0x17)) = PChar->GetMPP();
+	ref<uint8>(0x16) = PChar->GetHPP();
+	ref<uint8>(0x17) = PChar->GetMPP();
 
     if (!(PChar->nameflags.flags & FLAG_ANON))
     {
-        WBUFB(data, (0x20) ) = PChar->GetMJob();
-        WBUFB(data, (0x21) ) = PChar->GetMLevel();
-        WBUFB(data, (0x22) ) = PChar->GetSJob();
-        WBUFB(data, (0x23) ) = PChar->GetSLevel();
+        ref<uint8>(0x20) = PChar->GetMJob();
+        ref<uint8>(0x21) = PChar->GetMLevel();
+        ref<uint8>(0x22) = PChar->GetSJob();
+        ref<uint8>(0x23) = PChar->GetSLevel();
     }
 }

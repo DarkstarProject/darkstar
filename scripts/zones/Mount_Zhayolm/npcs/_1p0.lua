@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 -- Door: Heavy Iron Gate
--- @pos 660 -27 328 61
+-- !pos 660 -27 328 61
 -----------------------------------
 
 -----------------------------------
@@ -16,15 +16,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
     if (player:getZPos() < 332) then
-        player:startEvent(0x006a);
+        player:startEvent(106);
     else
-        player:startEvent(0x006b);
+        player:startEvent(107);
     end
-    
-    return 1;
-    
 end;
 
 -----------------------------------

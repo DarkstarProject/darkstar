@@ -3,7 +3,7 @@
 --   NPC: Gevarg
 --  Type: Past Event Watcher
 -- @zone 94
--- @pos -46.448 -6.312 212.384
+-- !pos -46.448 -6.312 212.384
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0000);
+    player:startEvent(0);
 end;
 
 -----------------------------------

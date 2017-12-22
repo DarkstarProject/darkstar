@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Uleguerand_Range
 -- NPC:  HomePoint#3
--- @pos 
+-- !pos
 -----------------------------------
 
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 
-    homepointMenu( player, 0x21fe, 78);
-end; 
+    homepointMenu( player, 8702, 78);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -43,9 +43,9 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 
-    if (csid == 0x21fe) then
+    if (csid == 8702) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

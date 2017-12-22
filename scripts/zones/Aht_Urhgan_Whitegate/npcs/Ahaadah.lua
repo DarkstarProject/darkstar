@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Ahaadah
--- @pos -70 -6 105 50
+-- !pos -70 -6 105 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0366); -- or 0x0001
+    player:startEvent(870); -- or 0x0001
 end;
 
 -----------------------------------

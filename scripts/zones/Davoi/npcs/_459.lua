@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Wall of Dark Arts
 -- Involved in Mission: Magicite
--- @pos -22 1 -66 149
+-- !pos -22 1 -66 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -22,13 +22,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(CREST_OF_DAVOI_KI)) then
-        player:startEvent(0x0036);
+        player:startEvent(54);
     else
-        player:startEvent(0x0037);
+        player:startEvent(55);
     end
-    
+
 end;
 
 -----------------------------------
@@ -46,5 +46,5 @@ end;
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);    
+    -- printf("RESULT: %u",option);
 end;

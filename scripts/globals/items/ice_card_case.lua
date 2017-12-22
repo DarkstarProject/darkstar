@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5403
---    Ice Card Case
---    When used, you will obtain one stack of Ice Cards
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5403
+-- Ice Card Case
+-- When used, you will obtain one stack of Ice Cards
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(2177,99);

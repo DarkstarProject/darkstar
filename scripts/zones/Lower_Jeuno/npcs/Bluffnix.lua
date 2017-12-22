@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Bluffnix
 -- Starts and Finishes Quests: Gobbiebags I-X
--- @pos -43.099 5.900 -114.788 245
+-- !pos -43.099 5.900 -114.788 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -23,19 +23,19 @@ function onTrade(player,npc,trade)
     local inventorySize = player:getContainerSize(0);
     local TheGobbieBag = gobQuest(player,inventorySize);
     local pFame = player:getFameLevel(JEUNO);
-    
+
     if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
         if (player:getContainerSize(0) < 80) then
             if (trade:hasItemQty(TheGobbieBag[3],1) and trade:hasItemQty(TheGobbieBag[4],1) and trade:hasItemQty(TheGobbieBag[5],1) and trade:hasItemQty(TheGobbieBag[6],1)) then
                 if (pFame >= TheGobbieBag[2]) then
-                    player:startEvent(0x0049, inventorySize+1);
+                    player:startEvent(73, inventorySize+1);
                     offer = 1;
                 else
-                    player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+                    player:startEvent(43,inventorySize+1,questStatus,offer);
                 end
             end
         else
-            player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
+            player:startEvent(43,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
         end
     end
 end;
@@ -80,9 +80,9 @@ function onTrigger(player,npc)
         if (pFame >= TheGobbieBag[2]) then
             offer = 1;
         end
-        player:startEvent(0x002b,inventorySize+1,questStatus,offer);
+        player:startEvent(43,inventorySize+1,questStatus,offer);
     else
-        player:startEvent(0x002b,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
+        player:startEvent(43,81); -- You're bag's bigger than any gobbie bag I've ever seen...;
     end
 end;
 
@@ -105,17 +105,17 @@ function onEventFinish(player,csid,option)
 
     local TheGobbieBag = gobQuest(player,player:getContainerSize(0));
 
-    if (csid == 0x002b and option == 0) then
+    if (csid == 43 and option == 0) then
         if (player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 0) then
             player:addQuest(JEUNO,TheGobbieBag[1]);
         end
-    elseif (csid == 0x0049) then
+    elseif (csid == 73) then
         if (gobbieBag == 5) then
             player:addTitle(GREEDALOX);
         elseif (gobbieBag == 10) then
             player:addTitle(GRAND_GREEDALOX);
         end
-        
+
         player:changeContainerSize(0,5);
         player:changeContainerSize(5,5);
         player:changeContainerSize(6,5);

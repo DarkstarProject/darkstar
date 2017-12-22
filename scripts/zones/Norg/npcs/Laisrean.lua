@@ -3,7 +3,7 @@
 -- NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
 -- @zone 252
--- @pos -2.251 -1 21.654
+-- !pos -2.251 -1 21.654
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -28,17 +28,17 @@ function onTrigger(player,npc)
     Stash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
     mLvl = player:getMainLvl();
     SeaStatue = player:hasKeyItem(SEA_SERPENT_STATUE);
-    
+
     if (Stash == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 5) then
-        player:startEvent(0x0021); -- Start quest
+        player:startEvent(33); -- Start quest
     elseif (Stash == QUEST_ACCEPTED) then
         if (SeaStatue == true) then
-            player:startEvent(0x0023,SEA_SERPENT_STATUE); -- Finish quest
+            player:startEvent(35,SEA_SERPENT_STATUE); -- Finish quest
         else
-            player:startEvent(0x0022); -- Reminder Dialogue
+            player:startEvent(34); -- Reminder Dialogue
         end
     else
-        player:startEvent(0x0053); -- Standard Conversation
+        player:startEvent(83); -- Standard Conversation
     end
 end;
 
@@ -58,11 +58,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0021 and option == 1) then
+    if (csid == 33 and option == 1) then
         player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
-    elseif (csid == 0x0023) then
-        if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946); 
+    elseif (csid == 35) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946);
         else
             player:delKeyItem(SEA_SERPENT_STATUE);
             player:addItem(4946); -- Scroll of Utsusemi: Ichi

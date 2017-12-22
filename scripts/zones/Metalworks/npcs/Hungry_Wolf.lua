@@ -2,7 +2,7 @@
 -- Area: Metalworks
 --   NPC: Hungry Wolf
 --  Type: Quest Giver
--- @pos -25.861 -11 -30.172 237
+-- !pos -25.861 -11 -30.172 237
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -- Updated for "Smoke on the Mountain" by EccentricAnata 03.22.13
@@ -20,8 +20,8 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) ~= QUEST_AVAILABLE and
-      trade:hasItemQty(4395,1) and trade:getItemCount() == 1) then 
-            player:startEvent(0x01ad);
+      trade:hasItemQty(4395,1) and trade:getItemCount() == 1) then
+            player:startEvent(429);
     end
 --]]
 end;
@@ -35,9 +35,9 @@ function onTrigger(player,npc)
  local SmokeOnTheMountain = player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN);
 
     if (SmokeOnTheMountain == QUEST_AVAILABLE) then
-        player:startEvent(0x01ac); 
-    else 
-        player:startEvent(0x01a5); 
+        player:startEvent(428);
+    else
+        player:startEvent(421);
     end
 end;
 
@@ -57,9 +57,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x01ac) then
+    if (csid == 428) then
         player:addQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);
-    elseif (csid == 0x01ad) then
+    elseif (csid == 429) then
         player:tradeComplete();
         player:addGil(GIL_RATE*300)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);

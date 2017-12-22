@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 16227
---    Persikos Tank
---    When used, you will obtain one Persikos au lait
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 16227
+-- Persikos Tank
+-- When used, you will obtain one Persikos au lait
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4303,1);

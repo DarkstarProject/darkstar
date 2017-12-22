@@ -1,11 +1,7 @@
 -----------------------------------------
 --  ID: 13683
 --  Water Tank
---  When used, you will obtain one Distilled Water
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+--  When used, you will obtain one stack of Distilled Water
 -----------------------------------------
 
 function onItemCheck(target)
@@ -16,10 +12,6 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    target:addItem(4509,1);
+    target:addItem(4509,12);
 end;

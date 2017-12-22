@@ -2,7 +2,7 @@
 --  Area: Bastok Markets
 --   NPC: Offa
 --  Type: Quest NPC
--- @pos -281.628 -16.971 -140.607 235
+-- !pos -281.628 -16.971 -140.607 235
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------
@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
     local SmokeOnTheMountain = player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN);
     if (SmokeOnTheMountain == QUEST_ACCEPTED) then
-        player:startEvent(0x00de);
+        player:startEvent(222);
     else
-        player:startEvent(0x007c);
+        player:startEvent(124);
     end
 end;
 

@@ -51,8 +51,8 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
 		{
 			if (ItemCount == 30)
 			{
-                WBUFB(data,(0xF4)) = ItemCount;
-                WBUFB(data,(0xF5)) = (PacketCount == 0 ? 0x40 : PacketCount);
+                ref<uint8>(0xF4) = ItemCount;
+                ref<uint8>(0xF5) = (PacketCount == 0 ? 0x40 : PacketCount);
 
                 PChar->pushPacket(new CBasicPacket(*this));
 
@@ -61,14 +61,14 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
 						
                 memset(data + 4, 0, PACKET_SIZE - 8);
 			}
-            WBUFW(data,(0x08*ItemCount+0x04)) = PItem->getID();
-            WBUFB(data,(0x08*ItemCount+0x06)) = PItem->getQuantity();
-            WBUFB(data,(0x08*ItemCount+0x07)) = PItem->getStackSize();
-            WBUFL(data,(0x08*ItemCount+0x08)) = PItem->getBasePrice();
+            ref<uint16>(0x08 * ItemCount + 0x04) = PItem->getID();
+            ref<uint8>(0x08 * ItemCount + 0x06) = PItem->getQuantity();
+            ref<uint8>(0x08 * ItemCount + 0x07) = PItem->getStackSize();
+            ref<uint32>(0x08 * ItemCount + 0x08) = PItem->getBasePrice();
 
             ItemCount++;
         }
     }
-    WBUFB(data,(0xF4)) = ItemCount;
-    WBUFB(data,(0xF5)) = PacketCount + 0xC0;
+    ref<uint8>(0xF4) = ItemCount;
+    ref<uint8>(0xF5) = PacketCount + 0xC0;
 }

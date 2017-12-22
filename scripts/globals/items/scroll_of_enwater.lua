@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4713
---    Scroll of Enwater
---    Teaches the white magic Enwater
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4713
+-- Scroll of Enwater
+-- Teaches the white magic Enwater
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(105);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(105);

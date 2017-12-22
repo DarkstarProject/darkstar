@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: King_Ranperre's Tomb
 -- NPC:  Strange Apparatus
--- @pos -260 7 -142 190
+-- !pos -260 7 -142 190
 -----------------------------------
 
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
@@ -14,7 +14,7 @@ require("scripts/globals/strangeapparatus");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    player:startEvent(0x000D, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(13, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x000B, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
+    player:startEvent(11, 0, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
 
 -----------------------------------

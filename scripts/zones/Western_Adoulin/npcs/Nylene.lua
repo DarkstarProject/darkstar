@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved with Quest: 'A Certain Substitute Patrolman'
 --  @zone 256
--- @pos 12 0 -82
+-- !pos 12 0 -82
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -26,14 +26,14 @@ function onTrigger(player,npc)
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
         if ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 7)) then
             -- Progresses Quest: 'A Certain Substitute Patrolman'
-            player:startEvent(0x09FF);
+            player:startEvent(2559);
         else
             -- Standard dialogue
-            player:startEvent(0x0232);
+            player:startEvent(562);
         end
     else
         -- Dialogue prior to joining colonization effort
-        player:startEvent(0x0215);
+        player:startEvent(533);
     end
 end;
 
@@ -49,7 +49,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x09FF) then
+    if (csid == 2559) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'
         player:setVar("ACSP_NPCs_Visited", 8);
     end

@@ -2,7 +2,7 @@
 --  Area: Garlaige Citadel
 --  NPC:  Wanzo-Unzozo
 --  Type: Quest NPC
--- @pos -379.420 -10.749 383.312 200
+-- !pos -379.420 -10.749 383.312 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x003c);
+    player:startEvent(60);
 end;
 
 -----------------------------------

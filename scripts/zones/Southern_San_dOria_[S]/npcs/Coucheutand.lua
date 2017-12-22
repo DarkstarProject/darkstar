@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Coucheutand
 -- @zone 80
--- @pos -12 2 1
+-- !pos -12 2 1
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x036);
+player:startEvent(54);
 end;
 
 -----------------------------------

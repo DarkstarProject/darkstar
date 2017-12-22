@@ -1,10 +1,10 @@
 -----------------------------------
 --  Area: Tavnazian Safehold
 --   NPC: Chemioue
---  Type: NPC Quest 
+--  Type: NPC Quest
 -- @zone 26
--- @pos 82.041 -34.964 67.636
--- 
+-- !pos 82.041 -34.964 67.636
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0118);
+    player:startEvent(280);
 end;
 
 -----------------------------------

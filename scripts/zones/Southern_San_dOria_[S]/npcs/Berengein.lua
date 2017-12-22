@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Berengein
 -- @zone 80
--- @pos 116 0 92
+-- !pos 116 0 92
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0259);
+player:startEvent(601);
 end;
 
 -----------------------------------

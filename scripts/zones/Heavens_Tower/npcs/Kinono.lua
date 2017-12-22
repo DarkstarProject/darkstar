@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Kinono
 --  Type: Standard NPC
--- @pos 9.316 -26.999 -11.200 242
+-- !pos 9.316 -26.999 -11.200 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0043);
+    player:startEvent(67);
 end;
 
 -----------------------------------

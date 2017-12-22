@@ -3,7 +3,7 @@
 --   NPC: Miladi-Nildi
 --  Type: Standard NPC
 -- @zone 245
--- @pos 39.898 -5.999 77.190
+-- !pos 39.898 -5.999 77.190
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0061);
+    player:startEvent(97);
 end;
 
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Nashmau
 -- NPC:  Tsutsuroon
 -- Type: Tenshodo Merchant
--- @pos -15.193 0.000 31.356 53
+-- !pos -15.193 0.000 31.356 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             player:showText(npc,TSUTSUROON_SHOP_DIALOG);
         end
     else
-        -- player:startEvent(0x0096);
+        -- player:startEvent(150);
     end
 end;
 

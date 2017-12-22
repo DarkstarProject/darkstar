@@ -3,7 +3,7 @@
 --   NPC: Ten of Clubs
 --  Type: Standard NPC
 -- @zone 240
--- @pos -229.393 -9.2 182.696
+-- !pos -229.393 -9.2 182.696
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x004b);
+    player:startEvent(75);
 end;
 
 -----------------------------------

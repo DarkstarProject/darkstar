@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Nichais
 -- @zone 80
--- @pos 133 0 81
+-- !pos 133 0 81
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x053);
+player:startEvent(83);
 end;
 
 -----------------------------------

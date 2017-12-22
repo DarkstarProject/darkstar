@@ -2,7 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Equesobillot
 -- Involved in Mission: The Rescue Drill
--- @pos -287 9 284 102
+-- !pos -287 9 284 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -22,17 +22,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
         local MissionStatus = player:getVar("MissionStatus");
-        
+
         if (MissionStatus == 2) then
-            player:startEvent(0x0065);
+            player:startEvent(101);
         elseif (MissionStatus == 3) then
             player:showText(npc, RESCUE_DRILL + 3);
         elseif (MissionStatus == 8) then
             if (player:getVar("theRescueDrillRandomNPC") == 2) then
-                player:startEvent(0x0070);
+                player:startEvent(112);
             else
                 player:showText(npc, RESCUE_DRILL + 21);
             end
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
     else
         player:showText(npc, RESCUE_DRILL);
     end
-    
+
 end;
 
 -----------------------------------
@@ -69,11 +69,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
-    if (csid == 0x0065) then
+
+    if (csid == 101) then
         player:setVar("MissionStatus",3);
-    elseif (csid == 0x0070) then
-        if (player:getFreeSlotsCount() == 0) then 
+    elseif (csid == 112) then
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16535); -- Bronze Sword
         else
             player:addItem(16535);
@@ -81,5 +81,5 @@ function onEventFinish(player,csid,option)
             player:setVar("MissionStatus",9);
         end
     end
-    
+
 end;

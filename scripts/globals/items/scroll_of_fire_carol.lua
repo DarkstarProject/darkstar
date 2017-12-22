@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 5046
---    Scroll of Fire Carol
---    Teaches the song Fire Carol
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5046
+-- Scroll of Fire Carol
+-- Teaches the song Fire Carol
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(438);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(438);

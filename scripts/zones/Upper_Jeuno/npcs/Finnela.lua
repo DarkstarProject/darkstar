@@ -3,7 +3,7 @@
 --   NPC: Finnela
 --  Type: Standard NPC
 -- @zone 244
--- @pos -51.880 -1 106.486
+-- !pos -51.880 -1 106.486
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x278d);
+    player:startEvent(10125);
 end;
 
 -----------------------------------

@@ -2,6 +2,7 @@
 --  PET: Wyvern
 -----------------------------------
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 WYVERN_OFFENSIVE = 1
 WYVERN_DEFENSIVE = 2
@@ -37,6 +38,7 @@ local wyvernTypes = {
 
 function onMobSpawn(mob)
     local master = mob:getMaster()
+    mob:addMod(MOD_DMG, -40);
     local wyvernType = wyvernTypes[master:getSubJob()]
     local healingbreath = 624
     if mob:getMainLvl() >= 80 then healingbreath = 623
@@ -123,14 +125,19 @@ function onMobSpawn(mob)
         local pet = player:getPet()
         local prev_exp = pet:getLocalVar("wyvern_exp")
         if (prev_exp < 1000) then
-            local diff = math.floor((prev_exp + exp)/200) - math.floor(prev_exp/200)
+        -- cap exp at 1000 to prevent wyvern leveling up many times from large exp awards
+            local currentExp = exp
+            if (prev_exp+exp > 1000) then
+                currentExp = 1000 - prev_exp
+            end
+            local diff = math.floor((prev_exp + currentExp)/200) - math.floor(prev_exp/200)
             if diff ~= 0 then
                 -- wyvern levelled up (diff is the number of level ups)
                 pet:addMod(MOD_ACC,2*diff)
                 pet:addMod(MOD_HPP,5*diff)
                 pet:addMod(MOD_ATTP,5*diff)
                 pet:setHP(pet:getMaxHP())
-                player:messageBasic(562, 0, 0, pet)
+                player:messageBasic(msgBasic.STATUS_INCREASED, 0, 0, pet);
             end
             pet:setLocalVar("wyvern_exp", prev_exp + exp)
         end

@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4991
---    Scroll of Armys Paeton VI
---    Teaches the song Armys Paeton VI
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4991
+-- Scroll of Armys Paeton VI
+-- Teaches the song Armys Paeton VI
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(383);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(383);

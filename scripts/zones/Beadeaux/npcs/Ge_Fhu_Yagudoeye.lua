@@ -2,7 +2,7 @@
 --  Area: Beadeaux
 --  NPC:  Ge'Fhu Yagudoeye
 --  Type: Quest NPC
--- @pos -91.354 -4.251 -127.831 147
+-- !pos -91.354 -4.251 -127.831 147
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x007c);
+    player:startEvent(124);
 end;
 
 -----------------------------------

@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5404
---    Wind Card Case
---    When used, you will obtain one stack of Wind Cards
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5404
+-- Wind Card Case
+-- When used, you will obtain one stack of Wind Cards
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(2178,99);

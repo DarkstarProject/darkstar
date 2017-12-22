@@ -3,7 +3,7 @@
 --  NPC: Charutata
 --  Type: Standard NPC
 --  @zone 256
--- @pos -17 0 -90
+-- !pos -17 0 -90
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0218);
+    player:startEvent(536);
 end;
 
 -----------------------------------

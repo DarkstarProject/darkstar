@@ -11,11 +11,7 @@
 -- Evasion +6% (cap 95)
 -- Resist Slow +15
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,10 +21,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,3600,6463);
@@ -51,11 +43,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SLOWRES, 15);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_DEX, 6);
     target:delMod(MOD_VIT, 6);
     target:delMod(MOD_AGI, 6);

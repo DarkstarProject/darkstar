@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5338
---    Venom Bolt Quiver
---    When used, you will obtain one stack of Venom Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5338
+-- Venom Bolt Quiver
+-- When used, you will obtain one stack of Venom Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18152,99);

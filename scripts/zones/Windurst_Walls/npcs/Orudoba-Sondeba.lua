@@ -3,7 +3,7 @@
 --   NPC: Orudoba-Sondeba
 --  Type: Standard NPC
 -- @zone 239
--- @pos 70.086 -3.503 -69.939
+-- !pos 70.086 -3.503 -69.939
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x002b);
+    player:startEvent(43);
 end;
 
 -----------------------------------

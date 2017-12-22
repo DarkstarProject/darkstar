@@ -20,71 +20,71 @@ function onTrigger(player,npc)
     local base = 16900334; -- (First Spacial Displacement in NPC_LIST)
 
     if (id == base) then 
-        player:startEvent(0x2);
+        player:startEvent(2);
     elseif (id == base+1) then 
-        player:startEvent(0x3);
+        player:startEvent(3);
     elseif (id == base+2) then 
-        player:startEvent(0x4);
+        player:startEvent(4);
     elseif (id == base+7) then 
-        player:startEvent(0x7);
+        player:startEvent(7);
     elseif (id == base+8) then 
-        player:startEvent(0x8);
+        player:startEvent(8);
     elseif (id == base+9) then 
-        player:startEvent(0x9);
+        player:startEvent(9);
     elseif (id == base+10) then 
-        player:startEvent(0x0A);
+        player:startEvent(10);
     elseif (id == base+11) then 
-        player:startEvent(0xB);
+        player:startEvent(11);
     elseif (id == base+12) then 
-        player:startEvent(0xC);
+        player:startEvent(12);
     elseif (id == base+13) then 
-        player:startEvent(0xD);
+        player:startEvent(13);
     elseif (id == base+14) then 
-        player:startEvent(0xE);
+        player:startEvent(14);
     elseif (id == base+15) then 
-        player:startEvent(0xF);
+        player:startEvent(15);
     elseif (id == base+16) then 
-        player:startEvent(0x10);
+        player:startEvent(16);
     elseif (id == base+18) then 
-        player:startEvent(0x12);
+        player:startEvent(18);
     elseif (id == base+20) then 
-        player:startEvent(0x14);
+        player:startEvent(20);
     elseif (id == base+21) then 
-        player:startEvent(0x15);
+        player:startEvent(21);
     elseif (id == base+22) then 
-        player:startEvent(0x16);
+        player:startEvent(22);
     elseif (id == base+23) then 
-        player:startEvent(0x17);
+        player:startEvent(23);
     elseif (id == base+24) then 
-        player:startEvent(0x18);
+        player:startEvent(24);
     elseif (id == base+25) then 
-        player:startEvent(0x19);
+        player:startEvent(25);
     elseif (id == base+26) then 
-        player:startEvent(0x1A);
+        player:startEvent(26);
     elseif (id == base+27) then 
-        player:startEvent(0x1b);
+        player:startEvent(27);
     elseif (id == base+28) then 
-        player:startEvent(0x1C);
+        player:startEvent(28);
     elseif (id == base+29) then 
-        player:startEvent(0x1d);
+        player:startEvent(29);
     elseif (id == base+30) then 
-        player:startEvent(0x1E);
+        player:startEvent(30);
     elseif (id == base+31) then 
-        player:startEvent(0x1F);
+        player:startEvent(31);
     elseif (id == base+33) then 
-        player:startEvent(0x21);
+        player:startEvent(21);
     elseif (id == base+34) then 
-        player:startEvent(0x22);
+        player:startEvent(22);
     elseif (id == base+35) then 
-        player:startEvent(0x23);
+        player:startEvent(23);
     elseif (id == base+36) then 
-        player:startEvent(0x24);
+        player:startEvent(24);
     elseif (id == base+37) then 
-        player:startEvent(0x25);
+        player:startEvent(25);
     elseif (id == base+38) then 
-        player:startEvent(0x26);
+        player:startEvent(26);
     elseif (id == base+39) then 
-        player:startEvent(0x27);
+        player:startEvent(27);
     end
     
 end;
@@ -106,9 +106,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x23 and option == 1) then
+    if (csid == 23 and option == 1) then
         player:setPos(12.527,0.345,-539.602,127,31); -- to Monarch Linn (Retail confirmed)
-    elseif (csid == 0x0A and option == 1) then
+    elseif (csid == 10 and option == 1) then
         player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
     end;
     

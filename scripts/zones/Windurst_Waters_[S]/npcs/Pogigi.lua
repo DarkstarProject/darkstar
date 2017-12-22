@@ -3,8 +3,8 @@
 --   NPC: Pogigi
 --  Type: Sealed Container
 -- @zone 94
--- @pos -29.787 -4.499 42.603
--- 
+-- !pos -29.787 -4.499 42.603
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x014a);
+    player:startEvent(330);
 end;
 
 -----------------------------------

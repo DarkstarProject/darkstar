@@ -1,14 +1,11 @@
 -----------------------------------------
---  Spell: PHALANX
+-- Spell: PHALANX
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Phalanx II value per point is '3' This is a constant set in the table 'merits'
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -29,9 +26,9 @@ function onSpellCast(caster,target,spell)
     final = (enhskill / 25) + merits + 1;
 
     if (target:addStatusEffect(EFFECT_PHALANX,final,0,duration)) then
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
     return EFFECT_PHALANX;

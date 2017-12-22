@@ -3,29 +3,16 @@
 -- Item: Super Ether +2
 -- Item Effect: Restores 110 MP
 -----------------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
-    local result = 0;
-    local mMP = target:getMaxMP();
-    local cMP = target:getMP();
-
-    if (mMP == cMP) then
-        result = 56; -- Does not let player use item if their hp is full
+    if (target:getMP() == target:getMaxMP()) then
+        return msgBasic.ITEM_UNABLE_TO_USE;
     end
-
-    return result;
+    return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    target:messageBasic(25,0,target:addMP(110*ITEM_POWER));
+    target:messageBasic(msgBasic.RECOVERS_MP,0,target:addMP(110*ITEM_POWER));
 end;

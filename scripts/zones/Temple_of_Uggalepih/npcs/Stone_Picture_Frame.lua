@@ -2,7 +2,7 @@
 -- Area:  Temple of Uggalepih
 -- NPC:   Stone Picture Frame
 -- Notes: Opens door to Den of Rancor using Painbrush of Souls
--- @pos -52.239 -2.089 10.000 159
+-- !pos -52.239 -2.089 10.000 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     if (X < -60) then
         if (Z < -6) then -- SW frame
             if (player:hasKeyItem(FINAL_FANTASY)) then
-                player:startEvent(0x0032,FINAL_FANTASY);
+                player:startEvent(50,FINAL_FANTASY);
             else
                 player:messageSpecial(PAINTBRUSH_OFFSET + 31); -- This is a frame for a painting.
             end
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
             elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS) and X >= -53.2 and Z <= 0.1 and Z >= -0.1) then -- has paintbrush of souls + close enough
                 player:messageSpecial(PAINTBRUSH_OFFSET + 17,PAINTBRUSH_OF_SOULS);
                 player:setVar("started_painting",os.time());
-                player:startEvent(0x003C,PAINTBRUSH_OF_SOULS);
+                player:startEvent(60,PAINTBRUSH_OF_SOULS);
             elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS)) then
                 player:messageSpecial(PAINTBRUSH_OFFSET + 15,PAINTBRUSH_OF_SOULS);
             else
@@ -78,9 +78,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     local DoorToRancor = 17428989;
 
-    if (csid == 0x0032) then
+    if (csid == 50) then
         -- Soon !
-    elseif (csid == 0x003C) then
+    elseif (csid == 60) then
         time_elapsed = os.time() - player:getVar("started_painting");
         if (time_elapsed >= 30) then
             player:messageSpecial(PAINTBRUSH_OFFSET + 22); -- You succeeded in projecting the image in your soul to the blank canvas. The door to the Rancor Den has opened!<Prompt>

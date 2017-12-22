@@ -2,7 +2,7 @@
 --  Area: North Gustaberg
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos -199.635 96.106 505.624 106
+-- !pos -199.635 96.106 505.624 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

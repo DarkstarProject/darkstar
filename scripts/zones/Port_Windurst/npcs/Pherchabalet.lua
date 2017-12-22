@@ -3,7 +3,7 @@
 --   NPC: Pherchabalet
 --  Type: Standard NPC
 -- @zone 240
--- @pos 34.683 -5.999 137.447
+-- !pos 34.683 -5.999 137.447
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0229);
+    player:startEvent(553);
 end;
 
 -----------------------------------

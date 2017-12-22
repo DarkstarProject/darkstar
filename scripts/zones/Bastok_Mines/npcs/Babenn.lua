@@ -1,18 +1,17 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Babenn
+--  NPC: Babenn
 -- Finishes Quest: The Eleventh's Hour
 -- Involved in Quests: Riding on the Clouds
--- @zone 234
--- @pos 73 -1 34
+-- !pos 73 -1 34 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -38,9 +37,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:getVar("EleventhsHour") == 1) then
-        player:startEvent(0x002d);
+        player:startEvent(45);
     else
-        player:startEvent(0x0028);
+        player:startEvent(40);
     end
 
 end;
@@ -62,7 +61,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x002d) then
+    if (csid == 45) then
 
         if (player:getFreeSlotsCount() > 1) then
             player:setVar("EleventhsHour",0);
@@ -76,5 +75,4 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16629);
         end
     end
-
 end;

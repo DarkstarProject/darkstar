@@ -49,7 +49,7 @@ function onRegionEnter(player,region)
     
     switch (region:GetRegionID()): caseof
     {
-        [1] = function (x) player:startEvent(0x0064); end,
+        [1] = function (x) player:startEvent(100); end,
     }
     
 end;
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x0064 and option == 1) then
+    if (csid == 100 and option == 1) then
         player:setPos(-420,-1,379.900,62,0x23);
     end
     

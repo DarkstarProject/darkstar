@@ -3,8 +3,8 @@
 --   NPC: Dabbio
 --  Type: Standard NPC
 -- @zone 232
--- @pos -7.819 -15 -106.990
--- 
+-- !pos -7.819 -15 -106.990
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x02d2);
+    player:startEvent(722);
 end;
 
 -----------------------------------

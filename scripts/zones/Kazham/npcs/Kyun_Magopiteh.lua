@@ -20,9 +20,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getVar("BathedInScent") == 1) then
-        player:startEvent(0x00AE); -- scent from Blue Rafflesias
+        player:startEvent(174); -- scent from Blue Rafflesias
     else
-        player:startEvent(0x0056);
+        player:startEvent(86);
     end
 end;
 -----------------------------------

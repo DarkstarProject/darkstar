@@ -3,7 +3,7 @@
 --  NPC: Nonterene
 --  Type: Adventurer's Assistant NPC
 --  @zone 231
--- @pos -6.347 0.000 -11.265
+-- !pos -6.347 0.000 -11.265
 --
 -----------------------------------
 
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01f7);
+    player:startEvent(503);
 end;
 
 -----------------------------------

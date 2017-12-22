@@ -40,18 +40,18 @@ function onTrigger(player,npc)
 
     -- "The Pickpocket" Quest events
     if (player:getVar("thePickpocket") == 1 and thePickpocket == QUEST_AVAILABLE) then -- skips the original cut scene for "The Pickpocket" Quest if already seen.
-        player:startEvent(0x022a);
+        player:startEvent(554);
     elseif (thePickpocket == QUEST_AVAILABLE) then
-        player:startEvent(0x01f6);
+        player:startEvent(502);
         player:setVar("thePickpocket",1);
     -- "The Pickpocket" giving Eagle Button, but checking if they already have it.
     elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 0) then
-        player:startEvent(0x0225);
+        player:startEvent(549);
         player:setVar("thePickpocketEagleButton",1);
     elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 1) then
-        player:startEvent(0x0263);
+        player:startEvent(611);
     else
-        player:startEvent(0x0229);
+        player:startEvent(553);
     end;
 end;
 
@@ -73,11 +73,11 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" Quest, recieving Eagle Button
-    if (csid == 0x0225 or csid == 0x0263) then
+    if (csid == 549 or csid == 611) then
         if (player:hasItem(578) == false) then
             npcUtil.giveItem(player, 578);
         else
-            player:startEvent(0x0228);
+            player:startEvent(552);
         end;
     end;
 end;

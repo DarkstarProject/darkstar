@@ -5,24 +5,27 @@
 -- Recast Time: 1:30
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+    local pet = player:getPet();
+    if not pet then
+        return msgBasic.REQUIRES_A_PET,0;
+    elseif not player:isJugPet() and pet:getObjType() ~= TYPE_MOB then
+        return msgBasic.NO_EFFECT_ON_PET,0;
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 17016 and id <= 17023) then
             return 0,0;
         else
-            return MSGBASIC_MUST_HAVE_FOOD,0;
+            return msgBasic.MUST_HAVE_FOOD,0;
         end
     end
 end;
@@ -35,23 +38,23 @@ function onUseAbility(player,target,ability,action)
 
     -- 1st need to get the pet food is equipped in the range slot.
     local rangeObj = player:getEquipID(SLOT_AMMO);
-    
+
     local minimumHealing = 0;
     local totalHealing = 0;
     local playerMnd = player:getStat(MOD_MND);
     local rewardHealingMod = player:getMod(MOD_REWARD_HP_BONUS);
     local regenAmount = 1; -- 1 is the minimum.
     local regenTime = 180; -- 3 minutes
-    
+
     local pet = player:getPet();
     local petCurrentHP = pet:getHP();
     local petMaxHP = pet:getMaxHP();
-    
-    
+
+
     -- Need to start to calculate the HP to restore to the pet.
     -- Please note that I used this as base for the calculations:
     -- http://wiki.ffxiclopedia.org/wiki/Reward
-    
+
     switch (rangeObj) : caseof {
         [17016] = function (x) -- pet food alpha biscuit
             -- printf("Food: pet food alpha biscuit.");
@@ -102,12 +105,12 @@ function onUseAbility(player,target,ability,action)
             totalHealing = math.floor(minimumHealing + 4*(playerMnd-55));
             end,
     }
-    
-    
-    
+
+
+
     -- Now calculating the bonus based on gear.
     local body = player:getEquipID(SLOT_BODY);
-    
+
 
     switch (body) : caseof {
         [12646] = function (x) -- beast jackcoat
@@ -143,15 +146,15 @@ function onUseAbility(player,target,ability,action)
             pet:delStatusEffect(EFFECT_WEIGHT);
             pet:delStatusEffect(EFFECT_SLOW);
             pet:delStatusEffect(EFFECT_SILENCE);
-            end,        
+            end,
     }
-    
+
     -- Adding bonus to the total to heal.
-    
+
     if (rewardHealingMod ~= nil and rewardHealingMod > 0) then
         totalHealing = totalHealing + math.floor(totalHealing * rewardHealingMod / 100);
     end
-    
+
     local diff = petMaxHP - petCurrentHP;
 
     if (diff < totalHealing) then
@@ -168,6 +171,6 @@ function onUseAbility(player,target,ability,action)
     player:removeAmmo();
 
     pet:updateEnmityFromCure(pet, totalHealing);
-    
+
     return totalHealing;
 end;

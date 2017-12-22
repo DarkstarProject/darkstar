@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5402
---    Fire Card Case
---    When used, you will obtain one stack of Fire Cards
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5402
+-- Fire Card Case
+-- When used, you will obtain one stack of Fire Cards
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(2176,99);

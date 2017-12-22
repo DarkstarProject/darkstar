@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4857
---    Scroll of Blaze Spikes
---    Teaches the black magic Blaze Spikes
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4857
+-- Scroll of Blaze Spikes
+-- Teaches the black magic Blaze Spikes
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(249);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(249);

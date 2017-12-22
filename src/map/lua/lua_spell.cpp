@@ -69,7 +69,7 @@ inline int32 CLuaSpell::setMsg(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setMessage(lua_tointeger(L, -1));
+    m_PLuaSpell->setMessage((uint16)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -78,7 +78,7 @@ inline int32 CLuaSpell::setAoE(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setAOE(lua_tointeger(L, -1));
+    m_PLuaSpell->setAOE((uint8)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -87,7 +87,7 @@ inline int32 CLuaSpell::setFlag(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setFlag(lua_tointeger(L, -1));
+    m_PLuaSpell->setFlag((uint8)lua_tointeger(L, -1));
     return 0;
 }
 
@@ -96,7 +96,7 @@ inline int32 CLuaSpell::setRadius(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setRadius(lua_tonumber(L, -1));
+    m_PLuaSpell->setRadius((float)lua_tonumber(L, -1));
     return 0;
 }
 
@@ -105,7 +105,7 @@ inline int32 CLuaSpell::setAnimation(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setAnimationID(lua_tonumber(L, -1));
+    m_PLuaSpell->setAnimationID((uint16)lua_tonumber(L, -1));
     return 0;
 }
 
@@ -114,7 +114,7 @@ inline int32 CLuaSpell::setMPCost(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaSpell->setMPCost(lua_tonumber(L, -1));
+    m_PLuaSpell->setMPCost((uint16)lua_tonumber(L, -1));
     return 0;
 }
 
@@ -123,7 +123,7 @@ inline int32 CLuaSpell::castTime(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        m_PLuaSpell->setCastTime(lua_tointeger(L, 1));
+        m_PLuaSpell->setCastTime((uint32)lua_tointeger(L, 1));
     else
         lua_pushinteger(L, m_PLuaSpell->getCastTime());
 
@@ -175,7 +175,7 @@ inline int32 CLuaSpell::tookEffect(lua_State* L)
 inline int32 CLuaSpell::getID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
-    lua_pushinteger(L, m_PLuaSpell->getID());
+    lua_pushinteger(L, static_cast<uint16>(m_PLuaSpell->getID()));
     return 1;
 }
 
@@ -206,7 +206,7 @@ inline int32 CLuaSpell::getFlag(lua_State *L)
 *																		*
 ************************************************************************/
 
-const int8 CLuaSpell::className[] = "CSpell";
+const char CLuaSpell::className[] = "CSpell";
 Lunar<CLuaSpell>::Register_t CLuaSpell::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaSpell,setMsg),

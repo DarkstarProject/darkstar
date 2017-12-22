@@ -3,7 +3,7 @@
 --   NPC: Bozack
 --  Type: Event Replayer
 -- @zone 241
--- @pos 92.591 -5.58 -31.529
+-- !pos 92.591 -5.58 -31.529
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0264);
+    player:startEvent(612);
 end;
 
 -----------------------------------

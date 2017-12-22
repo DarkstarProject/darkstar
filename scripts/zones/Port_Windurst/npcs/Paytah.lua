@@ -3,7 +3,7 @@
 --   NPC: Paytah
 --  Type: Standard NPC
 -- @zone 240
--- @pos 77.550 -6 117.769
+-- !pos 77.550 -6 117.769
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0120);
+    player:startEvent(288);
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign [S]
 --  NPC: Bulwark Gate
--- @pos -445 0 342
+-- !pos -445 0 342
 -- Quest NPC
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;
@@ -20,7 +20,7 @@ require("scripts/globals/settings");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 1) then
         if (trade:hasItemQty(2562,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
-            player:startEvent(0x006A);
+            player:startEvent(106);
         end
     end
 end;
@@ -32,7 +32,7 @@ end;
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED) then
         if (player:getVar("KnotQuiteThere") == 0) then
-            player:startEvent(0x0069);
+            player:startEvent(105);
         end
     end
 end;
@@ -53,9 +53,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
-    if (csid == 0x0069) then
+    if (csid == 105) then
         player:setVar("KnotQuiteThere",1);
-    elseif (csid == 0x006A) then
+    elseif (csid == 106) then
         player:tradeComplete();
         player:setVar("KnotQuiteThere",2);
     end

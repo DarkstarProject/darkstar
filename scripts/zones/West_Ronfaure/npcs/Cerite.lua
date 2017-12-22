@@ -2,7 +2,7 @@
 --  Area: West Ronfaure
 --  NPC:  Cerite
 --  Type: Standard NPC
--- @pos -263.577 -72.999 425.885 100
+-- !pos -263.577 -72.999 425.885 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0032);
+    player:startEvent(50);
 end;
 
 -----------------------------------

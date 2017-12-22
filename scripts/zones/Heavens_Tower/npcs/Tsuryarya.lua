@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Tsuryarya
 --  Type: Standard NPC
--- @pos -0.881 -27 15.950 242
+-- !pos -0.881 -27 15.950 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0041);
+    player:startEvent(65);
 end;
 
 -----------------------------------

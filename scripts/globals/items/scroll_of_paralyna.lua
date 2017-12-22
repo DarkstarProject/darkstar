@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4623
---    Scroll of Paralyna
---    Teaches the white magic Paralyna
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4623
+-- Scroll of Paralyna
+-- Teaches the white magic Paralyna
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(15);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(15);

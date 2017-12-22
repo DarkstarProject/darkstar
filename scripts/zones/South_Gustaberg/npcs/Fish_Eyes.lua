@@ -2,7 +2,7 @@
 --  Area: South Gustaberg
 --  NPC:  Fish Eyes
 --  Type: Goldfish Scooping
--- @pos -444.459 39.106 -390.885 107
+-- !pos -444.459 39.106 -390.885 107
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0387);
+    player:startEvent(903);
 end;
 
 -----------------------------------

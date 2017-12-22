@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
 -- Door: Runic Seal
--- @pos 486 -23 -500 79
+-- !pos 486 -23 -500 79
 -----------------------------------
 
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             armband = 1;
         end
         if (assaultid ~= 0) then
-            player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 0, armband);
+            player:startEvent(140, assaultid, -4, 0, recommendedLevel, 0, armband);
         else
             player:messageSpecial(NOTHING_HAPPENS);
         end
@@ -50,7 +50,7 @@ function onEventUpdate(player,csid,option,target)
     -- printf("RESULT: %u",option);
 
     local assaultid = player:getCurrentAssault();
-    
+
     local cap = bit.band(option, 0x03);
     if (cap == 0) then
         cap = 99;
@@ -61,11 +61,11 @@ function onEventUpdate(player,csid,option,target)
     else
         cap = 50;
     end
-    
+
     player:setVar("AssaultCap", cap);
 
     local party = player:getParty();
-    
+
     if (party ~= nil) then
         for i,v in ipairs(party) do
             if (not (v:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
@@ -79,9 +79,9 @@ function onEventUpdate(player,csid,option,target)
             end
         end
     end
-    
+
     player:createInstance(player:getCurrentAssault(), 69);
-    
+
 end;
 
 -----------------------------------
@@ -91,8 +91,8 @@ end;
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
- 
-    if (csid == 0x82 or (csid == 0x8C and option == 4)) then
+
+    if (csid == 130 or (csid == 140 and option == 4)) then
         player:setPos(0,0,0,0,69);
     end
 end;
@@ -113,7 +113,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0x82, 0);
+                    v:startEvent(130, 0);
                     v:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
                 end
             end

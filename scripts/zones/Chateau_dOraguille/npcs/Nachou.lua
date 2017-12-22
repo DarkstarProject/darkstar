@@ -3,8 +3,8 @@
 --   NPC: Nachou
 --  Type: Standard NPC
 -- @zone 233
--- @pos -39.965 -3.999 34.292
--- 
+-- !pos -39.965 -3.999 34.292
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x020b);
+    player:startEvent(523);
 end;
 
 -----------------------------------

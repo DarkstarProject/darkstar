@@ -2,7 +2,7 @@
 --  Area: Phanauet Channel
 --  NPC:  Riche
 --  Type: Standard NPC
--- @pos 5.945 -3.75 13.612 1
+-- !pos 5.945 -3.75 13.612 1
 -----------------------------------
 package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0005);
+    player:startEvent(5);
 end;
 
 -----------------------------------

@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Windurst Woods
 -- NPC: Shih Tayuun
--- Guild Merchant NPC: Bonecrafting Guild 
--- @pos -3.064 -6.25 -131.374 241
+-- Guild Merchant NPC: Bonecrafting Guild
+-- !pos -3.064 -6.25 -131.374 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

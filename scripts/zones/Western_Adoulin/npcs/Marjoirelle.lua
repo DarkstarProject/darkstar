@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
 --  @zone 256
--- @pos 127 4 -81
+-- !pos 127 4 -81
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -25,10 +25,10 @@ function onTrigger(player,npc)
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Marjoirelle)) then
         -- Progresses Quest: 'Order Up'
-        player:startEvent(0x0044);
+        player:startEvent(68);
     else
         -- Standard Dialogue
-        player:startEvent(0x021A);
+        player:startEvent(538);
     end
 end;
 
@@ -43,8 +43,8 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
-    if (csid == 0x0044) then
+function onEventFinish(player,csid,option)
+    if (csid == 68) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 8, true);
     end

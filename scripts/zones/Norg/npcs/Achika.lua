@@ -2,7 +2,7 @@
 --  Area: Norg
 --  NPC: Achika
 --  Type: Tenshodo Merchant
--- @pos 1.300 0.000 19.259 252
+-- !pos 1.300 0.000 19.259 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             player:showText(npc, ACHIKA_SHOP_DIALOG);
         end
     else
-        -- player:startEvent(0x0096);
+        -- player:startEvent(150);
     end
 end;
 

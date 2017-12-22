@@ -3,12 +3,9 @@
 -- Item: Poison Claws +1
 -- Additional Effect: Poison
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -18,6 +15,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_POISON, 4, 3, 30);
-        return SUBEFFECT_POISON, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_POISON;
+        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
     end
 end;

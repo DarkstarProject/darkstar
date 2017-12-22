@@ -3,8 +3,8 @@
 --   NPC: Ambleon
 --  Type: NPC World Pass Dealer
 -- @zone 232
--- @pos 71.622 -17 -137.134
--- 
+-- !pos 71.622 -17 -137.134
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x02c6);
+    player:startEvent(710);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 -- NPC: Mendi
 -- Reputation NPC
 -- @zone 245
--- @pos -55 5 -68
+-- !pos -55 5 -68
 -----------------------------------
 
 require("scripts/globals/shop");
@@ -13,15 +13,15 @@ require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0052, player:getFame(JEUNO));
-end; 
+    player:startEvent(82, player:getFame(JEUNO));
+end;
 
 -----------------------------------
 -- onEventUpdate

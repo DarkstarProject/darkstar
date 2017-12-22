@@ -35,14 +35,14 @@ function onGameIn(player, firstlogin, zoning)
         -- Add bonus effects to the player..
         player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
         player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_SENTINEL,100,0,0);
         player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
         player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
         player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
         player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
         player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
+        player:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,0);
         player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,150,1,0);
+        player:addStatusEffect(EFFECT_REGAIN,300,0,0);
         player:addStatusEffect(EFFECT_REFRESH,99,0,0);
         player:addStatusEffect(EFFECT_REGEN,99,0,0);
 
@@ -58,14 +58,16 @@ function onGameIn(player, firstlogin, zoning)
         player:addMod(MOD_MDEF,2500);
 
         -- Heal the player from the new buffs..
-        player:addHP( 50000 );
-        player:setMP( 50000 );
+        player:addHP(50000);
+        player:setMP(50000);
     end
 
     if (player:getVar("GMHidden") == 1) then
         player:setGMHidden(true);
     end
 
+    -- Remember time player zoned in (e.g., to support zone-in delays)
+    player:setLocalVar("ZoneInTime", os.time());
 end;
 
 -----------------------------------
@@ -325,7 +327,7 @@ function CharCreate(player)
 
     -- Needs Moghouse Intro
     player:setVar("MoghouseExplication",1);
-    
+
 end;
 
 function onPlayerLevelUp(player)

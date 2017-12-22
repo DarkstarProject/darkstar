@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4893
---    Scroll of Stoneja
---    Teaches the black magic Stoneja
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4893
+-- Scroll of Stoneja
+-- Teaches the black magic Stoneja
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(499);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(499);

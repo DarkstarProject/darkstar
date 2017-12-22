@@ -1,13 +1,15 @@
 -------------------------------------------------
-require("scripts/globals/utils")
-require("scripts/globals/common");
-require("scripts/globals/status");
-require("scripts/globals/settings");
-require("scripts/globals/conquest");
+--  Fields of Valor global vars and functions
+-------------------------------------------------
 require("scripts/globals/regimereward");
 require("scripts/globals/regimeinfo");
+require("scripts/globals/conquest");
+require("scripts/globals/settings");
+require("scripts/globals/common");
+require("scripts/globals/status");
+require("scripts/globals/utils")
+require("scripts/globals/msg")
 
--------------------------------------------------
 
 TABS = 12; -- What is this for? Where is it used?
 
@@ -51,46 +53,38 @@ FOV_MENU_ELITE_CHAP5     = 116;
 FOV_MENU_ELITE_CHAP6     = 132;
 FOV_MENU_ELITE_CHAP7     = 148;
 
--- Special Message IDs (these usually don't break)
--- Found in Dialog Tables under "Other>System Messages (4)"
-FOV_MSG_KILLED_TARGET    = 558;
-FOV_MSG_COMPLETED_REGIME = 559;
-FOV_MSG_GET_GIL          = 565;
-FOV_MSG_GET_TABS         = 566;
-FOV_MSG_BEGINS_ANEW      = 643;
-
 
 -- MESSAGE ID CONSTANTS (msg id of "new training regime registered!": change this if msg ids break!)
-FOV_MSG_EAST_RONFAURE   = 9767;
-FOV_MSG_WEST_RONFAURE   = 10346;
-FOV_MSG_NORTH_GUSTABERG = 10317;
-FOV_MSG_SOUTH_GUSTABERG = 9795;
-FOV_MSG_WEST_SARUTA     = 10126;
-FOV_MSG_EAST_SARUTA     = 9840;
-FOV_MSG_KONSCHTAT       = 9701;
-FOV_MSG_TAHRONGI        = 9720;
-FOV_MSG_LA_THEINE       = 10039;
-FOV_MSG_PASHHOW         = 10611;
-FOV_MSG_JUGNER          = 10757;
-FOV_MSG_MERIPH          = 10490;
-FOV_MSG_BATALLIA        = 9921;
-FOV_MSG_SAUROMAGUE      = 9711;
-FOV_MSG_ROLANBERRY      = 9672;
-FOV_MSG_VALKURM         = 10166;
-FOV_MSG_BUBURIMU        = 10177;
-FOV_MSG_QUFIM           = 10252;
-FOV_MSG_RUAUN_GARDENS   = 9672;
-FOV_MSG_BEAUCEDINE      = 10649;
-FOV_MSG_YUHTUNGA        = 9971;
-FOV_MSG_YHOATOR         = 9920;
-FOV_MSG_WEST_ALTEPA     = 9731;
-FOV_MSG_EAST_ALTEPA     = 9868;
-FOV_MSG_XARCABARD       = 10156;
-FOV_MSG_BEHEMOTH        = 9362;
-FOV_MSG_ZITAH           = 10188;
-FOV_MSG_ROMAEVE         = 9537;
-FOV_MSG_TERIGGAN        = 10031;
-FOV_MSG_SORROWS         = 9517;
+FOV_MSG_EAST_RONFAURE   = 9862;
+FOV_MSG_WEST_RONFAURE   = 10418;
+FOV_MSG_NORTH_GUSTABERG = 10390;
+FOV_MSG_SOUTH_GUSTABERG = 9890;
+FOV_MSG_WEST_SARUTA     = 10180;
+FOV_MSG_EAST_SARUTA     = 9916;
+FOV_MSG_KONSCHTAT       = 9777;
+FOV_MSG_TAHRONGI        = 9815;
+FOV_MSG_LA_THEINE       = 10115;
+FOV_MSG_PASHHOW         = 10703;
+FOV_MSG_JUGNER          = 10849;
+FOV_MSG_MERIPH          = 10582;
+FOV_MSG_BATALLIA        = 9973;
+FOV_MSG_SAUROMAGUE      = 9803;
+FOV_MSG_ROLANBERRY      = 9764;
+FOV_MSG_VALKURM         = 10257;
+FOV_MSG_BUBURIMU        = 10283;
+FOV_MSG_QUFIM           = 10325;
+FOV_MSG_RUAUN_GARDENS   = 9722;
+FOV_MSG_BEAUCEDINE      = 10741;
+FOV_MSG_YUHTUNGA        = 10043;
+FOV_MSG_YHOATOR         = 9994;
+FOV_MSG_WEST_ALTEPA     = 9804;
+FOV_MSG_EAST_ALTEPA     = 9942;
+FOV_MSG_XARCABARD       = 10343;
+FOV_MSG_BEHEMOTH        = 9526;
+FOV_MSG_ZITAH           = 10260;
+FOV_MSG_ROMAEVE         = 9609;
+FOV_MSG_TERIGGAN        = 10103;
+FOV_MSG_SORROWS         = 9681;
 
 -- Event IDs
 FOV_EVENT_RUAUN_GARDENS   = 0x0049;
@@ -291,7 +285,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(246);
+                player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
@@ -301,7 +295,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     elseif (option == FOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(246);
+                player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
@@ -311,7 +305,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     elseif (option == FOV_MENU_HARD_COOKIE) then --- Hard Cookie: INT+4, MaxMP+30
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(246);
+                player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
@@ -321,7 +315,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     elseif (option == FOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(246);
+                player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
@@ -381,15 +375,10 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
 end
 
 function giveEliteRegime(player, keyitem, cost)
-
-    if (player:hasKeyItem(keyitem)) then
-        -- print("has");
-        -- player:messageBasic(98, keyitem);
-    else
+    if (not player:hasKeyItem(keyitem)) then
         player:delCurrency("valor_point", cost);
         player:addKeyItem(keyitem);
     end
-
 end
 
 -----------------------------------
@@ -430,17 +419,15 @@ function checkRegime(player, mob, rid, index)
     end
 
     if (player:getVar("fov_regimeid") == rid) then -- player is doing this regime
-        -- Need to add difference because a lvl1 can xp with a level 75 at ro'maeve
-        local difference = math.abs(mob:getMainLvl() - player:getMainLvl());
 
-        if (partyType < 2 and (mob:getBaseExp() > 0 or LOW_LEVEL_REGIME == 1) and difference <= 15 and (player:checkDistance(mob) < 100 or player:checkFovDistancePenalty() == 0)) then
+        if (partyType < 2 and (player:checkValorCredit(mob) == true or LOW_LEVEL_REGIME == 1)) then
             -- get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
             local killed = player:getVar("fov_numkilled"..index);
 
             if (killed < needed) then -- increment killed number and save.
                 killed = killed + 1;
-                player:messageBasic(FOV_MSG_KILLED_TARGET, killed, needed);
+                player:messageBasic(msgBasic.FOV_DEFEATED_TARGET, killed, needed);
                 player:setVar("fov_numkilled"..index, killed);
 
                 if (killed == needed) then
@@ -452,7 +439,7 @@ function checkRegime(player, mob, rid, index)
 
                     if (k1 == fov_info[1] and k2 == fov_info[2] and k3 == fov_info[3] and k4 == fov_info[4]) then
                         -- complete regime
-                        player:messageBasic(FOV_MSG_COMPLETED_REGIME);
+                        player:messageBasic(msgBasic.FOV_COMPLETED_REGIME);
                         local reward = getFoVregimeReward(rid);
                         local tabs = (math.floor(reward / 10) * TABS_RATE);
                         local VanadielEpoch = vanaDay();
@@ -463,10 +450,10 @@ function checkRegime(player, mob, rid, index)
                             if (tabs + player:getCurrency("valor_point") > CAP) then
                                 tabs = utils.clamp(CAP - player:getCurrency("valor_point"),0,CAP);
                             end
-                            player:messageBasic(FOV_MSG_GET_GIL, reward);
+                            player:messageBasic(msgBasic.FOV_OBTAINS_GIL, reward);
                             player:addGil(reward);
                             player:addCurrency("valor_point", tabs);
-                            player:messageBasic(FOV_MSG_GET_TABS, tabs, player:getCurrency("valor_point")); -- Careful about order.
+                            player:messageBasic(msgBasic.FOV_OBTAINS_TABS, tabs, player:getCurrency("valor_point")); -- Careful about order.
                             if (REGIME_WAIT == 1) then
                                 player:setVar("fov_LastReward", VanadielEpoch);
                             end
@@ -486,7 +473,7 @@ function checkRegime(player, mob, rid, index)
                             player:setVar("fov_numneeded3", 0);
                             player:setVar("fov_numneeded4", 0);
                         else
-                           player:messageBasic(FOV_MSG_BEGINS_ANEW);
+                           player:messageBasic(msgBasic.FOV_REGIME_BEGINS_ANEW);
                         end
                     end
                 end

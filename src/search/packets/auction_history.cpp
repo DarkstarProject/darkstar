@@ -42,9 +42,9 @@ CAHHistoryPacket::CAHHistoryPacket(uint16 ItemID)
 
     memset(m_PData, 0, sizeof(m_PData));
 
-    WBUFB(m_PData, (0x0A)) = 0x80;
-    WBUFB(m_PData, (0x0B)) = 0x85;                       // packe type
-    WBUFW(m_PData, (0x10)) = ItemID;
+    ref<uint8>(m_PData, (0x0A)) = 0x80;
+    ref<uint8>(m_PData, (0x0B)) = 0x85;                       // packe type
+    ref<uint16>(m_PData, 0x10) = ItemID;
 }
 
 /************************************************************************
@@ -57,13 +57,13 @@ void CAHHistoryPacket::AddItem(ahHistory* item)
 {
     if (m_count < 10)
     {
-        WBUFL(m_PData, (0x20 + 40 * m_count) + 0x00) = item->Price;
-        WBUFL(m_PData, (0x20 + 40 * m_count) + 0x04) = item->Data;
+        ref<uint32>(m_PData, (0x20 + 40 * m_count) + 0x00) = item->Price;
+        ref<uint32>(m_PData, (0x20 + 40 * m_count) + 0x04) = item->Data;
 
         memcpy(m_PData + 0x20 + 40 * m_count + 0x08, item->Name1, 15);
         memcpy(m_PData + 0x20 + 40 * m_count + 0x18, item->Name2, 15);
 
-        WBUFW(m_PData, (0x08)) = 0x20 + 40 * ++m_count;
+        ref<uint16>(m_PData, (0x08)) = 0x20 + 40 * ++m_count;
     }
     delete item;
 }

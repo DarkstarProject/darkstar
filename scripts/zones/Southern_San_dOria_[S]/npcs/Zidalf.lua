@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Zidalf
 -- @zone 80
--- @pos -33 0 33
+-- !pos -33 0 33
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0);
+player:startEvent(0);
 end;
 
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: South Gustaberg
 --  NPC: ???
 -- Involved in Quest: Smoke on the Mountain
--- @pos 461 -21 -580 107
+-- !pos 461 -21 -580 107
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
 -----------------------------------

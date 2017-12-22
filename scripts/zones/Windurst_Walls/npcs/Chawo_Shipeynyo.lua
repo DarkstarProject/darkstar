@@ -3,7 +3,7 @@
 --   NPC: Chawo Shipeynyo
 --  Type: Standard NPC
 -- @zone 239
--- @pos 3.593 -17 124.069
+-- !pos 3.593 -17 124.069
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0149);
+    player:startEvent(329);
 end;
 
 -----------------------------------

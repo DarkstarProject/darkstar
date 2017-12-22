@@ -1,7 +1,7 @@
 -------------------------------------------------
 --    Treasure functions
---  Info from: 
---      http://wiki.ffxiclopedia.org/wiki/Picking_your_Coffers_and_Chests 
+--  Info from:
+--      http://wiki.ffxiclopedia.org/wiki/Picking_your_Coffers_and_Chests
 --      http://ffxi.allakhazam.com/db/jobs.html?fjob=10&mid=1086187627165365190&num=150
 -------------------------------------------------
 
@@ -26,25 +26,28 @@ skeletonKey = 0x45B; -- 1115
 
 function spawnMimic(zone,npc,player)
     -- zone,mobid
-    mimic = {147,17379783,
-             153,17404338,
-             151,17396144,
-             161,17436965,
-             197,17584426,
-             160,17432583,
-             195,17576271,
-             200,17596728,
-             205,17617157,
-             174,17490230,
-             150,17391805,
-              12,16826564,
-             208,17629190,
-             130,17309979,
-             176,17498564,
-             159,17428497,
-             169,17469761,
-             177,17502567};
-    
+    local mimic =
+    {
+        12, 16826564,
+        130,17309979,
+        147,17379783,
+        150,17391805,
+        151,17396144,
+        153,17404336,
+        159,17428497,
+        160,17432583,
+        161,17436965,
+        169,17469761,
+        174,17490230,
+        176,17498564,
+        177,17502567,
+        195,17576270,
+        197,17584426,
+        200,17596728,
+        205,17617157,
+        208,17629190
+    };
+
     for nb = 1, #mimic, 2 do
         if (zone == mimic[nb]) then
             SpawnMob(mimic[nb + 1]):updateEnmity(player);
@@ -100,7 +103,7 @@ Chrysoberyl = 0x321;
    Fluorite = 0x32A;
      Garnet = 0x316;
   Goshenite = 0x328;
-LapisLazuli = 0x31B;  
+LapisLazuli = 0x31B;
   LightOpal = 0x31C;
   Moonstone = 0x322;
        Onyx = 0x31F;
@@ -112,15 +115,13 @@ LapisLazuli = 0x31B;
  Tourmaline = 0x326;
   Turquoise = 0x31E;
      Zircon = 0x325;
-     
+
 -------------------------------------------------
 -- AF by Zone
 -------------------------------------------------
 
 function getAFbyZone(zone)
-    
     -- job#1, quest#1, item#1, job#2, quest#2, item#2, ...
-    
     if (zone == 147) then -- Beadeaux
         -- Beast Jackcoat (BST), Gallant Breeches (PLD), Temple Cyclas (MNK)
         return {9,BORGHERTZ_S_WILD_HANDS,12646,
@@ -178,7 +179,6 @@ function getAFbyZone(zone)
         return {14,BORGHERTZ_S_DRAGON_HANDS,14102,
                 12,BORGHERTZ_S_LOYAL_HANDS,14225};
     end
-    
 end
 
 ---------------------------------------
@@ -186,15 +186,15 @@ end
 ---------------------------------------
 
 function thfKeySuccess(trade,playerLVL,treasureLVL)
-     sk = trade:hasItemQty(skeletonKey,1);
-     lk = trade:hasItemQty(livingKey,1);
-    ttk = trade:hasItemQty(thftools,1);
-    success = 0;
-    if ( sk ) then
+    local sk  = trade:hasItemQty(skeletonKey,1);
+    local lk  = trade:hasItemQty(livingKey,1);
+    local ttk = trade:hasItemQty(thftools,1);
+    local success = 0;
+    if (sk) then
         success = (playerLVL/treasureLVL) - 0.50 + SK_SUCCESS_INCREMENT;
-    elseif ( lk ) then
+    elseif (lk) then
         success = (playerLVL/treasureLVL) - 0.50 + LK_SUCCESS_INCREMENT;
-    elseif ( ttk ) then
+    elseif (ttk) then
         success = (playerLVL/treasureLVL) - 0.50 + TTK_SUCCESS_INCREMENT;
     end
     return success;
@@ -205,10 +205,10 @@ end
 ---------------------------------------
 
 function isTHFKey(trade)
-     sk = trade:hasItemQty(skeletonKey,1);
-     lk = trade:hasItemQty(livingKey,1);
-    ttk = trade:hasItemQty(thftools,1);
-    if ( sk or lk or ttk ) then
+    local sk  = trade:hasItemQty(skeletonKey,1);
+    local lk  = trade:hasItemQty(livingKey,1);
+    local ttk = trade:hasItemQty(thftools,1);
+    if (sk or lk or ttk) then
         return true;
     else
         return false;
@@ -220,15 +220,13 @@ end
 ---------------------------------------
 
 function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
-    
-    success = 0;
-    chance_answer = {nil,nil}; -- {success%,messageType}
+    local success = 0;
+    local chance_answer = {nil,nil}; -- {success%,messageType}
+    local weak = player:getStatusEffect(EFFECT_WEAKNESS);
+    local illu  = player:getVar("["..player:getZoneID().."]".."Treasure_"..TreasureType);
 
-    weak = player:getStatusEffect(EFFECT_WEAKNESS);
-    illu  = player:getVar("["..player:getZoneID().."]".."Treasure_"..TreasureType); 
-    
-    -- SE impleted this in order to prevent coffer farming. 
-    -- Noone in the same area can open more than 1 coffer per hour except for AF, maps or quests items.
+    -- SE implemented this in order to prevent coffer farming.
+    -- No one in the same area can open more than 1 coffer per hour except for AF, maps or quests items.
 
     if (weak ~= nil) then -- old code: os.time() <= weak
         chance_answer = {-1,CHEST_WEAK};
@@ -241,9 +239,9 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
                 chance_answer = {-1,CHEST_ILLUSION}; -- if you used a THF tool you will lose it.
             else
                 chance_answer = {-2,CHEST_ILLUSION}; -- if you traded a zone key droped from mobs you will keep the key
-            end        
+            end
         end
-    elseif (not(isTHFKey(trade))) then                                       
+    elseif (not(isTHFKey(trade))) then
         chance_answer = {1,nil}; -- Zone Key is always 100% success
     elseif (player:getMainJob() == JOBS.THF and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
         success = thfKeySuccess(trade,player:getMainLvl(),treasureLVL);
@@ -252,172 +250,179 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
         -- Player is not THF (as main job) or doesn't haven enough level to open the coffer
         chance_answer = {-1,CHEST_FAIL};
     end
-    
+
     return chance_answer;
-    
 end
 
 function chestLoot(zone,npc)
---[[-----------------------------------------------
-                       Chest Loot
----------------------------------------------------
----------------------------------------
--- Items
----------------------------------------
+    --[[-----------------------------------------------
+                           Chest Loot
+    ---------------------------------------------------
+    ---------------------------------------
+    -- Items
+    ---------------------------------------
 
-    BurstScroll = 0x12D4;
-  MagesBalladII = 0x1383;
-     AdeptsRope = 0x33AE;
-ElectrumHairpin = 0x3610;
-    PhalanxRing = 0x34CC;
-      GigantAxe = 0x4146;
- TropicalShield = 0x3035;
-   ElectrumRing = 0x34CB;
-      EmethPick = 0x4122;
-      Falcastra = 0x4183;
-       LifeBelt = 0x33AF;
-CougarBaghnakhs = 0x413E;
-       PyroRobe = 0x359B;
-        MothAxe = 0x414F;
-  ShieldEarring = 0x3435;
-    FrostShield = 0x3032;
-    ReplicaMaul = 0x4412;
-   BattleGloves = 0x31FF;
-        HeatRod = 0x42AF;
-      ForceBelt = 0x33A6;
- FlameBoomerang = 0x438B;
-  SafeguardRing = 0x394E;
- LightGauntlets = 0x3699;
-     HiReraiser = 0x104D;
-PhysicalEarring = 0x3456;
-    VileElixir1 = 0x104F;
+        BurstScroll = 0x12D4;
+      MagesBalladII = 0x1383;
+         AdeptsRope = 0x33AE;
+    ElectrumHairpin = 0x3610;
+        PhalanxRing = 0x34CC;
+          GigantAxe = 0x4146;
+     TropicalShield = 0x3035;
+       ElectrumRing = 0x34CB;
+          EmethPick = 0x4122;
+          Falcastra = 0x4183;
+           LifeBelt = 0x33AF;
+    CougarBaghnakhs = 0x413E;
+           PyroRobe = 0x359B;
+            MothAxe = 0x414F;
+      ShieldEarring = 0x3435;
+        FrostShield = 0x3032;
+        ReplicaMaul = 0x4412;
+       BattleGloves = 0x31FF;
+            HeatRod = 0x42AF;
+          ForceBelt = 0x33A6;
+     FlameBoomerang = 0x438B;
+      SafeguardRing = 0x394E;
+     LightGauntlets = 0x3699;
+         HiReraiser = 0x104D;
+    PhysicalEarring = 0x3456;
+        VileElixir1 = 0x104F;
 
----------------------------------------
--- Gems
----------------------------------------
+    ---------------------------------------
+    -- Gems
+    ---------------------------------------
 
-      Amber = 0x32E;
-   Amethyst = 0x320;
-   Ametrine = 0x32B;
- Aquamarine = 0x317;
-Chrysoberyl = 0x321;
- ClearTopaz = 0x329;
-   Fluorite = 0x32A;
-     Garnet = 0x316;
-  Goshenite = 0x328;
-    Jadeite = 0x310;
-LapisLazuli = 0x31B;  
-  LightOpal = 0x31C;
-  Moonstone = 0x322;
-       Onyx = 0x31F;
-    Painite = 0x31D;
-    Peridot = 0x314;
-   Sardonyx = 0x327;
-     Sphene = 0x32F;
-   Sunstone = 0x323;
- Tourmaline = 0x326;
-  Turquoise = 0x31E;
-     Zircon = 0x325;
-Description:
-      Gil = Zone, { [1] Drop rate, [2] Minimum gil, [3] Maximum gil }
-    Gems = Zone, { [1] Drop rate, [2] gem1,        [3] gem2,       [4] gem3,  ... ,[10] gem10 }
-   Items = Zone, { [1] Drop rate, [2] item1,       [3] item2}
-   
-Date:
-Any update should be here with the date which was modified as well as an URL where info was taken.
-    * 07/21/2009 
-               URL : http://wiki.ffxiclopedia.org/wiki/Treasure_Chest/Coffer_Guide
-    Done : First collection of all the loot and drop rate.
-    * 19/06/2013
-              Done : Drop and drop rate by zone
---]]-----------------------------------------------
+          Amber = 0x32E;
+       Amethyst = 0x320;
+       Ametrine = 0x32B;
+     Aquamarine = 0x317;
+    Chrysoberyl = 0x321;
+     ClearTopaz = 0x329;
+       Fluorite = 0x32A;
+         Garnet = 0x316;
+      Goshenite = 0x328;
+        Jadeite = 0x310;
+    LapisLazuli = 0x31B;
+      LightOpal = 0x31C;
+      Moonstone = 0x322;
+           Onyx = 0x31F;
+        Painite = 0x31D;
+        Peridot = 0x314;
+       Sardonyx = 0x327;
+         Sphene = 0x32F;
+       Sunstone = 0x323;
+     Tourmaline = 0x326;
+      Turquoise = 0x31E;
+         Zircon = 0x325;
+    Description:
+          Gil = Zone, { [1] Drop rate, [2] Minimum gil, [3] Maximum gil }
+        Gems = Zone, { [1] Drop rate, [2] gem1,        [3] gem2,       [4] gem3,  ... ,[10] gem10 }
+       Items = Zone, { [1] Drop rate, [2] item1,       [3] item2}
 
-gil = {147,{0.152,3440,9000},
-           151,{0.440,3200,6320},
-           161,{0.382,5000,13950},
-           162,{0.306,5000,10000},
-           197,{0.394,4702,10000},
-           191,{0.308,450,900},
-           149,{0.429,3060,6320},
-           157,{0.355,2450,7000},
-           158,{0.355,2450,7000},
-           195,{0.421,5100,12450},
-           204,{0.469,4050,7920},
-           141,{0.500,800,2100},
-           200,{0.576,4425,10000},
-           145,{0.448,800,1600},
-           196,{0.302,1980,3600},
-           192,{0.459,450,1034},
-           194,{0.459,450,1034},
-           190,{0.474,390,1300},
-           213,{0.806,3200,11679},
-           198,{0.525,1800,5200},
-            11,{0.731,3200,6400},
-           193,{0.310,1800,3600},
-           143,{0.455,840,1600},
-             9,{0.762,5200,12500},
-            28,{0.929,5100,9900},
-           176,{0.929,3355,8900},
-           142,{0.450,800,235}};
-    gems = {147,{0.090,0x32B,0x316,0x31C,0x31E,0x328,0x32F},
-            151,{0.080,0x32B,0x316,0x328,0x31C,0x314,0x327,0x32F,0x31E},
-            161,{0.008,0x32B,0x316,0x328,0x314,0x31F,0x32F},
-            162,{0.204,0x31E,0x316,0x328,0x314,0x32F,0x31C},
-            197,{0.162,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
-            191,{0.230,0x32E,0x320,0x329,0x31B,0x327,0x326},
-            149,{0.107,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
-            157,{0.161,0x32E,0x320,0x329,0x31B,0x31C,0x31F,0x326},
-            158,{0.161,0x32E,0x320,0x329,0x31B,0x31C,0x31F,0x326},
-            195,{0.105,0x32B,0x328,0x31C,0x31F,0x32F,0x316},
-            204,{0.091,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
-            141,{0.036,0x32E,0x320,0x31B,0x327,0x326},
-            200,{0.059,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
-            145,{0.069,0x32E,0x320,0x329,0x31B,0x327,0x326},
-            196,{0.233,0x326,0x329,0x32E,0x320,0x31C,0x31B,0x31F},
-            192,{0.109,0x32E,0x320,0x329,0x31B,0x326},
-            194,{0.109,0x32E,0x320,0x329,0x31B,0x326},
-            190,{0.093,0x32E,0x320,0x329,0x31B,0x327,0x326},
-            213,{0.194,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
-            198,{0.060,0x32E,0x320,0x329,0x31B,0x31C,0x31F,0x327,0x326},
-             11,{0.269,0x32B,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
-            193,{0.214,0x320,0x329,0x326,0x327,0x31C,0x31B,0x32E,0x31F},
-            143,{0.136,0x31B,0x320,0x32E,0x327,0x326,0x329},
-              9,{0.238,0x32B,0x31E,0x32F,0x316,0x31F,0x314,0x328},
-             28,{0.071,0x316,0x31F,0x32F,0x314,0x31C},
-            176,{0.071,0x32B,0x328,0x316,0x31C,0x32F,0x314,0x31F,0x31E},
-            142,{0.100,0x32E,0x320,0x31B,0x327,0x326}};
-    items = {147,{0.758,0x33AE},
-             151,{0.480,0x3610},
-             161,{0.610,0x34CC},
-             162,{0.490,0x34CC},
-             197,{0.444,0x4146},
-             191,{0.462,0x3035},
-             149,{0.464,0x34CB},
-             157,{0.484,0x4122},
-             158,{0.484,0x4122},
-             195,{0.474,0x4183},
-             204,{0.440,0x33AF},
-             141,{0.464,0x413E},
-             200,{0.365,0x359B},
-             145,{0.483,0x3435},
-             196,{0.465,0x3032,0x4412},
-             192,{0.432,0x414F},
-             194,{0.432,0x414F},
-             190,{0.433,0x31FF},
-             213,{},
-             198,{0.415,0x42AF},
-              11,{},
-             193,{0.476,0x33A6},
-             143,{0.409,0x438B},
-               9,{},
-              28,{},
-             176,{},
-             142,{0.450,0x413E}};
-    
-    -- Loot calculation 
-    rand = math.random();
-    rand = math.random();
-    rand = math.random();
+    Date:
+    Any update should be here with the date which was modified as well as an URL where info was taken.
+        * 07/21/2009
+                   URL : http://wiki.ffxiclopedia.org/wiki/Treasure_Chest/Coffer_Guide
+        Done : First collection of all the loot and drop rate.
+        * 19/06/2013
+                  Done : Drop and drop rate by zone
+    --]]-----------------------------------------------
+
+    local gil =
+    {
+        9,  {0.762,5200,12500},
+        11, {0.731,3200,6400},
+        28, {0.929,5100,9900},
+        141,{0.500,800,2100},
+        142,{0.450,800,235},
+        143,{0.455,840,1600},
+        145,{0.448,800,1600},
+        147,{0.152,3440,9000},
+        149,{0.429,3060,6320},
+        151,{0.440,3200,6320},
+        157,{0.355,2450,7000},
+        158,{0.355,2450,7000},
+        161,{0.382,5000,13950},
+        162,{0.306,5000,10000},
+        176,{0.929,3355,8900},
+        190,{0.474,390,1300},
+        191,{0.308,450,900},
+        192,{0.459,450,1034},
+        193,{0.310,1800,3600},
+        194,{0.459,450,1034},
+        195,{0.421,5100,12450},
+        196,{0.302,1980,3600},
+        197,{0.394,4702,10000},
+        198,{0.525,1800,5200},
+        200,{0.576,4425,10000},
+        204,{0.469,4050,7920},
+        213,{0.806,3200,11679}
+    };
+    local gems =
+    {
+        9,  {0.238,0x32B,0x31E,0x32F,0x316,0x31F,0x314,0x328},
+        11, {0.269,0x32B,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
+        28, {0.071,0x316,0x31F,0x32F,0x314,0x31C},
+        141,{0.036,0x32E,0x320,0x31B,0x327,0x326},
+        142,{0.100,0x32E,0x320,0x31B,0x327,0x326},
+        143,{0.136,0x31B,0x320,0x32E,0x327,0x326,0x329},
+        145,{0.069,0x32E,0x320,0x329,0x31B,0x327,0x326},
+        147,{0.090,0x32B,0x316,0x31C,0x31E,0x328,0x32F},
+        149,{0.107,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
+        151,{0.080,0x32B,0x316,0x328,0x31C,0x314,0x327,0x32F,0x31E},
+        157,{0.161,0x32E,0x320,0x329,0x31B,0x31C,0x31F,0x326},
+        158,{0.161,0x32E,0x320,0x329,0x31B,0x31C,0x31F,0x326},
+        161,{0.008,0x32B,0x316,0x328,0x314,0x31F,0x32F},
+        162,{0.204,0x31E,0x316,0x328,0x314,0x32F,0x31C},
+        176,{0.071,0x32B,0x328,0x316,0x31C,0x32F,0x314,0x31F,0x31E},
+        190,{0.093,0x32E,0x320,0x329,0x31B,0x327,0x326},
+        191,{0.230,0x32E,0x320,0x329,0x31B,0x327,0x326},
+        192,{0.109,0x32E,0x320,0x329,0x31B,0x326},
+        193,{0.214,0x320,0x329,0x326,0x327,0x31C,0x31B,0x32E,0x31F},
+        194,{0.109,0x32E,0x320,0x329,0x31B,0x326},
+        195,{0.105,0x32B,0x328,0x31C,0x31F,0x32F,0x316},
+        196,{0.233,0x326,0x329,0x32E,0x320,0x31C,0x31B,0x31F},
+        197,{0.162,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
+        198,{0.060,0x32E,0x320,0x329,0x31B,0x31C,0x31F,0x327,0x326},
+        200,{0.059,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
+        204,{0.091,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E},
+        213,{0.194,0x32B,0x316,0x328,0x31C,0x31F,0x314,0x32F,0x31E}
+    };
+    local items =
+    {
+        9,  {},
+        11, {},
+        28, {},
+        141,{0.464,0x413E},
+        142,{0.450,0x413E},
+        143,{0.409,0x438B},
+        145,{0.483,0x3435},
+        147,{0.758,0x33AE},
+        149,{0.464,0x34CB},
+        151,{0.480,0x3610},
+        157,{0.484,0x4122},
+        158,{0.484,0x4122},
+        161,{0.610,0x34CC},
+        162,{0.490,0x34CC},
+        176,{},
+        190,{0.433,0x31FF},
+        191,{0.462,0x3035},
+        192,{0.432,0x414F},
+        193,{0.476,0x33A6},
+        194,{0.432,0x414F},
+        195,{0.474,0x4183},
+        196,{0.465,0x3032,0x4412},
+        197,{0.444,0x4146},
+        198,{0.415,0x42AF},
+        200,{0.365,0x359B},
+        204,{0.440,0x33AF},
+        213,{}
+    };
+
+    -- Loot calculation
+    local rand = math.random();
+
     for u = 1, #gil, 2 do
         if (gil[u] == zone) then
             if (rand <= gil[u + 1][1]) then
@@ -448,141 +453,148 @@ gil = {147,{0.152,3440,9000},
 end
 
 function cofferLoot(zone,npc)
---[[-----------------------------------------------
-                       Chest Loot
----------------------------------------------------
----------------------------------------
--- Items
----------------------------------------
+    --[[-----------------------------------------------
+                           Chest Loot
+    ---------------------------------------------------
+    ---------------------------------------
+    -- Items
+    ---------------------------------------
 
-    BurstScroll = 0x12D4;
-  MagesBalladII = 0x1383;
-     AdeptsRope = 0x33AE;
-ElectrumHairpin = 0x3610;
-    PhalanxRing = 0x34CC;
-      GigantAxe = 0x4146;
- TropicalShield = 0x3035;
-   ElectrumRing = 0x34CB;
-      EmethPick = 0x4122;
-      Falcastra = 0x4183;
-       LifeBelt = 0x33AF;
-CougarBaghnakhs = 0x413E;
-       PyroRobe = 0x359B;
-        MothAxe = 0x414F;
-   ScreamFungus = 0x115F
-  ShieldEarring = 0x3435;
-    FrostShield = 0x3032;
-    ReplicaMaul = 0x4412;
-   BattleGloves = 0x31FF;
-        HeatRod = 0x42AF;
-      ForceBelt = 0x33A6;
- FlameBoomerang = 0x438B;
-  SafeguardRing = 0x394E;
- LightGauntlets = 0x3699;
-     HiReraiser = 0x104D;
-PhysicalEarring = 0x3456;
-    VileElixir1 = 0x104F;
+        BurstScroll = 0x12D4;
+      MagesBalladII = 0x1383;
+         AdeptsRope = 0x33AE;
+    ElectrumHairpin = 0x3610;
+        PhalanxRing = 0x34CC;
+          GigantAxe = 0x4146;
+     TropicalShield = 0x3035;
+       ElectrumRing = 0x34CB;
+          EmethPick = 0x4122;
+          Falcastra = 0x4183;
+           LifeBelt = 0x33AF;
+    CougarBaghnakhs = 0x413E;
+           PyroRobe = 0x359B;
+            MothAxe = 0x414F;
+       ScreamFungus = 0x115F
+      ShieldEarring = 0x3435;
+        FrostShield = 0x3032;
+        ReplicaMaul = 0x4412;
+       BattleGloves = 0x31FF;
+            HeatRod = 0x42AF;
+          ForceBelt = 0x33A6;
+     FlameBoomerang = 0x438B;
+      SafeguardRing = 0x394E;
+     LightGauntlets = 0x3699;
+         HiReraiser = 0x104D;
+    PhysicalEarring = 0x3456;
+        VileElixir1 = 0x104F;
 
----------------------------------------
--- Gems
----------------------------------------
+    ---------------------------------------
+    -- Gems
+    ---------------------------------------
 
-      Amber = 0x32E;
-   Amethyst = 0x320;
-   Ametrine = 0x32B;
- Aquamarine = 0x317;
-Chrysoberyl = 0x321;
- ClearTopaz = 0x329;
-   Fluorite = 0x32A;
-     Garnet = 0x316;
-  Goshenite = 0x328;
-    Jadeite = 0x310;
-LapisLazuli = 0x31B;  
-  LightOpal = 0x31C;
-  Moonstone = 0x322;
-       Onyx = 0x31F;
-    Painite = 0x31D;
-    Peridot = 0x314;
-   Sardonyx = 0x327;
-     Sphene = 0x32F;
-   Sunstone = 0x323;
- Tourmaline = 0x326;
-  Turquoise = 0x31E;
-     Zircon = 0x325;
+          Amber = 0x32E;
+       Amethyst = 0x320;
+       Ametrine = 0x32B;
+     Aquamarine = 0x317;
+    Chrysoberyl = 0x321;
+     ClearTopaz = 0x329;
+       Fluorite = 0x32A;
+         Garnet = 0x316;
+      Goshenite = 0x328;
+        Jadeite = 0x310;
+    LapisLazuli = 0x31B;
+      LightOpal = 0x31C;
+      Moonstone = 0x322;
+           Onyx = 0x31F;
+        Painite = 0x31D;
+        Peridot = 0x314;
+       Sardonyx = 0x327;
+         Sphene = 0x32F;
+       Sunstone = 0x323;
+     Tourmaline = 0x326;
+      Turquoise = 0x31E;
+         Zircon = 0x325;
 
-Description:
-     Gil = Zone, { [1] Drop rate, [2] Minimum gil, [3] Maximum gil }
-    Gems = Zone, { [1] Drop rate, [2] gem1,        [3] gem2,       [4] gem3,  ... ,[10] gem10 }
-   Items = Zone, { [1] Drop rate, [2] item1,       [3] item2}
-   
-Date:
-Any update should be here with the date which was modified as well as an URL where info was taken.
-    * 07/21/2009 
-               URL : http://wiki.ffxiclopedia.org/wiki/Treasure_Chest/Coffer_Guide
-              Done : First collection of all the loot and drop rate.
-    * 19/06/2013
-              Done : Drop and drop rate by zone
---]]-----------------------------------------------
-    gil = {147,{0.375,4700,25000},
-           153,{0.793,7110,20520},
-           151,{0.652,7320,18000},
-           161,{0.731,6300,26880},
-           197,{0.387,6040,12100},
-           160,{0.700,8000,16770},
-           195,{0.500,7590,18039},
-           200,{0.750,6668,18700},
-           205,{0.897,7200,21060},
-           174,{0.943,5200,16100},
-           150,{0.818,7320,14400},
-            12,{0.927,9800,19180},
-           208,{0.773,6160,16100},
-           130,{0.821,9576,19460},
-           176,{0.550,6145,19580},
-           159,{0.846,7320,14400},
-           169,{0.900,7440,14280},
-           177,{0.500,9940,18900}};
-    gems = {147,{0.240,0x317,0x321,0x322,0x31D,0x314,0x323,0x325,0x32A,0x310},
-            153,{0.092,0x317,0x321,0x32A,0x310,0x322,0x323,0x325,0x31D},
-            151,{0.044,0x317,0x321,0x32A,0x310,0x322,0x31D,0x323,0x325},
-            161,{0.080,0x317,0x321,0x32A,0x310,0x322,0x31D,0x323,0x325},
-            197,{0.387,0x317,0x321,0x310,0x31D,0x325,0x323},
-            160,{0.300,0x31D,0x325},
-            195,{0.250,0x321,0x32A,0x322,0x31D,0x323},
-            200,{0.125,0x321,0x310,0x322},
-            205,{0.103,0x322,0x31D,0x323,0x321,0x32A,0x317},
-            174,{0.057,0x322,0x321,0x31D,0x310,0x323,0x317,0x325,0x32A},
-            150,{0.055,0x321,0x32A,0x310,0x322,0x31D,0x323},
-             12,{0.073,0x317,0x31D,0x310,0x323,0x325,0x321,0x322},
-            208,{0.227,0x317,0x321,0x32A,0x310,0x31D,0x323},
-            130,{0.179,0x317,0x321,0x32A,0x310,0x322,0x31D,0x325,0x323},
-            176,{0.450,0x317,0x32A,0x310,0x322,0x323,0x31D,0x321},
-            159,{0.154,0x31D,0x321,0x32A,0x322,0x325,0x323},
-            169,{0.100,0x317,0x321,0x310,0x322,0x31D,0x323,0x325},
-            177,{0.500,0x317,0x325}};
-    items = {147,{0.385,0x12D4},
-             153,{0.115,0x115F},
-             151,{0.304,0x394E},
-             161,{0.189,0x1383},
-             197,{0.226,0x104D},
-             160,{},
-             195,{0.250,0x104F},
-             200,{0.125,0x3699},
-             205,{},
-             174,{},
-             150,{0.127,0x3456},
-              12,{},
-             208,{},
-             130,{},
-             176,{},
-             159,{},
-             169,{},
-             177,{}};
+    Description:
+         Gil = Zone, { [1] Drop rate, [2] Minimum gil, [3] Maximum gil }
+        Gems = Zone, { [1] Drop rate, [2] gem1,        [3] gem2,       [4] gem3,  ... ,[10] gem10 }
+       Items = Zone, { [1] Drop rate, [2] item1,       [3] item2}
 
-    -- Loot calculation 
-    rand = math.random();
-    rand = math.random();
-    rand = math.random();
-    
+    Date:
+    Any update should be here with the date which was modified as well as an URL where info was taken.
+        * 07/21/2009
+                   URL : http://wiki.ffxiclopedia.org/wiki/Treasure_Chest/Coffer_Guide
+                  Done : First collection of all the loot and drop rate.
+        * 19/06/2013
+                  Done : Drop and drop rate by zone
+    --]]-----------------------------------------------
+    local gil =
+    {
+        12, {0.927,9800,19180},
+        130,{0.821,9576,19460},
+        147,{0.375,4700,25000},
+        150,{0.818,7320,14400},
+        151,{0.652,7320,18000},
+        153,{0.793,7110,20520},
+        159,{0.846,7320,14400},
+        160,{0.700,8000,16770},
+        161,{0.731,6300,26880},
+        169,{0.900,7440,14280},
+        174,{0.943,5200,16100},
+        176,{0.550,6145,19580},
+        177,{0.500,9940,18900},
+        195,{0.500,7590,18039},
+        197,{0.387,6040,12100},
+        200,{0.750,6668,18700},
+        205,{0.897,7200,21060},
+        208,{0.773,6160,16100}
+    };
+    local gems =
+    {
+        12, {0.073,0x317,0x31D,0x310,0x323,0x325,0x321,0x322},
+        130,{0.179,0x317,0x321,0x32A,0x310,0x322,0x31D,0x325,0x323},
+        147,{0.240,0x317,0x321,0x322,0x31D,0x314,0x323,0x325,0x32A,0x310},
+        150,{0.055,0x321,0x32A,0x310,0x322,0x31D,0x323},
+        151,{0.044,0x317,0x321,0x32A,0x310,0x322,0x31D,0x323,0x325},
+        153,{0.092,0x317,0x321,0x32A,0x310,0x322,0x323,0x325,0x31D},
+        159,{0.154,0x31D,0x321,0x32A,0x322,0x325,0x323},
+        160,{0.300,0x31D,0x325},
+        161,{0.080,0x317,0x321,0x32A,0x310,0x322,0x31D,0x323,0x325},
+        169,{0.100,0x317,0x321,0x310,0x322,0x31D,0x323,0x325},
+        174,{0.057,0x322,0x321,0x31D,0x310,0x323,0x317,0x325,0x32A},
+        176,{0.450,0x317,0x32A,0x310,0x322,0x323,0x31D,0x321},
+        177,{0.500,0x317,0x325},
+        195,{0.250,0x321,0x32A,0x322,0x31D,0x323},
+        197,{0.387,0x317,0x321,0x310,0x31D,0x325,0x323},
+        200,{0.125,0x321,0x310,0x322},
+        205,{0.103,0x322,0x31D,0x323,0x321,0x32A,0x317},
+        208,{0.227,0x317,0x321,0x32A,0x310,0x31D,0x323}
+    };
+    local items =
+    {
+        12, {},
+        130,{},
+        147,{0.385,0x12D4},
+        150,{0.127,0x3456},
+        151,{0.304,0x394E},
+        153,{0.115,0x115F},
+        159,{},
+        160,{},
+        161,{0.189,0x1383},
+        169,{},
+        174,{},
+        176,{},
+        177,{},
+        195,{0.250,0x104F},
+        197,{0.226,0x104D},
+        200,{0.125,0x3699},
+        205,{},
+        208,{}
+    };
+
+    -- Loot calculation
+    local rand = math.random();
+
     for u = 1, #gil, 2 do
         if (gil[u] == zone) then
             if (rand <= gil[u + 1][1]) then

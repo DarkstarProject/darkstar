@@ -2,7 +2,7 @@
 -- Area: Abyssea - Konschtat
 --  NPC: Cruor Prospector
 -- Type: Cruor NPC
--- @pos 132.000,-75.856,-822.000 15
+-- !pos 132.000,-75.856,-822.000 15
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------

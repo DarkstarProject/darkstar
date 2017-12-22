@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 --  MOB: Harvestman
--- @pos 398.130 -10.675 179.169 52
+-- !pos 398.130 -10.675 179.169 52
 -----------------------------------
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize
@@ -22,7 +23,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(6,9); -- 2-3 Tick's
         target:addStatusEffect(EFFECT_POISON,100,3,duration);
-        return SUBEFFECT_POISON,MSGBASIC_ADD_EFFECT_STATUS,EFFECT_POISON;
+        return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,EFFECT_POISON;
     end
 end;
 

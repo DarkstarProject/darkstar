@@ -2,7 +2,7 @@
 -- Area: Port Jeuno
 -- NPC:  Door: Departures Exit (for Bastok)
 -- @zone 246
--- @pos -61 7 -54
+-- !pos -61 7 -54
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -16,17 +16,17 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then 
-        player:startEvent(0x0024);
+    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then
+        player:startEvent(36);
     else
-        player:startEvent(0x002c);
+        player:startEvent(44);
     end
     return 1;
 end;
@@ -47,14 +47,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
-    if (csid == 0x0024) then 
+
+    if (csid == 36) then
         Z = player:getZPos();
-        
+
         if (Z >= -61 and Z <= -58) then
             player:delGil(200);
         end
     end
-    
+
 end;
 

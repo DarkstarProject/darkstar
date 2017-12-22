@@ -3,7 +3,7 @@
 --  NPC: Quam Jitahr
 --  Type: Standard NPC
 --  @zone 256
---  @pos -43 0 -105 256
+--  !pos -43 0 -105 256
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -22,10 +22,10 @@ function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
         -- Standard dialogue
-        player:startEvent(0x023D);
+        player:startEvent(573);
     else
         -- Dialogue prior to joining colonization effort
-        player:startEvent(0x0216);
+        player:startEvent(534);
     end
 end;
 

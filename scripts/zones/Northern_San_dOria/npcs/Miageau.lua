@@ -3,7 +3,7 @@
 --   NPC: Miageau
 --  Type: Quest Giver NPC
 -- @zone 231
--- @pos 115 0 108
+-- !pos 115 0 108
 --
 -- Starts and Finishes: Waters of Cheval
 -----------------------------------
@@ -25,13 +25,13 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
     if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED) then
         if (trade:getItemCount() == 1 and trade:hasItemQty(603, 1)) then
-            player:startEvent(0x0203);
+            player:startEvent(515);
         end;
     end;
-    
+
 end;
 
 -----------------------------------
@@ -39,21 +39,21 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     watersOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
     if (watersOfTheCheval == QUEST_ACCEPTED) then
         if (player:hasItem(602) == true) then
-            player:startEvent(0x0200);
+            player:startEvent(512);
         else
-            player:startEvent(0x0207);
+            player:startEvent(519);
         end;
     elseif (watersOfTheCheval == QUEST_AVAILABLE) then
-        player:startEvent(0x01f8);
+        player:startEvent(504);
     else
-        player:startEvent(0x0205);
+        player:startEvent(517);
     end;
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -72,8 +72,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0203) then
-        if (player:getFreeSlotsCount() == 0) then 
+    if (csid == 515) then
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13183);
         else
             player:tradeComplete();
@@ -83,8 +83,8 @@ function onEventFinish(player,csid,option)
             player:addTitle(THE_PURE_ONE);
             player:completeQuest(SANDORIA,WATER_OF_THE_CHEVAL);
         end;
-    elseif (csid == 0x01f8) then
+    elseif (csid == 504) then
         player:addQuest(SANDORIA, WATER_OF_THE_CHEVAL);
     end;
-    
+
 end;

@@ -21,30 +21,23 @@
 -- 11          |31%     |41%
 -- Bust        |-10%    |-10%
 -----------------------------------
-
 require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/ability");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/status");
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     local effectID = EFFECT_CHAOS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
-        return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+        return msgBasic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
-        return MSGBASIC_CANNOT_PERFORM,0;
+        return msgBasic.CANNOT_PERFORM,0;
     else
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbilityRoll
------------------------------------
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
@@ -87,7 +80,7 @@ function onUseAbilityRoll(caster,target,ability,total)
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CHAOS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_ATTP) == false) then
-        ability:setMsg(423);
+        ability:setMsg(msgBasic.ROLL_SUB_FAIL);
     end
 end;
 
@@ -104,9 +97,9 @@ function applyRoll(caster,target,ability,action,total)
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CHAOS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_ATTP) == false) then
-        ability:setMsg(422);
+        ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
     elseif total > 11 then
-        ability:setMsg(426);
+        ability:setMsg(msgBasic.DOUBLEUP_BUST);
     end
     return total;
 end

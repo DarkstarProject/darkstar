@@ -1,0 +1,3 @@
+ASH_DRAGON              = 17617147;
+
+FLAME_SPOUT_OFFSET      = 17617209;

@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4860
---    Scroll of Stun
---    Teaches the black magic Stun
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4860
+-- Scroll of Stun
+-- Teaches the black magic Stun
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(252);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(252);

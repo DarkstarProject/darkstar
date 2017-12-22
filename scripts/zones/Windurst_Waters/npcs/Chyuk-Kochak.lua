@@ -3,8 +3,8 @@
 --   NPC: Chyuk-Kochak
 --  Type: Standard NPC
 -- @zone 238
--- @pos -252.162 -6.319 -307.011
--- 
+-- !pos -252.162 -6.319 -307.011
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0298);
+    player:startEvent(664);
 end;
 
 -----------------------------------

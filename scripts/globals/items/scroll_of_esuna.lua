@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4703
---    Scroll of Esuna
---    Teaches the white magic Esuna
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4703
+-- Scroll of Esuna
+-- Teaches the white magic Esuna
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(95);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(95);

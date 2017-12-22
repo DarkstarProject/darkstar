@@ -2,7 +2,7 @@
 -- Area:  Western Altepa Desert
 -- NPC:   _3h7 (Emerald Column)
 -- Notes: Mechanism for Altepa Gate
--- @pos -775 2 -460 125
+-- !pos -775 2 -460 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

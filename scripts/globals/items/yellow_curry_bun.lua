@@ -15,11 +15,7 @@
 -- hHP +2
 -- hMP +1
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -29,10 +25,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5757);
@@ -57,11 +49,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MPHEAL, 1);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 20);
     target:delMod(MOD_STR, 5);
     target:delMod(MOD_AGI, 2);

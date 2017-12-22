@@ -5,10 +5,9 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 95;
     if (target:getMainLvl() > player:getMainLvl()) then
@@ -22,6 +21,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_PARALYSIS)) then
             target:addStatusEffect(EFFECT_PARALYSIS, 20, 0, 30);
         end
-        return SUBEFFECT_PARALYSIS, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
     end
 end;

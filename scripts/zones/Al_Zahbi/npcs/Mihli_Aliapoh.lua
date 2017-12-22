@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Mihli Aliapoh
---  Type: Waterserpent General
--- @zone 48
--- @pos -22.615 -7 78.907
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+-- Area: Al Zahbi
+--  NPC: Mihli Aliapoh
+-- Type: Waterserpent General
+-- !pos -22.615 -7 78.907 48
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x010b);
+    player:startEvent(267);
 end;
 
 -----------------------------------
@@ -42,4 +37,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

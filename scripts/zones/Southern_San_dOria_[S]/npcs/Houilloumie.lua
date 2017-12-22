@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Houilloume
 -- @zone 80
--- @pos 
+-- !pos
 -----------------------------------
 
 -----------------------------------
@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x67); -- it says player:startEvent(0x67)
+player:startEvent(103); -- it says player:startEvent(103)
     -- the player:startEvent basically means start CutScene
 end;
 

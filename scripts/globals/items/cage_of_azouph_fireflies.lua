@@ -1,6 +1,6 @@
 -----------------------------------------
---    ID: 5343
---    Azouph Fireflies
+-- ID: 5343
+-- Azouph Fireflies
 --  Transports the user to Azouph Isle
 -----------------------------------------
 require("scripts/globals/status");
@@ -15,10 +15,6 @@ function onItemCheck(target)
     end
     return 56;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffectEx(EFFECT_TELEPORT,0,FIREFLIES_AZOUPH,0,1);

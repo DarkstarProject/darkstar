@@ -2,7 +2,7 @@
 --  Area: Carpenters' Landing
 --  NPC:  Coupulie
 --  Type: Standard NPC
--- @pos -313.585 -3.628 490.944 2
+-- !pos -313.585 -3.628 490.944 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0020,618,652,50,300);
+    player:startEvent(32,618,652,50,300);
 end;
 
 -----------------------------------

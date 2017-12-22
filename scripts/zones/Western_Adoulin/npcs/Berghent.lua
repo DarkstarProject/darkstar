@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Starts, Involved with, and Finishes Quest: 'Flavors of our Lives'
 --  @zone 256
---  @pos 95 0 -28 256
+--  !pos 95 0 -28 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,22 +29,22 @@ function onTrigger(player,npc)
     if (FOOL == QUEST_ACCEPTED) then
         if (player:hasKeyItem(BLIGHTBERRY)) then
             -- Finishes Quest: 'Flavors of Our Lives'
-            player:startEvent(0x0057);
+            player:startEvent(87);
         else
             -- Dialogue during Quest: 'Flavors of Our Lives'
-            player:startEvent(0x0052);
+            player:startEvent(82);
         end
     elseif (FOOL == QUEST_AVAILABLE) then
         if (player:getVar("FOOL_Refused_Once") == 1) then
             -- Starts Quest: 'Flavors of Our Lives' after player refused once
-            player:startEvent(0x0051);
+            player:startEvent(81);
         else
             -- Starts Quest: 'Flavors of Our Lives'
-            player:startEvent(0x0050);
+            player:startEvent(80);
         end
     else
         -- Dialogue after finishing  Quest: 'Flavors of Our Lives'
-        player:startEvent(0x0058);
+        player:startEvent(88);
     end
 end;
 
@@ -60,7 +60,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0050) then
+    if (csid == 80) then
         if (option == 1) then
             -- Starts Quest: 'Flavors of Our Lives'
             player:addQuest(ADOULIN, FLAVORS_OF_OUR_LIVES);
@@ -70,13 +70,13 @@ function onEventFinish(player,csid,option)
             player:setVar("FOOL_Refused_Once", 1);
         end
         --
-    elseif (csid == 0x0051) then
+    elseif (csid == 81) then
         if (option == 1) then
             -- Starts Quest: 'Flavors of Our Lives'
             player:addQuest(ADOULIN, FLAVORS_OF_OUR_LIVES);
             player:setVar("FOOL_Refused_Once", 0);
         end
-    elseif (csid == 0x0057) then
+    elseif (csid == 87) then
         -- Finishing Quest: 'Flavors of Our Lives'
         player:delKeyItem(BLIGHTBERRY);
         player:completeQuest(ADOULIN, FLAVORS_OF_OUR_LIVES);

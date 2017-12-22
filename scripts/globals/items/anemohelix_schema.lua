@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 6046
---    Item: Anemohelix Schema
---    Teaches the black magic Anemohelix
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 6046
+-- Item: Anemohelix Schema
+-- Teaches the black magic Anemohelix
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(280);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(280);

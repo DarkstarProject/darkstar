@@ -9,22 +9,33 @@ cmdprops =
     parameters = "is"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!givegil <amount> {player}");
+end;
+
 function onTrigger(player, amount, target)
-    if (amount == nil) then
-        player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@givegil <amount> <player>" );
+
+    -- validate amount
+    if (amount == nil or amount < 1) then
+        error(player, "Invalid amount of gil.");
         return;
     end
 
+    -- validate target
+    local targ;
     if (target == nil) then
-        player:addGil(amount);
+        targ = player;
     else
-        local targ = GetPlayerByName(target);
-        if (targ ~= nil) then
-            targ:addGil(amount);
-        else
-            player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@givegil <amount> <player>" );
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
         end
     end
+
+    -- give gil to target
+    targ:addGil(amount);
+    player:PrintToPlayer(string.format("Gave %i gil to %s.  They now have %i gil.", amount, targ:getName(), targ:getGil()));
+    
 end;

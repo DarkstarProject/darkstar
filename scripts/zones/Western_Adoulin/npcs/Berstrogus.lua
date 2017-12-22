@@ -3,7 +3,7 @@
 --  NPC: Berstrogus
 --  Type: Standard NPC
 --  @zone 256
--- @pos -44 4 -10
+-- !pos -44 4 -10
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,10 +23,10 @@ function onTrigger(player,npc)
 
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
         -- Standard dialogue, after joining colonization effort
-        player:startEvent(0x024B);
+        player:startEvent(587);
     else
         -- Dialogue prior to joining colonization effort
-        player:startEvent(0x01F8);
+        player:startEvent(504);
     end
 end;
 
@@ -41,5 +41,5 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
 end;

@@ -3,7 +3,7 @@
 --  NPC: Halver
 -- Involved in Mission 2-3, 3-3, 5-1, 5-2, 8-1
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos 2 0.1 0.1 233
+-- !pos 2 0.1 0.1 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------

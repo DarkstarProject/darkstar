@@ -50,12 +50,12 @@ function onMobDespawn(mob)
         if (carminesKilled == 1023) then -- all have been defeated, allow for them to respawn while setting their respawn time to be all the same
             local respawnTime = math.random(75600,86400);
             for  i = firstDobsonfly, firstDobsonfly + 9, 1 do    
-                DeterMob(i, false);
+                DisallowRespawn(i, false);
                 GetMobByID(i):setRespawnTime(respawnTime);
             end
             carminesKilled = 0; -- clear the server var
         else -- prevent them from respawning
-            DeterMob(mobID, true);
+            DisallowRespawn(mobID, true);
         end
         SetServerVariable("[NM]Carmine_Dobsonflies_Killed", carminesKilled);
     end

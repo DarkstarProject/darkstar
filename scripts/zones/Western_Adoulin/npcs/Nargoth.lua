@@ -3,7 +3,7 @@
 --  NPC: Nargoht
 --  Type: Standard NPC
 --  @zone 256
---  @pos 25 0 117
+--  !pos 25 0 117
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x022D);
+    player:startEvent(557);
 end;
 
 -----------------------------------

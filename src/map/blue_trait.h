@@ -30,7 +30,7 @@ class CBlueTrait : public CTrait
 {
 public:
 
-    CBlueTrait(uint8 category, uint16 id);
+    CBlueTrait(uint8 category, uint8 id);
 
     void setPoints(uint8 points);
 

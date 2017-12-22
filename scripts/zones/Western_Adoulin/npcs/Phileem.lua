@@ -3,7 +3,7 @@
 --  NPC: Phileem
 --  Type: Standard NPC
 --  @zone 256
--- @pos -20 0 -105
+-- !pos -20 0 -105
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0219);
+    player:startEvent(537);
 end;
 
 -----------------------------------

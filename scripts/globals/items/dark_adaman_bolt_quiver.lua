@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5872
---    Dark Adaman Bolt Quiver
---    When used, you will obtain one stack of Dark Adaman Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5872
+-- Dark Adaman Bolt Quiver
+-- When used, you will obtain one stack of Dark Adaman Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(19183,99);

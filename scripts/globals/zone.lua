@@ -89,19 +89,3 @@ function SetExplorerMoogles(moogle)
         end
     end
 end;
-
------------------------------------
--- SetRespawnTime
-----------------------------------
-
-function SetRespawnTime(id, minTime, maxTime)
-    -- This function is redundant should place the mob:setRespawnTime() and UpdateNMSpawnPoint back in the individual zones.
-    -- Having this global just uses 3 functions where only 2 were needed.
-    local mob = GetMobByID(id);
-    if (mob == nil) then
-        printf("'SetTimedSpawns' Error trying to load undefined mob (%d)", id);
-    else
-        UpdateNMSpawnPoint(id);
-        mob:setRespawnTime(math.random((minTime),(maxTime)));
-    end
-end

@@ -3,8 +3,8 @@
 --   NPC: Mistaravant
 --  Type: Standard NPC
 -- @zone 233
--- @pos 7.097 -3.999 67.988
--- 
+-- !pos 7.097 -3.999 67.988
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x020c);
+    player:startEvent(524);
 end;
 
 -----------------------------------

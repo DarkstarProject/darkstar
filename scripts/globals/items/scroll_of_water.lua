@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4777
---    Scroll of Water
---    Teaches the black magic Water
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4777
+-- Scroll of Water
+-- Teaches the black magic Water
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(169);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(169);

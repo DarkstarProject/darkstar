@@ -3,8 +3,8 @@
 --   NPC: Explorer Moogle
 --  Type: Mog Tablet
 -- @zone 243
--- @pos 1.000 -1 0.000
--- 
+-- !pos 1.000 -1 0.000
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2782);
+    player:startEvent(10114);
 end;
 
 -----------------------------------

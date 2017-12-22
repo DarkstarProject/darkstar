@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4223
---    Scorpion Quiver
---    When used, you will obtain one stack of Scorpion Arrows
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4223
+-- Scorpion Quiver
+-- When used, you will obtain one stack of Scorpion Arrows
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18155,99);

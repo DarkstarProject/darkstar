@@ -3,8 +3,8 @@
 --   NPC: Emhi Tchaoryo
 --  Type: Campaign Ops Overseer
 -- @zone 94
--- @pos 10.577 -2.478 32.680
--- 
+-- !pos 10.577 -2.478 32.680
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0133);
+    player:startEvent(307);
 end;
 
 -----------------------------------

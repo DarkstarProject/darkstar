@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Cacaroon
 -- Standard Info NPC
--- @pos -72.026 0.000 -82.337 50
+-- !pos -72.026 0.000 -82.337 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -20,8 +20,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
             player:startEvent(850);
         end
-    elseif (player:getVar("AhtUrganStatus") == 1) then
-        if ((trade:getGil() == 1000 and trade:getItemCount() == 1) or(trade:hasItemQty(2184,1) and trade:getItemCount() == 1)) then
+    elseif (player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 1) then
+        if ((trade:getGil() == 1000 and trade:getItemCount() == 1) or (trade:hasItemQty(2184,1) and trade:getItemCount() == 1)) then
             player:startEvent(3022,0,0,0,0,0,0,0,0,0);
         end
     end
@@ -62,13 +62,13 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0bdb and option == 1) then
-        player:setVar("AhtUrganStatus",1);
+    if (csid == 3035 and option == 1) then
+        player:setVar("AhtUrganStatus", 1);
     elseif (csid == 3022) then
         player:tradeComplete();
-        player:setVar("AhtUrganStatus",2);
+        player:setVar("AhtUrganStatus", 2);
     elseif (csid == 850) then
         player:tradeComplete();
-        player:setVar("ratraceCS",3);
+        player:setVar("ratraceCS", 3);
     end
 end;

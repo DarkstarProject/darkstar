@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Naja Salaheem
 -- Type: Standard NPC
--- @pos 22.700 -8.804 -45.591 50
+-- !pos 22.700 -8.804 -45.591 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 73) then
-        player:setVar("AhtUrganStatus",2);
+        player:setVar("AhtUrganStatus", 2);
         player:setVar("TOAUM3_DAY", os.date("%j")); -- %M for next minute, %j for next day
     elseif (csid == 3002) then
         player:setVar("AhtUrganStatus",0);

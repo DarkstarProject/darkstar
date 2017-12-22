@@ -3,7 +3,7 @@
 --  NPC: Orenna
 --  Type: Standard NPC
 --  @zone 256
--- @pos -30 0 -26
+-- !pos -30 0 -26
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0200);
+    player:startEvent(512);
 end;
 
 -----------------------------------

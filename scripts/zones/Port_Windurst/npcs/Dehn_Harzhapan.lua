@@ -3,7 +3,7 @@
 --   NPC: Dehn Harzhapan
 --  Type: Standard NPC
 -- @zone 240
--- @pos -7.974 -7 152.633
+-- !pos -7.974 -7 152.633
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2722);
+    player:startEvent(10018);
 end;
 
 -----------------------------------

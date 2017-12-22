@@ -3,12 +3,9 @@
 -- Item: Holy Maul +1
 -- Additional Effect: Light Damage
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -26,9 +23,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_LIGHT);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
 
-        local message = MSGBASIC_ADD_EFFECT_DMG;
+        local message = msgBasic.ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = MSGBASIC_ADD_EFFECT_HEAL;
+            message = msgBasic.ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_LIGHT_DAMAGE,message,dmg;

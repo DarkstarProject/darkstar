@@ -3,7 +3,7 @@
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
 --  @zone 248
--- @pos TODO
+-- !pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -11,7 +11,7 @@ package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
-local e = 
+local e =
 {
     TALK_EVENT_ID       =   1137,
     STORE_EVENT_ID      =   1138,

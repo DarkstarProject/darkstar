@@ -2,11 +2,8 @@
 -- Spell: Silena
 -- Removes silence and mute from target.
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -15,9 +12,9 @@ end;
 
 function onSpellCast(caster,target,spell)
     if (target:delStatusEffect(EFFECT_SILENCE)) then
-        spell:setMsg(83);
+        spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
     return EFFECT_SILENCE;
 end;

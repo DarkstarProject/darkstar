@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
 -- NPC:  Cermet Door
--- Cermet Door for Basty Ambassador  
+-- Cermet Door for Basty Ambassador
 -- Bastok Mission 3.3 "Appointment to Jeuno"
--- @pos 596 16 -19 184
+-- !pos 596 16 -19 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -18,34 +18,34 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 2) then
         if (trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
-            player:startEvent(0x0001);
+            player:startEvent(1);
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local currentMission = player:getCurrentMission(BASTOK);
-    
+
     if (currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY) == false) then
         player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
     elseif (currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(DELKFUTT_KEY)) then
-        player:startEvent(0x0001);
+        player:startEvent(1);
     else
         player:messageSpecial(DOOR_FIRMLY_SHUT);
     end
-    
+
     return 1;
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
 --print("CSID:",csid);
 --print("RESULT:",option);
 
-    if (csid == 0x0001) then
+    if (csid == 1) then
         if (player:hasKeyItem(DELKFUTT_KEY) == false) then
             player:tradeComplete();
             player:addKeyItem(DELKFUTT_KEY);

@@ -2,12 +2,9 @@
 -- ID: 17711
 -- Item: Shiva's Shotel
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAdditionalEffect Action
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
@@ -23,9 +20,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_ICE,dmg);
 
-        local message = MSGBASIC_ADD_EFFECT_DMG;
+        local message = msgBasic.ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = MSGBASIC_ADD_EFFECT_HEAL;
+            message = msgBasic.ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_ICE_DAMAGE, message, dmg;
@@ -33,10 +30,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     end
 end;
-
------------------------------------------
--- OnItemCheck
------------------------------------------
 
 function onItemCheck(target)
     return 0;

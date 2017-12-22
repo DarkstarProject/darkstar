@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Jugner Forest
---  NPC:  Stone Monument
---  Involved in quest "An Explorer's Footsteps"
---     @pos -65.976 -23.829 -661.362 104
+-- Area: Jugner Forest
+--  NPC: Stone Monument
+-- Involved in quest "An Explorer's Footsteps"
+-- !pos -65.976 -23.829 -661.362 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Jugner_Forest/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

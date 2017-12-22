@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4981
---    Scroll of Foe Requiem VI
---    Teaches the song Foe Requiem VI
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4981
+-- Scroll of Foe Requiem VI
+-- Teaches the song Foe Requiem VI
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(373);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(373);

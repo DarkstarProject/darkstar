@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Piscariaux
 -- @zone 80
--- @pos -161 -2 61
+-- !pos -161 -2 61
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x02A);
+player:startEvent(42);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 --  NPC:  Guillerme
 --  Involved in Quest: Rosel the Armorer
 --  @zone 231
--- @pos -4.500 0.000 99.000
+-- !pos -4.500 0.000 99.000
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -38,15 +38,15 @@ function onTrigger(player,npc)
 
     -- "Rosel the Armorer" quest status var
     RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
-    
+
     -- "Rosel the Armorer" - turn in reciept to prince
     if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
-        player:startEvent(0x01fb);
+        player:startEvent(507);
     else
         player:showText(npc,GUILERME_DIALOG);
     end
-        
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -66,8 +66,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- "Rosel the Armorer", give receipt to NPC:Guilerme
-    if (csid == 0x01fb) then
+    if (csid == 507) then
         player:delKeyItem(RECEIPT_FOR_THE_PRINCE);
     end;
-        
+
 end;

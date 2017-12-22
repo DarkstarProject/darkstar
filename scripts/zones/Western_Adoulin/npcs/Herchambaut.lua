@@ -3,7 +3,7 @@
 --  NPC: Herchambaut
 --  Type: Standard NPC
 --  @zone 256
--- @pos 95 0 -47
+-- !pos 95 0 -47
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x023C);
+    player:startEvent(572);
 end;
 
 -----------------------------------

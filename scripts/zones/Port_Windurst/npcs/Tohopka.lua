@@ -3,7 +3,7 @@
 --   NPC: Tohopka
 --  Type: Standard NPC
 -- @zone 240
--- @pos -105.723 -10 83.813
+-- !pos -105.723 -10 83.813
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0166);
+    player:startEvent(358);
 end;
 
 -----------------------------------

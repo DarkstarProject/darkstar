@@ -43,9 +43,9 @@ This file is part of DarkStar-server source code.
 CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
+    m_PItem(nullptr),
     m_location(loc),
-    m_slot(slotid),
-    m_PItem(nullptr)
+    m_slot(slotid)
 {
     auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
     m_PItem = PItem;
@@ -258,6 +258,6 @@ void CItemState::FinishItem(action_t& action)
 
 bool CItemState::HasMoved()
 {
-    return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
-        floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
+    return floorf(m_startPos.x * 10 + 0.5f) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5f) / 10 ||
+        floorf(m_startPos.z * 10 + 0.5f) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5f) / 10;
 }

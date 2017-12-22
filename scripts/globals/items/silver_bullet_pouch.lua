@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5340
---    Silver Bullet Pouch
---    When used, you will obtain one stack of Silver Bullets
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5340
+-- Silver Bullet Pouch
+-- When used, you will obtain one stack of Silver Bullets
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(17341,99);

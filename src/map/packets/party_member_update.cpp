@@ -78,5 +78,5 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, 
     ref<uint16>(0x14) = memberFlags;
     ref<uint16>(0x20) = ZoneID;
 
-    memcpy(data + (0x26), name, strlen(name));
+    memcpy(data + (0x26), name, strlen((const char*)name));
 }

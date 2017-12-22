@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4225
---    Iron Quiver
---    When used, you will obtain one stack of Iron Arrows
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4225
+-- Iron Quiver
+-- When used, you will obtain one stack of Iron Arrows
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(17320,99);

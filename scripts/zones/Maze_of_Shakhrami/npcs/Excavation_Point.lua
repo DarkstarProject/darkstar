@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 -- NPC:  Excavation Point
 -- Used in Quest: The Holy Crest
--- @pos 234 0.1 -110 198
+-- !pos 234 0.1 -110 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
     else
         startExcavation(player,player:getZoneID(),npc,trade,0x003C);
     end
-    
+
 end;
 
 -----------------------------------

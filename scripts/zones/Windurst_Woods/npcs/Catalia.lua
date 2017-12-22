@@ -3,7 +3,7 @@
 --   NPC: Catalia
 --  Type: Standard NPC
 -- @zone 241
--- @pos -46.160 -0.501 -32.698
+-- !pos -46.160 -0.501 -32.698
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01ba);
+    player:startEvent(442);
 end;
 
 -----------------------------------

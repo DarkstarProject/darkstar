@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
 -- NPC:  <this space intentionally left blank>
--- @pos -241 -12 332 130
+-- !pos -241 -12 332 130
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------

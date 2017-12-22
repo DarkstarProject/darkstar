@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5409
---    Dark Card Case
---    When used, you will obtain one stack of Dark Cards
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5409
+-- Dark Card Case
+-- When used, you will obtain one stack of Dark Cards
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(2183,99);

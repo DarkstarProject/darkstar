@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Amulya
 -- Type: Guild Merchant (Blacksmithing Guild)
--- @pos -106.093 0.999 -24.564 237
+-- !pos -106.093 0.999 -24.564 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

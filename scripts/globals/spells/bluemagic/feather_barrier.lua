@@ -10,28 +10,20 @@
 -- Casting Time: 2 seconds
 -- Recast Time: 120 seconds
 -- Duration: 30 Seconds
--- 
+--
 -- Combos: Resist Gravity
 -----------------------------------------
-
+require("scripts/globals/bluemagic");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_EVASION_BOOST;
     local power = 10;
     local duration = 30;
@@ -47,7 +39,7 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 13684
---    Potion Tank
---    When used, you will obtain one Potion
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 13684
+-- Potion Tank
+-- When used, you will obtain one Potion
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4112,1);

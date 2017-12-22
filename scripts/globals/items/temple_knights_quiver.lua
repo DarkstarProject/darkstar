@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 15956
---    Temple Knight's Quiver
---    When used, you will obtain one Temple Knight's Arrow
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 15956
+-- Temple Knight's Quiver
+-- When used, you will obtain one Temple Knight's Arrow
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18738);

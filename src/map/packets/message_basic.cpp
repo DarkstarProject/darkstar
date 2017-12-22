@@ -33,15 +33,15 @@ CMessageBasicPacket::CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTar
 	this->type = 0x29;
 	this->size = 0x0E;
 
-	WBUFL(data,(0x04)) = PSender->id;
-	WBUFL(data,(0x08)) = PTarget->id;
+	ref<uint32>(0x04) = PSender->id;
+	ref<uint32>(0x08) = PTarget->id;
 
-	WBUFW(data,(0x14)) = PSender->targid;
-	WBUFW(data,(0x16)) = PTarget->targid;
+	ref<uint16>(0x14) = PSender->targid;
+	ref<uint16>(0x16) = PTarget->targid;
 
-	WBUFL(data,(0x0C)) = param;
-	WBUFL(data,(0x10)) = value;
-	WBUFW(data,(0x18)) = messageID;
+	ref<uint32>(0x0C) = param;
+	ref<uint32>(0x10) = value;
+	ref<uint16>(0x18) = messageID;
 }
 
 uint16 CMessageBasicPacket::getMessageID()

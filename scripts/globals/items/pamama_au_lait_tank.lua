@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 16226
---    Pamama Tank
---    When used, you will obtain one Pamama au lait
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 16226
+-- Pamama Tank
+-- When used, you will obtain one Pamama au lait
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4302,1);

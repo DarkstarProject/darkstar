@@ -92,8 +92,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0056);
-npc:wait(-1);
+player:startEvent(86);
+npc:wait();
 end; 
 
 -----------------------------------

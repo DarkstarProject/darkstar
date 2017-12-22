@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5912
---    Gargouille Quiver
---    When used, you will obtain one stack of Gargouille Arrow
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5912
+-- Gargouille Quiver
+-- When used, you will obtain one stack of Gargouille Arrow
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(19800,99);

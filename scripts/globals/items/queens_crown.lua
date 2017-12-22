@@ -11,11 +11,7 @@
 -- MACC+4
 -- MAB+7
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -26,19 +22,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,6064);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_MPP, 6);
     target:addMod(MOD_FOOD_MP_CAP, 55);
     target:addMod(MOD_INT, 4);
@@ -49,11 +37,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MATT, 7);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_MPP, 6);
     target:delMod(MOD_FOOD_MP_CAP, 55);
     target:delMod(MOD_INT, 4);

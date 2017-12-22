@@ -3,8 +3,8 @@
 --   NPC: Kristen
 --  Type: Standard NPC
 -- @zone 94
--- @pos 2.195 -2 60.296
--- 
+-- !pos 2.195 -2 60.296
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0194);
+    player:startEvent(404);
 end;
 
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: Oldton Movalpolos
 --  NPC:  Bartabaq
 --  Type: Outpost Vendor
--- @pos -261.930 6.999 -49.145 11
+-- !pos -261.930 6.999 -49.145 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x7ff4);
+    player:startEvent(32756);
 end;
 
 -----------------------------------

@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4626
---    Scroll of Stona
---    Teaches the white magic Stona
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4626
+-- Scroll of Stona
+-- Teaches the white magic Stona
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(18);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(18);

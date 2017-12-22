@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters
 -- NPC: Chomoro-Kyotoro
---  Involved in Quest: Making the Grade
---  @zone = 238
--- @pos = 133 -5 167
+-- Involved in Quest: Making the Grade
+-- !pos 133 -5 167 238
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -26,18 +25,18 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
         local prog = player:getVar("QuestMakingTheGrade_prog");
         if (prog == 0) then
-            player:startEvent(0x01c6);
+            player:startEvent(454);
         elseif (prog == 1) then
-            player:startEvent(0x01c9);
+            player:startEvent(457);
         elseif (prog == 2) then
-            player:startEvent(0x01cc);
+            player:startEvent(460);
         else
-            player:startEvent(0x01cd);
+            player:startEvent(461);
         end
-    else 
-        player:startEvent(0x01b0);
+    else
+        player:startEvent(432);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -55,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x01cc) then
+    if (csid == 460) then
         player:setVar("QuestMakingTheGrade_prog",3);
         player:delKeyItem(TATTERED_TEST_SHEET);
     end

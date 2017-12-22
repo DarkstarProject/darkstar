@@ -3,7 +3,7 @@
 --  NPC: Katya
 --  Type: Standard NPC
 --  @zone 256
--- @pos 11 0 68
+-- !pos 11 0 68
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x022F);
+    player:startEvent(559);
 end;
 
 -----------------------------------

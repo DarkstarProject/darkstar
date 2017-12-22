@@ -1,8 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea - Konschtat
 --  NPC: Conflux Surveyor
--- Type: 
--- @pos 133.000 -72.738 -824.000 15
+-- Type:
+-- !pos 133.000 -72.738 -824.000 15
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         visitant = 60;
     end
 
-    player:startEvent(0x07D1,0,visitant,prevtime,STONES,SOJOURN,0,0,0);
+    player:startEvent(2001,0,visitant,prevtime,STONES,SOJOURN,0,0,0);
 
 end;
 
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
 
     duration = duration+(SOJOURN *180);
 
-    if (csid == 0x07D1) then
+    if (csid == 2001) then
         if (option == 2) then -- Use no stones, use previous remaining time
             player:addStatusEffect(EFFECT_VISITANT,0,3,duration,0,0);
             player:setVar("Abyssea_Time",duration);

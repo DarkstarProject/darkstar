@@ -3,8 +3,8 @@
 --   NPC: Hayris
 --  Type: Standard NPC
 -- @zone 252
--- @pos 45.296 -7.282 12.267
--- 
+-- !pos 45.296 -7.282 12.267
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00d7);
+    player:startEvent(215);
 end;
 
 -----------------------------------

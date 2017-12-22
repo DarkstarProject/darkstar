@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5337
---    Sleep Bolt Quiver
---    When used, you will obtain one stack of Sleep Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5337
+-- Sleep Bolt Quiver
+-- When used, you will obtain one stack of Sleep Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18149,99);

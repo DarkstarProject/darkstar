@@ -3,7 +3,7 @@
 --   NPC: Chimh Dlesbah
 --  Type: Event Scene Replayer
 -- @zone 245
--- @pos -71.995 -1 -115.882
+-- !pos -71.995 -1 -115.882
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2770);
+    player:startEvent(10096);
 end;
 
 -----------------------------------

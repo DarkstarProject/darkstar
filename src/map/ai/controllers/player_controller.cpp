@@ -44,23 +44,24 @@ CPlayerController::CPlayerController(CCharEntity* _PChar) :
 void CPlayerController::Tick(time_point)
 {}
 
-void CPlayerController::Cast(uint16 targid, uint16 spellid)
+bool CPlayerController::Cast(uint16 targid, SpellID spellid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid, 0))
+    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, static_cast<uint16>(spellid), 0))
     {
-        CController::Cast(targid, spellid);
+        return CController::Cast(targid, spellid);
     }
     else
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_CAST));
+        return false;
     }
 }
 
 bool CPlayerController::Engage(uint16 targid)
 {
     //#TODO: pet engage/disengage
-    std::unique_ptr<CMessageBasicPacket> errMsg;
+    std::unique_ptr<CBasicPacket> errMsg;
     auto PChar = static_cast<CCharEntity*>(POwner);
     auto PTarget = PChar->IsValidTarget(targid, TARGET_ENEMY, errMsg);
 
@@ -94,52 +95,55 @@ bool CPlayerController::Engage(uint16 targid)
     return false;
 }
 
-void CPlayerController::ChangeTarget(uint16 targid)
+bool CPlayerController::ChangeTarget(uint16 targid)
 {
-    CController::ChangeTarget(targid);
+    return CController::ChangeTarget(targid);
 }
 
-void CPlayerController::Disengage()
+bool CPlayerController::Disengage()
 {
-    CController::Disengage();
+    return CController::Disengage();
 }
 
-void CPlayerController::Ability(uint16 targid, uint16 abilityid)
+bool CPlayerController::Ability(uint16 targid, uint16 abilityid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
     {
-        PChar->PAI->Internal_Ability(targid, abilityid);
+        return PChar->PAI->Internal_Ability(targid, abilityid);
     }
     else
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
+        return false;
     }
 }
 
-void CPlayerController::RangedAttack(uint16 targid)
+bool CPlayerController::RangedAttack(uint16 targid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
     {
-        PChar->PAI->Internal_RangedAttack(targid);
+        return PChar->PAI->Internal_RangedAttack(targid);
     }
     else
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
     }
+    return false;
 }
 
-void CPlayerController::UseItem(uint16 targid, uint8 loc, uint8 slotid)
+bool CPlayerController::UseItem(uint16 targid, uint8 loc, uint8 slotid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
     {
-        PChar->PAI->Internal_UseItem(targid, loc, slotid);
+        return PChar->PAI->Internal_UseItem(targid, loc, slotid);
     }
+    return false;
 }
 
-void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
+bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
@@ -150,17 +154,17 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
         if (PWeaponSkill && !charutils::hasWeaponSkill(PChar, PWeaponSkill->getID()))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
-            return;
+            return false;
         }
         if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_ANY_WS));
-            return;
+            return false;
         }
         if (PChar->health.tp < 1000)
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NOT_ENOUGH_TP));
-            return;
+            return false;
         }
         if (PWeaponSkill->getType() == SKILL_ARC || PWeaponSkill->getType() == SKILL_MRK)
         {
@@ -174,11 +178,11 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
                 PChar->equip[SLOT_AMMO] == 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NO_RANGED_WEAPON));
-                return;
+                return false;
             }
         }
 
-        std::unique_ptr<CMessageBasicPacket> errMsg;
+        std::unique_ptr<CBasicPacket> errMsg;
         auto PTarget = PChar->IsValidTarget(targid, battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY, errMsg);
 
         if (PTarget)
@@ -186,10 +190,10 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             if (!isFaceing(PChar->loc.p, PTarget->loc.p, 40) && PTarget != PChar)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_CANNOT_SEE));
-                return;
+                return false;
             }
 
-            CController::WeaponSkill(targid, wsid);
+            return CController::WeaponSkill(targid, wsid);
         }
         else if (errMsg)
         {
@@ -200,6 +204,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_WS));
     }
+    return false;
 }
 
 void CPlayerController::setLastAttackTime(time_point _LastAttackTime)

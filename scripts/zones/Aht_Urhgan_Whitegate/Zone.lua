@@ -7,10 +7,10 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
+require("scripts/globals/status");
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -134,9 +134,9 @@ end;
 
 function onTransportEvent(player,transport)
     if (transport == 46 or transport == 47) then
-        player:startEvent(0x00c8);
+        player:startEvent(200);
     elseif (transport == 58 or transport == 59) then
-        player:startEvent(0x00cb);
+        player:startEvent(203);
     end
 end;
 
@@ -256,7 +256,6 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,ALLIED_RUMBLINGS);
     elseif (csid == 797) then
         player:setVar("AgainstAllOdds",1); -- Set For Corsair BCNM
-        player:setVar("AgainstAllOddsSideQuests",1); -- Set For Corsair Side Quests
         player:addQuest(AHT_URHGAN,AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
         player:addKeyItem(LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
         player:messageSpecial(KEYITEM_OBTAINED, LIFE_FLOAT);

@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Mokop-Sankop
---  Type: Conquest Troupe
--- @zone 241
--- @pos 11.542 1.05 -53.217
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-- Area: Windurst Woods
+--  NPC: Mokop-Sankop
+-- Type: Conquest Troupe
+-- !pos 11.542 1.05 -53.217 241
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0032);
+    player:startEvent(50);
 end;
 
 -----------------------------------

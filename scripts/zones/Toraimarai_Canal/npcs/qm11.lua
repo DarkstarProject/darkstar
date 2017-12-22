@@ -2,7 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  ???
 -- Involved In Quest: Wild Card
--- @pos 19 17 59 169
+-- !pos 19 17 59 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Toraimarai_Canal/TextIDs");
 
 function onTrade(player,npc,trade)
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,10 +27,10 @@ end;
 function onTrigger(player,npc)
     if (player:getVar("rootProblem") == 2) then
         if (player:getVar("rootProblemQ1") == 2 and player:getVar("rootProblemQ2") == 2) then
-            player:startEvent(0x30);
+            player:startEvent(48);
         end
     elseif (player:getVar("rootProblem") == 3) then
-        player:startEvent(0x37);
+        player:startEvent(55);
     end
 end;
 
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x30 and option ~= 0) then
+    if (csid == 48 and option ~= 0) then
         SpawnMob(17469516):updateClaim(player);
     end
 

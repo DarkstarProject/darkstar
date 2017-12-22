@@ -503,7 +503,7 @@ uint32* blowfish_init(int8 key[], int16 keybytes, uint32* P, uint32* S)
 	uint32		 datal;
 	uint32		 datar;
 
-	const uint32 N = 16;
+	const int32 N = 16;
 	memcpy(P, subkey, 72);
 	memcpy(S, subkey+72, 4096);
 

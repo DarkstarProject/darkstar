@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 --  NPC: Kaya, I.M.
 -- Type: Outpost Conquest Guards
--- @pos 207.548 -24.795 -203.694 112
+-- !pos 207.548 -24.795 -203.694 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

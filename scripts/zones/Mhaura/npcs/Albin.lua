@@ -22,9 +22,9 @@ end;
 function onTrigger(player,npc)
     
     if (player:getZPos() <= 39) then
-        player:startEvent(0x00dc);
+        player:startEvent(220);
     else
-        player:startEvent(0x00e5);
+        player:startEvent(229);
     end
     
 end;

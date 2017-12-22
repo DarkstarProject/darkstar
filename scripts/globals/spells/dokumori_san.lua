@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Dokumori: San
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -18,27 +15,32 @@ function onSpellCast(caster,target,spell)
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation
-    local duration = 360 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local duration = 360;
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = NINJUTSU_SKILL;
+    params.bonus = 0;
+    duration = duration * applyResistance(caster, target, spell, params);
     local power = 20;
 
     --Calculates resist chanve from Reist Blind
     if (target:hasStatusEffect(effect)) then
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
         return effect;
     end
 
     if (math.random(0,100) >= target:getMod(MOD_POISONRES)) then
         if (duration >= 120) then
             if (target:addStatusEffect(effect,power,3,duration)) then
-                spell:setMsg(236);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(75);
+                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
     return effect;
 end;

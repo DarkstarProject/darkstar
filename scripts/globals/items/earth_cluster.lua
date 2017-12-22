@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4107
---    Earth Cluster
---    Turn into a stack of earth crystals
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4107
+-- Earth Cluster
+-- Turn into a stack of earth crystals
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4099,12);

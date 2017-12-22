@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RuLude_Gardens
 -- NPC:  HomePoint#3
--- @pos -67 6 -25 243
+-- !pos -67 6 -25 243
 -----------------------------------
 
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 
-    homepointMenu( player, 0x21fe, 31);
-end; 
+    homepointMenu( player, 8702, 31);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -43,9 +43,9 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 
-    if (csid == 0x21fe) then
+    if (csid == 8702) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

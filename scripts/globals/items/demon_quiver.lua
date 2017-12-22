@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4224
---    Demon Quiver
---    When used, you will obtain one stack of Demon Arrows
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4224
+-- Demon Quiver
+-- When used, you will obtain one stack of Demon Arrows
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18159,99);

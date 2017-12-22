@@ -1,8 +1,8 @@
 -----------------------------------
 --  Area: Oldton Movalpolos
 --  NPC:  Gu'Zho Thunderblade
---  Type: NPC Quest 
--- @pos -316.427 7.124 -260.868 11
+--  Type: NPC Quest
+-- !pos -316.427 7.124 -260.868 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x003c);
+    player:startEvent(60);
 end;
 
 -----------------------------------

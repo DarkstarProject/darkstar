@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4665
---    Scroll of Haste
---    Teaches the white magic Haste
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4665
+-- Scroll of Haste
+-- Teaches the white magic Haste
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(57);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(57);

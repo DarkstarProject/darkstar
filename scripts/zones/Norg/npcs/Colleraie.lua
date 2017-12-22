@@ -3,8 +3,8 @@
 --   NPC: Colleraie
 --  Type: Event Scene Replayer
 -- @zone 252
--- @pos -24.684 0.097 -39.409
--- 
+-- !pos -24.684 0.097 -39.409
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00af);
+    player:startEvent(175);
 end;
 
 -----------------------------------

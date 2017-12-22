@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg [S]
 --  NPC: Cavernous Maw
--- @pos 466 0 479 88
+-- !pos 466 0 479 88
 -- Teleports Players to North Gustaberg
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
@@ -25,9 +25,9 @@ end;
 
 function onTrigger(player,npc)
     if (hasMawActivated(player,7) == false) then
-        player:startEvent(0x0064);
+        player:startEvent(100);
     else
-        player:startEvent(0x0065);
+        player:startEvent(101);
     end
 end;
 
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
     if (option == 1) then
-        if (csid == 0x0064) then
+        if (csid == 100) then
             player:addNationTeleport(MAW,128);
         end
         toMaw(player,12);

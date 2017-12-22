@@ -3,7 +3,7 @@
 -- NPC:  Dhen Tevryukoh
 -- Only sells when Bastok controlls Elshimo Uplands
 --   @zone 236
---   @pos 35 -2 2 
+--   !pos 35 -2 2
 -- Confirmed shop stock, August 2013
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
-    if (RegionOwner ~= NATION_BASTOK) then 
+    if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,DHENTEVRYUKOH_CLOSED_DIALOG);
     else
         player:showText(npc,DHENTEVRYUKOH_OPEN_DIALOG);
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         }
         showShop(player,BASTOK,stock);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

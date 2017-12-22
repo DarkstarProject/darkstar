@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4740
---    Scroll of Shellra III
---    Teaches the white magic Shellra III
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4740
+-- Scroll of Shellra III
+-- Teaches the white magic Shellra III
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(132);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(132);

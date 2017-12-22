@@ -3,7 +3,7 @@
 --   NPC: Rainhard
 --  Type: Standard NPC
 -- @zone 243
--- @pos -2.397 -5.999 68.749
+-- !pos -2.397 -5.999 68.749
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0022);
+    player:startEvent(34);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 --  NPC: Andrival
 --  Type: Standard NPC
 --  @zone 256
--- @pos 26 0 127
+-- !pos 26 0 127
 -----------------------------------
 require("scripts/globals/missions");
 
@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,10 +23,10 @@ function onTrigger(player,npc)
 
     if (SOA_Mission == THE_MERCILESS_ONE) then
         -- Reminds player to accompany Ingrid to Castle Adoulin
-        player:startEvent(0x008B);
+        player:startEvent(139);
     else
         -- Standard dialogue
-        player:startEvent(0x0228);
+        player:startEvent(552);
     end
 end;
 
@@ -41,5 +41,5 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
 end;

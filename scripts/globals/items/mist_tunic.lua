@@ -3,26 +3,17 @@
 -- Item: Mist Slacks
 -- Item Effect: Evasion Boost
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_EVASION_BOOST) == false) then
+    if (not target:hasStatusEffect(EFFECT_EVASION_BOOST)) then
         target:addStatusEffect(EFFECT_EVASION_BOOST,20,0,180);
     else
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;
-

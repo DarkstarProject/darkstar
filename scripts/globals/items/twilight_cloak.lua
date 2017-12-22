@@ -1,13 +1,9 @@
 -----------------------------------------
---    ID: 11363
---    Equip: Twilight Cloak
---    Able to cast "Impact"
+-- ID: 11363
+-- Equip: Twilight Cloak
+-- Able to cast "Impact"
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)

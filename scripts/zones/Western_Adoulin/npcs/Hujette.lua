@@ -4,7 +4,7 @@
 --  Type: Quest NPC and Shop NPC
 --  Involved with Quest: 'All the Way to the Bank'
 --  @zone 256
---  @pos 35 0 -56 256
+--  !pos 35 0 -56 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -23,10 +23,10 @@ function onTrade(player,npc,trade)
         local ATWTTB_Paid_Hujette = player:getMaskBit(player:getVar("ATWTTB_Payments"), 1);
         if ((not ATWTTB_Paid_Hujette) and npcUtil.tradeHas(trade, nil, 3000)) then
             -- Progresses Quest: 'All the Way to the Bank'
-            player:startEvent(0x13CE);
+            player:startEvent(5070);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -58,7 +58,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x13CE) then
+    if (csid == 5070) then
         -- Progresses Quest: 'All the Way to the Bank'
         player:tradeComplete();
         player:setMaskBit("ATWTTB_Payments", 1, true);

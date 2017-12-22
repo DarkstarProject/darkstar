@@ -2,7 +2,7 @@
 -- Area: The Sanctuary of Zi'Tah
 --  NPC: Ajimo-Majimo, W.W.
 -- Outpost Conquest Guards
--- @pos -40.079 -0.642 -148.785 121
+-- !pos -40.079 -0.642 -148.785 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------

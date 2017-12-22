@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5915
---    Adaman Bullet Pouch
---    When used, you will obtain one stack of Adaman Bullets
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5915
+-- Adaman Bullet Pouch
+-- When used, you will obtain one stack of Adaman Bullets
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(19803,99);

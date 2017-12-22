@@ -2,8 +2,8 @@
 -- Area: Sealions Den
 --  MOB: Ultima
 -----------------------------------
-
 require("scripts/globals/titles");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -50,7 +50,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(EFFECT_PARALYSIS) == false) then
             player:addStatusEffect(EFFECT_PARALYSIS, power, 0, duration);
         end
-        return SUBEFFECT_PARALYSIS, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
     end
 end;
 

@@ -2,7 +2,7 @@
 --  Area: Selbina
 --  NPC:  Battal
 --  Type: Event Scene Replayer
--- @pos -17.429 -11.604 25.966 248
+-- !pos -17.429 -11.604 25.966 248
 -----------------------------------
 
 -----------------------------------
@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x044e);
+    player:startEvent(1102);
 end;
 
 -----------------------------------

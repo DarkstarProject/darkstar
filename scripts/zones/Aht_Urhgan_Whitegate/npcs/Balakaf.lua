@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Balakaf
 --  Type: Standard NPC
--- @pos 25.505 -6.999 126.478 50
+-- !pos 25.505 -6.999 126.478 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0203);
+    player:startEvent(515);
 end;
 
 -----------------------------------

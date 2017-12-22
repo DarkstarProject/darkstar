@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5821
---    Fusion Bolt Quiver
---    When used, you will obtain one stack of Fusion Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5821
+-- Fusion Bolt Quiver
+-- When used, you will obtain one stack of Fusion Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(19197,99);

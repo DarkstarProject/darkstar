@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _m75 (Torch Stand)
 -- Notes: Opens door _477 when _m72 to _m75 are lit
--- @pos -139.643 -72.113 -62.682 151
+-- !pos -139.643 -72.113 -62.682 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     TorchStand4A = npc:getAnimation();
 
     if (DoorA == 9 and TorchStand4A == 9) then
-        player:startEvent(0x000a);
+        player:startEvent(10);
     else
         player:messageSpecial(TORCH_LIT);
     end
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         GetNPCByID(Torch4):openDoor(55);
         if ((DoorA == 9)) then
             GetNPCByID(DoorID):openDoor(35);
-            -- The lamps shouldn't go off here, but I couldn't get the torches to update animation times without turning them off first 
+            -- The lamps shouldn't go off here, but I couldn't get the torches to update animation times without turning them off first
             -- They need to be reset to the door open time(35s) + 4s (39 seconds)
             GetNPCByID(Torch1):setAnimation(9);
             GetNPCByID(Torch2):setAnimation(9);

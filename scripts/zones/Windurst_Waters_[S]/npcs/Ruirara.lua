@@ -3,8 +3,8 @@
 --   NPC: Ruirara
 --  Type: Standard NPC
 -- @zone 94
--- @pos -87.378 -2 -158.019
--- 
+-- !pos -87.378 -2 -158.019
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01b3);
+    player:startEvent(435);
 end;
 
 -----------------------------------

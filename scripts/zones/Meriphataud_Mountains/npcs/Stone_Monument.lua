@@ -2,7 +2,7 @@
 --  Area: Meriphataud Mountains
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos 450.741 2.110 -290.736 119
+-- !pos 450.741 2.110 -290.736 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Meriphataud_Mountains/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

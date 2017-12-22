@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Boyahda Tree
 -- NPC:  HomePoint#1
--- @pos 88 -15 -217 153
+-- !pos 88 -15 -217 153
 -----------------------------------
 
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
 
-    homepointMenu( player, 0x21fc, 92);
-end; 
+    homepointMenu( player, 8700, 92);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -43,9 +43,9 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 
-    if (csid == 0x21fc) then
+    if (csid == 8700) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

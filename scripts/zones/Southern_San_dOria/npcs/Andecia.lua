@@ -3,7 +3,7 @@
 -- NPC:  Andecia
 -- Starts and Finishes Quest: Grave Concerns
 -- @zone 230
--- @pos 167 0 45
+-- !pos 167 0 45
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -17,13 +17,13 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(547, 1) and trade:getItemCount() == 1 and player:getVar("OfferingWaterOK") == 1) then
-            player:startEvent(0x0270);
+            player:startEvent(624);
         end
     end
-    
+
         -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
@@ -42,24 +42,24 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     Tomb = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
     WellWater = player:hasItem(567); -- Well Water
     Waterskin = player:hasItem(547); -- Tomb Waterskin
-    
+
     if (Tomb == QUEST_AVAILABLE) then
-        player:startEvent(0x021d);
+        player:startEvent(541);
     elseif (Tomb == QUEST_ACCEPTED and WellWater == false and player:getVar("OfferingWaterOK") == 0) then
-        player:startEvent(0x026e);
+        player:startEvent(622);
     elseif (Tomb == QUEST_ACCEPTED and Waterskin == true and player:getVar("OfferingWaterOK") == 0) then
-        player:startEvent(0x026f);
+        player:startEvent(623);
     elseif (Tomb == QUEST_COMPLETED) then
-        player:startEvent(0x022e);
+        player:startEvent(558);
     else
-        player:startEvent(0x021c);
+        player:startEvent(540);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -78,8 +78,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x021d and option == 0) then
-        if (player:getFreeSlotsCount() == 0) then 
+    if (csid == 541 and option == 0) then
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,567); -- Well Water
         else
             player:addQuest(SANDORIA,GRAVE_CONCERNS);
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
             player:addItem(567);
             player:messageSpecial(ITEM_OBTAINED,567); -- Well Water
         end
-    elseif (csid == 0x0270) then
+    elseif (csid == 624) then
         player:tradeComplete();
         player:setVar("OfferingWaterOK",0);
         player:addTitle(ROYAL_GRAVE_KEEPER);

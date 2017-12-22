@@ -10,28 +10,20 @@
 -- Casting Time: 3 seconds
 -- Recast Time: 60 seconds
 -- Duration: 60 seconds
--- 
+--
 -- Combos: Auto Refresh
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_SHOCK_SPIKES;
     local power = 5;
     local duration = 60;
@@ -47,7 +39,7 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

@@ -4,8 +4,8 @@
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/AlTaieu/TextIDs");
+require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------
@@ -28,21 +28,24 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
-    -- This should have just been 3 mob names with 3 scripts because ID shifts (and sanity)..
-    if (mobID == 16912823 or mobID == 16912825 or mobID == 16912827) then
-        if (player:hasKeyItem(BLACK_CARD) == false) then
-            player:addKeyItem(BLACK_CARD);
-            player:messageSpecial(KEYITEM_OBTAINED,BLACK_CARD);
-        end
-    elseif (mobID == 16912811 or mobID == 16912813 or mobID == 16912815) then
-        if (player:hasKeyItem(WHITE_CARD) == false) then
+
+    if (mobID == EUVHIS_WHITE+0 or mobID == EUVHIS_WHITE+2 or mobID == EUVHIS_WHITE+4) then
+        if (not player:hasKeyItem(WHITE_CARD)) then
             player:addKeyItem(WHITE_CARD);
             player:messageSpecial(KEYITEM_OBTAINED,WHITE_CARD);
         end
-    elseif (mobID == 16912817 or mobID == 16912821 or mobID == 16912819) then
-        if (player:hasKeyItem(RED_CARD) == false) then
+
+    elseif (mobID == EUVHIS_RED+0 or mobID == EUVHIS_RED+2 or mobID == EUVHIS_RED+4) then
+        if (not player:hasKeyItem(RED_CARD)) then
             player:addKeyItem(RED_CARD);
             player:messageSpecial(KEYITEM_OBTAINED,RED_CARD);
         end
+
+    elseif (mobID == EUVHIS_BLACK+0 or mobID == EUVHIS_BLACK+2 or mobID == EUVHIS_BLACK+4) then
+        if (not player:hasKeyItem(BLACK_CARD)) then
+            player:addKeyItem(BLACK_CARD);
+            player:messageSpecial(KEYITEM_OBTAINED,BLACK_CARD);
+        end
+
     end
 end;

@@ -22,7 +22,7 @@ TheQuadav = player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE);
         QuadavBack = trade:hasItemQty(596,1);
 
         if (count == 1 and QuadavBack == true) then
-            player:startEvent(0x0051);
+            player:startEvent(81);
         end
     end
     
@@ -38,13 +38,13 @@ TheQuadav = player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE);
 OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
 
     if (OutOfOneShell == QUEST_COMPLETED) then
-        player:startEvent(0x0058);
+        player:startEvent(88);
     elseif (TheQuadav == QUEST_COMPLETED) then
-        player:startEvent(0x0057);
+        player:startEvent(87);
     elseif (TheQuadav == QUEST_AVAILABLE) then
-        player:startEvent(0x0050);
+        player:startEvent(80);
     else
-        player:startEvent(0x0026);
+        player:startEvent(38);
     end
     
 end; 
@@ -66,9 +66,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     
-    if (csid == 0x0050) then
+    if (csid == 80) then
         player:addQuest(BASTOK,THE_QUADAV_S_CURSE);
-    elseif (csid == 0x0051) then
+    elseif (csid == 81) then
         player:tradeComplete();
         player:completeQuest(BASTOK,THE_QUADAV_S_CURSE);
         player:addFame(BASTOK,120);

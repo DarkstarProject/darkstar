@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Abbudin
 -- Type: Standard Info NPC
--- @pos -56.338 2.777 -31.446 237
+-- !pos -56.338 2.777 -31.446 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -14,15 +14,15 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x022E);
-end; 
+    player:startEvent(558);
+end;
 
 -----------------------------------
 -- onEventUpdate

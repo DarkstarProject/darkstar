@@ -3,7 +3,7 @@
 --  NPC: Safrick
 --  Type: Standard NPC
 --  @zone 256
--- @pos 26 0 69
+-- !pos 26 0 69
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0227);
+    player:startEvent(551);
 end;
 
 -----------------------------------

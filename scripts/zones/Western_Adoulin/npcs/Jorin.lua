@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest Giver
 --  Starts, Involved with, and Finishes Quest: 'The Old Man and the Harpoon'
 --  @zone 256
---  @pos 92 32 152 256
+--  !pos 92 32 152 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,17 +27,17 @@ function onTrigger(player,npc)
     if (TOMATH == QUEST_ACCEPTED) then
         if (player:hasKeyItem(EXTRAVAGANT_HARPOON)) then
             -- Finishing Quest: 'The Old Man and the Harpoon'
-            player:startEvent(0x09EE);
+            player:startEvent(2542);
         else
             -- Dialgoue during Quest: 'The Old Man and the Harpoon'
-            player:startEvent(0x09ED);
+            player:startEvent(2541);
         end
     elseif (TOMATH == QUEST_AVAILABLE) then
         -- Starts Quest: 'The Old Man and the Harpoon'
-        player:startEvent(0x09EC);  
+        player:startEvent(2540);
     else
         -- Standard dialogue
-        player:startEvent(0x0230);
+        player:startEvent(560);
     end
 end;
 
@@ -53,12 +53,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x09EC) then
+    if (csid == 2540) then
         -- Starting Quest: 'The Old Man and the Harpoon'
         player:addQuest(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
         player:addKeyItem(BROKEN_HARPOON);
         player:messageSpecial(KEYITEM_OBTAINED, BROKEN_HARPOON);
-    elseif (csid == 0x09EE) then
+    elseif (csid == 2542) then
         -- Finishing Quest: 'The Old Man and the Harpoon'
         player:completeQuest(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
         player:addExp(500 * EXP_RATE);

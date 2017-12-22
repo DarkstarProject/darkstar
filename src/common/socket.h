@@ -21,6 +21,8 @@
 #endif
 
 #include <time.h>
+#include <memory>
+#include <string>
 
 
 
@@ -127,23 +129,10 @@ int sSocket(int af, int type, int protocol);
 #define sFD_ZERO FD_ZERO
 
 #endif
-// buffer I/O macros
-#define RBUFP(p,pos) (((uint8*)(p)) + (pos))
-#define RBUFB(p,pos) (*(uint8*)RBUFP((p),(pos)))
-#define RBUFW(p,pos) (*(uint16*)RBUFP((p),(pos)))
-#define RBUFL(p,pos) (*(uint32*)RBUFP((p),(pos)))
-#define RBUFF(p,pos) (*(float*)RBUFP((p),(pos)))
 
-#define WBUFP(p,pos) (((uint8*)(p)) + (pos))
-#define WBUFB(p,pos) (*(uint8*)WBUFP((p),(pos)))
-#define WBUFW(p,pos) (*(uint16*)WBUFP((p),(pos)))
-#define WBUFL(p,pos) (*(uint32*)WBUFP((p),(pos)))
-#define WBUFU(p,pos) (*(uint64*)WBUFP((p),(pos)))
-#define WBUFF(p,pos) (*(float*)WBUFP((p),(pos)))
-
-#define TOB(n) ((uint8)((n)&UINT8_MAX))
-#define TOW(n) ((uint16)((n)&UINT16_MAX))
-#define TOL(n) ((uint32)((n)&UINT32_MAX))
+#define TOB(n) ((uint8)((n)&std::numeric_limits<uint8>::max()))
+#define TOW(n) ((uint16)((n)&std::numeric_limits<uint16>::max()))
+#define TOL(n) ((uint32)((n)&std::numeric_limits<uint32>::max()))
 
 extern fd_set readfds;
 extern int fd_max;
@@ -174,7 +163,7 @@ uint16 ntows(uint16 netshort);
 
 int socket_getips(uint32* ips, int max);
 
-extern uint32 addr_[16];   // ip addresses of local host (host byte order)
+extern uint32 g_addr_[16];   // ip addresses of local host (host byte order)
 
 extern int32 naddr_;   // # of ip addresses
 
@@ -215,18 +204,15 @@ extern int32 naddr_;   // # of ip addresses
 	#define WFIFOW(fd,pos) (*(uint16*)WFIFOP(fd,pos))
 	#define RFIFOL(fd,pos) (*(uint32*)RFIFOP(fd,pos))
 	#define WFIFOL(fd,pos) (*(uint32*)WFIFOP(fd,pos))
-	#define RFIFOSPACE(fd) (session[fd]->max_rdata - session[fd]->rdata_size)
-	#define WFIFOSPACE(fd) (session[fd]->max_wdata - session[fd]->wdata_size)
 
-
-	#define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata_size - session[fd]->rdata_pos)
+	#define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata.size() - session[fd]->rdata_pos)
 	#define RFIFOFLUSH(fd) \
 		do { \
-			if(session[fd]->rdata_size == session[fd]->rdata_pos){ \
-				session[fd]->rdata_size = session[fd]->rdata_pos = 0; \
+			if(session[fd]->rdata.size() == session[fd]->rdata_pos){ \
+				session[fd]->rdata_pos = 0; \
+                session[fd]->rdata.clear(); \
 			} else { \
-				session[fd]->rdata_size -= session[fd]->rdata_pos; \
-				memmove(session[fd]->rdata, session[fd]->rdata+session[fd]->rdata_pos, session[fd]->rdata_size); \
+                session[fd]->rdata.erase(0, session[fd]->rdata_pos); \
 				session[fd]->rdata_pos = 0; \
 			} \
 		} while(0)
@@ -239,9 +225,7 @@ extern int32 naddr_;   // # of ip addresses
 
 		uint32 client_addr; // remote client address
 
-		char *rdata, *wdata;
-		size_t max_rdata, max_wdata;
-		size_t rdata_size, wdata_size;
+		std::string rdata, wdata;
 		size_t rdata_pos;
 		time_t rdata_tick; // time of last recv (for detecting timeouts); zero when timeout is disabled
 
@@ -249,11 +233,12 @@ extern int32 naddr_;   // # of ip addresses
 		SendFunc func_send;
 		ParseFunc func_parse;
 
+        bool ver_mismatch;
 		void* session_data; // stores application-specific data related to the session
 	};
 
 	// Data prototype declaration
-	extern socket_data* session[FD_SETSIZE];
+    extern std::array<std::unique_ptr<socket_data>, FD_SETSIZE> session;
 	//////////////////////////////////
 	// some checking on sockets
 	bool session_isValid(int fd);
@@ -271,12 +256,6 @@ extern int32 naddr_;   // # of ip addresses
 	int32 makeConnection_tcp(uint32 ip, uint16 port);
 
 	int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
-
-	int32 realloc_fifo(int32 fd, uint32 rfifo_size, uint32 wfifo_size);
-
-	int32 realloc_writefifo(int32 fd, size_t addition);
-
-	int32 WFIFOSET(int32 fd, size_t len);
 
 	int32 RFIFOSKIP(int32 fd, size_t len);
 
@@ -311,5 +290,10 @@ extern int32 naddr_;   // # of ip addresses
 	int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen);
 #endif 
 
+template<typename T, typename U>
+T& ref(U* buf, std::size_t index)
+{
+    return *reinterpret_cast<T*>(reinterpret_cast<uint8*>(buf) + index);
+}
 
 #endif // _SOCKET_H //

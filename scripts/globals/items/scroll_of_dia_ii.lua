@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4632
---    Scroll of Dia II
---    Teaches the white magic Dia II
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4632
+-- Scroll of Dia II
+-- Teaches the white magic Dia II
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(24);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(24);

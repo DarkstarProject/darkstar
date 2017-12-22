@@ -2,7 +2,7 @@
 --  Area: Port Jeuno
 --   NPC: Squintrox Dryeyes
 --  Type: Addon Mission Merchant
--- @pos -100.071 -1 11.869 246
+-- !pos -100.071 -1 11.869 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -50,7 +50,7 @@ function onTrade(player,npc,trade)
         elseif (sLux and sLuna and sAstrum and count == 3 and (now == LastCrimson or CrimsonKey == true)) then
             player:messageSpecial(DRYEYES_3,CRIMSON_KEY);
         -- White Coral Key:
-        -- elseif (ENABLE_AMK == 1 and 
+        -- elseif (ENABLE_AMK == 1 and
             -- haven't even started AMK related trades yet.
         end
     end
@@ -64,7 +64,7 @@ function onTrigger(player,npc)
     if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
         player:showText(npc,GET_LOST);
     else
-        player:startEvent(0x0143);
+        player:startEvent(323);
     end
 end;
 
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
     local ViridianKey = player:hasKeyItem(VIRIDIAN_KEY);
     local LastViridian = player:getVar("LastViridianKey"); -- When last Viridian key was obtained
 
-    if (csid == 0x0143) then
+    if (csid == 323) then
         if (option == 1) then
             player:showText(player,DRYEYES_1);
         elseif (option == 100) then

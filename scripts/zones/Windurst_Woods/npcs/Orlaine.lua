@@ -3,10 +3,9 @@
 -- NPC: Orlaine
 -- Chocobo Vendor
 -----------------------------------
-
-require("scripts/globals/chocobo");
-require("scripts/globals/keyitems");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/chocobo");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -32,9 +31,9 @@ function onTrigger(player,npc)
             level = 0;
         end
 
-        player:startEvent(0x2712,price,gil,level);
+        player:startEvent(10002,price,gil,level);
     else
-        player:startEvent(0x2715);
+        player:startEvent(10005);
     end
 end;
 
@@ -57,16 +56,16 @@ function onEventFinish(player,csid,option)
 
     local price = player:getLocalVar("chocoboPriceOffer");
 
-    if (csid == 0x2712 and option == 0) then
+    if (csid == 10002 and option == 0) then
         if (player:delGil(price)) then
             updateChocoboPrice(player, price);
 
             if (player:getMainLvl() >= 20) then
                 local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
 
-                player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,duration,true);
+                player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,duration,true);
             else
-                player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,900,true);
+                player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,900,true);
             end
 
             player:setPos(-122,-4,-520,0,0x74);

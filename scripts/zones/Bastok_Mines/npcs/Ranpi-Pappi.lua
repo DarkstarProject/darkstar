@@ -3,7 +3,7 @@
 --   NPC: Ranpi-Pappi
 --  Type: Standard NPC
 -- @zone 234
--- @pos -4.535 -1.044 49.881
+-- !pos -4.535 -1.044 49.881
 --
 -- Auto-Script: Requires Verification (Verified by Brando)
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x004d);
+    player:startEvent(77);
 end;
 
 -----------------------------------

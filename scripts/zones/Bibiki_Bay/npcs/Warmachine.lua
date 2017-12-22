@@ -2,7 +2,7 @@
 -- Area: Bibiki Bay
 -- NPC:  Warmachine
 -- @zone 4
--- @pos -345.236 -3.188 -976.563 4
+-- !pos -345.236 -3.188 -976.563 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------
@@ -25,22 +25,22 @@ end;
 function onTrigger(player,npc)
 
 local ColoredDrop = 4258+math.random(0,7);
-    
+
     -- COP mission
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 2) then
-        player:startEvent(0x0021);        
+        player:startEvent(33);
     elseif (player:getCurrentMission(COP) == DAWN and player:getVar("COP_3-taru_story")== 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ColoredDrop);
         else
             player:setVar("ColoredDrop",ColoredDrop);
-            player:startEvent(0x002B);
+            player:startEvent(43);
         end
     -- standard dialog
     else
-        
+
     end
-    
+
 end;
 
 -----------------------------------
@@ -60,14 +60,18 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0021) then
-        player:setVar("COP_Louverance_s_Path",3);    
-    elseif (csid == 0x002B) then
-        local ColoredDropID=player:getVar("ColoredDrop");                     
-        player:addItem(ColoredDropID);
-        player:messageSpecial(ITEM_OBTAINED,ColoredDropID);
-        player:setVar("COP_3-taru_story",2);
-        player:setVar("ColoredDrop",0);    
+    if (csid == 33) then
+        player:setVar("COP_Louverance_s_Path",3);
+    elseif (csid == 43) then
+        local ColoredDropID=player:getVar("ColoredDrop");
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ColoredDropID);
+        else
+            player:addItem(ColoredDropID);
+            player:messageSpecial(ITEM_OBTAINED,ColoredDropID);
+            player:setVar("COP_3-taru_story",2);
+            player:setVar("ColoredDrop",0);
+        end
     end
-    
+
 end;

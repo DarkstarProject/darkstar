@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Mathlouq
 --  Type: Standard NPC
--- @pos -92.892 -7 129.277 50
+-- !pos -92.892 -7 129.277 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x021f);
+    player:startEvent(543);
 end;
 
 -----------------------------------

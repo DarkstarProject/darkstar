@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5342
---    Corsair Bullet Pouch
---    When used, you will obtain one stack of Corsair Bullets
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5342
+-- Corsair Bullet Pouch
+-- When used, you will obtain one stack of Corsair Bullets
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18235,99);

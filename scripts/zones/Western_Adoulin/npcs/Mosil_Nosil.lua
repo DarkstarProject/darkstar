@@ -3,7 +3,7 @@
 --  NPC: Mosil-Nosil
 --  Type: Standard NPC
 --  @zone 256
---  @pos -45 0 -29
+--  !pos -45 0 -29
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0201);
+    player:startEvent(513);
 end;
 
 -----------------------------------

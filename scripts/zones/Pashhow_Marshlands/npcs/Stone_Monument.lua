@@ -2,7 +2,7 @@
 --  Area: Pashhow Marshlands
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos -300.672 21.620 304.179 109
+-- !pos -300.672 21.620 304.179 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Pashhow_Marshlands/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0384);
+    player:startEvent(900);
 end;
 
 -----------------------------------

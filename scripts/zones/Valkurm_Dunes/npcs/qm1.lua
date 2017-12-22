@@ -2,7 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  qm1 (???)
 -- Involved In Quest: An Empty Vessel
--- @pos 238.524 2.661 -148.784 103
+-- !pos 238.524 2.661 -148.784 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------

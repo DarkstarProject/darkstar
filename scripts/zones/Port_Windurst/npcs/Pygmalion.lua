@@ -3,10 +3,10 @@
 --   NPC: Pygmalion
 --  Type: Standard NPC
 -- @zone 240
--- @pos 228.710 -7 93.314
+-- !pos 228.710 -7 93.314
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------ 
+-----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2723);
+    player:startEvent(10019);
 end;
 
 -----------------------------------

@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 5085
---    Scroll of Regen IV
---    Teaches the white magic Regen IV
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5085
+-- Scroll of Regen IV
+-- Teaches the white magic Regen IV
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(477);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(477);

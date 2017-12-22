@@ -6,10 +6,9 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 105;
     if (target:getMainLvl() > player:getMainLvl()) then
@@ -29,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
         dmg = addBonusesAbility(player, ELE_LIGHT, target, dmg, params);
         dmg = adjustForTarget(target,dmg,ELE_LIGHT);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
-        return SUBEFFECT_LIGHT_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+        return SUBEFFECT_LIGHT_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
     end
 end;

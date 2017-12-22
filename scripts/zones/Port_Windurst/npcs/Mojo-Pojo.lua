@@ -3,7 +3,7 @@
 --   NPC: Mojo-Pojo
 --  Type: Standard NPC
 -- @zone 240
--- @pos -108.041 -4.25 109.545
+-- !pos -108.041 -4.25 109.545
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00e5);
+    player:startEvent(229);
 end;
 
 -----------------------------------

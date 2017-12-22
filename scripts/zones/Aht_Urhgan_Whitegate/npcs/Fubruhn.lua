@@ -4,7 +4,7 @@
 -- Mog Locker NPC
 --
 -- Event IDs:
--- 0x0258 = Not a mercenary + mog locker options
+-- 600 = Not a mercenary + mog locker options
 -- 1st arg = Amount of time left on lease, as seconds past 2001/12/31 15:00:00.
 --          If this is 0, it shows the not a mecenary message instead.
 --          If this is -1, it shows the lease as expired.
@@ -16,10 +16,10 @@
 -- 7th arg =
 -- 8th arg = The number of days your lease is currently valid for
 --
--- 0x0259 = Lease increased
+-- 601 = Lease increased
 -- 1st arg = number of seconds from 2001/12/31 15:00:00 it is valid till.
 --
--- 0x025A = Expansion increased
+-- 602 = Expansion increased
 -- 4th arg = new size of locker
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -62,7 +62,7 @@ function onTrade(player,npc,trade)
                 -- remove bronze
                 player:tradeComplete();
                 -- send event
-                player:startEvent(0x0259, getMogLockerExpiryTimestamp(player));
+                player:startEvent(601, getMogLockerExpiryTimestamp(player));
                 -- print("Expanded lease with "..numBronze.." bronze.");
             end 
         elseif (numGold > 0 or numMythril > 0) then
@@ -71,23 +71,23 @@ function onTrade(player,npc,trade)
             if (slotSize == 30 and numMythril == 4 and numGold == 0) then
                 player:changeContainerSize(LOC_MOGLOCKER, 10);
                 player:tradeComplete();
-                player:startEvent(0x025A,0,0,0,40);
+                player:startEvent(602,0,0,0,40);
                 elseif (slotSize == 40 and numMythril == 0 and numGold == 2) then
                 player:changeContainerSize(LOC_MOGLOCKER, 10);
                 player:tradeComplete();
-                player:startEvent(0x025A,0,0,0,50);
+                player:startEvent(602,0,0,0,50);
             elseif (slotSize == 50 and numMythril == 0 and numGold == 3) then
                 player:changeContainerSize(LOC_MOGLOCKER, 10);
                 player:tradeComplete();
-                player:startEvent(0x025A,0,0,0,60);
+                player:startEvent(602,0,0,0,60);
             elseif (slotSize == 60 and numMythril == 0 and numGold == 5) then
                 player:changeContainerSize(LOC_MOGLOCKER, 10);
                 player:tradeComplete();
-                player:startEvent(0x025A,0,0,0,70);
+                player:startEvent(602,0,0,0,70);
             elseif (slotSize == 70 and numMythril == 0 and numGold == 10) then
                 player:changeContainerSize(LOC_MOGLOCKER, 10);
                 player:tradeComplete();
-                player:startEvent(0x025A,0,0,0,80);
+                player:startEvent(602,0,0,0,80);
             end
         end
     end    
@@ -100,7 +100,7 @@ end;
 function onTrigger(player,npc)
     -- TODO: Check if they are >= Mission 2 
     -- if < mission 2 then 
-    --      player:startEvent(0x0258); 
+    --      player:startEvent(600); 
     -- else
     if (player:getCurrentMission(TOAU) >= 2) then    
         local accessType = getMogLockerAccessType(player);
@@ -112,12 +112,12 @@ function onTrigger(player,npc)
             mogLockerExpiryTimestamp = unlockMogLocker(player);
             accessType = setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALLAREAS);     
         end  
-        player:startEvent(0x0258,mogLockerExpiryTimestamp,accessType,
+        player:startEvent(600,mogLockerExpiryTimestamp,accessType,
         MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(LOC_MOGLOCKER),
         getNumberOfCoinsToUpgradeSize(player:getContainerSize(LOC_MOGLOCKER)),2,3,
         MOGLOCKER_ALLAREAS_VALID_DAYS);
     else
-        player:startEvent(0x0258);
+        player:startEvent(600);
     end
     
 end; 

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Valley of Sorrows
 -- NPC:  <this space intentionally left blank>
--- @pos -14 -3 56 128
+-- !pos -14 -3 56 128
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------

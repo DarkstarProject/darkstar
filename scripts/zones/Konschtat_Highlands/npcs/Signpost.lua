@@ -2,7 +2,7 @@
 -- Area: Konschtat Highlands
 -- NPC:  Signpost
 -- Involved in Quest: The Signpost Marks the Spot
--- @pos -183 65 599 108
+-- !pos -183 65 599 108
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: East Sarutabaruta
 --  NPC:  Kesha Shopehllok
 --  Type: Goldfish Scooping
--- @pos -22.316 -2.79 -50.815 116
+-- !pos -22.316 -2.79 -50.815 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0037);
+    player:startEvent(55);
 end;
 
 -----------------------------------

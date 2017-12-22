@@ -4,6 +4,7 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -30,7 +31,7 @@ function onAdditionalEffect(mob,target,damage)
     dmg = adjustForTarget(target,dmg,ELE_WIND);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
 
-    return SUBEFFECT_WIND_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
+    return SUBEFFECT_WIND_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
 end;
 
 -----------------------------------

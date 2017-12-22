@@ -1,16 +1,12 @@
 -----------------------------------------
---    ID: 4358
---    Hare Meat
---    5 Minutes, food effect, Galka Only
+-- ID: 4358
+-- Hare Meat
+-- 5 Minutes, food effect, Galka Only
 -----------------------------------------
---    Strength +1
---    Intelligence -3
+-- Strength +1
+-- Intelligence -3
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -26,10 +22,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,300,4358);

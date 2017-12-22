@@ -1,13 +1,11 @@
 ----------------------------------
---  Area: Al Zahbi
+-- Area: Al Zahbi
 --  NPC: Mabebe
---  Type: Item Deliverer
---  @zone 48
--- @pos -27.551 0 -141.095
---
+-- Type: Item Deliverer
+-- !pos -27.551 0 -141.095 48
 -----------------------------------
-
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
@@ -43,4 +41,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

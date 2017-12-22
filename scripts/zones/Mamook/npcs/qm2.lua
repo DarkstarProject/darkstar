@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mamook
 --  NPC: ??? (Spawn Iriri Samariri(ZNM T2))
--- @pos -118 7 -80 65
+-- !pos -118 7 -80 65
 -----------------------------------
 package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
 -----------------------------------

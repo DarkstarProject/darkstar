@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5408
---    Light Card Case
---    When used, you will obtain one stack of Light Cards
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5408
+-- Light Card Case
+-- When used, you will obtain one stack of Light Cards
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(2182,99);

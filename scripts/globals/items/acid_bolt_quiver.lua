@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5335
---    Item: Acid Bolt Quiver
---    When used, you will obtain one stack of Acid Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5335
+-- Item: Acid Bolt Quiver
+-- When used, you will obtain one stack of Acid Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
 return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18148,99);

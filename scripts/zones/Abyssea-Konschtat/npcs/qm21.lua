@@ -1,24 +1,17 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
 --  NPC: qm21 (???)
--- Spawns Sarcophilus
--- @pos ? ? ? 15
+-- Spawns Bloodeye Vileberry
+-- !pos 554 23 698 15
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/abyssea");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
---[[
-    if (trade:hasItemQty(2911,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(16838767) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(16838767):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-            player:tradeComplete();
-        end
-    end
-]]
+    abysseaOnTrade(player,npc,trade);
 end;
 
 -----------------------------------
@@ -26,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 2911); -- Inform payer what items they need.
+    abysseaOnTrigger(player,npc);
 end;
 
 -----------------------------------
@@ -34,8 +27,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    abysseaOnEventUpdate(player,csid,option);
 end;
 
 -----------------------------------
@@ -43,6 +35,5 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    abysseaOnEventFinish(player,csid,option);
 end;

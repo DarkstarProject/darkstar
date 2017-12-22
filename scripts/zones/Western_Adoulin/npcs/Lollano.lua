@@ -3,7 +3,7 @@
 --  NPC: Lollano
 --  Type: Standard NPC
 --  @zone 256
--- @pos 96 0 -13
+-- !pos 96 0 -13
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0204);
+    player:startEvent(516);
 end;
 
 -----------------------------------

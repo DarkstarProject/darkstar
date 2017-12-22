@@ -5,24 +5,26 @@
 -- Recast Time: 3:00
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+    if not player:getPet() then
+        return msgBasic.REQUIRES_A_PET,0;
+    elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
+        return msgBasic.NO_EFFECT_ON_PET,0;
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 18731 and id <= 18733 or id == 19185) then
             return 0,0;
         else
-            return MSGBASIC_UNABLE_TO_USE_JA,0;
+            return msgBasic.UNABLE_TO_USE_JA,0;
         end
     end
 end;
@@ -32,7 +34,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-
     -- 1st need to get the pet food is equipped in the range slot.
     local rangeObj = player:getEquipID(SLOT_AMMO);
     local totalHealing = 0;
@@ -41,11 +42,11 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet();
     local petCurrentHP = pet:getHP();
     local petMaxHP = pet:getMaxHP();
-    
+
     -- Need to start to calculate the HP to restore to the pet.
     -- Please note that I used this as base for the calculations:
     -- http://ffxiclopedia.wikia.com/wiki/Repair
-    
+
     switch (rangeObj) : caseof {
         [18731] = function (x) -- Automaton Oil
             regenAmount = 10;
@@ -68,50 +69,42 @@ function onUseAbility(player,target,ability)
             regenTime = 120;
             end,
     }
-        
-    -- Now calculating the bonus based on gear.
-    local feet = player:getEquipID(SLOT_FEET);
-    local earring1 = player:getEquipID(SLOT_EAR1);    
-    local earring2 = player:getEquipID(SLOT_EAR2);
-    
-    if (feet == 11387 or feet == 15686 or feet == 28240 or feet == 28261) then
-        -- This will remove most debuffs from the automaton.
-        -- Checks for Puppetry Babouches, + 1, Foire Babouches, + 1
-        pet:delStatusEffect(EFFECT_PARALYSIS);
-        pet:delStatusEffect(EFFECT_POISON);
-        pet:delStatusEffect(EFFECT_BLINDNESS);
-        pet:delStatusEffect(EFFECT_BIND);
-        pet:delStatusEffect(EFFECT_WEIGHT);
-        pet:delStatusEffect(EFFECT_ADDLE);
-        pet:delStatusEffect(EFFECT_BURN);
-        pet:delStatusEffect(EFFECT_FROST);
-        pet:delStatusEffect(EFFECT_CHOKE);
-        pet:delStatusEffect(EFFECT_RASP);
-        pet:delStatusEffect(EFFECT_SHOCK);
-        pet:delStatusEffect(EFFECT_DIA);
-        pet:delStatusEffect(EFFECT_BIO);
-        pet:delStatusEffect(EFFECT_STR_DOWN);
-        pet:delStatusEffect(EFFECT_DEX_DOWN);
-        pet:delStatusEffect(EFFECT_VIT_DOWN);
-        pet:delStatusEffect(EFFECT_AGI_DOWN);
-        pet:delStatusEffect(EFFECT_INT_DOWN);
-        pet:delStatusEffect(EFFECT_MND_DOWN);
-        pet:delStatusEffect(EFFECT_CHR_DOWN);
-        pet:delStatusEffect(EFFECT_MAX_HP_DOWN);
-        pet:delStatusEffect(EFFECT_MAX_MP_DOWN);
-        pet:delStatusEffect(EFFECT_ATTACK_DOWN);
-        pet:delStatusEffect(EFFECT_EVASION_DOWN);
-        pet:delStatusEffect(EFFECT_DEFENSE_DOWN);
-        pet:delStatusEffect(EFFECT_MAGIC_DEF_DOWN);
-        pet:delStatusEffect(EFFECT_INHIBIT_TP);
-        pet:delStatusEffect(EFFECT_MAGIC_ACC_DOWN);
-        pet:delStatusEffect(EFFECT_MAGIC_ATK_DOWN);
+
+    local function removeStatus()
+        --if pet:delStatusEffect(EFFECT_DOOM) then return true end
+        if pet:delStatusEffect(EFFECT_PETRIFICATION) then return true end
+        if pet:delStatusEffect(EFFECT_SILENCE) then return true end
+        if pet:delStatusEffect(EFFECT_BANE) then return true end
+        if pet:delStatusEffect(EFFECT_CURSE_II) then return true end
+        if pet:delStatusEffect(EFFECT_CURSE) then return true end
+        if pet:delStatusEffect(EFFECT_PARALYSIS) then return true end
+        if pet:delStatusEffect(EFFECT_PLAGUE) then return true end
+        if pet:delStatusEffect(EFFECT_POISON) then return true end
+        if pet:delStatusEffect(EFFECT_DISEASE) then return true end
+        if pet:delStatusEffect(EFFECT_BLINDNESS) then return true end
+        if pet:eraseStatusEffect() ~= 255 then return true end
+        return false
     end
-    
-    if (earring1 == 15999 or earring2 == 15999) then  --Check for Guignol Earring
-        regenAmount = regenAmount + 0.2 * regenAmount;
+
+    local toremove = player:getMod(MOD_REPAIR_EFFECT);
+
+    --[[if (feet == 28240) then -- This item isn't implemented so im leaving this here for reference
+        toremove = 1
+    end]]
+
+    while toremove > 0 do
+        if not removeStatus() then break end
+        toremove = toremove - 1
     end
-        
+
+    local bonus = 1 + player:getMerit(MERIT_REPAIR_EFFECT)/100
+
+    totalHealing = totalHealing * bonus
+
+    bonus = bonus + player:getMod(MOD_REPAIR_POTENCY)/100
+
+    regenAmount = regenAmount * bonus
+
     local diff = petMaxHP - petCurrentHP;
 
     if (diff < totalHealing) then
@@ -126,6 +119,6 @@ function onUseAbility(player,target,ability)
     pet:delStatusEffect(EFFECT_REGEN);
     pet:addStatusEffect(EFFECT_REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
     player:removeAmmo();
-    
+
     return totalHealing;
 end;

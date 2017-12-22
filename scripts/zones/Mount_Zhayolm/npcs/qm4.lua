@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  NPC: ??? (Spawn Khromasoul Bhurborlor(ZNM T3))
--- @pos 88 -22 70 61
+-- !pos 88 -22 70 61
 -----------------------------------
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------

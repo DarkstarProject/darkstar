@@ -127,8 +127,7 @@ namespace battleutils
     void				FreeWeaponSkillsList();
     void				FreeMobSkillList();
 
-    SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill);
-    SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, CBlueSpell* PSpell);
+    SUBEFFECT			GetSkillChainEffect(CBattleEntity* PDefender, uint8 primary, uint8 secondary, uint8 tertiary);
     SKILLCHAIN_ELEMENT  FormSkillchain(const std::list<SKILLCHAIN_ELEMENT>& resonance, const std::list<SKILLCHAIN_ELEMENT>& skill);
     uint8				GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain);
     uint8				GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
@@ -224,6 +223,7 @@ namespace battleutils
 
     uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
     WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);
+    WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather);
     bool                WeatherMatchesElement(WEATHER weather, uint8 element);
     bool				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
     void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);

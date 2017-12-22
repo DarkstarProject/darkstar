@@ -2,7 +2,7 @@
 -- Area: Ru'Lud Gardens
 -- Door: Windurstian Ambassador
 -- Windurst Missions 3.3 "A New Journey" and 4.1 "Magicite"
--- @pos 31 9 -22 243
+-- !pos 31 9 -22 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -25,23 +25,23 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     currentMission = player:getCurrentMission(pNation);
     MissionStatus = player:getVar("MissionStatus");
-    
+
     if (currentMission == A_NEW_JOURNEY and MissionStatus == 4) then
-        player:startEvent(0x0028);
+        player:startEvent(40);
     elseif (player:getRank() == 4 and MissionStatus == 0 and player:getCurrentMission(WINDURST) == 255 and getMissionRankPoints(player,13) == 1) then
         if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
-            player:startEvent(0x0083,1);
+            player:startEvent(131,1);
         else
-            player:startEvent(0x0083);
+            player:startEvent(131);
         end
     elseif (player:getRank() >= 4) then
         player:messageSpecial(WINDURST_EMBASSY); -- restricted area
     else
         player:messageSpecial(WINDURST_EMBASSY + 1); -- you have no letter of introduction
     end
-    
+
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -60,17 +60,17 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
-    if (csid == 0x0028) then
+
+    if (csid == 40) then
         finishMissionTimeline(player,1,csid,option);
-    elseif (csid == 0x0083 and option == 1) then
+    elseif (csid == 131 and option == 1) then
         player:setVar("MissionStatus",1);
         if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
             player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
             player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
         end
-    elseif (csid == 0x0026 or csid == 0x0023) then
+    elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);
     end
-    
+
 end;

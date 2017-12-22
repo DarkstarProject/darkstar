@@ -3,7 +3,7 @@
 --  NPC: Orfbis
 --  Type: Standard NPC
 --  @zone 256
--- @pos -13 0 -44
+-- !pos -13 0 -44
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x020B);
+    player:startEvent(523);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 --  NPC: Gorad
 --  Type: Standard NPC
 --  @zone 256
--- @pos 23 0 -115
+-- !pos 23 0 -115
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x021E);
+    player:startEvent(542);
 end;
 
 -----------------------------------

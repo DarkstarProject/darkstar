@@ -2,7 +2,7 @@
 -- Area: Beadeaux
 -- NPC: ??? (qm2)
 -- Type: Quest NPC
--- @pos -79 1 -99 147
+-- !pos -79 1 -99 147
 --------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 --------------------------

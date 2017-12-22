@@ -2,7 +2,7 @@
 --  Area: The Shrine of Ru'Avitau
 --  NPC:  Yve'noile
 --  Type: Quest Giver
--- @pos 0.001 -1 0.001 178
+-- !pos 0.001 -1 0.001 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0035);
+    player:startEvent(53);
 end;
 
 -----------------------------------

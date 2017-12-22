@@ -2,7 +2,7 @@
 --  Area: Selbina
 --  NPC:  Chenon
 --  Type: Fish Ranking NPC
--- @pos -13.472 -8.287 9.497 248
+-- !pos -13.472 -8.287 9.497 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x271a);
+    player:startEvent(10010);
 end;
 
 -----------------------------------

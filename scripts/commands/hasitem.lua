@@ -9,28 +9,40 @@ cmdprops =
     parameters = "is"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!hasitem <itemID> {player}");
+end;
+
 function onTrigger(player, itemId, target)
-    if (itemId == nil or tonumber(itemId) == 0 or tonumber(itemId) == nil or itemId == 0) then
-        player:PrintToPlayer("You must enter a valid item ID.");
-        player:PrintToPlayer( "@hasitem <ID> <player>" );
+    -- validate itemId
+    if (itemId == nil) then
+        error(player, "You must provide an itemID.");
+        return;
+    elseif (itemId < 1) then
+        error(player, "Invalid itemID.");
         return;
     end
 
+    -- validate target
+    local targ;
     if (target == nil) then
-        player:PrintToPlayer("You must enter a valid target name.");
-        player:PrintToPlayer( "@hasitem <ID> <player>" );
-        return;
-    end
-
-    local targ = GetPlayerByName(target);
-    if (targ ~= nil) then
-        if (targ:hasItem(itemId)) then
-            player:PrintToPlayer(string.format("Player '%s' has item with ID %u.", target, itemId));
-        else
-            player:PrintToPlayer(string.format("Player '%s' does not have item with ID %u.", target, itemId));
+        targ = player:getCursorTarget();
+        if (targ == nil or not targ:isPC()) then
+            targ = player;
         end
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@hasitem <ID> <player>" );
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
+        end
+    end
+
+    -- report hasItem
+    if (targ:hasItem(itemId)) then
+        player:PrintToPlayer(string.format("%s has item %i.", targ:getName(), itemId));
+    else
+        player:PrintToPlayer(string.format("%s does not have item %i.", targ:getName(), itemId));
     end
 end;

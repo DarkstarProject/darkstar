@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4878
---    Scroll of Absorb-INT
---    Teaches the black magic Absorb-INT
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4878
+-- Scroll of Absorb-INT
+-- Teaches the black magic Absorb-INT
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(270);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(270);

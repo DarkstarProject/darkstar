@@ -3,7 +3,7 @@
 --   NPC: Pursuivant
 --  Type: Pursuivant
 -- @zone 243
--- @pos 52.020 -1 -17.813
+-- !pos 52.020 -1 -17.813
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0045);
+    player:startEvent(69);
 end;
 
 -----------------------------------

@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5871
---    Ruszor Quiver
---    When used, you will obtain one stack of Ruszor Arrows
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5871
+-- Ruszor Quiver
+-- When used, you will obtain one stack of Ruszor Arrows
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(19182,99);

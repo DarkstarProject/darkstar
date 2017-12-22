@@ -2,10 +2,10 @@
 -- Area: Konschtat Highlands
 --  NM:  Ghillie Dhu
 -----------------------------------
-
-require("scripts/globals/utils");
-require("scripts/globals/status");
 require("scripts/globals/fieldsofvalor");
+require("scripts/globals/status");
+require("scripts/globals/utils");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize
@@ -60,7 +60,7 @@ function onAdditionalEffect(mob,target,damage)
     if (CHANCE > math.random(0,99)) then
         local DRAIN = math.random(10,30); -- Its a pretty weaksauce drain.
         target:delTP(DRAIN);
-        return SUBEFFECT_TP_DRAIN, MSGBASIC_ADD_EFFECT_TP_DRAIN, DRAIN;
+        return SUBEFFECT_TP_DRAIN, msgBasic.ADD_EFFECT_TP_DRAIN, DRAIN;
     else
         return 0,0,0;
     end

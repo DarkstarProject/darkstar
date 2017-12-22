@@ -3,7 +3,7 @@
 --   NPC: Erpolant
 --  Type: Standard NPC
 -- @zone 241
--- @pos -63.224 -0.749 -33.424
+-- !pos -63.224 -0.749 -33.424
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01bc);
+    player:startEvent(444);
 end;
 
 -----------------------------------

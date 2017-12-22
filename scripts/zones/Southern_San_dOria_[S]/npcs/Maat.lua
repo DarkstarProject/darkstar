@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Maat
 -- @zone 80
--- @pos -271 -3 117
+-- !pos -271 -3 117
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x01F8);
+player:startEvent(504);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Tillecoe
 --  Type: Standard NPC
 -- @zone 243
--- @pos 38.528 -0.997 -6.363
+-- !pos 38.528 -0.997 -6.363
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0046);
+    player:startEvent(70);
 end;
 
 -----------------------------------

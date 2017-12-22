@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4110
---    Light Cluster
---    Turn into a stack of light crystals
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4110
+-- Light Cluster
+-- Turn into a stack of light crystals
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4102,12);

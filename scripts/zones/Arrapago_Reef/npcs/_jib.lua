@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Arrapago Reef
 -- Door: Heavy Iron Gate
--- @pos 5 -9 579 54
+-- !pos 5 -9 579 54
 -----------------------------------
 
 -----------------------------------
@@ -16,15 +16,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
     if (player:getXPos() < 8) then
-        player:startEvent(0x006a);
+        player:startEvent(106);
     else
-        player:startEvent(0x006b);
+        player:startEvent(107);
     end
-    
-    return 1;
-    
 end;
 
 -----------------------------------

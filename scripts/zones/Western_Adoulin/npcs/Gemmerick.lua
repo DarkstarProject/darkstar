@@ -3,7 +3,7 @@
 --  NPC: Gemmerick
 --  Type: Standard AH Info NPC
 --  @zone 256
--- @pos 79 4 26
+-- !pos 79 4 26
 -----------------------------------
 
 -----------------------------------
@@ -11,14 +11,14 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0005);
+    player:startEvent(5);
 end;
 
 -----------------------------------

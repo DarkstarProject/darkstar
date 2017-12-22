@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4106
---    Wind Cluster
---    Turn into a stack of wind crystals
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4106
+-- Wind Cluster
+-- Turn into a stack of wind crystals
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4098,12);

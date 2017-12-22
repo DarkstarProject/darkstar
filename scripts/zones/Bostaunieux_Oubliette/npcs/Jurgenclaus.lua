@@ -2,7 +2,7 @@
 --  Area: Bostaunieux Oubliette
 --  NPC:  Jurgenclaus
 --  Type: Standard NPC
--- @pos 69.735 -24.989 7.741 167
+-- !pos 69.735 -24.989 7.741 167
 -----------------------------------
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0012);
+    player:startEvent(18);
 end;
 
 -----------------------------------

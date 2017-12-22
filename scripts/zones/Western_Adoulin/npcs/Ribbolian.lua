@@ -3,7 +3,7 @@
 --  NPC: Ribbolian
 --  Type: Standard NPC
 --  @zone 256
--- @pos 21 1 -27
+-- !pos 21 1 -27
 -----------------------------------
 
 -----------------------------------
@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard dialogue
-    player:startEvent(0x0206);
+    player:startEvent(518);
 end;
 
 -----------------------------------

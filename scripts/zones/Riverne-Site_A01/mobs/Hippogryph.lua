@@ -29,8 +29,8 @@ function onMobRoam(mob)
         for i=1, #Heliodromos_Table, 1 do
             if (Heliodromos_PH_Table[i] ~= nil) then
                 if (GetMobAction(Heliodromos_Table[i]) == 0) then
-                    DeterMob(Heliodromos_PH_Table[i], true);
-                    DeterMob(Heliodromos_Table[i], false);
+                    DisallowRespawn(Heliodromos_PH_Table[i], true);
+                    DisallowRespawn(Heliodromos_Table[i], false);
                     DespawnMob(Heliodromos_PH_Table[i]);
                     SetServerVariable("Heliodromos_Despawn", 0);
                     SpawnMob(Heliodromos_Table[i], "", 0);

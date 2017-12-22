@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Aissaville
 -- @zone 80
--- @pos -3 -2 44
+-- !pos -3 -2 44
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x025D);
+player:startEvent(605);
 end;
 
 -----------------------------------

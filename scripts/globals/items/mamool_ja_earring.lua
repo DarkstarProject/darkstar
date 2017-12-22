@@ -1,19 +1,12 @@
 -----------------------------------------
---    ID: 16012
---    Mamool Ja Earring
+-- ID: 16012
+-- Mamool Ja Earring
 --  This earring functions in the same way as the spell Reraise III.
------------------------------------------
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
     return 0;
 end;
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local duration = 3600;

@@ -3,8 +3,8 @@
 --   NPC: Amfafa
 --  Type: Standard NPC
 -- @zone 94
--- @pos -24.938 -2 -185.729
--- 
+-- !pos -24.938 -2 -185.729
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x01b1);
+    player:startEvent(433);
 end;
 
 -----------------------------------

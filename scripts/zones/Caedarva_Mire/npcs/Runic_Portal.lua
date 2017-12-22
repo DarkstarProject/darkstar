@@ -2,8 +2,8 @@
 -- Area: Caedarva Mire
 --  NPC: Runic Portal
 -- Caedarva Mire Teleporter Back to Aht Urhgan Whitegate
--- @pos -264 -6 -28 79 (Dvucca)
--- @pos 524 -28 -503 79 (Azouph)
+-- !pos -264 -6 -28 79 (Dvucca)
+-- !pos 524 -28 -503 79 (Azouph)
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local X = player:getXPos();
     local Z = player:getZPos();
 
@@ -83,5 +83,5 @@ function onEventFinish(player,csid,option)
     elseif ((csid == 134 or 131) and option == 1) then
         toChamberOfPassage(player);
     end
-    
+
 end;

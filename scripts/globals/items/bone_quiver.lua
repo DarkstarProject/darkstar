@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4220
---    Item: Bone Quiver
---    When used, you will obtain one stack of Bone Arrows
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4220
+-- Item: Bone Quiver
+-- When used, you will obtain one stack of Bone Arrows
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(17319,99);

@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Zasshal
 --  Type: Salvage
--- @pos 101.468 -1 -20.088 50
+-- !pos 101.468 -1 -20.088 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0331);
+    player:startEvent(817);
 end;
 
 -----------------------------------

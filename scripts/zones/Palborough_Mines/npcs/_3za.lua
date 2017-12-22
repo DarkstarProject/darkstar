@@ -3,7 +3,7 @@
 -- NPC:  Refiner Lid
 -- Involved In Mission: Journey Abroad
 -- @zone 143
--- @pos 180 -32 167
+-- !pos 180 -32 167
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -16,20 +16,20 @@ require("scripts/zones/Palborough_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     gravelQty = trade:getItemQty(597); -- Mine Gravel
     already_in = player:getVar("refiner_input");
 
     if (already_in + gravelQty > 10) then
-        player:startEvent(0x0014);
+        player:startEvent(20);
     elseif (trade:getItemCount() == gravelQty) then
         player:tradeComplete();
         player:setVar("refiner_input",already_in + gravelQty);
-        player:startEvent(0x0013,597,gravelQty);
+        player:startEvent(19,597,gravelQty);
     else
-        player:startEvent(0x0015);
+        player:startEvent(21);
     end
-    
+
 end;
 
 -----------------------------------
@@ -37,7 +37,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0012);
+    player:startEvent(18);
 end;
 
 -----------------------------------

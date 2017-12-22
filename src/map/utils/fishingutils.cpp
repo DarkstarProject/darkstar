@@ -172,7 +172,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 	if (FishingChance <= 20)
 	{
-		const int8* Query = 
+		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
                 "fish.max,"         // 1
@@ -219,7 +219,7 @@ bool CheckFisherLuck(CCharEntity* PChar)
 	}
 	else
 	{
-		const int8* Query = 
+		const char* Query = 
             "SELECT "
                 "fish.fishid,"      // 0
                 "fish.min,"         // 1
@@ -283,7 +283,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 	}
 	if (PLure->getQuantity() == 1)
 	{
-		charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
+		charutils::EquipItem(PChar, 0, SLOT_AMMO, LOC_INVENTORY);
 	}
 
 	charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);

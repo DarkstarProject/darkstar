@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Quartermaster
 -- @zone 80
--- @pos -22 2 -3
+-- !pos -22 2 -3
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0C9);
+player:startEvent(201);
 end;
 
 -----------------------------------

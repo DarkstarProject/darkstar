@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Vahn Paineesha
 --  Type: Standard NPC
--- @pos -2.502 -47.999 -15.083 242
+-- !pos -2.502 -47.999 -15.083 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0059);
+    player:startEvent(89);
 end;
 
 -----------------------------------

@@ -3,7 +3,7 @@
 --   NPC: Raifa
 --  Type: Quest Giver
 -- @zone 236
--- @pos -166.416 -8.48 7.153
+-- !pos -166.416 -8.48 7.153
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0116);
+    player:startEvent(278);
 end;
 
 -----------------------------------

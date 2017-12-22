@@ -2,7 +2,7 @@
 --  Area: Meriphataud Mountains
 --  NPC:  Muzeze
 --  Type: Armor Storer
--- @pos -6.782 -18.428 208.185 119
+-- !pos -6.782 -18.428 208.185 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x002c);
+    player:startEvent(44);
 end;
 
 -----------------------------------

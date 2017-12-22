@@ -33,7 +33,7 @@ CChocoboDiggingPacket::CChocoboDiggingPacket(CCharEntity* PChar)
 	this->type = 0x2F;
 	this->size = 0x06;
 
-	WBUFL(data,(0x04)) = PChar->id;
-	WBUFW(data,(0x08)) = PChar->targid;
-	WBUFB(data,(0x0A)) = 0x01;
+	ref<uint32>(0x04) = PChar->id;
+	ref<uint16>(0x08) = PChar->targid;
+	ref<uint8>(0x0A) = 0x01;
 }

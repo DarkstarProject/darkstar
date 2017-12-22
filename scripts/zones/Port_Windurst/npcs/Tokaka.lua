@@ -23,7 +23,7 @@ NeedToZone     = player:needToZone();
         BastoreSardine = trade:hasItemQty(4360,1);
         
         if (BastoreSardine == true and count == 1) then
-            player:startEvent(0x00d2,GIL_RATE*70,4360);    
+            player:startEvent(210,GIL_RATE*70,4360);    
         end
     end
     
@@ -37,21 +37,21 @@ function onTrigger(player,npc)
 
 SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
     if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
-        player:startEvent(0x013e);
+        player:startEvent(318);
         player:setVar("BlastFromThePast_Prog",1);
     elseif (SomethingFishy >= QUEST_ACCEPTED) then
         if (player:needToZone()) then
-            player:startEvent(0x00d3);
+            player:startEvent(211);
         else
-            player:startEvent(0x00d1,0,4360);
+            player:startEvent(209,0,4360);
         end
     elseif (SomethingFishy == QUEST_AVAILABLE) then
-        player:startEvent(0x00d0,0,4360);
+        player:startEvent(208,0,4360);
     elseif (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
-        player:startEvent(0x013e);
+        player:startEvent(318);
         player:setVar("BlastFromThePast_Prog",1);
     else
-        player:startEvent(0x00cf);
+        player:startEvent(207);
     end
     
 end;
@@ -74,10 +74,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00d0) then
+    if (csid == 208) then
         player:addQuest(WINDURST,SOMETHING_FISHY);
         player:setVar("TokakaSpokenTo",1);
-    elseif (csid == 0x00d2) then
+    elseif (csid == 210) then
         SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
         
         if (SomethingFishy == QUEST_ACCEPTED) then
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*70);
         player:setVar("TokakaSpokenTo",0);
         player:needToZone(true);
-    elseif (csid == 0x00d1) then
+    elseif (csid == 209) then
         player:setVar("TokakaSpokenTo",1);
     end
 end;

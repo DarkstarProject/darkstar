@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5339
---    Item: Bloody Bolt Quiver
---    When used, you will obtain one stack of Bloody Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5339
+-- Item: Bloody Bolt Quiver
+-- When used, you will obtain one stack of Bloody Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18151,99);

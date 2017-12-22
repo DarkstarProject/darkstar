@@ -201,5 +201,7 @@ function onEventFinish(player,csid,option)
         player:setTitle(PREVENTER_OF_RAGNAROK);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,RAGNAROK);
+    elseif (csid == 116) then -- enter instancedd nyzul island
+        player:setPos(0,0,0,0,77);
     end
 end;

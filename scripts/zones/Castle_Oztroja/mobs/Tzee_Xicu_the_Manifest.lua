@@ -40,12 +40,12 @@ end;
 function onMobDespawn(mob)
 
     -- Set Tzee_Xicu_the_Manifest's Window Open Time
-    SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time(t) + 72 * 3600); -- 3 days
+    SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time() + 72 * 3600); -- 3 days
 
     -- Set Yagudo_Avatar's spawnpoint and respawn time (21-24 hours)
     SetServerVariable("[PH]Tzee_Xicu_the_Manifest", 0);
     Yagudo_Avatar = 17396134;
-    DeterMob(Yagudo_Avatar, false);
+    DisallowRespawn(Yagudo_Avatar, false);
     UpdateNMSpawnPoint(Yagudo_Avatar);
     GetMobByID(Yagudo_Avatar):setRespawnTime(math.random(75600,86400));
 

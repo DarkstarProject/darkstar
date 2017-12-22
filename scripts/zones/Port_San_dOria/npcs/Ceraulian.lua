@@ -2,7 +2,7 @@
 -- Area: Port San d'Oria
 -- NPC: Ceraulian
 -- Involved in Quest: The Holy Crest
--- @pos 0 -8 -122 232
+-- !pos 0 -8 -122 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     local Stalker_Progress = player:getVar("KnightStalker_Progress");
 
     if (player:getMainLvl() >= ADVANCED_JOB_LEVEL and player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_AVAILABLE) then
-        player:startEvent(0x0018);
+        player:startEvent(24);
 
     -- Chasing Quotas (DRG AF2)
     elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == JOBS.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
@@ -78,9 +78,9 @@ function onTrigger(player,npc)
         player:startEvent(21);
 
     else
-        player:startEvent(0x024b);
+        player:startEvent(587);
     end
-    
+
 end;
 
 -----------------------------------
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0018) then
+    if (csid == 24) then
         player:setVar("TheHolyCrest_Event",1);
 
     -- Chasing Quotas (DRG AF2)
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChasingQuotas_Progress",2);
         player:setVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
-        if (player:getFreeSlotsCount() < 1) then 
+        if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
         else
             player:delKeyItem(RANCHURIOMES_LEGACY);

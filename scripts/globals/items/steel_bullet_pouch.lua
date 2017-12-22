@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5416
---    Steel Bullet Pouch
---    When used, you will obtain one stack of Steel Bullets
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5416
+-- Steel Bullet Pouch
+-- When used, you will obtain one stack of Steel Bullets
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18723,99);

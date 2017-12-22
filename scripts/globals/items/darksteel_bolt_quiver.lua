@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 4229
---    Darksteel Bolt Quiver
---    When used, you will obtain one stack of Darksteel Bolts
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4229
+-- Darksteel Bolt Quiver
+-- When used, you will obtain one stack of Darksteel Bolts
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(17338,99);

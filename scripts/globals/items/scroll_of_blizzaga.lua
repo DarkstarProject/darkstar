@@ -1,20 +1,12 @@
 -----------------------------------------
---    ID: 4787
---    Scroll of Blizzaga
---    Teaches the black magic Blizzaga
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 4787
+-- Scroll of Blizzaga
+-- Teaches the black magic Blizzaga
 -----------------------------------------
 
 function onItemCheck(target)
     return target:canLearnSpell(179);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(179);

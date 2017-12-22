@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Zenobia
 -- Standard Info NPC
--- @pos 
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -14,15 +14,15 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x012C);
-end; 
+    player:startEvent(300);
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -3,7 +3,7 @@
 -- NPC:  Transporter
 -- Involved In Windurst Mission 7-1
 -- @zone 169
--- @pos 182 11 -60 169
+-- !pos 182 11 -60 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 require("scripts/zones/Toraimarai_Canal/TextIDs");
@@ -20,14 +20,14 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0047);    
+player:startEvent(71);
 end;
 
 -----------------------------------
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0047 and option == 1) then
+    if (csid == 71 and option == 1) then
         player:setPos(0,0,-22,192,242);
     end
 end;

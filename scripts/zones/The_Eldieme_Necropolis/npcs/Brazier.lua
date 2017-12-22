@@ -2,10 +2,10 @@
 -- Area: The Eldieme Necropolis
 -- NPC:  Brazier
 -- Involved in Quests: Save my Sister
--- @pos 101 -33 -59 195 (F-9)
--- @pos 259 -33 99 195 (H-7)
--- @pos 99 -33 98 195 (F-7)
--- @pos 259 -33 -58 195 (H-9)
+-- !pos 101 -33 -59 195 (F-9)
+-- !pos 259 -33 99 195 (H-7)
+-- !pos 99 -33 98 195 (F-7)
+-- !pos 259 -33 -58 195 (H-9)
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(JEUNO,SAVE_MY_SISTER) == QUEST_ACCEPTED and player:getVar("saveMySisterFireLantern") < 4) then
         player:setVar("saveMySisterLanternID",npc:getID());
-        player:startEvent(0x002c);
+        player:startEvent(44);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -51,12 +51,12 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
-    if (csid == 0x002c and option == 0) then 
+
+    if (csid == 44 and option == 0) then
         local LanternOrder = player:getVar("saveMySisterFireLantern");
         local npcID = player:getVar("saveMySisterLanternID");
         player:setVar("saveMySisterLanternID",0);
-        
+
         if (LanternOrder == 0) then
             if (npcID == 17576343) then --(F-9)
                 -- "The Ducal Guard's lantern lights dimly."
@@ -98,5 +98,5 @@ function onEventFinish(player,csid,option)
             end
         end
     end
-    
+
 end;

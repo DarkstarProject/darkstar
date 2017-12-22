@@ -3,8 +3,8 @@
 --   NPC: Mindala-Andola, C.C.
 --  Type: Sigil
 -- @zone 94
--- @pos -31.869 -6.009 226.793
--- 
+-- !pos -31.869 -6.009 226.793
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x000d, npc);
+    player:startEvent(13, npc);
 end;
 
 -----------------------------------

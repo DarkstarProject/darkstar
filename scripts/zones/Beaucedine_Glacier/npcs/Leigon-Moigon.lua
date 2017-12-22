@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Beaucedine Glacier
 --  NPC:  Leigon-Moigon
--- @pos 106.567 -21.249 140.770 111
+-- !pos 106.567 -21.249 140.770 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0067);
+    player:startEvent(103);
 end;
 
 -----------------------------------

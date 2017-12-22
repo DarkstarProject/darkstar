@@ -1,11 +1,7 @@
 -----------------------------------------
---    ID: 5333
---    Sleep Quiver
---    When used, you will obtain one stack of Sleep Arrows
------------------------------------------
-
------------------------------------------
--- OnItemCheck
+-- ID: 5333
+-- Sleep Quiver
+-- When used, you will obtain one stack of Sleep Arrows
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(18158,99);

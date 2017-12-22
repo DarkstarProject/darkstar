@@ -5,8 +5,8 @@
 -- Recast Time: 1:00:00
 -- Duration: 1:00
 -----------------------------------
-
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -15,7 +15,7 @@ require("scripts/globals/status");
 function onAbilityCheck(player,target,ability)
     -- The wyvern must be present in order to use Spirit Surge
     if (target:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return msgBasic.REQUIRES_A_PET,0;
     else
         return 0,0;
     end
@@ -29,7 +29,11 @@ function onUseAbility(player,target,ability)
     -- Spirit Surge increases dragoon's MAX HP increases by 25% of wyvern MaxHP
     -- bg wiki says 25% ffxiclopedia says 15%, going with 25 for now
     local mhp_boost = target:getPet():getMaxHP()*0.25;
-
+    -- Dragoon gets all of wyverns TP when using Spirit Surge
+    local pet = player:getPet();
+    local petTP = pet:getTP();
+    target:addTP(petTP); --add pet TP to dragoon
+    pet:delTP(petTP); -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0;
     if (target:getMainJob() == JOBS.DRG) then
