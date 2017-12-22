@@ -70,7 +70,7 @@ function onMobFight(mob,target)
             if petStatus[i] == 0 then
                 SpawnMob(petIDs[i]):updateEnmity(target);
             end
-            GetMobByID(petIDs[i]):setModelId(1840);
+            GetMobByID(petIDs[i]):setModelId(1839);
         end
     elseif (mobHPP <= 26 and change == 12) then -- Khim and Co.
         mob:setModelId(1805);
