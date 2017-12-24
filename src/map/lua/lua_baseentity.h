@@ -166,6 +166,7 @@ public:
     int32 resetPlayer(lua_State*);           // if player is stuck, GM command @resetPlayer name
 
     int32 gotoPlayer(lua_State*);            // warps self to target player
+    int32 GoToEntity(lua_State*);            // Warps self to NPC or Mob; works across multiple game servers
     int32 bringPlayer(lua_State*);           // warps target to self
     
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)

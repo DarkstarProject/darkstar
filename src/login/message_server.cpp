@@ -95,7 +95,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_LINKSHELL_REMOVE:
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions LEFT JOIN chars ON \
-                      				accounts_sessions.charid = chars.charid WHERE charname = '%s' LIMIT 1; ";
+                                      accounts_sessions.charid = chars.charid WHERE charname = '%s' LIMIT 1; ";
         ret = Sql_Query(ChatSqlHandle, query, (int8*)extra->data() + 4);
         if (Sql_NumRows(ChatSqlHandle) == 0)
         {
@@ -109,7 +109,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_PT_DISBAND:
     {
         const char* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
-                      							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
+                                                  WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
         uint32 partyid = ref<uint32>((uint8*)extra->data(), 0);
         ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
         break;
@@ -117,7 +117,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_CHAT_LINKSHELL:
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions \
-                      						WHERE linkshellid1 = %d OR linkshellid2 = %d GROUP BY server_addr, server_port; ";
+                                              WHERE linkshellid1 = %d OR linkshellid2 = %d GROUP BY server_addr, server_port; ";
         ret = Sql_Query(ChatSqlHandle, query, ref<uint32>((uint8*)extra->data(), 0), ref<uint32>((uint8*)extra->data(), 0));
         break;
     }
@@ -142,6 +142,13 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     {
         const char* query = "SELECT server_addr, server_port FROM accounts_sessions WHERE charid = %d; ";
         ret = Sql_Query(ChatSqlHandle, query, ref<uint32>((uint8*)extra->data(), 0));
+        break;
+    }
+    case MSG_SEND_TO_ENTITY:
+    {
+        const char* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %d; ";
+        ret = Sql_Query(ChatSqlHandle, query, ref<uint16>((uint8*)extra->data(), 2));
+        ipstring = true;
         break;
     }
     case MSG_LOGIN:
