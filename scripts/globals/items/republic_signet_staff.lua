@@ -9,7 +9,7 @@ require("scripts/globals/zone");
 require("scripts/globals/msg");
 -----------------------------------------
 
-function onItemCheck(target, caster)
+function onItemCheck(target, param, caster)
     
     if (target:getNation() ~= NATION_BASTOK) then
         return msgBasic.ITEM_CANNOT_USE_ON
