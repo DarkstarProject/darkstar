@@ -8,14 +8,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    -- See PW's script
-    local phase = mob:getLocalVar("phase");
-
-    if (phase == 6) then
-        return 0;
-    else
-        return 1;
-    end
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
