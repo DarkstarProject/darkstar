@@ -3609,7 +3609,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Hovering_Hotpot',998,521); -- spinning at
 
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,923);
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,924);
-INSERT INTO `mob_skill_lists` VALUES ('Chariot',1000,2057);
-INSERT INTO `mob_skill_lists` VALUES ('Chariot',1000,2058);
-INSERT INTO `mob_skill_lists` VALUES ('Chariot',1000,2059);
-INSERT INTO `mob_skill_lists` VALUES ('Chariot',1000,2060);
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
