@@ -4,12 +4,16 @@
 --     
 -----------------------------------
 
+require("scripts/globals/msg");
+
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:levelRestriction(effect:getPower());
+    local level = effect:getPower()
+    target:levelRestriction(level);
+    target:messageBasic(msgBasic.LEVEL_RESTRICTED,level)
 end;
 
 -----------------------------------

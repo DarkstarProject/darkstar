@@ -216,6 +216,7 @@ msgBasic =
     ADD_EFFECT_HP_HEAL     = 167, -- Additional effect: The <player> recovers <number> HP.
     ADD_EFFECT_DISPEL      = 168, -- Additional effect: <target>'s <Status Effect> effect disappears!
     ADD_EFFECT_WARP        = 169, -- Additional effect: Warp! (used by Halloween staves)
+    LEVEL_RESTRICTED       = 314; -- <target>'s level is currently restricted to 0. Equipment affected by the level restriction will be adjusted accordingly.
     STATUS_SPIKES          = 374, -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
     SPIKES_EFFECT_HEAL     = 383, -- <?>'s spikes restore <number> HP to the <?>.
     ADD_EFFECT_HEAL        = 384, -- Additional effect: <target> recovers <number> HP.

@@ -32924,6 +32924,8 @@ INSERT INTO `mob_droplist` VALUES (4591,0,0,1000,19230,400);
 INSERT INTO `mob_droplist` VALUES (4592,0,0,1000,2857,390);
 INSERT INTO `mob_droplist` VALUES (4593,0,0,1000,19045,400);
 INSERT INTO `mob_droplist` VALUES (4594,0,0,1000,16024,220);
+INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,1604,150); -- Mannequin Legs all garrison mobs use setDropID as to not interfere with any other mobs that share it's normal drop pool
+INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,1605,150); -- Mannequin Feet all garrison mobs use setDropID as to not interfere with any other mobs that share it's normal drop pool
 
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;

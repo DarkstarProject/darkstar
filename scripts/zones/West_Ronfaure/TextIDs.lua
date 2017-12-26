@@ -30,4 +30,10 @@ DIG_THROW_AWAY = 7242; -- You dig up ?Possible Special Code: 01??Possible Specia
 FIND_NOTHING = 7244;  -- You dig and you dig, but find nothing.
 
 -- garrion
-GARRISON_PROMPT = 8088;
+GARRISON_PROMPT = 8090;
+GARRISON_SUCCESS = 7949;
+GARRISON_FAIL = 7950;
+ALLY_FAIL = 7951;
+ALLY_COMPLETE = 7952;
+AVERTED_BEASTMEN = 7953;
+GARRISON_WRONG_NATION = 7913;

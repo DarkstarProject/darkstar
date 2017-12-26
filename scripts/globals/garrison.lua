@@ -1,80 +1,54 @@
 require("scripts/globals/common");
+require("scripts/globals/settings");
 
 ---## TODO:
---* Force confrontation on npcs/mobs inside garrison. player:addStatusEffectEx(EFFECT_CONFRONTATION) --find the param for icon to set to 0
---* Prevent Fellows/trusts
+--* Force confrontation on npcs inside garrison. npc:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800); 0
+--* Prevent Fellows/trusts and disallow garrison during ballista
+--* Add SQL tables for ally npcs to spawn, update script to instantiateMob the new npcs
+--* Update SQL flag for confrontation, similar to this (allows confrontation to wipe on zoning):
+--        update status_effects set flags = flags | integer_value_for_EFFECTFLAG_ON_ZONE where statusid = integer_value_for_EFFECT_BATTLEFIELD;
+--* Once NPC allies are in change updateClaim to attack NPC's instead of player
+--* Update ALL mobs pos in sql
+--* Update instantiateMob to return newMob
+--* Build out other conquest npc scripts per region OP npc
+
+
+-->>>>UPDATE Mob scripts
+--setDropID(4596)
 
 --## Garrison Scenarios to gather
 --* Cutscene ID/params on entrance, not qualified for trading/rank, on finish csid
 --* Mob spawn order (front line, backline, delayed) for 1 party, 2 party, 3 party
 --* Will the mobs with delay spawn if all 8 mobs are already spawned?
---* All NPC ID's that spawn need to be found
+--* All NPC model's that spawn need to be found and added to sql
+
 
 ------------------------
--- getGarrisonMobs
+-- Garrison States
+-- Used in updateGarrison to maintain progress of garrison
 ------------------------
 
-function getGarrisonWave(player, wave)
-
-    local zone = player:getZoneID();
-
-    local mob_count = ((2 * player:getAllianceSize()) + ((wave - 1) * 2))  
-    local wave_mobs = {'frontrow': {},
-                  'backrow': {},
-                  'delayed': {} };
-
-     local all_garrison_mobs = {[113] = {17240425, 17240426, 17240427, 17240428, 17240429, 17240430, 17240431, 17240432, 17240433},
-                            [124] = {17285562, 17285563, 17285564, 17285565, 17285566, 17285567, 17285568, 17285569, 17285570},
-                            [112] = {17236220, 17236221, 17236222, 17236223, 17236224, 17236225, 17236226, 17236227, 17236228},
-                            [114] = {17244540, 17244541, 17244542, 17244543, 17244544, 17244545, 17244546, 17244547, 17244548},
-                            [111] = {17232138, 17232139, 17232140, 17232141, 17232142, 17232143, 17232144, 17232145, 17232146},
-                            [123] = {17281482, 17281483, 17281484, 17281485, 17281486, 17281487, 17281488, 17281489, 17281490},
-                            [121] = {17273296, 17273297, 17273298, 17273299, 17273300, 17273301, 17273302, 17273303, 17273304},
-                            [126] = {17293631, 17293632, 17293633, 17293634, 17293635, 17293636, 17293637, 17293638, 17293639},
-                            [104] = {17203668, 17203669, 17203670, 17203671, 17203672, 17203673, 17203674, 17203675, 17203676},
-                            [109] = {17224152, 17224153, 17224154, 17224155, 17224156, 17224157, 17224158, 17224159, 17224160},
-                            [119] = {17265103, 17265104, 17265105, 17265106, 17265107, 17265108, 17265109, 17265110, 17265111},
-                            [103] = {17199593, 17199594, 17199595, 17199596, 17199597, 17199598, 17199599, 17199600, 17199601},
-                            [118] = {17261026, 17261027, 17261028, 17261029, 17261030, 17261031, 17261032, 17261033, 17261034},
-                            [100] = {17187274, 17187275, 17187276, 17187277, 17187278, 17187279, 17187280, 17187281, 17187282},
-                            [106] = {17211849, 17211850, 17211851, 17211852, 17211853, 17211854, 17211855, 17211856, 17211857},
-                            [115] = {17248598, 17248599, 17248600, 17248601, 17248602, 17248603, 17248604, 17248605, 17248606}};
-                          
-
-    local garrison_mobs = all_garisson_mobs[zone];
- 
-    --for i, mobid in ipairs(garrison_mobs[zone_id]) do
-
-    --end
-
-    return wave_mobs
-end;
-
-------------------------
--- canStartGarrison
-------------------------
-
-function canStartGarrison(player)
-    print("canStartGarrison: init\n");
-    local zone_name = player:getZoneName();
-    if (player:getNation() == GetRegionOwner(player:getCurrentRegion())) then
-        if (player:getVar("[GARRISON]" .. zone_name .. "_Timer") <= os.time() and npc:getLocalVar('GarrisonCooldown') <= os.time()) then
-            print("canStartGarrison: Success.\n");
-            return true
-        end
-    end
-
-    return false
-end;
+START_GARRISON = 0
+PREP_GARRISON = 1
+START_WAVE = 2
+CHECK_WAVE = 3
+START_DELAYED_WAVE = 4
+END_GARRISON = 5
+GARRISON_COOLDOWN = 6
+IDLE_GARRISON = 7
 
 ------------------------
 -- onGarrisonTrade
+-- Used to confirm item trades to initiate garrison
 ------------------------
 
-function onGarrisonTrade(player, trade)
+function onGarrisonTrade(npc, player, trade)
     print("onGarrisonTrade: init\n");
-    local zone_id = player:getZoneID();
-    local zone_name = player:getZoneName();
+
+    local proper_item_used = false
+    local result = 0 -- 0: Unknown Error, 1: Success, 2: Wrong Nation, 3: Garrison on Cooldown for player, 4: Garrison on Cooldown for zone, 5: Wrong Item
+    local garrisonWeeklyTimer = "[GARRISON]Cooldown" --player can only initiate garrison once a conquest week
+    local garrison_state = npc:getLocalVar('GarrisonState')
 
     local garrison_trades = {
                             [115] = 1530, -- West Sarutabaruta =   7-Knot Quipu
@@ -94,22 +68,192 @@ function onGarrisonTrade(player, trade)
                             [124] = 1543, -- Yhoator Jungle =  Coeurl Leather Missive
                             [113] = 1541}; -- Cape Teriggan =  Bunny Fang Sack
 
-    if (canStartGarrison(player)) then
-        print("onGarrisonTrade: item required = " .. garrison_trades[zone_id] .. ".\n");
-        if (trade:getItemCount() == 1 and trade:getGil() == 0 and trade:hasItemQty(garrison_trades[zone_id], 1)) then
-            print("onGarrisonTrade: contains required item.\n\tsetVar: [GARRISON]" .. zone_name .. "_Timer  Value: " .. getConquestTally())
-            player:setVar("[GARRISON]" .. zone_name .. "_Timer", getConquestTally());
-            npc:setLocalVar('GarrisonCooldown', os.time() + 1800); -- Garrison can only occur once every 30 minutes per zone
-            return true
-        end
-    end 
+    --print(player:getVar(garrisonWeeklyTimer))
 
-    return false
+    print("onGarrisonTrade: item required = " .. garrison_trades[player:getZoneID()] .. ".\n");
+    print("ongarrisonTrade: garrison_state = " .. garrison_state)
+
+    if (trade:getItemCount() == 1 and trade:getGil() == 0 and trade:hasItemQty(garrison_trades[player:getZoneID()], 1)) then
+        proper_item_used = true
+    end
+
+    if (player:getNation() ~= GetRegionOwner(npc:getCurrentRegion())) then
+        result = 2
+
+    elseif (player:getVar(garrisonWeeklyTimer) >= os.time()) then
+        result = 3
+
+    elseif (garrison_state == GARRISON_COOLDOWN) then
+        result = 4
+
+    elseif (garrison_state == IDLE_GARRISON and proper_item_used) then
+        print("onGarrisonTrade: contains required item.\n\tsetVar: " .. garrisonWeeklyTimer .. "  Value: " .. getConquestTally())
+        player:setVar("garrisonWeeklyTimer", getConquestTally())
+
+        startGarrison(npc, player)
+        npc:timer(1800000, function(npc)
+                            print("Last garrison was 30 minutes ago, garrison now open for next run...")
+                            npc:setLocalVar('GarrisonState', IDLE_GARRISON) -- Next garrison can be begin 30 minutes after prior garrison initilized
+                        end)
+        result = 1
+    else
+        result = 5
+    end
+
+    return proper_item_used,result
 
 end;
 
+----------------------
+-- onGarrisonTrigger()
+-- Guard response when triggered during garrison
+----------------------
 
-function applyGarrisonCap(player)
+function onGarrisonTrigger(npc, player)
+    print("onGarrisonTrigger: init from player " ..player:getID() .. "\n")
+
+    local result = 0
+    local garrison_state = npc:getLocalVar("GarrisonState")
+    local garrison_starter = npc:getLocalVar("GarrisonInitiator")
+
+    if (garrison_state == PREP_GARRISON and not player:hasStatusEffect(EFFECT_CONFRONTATION)) then
+        addGarrisonPlayer(npc, player)
+        result = 1
+
+    elseif (garrison_state == END_GARRISON) then
+        print("onGarrisonTrigger: END_GARRISON hit.\n")
+        if (player:getID() == garrison_starter) then
+            giveGarrisonLoot(npc, player, 1, 1) --  hard coded to 1/1 npc survived until npc instantiateMob is setup
+            npc:setLocalVar("GarrisonState", GARRISON_COOLDOWN)
+            result = 2
+        end
+
+        if (player:hasStatusEffect(EFFECT_CONFRONTATION)) then
+            delGarrisonPlayer(npc, player)
+            result = 4
+        end
+
+    elseif (garrison_state == GARRISON_COOLDOWN and player:hasStatusEffect(EFFECT_CONFRONTATION)) then
+        delGarrisonPlayer(npc, player)
+        result = 4
+
+    end
+
+    return result
+end
+
+
+----------------------
+-- getGarrisonMobs()
+-- Returns garrison mob list for specified zone
+----------------------
+
+function getGarrisonBossID(zone)
+
+    local garrison_bosses = {[113] = 17240433,
+                            [124] = 17285570,
+                            [112] = 17236228,
+                            [114] = 17244548,
+                            [111] = 17232146,
+                            [123] = 17281490,
+                            [121] = 17273304,
+                            [126] = 17293639,
+                            [104] = 17203676,
+                            [109] = 17224160,
+                            [119] = 17265111,
+                            [103] = 17199601,
+                            [118] = 17261034,
+                            [100] = 17187282,
+                            [106] = 17211857,
+                            [115] = 17248606};
+
+
+    return garrison_bosses[zone]
+end
+
+
+------------------------
+-- giveGarrisonLoot()
+-- distribute garrison reward into player pool based off how many npc's lived
+------------------------
+
+function giveGarrisonLoot(npc, player, npcs_alive, npcs_initial)
+
+    print("giveGarrisonLoot: init\n")
+    local zone = npc:getZoneID()
+    local level_cap = player:getStatusEffect(EFFECT_LEVEL_RESTRICTION):getPower();
+    local garrison_loot = {
+                    [20] = {13818,15147,14314,14841,14206}, -- Level cap 20 =  Garrison Tunica, Garrison Sallet, Garrison Hose, Garrison Gloves, Garrison Boots
+                    [30] = {17580,18212,18090,17272,17940,17839}, -- Level cap 30 = Military Pole, Military Axe, Military Spear, Military Gun, Military Pick, Military Harp
+                    [40] = {14757,14652,14653,13681,13680}, -- Level cap 40 = Mecurial Earring, Protean Ring, Variable Ring, Variable Cape, Variable Mantle
+                    [50] = {14755,14756,14744,14745,14747,14748,14749,14750,14752,14753,14754,14746,14751}, -- Level cap 50 = Refresh Earring, Accurate Earring, Undead Earring, Arcana Earring, Bird Earring, Amorph Earring, Lizard Earring, Aquan Earring, Beast Earring, Demon Earring, Dragon Earring, Vermin Earring, Plantoid Earring
+                    [75] = {18213,17204,17465,18000,18091,18352,17941,17581,18374,17697,18049,17824,17791}, -- Level cap 75 = Mighty Axe, Mighty Bow, Mighty Cudgel, Mighty Knife, Mighty Lance, Mighty Patas, Mighty Pick, Mighty Pole, Mighty Sword, Mighty Talwar, Mighty Zaghnal, Nukemaru, Rai Kunimitsu
+                    }
+
+
+    -- Percentage of how many npcs were kept alive
+    local evaluation = (( 100.00 / npcs_initial ) * npcs_alive)
+    print("giveGarrisonLoot: Eval = " .. evaluation)
+
+    -- Distribute treasure pool
+    local reward_count = math.floor(evaluation  / (100 / ((player:checkSoloPartyAlliance() + 1) * 2)))
+    print("giveGarrisonLoot: Reward Count = " .. reward_count)
+
+    if (reward_count == 0) then
+        reward_count = 1 -- minimum reward is 1 item
+    end
+
+    for i = 1, reward_count do
+        print("giveGarrisonLoot: adding loot....\n")
+        player:addTreasure(garrison_loot[level_cap][math.random(1,#garrison_loot[level_cap])], npc)
+    end
+
+    local exp_scroll = 4198 -- Dragon Chronicles
+    if (level_cap == 75) then
+        exp_scroll = 4247 -- Miratete's Memoirs
+    end
+
+    for i = 1, math.random(1,2) do
+        player:addTreasure(exp_scroll, npc)
+    end
+
+
+    -- Distribute gil
+    local reward_gil = (3200 * (evaluation / 100))
+    local partyCheck = player:checkSoloPartyAlliance()
+
+    if (partyCheck == 2) then
+
+        for _,alliance_member in player:getAlliance() do
+            if (alliance_member:hasStatusEffect(EFFECT_CONFRONTATION) and alliance_member:getZoneID() == zone) then
+                alliance_member:addGil(GIL_RATE * reward_gil)
+            end
+        end
+
+    elseif (partyCheck == 1)  then
+
+        for _,party_member in player:getParty() do
+            if(party_member:hasStatusEffect(EFFECT_CONFRONTATION) and alliance_member:getZoneID() == zone) then
+                party_member:addGil(GIL_RATE * reward_gil)
+            end
+        end
+
+    else
+        print("giveGarrisonLoot: gil given.\n")
+        player:addGil(GIL_RATE * reward_gil)
+
+    end
+
+    return
+end
+
+------------------------
+-- addGarrisonPlayer
+-- perform steps to lock players into garrison
+------------------------
+
+function addGarrisonPlayer(npc, player)
+
     local garrison_caps = {[113] = 75,
                        [124] = 50,
                        [112] = 50,
@@ -125,14 +269,293 @@ function applyGarrisonCap(player)
                        [118] = 30,
                        [100] = 20,
                        [106] = 20,
-                       [115] = 20}; 
+                       [115] = 20}
 
-    
+    player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[npc:getZoneID()],0,1800)
+    player:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800)
+    --player:instantiateMob(groupid)
 
-    for _,alliance_member in player:getAlliance() do
-        alliance_member:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[zone_id],0,1800);
-        alliance_member:addStatusEffectEx(EFFECT_CONFRONTATION,0,1,0,1800);
+    return
+end
+
+
+------------------------
+-- delGarrisonPlayer
+-- perform steps to remove players from garrison
+------------------------
+
+function delGarrisonPlayer(npc, player)
+
+    player:delStatusEffect(EFFECT_LEVEL_RESTRICTION);
+    player:delStatusEffectSilent(EFFECT_CONFRONTATION);
+    --player:instantiateMob(groupid) --delete npcs
+
+    return
+end
+
+
+------------------------
+-- startGarrison
+-- Starts the garrison and it's first wave
+------------------------
+
+function startGarrison(npc, player)
+    print("startGarrison: init\n")
+
+    npc:setLocalVar("GarrisonInitiator", player:getID())
+    npc:setLocalVar("GarrisonState", START_GARRISON)
+	
+    local garrison_caps = {[113] = 75,
+                       [124] = 50,
+                       [112] = 50,
+                       [114] = 50,
+                       [111] = 40,
+                       [123] = 40,
+                       [121] = 40,
+                       [126] = 30,
+                       [104] = 30,
+                       [109] = 30,
+                       [119] = 30,
+                       [103] = 30,
+                       [118] = 30,
+                       [100] = 20,
+                       [106] = 20,
+                       [115] = 20}
+
+    local partyCheck = player:checkSoloPartyAlliance();
+    local zone_id = npc:getZoneID()
+    print("startGarrison: level restriction is " .. garrison_caps[zone_id])
+
+    --TODO: add player:instantiateMob(), instantiateMob takes 1 parameter: the groupid of the mob you want to spawn
+    if (partyCheck == 2) then
+
+        for _,alliance_member in ipairs(player:getAlliance()) do
+            if (alliance_member:getZoneID() == zone_id) then
+                alliance_member:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[npc:getZoneID()],0,1800)
+                alliance_member:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800)
+            end
+        end
+
+    elseif (partyCheck == 1)  then
+        print("startGarrison: party mode for zone " .. zone_id .. "\n")
+        for _,party_member in ipairs(player:getParty()) do
+            print("startGarrison: party member " .. party_member:getID() .. " in zone " .. party_member:getZoneID())
+            if (party_member:getZoneID() == zone_id) then
+                print("startGarrison: level restrict for party member = " .. party_member:getID())
+                party_member:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[npc:getZoneID()],0,1800)
+                party_member:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800)
+            end
+        end
+
+    else
+
+        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,garrison_caps[npc:getZoneID()],0,1800)
+        player:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800)
+        player:messageSpecial(314, 21818)
     end
-    
-    return false
+
+    print("startGarrison: set to preparing garrison")
+
+    npc:setLocalVar("GarrisonState", PREP_GARRISON)
+    updateGarrison(npc)
+
+end
+
+
+-----------------------
+-- startGarrisonWave
+-- Start the specified wave and spawn the base monsters
+------------------------
+
+function startGarrisonWave(npc, player)
+    print("startGarrisonWave: init wave\n")
+
+    local GARRISON_BOSS = getGarrisonBossID(player:getZoneID())
+    local npc_id = npc:getID()
+    local wave = npc:getLocalVar("WaveNumber")
+    local mob_row_count = player:getAllianceSize()
+    local mob_position = GetMobByID(GARRISON_BOSS):getSpawnPos()
+    local front_count = 0
+    local back_count = 0
+    local required_kills = (2 * player:getAllianceSize()) + ((wave - 1) * 2)
+
+    if (wave == 4) then -- Wave 4 should have same amount of mobs as wave 3, a simple way to fix the math
+        required_kills = required_kills - 2
+    end
+
+    npc:setLocalVar("WaveStartTime", os.time())
+    npc:setLocalVar("WaveState", 1)
+    npc:setLocalVar("RequiredKills", required_kills)
+    npc:setLocalVar("WaveKillCount", 0)
+
+
+    -- spawn front row of mobs
+    for offset = 8, 1, -1 do
+        local MobID = GARRISON_BOSS - offset
+        local Mob = GetMobByID(MobID)
+        if (not Mob:isSpawned() and front_count < mob_row_count) then
+            print("Spawning mob: " .. MobID)
+            Mob:setSpawn(mob_position.x, mob_position.y + (front_count * 3), mob_position.z, mob_position.rot)
+            SpawnMob(MobID):updateClaim(player)
+            Mob:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800);
+            Mob:setLocalVar("GarrisonNPCID", npc_id)
+            front_count = front_count + 1
+        end
+    end
+
+    -- spawn back row of mobs
+    for offset = 8, 1, -1 do
+        local MobID = GARRISON_BOSS - offset
+        local Mob = GetMobByID(MobID)
+        if (not Mob:isSpawned() and back_count < mob_row_count) then
+            print("Spawning mob: " .. MobID)
+            Mob:setSpawn(mob_position.x + 3, mob_position.y + (back_count * 3), mob_position.z, mob_position.rot)
+            SpawnMob(MobID):updateClaim(player)
+            Mob:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800);
+            Mob:setLocalVar("GarrisonNPCID", npc_id)
+            back_count = back_count + 1
+        end
+    end
+
+    print("startGarrisonWave: base mobs spawned\n")
+
+    npc:setLocalVar("GarrisonState", CHECK_WAVE)
+    updateGarrison(npc)
+
+end
+
+
+------------------------
+-- spawnDelayedWave
+-- Used to spawn mobs that pop mobs after the inital base wave
+------------------------
+
+function spawnDelayedWave(npc, player)
+    print("spawnDelayedWave: init\n")
+
+    local GARRISON_BOSS = getGarrisonBossID(player:getZoneID())
+
+    npc:setLocalVar("WaveState", npc:getLocalVar("WaveState") + 1)
+
+    local spawned_count = 0
+    local mob_position = GetMobByID(GARRISON_BOSS):getSpawnPos()
+
+    for offset = 8, 1, -1 do
+        local MobID = GARRISON_BOSS - offset
+        print("spawnDelayedWave: MobID check against " .. MobID .. "\n")
+        local Mob = GetMobByID(MobID)
+        if (not Mob:isSpawned()) then
+            print("spawnDelayedWave: spawned new mob " .. MobID .. "\n")
+            spawned_count  = spawned_count + 1
+            Mob:setSpawn(mob_position.x + (spawned_count * 3), mob_position.y, mob_position.z, mob_position.rot)
+            SpawnMob(MobID):updateClaim(player)
+            Mob:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800);
+            Mob:setLocalVar("GarrisonNPCID", npc:getID())
+            if (spawned_count == 2) then
+                npc:setLocalVar("GarrisonState", CHECK_WAVE)
+                updateGarrison(npc)
+                return --Every delayed wave spawns 2 more mobs, after we find two available mobs to spawn stop trying to spawn mobs
+            end
+
+        end
+    end
+end
+
+------------------------
+-- checkGarrison
+-- Used in mob scripts to update the garrison's status
+------------------------
+
+function checkGarrison(npc, player)
+    print("checkGarrison: init\n")
+
+    local GARRISON_BOSS = getGarrisonBossID(player:getZoneID())
+
+    local GarrisonBoss = GetMobByID(GARRISON_BOSS)
+    local wave = npc:getLocalVar("WaveNumber")
+    local wave_start_time = npc:getLocalVar("WaveStartTime")
+    local wave_state = npc:getLocalVar("WaveState")
+
+    print("checkGarrison: On wave " .. wave .. " wave_state at " .. wave_state .. " kill count = " .. npc:getLocalVar("WaveKillCount") .. " required kills = " .. npc:getLocalVar("RequiredKills"))
+
+    if (npc:getLocalVar("WaveKillCount") == npc:getLocalVar("RequiredKills")) then
+        if (wave <= 3) then
+            print("checkGarrison: Wave complete! Signal next wave...\n")
+            npc:setLocalVar("WaveNumber", wave + 1)
+            npc:setLocalVar("GarrisonState", START_WAVE)
+
+        elseif (not GarrisonBoss:isSpawned()) then
+            print("checkGarrison: spawn boss.\n")
+            SpawnMob(GARRISON_BOSS):updateClaim(player)
+            GarrisonBoss:addStatusEffectEx(EFFECT_CONFRONTATION,0,1000,0,1800);
+            GarrisonBoss:setLocalVar("GarrisonNPCID", npc:getID())
+        end
+    end
+
+
+    if (wave >= 2 and wave_state == 1 and wave_start_time + 10 <= os.time()) then
+        print("checkGarrison: signal delayed wave " .. wave_state .. " for wave " .. wave .. "\n")
+        npc:setLocalVar("GarrisonState", START_DELAYED_WAVE)
+
+    elseif (wave >= 3 and wave_state == 2 and wave_start_time + 20 <= os.time()) then -- update to require kill count  only if killcount above 8 aka alliance ofr 3 parties
+
+        local partyCheck = player:checkSoloPartyAlliance()
+        if (partyCheck < 2 or partyCheck == 2 and npc:getLocalVar("WaveKillCount") >= 2) then
+            print("checkGarrison: signal delayed wave " .. wave_state .. " for wave " .. wave .. "\n")
+            npc:setLocalVar("GarrisonState", START_DELAYED_WAVE)
+        end
+
+    end
+    updateGarrison(npc)
+end
+
+
+------------------------
+-- updateGarrison
+-- manages entire garrison
+------------------------
+
+function updateGarrison(npc)
+
+    local states = {
+                    [PREP_GARRISON] = {delay = 20, stateFunc = function(npc)
+                                                                    npc:setLocalVar("GarrisonState", START_WAVE)
+                                                                    npc:setLocalVar("WaveNumber", 1)
+                                                                    updateGarrison(npc)
+                                                                end},
+                    [START_WAVE] = {delay = 15, stateFunc = startGarrisonWave},
+                    [CHECK_WAVE] = {delay = 10, stateFunc = checkGarrison},
+                    [START_DELAYED_WAVE] = {delay = 10, stateFunc = spawnDelayedWave},
+                    [END_GARRISON] = {delay = 1, stateFunc = function(npc)
+                                                                print("updateGarrison: END_GARRISON signaled...\n")
+                                                                return
+                                                            end}
+    }
+
+    local current_state = npc:getLocalVar("GarrisonState")
+    local state_data = states[current_state]
+
+    --Start timer
+    print("\n\nupdateGarrison:  new state = " .. current_state .. " in " .. state_data.delay .. " seconds...\n")
+
+    npc:timer(state_data.delay * 1000, function(npc)
+        local player = GetPlayerByID(npc:getLocalVar("GarrisonInitiator"))
+        state_data.stateFunc(npc, player)
+
+    end)
+end
+
+
+------------------------
+-- doGarrisonCutscene
+-- Handles all csid details for all outpost guards
+------------------------
+
+function doGarrisonCutscene(npc, player)
+
+    --!cs 32753 Zone_ID unknown1 Region_ID Text
+    print("doGarrisonCutscene: player = " .. player:getID())
+    print("doGarrisonCutscene: restriction = " .. player:getStatusEffect(EFFECT_LEVEL_RESTRICTION):getPower())
+    player:startEvent(32753, npc:getZoneID(), 6, npc:getCurrentRegion(), player:getStatusEffect(EFFECT_LEVEL_RESTRICTION):getPower())
+    return
 end
