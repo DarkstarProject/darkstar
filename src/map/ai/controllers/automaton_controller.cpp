@@ -309,6 +309,8 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
     case HEAD_STORMWAKER:
     {
         bool lowHP = PTarget->GetHPP() <= 30 && PTarget->health.hp <= 300;
+
+        // Mob low HP -> Nuke
         if (lowHP && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
