@@ -37,7 +37,7 @@
 #define FFXI_HEADER_SIZE 0x1C		// common packet header size
 #define FFXI_CHANGE_ZONE 0x0A		// change zone cmd
 
-// флаги перед именем персонажа
+// Flags in fron of the character name
 
 enum FLAGTYPE : uint32
 {
@@ -97,8 +97,8 @@ enum MSGSERVTYPE : uint8
 
 typedef std::string string_t;
 
-// для персонажей в size хранится рост, 
-// для npc и монстров что-то вроде типа используемой модели
+// For characters in size is stored growth,
+// for npc and monsters something like the type of model used
 
 struct look_t 
 {
@@ -142,7 +142,7 @@ struct skills_t
 		// index SkillID 0-63
 		uint16 skill[64];
 	};
-	// ранг используется только в ремеслах. размер 64 необходим для совместимости ID
+	// rank is used only in crafts. size 64 is required for compatibility ID
 	uint8 rank[64];
 };
 
@@ -159,12 +159,12 @@ struct keyitems_t
 
 struct position_t 
 {
-	uint8 rotation;			// угол поворота сущности относительно своей позиции (используется 255 система, место 360°)
+	uint8 rotation;			// angle of rotation of the entity relative to its position (255 system is used, place 360 °)
 	float x;			
-	float y;				// высота расположения сущности относительно "уровня моря"
+	float y;				// height of the location of the entity relative to "sea level"
 	float z;
-	uint16 moving;			// что-то вроде расстояния перемещения, необходимое для правильной отрисовки в клиенте количества шагов сущности 
-};
+	uint16 moving;			// Something like the distance traveled to properly draw in the client
+                            // the number of steps of the entity
 
 struct stats_t
 {
@@ -208,13 +208,13 @@ struct nameflags_t
 	};
 };
 
-// информация для окна поиска
+// information for the search box
 struct search_t 
 {
-	uint8 language;			// предпочтительный язык общения
-	uint8 messagetype;		// тип комментария
+	uint8 language;			// Preferred language of communication
+	uint8 messagetype;		// comment type
 
-	string_t message;	// комментарий поиска
+	string_t message;	// search comment
 };
 
 struct bazaar_t
@@ -222,12 +222,12 @@ struct bazaar_t
 	string_t message;
 };
 
-// небольшой комментарий к пакетам ниже, определенным в виде констант
-// 1-й байт - размер пакета
-// через 4-ре байта начинается заголовк 0x49, 0x58, 0x46, 0x46 - IXFF
-// после заголовка идет предположительно тип сообщения:
-// 0x03 - положительный результат
-// 0x04 - ошибка (в случае ошибки начиная с 33 байта идет код ошибки uint16) 
+// LOBBY_A1_RESERVEPACKET defined as constants
+// 1st byte - packet size
+// after 4-re bytes, the heading 0x49, 0x58, 0x46, 0x46 - IXFF begins
+// after the header there is supposedly a message type:
+// 0x03 is a positive result
+// 0x04 - error (in case of an error, the error code uint16 is coming from the 33 bytes)
 
 #define LOBBY_A1_RESERVEPACKET(a)\
 unsigned char a[] = { \
