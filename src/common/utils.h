@@ -34,37 +34,59 @@ int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 int config_switch(const char* str);
 bool bin2hex(char* output, unsigned char* input, size_t count);
 
-float distance(const position_t& A, const position_t& B);		// distance between positions
-float distanceSquared(const position_t& A, const position_t& B);// squared distance between positions (use squared unless otherwise needed)
-constexpr float square(float distance)                          // constexpr square (used with distanceSquared)
+// distance between positions
+float distance(const position_t& A, const position_t& B);
+
+// squared distance between positions (use squared unless otherwise needed)
+float distanceSquared(const position_t& A, const position_t& B);
+
+// constexpr square (used with distanceSquared)
+constexpr float square(float distance)
+
 {
     return distance * distance;
 }
 
-int32 intpow32(int32 base, int32 exponent);						// Exponential power of integers
-void getMSB(uint32* result,uint32 value);						// fast Most Significant Byte search under GCC or MSVC. Fallback included.
+// Exponential power of integers
+int32 intpow32(int32 base, int32 exponent);
+
+// fast Most Significant Byte search under GCC or MSVC. Fallback included.						
+void getMSB(uint32* result,uint32 value);		
+
 float rotationToRadian(uint8 rotation);
 uint8 radianToRotation(float radian);
-uint8 getangle(const position_t& A, const position_t& B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
-bool  isFaceing(const position_t& A, const position_t& B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
-position_t nearPosition(const position_t& A, float offset, float radian); // Returns a position near the given position
 
-int32 hasBit(uint16 value, uint8* BitArray, uint32 size);		// проверяем наличие бита в массиве
-int32 addBit(uint16 value, uint8* BitArray, uint32 size);		// добавляем бит в массив
-int32 delBit(uint16 value, uint8* BitArray, uint32 size);		// удаляем бит из массива
+// A is the main entity, B is the goal of the entity (the projection of the vector on OX)
+uint8 getangle(const position_t& A, const position_t& B);		
 
-	//(un)pack functions for Big Endian(BE) targets
+// A - the main entity, B - the purpose of the essence
+bool  isFaceing(const position_t& A, const position_t& B, uint8 coneAngle);	
+
+// Returns a position near the given position
+position_t nearPosition(const position_t& A, float offset, float radian); 
+
+// check the presence of a bit in the array
+int32 hasBit(uint16 value, uint8* BitArray, uint32 size);	
+
+// add bit to array
+int32 addBit(uint16 value, uint8* BitArray, uint32 size);		
+
+// remove the bit from the array
+int32 delBit(uint16 value, uint8* BitArray, uint32 size);		
+
+//(un)pack functions for Big Endian(BE) targets
 uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsBE(uint8* target, int32 bitOffset, uint8 lengthInBit);
-	//(un)pack functions for Little Endian(LE) targets
+
+//(un)pack functions for Little Endian(LE) targets
 uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 uint32 packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsLE(uint8* target,int32 bitOffset, uint8 lengthInBit);
 uint64 unpackBitsLE(uint8* target,int32 byteOffset, int32 bitOffset, uint8 lengthInBit);
 
-    // Encode/Decode Strings to/from FFXI 6-bit format
+// Encode/Decode Strings to/from FFXI 6-bit format
 void EncodeStringLinkshell(int8* signature, int8* target);
 void DecodeStringLinkshell(int8* signature, int8* target);
 int8* EncodeStringSignature(int8* signature, int8* target);
