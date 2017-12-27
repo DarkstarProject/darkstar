@@ -59,6 +59,7 @@ public:
     CAutomatonController(CAutomatonEntity* PPet);
 
     virtual bool Disengage() override;
+
 protected:
     virtual void DoCombatTick(time_point tick) override;
     virtual void Move() override;
