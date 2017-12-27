@@ -30,20 +30,12 @@
 #include <string.h>
 
 #ifdef _MSC_VER
-#	include <intrin.h>
+#include <intrin.h>
 #endif
 
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
-
-//--------------------------------------------------
 // Return numerical value of a switch configuration
 // on/off, english, fran<E7>ais, deutsch, espa<F1>ol
-//--------------------------------------------------
+
 int config_switch(const char* str)
 {
     if(strcmpi(str, "true") == 0 || strcmpi(str, "on") == 0 || strcmpi(str, "yes") == 0 || strcmpi(str, "oui") == 0 || strcmpi(str, "ja") == 0 || strcmpi(str, "si") == 0)
@@ -68,13 +60,13 @@ int32 checksum(unsigned char *buf, uint32 buflen, char checkhash[16])
 }
 
 
-/// Produces the hexadecimal representation of the given input.
-/// The output buffer must be at least count*2+1 in size.
-/// Returns true on success, false on failure.
-///
-/// @param output Output string
-/// @param input Binary input buffer
-/// @param count Number of bytes to convert
+// Produces the hexadecimal representation of the given input.
+// The output buffer must be at least count*2+1 in size.
+// Returns true on success, false on failure.
+//
+// @param output Output string
+// @param input Binary input buffer
+// @param count Number of bytes to convert
 bool bin2hex(char* output, unsigned char* input, size_t count)
 {
     char toHex[] = "0123456789abcdef";
@@ -90,17 +82,10 @@ bool bin2hex(char* output, unsigned char* input, size_t count)
     return true;
 }
 
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
 float distance(const position_t& A, const position_t& B)
 {
     return sqrt(distanceSquared(A, B));
 }
-
 
 float distanceSquared(const position_t& A, const position_t& B)
 {
@@ -109,12 +94,6 @@ float distanceSquared(const position_t& A, const position_t& B)
     float diff_z = A.z - B.z;
     return diff_x * diff_x + diff_y * diff_y + diff_z * diff_z;
 }
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
 
 int32 intpow32(int32 base, int32 exponent)
 {
@@ -128,12 +107,6 @@ int32 intpow32(int32 base, int32 exponent)
     }
     return power;
 }
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
 
 void getMSB(uint32* result, uint32 value)
 {
@@ -151,9 +124,10 @@ void getMSB(uint32* result, uint32 value)
 
 }
 
-/*
-Rotations of entities are saved in uint8s, which can only hold up to a value of 255. In order to properly calculate rotations you'll need these methods to convert back and forth.
-*/
+
+// Rotations of entities are saved in uint8s, which can only hold up to a value of 255. 
+// In order to properly calculate rotations you'll need these methods to convert back and forth.
+
 float rotationToRadian(uint8 rotation)
 {
     return (float)((rotation / 256.0f) * 2 * M_PI);
@@ -164,13 +138,6 @@ uint8 radianToRotation(float radian)
     return (uint8)((radian / (2 * M_PI)) * 256);
 }
 
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
 uint8 getangle(const position_t& A, const position_t& B)
 {
     uint8 angle = (uint8)(atanf((B.z - A.z) / (B.x - A.x)) * -(128.0f / M_PI));
@@ -178,25 +145,20 @@ uint8 getangle(const position_t& A, const position_t& B)
     return (A.x > B.x ? angle + 128 : angle);
 }
 
-/************************************************************************
-*																		*
-*  Проверяем, находится ли цель в поле зрения (coneAngle)				*
-*																		*
-************************************************************************/
-
+// Check whether the target is in sight (coneAngle)
 bool isFaceing(const position_t& A, const position_t& B, uint8 coneAngle)
 {
     int32 angle = getangle(A, B);
     return abs(int8(angle - A.rotation)) < (coneAngle >> 1);
 }
 
-/**
-Returns a position near the given position.
 
-offset - distance to be placed away from given Position.
-radian - angle relative to given position to be placed at. Zero will be a position infront of the given position.
-Pi will make the position behind the target (180 degrees).
-*/
+// Returns a position near the given position.
+
+// offset - distance to be placed away from given Position.
+// radian - angle relative to given position to be placed at. Zero will be a position infront of the given position.
+// Pi     - will make the position behind the target (180 degrees).
+
 position_t nearPosition(const position_t& A, float offset, float radian)
 {
     // PI * 0.75 offsets the rotation to the proper place
@@ -213,11 +175,7 @@ position_t nearPosition(const position_t& A, float offset, float radian)
     return B;
 }
 
-/************************************************************************
-*																		*
-*  Методы для работы с битовыми массивами								*
-*																		*
-************************************************************************/
+// Methods for working with bit arrays
 
 int32 hasBit(uint16 value, uint8* BitArray, uint32 size)
 {
@@ -248,12 +206,6 @@ int32 delBit(uint16 value, uint8* BitArray, uint32 size)
     }
     return 0;
 }
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
 
 uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit)
 {
@@ -538,10 +490,11 @@ int8* EncodeStringSignature(int8* signature, int8* target)
         packBitsLE(encodedSignature, tempChar, 6 * currChar, 6);
         chars++;
     }
-    //leftover = (chars * 6) % 8;
-    //leftover = 8 - leftover;
-    //leftover = (leftover == 8 ? 6 : leftover);
-    //packBitsLE(encodedSignature,0xFF,6*chars, leftover);
+    
+    // leftover = (chars * 6) % 8;
+    // leftover = 8 - leftover;
+    // leftover = (leftover == 8 ? 6 : leftover);
+    // packBitsLE(encodedSignature,0xFF,6*chars, leftover);
 
     return (int8*)strncpy((char*)target, (const char*)encodedSignature, sizeof encodedSignature);
 }
