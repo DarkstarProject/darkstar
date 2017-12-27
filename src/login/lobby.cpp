@@ -37,12 +37,6 @@
 int32 login_lobbydata_fd;
 int32 login_lobbyview_fd;
 
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
 int32 connect_client_lobbydata(int32 listenfd)
 {
     int32 fd = 0;
@@ -57,12 +51,6 @@ int32 connect_client_lobbydata(int32 listenfd)
     }
     return -1;
 }
-
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
 
 int32 lobbydata_parse(int32 fd)
 {
@@ -127,7 +115,8 @@ int32 lobbydata_parse(int32 fd)
 
             unsigned char CharList[2500];
             memset(CharList, 0, sizeof(CharList));
-            //запись зарезервированных чисел
+
+            // write reserved numbers
             CharList[0] = 0xE0; CharList[1] = 0x08;
             CharList[4] = 0x49; CharList[5] = 0x58; CharList[6] = 0x46; CharList[7] = 0x46; CharList[8] = 0x20;
 
@@ -166,7 +155,7 @@ int32 lobbydata_parse(int32 fd)
             //server's name that shows in lobby menu
             memcpy(ReservePacket + 60, login_config.servername.c_str(), std::clamp<size_t>(login_config.servername.length(), 0, 15));
 
-            // Prepare the character list data..
+            // Prepare the character list data
             for (int j = 0; j < 16; ++j)
             {
                 memcpy(CharList + 32 + 140 * j, ReservePacket + 32, 140);
@@ -177,8 +166,9 @@ int32 lobbydata_parse(int32 fd)
             uList[0] = 0x03;
 
             int i = 0;
-            //Считывание информации о конкректном персонаже
-            //Загрузка всей необходимой информации о персонаже из базы
+
+            // Reading the information about a specific person
+            // Download all the necessary information about the character from the database
             while (Sql_NextRow(SqlHandle) != SQL_NO_DATA)
             {
                 char* strCharName = nullptr;
@@ -198,7 +188,6 @@ int32 lobbydata_parse(int32 fd)
 
                 ref<uint32>(uList, 20 * (i + 1)) = CharID;
 
-                ////////////////////////////////////////////////////
                 ref<uint32>(CharList, 4 + 32 + i * 140) = CharID;
 
                 memcpy(CharList + 12 + 32 + i * 140, strCharName, 15);
@@ -218,33 +207,35 @@ int32 lobbydata_parse(int32 fd)
 
                 ref<uint8>(CharList, 72 + 32 + i * 140) = (uint8)zone;
                 ref<uint16>(CharList, 78 + 32 + i * 140) = zone;
-                ///////////////////////////////////////////////////
+        
                 ++i;
             }
 
-            if (session[sd->login_lobbyview_fd] != nullptr) {
+            if (session[sd->login_lobbyview_fd] != nullptr) 
+            {
                 // write into lobbydata
                 uList[1] = 0x10;
                 session[fd]->wdata.assign(uList, 0x148);
                 RFIFOSKIP(fd, session[fd]->rdata.size());
                 RFIFOFLUSH(fd);
-                ////////////////////////////////////////
 
                 unsigned char hash[16];
                 md5((unsigned char*)(CharList), hash, 2272);
 
                 memcpy(CharList + 12, hash, 16);
+
                 // write into lobbyview
                 session[sd->login_lobbyview_fd]->wdata.assign((const char*)CharList, 2272);
                 RFIFOSKIP(sd->login_lobbyview_fd, session[sd->login_lobbyview_fd]->rdata.size());
                 RFIFOFLUSH(sd->login_lobbyview_fd);
             }
-            else { //cleanup
+            else 
+            { 
+            //cleanup
                 ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA1). Disconnecting client.\n", sd->accid);
                 do_close_lobbydata(sd, fd);
                 return -1;
             }
-            /////////////////////////////////////////
 
             break;
         }
@@ -296,8 +287,12 @@ int32 lobbydata_parse(int32 fd)
             else
             {
                 ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
-                ref<uint32>(ReservePacket, (0x38)) = sd->servip;  // map-server ip
-              //ref<uint16>(ReservePacket,(0x3C)) = port;         // map-server port
+
+                // map-server ip
+                ref<uint32>(ReservePacket, (0x38)) = sd->servip;  
+
+              // map-server port  
+              //ref<uint16>(ReservePacket,(0x3C)) = port;       
             }
 
             if (PrevZone == 0)
