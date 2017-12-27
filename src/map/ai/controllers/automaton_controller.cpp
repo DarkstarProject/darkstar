@@ -263,9 +263,11 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
         }
     }
     break;
+
     case HEAD_SHARPSHOT:
     {
-        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
+        // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -285,7 +287,8 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
     break;
     case HEAD_HARLEQUIN:
     {
-        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
+        // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -306,18 +309,21 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
     case HEAD_STORMWAKER:
     {
         bool lowHP = PTarget->GetHPP() <= 30 && PTarget->health.hp <= 300;
-        if (lowHP && TryElemental(maneuvers))  // Mob low HP -> Nuke
+        if (lowHP && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
             return true;
         }
 
-        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
+        // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
         }
-        else if (!lowHP && maneuvers.ice && TryElemental(maneuvers))  // Ice -> Nuke
+
+        // Ice -> Nuke
+        else if (!lowHP && maneuvers.ice && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
             return true;
@@ -328,16 +334,19 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
             m_LastEnfeebleTime = m_Tick;
             return true;
         }
+
         else if (!maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
         }
+
         else if (!lowHP && !maneuvers.ice && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
             return true;
         }
+
         else if (TryEnhance())
         {
             m_LastEnhanceTime = m_Tick;
@@ -345,9 +354,11 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
         }
     }
     break;
+
     case HEAD_SOULSOOTHER:
     {
-        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
+        // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -358,16 +369,19 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
             m_LastStatusTime = m_Tick;
             return true;
         }
+
         else if (!maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
         }
+
         else if (TryEnhance())
         {
             m_LastEnhanceTime = m_Tick;
             return true;
         }
+
         else if (TryEnfeeble(maneuvers))
         {
             m_LastEnfeebleTime = m_Tick;
@@ -375,19 +389,25 @@ bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
         }
     }
     break;
+
     case HEAD_SPIRITREAVER:
     {
-        if (maneuvers.ice && TryElemental(maneuvers))  // Ice -> Nuke
+         // Ice -> Nuke
+        if (maneuvers.ice && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
             return true;
         }
+
         else if (maneuvers.dark && TryEnhance())
         {
             m_LastEnhanceTime = m_Tick;
             return true;
         }
-        else if ((maneuvers.dark || PAutomaton->GetHPP() <= 75 || PAutomaton->GetMPP() <= 75) && TryEnfeeble(maneuvers)) // Dark or self HPP/MPP <= 75 -> Enfeeble
+
+        // Dark or self HPP/MPP <= 75 -> Enfeeble
+        else if ((maneuvers.dark || PAutomaton->GetHPP() <= 75 || PAutomaton->GetMPP() <= 75) && TryEnfeeble(maneuvers))
+
         {
             m_LastEnfeebleTime = m_Tick;
             return true;
@@ -409,7 +429,9 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         return false;
 
     float threshold = 0;
-    switch (maneuvers.light) // Light -> Higher healing threshold
+
+    // Light -> Higher healing threshold
+    switch (maneuvers.light)
     {
     case 1:
         threshold = 40;
@@ -449,24 +471,29 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
             haveHate = selfEnmity > masterEnmity ? true : false;
         }
     }
-    
+
     // Prioritize hate
     if (haveHate)
     {
-        if (PAutomaton->GetHPP() <= 50) // Automaton only heals itself when <= 50%
+        // Automaton only heals itself when <= 50%
+        if (PAutomaton->GetHPP() <= 50)
             PCastTarget = PAutomaton;
         else if (PAutomaton->PMaster->GetHPP() <= threshold && distance(PAutomaton->loc.p, PAutomaton->PMaster->loc.p) < 20)
             PCastTarget = PAutomaton->PMaster;
     }
+
     else
     {
         if (PAutomaton->PMaster->GetHPP() <= threshold)
             PCastTarget = PAutomaton->PMaster;
-        else if (PAutomaton->GetHPP() <= 50) // Automaton only heals itself when <= 50%
+
+        // Automaton only heals itself when <= 50%
+        else if (PAutomaton->GetHPP() <= 50)
             PCastTarget = PAutomaton;
     }
 
-    if (maneuvers.light && !PCastTarget && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Light + Soulsoother head -> Heal party
+    // Light + Soulsoother head -> Heal party
+    if (maneuvers.light && !PCastTarget && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty)
     {
         if (PMob)
         {
@@ -503,7 +530,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         }
     }
 
-    // This might be wrong
+    // TODO::This might be wrong(wrong code or wrong values compared to retail?)
     if (PCastTarget)
     {
         auto missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
@@ -524,7 +551,8 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     return false;
 }
 
-inline bool resistanceComparator(const std::pair<SpellID, int16>& firstElem, const std::pair<SpellID, int16>& secondElem) {
+inline bool resistanceComparator(const std::pair<SpellID, int16>& firstElem, const std::pair<SpellID, int16>& secondElem)
+{
     return firstElem.second < secondElem.second;
 }
 
@@ -538,15 +566,21 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
 
     int8 tier = 4;
     int32 hp = PTarget->health.hp;
-    int32 selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
+
+    // Shortcut for wasting less time
+    int32 selfmp = PAutomaton->health.mp;
     if (selfmp < 4)
         return false;
+
     else if (hp <= 50 || selfmp < 16)
         tier = 0;
+
     else if (hp <= 150 || selfmp < 40)
         tier = 1;
+
     else if (hp <= 200 || selfmp < 88)
         tier = 2;
+
     else if (hp <= 600 || selfmp < 156)
         tier = 3;
 
@@ -596,6 +630,7 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
         else
             defaultPriority.push_back(SpellID::Stone);
     }
+
     else
     {
         defaultPriority = { SpellID::Thunder, SpellID::Blizzard, SpellID::Fire, SpellID::Aero, SpellID::Water, SpellID::Stone };
@@ -639,6 +674,7 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
                 }
             }
         });
+
         if (dispel)
             castPriority.push_back(SpellID::Dispel);
     }
@@ -662,6 +698,7 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             {
                 castPriority.push_back(SpellID::Dia_II);
             }
+
             else
             {
                 defaultPriority.push_back(SpellID::Dia_II);
@@ -674,6 +711,7 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             {
                 castPriority.push_back(SpellID::Bio);
             }
+
             else
             {
                 defaultPriority.push_back(SpellID::Bio);
@@ -687,6 +725,7 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
                 castPriority.push_back(SpellID::Dia);
             }
             else
+
             {
                 defaultPriority.push_back(SpellID::Dia);
             }
@@ -698,6 +737,7 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
             castPriority.push_back(SpellID::Poison_II);
             castPriority.push_back(SpellID::Poison);
         }
+
         else
         {
             defaultPriority.push_back(SpellID::Poison_II);
@@ -706,47 +746,59 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
 
         if (maneuvers.wind) // Wind -> Silence
             castPriority.push_back(SpellID::Silence);
+
         else
             defaultPriority.push_back(SpellID::Silence);
 
         if (maneuvers.earth) // Earth -> Slow
             castPriority.push_back(SpellID::Slow);
+
         else
             defaultPriority.push_back(SpellID::Slow);
 
         if (maneuvers.dark) // Dark -> Blind
             castPriority.push_back(SpellID::Blind);
+
         else
             defaultPriority.push_back(SpellID::Blind);
 
         if (maneuvers.ice) // Ice -> Paralyze
             castPriority.push_back(SpellID::Paralyze);
+
         else
+
             defaultPriority.push_back(SpellID::Paralyze);
 
         if (maneuvers.fire) // Fire -> Addle
             castPriority.push_back(SpellID::Addle);
+
         else
             defaultPriority.push_back(SpellID::Addle);
     }
     break;
+
     case HEAD_SPIRITREAVER:
     {
-        if (PAutomaton->GetMPP() <= 75 && PTarget->health.mp > 0) // MPP <= 75 -> Aspir
+        // MPP <= 75 -> Aspir
+        if (PAutomaton->GetMPP() <= 75 && PTarget->health.mp > 0)
         {
             castPriority.push_back(SpellID::Aspir_II);
             castPriority.push_back(SpellID::Aspir);
         }
 
-        if (PAutomaton->GetHPP() <= 75 && PTarget->m_EcoSystem != SYSTEM_UNDEAD) // HPP <= 75 -> Drain
+        // HPP <= 75 -> Drain
+        if (PAutomaton->GetHPP() <= 75 && PTarget->m_EcoSystem != SYSTEM_UNDEAD)
             castPriority.push_back(SpellID::Drain);
 
-        if (maneuvers.dark) // Dark -> Access to Enfeebles
+        // Dark -> Access to Enfeebles
+        if (maneuvers.dark)
         {
-            if (!PAutomaton->StatusEffectContainer->HasStatusEffect(EFFECT_INT_BOOST)) // Use it ASAP
+            // Use it ASAP
+            if (!PAutomaton->StatusEffectContainer->HasStatusEffect(EFFECT_INT_BOOST))
                 defaultPriority.push_back(SpellID::Absorb_INT);
 
-            // Not prioritizable since it requires 1 Dark to access Enfeebles and requires 2 of another element to prioritize another
+            // Not prioritizable since it requires 1 Dark to access Enfeebles
+            // and requires 2 of another element to prioritize another
             defaultPriority.push_back(SpellID::Blind);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
@@ -759,11 +811,13 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
                 {
                     castPriority.push_back(SpellID::Dia_II);
                 }
+
                 else
                 {
                     defaultPriority.push_back(SpellID::Dia_II);
                 }
             }
+
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
                 defaultPriority.push_back(SpellID::Bio);
@@ -775,14 +829,15 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
                 {
                     castPriority.push_back(SpellID::Dia);
                 }
+
                 else
                 {
                     defaultPriority.push_back(SpellID::Dia);
                 }
             }
 
-
-            if (maneuvers.water >= 2) // 2 Water -> Poison
+            // 2 Water -> Poison
+            if (maneuvers.water >= 2)
             {
                 castPriority.push_back(SpellID::Poison_II);
                 castPriority.push_back(SpellID::Poison);
@@ -793,22 +848,29 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
                 defaultPriority.push_back(SpellID::Poison);
             }
 
-            if (maneuvers.wind >= 2) // 2 Wind -> Silence
+            // 2 Wind -> Silence
+            if (maneuvers.wind >= 2)
                 castPriority.push_back(SpellID::Silence);
+
             else
                 defaultPriority.push_back(SpellID::Silence);
 
-            if (maneuvers.earth >= 2) // 2 Earth -> Slow
+            // 2 Earth -> Slow
+            if (maneuvers.earth >= 2)
                 castPriority.push_back(SpellID::Slow);
+
             else
                 defaultPriority.push_back(SpellID::Slow);
 
-            if (maneuvers.ice >= 2) // 2 Ice -> Paralyze
+            // 2 Ice -> Paralyze
+            if (maneuvers.ice >= 2)
                 castPriority.push_back(SpellID::Paralyze);
+
             else
                 defaultPriority.push_back(SpellID::Paralyze);
 
-            if (maneuvers.fire >= 2) // 2 Fire -> Addle
+            // 2 Fire -> Addle
+            if (maneuvers.fire >= 2)
                 castPriority.push_back(SpellID::Addle);
             else
                 defaultPriority.push_back(SpellID::Addle);
@@ -817,30 +879,36 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
     break;
     case HEAD_SOULSOOTHER:
     {
-        if (maneuvers.earth) // Earth -> Slow
+        // Earth -> Slow
+        if (maneuvers.earth)
             castPriority.push_back(SpellID::Slow);
         else
             defaultPriority.push_back(SpellID::Slow);
 
-        if (maneuvers.water) // 2 Water -> Poison
+        // 2 Water -> Poison
+        if (maneuvers.water)
         {
             castPriority.push_back(SpellID::Poison_II);
             castPriority.push_back(SpellID::Poison);
         }
+
         else
         {
             defaultPriority.push_back(SpellID::Poison_II);
             defaultPriority.push_back(SpellID::Poison);
         }
 
-        if (maneuvers.dark) // Dark -> Blind > Bio
+        // Dark -> Blind > Bio
+        if (maneuvers.dark)
         {
             castPriority.push_back(SpellID::Blind);
+
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
                 castPriority.push_back(SpellID::Bio_II);
             }
         }
+
         else
         {
             defaultPriority.push_back(SpellID::Blind);
@@ -852,7 +920,8 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            if (maneuvers.light) // Light -> Dia
+            // Light -> Dia
+            if (maneuvers.light)
             {
                 castPriority.push_back(SpellID::Dia_II);
             }
@@ -864,10 +933,12 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
         {
-            if (maneuvers.dark) // Dark -> Blind > Bio
+            // Dark -> Blind > Bio
+            if (maneuvers.dark)
             {
                 castPriority.push_back(SpellID::Bio);
             }
+
             else
             {
                 defaultPriority.push_back(SpellID::Bio);
@@ -876,31 +947,38 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            if (maneuvers.light) // Light -> Dia
+            // Light -> Dia
+            if (maneuvers.light)
             {
                 castPriority.push_back(SpellID::Dia);
             }
+
             else
             {
                 defaultPriority.push_back(SpellID::Dia);
             }
         }
 
-        if (maneuvers.wind) // Wind -> Silence
+        // Wind -> Silence
+        if (maneuvers.wind)
             castPriority.push_back(SpellID::Silence);
+
         else
             defaultPriority.push_back(SpellID::Silence);
 
-        if (maneuvers.ice) // Ice -> Paralyze
+        // Ice -> Paralyze
+        if (maneuvers.ice)
             castPriority.push_back(SpellID::Paralyze);
+
         else
             defaultPriority.push_back(SpellID::Paralyze);
 
-        if (maneuvers.fire) // Fire -> Addle
+        // Fire -> Addle
+        if (maneuvers.fire)
             castPriority.push_back(SpellID::Addle);
+
         else
             defaultPriority.push_back(SpellID::Addle);
-    }
     }
 
     for (SpellID& id : castPriority)
@@ -959,7 +1037,8 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
         if (Cast(PAutomaton->targid, id))
             return true;
 
-    if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Water + Soulsoother head -> Remove party's statuses
+    // Water + Soulsoother head -> Remove party's statuses
+    if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty)
     {
         for (uint8 i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
         {
@@ -1039,7 +1118,8 @@ bool CAutomatonController::TryEnhance()
         }
         else
         {
-            isEngaged = true; // Assume everyone is engaged if the target isn't a mob
+            // Assume everyone is engaged if the target isn't a mob
+            isEngaged = true;
         }
 
         PAutomaton->PMaster->StatusEffectContainer->ForEachEffect([&protect, &protectcount, &shell, &shellcount, &haste, &stoneskin, &phalanx](CStatusEffect* PStatus)
@@ -1129,7 +1209,8 @@ bool CAutomatonController::TryEnhance()
 
     size_t members = 0;
 
-    // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
+    // TODO::Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
+    // Defaulting to apply buffs to other members if they have hate
     if (PAutomaton->PMaster->PParty)
     {
         members = PAutomaton->PMaster->PParty->members.size();
@@ -1159,7 +1240,8 @@ bool CAutomatonController::TryEnhance()
                 }
                 else
                 {
-                    isEngaged = true; // Assume everyone is engaged if the target isn't a mob
+                    // Assume everyone is engaged if the target isn't a mob
+                    isEngaged = true;
                 }
 
                 member->StatusEffectContainer->ForEachEffect([&protect, &protectcount, &shell, &shellcount, &haste](CStatusEffect* PStatus)
@@ -1198,11 +1280,11 @@ bool CAutomatonController::TryEnhance()
         }
     }
 
-    // No info on how this spell worked
+    // TODO::No info on how this spell worked
     if((members - protectcount) >= 4)
         Cast(PAutomaton->targid, SpellID::Protectra_V);
 
-    // No info on how this spell worked
+    // TODO::No info on how this spell worked
     if ((members - shellcount) >= 4)
         Cast(PAutomaton->targid, SpellID::Shellra_V);
 
@@ -1252,7 +1334,7 @@ bool CAutomatonController::TryTPMove()
 
         std::vector<CMobSkill*> validSkills;
 
-        //load the skills that the automaton has access to with it's skill
+        // load the skills that the automaton has access to with its skill
         SKILLTYPE skilltype = SKILL_AME;
 
         if (PAutomaton->getFrame() == FRAME_SHARPSHOT)
@@ -1347,10 +1429,13 @@ bool CAutomatonController::TryTPMove()
     return false;
 }
 
-bool CAutomatonController::TryRangedAttack() // TODO: Find the animation for its ranged attack
+// TODO::Find the animation for its ranged attack
+bool CAutomatonController::TryRangedAttack()
 {
     if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + (m_rangedCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::SNAP_SHOT))))
+
         return MobSkill(PTarget->targid, m_RangedAbility);
+
     return false;
 }
 
@@ -1375,6 +1460,7 @@ bool CAutomatonController::CanCastSpells()
 bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 {
     if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(spellid)))
+
         return false;
 
     return CPetController::Cast(targid, spellid);
@@ -1383,7 +1469,9 @@ bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
 {
     if(PAutomaton->PRecastContainer->Has(RECAST_ABILITY, wsid))
+
         return false;
+
     return CPetController::MobSkill(targid, wsid);
 }
 
@@ -1394,6 +1482,7 @@ bool CAutomatonController::Disengage()
     {
         PAutomaton->m_Behaviour |= BEHAVIOUR_STANDBACK;
     }
+
     return CMobController::Disengage();
 }
 
@@ -1413,7 +1502,8 @@ namespace autoSpell
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 SpellID id = (SpellID)Sql_GetUIntData(SqlHandle, 0);
-                AutomatonSpell PSpell {
+                AutomatonSpell PSpell
+                {
                     (uint16)Sql_GetUIntData(SqlHandle, 1),
                     (uint8)Sql_GetUIntData(SqlHandle, 2),
                     (EFFECT)Sql_GetUIntData(SqlHandle, 3),
@@ -1421,6 +1511,7 @@ namespace autoSpell
                 };
 
                 uint32 removes = Sql_GetUIntData(SqlHandle, 5);
+
                 while (removes > 0)
                 {
                     PSpell.removes.push_back((EFFECT)(removes & 0xFF));
@@ -1440,6 +1531,7 @@ namespace autoSpell
     bool CanUseSpell(CAutomatonEntity* PCaster, SpellID spellid)
     {
         const AutomatonSpell& PSpell = autoSpellList[spellid];
+
         return ((PCaster->GetSkill(SKILL_AMA) >= PSpell.skilllevel) && (PSpell.heads & (1 << ((uint8)PCaster->getHead() - 1))));
     }
 
@@ -1447,6 +1539,7 @@ namespace autoSpell
     {
         const AutomatonSpell& PSpell = autoSpellList[spell];
         auto& statuses = PTarget->StatusEffectContainer;
+
         return (!statuses->HasStatusEffect(PSpell.enfeeble) && !PTarget->hasImmunity(PSpell.immunity));
     }
 
@@ -1456,12 +1549,14 @@ namespace autoSpell
         {
             const AutomatonSpell& PSpell = autoSpellList[spell];
             if (std::find(PSpell.removes.begin(), PSpell.removes.end(), PStatus->GetStatusID()) != PSpell.removes.end())
+
                 return spell;
         }
 
         if(PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
             return SpellID::Erase;
         else
+
             return {};
     }
 }
