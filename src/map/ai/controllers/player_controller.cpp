@@ -42,7 +42,8 @@ CPlayerController::CPlayerController(CCharEntity* _PChar) :
 }
 
 void CPlayerController::Tick(time_point)
-{}
+{
+}
 
 bool CPlayerController::Cast(uint16 targid, SpellID spellid)
 {
@@ -51,16 +52,19 @@ bool CPlayerController::Cast(uint16 targid, SpellID spellid)
     {
         return CController::Cast(targid, spellid);
     }
+
     else
+
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_CAST));
+
         return false;
     }
 }
 
 bool CPlayerController::Engage(uint16 targid)
 {
-    //#TODO: pet engage/disengage
+    // TODO::pet engage/disengage
     std::unique_ptr<CBasicPacket> errMsg;
     auto PChar = static_cast<CCharEntity*>(POwner);
     auto PTarget = PChar->IsValidTarget(targid, TARGET_ENEMY, errMsg);
@@ -75,23 +79,28 @@ bool CPlayerController::Engage(uint16 targid)
                 {
                     PChar->PLatentEffectContainer->CheckLatentsWeaponDraw(true);
                     PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
+
                     return true;
                 }
             }
+
             else
             {
                 errMsg = std::make_unique<CMessageBasicPacket>(PChar, PTarget, 0, 0, MSGBASIC_WAIT_LONGER);
             }
         }
+
         else
         {
             errMsg = std::make_unique<CMessageBasicPacket>(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY);
         }
     }
+
     if (errMsg)
     {
         PChar->HandleErrorMessage(errMsg);
     }
+
     return false;
 }
 
@@ -112,9 +121,11 @@ bool CPlayerController::Ability(uint16 targid, uint16 abilityid)
     {
         return PChar->PAI->Internal_Ability(targid, abilityid);
     }
+
     else
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
+
         return false;
     }
 }
@@ -126,10 +137,12 @@ bool CPlayerController::RangedAttack(uint16 targid)
     {
         return PChar->PAI->Internal_RangedAttack(targid);
     }
+
     else
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
     }
+
     return false;
 }
 
@@ -140,6 +153,7 @@ bool CPlayerController::UseItem(uint16 targid, uint8 loc, uint8 slotid)
     {
         return PChar->PAI->Internal_UseItem(targid, loc, slotid);
     }
+
     return false;
 }
 
@@ -148,22 +162,25 @@ bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
     auto PChar = static_cast<CCharEntity*>(POwner);
     if (PChar->PAI->CanChangeState())
     {
-        //#TODO: put all this in weaponskill_state
+        // TODO::put all this in weaponskill_state
         CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(wsid);
 
         if (PWeaponSkill && !charutils::hasWeaponSkill(PChar, PWeaponSkill->getID()))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
+
             return false;
         }
         if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_ANY_WS));
+
             return false;
         }
         if (PChar->health.tp < 1000)
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NOT_ENOUGH_TP));
+
             return false;
         }
         if (PWeaponSkill->getType() == SKILL_ARC || PWeaponSkill->getType() == SKILL_MRK)
@@ -178,6 +195,7 @@ bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
                 PChar->equip[SLOT_AMMO] == 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NO_RANGED_WEAPON));
+
                 return false;
             }
         }
@@ -190,20 +208,24 @@ bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             if (!isFaceing(PChar->loc.p, PTarget->loc.p, 40) && PTarget != PChar)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_CANNOT_SEE));
+
                 return false;
             }
 
             return CController::WeaponSkill(targid, wsid);
         }
+
         else if (errMsg)
         {
             PChar->pushPacket(std::move(errMsg));
         }
     }
+
     else
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_WS));
     }
+
     return false;
 }
 

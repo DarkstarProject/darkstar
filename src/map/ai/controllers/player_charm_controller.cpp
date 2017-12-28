@@ -41,6 +41,7 @@ CPlayerCharmController::~CPlayerCharmController()
     {
         POwner->PAI->Internal_Disengage();
     }
+
     POwner->PAI->PathFind.reset();
     POwner->allegiance = ALLEGIANCE_PLAYER;
 }
@@ -50,6 +51,7 @@ void CPlayerCharmController::Tick(time_point tick)
     m_Tick = tick;
     if (POwner->PMaster == nullptr || !POwner->PMaster->isAlive()) {
         POwner->StatusEffectContainer->DelStatusEffect(EFFECT_CHARM);
+
         return;
     }
 
@@ -57,6 +59,7 @@ void CPlayerCharmController::Tick(time_point tick)
     {
         DoCombatTick(tick);
     }
+
     else
     {
         DoRoamTick(tick);
@@ -69,17 +72,20 @@ void CPlayerCharmController::DoCombatTick(time_point tick)
     {
         POwner->PAI->Internal_Disengage();
     }
+
     if (POwner->PMaster->GetBattleTargetID() != POwner->GetBattleTargetID())
     {
         POwner->PAI->Internal_ChangeTarget(POwner->PMaster->GetBattleTargetID());
     }
     auto PTarget {POwner->GetBattleTarget()};
+
     if (PTarget)
     {
         if (POwner->PAI->CanFollowPath())
         {
             POwner->PAI->PathFind->LookAt(PTarget->loc.p);
             std::unique_ptr<CBasicPacket> err;
+
             if (!POwner->CanAttack(PTarget, err))
             {
                 if (POwner->speed > 0)
@@ -107,6 +113,7 @@ void CPlayerCharmController::DoRoamTick(time_point tick)
         {
             POwner->PAI->PathFind->FollowPath();
         }
+
         else if (POwner->GetSpeed() > 0)
         {
             POwner->PAI->PathFind->WarpTo(POwner->PMaster->loc.p, RoamDistance);
