@@ -11,7 +11,7 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_SILENTRES, 35);
+    mob:addMod(MOD_SILENCERES, 35);
     mob:addMod(MOD_SLEEPRES, 50);
     mob:addMod(MOD_LULLABYRES, 50);
     mob:addMod(MOD_SPELLINTERRUPT, 25);
