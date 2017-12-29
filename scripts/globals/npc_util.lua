@@ -1,5 +1,5 @@
 package.loaded["scripts/globals/settings"] = nil;
-
+require("scripts/globals/settings");
 
 -- Provides helper methods for npcs
 npcUtil = {};
@@ -129,7 +129,6 @@ end
 --             item={927, 927}
 --            });
 function npcUtil.completeQuest(player, area, quest, options)
-
     options = options or {}
 
     if (options["item"] ~= nil) then
@@ -142,7 +141,6 @@ function npcUtil.completeQuest(player, area, quest, options)
         player:addTitle(options["title"])
     end
 
-
     if (options["gil"] ~= nil) then
         npcUtil.giveGil(player, options["gil"])
     end
@@ -151,15 +149,14 @@ function npcUtil.completeQuest(player, area, quest, options)
         npcUtil.giveKeyItem(player, options["keyItem"])
     end
 
-    -- default to 30
-    if (options["fame"] == nil) then
-        options["fame"] = 30;
+    if (area["fame_area"] ~= nil) then
+        if (options["fame"] == nil) then
+            options["fame"] = 30; -- default to 30
+        end
+        player:addFame(area, options["fame"])
     end
-
-    player:addFame(area, options["fame"])
-
+    
     player:completeQuest(area,quest)
-
     return true
 end
 
