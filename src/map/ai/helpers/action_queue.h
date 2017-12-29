@@ -33,26 +33,48 @@ class CBaseEntity;
 
 struct queueAction_t
 {
-    time_point start_time {server_clock::now()};
+    time_point start_time
+    {
+        server_clock::now()
+    };
+
     duration delay {0ms};
     bool checkState {false};
     int lua_func {0};
-    std::function<void(CBaseEntity*)> func {};
+    std::function<void(CBaseEntity*)> func
+    {
+    };
 
     queueAction_t(int _ms, bool _checkstate, int _lua_func) :
         delay(std::chrono::milliseconds(_ms)),
         checkState(_checkstate),
         lua_func(_lua_func) {}
+
     queueAction_t(duration _ms, bool _checkstate, std::function<void(CBaseEntity*)> _func) :
         delay(_ms),
         checkState(_checkstate),
         func(_func) {}
 };
 
-inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
-inline bool operator> (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return rhs < lhs; }
-inline bool operator<= (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return !(lhs > rhs); }
-inline bool operator>= (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return !(lhs < rhs); }
+inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) noexcept
+{
+    return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay;
+}
+
+inline bool operator> (const queueAction_t& lhs, const queueAction_t& rhs) noexcept
+{
+    return rhs < lhs;
+}
+
+inline bool operator<= (const queueAction_t& lhs, const queueAction_t& rhs) noexcept
+{
+    return !(lhs > rhs);
+}
+
+inline bool operator>= (const queueAction_t& lhs, const queueAction_t& rhs) noexcept
+{
+    return !(lhs < rhs);
+}
 
 class CAIActionQueue
 {
@@ -65,6 +87,7 @@ public:
     void handleAction(queueAction_t &action);
 
     bool isEmpty();
+
 private:
     CBaseEntity* PEntity;
     std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> actionQueue;

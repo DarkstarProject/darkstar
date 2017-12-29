@@ -53,18 +53,22 @@ bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTu
         {
             return true;
         }
+
         else
         {
             Clear();
+
             return false;
         }
     }
+
     else
     {
         // no point worm roaming cause it'll move one inch
         if (m_roamFlags & ROAMFLAG_WORM)
         {
             Clear();
+
             return false;
         }
 
@@ -79,7 +83,9 @@ bool CPathFind::PathTo(const position_t& point, uint8 pathFlags, bool clear)
 {
     // don't follow a new path if the current path has script flag and new path doesn't
     if (IsFollowingPath() && (m_pathFlags & PATHFLAG_SCRIPT) && !(pathFlags & PATHFLAG_SCRIPT))
+    {
         return false;
+    }
 
     if (clear)
     {
@@ -96,6 +102,7 @@ bool CPathFind::PathTo(const position_t& point, uint8 pathFlags, bool clear)
         {
             result = FindClosestPath(m_PTarget->loc.p, point);
         }
+
         else
         {
             result = FindPath(m_PTarget->loc.p, point);
@@ -108,6 +115,7 @@ bool CPathFind::PathTo(const position_t& point, uint8 pathFlags, bool clear)
 
         return result;
     }
+
     else
     {
         if (clear)
@@ -126,17 +134,14 @@ bool CPathFind::PathInRange(const position_t& point, float range, uint8 pathFlag
         Clear();
     }
     m_distanceFromPoint = range;
+
     return PathTo(point, pathFlags, false);
 }
 
 bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, uint8 pathFlags)
 {
     Clear();
-    //position_t* lastPoint = &point;
-
-    //float randomRadian = dsprand::GetRandomNumber<float>(0, 2 * (float)M_PI);
-    //lastPoint->x += cosf(randomRadian) * distanceFromPoint;
-    //lastPoint->z += sinf(randomRadian) * distanceFromPoint;
+    // TODO::clarify when these should be flagged on/off or remove them if not needed
 
     // save for sliding logic
     m_originalPoint = point;
@@ -186,6 +191,7 @@ bool CPathFind::ValidPosition(const position_t& pos)
     {
         return m_PTarget->loc.zone->m_navMesh->validPosition(pos);
     }
+
     else
     {
         return true;
@@ -200,7 +206,7 @@ void CPathFind::LimitDistance(float maxLength)
 void CPathFind::StopWithin(float within)
 {
     if (!IsFollowingPath()) return;
-    // TODO: cut up path
+    // TODO::cut up path
 
     position_t& lastPoint = m_points.back();
     position_t* secondLastPoint = nullptr;
@@ -224,6 +230,7 @@ void CPathFind::StopWithin(float within)
         lastPoint.x -= cosf(radians) * within;
         lastPoint.z -= sinf(radians) * within;
     }
+
     else
     {
         // i'm already there, stop moving
@@ -257,6 +264,7 @@ void CPathFind::FollowPath()
 
         m_onPoint = true;
     }
+
     else if (AtPoint(targetPoint))
     {
         m_currentPoint++;
@@ -267,7 +275,7 @@ void CPathFind::FollowPath()
         }
 
         m_onPoint = true;
-        //#event onPoint event
+
     }
 }
 
@@ -300,6 +308,7 @@ void CPathFind::StepTo(const position_t& pos, bool run)
             m_PTarget->loc.p.y = pos.y;
             m_PTarget->loc.p.z = pos.z;
         }
+
         else
         {
             float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * (float)M_PI;
@@ -309,9 +318,11 @@ void CPathFind::StepTo(const position_t& pos, bool run)
             m_PTarget->loc.p.z += sinf(radians) * (distanceTo - m_distanceFromPoint);
         }
     }
+
     else
     {
         m_distanceMoved += stepDistance;
+
         // take a step towards target point
         float radians = (1 - (float)m_PTarget->loc.p.rotation / 256) * 2 * (float)M_PI;
 
@@ -341,6 +352,7 @@ bool CPathFind::FindPath(const position_t& start, const position_t& end)
     if (m_points.size() <= 0)
     {
         ShowNavError("CPathFind::FindPath Entity (%d) could not find path\n", m_PTarget->id);
+
         return false;
     }
 
@@ -354,12 +366,14 @@ bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 m
     position_t startPosition = start;
 
     // find end points for turns
-    for (int8 i = 0; i < m_turnLength; i++) {
+    for (int8 i = 0; i < m_turnLength; i++)
+    {
         // look for new point centered around the last point
         auto status = m_PTarget->loc.zone->m_navMesh->findRandomPosition(startPosition, maxRadius);
 
         // couldn't find one point so just break out
-        if (status.first != 0) {
+        if (status.first != 0)
+        {
             return false;
         }
 
@@ -394,7 +408,8 @@ bool CPathFind::FindClosestPath(const position_t& start, const position_t& end)
 void CPathFind::LookAt(const position_t& point)
 {
     // don't look if i'm at that point
-    if (!AtPoint(point)) {
+    if (!AtPoint(point))
+    {
         m_PTarget->loc.p.rotation = getangle(m_PTarget->loc.p, point);
         m_PTarget->updatemask |= UPDATE_POS;
     }
@@ -440,9 +455,14 @@ bool CPathFind::IsFollowingScriptedPath()
 bool CPathFind::AtPoint(const position_t& pos)
 {
     if (m_distanceFromPoint == 0)
+    {
         return m_PTarget->loc.p.x == pos.x && m_PTarget->loc.p.z == pos.z;
+    }
+
     else
+    {
         return distance(m_PTarget->loc.p, pos) <= (m_distanceFromPoint + .2f);
+    }
 }
 
 bool CPathFind::InWater()
@@ -451,6 +471,7 @@ bool CPathFind::InWater()
     {
         return true;
     }
+
     if (isNavMeshEnabled())
     {
         return m_PTarget->loc.zone->m_navMesh->inWater(m_PTarget->loc.p);
@@ -522,6 +543,7 @@ void CPathFind::FinishedPath()
             Clear();
         }
     }
+
     else
     {
         Clear();

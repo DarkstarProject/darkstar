@@ -50,7 +50,11 @@ public:
     template<class... Args>
     void triggerListener(std::string eventname, Args&&... args)
     {
-        if (eventListeners.empty()) { return; }
+        if (eventListeners.empty())
+        {
+            return;
+        }
+
         try
         {
             for (auto&& event : eventListeners.at(eventname))
@@ -61,7 +65,10 @@ public:
                 luautils::callFunc(nargs);
             }
         }
-        catch (std::out_of_range&) {}
+
+        catch (std::out_of_range&)
+        {
+        }
     }
 
     //calls event from lua
@@ -75,7 +82,10 @@ public:
                 luautils::callFunc(nargs);
             }
         }
-        catch (std::out_of_range&) {}
+
+        catch (std::out_of_range&)
+        {
+        }
     }
 
 private:
@@ -83,7 +93,11 @@ private:
 
     // push parameters on lua stack
     template<class T>
-    void pushArg(T&& arg) { luautils::pushArg<std::decay_t<T>>(std::forward<T>(arg)); }
+    void pushArg(T&& arg)
+    {
+        luautils::pushArg<std::decay_t<T>>(std::forward<T>(arg));
+    }
+
     template<class T, class... Args>
     void pushArg(T&& arg, Args&&... args)
     {

@@ -29,7 +29,8 @@ This file is part of DarkStar-server source code.
 
 CAIActionQueue::CAIActionQueue(CBaseEntity* _PEntity) :
     PEntity(_PEntity)
-{}
+{
+}
 
 void CAIActionQueue::pushAction(queueAction_t&& action)
 {
@@ -37,6 +38,7 @@ void CAIActionQueue::pushAction(queueAction_t&& action)
     {
         actionQueue.push(std::move(action));
     }
+
     else
     {
         timerQueue.push(std::move(action));
@@ -48,24 +50,28 @@ void CAIActionQueue::checkAction(time_point tick)
     while (!timerQueue.empty())
     {
         auto& topaction = timerQueue.top();
+
         if (tick > topaction.start_time + topaction.delay)
         {
             queueAction_t action = timerQueue.top();
             timerQueue.pop();
             handleAction(action);
         }
+
         else break;
     }
+
     while (!actionQueue.empty())
     {
         auto& topaction = actionQueue.top();
-        if (tick > topaction.start_time + topaction.delay && 
+        if (tick > topaction.start_time + topaction.delay &&
             (!topaction.checkState || PEntity->PAI->CanChangeState()))
         {
             auto action = actionQueue.top();
             actionQueue.pop();
             handleAction(action);
         }
+
         else break;
     }
 }
@@ -79,6 +85,7 @@ void CAIActionQueue::handleAction(queueAction_t& action)
         luautils::callFunc(1);
         luautils::unregister_fp(action.lua_func);
     }
+
     if (action.func)
     {
         action.func(PEntity);

@@ -40,8 +40,10 @@ void CAIEventHandler::removeListener(std::string identifier)
                 {
                     luautils::unregister_fp(event.lua_func);
                 }
+
                 return true;
             }
+
             return false;
         }), eventListener.second.end());
     }
