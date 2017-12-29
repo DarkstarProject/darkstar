@@ -75,6 +75,7 @@ function onMobEngaged(mob,target)
         local pet = GetMobByID(petIDs[1][i]);
         pet:setModelId(1841);
         pet:spawn();
+		pet:updateEnmity(target);
     end
 end;
  
@@ -143,10 +144,6 @@ end;
             else
                 pet = pets[phase % 2][i];
             end
-            if (not pet:isEngaged() and not pet:isAsleep() and pet:getHP() > 0) then
-                pet:setPos(mob:getXPos() + math.random(-2, 2), mob:getYPos(), mob:getZPos() + math.random(-2, 2));
-                pet:updateEnmity(target);
-            end
         end
     end
    
@@ -160,7 +157,7 @@ end;
             end
         end
         DespawnMob(PW);
-        printf("Timer expired at %i. Despawning Pandemonium Warden.", depopTime);
+    --  printf("Timer expired at %i. Despawning Pandemonium Warden.", depopTime);
     end
 end;
  
