@@ -15,7 +15,7 @@ end
 
 function onUnequip(pet)
     pet:delMod(MOD_ATTP, 6)
-    pet:addMod(MOD_RATTP, 6)
+    pet:delMod(MOD_RATTP, 6)
 end
 
 function onManeuverGain(pet,maneuvers)
@@ -34,12 +34,12 @@ end
 function onManeuverLose(pet,maneuvers)
     if (maneuvers == 1) then
         pet:delMod(MOD_ATTP, 3);
-        pet:addMod(MOD_RATTP, 3)
+        pet:delMod(MOD_RATTP, 3)
     elseif (maneuvers == 2) then
         pet:delMod(MOD_ATTP, 3); 
-        pet:addMod(MOD_RATTP, 3)
+        pet:delMod(MOD_RATTP, 3)
     elseif (maneuvers == 3) then
         pet:delMod(MOD_ATTP, 3);
-        pet:addMod(MOD_RATTP, 3)
+        pet:delMod(MOD_RATTP, 3)
     end
 end
