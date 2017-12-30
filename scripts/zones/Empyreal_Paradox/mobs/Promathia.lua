@@ -71,7 +71,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local battlefield = player:getBattlefield();
-    player:startEvent(0x7d04, battlefield:getBattlefieldNumber());
+    player:startEvent(32004, battlefield:getBattlefieldNumber());
 end;
 
 -----------------------------------
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option,target)
     -- printf("finishCSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x7d04) then
+    if (csid == 32004) then
         DespawnMob(target:getID());
         mob = SpawnMob(target:getID()+1);
         local bcnmAllies = mob:getBattlefield():getAllies();

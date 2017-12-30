@@ -3,14 +3,10 @@
 -- Item: coconut_rusk
 -- Food Effect: 30 Min, All Races
 -----------------------------------------
--- Increases rate of high-quality synthesis. (?)
--- Reduces chance of synthesis material loss. (?)
+-- High-quality success rate +3
+-- Synthesis failure rate -6%
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -21,10 +17,6 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5784);
 end;
@@ -34,15 +26,11 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    -- target:addMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 3);
-    -- target:addMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 3);
+    target:addMod(MOD_SYNTH_HQ_RATE, 3);
+    target:addMod(MOD_SYNTH_FAIL_RATE, -6);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
-    -- target:delMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 3);
-    -- target:delMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 3);
+function onEffectLose(target, effect)
+    target:delMod(MOD_SYNTH_HQ_RATE, 3);
+    target:delMod(MOD_SYNTH_FAIL_RATE, -6);
 end;

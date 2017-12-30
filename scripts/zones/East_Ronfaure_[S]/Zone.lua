@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
     end
     if (prevZone == 80) then
         if (player:getCurrentMission(WOTG) == WHILE_THE_CAT_IS_AWAY) then
-            cs = 0x0007;
+            cs = 7;
         end
     end
     return cs;
@@ -57,7 +57,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0007) then
+    if (csid == 7) then
         player:completeMission(WOTG, WHILE_THE_CAT_IS_AWAY);
         player:addMission(WOTG, A_TIMESWEPT_BUTTERFLY);
     end

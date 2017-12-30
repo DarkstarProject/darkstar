@@ -8,11 +8,7 @@
 -- Intelligence 2
 -- Wind Res 5
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,30 +19,18 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,4594);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_MPP, 19);
     target:addMod(MOD_FOOD_MP_CAP, 60);
     target:addMod(MOD_INT, 2);
     target:addMod(MOD_WINDRES, 5);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_MPP, 19);
     target:delMod(MOD_FOOD_MP_CAP, 60);
     target:delMod(MOD_INT, 2);

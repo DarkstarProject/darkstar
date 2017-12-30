@@ -15,8 +15,7 @@ require("scripts/globals/log_ids");
 -----------------------------------
 
 function showShop(player, nation, stock)
-
-correction = 1;
+    local correction = 1;
 
     if (nation ~= STATIC) then
         correction = (1 + (0.20 * (9 - player:getFameLevel(nation)) / 8))*SHOP_PRICE;
@@ -28,7 +27,7 @@ correction = 1;
         player:addShopItem(stock[i],stock[i+1]*correction);
     end
 
-player:sendMenu(2);
+    player:sendMenu(2);
 end;
 
 -----------------------------------
@@ -39,11 +38,9 @@ end;
 -----------------------------------
 
 function showNationShop(player, nation, stock)
-
-conquest = getNationRank(nation);
-playerNation = player:getNation();
-
-correction = 1;
+    local conquest = getNationRank(nation);
+    local playerNation = player:getNation();
+    local correction = 1;
 
     if (nation ~= STATIC) then
         correction = (1 + (0.20 * (9 - player:getFameLevel(nation)) / 8))*SHOP_PRICE;
@@ -65,7 +62,7 @@ correction = 1;
         end
     end
 
-player:sendMenu(2);
+    player:sendMenu(2);
 end;
 
 -----------------------------------
@@ -75,16 +72,13 @@ end;
 -----------------------------------
 
 function ShowOPVendorShop(player)
-
-    stock = 
+    local stock = 
     {
-        0x1034,316,        --Antidote
-        0x1037,800,        --Echo Drops
-        0x1020,4832,    --Ether
-        0x1036,2595,    --Eye Drops
-        0x1010,910        --Potion
+        4148,  316, -- Antidote
+        4151,  800, -- Echo Drops
+        4128, 4832, -- Ether
+        4150, 2595, -- Eye Drops
+        4112,  910, -- Potion
     };
-
     showShop(player, STATIC, stock);
-
 end;

@@ -25,19 +25,19 @@ function onTrigger(player,npc)
 
     if ((Order_Up == QUEST_ACCEPTED) and (not Order_Grevan)) then
         -- Progresses Quest: 'Order Up'
-        player:startEvent(0x0045);
+        player:startEvent(69);
     else
         if (player:getQuestStatus(ADOULIN, HYPOCRITICAL_OATH) == QUEST_COMPLETED) then
             if (player:getQuestStatus(ADOULIN, NOTSOCLEAN_BILL) == QUEST_COMPLETED) then
                 -- Standard dialogue after stamping out plague in Svenja quest line
-                player:startEvent(0x00BC);
+                player:startEvent(188);
             else
                 -- Standard dialogue before stamping out plague in Svenja quest line
-                player:startEvent(0x00AB);
+                player:startEvent(171);
             end
         else
             -- Standard dialogue prior to Svenja quest line
-            player:startEvent(0x021D);
+            player:startEvent(541);
         end
     end
 end;
@@ -54,7 +54,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x0045) then
+    if (csid == 69) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 10, true);
     end

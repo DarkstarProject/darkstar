@@ -2,13 +2,10 @@
 -- Spell: Aquaveil
 -- Reduces chance of having a spell interrupted.
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -36,7 +33,7 @@ function onSpellCast(caster,target,spell)
     end
 
     target:addStatusEffect(EFFECT_AQUAVEIL,power,0,duration);
-    spell:setMsg(230);
+    spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
 
     return EFFECT_AQUAVEIL;
 end;

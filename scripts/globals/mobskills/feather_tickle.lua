@@ -1,7 +1,7 @@
 ---------------------------------------------
---  Feather Tickle
+-- Feather Tickle
 --
---  Description: Reduces tp to zero.
+-- Description: Reduces tp to zero.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

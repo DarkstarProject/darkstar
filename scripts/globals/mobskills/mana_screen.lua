@@ -1,21 +1,22 @@
 ---------------------------------------------
---  Mana_Screen
+-- Mana_Screen
 --
---  Description: Magic Shield
+-- Description: Magic Shield
 
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     local phase = mob:getLocalVar("battlePhase");
     if (phase >= 3) then
         return 0
     end;
     return 1;
-end;    
+end;
+
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_MAGIC_SHIELD;

@@ -26,14 +26,14 @@ function onZoneIn(player,prevZone)
     local cs = -1;
     if (prevZone == 81) then
         if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 2) then
-            cs = 0x003E;
+            cs = 62;
         elseif (player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 0) then
-            cs = 0x0041;
+            cs = 65;
         elseif (player:getCurrentMission(WOTG) == CAIT_SITH and
                (player:getQuestStatus(CRYSTAL_WAR, WRATH_OF_THE_GRIFFON) == QUEST_COMPLETED or
                 player:getQuestStatus(CRYSTAL_WAR, A_MANIFEST_PROBLEM) == QUEST_COMPLETED or
                 player:getQuestStatus(CRYSTAL_WAR, BURDEN_OF_SUSPICION) == QUEST_COMPLETED)) then
-            cs = 0x0043;
+            cs = 67;
         end
     end
     -- MOG HOUSE EXIT
@@ -70,11 +70,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x003E) then
+    if (csid == 62) then
         player:setVar("KnotQuiteThere",3);
-    elseif (csid == 0x0041) then
+    elseif (csid == 65) then
         player:setVar("DownwardHelix",1);
-    elseif (csid == 0x0043) then
+    elseif (csid == 67) then
         player:completeMission(WOTG, CAIT_SITH);
         player:addMission(WOTG, THE_QUEEN_OF_THE_DANCE);
     end

@@ -35,9 +35,9 @@ function onTrigger(player,npc)
     
     if (Telmoda_Madaline ~= 1) then
         player:setVar(player,"Telmoda_Madaline_Event",1);
-        player:startEvent(0x0213);
+        player:startEvent(531);
     else
-        player:startEvent(0x0268);
+        player:startEvent(616);
     end
 end; 
 

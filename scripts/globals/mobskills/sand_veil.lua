@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Sand Veil
+-- Sand Veil
 --
---  Description: Enhances evasion.
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes: Very sharp evasion increase.
+-- Description: Enhances evasion.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes: Very sharp evasion increase.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

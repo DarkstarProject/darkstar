@@ -9,9 +9,6 @@ require("scripts/globals/settings");
 require("scripts/globals/ability");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -22,10 +19,6 @@ function onAbilityCheck(player,target,ability)
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
@@ -65,9 +58,9 @@ function onUseAbility(caster,target,ability,action)
         local total = applyRoll(caster,target,ability,action,total)
         local msg = ability:getMsg()
         if msg == 420 then
-            ability:setMsg(424)
+            ability:setMsg(msgBasic.DOUBLEUP)
         elseif msg == 422 then
-            ability:setMsg(425)
+            ability:setMsg(msgBasic.DOUBLEUP_FAIL)
         end
         return total;
     end

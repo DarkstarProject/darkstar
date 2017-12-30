@@ -37,12 +37,12 @@ function onBcnmLeave(player,instance,leavecode)
     if (leavecode == 2) then -- Play end CS. Need time and battle id for record keeping + storage
         player:addExp(700);
         if (player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_III) then
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,20,0);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,20,0);
         else -- Gives skip dialog if previously completed
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,20,1);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,20,1);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
 end;
 
@@ -52,7 +52,7 @@ end;
 
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
         if (player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_III) then
             player:completeMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_III);
             player:addMission(ACP,REMEMBER_ME_IN_YOUR_DREAMS);

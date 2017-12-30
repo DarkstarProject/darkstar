@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     local WildcatBastok = player:getVar("WildcatBastok");
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,15) == false) then
-        player:startEvent(0x01fb);
+        player:startEvent(507);
     else
 
         player:showText(npc,GRISELDA_SHOP_DIALOG);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x01fb) then
+    if (csid == 507) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",15,true);
     end
 

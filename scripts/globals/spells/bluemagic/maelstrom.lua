@@ -56,7 +56,7 @@ function onSpellCast(caster,target,spell)
     
     params.bonus = 1.0;
     
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.0625) then
         if (target:canGainStatusEffect(EFFECT_STR_DOWN)) then

@@ -49,7 +49,7 @@ function onTrigger(player,npc)
         gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
     end
 
-    player:startEvent(0x0361,AddonScenarios,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,0xFFFFFFFE,0xFFFFFFFE,10,gil); -- CSID,Missions,Fame,?,?,?,?,Cost,TotalGilPlayerHas
+    player:startEvent(865,AddonScenarios,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,0xFFFFFFFE,0xFFFFFFFE,10,gil); -- CSID,Missions,Fame,?,?,?,?,Cost,TotalGilPlayerHas
 end;
 
 -----------------------------------
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
 
     if (player:getLocalVar("Durogg_PlayCutscene") < 2) then
         if (   option ==   1) then        -- Drenched! It Began with a Raindrop
-            player:startEvent(0x7549,0,0,0,0,0,0,231);
+            player:startEvent(30025,0,0,0,0,0,0,231);
 --        elseif (option ==   2) then        -- Hasten! In a Jam in Jeuno?
 --            player:startEvent(CSID,0,0,0,0,0,0,231);
 --        elseif (option ==  33) then        -- Rumors from the West

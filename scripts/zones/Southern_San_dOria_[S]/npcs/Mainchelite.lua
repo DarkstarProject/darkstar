@@ -4,17 +4,17 @@
 -- @zone 80
 -- !pos -16 1 -30
 -- CS IDs:
--- 0x005 = Generic Greeting for Iron Ram members
+-- 5 = Generic Greeting for Iron Ram members
 -- 0x006 = Mid Initiation of other nation
--- 0x007 = Ask player to Join Iron Rams
--- 0x008 = Ask if changed mind about joining Iron rams (after player has declined)
--- 0x009 = Mid Initiation of other nation
--- 0x00A = Player works for another nation, offer to switch +give quest
--- 0x00B = Player works for another nation, offer to switch +give quest
--- 0x00C = Complete investigation
--- 0x00D = "How fares the search, <player>?"
+-- 7 = Ask player to Join Iron Rams
+-- 8 = Ask if changed mind about joining Iron rams (after player has declined)
+-- 9 = Mid Initiation of other nation
+-- 10 = Player works for another nation, offer to switch +give quest
+-- 11 = Player works for another nation, offer to switch +give quest
+-- 12 = Complete investigation
+-- 13 = "How fares the search, <player>?"
 -- 0x00E = "How fares the search, <player>?"
--- 0x00F = No Red Recommendation Letter and has no nation affiliation
+-- 15 = No Red Recommendation Letter and has no nation affiliation
 -- Todo: medal loss from nation switching. Since there is no rank-up yet, this isn't so important for now.
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
@@ -51,19 +51,19 @@ function onTrigger(player,npc)
     local ShatteredLumber = player:hasKeyItem(PIECE_OF_SHATTERED_LUMBER);
 
     if (TheFightingFourth == QUEST_ACCEPTED or SnakeOnThePlains == QUEST_ACCEPTED) then
-        player:startEvent(0x009);
+        player:startEvent(9);
     elseif (SteamedRams == QUEST_AVAILABLE and RedLetter == true) then
-        player:startEvent(0x007);
+        player:startEvent(7);
     elseif (SteamedRams == QUEST_AVAILABLE and player:getVar("RED_R_LETTER_USED") == 1) then
-        player:startEvent(0x008);
+        player:startEvent(8);
     elseif (SteamedRams == QUEST_ACCEPTED and CharredPropeller == true and OxidizedPlate == true and ShatteredLumber == true) then
-        player:startEvent(0x00C);
+        player:startEvent(12);
     elseif (SteamedRams == QUEST_ACCEPTED) then
-        player:startEvent(0x00D);
+        player:startEvent(13);
     elseif (SteamedRams == QUEST_COMPLETED and Allegiance == 1) then
-        player:startEvent(0x005);
+        player:startEvent(5);
     else
-        player:startEvent(0x00F);
+        player:startEvent(15);
     end
 end;
 
@@ -83,20 +83,20 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007 and option == 0) then
+    if (csid == 7 and option == 0) then
         player:addQuest(CRYSTAL_WAR,STEAMED_RAMS);
         player:setVar("RED_R_LETTER_USED",1);
         player:delKeyItem(RED_RECOMMENDATION_LETTER);
-    elseif (csid == 0x007 and option == 1) then
+    elseif (csid == 7 and option == 1) then
         player:setVar("RED_R_LETTER_USED",1);
         player:delKeyItem(RED_RECOMMENDATION_LETTER);
-    elseif (csid == 0x008 and option == 0) then
+    elseif (csid == 8 and option == 0) then
         player:addQuest(CRYSTAL_WAR, STEAMED_RAMS);
-    elseif (csid == 0x00A and option == 0) then
+    elseif (csid == 10 and option == 0) then
         player:addQuest(CRYSTAL_WAR, STEAMED_RAMS);
-    elseif (csid == 0x00B and option == 0) then
+    elseif (csid == 11 and option == 0) then
         player:addQuest(CRYSTAL_WAR, STEAMED_RAMS);
-    elseif (csid == 0x00C and option == 0) then
+    elseif (csid == 12 and option == 0) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
         if (player:getVar("Campaign_Nation") == 0) then
             if (player:getFreeSlotsCount() >= 1) then
@@ -123,7 +123,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(OXIDIZED_PLATE);
             player:delKeyItem(PIECE_OF_SHATTERED_LUMBER);
         end
-    elseif (csid == 0x00D and option == 1) then
+    elseif (csid == 13 and option == 1) then
         player:delQuest(CRYSTAL_WAR,STEAMED_RAMS);
     end
 end;

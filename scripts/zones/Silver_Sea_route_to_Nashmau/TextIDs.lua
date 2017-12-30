@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7047; -- You can't fish here.
 
 -- Shops
-JIDWAHN_SHOP_DIALOG = 7310; -- Would you care for some items to use on your travels?
+    JIDWAHN_SHOP_DIALOG = 7310; -- Would you care for some items to use on your travels?
 
 -- Other
-ON_WAY_TO_NASHMAU = 7306; -- We are on our way to Nashmau
+      ON_WAY_TO_NASHMAU = 7311; -- We are on our way to Nashmau

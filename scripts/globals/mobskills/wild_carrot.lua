@@ -1,14 +1,14 @@
----------------------------------------------------
---  Wild Carrot
+---------------------------------------------
+-- Wild Carrot
 --
---  Description: Restores HP.
+-- Description: Restores HP.
 --
----------------------------------------------------
+---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

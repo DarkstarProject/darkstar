@@ -15,5 +15,5 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
          KARABARA_EARTH = 7631; -- how much damage you can deal with simple rock!
      KARABARA_LIGHTNING = 7632; -- Witness the power of lightning and thunder!
          KARABARA_WATER = 7633; -- Water is more dangerous than most expect
-          KARABABA_QUIT = 7641; -- It's time for me to quit the field
+          KARABABA_QUIT = 7641; -- What a completely useless shield. It's time for me to quit the field.
 

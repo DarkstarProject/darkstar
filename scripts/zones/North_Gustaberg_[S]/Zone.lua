@@ -26,7 +26,7 @@ function onZoneIn(player,prevZone)
         player:setPos(380.038,-2.25,147.627,192);
     end
     if (prevZone == 87 and player:getCampaignAllegiance() > 0 and player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_AVAILABLE) then
-        cs = 0x0001;
+        cs = 1;
     end
     return cs;
 end;
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0001) then
+    if (csid == 1) then
         player:addQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
         player:addKeyItem(CLUMP_OF_ANIMAL_HAIR);
         player:messageSpecial(KEYITEM_OBTAINED,CLUMP_OF_ANIMAL_HAIR);

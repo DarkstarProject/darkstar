@@ -9,11 +9,7 @@
 -- DEF +20% (cap 145)
 -- Subtle Blow +8
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -23,10 +19,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,6272);
@@ -45,11 +37,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SUBTLE_BLOW, 8);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 30);
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_FIRERES, 20);

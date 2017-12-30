@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-    player:startEvent(0x0404);
+    player:startEvent(1028);
     player:messageSpecial(DOCKING_IN_MHAURA);
 end;
 
@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0404) then
+    if (csid == 1028) then
         player:setPos(0,0,0,0,249);
     end
 end;

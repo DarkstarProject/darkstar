@@ -3,26 +3,17 @@
 -- Item: Yagudo Drink
 -- Item Effect: Restores 120 MP over 3 minutes
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
+    if (not target:hasStatusEffect(EFFECT_REFRESH)) then
         target:addStatusEffect(EFFECT_REFRESH,2,3,180);
     else
-        target:messageBasic(423);
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;
-

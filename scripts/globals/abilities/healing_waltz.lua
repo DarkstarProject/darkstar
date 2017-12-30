@@ -8,9 +8,6 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -42,10 +39,6 @@ function onAbilityCheck(player,target,ability)
     end;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance.
     if not player:hasStatusEffect(EFFECT_TRANCE) then
@@ -55,9 +48,9 @@ function onUseAbility(player,target,ability)
     local effect = target:healingWaltz();
 
     if (effect == EFFECT_NONE) then
-        ability:setMsg(283); -- no effect
+        ability:setMsg(msgBasic.NO_EFFECT); -- no effect
     else
-        ability:setMsg(123);
+        ability:setMsg(msgBasic.JA_REMOVE_EFFECT);
     end
 
     return effect;

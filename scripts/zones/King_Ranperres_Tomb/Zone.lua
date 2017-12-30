@@ -5,10 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/King_Ranperres_Tomb/TextIDs");
+require("scripts/zones/King_Ranperres_Tomb/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
@@ -17,8 +17,11 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 function onInitialize(zone)
     zone:registerRegion(1,-84.302,6.5,-120.997,-77,7.5,-114);  -- Used for stairs teleport -85.1,7,-119.9
 
-    -- Vrtra
-    SetRespawnTime(17555890, 86400, 259200);
+    UpdateNMSpawnPoint(VRTRA);
+    GetMobByID(VRTRA):setRespawnTime(math.random(86400, 259200));
+
+    UpdateNMSpawnPoint(BARBASTELLE);
+    GetMobByID(BARBASTELLE):setRespawnTime(math.random(1800,5400));
 
     UpdateTreasureSpawnPoint(17555955);
 end;
@@ -53,7 +56,7 @@ end;
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
-        player:startEvent(0x0009);
+        player:startEvent(9);
     end
 end;
 

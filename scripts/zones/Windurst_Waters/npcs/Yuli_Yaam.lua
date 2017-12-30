@@ -27,15 +27,15 @@ function onTrigger(player,npc)
     wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
     fame = player:getFameLevel(WINDURST)
     if (wonderingstatus <= 1 and fame >= 5) then
-        player:startEvent(0x027d);                        -- WONDERING_MINSTREL: Quest Available / Quest Accepted
+        player:startEvent(637);                        -- WONDERING_MINSTREL: Quest Available / Quest Accepted
     elseif (wonderingstatus == QUEST_COMPLETED and player:needToZone()) then
-        player:startEvent(0x0281);                      -- WONDERING_MINSTREL: Quest After
+        player:startEvent(641);                      -- WONDERING_MINSTREL: Quest After
     else
         rand = math.random(2);
         if (rand == 1) then
-            player:startEvent(0x0264);                  -- Standard Conversation 1
+            player:startEvent(612);                  -- Standard Conversation 1
         else
-            player:startEvent(0x0265);                     -- Standard Conversation 2
+            player:startEvent(613);                     -- Standard Conversation 2
         end
     end
 end;

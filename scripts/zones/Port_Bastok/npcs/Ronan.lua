@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     
     if (player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL) == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 0) then
         if (trade:hasItemQty(17397,3) and trade:getItemCount() == 3) then
-            player:startEvent(0x0054);
+            player:startEvent(84);
         end
     end
     
@@ -34,18 +34,18 @@ function onTrigger(player,npc)
 
     if (OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 1) then
         if (player:needToZone()) then
-            player:startEvent(0x0055);
+            player:startEvent(85);
         else
-            player:startEvent(0x0056);
+            player:startEvent(86);
         end
     elseif (OutOfOneShell == QUEST_ACCEPTED) then
         player:showText(npc,RONAN_DIALOG_1);
     elseif (OutOfOneShell == QUEST_COMPLETED) then
-        player:startEvent(0x0059);        
+        player:startEvent(89);        
     elseif (player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE) == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 2) then
-        player:startEvent(0x0052);
+        player:startEvent(82);
     else    
-        player:startEvent(0x0025);
+        player:startEvent(37);
     end
     
 end; 
@@ -67,13 +67,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0052) then
+    if (csid == 82) then
         player:addQuest(BASTOK,OUT_OF_ONE_S_SHELL);
-    elseif (csid == 0x0054) then
+    elseif (csid == 84) then
         player:needToZone(true);
         player:setVar("OutOfOneShell",1);
         player:tradeComplete();
-    elseif (csid == 0x0056) then
+    elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
             player:addTitle(SHELL_OUTER);
             player:setVar("OutOfOneShell",0);

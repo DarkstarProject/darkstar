@@ -39,7 +39,7 @@ namespace battlefieldutils
 {
     void getLosePosition(CBattlefield* battlefield, int(&pPosition)[4]);		// returns x y z rot in that order
     void getWinPosition(CBattlefield* battlefield, int(&pPosition)[4]);		// returns x y z rot in that order
-    void getStartPosition(uint16 zoneid, int(&pPosition)[4]);			// returns lobby position
+    void getStartPosition(uint16 zoneid, float(&pPosition)[4]);			// returns lobby position
     bool meetsWinningConditions(CBattlefield* battlefield, time_point tick);
     bool meetsLosingConditions(CBattlefield* battlefield, time_point tick);
     bool spawnMonstersForBcnm(CBattlefield* battlefield);

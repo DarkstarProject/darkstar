@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0032);
+    player:startEvent(50);
 end;
 
 -----------------------------------
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0032 and player:getVar("miniQuestForORB_CS") == 1) then
+    if (csid == 50 and player:getVar("miniQuestForORB_CS") == 1) then
 
         local c = player:getVar("countRedPoolForORB");
 

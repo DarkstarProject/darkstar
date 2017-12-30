@@ -10,11 +10,7 @@
 -- Arcana Killer 4
 -- Dark Res 25
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,19 +21,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,4488);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_CHR, -10);
     target:addMod(MOD_ACC, 10);
     target:addMod(MOD_RACC, 10);
@@ -46,11 +34,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_DARKRES, 25);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_CHR, -10);
     target:delMod(MOD_ACC, 10);
     target:delMod(MOD_RACC, 10);

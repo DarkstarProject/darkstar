@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Temporal Shift
---  Family: Hpemde
---  Description: Enemies within range are temporarily prevented from acting.
---  Type: Magical
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: 15 yalms
---  Notes:
+-- Temporal Shift
+-- Family: Hpemde
+-- Description: Enemies within range are temporarily prevented from acting.
+-- Type: Magical
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: 15 yalms
+-- Notes:
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

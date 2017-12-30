@@ -4,17 +4,9 @@
 --  Transports the user to their Home Nation
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local nation = target:getNation(target);

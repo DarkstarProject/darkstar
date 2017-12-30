@@ -1,38 +1,17 @@
 -----------------------------------
 -- Area: Batallia Downs
 --  MOB: Stalking Sapling
+-- Note: PH for Tottering Toby
 -----------------------------------
-
-require("scripts/globals/fieldsofvalor");
 require("scripts/zones/Batallia_Downs/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/fieldsofvalor");
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,72,1);
     checkRegime(player,mob,73,1);
-
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-
-    if (Tottering_Toby_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[POP]Tottering_Toby");
-        if (ToD <= os.time() and GetMobAction(Tottering_Toby) == 0) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(Tottering_Toby);
-                GetMobByID(Tottering_Toby):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Tottering_Toby", mobID);
-                DisallowRespawn(mobID, true);
-            end
-        end
-    end
-
+    phOnDespawn(mob,TOTTERING_TOBY_PH,20,3600); -- 1 hour
 end;

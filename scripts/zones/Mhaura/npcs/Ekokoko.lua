@@ -36,9 +36,9 @@ end;
 function onTrigger(player,npc)
 
     if (math.random() > 0.5) then
-        player:startEvent(0x33);
+        player:startEvent(51);
     else
-        player:startEvent(0x34);
+        player:startEvent(52);
     end
 end;
 

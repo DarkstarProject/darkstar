@@ -187,7 +187,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
             if (PCurrentMob->allegiance == PMob->allegiance &&
                 (forceLink ||
                     PCurrentMob->m_Family == PMob->m_Family ||
-                    sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK)))
+                    (sublink && sublink == PCurrentMob->getMobMod(MOBMOD_SUBLINK))))
             {
 
                 if (PCurrentMob->PMaster == nullptr || PCurrentMob->PMaster->objtype == TYPE_MOB)
@@ -313,13 +313,13 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 
         if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
             //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
+            float pos[4] = {0.f, 0.f, 0.f, 0.f};
             battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (pos != nullptr) {
+            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
+                PChar->loc.p.rotation = (uint8)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -336,13 +336,13 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
 
         if (PChar->loc.destination == 0) { //this player is disconnecting/logged out, so move them to the entrance
             //move depending on zone
-            int pos[4] = {0, 0, 0, 0};
+            float pos[4] = {0.f, 0.f, 0.f, 0.f};
             battlefieldutils::getStartPosition(m_zone->GetID(), pos);
-            if (!(pos[0] == 0 && pos[1] == 0 && pos[2] == 0 && pos[3] == 0)) {
+            if (!(pos[0] == 0.f && pos[1] == 0.f && pos[2] == 0.f && pos[3] == 0.f)) {
                 PChar->loc.p.x = pos[0];
                 PChar->loc.p.y = pos[1];
                 PChar->loc.p.z = pos[2];
-                PChar->loc.p.rotation = pos[3];
+                PChar->loc.p.rotation = (uint8)pos[3];
                 PChar->updatemask |= UPDATE_POS;
                 charutils::SaveCharPosition(PChar);
             }
@@ -740,6 +740,8 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             }
         }
         break;
+        default:
+            break;
     }
     if (ScriptType != SCRIPT_NONE)
     {
@@ -769,7 +771,7 @@ CCharEntity* CZoneEntities::GetCharByName(int8* name)
         for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
         {
             CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-            if (stricmp(PCurrentChar->GetName(), name) == 0)
+            if (stricmp((char*)PCurrentChar->GetName(), (const char*)name) == 0)
             {
                 return PCurrentChar;
             }
@@ -817,12 +819,16 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
             }
             case CHAR_INRANGE:
             {
+                // todo: rewrite packet handlers and use enums instead of rawdog packet ids
+                // 30 yalms if action packet, 50 otherwise
+                const int checkDistanceSq = packet->id() == 0x0028 ? 900 : 2500;
+
                 for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
                 {
                     CCharEntity* PCurrentChar = (CCharEntity*)it->second;
                     if (PEntity != PCurrentChar)
                     {
-                        if (distance(PEntity->loc.p, PCurrentChar->loc.p) < 50 &&
+                        if (distanceSquared(PEntity->loc.p, PCurrentChar->loc.p) < checkDistanceSq &&
                             ((PEntity->objtype != TYPE_PC) || (((CCharEntity*)PEntity)->m_moghouseID == PCurrentChar->m_moghouseID)))
                         {
                             if (packet->id() == 0x00E &&

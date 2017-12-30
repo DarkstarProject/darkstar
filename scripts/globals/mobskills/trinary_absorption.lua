@@ -1,16 +1,14 @@
----------------------------------------------------
+---------------------------------------------
 -- Trinary Absorption
 -- Attempts to absorb one buff from a single target, or otherwise steals HP.
 -- Type: Magical
 -- Utsusemi/Blink absorb: 1 Shadows
 -- Range: Melee
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:isMobType(MOBTYPE_NOTORIOUS)) then

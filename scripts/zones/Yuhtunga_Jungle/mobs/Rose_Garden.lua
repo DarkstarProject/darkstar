@@ -3,67 +3,39 @@
 -- MOB:  Rose Garden
 -----------------------------------
 
+require("scripts/zones/Yuhtunga_Jungle/MobIDs");
 
------------------------------------
--- onMobSpawn
------------------------------------
+function disturbMob(mob)
+    mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)); -- 10:00:00 to 10:30:00
+end
 
 function onMobSpawn(mob)
-
-    local Voluptuous_Vilma = 17281358;
-    GetMobByID(Voluptuous_Vilma):setLocalVar("1",os.time() + math.random((36000), (37800)));
-
+    disturbMob(mob);
 end;
 
------------------------------------
--- onMobRoam
------------------------------------
+function onMobEngaged(mob, target)
+    disturbMob(mob);
+end;
+
+function onMobFight(mob, target)
+    disturbMob(mob);
+end;
 
 function onMobRoam(mob)
-
-    local Voluptuous_Vilma = 17281358;
-    local Voluptuous_Vilma_PH = 0;
-    local Voluptuous_Vilma_PH_Table =
-    {
-        17281357
-    };
-    local Voluptuous_Vilma_ToD = GetMobByID(Voluptuous_Vilma):getLocalVar("1");
-
-    if (Voluptuous_Vilma_ToD <= os.time()) then
-        Voluptuous_Vilma_PH = math.random((0), (#Voluptuous_Vilma_PH_Table));
-        if (Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH] ~= nil) then
-            if (GetMobAction(Voluptuous_Vilma) == 0) then
-                SetServerVariable("Voluptuous_Vilma_PH", Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH]);
-                DisallowRespawn(Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH], true);
-                DisallowRespawn(Voluptuous_Vilma, false);
-                DespawnMob(Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH]);
-                SpawnMob(Voluptuous_Vilma, "", 0);
-            end
-        end
+    -- Rose Garden has been left alone for 10.25 hours
+    if (os.time() > mob:getLocalVar("timeToGrow")) then
+        DisallowRespawn(ROSE_GARDEN, true);
+        DespawnMob(ROSE_GARDEN);
+        DisallowRespawn(VOLUPTUOUS_VILMA, false);
+        SpawnMob(VOLUPTUOUS_VILMA);
     end
-
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    local Rose_Garden = 17281357;
-    local Rose_Garden_PH = GetServerVariable("Rose_Garden_PH");
-
-    GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random(36000,37800));
-    SetServerVariable("Rose_Garden_PH", 0);
-    DisallowRespawn(Rose_Garden, true);
-    DisallowRespawn(Rose_Garden_PH, false);
-    SpawnMob(Rose_Garden_PH, "", GetMobRespawnTime(Rose_Garden_PH));
-
+    DisallowRespawn(ROSE_GARDEN, true);
+    DisallowRespawn(ROSE_GARDEN_PH, false);
+    GetMobByID(ROSE_GARDEN_PH):setRespawnTime(GetMobRespawnTime(ROSE_GARDEN_PH));
 end;

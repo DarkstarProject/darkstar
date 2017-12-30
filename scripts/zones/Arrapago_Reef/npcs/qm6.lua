@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     LuckOfTheDraw = player:getVar("LuckOfTheDraw");
     
     if (LuckOfTheDraw ==2) then
-        player:startEvent(0x00D3);    
+        player:startEvent(211);    
         player:setVar("LuckOfTheDraw",3);        
     end
     

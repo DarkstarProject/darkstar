@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:getVar("THE_FIGHTING_FOURTH") == 2) then
-        player:startEvent(0x006A)
+        player:startEvent(106)
     end
 end;
 
@@ -32,11 +32,14 @@ end;
 -- onEventFinish
 -----------------------------------
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x006A) then
+    if (csid == 106) then
         player:setVar("THE_FIGHTING_FOURTH",3);
     end        
 end;

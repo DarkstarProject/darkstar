@@ -9,11 +9,7 @@
 -- Ranged Attack +10% (cap 40)
 -- hHP +1
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -24,19 +20,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,5221);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_ACCP, 12);
     target:addMod(MOD_FOOD_ACC_CAP, 80);
     target:addMod(MOD_FOOD_ATTP, 10);
@@ -48,11 +36,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 1);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_ACCP, 12);
     target:delMod(MOD_FOOD_ACC_CAP, 80);
     target:delMod(MOD_FOOD_ATTP, 10);

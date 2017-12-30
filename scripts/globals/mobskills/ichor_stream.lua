@@ -1,15 +1,15 @@
 ---------------------------------------------
---  Ichor Stream
---  Family: Hpemde
---  Description: Spews venomous ichor at targets in a fan-shaped area of effect.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Cone
---  Notes: Poison is about 5/tic.
+-- Ichor Stream
+-- Family: Hpemde
+-- Description: Spews venomous ichor at targets in a fan-shaped area of effect.
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Cone
+-- Notes: Poison is about 5/tic.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

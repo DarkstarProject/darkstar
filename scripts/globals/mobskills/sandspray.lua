@@ -1,15 +1,15 @@
 ---------------------------------------------
---  Sandspray
---  Family: Qiqurn
---  Description: Blinds enemies within a fan-shaped area originating from the user.
---  Type: Magical
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown
---  Notes:
+-- Sandspray
+-- Family: Qiqurn
+-- Description: Blinds enemies within a fan-shaped area originating from the user.
+-- Type: Magical
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Unknown
+-- Notes:
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

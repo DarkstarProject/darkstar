@@ -30,7 +30,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x239);
+    player:startEvent(569);
 end;
 
 -----------------------------------

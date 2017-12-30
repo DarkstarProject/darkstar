@@ -6,11 +6,12 @@
 package.loaded[ "scripts/zones/Batallia_Downs/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require( "scripts/zones/Batallia_Downs/TextIDs");
-require("scripts/globals/zone");
-require( "scripts/globals/icanheararainbow");
+require("scripts/zones/Batallia_Downs/TextIDs");
+require("scripts/zones/Batallia_Downs/MobIDs");
+require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/missions");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -56,8 +57,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Ahtu
-    SetRespawnTime(17207657, 900, 10800);
+    UpdateNMSpawnPoint(AHTU);
+    GetMobByID(AHTU):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------
@@ -72,9 +73,9 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0385;
+        cs = 901;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0387;
+        cs = 903;
     end
 
     return cs;
@@ -106,7 +107,7 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0385) then
+    if (csid == 901) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
@@ -118,9 +119,9 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0385) then
+    if (csid == 901) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0387) then
+    elseif (csid == 903) then
         if (player:getZPos() >  -331) then
             player:updateEvent(0,0,0,0,0,3);
         else

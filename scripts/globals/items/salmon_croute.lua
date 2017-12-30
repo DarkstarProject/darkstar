@@ -10,11 +10,7 @@
 -- HP recovered while healing 2
 -- MP recovered while healing 1
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -25,19 +21,11 @@ function onItemCheck(target)
     return result;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,1800,4551);
 end;
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(MOD_FOOD_MPP, 3);
     target:addMod(MOD_FOOD_MP_CAP, 130);
     target:addMod(MOD_DEX, 2);
@@ -48,11 +36,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MPHEAL, 1);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_FOOD_MPP, 3);
     target:delMod(MOD_FOOD_MP_CAP, 130);
     target:delMod(MOD_DEX, 2);

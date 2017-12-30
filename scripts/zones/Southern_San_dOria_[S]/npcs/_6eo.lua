@@ -21,7 +21,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 3) then
-        player:startEvent(0x003F);
+        player:startEvent(63);
     end
 
 end;
@@ -42,10 +42,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x003F) then
-        player:completeQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);
-        player:addItem(751);
-        player:messageSpecial(ITEM_OBTAINED,751); --Platinum Beastcoin
-        player:setVar("KnotQuiteThere",0);
+    if (csid == 63) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,751);
+        else
+            player:completeQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);
+            player:addItem(751);
+            player:messageSpecial(ITEM_OBTAINED,751); --Platinum Beastcoin
+            player:setVar("KnotQuiteThere",0);
+        end
     end
 end;

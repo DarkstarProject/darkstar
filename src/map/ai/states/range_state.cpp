@@ -55,7 +55,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
         if (dsprand::GetRandomNumber(100) < chance)
         {
             //reduce delay by 10%-50%
-            delay = delay * (10 - dsprand::GetRandomNumber(1, 6)) / 10.f;
+            delay = (int16)(delay * (10 - dsprand::GetRandomNumber(1, 6)) / 10.f);
             m_rapidShot = true;
         }
     }
@@ -143,8 +143,8 @@ bool CRangeState::CanUseRangedAttack(CBattleEntity* PTarget)
     CItemWeapon* PRanged = (CItemWeapon*)m_PEntity->getEquip(SLOT_RANGED);
     CItemWeapon* PAmmo = (CItemWeapon*)m_PEntity->getEquip(SLOT_AMMO);
 
-    if (!(PRanged && PRanged->isType(ITEM_WEAPON) ||
-        PAmmo && PAmmo->isThrowing()))
+    if (!((PRanged && PRanged->isType(ITEM_WEAPON)) ||
+        (PAmmo && PAmmo->isThrowing())))
     {
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_NO_RANGED_WEAPON);
         return false;

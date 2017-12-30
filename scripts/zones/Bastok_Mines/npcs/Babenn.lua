@@ -37,9 +37,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:getVar("EleventhsHour") == 1) then
-        player:startEvent(0x002d);
+        player:startEvent(45);
     else
-        player:startEvent(0x0028);
+        player:startEvent(40);
     end
 
 end;
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x002d) then
+    if (csid == 45) then
 
         if (player:getFreeSlotsCount() > 1) then
             player:setVar("EleventhsHour",0);

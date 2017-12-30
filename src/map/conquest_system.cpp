@@ -90,7 +90,7 @@ namespace conquest
             return;
 
         auto lost = 0;
-        for (auto i = 0; i < 4; ++i)
+        for (auto i = 0u; i < 4; ++i)
         {
             if (i == nation)
             {
@@ -171,6 +171,10 @@ namespace conquest
                 points = 600;
                 break;
             }
+            default:
+            {
+                break;
+            }
         }
 
         conquest::UpdateInfluencePoints(points, BEASTMEN, region);
@@ -236,7 +240,7 @@ namespace conquest
         int32 bastok = 0;
         int32 windurst = 0;
         int32 beastmen = 0;
-        const int8* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
+        const char* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
         int32 ret = Sql_Query(SqlHandle, Query, regionid);
@@ -315,7 +319,7 @@ namespace conquest
             }
         });
 
-        const int8* Query = "UPDATE conquest_system SET region_control = \
+        const char* Query = "UPDATE conquest_system SET region_control = \
                             IF(sandoria_influence > bastok_influence AND sandoria_influence > windurst_influence AND \
                             sandoria_influence > beastmen_influence, 0, \
                             IF(bastok_influence > sandoria_influence AND bastok_influence > windurst_influence AND \
@@ -406,7 +410,7 @@ namespace conquest
         uint8 sandoria = 0;
         uint8 bastok = 0;
         uint8 windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -443,14 +447,14 @@ namespace conquest
                     windurst_prev = Sql_GetIntData(SqlHandle, 1);
             }
         }
-        return GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, sandoria_prev);
+        return GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev);
     }
 
     uint8 GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst)
     {
-        if ((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9||
-            (bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst) && bastok > 9||
-            (windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria) && windurst > 9)
+        if (((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9) ||
+            ((bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst) && bastok > 9) ||
+            ((windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria) && windurst > 9))
         {
             return 1;
         }
@@ -485,7 +489,7 @@ namespace conquest
         uint8 sandoria = 0;
         uint8 bastok = 0;
         uint8 windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        const char* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
 
@@ -534,9 +538,10 @@ namespace conquest
 
     uint8 GetNexTally()
     {
-	    uint8 dayspassed = CVanaTime::getInstance()->getSysWeekDay() * 25;
-	    dayspassed += ((CVanaTime::getInstance()->getSysHour() * 60 + CVanaTime::getInstance()->getSysMinute()) * 25 ) / 1440;
-	    return (uint8)(175 - dayspassed);
+        auto weekday = CVanaTime::getInstance()->getSysWeekDay();
+        uint8 dayspassed = (weekday == 0 ? 6 : weekday - 1) * 25;
+        dayspassed += ((CVanaTime::getInstance()->getSysHour() * 60 + CVanaTime::getInstance()->getSysMinute()) * 25 ) / 1440;
+        return (uint8)(175 - dayspassed);
     }
 
     /************************************************************************
@@ -547,7 +552,7 @@ namespace conquest
 
     uint8 GetRegionOwner(REGIONTYPE RegionID)
     {
-        const int8* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
+        const char* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
         int32 ret = Sql_Query(SqlHandle, Query, RegionID);
 
@@ -578,7 +583,7 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            uint32 points = exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+            uint32 points = (uint32)(exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15));
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);

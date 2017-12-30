@@ -8,9 +8,9 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7228; -- You can't fish here
 
 -- Shop texts
-RAJMONDA_SHOP_DIALOG = 7334; -- There's nothing like fishing to pass the time!
-   MAERA_SHOP_DIALOG = 7335; -- May I offer you items to help you on your journey?
+   RAJMONDA_SHOP_DIALOG = 7334; -- There's nothing like fishing to pass the time!
+      MAERA_SHOP_DIALOG = 7335; -- May I offer you items to help you on your journey?
 
 -- Other
-    ON_WAY_TO_SELBINA = 7329; -- We're on our way to Selbina.
-ARRIVING_SOON_SELBINA = 7336; -- We will be arriving soon
+      ON_WAY_TO_SELBINA = 7329; -- We're on our way to Selbina.
+  ARRIVING_SOON_SELBINA = 7336; -- We will be arriving soon

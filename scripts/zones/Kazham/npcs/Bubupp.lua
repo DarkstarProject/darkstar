@@ -33,9 +33,9 @@ function onTrade(player,npc,trade)
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if progress == 5 or failed == 6 then
             if goodtrade then
-                player:startEvent(0x00E0);
+                player:startEvent(224);
             elseif badtrade then
-                player:startEvent(0x00EA);
+                player:startEvent(234);
             end
         end
     end
@@ -53,14 +53,14 @@ function onTrigger(player,npc)
     
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
-            player:startEvent(0x00CA);
+            player:startEvent(202);
         elseif (progress == 5 or failed == 6) then
-                player:startEvent(0x00D3);  -- asking for giant fish bones
+                player:startEvent(211);  -- asking for giant fish bones
         elseif (progress >= 6 or failed >= 7) then
-            player:startEvent(0x00F7); -- happy with giant fish bones
+            player:startEvent(247); -- happy with giant fish bones
         end
     else
-        player:startEvent(0x00CA);
+        player:startEvent(202);
     end
 end;
 -----------------------------------
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00E0) then    -- correct trade, onto next opo
+    if (csid == 224) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 5 then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",6);
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("OPO_OPO_FAILED",7);
         end
-    elseif (csid == 0x00EA) then              -- wrong trade, restart at first opo
+    elseif (csid == 234) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
         player:setVar("OPO_OPO_RETRY",6);
     end

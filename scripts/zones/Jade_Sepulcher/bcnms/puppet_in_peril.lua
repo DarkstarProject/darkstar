@@ -31,12 +31,12 @@ function onBcnmLeave(player,instance,leavecode)
    
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage        
         if (player:hasCompletedMission(TOAU,PUPPET_IN_PERIL)) then
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,1);
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,0);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,0);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;

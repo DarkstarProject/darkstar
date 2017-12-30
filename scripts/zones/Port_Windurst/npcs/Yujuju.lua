@@ -32,9 +32,9 @@ function onTrigger(player,npc)
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
     if (player:getQuestStatus(WINDURST,LURE_OF_THE_WILDCAT_WINDURST) == QUEST_ACCEPTED and player:getMaskBit(WildcatWindurst,19) == false) then
-        player:startEvent(0x026d);
+        player:startEvent(621);
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==9) then
-        player:startEvent(0x0250);--COP event
+        player:startEvent(592);--COP event
     elseif (MakingHeadlines == 1) then
         local prog = player:getVar("QuestMakingHeadlines_var");
         --  Variable to track if player has talked to 4 NPCs and a door
@@ -44,12 +44,12 @@ function onTrigger(player,npc)
         -- 8 = Umumu
         -- 16 = Mahogany Door
         if (testflag(tonumber(prog),2) == false) then
-            player:startEvent(0x013a); -- Get Scoop
+            player:startEvent(314); -- Get Scoop
         else
-            player:startEvent(0x013b); -- After receiving scoop
+            player:startEvent(315); -- After receiving scoop
         end
     else
-        player:startEvent(0x0154); -- Standard Conversation
+        player:startEvent(340); -- Standard Conversation
     end
 end;
 
@@ -69,14 +69,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x013a) then
+    if (csid == 314) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(PORT_WINDURST_SCOOP);
         player:messageSpecial(KEYITEM_OBTAINED,PORT_WINDURST_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+2);
-    elseif (csid == 0x0250)    then
+    elseif (csid == 592)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);
-    elseif (csid == 0x026d) then
+    elseif (csid == 621) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",19,true);
     end
 end;

@@ -33,16 +33,16 @@ local npcId = npc:getID();
 
     if (npcId == 17469832) then
             if (CurrentMission == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
-        player:startEvent(0x0045);
+        player:startEvent(69);
         end
     elseif (npcId == 17469828) then
-        player:startEvent(0x0041);
+        player:startEvent(65);
     elseif (npcId == 17469829) then
-        player:startEvent(0x0042);
+        player:startEvent(66);
     elseif (npcId == 17469830) then
-        player:startEvent(0x0043);
+        player:startEvent(67);
     elseif (npcId == 17469831) then
-        player:startEvent(0x0044);
+        player:startEvent(68);
     end
 end;
 
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0045) then
+    if (csid == 69) then
         player:setVar("MissionStatus",2);
     end
 end;

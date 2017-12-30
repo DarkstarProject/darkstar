@@ -66,7 +66,7 @@ This file is part of DarkStar-server source code.
 #include "message.h"
 
 
-const int8* MAP_CONF_FILENAME = nullptr;
+const char* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
@@ -125,7 +125,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
-    const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
+    const char* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
 
@@ -144,7 +144,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 *                                                                       *
 ************************************************************************/
 
-int32 do_init(int32 argc, int8** argv)
+int32 do_init(int32 argc, char** argv)
 {
     ShowStatus("do_init: begin server initialization...\n");
     map_ip.s_addr = 0;
@@ -163,7 +163,7 @@ int32 do_init(int32 argc, int8** argv)
     dsprand::seed();
 
     map_config_default();
-    map_config_read(MAP_CONF_FILENAME);
+    map_config_read((const int8*)MAP_CONF_FILENAME);
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
     ShowStatus("do_init: map_config is reading");
     ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
@@ -304,6 +304,7 @@ void do_abort(void)
 void set_server_type()
 {
     SERVER_TYPE = DARKSTAR_SERVER_MAP;
+    SOCKET_TYPE = socket_type::UDP;
 }
 
 /************************************************************************
@@ -318,8 +319,8 @@ int32 do_sockets(fd_set* rfd, duration next)
     int32 ret;
     memcpy(rfd, &readfds, sizeof(*rfd));
 
-    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
-    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
+    timeout.tv_sec = (long)std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = (long)std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
     ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
@@ -416,7 +417,7 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
     uint16 tmp, i;
 
     // counting blocks whose size = 4 byte
-    tmp = (size - FFXI_HEADER_SIZE) / 4;
+    tmp = (uint16)((size - FFXI_HEADER_SIZE) / 4);
     tmp -= tmp % 2;
 
 #   ifdef WIN32
@@ -432,13 +433,13 @@ int32 map_decipher_packet(int8* buff, size_t size, sockaddr_in* from, map_sessio
         blowfish_decipher((uint32*)buff + i + 7, (uint32*)buff + i + 8, pbfkey->P, pbfkey->S[0]);
     }
 
-    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16) == 0)
+    if (checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16)) == 0)
     {
         return 0;
     }
 
     int8 ip_str[16];
-    ShowError("map_encipher_packet: bad packet from <%s>\n", ip2str(ip, ip_str));
+    ShowError("map_encipher_packet: bad packet from <%s>\n", ip2str(ip, (char*)ip_str));
     return -1;
 }
 
@@ -456,7 +457,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 #ifdef WIN32
     try
     {
-        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+        checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), (uint32)(size - (FFXI_HEADER_SIZE + 16)), (char*)(buff + size - 16));
     }
     catch (...)
     {
@@ -464,16 +465,16 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         return -1;
     }
 #else
-    checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), buff + size - 16);
+    checksumResult = checksum((uint8*)(buff + FFXI_HEADER_SIZE), size - (FFXI_HEADER_SIZE + 16), (char*)(buff + size - 16));
 #endif
 
     if (checksumResult == 0)
     {
         if (map_session_data->PChar == nullptr)
         {
-            uint32 CharID = RBUFL(buff, FFXI_HEADER_SIZE + 0x0C);
+            uint32 CharID = ref<uint32>(buff, FFXI_HEADER_SIZE + 0x0C);
 
-            const int8* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
+            const char* fmtQuery = "SELECT charid FROM chars WHERE charid = %u LIMIT 1;";
 
             int32 ret = Sql_Query(SqlHandle, fmtQuery, CharID);
 
@@ -497,7 +498,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             }
             else
             {
-                int8* strSessionKey = nullptr;
+                char* strSessionKey = nullptr;
                 Sql_GetData(SqlHandle, 0, &strSessionKey, nullptr);
 
                 memcpy(map_session_data->blowfish.key, strSessionKey, 20);
@@ -527,7 +528,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             return -1;
         }
         // reading data size
-        uint32 PacketDataSize = RBUFL(buff, *buffsize - sizeof(int32) - 16);
+        uint32 PacketDataSize = ref<uint32>(buff, *buffsize - sizeof(int32) - 16);
         // creating buffer for decompress data
         auto PacketDataBuff = std::make_unique<int8[]>(map_config.buffer_size);
         // it's decompressing data and getting new size
@@ -563,28 +564,28 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
 
     uint16 SmallPD_Size = 0;
     uint16 SmallPD_Type = 0;
-    uint16 SmallPD_Code = RBUFW(buff, 0);
+    uint16 SmallPD_Code = ref<uint16>(buff, 0);
 
     for (int8* SmallPD_ptr = PacketData_Begin;
-        SmallPD_ptr + (RBUFB(SmallPD_ptr, 1) & 0xFE) * 2 <= PacketData_End && (RBUFB(SmallPD_ptr, 1) & 0xFE);
+        SmallPD_ptr + (ref<uint8>(SmallPD_ptr, 1) & 0xFE) * 2 <= PacketData_End && (ref<uint8>(SmallPD_ptr, 1) & 0xFE);
         SmallPD_ptr = SmallPD_ptr + SmallPD_Size * 2)
     {
-        SmallPD_Size = (RBUFB(SmallPD_ptr, 1) & 0x0FE);
-        SmallPD_Type = (RBUFW(SmallPD_ptr, 0) & 0x1FF);
+        SmallPD_Size = (ref<uint8>(SmallPD_ptr, 1) & 0x0FE);
+        SmallPD_Type = (ref<uint16>(SmallPD_ptr, 0) & 0x1FF);
 
         if (PacketSize[SmallPD_Type] == SmallPD_Size || PacketSize[SmallPD_Type] == 0) // Tests incoming packets for the correct size prior to processing
         {
             // если код текущего пакета меньше либо равен последнему полученному
             // или больше глобального то игнорируем пакет
 
-            if ((RBUFW(SmallPD_ptr, 2) <= map_session_data->client_packet_id) ||
-                (RBUFW(SmallPD_ptr, 2) > SmallPD_Code))
+            if ((ref<uint16>(SmallPD_ptr, 2) <= map_session_data->client_packet_id) ||
+                (ref<uint16>(SmallPD_ptr, 2) > SmallPD_Code))
             {
                 continue;
             }
             if (SmallPD_Type != 0x15)
             {
-                ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr, 2), RBUFW(buff, 2), SmallPD_Size, PChar->GetName());
+                ShowInfo("parse: %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, ref<uint16>(SmallPD_ptr, 2), ref<uint16>(buff, 2), SmallPD_Size, PChar->GetName());
             }
             if (PChar->loc.zone == nullptr && SmallPD_Type != 0x0A)
             {
@@ -597,7 +598,7 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
         }
         else
         {
-            ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr, 2), RBUFW(buff, 2), SmallPD_Size, PChar->GetName());
+            ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, ref<uint16>(SmallPD_ptr, 2), ref<uint16>(buff, 2), SmallPD_Size, PChar->GetName());
         }
     }
     map_session_data->client_packet_id = SmallPD_Code;
@@ -605,10 +606,10 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
     // здесь мы проверяем, получил ли клиент предыдущий пакет
     // если не получил, то мы не создаем новый, а отправляем предыдущий
 
-    if (RBUFW(buff, 2) != map_session_data->server_packet_id)
+    if (ref<uint16>(buff, 2) != map_session_data->server_packet_id)
     {
-        WBUFW(map_session_data->server_packet_data, 2) = SmallPD_Code;
-        WBUFW(map_session_data->server_packet_data, 8) = (uint32)time(nullptr);
+        ref<uint16>(map_session_data->server_packet_data, 2) = SmallPD_Code;
+        ref<uint16>(map_session_data->server_packet_data, 8) = (uint32)time(nullptr);
 
         g_PBuff = map_session_data->server_packet_data;
         *buffsize = map_session_data->server_packet_size;
@@ -638,17 +639,17 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
     //  - присвоить исходящему пакету номер последнего отправленного клиенту пакета +1
     //  - записать текущее время отправки пакета
 
-    WBUFW(buff, 0) = map_session_data->server_packet_id;
-    WBUFW(buff, 2) = map_session_data->client_packet_id;
+    ref<uint16>(buff, 0) = map_session_data->server_packet_id;
+    ref<uint16>(buff, 2) = map_session_data->client_packet_id;
 
     // сохранение текущего времени (32 BIT!)
-    WBUFL(buff, 8) = (uint32)time(nullptr);
+    ref<uint32>(buff, 8) = (uint32)time(nullptr);
 
     // собираем большой пакет, состоящий из нескольких маленьких
     CCharEntity *PChar = map_session_data->PChar;
     CBasicPacket* PSmallPacket;
     uint32 PacketSize = UINT32_MAX;
-    uint32 PacketCount = PChar->getPacketCount();
+    auto PacketCount = PChar->getPacketCount();
     uint8 packets = 0;
 
     do {
@@ -674,7 +675,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
             //Сжимаем данные без учета заголовка
             //Возвращаемый размер в 8 раз больше реальных данных
-            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, map_config.buffer_size);
+            PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, (uint32)(*buffsize - FFXI_HEADER_SIZE), PTempBuff, map_config.buffer_size);
 
             // handle compression error
             if (PacketSize == static_cast<uint32>(-1))
@@ -682,9 +683,9 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 continue;
             }
 
-            WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
+            ref<uint32>(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
-            PacketSize = zlib_compressed_size(PacketSize) + 4;
+            PacketSize = (uint32)zlib_compressed_size(PacketSize) + 4;
 
         } while (PacketCount > 0 && PacketSize > 1300 - FFXI_HEADER_SIZE - 16); //max size for client to accept
 
@@ -865,7 +866,7 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 
                     ShowWarning(CL_YELLOW"map_cleanup: WHITHOUT CHAR timed out, session closed\n" CL_RESET);
 
-                    const int8* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
+                    const char* Query = "DELETE FROM accounts_sessions WHERE client_addr = %u AND client_port = %u";
                     Sql_Query(SqlHandle, Query, map_session_data->client_addr, map_session_data->client_port);
 
                     delete[] map_session_data->server_packet_data;
@@ -1013,10 +1014,10 @@ int32 map_config_default()
 
 int32 map_config_read(const int8* cfgName)
 {
-    int8 line[1024], w1[1024], w2[1024];
+    char line[1024], w1[1024], w2[1024];
     FILE* fp;
 
-    fp = fopen(cfgName, "r");
+    fp = fopen((const char*)cfgName, "r");
     if (fp == nullptr)
     {
         ShowError("Map configuration file not found at: %s\n", cfgName);
@@ -1025,7 +1026,7 @@ int32 map_config_read(const int8* cfgName)
 
     while (fgets(line, sizeof(line), fp))
     {
-        int8* ptr;
+        char* ptr;
 
         if (line[0] == '#')
         {
@@ -1073,7 +1074,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "fame_multiplier") == 0)
         {
-            map_config.fame_multiplier = atof(w2);
+            map_config.fame_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "lightluggage_block") == 0)
         {
@@ -1089,11 +1090,11 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "ah_tax_rate_single") == 0)
         {
-            map_config.ah_tax_rate_single = atof(w2);
+            map_config.ah_tax_rate_single = (float)atof(w2);
         }
         else if (strcmp(w1, "ah_tax_rate_stacks") == 0)
         {
-            map_config.ah_tax_rate_stacks = atof(w2);
+            map_config.ah_tax_rate_stacks = (float)atof(w2);
         }
         else if (strcmp(w1, "ah_max_fee") == 0)
         {
@@ -1101,75 +1102,75 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "exp_rate") == 0)
         {
-            map_config.exp_rate = atof(w2);
+            map_config.exp_rate = (float)atof(w2);
         }
         else if (strcmp(w1, "exp_loss_rate") == 0)
         {
-            map_config.exp_loss_rate = atof(w2);
+            map_config.exp_loss_rate = (float)atof(w2);
         }
         else if (strcmp(w1, "exp_party_gap_penalties") == 0)
         {
-            map_config.exp_party_gap_penalties = atof(w2);
+            map_config.exp_party_gap_penalties = (uint8)atof(w2);
         }
         else if (strcmp(w1, "fov_allow_alliance") == 0)
         {
-            map_config.fov_allow_alliance = atof(w2);
+            map_config.fov_allow_alliance = (uint8)atof(w2);
         }
         else if (strcmp(w1, "mob_tp_multiplier") == 0)
         {
-            map_config.mob_tp_multiplier = atof(w2);
+            map_config.mob_tp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_tp_multiplier") == 0)
         {
-            map_config.player_tp_multiplier = atof(w2);
+            map_config.player_tp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "nm_hp_multiplier") == 0)
         {
-            map_config.nm_hp_multiplier = atof(w2);
+            map_config.nm_hp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "mob_hp_multiplier") == 0)
         {
-            map_config.mob_hp_multiplier = atof(w2);
+            map_config.mob_hp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_hp_multiplier") == 0)
         {
-            map_config.player_hp_multiplier = atof(w2);
+            map_config.player_hp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "nm_mp_multiplier") == 0)
         {
-            map_config.nm_mp_multiplier = atof(w2);
+            map_config.nm_mp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "mob_mp_multiplier") == 0)
         {
-            map_config.mob_mp_multiplier = atof(w2);
+            map_config.mob_mp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_mp_multiplier") == 0)
         {
-            map_config.player_mp_multiplier = atof(w2);
+            map_config.player_mp_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "sj_mp_divisor") == 0)
         {
-            map_config.sj_mp_divisor = atof(w2);
+            map_config.sj_mp_divisor = (float)atof(w2);
         }
         else if (strcmp(w1, "nm_stat_multiplier") == 0)
         {
-            map_config.nm_stat_multiplier = atof(w2);
+            map_config.nm_stat_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "mob_stat_multiplier") == 0)
         {
-            map_config.mob_stat_multiplier = atof(w2);
+            map_config.mob_stat_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "player_stat_multiplier") == 0)
         {
-            map_config.player_stat_multiplier = atof(w2);
+            map_config.player_stat_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "ability_recast_multiplier") == 0)
         {
-            map_config.ability_recast_multiplier = atof(w2);
+            map_config.ability_recast_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "drop_rate_multiplier") == 0)
         {
-            map_config.drop_rate_multiplier = atof(w2);
+            map_config.drop_rate_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "all_mobs_gil_bonus") == 0)
         {
@@ -1181,7 +1182,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "exp_retain") == 0)
         {
-            map_config.exp_retain = dsp_cap(atof(w2), 0.0f, 1.0f);
+            map_config.exp_retain = std::clamp<float>((float)atof(w2), 0.0f, 1.0f);
         }
         else if (strcmp(w1, "exp_loss_level") == 0)
         {
@@ -1209,19 +1210,19 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmp(w1, "skillup_chance_multiplier") == 0)
         {
-            map_config.skillup_chance_multiplier = atof(w2);
+            map_config.skillup_chance_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "craft_chance_multiplier") == 0)
         {
-            map_config.craft_chance_multiplier = atof(w2);
+            map_config.craft_chance_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "skillup_amount_multiplier") == 0)
         {
-            map_config.skillup_amount_multiplier = atof(w2);
+            map_config.skillup_amount_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "craft_amount_multiplier") == 0)
         {
-            map_config.craft_amount_multiplier = atof(w2);
+            map_config.craft_amount_multiplier = (float)atof(w2);
         }
         else if (strcmp(w1, "craft_day_matters") == 0)
         {
@@ -1257,7 +1258,7 @@ int32 map_config_read(const int8* cfgName)
         }
         else if (strcmpi(w1, "import") == 0)
         {
-            map_config_read(w2);
+            map_config_read((const int8*)w2);
         }
         else if (strcmpi(w1, "newstyle_skillups") == 0)
         {

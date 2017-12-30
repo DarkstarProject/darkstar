@@ -25,15 +25,15 @@ function onTrade(player,npc,trade)
     if (lufetSalt and cnt == 1 and beansAhoy == QUEST_ACCEPTED) then
         if (player:getVar("BeansAhoy") == 0 == true) then
 
-            player:startEvent(0x0151); -- Traded the Correct Item Dialogue (NOTE: You have to trade the Salts one at according to wiki)
+            player:startEvent(337); -- Traded the Correct Item Dialogue (NOTE: You have to trade the Salts one at according to wiki)
 
         elseif (player:needsToZone() == false) then
-            player:startEvent(0x0154); -- Quest Complete Dialogue
+            player:startEvent(340); -- Quest Complete Dialogue
 
         end
 
     else
-        player:startEvent(0x0153); -- Wrong Item Traded
+        player:startEvent(339); -- Wrong Item Traded
 
     end
 
@@ -46,17 +46,17 @@ end;
 function onTrigger(player,npc)
     local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,BEANS_AHOY);
     if (beansAhoy == QUEST_AVAILABLE) then
-        player:startEvent(0x014E); -- Quest Start
+        player:startEvent(334); -- Quest Start
 
     elseif (beansAhoy == QUEST_ACCEPTED) then
-        player:startEvent(0x014F); -- Quest Active, NPC Repeats what he says but as normal 'text' instead of cutscene.
+        player:startEvent(335); -- Quest Active, NPC Repeats what he says but as normal 'text' instead of cutscene.
 
     elseif (beansAhoy == QUEST_COMPLETED and getConquestTally() ~= player:getVar("BeansAhoy_ConquestWeek")) then
-        player:startEvent(0x0156);
+        player:startEvent(342);
     elseif (beansAhoy == QUEST_COMPLETED) then
-        player:startEvent(0x0155);
+        player:startEvent(341);
     else
-        player:startEvent(0x014D); -- Default Dialogue
+        player:startEvent(333); -- Default Dialogue
 
     end
 end;
@@ -78,15 +78,15 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x014E) then
+    if (csid == 334) then
         player:addQuest(CRYSTAL_WAR,BEANS_AHOY);
 
-    elseif (csid == 0x0151) then
+    elseif (csid == 337) then
         player:tradeComplete();
         player:setVar("BeansAhoy",1);
         player:needsToZone(true);
 
-    elseif (csid == 0x0154 or csid == 0x0156) then
+    elseif (csid == 340 or csid == 342) then
         if (player:hasItem(5704,1) or player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5704)
 
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
             player:addItem(5704,1);
             player:messageSpecial(ITEM_OBTAINED,5704);
             player:setVar("BeansAhoy_ConquestWeek",getConquestTally());
-            if (csid == 0x0154) then
+            if (csid == 340) then
                 player:completeQuest(CRYSTAL_WAR,BEANS_AHOY);
                 player:setVar("BeansAhoy",0);
                 player:tradeComplete();

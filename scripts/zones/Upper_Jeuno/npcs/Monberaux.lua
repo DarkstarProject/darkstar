@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
         a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Part1
         if (a == 0 or (a ~= 4 and a ~= 5 and a ~= 6 and a ~= 12 and a ~= 20 and a ~= 7 and a ~= 28 and a ~= 13 and a ~= 22 and
            a ~= 14 and a ~= 21 and a ~= 15 and a ~= 23 and a ~= 29 and a ~= 30 and a ~= 31)) then
-            player:startEvent(0x005b,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
+            player:startEvent(91,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
 end;
@@ -40,27 +40,27 @@ function onTrigger(player,npc)
     local CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
     -- COP mission 1-1
     if (player:getCurrentMission(COP) == THE_RITES_OF_LIFE and  player:getVar("PromathiaStatus") == 1) then
-        player:startEvent(0x000a);--10
+        player:startEvent(10);--10
     -- COP mission 1-2
     elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS  and  player:getVar("PromathiaStatus") == 0) then
-        player:startEvent(0x0009);--9
+        player:startEvent(9);--9
      -- COP mission 3-5
     elseif (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 0) then
-        player:startEvent(0x0052);-- 82
+        player:startEvent(82);-- 82
     elseif (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 3) then
-        player:startEvent(0x004B); --75
+        player:startEvent(75); --75
     elseif (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 2) then
-        player:startEvent(0x004A); --74
+        player:startEvent(74); --74
     elseif (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Tenzen_s_Path") == 4) then
-        player:startEvent(0x0006);
+        player:startEvent(6);
     elseif (CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 2) then
-        player:startEvent(0x0021); -- Long CS & Finish Quest "The Lost Cardian" 33
+        player:startEvent(33); -- Long CS & Finish Quest "The Lost Cardian" 33
     elseif (CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 3) then
-        player:startEvent(0x0022); -- Shot CS & Finish Quest "The Lost Cardian" 34
+        player:startEvent(34); -- Shot CS & Finish Quest "The Lost Cardian" 34
     elseif (TheLostCardien == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_KIND_CARDIAN) == QUEST_ACCEPTED) then
-        player:startEvent(0x0020); -- 32
+        player:startEvent(32); -- 32
     else
-        player:startEvent(0x001c); -- Standard dialog 28
+        player:startEvent(28); -- Standard dialog 28
     end
 
 end;
@@ -100,28 +100,30 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0006) then
+    if (csid == 6) then
         player:setVar("COP_Tenzen_s_Path",5);
-    elseif (csid == 0x004a) then
+    elseif (csid == 74) then
         player:setVar("COP_Tenzen_s_Path",3);
         player:addKeyItem(ENVELOPE_FROM_MONBERAUX);
         player:messageSpecial(KEYITEM_OBTAINED,ENVELOPE_FROM_MONBERAUX);
-    elseif (csid == 0x000a) then
+    elseif (csid == 10) then
         player:setVar("PromathiaStatus",0);
         player:addKeyItem(MYSTERIOUS_AMULET_DRAINED);
         player:completeMission(COP,THE_RITES_OF_LIFE);
         player:addMission(COP,BELOW_THE_ARKS); -- start the mission 1-2
-        player:startEvent(0x00cf);  --207
-    elseif (csid == 0x0052) then
+        player:startEvent(206); -- 206
+    elseif (csid == 206) then
+        player:startEvent(207);  --207
+    elseif (csid == 82) then
         player:setVar("PromathiaStatus",1);
-    elseif (csid == 0x004B) then
+    elseif (csid == 75) then
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,DARKNESS_NAMED);
         player:addMission(COP,SHELTERING_DOUBT);
-    elseif (csid == 0x005b) then
+    elseif (csid == 91) then
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 4);
-    elseif (csid == 0x0021 and option == 0 or csid == 0x0022 and option == 0) then
+    elseif (csid == 33 and option == 0 or csid == 34 and option == 0) then
         player:addTitle(TWOS_COMPANY);
         player:setVar("theLostCardianVar",0);
         player:addGil(GIL_RATE*2100);
@@ -131,7 +133,7 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,THE_LOST_CARDIAN);
         player:addQuest(JEUNO,THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"
-    elseif (csid == 0x0021 and option == 1) then
+    elseif (csid == 33 and option == 1) then
         player:setVar("theLostCardianVar",3);
     end
 

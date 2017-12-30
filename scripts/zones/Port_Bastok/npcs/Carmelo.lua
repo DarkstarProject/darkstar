@@ -34,35 +34,35 @@ function onTrigger(player,npc)
     local LoversInTheDusk = player:getQuestStatus(BASTOK,LOVERS_IN_THE_DUSK);
 
     if (SirensTear == QUEST_ACCEPTED) then
-        player:startEvent(0x0006);
+        player:startEvent(6);
     elseif (SirensTear == QUEST_COMPLETED and player:hasItem(576) == false and SirensTearProgress < 2) then
-        player:startEvent(0x0013);
+        player:startEvent(19);
     elseif (LoveAndIce == QUEST_AVAILABLE and SirensTear == QUEST_COMPLETED and SirensTear == QUEST_COMPLETED) then
         if (player:getFameLevel(BASTOK) >= 5 and player:seenKeyItem(CARRIER_PIGEON_LETTER) == true) then
-            player:startEvent(0x00b9);
+            player:startEvent(185);
         else
-            player:startEvent(0x00bb);
+            player:startEvent(187);
         end
     elseif (LoveAndIce == QUEST_ACCEPTED and LoveAndIceProgress == 1) then
-        player:startEvent(0x00ba);
+        player:startEvent(186);
     elseif (player:getFameLevel(BASTOK) >= 7 and ATestOfTrueLove == QUEST_AVAILABLE and LoveAndIce == QUEST_COMPLETED and player:needToZone() == false) then
-        player:startEvent(0x010e);
+        player:startEvent(270);
     elseif (ATestOfTrueLove == QUEST_ACCEPTED and ATestOfTrueLoveProgress < 3) then
-        player:startEvent(0x010f);
+        player:startEvent(271);
     elseif (ATestOfTrueLove == QUEST_ACCEPTED and ATestOfTrueLoveProgress == 3) then
-        player:startEvent(0x0110);
+        player:startEvent(272);
     elseif (ATestOfTrueLove == QUEST_ACCEPTED and ATestOfTrueLoveProgress == 4 and player:needToZone() == true) then
-        player:startEvent(0x0111);
+        player:startEvent(273);
     elseif (ATestOfTrueLove == QUEST_ACCEPTED and ATestOfTrueLoveProgress == 4 and player:needToZone() == false) then
-        player:startEvent(0x0112);
+        player:startEvent(274);
     elseif (LoversInTheDusk == QUEST_AVAILABLE and ATestOfTrueLove == QUEST_COMPLETED and player:needToZone() == false) then
-        player:startEvent(0x0113);
+        player:startEvent(275);
     elseif (LoversInTheDusk == QUEST_ACCEPTED) then
-        player:startEvent(0x0114);
+        player:startEvent(276);
     elseif (LoversInTheDusk == QUEST_COMPLETED) then
-        player:startEvent(0x0115);
+        player:startEvent(277);
     else
-        player:startEvent(0x00b6);
+        player:startEvent(182);
     end
 end;
 
@@ -85,15 +85,15 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0006) then
+    if (csid == 6) then
         player:setVar("SirensTear",1);
-    elseif (csid == 0x0013) then
+    elseif (csid == 19) then
         player:setVar("SirensTear",2);
-    elseif (csid == 0x00b9) then
+    elseif (csid == 185) then
         player:addQuest(BASTOK,LOVE_AND_ICE);
         player:addKeyItem(CARMELOS_SONG_SHEET);
         player:messageSpecial(KEYITEM_OBTAINED,CARMELOS_SONG_SHEET);
-    elseif (csid == 0x00ba) then
+    elseif (csid == 186) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17356);
         else
@@ -105,17 +105,17 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,LOVE_AND_ICE);
         end
-    elseif (csid == 0x010e) then
+    elseif (csid == 270) then
         player:addQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
-    elseif (csid == 0x0110) then
+    elseif (csid == 272) then
         player:setVar("ATestOfTrueLoveProgress",4);
         player:needToZone(true);
-    elseif (csid == 0x0112) then
+    elseif (csid == 274) then
         player:setVar("ATestOfTrueLoveProgress",0);
         player:needToZone(true);
         player:addFame(BASTOK,120);
         player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
-    elseif (csid == 0x0113) then
+    elseif (csid == 275) then
         player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);
         player:addKeyItem(CHANSON_DE_LIBERTE);
         player:messageSpecial(KEYITEM_OBTAINED,CHANSON_DE_LIBERTE);

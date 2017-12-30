@@ -29,9 +29,9 @@ function onTrigger(player,npc)
   itemEquipped = player:getEquipID(SLOT_MAIN);
 
   if (GuestofHauteur == QUEST_ACCEPTED and player:getVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426)) then -- Maul / Replica Maul
-    player:startEvent(0x39);
+    player:startEvent(57);
   else
-      player:startEvent(0x01d);
+      player:startEvent(29);
   end
 end;
 
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x39 and GuestofHauteur == 1) then
+    if (csid == 57 and GuestofHauteur == 1) then
         player:setVar("GuestofHauteur_Event",1)
         player:addKeyItem(LETTERS_FROM_DOMIEN);
         player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_DOMIEN);        

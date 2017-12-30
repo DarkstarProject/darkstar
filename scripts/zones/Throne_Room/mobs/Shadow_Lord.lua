@@ -87,7 +87,7 @@ end;
 function onMobDeath(mob, player, isKiller)
 
     if (mob:getID() < 17453060) then
-        player:startEvent(0x7d04);
+        player:startEvent(32004);
         player:setVar("mobid",mob:getID());
     else
         player:addTitle(SHADOW_BANISHER);
@@ -131,7 +131,7 @@ function onEventFinish(player,csid,option)
     -- printf("finishCSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x7d04) then
+    if (csid == 32004) then
         local mobid = player:getVar("mobid");
         DespawnMob(mobid);
         player:setVar("mobid",0);

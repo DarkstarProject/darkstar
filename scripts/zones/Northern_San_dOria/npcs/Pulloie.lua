@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getNation() == 0) then
-    player:startEvent(0x0253);
+    player:startEvent(595);
 else
-    player:startEvent(0x0256);
+    player:startEvent(598);
     end
 end; 
 

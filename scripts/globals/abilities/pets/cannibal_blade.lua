@@ -1,11 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Cannibal Blade
----------------------------------------------------
+---------------------------------------------
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/msg");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
@@ -61,7 +61,7 @@ function onPetAbility(target, automaton, skill, master, action)
     if damage > 0 then
         if not target:isUndead() then
             automaton:addHP(damage)
-            skill:setMsg(msgBasic.DRAIN_HP)
+            skill:setMsg(msgBasic.SKILL_DRAIN_HP)
         end
     end
 

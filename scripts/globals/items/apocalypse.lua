@@ -6,15 +6,13 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
     -- if (target:hasImmunity(64)) then
-        -- spell:setMsg(75);
+        -- spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     -- This does nothing, as this is not a spell, and it doesn't get used in the return.
     -- That should be handled in the resist check in the global anyways.
 

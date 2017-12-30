@@ -29,16 +29,16 @@ function onTrigger(player,npc)
     if (APBIF == QUEST_ACCEPTED) then
         if (player:hasStatusEffect(EFFECT_IONIS)) then
             -- Finishing Quest: 'A Pioneers Best (Imaginary) Friend'
-            player:startEvent(0x09DA);
+            player:startEvent(2522);
         else
             -- Dialgoue during Quest: 'A Pioneers Best (Imaginary) Friend'
-            player:startEvent(0x09D9);
+            player:startEvent(2521);
         end
     elseif (APBIF == QUEST_AVAILABLE) then
-        player:startEvent(0x09D8);
+        player:startEvent(2520);
     else
         -- Standard dialogue
-        player:startEvent(0x021F);
+        player:startEvent(543);
     end
 end;
 
@@ -54,14 +54,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    if (csid == 0x09D8) then
+    if (csid == 2520) then
         -- Starting Quest: 'A Pioneers Best (Imaginary) Friend'
         player:addQuest(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
         if (player:hasStatusEffect(EFFECT_IONIS)) then
             -- Finishes quest if Ionis is already active
-            player:startEvent(0x09DA);
+            player:startEvent(2522);
         end
-    elseif (csid == 0x09DA) then
+    elseif (csid == 2522) then
         -- Finishing Quest: 'A Pioneers Best (Imaginary) Friend'
         player:completeQuest(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
         player:addExp(500 * EXP_RATE);

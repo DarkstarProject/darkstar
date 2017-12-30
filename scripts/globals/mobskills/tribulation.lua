@@ -18,22 +18,21 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local blinded = false;
     local bio = false;
 
     blinded = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 20, 0, 120);
     bio = MobStatusEffectMove(mob, target, EFFECT_BIO, 39, 0, 120);
 
-    skill:setMsg(msgBasic.ENFEEB_IS);
+    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
 
     -- display blind first, else bio
-    if (blinded == msgBasic.ENFEEB_IS) then
+    if (blinded == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_BLINDNESS;
-    elseif (bio == msgBasic.ENFEEB_IS) then
+    elseif (bio == msgBasic.SKILL_ENFEEB_IS) then
         typeEffect = EFFECT_BIO;
     else
-        skill:setMsg(msgBasic.MISS);
+        skill:setMsg(msgBasic.SKILL_MISS);
     end
 
     return typeEffect;

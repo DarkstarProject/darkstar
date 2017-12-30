@@ -38,7 +38,7 @@ namespace puppetutils
 
 void LoadAutomaton(CCharEntity* PChar)
 {
-	const int8* Query =
+	const char* Query =
         "SELECT unlocked_attachments, name, equipped_attachments FROM "
             "char_pet LEFT JOIN pet_name ON automatonid = id "
             "WHERE charid = %u;";
@@ -50,7 +50,7 @@ void LoadAutomaton(CCharEntity* PChar)
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
 		size_t length = 0;
-		int8* attachments = nullptr;
+		char* attachments = nullptr;
 		Sql_GetData(SqlHandle,0,&attachments,&length);
 		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
 
@@ -69,7 +69,7 @@ void LoadAutomaton(CCharEntity* PChar)
         if (PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP)
         {
             PChar->PAutomaton = new CAutomatonEntity();
-            PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
+            PChar->PAutomaton->name.insert(0, (const char*)Sql_GetData(SqlHandle, 1));
             automaton_equip_t tempEquip;
             attachments = nullptr;
             Sql_GetData(SqlHandle,2,&attachments,&length);
@@ -108,19 +108,19 @@ void SaveAutomaton(CCharEntity* PChar)
 {
     if (PChar->PAutomaton)
     {
-        const int8* Query =
+        const char* Query =
             "UPDATE char_pet SET "
             "unlocked_attachments = '%s', "
             "equipped_attachments = '%s' "
             "WHERE charid = %u;";
 
-        int8 unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
-        int8 unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
+        char unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
+        char unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
         memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
         Sql_EscapeStringLen(SqlHandle, unlockedAttachmentsEscaped, unlockedAttachments, sizeof(unlockedAttachments));
 
-        int8 equippedAttachmentsEscaped[sizeof(PChar->PAutomaton->m_Equip) * 2 + 1];
-        int8 equippedAttachments[sizeof(PChar->PAutomaton->m_Equip)];
+        char equippedAttachmentsEscaped[sizeof(PChar->PAutomaton->m_Equip) * 2 + 1];
+        char equippedAttachments[sizeof(PChar->PAutomaton->m_Equip)];
         memcpy(equippedAttachments, &PChar->PAutomaton->m_Equip, sizeof(equippedAttachments));
         Sql_EscapeStringLen(SqlHandle, equippedAttachmentsEscaped, equippedAttachments, sizeof(equippedAttachments));
 
@@ -131,13 +131,13 @@ void SaveAutomaton(CCharEntity* PChar)
     }
     else
     {
-        const int8* Query =
+        const char* Query =
             "UPDATE char_pet SET "
             "unlocked_attachments = '%s' "
             "WHERE charid = %u;";
 
-        int8 unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
-        int8 unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
+        char unlockedAttachmentsEscaped[sizeof(PChar->m_unlockedAttachments) * 2 + 1];
+        char unlockedAttachments[sizeof(PChar->m_unlockedAttachments)];
         memcpy(unlockedAttachments, &PChar->m_unlockedAttachments, sizeof(unlockedAttachments));
         Sql_EscapeStringLen(SqlHandle, unlockedAttachmentsEscaped, unlockedAttachments, sizeof(unlockedAttachments));
 
@@ -279,7 +279,7 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    PChar->PAutomaton->addElementCapacity(i, -((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
+                    PChar->PAutomaton->addElementCapacity(i, -(int8)((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
                 }
                 luautils::OnAttachmentUnequip(PChar->PAutomaton, PAttachment);
                 PChar->PAutomaton->setAttachment(slotId, 0);
@@ -448,6 +448,8 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
             if (skill == SKILL_AMA)
                 rank -= 2;
             break;
+        default:
+            break;
     }
 
     //only happens if a head gives bonus to a rank of 0 - making it G or F rank
@@ -492,7 +494,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
     if (getSkillCap(PChar, SkillID) != 0 && !(PAutomaton->WorkingSkills.skill[SkillID] & 0x8000))
     {
         uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-        uint16 MaxSkill = getSkillCap(PChar, SkillID, dsp_min(PAutomaton->GetMLevel(), lvl));
+        uint16 MaxSkill = getSkillCap(PChar, SkillID, std::min(PAutomaton->GetMLevel(), lvl));
 
         int16  Diff = MaxSkill - CurSkill / 10;
         double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
@@ -510,7 +512,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
         {
             double chance = 0;
             uint8  SkillAmount = 1;
-            uint8  tier = dsp_min(1 + (Diff / 5), 5);
+            uint8  tier = std::min(1 + (Diff / 5), 5);
 
             for (uint8 i = 0; i < 4; ++i) // 1 + 4 возможных дополнительных (максимум 5)
             {
@@ -536,7 +538,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
             // Do skill amount multiplier (Will only be applied if default setting is changed)
             if (map_config.skillup_amount_multiplier > 1)
             {
-                SkillAmount += SkillAmount * map_config.skillup_amount_multiplier;
+                SkillAmount += (uint8)(SkillAmount * map_config.skillup_amount_multiplier);
                 if (SkillAmount > 9)
                 {
                     SkillAmount = 9;

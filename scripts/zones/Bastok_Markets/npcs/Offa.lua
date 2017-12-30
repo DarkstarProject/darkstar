@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
     local SmokeOnTheMountain = player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN);
     if (SmokeOnTheMountain == QUEST_ACCEPTED) then
-        player:startEvent(0x00de);
+        player:startEvent(222);
     else
-        player:startEvent(0x007c);
+        player:startEvent(124);
     end
 end;
 

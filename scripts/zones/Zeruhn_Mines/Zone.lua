@@ -27,7 +27,7 @@ function onZoneIn(player,prevZone)
         cs = 0x0096;
         if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED) then
             if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then
-                cs = 0x0082;
+                cs = 130;
             elseif (player:hasItem(16607) == false) then
                 cs = 0x0083;
             end
@@ -77,7 +77,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0082 or csid == 0x0083) then
+    if (csid == 130 or csid == 0x0083) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(16607);
             player:setVar("ChaosbringerKills", 0);

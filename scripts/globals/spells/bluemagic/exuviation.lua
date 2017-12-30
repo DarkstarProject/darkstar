@@ -9,28 +9,20 @@
 -- Level: 75
 -- Casting Time: 3 seconds
 -- Recast Time: 60 seconds
--- 
+--
 -- Combos: Resist Sleep
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local minCure = 60;
     local effect = target:eraseStatusEffect();
     local divisor = 0.6666;
@@ -48,21 +40,21 @@ function onSpellCast(caster,target,spell)
     local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
 
     final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
-    
+
     if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
         --Applying server mods....
         final = final * CURE_POWER;
     end
-    
+
     local diff = (target:getMaxHP() - target:getHP());
     if (final > diff) then
         final = diff;
     end
-    
+
     target:addHP(final);
     target:wakeUp();
     caster:updateEnmityFromCure(target,final);
-    spell:setMsg(7);
-    
+    spell:setMsg(msgBasic.MAGIC_RECOVERS_HP);
+
     return final;
 end;

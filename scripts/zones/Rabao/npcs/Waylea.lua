@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:startEvent(0x0039 + (player:getFameLevel(4) - 1));
+    player:startEvent(57 + (player:getFameLevel(4) - 1));
 end;
 
 -----------------------------------

@@ -18,7 +18,7 @@ require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_ACCEPTED and player:getVar("BetterPartOfValProg") == 3) then
         if (trade:hasItemQty(2521,1) and trade:getItemCount() == 1 and trade:getGil() == 0) then
-            player:startEvent(0x0067);
+            player:startEvent(103);
         end
     end
 end;
@@ -31,9 +31,9 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_ACCEPTED) then
         if (player:getVar("BetterPartOfValProg") == 2) then
-            player:startEvent(0x0065);
+            player:startEvent(101);
         elseif (player:getVar("BetterPartOfValProg") == 3) then
-            player:startEvent(0x0066);
+            player:startEvent(102);
         end
     end
 end;
@@ -42,13 +42,16 @@ end;
 -- onEventFinish
 -----------------------------------
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0065) then
+    if (csid == 101) then
         player:setVar("BetterPartOfValProg",3);
-    elseif (csid == 0x0067) then
+    elseif (csid == 103) then
         player:tradeComplete();
         player:setVar("BetterPartOfValProg",4)
         player:addKeyItem(XHIFHUT);

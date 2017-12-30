@@ -30,13 +30,13 @@ function onTrigger(player,npc)
 
     gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
     if (player:hasKeyItem(SCRIPTURE_OF_WATER) == true) then
-        player:startEvent(0x026c);
+        player:startEvent(620);
     elseif (gates == QUEST_ACCEPTED) then
         player:showText(npc, OLBERGIEUT_DIALOG, SCRIPTURE_OF_WIND);
     elseif (player:getFameLevel(SANDORIA) >= 2 and gates == QUEST_AVAILABLE) then
-        player:startEvent(0x026b);
+        player:startEvent(619);
     else
-        player:startEvent(0x0264);
+        player:startEvent(612);
     end;
 
 end;
@@ -58,11 +58,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x026b and option == 0) then
+    if (csid == 619 and option == 0) then
         player:addQuest(SANDORIA, GATES_TO_PARADISE);
         player:addKeyItem(SCRIPTURE_OF_WIND);
         player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WIND);
-    elseif (csid == 0x026c) then
+    elseif (csid == 620) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13584);
         else

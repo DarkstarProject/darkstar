@@ -1,11 +1,15 @@
 ---------------------------------------------
---  Prishe Item 2
+-- Prishe Item 2
 ---------------------------------------------
+package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
+---------------------------------------------
+require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if (target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
         return 1;
@@ -18,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
     if (mob:hasStatusEffect(EFFECT_PLAGUE) or mob:hasStatusEffect(EFFECT_CURSE_I) or mob:hasStatusEffect(EFFECT_MUTE)) then
         -- use Remedy!
         mob:messageText(mob, PRISHE_TEXT + 12, false);

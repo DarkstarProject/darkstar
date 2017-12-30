@@ -6,11 +6,7 @@
 -- Agility 2
 -- Vitality -4
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -20,10 +16,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,300,4382);
@@ -38,11 +30,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_VIT, -4);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_AGI, 2);
     target:delMod(MOD_VIT, -4);
 end;

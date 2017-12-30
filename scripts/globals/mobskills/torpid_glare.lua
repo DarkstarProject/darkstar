@@ -1,16 +1,14 @@
 ---------------------------------------------
---  Torpid Glare
---  Description: Sleeps opponents with a gaze attack.
---  Type: Gaze
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Single gaze
---  Notes: Nightmare Cockatrice extends this to a fan-shaped AOE.
+-- Torpid Glare
+-- Description: Sleeps opponents with a gaze attack.
+-- Type: Gaze
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Single gaze
+-- Notes: Nightmare Cockatrice extends this to a fan-shaped AOE.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

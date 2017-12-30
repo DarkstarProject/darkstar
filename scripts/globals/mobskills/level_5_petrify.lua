@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Level 5 Petrify
+-- Level 5 Petrify
 --
---  Description: AOE Petrify and on multiples of 5.
---  Type: Physical
---  Utsusemi/Blink absorb: Ignore
---  Range: 15' radial
---  Notes:
+-- Description: AOE Petrify and on multiples of 5.
+-- Type: Physical
+-- Utsusemi/Blink absorb: Ignore
+-- Range: 15' radial
+-- Notes:
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, power));
 
     else
-        skill:setMsg(msgBasic.NO_EFFECT); -- no effect
+        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     end
 
     return typeEffect;

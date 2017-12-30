@@ -80,7 +80,7 @@ uint16 CItemContainer::GetBuff()
 uint8 CItemContainer::AddBuff(int8 buff)
 {
     m_buff += buff;
-    return SetSize(dsp_min(m_buff, 80)); // ограничение в 80 ячеек для персонажа
+    return SetSize(std::min<uint8>((uint8)m_buff, 80)); // ограничение в 80 ячеек для персонажа
 }
 
 /************************************************************************
@@ -146,7 +146,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem)
             m_count++;
 
 			PItem->setSlotID(SlotID);
-			PItem->setLocationID(m_id);
+			PItem->setLocationID((uint8)m_id);
 
 			m_ItemList[SlotID] = PItem;
 			return SlotID;
@@ -171,7 +171,7 @@ uint8 CItemContainer::InsertItem(CItem* PItem, uint8 SlotID)
 		if (PItem != nullptr)
 		{
 			PItem->setSlotID(SlotID);
-			PItem->setLocationID(m_id);
+			PItem->setLocationID((uint8)m_id);
 
             if (m_ItemList[SlotID] == nullptr && SlotID != 0) m_count++;
 		}

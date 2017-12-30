@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7217; -- You can't fish here.
 
 -- NPC Dialogue
-KHOTS_CHALAHKO_OFFSET = 7390; -- Ahhh... Isn't it grrreat out here on the open sea!
+  KHOTS_CHALAHKO_OFFSET = 7390; -- Ahhh... Isn't it grrreat out here on the open sea!
 
 -- conquest Base
-CONQUEST_BASE = 7047; -- Tallying conquest results...
+          CONQUEST_BASE = 7047; -- Tallying conquest results...

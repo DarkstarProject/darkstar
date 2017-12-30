@@ -6,14 +6,11 @@
 -- Recast Time: 0:20
 -- Duration: ??
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -44,10 +41,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local hit = 4;
@@ -80,14 +73,17 @@ function onUseAbility(player,target,ability,action)
         hit = 3;
         dmg = base * pdif;
 
-        local bonus = 50 - target:getMod(MOD_STUNRES) + player:getMod(MOD_VFLOURISH_MACC);
         local spell = getSpell(252);
-        local resist = applyResistance(player,spell,target,0,player:getWeaponSkillType(SLOT_MAIN),bonus);
+        local params = {};
+        params.diff = 0;
+        params.skillType = player:getWeaponSkillType(SLOT_MAIN);
+        params.bonus = 50 - target:getMod(MOD_STUNRES) + player:getMod(MOD_VFLOURISH_MACC);
+        local resist = applyResistance(player, target, spell, params);
 
         if resist > 0.25 then
             target:addStatusEffect(EFFECT_STUN, 1, 0, 2);
         else
-            ability:setMsg(110);
+            ability:setMsg(msgBasic.JA_DAMAGE);
         end
 
         dmg = utils.stoneskin(target, dmg);
@@ -99,7 +95,7 @@ function onUseAbility(player,target,ability,action)
         action:speceffect(target:getID(), hit)
         return dmg
     else
-        ability:setMsg(158);
+        ability:setMsg(msgBasic.JA_MISS);
         return 0;
     end
 end;

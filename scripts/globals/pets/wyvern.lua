@@ -2,6 +2,7 @@
 --  PET: Wyvern
 -----------------------------------
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 WYVERN_OFFENSIVE = 1
 WYVERN_DEFENSIVE = 2
@@ -136,7 +137,7 @@ function onMobSpawn(mob)
                 pet:addMod(MOD_HPP,5*diff)
                 pet:addMod(MOD_ATTP,5*diff)
                 pet:setHP(pet:getMaxHP())
-                player:messageBasic(562, 0, 0, pet)
+                player:messageBasic(msgBasic.STATUS_INCREASED, 0, 0, pet);
             end
             pet:setLocalVar("wyvern_exp", prev_exp + exp)
         end

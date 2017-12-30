@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x2773,0,0,0,0,0,0,0,0);
+    player:startEvent(10099,0,0,0,0,0,0,0,0);
 end;
 
 -----------------------------------
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     local v3 = 0;
     local v4 = 0;
 
-    if (csid == 0x2773) then
+    if (csid == 10099) then
         if (option == 16777216) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(11538);

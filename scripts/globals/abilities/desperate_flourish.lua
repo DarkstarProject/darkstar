@@ -6,14 +6,11 @@
 -- Recast Time: 00:20
 -- Duration: ??
 -----------------------------------
+require("scripts/globals/weaponskills");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/weaponskills");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -45,10 +42,6 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability,action)
 
     local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
@@ -60,22 +53,25 @@ function onUseAbility(player,target,ability,action)
 
     if (math.random() <= hitrate or isSneakValid) then
 
-        local bonus = 50 - target:getMod(MOD_STUNRES);
         local spell = getSpell(216);
-        local resist = applyResistance(player,spell,target,0,player:getWeaponSkillType(SLOT_MAIN),bonus)
+        local params = {};
+        params.diff = 0;
+        params.skillType = player:getWeaponSkillType(SLOT_MAIN);
+        params.bonus = 50 - target:getMod(MOD_STUNRES);
+        local resist = applyResistance(player, target, spell, params)
 
         if resist > 0.25 then
             target:delStatusEffectSilent(EFFECT_WEIGHT);
             target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60 * resist);
         else
-            ability:setMsg(110);
+            ability:setMsg(msgBasic.JA_DAMAGE);
         end
-        ability:setMsg(127);
+        ability:setMsg(msgBasic.JA_ENFEEB_IS);
         action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
         action:speceffect(target:getID(), 2)
         return EFFECT_WEIGHT
     else
-        ability:setMsg(158);
+        ability:setMsg(msgBasic.JA_MISS);
         return 0;
     end
 end;

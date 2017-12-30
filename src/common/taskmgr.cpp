@@ -37,7 +37,7 @@ CTaskMgr* CTaskMgr::getInstance()
 	return _instance;
 }
 
-CTaskMgr::CTask *CTaskMgr::AddTask(std::string InitName, time_point InitTick, void *InitData,TASKTYPE InitType,TaskFunc_t InitFunc,duration InitInterval)
+CTaskMgr::CTask *CTaskMgr::AddTask(std::string InitName, time_point InitTick, std::any InitData,TASKTYPE InitType,TaskFunc_t InitFunc,duration InitInterval)
 {
 	return AddTask( new CTask(InitName,InitTick,InitData,InitType,InitFunc,InitInterval) );
 }
@@ -87,7 +87,7 @@ duration CTaskMgr::DoTimer(time_point tick)
 			}
 				break;
 		}
-		diff = dsp_cap(diff, 50ms, 1000ms);
+		diff = std::clamp<duration>(diff, 50ms, 1000ms);
 	}
 	return diff;
 }

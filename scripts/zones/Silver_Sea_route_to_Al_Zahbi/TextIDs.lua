@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7047; -- You can't fish here
 
 -- Shops
-YAHLIQ_SHOP_DIALOG = 7310; -- You've picked the best place to shop for your items, guaranteed!
+     YAHLIQ_SHOP_DIALOG = 7310; -- You've picked the best place to shop for your items, guaranteed!
 
 -- Other
-ON_WAY_TO_AL_ZAHBI = 7306; -- We are on our way to Al Zahbi
+     ON_WAY_TO_AL_ZAHBI = 7311; -- We are on our way to Al Zahbi

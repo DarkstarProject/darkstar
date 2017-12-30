@@ -5,9 +5,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -60,11 +58,10 @@ function onSpellCast(caster,target,spell)
     local bio = target:getStatusEffect(EFFECT_BIO);
 
     -- Do it!
-    if (DIA_OVERWRITE == 0 or (DIA_OVERWRITE == 1 and bio == nil)) then
-        target:addStatusEffect(EFFECT_DIA,1+dotBonus,3,duration,FLAG_ERASABLE,5);
-        spell:setMsg(2);
+    if (target:addStatusEffect(EFFECT_DIA,1+dotBonus,3,duration,FLAG_ERASABLE,5,1)) then
+        spell:setMsg(msgBasic.MAGIC_DMG);
     else
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
     -- Try to kill same tier Bio

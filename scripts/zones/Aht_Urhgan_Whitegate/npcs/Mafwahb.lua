@@ -24,10 +24,10 @@ function onTrigger(player,npc)
     local LuckOfTheDraw = player:getVar("LuckOfTheDraw");
     
     if (LuckOfTheDraw ==1) then
-        player:startEvent(0x0224);    
+        player:startEvent(548);    
         player:setVar("LuckOfTheDraw",2);        
     else
-        player:startEvent(0x0287);
+        player:startEvent(647);
     end
     
 end; 

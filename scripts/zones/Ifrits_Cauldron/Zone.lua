@@ -5,18 +5,18 @@
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
+require("scripts/zones/Ifrits_Cauldron/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    -- Ash Dragon
-    SetRespawnTime(17617147, 900, 10800);
+    UpdateNMSpawnPoint(ASH_DRAGON);
+    GetMobByID(ASH_DRAGON):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(17617224);
 end;
@@ -57,17 +57,13 @@ end;
 -----------------------------------
 
 function onGameHour(zone)
-
     local VanadielHour = VanadielHour();
-    local FlameSpout = 17617204;
-
     if (VanadielHour % 3 == 0) then -- Opens flame spouts every 3 hours Vana'diel time
-        GetNPCByID(FlameSpout):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 1
-        GetNPCByID(FlameSpout+1):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 5
-        GetNPCByID(FlameSpout+2):openDoor(90); -- Ifrit's Cauldron flame spout (I-10) Map 8
-        GetNPCByID(FlameSpout+3):openDoor(90); -- Ifrit's Cauldron flame spout (E-7) Map 8
+        GetNPCByID(FLAME_SPOUT_OFFSET+0):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 1
+        GetNPCByID(FLAME_SPOUT_OFFSET+1):openDoor(90); -- Ifrit's Cauldron flame spout (H-6) Map 5
+        GetNPCByID(FLAME_SPOUT_OFFSET+2):openDoor(90); -- Ifrit's Cauldron flame spout (I-10) Map 8
+        GetNPCByID(FLAME_SPOUT_OFFSET+3):openDoor(90); -- Ifrit's Cauldron flame spout (E-7) Map 8
     end
-
 end;
 
 -----------------------------------

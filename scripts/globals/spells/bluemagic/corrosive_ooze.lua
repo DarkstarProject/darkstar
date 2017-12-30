@@ -60,7 +60,7 @@ function onSpellCast(caster,target,spell)
 
     params.bonus = 1.0;
 
-    resist = applyResistance(caster, target, spell, params);
+    local resist = applyResistance(caster, target, spell, params);
     local typeEffectOne = EFFECT_DEFENSE_DOWN;
     local typeEffectTwo = EFFECT_ATTACK_DOWN;
     local duration = 60;

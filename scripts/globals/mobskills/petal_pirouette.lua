@@ -1,7 +1,7 @@
 ---------------------------------------------
---  Petal Pirouette
+-- Petal Pirouette
 --
---  Description: Whirling petals reduce tp to zero.
+-- Description: Whirling petals reduce tp to zero.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

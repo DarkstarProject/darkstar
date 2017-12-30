@@ -110,7 +110,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 	}
 
 	// loop through the list of BLUs and see if they can learn.
-	for (int i=0; i<PBlueMages.size(); i++) {
+	for (size_t i = 0; i < PBlueMages.size(); i++) {
 		CCharEntity* PBlueMage = PBlueMages[i];
 
 		if (PBlueMage->isDead()) { // too dead to learn
@@ -121,7 +121,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 			continue;
 		}
 
-		for (int spell=0; spell<PLearnableSpells.size(); spell++) {
+		for (size_t spell = 0; spell < PLearnableSpells.size(); spell++) {
 			CSpell* PSpell = PLearnableSpells[spell];
 
 			if (charutils::hasSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
@@ -267,7 +267,7 @@ uint8 GetTotalSlots(CCharEntity* PChar)
     if (level == 0)
         return 0;
     else
-        return dsp_cap(((level - 1)/10)*2 + 6, 6, 20);
+        return std::clamp(((level - 1)/10)*2 + 6, 6, 20);
 }
 
 uint8 GetTotalBlueMagicPoints(CCharEntity* PChar)
@@ -299,13 +299,13 @@ void SaveSetSpells(CCharEntity* PChar)
 {
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
     {
-	    const int8* Query =
+	    const char* Query =
             "UPDATE chars SET "
               "set_blue_spells = '%s' "
             "WHERE charid = %u;";
 
-	    int8 spells[sizeof(PChar->m_SetBlueSpells)*2+1];
-	    Sql_EscapeStringLen(SqlHandle,spells,(const int8*)PChar->m_SetBlueSpells,sizeof(PChar->m_SetBlueSpells));
+	    char spells[sizeof(PChar->m_SetBlueSpells)*2+1];
+	    Sql_EscapeStringLen(SqlHandle,spells,(const char*)PChar->m_SetBlueSpells,sizeof(PChar->m_SetBlueSpells));
 
 	    Sql_Query(SqlHandle,Query,
             spells,
@@ -317,7 +317,7 @@ void LoadSetSpells(CCharEntity* PChar)
 {
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
     {
-	    const int8* Query =
+	    const char* Query =
             "SELECT set_blue_spells FROM "
               "chars WHERE charid = %u;";
 
@@ -328,7 +328,7 @@ void LoadSetSpells(CCharEntity* PChar)
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
 		    size_t length = 0;
-		    int8* blue_spells = nullptr;
+		    char* blue_spells = nullptr;
 		    Sql_GetData(SqlHandle,0,&blue_spells,&length);
 		    memcpy(PChar->m_SetBlueSpells, blue_spells, (length > sizeof(PChar->m_SetBlueSpells) ? sizeof(PChar->m_SetBlueSpells) : length));
         }

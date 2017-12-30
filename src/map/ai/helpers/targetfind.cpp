@@ -147,7 +147,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOERADIUS radiusType, f
         }
 
         if (m_findFlags & FINDFLAGS_HIT_ALL ||
-            m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp())
+            (m_findType == FIND_MONSTER_PLAYER && ((CMobEntity*)m_PBattleEntity)->CalledForHelp()))
         {
             addAllInZone(m_PMasterTarget, withPet);
         }
@@ -177,15 +177,15 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 
     float halfAngle = (angle * (256.0f / 360.0f)) / 2.0f;
 
-    float rightAngle = rotationToRadian(m_APoint->rotation + halfAngle);
-    float leftAngle = rotationToRadian(m_APoint->rotation - halfAngle);
+    float rightAngle = rotationToRadian(m_APoint->rotation + (uint8)halfAngle);
+    float leftAngle = rotationToRadian(m_APoint->rotation - (uint8)halfAngle);
 
     // calculate end points for triangle
-    m_BPoint.x = cosf((2 * M_PI) - rightAngle) * distance + m_APoint->x;
-    m_BPoint.z = sinf((2 * M_PI) - rightAngle) * distance + m_APoint->z;
+    m_BPoint.x = cosf((2 * (float)M_PI) - rightAngle) * distance + m_APoint->x;
+    m_BPoint.z = sinf((2 * (float)M_PI) - rightAngle) * distance + m_APoint->z;
 
-    m_CPoint.x = cosf((2 * M_PI) - leftAngle) * distance + m_APoint->x;
-    m_CPoint.z = sinf((2 * M_PI) - leftAngle) * distance + m_APoint->z;
+    m_CPoint.x = cosf((2 * (float)M_PI) - leftAngle) * distance + m_APoint->x;
+    m_CPoint.z = sinf((2 * (float)M_PI) - leftAngle) * distance + m_APoint->z;
 
     // ShowDebug("angle %f, rotation %f, distance %f, A (%f, %f) B (%f, %f) C (%f, %f)\n", angle, rightAngle, distance, m_APoint->x, m_APoint->z, m_BPoint.x, m_BPoint.z, m_CPoint.x, m_CPoint.z);
     // ShowDebug("Target: (%f, %f)\n", PTarget->loc.p.x, PTarget->loc.p.z);
@@ -236,8 +236,6 @@ void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
-    CParty* party = nullptr;
-
     PTarget->ForAlliance([this, withPet](CBattleEntity* PMember)
     {
         addEntity(PMember, withPet);

@@ -28,6 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 #include "utils/puppetutils.h"
+#include "ai/ai_container.h"
 
 #include <math.h>
 
@@ -294,7 +295,7 @@ bool CAttack::CheckAnticipated()
     }
 
     //power stores how many times this effect has anticipated
-    uint8 pastAnticipations = effect->GetPower();
+    auto pastAnticipations = effect->GetPower();
 
     if (pastAnticipations > 7)
     {
@@ -326,8 +327,12 @@ bool CAttack::CheckAnticipated()
             //chance to counter - 25% base
             if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(Mod::THIRD_EYE_COUNTER_RATE))
             {
-                m_isCountered = true;
-                m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+
+                if (m_victim->PAI->IsEngaged())
+                {
+                    m_isCountered = true;
+                    m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+                }
             }
             m_anticipated = true;
             return true;
@@ -346,6 +351,12 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
+    if (!m_victim->PAI->IsEngaged())
+    {
+        m_isCountered = false;
+        return m_isCountered;
+    }
+
     uint8 meritCounter = 0;
     if (m_victim->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_victim, TRAIT_COUNTER))
     {
@@ -361,7 +372,7 @@ bool CAttack::CheckCounter()
     if (m_victim->objtype == TYPE_PC && m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
     {
         seiganChance = m_victim->getMod(Mod::ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
-        seiganChance = dsp_cap(seiganChance, 0, 100);
+        seiganChance = std::clamp<uint16>(seiganChance, 0, 100);
         seiganChance /= 4;
     }
     if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(Mod::COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
@@ -408,8 +419,8 @@ void CAttack::ProcessDamage()
     if (m_attackRound->IsH2H())
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
-        m_naturalH2hDamage = (float)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
-        m_baseDamage = dsp_max(m_attacker->GetMainWeaponDmg(), 3);
+        m_naturalH2hDamage = (int32)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
+        m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;
@@ -450,19 +461,19 @@ void CAttack::ProcessDamage()
     // Get critical bonus mods.
     if (m_isCritical)
     {
-        m_damage += (m_damage * (float)m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100);
+        m_damage += (int32)(m_damage * m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100.0f);
     }
 
     // Apply Sneak Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
     {
-        m_damage += (m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100));
+        m_damage += (int32)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100.0f));
     }
 
     // Apply Trick Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
-        m_damage += (m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100));
+        m_damage += (int32)(m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100.0f));
     }
 
     // Try skill up.

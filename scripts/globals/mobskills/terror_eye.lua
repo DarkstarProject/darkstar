@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Terror Eye
---  Family: Gargouille
---  Description: Bestows a terrifying glance.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows 
---  Range: Cone gaze
---  Notes: Only used when standing
+-- Terror Eye
+-- Family: Gargouille
+-- Description: Bestows a terrifying glance.
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Cone gaze
+-- Notes: Only used when standing
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

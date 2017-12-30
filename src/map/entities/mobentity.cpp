@@ -188,13 +188,13 @@ uint32 CMobEntity::GetRandomGil()
         return dsprand::GetRandomNumber(min, max);
     }
 
-    float gil = pow(GetMLevel(), 1.05f);
+    float gil = (float)pow(GetMLevel(), 1.05f);
 
     if (gil < 1) {
         gil = 1;
     }
 
-    uint16 highGil = (float)(gil) / 3 + 4;
+    uint16 highGil = (uint16)(gil / 3 + 4);
 
     if (max)
     {
@@ -215,10 +215,10 @@ uint32 CMobEntity::GetRandomGil()
 
     if (getMobMod(MOBMOD_GIL_BONUS) != 0)
     {
-        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
+        gil *= (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
     }
 
-    return gil;
+    return (uint32)gil;
 }
 
 bool CMobEntity::CanDropGil()
@@ -383,7 +383,7 @@ uint8 CMobEntity::TPUseChance()
         return 100;
     }
 
-    return getMobMod(MOBMOD_TP_USE_CHANCE);
+    return (uint8)getMobMod(MOBMOD_TP_USE_CHANCE);
 }
 
 void CMobEntity::setMobMod(uint16 type, int16 value)
@@ -570,7 +570,7 @@ void CMobEntity::Spawn()
     m_THLvl = 0;
     m_ItemStolen = false;
     m_DropItemTime = 1000;
-    animationsub = getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
+    animationsub = (uint8)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
     CallForHelp(false);
 
     PEnmityContainer->Clear();
@@ -620,9 +620,6 @@ void CMobEntity::Spawn()
 void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
 {
     CBattleEntity::OnWeaponSkillFinished(state, action);
-
-    auto PSkill = state.GetSkill();
-    auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
@@ -679,7 +676,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         }
     }
 
-    uint16 targets = PAI->TargetFind->m_targets.size();
+    uint16 targets = (uint16)PAI->TargetFind->m_targets.size();
 
     if (!PTarget || targets == 0)
     {
@@ -746,7 +743,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.reaction = REACTION_MISS;
             target.speceffect = SPECEFFECT_NONE;
-            if (msg = PSkill->getAoEMsg())
+            if (msg == PSkill->getAoEMsg())
                 msg = 282;
         }
         else
@@ -762,8 +759,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             {
                 if (PSkill->getPrimarySkillchain())
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PSkill->getPrimarySkillchain()),
-                        static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain())) } );
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getPrimarySkillchain(),
+                        PSkill->getSecondarySkillchain(), PSkill->getTertiarySkillchain());
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
@@ -941,7 +938,7 @@ bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>
             auto skill {battleutils::GetMobSkill(skillList.front())};
             if (skill)
             {
-                attack_range = skill->getDistance();
+                attack_range = (uint8)skill->getDistance();
             }
         }
         if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > attack_range ||
