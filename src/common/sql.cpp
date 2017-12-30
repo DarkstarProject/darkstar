@@ -259,13 +259,13 @@ int32 Sql_QueryStr(Sql_t* self, const char* query)
 	self->buf += query;
 	if( mysql_real_query(&self->handle, self->buf.c_str(), (unsigned int)self->buf.length()) )
 	{
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+        ShowSQL("DB error - %s\nSQL: %s\n", mysql_error(&self->handle), query);
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if( mysql_errno(&self->handle) != 0 )
 	{
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+        ShowSQL("DB error - %s\nSQL: %s\n", mysql_error(&self->handle), query);
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
