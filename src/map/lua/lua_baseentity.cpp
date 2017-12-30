@@ -2761,7 +2761,7 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
         char buf[12];
         memset(&buf[0], 0, sizeof(buf));
 
-        ref<bool>  (&buf,  0) = true; // Toggle for message routing; uint16 for even spacing
+        ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
         ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
         ref<uint16>(&buf,  2) = targetZone;
         ref<uint16>(&buf,  4) = playerZone;
