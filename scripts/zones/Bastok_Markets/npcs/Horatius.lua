@@ -12,7 +12,7 @@ require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(BASTOK,BREAKING_STONES) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, {553})) then
+    if (player:getQuestStatus(BASTOK,BREAKING_STONES) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, 553)) then
         player:startEvent(101);
     end
 end;
@@ -37,7 +37,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,BREAKING_STONES);
     elseif (csid == 101) then
         if (npcUtil.completeQuest(player, BASTOK, BREAKING_STONES, {gil=400})) then
-            player:tradeComplete();
+            player:confirmTrade();
         end
     elseif (csid == 428) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",12,true);

@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, {2163, 2163})) then
+    if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) >= QUEST_AVAILABLE and npcUtil.tradeHas( trade, {{2163,2}} )) then
         player:startEvent(16);
     end
 end;
@@ -33,7 +33,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(AHT_URHGAN,FEAR_OF_THE_DARK_II);
     elseif (csid == 16) then
         if (npcUtil.completeQuest(player, AHT_URHGAN, FEAR_OF_THE_DARK_II, {title=DARK_RESISTANT, gil=200})) then
-            player:tradeComplete();
+            player:confirmTrade();
         end
     end
 end;

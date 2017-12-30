@@ -2,137 +2,136 @@
 -- Area: Port San d'Oria
 --  NPC: Regine
 -- Standard Merchant NPC
+-- !pos 68 -9 -74 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Port_San_dOria/TextIDs");
+require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
------------------------------------
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    local count = trade:getItemCount();
+    local flyersForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getGil() == 10 and trade:getItemCount() == 1) then
-        if (player:getFreeSlotsCount() > 0) then
-            player:addItem(532,1);
-            player:tradeComplete();
-            player:messageSpecial(ITEM_OBTAINED,532);
-        else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 532); -- CANNOT_OBTAIN_ITEM
+    -- FLYERS FOR REGINE
+    if (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas( trade, {{"gil",10}} )) then
+        if (npcUtil.giveItem(player, 532)) then
+            player:confirmTrade();
         end
-    elseif (trade:hasItemQty(532,1) == true and count == 1) then
-        if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
-    elseif (trade:hasItemQty(593,1) == true and count == 1) then
-        if (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
-            player:tradeComplete();
-            player:startEvent(535);
-            player:setVar("TheBrugaireConsortium-Parcels", 11);
-        end
+    elseif (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532)) then
+        player:messageSpecial(FLYER_REFUSED);
+
+    -- THE BRUGAIRE CONSORTIUM
+    elseif (theBrugaireConsortium == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 593)) then
+        player:startEvent(535);
     end
-
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("FFR") == 1) then
+    local ffr = player:getVar("FFR");
+
+    -- FLYERS FOR REGINE
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
+        player:startEvent(601);
+    elseif (ffr == 1) then
         player:startEvent(510,2);
     elseif (player:getVar("FFR") == 2) then
         player:startEvent(603);
-    elseif (player:getVar("FFR") > 2 and (not(player:hasItem(532)))) then
+    elseif (player:getVar("FFR") > 2 and not player:hasItem(532)) then
         player:startEvent(510,3);
-    elseif (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and player:getVar("FFR") == 0) then
-        player:startEvent(601);
+        
+    -- DEFAULT MENU
     else
         player:startEvent(510);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 510 and option == 2) then
-        if (npcUtil.giveItem(player, {{532, 12}, {532, 3}})) then
+    -- FLYERS FOR REGINE
+    if (csid == 601) then
+        player:setVar("FFR",1);
+    elseif (csid == 510 and option == 2) then
+        if (npcUtil.giveItem(player, {{532,12}, {532,3}} )) then
             player:addQuest(SANDORIA,FLYERS_FOR_REGINE);
             player:setVar("FFR",17);
         end
-    elseif (csid == 601) then
-        player:setVar("FFR",1);
     elseif (csid == 603) then
-        player:completeQuest(SANDORIA,FLYERS_FOR_REGINE);
-        player:addGil(GIL_RATE*440)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
-        player:addTitle(ADVERTISING_EXECUTIVE);
-        player:addFame(SANDORIA,30);
-        player:setVar("tradeAnswald",0);
-        player:setVar("tradePrietta",0);
-        player:setVar("tradeMiene",0);
-        player:setVar("tradePortaure",0);
-        player:setVar("tradeAuvare",0);
-        player:setVar("tradeGuilberdrier",0);
-        player:setVar("tradeVilion",0);
-        player:setVar("tradeCapiria",0);
-        player:setVar("tradeBoncort",0);
-        player:setVar("tradeCoullene",0);
-        player:setVar("tradeLeuveret",0);
-        player:setVar("tradeBlendare",0);
-        player:setVar("tradeMaugie",0);
-        player:setVar("tradeAdaunel",0);
-        player:setVar("tradeRosel",0);
-        player:setVar("FFR",0);
-    elseif (csid == 510) then
-        if (option == 0) then
-            local stockA =
-            {
-                0x1221,1165,1, -- Scroll of Diaga
-                0x1238,837,1,  -- Scroll of Slow
-                0x1236,7025,1, -- Scroll of Stoneskin
-
-                0x121c,140,2,  -- Scroll of Banish
-                0x1226,1165,2, -- Scroll of Banishga
-                0x1235,2097,2, -- Scroll of Blink
-                0x1202,585,2,  -- Scroll of Cure II
-
-                0x1237,360,3,  -- Scroll of Aquaveil
-                0x1210,990,3,  -- Scroll of Blindna
-                0x1207,1363,3, -- Scroll of Curaga
-                0x1201,61,3,   -- Scroll of Cure
-                0x1217,82,3,   -- Scroll of Dia
-                0x120f,324,3,  -- Scroll of Paralyna
-                0x120e,180,3,  -- Scroll of Poisona
-                0x122b,219,3,  -- Scroll of Protect
-                0x1230,1584,3  -- Scroll of Shell
-            }
-            showNationShop(player, NATION_SANDORIA, stockA);
-        elseif (option == 1) then
-            local stockB =
-            {
-                0x12fe,111,1,  -- Scroll of Blind
-                0x12e6,360,2,  -- Scroll of Bio
-                0x12dc,82,2,   -- Scroll of Poison
-                0x12fd,2250,2, -- Scroll of Sleep
-
-                0x129a,324,3,  -- Scroll of Aero
-                0x1295,1584,3, -- Scroll of Blizzard
-                0x12eb,4644,3, -- Scroll of Burn
-                0x12ed,2250,3, -- Scroll of Choke
-                0x12f0,6366,3, -- Scroll of Drown
-                0x1290,837,3,  -- Scroll of Fire
-                0x12ec,3688,3, -- Scroll of Frost
-                0x12ee,1827,3, -- Scroll of Rasp
-                0x12ef,1363,3, -- Scroll of Shock
-                0x129f,61,3,   -- Scroll of Stone
-                0x12a4,3261,3, -- Scroll of Thunder
-                0x12a9,140,3   -- Scroll of Water
-            }
-            showNationShop(player, NATION_SANDORIA, stockB);
+        if (npcUtil.completeQuest(player, SANDORIA, FLYERS_FOR_REGINE, {gil=440, title=ADVERTISING_EXECUTIVE})) then
+            player:setVar("tradeAnswald",0);
+            player:setVar("tradePrietta",0);
+            player:setVar("tradeMiene",0);
+            player:setVar("tradePortaure",0);
+            player:setVar("tradeAuvare",0);
+            player:setVar("tradeGuilberdrier",0);
+            player:setVar("tradeVilion",0);
+            player:setVar("tradeCapiria",0);
+            player:setVar("tradeBoncort",0);
+            player:setVar("tradeCoullene",0);
+            player:setVar("tradeLeuveret",0);
+            player:setVar("tradeBlendare",0);
+            player:setVar("tradeMaugie",0);
+            player:setVar("tradeAdaunel",0);
+            player:setVar("tradeRosel",0);
+            player:setVar("FFR",0);
         end
+
+    -- THE BRUGAIRE CONSORTIUM
+    elseif (csid == 535) then
+        player:confirmTrade();
+        player:setVar("TheBrugaireConsortium-Parcels", 11);
+        
+    -- WHITE MAGIC SHOP
+    elseif (csid == 510 and option == 0) then
+        local stockA =
+        {
+            4641,1165,1, -- Scroll of Diaga
+            4664,837,1,  -- Scroll of Slow
+            4662,7025,1, -- Scroll of Stoneskin
+
+            4636,140,2,  -- Scroll of Banish
+            4646,1165,2, -- Scroll of Banishga
+            4661,2097,2, -- Scroll of Blink
+            4610,585,2,  -- Scroll of Cure II
+
+            4663,360,3,  -- Scroll of Aquaveil
+            4624,990,3,  -- Scroll of Blindna
+            4615,1363,3, -- Scroll of Curaga
+            4609,61,3,   -- Scroll of Cure
+            4631,82,3,   -- Scroll of Dia
+            4623,324,3,  -- Scroll of Paralyna
+            4622,180,3,  -- Scroll of Poisona
+            4651,219,3,  -- Scroll of Protect
+            4656,1584,3  -- Scroll of Shell
+        }
+        showNationShop(player, NATION_SANDORIA, stockA);
+
+    -- BLACK MAGIC SHOP
+    elseif (csid == 510 and option == 1) then
+        local stockB =
+        {
+            4862,111,1,  -- Scroll of Blind
+            4838,360,2,  -- Scroll of Bio
+            4828,82,2,   -- Scroll of Poison
+            4861,2250,2, -- Scroll of Sleep
+
+            4762,324,3,  -- Scroll of Aero
+            4757,1584,3, -- Scroll of Blizzard
+            4843,4644,3, -- Scroll of Burn
+            4845,2250,3, -- Scroll of Choke
+            4848,6366,3, -- Scroll of Drown
+            4752,837,3,  -- Scroll of Fire
+            4844,3688,3, -- Scroll of Frost
+            4846,1827,3, -- Scroll of Rasp
+            4847,1363,3, -- Scroll of Shock
+            4767,61,3,   -- Scroll of Stone
+            4772,3261,3, -- Scroll of Thunder
+            4777,140,3   -- Scroll of Water
+        }
+        showNationShop(player, NATION_SANDORIA, stockB);
     end
 end;

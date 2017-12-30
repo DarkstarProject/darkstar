@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(BASTOK,A_FLASH_IN_THE_PAN) >= QUEST_ACCEPTED) then
         if (os.time() >= player:getVar("FlashInThePan")) then
-            if (npcUtil.tradeHas(trade, {768, 768, 768, 768})) then
+            if (npcUtil.tradeHas( trade, {{768,4}} )) then
                 player:startEvent(219);
             end
         else
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 219) then
         local fame = player:hasCompleteQuest(BASTOK, A_FLASH_IN_THE_PAN) and 8 or 75;
         if (npcUtil.completeQuest(player, BASTOK, A_FLASH_IN_THE_PAN, {gil=100, fame=fame})) then
-            player:tradeComplete();
+            player:confirmTrade();
             player:setVar("FlashInThePan",os.time() + 900);
         end
     end        

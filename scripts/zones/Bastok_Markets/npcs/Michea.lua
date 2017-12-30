@@ -19,15 +19,15 @@ function onTrade(player,npc,trade)
     local fatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
 
     -- THE ELVAAN GOLDSMITH
-    if (theElvaanGoldsmith >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, {648})) then
+    if (theElvaanGoldsmith >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, 648)) then
         player:startEvent(216);
 
     -- DISTANT LOYALTIES
-    elseif (distantLoyalties == QUEST_ACCEPTED and player:getVar("DistantLoyaltiesProgress") == 2 and npcUtil.tradeHas(trade, {653})) then
+    elseif (distantLoyalties == QUEST_ACCEPTED and player:getVar("DistantLoyaltiesProgress") == 2 and npcUtil.tradeHas(trade, 653)) then
         player:startEvent(317);
         
     -- FATHER FIGURE
-    elseif (fatherFigure == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {744})) then
+    elseif (fatherFigure == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 744)) then
         player:startEvent(241);
     end;
 end; 
@@ -35,6 +35,7 @@ end;
 function onTrigger(player,npc)
     local theElvaanGoldsmith = player:getQuestStatus(BASTOK,THE_ELVAAN_GOLDSMITH);
     local distantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
+    local distantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
     local fatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
     
     -- THE ELVAAN GOLDSMITH
@@ -42,20 +43,19 @@ function onTrigger(player,npc)
         player:startEvent(215);
         
     -- DISTANT LOYALTIES
-    elseif (distantLoyalties == QUEST_ACCEPTED) then
-        local progress = player:getVar("DistantLoyaltiesProgress");
-        if (progress == 1 and player:hasKeyItem(GOLDSMITHING_ORDER)) then
+    elseif (distantLoyalties == QUEST_ACCEPTED and distantLoyaltiesProgress >= 1 and distantLoyaltiesProgress <= 3) then
+        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(GOLDSMITHING_ORDER)) then
             player:startEvent(315);
-        elseif (progress == 2) then
+        elseif (distantLoyaltiesProgress == 2) then
             player:startEvent(316);
-        elseif (progress == 3 and player:needToZone() == true) then
+        elseif (distantLoyaltiesProgress == 3 and player:needToZone() == true) then
             player:startEvent(317);
-        elseif (progress == 3 and player:needToZone() == false) then
+        elseif (distantLoyaltiesProgress == 3 and player:needToZone() == false) then
             player:startEvent(318);
         end;
         
     -- FATHER FIGURE
-    elseif (theElvaanGoldsmith == QUEST_COMPLETE and fatherFigure == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 2) then
+    elseif (theElvaanGoldsmith == QUEST_COMPLETED and fatherFigure == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 2) then
         player:startEvent(240);
 
     -- DEFAULT DIALOG
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 216) then
         local fame = player:hasCompleteQuest(BASTOK, THE_ELVAAN_GOLDSMITH) and 8 or 100;
         if (npcUtil.completeQuest(player, BASTOK, THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
-            player:tradeComplete();
+            player:confirmTrade();
         end
 
     -- DISTANT LOYALTIES
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(GOLDSMITHING_ORDER);
         player:setVar("DistantLoyaltiesProgress",2);
     elseif (csid == 317) then
-        player:tradeComplete();
+        player:confirmTrade();
         player:setVar("DistantLoyaltiesProgress",3);
         player:needToZone(true);
     elseif (csid == 318) then
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,FATHER_FIGURE);
     elseif (csid == 241) then
         if (npcUtil.completeQuest(player, BASTOK, FATHER_FIGURE, {gil=2200, fame=120})) then
-            player:tradeComplete();
+            player:confirmTrade();
         end
     end
 end;

@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, {550})) then
+    if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) >= QUEST_AVAILABLE and npcUtil.tradeHas(trade, 550)) then
         player:startEvent(104);
     end
 end;
@@ -37,7 +37,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 104) then
         local fame = player:hasCompleteQuest(BASTOK, THE_COLD_LIGHT_OF_DAY) and 8 or 50;
         if (npcUtil.completeQuest(player, BASTOK, THE_COLD_LIGHT_OF_DAY, {title=CRAB_CRUSHER, gil=500, fame=fame})) then
-            player:tradeComplete();
+            player:confirmTrade();
         end
         
     -- WISH UPON A STAR

@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD) >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, {90, 90, 90, 90, 90})) then
+    if (player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD) >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, {{90,5}})) then
         player:startEvent(272);
     end
 end; 
@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 272) then
         local fame = player:hasCompleteQuest(BASTOK, BUCKETS_OF_GOLD) and 8 or 75;
         if (npcUtil.completeQuest(player, BASTOK, BUCKETS_OF_GOLD, {title=BUCKET_FISHER, gil=300, fame=fame})) then
-            player:tradeComplete();
+            player:confirmTrade();
         end
     end
 end;
