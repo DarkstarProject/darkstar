@@ -2733,40 +2733,52 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 }
 
 /************************************************************************
-*  Function: GoToEntity()
+*  Function: goToEntity()
 *  Purpose : Transports PC to a Mob or NPC; works across multiple servers
-*  Example : player:GoToEntity(ID)
-*  Notes   : If entity not spawned, go to default location listed in DB
+*  Example : player:goToEntity(ID, Option)
+*  Notes   : Option 0: Spawned/Unspawned | Option 1: Spawned only
 ************************************************************************/
 
-int32 CLuaBaseEntity::GoToEntity(lua_State* L)
+int32 CLuaBaseEntity::goToEntity(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    bool warped = true;
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
 
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        uint32 TargetID   = (uint32)lua_tonumber(L, 1);
-        uint16 TargetZone = (TargetID >> 12) & 0x0FFF;
-        uint16 PlayerID   = m_PBaseEntity->id;
-        uint16 PlayerZone = PChar->loc.zone->GetID();
+        bool spawnedOnly  = !lua_isnil(L, 2) ? lua_tonumber(L, 2) : 0;
+
+        uint32 targetID   = (uint32)lua_tonumber(L, 1);
+        uint16 targetZone = (targetID >> 12) & 0x0FFF;
+        uint16 playerID   = m_PBaseEntity->id;
+        uint16 playerZone = PChar->loc.zone->GetID();
 
         char buf[12];
         memset(&buf[0], 0, sizeof(buf));
 
-        ref<uint16>(&buf,  0) = true; // Toggle for message routing; uint16 for even spacing
-        ref<uint16>(&buf,  2) = TargetZone;
-        ref<uint16>(&buf,  4) = PlayerZone;
-        ref<uint32>(&buf,  6) = TargetID;
-        ref<uint16>(&buf, 10) = PlayerID;
+        ref<bool>  (&buf,  0) = true; // Toggle for message routing; uint16 for even spacing
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
+        ref<uint16>(&buf,  2) = targetZone;
+        ref<uint16>(&buf,  4) = playerZone;
+        ref<uint32>(&buf,  6) = targetID;
+        ref<uint16>(&buf, 10) = playerID;
 
         message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
+
+        if (PChar->status != STATUS_DISAPPEAR)
+        {
+            warped = false;
+        }
     }
 
-    return 0;
+    lua_pushboolean(L, warped);
+
+    return 1;
 }
 
 /************************************************************************
@@ -13700,8 +13712,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
-	LUNAR_DECLARE_METHOD(CLuaBaseEntity,GoToEntity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),	
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
