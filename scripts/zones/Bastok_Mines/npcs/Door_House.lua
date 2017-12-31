@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
     local npcID = npc:getID();
-    if (npcID == LELEROON_DOOR) then
+    if (npcID == LELEROON_BLUE_DOOR) then
         local letterBlue = player:getVar("LeleroonsLetterBlue");
 
         -- mythril sheet, karakul leather, laminated buffalo leather, wolf felt
@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
     local npcID = npc:getID();
-    if (npcID == LELEROON_DOOR) then
+    if (npcID == LELEROON_BLUE_DOOR) then
         local letterBlue = player:getVar("LeleroonsletterBlue");
         if (player:hasKeyItem(LELEROONS_LETTER_BLUE)) then
             player:startEvent(519); -- accept letter, now bring me four items
