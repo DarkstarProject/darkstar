@@ -4,7 +4,7 @@
     npcUtil.pickNewPosition(npc, positionTable, allowCurrentPosition)
     npcUtil.giveItem(player, items)
     npcUtil.giveKeyItem(player, keyitems)
-    npcUtil.completeQuest(player, area, quest, options)
+    npcUtil.completeQuest(player, area, quest, params)
     npcUtil.tradeHas(trade, items)
     npcUtil.genTmask(player,title)
     npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
@@ -138,7 +138,7 @@ end
     If quest rewards items, and the player cannot carry them, return false.
     Otherwise, return true.
     
-    Example of usage with options parameter (all options are optional):
+    Example of usage with params (all params are optional):
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
             item = { {640,2}, 641 },    -- see npcUtil.giveItem for formats
             keyItem = ZERUHN_REPORT,    -- see npcUtil.giveKeyItem for formats
@@ -149,8 +149,8 @@ end
             title = ENTRANCE_DENIED,
         });
 ******************************************************************************* --]]
-function npcUtil.completeQuest(player, area, quest, options)
-    options = options or {};
+function npcUtil.completeQuest(player, area, quest, params)
+    params = params or {};
 
     -- load text ids
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
@@ -158,40 +158,40 @@ function npcUtil.completeQuest(player, area, quest, options)
     require(TextIDs); 
 
     -- item(s) plus message. return false if player lacks inventory space.
-    if (options["item"] ~= nil) then
-        if (not npcUtil.giveItem(player, options["item"])) then
+    if (params["item"] ~= nil) then
+        if (not npcUtil.giveItem(player, params["item"])) then
             return false;
         end
     end
 
     -- key item(s), fame, gil, bayld, xp, and title
-    if (options["keyItem"] ~= nil) then
-        npcUtil.giveKeyItem(player, options["keyItem"]);
+    if (params["keyItem"] ~= nil) then
+        npcUtil.giveKeyItem(player, params["keyItem"]);
     end
 
-    if (options["fame"] == nil) then
-        options["fame"] = 30;
+    if (params["fame"] == nil) then
+        params["fame"] = 30;
     end
-    if (area["fame_area"] ~= nil and type(options["fame"]) == "number") then
-        player:addFame(area, options["fame"]);
-    end
-
-    if (options["gil"] ~= nil and type(options["gil"]) == "number") then
-        player:addGil(options["gil"] * GIL_RATE);
-        player:messageSpecial(GIL_OBTAINED, options["gil"] * GIL_RATE);
+    if (area["fame_area"] ~= nil and type(params["fame"]) == "number") then
+        player:addFame(area, params["fame"]);
     end
 
-    if (options["bayld"] ~= nil and type(options["bayld"]) == "number") then
-        player:addCurrency('bayld', options["bayld"] * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, options["bayld"] * BAYLD_RATE);
+    if (params["gil"] ~= nil and type(params["gil"]) == "number") then
+        player:addGil(params["gil"] * GIL_RATE);
+        player:messageSpecial(GIL_OBTAINED, params["gil"] * GIL_RATE);
     end
 
-    if (options["xp"] ~= nil and type(options["xp"]) == "number") then
-        player:addExp(options["xp"] * EXP_RATE);
+    if (params["bayld"] ~= nil and type(params["bayld"]) == "number") then
+        player:addCurrency('bayld', params["bayld"] * BAYLD_RATE);
+        player:messageSpecial(BAYLD_OBTAINED, params["bayld"] * BAYLD_RATE);
     end
 
-    if (options["title"] ~= nil) then
-        player:addTitle(options["title"]);
+    if (params["xp"] ~= nil and type(params["xp"]) == "number") then
+        player:addExp(params["xp"] * EXP_RATE);
+    end
+
+    if (params["title"] ~= nil) then
+        player:addTitle(params["title"]);
     end
 
     -- successfully complete the quest
