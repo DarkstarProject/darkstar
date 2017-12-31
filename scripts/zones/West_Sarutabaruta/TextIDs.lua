@@ -34,7 +34,7 @@ HARVESTING_IS_POSSIBLE_HERE =  7436; -- Harvesting is possible here if you have
 
 -- Signs
                      SIGN_1 =  7376; -- Northeast: Central Tower, Horutoto Ruins Northwest: Giddeus South: Port Windurst
-                     SIGN_3 =  7378; -- East: East Sarutabaruta West: Giddeus
+                     SIGN_3 =  7377; -- East: East Sarutabaruta West: Giddeus
                      SIGN_5 =  7378; -- Northeast: Central Tower, Horutoto Ruins East: East Sarutabaruta West: Giddeus
                      SIGN_7 =  7379; -- South: Windurst East: East Sarutabaruta
                      SIGN_9 =  7380; -- West: Giddeus North: East Sarutabaruta South: Windurst

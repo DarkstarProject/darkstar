@@ -3,8 +3,10 @@
 -- NPC:  Signpost
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
+package.loaded["scripts/zones/Buburimu_Peninsula/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
+require("scripts/zones/Buburimu_Peninsula/MobIDs");
 
 function onTrade(player,npc,trade)
 end;

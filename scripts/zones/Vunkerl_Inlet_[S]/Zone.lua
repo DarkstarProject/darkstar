@@ -4,9 +4,10 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
+package.loaded["scripts/zones/Vunkerl_Inlet_[S]/MobIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
+require("scripts/zones/Vunkerl_Inlet_[S]/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
 require("scripts/globals/status");
@@ -36,7 +37,7 @@ end;
 
 function onZoneWeatherChange(weather)
 
-    local npc = GetNPCByID(17118008); -- Indescript Markings
+    local npc = GetNPCByID(INDESCRIPT_MARKINGS); -- Indescript Markings
     if (npc ~= nil) then
         if (weather == WEATHER_FOG or weather == WEATHER_THUNDER) then
             npc:setStatus(STATUS_DISAPPEAR);
@@ -52,7 +53,7 @@ end;
 
 function onGameHour(zone)
 
-    local npc = GetNPCByID(17118008); -- Indescript Markings
+    local npc = GetNPCByID(INDESCRIPT_MARKINGS); -- Indescript Markings
     if (npc ~= nil) then
         if (VanadielHour() == 16) then
             npc:setStatus(STATUS_DISAPPEAR);
