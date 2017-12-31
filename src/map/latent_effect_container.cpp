@@ -627,9 +627,12 @@ void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
 // health post looping
 void CLatentEffectContainer::ProcessLatentEffects(std::function <bool(CLatentEffect&)> logic)
 {
-    if (std::any_of(m_LatentEffectList.begin(), m_LatentEffectList.end(), logic))
+    for (auto& latent : m_LatentEffectList)
     {
-        m_POwner->UpdateHealth();
+        if (logic(latent))
+        {
+            m_POwner->UpdateHealth();
+        }
     }
 }
 
