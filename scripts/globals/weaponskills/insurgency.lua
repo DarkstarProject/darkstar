@@ -18,7 +18,6 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {};
     params.numHits = 4;
     params.ftp100 = 0.5; params.ftp200 = 0.75; params.ftp300 = 1;
@@ -33,13 +32,26 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.ftp200 = 3.25; params.ftp300 = 6;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    -- Aftermath calculations from : https://www.bg-wiki.com/bg/Burtgang_(Level_75)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    if (damage > 0) then
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
+            if (tp == 3000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV3
+                aftermathParams.subpower.type = MOD_DOUBLE_ATTACK
+            elseif (tp >= 2000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV2
+                aftermathParams.subpower.type = MOD_ATT
+            else
+                aftermathParams.type = EFFECT_AFTERMATH_LV1
+                aftermathParams.subpower.type = MOD_ACC
+            end
 
-    if ((player:getEquipID(SLOT_MAIN) == 18998) and (player:getMainJob() == JOBS.DRK)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
+            applyMythicAftermath(player, tp, aftermathParams)
         end
     end
-    return tpHits, extraHits, criticalHit, damage;
 
+    return tpHits, extraHits, criticalHit, damage
 end

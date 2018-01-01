@@ -679,7 +679,7 @@ namespace battleutils
         Action->spikesParam = std::max<int16>(PDefender->getMod(Mod::SPIKES_DMG), 0);
 
         // Handle Retaliation
-        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION)
+        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_RETALIATION) && PDefender->PAI->IsEngaged()
             && battleutils::GetHitRate(PDefender, PAttacker) / 2 > dsprand::GetRandomNumber(100)
             && isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
         {
@@ -5346,6 +5346,11 @@ namespace battleutils
                 case Mod::MATT:
                 case Mod::MACC:
                     modAmount /= 3;
+                    break;
+                case Mod::OCC_DO_EXTRA_DMG:
+                case Mod::EXTRA_DMG_CHANCE:
+                case Mod::OCC_DO_DOUBLE_DMG:
+                case Mod::OCC_DO_TRIPLE_DMG:
                     break;
                 default:
                     modAmount = 0;

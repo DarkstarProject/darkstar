@@ -17,7 +17,6 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {};
     params.numHits = 1;
     params.ftp100 = 1; params.ftp200 = 1.5; params.ftp300 = 2;
@@ -33,19 +32,27 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.mnd_wsc = 0.7;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    -- Aftermath calculations from : https://www.bg-wiki.com/bg/Yagrush_(Level_75)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    if (damage > 0) then
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
+            if (tp == 3000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV3
+                aftermathParams.subpower.type = MOD_DOUBLE_ATTACK
+            elseif (tp >= 2000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV2
+                aftermathParams.subpower.type = MOD_ACC
+            else
+                aftermathParams.type = EFFECT_AFTERMATH_LV1
+                aftermathParams.subpower.type = MOD_MACC
+            end
 
-    -- Todo: MOD_AFTERMATH instead of Item ID checks in all these..
-    if ((player:getEquipID(SLOT_MAIN) == 18993) and (player:getMainJob() == JOBS.WHM)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 2
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
+            applyMythicAftermath(player, tp, aftermathParams)
         end
     end
 
-    player:addMP(damage);
-    return tpHits, extraHits, criticalHit, damage;
+    player:addMP(damage)
+    return tpHits, extraHits, criticalHit, damage
 end

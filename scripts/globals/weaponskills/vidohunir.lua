@@ -19,7 +19,6 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {};
     params.ftp100 = 1.75; params.ftp200 = 1.75; params.ftp300 = 1.75;
     params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.3; 
@@ -33,25 +32,30 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
-
     if (damage > 0) then
         local duration = (tp/1000 * 60);
         if (target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
             target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, duration);
         end
-    end
+        
+        -- Aftermath calculations from : https://www.bg-wiki.com/bg/Laevateinn_(Level_75)
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
+            if (tp == 3000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV3
+                aftermathParams.subpower.type = MOD_DOUBLE_ATTACK
+            elseif (tp >= 2000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV2
+                aftermathParams.subpower.type = MOD_MATT
+            else
+                aftermathParams.type = EFFECT_AFTERMATH_LV1
+                aftermathParams.subpower.type = MOD_MACC
+            end
 
-
-    if ((player:getEquipID(SLOT_MAIN) == 18994) and (player:getMainJob() == JOBS.BLM)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.power.lv2_inc = 1
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 3
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
+            applyMythicAftermath(player, tp, aftermathParams)
         end
     end
-    return tpHits, extraHits, criticalHit, damage;
 
+    return tpHits, extraHits, criticalHit, damage
 end

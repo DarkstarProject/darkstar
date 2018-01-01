@@ -152,14 +152,33 @@ namespace attackutils
             return damage;
         }
         uint32 originalDamage = damage;
-        auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG);
-        auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE);
-        if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0)
+        int32 extraDmgChance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE);
+        int32 extraDmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG);
+        int32 doubleDmgChance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_DOUBLE_DMG);
+        int32 tripleDmgChance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_TRIPLE_DMG);
+
+        // If extraDmg is more than triple (>300) then it trumps triple damage
+        // If tripleDmgChance fails and extraDmg is more than double (>200) then it trumps double damage
+        // If doubleDmgChance fails, fallback to any extraDmg that may still apply
+        if (extraDmgChance > 0 && extraDmg > 300 && dsprand::GetRandomNumber(100.f) <= extraDmgChance / 10.f)
         {
-            if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance / 10))
-            {
-                return (uint32)(damage * (occ_extra_dmg / 100.f));
-            }
+            return (uint32)(damage * extraDmg / 100.f);
+        }
+        else if (tripleDmgChance > 0 && dsprand::GetRandomNumber(100.f) <= tripleDmgChance / 10.f)
+        {
+            return damage * 3;
+        }
+        else if (extraDmgChance > 0 && extraDmg > 200 && dsprand::GetRandomNumber(100.f) <= extraDmgChance / 10.f)
+        {
+            return (uint32)(damage * extraDmg / 100.f);
+        }
+        else if (doubleDmgChance > 0 && dsprand::GetRandomNumber(100.f) <= doubleDmgChance / 10.f)
+        {
+            return damage * 2;
+        }
+        else if (extraDmgChance > 0 && extraDmg > 0 && dsprand::GetRandomNumber(100.f) <= extraDmgChance / 10.f)
+        {
+            return (uint32)(damage * extraDmg / 100.f);
         }
 
         switch (attackType)

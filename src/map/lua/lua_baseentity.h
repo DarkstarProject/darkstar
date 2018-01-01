@@ -569,6 +569,8 @@ public:
     int32 getWeaponSkillType(lua_State*);       // gets the type of weapon equipped
     int32 getWeaponSubSkillType(lua_State*);    // gets the subskill of weapon equipped
     int32 getWSSkillchainProp(lua_State* L);    // returns weapon skill's skillchain properties (up to 3)
+    int32 getWeapon(lua_State* L);              // returns weapon from the passed in SLOT
+    int32 getAftermathModPower(lua_State* L);   // gets mod power of MOD_AFTERMATH of main hand/ranged weapons
 
     int32 takeWeaponskillDamage(lua_State* L);
     
@@ -665,7 +667,6 @@ public:
     int32 getTrickAttackChar(lua_State*);   // true if TA target is available    
     
     int32 actionQueueEmpty(lua_State*);     // returns whether the action queue is empty or not
-    int32 actionQueueAbility(lua_State*);   // returns whether the action is from the action queue or not    
     
     int32 castSpell(lua_State*);            // forces a mob to cast a spell (parameter = spell ID, otherwise picks a spell from its list)
     int32 useJobAbility(lua_State*);        // forces a job ability use (players/pets only)

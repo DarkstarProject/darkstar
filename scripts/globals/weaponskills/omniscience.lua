@@ -41,16 +41,25 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         end
     end
 
-    if ((player:getEquipID(SLOT_MAIN) == 18990) and (player:getMainJob() == JOBS.SCH)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.power.lv2_inc = 1
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 3
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
+    -- Aftermath calculations from : https://www.bg-wiki.com/bg/Tupsimati_(Level_75)
+    if (damage > 0) then
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
+            if (tp == 3000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV3
+                aftermathParams.subpower.type = MOD_DOUBLE_ATTACK
+            elseif (tp >= 2000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV2
+                aftermathParams.subpower.type = MOD_MATT
+            else
+                aftermathParams.type = EFFECT_AFTERMATH_LV1
+                aftermathParams.subpower.type = MOD_MACC
+            end
+
+            applyMythicAftermath(player, tp, aftermathParams)
         end
     end
 
-    return tpHits, extraHits, criticalHit, damage;
+    return tpHits, extraHits, criticalHit, damage
 end

@@ -29,6 +29,10 @@ SPECEFFECT_RAISE = 0x11
 SPECEFFECT_RECOIL = 0x20
 SPECEFFECT_CRITICAL_HIT = 0x22
 
+AFTERMATH_RELIC = 1;
+AFTERMATH_MYTHIC = 2;
+AFTERMATH_EMPYREAN = 3;
+AFTERMATH_AEONIC = 4;
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
@@ -49,7 +53,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     -- apply WSC
     local weaponDamage = attacker:getWeaponDmg();
-    local weaponType = attacker:getWeaponSkillType(0);
+    local weaponType = attacker:getWeaponSkillType(SLOT_MAIN);
 
     if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
@@ -1024,77 +1028,131 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
 end
 
 -- Params should have the following members:
--- params.power.lv1: Base value for AM power @ level 1
--- params.power.lv2: Base value for AM power @ level 2
--- params.power.lv3: Base value for AM power @ level 3
+-- params.type : Aftermath effect type (EFFECT_AFTERMATH, EFFECT_AFTERMATH_LV1-3)
+-- params.power : Aftermath tier (1, 2, 3)
 
--- params.power.lv1_inc: How much to increment at each power level
--- params.power.lv2_inc: How much to increment at each power level
+-- params.subpower.type : Mod Type
+-- params.subpower.power : Mod power
 
--- params.subpower.lv1: Subpower for level 1
--- params.subpower.lv2: Subpower for level 2
--- params.subpower.lv3: Subpower for level 3
-
--- params.duration.lv1: Duration for AM level 1
--- params.duration.lv2: Duration for AM level 2
--- params.duration.lv3: Duration for AM level 3
-function applyAftermathEffect(player, tp, params)
-    if (params == nil) then
-        params = initAftermathParams()
-    end
-
-    local apply_power = 0
-    if (tp == 3000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV3)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        player:delStatusEffect(EFFECT_AFTERMATH_LV2);
-        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0,
-            params.duration.lv3, 0, params.subpower.lv3);
-    elseif (tp >= 2000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV2)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        apply_power = math.floor(params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV2, apply_power, 0,
-            params.duration.lv2, 0, params.subpower.lv2);
-    elseif (tp >= 1000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV1)) then
-        apply_power = math.floor(params.power.lv1 + ((tp - 1000) / (100 / params.power.lv1_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV1, apply_power, 0,
-            params.duration.lv1, 0, params.subpower.lv1);
-    end
-end;
+-- params.duration : Duration for AM
 
 function initAftermathParams()
     local params = {}
-    params.power = {}
+
+    params.type = EFFECT_AFTERMATH
+    params.power = 1
+
     params.subpower = {}
-    params.duration = {}
+    params.subpower.type = 0
+    params.subpower.power = 0
 
-    params.power.lv1 = 10
-    params.power.lv2 = 20
-    params.power.lv3 = 40
-
-    params.power.lv1_inc = 1
-    params.power.lv2_inc = 4
-
-    params.subpower.lv1 = 1
-    params.subpower.lv2 = 1
-    params.subpower.lv3 = 1
-
-    params.duration.lv1 = 60
-    params.duration.lv2 = 90
-    params.duration.lv3 = 120
+    params.duration = 0
 
     return params
-end;
+end
 
-function shouldApplyAftermath(player, effect)
-    local result = true;
-    if (effect == EFFECT_AFTERMATH_LV1 and (player:hasStatusEffect(EFFECT_AFTERMATH_LV2) or player:hasStatusEffect(EFFECT_AFTERMATH_LV3))) then
-        result = false;
-    elseif (effect == EFFECT_AFTERMATH_LV2 and player:hasStatusEffect(EFFECT_AFTERMATH_LV3)) then
-        result = false;
-    end;
+-- Relic Aftermath Reference
+-- https://www.bg-wiki.com/bg/Relic_Aftermath
+function applyRelicAftermath(player, tp, params)
+    if (params) then
+        local duration = 0
+        if (params.power == 2) then
+            params.duration = math.floor(0.06 * tp)
+        elseif (params.power == 1) then
+            params.duration = math.floor(0.02 * tp)
+        end
 
-    return result;
-end;
+        player:addStatusEffect(params.type, params.power, 0, params.duration, params.subpower.type, params.subpower.power)
+    end
+end
+
+-- Mythic Aftermath Reference
+-- https://www.bg-wiki.com/bg/Mythic_Aftermath
+function applyMythicAftermath(player, tp, params)
+    if (params) then
+        if (params.type == EFFECT_AFTERMATH_LV1) then -- Always some form of accuracy (ACC, RACC, MACC)
+            if (params.power == 1) then -- MACC has a different duration cause fuck me
+                player:addStatusEffect(params.type, params.power, 0, params.subpower.type == MOD_MACC and 180 or 60, params.subpower.type, math.floor(tp / 100))
+            elseif (params.power == 2) then
+                player:addStatusEffect(params.type, params.power, 0, params.subpower.type == MOD_MACC and 270 or 90, params.subpower.type, math.floor(3 * tp / 200))
+            elseif (params.power == 3) then
+                player:addStatusEffect(params.type, params.power, 0, params.subpower.type == MOD_MACC and 270 or 90, params.subpower.type, math.floor(tp / 50 + 10))
+            end
+        elseif (params.type == EFFECT_AFTERMATH_LV2) then
+            -- Remove Aftermath Lv1
+            player:delStatusEffect(EFFECT_AFTERMATH_LV1)
+            
+            if (params.subpower.type == MOD_ATT or params.subpower.type == MOD_RATT) then
+                if (params.power == 1) then
+                    player:addStatusEffect(params.type, params.power, 0, 90, params.subpower.type, math.floor(2 * tp / 50 - 60))
+                elseif (params.power == 2) then
+                    player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, math.floor(3 * tp / 50 - 90))
+                elseif (params.power == 3) then
+                    player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, math.floor(tp * 0.06 - 80))
+                end
+            elseif (params.subpower.type == MOD_ACC or params.subpower.type == MOD_MACC) then
+                if (params.power == 1) then
+                    player:addStatusEffect(params.type, params.power, 0, params.subpower.type == MOD_MACC and 180 or 90, params.subpower.type, math.floor(tp / 100 - 10))
+                elseif (params.power == 2) then
+                    player:addStatusEffect(params.type, params.power, 0, params.subpower.type == MOD_MACC and 270 or 120, params.subpower.type, math.floor(3 * tp / 200 - 15))
+                elseif (params.power == 3) then
+                    player:addStatusEffect(params.type, params.power, 0, params.subpower.type == MOD_MACC and 270 or 120, params.subpower.type, math.floor(tp / 100 - 10))
+                end
+            elseif (params.subpower.type == MOD_MATT) then
+                if (params.power == 1) then
+                    player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, math.floor(tp / 100))
+                elseif (params.power == 2) then
+                    player:addStatusEffect(params.type, params.power, 0, 270, params.subpower.type, math.floor(tp / 50 - 20))
+                elseif (params.power == 3) then
+                    player:addStatusEffect(params.type, params.power, 0, 270, params.subpower.type, math.floor(tp / 50 - 10))
+                end
+            end
+        elseif (params.type == EFFECT_AFTERMATH_LV3) then
+            -- Remove Aftermath Lv1 or Lv2
+            player:delStatusEffect(EFFECT_AFTERMATH_LV1)
+            player:delStatusEffect(EFFECT_AFTERMATH_LV2)
+
+            if (params.power == 1) then
+                player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, 400)
+            elseif (params.power == 2) then
+                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 600)
+            elseif (params.power == 3) then
+                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 400)
+            end
+    end
+end
+end
+
+function shouldApplyAftermath(player, power, tp, aftermathType)
+    if (power == 0) then
+        return false
+    end
+    
+    -- Any level of Relic Aftermath always overwrites
+    if (aftermathType == AFTERMATH_RELIC) then
+        return true
+    elseif (aftermathType == AFTERMATH_MYTHIC or aftermathType == AFTERMATH_EMPYREAN) then
+        local currentEffect = player:getStatusEffect(EFFECT_AFTERMATH_LV3)
+        if (currentEffect) then -- Aftermath Tier 3 can't overwrite itself
+            return false
+        end
+        
+        if (tp == 3000) then -- Level 3 isn't active so we can overwrite
+            return true
+        elseif (tp >= 2000) then -- If Level 2 is active, we cannot overwrite
+            currentEffect = player:getStatusEffect(EFFECT_AFTERMATH_LV2)
+            if (currentEffect) then
+                return false
+            else
+                return true
+            end
+        else -- Level 1 can be overwritten by itself
+            return true
+        end
+    end
+
+    return true
+end
 
 function handleWSGorgetBelt(attacker)
     local ftpBonus = 0;
@@ -1138,7 +1196,7 @@ function handleWSGorgetBelt(attacker)
         end
     end
     return ftpBonus, accBonus;
-end;
+end
 
 function shadowAbsorb(target)
     local targShadows = target:getMod(MOD_UTSUSEMI)

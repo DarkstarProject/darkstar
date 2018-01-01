@@ -36,13 +36,17 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.vit_wsc = 0.8;
     end
 
-    -- damage = damage * ftp(tp, ftp100, ftp200, ftp300);
+    -- Aftermath : https://www.bg-wiki.com/bg/Spharai_(Level_75)
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
     if (damage > 0) then
-        local amDuration = 20 * math.floor(tp/1000);
-        player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, amDuration, 0, 1);
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_RELIC)) then
+            aftermathParams.subpower.type = MOD_SUBTLE_BLOW
+            aftermathParams.subpower.power = 10
+            applyRelicAftermath(player, tp, aftermathParams)
+        end
     end
 
-    return tpHits, extraHits, criticalHit, damage;
+    return tpHits, extraHits, criticalHit, damage
 end
