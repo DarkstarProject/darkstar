@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - SIGNPOST_OFFSET;
+    local offset = npc:getID() - SIGNPOST_OFFSET_SARUTA;
     if (offset >= 0 and offset <= 18) then
         player:messageSpecial(SIGN_1 + math.floor(offset / 2));
     end
