@@ -624,15 +624,22 @@ void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
 
 // Process the latent effects container and apply a logic function responsible for
 // filtering the appropriate latents to be activated/deactivated and finally update
-// health post looping
+// mask with UPDATE_HP post looping if at least one logic function returned true
 void CLatentEffectContainer::ProcessLatentEffects(std::function <bool(CLatentEffect&)> logic)
 {
+    auto count = 0;
+
     for (auto& latent : m_LatentEffectList)
     {
         if (logic(latent))
         {
-            m_POwner->UpdateHealth();
+            count++;
         }
+    }
+
+    if (count > 0)
+    {
+        m_POwner->updatemask |= UPDATE_HP;
     }
 }
 
