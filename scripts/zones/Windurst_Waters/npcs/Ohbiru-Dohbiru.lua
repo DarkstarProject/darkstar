@@ -7,17 +7,12 @@
 
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 
-
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/common");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Windurst_Waters/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
@@ -56,10 +51,6 @@ function onTrade(player,npc,trade)
     end
 end;      
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     -- Check for Missions first (priority?)
     -- If the player has started the mission or not
@@ -81,10 +72,10 @@ function onTrigger(player,npc)
         else
             player:startEvent(144);
         end
-    elseif (SayFlowers == QUEST_ACCEPTED or FlowerProgress == 2) then
+    elseif ((SayFlowers == QUEST_ACCEPTED or SayFlowers == QUEST_COMPLETED) and FlowerProgress == 1) then
         if (needToZone) then
             player:startEvent(518);
-        elseif (player:getVar("FLOWER_PROGRESS") == 1) then
+        elseif (player:getVar("FLOWER_PROGRESS") == 2) then
             player:startEvent(517,0,0,0,0,950);
         else
             player:startEvent(516,0,0,0,0,950);
@@ -132,22 +123,25 @@ function onTrigger(player,npc)
     end
 end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+
+    local tabre =
+    {
+        [0] = { itemid = 948, gil = 300 }, -- Carnation
+        [1] = { itemid = 941, gil = 200 }, -- Red Rose
+        [2] = { itemid = 949, gil = 250 }, -- Rain Lily
+        [3] = { itemid = 956, gil = 150 }, -- Lilac
+        [4] = { itemid = 957, gil = 200 }, -- Amaryllis
+        [5] = { itemid = 958, gil = 100 }  -- Marguerite
+    }
+
     -- Check Missions first (priority?)
     local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
     if (csid == 143) then
@@ -221,40 +215,22 @@ function onEventFinish(player,csid,option)
     elseif (csid == 872) then    
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",3);
     elseif (csid == 516) then
-        if (option == 0) then
-            player:delGil(300);
-            player:addItem(948); -- Carnation
-            player:messageSpecial(ITEM_OBTAINED,948);
-            player:needToZone(true);
-        elseif (option == 1) then
-            player:delGil(200);
-            player:addItem(941); -- Red Rose
-            player:messageSpecial(ITEM_OBTAINED,941);
-            player:needToZone(true);
-        elseif (option == 2) then
-            player:delGil(250);
-            player:addItem(949); -- Rain Lily
-            player:messageSpecial(ITEM_OBTAINED,949);
-            player:needToZone(true);
-        elseif (option == 3) then
-            player:delGil(150);
-            player:addItem(956); -- Lilac
-            player:messageSpecial(ITEM_OBTAINED,956);
-            player:needToZone(true);
-        elseif (option == 4) then
-            player:delGil(200);
-            player:addItem(957); -- Amaryllis
-            player:messageSpecial(ITEM_OBTAINED,957);
-            player:needToZone(true);
-        elseif (option == 5) then
-            player:delGil(100);
-            player:addItem(958); -- Marguerite
-            player:messageSpecial(ITEM_OBTAINED,958);
-            player:needToZone(true);
+        if (option < 7) then
+            local choice = tabre[option];
+            if (choice and player:getGil() >= choice.gil) then
+                if (player:getFreeSlotsCount() > 0) then
+                    player:addItem(choice.itemid)
+                    player:messageSpecial(ITEM_OBTAINED,choice.itemid);
+                    player:delGil(choice.gil);
+                    player:needToZone(true);
+                else
+                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,choice.itemid);
+                end
+            else
+                player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
+            end
         elseif (option == 7) then
-            player:setVar("FLOWER_PROGRESS",1);
+            player:setVar("FLOWER_PROGRESS",2);
         end
     end
 end;
-
-

@@ -4,6 +4,10 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
+KORROLOKA_LEECH_I = 17486187;
+KORROLOKA_LEECH_II = 17486188;
+KORROLOKA_LEECH_III = 17486189;
+
 CARGO_CRAB_COLIN_PH =
 {
     [17486002] = 17485980, -- -30.384 1.000 -33.277

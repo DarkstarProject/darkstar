@@ -2,30 +2,34 @@ Leujaoam = {
 
     text = {
         -- General Texts
-        ITEM_CANNOT_BE_OBTAINED = 6378, -- You cannot obtain the item <item> come back again after sorting your inventory
-        ITEM_OBTAINED = 6381, -- Obtained: <item>
-        GIL_OBTAINED = 6384, -- Obtained <number> gil
-        KEYITEM_OBTAINED = 6384, -- Obtained key item: <keyitem>
+        ITEM_CANNOT_BE_OBTAINED    = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE = 6385, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+        ITEM_OBTAINED              = 6387, -- Obtained: <item>.
+        GIL_OBTAINED               = 6388, -- Obtained <number> gil.
+        KEYITEM_OBTAINED           = 6390, -- Obtained key item: <keyitem>.
+        KEYITEM_LOST               = 6391, -- Lost key item: <keyitem>.
+        NOT_HAVE_ENOUGH_GIL        = 6392, -- You do not have enough gil.
+        ITEMS_OBTAINED             = 6396, -- You obtain <number> <item>!
 
         -- Assault Texts
-        ASSAULT_01_START = 7417,
-        ASSAULT_02_START = 7418,
-        ASSAULT_03_START = 7419,
-        ASSAULT_04_START = 7420,
-        ASSAULT_05_START = 7421,
-        ASSAULT_06_START = 7422,
-        ASSAULT_07_START = 7423,
-        ASSAULT_08_START = 7424,
-        ASSAULT_09_START = 7425,
-        ASSAULT_10_START = 7426,
-        TIME_TO_COMPLETE = 7477,
-        MISSION_FAILED = 7478,
-        RUNE_UNLOCKED_POS = 7479,
-        RUNE_UNLOCKED = 7480,
-        ASSAULT_POINTS_OBTAINED = 7481,
-        TIME_REMAINING_MINUTES = 7482,
-        TIME_REMAINING_SECONDS = 7483,
-        PARTY_FALLEN = 7485
+        ASSAULT_01_START        = 7446, -- Commencing <assault>! Objective: Remove all threats
+        ASSAULT_02_START        = 7447, -- Commencing <assault>! Objective: Discover orichalcum ore
+        ASSAULT_03_START        = 7448, -- Commencing <assault>! Objective: Protect the professor
+        ASSAULT_04_START        = 7449, -- Commencing <assault>! Objective: Protect the vegetation
+        ASSAULT_05_START        = 7450, -- Commencing <assault>! Objective: Buy black sheep
+        ASSAULT_06_START        = 7451, -- Commencing <assault>! Objective: Retrieve the supplies
+        ASSAULT_07_START        = 7452, -- Commencing <assault>! Objective: Become a test subject
+        ASSAULT_08_START        = 7453, -- Commencing <assault>! Objective: Retrieve the OGMA
+        ASSAULT_09_START        = 7454, -- Commencing <assault>! Objective: Defeat Raubahn
+        ASSAULT_10_START        = 7455, -- Commencing <assault>! Objective: Defeat the count
+        TIME_TO_COMPLETE        = 7506, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
+        MISSION_FAILED          = 7507, -- The mission has failed. Leaving area.
+        RUNE_UNLOCKED_POS       = 7508, -- Mission objective completed. Unlocking Rune of Release (<letter>-<number>).
+        RUNE_UNLOCKED           = 7509, -- Mission objective completed. Unlocking Rune of Release.
+        ASSAULT_POINTS_OBTAINED = 7510, -- You gain <number> [Assault point/Assault points]!
+        TIME_REMAINING_MINUTES  = 7511, -- Time remaining: <number> [minute/minutes] (Earth time).
+        TIME_REMAINING_SECONDS  = 7512, -- Time remaining: <number> [second/seconds] (Earth time).
+        PARTY_FALLEN            = 7514  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
     
     mobs = {

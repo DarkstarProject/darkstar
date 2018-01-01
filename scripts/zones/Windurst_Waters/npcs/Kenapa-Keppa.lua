@@ -59,7 +59,7 @@ function onTrigger(player,npc)
 
     if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),4) == false) then
         player:startEvent(56); -- Show Off Hat
-    elseif (SayFlowers == QUEST_ACCEPTED and FlowerProgress == 1) then
+    elseif ((SayFlowers == QUEST_ACCEPTED or SayFlowers == QUEST_COMPLETED) and FlowerProgress == 2) then
         player:startEvent(519);
     elseif (FoodForThought == QUEST_AVAILABLE) then
         player:startEvent(310); -- Hungry script
@@ -223,14 +223,20 @@ function onEventFinish(player,csid,option)
         player:setVar("Kenapa_Overnight_Hour_var",0);
         player:setVar("Kenapa_Overnight_var",256);
     elseif (csid == 348) then
-        player:addItem(12590);
-        player:delKeyItem(SMALL_BAG);
-        player:messageSpecial(ITEM_OBTAINED,12590);
-        player:completeQuest(WINDURST,OVERNIGHT_DELIVERY);
-        player:addFame(WINDURST,100);
-        player:needToZone(true);
-        player:setVar("Kenapa_Overnight_var",0);
-        player:setVar("Kenapa_Overnight_Hour_var",0);
+        if (player:getFreeSlotsCount() > 0) then
+            player:addItem(12590);
+            player:delKeyItem(SMALL_BAG);
+            player:messageSpecial(ITEM_OBTAINED,12590);
+            player:completeQuest(WINDURST,OVERNIGHT_DELIVERY);
+            player:addFame(WINDURST,100);
+            player:needToZone(true);
+            player:setVar("Kenapa_Overnight_var",0);
+            player:setVar("Kenapa_Overnight_Hour_var",0);
+        else
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12590);
+        end
+    elseif (csid == 519) then
+        player:setVar("FLOWER_PROGRESS",3);
     end
 end;
 

@@ -72,7 +72,6 @@ void CAIActionQueue::checkAction(time_point tick)
 
 void CAIActionQueue::handleAction(queueAction_t& action)
 {
-    PEntity->SetLocalVar("actionQueueAction", 1);
     if (action.lua_func)
     {
         luautils::pushFunc(action.lua_func);
@@ -84,7 +83,6 @@ void CAIActionQueue::handleAction(queueAction_t& action)
     {
         action.func(PEntity);
     }
-    PEntity->SetLocalVar("actionQueueAction", 0);
 }
 
 bool CAIActionQueue::isEmpty()

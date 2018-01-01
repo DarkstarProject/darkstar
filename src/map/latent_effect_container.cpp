@@ -91,11 +91,12 @@ void CLatentEffectContainer::CheckLatentsHP()
         case LATENT_HP_UNDER_TP_UNDER_100:
         case LATENT_HP_OVER_TP_UNDER_100:
         case LATENT_HP_OVER_VISIBLE_GEAR:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -115,11 +116,12 @@ void CLatentEffectContainer::CheckLatentsTP()
         case LATENT_TP_OVER:
         case LATENT_HP_UNDER_TP_UNDER_100:
         case LATENT_HP_OVER_TP_UNDER_100:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -141,11 +143,12 @@ void CLatentEffectContainer::CheckLatentsMP()
         case LATENT_MP_OVER:
         case LATENT_WEAPON_DRAWN_MP_OVER:
         case LATENT_MP_UNDER_VISIBLE_GEAR:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -160,8 +163,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
     {
         if (latentEffect.GetSlot() == slot)
         {
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
         }
+        return false;
     });
 }
 
@@ -182,30 +186,30 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
             switch (latentEffect.GetConditionsID())
             {
             case LATENT_WEAPON_DRAWN:
-                latentEffect.Activate();
+                return latentEffect.Activate();
                 break;
             case LATENT_WEAPON_DRAWN_MP_OVER:
                 if (m_POwner->health.mp > latentEffect.GetConditionsValue())
                 {
-                    latentEffect.Activate();
+                    return latentEffect.Activate();
                 }
                 else
                 {
-                    latentEffect.Deactivate();
+                    return latentEffect.Deactivate();
                 }
                 break;
             case LATENT_WEAPON_DRAWN_HP_UNDER:
                 if (m_POwner->health.hp < latentEffect.GetConditionsValue())
                 {
-                    latentEffect.Activate();
+                    return latentEffect.Activate();
                 }
                 else
                 {
-                    latentEffect.Deactivate();
+                    return latentEffect.Deactivate();
                 }
                 break;
             case LATENT_WEAPON_SHEATHED:
-                latentEffect.Deactivate();
+                return latentEffect.Deactivate();
                 break;
             default:
                 break;
@@ -218,15 +222,16 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
             case LATENT_WEAPON_DRAWN:
             case LATENT_WEAPON_DRAWN_MP_OVER:
             case LATENT_WEAPON_DRAWN_HP_UNDER:
-                latentEffect.Deactivate();
+                return latentEffect.Deactivate();
                 break;
             case LATENT_WEAPON_SHEATHED:
-                latentEffect.Activate();
+                return latentEffect.Activate();
                 break;
             default:
                 break;
             }
         }
+        return false;
     });
 }
 
@@ -245,11 +250,12 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
         case LATENT_STATUS_EFFECT_ACTIVE:
         case LATENT_WEATHER_ELEMENT:
         case LATENT_NATION_CONTROL:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -268,11 +274,12 @@ void CLatentEffectContainer::CheckLatentsFoodEffect()
         {
         case LATENT_FOOD_ACTIVE:
         case LATENT_NO_FOOD_ACTIVE:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -289,11 +296,12 @@ void CLatentEffectContainer::CheckLatentsRollSong()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_SONG_ROLL_ACTIVE:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -312,11 +320,12 @@ void CLatentEffectContainer::CheckLatentsDay()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_TIME_OF_DAY:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -332,11 +341,12 @@ void CLatentEffectContainer::CheckLatentsMoonPhase()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_MOON_PHASE:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -360,11 +370,12 @@ void CLatentEffectContainer::CheckLatentsWeekDay()
         case LATENT_ICEDAY:
         case LATENT_LIGHTNINGSDAY:
         case LATENT_LIGHTSDAY:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -381,11 +392,12 @@ void CLatentEffectContainer::CheckLatentsHours()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_HOUR_OF_DAY:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -404,11 +416,11 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(size_t members)
         case LATENT_PARTY_MEMBERS:
             if (latentEffect.GetConditionsValue() <= members)
             {
-                latentEffect.Activate();
+                return latentEffect.Activate();
             }
             else
             {
-                latentEffect.Deactivate();
+                return latentEffect.Deactivate();
             }
         case LATENT_PARTY_MEMBERS_IN_ZONE:
             if (latentEffect.GetConditionsValue() <= members)
@@ -425,21 +437,22 @@ void CLatentEffectContainer::CheckLatentsPartyMembers(size_t members)
 
                 if (inZone == latentEffect.GetConditionsValue())
                 {
-                    latentEffect.Activate();
+                    return latentEffect.Activate();
                 }
                 else
                 {
-                    latentEffect.Deactivate();
+                    return latentEffect.Deactivate();
                 }
             }
             else
             {
-                latentEffect.Deactivate();
+                return latentEffect.Deactivate();
             }
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -450,11 +463,12 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_JOB_IN_PARTY:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -471,11 +485,12 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_AVATAR_IN_PARTY:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -498,11 +513,12 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
         case LATENT_JOB_MULTIPLE_13_NIGHT:
         case LATENT_JOB_LEVEL_BELOW:
         case LATENT_JOB_LEVEL_ABOVE:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -519,11 +535,12 @@ void CLatentEffectContainer::CheckLatentsPetType()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_PET_ID:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -551,8 +568,9 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
     {
         if (latentEffect.GetConditionsID() == LATENT_WEAPON_BROKEN && latentEffect.GetConditionsValue() == slot)
         {
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
         }
+        return false;
     });
 }
 
@@ -572,11 +590,12 @@ void CLatentEffectContainer::CheckLatentsZone()
         case LATENT_WEATHER_ELEMENT:
         case LATENT_NATION_CONTROL:
         case LATENT_ZONE_HOME_NATION:
-            ProcessLatentEffect(latentEffect);
+            return ProcessLatentEffect(latentEffect);
             break;
         default:
             break;
         }
+        return false;
     });
 }
 
@@ -597,26 +616,26 @@ void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
         if (latent.GetConditionsID() == LATENT_WEATHER_ELEMENT)
         {
             auto element = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false, weather));
-            ApplyLatentEffect(latent, latent.GetConditionsValue() == element);
+            return ApplyLatentEffect(latent, latent.GetConditionsValue() == element);
         }
+        return false;
     });
 }
 
 // Process the latent effects container and apply a logic function responsible for
 // filtering the appropriate latents to be activated/deactivated and finally update
 // health post looping
-void CLatentEffectContainer::ProcessLatentEffects(std::function <void(CLatentEffect&)> logic)
+void CLatentEffectContainer::ProcessLatentEffects(std::function <bool(CLatentEffect&)> logic)
 {
-    for (auto& latentEffect : m_LatentEffectList)
+    if (std::any_of(m_LatentEffectList.begin(), m_LatentEffectList.end(), logic))
     {
-        logic(latentEffect);
+        m_POwner->UpdateHealth();
     }
-    m_POwner->UpdateHealth();
 }
 
 // Processes a single CLatentEffect* and finds the expression to evaluate for
 // activation/deactivation and attempts to apply
-void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
+bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
 {
     // Our default case un-finds our latent prevent us from toggling a latent we don't have programmed
     auto expression = false;
@@ -1023,19 +1042,20 @@ void CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
     // if we did not hit the default case, attempt to apply the latent effect based on the expression
     if (latentFound)
     {
-        ApplyLatentEffect(latentEffect, expression);
+        return ApplyLatentEffect(latentEffect, expression);
     }
+    return false;
 }
 
 // Activates a latent effect if true otherwise deactivates the latent effect
-void CLatentEffectContainer::ApplyLatentEffect(CLatentEffect& effect, bool expression)
+bool CLatentEffectContainer::ApplyLatentEffect(CLatentEffect& effect, bool expression)
 {
     if (expression)
     {
-        effect.Activate();
+        return effect.Activate();
     }
     else
     {
-        effect.Deactivate();
+        return effect.Deactivate();
     }
 }

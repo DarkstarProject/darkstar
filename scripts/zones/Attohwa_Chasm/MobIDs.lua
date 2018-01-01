@@ -3,6 +3,7 @@ AMBUSHER_ANTLION_PH =
     [16806171] = 16806249, -- -433.309 -4.3 113.841
 }
 
+LIOUMERE                = 16806031;
 TIAMAT                  = 16806227;
 FEELER_ANTLION          = 16806242;
 
