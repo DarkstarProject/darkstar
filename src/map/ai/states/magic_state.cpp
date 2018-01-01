@@ -224,7 +224,7 @@ bool CMagicState::HasCost()
         }
     }
     // check has mp available
-    else if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) || (!m__PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAWELL)) &&
+    else if ((!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) || !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAWELL)) &&
         !(m_flags & MAGICFLAGS_IGNORE_MP) && battleutils::CalculateSpellCost(m_PEntity, GetSpell()) > m_PEntity->health.mp)
     {
         if (m_PEntity->objtype == TYPE_MOB && m_PEntity->health.maxmp == 0)
@@ -247,7 +247,7 @@ void CMagicState::SpendCost()
             battleutils::HasNinjaTool(m_PEntity, GetSpell(), true);
         }
     }
-    else if (m_PSpell->hasMPCost() && !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && !(m_flags & MAGICFLAGS_IGNORE_MP))
+    else if (m_PSpell->hasMPCost() && !(m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAWELL))  && !(m_flags & MAGICFLAGS_IGNORE_MP))
     {
         int16 cost = battleutils::CalculateSpellCost(m_PEntity, GetSpell());
 
