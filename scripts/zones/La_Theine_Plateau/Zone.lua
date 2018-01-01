@@ -4,16 +4,14 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/La_Theine_Plateau/TextIDs");
-require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/quests");
+require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
-require("scripts/globals/chocobo_digging");
+require("scripts/globals/quests");
+require("scripts/globals/zone");
 
 fallenEggPositions = {
         [1] = {211.000, 24.000, 257.000},

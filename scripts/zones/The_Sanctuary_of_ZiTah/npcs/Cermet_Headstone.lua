@@ -45,12 +45,12 @@ function onTrigger(player,npc)
                 player:messageSpecial(KEYITEM_OBTAINED,LIGHT_FRAGMENT);
             end
         end
-    
-    -- SOUL SEARCHING    
+
+    -- SOUL SEARCHING
     elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and not player:hasCompleteQuest(OUTLANDS,SOUL_SEARCHING)) then
         player:addQuest(OUTLANDS,SOUL_SEARCHING);
         player:startEvent(202,PRISMATIC_FRAGMENT);
-        
+
     -- DEFAULT DIALOGS
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
         player:messageSpecial(ZILART_MONUMENT);
