@@ -12,6 +12,6 @@ end;
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,102,2);
     if (isKiller and GetMobByID(LEGENDARY_WEAPON):isDead()) then
-        GetNPCByID(CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
+        GetNPCByID(CERMET_HEADSTONE_DOMINION):setLocalVar("cooldown", os.time() + 900);
     end
 end;

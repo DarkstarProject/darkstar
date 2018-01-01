@@ -11,6 +11,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
-        GetNPCByID(CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
+        GetNPCByID(CERMET_HEADSTONE_TERIGGAN):setLocalVar("cooldown", os.time() + 900);
     end
 end;
