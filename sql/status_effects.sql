@@ -265,7 +265,7 @@ INSERT INTO `status_effects` VALUES (222,'scherzo',288,0,0,4,0,0,0,0);
 INSERT INTO `status_effects` VALUES (223,'nocturne',288,0,0,4,0,0,0,0);
 INSERT INTO `status_effects` VALUES (227,'store_tp',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (228,'embrava',32,0,23,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (229,'manawell',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (229,'manawell',160,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (230,'spontaneity',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (231,'marcato',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (233,'auto-regen',32,0,0,4,0,0,0,0);
