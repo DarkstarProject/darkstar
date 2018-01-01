@@ -1,3 +1,5 @@
 JORMUNGAND              = 16797969;
+GEUSH_URVAN             = 16798078;
 
+GEUSH_URVAN_QM          = 16798097;
 WATERFALL               = 16798112;
