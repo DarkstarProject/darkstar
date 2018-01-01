@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
-package.loaded["scripts/zones/Ranguemont_Pass/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Ranguemont_Pass/TextIDs");
 require("scripts/zones/Ranguemont_Pass/MobIDs");

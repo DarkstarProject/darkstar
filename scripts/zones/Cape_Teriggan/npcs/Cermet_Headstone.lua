@@ -5,7 +5,6 @@
 -- !pos -107 -8 450 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
-package.loaded["scripts/zones/Cape_Teriggan/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Cape_Teriggan/TextIDs");
 require("scripts/zones/Cape_Teriggan/MobIDs");

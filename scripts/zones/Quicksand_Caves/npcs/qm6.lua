@@ -5,7 +5,6 @@
 -- !pos -469 0 620 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
-package.loaded["scripts/zones/Quicksand_Caves/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/zones/Quicksand_Caves/MobIDs");
@@ -31,7 +30,7 @@ function onTrigger(player,npc)
             player:startEvent(11);
         end
 
-    -- DEFAULT DIALOG        
+    -- DEFAULT DIALOG
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

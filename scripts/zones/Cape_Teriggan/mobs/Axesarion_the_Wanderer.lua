@@ -2,9 +2,8 @@
 -- Area: Cape Teriggan
 --  NM:  Axesarion the Wanderer
 -----------------------------------
-package.loaded["scripts/zones/Cape_Teriggan/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Cape_Teriggan/MobIDs");
+-----------------------------------
 
 function onMobDisengage(mob)
     DespawnMob(mob:getID(), 120);

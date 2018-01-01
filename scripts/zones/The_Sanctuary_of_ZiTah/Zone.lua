@@ -4,14 +4,12 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars

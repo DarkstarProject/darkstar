@@ -2,8 +2,6 @@
 -- Area: The Sanctuary of Zi'Tah
 --  MOB: Doomed Pilgrims
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/The_Sanctuary_of_ZiTah/MobIDs");
 
 function onMobDisengage(mob)

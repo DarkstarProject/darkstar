@@ -3,7 +3,6 @@
 -- NPC:  Signpost (18 total)
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
-package.loaded["scripts/zones/West_Sarutabaruta/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 require("scripts/zones/West_Sarutabaruta/MobIDs");

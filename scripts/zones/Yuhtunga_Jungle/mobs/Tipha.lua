@@ -2,8 +2,6 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Tipha
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Yuhtunga_Jungle/MobIDs");
 
 function onMobDisengage(mob)

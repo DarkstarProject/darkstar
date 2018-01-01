@@ -2,8 +2,6 @@
 -- Area: Behemoths Dominion
 --  MOB: Ancient Weapon
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Behemoths_Dominion/MobIDs");
 require("scripts/globals/fieldsofvalor");
 

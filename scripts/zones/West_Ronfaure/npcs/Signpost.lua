@@ -3,8 +3,6 @@
 --  NPC:  Signpost
 --  @zone 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/West_Sarutabaruta/MobIDs");
 
 function onTrade(player,npc,trade)

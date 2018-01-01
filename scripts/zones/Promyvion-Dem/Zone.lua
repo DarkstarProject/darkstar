@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Dem/TextIDs"] = nil;
-package.loaded["scripts/zones/Promyvion-Dem/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Promyvion-Dem/TextIDs");
 require("scripts/zones/Promyvion-Dem/MobIDs");
