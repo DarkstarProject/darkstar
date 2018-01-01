@@ -2,8 +2,6 @@
 -- Area: Promyvion-Vahzl
 --  MOB: Memory Receptacle
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Promyvion-Vahzl/MobIDs");
 require("scripts/globals/status");
 
@@ -15,7 +13,7 @@ end;
 function checkStray(mob)
     local mobId = mob:getID();
     local numStrays = MEMORY_RECEPTACLES[mobId][2];
-    
+
     if (os.time() > mob:getLocalVar("nextStray")) then
         for i = mobId + 1, mobId + numStrays do
             local stray = GetMobByID(i);
@@ -41,14 +39,14 @@ function onMobFight(mob, target)
             stray:updateEnmity(target);
         end
     end
-    
+
     checkStray(mob);
 end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         mob:AnimationSub(0);
-        
+
         -- chance to open portal
         local mobId = mob:getID();
         local floor = MEMORY_RECEPTACLES[mobId][1];

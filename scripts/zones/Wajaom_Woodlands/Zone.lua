@@ -4,15 +4,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
+require("scripts/zones/Wajaom_Woodlands/TextIDs");
+require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/globals/chocobo_digging");
 
 -----------------------------------
 -- Chocobo Digging vars

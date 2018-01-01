@@ -4,8 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
-package.loaded["scripts/zones/Konschtat_Highlands/MobIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Konschtat_Highlands/TextIDs");
 require("scripts/zones/Konschtat_Highlands/MobIDs");

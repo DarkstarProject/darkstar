@@ -3,8 +3,6 @@
 --  MOB: Centurio IV-VII
 -- Pops in Bastok mission 8-1 "The Chains that Bind Us"
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Quicksand_Caves/MobIDs");
 
 function onMobDisengage(mob)

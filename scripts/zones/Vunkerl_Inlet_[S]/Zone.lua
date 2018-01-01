@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 require("scripts/zones/Vunkerl_Inlet_[S]/MobIDs");

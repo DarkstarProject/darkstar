@@ -4,6 +4,8 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
+SIGNPOST_OFFSET_RONFAURE = 17187503;
+
 FUNGUS_BEETLE_PH =
 {
     [17187046] = 17187047, -- -133.001 -20.636 -141.110
@@ -23,5 +25,3 @@ JAGGEDY_EARED_JACK_PH =
 };
 
 MARAUDER_DVOGZOG = 17187273;
-
-SIGNPOST_OFFSET = 17187503;

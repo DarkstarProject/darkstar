@@ -3,7 +3,6 @@
 -- NPC:  Signpost
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-package.loaded["scripts/zones/Buburimu_Peninsula/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 require("scripts/zones/Buburimu_Peninsula/MobIDs");
@@ -18,7 +17,7 @@ function onTrigger(player,npc)
     elseif (offset >= 0 and offset <= 3) then
         player:messageSpecial(SIGN_5 - offset);
     end
-end; 
+end;
 
 function onEventUpdate(player,csid,option)
 end;

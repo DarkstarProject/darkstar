@@ -2,8 +2,6 @@
 -- Area: Promyvion-Dem
 --  MOB: Stray
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Dem/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Promyvion-Dem/MobIDs");
 require("scripts/globals/status");
 
