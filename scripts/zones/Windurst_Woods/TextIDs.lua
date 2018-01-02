@@ -2,7 +2,7 @@
 
 -- General Texts
      ITEM_CANNOT_BE_OBTAINED =  6539; -- Come back after sorting your inventory.
-               ITEM_OBTAINED =  7232; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+               ITEM_OBTAINED =  6545; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
                 GIL_OBTAINED =  6546; -- Obtained <<<Numeric Parameter 0>>> gil.
             KEYITEM_OBTAINED =  6548; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
                 KEYITEM_LOST =  6549; -- Lost key item: <<<Unknown Parameter (Type: 80) 1>>>
