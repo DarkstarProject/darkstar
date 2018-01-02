@@ -4,6 +4,8 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/zones/The_Shrine_of_RuAvitau/MobIDs");
 require("scripts/globals/settings");
@@ -20,14 +22,6 @@ function onMobSpawn(mob)
 end
 
 function onMobFight( mob, target )
-
-    -- use astral flow
-    if (mob:getHPP() < math.random(50,60) and mob:getLocalVar("astralFlow") == 0) then
-        mob:useMobAbility(734);
-        mob:spawnPet();
-        mob:setLocalVar("astralFlow", 1);
-    end
-
     -- spawn gods
     local numAdds = mob:getLocalVar("numAdds");
     if (mob:getBattleTime() / 180 == numAdds) then
