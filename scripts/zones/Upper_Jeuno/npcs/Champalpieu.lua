@@ -4,7 +4,7 @@
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/shop");
 
@@ -14,14 +14,14 @@ end;
 function onTrigger(player,npc)
     player:showText(npc, MP_SHOP_DIALOG);
 
-    stock =
+    local stock =
     {
-        4365,120,   --Rolanberry
-        17320,7,    --Iron Arrow
-        17336,5,    --Crossbow Bolt
-        605,180,    --Pickaxe
-        5064,567,   --Wind Threnody
-        5067,420    --Water Threnody
+        4365,120,    --Rolanberry
+        17320, 7,    --Iron Arrow
+        17336, 5,    --Crossbow Bolt
+        605, 180,    --Pickaxe
+        5064,567,    --Wind Threnody
+        5067,420     --Water Threnody
     }
 
     showShop(player, STATIC, stock);
