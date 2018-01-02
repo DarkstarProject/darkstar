@@ -212,7 +212,8 @@ end
         { {640,2}, 641 }        -- copper ore x2, tin ore x1
         { 640, {"gil", 200} }   -- copper ore x1, gil x200
 ******************************************************************************* --]]
-function npcUtil.tradeHas(trade, items)
+function npcUtil.tradeHas(trade, items, exact)
+    if (type(exact) ~= "boolean") then exact = false; end
 
     -- create table of traded items, with key/val of itemId/itemQty
     local tradedItems = {};
@@ -253,14 +254,47 @@ function npcUtil.tradeHas(trade, items)
         return false;
     end
 
-    -- determine whether all needed items have been traded, and confirm those needed. return true or false.
+    -- determine whether all needed items have been traded. return false if not.
     for k, v in pairs(neededItems) do
         local tradedQty = (tradedItems[k] == nil) and 0 or tradedItems[k];
-        if (v > tradedQty or not trade:confirmItem(k,v)) then
+        if (v > tradedQty) then
             return false;
+        else
+            tradedItems[k] = tradedQty - v;
         end
     end
+    
+    -- if an exact trade was requested, check if any excess items were traded. if so, return false.
+    if (exact) then
+        for k, v in pairs(tradedItems) do
+            if (v > 0) then
+                return false;
+            end
+        end
+    end
+    
+    -- confirm items
+    for k, v in pairs(neededItems) do
+        trade:confirmItem(k,v)
+    end
     return true;
+end
+
+--[[ *******************************************************************************
+    check whether trade has exactly required items
+        if yes, confirm all the items and return true
+        if no, return false
+        
+    valid examples of items:
+        640                     -- copper ore x1
+        { 640, 641 }            -- copper ore x1, tin ore x1
+        { 640, 640 }            -- copper ore x2
+        { {640,2} }             -- copper ore x2
+        { {640,2}, 641 }        -- copper ore x2, tin ore x1
+        { 640, {"gil", 200} }   -- copper ore x1, gil x200
+******************************************************************************* --]]
+function npcUtil.tradeHasExactly(trade, items)
+    return npcUtil.tradeHas(trade, items, true);
 end
 
 function npcUtil.genTmask(player,title)
