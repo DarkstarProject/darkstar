@@ -32,8 +32,7 @@ YOU_CAN_NOW_BECOME_A_BEASTMASTER =  7180; -- You can now become a beastmaster.
              ANTONIA_SHOP_DIALOG =  6972; -- Welcome to Viette's Finest Weapons.
         DEADLYMINNOW_SHOP_DIALOG =  6973; -- Welcome to Durable Shields.
          KHECHALAHKO_SHOP_DIALOG =  6973; -- Welcome to Durable Shields.
-             AREEBAH_SHOP_DIALOG =  6974; -- Welcome to M & P's Market.
-         CHAMPALPIEU_SHOP_DIALOG =  6974; -- Welcome to M & P's Market.
+                  MP_SHOP_DIALOG =  6974; -- Welcome to M & P's Market.
            LEILLAINE_SHOP_DIALOG =  7000; -- Hello. Are you feeling all right?
 
 -- conquest Base
