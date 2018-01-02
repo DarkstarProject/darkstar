@@ -906,6 +906,18 @@ function getMultiAttacks(attacker, numHits)
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
+            -- OAT from Mythic aftermath only applies to main hand
+            local weapon = attacker:getWeapon(SLOT_MAIN);
+            if (weapon) then
+                local occAttThriceRate = weapon:getMod(MOD_MYTHIC_OCC_ATT_THRICE)/100;
+                local occAttTwiceRate = weapon:getMod(MOD_MYTHIC_OCC_ATT_TWICE)/100;
+                if (chance < occAttThriceRate) then
+                    bonusHits = bonusHits + 2;
+                elseif (chance < occAttTwiceRate) then
+                    bonusHits = bonusHits + 1;
+                end
+            end
+            
             attacker:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
             attacker:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
 
@@ -1113,11 +1125,11 @@ function applyMythicAftermath(player, tp, params)
             player:delStatusEffect(EFFECT_AFTERMATH_LV2)
 
             if (params.power == 1) then
-                player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, 2)
+                player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, 40)
             elseif (params.power == 2) then
-                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 2)
+                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 60)
             elseif (params.power == 3) then
-                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 3)
+                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 40)
             end
     end
 end

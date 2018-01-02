@@ -22,7 +22,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
-    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;  
+    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; 
     params.mnd_wsc = 0.3; params.chr_wsc = 0.0;
     params.ele = ELE_DARK;
     params.skill = SKILL_STF;
@@ -48,7 +48,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
             if (tp == 3000) then
                 aftermathParams.type = EFFECT_AFTERMATH_LV3
-                aftermathParams.subpower.type = MOD_OCC_ATT_X_TIMES
+                aftermathParams.subpower.type = MOD_MYTHIC_OCC_ATT_TWICE
             elseif (tp >= 2000) then
                 aftermathParams.type = EFFECT_AFTERMATH_LV2
                 aftermathParams.subpower.type = MOD_MATT

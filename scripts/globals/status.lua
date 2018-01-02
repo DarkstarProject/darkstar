@@ -1291,7 +1291,8 @@ MOD_OCC_DO_EXTRA_DMG    = 507 -- Multiplier for "Occasionally do x times normal 
 MOD_OCC_DO_DOUBLE_DMG   = 864 -- Proc rate of double damage
 MOD_OCC_DO_TRIPLE_DMG   = 865 -- Proc rate of triple damage
 
-MOD_OCC_ATT_X_TIMES     = 866 -- Occasionally attacks X times. Mod amount is max hits
+MOD_MYTHIC_OCC_ATT_TWICE       = 866 -- Mythic aftermath - Occasionally attacks twice proc rate
+MOD_MYTHIC_OCC_ATT_THRICE      = 867 -- Mythic aftermath - Occasionally attacks thrice proc rate
 
 MOD_EAT_RAW_FISH         = 412 --
 MOD_EAT_RAW_MEAT         = 413 --
@@ -1387,9 +1388,9 @@ MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 867 -- stuff
 -- SPARE = 868 -- stuff
 -- SPARE = 869 -- stuff
+-- SPARE = 870 -- stuff
 
 ------------------------------------
 -- Merit Definitions

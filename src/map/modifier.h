@@ -609,7 +609,8 @@ enum class Mod
     OCC_DO_DOUBLE_DMG         = 864, // Proc rate of double damage
     OCC_DO_TRIPLE_DMG         = 865, // Proc rate of triple damage
 
-    OCC_ATT_X_TIMES           = 866, // Occasionally attacks X times. Mod amount is max hits
+    MYTHIC_OCC_ATT_TWICE             = 866, // Mythic aftermath - Occasionally attacks twice proc rate
+    MYTHIC_OCC_ATT_THRICE            = 867, // Mythic aftermath - Occasionally attacks thrice proc rate
 
     EAT_RAW_FISH              = 412, //
     EAT_RAW_MEAT              = 413, //
@@ -676,9 +677,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 867 - stuff
     // SPARE = 868 - stuff
     // SPARE = 869 - stuff
+    // SPARE = 870 - stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

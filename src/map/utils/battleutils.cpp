@@ -2630,6 +2630,19 @@ namespace battleutils
             num += 1;
         }
 
+        // Mythic "occ attacks twice/thrice" applies to weaponskills and job abilities"
+        int16 occAttThrice = std::clamp<int16>(PWeapon->getModifier(Mod::MYTHIC_OCC_ATT_THRICE), 0, 100);
+        int16 occAttTwice = std::clamp<int16>(PWeapon->getModifier(Mod::MYTHIC_OCC_ATT_TWICE), 0, 100);
+
+        if (dsprand::GetRandomNumber(100) < occAttThrice)
+        {
+            num += 2;
+        }
+        else if (dsprand::GetRandomNumber(100) < occAttTwice)
+        {
+            num += 1;
+        }
+
         // hasso occasionally triggers Zanshin after landing a normal attack, only active while Samurai is set as Main
         if (PEntity->GetMJob() == JOB_SAM)
         {
