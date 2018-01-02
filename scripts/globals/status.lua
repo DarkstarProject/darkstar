@@ -1387,9 +1387,9 @@ MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 863 -- stuff
--- SPARE = 864 -- stuff
--- SPARE = 865 -- stuff
+-- SPARE = 867 -- stuff
+-- SPARE = 868 -- stuff
+-- SPARE = 869 -- stuff
 
 ------------------------------------
 -- Merit Definitions
