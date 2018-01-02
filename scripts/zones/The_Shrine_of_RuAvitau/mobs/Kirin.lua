@@ -14,10 +14,16 @@ require("scripts/globals/titles");
 
 function onMobInitialize( mob )
     mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end
 
 function onMobSpawn(mob)
     mob:setMod(MOD_WINDRES, -64);
+    mob:setMod(MOD_SILENCERES, 35);
+    mob:setMod(MOD_STUNRES, 35);
+    mob:setMod(MOD_BINDRES, 35);
+    mob:setMod(MOD_GRAVITYRES, 35);
+    mob:addStatusEffect(EFFECT_REGEN,50,3,0);
     mob:setLocalVar("numAdds", 1);
 end
 
@@ -49,6 +55,20 @@ function onMobFight( mob, target )
         end
     end
 end
+
+function onAdditionalEffect(mob, target, damage)
+    local dmg = math.random(90,110)
+    local params = {};
+    params.bonusmab = 0;
+    params.includemab = false;
+
+    dmg = addBonusesAbility(mob, ELE_EARTH, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_EARTH,0);
+    dmg = adjustForTarget(target,dmg,ELE_EARTH);
+    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_EARTH,dmg);
+
+    return SUBEFFECT_EARTH_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle( KIRIN_CAPTIVATOR );
