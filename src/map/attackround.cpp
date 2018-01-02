@@ -199,7 +199,7 @@ void CAttackRound::DeleteAttackSwing()
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
     uint8 num = 1;
-    
+
     bool isPC = m_attacker->objtype == TYPE_PC;
 
     // Checking the players weapon hit count
@@ -207,12 +207,12 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         num = PWeapon->getHitCount();
     }
-    
+
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
     if (dynamic_cast<CMobEntity*>(m_attacker))
     {
         auto multiHitMax = (uint8)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
-        
+
         if (multiHitMax > 0)
             num = 1 + battleutils::getHitCount(multiHitMax);
     }
@@ -254,6 +254,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
+
+    // Add extra hits according to any Occasionally attacks x mods added at runtime (e.g. Mythic Aftermath)
+    uint8 extraHits = battleutils::getHitCount((uint8)m_attacker->getMod(Mod::OCC_ATT_X_TIMES)) - 1; // Subtract 1 to get rid of the "initial" hit from getHitCount
+    if (extraHits > 0)
+    {
+        AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, extraHits);
+    }
 
     // Ammo extra swing - players only
     if (isPC && m_attacker->getMod(Mod::AMMO_SWING) > 0)

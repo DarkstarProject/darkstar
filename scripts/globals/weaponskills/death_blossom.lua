@@ -51,7 +51,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
             if (tp == 3000) then
                 aftermathParams.type = EFFECT_AFTERMATH_LV3
-                aftermathParams.subpower.type = MOD_DOUBLE_ATTACK
+                aftermathParams.subpower.type = MOD_OCC_ATT_X_TIMES
             elseif (tp >= 2000) then
                 aftermathParams.type = EFFECT_AFTERMATH_LV2
                 aftermathParams.subpower.type = MOD_MATT

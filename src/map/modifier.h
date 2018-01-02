@@ -608,11 +608,11 @@ enum class Mod
     OCC_DO_EXTRA_DMG          = 507, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage
     OCC_DO_DOUBLE_DMG         = 864, // Proc rate of double damage
     OCC_DO_TRIPLE_DMG         = 865, // Proc rate of triple damage
-    
+
+    OCC_ATT_X_TIMES           = 866, // Occasionally attacks X times. Mod amount is max hits
 
     EAT_RAW_FISH              = 412, //
     EAT_RAW_MEAT              = 413, //
-
 
     ENHANCES_CURSNA_RCVD      = 67,  // Potency of "Cursna" effects received
     ENHANCES_CURSNA           = 310, // Used by gear with the "Enhances Cursna" or "Cursna+" attribute

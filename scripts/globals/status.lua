@@ -1291,6 +1291,8 @@ MOD_OCC_DO_EXTRA_DMG    = 507 -- Multiplier for "Occasionally do x times normal 
 MOD_OCC_DO_DOUBLE_DMG   = 864 -- Proc rate of double damage
 MOD_OCC_DO_TRIPLE_DMG   = 865 -- Proc rate of triple damage
 
+MOD_OCC_ATT_X_TIMES     = 866 -- Occasionally attacks X times. Mod amount is max hits
+
 MOD_EAT_RAW_FISH         = 412 --
 MOD_EAT_RAW_MEAT         = 413 --
 

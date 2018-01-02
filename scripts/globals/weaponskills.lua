@@ -1113,11 +1113,11 @@ function applyMythicAftermath(player, tp, params)
             player:delStatusEffect(EFFECT_AFTERMATH_LV2)
 
             if (params.power == 1) then
-                player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, 400)
+                player:addStatusEffect(params.type, params.power, 0, 120, params.subpower.type, 2)
             elseif (params.power == 2) then
-                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 600)
+                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 2)
             elseif (params.power == 3) then
-                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 400)
+                player:addStatusEffect(params.type, params.power, 0, 180, params.subpower.type, 3)
             end
     end
 end

@@ -21,9 +21,7 @@ function onEffectGain(target,effect)
     
     -- Tier 3 gets some extra buffs from Level 3 Aftermath
     if (effect:getPower() == 3) then
-        if (modID == MOD_DOUBLE_ATTACK) then
-            target:addMod(MOD_TRIPLE_ATTACK, 200)
-        elseif (modID == MOD_OCC_DO_DOUBLE_DMG) then
+        if (modID == MOD_OCC_DO_DOUBLE_DMG) then
             local weapon = target:getWeapon(SLOT_RANGED)
             if (weapon) then
                 weapon:addMod(MOD_OCC_DO_TRIPLE_DMG, 200)
@@ -56,9 +54,7 @@ function onEffectLose(target,effect)
     
     -- Tier 3 gets some extra buffs from Level 3 Aftermath
     if (effect:getPower() == 3) then
-        if (modID == MOD_DOUBLE_ATTACK) then
-            target:delMod(MOD_TRIPLE_ATTACK, 200)
-        elseif (modID == MOD_OCC_DO_DOUBLE_DMG) then
+        if (modID == MOD_OCC_DO_DOUBLE_DMG) then
             local weapon = target:getWeapon(SLOT_RANGED)
             if (weapon) then
                 weapon:delMod(MOD_OCC_DO_TRIPLE_DMG, 200)
