@@ -19,7 +19,6 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {};
     params.numHits = 4;
     params.ftp100 = 1.5; params.ftp200 = 1.5; params.ftp300 = 1.5;
@@ -44,12 +43,25 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         end
     end
 
+    -- Aftermath calculations from : https://www.bg-wiki.com/bg/Terpsichore_(Level_75)
+    if (damage > 0) then
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
+            if (tp == 3000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV3
+                aftermathParams.subpower.type = MOD_MYTHIC_OCC_ATT_TWICE
+            elseif (tp >= 2000) then
+                aftermathParams.type = EFFECT_AFTERMATH_LV2
+                aftermathParams.subpower.type = MOD_ATT
+            else
+                aftermathParams.type = EFFECT_AFTERMATH_LV1
+                aftermathParams.subpower.type = MOD_ACC
+            end
 
-    if ((player:getEquipID(SLOT_MAIN) == 18989) and (player:getMainJob() == JOBS.DNC)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
+            applyMythicAftermath(player, tp, aftermathParams)
         end
     end
-    return tpHits, extraHits, criticalHit, damage;
 
+    return tpHits, extraHits, criticalHit, damage
 end

@@ -21952,148 +21952,187 @@ INSERT INTO `item_mods` VALUES (18257,10,4);
 INSERT INTO `item_mods` VALUES (18257,59,3);
 INSERT INTO `item_mods` VALUES (18257,228,2);
 INSERT INTO `item_mods` VALUES (18263,356,10); -- Stage 4 Spharai - Final Heaven
+INSERT INTO `item_mods` VALUES (18263,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18264,23,20); -- Spharai LV75 - ATT +20
 INSERT INTO `item_mods` VALUES (18264,291,5); -- Counter +5
 INSERT INTO `item_mods` VALUES (18264,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18264,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18264,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18264,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18265,23,25); -- Spharai LV80 - ATT +25
 INSERT INTO `item_mods` VALUES (18265,291,7); -- Counter +7
 INSERT INTO `item_mods` VALUES (18265,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18265,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18265,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18265,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18269,356,26); -- Stage 4 Mandau - Mercy Stroke
+INSERT INTO `item_mods` VALUES (18269,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18270,23,20); -- Mandau LV75 - ATT +20
 INSERT INTO `item_mods` VALUES (18270,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (18270,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (18270,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18270,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18270,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18271,23,25); -- Mandau LV80 - ATT +25
 INSERT INTO `item_mods` VALUES (18271,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (18271,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (18271,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18271,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18271,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18275,356,43); -- Stage 4 Excalibur - Knights of the Round
+INSERT INTO `item_mods` VALUES (18275,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18276,23,20); -- Excalibur LV75 - ATT +20
 INSERT INTO `item_mods` VALUES (18276,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (18276,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (18276,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18276,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18276,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18277,23,25); -- Excalibur LV80 - ATT +25
 INSERT INTO `item_mods` VALUES (18277,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (18277,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (18277,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18277,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18277,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18281,356,57); -- Stage 4 Ragnarok - Scourge
+INSERT INTO `item_mods` VALUES (18281,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18282,25,20); -- Ragnarok LV75 - ACC +20
 INSERT INTO `item_mods` VALUES (18282,165,5); -- Crit Rate +5%
 INSERT INTO `item_mods` VALUES (18282,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (18282,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18282,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18282,863,1); -- AFtermath
 INSERT INTO `item_mods` VALUES (18283,25,25); -- Ragnarok LV80 - ACC +25
 INSERT INTO `item_mods` VALUES (18283,165,7); -- Crit Rate +7%
 INSERT INTO `item_mods` VALUES (18283,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (18283,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18283,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18283,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18287,356,73); -- Stage 4 Guttler - Onslaught
+INSERT INTO `item_mods` VALUES (18287,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18288,23,20); -- Guttler LV75 - ATT +20
 INSERT INTO `item_mods` VALUES (18288,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (18288,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (18288,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18288,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18288,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18289,23,25); -- Guttler LV80 - ATT +25
 INSERT INTO `item_mods` VALUES (18289,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (18289,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (18289,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18289,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18289,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18293,356,89); -- Stage 4 Bravura - Metatron Torment
+INSERT INTO `item_mods` VALUES (18293,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18294,25,20); -- Bravura LV75 - ACC +20
 INSERT INTO `item_mods` VALUES (18294,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (18294,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (18294,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18294,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18294,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18295,25,25); -- Bravura LV80 - ACC +25
 INSERT INTO `item_mods` VALUES (18295,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (18295,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (18295,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18295,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18295,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18299,356,121); -- Stage 4 Gugnir - Geirskogul
+INSERT INTO `item_mods` VALUES (18299,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18300,25,20); -- Gungnir LV75 - ACC +20
 INSERT INTO `item_mods` VALUES (18300,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (18300,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (18300,506,50); -- Extra DMG Chance %5
 INSERT INTO `item_mods` VALUES (18300,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18300,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18301,25,25); -- Gungnir LV80 - ACC +25
 INSERT INTO `item_mods` VALUES (18301,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (18301,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (18301,506,50); -- Extra DMG Chance %5
 INSERT INTO `item_mods` VALUES (18301,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18301,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18305,356,105); -- Stage 4 Apocalypse - Catastrophe
+INSERT INTO `item_mods` VALUES (18305,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18306,25,20); -- Apocalypse LV75 - ACC +20
 INSERT INTO `item_mods` VALUES (18306,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (18306,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (18306,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18306,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18306,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18307,25,25); -- Apocalypse LV80 - ACC +25
 INSERT INTO `item_mods` VALUES (18307,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (18307,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (18307,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18307,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18307,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18311,356,137); -- Stage 4 Kikoku - Blade: Metsu
+INSERT INTO `item_mods` VALUES (18311,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18312,23,20); -- Kikoku LV75 - ATT +20
 INSERT INTO `item_mods` VALUES (18312,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (18312,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (18312,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18312,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18312,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18313,23,25); -- Kikoku LV80 - ATT +25
 INSERT INTO `item_mods` VALUES (18313,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (18313,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (18313,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18313,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18313,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18317,356,153); -- Stage 4 Amanomurakumo - Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18317,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18318,25,20); -- Amanomurakumo LV75 - ACC +20
 INSERT INTO `item_mods` VALUES (18318,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (18318,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (18318,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18318,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18318,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18319,25,25); -- Amanomurakumo LV80 - ACC +25
 INSERT INTO `item_mods` VALUES (18319,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (18319,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (18319,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18319,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18319,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18323,356,170); -- Stage 4 Mjollnir - Randgrith
+INSERT INTO `item_mods` VALUES (18323,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18324,23,20); -- Mjollnir LV75 - ATT +20
 INSERT INTO `item_mods` VALUES (18324,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (18324,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (18324,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18324,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18324,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18325,23,25); -- Mjollnir LV80 - ATT +25
 INSERT INTO `item_mods` VALUES (18325,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (18325,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (18325,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18325,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18325,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18329,356,185); -- Stage 4 Caustrum - Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18329,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18330,25,20); -- Claustrum LV75 - ACC +20
 INSERT INTO `item_mods` VALUES (18330,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (18330,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (18330,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18330,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18330,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18331,25,25); -- Claustrum LV80 - ACC +25
 INSERT INTO `item_mods` VALUES (18331,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (18331,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (18331,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18331,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18331,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18335,356,216); -- Stage 4 Annihilator - Coronach
+INSERT INTO `item_mods` VALUES (18335,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18336,24,10); -- Annihilator LV75 - RNG ATT +10
 INSERT INTO `item_mods` VALUES (18336,26,20); -- RNG ACC +20
 INSERT INTO `item_mods` VALUES (18336,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (18336,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18336,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18336,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18337,24,15); -- Annihilator LV80 - RNG ATT +15
 INSERT INTO `item_mods` VALUES (18337,26,25); -- RNG ACC +25
 INSERT INTO `item_mods` VALUES (18337,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (18337,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18337,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18337,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18342,14,4);
 INSERT INTO `item_mods` VALUES (18342,119,10);
 INSERT INTO `item_mods` VALUES (18342,121,10);
@@ -22102,16 +22141,19 @@ INSERT INTO `item_mods` VALUES (18343,14,3);
 INSERT INTO `item_mods` VALUES (18343,440,3);
 INSERT INTO `item_mods` VALUES (18343,444,3);
 INSERT INTO `item_mods` VALUES (18347,356,200); -- Stage 4 Yoichinoyumi - Namas Arrow
+INSERT INTO `item_mods` VALUES (18347,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18348,24,10); -- Yoichinoyumi LV75 - RNG ATT +10
 INSERT INTO `item_mods` VALUES (18348,26,20); -- RNG ACC +20
 INSERT INTO `item_mods` VALUES (18348,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (18348,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18348,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18348,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18349,24,15); -- Yoichinoyumi LV80 - RNG ATT +15
 INSERT INTO `item_mods` VALUES (18349,26,25); -- RNG ACC +25
 INSERT INTO `item_mods` VALUES (18349,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (18349,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18349,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18349,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18350,10,3);
 INSERT INTO `item_mods` VALUES (18351,8,3);
 INSERT INTO `item_mods` VALUES (18351,10,4);
@@ -22591,238 +22633,280 @@ INSERT INTO `item_mods` VALUES (18637,291,9); -- Counter +9
 INSERT INTO `item_mods` VALUES (18637,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18637,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18637,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18637,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18638,23,30); -- Mandau LV85 - ATT +30
 INSERT INTO `item_mods` VALUES (18638,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (18638,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (18638,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18638,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18638,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18639,23,30); -- Excalibur LV85 - ATT +30
 INSERT INTO `item_mods` VALUES (18639,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (18639,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (18639,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18639,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18639,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18640,25,30); -- Ragnarok LV85 - ACC +30
 INSERT INTO `item_mods` VALUES (18640,165,9); -- Crit Rate +9%
 INSERT INTO `item_mods` VALUES (18640,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (18640,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18640,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18640,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18641,23,30); -- Guttler LV85 - ATT +30
 INSERT INTO `item_mods` VALUES (18641,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (18641,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (18641,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18641,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18641,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18642,25,30); -- Bravura LV85 - ACC +30
 INSERT INTO `item_mods` VALUES (18642,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (18642,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (18642,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18642,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18642,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18643,25,30); -- Gungnir LV85 - ACC +30
 INSERT INTO `item_mods` VALUES (18643,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (18643,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (18643,506,50); -- Extra DMG Chance %5
 INSERT INTO `item_mods` VALUES (18643,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18643,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18644,25,30); -- Apocalypse LV85 - ACC +30
 INSERT INTO `item_mods` VALUES (18644,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (18644,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (18644,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18644,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18644,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18645,23,30); -- Kikoku LV85 - ATT +30
 INSERT INTO `item_mods` VALUES (18645,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (18645,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (18645,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18645,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18645,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18646,25,30); -- Amanomurakumo LV85 - ACC +30
 INSERT INTO `item_mods` VALUES (18646,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (18646,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (18646,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18646,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18646,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18647,23,30); -- Mjollnir LV85 - ATT +30
 INSERT INTO `item_mods` VALUES (18647,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (18647,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (18647,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18647,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18647,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18648,25,30); -- Claustrum LV85 - ACC +30
 INSERT INTO `item_mods` VALUES (18648,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (18648,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (18648,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18648,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18648,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18649,24,20); -- Annihilator LV85 - RNG ATT +20
 INSERT INTO `item_mods` VALUES (18649,26,30); -- RNG ACC +30
 INSERT INTO `item_mods` VALUES (18649,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (18649,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18649,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18649,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18650,24,20); -- Yoichinoyumi LV85 - RNG ATT +20
 INSERT INTO `item_mods` VALUES (18650,26,30); -- RNG ACC +30
 INSERT INTO `item_mods` VALUES (18650,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (18650,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18650,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18650,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18651,23,35); -- Spharai LV90 -- ATT +35
 INSERT INTO `item_mods` VALUES (18651,291,11); -- Counter +11
 INSERT INTO `item_mods` VALUES (18651,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18651,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18651,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18651,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18651,580,25);  -- Final Heaven DMG +25%
 INSERT INTO `item_mods` VALUES (18652,23,35); -- Mandau LV90 - ATT +35
 INSERT INTO `item_mods` VALUES (18652,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (18652,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (18652,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18652,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18652,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18652,596,25); -- Mercy Stroke DMG +25%
 INSERT INTO `item_mods` VALUES (18653,23,35); -- Excalibur LV90 - ATT +35
 INSERT INTO `item_mods` VALUES (18653,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (18653,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (18653,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18653,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18653,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18653,613,25); -- Knights of the Round DMG +25%
 INSERT INTO `item_mods` VALUES (18654,25,35); -- Ragnarok LV90 - ACC +35
 INSERT INTO `item_mods` VALUES (18654,165,11); -- Crit Rate +11%
 INSERT INTO `item_mods` VALUES (18654,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (18654,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18654,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18654,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18654,627,25); -- Scourge DMG +25%
 INSERT INTO `item_mods` VALUES (18655,23,35); -- Guttler LV90 - ATT +35
 INSERT INTO `item_mods` VALUES (18655,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (18655,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (18655,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18655,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18655,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18655,643,25); -- Onslaught DMG +25%
 INSERT INTO `item_mods` VALUES (18656,25,35); -- Bravura LV90 - ACC +35
 INSERT INTO `item_mods` VALUES (18656,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (18656,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (18656,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18656,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18656,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18656,659,25); -- Metatron Torment DMG +25%
 INSERT INTO `item_mods` VALUES (18657,25,35); -- Gungnir LV90 - ACC +35
 INSERT INTO `item_mods` VALUES (18657,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (18657,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (18657,506,50); -- Extra DMG Chance %5
 INSERT INTO `item_mods` VALUES (18657,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18657,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18657,691,25); -- Geirskogul DMG +25%
 INSERT INTO `item_mods` VALUES (18658,25,35); -- Apocalypse LV90 - ACC +35
 INSERT INTO `item_mods` VALUES (18658,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (18658,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (18658,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18658,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18658,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18658,675,25); -- Catastrophe DMG +25%
 INSERT INTO `item_mods` VALUES (18659,23,35); -- Kikoku LV90 - ATT +35
 INSERT INTO `item_mods` VALUES (18659,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (18659,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (18659,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18659,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18659,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18659,707,25); -- Blade: Metsu DMG +25%
 INSERT INTO `item_mods` VALUES (18660,25,35); -- Amanomurakumo LV90 - ACC +35
 INSERT INTO `item_mods` VALUES (18660,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (18660,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (18660,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18660,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18660,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18660,723,25); -- Tachi: Kaiten DMG +25%
 INSERT INTO `item_mods` VALUES (18661,23,35); -- Mjollnir LV90 - ATT +35
 INSERT INTO `item_mods` VALUES (18661,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (18661,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (18661,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18661,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18661,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18661,740,25); -- Randgrith DMG +25%
 INSERT INTO `item_mods` VALUES (18662,25,35); -- Claustrum LV90 - ACC +35
 INSERT INTO `item_mods` VALUES (18662,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (18662,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (18662,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18662,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18662,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18662,755,25); -- Gate of Tartarus DMG +25%
 INSERT INTO `item_mods` VALUES (18663,24,25); -- Annihilator LV90 - RNG ATT +25
 INSERT INTO `item_mods` VALUES (18663,26,35); -- RNG ACC +35
 INSERT INTO `item_mods` VALUES (18663,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (18663,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18663,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18663,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18663,786,25); -- Coronach DMG +25%
 INSERT INTO `item_mods` VALUES (18664,24,25); -- Yoichinoyumi LV90 - RNG ATT +25
 INSERT INTO `item_mods` VALUES (18664,26,35); -- RNG ACC +35
 INSERT INTO `item_mods` VALUES (18664,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (18664,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18664,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18664,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18664,770,25); -- Namas Arrow DMG +25%
 INSERT INTO `item_mods` VALUES (18665,23,35); -- Spharai LV95 -- ATT +35
 INSERT INTO `item_mods` VALUES (18665,291,11); -- Counter +11
 INSERT INTO `item_mods` VALUES (18665,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18665,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18665,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18665,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18665,580,25);  -- Final Heaven DMG +25%
 INSERT INTO `item_mods` VALUES (18666,23,35); -- Mandau LV95 - ATT +35
 INSERT INTO `item_mods` VALUES (18666,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (18666,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (18666,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18666,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18666,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18666,596,25); -- Mercy Stroke DMG +25%
 INSERT INTO `item_mods` VALUES (18667,23,35); -- Excalibur LV95 - ATT +35
 INSERT INTO `item_mods` VALUES (18667,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (18667,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (18667,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18667,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18667,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18667,613,25); -- Knights of the Round DMG +25%
 INSERT INTO `item_mods` VALUES (18668,25,35); -- Ragnarok LV95 - ACC +35
 INSERT INTO `item_mods` VALUES (18668,165,11); -- Crit Rate +11%
 INSERT INTO `item_mods` VALUES (18668,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (18668,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18668,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18668,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18668,627,25); -- Scourge DMG +25%
 INSERT INTO `item_mods` VALUES (18669,23,35); -- Guttler LV95 - ATT +35
 INSERT INTO `item_mods` VALUES (18669,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (18669,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (18669,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18669,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18669,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18669,643,25); -- Onslaught DMG +25%
 INSERT INTO `item_mods` VALUES (18670,25,35); -- Bravura LV95 - ACC +35
 INSERT INTO `item_mods` VALUES (18670,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (18670,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (18670,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18670,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18670,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18670,659,25); -- Metatron Torment DMG +25%
 INSERT INTO `item_mods` VALUES (18671,25,35); -- Gungnir LV95 - ACC +35
 INSERT INTO `item_mods` VALUES (18671,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (18671,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (18671,506,130); -- Extra DMG Chance %13
 INSERT INTO `item_mods` VALUES (18671,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18671,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18671,691,25); -- Geirskogul DMG +25%
 INSERT INTO `item_mods` VALUES (18672,25,35); -- Apocalypse LV95 - ACC +35
 INSERT INTO `item_mods` VALUES (18672,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (18672,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (18672,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18672,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18672,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18672,675,25); -- Catastrophe DMG +25%
 INSERT INTO `item_mods` VALUES (18673,23,35); -- Kikoku LV95 - ATT +35
 INSERT INTO `item_mods` VALUES (18673,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (18673,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (18673,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18673,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18673,863,1); -- Aftermaths
 INSERT INTO `item_mods` VALUES (18673,707,25); -- Blade: Metsu DMG +25%
 INSERT INTO `item_mods` VALUES (18674,25,35); -- Amanomurakumo LV95 - ACC +35
 INSERT INTO `item_mods` VALUES (18674,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (18674,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (18674,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18674,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18674,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18674,723,25); -- Tachi: Kaiten DMG +25%
 INSERT INTO `item_mods` VALUES (18675,23,35); -- Mjollnir LV95 - ATT +35
 INSERT INTO `item_mods` VALUES (18675,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (18675,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (18675,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18675,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18675,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18675,740,25); -- Randgrith DMG +25%
 INSERT INTO `item_mods` VALUES (18676,25,35); -- Claustrum LV95 - ACC +35
 INSERT INTO `item_mods` VALUES (18676,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (18676,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (18676,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18676,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18676,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18676,755,25); -- Gate of Tartarus DMG +25%
 INSERT INTO `item_mods` VALUES (18677,24,25); -- Annihilator LV95 - RNG ATT +25
 INSERT INTO `item_mods` VALUES (18677,26,35); -- RNG ACC +35
 INSERT INTO `item_mods` VALUES (18677,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (18677,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18677,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18677,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18677,786,25); -- Coronach DMG +25%
 INSERT INTO `item_mods` VALUES (18678,24,25); -- Yoichinoyumi LV95 - RNG ATT +25
 INSERT INTO `item_mods` VALUES (18678,26,35); -- RNG ACC +35
 INSERT INTO `item_mods` VALUES (18678,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (18678,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18678,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18678,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (18678,770,25); -- Namas Arrow DMG +25%
 INSERT INTO `item_mods` VALUES (18681,26,5);
 INSERT INTO `item_mods` VALUES (18682,5,12);
@@ -23211,67 +23295,87 @@ INSERT INTO `item_mods` VALUES (18989,288,15);
 INSERT INTO `item_mods` VALUES (18989,355,29);    -- Terpsichore 75 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (18989,403,10);
 INSERT INTO `item_mods` VALUES (18989,494,1);
+INSERT INTO `item_mods` VALUES (18989,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18990,25,30);
 INSERT INTO `item_mods` VALUES (18990,28,20);
 INSERT INTO `item_mods` VALUES (18990,30,10);
 INSERT INTO `item_mods` VALUES (18990,288,15);
 INSERT INTO `item_mods` VALUES (18990,355,188);   -- Tupsimati 75 - Omniscience
+INSERT INTO `item_mods` VALUES (18990,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18991,288,15);
 INSERT INTO `item_mods` VALUES (18991,355,90);    -- Conqueror 75 - King's Justice
+INSERT INTO `item_mods` VALUES (18991,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18992,288,15);
 INSERT INTO `item_mods` VALUES (18992,355,11);    -- Glanzfaust 75 - Ascetic's Fury
+INSERT INTO `item_mods` VALUES (18992,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18993,30,10);
 INSERT INTO `item_mods` VALUES (18993,288,15);
 INSERT INTO `item_mods` VALUES (18993,355,171);   -- Yagrush 75 - Mystic Boon
 INSERT INTO `item_mods` VALUES (18993,524,1);     -- "Enhances Divine Veil" effect of Yagrush
+INSERT INTO `item_mods` VALUES (18993,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18994,25,30);
 INSERT INTO `item_mods` VALUES (18994,28,20);
 INSERT INTO `item_mods` VALUES (18994,30,10);
 INSERT INTO `item_mods` VALUES (18994,288,15);
 INSERT INTO `item_mods` VALUES (18994,355,186);   -- Laevateinn 75 - Vidohunir
+INSERT INTO `item_mods` VALUES (18994,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18995,30,10);     -- Murgleis (Level 75): Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (18995,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (18995,525,2);     -- Augments Convert 1:2
+INSERT INTO `item_mods` VALUES (18995,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18996,355,27);    -- Vajra (Level 75): Mandalic Stab
 INSERT INTO `item_mods` VALUES (18996,526,10);    -- Enhances Sneak Attack effect +10%
 INSERT INTO `item_mods` VALUES (18996,527,10);    -- Enhances Trick Attack effect +10%
+INSERT INTO `item_mods` VALUES (18996,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18997,27,10);
 INSERT INTO `item_mods` VALUES (18997,161,-10);
 INSERT INTO `item_mods` VALUES (18997,288,15);
-INSERT INTO `item_mods` VALUES (18997,355,45); -- Burtgang 75 - Atonement
+INSERT INTO `item_mods` VALUES (18997,355,45); 	  -- Burtgang 75 - Atonement
+INSERT INTO `item_mods` VALUES (18997,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18998,30,20);     -- Liberator (Level 75): Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (18998,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (18998,521,20);    -- Absorb spell potency +20%
+INSERT INTO `item_mods` VALUES (18998,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (18999,288,15);
 INSERT INTO `item_mods` VALUES (18999,355,74); -- Aymur 75 - Primal Rend
+INSERT INTO `item_mods` VALUES (18999,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19000,30,10);     -- Carnwenhan (Level 75): Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (19000,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19000,454,10);    -- Increases song effect duration +10%
+INSERT INTO `item_mods` VALUES (19000,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19001,355,217); -- Gastraphetes 75 - Trueflight
 INSERT INTO `item_mods` VALUES (19001,365,5);
 INSERT INTO `item_mods` VALUES (19001,420,10);
+INSERT INTO `item_mods` VALUES (19001,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19002,355,154);   -- Kogarasumaru (Level 75): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19002,839,15);    -- Third Eye anticipation rate +15%
+INSERT INTO `item_mods` VALUES (19002,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19003,27,10);
 INSERT INTO `item_mods` VALUES (19003,30,10);
 INSERT INTO `item_mods` VALUES (19003,288,15);
 INSERT INTO `item_mods` VALUES (19003,355,138); -- Nagi 75 - Blade: Kamu
+INSERT INTO `item_mods` VALUES (19003,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19004,288,15);
 INSERT INTO `item_mods` VALUES (19004,355,122); -- Ryunohige 75 - Drakesbane
 INSERT INTO `item_mods` VALUES (19004,828,1);
+INSERT INTO `item_mods` VALUES (19004,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19005,25,30);
 INSERT INTO `item_mods` VALUES (19005,288,15);
 INSERT INTO `item_mods` VALUES (19005,346,4);
 INSERT INTO `item_mods` VALUES (19005,355,187); -- Nirvana 75 - Garland of Bliss
+INSERT INTO `item_mods` VALUES (19005,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19006,30,10);
 INSERT INTO `item_mods` VALUES (19006,288,15);
 INSERT INTO `item_mods` VALUES (19006,355,46); -- Tizona 75 - Expiacion
 INSERT INTO `item_mods` VALUES (19006,431,1); -- Tizona 75 - Additional Effect - scripts\globals\items\tizona.lua
+INSERT INTO `item_mods` VALUES (19006,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19007,355,218); -- Death Penalty 75 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19007,580,20);
+INSERT INTO `item_mods` VALUES (19007,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19008,173,20);
 INSERT INTO `item_mods` VALUES (19008,288,15);
 INSERT INTO `item_mods` VALUES (19008,355,12); -- Kenkonken 75 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19008,863,1);	  -- Aftermath Tier 1
 INSERT INTO `item_mods` VALUES (19009,9,1);
 INSERT INTO `item_mods` VALUES (19010,9,2);
 INSERT INTO `item_mods` VALUES (19011,2,5);
@@ -23357,105 +23461,144 @@ INSERT INTO `item_mods` VALUES (19057,116,3);
 INSERT INTO `item_mods` VALUES (19058,117,3);
 INSERT INTO `item_mods` VALUES (19059,119,3);
 INSERT INTO `item_mods` VALUES (19060,355,90); -- Conqueror 80 - King's Justice
+INSERT INTO `item_mods` VALUES (19060,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19061,355,11); -- Glanzfaust 80 - Ascetic's Fury
+INSERT INTO `item_mods` VALUES (19061,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19062,355,171); -- Yagrush 80 - Mystic Boon
+INSERT INTO `item_mods` VALUES (19062,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19063,355,186); -- Laevateinn 80 - Vidohunir
+INSERT INTO `item_mods` VALUES (19063,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19064,30,15);     -- Murgleis (Level 80): Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19064,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (19064,525,2);     -- Augments Convert 1:2
+INSERT INTO `item_mods` VALUES (19064,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19065,355,27);    -- Vajra (Level 80): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19065,526,15);    -- Enhances Sneak Attack effect +15%
 INSERT INTO `item_mods` VALUES (19065,527,15);    -- Enhances Trick Attack effect +15%
+INSERT INTO `item_mods` VALUES (19065,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19066,355,45); -- Burtgang 80 - Atonement
 INSERT INTO `item_mods` VALUES (19067,30,20);     -- Liberator (Level 80): Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (19067,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (19067,521,25);    -- Absorb spell potency +25%
+INSERT INTO `item_mods` VALUES (19067,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19068,355,74); -- Aymur 80 - Primal Rend
+INSERT INTO `item_mods` VALUES (19068,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19069,30,10);     -- Carnwenhan (Level 80): Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (19069,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19069,454,20);    -- Increases song effect duration +20%
+INSERT INTO `item_mods` VALUES (19069,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19070,365,5);
 INSERT INTO `item_mods` VALUES (19070,355,217); -- Gastraphetes 80 - Trueflight
 INSERT INTO `item_mods` VALUES (19070,450,15);
+INSERT INTO `item_mods` VALUES (19070,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19071,355,154);   -- Kogarasumaru (Level 80): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19071,508,10);    -- Third Eye Counter rate +10%
 INSERT INTO `item_mods` VALUES (19071,839,15);    -- Third Eye Anticipate rate +15%
+INSERT INTO `item_mods` VALUES (19071,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19072,355,138); -- Nagi 80 - Blade: Kamu
+INSERT INTO `item_mods` VALUES (19072,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19073,355,122); -- Ryunohige 80 - Drakesbane
+INSERT INTO `item_mods` VALUES (19073,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19074,355,187); -- Nirvana 80 - Garland of Bliss
+INSERT INTO `item_mods` VALUES (19074,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19075,355,46); -- Tizona 80 - Expiacion
 INSERT INTO `item_mods` VALUES (19075,431,1); -- Tizona 80 - Additional Effect - scripts\globals\items\tizona.lua
+INSERT INTO `item_mods` VALUES (19075,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19076,355,218); -- Death Penalty 80 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19076,580,30);
+INSERT INTO `item_mods` VALUES (19076,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19077,355,12); -- Kenkonken 80 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19077,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19078,355,29); -- Terpsichore 80 - Pyrrhic Kleos
+INSERT INTO `item_mods` VALUES (19078,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19079,355,188); -- Tupsimati 80 - Omniscience
+INSERT INTO `item_mods` VALUES (19079,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19080,288,20);
 INSERT INTO `item_mods` VALUES (19080,355,90); -- Conqueror 85 - King's Justice
+INSERT INTO `item_mods` VALUES (19080,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19081,288,20);
 INSERT INTO `item_mods` VALUES (19081,355,11); -- Glanzfaust 85 - Ascetic's Fury
+INSERT INTO `item_mods` VALUES (19081,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19082,30,15);
 INSERT INTO `item_mods` VALUES (19082,288,20);
 INSERT INTO `item_mods` VALUES (19082,355,171); -- Yagrush 85 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19082,524,1);
+INSERT INTO `item_mods` VALUES (19082,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19083,25,30);
 INSERT INTO `item_mods` VALUES (19083,28,40);
 INSERT INTO `item_mods` VALUES (19083,30,10);
 INSERT INTO `item_mods` VALUES (19083,288,20);
 INSERT INTO `item_mods` VALUES (19083,355,186); -- Laevateinn 85 - Vidohunir
+INSERT INTO `item_mods` VALUES (19083,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19084,30,20);     -- Murgleis (Level 85): Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (19084,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (19084,525,2);     -- Augments Convert 1:2
+INSERT INTO `item_mods` VALUES (19084,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19085,355,27);    -- Vajra (Level 85): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19085,526,20);    -- Enhances Sneak Attack effect +20%
 INSERT INTO `item_mods` VALUES (19085,527,20);    -- Enhances Trick Attack effect +20%
+INSERT INTO `item_mods` VALUES (19085,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19086,27,14);
 INSERT INTO `item_mods` VALUES (19086,161,-14);
 INSERT INTO `item_mods` VALUES (19086,288,20);
 INSERT INTO `item_mods` VALUES (19086,355,45); -- Burtgang 85 - Atonement
+INSERT INTO `item_mods` VALUES (19086,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19087,30,25);     -- Liberator (Level 85): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19087,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (19087,521,30);    -- Absorb spell potency +30%
+INSERT INTO `item_mods` VALUES (19087,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19088,288,20);
 INSERT INTO `item_mods` VALUES (19088,355,74); -- Aymur 85 - Primal Rend
+INSERT INTO `item_mods` VALUES (19088,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19089,30,15);     -- Carnwenhan (Level 85): Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19089,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19089,454,30);    -- Increases song effect duration +30%
+INSERT INTO `item_mods` VALUES (19089,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19090,355,217); -- Gastraphetes 85 - Trueflight
 INSERT INTO `item_mods` VALUES (19090,365,5);
 INSERT INTO `item_mods` VALUES (19090,450,20);
+INSERT INTO `item_mods` VALUES (19090,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19091,355,154);   -- Kogarasumaru (Level 85): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19091,508,15);    -- Third Eye Counter rate +15%
 INSERT INTO `item_mods` VALUES (19091,839,15);    -- Third Eye Anticipate rate +15%
+INSERT INTO `item_mods` VALUES (19091,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19092,27,20);
 INSERT INTO `item_mods` VALUES (19092,30,20);
 INSERT INTO `item_mods` VALUES (19092,288,20);
 INSERT INTO `item_mods` VALUES (19092,355,138); -- Nagi 85 - Blade: Kamu
+INSERT INTO `item_mods` VALUES (19092,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19093,288,20);
 INSERT INTO `item_mods` VALUES (19093,355,122); -- Ryunohige 85 - Drakesbane
 INSERT INTO `item_mods` VALUES (19093,362,20);
+INSERT INTO `item_mods` VALUES (19093,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19094,25,30);
 INSERT INTO `item_mods` VALUES (19094,288,20);
 INSERT INTO `item_mods` VALUES (19094,312,30);
 INSERT INTO `item_mods` VALUES (19094,355,187); -- Nirvana 85 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19094,346,6);
+INSERT INTO `item_mods` VALUES (19094,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19095,30,15);
 INSERT INTO `item_mods` VALUES (19095,288,20);
 INSERT INTO `item_mods` VALUES (19095,355,46); -- Tizona 85 - Expiacion
 INSERT INTO `item_mods` VALUES (19095,431,1); -- Tizona 85 - Additional Effect - scripts\globals\items\tizona.lua
+INSERT INTO `item_mods` VALUES (19095,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19096,355,218); -- Death Penalty 85 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19096,580,40);
+INSERT INTO `item_mods` VALUES (19096,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19097,173,20);
 INSERT INTO `item_mods` VALUES (19097,288,20);
 INSERT INTO `item_mods` VALUES (19097,355,12); -- Kenkonken 85 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19097,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19098,355,29); -- Terpsichore 85 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19098,403,15);
 INSERT INTO `item_mods` VALUES (19098,494,1);
+INSERT INTO `item_mods` VALUES (19098,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19099,25,30);
 INSERT INTO `item_mods` VALUES (19099,28,30);
 INSERT INTO `item_mods` VALUES (19099,30,20);
 INSERT INTO `item_mods` VALUES (19099,288,20);
 INSERT INTO `item_mods` VALUES (19099,355,188); -- Tupsimati 85 - Omniscience
+INSERT INTO `item_mods` VALUES (19099,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19100,2,16);
 INSERT INTO `item_mods` VALUES (19100,5,16);
 INSERT INTO `item_mods` VALUES (19100,248,2);
@@ -23797,55 +23940,74 @@ INSERT INTO `item_mods` VALUES (19546,772,15); -- Jishnu's Raidance WS DMG +15%
 INSERT INTO `item_mods` VALUES (19547,355,220); -- Armageddon 90 - Wildfire
 INSERT INTO `item_mods` VALUES (19612,355,90); -- Conqueror 90 - King's Justice
 INSERT INTO `item_mods` VALUES (19612,660,15); -- King's Justice WS DMG +15%
+INSERT INTO `item_mods` VALUES (19612,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19613,355,11); -- Glanzfaust 90 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19613,581,15); -- Ascetic's Fury WS DMG +15%
+INSERT INTO `item_mods` VALUES (19613,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19614,355,171); -- Yagrush 90 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19614,741,15); -- Mystic Boon WS DMG +15%
+INSERT INTO `item_mods` VALUES (19614,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19615,355,186); -- Laevateinn 90 - Vidohunir
+INSERT INTO `item_mods` VALUES (19615,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19616,30,25);     -- Murgleis (Level 90): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19616,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (19616,614,15);    -- Death Blossom WS DMG +15%
 INSERT INTO `item_mods` VALUES (19616,525,2);     -- Augments Convert 1:2
+INSERT INTO `item_mods` VALUES (19616,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19617,355,27);    -- Vajra (Level 90): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19617,597,15);    -- Mandalic Stab WS DMG +15%
 INSERT INTO `item_mods` VALUES (19617,526,25);    -- Enhances Sneak Attack effect +25%
 INSERT INTO `item_mods` VALUES (19617,527,25);    -- Enhances Trick Attack effect +25%
+INSERT INTO `item_mods` VALUES (19617,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19618,355,45); -- Burtgang 90 - Atonement
 INSERT INTO `item_mods` VALUES (19618,615,15); -- Atonement WS DMG+15%
+INSERT INTO `item_mods` VALUES (19618,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19619,30,30);     -- Liberator (Level 90): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (19619,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (19619,676,15);   -- Insurgency WS DMG +15%
 INSERT INTO `item_mods` VALUES (19619,521,40);    -- Absorb spell potency +40%
+INSERT INTO `item_mods` VALUES (19619,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19620,355,74); -- Aymur 90 - Primal Rend
 INSERT INTO `item_mods` VALUES (19620,644,15); -- Primal Rend WS DMG +15%
+INSERT INTO `item_mods` VALUES (19620,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19621,30,20);     -- Carnwenhan (Level 90): Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (19621,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19621,598,15);    -- Mordant Rime WS DMG +15%
 INSERT INTO `item_mods` VALUES (19621,454,40);    -- Increases song effect duration +40%
+INSERT INTO `item_mods` VALUES (19621,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19622,355,217); -- Gastraphetes 90 - Trueflight
 INSERT INTO `item_mods` VALUES (19622,787,15); -- Trueflight WS DMG +15%
 INSERT INTO `item_mods` VALUES (19622,365,5);
 INSERT INTO `item_mods` VALUES (19622,420,25);
+INSERT INTO `item_mods` VALUES (19622,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19623,355,154);   -- Kogarasumaru (Level 90): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19623,508,20);    -- Third Eye Counter rate +20%
 INSERT INTO `item_mods` VALUES (19623,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19623,724,15);    -- Tachi Rana WS DMG +15%
+INSERT INTO `item_mods` VALUES (19623,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19624,355,138); -- Nagi 90 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19624,710,15); -- Blade: Kamu WS DMG +15%
+INSERT INTO `item_mods` VALUES (19624,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19625,355,122); -- Ryunohige 90 - Drakesbane
 INSERT INTO `item_mods` VALUES (19625,692,15); -- Drakesbane WS DMG +15%
+INSERT INTO `item_mods` VALUES (19625,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19626,355,187); -- Nirvana 90 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19626,757,15); -- Garland of Bliss WS DMG +15%
 INSERT INTO `item_mods` VALUES (19627,355,46); -- Tizona 90 - Expiacion
 INSERT INTO `item_mods` VALUES (19627,431,1); -- Tizona 90 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19627,616,15); -- Expiacion WS DMG +15%
+INSERT INTO `item_mods` VALUES (19627,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19628,355,218); -- Death Penalty 90 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19628,580,40);
+INSERT INTO `item_mods` VALUES (19628,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19629,355,12); -- Kenkonken 90 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (19629,582,15); -- Stringing Pummel WS DMG +15%
+INSERT INTO `item_mods` VALUES (19629,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19630,355,29); -- Terpsichore 90 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19630,599,15); -- Pyrrhic Kleos WS DMG +15%
+INSERT INTO `item_mods` VALUES (19630,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19631,355,188); -- Tupsimati 90 - Omniscience
+INSERT INTO `item_mods` VALUES (19631,863,2);	  -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (19632,8,17);
 INSERT INTO `item_mods` VALUES (19632,355,14); -- Verethragna 95 - Victory Smite
 INSERT INTO `item_mods` VALUES (19632,584,15); -- Victory Smite WS DMG +15%
@@ -23889,67 +24051,81 @@ INSERT INTO `item_mods` VALUES (19710,288,25);
 INSERT INTO `item_mods` VALUES (19710,302,5);
 INSERT INTO `item_mods` VALUES (19710,355,90); -- Conqueror 95 - King's Justice
 INSERT INTO `item_mods` VALUES (19710,660,15); -- King's Justice WS DMG +15%
+INSERT INTO `item_mods` VALUES (19710,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19711,288,25);
 INSERT INTO `item_mods` VALUES (19711,302,5);
 INSERT INTO `item_mods` VALUES (19711,355,11); -- Glanzfaust 95 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19711,581,15); -- Ascetic's Fury WS DMG +15%
+INSERT INTO `item_mods` VALUES (19711,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19712,30,20);
 INSERT INTO `item_mods` VALUES (19712,288,25);
 INSERT INTO `item_mods` VALUES (19712,302,5);
 INSERT INTO `item_mods` VALUES (19712,355,171); -- Yagrush 95 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19712,741,15); -- Mystic Boon WS DMG +15%
 INSERT INTO `item_mods` VALUES (19712,524,1);
+INSERT INTO `item_mods` VALUES (19712,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19713,25,30);
 INSERT INTO `item_mods` VALUES (19713,28,50);
 INSERT INTO `item_mods` VALUES (19713,30,10);
 INSERT INTO `item_mods` VALUES (19713,288,25);
 INSERT INTO `item_mods` VALUES (19713,302,5);
 INSERT INTO `item_mods` VALUES (19713,355,186); -- Laevateinn 95 - Vidohunir
+INSERT INTO `item_mods` VALUES (19713,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19714,30,25);     -- Murgleis (Level 95): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19714,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (19714,614,15);    -- Death Blossom WS DMG +15%
 INSERT INTO `item_mods` VALUES (19714,525,2);     -- Augments Convert 1:2
+INSERT INTO `item_mods` VALUES (19714,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19715,355,27);    -- Vajra (Level 95): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19715,597,15);    -- Mandalic Stab WS DMG +15%
 INSERT INTO `item_mods` VALUES (19715,526,25);    -- Enhances Sneak Attack effect +25%
 INSERT INTO `item_mods` VALUES (19715,527,25);    -- Enhances Trick Attack effect +25%
+INSERT INTO `item_mods` VALUES (19715,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19716,27,16);
 INSERT INTO `item_mods` VALUES (19716,161,-16);
 INSERT INTO `item_mods` VALUES (19716,288,25);
 INSERT INTO `item_mods` VALUES (19716,302,5);
 INSERT INTO `item_mods` VALUES (19716,355,45); -- Burtgang 95 - Atonement
 INSERT INTO `item_mods` VALUES (19716,615,15); -- Atonement WS DMG+15%
+INSERT INTO `item_mods` VALUES (19716,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19717,30,30);     -- Liberator (Level 95): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (19717,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (19717,676,15);   -- Insurgency WS DMG +15%
 INSERT INTO `item_mods` VALUES (19717,521,40);    -- Absorb spell potency +40%
+INSERT INTO `item_mods` VALUES (19717,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19718,288,25);
 INSERT INTO `item_mods` VALUES (19718,302,5);
 INSERT INTO `item_mods` VALUES (19718,355,74); -- Aymur 95 - Primal Rend
 INSERT INTO `item_mods` VALUES (19718,644,15); -- Primal Rend WS DMG +15%
+INSERT INTO `item_mods` VALUES (19718,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19719,30,20);     -- Carnwenhan (Level 95): Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (19719,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19719,598,15);    -- Mordant Rime WS DMG +15%
 INSERT INTO `item_mods` VALUES (19719,454,40);    -- Increases song effect duration +40%
+INSERT INTO `item_mods` VALUES (19719,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19720,355,217); -- Gastraphetes 95 - Trueflight
 INSERT INTO `item_mods` VALUES (19720,787,15); -- Trueflight WS DMG +15%
 INSERT INTO `item_mods` VALUES (19720,365,5);
 INSERT INTO `item_mods` VALUES (19720,420,30);
+INSERT INTO `item_mods` VALUES (19720,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19721,355,154);   -- Kogarasumaru (Level 95): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19721,508,20);    -- Third Eye Counter rate +20%
 INSERT INTO `item_mods` VALUES (19721,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19721,724,15);    -- Tachi Rana WS DMG +15%
+INSERT INTO `item_mods` VALUES (19721,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19722,27,25);
 INSERT INTO `item_mods` VALUES (19722,30,25);
 INSERT INTO `item_mods` VALUES (19722,288,25);
 INSERT INTO `item_mods` VALUES (19722,302,5);
 INSERT INTO `item_mods` VALUES (19722,355,138); -- Nagi 95 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19722,710,15); -- Blade: Kamu WS DMG +15%
+INSERT INTO `item_mods` VALUES (19722,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19723,288,25);
 INSERT INTO `item_mods` VALUES (19723,302,5);
 INSERT INTO `item_mods` VALUES (19723,355,122); -- Ryunohige 95 - Drakesbane
 INSERT INTO `item_mods` VALUES (19723,692,15); -- Drakesbane WS DMG +15%
 INSERT INTO `item_mods` VALUES (19723,362,30);
+INSERT INTO `item_mods` VALUES (19723,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19724,25,30);
 INSERT INTO `item_mods` VALUES (19724,288,25);
 INSERT INTO `item_mods` VALUES (19724,302,5);
@@ -23957,29 +24133,35 @@ INSERT INTO `item_mods` VALUES (19724,312,35);
 INSERT INTO `item_mods` VALUES (19724,346,7);
 INSERT INTO `item_mods` VALUES (19724,355,187); -- Nirvana 95 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19724,757,15); -- Garland of Bliss WS DMG +15%
+INSERT INTO `item_mods` VALUES (19724,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19725,30,20);
 INSERT INTO `item_mods` VALUES (19725,288,25);
 INSERT INTO `item_mods` VALUES (19725,302,5);
 INSERT INTO `item_mods` VALUES (19725,355,46); -- Tizona 95 - Expiacion
 INSERT INTO `item_mods` VALUES (19725,431,1); -- Tizona 95 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19725,616,15); -- Expiacion WS DMG +15%
+INSERT INTO `item_mods` VALUES (19725,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19726,355,218); -- Death Penalty 95 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19726,580,40);
+INSERT INTO `item_mods` VALUES (19726,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19727,173,20);
 INSERT INTO `item_mods` VALUES (19727,288,25);
 INSERT INTO `item_mods` VALUES (19727,302,5);
 INSERT INTO `item_mods` VALUES (19727,355,12); -- Kenkonken 95 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (19727,582,15); -- Stringing Pummel WS DMG +15%
+INSERT INTO `item_mods` VALUES (19727,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19728,355,29); -- Terpsichore 95 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19728,599,15); -- Pyrrhic Kleos WS DMG +15%
 INSERT INTO `item_mods` VALUES (19728,403,20);
 INSERT INTO `item_mods` VALUES (19728,494,1);
+INSERT INTO `item_mods` VALUES (19728,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19729,25,30);
 INSERT INTO `item_mods` VALUES (19729,28,35);
 INSERT INTO `item_mods` VALUES (19729,30,25);
 INSERT INTO `item_mods` VALUES (19729,288,25);
 INSERT INTO `item_mods` VALUES (19729,302,5);
 INSERT INTO `item_mods` VALUES (19729,355,188); -- Tupsimati 95 - Omniscience
+INSERT INTO `item_mods` VALUES (19729,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19730,8,5);
 INSERT INTO `item_mods` VALUES (19730,26,15);
 INSERT INTO `item_mods` VALUES (19731,11,3);
@@ -24007,84 +24189,98 @@ INSERT INTO `item_mods` VALUES (19746,291,14); -- Counter +14
 INSERT INTO `item_mods` VALUES (19746,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (19746,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19746,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19746,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19746,580,40);  -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (19747,23,40); -- Mandau LV99 - ATT +40
 INSERT INTO `item_mods` VALUES (19747,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (19747,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (19747,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19747,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19747,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19747,596,40); -- Mercy Stroke DMG +40%
 INSERT INTO `item_mods` VALUES (19748,23,40); -- Excalibur LV99 - ATT +40
 INSERT INTO `item_mods` VALUES (19748,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (19748,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (19748,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19748,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19748,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19748,613,40); -- Knights of the Round DMG +40%
 INSERT INTO `item_mods` VALUES (19749,25,40); -- Ragnarok LV99 - ACC +40
 INSERT INTO `item_mods` VALUES (19749,165,14); -- Crit Rate +14%
 INSERT INTO `item_mods` VALUES (19749,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (19749,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19749,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19749,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19749,627,40); -- Scourge DMG +40%
 INSERT INTO `item_mods` VALUES (19750,23,40); -- Guttler LV99 - ATT +40
 INSERT INTO `item_mods` VALUES (19750,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (19750,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (19750,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19750,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19750,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19750,643,40); -- Onslaught DMG +40%
 INSERT INTO `item_mods` VALUES (19751,25,40); -- Bravura LV99 - ACC +40
 INSERT INTO `item_mods` VALUES (19751,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (19751,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (19751,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19751,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19751,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19751,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (19752,25,40); -- Gungnir LV99 - ACC +40
 INSERT INTO `item_mods` VALUES (19752,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (19752,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (19752,506,130); -- Extra DMG Chance %13
 INSERT INTO `item_mods` VALUES (19752,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19752,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19752,691,40); -- Geirskogul DMG +40%
 INSERT INTO `item_mods` VALUES (19753,25,40); -- Apocalypse LV99 - ACC +40
 INSERT INTO `item_mods` VALUES (19753,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (19753,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (19753,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19753,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19753,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19753,675,40); -- Catastrophe DMG +40%
 INSERT INTO `item_mods` VALUES (19754,23,40); -- Kikoku LV99 - ATT +40
 INSERT INTO `item_mods` VALUES (19754,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (19754,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (19754,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19754,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19754,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19754,707,40); -- Blade: Metsu DMG +40%
 INSERT INTO `item_mods` VALUES (19755,25,40); -- Amanomurakumo LV99 - ACC +40
 INSERT INTO `item_mods` VALUES (19755,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (19755,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (19755,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19755,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19755,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19755,723,40); -- Tachi: Kaiten DMG +40%
 INSERT INTO `item_mods` VALUES (19756,23,40); -- Mjollnir LV99 - ATT +40
 INSERT INTO `item_mods` VALUES (19756,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (19756,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (19756,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19756,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19756,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19756,740,40); -- Randgrith DMG +40%
 INSERT INTO `item_mods` VALUES (19757,25,40); -- Claustrum LV99 - ACC +40
 INSERT INTO `item_mods` VALUES (19757,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (19757,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (19757,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19757,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19757,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19757,755,40); -- Gate of Tartarus DMG +40%
 INSERT INTO `item_mods` VALUES (19758,24,30); -- Annihilator LV99 - RNG ATT +30
 INSERT INTO `item_mods` VALUES (19758,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (19758,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (19758,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19758,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19758,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19758,786,40); -- Coronach DMG +40%
 INSERT INTO `item_mods` VALUES (19759,24,30); -- Yoichinoyumi LV99 - RNG ATT +30
 INSERT INTO `item_mods` VALUES (19759,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (19759,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (19759,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19759,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19759,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19759,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (19760,23,2);  -- Anger Bomblet -- 2 Att
 INSERT INTO `item_mods` VALUES (19760,68,-2); -- -2 Eva
@@ -24183,67 +24379,81 @@ INSERT INTO `item_mods` VALUES (19819,288,30);
 INSERT INTO `item_mods` VALUES (19819,302,10);
 INSERT INTO `item_mods` VALUES (19819,355,90); -- Conqueror 99 - King's Justice
 INSERT INTO `item_mods` VALUES (19819,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (19819,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19820,288,25);
 INSERT INTO `item_mods` VALUES (19820,302,10);
 INSERT INTO `item_mods` VALUES (19820,355,11); -- Glanzfaust 99 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19820,581,30); -- Ascetic's Fury WS DMG +30%
+INSERT INTO `item_mods` VALUES (19820,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19821,30,25);
 INSERT INTO `item_mods` VALUES (19821,288,30);
 INSERT INTO `item_mods` VALUES (19821,302,10);
 INSERT INTO `item_mods` VALUES (19821,355,171); -- Yagrush 99 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19821,741,30); -- Mystic Boon WS DMG +30%
 INSERT INTO `item_mods` VALUES (19821,524,1);
+INSERT INTO `item_mods` VALUES (19821,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19822,25,30);
 INSERT INTO `item_mods` VALUES (19822,28,60);
 INSERT INTO `item_mods` VALUES (19822,30,10);
 INSERT INTO `item_mods` VALUES (19822,288,30);
 INSERT INTO `item_mods` VALUES (19822,302,10);
 INSERT INTO `item_mods` VALUES (19822,355,186); -- Laevateinn 99 - Vidohunir
+INSERT INTO `item_mods` VALUES (19822,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19823,30,30);     -- Murgleis (Level 99): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (19823,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (19823,614,30);    -- Death Blossom WS DMG +30%
 INSERT INTO `item_mods` VALUES (19823,525,3);     -- Augments Convert 1:3
+INSERT INTO `item_mods` VALUES (19823,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19824,355,27);    -- Vajra (Level 99): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19824,597,30);    -- Mandalic Stab WS DMG +30%
 INSERT INTO `item_mods` VALUES (19824,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (19824,527,30);    -- Enhances Trick Attack effect +30%
+INSERT INTO `item_mods` VALUES (19824,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19825,27,18);
 INSERT INTO `item_mods` VALUES (19825,161,-18);
 INSERT INTO `item_mods` VALUES (19825,288,30);
 INSERT INTO `item_mods` VALUES (19825,302,10);
 INSERT INTO `item_mods` VALUES (19825,355,45); -- Burtgang 99 - Atonement
 INSERT INTO `item_mods` VALUES (19825,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (19825,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19826,30,35);     -- Liberator (Level 99): Magic Accuracy+35
 INSERT INTO `item_mods` VALUES (19826,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (19826,676,30);   -- Insurgency WS DMG +30%
 INSERT INTO `item_mods` VALUES (19826,521,50);    -- Absorb spell potency +50%
+INSERT INTO `item_mods` VALUES (19826,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19827,288,30);
 INSERT INTO `item_mods` VALUES (19827,302,10);
 INSERT INTO `item_mods` VALUES (19827,355,74); -- Aymur 99 - Primal Rend
 INSERT INTO `item_mods` VALUES (19827,644,30); -- Primal Rend WS DMG +30%
+INSERT INTO `item_mods` VALUES (19827,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19828,30,25);     -- Carnwenhan (Level 99): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19828,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19828,598,30);    -- Mordant Rime WS DMG +30%
 INSERT INTO `item_mods` VALUES (19828,454,50);    -- Increases song effect duration +50%
+INSERT INTO `item_mods` VALUES (19828,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19829,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19829,787,30); -- Trueflight WS DMG +30%
 INSERT INTO `item_mods` VALUES (19829,365,5);
 INSERT INTO `item_mods` VALUES (19829,420,35);
+INSERT INTO `item_mods` VALUES (19829,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19830,355,154);   -- Kogarasumaru (Level 99): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19830,508,25);    -- Third Eye Counter rate +25%
 INSERT INTO `item_mods` VALUES (19830,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19830,724,30);    -- Tachi Rana WS DMG +30%
+INSERT INTO `item_mods` VALUES (19830,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19831,27,30);
 INSERT INTO `item_mods` VALUES (19831,30,30);
 INSERT INTO `item_mods` VALUES (19831,288,30);
 INSERT INTO `item_mods` VALUES (19831,301,10);
 INSERT INTO `item_mods` VALUES (19831,355,138); -- Nagi 99 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19831,710,30); -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (19831,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19832,288,30);
 INSERT INTO `item_mods` VALUES (19832,302,10);
 INSERT INTO `item_mods` VALUES (19832,355,122); -- Ryunohige 99 - Drakesbane
 INSERT INTO `item_mods` VALUES (19832,692,30); -- Drakesbane WS DMG +30%
 INSERT INTO `item_mods` VALUES (19832,362,35);
+INSERT INTO `item_mods` VALUES (19832,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19833,25,30);
 INSERT INTO `item_mods` VALUES (19833,288,30);
 INSERT INTO `item_mods` VALUES (19833,302,10);
@@ -24251,110 +24461,130 @@ INSERT INTO `item_mods` VALUES (19833,312,40);
 INSERT INTO `item_mods` VALUES (19833,346,8);
 INSERT INTO `item_mods` VALUES (19833,355,187); -- Nirvana 99 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19833,757,30); -- Garland of Bliss WS DMG +30%
+INSERT INTO `item_mods` VALUES (19833,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19834,30,25);
 INSERT INTO `item_mods` VALUES (19834,288,30);
 INSERT INTO `item_mods` VALUES (19834,302,10);
 INSERT INTO `item_mods` VALUES (19834,355,46); -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19834,431,1); -- Tizona 99 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19834,616,30); -- Expiacion WS DMG +30%
+INSERT INTO `item_mods` VALUES (19834,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19835,355,218); -- Death Penalty 99 - Leaden Salute
+INSERT INTO `item_mods` VALUES (19835,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19836,173,20);
 INSERT INTO `item_mods` VALUES (19836,302,10);
 INSERT INTO `item_mods` VALUES (19836,355,12); -- Kenkonken 99 - Stringing Pummel
-INSERT INTO `item_mods` VALUES (19835,582,30); -- Stringing Pummel WS DMG +30%
+INSERT INTO `item_mods` VALUES (19836,582,30); -- Stringing Pummel WS DMG +30%
+INSERT INTO `item_mods` VALUES (19836,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19837,355,29); -- Terpsichore 99 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19837,599,30); -- Pyrrhic Kleos WS DMG +30%
 INSERT INTO `item_mods` VALUES (19837,403,25);
 INSERT INTO `item_mods` VALUES (19837,494,1);
+INSERT INTO `item_mods` VALUES (19837,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19838,25,30);
 INSERT INTO `item_mods` VALUES (19838,28,40);
 INSERT INTO `item_mods` VALUES (19838,30,30);
 INSERT INTO `item_mods` VALUES (19838,288,25);
 INSERT INTO `item_mods` VALUES (19838,302,5);
 INSERT INTO `item_mods` VALUES (19838,355,188); -- Tupsimati 99 - Omniscience
+INSERT INTO `item_mods` VALUES (19838,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19839,23,40); -- Spharai LV99 AG -- ATT +40
 INSERT INTO `item_mods` VALUES (19839,291,14); -- Counter +14
 INSERT INTO `item_mods` VALUES (19839,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (19839,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19839,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19839,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19839,580,40);  -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (19840,23,40); -- Mandau LV99 AG - ATT +40
 INSERT INTO `item_mods` VALUES (19840,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (19840,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (19840,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19840,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19840,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19840,596,40); -- Mercy Stroke DMG +40%
 INSERT INTO `item_mods` VALUES (19841,23,40); -- Excalibur LV99 AG - ATT +40
 INSERT INTO `item_mods` VALUES (19841,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (19841,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (19841,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19841,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19841,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19841,613,40); -- Knights of the Round DMG +40%
 INSERT INTO `item_mods` VALUES (19842,25,40); -- Ragnarok LV99 AG - ACC +40
 INSERT INTO `item_mods` VALUES (19842,165,14); -- Crit Rate +14%
 INSERT INTO `item_mods` VALUES (19842,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (19842,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19842,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19842,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19842,627,40); -- Scourge DMG +40%
 INSERT INTO `item_mods` VALUES (19843,23,40); -- Guttler LV99 AG - ATT +40
 INSERT INTO `item_mods` VALUES (19843,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (19843,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (19843,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19843,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19843,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19843,643,40); -- Onslaught DMG +40%
 INSERT INTO `item_mods` VALUES (19844,25,40); -- Bravura LV99 AG - ACC +40
 INSERT INTO `item_mods` VALUES (19844,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (19844,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (19844,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19844,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19844,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19844,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (19845,25,40); -- Gungnir LV99 AG - ACC +40
 INSERT INTO `item_mods` VALUES (19845,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (19845,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (19845,506,130); -- Extra DMG Chance %13
 INSERT INTO `item_mods` VALUES (19845,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19845,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19845,691,40); -- Geirskogul DMG +40%
 INSERT INTO `item_mods` VALUES (19846,25,40); -- Apocalypse LV99 AG - ACC +40
 INSERT INTO `item_mods` VALUES (19846,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (19846,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (19846,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19846,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19846,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19846,675,40); -- Catastrophe DMG +40%
 INSERT INTO `item_mods` VALUES (19847,23,40); -- Kikoku LV99 AG - ATT +40
 INSERT INTO `item_mods` VALUES (19847,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (19847,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (19847,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19847,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19847,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19847,707,40); -- Blade: Metsu DMG +40%
 INSERT INTO `item_mods` VALUES (19848,25,40); -- Amanomurakumo LV99 AG - ACC +40
 INSERT INTO `item_mods` VALUES (19848,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (19848,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (19848,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19848,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19848,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19848,723,40); -- Tachi: Kaiten DMG +40%
 INSERT INTO `item_mods` VALUES (19849,23,40); -- Mjollnir LV99 AG - ATT +40
 INSERT INTO `item_mods` VALUES (19849,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (19849,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (19849,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19849,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19849,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19849,740,40); -- Randgrith DMG +40%
 INSERT INTO `item_mods` VALUES (19850,25,40); -- Claustrum LV99 AG - ACC +40
 INSERT INTO `item_mods` VALUES (19850,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (19850,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (19850,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19850,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19850,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19850,755,40); -- Gate of Tartarus DMG +40%
 INSERT INTO `item_mods` VALUES (19851,24,30); -- Annihilator LV99 AG - RNG ATT +30
 INSERT INTO `item_mods` VALUES (19851,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (19851,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (19851,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19851,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19851,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19851,786,40); -- Coronach DMG +40%
 INSERT INTO `item_mods` VALUES (19852,24,30); -- Yoichinoyumi LV99 AG - RNG ATT +30
 INSERT INTO `item_mods` VALUES (19852,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (19852,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (19852,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19852,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19852,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (19852,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (19853,8,20);
 INSERT INTO `item_mods` VALUES (19853,355,14); -- Verethragna 99 - Victory Smite
@@ -24389,76 +24619,102 @@ INSERT INTO `item_mods` VALUES (19866,355,220); -- Armageddon 99 - Wildfire
 INSERT INTO `item_mods` VALUES (19936,288,30);
 INSERT INTO `item_mods` VALUES (19948,355,90); -- Conqueror 99 - King's Justice
 INSERT INTO `item_mods` VALUES (19948,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (19948,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19949,355,11); -- Glanzfaust 99 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19949,581,30); -- Ascetic's Fury WS DMG +30%
+INSERT INTO `item_mods` VALUES (19949,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19950,355,171); -- Yagrush 99 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19950,741,30); -- Mystic Boon WS DMG +30%
+INSERT INTO `item_mods` VALUES (19950,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19951,355,186); -- Laevateinn 99 - Vidohunir
+INSERT INTO `item_mods` VALUES (19951,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19952,30,30);     -- Murgleis (Level 99 II): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (19952,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (19952,614,30);    -- Death Blossom WS DMG +30%
 INSERT INTO `item_mods` VALUES (19952,525,3);     -- Augments Convert 1:3
+INSERT INTO `item_mods` VALUES (19952,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19953,355,27);    -- Vajra (Level 99 II): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19953,597,30);    -- Mandalic Stab WS DMG +30%
 INSERT INTO `item_mods` VALUES (19953,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (19953,527,30);    -- Enhances Trick Attack effect +30%
+INSERT INTO `item_mods` VALUES (19953,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19954,355,45); -- Burtgang 99 - Atonement
 INSERT INTO `item_mods` VALUES (19954,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (19954,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19955,30,35);     -- Liberator (Level 99 II): Magic Accuracy +35
 INSERT INTO `item_mods` VALUES (19955,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (19955,676,30);   -- Insurgency WS DMG +30%
 INSERT INTO `item_mods` VALUES (19955,521,50);    -- Absorb spell potency +50%
+INSERT INTO `item_mods` VALUES (19955,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19956,355,74); -- Aymur 99 - Primal Rend
 INSERT INTO `item_mods` VALUES (19956,644,30); -- Primal Rend WS DMG +30%
+INSERT INTO `item_mods` VALUES (19956,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19957,30,25);     -- Carnwenhan (Level 99 II): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19957,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (19957,598,30);    -- Mordant Rime WS DMG +30%
 INSERT INTO `item_mods` VALUES (19957,454,50);    -- Increases song effect duration +50%
+INSERT INTO `item_mods` VALUES (19957,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19958,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19958,787,30); -- Trueflight WS DMG +30%
 INSERT INTO `item_mods` VALUES (19958,365,5);
 INSERT INTO `item_mods` VALUES (19958,450,35);
+INSERT INTO `item_mods` VALUES (19958,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19959,355,154);   -- Kogarasumaru (Level 99 II): Tachi: Rana
 INSERT INTO `item_mods` VALUES (19959,508,25);    -- Third Eye Counter rate +25%
 INSERT INTO `item_mods` VALUES (19959,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19959,724,30);    -- Tachi Rana WS DMG +30%
+INSERT INTO `item_mods` VALUES (19959,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19960,355,138); -- Nagi 99 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19960,710,30); -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (19960,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19961,355,122); -- Ryunohige 99 - Drakesbane
 INSERT INTO `item_mods` VALUES (19961,692,30); -- Drakesbane WS DMG +30%
+INSERT INTO `item_mods` VALUES (19961,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19962,355,187); -- Nirvana 99 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19962,757,30); -- Garland of Bliss WS DMG +30%
+INSERT INTO `item_mods` VALUES (19962,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19963,355,46); -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19963,431,1); -- Tizona 99 Absorb MP
 INSERT INTO `item_mods` VALUES (19963,616,30); -- Expiacion WS DMG +30%
+INSERT INTO `item_mods` VALUES (19963,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19964,355,218); -- Death Penalty 99 - Leaden Salute
+INSERT INTO `item_mods` VALUES (19964,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19965,355,12); -- Kenkonken 99 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (19965,582,30); -- Stringing Pummel WS DMG +30%
+INSERT INTO `item_mods` VALUES (19965,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19966,355,29); -- Terpsichore 99 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19966,599,30); -- Pyrrhic Kleos WS DMG +30%
+INSERT INTO `item_mods` VALUES (19966,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (19967,355,188); -- Tupsimati 99 - Omniscience
+INSERT INTO `item_mods` VALUES (19967,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20480,23,40); -- Spharai iLvL 119 - ATT +40
 INSERT INTO `item_mods` VALUES (20480,291,14); -- Counter +14
 INSERT INTO `item_mods` VALUES (20480,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (20480,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20480,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20480,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20480,580,40);  -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (20481,23,40); -- Spharai iLvL 119 AG - ATT +40
 INSERT INTO `item_mods` VALUES (20481,291,14); -- Counter +14
 INSERT INTO `item_mods` VALUES (20481,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (20481,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20481,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20481,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20481,580,40);  -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (20482,302,15);
 INSERT INTO `item_mods` VALUES (20482,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20482,581,30); -- Ascetic's Fury WS DMG +30%
+INSERT INTO `item_mods` VALUES (20482,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20483,302,15);
 INSERT INTO `item_mods` VALUES (20483,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20483,581,30); -- Ascetic's Fury WS DMG +30%
+INSERT INTO `item_mods` VALUES (20483,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20484,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (20484,582,30); -- Stringing Pummel WS DMG +30%
+INSERT INTO `item_mods` VALUES (20484,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20485,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (20485,582,30); -- Stringing Pummel WS DMG +30%
+INSERT INTO `item_mods` VALUES (20485,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20486,8,20);
 INSERT INTO `item_mods` VALUES (20486,355,14); -- Verethragna iLvL 119 - Victory Smite
 INSERT INTO `item_mods` VALUES (20486,584,30); -- Victory Smite WS DMG +30%
@@ -24466,6 +24722,7 @@ INSERT INTO `item_mods` VALUES (20487,8,20);
 INSERT INTO `item_mods` VALUES (20487,355,14); -- Verethragna iLvL 119 - Victory Smite
 INSERT INTO `item_mods` VALUES (20487,584,30); -- Victory Smite WS DMG +30%
 INSERT INTO `item_mods` VALUES (20509,23,60);     -- Spharai (iLvl 119 III): Attack +60
+INSERT INTO `item_mods` VALUES (20509,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (20509,291,14);    -- Counter +14
 INSERT INTO `item_mods` VALUES (20509,355,10);    -- Final Heaven
 INSERT INTO `item_mods` VALUES (20509,506,130);   -- Extra DMG Chance 13%
@@ -24473,8 +24730,10 @@ INSERT INTO `item_mods` VALUES (20509,507,300);   -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (20509,580,40);    -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (20510,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20510,581,30); -- Ascetic's Fury WS DMG +30%
+INSERT INTO `item_mods` VALUES (20510,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20511,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (20511,582,30); -- Stringing Pummel WS DMG +30%
+INSERT INTO `item_mods` VALUES (20511,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20512,355,14); -- Verethragna iLvL 119 - Victory Smite
 INSERT INTO `item_mods` VALUES (20512,584,30); -- Victory Smite WS DMG +30%
 INSERT INTO `item_mods` VALUES (20512,8,50); -- STR +50
@@ -24526,35 +24785,43 @@ INSERT INTO `item_mods` VALUES (20555,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (20555,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (20555,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20555,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20555,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20555,596,40); -- Mercy Stroke DMG +40%
 INSERT INTO `item_mods` VALUES (20556,23,40); -- Mandau iLvL 119 AG - ATT +40
 INSERT INTO `item_mods` VALUES (20556,355,26); -- Mercy Stroke
 INSERT INTO `item_mods` VALUES (20556,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
 INSERT INTO `item_mods` VALUES (20556,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20556,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20556,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20556,596,40); -- Mercy Stroke DMG +40%
 INSERT INTO `item_mods` VALUES (20557,355,29); -- Terpsichore iLvL 119 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (20557,599,30); -- Pyrrhic Kleos WS DMG +30%
+INSERT INTO `item_mods` VALUES (20557,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20558,203,15);
 INSERT INTO `item_mods` VALUES (20558,355,29); -- Terpsichore iLvL 119 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (20558,599,30); -- Pyrrhic Kleos WS DMG +30%
+INSERT INTO `item_mods` VALUES (20558,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20558,403,30);
 INSERT INTO `item_mods` VALUES (20558,494,2);
 INSERT INTO `item_mods` VALUES (20559,355,27);    -- Vajra (iLvl 119): Mandalic Stab
 INSERT INTO `item_mods` VALUES (20559,597,30);    -- Mandalic Stab WS DMG +30%
+INSERT INTO `item_mods` VALUES (20559,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20559,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (20559,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (20560,355,27);    -- Vajra (iLvl 119 II): Mandalic Stab
 INSERT INTO `item_mods` VALUES (20560,597,30);    -- Mandalic Stab WS DMG +30%
+INSERT INTO `item_mods` VALUES (20560,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20560,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (20560,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (20561,30,25);     -- Carnwenhan (iLvl 119): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (20561,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (20561,598,30);    -- Mordant Rime WS DMG +30%
+INSERT INTO `item_mods` VALUES (20561,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20561,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (20562,30,25);     -- Carnwenhan (iLvl 119 II): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (20562,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (20562,598,30);    -- Mordant Rime WS DMG +30%
+INSERT INTO `item_mods` VALUES (20562,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20562,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (20563,9,20);
 INSERT INTO `item_mods` VALUES (20563,355,31); -- Twashtar iLvL 119 - Rudra's Storm
@@ -24563,16 +24830,20 @@ INSERT INTO `item_mods` VALUES (20564,9,20);
 INSERT INTO `item_mods` VALUES (20564,355,31); -- Twashtar iLvL 119 - Rudra's Storm
 INSERT INTO `item_mods` VALUES (20564,601,30); -- Rudra's Storm WS DMG +30%
 INSERT INTO `item_mods` VALUES (20583,355,26); -- Mandau iLvL 119 - Mercy Stroke
+INSERT INTO `item_mods` VALUES (20583,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (20584,355,29); -- Terpsichore iLvL 119 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (20584,599,30); -- Pyrrhic Kleos WS DMG +30%
+INSERT INTO `item_mods` VALUES (20584,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20585,355,27);    -- Vajra (iLvL 119 III): Mandalic Stab
 INSERT INTO `item_mods` VALUES (20585,597,30);    -- Mandalic Stab WS DMG +30%
+INSERT INTO `item_mods` VALUES (20585,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20585,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (20585,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (20586,30,40);     -- Carnwenhan (iLvl 119 III): Magic Accuracy +40
 INSERT INTO `item_mods` VALUES (20586,311,155);   -- Magic Damage +155
 INSERT INTO `item_mods` VALUES (20586,355,28);    -- Mordant Rime
 INSERT INTO `item_mods` VALUES (20586,598,30);    -- Mordant Rime WS DMG +30%
+INSERT INTO `item_mods` VALUES (20586,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20586,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (20587,355,31); -- Twashtar iLvL 119 - Rudra's Storm
 INSERT INTO `item_mods` VALUES (20587,601,30); -- Rudra's Storm WS DMG +30%
@@ -24651,39 +24922,47 @@ INSERT INTO `item_mods` VALUES (20645,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (20645,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (20645,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20645,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20645,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20645,613,40); -- Knights of the Round DMG +40%
 INSERT INTO `item_mods` VALUES (20646,23,40); -- Excalibur iLvL 119 AG - ATT +40
 INSERT INTO `item_mods` VALUES (20646,355,43); -- Knights of the Round
 INSERT INTO `item_mods` VALUES (20646,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
 INSERT INTO `item_mods` VALUES (20646,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20646,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20646,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20646,613,40); -- Knights of the Round DMG +40%
 INSERT INTO `item_mods` VALUES (20647,30,30);     -- Murgleis (iLvl 119): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (20647,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (20647,614,30);    -- Death Blossom WS DMG +30%
+INSERT INTO `item_mods` VALUES (20647,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20647,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (20648,30,30);     -- Murgleis (iLvl 119 II): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (20648,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (20648,614,30);    -- Death Blossom WS DMG +30%
+INSERT INTO `item_mods` VALUES (20648,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20648,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (20649,27,18);
 INSERT INTO `item_mods` VALUES (20649,161,-18);
 INSERT INTO `item_mods` VALUES (20649,302,15);
 INSERT INTO `item_mods` VALUES (20649,355,45); -- Burtgang iLvL 119 - Atonement
 INSERT INTO `item_mods` VALUES (20649,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (20649,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20650,27,18);
 INSERT INTO `item_mods` VALUES (20650,161,-18);
 INSERT INTO `item_mods` VALUES (20650,302,15);
 INSERT INTO `item_mods` VALUES (20650,355,45); -- Burtgang iLvL 119 - Atonement
 INSERT INTO `item_mods` VALUES (20650,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (20650,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20651,302,15);
 INSERT INTO `item_mods` VALUES (20651,355,46); -- Tizona iLvL 119 - Expiacion
 INSERT INTO `item_mods` VALUES (20651,431,1); -- Tizona iLvL 119 -
 INSERT INTO `item_mods` VALUES (20651,616,30); -- Expiacion WS DMG +30%
+INSERT INTO `item_mods` VALUES (20651,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20652,302,15);
 INSERT INTO `item_mods` VALUES (20652,355,46); -- Tizona iLvL 119 - Expiacion
 INSERT INTO `item_mods` VALUES (20652,431,1); -- Tizona iLvL 119 -
 INSERT INTO `item_mods` VALUES (20652,616,30); -- Expiacion WS DMG +30%
+INSERT INTO `item_mods` VALUES (20652,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20653,9,20);
 INSERT INTO `item_mods` VALUES (20653,355,225); -- Almace iLvL 119 - Chant du Cygne
 INSERT INTO `item_mods` VALUES (20653,795,30); -- Chant du Cygne WS DMG +30%
@@ -24691,12 +24970,15 @@ INSERT INTO `item_mods` VALUES (20654,9,20);
 INSERT INTO `item_mods` VALUES (20654,355,225); -- Almace iLvL 119 - Chant du Cygne
 INSERT INTO `item_mods` VALUES (20654,795,30); -- Chant du Cygne WS DMG +30%
 INSERT INTO `item_mods` VALUES (20685,355,43); -- Excalibur iLvL 119 - Knights of the Round
+INSERT INTO `item_mods` VALUES (20685,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (20686,30,40);     -- Murgleis (iLvl 119 III): Magic Accuracy +40
 INSERT INTO `item_mods` VALUES (20686,311,217);   -- Magic Damage +217
 INSERT INTO `item_mods` VALUES (20686,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (20686,525,3);     -- Augments Convert 1:3
+INSERT INTO `item_mods` VALUES (20686,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20687,355,45); -- Burtgang iLvL 119 - Atonement
-INSERT INTO `item_mods` VALUES (2068,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (20687,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (20687,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20687,311,186); -- Magic Damage +186
 INSERT INTO `item_mods` VALUES (20687,30,255); -- Magic Accuracy +255
 INSERT INTO `item_mods` VALUES (20687,27,23); -- Enmity +23
@@ -24704,6 +24986,7 @@ INSERT INTO `item_mods` VALUES (20687,831,-18); -- Physical Damage Taken II -18%
 INSERT INTO `item_mods` VALUES (20688,355,46); -- Tizona iLvL 119 - Expiacion
 INSERT INTO `item_mods` VALUES (20688,431,1); -- Tizona iLvL 119 - Additional Effect
 INSERT INTO `item_mods` VALUES (20688,616,30); -- Expiacion WS DMG +30%
+INSERT INTO `item_mods` VALUES (20688,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20689,355,225);   -- Almace iLvL 119 - Chant du Cygne
 INSERT INTO `item_mods` VALUES (20689,795,30); -- Chant du Cygne WS DMG +30%
 INSERT INTO `item_mods` VALUES (20695,73,10); -- Sequence - STP +10
@@ -24771,12 +25054,14 @@ INSERT INTO `item_mods` VALUES (20745,165,14); -- Crit Rate +14%
 INSERT INTO `item_mods` VALUES (20745,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (20745,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20745,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20745,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20745,627,40); -- Scourge DMG +40%
 INSERT INTO `item_mods` VALUES (20746,25,40); -- Ragnarok iLvL 119 AG - ACC +40
 INSERT INTO `item_mods` VALUES (20746,165,14); -- Crit Rate +14%
 INSERT INTO `item_mods` VALUES (20746,355,57); -- Scourge
 INSERT INTO `item_mods` VALUES (20746,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20746,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20746,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20746,627,40); -- Scourge DMG +40%
 INSERT INTO `item_mods` VALUES (20747,10,20);
 INSERT INTO `item_mods` VALUES (20747,355,59); -- Caladbolg iLvL 119 - Torcleaver
@@ -24822,17 +25107,21 @@ INSERT INTO `item_mods` VALUES (20790,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (20790,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (20790,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20790,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20790,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20790,643,40); -- Onslaught DMG +40%
 INSERT INTO `item_mods` VALUES (20791,23,40); -- Guttler iLvL 119 AG - ATT +40
 INSERT INTO `item_mods` VALUES (20791,355,73); -- Onslaught
 INSERT INTO `item_mods` VALUES (20791,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
 INSERT INTO `item_mods` VALUES (20791,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20791,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20791,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20791,643,40); -- Onslaught DMG +40%
 INSERT INTO `item_mods` VALUES (20792,355,74); -- Aymur iLvL 119 - Primal Rend
 INSERT INTO `item_mods` VALUES (20792,644,30); -- Primal Rend WS DMG +30%
+INSERT INTO `item_mods` VALUES (20792,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20793,355,74); -- Aymur iLvL 119 - Primal Rend
 INSERT INTO `item_mods` VALUES (20793,644,30); -- Primal Rend WS DMG +30%
+INSERT INTO `item_mods` VALUES (20793,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20794,8,13);
 INSERT INTO `item_mods` VALUES (20794,13,13);
 INSERT INTO `item_mods` VALUES (20794,355,76); -- Farsha iLvL 119 - Cloudsplitter
@@ -24876,18 +25165,22 @@ INSERT INTO `item_mods` VALUES (20835,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (20835,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (20835,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20835,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20835,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20835,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (20836,25,40); -- Bravura iLvL 119 AG - ACC +40
 INSERT INTO `item_mods` VALUES (20836,355,89); -- Metatron Torment
 INSERT INTO `item_mods` VALUES (20836,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
 INSERT INTO `item_mods` VALUES (20836,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20836,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20836,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20836,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (20837,302,15);
 INSERT INTO `item_mods` VALUES (20837,355,90); -- Conqueror iLvL 119 - King's Justice
 INSERT INTO `item_mods` VALUES (20837,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (20837,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20838,355,90); -- Conqueror iLvL 119 - King's Justice
 INSERT INTO `item_mods` VALUES (20838,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (20838,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20839,8,20);
 INSERT INTO `item_mods` VALUES (20839,355,92); -- Ukonvasara iLvL 119 - Ukko's Fury
 INSERT INTO `item_mods` VALUES (20839,662,30); -- Ukko's Fury WS DMG +30%
@@ -24942,20 +25235,24 @@ INSERT INTO `item_mods` VALUES (20880,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (20880,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (20880,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20880,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20880,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20880,675,40); -- Catastrophe DMG +40%
 INSERT INTO `item_mods` VALUES (20881,25,40); -- Apocalypse iLvL 119 AG - ACC +40
 INSERT INTO `item_mods` VALUES (20881,355,105); -- Catastrophe
 INSERT INTO `item_mods` VALUES (20881,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
 INSERT INTO `item_mods` VALUES (20881,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20881,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20881,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20881,675,40); -- Catastrophe DMG +40%
 INSERT INTO `item_mods` VALUES (20882,30,35);     -- Liberator (iLvl 119): Magic Accuracy +35
 INSERT INTO `item_mods` VALUES (20882,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (20882,676,30);   -- Insurgency WS DMG +30%
+INSERT INTO `item_mods` VALUES (20882,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20882,521,50);    -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (20883,30,35);     -- Liberator (iLvl 119 II): Magic Accuracy +35
 INSERT INTO `item_mods` VALUES (20883,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (20883,676,30);   -- Insurgency WS DMG +30%
+INSERT INTO `item_mods` VALUES (20883,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20883,521,50);    -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (20884,8,13);
 INSERT INTO `item_mods` VALUES (20884,13,13);
@@ -25014,17 +25311,21 @@ INSERT INTO `item_mods` VALUES (20925,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (20925,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (20925,506,130); -- Extra DMG Chance %13
 INSERT INTO `item_mods` VALUES (20925,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20925,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20925,691,40); -- Geirskogul DMG +40%
 INSERT INTO `item_mods` VALUES (20926,25,40); -- Gungnir iLvL 119 AG - ACC +40
 INSERT INTO `item_mods` VALUES (20926,355,121); -- Geirskogul
 INSERT INTO `item_mods` VALUES (20926,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
 INSERT INTO `item_mods` VALUES (20926,506,130); -- Extra DMG Chance %13
 INSERT INTO `item_mods` VALUES (20926,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20926,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20926,691,40); -- Geirskogul DMG +40%
 INSERT INTO `item_mods` VALUES (20927,355,122); -- Ryunohige iLvL 119 - Drakesbane
 INSERT INTO `item_mods` VALUES (20927,692,30); -- Drakesbane WS DMG +30%
+INSERT INTO `item_mods` VALUES (20927,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20928,355,122); -- Ryunohige iLvL 119 - Drakesbane
 INSERT INTO `item_mods` VALUES (20928,692,30); -- Drakesbane WS DMG +30%
+INSERT INTO `item_mods` VALUES (20928,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20928,362,35);
 INSERT INTO `item_mods` VALUES (20929,10,20);
 INSERT INTO `item_mods` VALUES (20929,355,124); -- Rhongomiant iLvL 119 -- Camlann's Torment
@@ -25056,19 +25357,23 @@ INSERT INTO `item_mods` VALUES (20970,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (20970,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (20970,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20970,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20970,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20970,707,40); -- Blade: Metsu DMG +40%
 INSERT INTO `item_mods` VALUES (20971,23,40); -- Kikoku iLvL 119 AG - ATT +40
 INSERT INTO `item_mods` VALUES (20971,355,137); -- Blade: Metsu
 INSERT INTO `item_mods` VALUES (20971,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
 INSERT INTO `item_mods` VALUES (20971,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20971,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20971,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (20971,707,40); -- Blade: Metsu DMG +40%
 INSERT INTO `item_mods` VALUES (20972,355,138); -- Nagi iLvL 119 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (20972,710,30); -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (20972,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20973,27,30);
 INSERT INTO `item_mods` VALUES (20973,302,15);
 INSERT INTO `item_mods` VALUES (20973,355,138); -- Nagi iLvL 119 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (20973,710,30); -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (20973,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (20974,11,20);
 INSERT INTO `item_mods` VALUES (20974,355,140); -- Kannagi iLvL 119 - Blade Hi
 INSERT INTO `item_mods` VALUES (20974,710,30); -- Blade Hi WS DMG +30%
@@ -25132,21 +25437,25 @@ INSERT INTO `item_mods` VALUES (21015,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (21015,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (21015,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21015,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21015,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21015,723,40); -- Tachi: Kaiten DMG +40%
 INSERT INTO `item_mods` VALUES (21016,25,40); -- Amanomurakumo ILvL 119 AG - ACC +40
 INSERT INTO `item_mods` VALUES (21016,355,153); -- Tachi: Kaiten
 INSERT INTO `item_mods` VALUES (21016,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
 INSERT INTO `item_mods` VALUES (21016,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21016,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21016,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21016,723,40); -- Tachi: Kaiten DMG +40%
 INSERT INTO `item_mods` VALUES (21017,355,154);   -- Kogarasumaru (iLvl 119): Tachi: Rana
 INSERT INTO `item_mods` VALUES (21017,508,25);    -- Third Eye Counter rate +25%
 INSERT INTO `item_mods` VALUES (21017,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (21017,724,30);    -- Tachi Rana WS DMG +30%
+INSERT INTO `item_mods` VALUES (21017,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21018,355,154);   -- Kogarasumaru (iLvl 119 II): Tachi: Rana
 INSERT INTO `item_mods` VALUES (21018,508,25);    -- Third Eye Counter rate +25%
 INSERT INTO `item_mods` VALUES (21018,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (21018,724,30);    -- Tachi Rana WS DMG +30%
+INSERT INTO `item_mods` VALUES (21018,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21019,8,20);
 INSERT INTO `item_mods` VALUES (21019,355,156); -- Masamune iLvL 119 - Tachi Fudo
 INSERT INTO `item_mods` VALUES (21019,696,30); -- Tachi Fudo WS DMG +30%
@@ -25188,6 +25497,7 @@ INSERT INTO `item_mods` VALUES (21060,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (21060,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (21060,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21060,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21060,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21060,740,40); -- Randgrith DMG +40%
 INSERT INTO `item_mods` VALUES (21060,311,155); -- Magic DMG +155
 INSERT INTO `item_mods` VALUES (21061,23,40); -- Mjollnir iLvL 119 AG - ATT +40
@@ -25195,17 +25505,20 @@ INSERT INTO `item_mods` VALUES (21061,355,170); -- Randgrith
 INSERT INTO `item_mods` VALUES (21061,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
 INSERT INTO `item_mods` VALUES (21061,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21061,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21061,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21061,740,40); -- Randgrith DMG +40%
 INSERT INTO `item_mods` VALUES (21061,311,155); -- Magic DMG +155
 INSERT INTO `item_mods` VALUES (21062,302,15);
 INSERT INTO `item_mods` VALUES (21062,311,155);
 INSERT INTO `item_mods` VALUES (21062,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21062,741,30); -- Mystic Boon WS DMG +30%
+INSERT INTO `item_mods` VALUES (21062,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21062,524,1);
 INSERT INTO `item_mods` VALUES (21063,302,15);
 INSERT INTO `item_mods` VALUES (21063,311,155);
 INSERT INTO `item_mods` VALUES (21063,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21063,741,30); -- Mystic Boon WS DMG +30%
+INSERT INTO `item_mods` VALUES (21063,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21063,524,1);
 INSERT INTO `item_mods` VALUES (21064,2,90);      -- Gambanteinn (iLvl 119): HP +90
 INSERT INTO `item_mods` VALUES (21064,5,90);      -- MP +90
@@ -25216,8 +25529,10 @@ INSERT INTO `item_mods` VALUES (21065,5,90);      -- MP +90
 INSERT INTO `item_mods` VALUES (21065,311,155);   -- Magic Damage +155
 INSERT INTO `item_mods` VALUES (21065,355,173);   -- Dagan
 INSERT INTO `item_mods` VALUES (21077,355,170); -- Mjollnir iLvL 119 - Randgrith
+INSERT INTO `item_mods` VALUES (21077,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21078,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21078,741,30); -- Mystic Boon WS DMG +30%
+INSERT INTO `item_mods` VALUES (21078,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21079,2,135);     -- Gambanteinn (iLvl 119 III): HP +135
 INSERT INTO `item_mods` VALUES (21079,5,135);     -- MP +135
 INSERT INTO `item_mods` VALUES (21079,310,100);   -- Cursna +100%
@@ -25311,6 +25626,7 @@ INSERT INTO `item_mods` VALUES (21135,355,185); -- Gate of Tartarus
 INSERT INTO `item_mods` VALUES (21135,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
 INSERT INTO `item_mods` VALUES (21135,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21135,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21135,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21135,755,40); -- Gate of Tartarus DMG +40%
 INSERT INTO `item_mods` VALUES (21135,311,248); -- Magic DMG +248
 INSERT INTO `item_mods` VALUES (21136,25,40); -- Claustrum iLvL 119 AG - ACC +40
@@ -25321,29 +25637,35 @@ INSERT INTO `item_mods` VALUES (21136,507,250); -- Extra DMG X2.5
 INSERT INTO `item_mods` VALUES (21136,755,40); -- Gate of Tartarus DMG +40%
 INSERT INTO `item_mods` VALUES (21136,311,248); -- Magic DMG +248
 INSERT INTO `item_mods` VALUES (21137,355,188); -- Tupsimati iLvL 119 - Omniscience
+INSERT INTO `item_mods` VALUES (21137,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21138,25,30);
 INSERT INTO `item_mods` VALUES (21138,28,40);
 INSERT INTO `item_mods` VALUES (21138,311,248);
 INSERT INTO `item_mods` VALUES (21138,355,188); -- Tupsimati iLvL 119 - Omniscience
+INSERT INTO `item_mods` VALUES (21138,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21139,25,30);     -- Laevateinn (iLvl 119): Accuracy +30
 INSERT INTO `item_mods` VALUES (21139,28,60);     -- Magic Atk. Bonus +60
 INSERT INTO `item_mods` VALUES (21139,30,10);     -- Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (21139,311,248);   -- Magic Damage +248
 INSERT INTO `item_mods` VALUES (21139,355,186);   -- Vidohunir
+INSERT INTO `item_mods` VALUES (21139,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21140,25,30);     -- Laevateinn (iLvl 119 II): Accuracy +30
 INSERT INTO `item_mods` VALUES (21140,28,60);     -- Magic Atk. Bonus +60
 INSERT INTO `item_mods` VALUES (21140,30,10);     -- Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (21140,311,248);   -- Magic Damage +248
 INSERT INTO `item_mods` VALUES (21140,355,186);   -- Vidohunir
+INSERT INTO `item_mods` VALUES (21140,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21141,355,187); -- Nirvana iLvL 119 - Garland of Bliss
+INSERT INTO `item_mods` VALUES (21141,757,30); -- Garland of Bliss WS DMG +30%
+INSERT INTO `item_mods` VALUES (21141,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21142,25,30);
 INSERT INTO `item_mods` VALUES (21142,314,100);
 INSERT INTO `item_mods` VALUES (21142,346,8);
 INSERT INTO `item_mods` VALUES (21142,757,30); -- Garland of Bliss WS DMG +30%
 INSERT INTO `item_mods` VALUES (21142,355,187); -- Nirvana iLvL 119 - Garland of Bliss
+INSERT INTO `item_mods` VALUES (21142,863,3);	  -- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21143,5,150);
 INSERT INTO `item_mods` VALUES (21143,38,100);
-INSERT INTO `item_mods` VALUES (21143,757,30); -- Garland of Bliss WS DMG +30%
 INSERT INTO `item_mods` VALUES (21143,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (21144,5,150); -- MP+150
 INSERT INTO `item_mods` VALUES (21144,311,248); -- Magic Damage +248
@@ -25483,12 +25805,14 @@ INSERT INTO `item_mods` VALUES (21210,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (21210,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (21210,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21210,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21210,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21210,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (21211,24,30); -- Yoichinoyumi iLvL 119 AG - RNG ATT +30
 INSERT INTO `item_mods` VALUES (21211,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (21211,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (21211,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21211,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21211,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21211,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (21212,9,20);
 INSERT INTO `item_mods` VALUES (21212,355,202); -- Gandiva iLvL 119 - Jishnu's Raidance
@@ -25558,24 +25882,31 @@ INSERT INTO `item_mods` VALUES (21260,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (21260,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (21260,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21260,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21260,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21260,786,40); -- Coronach DMG +40%
 INSERT INTO `item_mods` VALUES (21261,24,30); -- Annihilator iLvL 119 AG - RNG ATT +30
 INSERT INTO `item_mods` VALUES (21261,26,40); -- RNG ACC +40
 INSERT INTO `item_mods` VALUES (21261,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (21261,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21261,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21261,863,1); -- Aftermath
 INSERT INTO `item_mods` VALUES (21261,786,40); -- Coronach DMG +40%
 INSERT INTO `item_mods` VALUES (21262,355,218); -- Death Penalty iLvL 119 - Leaden Salute
+INSERT INTO `item_mods` VALUES (21262,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21263,355,218); -- Death Penalty iLvL 119 - Leaden Salute
 INSERT INTO `item_mods` VALUES (21263,580,35);
+INSERT INTO `item_mods` VALUES (21263,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21264,11,20);
 INSERT INTO `item_mods` VALUES (21264,355,220); -- Armageddon iLvL 119 - Wildfire
 INSERT INTO `item_mods` VALUES (21265,11,20);
 INSERT INTO `item_mods` VALUES (21265,355,220); -- Armageddon iLvL 119 - Wildfire
 INSERT INTO `item_mods` VALUES (21266,355,217); -- Gastraphetes iLvL 119 - Trueflight
 INSERT INTO `item_mods` VALUES (21266,787,30); -- Trueflight WS DMG +30%
+INSERT INTO `item_mods` VALUES (21266,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21267,355,216); -- Annihilator iLvL 119 - Coronach
+INSERT INTO `item_mods` VALUES (21267,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21268,355,218); -- Death Penalty iLvL 119 - Leaden Salute
+INSERT INTO `item_mods` VALUES (21268,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21269,355,220); -- Armageddon iLvL 119 - Wildfire
 INSERT INTO `item_mods` VALUES (21274,9,5); -- Donar Gun DEX+5
 INSERT INTO `item_mods` VALUES (21274,11,5); -- AGI+5
@@ -25756,6 +26087,7 @@ INSERT INTO `item_mods` VALUES (21657,23,48);     -- dyrnwyn_+1 Attack+48
 INSERT INTO `item_mods` VALUES (21657,25,30);     -- Accuracy+30
 INSERT INTO `item_mods` VALUES (21657,30,30);     -- Magic Accuracy+30
 INSERT INTO `item_mods` VALUES (21683,355,57); -- Ragnarok iLvL 119 - Scourge
+INSERT INTO `item_mods` VALUES (21683,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21684,355,59); -- Caladbolg iLvL 119 - Torcleaver
 INSERT INTO `item_mods` VALUES (21684,629,30); -- Torcleaver WS DMG +30%
 INSERT INTO `item_mods` VALUES (21700,25,20); -- Blurred Claymore - 20 Acc
@@ -25769,22 +26101,28 @@ INSERT INTO `item_mods` VALUES (21707,8,28);      -- STR+28
 INSERT INTO `item_mods` VALUES (21707,23,50);     -- Attack+50
 INSERT INTO `item_mods` VALUES (21707,841,8);     -- Weapon Skill Damage+8%
 INSERT INTO `item_mods` VALUES (21750,355,73); -- Guttler iLvL 119 - Onslaught
+INSERT INTO `item_mods` VALUES (21750,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21751,355,74); -- Aymur iLvL 119 - Primal Rend
 INSERT INTO `item_mods` VALUES (21751,644,30); -- Primal Rend WS DMG +30%
+INSERT INTO `item_mods` VALUES (21751,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21752,355,76); -- Farsha iLvL 119 - Cloudsplitter
 INSERT INTO `item_mods` VALUES (21753,73,10); -- Tri-edge - STP +10
 INSERT INTO `item_mods` VALUES (21753,345,500); -- TP Bonus +500
 INSERT INTO `item_mods` VALUES (21756,355,89); -- Bravura iLvL 119 - Metatron Torment
+INSERT INTO `item_mods` VALUES (21756,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21757,355,90); -- Conqueror iLvL 119 - King's Justice
 INSERT INTO `item_mods` VALUES (21757,660,30); -- King's Justice WS DMG +30%
+INSERT INTO `item_mods` VALUES (21757,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21758,355,92); -- Ukonvasara iLvL 119 - Ukko's Fury
 INSERT INTO `item_mods` VALUES (21758,662,30); -- Ukko's Fury WS DMG +30%
 INSERT INTO `item_mods` VALUES (21758,8,50); -- STR +50
 INSERT INTO `item_mods` VALUES (21808,355,105); -- Apocalypse iLvL 119 - Catastrophe
+INSERT INTO `item_mods` VALUES (21808,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21809,30,50);     -- Liberator (iLvl 119 III): Magic Accuracy +50
 INSERT INTO `item_mods` VALUES (21809,311,217);   -- Magic Damage +217
 INSERT INTO `item_mods` VALUES (21809,355,106);   -- Insurgency
 INSERT INTO `item_mods` VALUES (21809,676,30);   -- Insurgency WS DMG +30%
+INSERT INTO `item_mods` VALUES (21809,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21809,521,50);    -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (21810,355,108); -- Redemption iLvL 119 - Quietus
 INSERT INTO `item_mods` VALUES (21812,8,12);      -- Arasy Scythe (iLvl 119): STR +12
@@ -25800,20 +26138,26 @@ INSERT INTO `item_mods` VALUES (21813,23,20);     -- Attack +20
 INSERT INTO `item_mods` VALUES (21813,315,10);    -- Drain and Aspir potency +10%
 INSERT INTO `item_mods` VALUES (21813,384,40);    -- Haste +4%
 INSERT INTO `item_mods` VALUES (21857,355,121); -- Gungnir iLvL 119 - Geirskogul
+INSERT INTO `item_mods` VALUES (21857,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21858,355,122); -- Ryunohige iLvL 119 - Drakesbane
 INSERT INTO `item_mods` VALUES (21858,692,30); -- Drakesbane WS DMG +30%
+INSERT INTO `item_mods` VALUES (21858,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21859,355,124); -- Rhongomiant iLvL 119 -- Camlann's Torment
 INSERT INTO `item_mods` VALUES (21906,355,137); -- Kikoku iLvL 119 - Blade: Metsu
+INSERT INTO `item_mods` VALUES (21906,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21907,355,138); -- Nagi iLvL 119 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (21907,710,30); -- Blade: Kamu WS DMG +30%
+INSERT INTO `item_mods` VALUES (21907,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21908,355,140); -- Kannagi iLvL 119 - Blade Hi
 INSERT INTO `item_mods` VALUES (21908,710,30); -- Blade Hi WS DMG +30%
 INSERT INTO `item_mods` VALUES (21908,11,50); -- AGL +50
 INSERT INTO `item_mods` VALUES (21954,355,153); -- Amanomurakumo iLvL 119 - Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (21954,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (21955,355,154);   -- Kogarasumaru (iLvl 119 III): Tachi: Rana
 INSERT INTO `item_mods` VALUES (21955,508,25);    -- Third Eye Counter rate +25%
 INSERT INTO `item_mods` VALUES (21955,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (21955,724,30);    -- Tachi Rana WS DMG +30%
+INSERT INTO `item_mods` VALUES (21955,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (21956,355,156); -- Masamune iLvL 119 - Tachi Fudo
 INSERT INTO `item_mods` VALUES (21956,696,30); -- Tachi Fudo WS DMG +30%
 INSERT INTO `item_mods` VALUES (22021,12,25);     -- ames INT+25
@@ -25829,14 +26173,18 @@ INSERT INTO `item_mods` VALUES (22022,311,124);   -- Magic Damage+124
 INSERT INTO `item_mods` VALUES (22022,369,1);     -- Refresh+1
 INSERT INTO `item_mods` VALUES (22022,374,26);    -- Cure Potency+26
 INSERT INTO `item_mods` VALUES (22060,355,185); -- Claustrum iLvL 119 - Gate of Tartarus
+INSERT INTO `item_mods` VALUES (22060,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (22061,355,188); -- Tupsimati iLvL 119 - Omniscience
+INSERT INTO `item_mods` VALUES (22061,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (22062,25,30);     -- Laevateinn (iLvl 119 III): Accuracy +30
 INSERT INTO `item_mods` VALUES (22062,28,70);     -- Magic Atk. Bonus +70
 INSERT INTO `item_mods` VALUES (22062,30,30);     -- Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (22062,311,279);   -- Magic Damage +279
 INSERT INTO `item_mods` VALUES (22062,355,186);   -- Vidohunir
+INSERT INTO `item_mods` VALUES (22062,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (22063,355,187); -- Nirvana iLvL 119 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (22063,757,30); -- Garland of Bliss WS DMG +30%
+INSERT INTO `item_mods` VALUES (22063,863,3);		-- Aftermath Tier 3
 INSERT INTO `item_mods` VALUES (22064,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (22076,23,20);     -- was Attack+20
 INSERT INTO `item_mods` VALUES (22076,25,20);     -- Accuracy+20
@@ -25910,6 +26258,7 @@ INSERT INTO `item_mods` VALUES (22280,491,5);     -- Waltz Potency+5
 INSERT INTO `item_mods` VALUES (22281,23,23);     -- knobkierrie Attack+23
 INSERT INTO `item_mods` VALUES (22281,841,6);     -- Weapon Skill Damage+6%
 INSERT INTO `item_mods` VALUES (22115,355,200); -- Yoichinoyumi iLvL 119 - Namas Arrow
+INSERT INTO `item_mods` VALUES (22115,863,2); -- Aftermath Tier 2
 INSERT INTO `item_mods` VALUES (22116,355,202); -- Gandiva iLvL 119 - Jishnu's Raidance
 INSERT INTO `item_mods` VALUES (22116,772,30); -- Jishnu's Raidance WS DMG +30%
 -- INSERT INTO `item_mods` VALUES (22118,Conserve TP,5); -- Venery bows "Conserve TP"+5

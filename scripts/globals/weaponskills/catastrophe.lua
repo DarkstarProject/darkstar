@@ -32,16 +32,22 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.4; params.agi_wsc = 0.0; params.int_wsc = 0.4;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
+    -- Aftermath : https://www.bg-wiki.com/bg/Apocalypse_(Level_75)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
     if (damage > 0) then
-        local amDuration = 20 * math.floor(tp/1000);
-        player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, amDuration, 0, 6);
+        local aftermathParams = initAftermathParams()
+        aftermathParams.power = player:getAftermathModPower(false)
+        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_RELIC)) then
+            aftermathParams.subpower.type = MOD_HASTE_GEAR
+            aftermathParams.subpower.power = 10
+            applyRelicAftermath(player, tp, aftermathParams)
+        end
     end
 
     if (target:isUndead() == false) then
-        local drain = (damage * 0.4);
-        player:addHP(drain);
+        local drain = (damage * 0.4)
+        player:addHP(drain)
     end
-    return tpHits, extraHits, criticalHit, damage;
+
+    return tpHits, extraHits, criticalHit, damage
 end

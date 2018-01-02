@@ -9,14 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    local power = effect:getPower(); 
-    if (effect:getSubPower() == 1) then
-        target:addMod(MOD_ACC,power);
-    elseif (effect:getSubPower() == 2) then
-        target:addMod(MOD_MACC,power)
-    elseif (effect:getSubPower() == 3) then
-        target:addMod(MOD_RACC,power) 
-    end
+    target:addMod(effect:getSubType(), effect:getSubPower())
 end;
 
 -----------------------------------
@@ -31,12 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    local power = effect:getPower(); 
-    if (effect:getSubPower() == 1) then
-        target:delMod(MOD_ACC,power);
-    elseif (effect:getSubPower() == 2) then
-        target:delMod(MOD_MACC,power)
-    elseif (effect:getSubPower() == 3) then
-        target:delMod(MOD_RACC,power) 
-    end
+    target:delMod(effect:getSubType(), effect:getSubPower())
 end;
