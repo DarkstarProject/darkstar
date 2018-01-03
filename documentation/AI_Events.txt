@@ -5,9 +5,9 @@ ABILITY_USE - Entity, Target, Ability, action
 ABILITY_STATE_EXIT - Entity, Ability
 
 WEAPONSKILL_START - Entity, Skillid
-WEAPONSKILL_USE - Entity, Target, Skillid
+WEAPONSKILL_USE - Entity, Target, Skillid, TP, action
+WEAPONSKILL_TAKE - Target, Entity, Skillid, TP, action
 WEAPONSKILL_STATE_EXIT - Entity, Skillid
-WEAPONSKILL_TAKE - Target, Entity, Skillid
 
 MAGIC_START - Entity, Spell, action
 MAGIC_USE - Entity, Target, Spell, action
