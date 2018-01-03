@@ -2,25 +2,12 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Pallas
 -----------------------------------
-
------------------------------------
--- OnMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end; 
-
------------------------------------
--- OnMobDeath Action
------------------------------------
+require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
+require("scripts/globals/settings");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    GetNPCByID(17424519):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(PALLAS_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

@@ -3,41 +3,22 @@
 --  MOB: Shen
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
-
-    local Shen = mob:getID();
-
     if (mob:getBattleTime() % 45 == 0) then
-        if (GetMobAction(Shen+1) == 0) then
-            SpawnMob(Shen+1):updateEnmity(target);
-        elseif (GetMobAction(Shen+2) == 0) then
-            SpawnMob(Shen+2):updateEnmity(target);
+        local mobId = mob:getID();
+        for i = 1, 2 do
+            if (not GetMobByID(mobId+i):isSpawned()) then
+                SpawnMob(mobId+i):updateEnmity(target);
+            end
         end
     end
-
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMonsterMagicPrepare
------------------------------------
 
 function onMonsterMagicPrepare(mob,target)
 

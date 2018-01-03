@@ -3,48 +3,34 @@
 -- NPC: Champalpieu
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,CHAMPALPIEU_SHOP_DIALOG);
+    player:showText(npc, MP_SHOP_DIALOG);
 
-stock = {0x110D,120,    --Rolanberry
-    0x43A8,7,    --Iron Arrow
-    0x43B8,5,    --Crossbow Bolt
-    0x025D,180,    --Pickaxe
-    0x13C8,567,    --Wind Threnody
-    0x13CB,420}    --Water Threnody
- 
-showShop(player, STATIC, stock);
-end; 
+    local stock =
+    {
+        4365,120,    --Rolanberry
+        17320, 7,    --Iron Arrow
+        17336, 5,    --Crossbow Bolt
+        605, 180,    --Pickaxe
+        5064,567,    --Wind Threnody
+        5067,420     --Water Threnody
+    }
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

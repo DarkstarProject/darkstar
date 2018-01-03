@@ -6,77 +6,40 @@
 
 require("scripts/globals/status");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_SOUND_RANGE, 32);
 end;
 
------------------------------------
--- onMobFight
------------------------------------
+function onMobSpawn(mob)
+    mob:setLocalVar("jobSpecHPP", math.random(35,60));
+end;
 
 function onMobFight(mob, target)
-    local BattleTime = mob:getBattleTime();
-    local War_1 = mob:getID()+3;
-    local War_2 = mob:getID()+4;
-    local War_3 = mob:getID()+5;
-    local War_4 = mob:getID()+6;
-    -- Tries to spawn 1 group of 2 Warriors to aid Archlich every 30 sec. The sorcerers DO NOT repop.
-    -- If you think they should repop, you are WRONG. If you think all 7 skelly attack at start, YOU ARE WRONG.
-    if (BattleTime - mob:getLocalVar("RepopWarriors") > 30) then
-        if ((GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN)
-        and (GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN)) then
-            SpawnMob(War_1):updateEnmity(target);
-            SpawnMob(War_2):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif ((GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN)
-        and (GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN)) then
-            SpawnMob(War_1):updateEnmity(target);
-            SpawnMob(War_3):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif ((GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN)
-        and (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN)) then
-            SpawnMob(War_1):updateEnmity(target);
-            SpawnMob(War_4):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif ((GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN)
-        and (GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN)) then
-            SpawnMob(War_2):updateEnmity(target);
-            SpawnMob(War_3):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif ((GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN)
-        and (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN)) then
-            SpawnMob(War_2):updateEnmity(target);
-            SpawnMob(War_4):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif ((GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN)
-        and (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN)) then
-            SpawnMob(War_3):updateEnmity(target);
-            SpawnMob(War_4):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
+    if (mob:getLocalVar("jobSpecUsed") == 0 and mob:getHPP() <= mob:getLocalVar("jobSpecHPP")) then
+        mob:setLocalVar("jobSpecUsed", 1);
+        mob:useMobAbility(jobSpec.MANAFONT);
+    end
 
-        -- Can't find a pair to pop at once, so popping single (dunno if this part is retail...)
-        elseif (GetMobAction(War_1) == ACTION_NONE or GetMobAction(War_1) == ACTION_SPAWN) then
-            SpawnMob(War_1):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif (GetMobAction(War_2) == ACTION_NONE or GetMobAction(War_2) == ACTION_SPAWN) then
-            SpawnMob(War_2):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif (GetMobAction(War_3) == ACTION_NONE or GetMobAction(War_3) == ACTION_SPAWN) then
-            SpawnMob(War_3):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
-        elseif (GetMobAction(War_4) == ACTION_NONE or GetMobAction(War_4) == ACTION_SPAWN) then
-            SpawnMob(War_4):updateEnmity(target);
-            mob:setLocalVar("RepopWarriors", BattleTime);
+    local BattleTime = mob:getBattleTime();
+    if (BattleTime - mob:getLocalVar("RepopWarriors") > 30) then
+        local warriorsSpawned = 0;
+        for warrior = mob:getID()+3, mob:getID()+6 do
+            if (not GetMobByID(warrior):isSpawned() and warriorsSpawned < 2) then
+                SpawnMob(warrior):updateEnmity(target);
+                if (warriorsSpawned == 1) then
+                    GetMobByID(warrior):stun(5000);
+                end
+                warriorsSpawned = warriorsSpawned + 1;
+            end
         end
+
+        mob:setLocalVar("RepopWarriors", BattleTime);
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobDisengage(mob, weather)
+    mob:setLocalVar("jobSpecUsed", 0);
+end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(ARCHMAGE_ASSASSIN);

@@ -2444,6 +2444,13 @@ INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,242,1,255); -- Absorb-ACC
 INSERT INTO `mob_spell_lists` VALUES ('Honor',294,356,1,255); -- paralyga
 INSERT INTO `mob_spell_lists` VALUES ('Honor',294,359,1,255); -- silencega
 
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,147,73,85); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,204,60,255); -- Flare
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,235,24,255); -- Burn
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,176,69,255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,100,24,255); -- Enfire
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,249,10,255); -- Blaze Spikes
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
