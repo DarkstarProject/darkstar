@@ -24696,7 +24696,7 @@ INSERT INTO `item_mods` VALUES (20686,311,217);   -- Magic Damage +217
 INSERT INTO `item_mods` VALUES (20686,355,44);    -- Death Blossom
 INSERT INTO `item_mods` VALUES (20686,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (20687,355,45); -- Burtgang iLvL 119 - Atonement
-INSERT INTO `item_mods` VALUES (2068,615,30); -- Atonement WS DMG +30%
+INSERT INTO `item_mods` VALUES (20687,615,30); -- Atonement WS DMG +30%
 INSERT INTO `item_mods` VALUES (20687,311,186); -- Magic Damage +186
 INSERT INTO `item_mods` VALUES (20687,30,255); -- Magic Accuracy +255
 INSERT INTO `item_mods` VALUES (20687,27,23); -- Enmity +23
