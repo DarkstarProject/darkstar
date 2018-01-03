@@ -1,74 +1,27 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
 --  MOB: Myxomycete
+-- Note: PH for Noble Mold
 -----------------------------------
-
+require("scripts/zones/The_Sanctuary_of_ZiTah/MobIDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/weather");
 
 function onMobRoam(mob)
-
-    local Noble_Mold = 17273278;
-    local Noble_Mold_PH = 0;
-    local Noble_Mold_PH_Table =
-    {
-        17273276,
-        17273277
-    };
-    local Noble_Mold_ToD = GetMobByID(Noble_Mold):getLocalVar("ToD");
-
-    if (Noble_Mold_ToD <= os.time()) then
-        Noble_Mold_PH = math.random((0), (#Noble_Mold_PH_Table));
-        if (Noble_Mold_PH_Table[Noble_Mold_PH] ~= nil) then
-            if (
-            GetMobAction(Noble_Mold) == 0 and
-                (
-                GetMobByID(Noble_Mold_PH_Table[Noble_Mold_PH]):getWeather() == WEATHER_RAIN or
-                GetMobByID(Noble_Mold_PH_Table[Noble_Mold_PH]):getWeather() == WEATHER_SQUALL
-                )
-            ) then
-                SetServerVariable("Noble_Mold_PH", Noble_Mold_PH_Table[Noble_Mold_PH]);
-                DisallowRespawn(Noble_Mold_PH_Table[Noble_Mold_PH], true);
-                DisallowRespawn(Noble_Mold, false);
-                DespawnMob(Noble_Mold_PH_Table[Noble_Mold_PH]);
-                SpawnMob(Noble_Mold, "", 0);
-            end
+    local weather = mob:getWeather();
+    if (weather == WEATHER_RAIN or weather == WEATHER_SQUALL) then
+        if (phOnDespawn(mob,NOBLE_MOLD_PH,100,math.random(43200, 57600),true)) then -- 12 to 16 hours
+            local p = mob:getPos();
+            GetMobByID(NOBLE_MOLD):setSpawn(p.x,p.y,p.z,p.rot);
+            DespawnMob(mob:getID());
         end
     end
-
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
     checkRegime(player, mob, 115, 1);
     checkRegime(player, mob, 116, 2);
-
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    local Myxomycete = mob:getID();
-    local Noble_Mold = 17273278;
-    local Noble_Mold_PH_Table =
-    {
-        17273276,
-        17273277
-    };
-
-    for i = 1, #Noble_Mold_PH_Table, 1 do
-        if (Noble_Mold_PH_Table[i] ~= nil) then
-            if (Myxomycete == Noble_Mold_PH_Table[i]) then
-                GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
-            end
-        end
-    end
-
 end;
