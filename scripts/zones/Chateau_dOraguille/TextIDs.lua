@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6589; -- Come back after sorting your inventory.
-          ITEM_OBTAINED = 8215; -- Obtained:
-           GIL_OBTAINED = 6596; -- Obtainedgil.
-       KEYITEM_OBTAINED = 7219; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+ITEM_CANNOT_BE_OBTAINED = 6588; -- Come back after sorting your inventory.
+          ITEM_OBTAINED = 6594; -- Obtained:
+           GIL_OBTAINED = 6595; -- Obtainedgil.
+       KEYITEM_OBTAINED = 6597; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
            KEYITEM_LOST = 6598; -- Lost key item:
 
 -- Other Dialog

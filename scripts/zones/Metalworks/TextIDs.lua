@@ -1,13 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-    ITEM_CANNOT_BE_OBTAINED =  6436; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+    ITEM_CANNOT_BE_OBTAINED =  6435; -- You cannot obtain the item <item>. Come back after sorting your inventory.
  FULL_INVENTORY_AFTER_TRADE =  6439; -- You cannot obtain the item <item>. Try trading again after sorting your inventory.
-              ITEM_OBTAINED =  6892; -- Obtained:
-               GIL_OBTAINED =  6443; -- Obtained <<<Numeric Parameter 0>>> gil.
-        NOT_HAVE_ENOUGH_GIL =  6448; -- You do not have enough gil.
-           KEYITEM_OBTAINED =  7439; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-             ITEMS_OBTAINED =  9196; -- You obtain
+              ITEM_OBTAINED =  6441; -- Obtained:
+               GIL_OBTAINED =  6442; -- Obtained <<<Numeric Parameter 0>>> gil.
+        NOT_HAVE_ENOUGH_GIL =  6446; -- You do not have enough gil.
+           KEYITEM_OBTAINED =  6444; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+             ITEMS_OBTAINED =  6450; -- You obtain
            SMITHING_SUPPORT =  6858; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
    GUILD_TERMINATE_CONTRACT =  6872; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
          GUILD_NEW_CONTRACT =  6880; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
@@ -26,7 +26,7 @@ MISSION_DIALOG_CID_TO_AYAME =  7572; -- Give it to one of his Mythril Musketeers
    EXTENDED_MISSION_OFFSET  =  8596; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Other dialog
-    NOTHING_OUT_OF_ORDINARY =  9194; -- There is nothing out of the ordinary here.
+    NOTHING_OUT_OF_ORDINARY =  6455; -- There is nothing out of the ordinary here.
          GLAROCIQUET_DIALOG =  8208; -- I am Speaker Name, a Temple Knight. I am one of the guards charged with overseeing San d'Oria's conquest campaign.
        LEXUN_MARIXUN_DIALOG =  8210; -- I am Speaker Name, a War Warlock. I am one of the guards charged with overseeing Windurst's conquest campaign.
 
