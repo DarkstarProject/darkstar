@@ -11404,7 +11404,7 @@ inline int32 CLuaBaseEntity::getWeaponSkillType(lua_State *L)
         lua_pushinteger(L, weapon->getSkillType());
         return 1;
     }
-    ShowError(CL_RED"lua::getWeaponSkillType :: Invalid slot specified!\n" CL_RESET);
+    ShowError(CL_RED"lua::getWeaponSkillType :: Invalid slot specified!" CL_RESET);
     return 0;
 }
 
@@ -11440,7 +11440,7 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
         lua_pushinteger(L, weapon->getSubSkillType());
         return 1;
     }
-    ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!\n" CL_RESET);
+    ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
     return 0;
 }
 
@@ -11470,71 +11470,6 @@ inline int32 CLuaBaseEntity::getWSSkillchainProp(lua_State* L)
 
     lua_pushnil(L);
     return 1;
-}
-
-/************************************************************************
-*  Function: getWeapon()
-*  Purpose : Gets the weapon for the passed in SLOT
-*  Example : attacker:getWeapon(SLOT_MAIN)
-*  Notes   : 
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getWeapon(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
-
-    if (CBattleEntity* player = static_cast<CBattleEntity*>(m_PBaseEntity))
-    {
-        uint8 SLOT = (uint8)lua_tointeger(L, 1);
-        if (SLOT > 3)
-        {
-            ShowDebug(CL_RED"lua::getWeapon slot not a weapon\n" CL_RESET);
-            lua_pushnil(L);
-            return 1;
-        }
-
-        if (CItemWeapon* weapon = player->m_Weapons[SLOT])
-        {
-            lua_getglobal(L, CLuaItem::className);
-            lua_pushstring(L, "new");
-            lua_gettable(L, -2);
-            lua_insert(L, -2);
-            lua_pushlightuserdata(L, (void*)weapon);
-            lua_pcall(L, 2, 1, 0);
-            return 1;
-        }
-    }
-
-    lua_pushnil(L);
-    return 1;
-}
-
-/************************************************************************
-*  Function: getAftermathModPower()
-*  Purpose : Gets the mod power for Mod::AFTERMATH for main hand weapon
-*  Example : attacker:getAftermathModPower(false)
-*  Notes   : Used for applying aftermath effects (scripts/globals/weaponskills/*.lua)
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getAftermathModPower(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
-
-    if (CBattleEntity* player = static_cast<CBattleEntity*>(m_PBaseEntity))
-    {
-        bool bIsRanged = lua_toboolean(L, 1);
-        if (CItemWeapon* main = player->m_Weapons[bIsRanged ? SLOT_RANGED : SLOT_MAIN])
-        {
-            lua_pushinteger(L, main->getModifier(Mod::AFTERMATH));
-            return 1;
-        }
-    }
-
-    return 0;
 }
 
 /************************************************************************
@@ -14138,8 +14073,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity, getWeapon),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity, getAftermathModPower),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
 

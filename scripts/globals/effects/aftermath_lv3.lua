@@ -9,54 +9,30 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    local modID = effect:getSubType()
-    if (modID == MOD_MYTHIC_OCC_ATT_TWICE) then
-        local weapon = target:getWeapon(SLOT_MAIN)
-        if (weapon) then
-            weapon:addMod(modID, effect:getSubPower())
-            if (effect:getPower() == 3) then
-                weapon:addMod(MOD_MYTHIC_OCC_ATT_THRICE, 20)
-            end
-        end
-    elseif (modID == MOD_OCC_DO_DOUBLE_DMG) then -- This modifier needs to be added to the weapon to work
-        local weapon = target:getWeapon(SLOT_RANGED)
-        if (weapon) then
-            weapon:addMod(modID, effect:getSubPower())
-            if (effect:getPower() == 3) then
-                weapon:addMod(MOD_OCC_DO_TRIPLE_DMG, 200)
-            end
-        end
+    local power = effect:getPower(); 
+    if (effect:getSubPower() == 1) then
+        target:addMod(MOD_DOUBLE_ATTACK,power);
+    elseif (effect:getSubPower() == 2) then
+        target:addMod(MOD_DA_DOUBLE_DAMAGE,power)
     end
-end
+end;
 
 -----------------------------------
 -- onEffectTick Action
 -----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
 
 -----------------------------------
 -- onEffectLose Action
 -----------------------------------
 
 function onEffectLose(target,effect)
-    local modID = effect:getSubType()
-    if (modID == MOD_MYTHIC_OCC_ATT_TWICE) then
-        local weapon = target:getWeapon(SLOT_MAIN)
-        if (weapon) then
-            weapon:delMod(modID, effect:getSubPower())
-            if (effect:getPower() == 3) then
-                weapon:delMod(MOD_MYTHIC_OCC_ATT_THRICE, 20)
-            end
-        end
-    elseif (modID == MOD_OCC_DO_DOUBLE_DMG) then -- This modifier needs to be added to the weapon to work
-        local weapon = target:getWeapon(SLOT_RANGED)
-        if (weapon) then
-            weapon:delMod(modID, effect:getSubPower())
-            if (effect:getPower() == 3) then
-                weapon:delMod(MOD_OCC_DO_TRIPLE_DMG, 200)
-            end
-        end
+    local power = effect:getPower(); 
+    if (effect:getSubPower() == 1) then
+        target:delMod(MOD_DOUBLE_ATTACK,power);
+    elseif (effect:getSubPower() == 2) then
+        target:delMod(MOD_DA_DOUBLE_DAMAGE,power)
     end
-end
+end;

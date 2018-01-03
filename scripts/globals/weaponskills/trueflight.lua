@@ -22,6 +22,7 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
+
     local params = {};
     params.ftp100 = 4; params.ftp200 = 4.25; params.ftp300 = 4.75;
     params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0;
@@ -36,26 +37,17 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.agi_wsc = 1.0;
     end
 
-    -- Aftermath calculations from : https://www.bg-wiki.com/bg/Gastraphetes_(Level_75) (there is a type in the ranged attack cacluation)
-    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
-    if (damage > 0) then
-        local aftermathParams = initAftermathParams()
-        aftermathParams.power = player:getAftermathModPower(true)
-        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
-            if (tp == 3000) then
-                aftermathParams.type = EFFECT_AFTERMATH_LV3
-                aftermathParams.subpower.type = MOD_OCC_DO_DOUBLE_DMG
-            elseif (tp >= 2000) then
-                aftermathParams.type = EFFECT_AFTERMATH_LV2
-                aftermathParams.subpower.type = MOD_RATT
-            else
-                aftermathParams.type = EFFECT_AFTERMATH_LV1
-                aftermathParams.subpower.type = MOD_RACC
-            end
+    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
 
-            applyMythicAftermath(player, tp, aftermathParams)
+    if ((player:getEquipID(SLOT_RANGED) == 19001) and (player:getMainJob() == JOBS.RNG)) then
+        if (damage > 0) then
+            local params = initAftermathParams()
+            params.subpower.lv1 = 3
+            params.subpower.lv2 = 4
+            params.subpower.lv3  =2
+            applyAftermathEffect(player, tp, params)
         end
     end
-
     return tpHits, extraHits, criticalHit, damage;
-end
+
+end;

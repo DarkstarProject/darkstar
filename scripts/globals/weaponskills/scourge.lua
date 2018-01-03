@@ -32,22 +32,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.4; params.vit_wsc = 0.4; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
     end
 
-    -- Aftermath : https://www.bg-wiki.com/bg/Ragnarok_(Level_75)
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
     if (damage > 0) then
-        local aftermathParams = initAftermathParams()
-        aftermathParams.power = player:getAftermathModPower(false)
-        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_RELIC)) then
-            aftermathParams.subpower.type = MOD_CRITHITRATE;
-            if (aftermathParams.power == 2) then
-                aftermathParams.subpower.power = 10
-            else
-                aftermathParams.subpower.power = 5
-            end
-            
-            applyRelicAftermath(player, tp, aftermathParams)
-        end
+        local amDuration = 20 * math.floor(tp/1000);
+        player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, amDuration, 0, 2);
     end
 
-    return tpHits, extraHits, criticalHit, damage
+    return tpHits, extraHits, criticalHit, damage;
 end

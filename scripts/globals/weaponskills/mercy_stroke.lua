@@ -18,8 +18,8 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
-    local params = {}
-    params.numHits = 1
+    local params = {};
+    params.numHits = 1;
     params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
     params.str_wsc = 0.6; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
@@ -32,17 +32,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.8;
     end
 
-    -- Aftermath : https://www.bg-wiki.com/bg/Mandau_(Level_75)
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
     if (damage > 0) then
-        local aftermathParams = initAftermathParams()
-        aftermathParams.power = player:getAftermathModPower(false)
-        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_RELIC)) then
-            aftermathParams.subpower.type = MOD_CRITHITRATE
-            aftermathParams.subpower.power = 5
-            applyRelicAftermath(player, tp, aftermathParams)
-        end
+        local amDuration = 20 * math.floor(tp/1000);
+        player:addStatusEffect(EFFECT_AFTERMATH, 5, 0, amDuration, 0, 2);
     end
 
-    return tpHits, extraHits, criticalHit, damage
+    return tpHits, extraHits, criticalHit, damage;
 end

@@ -525,7 +525,6 @@ enum class Mod
     // Special Modifier+
     ADDS_WEAPONSKILL          = 355, //
     ADDS_WEAPONSKILL_DYN      = 356, // In Dynamis
-    AFTERMATH                 = 863, // Allows use of aftermath when using added Weapon Skill
 
     STEALTH                   = 358, //
 
@@ -605,15 +604,11 @@ enum class Mod
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
 
     EXTRA_DMG_CHANCE          = 506, // Proc rate of OCC_DO_EXTRA_DMG. 111 would be 11.1%
-    OCC_DO_EXTRA_DMG          = 507, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage
-    OCC_DO_DOUBLE_DMG         = 864, // Proc rate of double damage
-    OCC_DO_TRIPLE_DMG         = 865, // Proc rate of triple damage
-
-    MYTHIC_OCC_ATT_TWICE             = 866, // Mythic aftermath - Occasionally attacks twice proc rate
-    MYTHIC_OCC_ATT_THRICE            = 867, // Mythic aftermath - Occasionally attacks thrice proc rate
+    OCC_DO_EXTRA_DMG          = 507, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
     EAT_RAW_FISH              = 412, //
     EAT_RAW_MEAT              = 413, //
+
 
     ENHANCES_CURSNA_RCVD      = 67,  // Potency of "Cursna" effects received
     ENHANCES_CURSNA           = 310, // Used by gear with the "Enhances Cursna" or "Cursna+" attribute
@@ -677,9 +672,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 868 - stuff
-    // SPARE = 869 - stuff
-    // SPARE = 870 - stuff
+    // SPARE = 863, // stuff
+    // SPARE = 864, // stuff
+    // SPARE = 865, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
