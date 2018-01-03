@@ -7,6 +7,7 @@ package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/RoMaeve/TextIDs");
+require("scripts/zones/RoMaeve/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/npc_util");
 require("scripts/globals/zone");
@@ -54,7 +55,6 @@ function onRegionEnter(player,region)
 end;
 
 function onGameDay()
-    local MOONGATE_OFFSET = 17277195; -- _3e0
     if (IsMoonFull() == true and GetNPCByID(MOONGATE_OFFSET):getWeather() == WEATHER_SUNSHINE) then
         for i = MOONGATE_OFFSET, MOONGATE_OFFSET+7 do
             GetNPCByID(i):openDoor(432);
@@ -63,7 +63,6 @@ function onGameDay()
 end;
 
 function onZoneWeatherChange(weather)
-    local MOONGATE_OFFSET = 17277195; -- _3e0
     if (weather ~= WEATHER_SUNSHINE and GetNPCByID(MOONGATE_OFFSET):getAnimation() ~= 9) then
         for i = MOONGATE_OFFSET, MOONGATE_OFFSET+7 do
             GetNPCByID(i):setAnimation(9);
