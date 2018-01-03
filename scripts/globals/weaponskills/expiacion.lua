@@ -17,6 +17,7 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
+
     local params = {};
     params.numHits = 2;
     params.ftp100 = 1.5; params.ftp200 = 2; params.ftp300 = 2.5;
@@ -32,26 +33,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.dex_wsc = 0.2;
     end
 
-    -- Aftermath calculations from : https://www.bg-wiki.com/bg/Tizona_(Level_75)
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
-    if (damage > 0) then
-        local aftermathParams = initAftermathParams();
-        aftermathParams.power = player:getAftermathModPower(false)
-        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_MYTHIC)) then
-            if (tp == 3000) then
-                aftermathParams.type = EFFECT_AFTERMATH_LV3
-                aftermathParams.subpower.type = MOD_MYTHIC_OCC_ATT_TWICE
-            elseif (tp >= 2000) then
-                aftermathParams.type = EFFECT_AFTERMATH_LV2
-                aftermathParams.subpower.type = MOD_ATT
-            else
-                aftermathParams.type = EFFECT_AFTERMATH_LV1
-                aftermathParams.subpower.type = MOD_ACC
-            end
-
-            applyMythicAftermath(player, tp, aftermathParams)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    if ((player:getEquipID(SLOT_MAIN) == 19006) and (player:getMainJob() == JOBS.BLU)) then
+        if (damage > 0) then
+            applyAftermathEffect(player, tp)
         end
     end
+    return tpHits, extraHits, criticalHit, damage;
 
-    return tpHits, extraHits, criticalHit, damage
 end

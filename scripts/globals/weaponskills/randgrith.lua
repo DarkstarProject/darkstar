@@ -31,17 +31,11 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
 
-    -- Aftermath : https://www.bg-wiki.com/bg/Mjollnir_(Level_75)
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
     if (damage > 0) then
-        local aftermathParams = initAftermathParams()
-        aftermathParams.power = player:getAftermathModPower(false)
-        if (shouldApplyAftermath(player, aftermathParams.power, tp, AFTERMATH_RELIC)) then
-            aftermathParams.subpower.type = MOD_ACC
-            aftermathParams.subpower.power = 20
-            applyRelicAftermath(player, tp, aftermathParams)
-        end
-
+        local amDuration = 20 * math.floor(tp/1000);
+        player:addStatusEffect(EFFECT_AFTERMATH, 20, 0, amDuration, 0, 9);
         target:addStatusEffect(EFFECT_EVASION_DOWN, 32, 0, 60);
     end
 

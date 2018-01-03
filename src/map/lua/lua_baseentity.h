@@ -569,8 +569,6 @@ public:
     int32 getWeaponSkillType(lua_State*);       // gets the type of weapon equipped
     int32 getWeaponSubSkillType(lua_State*);    // gets the subskill of weapon equipped
     int32 getWSSkillchainProp(lua_State* L);    // returns weapon skill's skillchain properties (up to 3)
-    int32 getWeapon(lua_State* L);              // returns weapon from the passed in SLOT
-    int32 getAftermathModPower(lua_State* L);   // gets mod power of MOD_AFTERMATH of main hand/ranged weapons
 
     int32 takeWeaponskillDamage(lua_State* L);
     

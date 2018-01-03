@@ -1202,17 +1202,14 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     string_t name;
     EFFECT effect = StatusEffect->GetStatusID();
 
-    // This is some voodoo
     if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
         (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-         effect == EFFECT_DOUBLE_UP_CHANCE || effect == EFFECT_BUST ||
-         effect == EFFECT_AFTERMATH || effect == EFFECT_AFTERMATH_LV1 || effect == EFFECT_AFTERMATH_LV2 || effect == EFFECT_AFTERMATH_LV3)
+        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
     {
         name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
     }
-    else
-    {
+    else {
         CItem* Ptem = itemutils::GetItemPointer(StatusEffect->GetSubID());
         if (Ptem != nullptr)
         {
