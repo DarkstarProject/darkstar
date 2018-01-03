@@ -4370,7 +4370,7 @@ inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isNewPlayer);
+    lua_pushboolean(L, (((CCharEntity*)m_PBaseEntity)->menuConfigFlags.flags & NFLAG_NEWPLAYER) == 0);
     return 1;
 }
 
@@ -4388,7 +4388,10 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_isNewPlayer = lua_toboolean(L, 1);
+    if (lua_toboolean(L, 1))
+        PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+    else
+        PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
     PChar->updatemask |= UPDATE_HP;
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     return 0;
@@ -4407,7 +4410,7 @@ inline int32 CLuaBaseEntity::getMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    lua_pushnumber(L, PChar->m_mentor);
+    lua_pushnumber(L, PChar->m_mentorUnlocked ? 1 : 0);
     return 1;
 }
 
@@ -4425,8 +4428,12 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_mentor = (uint8)lua_tonumber(L, 1);
-    charutils::mentorMode(PChar);
+    if ((uint8)lua_tonumber(L, 1) == 1)
+        PChar->m_mentorUnlocked = true;
+    else
+        PChar->m_mentorUnlocked = false;
+
+    charutils::SaveMentorFlag(PChar);
     PChar->updatemask |= UPDATE_HP;
     return 0;
 }

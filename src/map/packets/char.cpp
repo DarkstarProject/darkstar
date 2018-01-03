@@ -100,13 +100,13 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 ref<uint8>(0x29) = PChar->allegiance;
                 
                 // Mentor flag..
-                if (PChar->m_mentor >= 2)
+                if (PChar->menuConfigFlags.flags & NFLAG_MENTOR)
                     ref<uint8>(0x2B) = 0x01;
                 else
                     ref<uint8>(0x2B) = 0x00;
 
                 // New Player Flag..
-                if (PChar->m_isNewPlayer)
+                if (PChar->isNewPlayer())
                     ref<uint8>(0x2A) |= 0x80;
 
                 ref<uint16>(0x30) = PChar->m_Costum;
