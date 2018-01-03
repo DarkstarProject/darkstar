@@ -4,7 +4,7 @@
   ITEM_CANNOT_BE_OBTAINED =  6380; -- You cannot obtain the item <item> come back again after sorting your inventory
  ITEM_CANNOT_BE_OBTAINEDX =  6381; -- You cannot obtain the
             ITEM_OBTAINED =  6386; -- Obtained: <item>
-           ITEM_OBTAINEDX =  7374; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
+           ITEM_OBTAINEDX =  6395; -- You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
              GIL_OBTAINED =  6387; -- Obtained <number> gil
          KEYITEM_OBTAINED =  6389; -- Obtained key item: <keyitem>
    FISHING_MESSAGE_OFFSET =  7047; -- You can't fish here
