@@ -33,19 +33,16 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    if (damage > 0) then
-        local duration = (tp/1000 * 30);
-        if (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-            -- paralyze proc based on lvl difference
-            local power = 30 + (player:getMainLvl() - target:getMainLvl())*3;
-            if (power > 35) then
-                power = 35;
-            end
-            if (power < 5) then
-                power = 5;
-            end
-            target:addStatusEffect(EFFECT_PARALYSIS, power, 0, duration);
+    if (damage > 0 and target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+        local duration = (tp/1000 * 30) * applyResistanceAddEffect(player,target,ELE_ICE,0);
+        -- paralyze proc based on lvl difference
+        local power = 30 + (player:getMainLvl() - target:getMainLvl())*3;
+        if (power > 35) then
+            power = 35;
+        elseif (power < 5) then
+            power = 5;
         end
+        target:addStatusEffect(EFFECT_PARALYSIS, power, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 
