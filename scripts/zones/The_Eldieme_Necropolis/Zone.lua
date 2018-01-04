@@ -5,29 +5,18 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
-
------------------------------------
--- onInitialize
------------------------------------
+require("scripts/zones/The_Eldieme_Necropolis/MobIDs");
+require("scripts/globals/conquest");
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17576356);
-    UpdateTreasureSpawnPoint(17576357);
+    UpdateTreasureSpawnPoint(ELDIEME_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ELDIEME_TREASURE_COFFER);
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
-
     -- rng af2
-    local FireAndBrimstoneCS = player:getVar("fireAndBrimstone");
-    if (FireAndBrimstoneCS == 2) then
+    if (player:getVar("fireAndBrimstone") == 2) then
         return 4;
     end
 
@@ -38,44 +27,21 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
-
     if (csid == 4) then
         player:setVar("fireAndBrimstone",3);
     end
-
 end;
