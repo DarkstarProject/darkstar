@@ -2746,7 +2746,6 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
         bool spawnedOnly  = !lua_isnil(L, 2) ? lua_tonumber(L, 2) : 0;
@@ -2767,8 +2766,8 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
         ref<uint16>(&buf, 10) = playerID;
 
         message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
-
-    return 1;
+	}	
+    return 0;
 }
 
 /************************************************************************
