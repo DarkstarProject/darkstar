@@ -2744,8 +2744,6 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    bool warped = true;
-
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
 
@@ -2769,14 +2767,6 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
         ref<uint16>(&buf, 10) = playerID;
 
         message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
-
-        if (PChar->status != STATUS_DISAPPEAR)
-        {
-            warped = false;
-        }
-    }
-
-    lua_pushboolean(L, warped);
 
     return 1;
 }
