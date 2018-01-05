@@ -5,7 +5,6 @@
 -- !pos -469 0 620 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
-package.loaded["scripts/zones/Quicksand_Caves/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/zones/Quicksand_Caves/MobIDs");
