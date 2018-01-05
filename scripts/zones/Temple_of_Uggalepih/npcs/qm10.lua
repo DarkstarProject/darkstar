@@ -5,27 +5,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 
 function onTrade(player,npc,trade)
-
     -- Trade Flickering Lantern
-    if (trade:hasItemQty(2387,1) and trade:getItemCount() == 1) then
+    if (trade:hasItemQty(2387,1) and trade:getItemCount() == 1 and not GetMobByID(SOZU_ROGBERRY):isSpawned()) then
         player:tradeComplete();
-        SpawnMob(17428751):updateClaim(player);
-        -- Note: The ??? reappears after 15 minutes
+        SpawnMob(SOZU_ROGBERRY):updateClaim(player);
+        npc:setStatus(STATUS_DISAPPEAR);
     end
-
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
