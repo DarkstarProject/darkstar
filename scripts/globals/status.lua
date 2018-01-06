@@ -2326,5 +2326,6 @@ MOUNTS =
 ------------------------------------
 -- Item Check Params
 ------------------------------------
-ITEMCHECK_EQUIP     = 0;
-ITEMCHECK_UNEQUIP   = 1;
+ITEMCHECK_NONE      = 0;
+ITEMCHECK_EQUIP     = 1;
+ITEMCHECK_UNEQUIP   = 2;

@@ -96,12 +96,6 @@ This file is part of DarkStar-server source code.
 #include "petutils.h"
 #include "zoneutils.h"
 
-enum ITEMCHECK
-{
-    EQUIP = 0,
-    UNEQUIP = 1
-};
-
 /************************************************************************
 *                                                                       *
 *  Таблицы получаемого опыта                                            *
@@ -2255,7 +2249,7 @@ namespace charutils
             {
                 if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
                 {
-                    luautils::OnItemCheck(PChar, PItem, param, nullptr);
+                    luautils::OnItemCheck(PChar, PItem, static_cast<ITEMCHECK>(param), nullptr);
                 }
             }
         }

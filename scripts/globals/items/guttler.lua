@@ -45,7 +45,7 @@ aftermathTable[21750] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == WEAPONSKILL_ONSLAUGHT) then -- Onslaught onry
-        local itemId = user:getWeaponID(SLOT_MAIN);
+        local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -64,7 +64,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getWeaponID(SLOT_MAIN);
+        local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);

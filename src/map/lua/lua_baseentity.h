@@ -557,7 +557,6 @@ public:
     int32 getMeleeHitDamage(lua_State*);        // gets the damage of a single hit vs the specified mob
     int32 getWeaponDmg(lua_State*);             // gets the current equipped weapons' DMG rating
     int32 getWeaponDmgRank(lua_State*);         // gets the current equipped weapons' DMG rating for Rank calc
-    int32 getWeaponID(lua_State*);              // gets the current eqipped weapon's itemId
     int32 getOffhandDmg(lua_State*);            // gets the current equipped offhand's DMG rating (used in WS calcs)
     int32 getOffhandDmgRank(lua_State*);        // gets the current equipped offhand's DMG rating for Rank calc
     int32 getRangedDmg(lua_State*);             // Get ranged weapon DMG rating

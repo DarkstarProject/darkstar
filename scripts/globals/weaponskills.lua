@@ -1028,13 +1028,13 @@ end
 
 function addAftermathEffect(player, tp, params)
     player:addStatusEffect(EFFECT_AFTERMATH, params.power, 0, params.duration(tp));
-    for i,mod in ipairs(params.mods) do
+    for _,mod in ipairs(params.mods) do
         player:addMod(mod.id, mod.power);
     end
 end
 
 function removeAftermathEffect(player, params)
-    for i,mod in ipairs(params.mods) do
+    for _,mod in ipairs(params.mods) do
         player:delMod(mod.id, mod.power);
     end
 end
