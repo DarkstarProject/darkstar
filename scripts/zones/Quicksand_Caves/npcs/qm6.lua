@@ -30,7 +30,7 @@ function onTrigger(player,npc)
             player:startEvent(11);
         end
 
-    -- DEFAULT DIALOG        
+    -- DEFAULT DIALOG
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
