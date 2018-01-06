@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
-package.loaded["scripts/zones/Promyvion-Vahzl/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Promyvion-Vahzl/TextIDs");
 require("scripts/zones/Promyvion-Vahzl/MobIDs");
@@ -14,7 +13,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 function onInitialize(zone)
-    for k, v in pairs(MEMORY_STREAMS) do
+    for k, v in pairs(VAHZL_MEMORY_STREAMS) do
         zone:registerRegion(k,v[1],v[2],v[3],v[4],v[5],v[6]);
     end
 end;
@@ -40,7 +39,7 @@ end;
 function onRegionEnter(player,region)
     if (player:getAnimation() == 0) then
         local regionId = region:GetRegionID();
-        local events = MEMORY_STREAMS[regionId][7];
+        local events = VAHZL_MEMORY_STREAMS[regionId][7];
         local event = events[math.random(#events)];
         if (regionId < 100 or GetNPCByID(regionId):getAnimation() == ANIMATION_OPEN_DOOR) then
             player:startEvent(event);

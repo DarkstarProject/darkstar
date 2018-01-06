@@ -2,15 +2,13 @@
 -- Area: Promyvion-Vahzl
 --  MOB: Stray
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Promyvion-Vahzl/MobIDs");
 require("scripts/globals/status");
 
 function findMother(mob)
     local mobId = mob:getID();
     local mother = 0;
-    for k,v in pairs(MEMORY_RECEPTACLES) do
+    for k,v in pairs(VAHZL_MEMORY_RECEPTACLES) do
         if (k < mobId and k > mother) then
             mother = k;
         end

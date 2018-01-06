@@ -5,7 +5,6 @@
 -- !pos -74 -4 -87 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
-package.loaded["scripts/zones/Behemoths_Dominion/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Behemoths_Dominion/TextIDs");
 require("scripts/zones/Behemoths_Dominion/MobIDs");
