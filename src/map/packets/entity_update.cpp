@@ -107,16 +107,16 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         {
             CMobEntity* PMob = (CMobEntity*)PEntity;
 
-            //if(PMob->PMaster != nullptr && PMob->PMaster->objtype == TYPE_PC && 
-            //	PMob->PBattleAI->GetCurrentAction() == ACTION_FALL)
+            //if(PMob->PMaster != nullptr && PMob->PMaster->objtype == TYPE_PC &&
+            //  PMob->PBattleAI->GetCurrentAction() == ACTION_FALL)
             //{
             //    ref<uint8>(data,(0x21)) = 0x99;
             //    //ref<uint8> (data,(0x27)) = 0x28;
             //    ref<uint8>(data,(0x1E)) = 0x00; //0% HP
             //    ref<uint8>(data,(0x1F)) = ANIMATION_DEATH; //death anim
             //    ref<uint8>(data,(0x20)) = STATUS_NORMAL;
-            //	  ref<uint8>(data,(0x29)) = PEntity->allegiance;
-            //	  ref<uint8>(data,(0x2B)) = PEntity->namevis;
+            //    ref<uint8>(data,(0x29)) = PEntity->allegiance;
+            //    ref<uint8>(data,(0x2B)) = PEntity->namevis;
             //}
             //else
             {

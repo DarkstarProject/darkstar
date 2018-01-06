@@ -34,52 +34,52 @@ std::unique_ptr<CSpell> CBlueSpell::clone()
 
 uint16 CBlueSpell::getMonsterSkillId()
 {
-	return m_monsterSkillId;
+    return m_monsterSkillId;
 }
 
 void CBlueSpell::setMonsterSkillId(uint16 skillid)
 {
-	m_monsterSkillId = skillid;
+    m_monsterSkillId = skillid;
 }
 
 uint8 CBlueSpell::getSetPoints()
 {
-	return m_setPoints;
+    return m_setPoints;
 }
 
 void CBlueSpell::setSetPoints(uint8 setpoints)
 {
-	m_setPoints = setpoints;
+    m_setPoints = setpoints;
 }
 
 uint8 CBlueSpell::getEcosystem()
 {
-	return m_ecosystem;
+    return m_ecosystem;
 }
 
 void CBlueSpell::setEcosystem(uint8 ecosystem)
 {
-	m_ecosystem = ecosystem;
+    m_ecosystem = ecosystem;
 }
 
 uint8 CBlueSpell::getTraitCategory()
 {
-	return m_traitCategory;
+    return m_traitCategory;
 }
 
 void CBlueSpell::setTraitCategory(uint8 category)
 {
-	m_traitCategory = category;
+    m_traitCategory = category;
 }
 
 uint8 CBlueSpell::getTraitWeight()
 {
-	return m_traitWeight;
+    return m_traitWeight;
 }
 
 void CBlueSpell::setTraitWeight(uint8 weight)
 {
-	m_traitWeight = weight;
+    m_traitWeight = weight;
 }
 
 uint8 CBlueSpell::getPrimarySkillchain()

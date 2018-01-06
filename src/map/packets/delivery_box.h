@@ -28,15 +28,15 @@
 
 #include "basic.h"
 
-#define AH_SANDORIA		"AH-SandOria"
-#define AH_JEUNO		"AH-Jeuno"
-#define AH_WINDURST		"AH-Windurst"
-#define AH_BASTOK		"AH-Bastok"
+#define AH_SANDORIA     "AH-SandOria"
+#define AH_JEUNO        "AH-Jeuno"
+#define AH_WINDURST     "AH-Windurst"
+#define AH_BASTOK       "AH-Bastok"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CDeliveryBoxPacket : public CBasicPacket

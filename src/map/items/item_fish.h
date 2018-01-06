@@ -38,8 +38,8 @@ class CItemFish : public CItem
 {
 public:
 
-	CItemFish(const CItem &PItem);
-    
+    CItemFish(const CItem &PItem);
+
     uint8   GetMin();
     uint8   GetMax();
     uint8   GetWatertype();
@@ -49,7 +49,7 @@ public:
     uint16  GetLength();
     uint16  GetWeight();
     bool    IsRanked();
-    
+
     void    SetMin(uint8);
     void    SetMax(uint8);
     void    SetWatertype(uint8);

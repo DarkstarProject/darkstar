@@ -29,9 +29,9 @@
 #include "mob_modifier.h"
 
 /************************************************************************
-*																		*
-*  Constructor.															*
-*																		*
+*                                                                       *
+*  Constructor.                                                         *
+*                                                                       *
 ************************************************************************/
 CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
 {
@@ -80,9 +80,9 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
 }
 
 /************************************************************************
-*																		*
-*  Destructor.															*
-*																		*
+*                                                                       *
+*  Destructor.                                                          *
+*                                                                       *
 ************************************************************************/
 CAttackRound::~CAttackRound()
 {
@@ -90,9 +90,9 @@ CAttackRound::~CAttackRound()
 }
 
 /************************************************************************
-*																		*
-*  Returns the attack swing count.										*
-*																		*
+*                                                                       *
+*  Returns the attack swing count.                                      *
+*                                                                       *
 ************************************************************************/
 uint8 CAttackRound::GetAttackSwingCount()
 {
@@ -100,9 +100,9 @@ uint8 CAttackRound::GetAttackSwingCount()
 }
 
 /************************************************************************
-*																		*
-*  Returns an attack via index.											*
-*																		*
+*                                                                       *
+*  Returns an attack via index.                                         *
+*                                                                       *
 ************************************************************************/
 CAttack& CAttackRound::GetAttack(uint8 index)
 {
@@ -110,9 +110,9 @@ CAttack& CAttackRound::GetAttack(uint8 index)
 }
 
 /************************************************************************
-*																		*
-*  Returns the current attack.											*
-*																		*
+*                                                                       *
+*  Returns the current attack.                                          *
+*                                                                       *
 ************************************************************************/
 CAttack& CAttackRound::GetCurrentAttack()
 {
@@ -120,9 +120,9 @@ CAttack& CAttackRound::GetCurrentAttack()
 }
 
 /************************************************************************
-*																		*
-*  Sets the SATA flag.													*
-*																		*
+*                                                                       *
+*  Sets the SATA flag.                                                  *
+*                                                                       *
 ************************************************************************/
 void CAttackRound::SetSATA(bool value)
 {
@@ -130,9 +130,9 @@ void CAttackRound::SetSATA(bool value)
 }
 
 /************************************************************************
-*																		*
-*  Returns the SATA flag.												*
-*																		*
+*                                                                       *
+*  Returns the SATA flag.                                               *
+*                                                                       *
 ************************************************************************/
 bool CAttackRound::GetSATAOccured()
 {
@@ -140,19 +140,19 @@ bool CAttackRound::GetSATAOccured()
 }
 
 /************************************************************************
-*																		*
-*  Returns the TA entity.												*
-*																		*
+*                                                                       *
+*  Returns the TA entity.                                               *
+*                                                                       *
 ************************************************************************/
-CBattleEntity*	CAttackRound::GetTAEntity()
+CBattleEntity*  CAttackRound::GetTAEntity()
 {
     return m_taEntity;
 }
 
 /************************************************************************
-*																		*
-*  Returns the H2H flag.												*
-*																		*
+*                                                                       *
+*  Returns the H2H flag.                                                *
+*                                                                       *
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
@@ -160,9 +160,9 @@ bool CAttackRound::IsH2H()
 }
 
 /************************************************************************
-*																		*
-*  Adds an attack swing.												*
-*																		*
+*                                                                       *
+*  Adds an attack swing.                                                *
+*                                                                       *
 ************************************************************************/
 void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIRECTION direction, uint8 count)
 {
@@ -182,9 +182,9 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
 }
 
 /************************************************************************
-*																		*
-*  Deletes the first attack in the list.								*
-*																		*
+*                                                                       *
+*  Deletes the first attack in the list.                                *
+*                                                                       *
 ************************************************************************/
 void CAttackRound::DeleteAttackSwing()
 {
@@ -193,13 +193,13 @@ void CAttackRound::DeleteAttackSwing()
 
 /************************************************************************
 *                                                                       *
-*  Creates up to many attacks for a particular hand.			        *
+*  Creates up to many attacks for a particular hand.                    *
 *                                                                       *
 ************************************************************************/
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
     uint8 num = 1;
-    
+
     bool isPC = m_attacker->objtype == TYPE_PC;
 
     // Checking the players weapon hit count
@@ -207,12 +207,12 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         num = PWeapon->getHitCount();
     }
-    
+
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
     if (dynamic_cast<CMobEntity*>(m_attacker))
     {
         auto multiHitMax = (uint8)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
-        
+
         if (multiHitMax > 0)
             num = 1 + battleutils::getHitCount(multiHitMax);
     }
@@ -328,7 +328,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
 /************************************************************************
 *                                                                       *
-*  Creates kick attacks.										        *
+*  Creates kick attacks.                                                *
 *                                                                       *
 ************************************************************************/
 void CAttackRound::CreateKickAttacks()

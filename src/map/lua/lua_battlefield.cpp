@@ -32,9 +32,9 @@
 
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaBattlefield::CLuaBattlefield(lua_State *L)
@@ -51,9 +51,9 @@ CLuaBattlefield::CLuaBattlefield(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaBattlefield::CLuaBattlefield(CBattlefield* PBattlefield)
@@ -63,7 +63,7 @@ CLuaBattlefield::CLuaBattlefield(CBattlefield* PBattlefield)
 
 /************************************************************************
 *                                                                       *
-*						Get methods								        *
+*                       Get methods                                     *
 *                                                                       *
 ************************************************************************/
 
@@ -249,9 +249,9 @@ inline int32 CLuaBattlefield::win(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*  declare lua function													*
-*																		*
+*                                                                       *
+*  declare lua function                                                 *
+*                                                                       *
 ************************************************************************/
 
 const char CLuaBattlefield::className[] = "CBattlefield";

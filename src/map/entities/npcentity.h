@@ -46,8 +46,8 @@ public:
     virtual void PostTick() override;
     virtual void Tick(time_point) override {}
 
-	 CNpcEntity();				// конструктор
-	~CNpcEntity();				// деструктор
+     CNpcEntity();              // конструктор
+    ~CNpcEntity();              // деструктор
 
 
 private:

@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,7 +40,7 @@ class CInventorySizePacket: public CBasicPacket
 {
 public:
 
-	CInventorySizePacket(CCharEntity* PChar);
+    CInventorySizePacket(CCharEntity* PChar);
 };
 
 #endif

@@ -64,7 +64,7 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
     ref<uint8>(0x04) = action;
     ref<uint8>(0x05) = boxid;
     ref<uint8>(0x06) = slotid;
-    ref<uint8>(0x0C) = message;	    // success: 0x01, else error message
+    ref<uint8>(0x0C) = message;     // success: 0x01, else error message
     ref<uint8>(0x0D) = count;
 
     if (PItem)
@@ -78,7 +78,7 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
             }
             else
             {
-                ref<uint8>(0x10) = PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown 
+                ref<uint8>(0x10) = PItem->isSent() ? 0x03 : 0x05;    // 0x05 in send: canceled. other values are unknown
                 memcpy(data + 0x14 , PItem->getReceiver(), strlen((const char*)PItem->getReceiver()));    // Receiver's name.  Client disables "Return" if it starts with "AH"
             }
         }

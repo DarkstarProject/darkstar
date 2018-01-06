@@ -32,14 +32,14 @@
 
 CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
 {
-	this->type = 0x3C;
-	this->size = 0x04;
+    this->type = 0x3C;
+    this->size = 0x04;
 
-	uint8 ItemsCount = PChar->Container->getItemsCount();
+    uint8 ItemsCount = PChar->Container->getItemsCount();
 
     uint8 i = 0;
-	for (uint8 slotID = 0; slotID < ItemsCount; ++slotID)
-	{
+    for (uint8 slotID = 0; slotID < ItemsCount; ++slotID)
+    {
         if (i == 20)
         {
             PChar->pushPacket(new CBasicPacket(*this));
@@ -48,11 +48,11 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity * PChar)
             this->size = 0x04;
             memset(data + 4, 0, PACKET_SIZE - 8);
         }
-		this->size += 0x06;
+        this->size += 0x06;
 
-		ref<uint32>(i * 12 + 0x08) = PChar->Container->getQuantity(slotID);
-		ref<uint16>(i * 12 + 0x0C) = PChar->Container->getItemID(slotID);
-		ref<uint8>(i * 12 + 0x0E) = slotID;
+        ref<uint32>(i * 12 + 0x08) = PChar->Container->getQuantity(slotID);
+        ref<uint16>(i * 12 + 0x0C) = PChar->Container->getItemID(slotID);
+        ref<uint8>(i * 12 + 0x0E) = slotID;
         i++;
-	}
+    }
 }

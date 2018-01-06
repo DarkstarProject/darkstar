@@ -33,11 +33,11 @@ enum BLOWFISH
     BLOWFISH_ACCEPTED,
 };
 
-struct blowfish_t 
+struct blowfish_t
 {
-	uint32 key[5];
-	uint8  hash[16];
-	uint32 P[18], S[4][256];
+    uint32 key[5];
+    uint8  hash[16];
+    uint32 P[18], S[4][256];
     BLOWFISH status;
 };
 

@@ -24,10 +24,10 @@
 
 #ifdef NDEBUG
 // From http://cnicholson.net/2009/02/stupid-c-tricks-adventures-in-assert/
-#	define dtAssert(x) do { (void)sizeof(x); } while((void)(__LINE__==-1),false)  
+#   define dtAssert(x) do { (void)sizeof(x); } while((void)(__LINE__==-1),false)
 #else
-#	include <assert.h> 
-#	define dtAssert assert
+#   include <assert.h>
+#   define dtAssert assert
 #endif
 
 #endif // DETOURASSERT_H

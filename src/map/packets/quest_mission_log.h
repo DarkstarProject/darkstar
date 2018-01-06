@@ -94,9 +94,9 @@ static const std::unordered_map<uint8, std::pair<uint16, uint16>> questPacketByt
 #define CAMPAIGN_MISSION_TWO        0x38
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;

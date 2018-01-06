@@ -30,13 +30,13 @@
 #include <string.h>
 
 #ifdef _MSC_VER
-#	include <intrin.h>
+#   include <intrin.h>
 #endif
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 
@@ -91,9 +91,9 @@ bool bin2hex(char* output, unsigned char* input, size_t count)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 float distance(const position_t& A, const position_t& B)
@@ -111,9 +111,9 @@ float distanceSquared(const position_t& A, const position_t& B)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 intpow32(int32 base, int32 exponent)
@@ -130,9 +130,9 @@ int32 intpow32(int32 base, int32 exponent)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void getMSB(uint32* result, uint32 value)
@@ -166,9 +166,9 @@ uint8 radianToRotation(float radian)
 
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 uint8 getangle(const position_t& A, const position_t& B)
@@ -179,9 +179,9 @@ uint8 getangle(const position_t& A, const position_t& B)
 }
 
 /************************************************************************
-*																		*
-*  Проверяем, находится ли цель в поле зрения (coneAngle)				*
-*																		*
+*                                                                       *
+*  Проверяем, находится ли цель в поле зрения (coneAngle)               *
+*                                                                       *
 ************************************************************************/
 
 bool isFaceing(const position_t& A, const position_t& B, uint8 coneAngle)
@@ -214,9 +214,9 @@ position_t nearPosition(const position_t& A, float offset, float radian)
 }
 
 /************************************************************************
-*																		*
-*  Методы для работы с битовыми массивами								*
-*																		*
+*                                                                       *
+*  Методы для работы с битовыми массивами                               *
+*                                                                       *
 ************************************************************************/
 
 int32 hasBit(uint16 value, uint8* BitArray, uint32 size)
@@ -250,9 +250,9 @@ int32 delBit(uint16 value, uint8* BitArray, uint32 size)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBit)
@@ -262,20 +262,20 @@ uint32 packBitsBE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBi
 
 uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
-    byteOffset += (bitOffset >> 3);										//correct bitOffsets>=8
+    byteOffset += (bitOffset >> 3);                                     //correct bitOffsets>=8
     bitOffset %= 8;
 
-    uint64 bitmask = 0xFFFFFFFFFFFFFFFFLL;								//Generate bitmask
+    uint64 bitmask = 0xFFFFFFFFFFFFFFFFLL;                              //Generate bitmask
 
     bitmask >>= (64 - lengthInBit);
     bitmask <<= bitOffset;
 
-    value <<= bitOffset;												//shift value
+    value <<= bitOffset;                                                //shift value
     value &= bitmask;
 
-    bitmask ^= 0xFFFFFFFFFFFFFFFFLL;									//invert bitmask
+    bitmask ^= 0xFFFFFFFFFFFFFFFFLL;                                    //invert bitmask
 
-    if((lengthInBit + bitOffset) <= 8)									//write shifted value to target
+    if((lengthInBit + bitOffset) <= 8)                                  //write shifted value to target
     {
         uint8* dataPointer = (uint8*)&target[byteOffset];
 
@@ -376,10 +376,10 @@ uint32 packBitsLE(uint8* target, uint64 value, int32 bitOffset, uint8 lengthInBi
 
 uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset, uint8 lengthInBit)
 {
-    byteOffset += (bitOffset >> 3);													//correct bitOffsets >= 8
+    byteOffset += (bitOffset >> 3);                                                 //correct bitOffsets >= 8
     bitOffset %= 8;
 
-    uint8 bytesNeeded;																//calculate how many bytes are needed
+    uint8 bytesNeeded;                                                              //calculate how many bytes are needed
     if((bitOffset + lengthInBit) <= 8)
         bytesNeeded = 1;
     else if((bitOffset + lengthInBit) <= 16)
@@ -394,18 +394,18 @@ uint32 packBitsLE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset
         return 0;
     }
 
-    uint8* modifiedTarget = new uint8[bytesNeeded];									//convert byteOrder to Big Endian
+    uint8* modifiedTarget = new uint8[bytesNeeded];                                 //convert byteOrder to Big Endian
 
     for(uint8 curByte = 0; curByte < bytesNeeded; ++curByte)
     {
         modifiedTarget[curByte] = target[byteOffset + (bytesNeeded - 1) - curByte];
     }
 
-    int32 newBitOffset = (bytesNeeded << 3) - (bitOffset + lengthInBit); 			//calculate new bitOffset
+    int32 newBitOffset = (bytesNeeded << 3) - (bitOffset + lengthInBit);            //calculate new bitOffset
 
-    packBitsBE(&modifiedTarget[0], value, 0, newBitOffset, lengthInBit);			//write data to modified array
+    packBitsBE(&modifiedTarget[0], value, 0, newBitOffset, lengthInBit);            //write data to modified array
 
-    for(uint8 curByte = 0; curByte < bytesNeeded; ++curByte)						//copy back to target
+    for(uint8 curByte = 0; curByte < bytesNeeded; ++curByte)                        //copy back to target
     {
         target[byteOffset + (bytesNeeded - 1) - curByte] = modifiedTarget[curByte];
     }

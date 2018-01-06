@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     if (damage > 0 and target:hasStatusEffect(EFFECT_FLASH) == false) then
     target:addStatusEffect(EFFECT_FLASH, 200, 0, 15);
     end
-	
+
 
     return tpHits, extraHits, criticalHit, damage;
 

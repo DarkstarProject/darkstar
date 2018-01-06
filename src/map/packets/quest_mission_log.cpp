@@ -132,7 +132,7 @@ void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logI
 void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 {
     uint16 add_on_scenarios = 0;
-    
+
     add_on_scenarios += PChar->m_missionLog[MISSION_ACP].current;
     add_on_scenarios += PChar->m_missionLog[MISSION_AMK].current << 0x04;
     add_on_scenarios += PChar->m_missionLog[MISSION_ASA].current << 0x08;
@@ -151,7 +151,7 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
     ref<uint16>(0x0C) = PChar->m_missionLog[MISSION_ZILART].current;          // Rise of the Zilart
 
     // But for COP, Add-On Scenarios, SOA, and ROV, sending the current mission will also update that log's completed missions.
-    ref<uint32>(0x10) = chains;												// Chains of Promathia Missions
+    ref<uint32>(0x10) = chains;                                             // Chains of Promathia Missions
     //ref<uint8>(data,(0x16)) = 0x30;                                                // назначение неизвестно
     ref<uint16>(0x18) = add_on_scenarios;                                     // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
     ref<uint16>(0x1C) = soa;                                                  // Seekers of Adoulin

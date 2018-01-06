@@ -30,7 +30,7 @@
 #include "../entities/battleentity.h"
 #include "../spell.h"
 
-#define MAX_ACTION_TARGETS	16
+#define MAX_ACTION_TARGETS  16
 
 enum ACTIONTYPE : uint8
 {
@@ -54,22 +54,22 @@ enum ACTIONTYPE : uint8
 
     //these aren't actual action packet IDs - they exist for simplicity
     // because we are too lazy to figure out 0x0A - 0x0F in the action packet
-    ACTION_ITEM_INTERRUPT		= 29,
-    ACTION_MAGIC_INTERRUPT		= 31,
-    ACTION_RANGED_INTERRUPT		= 32,
-    ACTION_MOBABILITY_START		= 33,
+    ACTION_ITEM_INTERRUPT       = 29,
+    ACTION_MAGIC_INTERRUPT      = 31,
+    ACTION_RANGED_INTERRUPT     = 32,
+    ACTION_MOBABILITY_START     = 33,
     ACTION_MOBABILITY_INTERRUPT = 35,
     ACTION_RAISE_MENU_SELECTION = 37
 };
 
 struct actionTarget_t
 {
-    REACTION		  reaction;			    //  5 bits
-    uint16			  animation;			// 12 bits
-    SPECEFFECT		  speceffect;			//  7 bits
+    REACTION          reaction;             //  5 bits
+    uint16            animation;            // 12 bits
+    SPECEFFECT        speceffect;           //  7 bits
     uint8             knockback;            //  3 bits
-    int32			  param;				// 17 bits
-    uint16			  messageID;			// 10 bits
+    int32             param;                // 17 bits
+    uint16            messageID;            // 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
     int32             addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits
@@ -93,7 +93,7 @@ struct actionTarget_t
 
 struct actionList_t
 {
-    uint32    ActionTargetID;		    // 32 bits
+    uint32    ActionTargetID;           // 32 bits
     std::vector<actionTarget_t> actionTargets;
 
     actionList_t() : ActionTargetID(0) {}

@@ -41,9 +41,9 @@ CLatentEffectContainer::CLatentEffectContainer(CCharEntity* PEntity) :
 {}
 
 /************************************************************************
-*																		*
-*  Adds new latent effect to the character.								*
-*																		*
+*                                                                       *
+*  Adds new latent effect to the character.                             *
+*                                                                       *
 ************************************************************************/
 
 void CLatentEffectContainer::AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot)
@@ -61,9 +61,9 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CItemArmor::itemLatent
 }
 
 /************************************************************************
-*																		*
-*  Removes all latent effects associated with a specified slot			*
-*																		*
+*                                                                       *
+*  Removes all latent effects associated with a specified slot          *
+*                                                                       *
 ************************************************************************/
 
 void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
@@ -74,10 +74,10 @@ void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by HP and activates them if  	*
-*  the conditions are met.												*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by HP and activates them if     *
+*  the conditions are met.                                              *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsHP()
 {
@@ -101,10 +101,10 @@ void CLatentEffectContainer::CheckLatentsHP()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by TP and activates them if  	*
-*  the conditions are met.												*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by TP and activates them if     *
+*  the conditions are met.                                              *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsTP()
 {
@@ -126,10 +126,10 @@ void CLatentEffectContainer::CheckLatentsTP()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by MP and activates them if  	*
-*  the conditions are met.												*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by MP and activates them if     *
+*  the conditions are met.                                              *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsMP()
 {
@@ -153,9 +153,9 @@ void CLatentEffectContainer::CheckLatentsMP()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents for a given slot (ie. on equip)					*
-*																		*
+*                                                                       *
+*  Checks all latents for a given slot (ie. on equip)                   *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 {
@@ -170,10 +170,10 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by drawn weapon and activates  	*
-*  them if the conditions are met.										*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by drawn weapon and activates   *
+*  them if the conditions are met.                                      *
+*                                                                       *
 ************************************************************************/
 
 //easy: when animationType changes to ANIMATION_ATTACK or to something else
@@ -236,10 +236,10 @@ void CLatentEffectContainer::CheckLatentsWeaponDraw(bool drawn)
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by status effects and activates	*
-*  them if the conditions are met.										*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by status effects and activates *
+*  them if the conditions are met.                                      *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsStatusEffect()
 {
@@ -260,11 +260,11 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
 }
 
 /************************************************************************
-*																		*
-*  Checks latents that are affected by food effects. Usage:				*
-*  LATENT_FOOD_ACTIVE: (49,foodItemId)									*
-*  LATENT_NO_FOOD_ACTIVE: (14,0)										*
-*																		*
+*                                                                       *
+*  Checks latents that are affected by food effects. Usage:             *
+*  LATENT_FOOD_ACTIVE: (49,foodItemId)                                  *
+*  LATENT_NO_FOOD_ACTIVE: (14,0)                                        *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsFoodEffect()
 {
@@ -284,10 +284,10 @@ void CLatentEffectContainer::CheckLatentsFoodEffect()
 }
 
 /************************************************************************
-*																		*
+*                                                                       *
 *  Checks all latents that are affected by rolls or songs and activates *
-*  them if the conditions are met.										*
-*																		*
+*  them if the conditions are met.                                      *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsRollSong()
 {
@@ -306,10 +306,10 @@ void CLatentEffectContainer::CheckLatentsRollSong()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by day or moon and activates	*
-*  them if the conditions are met.										*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by day or moon and activates    *
+*  them if the conditions are met.                                      *
+*                                                                       *
 ************************************************************************/
 
 //probably call this at 00:00 vana time only
@@ -330,9 +330,9 @@ void CLatentEffectContainer::CheckLatentsDay()
 }
 
 /************************************************************************
-*																		*
-*  Checks latents affected by the moon phase and activates them			*
-*																		*
+*                                                                       *
+*  Checks latents affected by the moon phase and activates them         *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsMoonPhase()
 {
@@ -351,10 +351,10 @@ void CLatentEffectContainer::CheckLatentsMoonPhase()
 }
 
 /************************************************************************
-*																		*
-*  Checks latents that are affected by the day of the week and			*
-*  activates them if the conditions are met.							*
-*																		*
+*                                                                       *
+*  Checks latents that are affected by the day of the week and          *
+*  activates them if the conditions are met.                            *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsWeekDay()
 {
@@ -380,10 +380,10 @@ void CLatentEffectContainer::CheckLatentsWeekDay()
 }
 
 /************************************************************************
-*																		*
-*  Checks latents that are affected the hour and activates them			*
-*  if the conditions are met.											*
-*																		*
+*                                                                       *
+*  Checks latents that are affected the hour and activates them         *
+*  if the conditions are met.                                           *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsHours()
 {
@@ -402,10 +402,10 @@ void CLatentEffectContainer::CheckLatentsHours()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by party members and			*
-*  activates them if the conditions are met.							*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by party members and            *
+*  activates them if the conditions are met.                            *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsPartyMembers(size_t members)
 {
@@ -473,10 +473,10 @@ void CLatentEffectContainer::CheckLatentsPartyJobs()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by an avatar in party and		*
-*  activates them if the conditions are met.							*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by an avatar in party and       *
+*  activates them if the conditions are met.                            *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsPartyAvatar()
 {
@@ -495,10 +495,10 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by job level and			    *
-*  activates them if the conditions are met.							*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by job level and                *
+*  activates them if the conditions are met.                            *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsJobLevel()
 {
@@ -523,10 +523,10 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by players pet type and			*
-*  activates them if the conditions are met.							*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by players pet type and         *
+*  activates them if the conditions are met.                            *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsPetType()
 {
@@ -545,10 +545,10 @@ void CLatentEffectContainer::CheckLatentsPetType()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by time of vana day and			*
-*  activates them if the conditions are met.							*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by time of vana day and         *
+*  activates them if the conditions are met.                            *
+*                                                                       *
 ************************************************************************/
 
 //will probably only call this at transition points in the day
@@ -558,9 +558,9 @@ void CLatentEffectContainer::CheckLatentsTime()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents that are affected by weapon skill points			*
-*																		*
+*                                                                       *
+*  Checks all latents that are affected by weapon skill points          *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 {
@@ -575,9 +575,9 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents regarding current zone							*
-*																		*
+*                                                                       *
+*  Checks all latents regarding current zone                            *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsZone()
 {
@@ -600,9 +600,9 @@ void CLatentEffectContainer::CheckLatentsZone()
 }
 
 /************************************************************************
-*																		*
-*  Checks all latents regarding current weather							*
-*																		*
+*                                                                       *
+*  Checks all latents regarding current weather                         *
+*                                                                       *
 ************************************************************************/
 void CLatentEffectContainer::CheckLatentsWeather()
 {
@@ -918,7 +918,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         //visibleMp += (feet ? feet->getModifier(Mod::MP) : 0);
 
         //TODO: add mp percent too
-        //if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
+        //if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) +
         //    visibleMp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
         //{
         //    m_LatentEffectList.at(i)->Activate();
@@ -944,7 +944,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         //visibleHp += (feet ? feet->getModifier(Mod::HP) : 0);
 
         //TODO: add mp percent too
-        //if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
+        //if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) +
         //    visibleHp) ) <= m_LatentEffectList.at(i)->GetConditionsValue())
         //{
         //    m_LatentEffectList.at(i)->Activate();

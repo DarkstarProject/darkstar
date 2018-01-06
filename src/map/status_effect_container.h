@@ -41,7 +41,7 @@ class CStatusEffectContainer
 {
 public:
 
-    uint64	m_Flags{0};											// биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
+    uint64  m_Flags{0};                                         // биты переполнения байтов m_StatusIcons (по два бита на каждый эффект)
     uint8 m_StatusIcons[32];                  // иконки статус-эффектов
 
     bool ApplyBardEffect(CStatusEffect* PStatusEffect, uint8 maxSongs);
@@ -62,7 +62,7 @@ public:
     bool HasStatusEffectByFlag(uint32 flag);
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект
-    EFFECT HealingWaltz();				// dancers healing waltz
+    EFFECT HealingWaltz();              // dancers healing waltz
     uint8 EraseAllStatusEffect();               // erases all status effects
     EFFECT DispelStatusEffect(EFFECTFLAG flag);             // удаляем первый положительный эффект
     uint8 DispelAllStatusEffect(EFFECTFLAG flag);                // dispels all status effects
@@ -115,13 +115,13 @@ private:
     CBattleEntity* m_POwner;
 
     // void ReplaceStatusEffect(EFFECT effect); //this needs to be implemented
-    void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
+    void RemoveStatusEffect(uint32 id, bool silent = false);    // удаляем эффект по его номеру в контейнере
     void DeleteStatusEffects();
-    void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
+    void SetEffectParams(CStatusEffect* StatusEffect);          // устанавливаем имя эффекта
 
     void OverwriteStatusEffect(CStatusEffect* StatusEffect);
 
-    std::vector<CStatusEffect*>	m_StatusEffectList;
+    std::vector<CStatusEffect*> m_StatusEffectList;
 };
 
 /************************************************************************

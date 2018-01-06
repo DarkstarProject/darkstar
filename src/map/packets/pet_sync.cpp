@@ -28,9 +28,9 @@ This file is part of DarkStar-server source code.
 #include "../entities/charentity.h"
 
 /************************************************************************
-*																		*
-*  Синхронизация питомца с персонажем (владельцем)						*
-*																		*
+*                                                                       *
+*  Синхронизация питомца с персонажем (владельцем)                      *
+*                                                                       *
 ************************************************************************/
 
 CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
@@ -40,8 +40,8 @@ CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
 
     DSP_DEBUG_BREAK_IF(PChar->PPet == nullptr);
 
-    ref<uint8>(0x04) = 0x44; 	// назначение неизвестно
-    ref<uint8>(0x05) = 0x08; 	// назначение неизвестно
+    ref<uint8>(0x04) = 0x44;    // назначение неизвестно
+    ref<uint8>(0x05) = 0x08;    // назначение неизвестно
 
     ref<uint16>(0x06) = PChar->targid;
     ref<uint32>(0x08) = PChar->id;

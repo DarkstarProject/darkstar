@@ -32,12 +32,12 @@
 
 CBazaarCheckPacket::CBazaarCheckPacket(CCharEntity * PChar, BAZAARCHECK type)
 {
-	this->type = 0x08;	// 0x108
-	this->size = 0x11;
+    this->type = 0x08;  // 0x108
+    this->size = 0x11;
 
-	ref<uint32>(0x04) = PChar->id;
-	ref<uint8>(0x08) = type;
-	ref<uint16>(0x0E) = PChar->targid;
+    ref<uint32>(0x04) = PChar->id;
+    ref<uint8>(0x08) = type;
+    ref<uint16>(0x0E) = PChar->targid;
 
-	memcpy(data+(0x10), PChar->GetName(), PChar->name.size());
+    memcpy(data+(0x10), PChar->GetName(), PChar->name.size());
 }

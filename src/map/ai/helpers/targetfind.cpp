@@ -222,16 +222,16 @@ void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 {
-	zoneutils::GetZone(PTarget->getZone())->ForEachCharInstance(PTarget, [&](CCharEntity* PChar){
-		if (PChar){
-			addEntity(PChar, withPet);
-		}
-	});
-	zoneutils::GetZone(PTarget->getZone())->ForEachMobInstance(PTarget, [&](CMobEntity* PMob){
-		if (PMob){
-			addEntity(PMob, withPet);
-		}
-	});
+    zoneutils::GetZone(PTarget->getZone())->ForEachCharInstance(PTarget, [&](CCharEntity* PChar){
+        if (PChar){
+            addEntity(PChar, withPet);
+        }
+    });
+    zoneutils::GetZone(PTarget->getZone())->ForEachMobInstance(PTarget, [&](CMobEntity* PMob){
+        if (PMob){
+            addEntity(PMob, withPet);
+        }
+    });
 }
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
@@ -347,10 +347,10 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         return true;
     }
 
-	if (m_PTarget->allegiance != PTarget->allegiance)
-	{
-		return false;
-	}
+    if (m_PTarget->allegiance != PTarget->allegiance)
+    {
+        return false;
+    }
 
     // shouldn't add if target is charmed by the enemy
     if (PTarget->PMaster != nullptr)

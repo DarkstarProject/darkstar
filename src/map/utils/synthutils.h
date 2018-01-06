@@ -27,9 +27,9 @@
 #include "../../common/cbasetypes.h"
 
 /************************************************************************
-*																		*
-*  Все методы, необходимые для работы синтеза							*
-*																		*
+*                                                                       *
+*  Все методы, необходимые для работы синтеза                           *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -38,27 +38,27 @@ namespace synthutils
 {
     enum SYNTHESIS_ELEMENT
     {
-        ELEMENT_FIRE		= 0,
-        ELEMENT_EARTH		= 1,
-        ELEMENT_WATER		= 2,
-        ELEMENT_WIND		= 3,
-        ELEMENT_ICE			= 4,
-        ELEMENT_LIGHTNING	= 5,
-        ELEMENT_LIGHT		= 6,
-        ELEMENT_DARK		= 7
+        ELEMENT_FIRE        = 0,
+        ELEMENT_EARTH       = 1,
+        ELEMENT_WATER       = 2,
+        ELEMENT_WIND        = 3,
+        ELEMENT_ICE         = 4,
+        ELEMENT_LIGHTNING   = 5,
+        ELEMENT_LIGHT       = 6,
+        ELEMENT_DARK        = 7
     };
 
     enum SYNTHESIS_RESULT
     {
-        SYNTHESIS_FAIL		= 0,
-        SYNTHESIS_SUCCESS	= 1,
-        SYNTHESIS_HQ		= 2,
-        SYNTHESIS_HQ2		= 3,
-        SYNTHESIS_HQ3		= 4
+        SYNTHESIS_FAIL      = 0,
+        SYNTHESIS_SUCCESS   = 1,
+        SYNTHESIS_HQ        = 2,
+        SYNTHESIS_HQ2       = 3,
+        SYNTHESIS_HQ3       = 4
     };
 
-	int32 startSynth(CCharEntity* PChar);
-	int32 sendSynthDone(CCharEntity* PChar);
+    int32 startSynth(CCharEntity* PChar);
+    int32 sendSynthDone(CCharEntity* PChar);
 };
 
 #endif

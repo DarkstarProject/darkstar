@@ -40,7 +40,7 @@ class CPartySearchPacket : public CBasicPacket
 {
 public:
 
-	CPartySearchPacket(CCharEntity* PChar);
+    CPartySearchPacket(CCharEntity* PChar);
 };
 
 #endif

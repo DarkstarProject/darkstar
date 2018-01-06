@@ -28,15 +28,15 @@
 
 #include "basic.h"
 
-#define INV_NORMAL		0x00
-#define INV_NODROP		0x05
-#define INV_NOSELECT	0x0F
+#define INV_NORMAL      0x00
+#define INV_NODROP      0x05
+#define INV_NOSELECT    0x0F
 #define INV_LINKSHELL   0x13 // название под большим вопросом
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CItem;

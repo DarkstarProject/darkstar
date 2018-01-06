@@ -136,7 +136,7 @@ bool CLatentEffect::Deactivate()
         if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
-			CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
+            CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
 
             int16 modPower = GetModPower();
 

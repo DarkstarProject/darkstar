@@ -73,7 +73,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
 
                 //if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
                 //{
-                //	ref<uint8>(data,(0x22)) = 0x20;
+                //  ref<uint8>(data,(0x22)) = 0x20;
                 //}
 
                 if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
@@ -96,9 +96,9 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 }
 
                 ref<uint8>(0x27) = (PChar->isCharmed ? 0x08 : 0x00);
-                
+
                 ref<uint8>(0x29) = PChar->allegiance;
-                
+
                 // Mentor flag..
                 if (PChar->menuConfigFlags.flags & NFLAG_MENTOR)
                     ref<uint8>(0x2B) = 0x01;

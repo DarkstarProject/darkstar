@@ -80,7 +80,7 @@ void CAbility::setActionType(ACTIONTYPE type)
     m_actionType = type;
 }
 
-JOBTYPE	CAbility::getJob()
+JOBTYPE CAbility::getJob()
 {
     return m_Job;
 }
@@ -309,7 +309,7 @@ uint16 CAbility::getAoEMsg()
 namespace ability
 {
     CAbility* PAbilityList[MAX_ABILITY_ID];                     // Complete Abilities List
-    std::vector<CAbility*> PAbilitiesList[MAX_JOBTYPE];			// Abilities List By Job Type
+    std::vector<CAbility*> PAbilitiesList[MAX_JOBTYPE];         // Abilities List By Job Type
     std::vector<Charge_t*> PChargesList;                       // Abilities with charges
 
     /************************************************************************

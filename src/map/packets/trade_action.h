@@ -29,18 +29,18 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
 
 class CTradeActionPacket : public CBasicPacket
 {
-	public:
+    public:
 
-	CTradeActionPacket(CCharEntity* PChar, uint32 action);
+    CTradeActionPacket(CCharEntity* PChar, uint32 action);
 };
 
 #endif

@@ -38,7 +38,7 @@ CCharSyncPacket::CCharSyncPacket(CCharEntity* PChar)
     ref<uint8>(0x05) = 0x09;
     ref<uint16>(0x06) = PChar->targid;
     ref<uint32>(0x08) = PChar->id;
-    ref<uint8>(0x10) = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) ? 4 : 0; 	// 0x02 - Campaign Battle, 0x04 - Level Sync
-    ref<uint8>(0x25) = PChar->jobs.job[PChar->GetMJob()];	// реальный уровень персонажа (при ограничении уровня отличается от m_mlvl)
+    ref<uint8>(0x10) = PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) ? 4 : 0;    // 0x02 - Campaign Battle, 0x04 - Level Sync
+    ref<uint8>(0x25) = PChar->jobs.job[PChar->GetMJob()];   // реальный уровень персонажа (при ограничении уровня отличается от m_mlvl)
     ref<uint8>(0x27) = 0x01;
 }

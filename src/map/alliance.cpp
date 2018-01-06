@@ -43,27 +43,27 @@
 
 CAlliance::CAlliance(CBattleEntity* PEntity)
 {
-	DSP_DEBUG_BREAK_IF(PEntity->PParty == nullptr);
+    DSP_DEBUG_BREAK_IF(PEntity->PParty == nullptr);
 
     m_AllianceID   = PEntity->PParty->GetPartyID();
 
-	//will need to deal with these
-	//m_PSyncTarget 	= nullptr;
-//	m_PQuaterMaster = nullptr;
+    //will need to deal with these
+    //m_PSyncTarget     = nullptr;
+//  m_PQuaterMaster = nullptr;
 
 
     addParty(PEntity->PParty);
-	this->aLeader = PEntity->PParty;
+    this->aLeader = PEntity->PParty;
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE partyid = %u AND partyflag & %d;", ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
 }
 
 CAlliance::CAlliance(uint32 id)
 {
-	m_AllianceID = id;
+    m_AllianceID = id;
 }
 
-void CAlliance::dissolveAlliance(bool playerInitiated) 
-{   
+void CAlliance::dissolveAlliance(bool playerInitiated)
+{
     if (playerInitiated)
     {
         //Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE allianceid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID);
@@ -76,7 +76,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
     {
         Sql_Query(SqlHandle, "UPDATE accounts_parties JOIN accounts_sessions USING (charid) \
                         SET allianceid = 0, partyflag = partyflag & ~%d \
-                        WHERE allianceid = %u AND IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
+                        WHERE allianceid = %u AND IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);",
                         ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip.s_addr, map_port, map_ip.s_addr, map_port);
         //first kick out the third party if it exsists
         CParty* party = nullptr;
@@ -107,8 +107,8 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
 }
 
 
-uint32 CAlliance::partyCount(void) 
-{	
+uint32 CAlliance::partyCount(void)
+{
     int ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE allianceid = %d GROUP BY partyid;", m_AllianceID, PARTY_SECOND | PARTY_THIRD);
 
     if (ret != SQL_ERROR)
@@ -118,11 +118,11 @@ uint32 CAlliance::partyCount(void)
     return 0;
 }
 
-void CAlliance::removeParty(CParty * party) 
+void CAlliance::removeParty(CParty * party)
 {
 
     //if main party then pass alliance lead to the next (d/c fix)
-    if (this->getMainParty() == party) 
+    if (this->getMainParty() == party)
     {
         int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
                                 JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE allianceid = %u AND partyflag & %d \
@@ -138,12 +138,12 @@ void CAlliance::removeParty(CParty * party)
             return;
         }
     }
-    
+
     delParty(party);
 
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
     uint8 data[4] {};
-	ref<uint32>(data, 0) = m_AllianceID;
+    ref<uint32>(data, 0) = m_AllianceID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
     uint8 data2[4] {};
@@ -210,9 +210,9 @@ void CAlliance::delParty(CParty* party)
 
 void CAlliance::addParty(CParty * party)
 {
-	party->m_PAlliance = this;
-	partyList.push_back(party);
-	
+    party->m_PAlliance = this;
+    partyList.push_back(party);
+
     uint8 newparty = 0;
 
     int ret = Sql_Query(SqlHandle, "SELECT partyflag & %d FROM accounts_parties WHERE allianceid = %d ORDER BY partyflag & %d ASC;", PARTY_SECOND | PARTY_THIRD, m_AllianceID, PARTY_SECOND | PARTY_THIRD);
@@ -228,16 +228,16 @@ void CAlliance::addParty(CParty * party)
         }
     }
 
-	for (uint8 i = 0; i < party->members.size(); ++i)
-	{
-		party->ReloadTreasurePool((CCharEntity*)party->members.at(i));
-		charutils::SaveCharStats((CCharEntity*)party->members.at(i));
-	}
+    for (uint8 i = 0; i < party->members.size(); ++i)
+    {
+        party->ReloadTreasurePool((CCharEntity*)party->members.at(i));
+        charutils::SaveCharStats((CCharEntity*)party->members.at(i));
+    }
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, party->GetPartyID());
     party->SetPartyNumber(newparty);
 
     uint8 data[4] {};
-	ref<uint32>(data, 0) = m_AllianceID;
+    ref<uint32>(data, 0) = m_AllianceID;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
 }
@@ -262,7 +262,7 @@ void CAlliance::addParty(uint32 partyid)
     }
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, partyid);
     uint8 data[8] {};
-	ref<uint32>(data, 0) = m_AllianceID;
+    ref<uint32>(data, 0) = m_AllianceID;
     ref<uint32>(data, 4) = partyid;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 }
@@ -280,15 +280,15 @@ void CAlliance::pushParty(CParty* PParty, uint8 number)
     }
 }
 
-CParty* CAlliance::getMainParty() 
-{	
-	return aLeader;
+CParty* CAlliance::getMainParty()
+{
+    return aLeader;
 }
 
 //Assigns a party leader for the party
-void CAlliance::setMainParty(CParty * aLeader) 
+void CAlliance::setMainParty(CParty * aLeader)
 {
-	this->aLeader = aLeader;
+    this->aLeader = aLeader;
 }
 
 void CAlliance::assignAllianceLeader(const char* name)
@@ -303,7 +303,7 @@ void CAlliance::assignAllianceLeader(const char* name)
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u WHERE allianceid = %u;", charid, m_AllianceID);
         m_AllianceID = charid;
 
-        //in case leader's on another server 
+        //in case leader's on another server
         this->aLeader = nullptr;
 
         for (auto PParty : partyList)

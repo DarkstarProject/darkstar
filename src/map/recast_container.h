@@ -34,7 +34,7 @@ enum RECASTTYPE
     RECAST_ITEM     = 0,
     RECAST_MAGIC    = 1,
     RECAST_ABILITY  = 2,
-	RECAST_LOOT     = 3
+    RECAST_LOOT     = 3
 };
 #define MAX_RECASTTPE_SIZE   4
 
@@ -65,7 +65,7 @@ class CRecastContainer
 
     virtual void Del(RECASTTYPE type);
     virtual void Del(RECASTTYPE type, uint16 id);
-	virtual void DeleteByIndex(RECASTTYPE type, uint8 index);
+    virtual void DeleteByIndex(RECASTTYPE type, uint8 index);
     bool Has(RECASTTYPE type, uint16 id);
     bool HasRecast(RECASTTYPE type, uint16 id, uint32 recast);
     virtual void Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime = 0, uint8 maxCharges = 0);
@@ -76,7 +76,7 @@ class CRecastContainer
     virtual RecastList_t* GetRecastList(RECASTTYPE type);
     Recast_t*     GetRecast(RECASTTYPE type, uint16 id);
 
-	CRecastContainer(CBattleEntity* PChar);
+    CRecastContainer(CBattleEntity* PChar);
     virtual ~CRecastContainer(){}
 
     protected:
@@ -86,7 +86,7 @@ class CRecastContainer
 
     private:
 
-	CBattleEntity* m_PEntity;
+    CBattleEntity* m_PEntity;
 };
 
 #endif

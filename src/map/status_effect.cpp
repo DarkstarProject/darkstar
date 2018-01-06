@@ -43,7 +43,7 @@ CStatusEffect::~CStatusEffect()
 
 const int8* CStatusEffect::GetName()
 {
-	return (const int8*)m_Name.c_str();
+    return (const int8*)m_Name.c_str();
 }
 
 void CStatusEffect::SetOwner(CBattleEntity* Owner)
@@ -53,17 +53,17 @@ void CStatusEffect::SetOwner(CBattleEntity* Owner)
 
 EFFECT CStatusEffect::GetStatusID()
 {
-	return m_StatusID;
+    return m_StatusID;
 }
 
 CBattleEntity* CStatusEffect::GetOwner()
 {
-	return m_POwner;
+    return m_POwner;
 }
 
 uint32 CStatusEffect::GetSubID()
 {
-	return m_SubID;
+    return m_SubID;
 }
 
 uint16 CStatusEffect::GetType()
@@ -73,12 +73,12 @@ uint16 CStatusEffect::GetType()
 
 uint16 CStatusEffect::GetIcon()
 {
-	return m_Icon;
+    return m_Icon;
 }
 
 uint16 CStatusEffect::GetPower()
 {
-	return m_Power;
+    return m_Power;
 }
 
 uint16 CStatusEffect::GetSubPower()
@@ -93,17 +93,17 @@ uint16 CStatusEffect::GetTier()
 
 uint32 CStatusEffect::GetFlag()
 {
-	return m_Flag;
+    return m_Flag;
 }
 
 uint32 CStatusEffect::GetTickTime()
 {
-	return m_TickTime;
+    return m_TickTime;
 }
 
 uint32 CStatusEffect::GetDuration()
 {
-	return m_Duration;
+    return m_Duration;
 }
 
 int CStatusEffect::GetElapsedTickCount()
@@ -113,7 +113,7 @@ int CStatusEffect::GetElapsedTickCount()
 
 time_point CStatusEffect::GetStartTime()
 {
-	return m_StartTime;
+    return m_StartTime;
 }
 
 void CStatusEffect::SetFlag(uint32 Flag)
@@ -130,7 +130,7 @@ void CStatusEffect::SetIcon(uint16 Icon)
 {
     DSP_DEBUG_BREAK_IF(m_POwner == nullptr);
 
-	m_Icon = Icon;
+    m_Icon = Icon;
     m_POwner->StatusEffectContainer->UpdateStatusIcons();
 }
 
@@ -141,7 +141,7 @@ void CStatusEffect::SetType(uint16 Type)
 
 void CStatusEffect::SetPower(uint16 Power)
 {
-	m_Power = Power;
+    m_Power = Power;
 }
 
 void CStatusEffect::SetSubPower(uint16 subPower)
@@ -156,18 +156,18 @@ void CStatusEffect::SetTier(uint16 tier)
 
 void CStatusEffect::SetDuration(uint32 Duration)
 {
-	m_Duration = Duration;
+    m_Duration = Duration;
 }
 
 void CStatusEffect::SetStartTime(time_point StartTime)
 {
-	m_tickCount  = 0;
-	m_StartTime = StartTime;
+    m_tickCount  = 0;
+    m_StartTime = StartTime;
 }
 
 void CStatusEffect::SetTickTime(uint32 tick)
 {
-	m_TickTime = tick;
+    m_TickTime = tick;
 }
 
 void CStatusEffect::IncrementElapsedTickCount()
@@ -177,24 +177,24 @@ void CStatusEffect::IncrementElapsedTickCount()
 
 void CStatusEffect::SetName(const int8* name)
 {
-	m_Name.clear();
-	m_Name.insert(0, (const char*)name);
+    m_Name.clear();
+    m_Name.insert(0, (const char*)name);
 }
 
 void CStatusEffect::SetName(string_t name)
 {
-	m_Name = name;
+    m_Name = name;
 }
 
 void CStatusEffect::addMod(Mod modType, int16 amount)
 {
-	for (uint32 i = 0; i < modList.size(); ++i)
-	{
-		if (modList.at(i).getModID() == modType)
-		{
-			modList.at(i).setModAmount(modList.at(i).getModAmount() + amount);
-			return;
-		}
-	}
-	modList.push_back(CModifier(modType, amount));
+    for (uint32 i = 0; i < modList.size(); ++i)
+    {
+        if (modList.at(i).getModID() == modType)
+        {
+            modList.at(i).setModAmount(modList.at(i).getModAmount() + amount);
+            return;
+        }
+    }
+    modList.push_back(CModifier(modType, amount));
 }

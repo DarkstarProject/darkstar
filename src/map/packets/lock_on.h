@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -41,7 +41,7 @@ class CLockOnPacket : public CBasicPacket
 {
 public:
 
-	CLockOnPacket(CCharEntity* PChar, CBattleEntity* PTarget);
+    CLockOnPacket(CCharEntity* PChar, CBattleEntity* PTarget);
 };
 
 #endif

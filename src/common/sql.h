@@ -5,15 +5,15 @@
 #define _COMMON_SQL_H
 
 #ifndef _CBASETYPES_H_
-	#include "../common/cbasetypes.h"
+    #include "../common/cbasetypes.h"
 #endif
-	//#include <stdarg.h>// va_list
+    //#include <stdarg.h>// va_list
 
 #ifdef WIN32
-	#include <winsock2.h>
-	#include <mysql/mysql.h>
+    #include <winsock2.h>
+    #include <mysql/mysql.h>
 #else
- 	#include <mysql/mysql.h>
+    #include <mysql/mysql.h>
 #endif
 //#endif
 
@@ -28,53 +28,53 @@
 /// String, enum and blob data types need the buffer length specified.
 enum SqlDataType
 {
-	SQLDT_NULL,
-	// fixed size
-	SQLDT_INT8,
-	SQLDT_INT16,
-	SQLDT_INT32,
-	SQLDT_INT64,
-	SQLDT_UINT8,
-	SQLDT_UINT16,
-	SQLDT_UINT32,
-	SQLDT_UINT64,
-	// platform dependent size
-	SQLDT_CHAR,
-	SQLDT_SHORT,
-	SQLDT_INT,
-	SQLDT_LONG,
-	SQLDT_LONGLONG,
-	SQLDT_UCHAR,
-	SQLDT_USHORT,
-	SQLDT_UINT,
-	SQLDT_ULONG,
-	SQLDT_ULONGLONG,
-	// floating point
-	SQLDT_FLOAT,
-	SQLDT_DOUBLE,
-	// other
-	SQLDT_STRING,
-	SQLDT_ENUM,
-	// Note: An ENUM is a string with restricted values. When an invalid value
-	//       is inserted, it is saved as an empty string (numerical value 0).
-	SQLDT_BLOB,
-	SQLDT_LASTID
+    SQLDT_NULL,
+    // fixed size
+    SQLDT_INT8,
+    SQLDT_INT16,
+    SQLDT_INT32,
+    SQLDT_INT64,
+    SQLDT_UINT8,
+    SQLDT_UINT16,
+    SQLDT_UINT32,
+    SQLDT_UINT64,
+    // platform dependent size
+    SQLDT_CHAR,
+    SQLDT_SHORT,
+    SQLDT_INT,
+    SQLDT_LONG,
+    SQLDT_LONGLONG,
+    SQLDT_UCHAR,
+    SQLDT_USHORT,
+    SQLDT_UINT,
+    SQLDT_ULONG,
+    SQLDT_ULONGLONG,
+    // floating point
+    SQLDT_FLOAT,
+    SQLDT_DOUBLE,
+    // other
+    SQLDT_STRING,
+    SQLDT_ENUM,
+    // Note: An ENUM is a string with restricted values. When an invalid value
+    //       is inserted, it is saved as an empty string (numerical value 0).
+    SQLDT_BLOB,
+    SQLDT_LASTID
 };
 
 /*
 *
-*					SQL LEVEL
+*                   SQL LEVEL
 *
 */
 
 struct Sql_t
 {
-	std::string buf;
-	MYSQL handle;
-	MYSQL_RES* result;
-	MYSQL_ROW row;
-	unsigned long* lengths;
-	int keepalive;
+    std::string buf;
+    MYSQL handle;
+    MYSQL_RES* result;
+    MYSQL_ROW row;
+    unsigned long* lengths;
+    int keepalive;
 };
 
 /// Allocates and initializes a new Sql handle.
@@ -128,7 +128,7 @@ template<typename... Args>
 int32 Sql_Query(Sql_t* self, const char* query, Args... args)
 {
     std::string query_v = fmt::sprintf(query, args...);
-	return Sql_QueryStr(self, query_v.c_str());
+    return Sql_QueryStr(self, query_v.c_str());
 }
 
 uint64 Sql_AffectedRows(Sql_t* self);
@@ -175,9 +175,9 @@ float  Sql_GetFloatData(Sql_t *self, size_t col);
 void Sql_FreeResult(Sql_t* self);
 
 #if defined(SQL_REMOVE_SHOWDEBUG)
-	#define Sql_ShowDebug(self) (void)0
+    #define Sql_ShowDebug(self) (void)0
 #else
-	#define Sql_ShowDebug(self) Sql_ShowDebug_(self, __FILE__, __LINE__)
+    #define Sql_ShowDebug(self) Sql_ShowDebug_(self, __FILE__, __LINE__)
 #endif
 
 /// Shows debug information (last query).
@@ -198,5 +198,5 @@ bool Sql_TransactionRollback(Sql_t* self);
 
 #endif
 
-//											End level									//
+//                                          End level                                   //
 //////////////////////////////////////////////////////////////////////////////////////////

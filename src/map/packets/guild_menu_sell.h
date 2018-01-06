@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,8 +40,8 @@ class CItemContainer;
 class CGuildMenuSellPacket : public CBasicPacket
 {
 public:
-	
-	CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* PGuild);
+
+    CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* PGuild);
 };
 
 #endif

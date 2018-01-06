@@ -30,24 +30,24 @@
 
 CBaseEntity::CBaseEntity()
 {
-	m_TargID = 0;
-	namevis = 1;
+    m_TargID = 0;
+    namevis = 1;
 
     PAI = nullptr;
-	PBCNM = nullptr;
-	PInstance = nullptr;
+    PBCNM = nullptr;
+    PInstance = nullptr;
 
-	speed    = 40 + map_config.speed_mod;
-	speedsub = 40 + map_config.speed_mod;
+    speed    = 40 + map_config.speed_mod;
+    speedsub = 40 + map_config.speed_mod;
 
-	animationsub = 0;
-	animation    = ANIMATION_NONE;
+    animationsub = 0;
+    animation    = ANIMATION_NONE;
 
-	status = STATUS_DISAPPEAR;
+    status = STATUS_DISAPPEAR;
     updatemask = 0;
 
-	memset(&loc,  0, sizeof(loc));
-	memset(&look, 0, sizeof(look));
+    memset(&loc,  0, sizeof(loc));
+    memset(&look, 0, sizeof(look));
 }
 
 CBaseEntity::~CBaseEntity()
@@ -71,7 +71,7 @@ void CBaseEntity::FadeOut()
 
 const int8* CBaseEntity::GetName()
 {
-	return (const int8*)name.c_str();
+    return (const int8*)name.c_str();
 }
 
 uint16 CBaseEntity::getZone()
@@ -81,49 +81,49 @@ uint16 CBaseEntity::getZone()
 
 float CBaseEntity::GetXPos()
 {
-	return loc.p.x;
+    return loc.p.x;
 }
 
 float CBaseEntity::GetYPos()
 {
-	return loc.p.y;
+    return loc.p.y;
 }
 
 float CBaseEntity::GetZPos()
 {
-	return loc.p.z;
+    return loc.p.z;
 }
 
 uint8 CBaseEntity::GetRotPos()
 {
-	return loc.p.rotation;
+    return loc.p.rotation;
 }
 
 void CBaseEntity::HideName(bool hide)
 {
-	if(hide)
-	{
-		// I totally guessed this number
-		namevis |= FLAG_HIDE_NAME;
-	}
-	else
-	{
-		namevis &= ~FLAG_HIDE_NAME;
-	}
+    if(hide)
+    {
+        // I totally guessed this number
+        namevis |= FLAG_HIDE_NAME;
+    }
+    else
+    {
+        namevis &= ~FLAG_HIDE_NAME;
+    }
     updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()
 {
-	return namevis & FLAG_HIDE_NAME;
+    return namevis & FLAG_HIDE_NAME;
 }
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 {
-	if (PInstance)
-		return PInstance->GetEntity(targid, filter);
-	else
-		return loc.zone->GetEntity(targid, filter);
+    if (PInstance)
+        return PInstance->GetEntity(targid, filter);
+    else
+        return loc.zone->GetEntity(targid, filter);
 }
 
 void CBaseEntity::ResetLocalVars()

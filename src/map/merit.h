@@ -264,7 +264,7 @@ enum MERIT_TYPE
     MERIT_SUITON_EFFECT             = MCATEGORY_NIN_1 + 0x0C,
 
     //DRG 1
-	MERIT_ANCIENT_CIRCLE_RECAST		= MCATEGORY_DRG_1 + 0x00,
+    MERIT_ANCIENT_CIRCLE_RECAST     = MCATEGORY_DRG_1 + 0x00,
     MERIT_JUMP_RECAST               = MCATEGORY_DRG_1 + 0x02,
     MERIT_HIGH_JUMP_RECAST          = MCATEGORY_DRG_1 + 0x04,
     MERIT_SUPER_JUMP_RECAST         = MCATEGORY_DRG_1 + 0x05,
@@ -340,12 +340,12 @@ enum MERIT_TYPE
     MERIT_APEX_ARROW                = MCATEGORY_WS + 0x18,
     MERIT_LAST_STAND                = MCATEGORY_WS + 0x1A,
 
-	// unknown
-	//MERIT_UNKNOWN1					= MCATEGORY_UNK_0 + 0x00,
-    //MERIT_UNKNOWN2					= MCATEGORY_UNK_1 + 0x00,
-    //MERIT_UNKNOWN3					= MCATEGORY_UNK_2 + 0x00,
-    //MERIT_UNKNOWN4					= MCATEGORY_UNK_3 + 0x00,
-    //MERIT_UNKNOWN5					= MCATEGORY_UNK_4 + 0x00,
+    // unknown
+    //MERIT_UNKNOWN1                    = MCATEGORY_UNK_0 + 0x00,
+    //MERIT_UNKNOWN2                    = MCATEGORY_UNK_1 + 0x00,
+    //MERIT_UNKNOWN3                    = MCATEGORY_UNK_2 + 0x00,
+    //MERIT_UNKNOWN4                    = MCATEGORY_UNK_3 + 0x00,
+    //MERIT_UNKNOWN5                    = MCATEGORY_UNK_4 + 0x00,
 
     //WAR 2
     MERIT_WARRIORS_CHARGE           = MCATEGORY_WAR_2 + 0x00,
@@ -517,11 +517,11 @@ struct Merit_t
         uint32 data;        // data sent in packet
     };
 
-    uint32 value;           // the coefficient of variation of the parameter that is bound to merit 
+    uint32 value;           // the coefficient of variation of the parameter that is bound to merit
     uint8  upgrade;         // maximum number of upgrades
     uint32 jobs;            // bitmask of jobs for which merit has effect
-	uint8  upgradeid;		// which set of upgrade values the merit will use
-	uint8  catid;			// cat which merit belongs to
+    uint8  upgradeid;       // which set of upgrade values the merit will use
+    uint8  catid;           // cat which merit belongs to
     uint16 spellid;         // associated spell ID to learn/unlearn
 };
 
@@ -552,29 +552,29 @@ class CMeritPoints
         void        SetMeritPoints(uint16 points);                  // used for loading player merit points on login
 
         const Merit_t* GetMerit(MERIT_TYPE merit);
-		const Merit_t* GetMeritByIndex(uint16 index);				// get merit index, 0,1,2,3,4 and so on
+        const Merit_t* GetMeritByIndex(uint16 index);               // get merit index, 0,1,2,3,4 and so on
 
-		void LoadMeritPoints(uint32 charid);						// load char applied merits
-		void SaveMeritPoints(uint32 charid);	// save char applied merits
+        void LoadMeritPoints(uint32 charid);                        // load char applied merits
+        void SaveMeritPoints(uint32 charid);    // save char applied merits
 
     private:
 
         uint16       m_LimitPoints;
         uint8        m_MeritPoints;
         CCharEntity* m_PChar;
-		Merit_t      merits[MERITS_COUNT];
+        Merit_t      merits[MERITS_COUNT];
 
         Merit_t*     GetMeritPointer(MERIT_TYPE merit);
-        Merit_t*     Categories[MCATEGORY_COUNT/64-1];				// 51 pointers to the first merit of each catagory
+        Merit_t*     Categories[MCATEGORY_COUNT/64-1];              // 51 pointers to the first merit of each catagory
 };
 
 
 namespace meritNameSpace
 {
-	void		LoadMeritsList();									// load the global list of merits
+    void        LoadMeritsList();                                   // load the global list of merits
 
-	extern Merit_t GMeritsTemplate[MERITS_COUNT];
-	extern int16 groupOffset[MCATEGORY_COUNT/64-1];				// the first merit offset of each catagory
+    extern Merit_t GMeritsTemplate[MERITS_COUNT];
+    extern int16 groupOffset[MCATEGORY_COUNT/64-1];             // the first merit offset of each catagory
 };
 
 #endif

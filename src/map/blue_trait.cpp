@@ -31,15 +31,15 @@ CBlueTrait::CBlueTrait(uint8 category, uint8 id) : CTrait(id)
 
 uint8 CBlueTrait::getCategory()
 {
-	return m_category;
+    return m_category;
 }
 
 uint8 CBlueTrait::getPoints()
 {
-	return m_points;
+    return m_points;
 }
 
 void CBlueTrait::setPoints(uint8 points)
 {
-	m_points = points;
+    m_points = points;
 }

@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,7 +40,7 @@ class CShopMenuPacket : public CBasicPacket
 {
 public:
 
-	CShopMenuPacket(CCharEntity* PChar);
+    CShopMenuPacket(CCharEntity* PChar);
 };
 
 #endif

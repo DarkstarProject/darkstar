@@ -27,17 +27,17 @@
 #include "../entities/charentity.h"
 
 
-CReleasePacket::CReleasePacket(CCharEntity * PChar, RELEASE_TYPE releaseType) 
+CReleasePacket::CReleasePacket(CCharEntity * PChar, RELEASE_TYPE releaseType)
 {
-	this->type = 0x52;
-	this->size = 0x04;
-	
-	ref<uint8>(0x04) = releaseType;
+    this->type = 0x52;
+    this->size = 0x04;
 
-	if (releaseType == RELEASE_SKIPPING) 
-	{
-		ref<uint16>(0x05) = PChar->m_event.EventID;
-	}
+    ref<uint8>(0x04) = releaseType;
+
+    if (releaseType == RELEASE_SKIPPING)
+    {
+        ref<uint16>(0x05) = PChar->m_event.EventID;
+    }
 }
 
 // типы release

@@ -30,12 +30,12 @@
 
 CInventoryAssignPacket::CInventoryAssignPacket(CItem* PItem, uint8 Flag)
 {
-	this->type = 0x1F;
-	this->size = 0x08;
+    this->type = 0x1F;
+    this->size = 0x08;
 
     ref<uint32>(0x04) = PItem->getQuantity();
-	ref<uint16>(0x08) = PItem->getID();
+    ref<uint16>(0x08) = PItem->getID();
     ref<uint8>(0x0A) = PItem->getLocationID();
     ref<uint8>(0x0B) = PItem->getSlotID();
-	ref<uint8>(0x0C) = Flag;
+    ref<uint8>(0x0C) = Flag;
 }

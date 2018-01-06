@@ -41,10 +41,10 @@
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
-	objtype = TYPE_PET;
-	m_PetType = petType;
-	m_EcoSystem = SYSTEM_UNCLASSIFIED;
-	allegiance = ALLEGIANCE_PLAYER;
+    objtype = TYPE_PET;
+    m_PetType = petType;
+    m_EcoSystem = SYSTEM_UNCLASSIFIED;
+    allegiance = ALLEGIANCE_PLAYER;
     m_MobSkillList = 0;
     PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CPetController>(this),
         std::make_unique<CTargetFind>(this));
@@ -137,12 +137,12 @@ void CPetEntity::PostTick()
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
-        
+
         if (PMaster && PMaster->PPet == this)
         {
             ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
         }
-        
+
         updatemask = 0;
     }
 }

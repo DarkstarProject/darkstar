@@ -26,7 +26,7 @@ function onItemCheck(target, param, caster)
             return msgBasic.ITEM_CANNOT_USE_ON
         end
     end
-	
+
     return 0;
 end;
 

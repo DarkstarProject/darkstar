@@ -43,14 +43,14 @@ enum CONTAINER_ID
     LOC_WARDROBE4       = 12
 };
 
-#define MAX_CONTAINER_ID	 13
-#define MAX_CONTAINER_SIZE	120
-#define ERROR_SLOTID		255
+#define MAX_CONTAINER_ID     13
+#define MAX_CONTAINER_SIZE  120
+#define ERROR_SLOTID        255
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CItem;
@@ -59,27 +59,27 @@ class CItemContainer
 {
 public:
 
-	CItemContainer(uint16 LocationID);
+    CItemContainer(uint16 LocationID);
    ~CItemContainer();
 
-	uint16	GetID();
+    uint16  GetID();
     uint16  GetBuff();                              // планируемый размер хранилища (размер без ограничений)
-	uint8	GetSize();
-	uint8	GetFreeSlotsCount();					// количество свободных ячеек в хранилище
+    uint8   GetSize();
+    uint8   GetFreeSlotsCount();                    // количество свободных ячеек в хранилище
     uint8   AddBuff(int8 buff);                     // планируемый размер хранилища (размер без ограничений)
     uint8   AddSize(int8 size);                     // увеличиваем/уменьшаем размер контейнера
-	uint8	SetSize(uint8 size);
-	uint8	SearchItem(uint16 ItemID);				// поиск предмета в хранилище
+    uint8   SetSize(uint8 size);
+    uint8   SearchItem(uint16 ItemID);              // поиск предмета в хранилище
     uint8   SearchItemWithSpace(uint16 ItemID, uint32 quantity); //search for item that has space to accomodate x items added
 
-	uint8	InsertItem(CItem* PItem);				// добавляем заранее созданный предмет в свободную ячейку
-	uint8	InsertItem(CItem* PItem, uint8 slotID);	// добавляем заранее созданный предмет в выбранную ячейку
+    uint8   InsertItem(CItem* PItem);               // добавляем заранее созданный предмет в свободную ячейку
+    uint8   InsertItem(CItem* PItem, uint8 slotID); // добавляем заранее созданный предмет в выбранную ячейку
 
     uint32  SortingPacket;                          // количество запросов на сортировку за такт
     uint32  LastSortingTime;                        // время последней сортировки контейнера
 
-	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка.
-	void	Clear();								// Remove all items from container
+    CItem*  GetItem(uint8 slotID);                  // получаем указатель на предмет, находящийся в указанной ячейка.
+    void    Clear();                                // Remove all items from container
 
     template<typename F, typename... Args>
     void ForEachItem(F func, Args&&... args)
@@ -95,12 +95,12 @@ public:
 
 private:
 
-	uint16	m_id;
+    uint16  m_id;
     uint16  m_buff;
-	uint8	m_size;
+    uint8   m_size;
     uint8   m_count;
 
-	CItem*	m_ItemList[MAX_CONTAINER_SIZE+1];
+    CItem*  m_ItemList[MAX_CONTAINER_SIZE+1];
 };
 
 #endif

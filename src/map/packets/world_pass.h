@@ -29,16 +29,16 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CWorldPassPacket : public CBasicPacket
 {
 public:
 
-	CWorldPassPacket(uint32 WorldPass);
+    CWorldPassPacket(uint32 WorldPass);
 };
 
 #endif

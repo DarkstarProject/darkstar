@@ -31,9 +31,9 @@
 
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -42,7 +42,7 @@ class CMenuMeritPacket : public CBasicPacket
 {
 public:
 
-	CMenuMeritPacket(CCharEntity* PChar);
+    CMenuMeritPacket(CCharEntity* PChar);
 };
 
 #endif

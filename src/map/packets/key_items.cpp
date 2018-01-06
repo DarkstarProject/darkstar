@@ -31,13 +31,13 @@
 
 CKeyItemsPacket::CKeyItemsPacket(CCharEntity * PChar, KEYS_TABLE KeyTable)
 {
-	this->type = 0x55;
-	this->size = 0x44;
+    this->type = 0x55;
+    this->size = 0x44;
 
     DSP_DEBUG_BREAK_IF(KeyTable >= MAX_KEYS_TABLE);
 
-	memcpy(data+(0x04), &(PChar->keys.tables[KeyTable].keyList), 0x40);
-	memcpy(data+(0x44), &(PChar->keys.tables[KeyTable].seenList), 0x40);
+    memcpy(data+(0x04), &(PChar->keys.tables[KeyTable].keyList), 0x40);
+    memcpy(data+(0x44), &(PChar->keys.tables[KeyTable].seenList), 0x40);
 
-	ref<uint8>(0x84) = KeyTable;
+    ref<uint8>(0x84) = KeyTable;
 }

@@ -33,9 +33,9 @@ This file is part of DarkStar-server source code.
 
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaInstance::CLuaInstance(lua_State *L)
@@ -52,9 +52,9 @@ CLuaInstance::CLuaInstance(lua_State *L)
 }
 
 /************************************************************************
-*																		*
-*  Constructor															*
-*																		*
+*                                                                       *
+*  Constructor                                                          *
+*                                                                       *
 ************************************************************************/
 
 CLuaInstance::CLuaInstance(CInstance* PInstance)
@@ -390,9 +390,9 @@ inline int32 CLuaInstance::insertAlly(lua_State* L)
 }
 
 /************************************************************************
-*																		*
-*  declare lua function													*
-*																		*
+*                                                                       *
+*  declare lua function                                                 *
+*                                                                       *
 ************************************************************************/
 
 const char CLuaInstance::className[] = "CInstance";

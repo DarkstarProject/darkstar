@@ -51,14 +51,14 @@ public:
     void        setColor(uint16 color);
 
     const int8* getName();
-	void		setName(int8* name);
-	void		setMessage(const int8* message, const int8* poster);
+    void        setName(int8* name);
+    void        setMessage(const int8* message, const int8* poster);
 
     void        AddMember(CCharEntity* PChar,int8 type, uint8 lsNum);
     bool        DelMember(CCharEntity* PChar);
 
     void        RemoveMemberByName(int8* MemberName);
-	void		ChangeMemberRank(int8* MemberName, uint8 toSack);
+    void        ChangeMemberRank(int8* MemberName, uint8 toSack);
 
     void        PushPacket(uint32 senderID, CBasicPacket* packet);
     void        PushLinkshellMessage(CCharEntity* PChar, bool ls1);
@@ -87,7 +87,7 @@ namespace linkshell
     bool DelOnlineMember(CCharEntity* PChar, CItemLinkshell* PItemLinkshell);
 
     uint32 RegisterNewLinkshell(const int8* name, uint16 color);
-	CLinkshell* GetLinkshell(uint32 id);
+    CLinkshell* GetLinkshell(uint32 id);
 };
 
 #endif

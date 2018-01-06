@@ -28,21 +28,21 @@ This file is part of DarkStar-server source code.
 
 CBlacklistPacket::CBlacklistPacket(uint32 accid, const int8* targetName, int8 action)
 {
-	this->type = 0x42;
-	this->size = 0x0E;
+    this->type = 0x42;
+    this->size = 0x0E;
 
-	switch (action)
-	{
-	case 0x00: // Added successfully..
-	case 0x01: // Removed successfully..
+    switch (action)
+    {
+    case 0x00: // Added successfully..
+    case 0x01: // Removed successfully..
         ref<uint32>(0x04) = accid;
         ref<uint8>(0x18) = action;
-		memcpy(data + 0x08 , targetName, strlen((const char*)targetName));
-		break;
+        memcpy(data + 0x08 , targetName, strlen((const char*)targetName));
+        break;
 
-	case 0x02: // Command error..
-		ref<uint32>(0x04) = 0x00000000;
-		ref<uint8>(0x18) = action;
-		break;
-	}
+    case 0x02: // Command error..
+        ref<uint32>(0x04) = 0x00000000;
+        ref<uint8>(0x18) = action;
+        break;
+    }
 }

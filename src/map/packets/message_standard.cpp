@@ -33,66 +33,66 @@
 CMessageStandardPacket::CMessageStandardPacket(uint16 MessageID)
 {
     this->type = 0x09;
-	this->size = 0x08;
+    this->size = 0x08;
 
     ref<uint16>(0x0A) = MessageID;
 }
 
 CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID)
 {
-	this->type = 0x09;
-	this->size = 0x12;
+    this->type = 0x09;
+    this->size = 0x12;
 
-	ref<uint16>(0x0A) = MessageID;
+    ref<uint16>(0x0A) = MessageID;
 
-	if (PChar != nullptr)
-	{
-		ref<uint32>(0x04) = PChar->id;
-		ref<uint16>(0x08) = PChar->targid;
-		
-		if (MessageID == 0x59) 
-		{
-			this->size = 0x30;
+    if (PChar != nullptr)
+    {
+        ref<uint32>(0x04) = PChar->id;
+        ref<uint16>(0x08) = PChar->targid;
 
-			ref<uint8>(0x0C) = 0x10;
+        if (MessageID == 0x59)
+        {
+            this->size = 0x30;
 
-			snprintf((char*)data+(0x0D), 24, "string2 %s", PChar->GetName());
-		}
-	}
-	else
-	{
-		snprintf((char*)data+(0x0D), 24, "Para0 %d Para1 %d", param0, param1);
-	}
+            ref<uint8>(0x0C) = 0x10;
+
+            snprintf((char*)data+(0x0D), 24, "string2 %s", PChar->GetName());
+        }
+    }
+    else
+    {
+        snprintf((char*)data+(0x0D), 24, "Para0 %d Para1 %d", param0, param1);
+    }
 }
 
 CMessageStandardPacket::CMessageStandardPacket(uint32 param0, uint32 param1, uint32 param2, uint32 param3, uint16 MessageID)
 {
-	this->type = 0x09;
-	this->size = 0x08;
+    this->type = 0x09;
+    this->size = 0x08;
 
-	ref<uint16>(0x0A) = MessageID;
+    ref<uint16>(0x0A) = MessageID;
 
-	snprintf((char*)data+(0x0D), 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
+    snprintf((char*)data+(0x0D), 100, "Para0 %d Para1 %d Para2 %d Para3 %d", param0, param1, param2, param3);
 
-	this->size += (strlen((char*)data+(0x0D)) >> 1) & 0xFE;
+    this->size += (strlen((char*)data+(0x0D)) >> 1) & 0xFE;
 }
 
 /************************************************************************
-*																		*
-*  Используется только для 0x58-го сообщения (/diceroll) 				*
-*																		*
+*                                                                       *
+*  Используется только для 0x58-го сообщения (/diceroll)                *
+*                                                                       *
 ************************************************************************/
 
 CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint16 MessageID)
 {
-	this->type = 0x09;
-	this->size = 0x18;
+    this->type = 0x09;
+    this->size = 0x18;
 
-	//DSP_DEBUG_BREAK_IF(MessageID != 0x58);
+    //DSP_DEBUG_BREAK_IF(MessageID != 0x58);
 
-	ref<uint16>(0x0A) = MessageID;
+    ref<uint16>(0x0A) = MessageID;
 
-	snprintf((char*)data+(0x0D), 40, "string2 %s string3 %u", PChar->GetName(), param0);
+    snprintf((char*)data+(0x0D), 40, "string2 %s string3 %u", PChar->GetName(), param0);
 
-	//ref<uint8>(data,(0x2F)) = 0x02;
+    //ref<uint8>(data,(0x2F)) = 0x02;
 }

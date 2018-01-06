@@ -48,100 +48,100 @@ namespace blueutils
 
 void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool addingSpell) {
 
-	//sanity check
-	if (slotIndex < 20) {
-		if (dynamic_cast<CBlueSpell*>(PSpell))
+    //sanity check
+    if (slotIndex < 20) {
+        if (dynamic_cast<CBlueSpell*>(PSpell))
         {
             if (addingSpell)
             {
                 if (!IsSpellSet(PChar, PSpell) && HasEnoughSetPoints(PChar, PSpell, slotIndex))
                 {
-				    // Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
+                    // Blue spells in SetBlueSpells must be 0x200 ofsetted so it's 1 byte per spell.
                     if (PChar->m_SetBlueSpells[slotIndex] != 0)
                     {
                         CBlueSpell* POldSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slotIndex] + 0x200));
                         PChar->delModifiers(&POldSpell->modList);
                     }
-				    PChar->m_SetBlueSpells[slotIndex] = static_cast<uint16>(PSpell->getID()) - 0x200;
-				    PChar->addModifiers(&PSpell->modList);
+                    PChar->m_SetBlueSpells[slotIndex] = static_cast<uint16>(PSpell->getID()) - 0x200;
+                    PChar->addModifiers(&PSpell->modList);
                 }
-			}
-			else
+            }
+            else
             {
-				PChar->m_SetBlueSpells[slotIndex] = 0x00;
-				PChar->delModifiers(&PSpell->modList);
-			}
+                PChar->m_SetBlueSpells[slotIndex] = 0x00;
+                PChar->delModifiers(&PSpell->modList);
+            }
             SaveSetSpells(PChar);
-		}
-	}
+        }
+    }
 }
 
 void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 
-	if (PMob->m_UsedSkillIds.size() == 0) { // minor optimisation.
-		return;
-	}
+    if (PMob->m_UsedSkillIds.size() == 0) { // minor optimisation.
+        return;
+    }
 
-	// prune the learnable blue spells
-	std::vector<CSpell*> PLearnableSpells;
-	for (std::map<uint16, uint16>::iterator i=PMob->m_UsedSkillIds.begin(); i != PMob->m_UsedSkillIds.end(); ++i) {
-		CSpell* PSpell = spell::GetSpellByMonsterSkillId(i->first);
-		if (PSpell != nullptr) {
-			PLearnableSpells.push_back(PSpell);
-		}
-	}
+    // prune the learnable blue spells
+    std::vector<CSpell*> PLearnableSpells;
+    for (std::map<uint16, uint16>::iterator i=PMob->m_UsedSkillIds.begin(); i != PMob->m_UsedSkillIds.end(); ++i) {
+        CSpell* PSpell = spell::GetSpellByMonsterSkillId(i->first);
+        if (PSpell != nullptr) {
+            PLearnableSpells.push_back(PSpell);
+        }
+    }
 
-	if (PLearnableSpells.size() == 0) {
-		return;
-	}
+    if (PLearnableSpells.size() == 0) {
+        return;
+    }
 
-	std::vector<CCharEntity*> PBlueMages;
+    std::vector<CCharEntity*> PBlueMages;
 
-	// populate PBlueMages
-	if (PChar->PParty != nullptr) {
+    // populate PBlueMages
+    if (PChar->PParty != nullptr) {
         for (uint8 i = 0; i < PChar->PParty->members.size(); i++) {
-			if (PChar->PParty->members[i]->GetMJob() == JOB_BLU && PChar->PParty->members[i]->objtype == TYPE_PC) {
-				PBlueMages.push_back((CCharEntity*)PChar->PParty->members[i]);
-			}
-		}
-	}
-	else if (PChar->GetMJob() == JOB_BLU) {
-		PBlueMages.push_back(PChar);
-	}
+            if (PChar->PParty->members[i]->GetMJob() == JOB_BLU && PChar->PParty->members[i]->objtype == TYPE_PC) {
+                PBlueMages.push_back((CCharEntity*)PChar->PParty->members[i]);
+            }
+        }
+    }
+    else if (PChar->GetMJob() == JOB_BLU) {
+        PBlueMages.push_back(PChar);
+    }
 
-	// loop through the list of BLUs and see if they can learn.
-	for (size_t i = 0; i < PBlueMages.size(); i++) {
-		CCharEntity* PBlueMage = PBlueMages[i];
+    // loop through the list of BLUs and see if they can learn.
+    for (size_t i = 0; i < PBlueMages.size(); i++) {
+        CCharEntity* PBlueMage = PBlueMages[i];
 
-		if (PBlueMage->isDead()) { // too dead to learn
-			continue;
-		}
+        if (PBlueMage->isDead()) { // too dead to learn
+            continue;
+        }
 
-		if (distance(PBlueMage->loc.p, PMob->loc.p) > 100) { // too far away to learn
-			continue;
-		}
+        if (distance(PBlueMage->loc.p, PMob->loc.p) > 100) { // too far away to learn
+            continue;
+        }
 
-		for (size_t spell = 0; spell < PLearnableSpells.size(); spell++) {
-			CSpell* PSpell = PLearnableSpells[spell];
+        for (size_t spell = 0; spell < PLearnableSpells.size(); spell++) {
+            CSpell* PSpell = PLearnableSpells[spell];
 
-			if (charutils::hasSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
-				continue;
-			}
+            if (charutils::hasSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
+                continue;
+            }
 
-			uint8 learnableLevel = PSpell->getJob(JOB_BLU);
-			if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
+            uint8 learnableLevel = PSpell->getJob(JOB_BLU);
+            if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
                 if (dsprand::GetRandomNumber(100) < 33) {
-					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
-						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
-						charutils::SaveSpell(PBlueMage, static_cast<uint16>(PSpell->getID()));
-						PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
-					}
-				}
-				break; // only one attempt at learning a spell, regardless of learn or not.
-			}
-		}
+                    if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
+                        PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
+                        charutils::SaveSpell(PBlueMage, static_cast<uint16>(PSpell->getID()));
+                        PBlueMage->pushPacket(new CCharSpellsPacket(PBlueMage));
+                    }
+                }
+                break; // only one attempt at learning a spell, regardless of learn or not.
+            }
+        }
 
-	}
+    }
 }
 
 bool HasEnoughSetPoints(CCharEntity* PChar, CBlueSpell* PSpellToAdd, uint8 slotToPut)
@@ -181,11 +181,11 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
         }
     }
     charutils::BuildingCharTraitsTable(PChar);
-	PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-	PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-	PChar->pushPacket(new CCharStatsPacket(PChar));
-	charutils::CalculateStats(PChar);
-	PChar->UpdateHealth();
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+    PChar->pushPacket(new CCharStatsPacket(PChar));
+    charutils::CalculateStats(PChar);
+    PChar->UpdateHealth();
     SaveSetSpells(PChar);
     PChar->updatemask |= UPDATE_HP;
 }
@@ -299,15 +299,15 @@ void SaveSetSpells(CCharEntity* PChar)
 {
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
     {
-	    const char* Query =
+        const char* Query =
             "UPDATE chars SET "
               "set_blue_spells = '%s' "
             "WHERE charid = %u;";
 
-	    char spells[sizeof(PChar->m_SetBlueSpells)*2+1];
-	    Sql_EscapeStringLen(SqlHandle,spells,(const char*)PChar->m_SetBlueSpells,sizeof(PChar->m_SetBlueSpells));
+        char spells[sizeof(PChar->m_SetBlueSpells)*2+1];
+        Sql_EscapeStringLen(SqlHandle,spells,(const char*)PChar->m_SetBlueSpells,sizeof(PChar->m_SetBlueSpells));
 
-	    Sql_Query(SqlHandle,Query,
+        Sql_Query(SqlHandle,Query,
             spells,
             PChar->id);
     }
@@ -317,7 +317,7 @@ void LoadSetSpells(CCharEntity* PChar)
 {
     if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
     {
-	    const char* Query =
+        const char* Query =
             "SELECT set_blue_spells FROM "
               "chars WHERE charid = %u;";
 
@@ -327,10 +327,10 @@ void LoadSetSpells(CCharEntity* PChar)
             Sql_NumRows(SqlHandle) != 0 &&
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-		    size_t length = 0;
-		    char* blue_spells = nullptr;
-		    Sql_GetData(SqlHandle,0,&blue_spells,&length);
-		    memcpy(PChar->m_SetBlueSpells, blue_spells, (length > sizeof(PChar->m_SetBlueSpells) ? sizeof(PChar->m_SetBlueSpells) : length));
+            size_t length = 0;
+            char* blue_spells = nullptr;
+            Sql_GetData(SqlHandle,0,&blue_spells,&length);
+            memcpy(PChar->m_SetBlueSpells, blue_spells, (length > sizeof(PChar->m_SetBlueSpells) ? sizeof(PChar->m_SetBlueSpells) : length));
         }
         for (int slot = 0; slot < 20; slot++)
         {
@@ -338,14 +338,14 @@ void LoadSetSpells(CCharEntity* PChar)
             {
                 CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
 
-				if (PSpell == nullptr)
-				{
-					PChar->m_SetBlueSpells[slot] = 0;
-				}
-				else
-				{
-					PChar->addModifiers(&PSpell->modList);
-				}
+                if (PSpell == nullptr)
+                {
+                    PChar->m_SetBlueSpells[slot] = 0;
+                }
+                else
+                {
+                    PChar->addModifiers(&PSpell->modList);
+                }
             }
         }
         ValidateBlueSpells(PChar);
@@ -424,11 +424,11 @@ void CalculateTraits(CCharEntity* PChar)
         uint8 category = iter->first;
         uint8 totalWeight = iter->second;
 
-	    for (uint8 i = 0; i <  PTraitsList->size(); ++i)
-	    {
+        for (uint8 i = 0; i <  PTraitsList->size(); ++i)
+        {
             if (PTraitsList->at(i)->getLevel() == 0)
             {
-		        CBlueTrait* PTrait = (CBlueTrait*)PTraitsList->at(i);
+                CBlueTrait* PTrait = (CBlueTrait*)PTraitsList->at(i);
 
                 if (PTrait && PTrait->getCategory() == category)
                 {
@@ -436,8 +436,8 @@ void CalculateTraits(CCharEntity* PChar)
                     bool add = true;
 
                     for (uint8 j = 0; j < PChar->TraitList.size(); ++j)
-	                {
-		                CTrait* PExistingTrait = PChar->TraitList.at(j);
+                    {
+                        CTrait* PExistingTrait = PChar->TraitList.at(j);
 
                         if (PExistingTrait->getID() == PTrait->getID())
                         {
@@ -471,7 +471,7 @@ void CalculateTraits(CCharEntity* PChar)
 
                     if (totalWeight >= PTrait->getPoints() && add)
                     {
-			            charutils::addTrait(PChar, PTrait->getID());
+                        charutils::addTrait(PChar, PTrait->getID());
 
                         PChar->TraitList.push_back(PTrait);
                         PChar->addModifier(PTrait->getMod(), PTrait->getValue());
@@ -479,7 +479,7 @@ void CalculateTraits(CCharEntity* PChar)
                         break;
                     }
                 }
-	        }
+            }
         }
     }
 }

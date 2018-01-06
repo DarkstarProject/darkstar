@@ -31,16 +31,16 @@
 class CParty;
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CPartyDefinePacket : public CBasicPacket
 {
 public:
 
-	CPartyDefinePacket(CParty* PParty);
+    CPartyDefinePacket(CParty* PParty);
 };
 
 #endif

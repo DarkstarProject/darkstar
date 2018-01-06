@@ -32,15 +32,15 @@
 
 CPartyInvitePacket::CPartyInvitePacket(uint32 id, uint16 targid, CCharEntity* PInviter, INVITETYPE InviteType)
 {
-	this->type = 0xDC;
-	this->size = 0x10; 
+    this->type = 0xDC;
+    this->size = 0x10;
 
-	//DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
-	
-	ref<uint32>(0x04) = id;
-	ref<uint16>(0x08) = targid;
+    //DSP_DEBUG_BREAK_IF(PInviter->name.size() > 15);
 
-	ref<uint8>(0x0B) = InviteType;
+    ref<uint32>(0x04) = id;
+    ref<uint16>(0x08) = targid;
 
-	memcpy(data+(0x0C), PInviter->GetName(), PInviter->name.size()); 
+    ref<uint8>(0x0B) = InviteType;
+
+    memcpy(data+(0x0C), PInviter->GetName(), PInviter->name.size());
 }

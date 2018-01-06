@@ -30,17 +30,17 @@
 #include "../packets/entity_update.h"
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 CNpcEntity::CNpcEntity()
 {
-	objtype = TYPE_NPC;
-	look.face = 0x32;
+    objtype = TYPE_NPC;
+    look.face = 0x32;
         widescan = 1;
-	allegiance = ALLEGIANCE_MOB;
+    allegiance = ALLEGIANCE_MOB;
     PAI = std::make_unique<CAIContainer>(this);
 }
 
