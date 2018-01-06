@@ -2322,3 +2322,9 @@ MOUNTS =
     MOUNT_TULFAIRE   = 13,
     MOUNT_WARMACHINE = 14
 }
+
+------------------------------------
+-- Item Check Params
+------------------------------------
+ITEMCHECK_EQUIP     = 0;
+ITEMCHECK_UNEQUIP   = 1;

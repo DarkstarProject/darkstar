@@ -11229,6 +11229,39 @@ inline int32 CLuaBaseEntity::getWeaponDmgRank(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*  Function: getWeaponID()
+*  Purpose : Returns the item ID for the weapon in the passed in SLOT
+*  Example : player:getWeaponID()
+*  Notes   : Primarily used in REM weapon scripts to determine which version of the weapon is being used
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getWeaponID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
+        if (SLOT > 3)
+        {
+            lua_pushinteger(L, 0);
+            return 1;
+        }
+        CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
+        if (weapon == nullptr)
+        {
+            lua_pushinteger(L, 0);
+            return 1;
+        }
+        lua_pushinteger(L, weapon->getID());
+        return 1;
+    }
+    ShowError(CL_RED"lua::getWeaponID :: Invalid slot specified!" CL_RESET);
+    return 0;
+}
+
 
 /************************************************************************
 *  Function: getOffhandDmg()
@@ -14061,6 +14094,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmgRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),

@@ -1,10 +1,8 @@
 -----------------------------------------
--- ID: 18306, 18307, 18644, 18658, 18672, 19753, 19846, 20880, 20881, 21808
--- Item: Apocalypse
--- Additional Effect: Blindness
+-- ID: 18336, 18337, 18649, 18663, 18677, 19758, 19851, 21260, 21261, 21267
+-- Item: Annihilator
 -----------------------------------------
 require("scripts/globals/status");
-require("scripts/globals/magic");
 require("scripts/globals/msg");
 require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
@@ -13,40 +11,40 @@ require("scripts/globals/weaponskillids");
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
 local aftermathTable = {};
 
--- Apocalypse 75
-aftermathTable[18306] =
+-- Annihilator 75
+aftermathTable[18336] =
 {
     power=1,
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_HASTE_GEAR, power=10 }
+        { id=MOD_ENMITY, power=-20 }
     }
 };
-aftermathTable[18307] = aftermathTable[18306]; -- Apocalypse (80)
-aftermathTable[18644] = aftermathTable[18306]; -- Apocalypse (85)
-aftermathTable[18658] = aftermathTable[18306]; -- Apocalypse (90)
-aftermathTable[18672] = aftermathTable[18306]; -- Apocalypse (95)
-aftermathTable[19753] = aftermathTable[18306]; -- Apocalypse (99)
-aftermathTable[19846] = aftermathTable[18306]; -- Apocalypse (99/II)
-aftermathTable[20880] = aftermathTable[18306]; -- Apocalypse (119)
-aftermathTable[20881] = aftermathTable[18306]; -- Apocalypse (119/II)
+aftermathTable[18337] = aftermathTable[18336]; -- Annihilator (80)
+aftermathTable[18649] = aftermathTable[18336]; -- Annihilator (85)
+aftermathTable[18663] = aftermathTable[18336]; -- Annihilator (90)
+aftermathTable[18677] = aftermathTable[18336]; -- Annihilator (95)
+aftermathTable[19758] = aftermathTable[18336]; -- Annihilator (99)
+aftermathTable[19851] = aftermathTable[18336]; -- Annihilator (99/II)
+aftermathTable[21260] = aftermathTable[18336]; -- Annihilator (119)
+aftermathTable[21261] = aftermathTable[18336]; -- Annihilator (119/II)
 
--- Apocalypse (119/III)
-aftermathTable[21808] =
+-- Annihilator (119/III)
+aftermathTable[21267] =
 {
     power=2,
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_HASTE_GEAR, power=10 },
-        { id=MOD_ACC, power=15 }
+        { id=MOD_ENMITY, power=-25},
+        { id=MOD_RATTP, power=10 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_CATASTROPHE) then -- Catastrophe onry
-        local itemId = user:getWeaponID(SLOT_MAIN);
+    if (wsid == WEAPONSKILL_CORONACH) then -- Coronach onry
+        local itemId = user:getWeaponID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -58,7 +56,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getWeaponID(SLOT_MAIN);
+        local itemId = target:getWeaponID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -79,19 +77,3 @@ function onItemCheck(player, param, caster)
         player:removeListener("AFTERMATH");
     end
 end
-
-function onAdditionalEffect(player,target,damage)
-    local chance = 10;
-
-    -- if (target:hasImmunity(64)) then
-        -- spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
-    -- This does nothing, as this is not a spell, and it doesn't get used in the return.
-    -- That should be handled in the resist check in the global anyways.
-
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
-        return 0,0,0;
-    else
-        target:addStatusEffect(EFFECT_BLINDNESS, 15, 0, 30);
-        return SUBEFFECT_BLIND, msgBasic.ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
-    end
-end;

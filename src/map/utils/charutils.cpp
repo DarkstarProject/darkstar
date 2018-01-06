@@ -96,6 +96,12 @@ This file is part of DarkStar-server source code.
 #include "petutils.h"
 #include "zoneutils.h"
 
+enum ITEMCHECK
+{
+    EQUIP = 0,
+    UNEQUIP = 1
+};
+
 /************************************************************************
 *                                                                       *
 *  Таблицы получаемого опыта                                            *
@@ -1548,7 +1554,7 @@ namespace charutils
             if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
             {
                 PChar->m_EquipFlag = 0;
-                luautils::OnItemCheck(PChar, PItem, 0, nullptr);
+                luautils::OnItemCheck(PChar, PItem, ITEMCHECK::UNEQUIP, nullptr);
 
                 for (uint8 i = 0; i < 16; ++i)
                 {
@@ -1592,6 +1598,7 @@ namespace charutils
                     PChar->look.sub = 0;
                     PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();           // << equips "nothing" in the sub slot to prevent multi attack exploit
                     PChar->health.tp = 0;
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
@@ -1614,6 +1621,7 @@ namespace charutils
                     }
                     PChar->m_Weapons[SLOT_RANGED] = nullptr;
                     PChar->health.tp = 0;
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
@@ -1641,6 +1649,7 @@ namespace charutils
                     }
 
                     PChar->health.tp = 0;
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
@@ -2088,7 +2097,7 @@ namespace charutils
                 {
                     if (PItem->getScriptType() & SCRIPT_EQUIP)
                     {
-                        luautils::OnItemCheck(PChar, PItem, 0, nullptr);
+                        luautils::OnItemCheck(PChar, PItem, ITEMCHECK::EQUIP, nullptr);
                         PChar->m_EquipFlag |= PItem->getScriptType();
                     }
                     if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
@@ -2136,6 +2145,7 @@ namespace charutils
                 CheckUnarmedWeapon(PChar);
             }
 
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
             BuildingCharWeaponSkills(PChar);
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
         }

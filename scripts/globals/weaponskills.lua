@@ -1023,78 +1023,21 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
     return finaldmg;
 end
 
--- Params should have the following members:
--- params.power.lv1: Base value for AM power @ level 1
--- params.power.lv2: Base value for AM power @ level 2
--- params.power.lv3: Base value for AM power @ level 3
+function shouldApplyAftermath() -- LEAVING THIS STUB HERE FOR MYTHIC/EMPYREAN LOGIC
+end
 
--- params.power.lv1_inc: How much to increment at each power level
--- params.power.lv2_inc: How much to increment at each power level
-
--- params.subpower.lv1: Subpower for level 1
--- params.subpower.lv2: Subpower for level 2
--- params.subpower.lv3: Subpower for level 3
-
--- params.duration.lv1: Duration for AM level 1
--- params.duration.lv2: Duration for AM level 2
--- params.duration.lv3: Duration for AM level 3
-function applyAftermathEffect(player, tp, params)
-    if (params == nil) then
-        params = initAftermathParams()
+function addAftermathEffect(player, tp, params)
+    player:addStatusEffect(EFFECT_AFTERMATH, params.power, 0, params.duration(tp));
+    for i,mod in ipairs(params.mods) do
+        player:addMod(mod.id, mod.power);
     end
+end
 
-    local apply_power = 0
-    if (tp == 3000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV3)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        player:delStatusEffect(EFFECT_AFTERMATH_LV2);
-        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0,
-            params.duration.lv3, 0, params.subpower.lv3);
-    elseif (tp >= 2000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV2)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        apply_power = math.floor(params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV2, apply_power, 0,
-            params.duration.lv2, 0, params.subpower.lv2);
-    elseif (tp >= 1000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV1)) then
-        apply_power = math.floor(params.power.lv1 + ((tp - 1000) / (100 / params.power.lv1_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV1, apply_power, 0,
-            params.duration.lv1, 0, params.subpower.lv1);
+function removeAftermathEffect(player, params)
+    for i,mod in ipairs(params.mods) do
+        player:delMod(mod.id, mod.power);
     end
-end;
-
-function initAftermathParams()
-    local params = {}
-    params.power = {}
-    params.subpower = {}
-    params.duration = {}
-
-    params.power.lv1 = 10
-    params.power.lv2 = 20
-    params.power.lv3 = 40
-
-    params.power.lv1_inc = 1
-    params.power.lv2_inc = 4
-
-    params.subpower.lv1 = 1
-    params.subpower.lv2 = 1
-    params.subpower.lv3 = 1
-
-    params.duration.lv1 = 60
-    params.duration.lv2 = 90
-    params.duration.lv3 = 120
-
-    return params
-end;
-
-function shouldApplyAftermath(player, effect)
-    local result = true;
-    if (effect == EFFECT_AFTERMATH_LV1 and (player:hasStatusEffect(EFFECT_AFTERMATH_LV2) or player:hasStatusEffect(EFFECT_AFTERMATH_LV3))) then
-        result = false;
-    elseif (effect == EFFECT_AFTERMATH_LV2 and player:hasStatusEffect(EFFECT_AFTERMATH_LV3)) then
-        result = false;
-    end;
-
-    return result;
-end;
+end
 
 function handleWSGorgetBelt(attacker)
     local ftpBonus = 0;

@@ -1,10 +1,8 @@
 -----------------------------------------
--- ID: 18306, 18307, 18644, 18658, 18672, 19753, 19846, 20880, 20881, 21808
--- Item: Apocalypse
--- Additional Effect: Blindness
+-- ID: 18282, 18283, 18640, 18654, 18668, 19749, 19842, 20745, 20746, 21683
+-- Item: Ragnarok
 -----------------------------------------
 require("scripts/globals/status");
-require("scripts/globals/magic");
 require("scripts/globals/msg");
 require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
@@ -13,39 +11,39 @@ require("scripts/globals/weaponskillids");
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
 local aftermathTable = {};
 
--- Apocalypse 75
-aftermathTable[18306] =
+-- Ragnarok 75
+aftermathTable[18282] =
 {
     power=1,
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_HASTE_GEAR, power=10 }
+        { id=MOD_CRITHITRATE, power=5 }
     }
 };
-aftermathTable[18307] = aftermathTable[18306]; -- Apocalypse (80)
-aftermathTable[18644] = aftermathTable[18306]; -- Apocalypse (85)
-aftermathTable[18658] = aftermathTable[18306]; -- Apocalypse (90)
-aftermathTable[18672] = aftermathTable[18306]; -- Apocalypse (95)
-aftermathTable[19753] = aftermathTable[18306]; -- Apocalypse (99)
-aftermathTable[19846] = aftermathTable[18306]; -- Apocalypse (99/II)
-aftermathTable[20880] = aftermathTable[18306]; -- Apocalypse (119)
-aftermathTable[20881] = aftermathTable[18306]; -- Apocalypse (119/II)
+aftermathTable[18283] = aftermathTable[18282]; -- Ragnarok (80)
+aftermathTable[18640] = aftermathTable[18282]; -- Ragnarok (85)
+aftermathTable[18654] = aftermathTable[18282]; -- Ragnarok (90)
+aftermathTable[18668] = aftermathTable[18282]; -- Ragnarok (95)
+aftermathTable[19749] = aftermathTable[18282]; -- Ragnarok (99)
+aftermathTable[19842] = aftermathTable[18282]; -- Ragnarok (99/II)
+aftermathTable[20745] = aftermathTable[18282]; -- Ragnarok (119)
+aftermathTable[20746] = aftermathTable[18282]; -- Ragnarok (119/II)
 
--- Apocalypse (119/III)
-aftermathTable[21808] =
+-- Ragnarok (119/III)
+aftermathTable[21683] =
 {
     power=2,
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_HASTE_GEAR, power=10 },
+        { id=MOD_CRITHITRATE, power=10 },
         { id=MOD_ACC, power=15 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_CATASTROPHE) then -- Catastrophe onry
+    if (wsid == WEAPONSKILL_SCOURGE) then -- Scourge onry
         local itemId = user:getWeaponID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
@@ -79,19 +77,3 @@ function onItemCheck(player, param, caster)
         player:removeListener("AFTERMATH");
     end
 end
-
-function onAdditionalEffect(player,target,damage)
-    local chance = 10;
-
-    -- if (target:hasImmunity(64)) then
-        -- spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
-    -- This does nothing, as this is not a spell, and it doesn't get used in the return.
-    -- That should be handled in the resist check in the global anyways.
-
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
-        return 0,0,0;
-    else
-        target:addStatusEffect(EFFECT_BLINDNESS, 15, 0, 30);
-        return SUBEFFECT_BLIND, msgBasic.ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
-    end
-end;
