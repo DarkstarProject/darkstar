@@ -1,9 +1,9 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6566; -- Obtained: <item>
-           GIL_OBTAINED = 6567; -- Obtained <number> gil
+ITEM_CANNOT_BE_OBTAINED = 6559; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6565; -- Obtained: <item>
+           GIL_OBTAINED = 6566; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6568; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7226; -- You can't fish here
          HOMEPOINT_SET = 10686; -- Home point set!
