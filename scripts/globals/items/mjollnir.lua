@@ -9,6 +9,9 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
 -----------------------------------------
 
+NAME_WEAPONSKILL = "AFTERMATH_MJOLLNIR";
+NAME_EFFECT_LOSE = "AFTERMATH_LOST_MJOLLNIR";
+
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
 local aftermathTable = {};
 
@@ -51,7 +54,7 @@ function onWeaponskill(user, target, wsid, tp, action)
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
             -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("EFFECT_LOSE", "AFTERMATH_LOST", aftermathLost);
+            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
         end
     end
 end
@@ -63,21 +66,23 @@ function aftermathLost(target, effect)
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
             -- Remove the effect listener
-            target:removeListener("AFTERMATH_LOST");
+            target:removeListener(NAME_EFFECT_LOSE);
         end
     end
 end
 
 function onItemCheck(player, param, caster)
     if (param == ITEMCHECK_EQUIP) then
-        player:addListener("WEAPONSKILL_USE", "AFTERMATH", onWeaponskill);
+        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
         if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH))
+            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
         end
-        player:removeListener("AFTERMATH");
+        player:removeListener(NAME_WEAPONSKILL);
     end
+    
+    return 0;
 end
 
 function onAdditionalEffect(player,target,damage)

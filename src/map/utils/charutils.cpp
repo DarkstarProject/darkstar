@@ -1540,26 +1540,28 @@ namespace charutils
                 }
             }
 
+            // Call the LUA event before actually "unequipping" the item so the script can do stuff with it first
+            if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+            {
+                luautils::OnItemCheck(PChar, PItem, ITEMCHECK::UNEQUIP, nullptr);
+            }
+
             //todo: issues as item 0 reference is being handled as a real equipment piece
             //      thought to be source of nin bug
             PChar->equip[equipSlotID] = 0;
             PChar->equipLoc[equipSlotID] = 0;
 
-            if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+            PChar->m_EquipFlag = 0;
+            for (uint8 i = 0; i < 16; ++i)
             {
-                PChar->m_EquipFlag = 0;
-                luautils::OnItemCheck(PChar, PItem, ITEMCHECK::UNEQUIP, nullptr);
+                CItem* PItem = PChar->getEquip((SLOTTYPE)i);
 
-                for (uint8 i = 0; i < 16; ++i)
+                if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
                 {
-                    CItem* PItem = PChar->getEquip((SLOTTYPE)i);
-
-                    if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
-                    {
-                        PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
-                    }
+                    PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
                 }
             }
+
             if (PItem->isSubType(ITEM_CHARGED))
             {
                 PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList

@@ -10,10 +10,13 @@ require("scripts/globals/weaponskillids");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
+NAME_WEAPONSKILL = "AFTERMATH_GUTTLER";
+NAME_EFFECT_LOSE = "AFTERMATH_LOST_GUTTLER";
+
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
 local aftermathTable = {};
 
--- Spharai 75
+-- Guttler 75
 aftermathTable[18288] =
 {
     power=1,
@@ -23,16 +26,16 @@ aftermathTable[18288] =
         { id=MOD_ATTP, power=10 }
     }
 };
-aftermathTable[18289] = aftermathTable[18288]; -- Spharai (80)
-aftermathTable[18641] = aftermathTable[18288]; -- Spharai (85)
-aftermathTable[18655] = aftermathTable[18288]; -- Spharai (90)
-aftermathTable[18669] = aftermathTable[18288]; -- Spharai (95)
-aftermathTable[19750] = aftermathTable[18288]; -- Spharai (99)
-aftermathTable[19843] = aftermathTable[18288]; -- Spharai (99/II)
-aftermathTable[20790] = aftermathTable[18288]; -- Spharai (119)
-aftermathTable[20791] = aftermathTable[18288]; -- Spharai (119/II)
+aftermathTable[18289] = aftermathTable[18288]; -- Guttler (80)
+aftermathTable[18641] = aftermathTable[18288]; -- Guttler (85)
+aftermathTable[18655] = aftermathTable[18288]; -- Guttler (90)
+aftermathTable[18669] = aftermathTable[18288]; -- Guttler (95)
+aftermathTable[19750] = aftermathTable[18288]; -- Guttler (99)
+aftermathTable[19843] = aftermathTable[18288]; -- Guttler (99/II)
+aftermathTable[20790] = aftermathTable[18288]; -- Guttler (119)
+aftermathTable[20791] = aftermathTable[18288]; -- Guttler (119/II)
 
--- Spharai (119/III)
+-- Guttler (119/III)
 aftermathTable[21750] =
 {
     power=2,
@@ -57,7 +60,7 @@ function onWeaponskill(user, target, wsid, tp, action)
                 end
             end
             -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("EFFECT_LOSE", "AFTERMATH_LOST", aftermathLost);
+            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
         end
     end
 end
@@ -76,21 +79,23 @@ function aftermathLost(target, effect)
                 end
             end
             -- Remove the effect listener
-            target:removeListener("AFTERMATH_LOST");
+            target:removeListener(NAME_EFFECT_LOSE);
         end
     end
 end
 
 function onItemCheck(player, param, caster)
     if (param == ITEMCHECK_EQUIP) then
-        player:addListener("WEAPONSKILL_USE", "AFTERMATH", onWeaponskill);
+        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
         if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH))
+            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
         end
-        player:removeListener("AFTERMATH");
+        player:removeListener(NAME_WEAPONSKILL);
     end
+    
+    return 0;
 end
 
 function onAdditionalEffect(player,target,damage)
