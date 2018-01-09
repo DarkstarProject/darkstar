@@ -165,6 +165,7 @@ public:
     int32 teleport(lua_State*);              // Set Entity position (without entity despawn/spawn packets)
     int32 resetPlayer(lua_State*);           // if player is stuck, GM command @resetPlayer name
 
+    int32 goToEntity(lua_State*);            // Warps self to NPC or Mob; works across multiple game servers
     int32 gotoPlayer(lua_State*);            // warps self to target player
     int32 bringPlayer(lua_State*);           // warps target to self
     

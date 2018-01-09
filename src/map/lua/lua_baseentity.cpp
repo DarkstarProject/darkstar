@@ -2733,6 +2733,44 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 }
 
 /************************************************************************
+*  Function: goToEntity()
+*  Purpose : Transports PC to a Mob or NPC; works across multiple servers
+*  Example : player:goToEntity(ID, Option)
+*  Notes   : Option 0: Spawned/Unspawned | Option 1: Spawned only
+************************************************************************/
+
+int32 CLuaBaseEntity::goToEntity(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        bool spawnedOnly  = !lua_isnil(L, 2) ? lua_tonumber(L, 2) : 0;
+
+        uint32 targetID   = (uint32)lua_tonumber(L, 1);
+        uint16 targetZone = (targetID >> 12) & 0x0FFF;
+        uint16 playerID   = m_PBaseEntity->id;
+        uint16 playerZone = PChar->loc.zone->GetID();
+
+        char buf[12];
+        memset(&buf[0], 0, sizeof(buf));
+
+        ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
+        ref<uint16>(&buf,  2) = targetZone;
+        ref<uint16>(&buf,  4) = playerZone;
+        ref<uint32>(&buf,  6) = targetID;
+        ref<uint16>(&buf, 10) = playerID;
+
+        message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
+	}	
+    return 0;
+}
+
+/************************************************************************
 *  Function: gotoPlayer()
 *  Purpose : Transports PC to another PC
 *  Example : player:gotoPlayer(playername)
@@ -13670,7 +13708,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),	
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
