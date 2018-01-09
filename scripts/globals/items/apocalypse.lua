@@ -10,8 +10,8 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
 -----------------------------------
 
-NAME_WEAPONSKILL = "AFTERMATH_APOCALYPSE";
-NAME_EFFECT_LOSE = "AFTERMATH_LOST_APOCALYPSE";
+local NAME_WEAPONSKILL = "AFTERMATH_APOCALYPSE";
+local NAME_EFFECT_LOSE = "AFTERMATH_LOST_APOCALYPSE";
 
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
 local aftermathTable = {};

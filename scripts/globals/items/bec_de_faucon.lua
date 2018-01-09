@@ -9,8 +9,8 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
 -----------------------------------
 
-NAME_WEAPONSKILL = "AFTERMATH_BEC_DE_FAUCON";
-NAME_EFFECT_LOSE = "AFTERMATH_LOST_BEC_DE_FAUCON";
+local NAME_WEAPONSKILL = "AFTERMATH_BEC_DE_FAUCON";
+local NAME_EFFECT_LOSE = "AFTERMATH_LOST_BEC_DE_FAUCON";
 
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
 local aftermathTable = {};
