@@ -123,7 +123,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
                 ref<uint8>(0x48) = look->face;
                 ref<uint8>(0x49) = look->race;
-                ref<uint16>(0x4A) = look->head + 0x1000;
+                ref<uint16>(0x4A) = PChar->menuConfigFlags.flags & NFLAG_DISPLAY_HEAD ? 0 : look->head + 0x1000;
                 ref<uint16>(0x4C) = look->body + 0x2000;
                 ref<uint16>(0x4E) = look->hands + 0x3000;
                 ref<uint16>(0x50) = look->legs + 0x4000;

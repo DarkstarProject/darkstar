@@ -275,7 +275,7 @@ void CCharEntity::erasePackets(uint8 num)
 
 bool CCharEntity::isNewPlayer()
 {
-    return (menuConfigFlags.flags & NFLAG_NEWPLAYER) == 0;
+    return menuConfigFlags.flags & NFLAG_NEWPLAYER;
 }
 
 void CCharEntity::setPetZoningInfo()
