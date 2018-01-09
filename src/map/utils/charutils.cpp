@@ -353,9 +353,8 @@ namespace charutils
             "assault,"              // 22
             "campaign,"             // 23
             "playtime,"             // 24
-            "isnewplayer,"          // 25
-            "campaign_allegiance,"  // 26
-            "isstylelocked "        // 27
+            "campaign_allegiance,"  // 25
+            "isstylelocked "        // 26
             "FROM chars "
             "WHERE charid = %u";
 
@@ -431,9 +430,8 @@ namespace charutils
             memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
 
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
-            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 25) == 1 ? true : false;
-            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 26);
-            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 27) == 1 ? true : false);
+            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
+            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
         }
 
         LoadSpells(PChar);
@@ -769,8 +767,9 @@ namespace charutils
 
         fmtQuery =
             "SELECT "
-            "gmlevel,"    // 0
-            "mentor "     // 1
+            "gmlevel, "    // 0
+            "mentor, "     // 1
+            "nnameflags "  // 2
             "FROM chars "
             "WHERE charid = %u;";
 
@@ -781,7 +780,8 @@ namespace charutils
             Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
             PChar->m_GMlevel = (uint8)Sql_GetUIntData(SqlHandle, 0);
-            PChar->m_mentor = (uint8)Sql_GetUIntData(SqlHandle, 1);
+            PChar->m_mentorUnlocked = Sql_GetUIntData(SqlHandle, 1) > 0;
+            PChar->menuConfigFlags.flags = (uint32)Sql_GetUIntData(SqlHandle, 2);
         }
 
         charutils::LoadInventory(PChar);
@@ -4120,17 +4120,23 @@ namespace charutils
         Sql_Query(SqlHandle, Query, "char_stats", "nameflags =", PChar->nameflags.flags, PChar->id);
     }
 
-    /************************************************************************
-    *                                                                       *
-    *  Save the char's mentor flag state                                    *
-    *                                                                       *
-    ************************************************************************/
-
-    void mentorMode(CCharEntity* PChar)
+    void SaveMentorFlag(CCharEntity* PChar)
     {
         const char* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
 
-        Sql_Query(SqlHandle, Query, "chars", "mentor =", PChar->m_mentor, PChar->id);
+        Sql_Query(SqlHandle, Query, "chars", "mentor =", PChar->m_mentorUnlocked, PChar->id);
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Save the char's menu config flags                                    *
+    *                                                                       *
+    ************************************************************************/
+    void SaveMenuConfigFlags(CCharEntity* PChar)
+    {
+        const char* Query = "UPDATE %s SET %s %u WHERE charid = %u;";
+
+        Sql_Query(SqlHandle, Query, "chars", "nnameflags =", PChar->menuConfigFlags.flags, PChar->id);
     }
 
     /************************************************************************
@@ -4211,12 +4217,13 @@ namespace charutils
         }
         Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
 
-        // Remove the new player flag if we have reached level 10..
-        if (PChar->m_isNewPlayer && PChar->jobs.job[job] >= 10)
+        // Remove the new player flag if we have reached level 5.
+        // Should also remove it based on playtime (180 hours?)
+        if (PChar->isNewPlayer() && PChar->jobs.job[job] >= 5)
         {
-            PChar->m_isNewPlayer = false;
+            PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
             PChar->updatemask |= UPDATE_HP;
-            Sql_Query(SqlHandle, "UPDATE chars SET isnewplayer = 0 WHERE charid = %u LIMIT 1", PChar->id);
+            SaveMenuConfigFlags(PChar);
         }
     }
 
