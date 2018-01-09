@@ -244,10 +244,11 @@ function npcUtil.tradeHas(trade, items, exact)
                 itemQty = v[2];
             else
                 print("ERROR: invalid value contained within items parameter given to npcUtil.tradeHas.");
-                goto continue;
+                itemId = nil;
             end
-            neededItems[itemId] = (neededItems[itemId] == nil) and itemQty or neededItems[itemId] + itemQty;
-            ::continue::
+            if (itemId ~= nil) then
+                neededItems[itemId] = (neededItems[itemId] == nil) and itemQty or neededItems[itemId] + itemQty;
+            end
         end
     else
         print("ERROR: invalid items parameter given to npcUtil.tradeHas.");
