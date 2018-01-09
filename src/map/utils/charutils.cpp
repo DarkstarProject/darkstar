@@ -1551,14 +1551,17 @@ namespace charutils
             PChar->equip[equipSlotID] = 0;
             PChar->equipLoc[equipSlotID] = 0;
 
-            PChar->m_EquipFlag = 0;
-            for (uint8 i = 0; i < 16; ++i)
+            if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
             {
-                CItem* PItem = PChar->getEquip((SLOTTYPE)i);
-
-                if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+                PChar->m_EquipFlag = 0;
+                for (uint8 i = 0; i < 16; ++i)
                 {
-                    PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
+                    CItem* PItem = PChar->getEquip((SLOTTYPE)i);
+
+                    if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+                    {
+                        PChar->m_EquipFlag |= ((CItemArmor*)PItem)->getScriptType();
+                    }
                 }
             }
 
