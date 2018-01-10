@@ -11440,15 +11440,16 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
         if (weapon == nullptr)
         {
-            ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is NULL!\n" CL_RESET);
-            return 0;
+            lua_pushinteger(L, 0);
+            return 1;
         }
 
         lua_pushinteger(L, weapon->getSubSkillType());
         return 1;
     }
     ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
-    return 0;
+    lua_pushinteger(L, 0);
+    return 1;
 }
 
 /************************************************************************
@@ -13452,7 +13453,7 @@ int32 CLuaBaseEntity::getDropID(lua_State* L)
 
 /************************************************************************
 *  Function: setDropID()
-*  Purpose : Changes the Drop ID assigned to a Mob (temporary?)
+*  Purpose : Permanently changes the Drop ID assigned to a Mob
 *  Example : target:setDropID(2408)
 *  Notes   : Useful for situations where drops only occur from conditions
 ************************************************************************/
