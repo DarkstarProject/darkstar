@@ -60,4 +60,6 @@ function onItemCheck(player, param, caster)
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
+    
+    return 0;
 end

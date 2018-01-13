@@ -151,15 +151,32 @@ namespace attackutils
         {
             return damage;
         }
+
         uint32 originalDamage = damage;
-        auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG);
-        auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE);
-        if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0)
+        int16 occ_do_triple_dmg = PChar->getMod(Mod::REM_OCC_DO_TRIPLE_DMG) / 10;
+        int16 occ_do_double_dmg = PChar->getMod(Mod::REM_OCC_DO_DOUBLE_DMG) / 10;
+        float occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG) / 100.f;
+        int16 occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE) / 10;
+
+        if (occ_extra_dmg > 3.f && occ_extra_dmg_chance > 0 && dsprand::GetRandomNumber(100) <= occ_extra_dmg_chance)
         {
-            if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance / 10))
-            {
-                return (uint32)(damage * (occ_extra_dmg / 100.f));
-            }
+            return (uint32)(damage * occ_extra_dmg);
+        }
+        else if (occ_do_triple_dmg > 0 && dsprand::GetRandomNumber(100) <= occ_do_triple_dmg)
+        {
+            return (uint32)(damage * 3.f);
+        }
+        else if (occ_extra_dmg > 2.f && occ_extra_dmg_chance > 0 && dsprand::GetRandomNumber(100) <= occ_extra_dmg_chance)
+        {
+            return (uint32)(damage * occ_extra_dmg);
+        }
+        else if (occ_do_double_dmg > 0 && dsprand::GetRandomNumber(100) <= occ_do_double_dmg)
+        {
+            return (uint32)(damage * 2.f);
+        }
+        else if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0 && dsprand::GetRandomNumber(100) <= occ_extra_dmg_chance)
+        {
+            return (uint32)(damage * occ_extra_dmg);
         }
 
         switch (attackType)

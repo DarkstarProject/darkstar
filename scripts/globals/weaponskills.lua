@@ -1023,19 +1023,48 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
     return finaldmg;
 end
 
-function shouldApplyAftermath() -- LEAVING THIS STUB HERE FOR MYTHIC/EMPYREAN LOGIC
+-- Mythic/Empyrean aftermath can be overwritten by equal or higher at tier 1 (1000-1999 tp)
+-- It can be overwritten by higher at tier 2 (2000-2999 tp)
+-- It cannot be overwritten at tier 3 (3000 tp)
+function shouldApplyAftermath(player, tp)
+    local effect = player:getStatusEffect(EFFECT_AFTERMATH);
+    if (effect) then
+        local power = effect:getPower();
+        if (power == 3) then
+            return false;
+        elseif (power == 2 and tp < 3000) then
+            return false;
+        end
+    end
+    
+    return true;
 end
 
 function addAftermathEffect(player, tp, params)
     player:addStatusEffect(EFFECT_AFTERMATH, params.power, 0, params.duration(tp));
-    for _,mod in ipairs(params.mods) do
+    for _,mod in pairs(params.mods) do
         player:addMod(mod.id, mod.power);
     end
 end
 
 function removeAftermathEffect(player, params)
-    for _,mod in ipairs(params.mods) do
+    for _,mod in pairs(params.mods) do
         player:delMod(mod.id, mod.power);
+    end
+end
+
+function addMythicAftermathEffect(player, tp, params)
+    local tier = math.floor(tp / 1000);
+    player:addStatusEffectEx(EFFECT_AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration, 0, tp);
+    for _,mod in pairs(params[tier].mods) do
+        player:addMod(mod.id, mod.power(tp));
+    end
+end
+
+function removeMythicAftermathEffect(player, effect, params)
+    local tier = effect:getPower();
+    for _,mod in pairs(params[tier].mods) do
+        player:delMod(mod.id, mod.power(effect:getSubPower()));
     end
 end
 

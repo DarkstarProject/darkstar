@@ -1,22 +1,21 @@
 -----------------------------------------
--- ID: 19006
--- Item: Tizona
--- Additional effect: MP Gain from damage dealt
+-- ID: 18989
+-- Item: Terpsichore
 -----------------------------------------
-require("scripts/globals/status");
 require("scripts/globals/msg");
+require("scripts/globals/status");
 require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
 -----------------------------------
 
-local NAME_WEAPONSKILL = "AFTERMATH_TIZONA";
-local NAME_EFFECT_LOSE = "AFTERMATH_LOST_TIZONA";
+local NAME_WEAPONSKILL = "AFTERMATH_TERPSICHORE";
+local NAME_EFFECT_LOSE = "AFTERMATH_LOST_TERPSICHORE";
 
 -- https://www.bg-wiki.com/bg/Mythic_Aftermath
 local aftermathTable = {};
 
--- Nirvana (75)
-aftermathTable[19006] =
+-- Terpsichore (75)
+aftermathTable[18989] =
 {
     {   -- Tier 1
         duration = 60,
@@ -29,7 +28,7 @@ aftermathTable[19006] =
         duration = 90,
         mods =
         {
-            { id = MOD_MACC, power = function(tp) return math.floor(tp / 100 - 10); end }
+            { id = MOD_ATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
         }
     },
     {   -- Tier 3
@@ -41,8 +40,8 @@ aftermathTable[19006] =
     }
 };
 
--- Nirvana (80)
-aftermathTable[19075] =
+-- Terpsichore (80)
+aftermathTable[19078] =
 {
     {   -- Tier 1
         duration = 90,
@@ -55,7 +54,7 @@ aftermathTable[19075] =
         duration = 120,
         mods =
         {
-            { id = MOD_MACC, power = function(tp) return math.floor(3 * tp / 200 - 15); end }
+            { id = MOD_ATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
         }
     },
     {   -- Tier 3
@@ -66,11 +65,11 @@ aftermathTable[19075] =
         }
     }
 };
-aftermathTable[19095] = aftermathTable[19075]; -- Nirvana (85)
-aftermathTable[19627] = aftermathTable[19075]; -- Nirvana (90)
+aftermathTable[19098] = aftermathTable[19078]; -- Terpsichore (85)
+aftermathTable[19630] = aftermathTable[19078]; -- Terpsichore (90)
 
--- Nirvana (95)
-aftermathTable[19725] =
+-- Terpsichore (95)
+aftermathTable[19728] =
 {
     {   -- Tier 1
         duration = 90,
@@ -83,7 +82,7 @@ aftermathTable[19725] =
         duration = 120,
         mods =
         {
-            { id = MOD_MACC, power = function(tp) return math.floor(tp / 50 - 10); end }
+            { id = MOD_ATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
         }
     },
     {   -- Tier 3
@@ -95,14 +94,14 @@ aftermathTable[19725] =
         }
     }
 };
-aftermathTable[19834] = aftermathTable[19725]; -- Nirvana (99)
-aftermathTable[19963] = aftermathTable[19725]; -- Nirvana (99/II)
-aftermathTable[20651] = aftermathTable[19725]; -- Nirvana (119)
-aftermathTable[20652] = aftermathTable[19725]; -- Nirvana (119/II)
-aftermathTable[20688] = aftermathTable[19725]; -- Nirvana (119/III)
+aftermathTable[19837] = aftermathTable[19728]; -- Terpsichore (99)
+aftermathTable[19966] = aftermathTable[19728]; -- Terpsichore (99/II)
+aftermathTable[20557] = aftermathTable[19728]; -- Terpsichore (119)
+aftermathTable[20558] = aftermathTable[19728]; -- Terpsichore (119/II)
+aftermathTable[20584] = aftermathTable[19728]; -- Terpsichore (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_EXPIACION) then -- Expiacion onry
+    if (wsid == WEAPONSKILL_PYRRHIC_KLEOS) then -- Pyrrhic Kleos onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then
@@ -140,30 +139,3 @@ function onItemCheck(player, param, caster)
     
     return 0;
 end
-
-function onAdditionalEffect(player,target,damage)
-
-    local chance = 0;
-
-    if ( player:getEquipID(SLOT_MAIN) == 19006 ) then -- Tizona 75
-        chance = 10;
-    elseif ( player:getEquipID(SLOT_MAIN) == 19075 ) then -- Tizona 80
-        chance = 15;
-    elseif ( player:getEquipID(SLOT_MAIN) == 19095 ) then -- Tizona 85
-        chance = 20;
-    elseif ( ( player:getEquipID(SLOT_MAIN) == 19627 ) or ( player:getEquipID(SLOT_MAIN) == 19725 ) ) then -- Tizona 90 or Tizona 95
-        chance = 25;
-    elseif ( ( player:getEquipID(SLOT_MAIN) == 19963 ) or ( player:getEquipID(SLOT_MAIN) == 20651 ) or ( player:getEquipID(SLOT_MAIN) == 20652 )
-                or ( player:getEquipID(SLOT_MAIN) == 20688 ) or ( player:getEquipID(SLOT_MAIN) == 19834 ) ) then -- Tizona 99
-        chance = 30;
-    end
-
-    if (math.random(0,99) >= chance) then
-        return 0,0,0;
-    else
-        local drain = math.floor(damage * (math.random(100,200)/1000));
-        player:addMP(drain);
-
-        return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, drain;
-    end
-end;
