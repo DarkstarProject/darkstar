@@ -145,7 +145,7 @@ namespace attackutils
     *  Handles damage multiplier, relic weapons etc.                        *
     *                                                                       *
     ************************************************************************/
-    uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType)
+    uint32 CheckForDamageMultiplier(CCharEntity* PChar, CItemWeapon* PWeapon, uint32 damage, PHYSICAL_ATTACK_TYPE attackType, uint8 weaponSlot)
     {
         if (PWeapon == nullptr)
         {
@@ -153,8 +153,27 @@ namespace attackutils
         }
 
         uint32 originalDamage = damage;
-        int16 occ_do_triple_dmg = PChar->getMod(Mod::REM_OCC_DO_TRIPLE_DMG) / 10;
-        int16 occ_do_double_dmg = PChar->getMod(Mod::REM_OCC_DO_DOUBLE_DMG) / 10;
+        int16 occ_do_triple_dmg = 0;
+        int16 occ_do_double_dmg = 0;
+
+        switch (attackType)
+        {
+            case PHYSICAL_ATTACK_TYPE::RANGED:
+            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:
+                occ_do_triple_dmg = PChar->getMod(Mod::REM_OCC_DO_TRIPLE_DMG_RANGED) / 10;
+                occ_do_double_dmg = PChar->getMod(Mod::REM_OCC_DO_DOUBLE_DMG_RANGED) / 10;
+                break;
+            case PHYSICAL_ATTACK_TYPE::NORMAL:
+                if (weaponSlot == SLOT_MAIN) // Only applies to mainhand
+                {
+                    occ_do_triple_dmg = PChar->getMod(Mod::REM_OCC_DO_TRIPLE_DMG) / 10;
+                    occ_do_double_dmg = PChar->getMod(Mod::REM_OCC_DO_DOUBLE_DMG) / 10;
+                }
+                break;
+            default:
+                break;
+        }
+
         float occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG) / 100.f;
         int16 occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE) / 10;
 

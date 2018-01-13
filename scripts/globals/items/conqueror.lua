@@ -1,6 +1,6 @@
 -----------------------------------------
--- ID: 19001
--- Item: Gastraphetes
+-- ID: 18991
+-- Item: Conqueror
 -----------------------------------------
 require("scripts/globals/msg");
 require("scripts/globals/status");
@@ -8,102 +8,102 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskillids");
 -----------------------------------
 
-local NAME_WEAPONSKILL = "AFTERMATH_GASTRAPHETES";
-local NAME_EFFECT_LOSE = "AFTERMATH_LOST_GASTRAPHETS";
+local NAME_WEAPONSKILL = "AFTERMATH_CONQUEROR";
+local NAME_EFFECT_LOSE = "AFTERMATH_LOST_CONQUEROR";
 
 -- https://www.bg-wiki.com/bg/Mythic_Aftermath
 local aftermathTable = {};
 
--- Gastraphetes (75)
-aftermathTable[19001] =
+-- Conqueror (75)
+aftermathTable[18991] =
 {
     {   -- Tier 1
         duration = 60,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 100); end }
+            { id = MOD_ACC, power = function(tp) return math.floor(tp / 100); end }
         }
     },
     {   -- Tier 2
         duration = 90,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
+            { id = MOD_ATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
         }
     },
     {   -- Tier 3
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end }
+            { id = MOD_OCC_ATT_TWICE, power = function(tp) return 40; end }
         }
     }
 };
 
--- Gastraphetes (80)
-aftermathTable[19070] =
+-- Conqueror (80)
+aftermathTable[19060] =
 {
     {   -- Tier 1
         duration = 90,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 50); end }
+            { id = MOD_ACC, power = function(tp) return math.floor(3 * tp / 200); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
+            { id = MOD_ATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 60; end }
+            { id = MOD_OCC_ATT_TWICE, power = function(tp) return 60; end }
         }
     }
 };
-aftermathTable[19090] = aftermathTable[19070]; -- Gastraphetes (85)
-aftermathTable[19622] = aftermathTable[19070]; -- Gastraphetes (90)
+aftermathTable[19080] = aftermathTable[19060]; -- Conqueror (85)
+aftermathTable[19612] = aftermathTable[19060]; -- Conqueror (90)
 
--- Gastraphetes (95)
-aftermathTable[19720] =
+-- Conqueror (95)
+aftermathTable[19710] =
 {
     {   -- Tier 1
         duration = 90,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 50 + 10); end }
+            { id = MOD_ACC, power = function(tp) return math.floor(tp / 50 + 10); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
+            { id = MOD_ATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end },
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = function(tp) return 20; end }
+            { id = MOD_MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end },
+            { id = MOD_MYTHIC_OCC_ATT_THRICE, power = function(tp) return 20; end }
         }
     }
 };
-aftermathTable[19829] = aftermathTable[19720]; -- Gastraphetes (99)
-aftermathTable[19958] = aftermathTable[19720]; -- Gastraphetes (99/II)
-aftermathTable[21246] = aftermathTable[19720]; -- Gastraphetes (119)
-aftermathTable[21247] = aftermathTable[19720]; -- Gastraphetes (119/II)
-aftermathTable[21266] = aftermathTable[19720]; -- Gastraphetes (119/III)
+aftermathTable[19819] = aftermathTable[19710]; -- Conqueror (99)
+aftermathTable[19948] = aftermathTable[19710]; -- Conqueror (99/II)
+aftermathTable[20837] = aftermathTable[19710]; -- Conqueror (119)
+aftermathTable[20838] = aftermathTable[19710]; -- Conqueror (119/II)
+aftermathTable[21757] = aftermathTable[19710]; -- Conqueror (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TRUEFLIGHT) then -- Trueflight onry
+    if (wsid == WEAPONSKILL_KINGS_JUSTICE) then -- King's Justice onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_RANGED);
+            local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -116,7 +116,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_RANGED);
+        local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);

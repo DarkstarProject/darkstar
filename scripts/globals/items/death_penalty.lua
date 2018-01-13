@@ -35,7 +35,7 @@ aftermathTable[19007] =
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = function(tp) return 40; end }
+            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end }
         }
     }
 };
@@ -61,7 +61,7 @@ aftermathTable[19076] =
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = function(tp) return 60; end }
+            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 60; end }
         }
     }
 };
@@ -89,8 +89,8 @@ aftermathTable[19726] =
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = function(tp) return 40; end },
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = function(tp) return 20; end }
+            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end },
+            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = function(tp) return 20; end }
         }
     }
 };

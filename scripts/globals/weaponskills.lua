@@ -886,6 +886,8 @@ function getMultiAttacks(attacker, numHits)
     local doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
     local tripleRate = (attacker:getMod(MOD_TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
     local quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
+    local oaThriceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_THRICE)/100;
+    local oaTwiceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_TWICE)/100;
 
     -- QA/TA/DA can only proc on the first hit of each weapon or each fist
     if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_H2H) then
@@ -899,6 +901,10 @@ function getMultiAttacks(attacker, numHits)
         elseif (chance < tripleRate + quadRate) then
             bonusHits = bonusHits + 2;
         elseif(chance < doubleRate + tripleRate + quadRate) then
+            bonusHits = bonusHits + 1;
+        elseif(chance < oaThriceRate) then
+            bonusHits = bonusHits + 2;
+        elseif(chance < oaTwiceRate) then
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
