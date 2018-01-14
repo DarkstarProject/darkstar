@@ -895,15 +895,15 @@ function getMultiAttacks(attacker, numHits)
     end
 
     for i = 1, multiChances, 1 do
-        if math.random() < quadRate then
+        if (math.random() < quadRate) then
             bonusHits = bonusHits + 3;
-        elseif math.random() < tripleRate then
+        elseif (math.random() < tripleRate) then
             bonusHits = bonusHits + 2;
-        elseif math.random() < doubleRate then
+        elseif (math.random() < doubleRate) then
             bonusHits = bonusHits + 1;
-        elseif(chance < oaThriceRate) then
+        elseif (math.random() < oaThriceRate) then
             bonusHits = bonusHits + 2;
-        elseif(chance < oaTwiceRate) then
+        elseif (math.random() < oaTwiceRate) then
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
@@ -914,6 +914,10 @@ function getMultiAttacks(attacker, numHits)
             doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
             tripleRate = (attacker:getMod(MOD_TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
             quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
+            
+            -- Can only proc on mainhand
+            oaTwiceRate = 0;
+            oaTwiceRate = 0;
         end
     end
 
