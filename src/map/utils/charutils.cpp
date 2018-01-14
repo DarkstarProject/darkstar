@@ -1540,6 +1540,12 @@ namespace charutils
                 }
             }
 
+            // Call the LUA event before actually "unequipping" the item so the script can do stuff with it first
+            if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
+            {
+                luautils::OnItemCheck(PChar, PItem, ITEMCHECK::UNEQUIP, nullptr);
+            }
+
             //todo: issues as item 0 reference is being handled as a real equipment piece
             //      thought to be source of nin bug
             PChar->equip[equipSlotID] = 0;
@@ -1548,8 +1554,6 @@ namespace charutils
             if (((CItemArmor*)PItem)->getScriptType() & SCRIPT_EQUIP)
             {
                 PChar->m_EquipFlag = 0;
-                luautils::OnItemCheck(PChar, PItem, 0, nullptr);
-
                 for (uint8 i = 0; i < 16; ++i)
                 {
                     CItem* PItem = PChar->getEquip((SLOTTYPE)i);
@@ -1560,6 +1564,7 @@ namespace charutils
                     }
                 }
             }
+
             if (PItem->isSubType(ITEM_CHARGED))
             {
                 PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList
@@ -1592,6 +1597,7 @@ namespace charutils
                     PChar->look.sub = 0;
                     PChar->m_Weapons[SLOT_SUB] = itemutils::GetUnarmedItem();           // << equips "nothing" in the sub slot to prevent multi attack exploit
                     PChar->health.tp = 0;
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
@@ -1614,6 +1620,7 @@ namespace charutils
                     }
                     PChar->m_Weapons[SLOT_RANGED] = nullptr;
                     PChar->health.tp = 0;
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
@@ -1641,6 +1648,7 @@ namespace charutils
                     }
 
                     PChar->health.tp = 0;
+                    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
@@ -2088,7 +2096,7 @@ namespace charutils
                 {
                     if (PItem->getScriptType() & SCRIPT_EQUIP)
                     {
-                        luautils::OnItemCheck(PChar, PItem, 0, nullptr);
+                        luautils::OnItemCheck(PChar, PItem, ITEMCHECK::EQUIP, nullptr);
                         PChar->m_EquipFlag |= PItem->getScriptType();
                     }
                     if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
@@ -2136,6 +2144,7 @@ namespace charutils
                 CheckUnarmedWeapon(PChar);
             }
 
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_AFTERMATH);
             BuildingCharWeaponSkills(PChar);
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
         }
@@ -2245,7 +2254,7 @@ namespace charutils
             {
                 if (((CItemArmor*)PItem)->getScriptType() & ScriptType)
                 {
-                    luautils::OnItemCheck(PChar, PItem, param, nullptr);
+                    luautils::OnItemCheck(PChar, PItem, static_cast<ITEMCHECK>(param), nullptr);
                 }
             }
         }

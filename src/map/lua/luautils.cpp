@@ -1924,7 +1924,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param, CBaseEntity* PCaster)
+    int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param, CBaseEntity* PCaster)
     {
         lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
 
@@ -1937,7 +1937,7 @@ namespace luautils
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityTarget);
         CLuaBaseEntity LuaBaseEntityCaster(PCaster);
 
-        lua_pushinteger(LuaHandle, param);
+        lua_pushinteger(LuaHandle, static_cast<uint32>(param));
 
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityCaster);
 
