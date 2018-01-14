@@ -4,15 +4,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 require("scripts/zones/Yuhtunga_Jungle/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars

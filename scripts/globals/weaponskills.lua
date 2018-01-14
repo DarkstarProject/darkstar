@@ -895,12 +895,11 @@ function getMultiAttacks(attacker, numHits)
     end
 
     for i = 1, multiChances, 1 do
-        local chance = math.random()
-        if (chance < quadRate) then
+        if math.random() < quadRate then
             bonusHits = bonusHits + 3;
-        elseif (chance < tripleRate + quadRate) then
+        elseif math.random() < tripleRate then
             bonusHits = bonusHits + 2;
-        elseif(chance < doubleRate + tripleRate + quadRate) then
+        elseif math.random() < doubleRate then
             bonusHits = bonusHits + 1;
         elseif(chance < oaThriceRate) then
             bonusHits = bonusHits + 2;

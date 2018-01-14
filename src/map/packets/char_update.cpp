@@ -57,9 +57,9 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
         ref<uint8>(0x38) = 0x04;
     }
 
-    if (PChar->m_mentor >= 2)
+    if (PChar->menuConfigFlags.flags & NFLAG_MENTOR)
         ref<uint8>(0x38) |= 0x10; // Mentor flag.
-    if (PChar->m_isNewPlayer)
+    if (PChar->isNewPlayer())
         ref<uint8>(0x38) |= 0x08; // New player ?
 
     ref<uint8>(0x29) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;

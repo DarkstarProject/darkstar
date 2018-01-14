@@ -1,5 +1,5 @@
 -- [receptacle] = {group, numStrays, portal}
-MEMORY_RECEPTACLES = {
+HOLLA_MEMORY_RECEPTACLES = {
     [16842781] = {1, 3, 16843058},
     [16842839] = {2, 5, 16843054},
     [16842846] = {2, 5, 16843055},
@@ -14,7 +14,7 @@ MEMORY_RECEPTACLES = {
 }
 
 -- [memory stream] = {region, {list of events}}
-MEMORY_STREAMS = {
+HOLLA_MEMORY_STREAMS = {
     [11]        = {  78, -4,   78,   82, 4,   82, {46}},    -- floor 1 return
     [21]        = {-122, -4,   -2, -118, 4,    2, {41}},    -- floor 2 return
     [31]        = {-162, -4,  118, -158, 4,  122, {42}},    -- floor 3 return

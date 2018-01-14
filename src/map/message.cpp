@@ -436,6 +436,100 @@ namespace message
             }
             break;
         }
+        case MSG_SEND_TO_ENTITY:
+        {
+            // Need to check which server we're on so we don't get null pointers
+            bool toTargetServer = ref<bool>((uint8*)extra->data(), 0);
+            bool spawnedOnly    = ref<bool>((uint8*)extra->data(), 1);
+
+            if (toTargetServer) // This is going to the target's game server
+            {
+                CBaseEntity* Entity = zoneutils::GetEntity(ref<uint32>((uint8*)extra->data(), 6));
+
+                if (Entity && Entity->loc.zone)
+                {
+                    char buf[22];
+                    memset(&buf[0], 0, sizeof(buf));
+
+                    uint16 targetZone = ref<uint16>((uint8*)extra->data(),  2);
+                    uint16 playerZone = ref<uint16>((uint8*)extra->data(),  4);
+                    uint16 playerID   = ref<uint16>((uint8*)extra->data(), 10);
+
+                    float X = Entity->GetXPos();
+                    float Y = Entity->GetYPos();
+                    float Z = Entity->GetZPos();
+                    uint8 R = Entity->GetRotPos();
+
+                    ref<bool> (&buf, 1) = true; // Found, so initiate warp back on the requesting server
+
+                    if (Entity->status == STATUS_DISAPPEAR)
+                    {
+
+                        if (spawnedOnly)
+                        {
+                            ref<bool> (&buf, 1) = false; // Spawned only, so do not initiate warp
+                        }
+                        else
+						{
+                            // If entity not spawned, go to default location as listed in database
+                            const char* query = "SELECT pos_x, pos_y, pos_z FROM mob_spawn_points WHERE mobid = %u;";
+                            uint32 fetch = Sql_Query(SqlHandle, query, Entity->id);
+                            uint64 list  = Sql_NumRows(SqlHandle);
+
+                            if (fetch != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+                            {
+                                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                                {
+                                    X = (float)Sql_GetFloatData(SqlHandle, 0);
+                                    Y = (float)Sql_GetFloatData(SqlHandle, 1);
+                                    Z = (float)Sql_GetFloatData(SqlHandle, 2);
+                                }
+                            }
+                        }
+                    }
+
+                    ref<bool>  (&buf,  0) = false;
+                    ref<uint16>(&buf,  2) = playerZone;
+                    ref<uint16>(&buf,  4) = playerID;
+                    ref<float> (&buf,  6) = X;
+                    ref<float> (&buf, 10) = Y;
+                    ref<float> (&buf, 14) = Z;
+                    ref<uint8> (&buf, 18) = R;
+                    ref<uint16>(&buf, 20) = targetZone;
+
+                    message::send(MSG_SEND_TO_ENTITY, &buf, sizeof(buf), nullptr);
+                    break;
+                }
+            }
+            else // This is going to the player's game server
+            {
+                CCharEntity* PChar = zoneutils::GetChar(ref<uint16>((uint8*)extra->data(), 4));
+
+                if (PChar && PChar->loc.zone)
+                {
+                    if (ref<bool> ((uint8*)extra->data(),  1) == true)
+                    {
+                        PChar->loc.p.x         = ref<float> ((uint8*)extra->data(),  6);
+                        PChar->loc.p.y         = ref<float> ((uint8*)extra->data(), 10);
+                        PChar->loc.p.z         = ref<float> ((uint8*)extra->data(), 14);
+                        PChar->loc.p.rotation  = ref<uint8> ((uint8*)extra->data(), 18);
+                        PChar->loc.destination = ref<uint16>((uint8*)extra->data(), 20);
+
+                        PChar->m_moghouseID = 0;
+                        PChar->loc.boundary = 0;
+                        PChar->updatemask   = 0;
+
+                        PChar->status    = STATUS_DISAPPEAR;
+                        PChar->animation = ANIMATION_NONE;
+
+                        PChar->clearPacketList();
+
+                        charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination));
+                    }
+                }
+            }
+            break;
+        }
         default:
         {
             ShowWarning("Message: unhandled message type %d\n", type);

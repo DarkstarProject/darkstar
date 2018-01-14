@@ -2733,6 +2733,44 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 }
 
 /************************************************************************
+*  Function: goToEntity()
+*  Purpose : Transports PC to a Mob or NPC; works across multiple servers
+*  Example : player:goToEntity(ID, Option)
+*  Notes   : Option 0: Spawned/Unspawned | Option 1: Spawned only
+************************************************************************/
+
+int32 CLuaBaseEntity::goToEntity(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        bool spawnedOnly  = !lua_isnil(L, 2) ? lua_tonumber(L, 2) : 0;
+
+        uint32 targetID   = (uint32)lua_tonumber(L, 1);
+        uint16 targetZone = (targetID >> 12) & 0x0FFF;
+        uint16 playerID   = m_PBaseEntity->id;
+        uint16 playerZone = PChar->loc.zone->GetID();
+
+        char buf[12];
+        memset(&buf[0], 0, sizeof(buf));
+
+        ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
+        ref<uint16>(&buf,  2) = targetZone;
+        ref<uint16>(&buf,  4) = playerZone;
+        ref<uint32>(&buf,  6) = targetID;
+        ref<uint16>(&buf, 10) = playerID;
+
+        message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
+	}	
+    return 0;
+}
+
+/************************************************************************
 *  Function: gotoPlayer()
 *  Purpose : Transports PC to another PC
 *  Example : player:gotoPlayer(playername)
@@ -4370,7 +4408,7 @@ inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isNewPlayer);
+    lua_pushboolean(L, (((CCharEntity*)m_PBaseEntity)->menuConfigFlags.flags & NFLAG_NEWPLAYER) == 0);
     return 1;
 }
 
@@ -4388,7 +4426,10 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_isNewPlayer = lua_toboolean(L, 1);
+    if (lua_toboolean(L, 1))
+        PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+    else
+        PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
     PChar->updatemask |= UPDATE_HP;
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     return 0;
@@ -4407,7 +4448,7 @@ inline int32 CLuaBaseEntity::getMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    lua_pushnumber(L, PChar->m_mentor);
+    lua_pushnumber(L, PChar->m_mentorUnlocked ? 1 : 0);
     return 1;
 }
 
@@ -4425,8 +4466,12 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_mentor = (uint8)lua_tonumber(L, 1);
-    charutils::mentorMode(PChar);
+    if ((uint8)lua_tonumber(L, 1) == 1)
+        PChar->m_mentorUnlocked = true;
+    else
+        PChar->m_mentorUnlocked = false;
+
+    charutils::SaveMentorFlag(PChar);
     PChar->updatemask |= UPDATE_HP;
     return 0;
 }
@@ -11433,15 +11478,16 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
         if (weapon == nullptr)
         {
-            ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is NULL!\n" CL_RESET);
-            return 0;
+            lua_pushinteger(L, 0);
+            return 1;
         }
 
         lua_pushinteger(L, weapon->getSubSkillType());
         return 1;
     }
     ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
-    return 0;
+    lua_pushinteger(L, 0);
+    return 1;
 }
 
 /************************************************************************
@@ -13445,7 +13491,7 @@ int32 CLuaBaseEntity::getDropID(lua_State* L)
 
 /************************************************************************
 *  Function: setDropID()
-*  Purpose : Changes the Drop ID assigned to a Mob (temporary?)
+*  Purpose : Permanently changes the Drop ID assigned to a Mob
 *  Example : target:setDropID(2408)
 *  Notes   : Useful for situations where drops only occur from conditions
 ************************************************************************/
@@ -13663,7 +13709,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),	
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),

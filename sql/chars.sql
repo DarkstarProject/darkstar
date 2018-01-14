@@ -47,6 +47,7 @@ CREATE TABLE `chars` (
   `mentor` smallint(3) NOT NULL DEFAULT '0',
   `campaign_allegiance` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `isstylelocked` tinyint(1) NOT NULL DEFAULT '0',
+  `nnameflags` int(10) UNSIGNED NOT NULL DEFAULT '0',
   PRIMARY KEY (`charid`),
   FULLTEXT KEY `charname` (`charname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

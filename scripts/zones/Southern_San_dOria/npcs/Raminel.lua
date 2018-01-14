@@ -7,9 +7,10 @@
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/zones/Southern_San_dOria/MobIDs");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/globals/pathfind");
+require("scripts/globals/quests");
 
 local path =
 {
@@ -79,37 +80,23 @@ function onSpawn(npc)
 end;
 
 function onPath(npc)
-
     if (npc:atPoint(pathfind.get(path, 23))) then
-        local arp = GetNPCByID(17719409);
-
-        npc:lookAt(arp:getPos());
+        npc:lookAt(GetNPCByID(ARPETION):getPos());
         npc:wait();
     elseif (npc:atPoint(pathfind.get(path, -1))) then
-        local lus = GetNPCByID(17719350);
-
-        -- give package to Lusiane
+        -- give package to Lusiane, wait 4 seconds, then continue
+        local lus = GetNPCByID(LUSIANE);
         lus:showText(npc, RAMINEL_DELIVERY);
         npc:showText(lus, LUSIANE_THANK);
-
-        -- wait default duration 4 seconds
-        -- then continue path
         npc:wait();
     elseif (npc:atPoint(pathfind.last(path))) then
-        local lus = GetNPCByID(17719350);
-
         -- when I walk away stop looking at me
-        lus:clearTargID();
+        GetNPCByID(LUSIANE):clearTargID();
     end
 
     -- go back and forth the set path
     pathfind.patrol(npc, path);
-
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -130,31 +117,14 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(614);
-
     npc:wait();
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     npc:wait(0);
 end;

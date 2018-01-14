@@ -4,13 +4,11 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- Chocobo Digging vars

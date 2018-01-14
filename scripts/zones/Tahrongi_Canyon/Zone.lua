@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
 require("scripts/zones/Tahrongi_Canyon/MobIDs");

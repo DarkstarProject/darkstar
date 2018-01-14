@@ -7,31 +7,30 @@
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/globals/status");
-require("scripts/globals/pets");
+require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 require("scripts/globals/keyitems");
+require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/pets");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    local NM_Kill = player:getVar("KnightStalker_Kill");
-    if (player:getVar("KnightStalker_Progress") == 4 and player:getMainJob() == JOBS.DRG and player:getPetID() == PET_WYVERN
-      and NM_Kill == 0 and GetMobAction(17428807) == 0 and GetMobAction(17428808) == 0) then
+    if (
+        player:getVar("KnightStalker_Progress") == 4 and
+        player:getVar("KnightStalker_Kill") == 0 and
+        player:getMainJob() == JOBS.DRG and
+        player:getPetID() == PET_WYVERN and
+        not GetMobByID(CLEUVARION_M_RESOAIX):isSpawned() and
+        not GetMobByID(ROMPAULION_S_CITALLE):isSpawned()
+    ) then
         -- These mobs specifically will not engage unless aggro'd.
         player:messageSpecial(SOME_SORT_OF_CEREMONY + 1); -- Your wyvern reacts violently to this spot!
-        SpawnMob(17428807);
-        SpawnMob(17428808);
+        SpawnMob(CLEUVARION_M_RESOAIX);
+        SpawnMob(ROMPAULION_S_CITALLE);
     elseif (NM_Kill == 1) then
         player:startEvent(67);
     else
@@ -39,22 +38,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 67) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12519);
