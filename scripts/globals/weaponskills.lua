@@ -1073,6 +1073,21 @@ function removeMythicAftermathEffect(player, effect, params)
     end
 end
 
+function addEmpyreanAftermathEffect(player, tp, params)
+    local tier = math.floor(tp / 1000);
+    player:addStatusEffectEx(EFFECT_AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration);
+    for _,mod in pairs(params[tier].mods) do
+        player:addMod(mod.id, mod.power);
+    end
+end
+
+function removeEmpyreanAftermathEffect(player, effect, params)
+    local tier = effect:getPower();
+    for _,mod in pairs(params[tier].mods) do
+        player:delMod(mod.id, mod.power);
+    end
+end
+
 function handleWSGorgetBelt(attacker)
     local ftpBonus = 0;
     local accBonus = 0;

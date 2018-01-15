@@ -36,7 +36,7 @@ aftermathTable[19006] =
         duration = 120,
         mods =
         {
-            { id = MOD_OCC_ATT_TWICE, power = function(tp) return 40; end }
+            { id = MOD_MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end }
         }
     }
 };
@@ -62,7 +62,7 @@ aftermathTable[19075] =
         duration = 180,
         mods =
         {
-            { id = MOD_OCC_ATT_TWICE, power = function(tp) return 60; end }
+            { id = MOD_MYTHIC_OCC_ATT_TWICE, power = function(tp) return 60; end }
         }
     }
 };
