@@ -901,9 +901,9 @@ function getMultiAttacks(attacker, numHits)
             bonusHits = bonusHits + 2;
         elseif math.random() < doubleRate then
             bonusHits = bonusHits + 1;
-        elseif(chance < oaThriceRate) then
+        elseif (i == 1 and math.random() < oaThriceRate) then -- Can only proc on first hit
             bonusHits = bonusHits + 2;
-        elseif(chance < oaTwiceRate) then
+        elseif (i == 1 and math.random() < oaTwiceRate) then -- Can only proc on first hit
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
