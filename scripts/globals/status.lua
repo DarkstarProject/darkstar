@@ -1053,6 +1053,7 @@ MOD_AFFLATUS_MISERY    = 294
 MOD_CLEAR_MIND         = 295
 MOD_CONSERVE_MP        = 296
 MOD_STEAL              = 298
+MOD_PERFECT_DODGE      = 869 -- Increases Perfect Dodge duration in seconds
 MOD_BLINK              = 299
 MOD_STONESKIN          = 300
 MOD_PHALANX            = 301
@@ -1391,9 +1392,9 @@ MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 869 -- stuff
 -- SPARE = 870 -- stuff
--- SPARE = 870 -- stuff
+-- SPARE = 871 -- stuff
+-- SPARE = 872 -- stuff
 
 ------------------------------------
 -- Merit Definitions
