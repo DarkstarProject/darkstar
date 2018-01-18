@@ -4,10 +4,6 @@
 -- When used, you will obtain one partial stack of Dogbolt +2
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     local result = 0;
     if (target:getFreeSlotsCount() == 0) then
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     local quantity = math.random(99);

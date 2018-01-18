@@ -1,18 +1,17 @@
 ---------------------------------------------
---  Discharger
+-- Discharger
 --
---  Description: Places a magic barrier and shock spikes. 
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes: Used only by Omega
+-- Description: Places a magic barrier and shock spikes.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes: Used only by Omega
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     local mobhp = mob:getHPP();
 

@@ -33,7 +33,7 @@ class CLuaTradeContainer
     CTradeContainer *m_pMyTradeContainer;
 public:
 
-    static const int8 className[];
+    static const char className[];
     static Lunar<CLuaTradeContainer>::Register_t methods[];
 
     CLuaTradeContainer(lua_State*);
@@ -54,6 +54,7 @@ public:
     int32 getItemCount(lua_State*);		// общее количество предметов
     int32 getSlotCount(lua_State*);
     int32 confirmItem(lua_State*);
+    int32 confirmSlot(lua_State*);
 };
 
 #endif

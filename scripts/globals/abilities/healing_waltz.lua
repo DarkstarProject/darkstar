@@ -5,23 +5,20 @@
 -- TP Required: 20%
 -- Recast Time: 00:15
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
-        return MSGBASIC_CANNOT_ON_THAT_TARG,0;
+        return msgBasic.CANNOT_ON_THAT_TARG,0;
     elseif (player:hasStatusEffect(EFFECT_SABER_DANCE)) then
-        return MSGBASIC_UNABLE_TO_USE_JA2, 0;
+        return msgBasic.UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
         return 0,0;
     elseif (player:getTP() < 200) then
-        return MSGBASIC_NOT_ENOUGH_TP,0;
+        return msgBasic.NOT_ENOUGH_TP,0;
     else
         --[[ Apply "Waltz Ability Delay" reduction
             1 modifier = 1 second]]
@@ -42,10 +39,6 @@ function onAbilityCheck(player,target,ability)
     end;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance.
     if not player:hasStatusEffect(EFFECT_TRANCE) then
@@ -55,9 +48,9 @@ function onUseAbility(player,target,ability)
     local effect = target:healingWaltz();
 
     if (effect == EFFECT_NONE) then
-        ability:setMsg(283); -- no effect
+        ability:setMsg(msgBasic.NO_EFFECT); -- no effect
     else
-        ability:setMsg(123);
+        ability:setMsg(msgBasic.JA_REMOVE_EFFECT);
     end
 
     return effect;

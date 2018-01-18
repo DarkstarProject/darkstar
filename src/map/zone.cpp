@@ -47,6 +47,7 @@
 
 #include "entities/npcentity.h"
 #include "entities/petentity.h"
+#include "entities/automatonentity.h"
 
 #include "lua/luautils.h"
 
@@ -80,7 +81,7 @@
 
 int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 {
-    ((CZone*)PTask->m_data)->ZoneServer(tick);
+    std::any_cast<CZone*>(PTask->m_data)->ZoneServer(tick, false);
     return 0;
 }
 
@@ -93,15 +94,15 @@ int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
-    CZone* PZone = (CZone*)PTask->m_data;
+    CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
     if ((tick - PZone->m_RegionCheckTime) < 800ms)
     {
-        PZone->ZoneServer(tick);
+        PZone->ZoneServer(tick, false);
     }
     else
     {
-        PZone->ZoneServerRegion(tick);
+        PZone->ZoneServer(tick, true);
         PZone->m_RegionCheckTime = tick;
     }
     return 0;
@@ -115,7 +116,7 @@ int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
 {
-    CZone* PZone = (CZone*)PTask->m_data;
+    CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
     if (!PZone->IsWeatherStatic())
     {
@@ -212,7 +213,7 @@ uint32 CZone::GetWeatherChangeTime()
 
 const int8* CZone::GetName()
 {
-    return m_zoneName.c_str();
+    return (const int8*)m_zoneName.c_str();
 }
 
 uint8 CZone::GetSoloBattleMusic()
@@ -268,7 +269,7 @@ zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 
 void CZone::LoadZoneLines()
 {
-    static const int8 fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
+    static const char fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
@@ -298,7 +299,7 @@ void CZone::LoadZoneLines()
 
 void CZone::LoadZoneWeather()
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT "
         "weather_day,"
         "normal,"
@@ -332,7 +333,7 @@ void CZone::LoadZoneWeather()
 
 void CZone::LoadZoneSettings()
 {
-    static const int8* Query =
+    static const char* Query =
         "SELECT "
         "zone.name,"
         "zone.zoneip,"
@@ -355,9 +356,9 @@ void CZone::LoadZoneSettings()
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-        m_zoneName.insert(0, Sql_GetData(SqlHandle, 0));
+        m_zoneName.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
 
-        m_zoneIP = inet_addr(Sql_GetData(SqlHandle, 1));
+        m_zoneIP = inet_addr((const char*)Sql_GetData(SqlHandle, 1));
         m_zonePort = (uint16)Sql_GetUIntData(SqlHandle, 2);
         m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
         m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
@@ -390,7 +391,7 @@ void CZone::LoadNavMesh()
         m_navMesh = new CNavMesh((uint16)GetID());
     }
 
-    int8 file[255];
+    char file[255];
     memset(file, 0, sizeof(file));
     snprintf(file, sizeof(file), "navmeshes/%s.nav", GetName());
 
@@ -504,7 +505,6 @@ void CZone::UpdateWeather()
     uint32 EndFogVanaDate = StartFogVanaDate + (VTIME_HOUR * 5); // Vanadiel timestamp of 7 AM in minutes
     uint32 WeatherNextUpdate = 0;
     uint32 WeatherDay = 0;
-    uint8 WeatherOffset = 0;
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
@@ -774,28 +774,14 @@ void CZone::WideScan(CCharEntity* PChar, uint16 radius)
 *                                                                       *
 ************************************************************************/
 
-void CZone::ZoneServer(time_point tick)
+void CZone::ZoneServer(time_point tick, bool check_regions)
 {
-    m_zoneEntities->ZoneServer(tick);
+    m_zoneEntities->ZoneServer(tick, check_regions);
 
     if (m_BattlefieldHandler != nullptr)
     {
         m_BattlefieldHandler->handleBattlefields(tick);
     }
-}
-
-/************************************************************************
-*                                                                       *
-*  Cервер для обработки активности и статус-эффектов сущностей в зоне.  *
-*  Дополнительно обрабатывается проверка на вход и выход персонажей из  *
-*  активных областей (пока реализован только вход в область).           *
-*  При любом раскладе последними должны обрабатываться персонажи        *
-*                                                                       *
-************************************************************************/
-
-void CZone::ZoneServerRegion(time_point tick)
-{
-    m_zoneEntities->ZoneServerRegion(tick);
 }
 
 void CZone::ForEachChar(std::function<void(CCharEntity*)> func)
@@ -857,7 +843,6 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     PChar->loc.zoning = false;
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
-    PChar->ResetLocalVars();
 
     //remove temp items
     charutils::ClearTempItems(PChar);
@@ -983,13 +968,18 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID == 0)
     {
         uint8 data[4] {};
-        WBUFL(data, 0) = PChar->PParty->GetPartyID();
+        ref<uint32>(data, 0) = PChar->PParty->GetPartyID();
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     }
 
     if (PChar->PParty)
     {
         PChar->PParty->PopMember(PChar);
+    }
+
+    if (PChar->PAutomaton)
+    {
+        PChar->PAutomaton->PMaster = nullptr;
     }
 }
 

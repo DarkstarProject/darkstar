@@ -5,10 +5,9 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
@@ -30,6 +29,6 @@ function onAdditionalEffect(player,target,damage)
             player:addHP(power)
         end
 
-        return SUBEFFECT_HP_DRAIN, MSGBASIC_ADD_EFFECT_HP_DRAIN, power;
+        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, power;
     end
 end;

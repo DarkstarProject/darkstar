@@ -1,27 +1,37 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Sturmtiger
--- Involved in Quest: Chasing Quotas
--- !pos -715.882,-10.75,65.982 (105)
------------------------------------
-require("scripts/globals/missions");
------------------------------------
--- onMobSpawn Action
+--  MOB: Suparna Fledgling
+-- Involved in Mission: San d'Orian 9-1
 -----------------------------------
 
-function onMobSpawn(mob)
+require("scripts/zones/Batallia_Downs/MobIDs");
+require("scripts/globals/missions");
+require("scripts/globals/status");
+
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(MOBMOD_SCRIPTED_2HOUR, 1);
 end;
 
------------------------------------
--- onMobDeath Action
------------------------------------
+function onMobSpawn(mob)
+    DespawnMob(mob:getID(), 180);
+    mob:setLocalVar("2HOUR_HPP", math.random(35,60));
+end;
+
+function onMobFight(mob,target)
+    if (mob:getLocalVar("2HOUR_USED") == 0 and mob:getHPP() <= mob:getLocalVar("2HOUR_HPP")) then
+        mob:setLocalVar("2HOUR_USED", 1);
+        mob:useMobAbility(jobSpec.BENEDICTION);
+    end
+end;
+
+function onMobDisengage(mob, weather)
+    mob:setLocalVar("2HOUR_USED", 0);
+end;
 
 function onMobDeath(mob, player, isKiller)
-
-    local kills = player:getVar("Mission9-1Kills");
-
-    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3 and kills < 2) then
-        player:setVar("Mission9-1Kills",kills + 1);
+    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
+        and GetMobByID(SUPARNA):isDead() and GetMobByID(SUPARNA_FLEDGLING):isDead()) then
+        player:setVar("Mission9-1Kills", 1);
     end
-
 end;

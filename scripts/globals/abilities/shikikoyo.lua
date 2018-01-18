@@ -6,10 +6,10 @@
 -- Duration: Instant
 -- Target: Party member, cannot target self.
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -17,9 +17,9 @@ require("scripts/globals/utils");
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return MSGBASIC_CANNOT_PERFORM_TARG,0;
+        return msgBasic.CANNOT_PERFORM_TARG,0;
     elseif (player:getTP() < 1000) then
-        return MSGBASIC_NOT_ENOUGH_TP, 0;
+        return msgBasic.NOT_ENOUGH_TP, 0;
     else
         return 0,0;
     end

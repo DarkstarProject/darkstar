@@ -2,14 +2,10 @@
 -- Area: Attohwa Chasm
 --  NPC: Alastor Antlion
 -----------------------------------
-
+mixins = {require("scripts/mixins/families/antlion_ambush_noaggro")}
 require("scripts/globals/status");
 require("scripts/globals/magic");
-mixins = {require("scripts/mixins/families/antlion_ambush_noaggro")}
-
------------------------------------
--- onMobInitialize Action
------------------------------------
+require("scripts/globals/msg");
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
@@ -20,29 +16,11 @@ function onMobInitialize(mob)
     mob:addMod(MOD_SILENCERES,40);
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
 function onMobEngaged(mob, target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
--- onAdditionalEffect
------------------------------------
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
@@ -59,6 +37,9 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(EFFECT_PETRIFICATION)) then
             player:addStatusEffect(EFFECT_PETRIFICATION, 1, 0, duration);
         end
-        return SUBEFFECT_PETRIFY, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
+        return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
     end
+end;
+
+function onMobDeath(mob, player, isKiller)
 end;

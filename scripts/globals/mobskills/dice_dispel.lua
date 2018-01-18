@@ -1,15 +1,17 @@
 ---------------------------------------------
---  Goblin Dice
+-- Goblin Dice
 --
---  Description: Stun
---  Type: Physical (Blunt)
+-- Description: Stun
+-- Type: Physical (Blunt)
 --
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
@@ -20,22 +22,22 @@ function onMobWeaponSkill(target, mob, skill)
     local effect3 = target:dispelStatusEffect();
     local num = 0;
 
-    if(effect ~= EFFECT_NONE) then
+    if (effect ~= EFFECT_NONE) then
         num = num + 1;
     end
 
-    if(effect2 ~= EFFECT_NONE) then
+    if (effect2 ~= EFFECT_NONE) then
         num = num + 1;
     end
 
-    if(effect3 ~= EFFECT_NONE) then
+    if (effect3 ~= EFFECT_NONE) then
         num = num + 1;
     end
 
     if (num == 0) then
-        skill:setMsg(MSG_NO_EFFECT); -- no effect
+        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     else
-        skill:setMsg(MSG_DISAPPEAR_NUM);
+        skill:setMsg(msgBasic.DISAPPEAR_NUM);
     end
 
     return num;

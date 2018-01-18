@@ -2,23 +2,16 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm6 (???)
 -- Spawns Rakshas
--- !pos ? ? ? 217
+-- !pos -203 -39 -26 217
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/abyssea");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
---[[
-    if (trade:hasItemQty(3103,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(17666492) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(17666492):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
-            player:tradeComplete();
-        end
-    end
-]]
+    abysseaOnTrade(player,npc,trade);
 end;
 
 -----------------------------------
@@ -26,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 3103); -- Inform player what items they need.
+    abysseaOnTrigger(player,npc);
 end;
 
 -----------------------------------
@@ -34,8 +27,6 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +34,4 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

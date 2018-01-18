@@ -1,15 +1,15 @@
 ---------------------------------------------
---  Jamming Wave
+-- Jamming Wave
 --
---  Description: Silence Area of Effect (16.0')
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
+-- Description: Silence Area of Effect (16.0')
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

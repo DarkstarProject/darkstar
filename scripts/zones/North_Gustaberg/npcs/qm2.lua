@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     if (thickAsThievesGamblingCS == 5) then
         SpawnMob(17211848):updateClaim(player);
     elseif (thickAsThievesGamblingCS == 6) then
-        player:startEvent(0x00c8,1092);
+        player:startEvent(200,1092);
     end
 
 end;
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00c8) then
+    if (csid == 200) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1092);
         else

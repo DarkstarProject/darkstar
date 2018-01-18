@@ -4,14 +4,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+require("scripts/zones/Yuhtunga_Jungle/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -60,8 +59,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local Rose_Garden = 17281357;
-    GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random((36000), (37800)));
+    GetMobByID(ROSE_GARDEN):setLocalVar("1",os.time() + math.random((36000), (37800)));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
@@ -90,7 +88,7 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x000b;
+        cs = 11;
     end
 
     return cs;
@@ -111,7 +109,7 @@ function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000b) then
+    if (csid == 11) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
@@ -124,7 +122,7 @@ function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000b) then
+    if (csid == 11) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

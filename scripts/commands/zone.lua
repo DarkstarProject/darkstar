@@ -255,20 +255,20 @@ local zone_list =
     { 0x14, 0x09, 252 }, -- Norg
     { 0x27, 0x4C, 256 }, -- Western Adoulin
     { 0x27, 0x4D, 257 }, -- Eastern Adoulin
-    { 0x27, 0x4E, 259 }, -- Rala Waterways [U]
+    { 0x27, 0x4E, 258 }, -- Rala Waterways
     { 0x27, 0x4F, 260 }, -- Yahse Hunting Grounds
     { 0x27, 0x50, 261 }, -- Ceizak Battlegrounds
     { 0x27, 0x51, 262 }, -- Foret de Hennetiel
-    { 0x27, 0x56, 264 }, -- Yorcia Weald [U]
+    { 0x27, 0x56, 263 }, -- Yorcia Weald
     { 0x27, 0x52, 265 }, -- Morimar Basalt Fields
     { 0x27, 0x57, 266 }, -- Marjami Ravine
     { 0x27, 0x5C, 267 }, -- Kamihr Drifts
     { 0x27, 0x53, 268 }, -- Sih Gates
     { 0x27, 0x54, 269 }, -- Moh Gates
-    { 0x27, 0x55, 271 }, -- Cirdas Caverns [U]
+    { 0x27, 0x55, 270 }, -- Cirdas Caverns
     { 0x27, 0x58, 272 }, -- Dho Gates
     { 0x27, 0x5D, 273 }, -- Woh Gates
-    { 0x27, 0x12, 275 }, -- Outer Ra'Kaznar [U]
+    { 0x27, 0x12, 274 }, -- Outer Ra'Kaznar
     { 0x27, 0x5A, 280 }, -- Mog Garden
     { 0x27, 0x59, 284 }, -- Celennia Memorial Library
     { 0x27, 0x5B, 285 }, -- Feretory
@@ -283,7 +283,7 @@ end;
 function getBytePos(s,needle)
     local i;
     local b;
-    for i=1,string.len(s),1 do 
+    for i=1,string.len(s),1 do
         if (string.byte(s, i) == needle) then
             return i;
         end
@@ -331,7 +331,7 @@ function onTrigger(player, bytes)
     else
         -- destination is a zone ID.
         zone = tonumber(bytes);
-        if (zone == nil or zone < 0 or zone > 288) then
+        if (zone == nil or zone < 0 or zone > 293) then
             error(player, "Invalid zone ID.");
             return;
         end

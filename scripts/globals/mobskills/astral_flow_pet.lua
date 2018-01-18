@@ -5,6 +5,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -15,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 
     local pet = mob:getPet();
 
-    if(pet:getSystem() ~= 5) then
+    if (pet:getSystem() ~= 5) then
         -- pet is not an avatar
         return 1;
     end
@@ -41,35 +42,35 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_ASTRAL_FLOW;
-    skill:setMsg(MSG_USES);
+    skill:setMsg(msgBasic.USES);
 
     -- Find proper pet skill
     local pet = mob:getPet();
     local petFamily = pet:getFamily();
     local skillId = 0;
 
-    if(petFamily == 34 or petFamily == 379) then
+    if (petFamily == 34 or petFamily == 379) then
         -- carbuncle
         skillId = 919; -- searing light
-    elseif(petFamily == 36 or petFamily == 381) then
+    elseif (petFamily == 36 or petFamily == 381) then
         -- fenrir
         skillId = 839; -- howling moon
-    elseif(petFamily == 37 or petFamily == 382) then
+    elseif (petFamily == 37 or petFamily == 382) then
         -- garuda
         skillId = 916; -- aerial blast
-    elseif(petFamily == 38 or petFamily == 383) then
+    elseif (petFamily == 38 or petFamily == 383) then
         -- ifrit
         skillId = 913; -- inferno
-    elseif(petFamily == 40 or petFamily == 384) then
+    elseif (petFamily == 40 or petFamily == 384) then
         -- levi
         skillId = 915; -- tidal wave
-    elseif(petFamily == 43 or petFamily == 386) then
+    elseif (petFamily == 43 or petFamily == 386) then
         -- ramuh
         skillId = 918; -- judgment bolt
-    elseif(petFamily == 44 or petFamily == 387) then
+    elseif (petFamily == 44 or petFamily == 387) then
         -- shiva
         skillId = 917; -- diamond dust
-    elseif(petFamily == 45 or petFamily == 388) then
+    elseif (petFamily == 45 or petFamily == 388) then
         -- titan
         skillId = 914; -- earthen fury
     else

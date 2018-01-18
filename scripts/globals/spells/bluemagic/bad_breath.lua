@@ -50,38 +50,43 @@ function onSpellCast(caster,target,spell)
     damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
+    local params = {};
+    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.bonus = 1.0;
+    local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.3) then
         local typeEffect = EFFECT_PARALYSIS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_WEIGHT;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_POISON;
-        target:delStatusEffect(typeEffect); 
+        target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_SLOW;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_SILENCE;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_BIND;
         target:delStatusEffect(typeEffect);
@@ -92,7 +97,7 @@ function onSpellCast(caster,target,spell)
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     return damage;
 
 end;

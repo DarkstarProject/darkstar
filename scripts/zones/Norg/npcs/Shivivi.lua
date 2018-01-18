@@ -81,11 +81,11 @@ function onTrigger(player,npc)
     mLvl = player:getMainLvl();
 
     if (DampScroll == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 10 and player:hasItem(1210) == true) then
-        player:startEvent(0x001f,1210); -- Start the quest
+        player:startEvent(31,1210); -- Start the quest
     elseif (DampScroll == QUEST_ACCEPTED) then
-        player:startEvent(0x0020); -- Reminder Dialogue
+        player:startEvent(32); -- Reminder Dialogue
     else
-        player:startEvent(0x0055);
+        player:startEvent(85);
     end
 
     npc:wait(0);
@@ -107,7 +107,7 @@ end;
 function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x001f) then
+    if (csid == 31) then
         player:addQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
     end
 

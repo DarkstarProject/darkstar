@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x00b3);
+    player:startEvent(179);
 end;
 
 -----------------------------------
@@ -37,7 +37,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00b3 and option == 1) then
+    if (csid == 179 and option == 1) then
         player:setPos(0,0,0,0,44);
     end
 end;

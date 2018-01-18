@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)  
     if (npc:getID() == 16908420) then -- First door..
-        player:startEvent(0x7D03, 1);
+        player:startEvent(32003, 1);
     end
 end;
 
@@ -47,19 +47,19 @@ function onEventFinish(player,csid,option)
     local omega1        = GetMobAction(16908294);
     local ultima1       = GetMobAction(16908295);
     
-    if (csid == 0x7D03 and option == 100) then
+    if (csid == 32003 and option == 100) then
     
         -- Are any mammets alive still..
         if (mammet_1_1 > 0 or mammet_1_2 > 0 or mammet_1_3 > 0 or mammet_1_4 > 0 or mammet_1_5 > 0) then
-            player:startEvent(0x0000, 1);
+            player:startEvent(0, 1);
             
         -- Is Omega alive..
         elseif (omega1 > 0) then
-            player:startEvent(0x0001, 1);
+            player:startEvent(1, 1);
             
         -- Is Ultima alive..
         elseif (ultima1 > 0) then
-            player:startEvent(0x0002, 1);
+            player:startEvent(2, 1);
         end
     end
     

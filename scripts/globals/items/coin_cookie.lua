@@ -7,11 +7,7 @@
 -- Vermin Killer 12
 -- Poison Resist 12
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -21,10 +17,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,300,4520);
@@ -40,11 +32,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_POISONRES, 12);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_MPHEAL, 6);
     target:delMod(MOD_VERMIN_KILLER, 12);
     target:delMod(MOD_POISONRES, 12);

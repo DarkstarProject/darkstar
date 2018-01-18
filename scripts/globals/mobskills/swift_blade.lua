@@ -9,10 +9,10 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
----------------------------------------------
+require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
-    mob:messageBasic(43, 0, 41);
+    mob:messageBasic(msgBasic.READIES_WS, 0, 41);
     return 0;
 end;
 
@@ -22,8 +22,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_ACC_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-
-    skill:setSkillchain(41);
 
     -- Around 700 damage from AA HM
     target:delHP(dmg);

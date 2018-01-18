@@ -117,12 +117,16 @@ function onEventFinish(player,csid,option)
 
     -- A NEW DAWN
     elseif (csid == 45) then
-        player:setVar("ANewDawn_Event",6);
-        player:delKeyItem(217);
-        player:addTitle(196);
-        player:addItem(14222,1);
-        player:messageSpecial(ITEM_OBTAINED,14222);
-        player:completeQuest(JEUNO,A_NEW_DAWN);
-        player:addFame(JEUNO, 30);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14222);
+        else
+            player:setVar("ANewDawn_Event",6);
+            player:delKeyItem(217);
+            player:addTitle(196);
+            player:addItem(14222,1);
+            player:messageSpecial(ITEM_OBTAINED,14222);
+            player:completeQuest(JEUNO,A_NEW_DAWN);
+            player:addFame(JEUNO, 30);
+        end
     end;
 end;

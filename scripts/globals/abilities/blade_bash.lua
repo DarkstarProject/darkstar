@@ -5,25 +5,18 @@
 -- Recast Time: 3:00
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (not player:isWeaponTwoHanded()) then
-        return MSGBASIC_NEEDS_2H_WEAPON,0;
+        return msgBasic.NEEDS_2H_WEAPON,0;
     else
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     -- Stun rate
@@ -49,7 +42,7 @@ function onUseAbility(player,target,ability)
         target:addStatusEffect(EFFECT_PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
     end
 
-    ability:setMsg(110)
+    ability:setMsg(msgBasic.JA_DAMAGE)
 
     return damage;
 end;

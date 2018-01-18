@@ -43,7 +43,7 @@ function onMobDespawn(mob)
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(nmToPop);
                 GetMobByID(nmToPop):setRespawnTime(GetMobRespawnTime(mobID));
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

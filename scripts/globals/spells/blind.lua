@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Blind
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -35,7 +32,14 @@ function onSpellCast(caster,target,spell)
 
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_BLINDNESS);
+    local duration = 180;
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 35;
+    params.bonus = 0;
+    params.effect = EFFECT_BLINDNESS;
+    duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then --Do it!
 
@@ -45,12 +49,12 @@ function onSpellCast(caster,target,spell)
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
         if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
     return EFFECT_BLINDNESS;
 end;

@@ -30,17 +30,17 @@ function onTrigger(player,npc)
     local IASvar = player:getVar("IASvar");
 
     if (IAS == QUEST_ACCEPTED and IASvar == 1) then
-        player:startEvent(0x00E9,0,0,4545); -- In a Stew in progress
+        player:startEvent(233,0,0,4545); -- In a Stew in progress
     elseif (IAS == QUEST_ACCEPTED and IASvar == 2) then
-        player:startEvent(0x00ED);             -- In a Stew reminder
+        player:startEvent(237);             -- In a Stew reminder
     elseif (IAS == QUEST_COMPLETED) then
-        player:startEvent(0x00F1);             -- new dialog after In a Stew
+        player:startEvent(241);             -- new dialog after In a Stew
 
     elseif (CB == QUEST_COMPLETED) then
-        player:startEvent(0x00E2); -- Chocobilious complete
+        player:startEvent(226); -- Chocobilious complete
     else
         -- Standard Dialog
-        player:startEvent(0xdf);
+        player:startEvent(223);
     end
 end;
 
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     -- In a Stew
-    if (csid == 0x00E9) then
+    if (csid == 233) then
         player:setVar("IASvar",2);
     end
 end;

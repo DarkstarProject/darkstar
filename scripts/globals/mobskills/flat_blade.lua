@@ -9,13 +9,12 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
----------------------------------------------
+require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4006) then
-        mob:messageBasic(43, 0, 35);
+        mob:messageBasic(msgBasic.READIES_WS, 0, 35);
     end
-
     return 0;
 end;
 
@@ -30,8 +29,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1.25;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1.1,1.2,1.3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-
-    skill:setSkillchain(35);
 
     if (math.random(1,100) < skill:getTP()/3) then
         MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 4);

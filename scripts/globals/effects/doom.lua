@@ -20,15 +20,10 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-    effect:setPower(effect:getPower()-1);
+    local remainingTicks = 1 + (effect:getTimeRemaining() / 1000) / 3
 
-    if (effect:getPower() == 0) then
-        -- sorry, you are the weakest link
-        target:setHP(0);
-    else
-        -- doom counter
-        target:messagePublic(112, target, effect:getPower(), effect:getPower());
-    end
+    -- doom counter
+    target:messagePublic(112, target, remainingTicks, remainingTicks);
 end;
 
 -----------------------------------
@@ -36,7 +31,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    if (effect:getPower() == 0) then
+    if (effect:getTimeRemaining() == 0) then
         target:setHP(0);
     end
 end;

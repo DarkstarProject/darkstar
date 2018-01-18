@@ -16,6 +16,11 @@ end;
 
 function onSpellCast(caster,target,spell)
     -- doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-    local dmg = doDivineNuke(250,2,caster,spell,target,false,0);
+    local params = {};
+    params.dmg = 250;
+    params.multiplier = 2;
+    params.hasMultipleTargetReduction = false;
+    params.resistBonus = 0;
+    dmg = doDivineNuke(caster, target, spell, params);
     return dmg;
 end;

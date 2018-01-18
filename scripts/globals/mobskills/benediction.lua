@@ -1,12 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Benediction
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+require("scripts/globals/msg");
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
@@ -25,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:addHP(maxHeal);
     target:wakeUp();
 
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
 
     return maxHeal;
 end;

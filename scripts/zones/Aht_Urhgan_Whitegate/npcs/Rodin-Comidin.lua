@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(TOAU) == LIGHT_OF_JUDGMENT) then
         player:startEvent(3137,0,0,0,0,0,0,0,0,0);
     else
-        player:startEvent(0x0299);
+        player:startEvent(665);
     end
 end;
 

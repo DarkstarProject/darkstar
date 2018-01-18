@@ -814,7 +814,7 @@ INSERT INTO `mob_pets` VALUES (17330766, 1, 14); -- Kindred_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17199584, 1, 14); -- Orc_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17203664, 1, 14); -- Orc_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17281480, 1, 14); -- Sahagin_s_Wyvern
-INSERT INTO `mob_pets` VALUES (17346571, 1, 14); -- Orc_s_Wyvern
+INSERT INTO `mob_pets` VALUES (17346569, 3, 14); -- Orc_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17346577, 1, 14); -- Orc_s_Wyvern
 -- INSERT INTO `mob_pets` VALUES (17346583, 1, 14); -- Orc_s_Wyvern
 INSERT INTO `mob_pets` VALUES (17387585, 1, 14); -- Orc_s_Wyvern

@@ -4,13 +4,11 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
 require("scripts/zones/Bhaflau_Thickets/TextIDs");
+require("scripts/zones/Bhaflau_Thickets/MobIDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -63,10 +61,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-
-    -- Harvestman
-    SetRespawnTime(16990252, 900, 10800);
-
+    UpdateNMSpawnPoint(HARVESTMAN);
+    GetMobByID(HARVESTMAN):setRespawnTime(math.random(900, 10800));
 end;
 
 -----------------------------------
@@ -113,4 +109,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+    if (csid == 108) then
+        player:setPos(0,0,0,0,66);
+    end
 end;

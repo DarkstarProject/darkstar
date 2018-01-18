@@ -58,7 +58,7 @@ function onTrade(player,npc,trade)
 
     if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
-        player:startEvent(0x0371);
+        player:startEvent(881);
     end
 
 end;
@@ -74,20 +74,20 @@ function onTrigger(player,npc)
 
     if (LureSandy ~= QUEST_COMPLETED and ENABLE_TOAU == 1) then
         if (LureSandy == QUEST_AVAILABLE) then
-            player:startEvent(0x032c);
+            player:startEvent(812);
         else
             if (WildcatSandy == 0) then
-                player:startEvent(0x032d);
+                player:startEvent(813);
             elseif (player:isMaskFull(WildcatSandy,20) == true) then
-                player:startEvent(0x032f);
+                player:startEvent(815);
             else
-                player:startEvent(0x032e);
+                player:startEvent(814);
             end
         end
     elseif (player:getCurrentMission(TOAU) >= 2) then
-        player:startEvent(0x0370);
+        player:startEvent(880);
     else
-        player:startEvent(0x0330);
+        player:startEvent(816);
     end
 end;
 
@@ -107,12 +107,12 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x032c) then
+    if (csid == 812) then
         player:addQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:setVar("WildcatSandy",0);
         player:addKeyItem(RED_SENTINEL_BADGE);
         player:messageSpecial(KEYITEM_OBTAINED,RED_SENTINEL_BADGE);
-    elseif (csid == 0x032f) then
+    elseif (csid == 815) then
         player:completeQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:addFame(SANDORIA,150);
         player:setVar("WildcatSandy",0);
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(RED_INVITATION_CARD);
         player:messageSpecial(KEYITEM_LOST,RED_SENTINEL_BADGE);
         player:messageSpecial(KEYITEM_OBTAINED,RED_INVITATION_CARD);
-    elseif (csid == 0x0371) then
+    elseif (csid == 881) then
         player:tradeComplete();
         toAhtUrhganWhitegate(player);
     end

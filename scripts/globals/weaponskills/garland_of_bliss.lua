@@ -41,12 +41,5 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         end
     end
 
-
-    if ((player:getEquipID(SLOT_MAIN) == 19005) and (player:getMainJob() == JOBS.SMN)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
-        end
-    end
     return tpHits, extraHits, criticalHit, damage;
-
 end

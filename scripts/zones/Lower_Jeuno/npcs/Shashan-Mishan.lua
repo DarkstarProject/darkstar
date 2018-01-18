@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x8271C,0,0,0,0,0,0,0,VanadielTime());
+    player:startEvent(534300,0,0,0,0,0,0,0,VanadielTime());
 end; 
 
 -----------------------------------

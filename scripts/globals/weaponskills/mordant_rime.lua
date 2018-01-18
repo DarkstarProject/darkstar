@@ -40,14 +40,5 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
     end
 
-    if ((player:getEquipID(SLOT_MAIN) == 19000) and (player:getMainJob() == JOBS.BRD)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 2
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
-        end
-    end
     return tpHits, extraHits, criticalHit, damage;
 end

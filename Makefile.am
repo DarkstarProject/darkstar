@@ -11,7 +11,7 @@ CPPFLAGS_ALL            = $(DARKSTAR_CPPFLAGS) -fsigned-char -DFMT_HEADER_ONLY
 CXXFLAGS_ALL            = $(DARKSTAR_CXXFLAGS) -fsigned-char
 LIBS_ALL                = $(DARKSTAR_LIBS)
 LDFLAGS_ALL             = $(DARKSTAR_LDFLAGS)
-CXX                     = g++ -std=c++1y
+CXX                     = g++ -std=c++17
 
 CFLAGS_ALL              += $(LUA_CFLAGS)
 CFLAGS_ALL              += $(MYSQL_CFLAGS)
@@ -46,14 +46,14 @@ bin_PROGRAMS          = dsgame dsconnect dssearch
 
 dsgame_SOURCES        = $(SRC_ALL) $(SRC_MAP)
 dsgame_CXXFLAGS       = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
-dsgame_CPPFLAGS       = $(CPPFLAGS_ALL) -DdsUDPSERV
+dsgame_CPPFLAGS       = $(CPPFLAGS_ALL)
 dsgame_CFLAGS         = $(CFLAGS_ALL)
 dsgame_LDFLAGS        = $(LDFLAGS_ALL)
 dsgame_LDADD          = $(LIBS_ALL)
 
 dsconnect_SOURCES     = $(SRC_ALL) $(SRC_LOGIN)
 dsconnect_CXXFLAGS    = $(CFLAGS_ALL) $(CXXFLAGS_ALL)
-dsconnect_CPPFLAGS    = $(CPPFLAGS_ALL) -DdsTCPSERV
+dsconnect_CPPFLAGS    = $(CPPFLAGS_ALL)
 dsconnect_CFLAGS      = $(CFLAGS_ALL)
 dsconnect_LDFLAGS     = $(LDFLAGS_ALL)
 dsconnect_LDADD       = $(LIBS_ALL)

@@ -39,13 +39,13 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_AVAILABLE) then
-        player:startEvent(0x0077);
+        player:startEvent(119);
     elseif (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and player:getVar("SPLINTERSPINE_GRUKJUK") <= 1) then
-        player:startEvent(0x0078);
+        player:startEvent(120);
     elseif (player:getVar("SPLINTERSPINE_GRUKJUK") == 2 and player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
-        player:startEvent(0x0079);
+        player:startEvent(121);
     else
-        player:startEvent(0x007A);
+        player:startEvent(122);
     end
 
 end;
@@ -67,9 +67,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0077 and option == 3) then
+    if (csid == 119 and option == 3) then
         player:addQuest(OTHER_AREAS,A_HARD_DAY_S_KNIGHT);
-    elseif (csid == 0x0079) then
+    elseif (csid == 121) then
         player:setVar("SPLINTERSPINE_GRUKJUK",0);
         player:completeQuest(OTHER_AREAS,A_HARD_DAY_S_KNIGHT);
         player:addGil(GIL_RATE*2100);

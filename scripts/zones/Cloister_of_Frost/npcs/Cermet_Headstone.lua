@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
         if (player:hasKeyItem(ICE_FRAGMENT) == false) then
-            player:startEvent(0x00C8,ICE_FRAGMENT);
+            player:startEvent(200,ICE_FRAGMENT);
         elseif (player:hasKeyItem(239) and player:hasKeyItem(240) and player:hasKeyItem(241) and
             player:hasKeyItem(242) and player:hasKeyItem(243) and player:hasKeyItem(244) and
             player:hasKeyItem(245) and player:hasKeyItem(246)) then
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00C8 and option == 1) then
+    if (csid == 200 and option == 1) then
         player:addKeyItem(ICE_FRAGMENT);
         -- Check and see if all fragments have been found (no need to check ice and dark frag)
         if (player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and

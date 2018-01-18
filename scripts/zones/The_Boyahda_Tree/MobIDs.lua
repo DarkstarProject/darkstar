@@ -4,9 +4,16 @@
 --(Taken from 'mob_spawn_points' table)
 -----------------------------------
 
--- Voluptuous Vivian
-Voluptuous_Vivian = 17404331;
-Voluptuous_Vivian_PH =
+ELLYLLON_PH =
 {
-    [17404330] = '1', -- -196.178 5.592 190.971
+    [17403938] = 17403939, -- 192.54 8.532 -163.41
 };
+
+VOLUPTUOUS_VIVIAN_PH =
+{
+    [17404330] = 17404331, -- -196.178 5.592 190.971
+};
+
+AGAS = 17404337;
+
+BOYAHDA_TREASURE_COFFER = 17404394;

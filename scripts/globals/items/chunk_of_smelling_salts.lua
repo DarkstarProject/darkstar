@@ -4,47 +4,32 @@
 -- Item Effect: Recover Pets from Sleep
 -- Duration: 180 Secs Medicated
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
-    local result = 0;
     pet = target:getPet();
-    if (pet:hasStatusEffect(EFFECT_MEDICINE)) then
-        result = 111;
+    if (pet == nil) then
+        return msgBasic.REQUIRES_A_PET;
+    elseif (pet:hasStatusEffect(EFFECT_MEDICINE)) then
+        return msgBasic.ITEM_NO_USE_MEDICATED;
     end
-    return result;
+    return 0;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     if (target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5320)) then
-        target:messageBasic(205);
+        target:messageBasic(GAINS_EFFECT_OF_STATUS, EFFECT_MEDICINE);
         pet:delStatusEffect(EFFECT_SLEEP_I);
         pet:delStatusEffect(EFFECT_SLEEP_II);
         pet:delStatusEffect(EFFECT_LULLABY);
     else
-            target:messageBasic(423); -- no effect
-        end
+        target:messageBasic(msgBasic.NO_EFFECT);
+    end
 end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
 
 function onEffectGain(target,effect)
 end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------------
 
 function onEffectLose(target,effect)
 end;

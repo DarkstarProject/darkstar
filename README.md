@@ -11,11 +11,6 @@ Visit our forums and Discord or IRC to keep in touch with the latest development
 **Discord:**
 https://discord.gg/4dgAzfC
 
-**IRC Channel**
- * **Server:** irc.rizon.net
- * **Port:** 6667
- * **Channel:** #darkstarproject
-
 Bug Reports
 ========
 You can find the tracker here: https://github.com/DarkstarProject/darkstar/issues
@@ -34,7 +29,7 @@ Remember to check back for any feedback, and drop a comment once requested chang
 
 Use 4 spaces per tab - this will be enforced in pull requests.
 
-Please *test your code* before committing changes/submitting a pull request.
+Please *test your code* before committing changes/submitting a pull request. You break it you fix it!
 
 Wiki
 ========

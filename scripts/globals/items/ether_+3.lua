@@ -3,22 +3,16 @@
 -- Item: Ether +3
 -- Item Effect: Restores 40 MP
 -----------------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
+    if (target:getMP() == target:getMaxMP()) then
+        return msgBasic.ITEM_UNABLE_TO_USE;
+    end
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    target:addMP(40*ITEM_POWER);
-    target:messageBasic(25,0,40);
+    target:messageBasic(msgBasic.RECOVERS_MP,0,target:addMP(40*ITEM_POWER));
 end;

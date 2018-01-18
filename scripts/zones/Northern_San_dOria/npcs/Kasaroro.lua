@@ -38,11 +38,11 @@ function onTrigger(player,npc)
 
         if (currentMission == THE_THREE_KINGDOMS) then
             if (MissionStatus == 2) then
-                player:startEvent(0x0222);
+                player:startEvent(546);
             elseif (MissionStatus == 6) then
                 player:showText(npc,KASARORO_DIALOG + 7);
             elseif (MissionStatus == 7) then
-                player:startEvent(0x0223);
+                player:startEvent(547);
             elseif (MissionStatus == 11) then
                 player:showText(npc,KASARORO_DIALOG + 20);
             end
@@ -50,23 +50,23 @@ function onTrigger(player,npc)
             if (MissionStatus == 3) then
                 player:showText(npc,KASARORO_DIALOG);
             elseif (MissionStatus == 4) then
-                player:startEvent(0x0225);
+                player:startEvent(549);
             elseif (MissionStatus == 5) then
-                player:startEvent(0x0226); -- done with Sandy first path, now go to bastok
+                player:startEvent(550); -- done with Sandy first path, now go to bastok
             end
         elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
             if (MissionStatus == 8) then
                 player:showText(npc,KASARORO_DIALOG);
             elseif (MissionStatus == 10) then
-                player:startEvent(0x0227);
+                player:startEvent(551);
             end
         elseif (player:hasCompletedMission(WINDURST,THE_THREE_KINGDOMS)) then
-            player:startEvent(0x025c);
+            player:startEvent(604);
         else
-            player:startEvent(0x0224);
+            player:startEvent(548);
         end
     else
-        player:startEvent(0x0224);
+        player:startEvent(548);
     end
 
 end;
@@ -88,17 +88,17 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0222) then
+    if (csid == 546) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA);
         player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
         player:setVar("MissionStatus",3);
-    elseif (csid == 0x0226) then
+    elseif (csid == 550) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
         player:setVar("MissionStatus",6);
-    elseif (csid == 0x0223) then
+    elseif (csid == 547) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA2);
         player:setVar("MissionStatus",8);
-    elseif (csid == 0x0227) then
+    elseif (csid == 551) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
         player:delKeyItem(KINDRED_CREST);
         player:addKeyItem(KINDRED_REPORT);

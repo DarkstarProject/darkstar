@@ -10,11 +10,7 @@
 -- HP Recovered While Healing 1
 -- Accuracy % 6 (cap 20)
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
 -----------------------------------------
 
 function onItemCheck(target)
@@ -24,10 +20,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,4268);
@@ -47,11 +39,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_ACC_CAP, 20);
 end;
 
------------------------------------------
--- onEffectLose Action
------------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(MOD_HP, 45);
     target:delMod(MOD_DEX, 6);
     target:delMod(MOD_AGI, 3);

@@ -101,7 +101,12 @@ static void dump_backtrace(void)
 	// gdb
 #if defined(__linux__)
 	int fd[2];
-	pipe(fd);
+	int status = pipe(fd);
+    if (status == -1)
+    {
+        ShowError("pipe failed for gdb backtrace: %s", strerror(errno));
+        _exit(EXIT_FAILURE);
+    }
 	pid_t child_pid = fork();
 
 #ifdef HAS_YAMA_PRCTL
@@ -118,7 +123,7 @@ static void dump_backtrace(void)
 		// NOTE: gdb-7.8 has regression, either update or downgrade.
 		close(fd[0]);
 		char buf[255];
-		snprintf(buf, sizeof(buf), "gdb -p %d -n -batch -ex bt 2>/dev/null | sed -n '/<signal handler/{n;x;b};H;${x;p}' 1>&%d", getppid(), fd[1]);
+		snprintf(buf, sizeof(buf), "gdb -p %d -n -batch -ex generate-core-file -ex bt 2>/dev/null 1>&%d", getppid(), fd[1]);
 		execl("/bin/sh", "/bin/sh", "-c", buf, NULL);
 		ShowError ("Failed to launch gdb for backtrace");
 		_exit(EXIT_FAILURE);
@@ -126,7 +131,12 @@ static void dump_backtrace(void)
 		close(fd[1]);
 		waitpid(child_pid, NULL, 0);
 		char buf[4096] = {0};
-		read(fd[0], buf, sizeof(buf) - 1);
+		status = read(fd[0], buf, sizeof(buf) - 1);
+        if (status == -1)
+        {
+            ShowError("read failed for gdb backtrace: %s", strerror(errno));
+            _exit(EXIT_FAILURE);
+        }
 		ShowFatalError ("--- gdb backtrace ---\n%s", buf);
 	}
 #endif
@@ -150,6 +160,7 @@ static void sig_proc(int sn)
 				do_final(EXIT_SUCCESS);
 			runflag = 0;
 			break;
+		case SIGABRT:
 		case SIGSEGV:
 		case SIGFPE:
 			dump_backtrace();
@@ -182,6 +193,7 @@ void signals_init (void)
 	compat_signal(SIGTERM, sig_proc);
 	compat_signal(SIGINT, sig_proc);
 #ifndef _DEBUG // need unhandled exceptions to debug on Windows
+	compat_signal(SIGABRT, sig_proc);
 	compat_signal(SIGSEGV, sig_proc);
 	compat_signal(SIGFPE, sig_proc);
 #endif
@@ -213,12 +225,16 @@ const char* get_git_revision(void)
 {
     FILE *fp = NULL;
 
-    // Pull lastest fetch version from FETCH_HEAD..
-    if ((fp = fopen(".git/FETCH_HEAD", "r")) != NULL)
+    // GIT_VER was copied in to working dir post-build
+    if ((fp = fopen("GIT_VER", "r")) != NULL)
     {
-        int8 line[1024], w1[1024], w2[1024];
+        char line[1024], w1[1024], w2[1024];
 
-        fgets(line, 1024, fp);
+        if (fgets(line, 1024, fp) == nullptr)
+        {
+            ShowError("fgets failed for git revision: %s", strerror(errno));
+            _exit(EXIT_FAILURE);
+        }
         sscanf(line, "%[a-zA-Z0-9] %[^\t\r\n]", w1, w2);
         snprintf(dsp_git_version, sizeof(dsp_git_version), "%s", w1);
         fclose(fp);

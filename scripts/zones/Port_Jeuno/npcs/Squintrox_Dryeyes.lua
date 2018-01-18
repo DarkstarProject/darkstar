@@ -64,7 +64,7 @@ function onTrigger(player,npc)
     if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
         player:showText(npc,GET_LOST);
     else
-        player:startEvent(0x0143);
+        player:startEvent(323);
     end
 end;
 
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
     local ViridianKey = player:hasKeyItem(VIRIDIAN_KEY);
     local LastViridian = player:getVar("LastViridianKey"); -- When last Viridian key was obtained
 
-    if (csid == 0x0143) then
+    if (csid == 323) then
         if (option == 1) then
             player:showText(player,DRYEYES_1);
         elseif (option == 100) then

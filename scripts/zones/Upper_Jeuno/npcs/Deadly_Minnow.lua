@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getVar("BorghertzHandsFirstTime") == 1) then
-        player:startEvent(0x0018);
+        player:startEvent(24);
         player:setVar("BorghertzHandsFirstTime",2);
     else
         player:showText(npc,DEADLYMINNOW_SHOP_DIALOG);

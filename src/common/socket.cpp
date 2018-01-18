@@ -92,8 +92,9 @@ int sock2newfd(SOCKET s)
 	for( fd = 1; fd < sock_arr_len; ++fd )
 		if( sock_arr[fd] == INVALID_SOCKET )
 			break;// empty position
-	if( fd == ARRAYLENGTH(sock_arr) )
-	{// too many sockets
+    if (fd == (sizeof(sock_arr) / sizeof(sock_arr[0])))
+	{
+        // too many sockets
 		closesocket(s);
 		WSASetLastError(WSAEMFILE);
 		return -1;
@@ -146,6 +147,9 @@ int sSocket(int af, int type, int protocol)
 *			COMMON LEVEL
 *
 */
+
+socket_type SOCKET_TYPE;
+
 fd_set readfds;
 int32 fd_max;
 time_t last_tick;
@@ -309,8 +313,6 @@ int socket_getips(uint32* ips, int max)
 	return num;
 }
 
-
-
 bool _vsocket_init(void)
 {
 #ifdef WIN32
@@ -396,7 +398,6 @@ uint16 ntows(uint16 netshort)
 	return ((netshort & 0xFF) << 8) | ((netshort & 0xFF00) >> 8);
 }
 /*****************************************************************************/
-#ifdef dsTCPSERV
 /*
 *
 *			TCP LEVEL
@@ -466,7 +467,7 @@ static int connect_check(uint32 ip)
 static int connect_check_(uint32 ip)
 {
 	ConnectHistory* hist = connect_history[ip&0xFFFF];
-	int i;
+	size_t i;
 	int is_allowip = 0;
 	int is_denyip = 0;
 	int connect_ok = 0;
@@ -656,7 +657,7 @@ int recv_to_fifo(int fd)
 
     auto prev_length = session[fd]->rdata.size();
     session[fd]->rdata.resize(prev_length + 0x7FF);
-	len = sRecv(fd, (char *) session[fd]->rdata.data() + prev_length, session[fd]->rdata.capacity() - prev_length, 0);
+	len = sRecv(fd, (char *) session[fd]->rdata.data() + prev_length, (int)(session[fd]->rdata.capacity() - prev_length), 0);
 
 	if( len == SOCKET_ERROR )
 	{//An exception has occured
@@ -935,7 +936,7 @@ void socket_init_tcp(void)
 	if(!_vsocket_init())
 		return;
 
-	char *SOCKET_CONF_FILENAME = "./conf/packet_darkstar_tcp.conf";
+    const char *SOCKET_CONF_FILENAME = "./conf/packet_darkstar_tcp.conf";
 	socket_config_read(SOCKET_CONF_FILENAME);
 	// session[0] is now currently used for disconnected sessions of the map server, and as such,
 	// should hold enough buffer (it is a vacuum so to speak) as it is never flushed. [Skotlex]
@@ -972,19 +973,19 @@ void socket_final_tcp(void)
 		if(session[i])
 			do_close_tcp(i);
 }
+
 void flush_fifo(int32 fd)
 {
 	if(session[fd] != NULL)
 		session[fd]->func_send(fd);
 }
+
 void flush_fifos(void)
 {
 	int i;
 	for(i = 1; i < fd_max; i++)
 		flush_fifo(i);
 }
-
-
 
 void set_defaultparse(ParseFunc defaultparse)
 {
@@ -998,6 +999,7 @@ void set_eof(int32 fd)
 		session[fd]->flag.eof = 1;
 	}
 }
+
 int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse)
 {
 	session[fd] = std::make_unique<socket_data>();
@@ -1029,14 +1031,11 @@ void set_nonblocking(int fd, unsigned long yes)
 		ShowError("set_nonblocking: Failed to set socket #%d to non-blocking mode (code %d) - Please report this!!!\n", fd, sErrno);
 }
 
-
-#elif defined(dsUDPSERV)
 /*
 *
 *			UDP LEVEL
 *
 */
-static int access_debug    = 0;
 int32 makeBind_udp(uint32 ip, uint16 port)
 {
 	struct sockaddr_in server_address;
@@ -1079,35 +1078,11 @@ int32 makeBind_udp(uint32 ip, uint16 port)
 	return fd;
 }
 
-int socket_config_read(const char* cfgName)
-{
-	char line[1024],w1[1024],w2[1024];
-	FILE *fp;
-
-	fp = fopen(cfgName, "r");
-	if(fp == NULL) {
-		ShowError("File not found: %s\n", cfgName);
-		return 1;
-	}
-
-	while(fgets(line, sizeof(line), fp))
-	{
-		if(line[0] == '/' && line[1] == '/')
-			continue;
-		if(sscanf(line, "%[^:]: %[^\r\n]", w1, w2) != 2)
-			continue;
-		if (!strcmpi(w1,"debug"))
-			access_debug = config_switch(w2);
-	}
-	fclose(fp);
-	return 0;
-}
-
 void socket_init_udp(void)
 {
 	if(!_vsocket_init())
 		return;
-	#define SOCKET_CONF_FILENAME  "./conf/packet_darkstar_udp.conf"
+    const char * SOCKET_CONF_FILENAME = "./conf/packet_darkstar_udp.conf";
 	socket_config_read(SOCKET_CONF_FILENAME);
 }
 
@@ -1115,37 +1090,50 @@ void do_close_udp(int32 fd)
 {
 	do_close(fd);
 }
+
 void socket_final_udp(void)
 {
 	if( !_vsocket_final() )
 		return;
 	//do_close_udp(listen_fd);
 }
+
 int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen)
 {
-	return sRecvfrom(fd,(char*)buff,nbytes,flags,from,addrlen);
+	return sRecvfrom(fd,(char*)buff,(int)nbytes,flags,from,addrlen);
 }
+
 int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen)
 {
-	return sSendto(fd,(const char*)buff,nbytes,flags,from,addrlen);
+	return sSendto(fd,(const char*)buff,(int)nbytes,flags,from,addrlen);
 }
-#endif
 
-bool socket_init(void)
+void socket_init()
 {
-#ifdef dsTCPSERV
-	socket_init_tcp();
-#elif defined( dsUDPSERV )
-	socket_init_udp();
-#endif
-	return true;
+    switch (SOCKET_TYPE)
+    {
+    case socket_type::TCP:
+        socket_init_tcp();
+        break;
+    case socket_type::UDP:
+        socket_init_udp();
+        break;
+    default:
+        break;
+    }
 }
-bool socket_final(void)
+
+void socket_final()
 {
-#ifdef dsTCPSERV
-	socket_final_tcp();
-#elif defined( dsUDPSERV )
-	socket_final_udp();
-#endif
-	return true;
+    switch (SOCKET_TYPE)
+    {
+    case socket_type::TCP:
+        socket_final_tcp();
+        break;
+    case socket_type::UDP:
+        socket_final_udp();
+        break;
+    default:
+        break;
+    }
 }

@@ -5,31 +5,27 @@
 -- Recast Time: 1:00:00
 -- Duration: 0:30:00
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+    local pet = player:getPet();
+    if not pet then
+        return msgBasic.REQUIRES_A_PET,0;
+    elseif not player:isJugPet() and pet:getObjType() ~= TYPE_MOB then
+        return msgBasic.NO_EFFECT_ON_PET,0;
+    else
+        return 0,0;
     end
-
-   return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     player:familiar();
 
     -- pets powers increase!
-    ability:setMsg(108);
+    ability:setMsg(msgBasic.FAMILIAR);
 
     return 0;
 end;

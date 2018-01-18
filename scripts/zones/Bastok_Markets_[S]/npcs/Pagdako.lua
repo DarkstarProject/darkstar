@@ -25,12 +25,12 @@ function onTrigger(player,npc)
     
     if (player:getQuestStatus(CRYSTAL_WAR,FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getVar("FiresOfDiscProg") == 0) then
-            player:startEvent(0x007A);
+            player:startEvent(122);
         else
-            player:startEvent(0x007B);
+            player:startEvent(123);
         end
     else
-        player:startEvent(0x006A);
+        player:startEvent(106);
     end
 
 end; 
@@ -51,7 +51,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x007A) then
+    if (csid == 122) then
         player:setVar("FiresOfDiscProg",1);
     end
 end;

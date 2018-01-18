@@ -8,30 +8,23 @@
 --
 -- Data unknown
 -----------------------------------
-
 require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/ability");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/status");
+require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     local effectID = EFFECT_SCHOLARS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
-        return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+        return msgBasic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
-        return MSGBASIC_CANNOT_PERFORM,0;
+        return msgBasic.CANNOT_PERFORM,0;
     else
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
@@ -54,9 +47,9 @@ function applyRoll(caster,target,ability,action,total)
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_SCHOLARS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_CONSERVE_MP) == false) then
-        ability:setMsg(422);
+        ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
     elseif total > 11 then
-        ability:setMsg(426);
+        ability:setMsg(msgBasic.DOUBLEUP_BUST);
     end
     return total;
 end

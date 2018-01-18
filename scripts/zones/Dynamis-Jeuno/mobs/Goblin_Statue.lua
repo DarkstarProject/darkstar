@@ -5,30 +5,17 @@
 -- Map2 Position: http://images4.wikia.nocookie.net/__cb20090312005155/ffxi/images/3/31/Jeu2.jpg
 -- Vanguard Position: http://faranim.livejournal.com/39860.html
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Jeuno/TextIDs");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, jeunoList, 1);
 end;
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mobID = mob:getID();
@@ -38,14 +25,14 @@ function onMobDeath(mob, player, isKiller)
        mobID == 17547592 or mobID == 17547594 or mobID == 17547597 or mobID == 17547606 or mobID == 17547608 or mobID == 17547609 or mobID == 17547612 or mobID == 17547613 or 
        mobID == 17547622 or mobID == 17547631 or mobID == 17547647 or mobID == 17547651 or mobID == 17547654 or mobID == 17547656) then 
         player:restoreHP(3000);
-        player:messageBasic(024,(player:getMaxHP()-player:getHP()));
+        player:messageBasic(msgBasic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
     -- MP Bonus: 009 012 017 024 025 030 039 044 056 062 064 067 076 078 081 082 085 094 095 101 118 | 122 127 129 150
     elseif (mobID == 17547538 or mobID == 17547541 or mobID == 17547546 or mobID == 17547553 or mobID == 17547554 or mobID == 17547559 or mobID == 17547568 or mobID == 17547573 or 
            mobID == 17547585 or mobID == 17547591 or mobID == 17547593 or mobID == 17547596 or mobID == 17547605 or mobID == 17547607 or mobID == 17547610 or mobID == 17547611 or 
            mobID == 17547614 or mobID == 17547623 or mobID == 17547624 or mobID == 17547630 or mobID == 17547646 or mobID == 17547650 or mobID == 17547655 or mobID == 17547657 or 
            mobID == 17547678) then
         player:restoreMP(3000);
-        player:messageBasic(025,(player:getMaxMP()-player:getMP()));
+        player:messageBasic(msgBasic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
     end
     -- Spawn 089-097 when statue 044 is defeated
     if (mobID == 17547573) then

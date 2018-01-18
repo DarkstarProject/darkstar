@@ -12,35 +12,29 @@
 -- Magic Bursts on: Detonation, Fragmentation, and Light
 -- Combos: Clear Mind
 -----------------------------------------
-
+require("scripts/globals/bluemagic");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
-    local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    local resist = applyResistance(caster, target, spell, params);
     local power = 300 * resist;
-    
+
     if (target:getTP() == 0) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
         target:delTP(power);
-        spell:setMsg(431);
+        spell:setMsg(msgBasic.MAGIC_ERASE);
     end
-    
+
     return tp;
 end;

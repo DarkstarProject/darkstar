@@ -1,14 +1,12 @@
----------------------------------------------------
+---------------------------------------------
 -- Cold Stare
 -- Silences enemies in a line area of effect.
 -- Notes: Only applies when face-to-face with the dhalmel.
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

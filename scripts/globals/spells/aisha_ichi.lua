@@ -1,12 +1,9 @@
 -----------------------------------------
 -- Spell: Aisha: Ichi
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -18,14 +15,20 @@ function onSpellCast(caster,target,spell)
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation
-    local resist = applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = NINJUTSU_SKILL;
+    params.bonus = 0;
+    params.effect = nil;
+    local resist = applyResistance(caster, target, spell, params);
     --Base power is 15 and is not affected by resistaces.
     local power = 15;
 
     --Calculates Resist Chance
     if (resist >= 0.125) then
         local duration = 120 * resist;
-        
+
         if (duration >= 50) then
             -- Erases a weaker attack down and applies the stronger one
             local attackdown = target:getStatusEffect(effect);
@@ -33,21 +36,21 @@ function onSpellCast(caster,target,spell)
                 if (attackdown:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
-                    spell:setMsg(237);
+                    spell:setMsg(msgBasic.MAGIC_ENFEEB);
                 else
                     -- no effect
-                    spell:setMsg(75);
+                    spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
                 end
             else
                 target:addStatusEffect(effect,power,0,duration);
-                spell:setMsg(237);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
-    
+
     return effect;
 end;

@@ -25,9 +25,9 @@ function onTrigger(player,npc)
     if (player:getNation() == 2) then
         if (player:hasKeyItem(STARWAY_STAIRWAY_BAUBLE)) then
             if (player:getXPos() < -14) then
-                player:startEvent(0x006A);
+                player:startEvent(106);
             else
-                player:startEvent(0x0069);
+                player:startEvent(105);
             end;
         else
           player:messageSpecial(STAIRWAY_LOCKED);

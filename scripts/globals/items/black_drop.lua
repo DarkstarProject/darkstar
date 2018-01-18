@@ -1,29 +1,19 @@
 -----------------------------------------
 --  ID: 4265
 --  Item: Black Drop
------------------------------------------
 --  Transports the user to their Home Point
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/msg");
 
 function onItemCheck(target)
-    local result = 0;
     if (target:hasStatusEffect(EFFECT_MEDICINE)) then
-        result = 111;
+        return msgBasic.ITEM_NO_USE_MEDICATED;
     end
-    return result;
+    return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-    target:warp();
     target:addStatusEffect(EFFECT_MEDICINE,0,0,3600);
+    target:warp();
 end;

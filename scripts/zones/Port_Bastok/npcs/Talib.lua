@@ -20,11 +20,11 @@ function onTrade(player,npc,trade)
     
     if (player:getQuestStatus(BASTOK,SHADY_BUSINESS) >= QUEST_ACCEPTED) then
         if (trade:hasItemQty(642,4) and trade:getItemCount() == 4) then
-            player:startEvent(0x005b);
+            player:startEvent(91);
         end
     elseif (player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(642,1) and trade:getItemCount() == 1) then
-            player:startEvent(0x0003);
+            player:startEvent(3);
         end
     end
     
@@ -39,11 +39,11 @@ function onTrigger(player,npc)
     BeautyAndTheGalka = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
 
     if (BeautyAndTheGalka == QUEST_COMPLETED) then
-        player:startEvent(0x005a);        
+        player:startEvent(90);        
     elseif (BeautyAndTheGalka == QUEST_ACCEPTED or player:getVar("BeautyAndTheGalkaDenied") >= 1) then
-        player:startEvent(0x0004);
+        player:startEvent(4);
     else 
-        player:startEvent(0x0002);
+        player:startEvent(2);
     end
     
 end;
@@ -66,21 +66,21 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0002 and option == 0) then
+    if (csid == 2 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
-    elseif (csid == 0x0002 and option == 1) then
+    elseif (csid == 2 and option == 1) then
         player:setVar("BeautyAndTheGalkaDenied",1);
-    elseif (csid == 0x0003) then
+    elseif (csid == 3) then
         player:tradeComplete();
         player:addKeyItem(PALBOROUGH_MINES_LOGS);
         player:messageSpecial(KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
-    elseif (csid == 0x005a) then
+    elseif (csid == 90) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
         
         if (ShadyBusiness == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,SHADY_BUSINESS);
         end
-    elseif (csid == 0x005b) then
+    elseif (csid == 91) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
             
         if (ShadyBusiness == QUEST_ACCEPTED) then

@@ -129,7 +129,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_CONSERVE_MP, 10);
         target:addMod(MOD_ICEATT, 20);
     elseif (pwr == 34) then -- ATMA_OF_THE_IMPREGNABLE_TOWER
-        target:addMod(MOD_HP, 50);
+        target:addMod(MOD_HPP, 30);
         target:addMod(MOD_MACC, 40);
         target:addMod(MOD_MATT, 40);
     elseif (pwr == 35) then -- ATMA_OF_THE_SMOLDERING_SKY
@@ -147,7 +147,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_MND, 20);
         target:addMod(MOD_WATERACC, 20);
     elseif (pwr == 39) then -- ATMA_OF_THE_LIGHTNING_BEAST
-        target:addMod(MOD_UFASTCAST, 20);
+        target:addMod(MOD_FASTCAST, 20);
         target:addMod(MOD_SPELLINTERRUPT, 20);
     elseif (pwr == 40) then -- ATMA_OF_THE_NOXIOUS_BLOOM
         target:addMod(MOD_STORETP, 20);
@@ -171,9 +171,9 @@ function atmaEffectGain(target, effect)
     elseif (pwr == 45) then -- ATMA_OF_THE_RAZED_RUINS
         target:addMod(MOD_DEX, 50);
         target:addMod(MOD_CRITHITRATE, 30);
-        target:addMod(MOD_CRIT_DMG_INCREASE, 10);
+        target:addMod(MOD_CRIT_DMG_INCREASE, 30);
     elseif (pwr == 46) then -- ATMA_OF_THE_BLUDGEONING_BRUTE
-        target:addMod(MOD_REGAIN, 1);
+        target:addMod(MOD_REGAIN, 10);
         target:addMod(MOD_THUNDERRES, 50);
         target:addMod(MOD_WATERRES, 50);
     elseif (pwr == 47) then -- ATMA_OF_THE_RAPID_REPTILIAN
@@ -189,10 +189,10 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_TRIPLE_ATTACK, 5);
     elseif (pwr == 51) then -- ATMA_OF_THE_SANGUINE_SCYTHE
         target:addMod(MOD_HPP, 20);
-        target:addMod(MOD_CRIT_DMG_INCREASE, 10);
+        target:addMod(MOD_CRIT_DMG_INCREASE, 30);
         target:addMod(MOD_ENMITY, 20);
     elseif (pwr == 52) then -- ATMA_OF_THE_TUSKED_TERROR
-        target:addMod(MOD_UFASTCAST, 20);
+        target:addMod(MOD_FASTCAST, 20);
         target:addMod(MOD_WATERATT, 20);
         target:addMod(MOD_WATERACC, 20);
     elseif (pwr == 53) then -- ATMA_OF_THE_MINIKIN_MONSTROSITY
@@ -200,12 +200,12 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_INT, 50);
         target:addMod(MOD_ENMITY, -20);
     elseif (pwr == 54) then -- ATMA_OF_THE_WOULD_BE_KING
-        target:addMod(MOD_REGAIN, 10);
+        target:addMod(MOD_REGAIN, 100);
         target:addMod(MOD_STORETP, 20);
         target:addMod(MOD_TP_BONUS, 20);
     elseif (pwr == 55) then -- ATMA_OF_THE_BLINDING_HORN
         target:addMod(MOD_CONSERVE_MP, 20);
-        target:addMod(MOD_THUNDERATT, 30);
+        target:addMod(MOD_THUNDERATT, 30);F
         target:addMod(MOD_DMGMAGIC, -20);
     elseif (pwr == 56) then -- ATMA_OF_THE_DEMONIC_LASH
         target:addMod(MOD_ATT, 40);
@@ -327,7 +327,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_DMG, -25);
         target:addMod(MOD_REGEN, 2);
     elseif (pwr == 90) then -- ATMA_OF_THE_SEA_DAUGHTER
-        target:addMod(MOD_REGAIN, 5);
+        target:addMod(MOD_REGAIN, 50);
         target:addMod(MOD_HASTE_GEAR, -12);
         target:addMod(MOD_REGEN, 30);
     elseif (pwr == 91) then -- ATMA_OF_THE_HATEFUL_STREAM
@@ -345,7 +345,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_FORCE_DARK_DWBONUS, 1);
     elseif (pwr == 94) then -- ATMA_OF_THE_SUNDERING_SLASH
         target:addMod(MOD_ATT, 20);
-        target:addMod(MOD_REGAIN, 3);
+        target:addMod(MOD_REGAIN, 30);
     elseif (pwr == 95) then -- ATMA_OF_ENTWINED_SERPENTS
         target:addMod(MOD_ATT, 20);
         target:addMod(MOD_DOUBLE_ATTACK, 15);
@@ -533,7 +533,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_CONSERVE_MP, 10);
         target:delMod(MOD_ICEATT, 20);
     elseif (pwr == 34) then -- ATMA_OF_THE_IMPREGNABLE_TOWER
-        target:delMod(MOD_HP, 50);
+        target:delMod(MOD_HPP, 30);
         target:delMod(MOD_MACC, 40);
         target:delMod(MOD_MATT, 40);
     elseif (pwr == 35) then -- ATMA_OF_THE_SMOLDERING_SKY
@@ -551,7 +551,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_MND, 20);
         target:delMod(MOD_WATERACC, 20);
     elseif (pwr == 39) then -- ATMA_OF_THE_LIGHTNING_BEAST
-        target:delMod(MOD_UFASTCAST, 20);
+        target:delMod(MOD_FASTCAST, 20);
         target:delMod(MOD_SPELLINTERRUPT, 20);
     elseif (pwr == 40) then -- ATMA_OF_THE_NOXIOUS_BLOOM
         target:delMod(MOD_STORETP, 20);
@@ -575,9 +575,9 @@ function atmaEffectLose(target, effect)
     elseif (pwr == 45) then -- ATMA_OF_THE_RAZED_RUINS
         target:delMod(MOD_DEX, 50);
         target:delMod(MOD_CRITHITRATE, 30);
-        target:delMod(MOD_CRIT_DMG_INCREASE, 10);
+        target:delMod(MOD_CRIT_DMG_INCREASE, 30);
     elseif (pwr == 46) then -- ATMA_OF_THE_BLUDGEONING_BRUTE
-        target:delMod(MOD_REGAIN, 1);
+        target:delMod(MOD_REGAIN, 10);
         target:delMod(MOD_THUNDERRES, 50);
         target:delMod(MOD_WATERRES, 50);
     elseif (pwr == 47) then -- ATMA_OF_THE_RAPID_REPTILIAN
@@ -593,10 +593,10 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_TRIPLE_ATTACK, 5);
     elseif (pwr == 51) then -- ATMA_OF_THE_SANGUINE_SCYTHE
         target:delMod(MOD_HPP, 20);
-        target:delMod(MOD_CRIT_DMG_INCREASE, 10);
+        target:delMod(MOD_CRIT_DMG_INCREASE, 30);
         target:delMod(MOD_ENMITY, 20);
     elseif (pwr == 52) then -- ATMA_OF_THE_TUSKED_TERROR
-        target:delMod(MOD_UFASTCAST, 20);
+        target:delMod(MOD_FASTCAST, 20);
         target:delMod(MOD_WATERATT, 20);
         target:delMod(MOD_WATERACC, 20);
     elseif (pwr == 53) then -- ATMA_OF_THE_MINIKIN_MONSTROSITY
@@ -604,7 +604,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_INT, 50);
         target:delMod(MOD_ENMITY, -20);
     elseif (pwr == 54) then -- ATMA_OF_THE_WOULD_BE_KING
-        target:delMod(MOD_REGAIN, 10);
+        target:delMod(MOD_REGAIN, 100);
         target:delMod(MOD_STORETP, 20);
         target:delMod(MOD_TP_BONUS, 20);
     elseif (pwr == 55) then -- ATMA_OF_THE_BLINDING_HORN
@@ -731,7 +731,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_DMG, -25);
         target:delMod(MOD_REGEN, 2);
     elseif (pwr == 90) then -- ATMA_OF_THE_SEA_DAUGHTER
-        target:delMod(MOD_REGAIN, 5);
+        target:delMod(MOD_REGAIN, 50);
         target:delMod(MOD_HASTE_GEAR, -12);
         target:delMod(MOD_REGEN, 30);
     elseif (pwr == 91) then -- ATMA_OF_THE_HATEFUL_STREAM
@@ -749,7 +749,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_FORCE_DARK_DWBONUS, 1);
     elseif (pwr == 94) then -- ATMA_OF_THE_SUNDERING_SLASH
         target:delMod(MOD_ATT, 20);
-        target:delMod(MOD_REGAIN, 3);
+        target:delMod(MOD_REGAIN, 30);
     elseif (pwr == 95) then -- ATMA_OF_ENTWINED_SERPENTS
         target:delMod(MOD_ATT, 20);
         target:delMod(MOD_DOUBLE_ATTACK, 15);

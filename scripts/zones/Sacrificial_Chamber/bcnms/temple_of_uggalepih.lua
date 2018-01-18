@@ -31,12 +31,12 @@ function onBcnmLeave(player,instance,leavecode)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:startEvent(0x7d01,1,1,1,0,1,0,0);
+            player:startEvent(32001,1,1,1,0,1,0,0);
         else
-            player:startEvent(0x7d01,1,1,1,0,1,1,0);
+            player:startEvent(32001,1,1,1,0,1,1,0);
         end
     elseif (leavecode == 4) then
-        player:startEvent(0x7d02);
+        player:startEvent(32002);
     end
     
 end;
@@ -48,14 +48,14 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
     
-    if (csid == 0x7d01) then
+    if (csid == 32001) then
         player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:startEvent(0x0007);
+            player:startEvent(7);
         end
-    elseif (csid == 0x0007) then
-        player:startEvent(0x0008);
-    elseif (csid == 0x0008) then
+    elseif (csid == 7) then
+        player:startEvent(8);
+    elseif (csid == 8) then
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
             player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
             player:addKeyItem(DARK_FRAGMENT);

@@ -26,7 +26,7 @@ function onZoneIn(player,prevZone)
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
-            cs = 0x0131;
+            cs = 305;
         end
         player:setPos(-120,-5.5,175,48);
         player:setHomePoint();
@@ -39,7 +39,7 @@ function onZoneIn(player,prevZone)
             position = math.random(1,5) + 195;
             player:setPos(position,-15.56,258,65);
             if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-                cs = 0x7534;
+                cs = 30004;
             end
             player:setVar("PlayerMainJob",0);
         end
@@ -63,7 +63,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-    player:startEvent(0x2712);
+    player:startEvent(10002);
 end;
 
 -----------------------------------
@@ -82,11 +82,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0131) then
+    if (csid == 305) then
         player:messageSpecial(ITEM_OBTAINED,536);
-    elseif (csid == 0x2712) then
+    elseif (csid == 10002) then
         player:setPos(0,0,0,0,225);
-    elseif (csid == 0x7534 and option == 0) then
+    elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
     end

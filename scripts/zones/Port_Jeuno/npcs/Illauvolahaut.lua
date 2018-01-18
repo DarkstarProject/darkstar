@@ -28,11 +28,11 @@ function onTrigger(player,npc)
     Gil = player:getGil();
 
     if (KazhPass == false) then
-        player:startEvent(0x0023); -- without pass
+        player:startEvent(35); -- without pass
     elseif (KazhPass == true and Gil < 200) then
-        player:startEvent(0x002d); -- Pass without money
+        player:startEvent(45); -- Pass without money
     elseif (KazhPass == true) then
-        player:startEvent(0x0025); -- Pass with money
+        player:startEvent(37); -- Pass with money
     end
 
 end;
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0025) then
+    if (csid == 37) then
         Z = player:getZPos();
 
         if (Z >= 58 and Z <= 61) then

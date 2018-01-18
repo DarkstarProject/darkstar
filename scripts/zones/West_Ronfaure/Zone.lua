@@ -4,16 +4,14 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/zone");
-require("scripts/globals/quests");
+require("scripts/zones/West_Ronfaure/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
-require("scripts/globals/icanheararainbow");
-require("scripts/zones/West_Ronfaure/TextIDs");
-require("scripts/globals/chocobo_digging");
+require("scripts/globals/quests");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -71,9 +69,9 @@ function onZoneIn(player,prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0033;
+        cs = 51;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0035;
+        cs = 53;
     end
 
     return cs;
@@ -105,9 +103,9 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0033) then
+    if (csid == 51) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0035) then
+    elseif (csid == 53) then
         player:updateEvent(0,0,0,0,0,5);
     end
 end;
@@ -119,7 +117,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0033) then
+    if (csid == 51) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

@@ -64,7 +64,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
         CreateKickAttacks();
     }
     else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
-        attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD))
+        (attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD)))
     {
         CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }
@@ -96,7 +96,7 @@ CAttackRound::~CAttackRound()
 ************************************************************************/
 uint8 CAttackRound::GetAttackSwingCount()
 {
-    return m_attackSwings.size();
+    return (uint8)m_attackSwings.size();
 }
 
 /************************************************************************
@@ -211,7 +211,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
     if (dynamic_cast<CMobEntity*>(m_attacker))
     {
-        auto multiHitMax = static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
+        auto multiHitMax = (uint8)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
         
         if (multiHitMax > 0)
             num = 1 + battleutils::getHitCount(multiHitMax);
@@ -235,14 +235,14 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // TODO: Quadruple attack merits when SE release them.
     }
 
-    quadAttack = dsp_cap(quadAttack, 0, 100);
-    doubleAttack = dsp_cap(doubleAttack, 0, 100);
-    tripleAttack = dsp_cap(tripleAttack, 0, 100);
+    quadAttack = std::clamp<int16>(quadAttack, 0, 100);
+    doubleAttack = std::clamp<int16>(doubleAttack, 0, 100);
+    tripleAttack = std::clamp<int16>(tripleAttack, 0, 100);
 
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
     {
-        int16 shadows = m_attacker->getMod(Mod::UTSUSEMI);
+        auto shadows = (uint8)m_attacker->getMod(Mod::UTSUSEMI);
         //ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, shadows);
     }
@@ -254,6 +254,21 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
+
+    // Apply Mythic OAT mods (mainhand only)
+    if (direction == PHYSICAL_ATTACK_DIRECTION::RIGHTATTACK)
+    {
+        int16 occAttThriceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_THRICE), 0, 100);
+        int16 occAttTwiceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_TWICE), 0, 100);
+        if (num == 1 && dsprand::GetRandomNumber(100) < occAttThriceRate)
+        {
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 2);
+        }
+        else if (num == 1 && dsprand::GetRandomNumber(100) < occAttTwiceRate)
+        {
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
+        }
+    }
 
     // Ammo extra swing - players only
     if (isPC && m_attacker->getMod(Mod::AMMO_SWING) > 0)
@@ -328,7 +343,7 @@ void CAttackRound::CreateKickAttacks()
             kickAttack += ((CCharEntity*)m_attacker)->PMeritPoints->GetMeritValue(MERIT_KICK_ATTACK_RATE, (CCharEntity*)m_attacker);
         }
 
-        kickAttack = dsp_cap(kickAttack, 0, 100);
+        kickAttack = std::clamp<uint16>(kickAttack, 0, 100);
 
         if (dsprand::GetRandomNumber(100) < kickAttack)
         {

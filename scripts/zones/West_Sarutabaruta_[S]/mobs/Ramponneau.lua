@@ -2,13 +2,9 @@
 -- Area: West Sarutabaruta (S)
 --   NM: Ramponneau
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobInitialize Action
------------------------------------
+require("scripts/globals/msg");
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
@@ -16,17 +12,9 @@ function onMobInitialize(mob)
     mob:getStatusEffect(EFFECT_SHOCK_SPIKES):setFlag(32);
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
     mob:SetMobAbilityEnabled(false);
 end;
-
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 
 function onAdditionalEffect(mob,target,damage)
     local power = math.random(4,15);
@@ -38,36 +26,16 @@ function onAdditionalEffect(mob,target,damage)
     power = adjustForTarget(target, power, ELE_ICE);
     power = finalMagicNonSpellAdjustments(mob, target, ELE_ICE, power);
 
-    local message = MSGBASIC_ADD_EFFECT_DMG;
+    local message = msgBasic.ADD_EFFECT_DMG;
     if (power < 0) then
-        message = MSGBASIC_ADD_EFFECT_HEAL;
+        message = msgBasic.ADD_EFFECT_HEAL;
     end
 
     return SUBEFFECT_ICE_DAMAGE, message, power;
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
-    -- Set Ramponneau's Window Open Time
-    local wait = 5400 -- 90 minutes
-    SetServerVariable("[POP]Ramponneau", os.time() + wait );
-    DeterMob(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Ramponneau");
-    SetServerVariable("[PH]Ramponneau", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
 end;

@@ -10,28 +10,20 @@
 -- Casting Time: 3 seconds
 -- Recast Time: 60 seconds
 -- Duration: 120 seconds (2 minutes)
--- 
+--
 -- Combos: Magic Attack Bonus
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffectOne = EFFECT_ICE_SPIKES
     local typeEffectTwo = EFFECT_DEFENSE_BOOST
     local powerOne = 5;
@@ -50,15 +42,15 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false and target:addStatusEffect(typeEffectTwo,powerTwo,0,duration) == false) then -- both statuses fail to apply
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     elseif (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false) then -- the first status fails to apply
         target:addStatusEffect(typeEffectTwo,powerTwo,0,duration)
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
         returnEffect = typeEffectTwo;
     else
         target:addStatusEffect(typeEffectOne,powerOne,0,duration)
         target:addStatusEffect(typeEffectTwo,powerTwo,0,duration)
-        spell:setMsg(230);
+        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     end;
 
     return returnEffect;

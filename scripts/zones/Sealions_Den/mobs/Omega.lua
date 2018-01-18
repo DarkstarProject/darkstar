@@ -2,8 +2,8 @@
 -- Area: Sealions Den
 --  MOB: Omega
 -----------------------------------
-
 require("scripts/globals/titles");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -49,7 +49,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(EFFECT_STUN) == false) then
             player:addStatusEffect(EFFECT_STUN, 0, 0, duration);
         end
-        return SUBEFFECT_STUN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_STUN;
+        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, EFFECT_STUN;
     end
 end;
 
@@ -59,7 +59,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(OMEGA_OSTRACIZER);
-    player:startEvent(0x000b);
+    player:startEvent(11);
 end;
 
 -----------------------------------
@@ -69,7 +69,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x000b) then
+    if (csid == 11) then
         local instance = player:getVar("bcnm_instanceid")
 
         --Players are healed in between the fights, but their TP is set to 0

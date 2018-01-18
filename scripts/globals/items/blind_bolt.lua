@@ -5,10 +5,9 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     local chance = 95;
     if (target:getMainLvl() > player:getMainLvl()) then
@@ -16,7 +15,7 @@ function onAdditionalEffect(player,target,damage)
         chance = utils.clamp(chance, 5, 95);
     end
     if (target:hasImmunity(64)) then
-        spell:setMsg(75);
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
         return 0,0,0;
     else
@@ -24,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
             target:addStatusEffect(EFFECT_BLINDNESS, 10, 0, 30);
         end
-        return SUBEFFECT_BLIND, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
+        return SUBEFFECT_BLIND, msgBasic.ADD_EFFECT_STATUS, EFFECT_BLINDNESS;
     end
 end;

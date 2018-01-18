@@ -1,11 +1,8 @@
 -----------------------------------------
 -- Spell: Shock Spikes
 -----------------------------------------
-
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -25,9 +22,9 @@ function onSpellCast(caster,target,spell)
     local power = ((int + 10) / 20 + 2) * (1 + (magicAtk / 100));
 
    if (target:addStatusEffect(typeEffect,power,0,duration)) then
-     spell:setMsg(230);
+     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
    else
-     spell:setMsg(75);
+     spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
    end
 
     return typeEffect;

@@ -34,11 +34,11 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 	this->type = 0x63;
 	this->size = 0x08;
 	
-	WBUFB(data,(0x04)) = 0x02;
-	WBUFB(data,(0x06)) = 0x0C;
+	ref<uint8>(0x04) = 0x02;
+	ref<uint8>(0x06) = 0x0C;
 
-    WBUFW(data,(0x08)) = PChar->PMeritPoints->GetLimitPoints();
-    WBUFB(data,(0x0A)) = PChar->PMeritPoints->GetMeritPoints();
+    ref<uint16>(0x08) = PChar->PMeritPoints->GetLimitPoints();
+    ref<uint8>(0x0A) = PChar->PMeritPoints->GetMeritPoints();
 
 	uint8 flag = 0x00;
 
@@ -52,14 +52,14 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 	}
 
 	//capped EXP
-	if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1 
+	if ((PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai && PChar->jobs.exp[PChar->GetMJob()] == charutils::GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1) 
 		|| PChar->MeritMode)
 	{
 		flag |= 0x40;
 	}
 
-	WBUFB(data,(0x0B)) = flag;
-    WBUFB(data, (0x0C)) = map_config.max_merit_points + PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MERIT, PChar);
+	ref<uint8>(0x0B) = flag;
+    ref<uint8>(0x0C) = map_config.max_merit_points + PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MERIT, PChar);
 
     PChar->pushPacket(new CBasicPacket(*this));
 

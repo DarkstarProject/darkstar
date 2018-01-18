@@ -1,31 +1,14 @@
 -----------------------------------
 -- Area: Palborough Mines
 --  Mob: Copper Beetle
+-- Note: PH for Bu'Ghi Howlblade
 -----------------------------------
 require("scripts/zones/Palborough_Mines/MobIDs");
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-    if (Bu_Ghi_Howlblade_PH[mobID] ~= nil) then
-        local ToD = GetServerVariable("[ToD]Bu_Ghi_Howlblade");
-        if (ToD <= os.time() and GetMobAction(Bu_Ghi_Howlblade) == 0) then
-            if (math.random(1,10) == 5) then
-                UpdateNMSpawnPoint(Bu_Ghi_Howlblade);
-                GetMobByID(Bu_Ghi_Howlblade):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Bu_Ghi_Howlblade", mobID);
-                DeterMob(mobID, true);
-            end
-        end
-    end
+    phOnDespawn(mob,BU_GHI_HOWLBLADE_PH,10,3600); -- 1 hour
 end;

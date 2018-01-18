@@ -4,9 +4,7 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -41,11 +39,11 @@ function onSpellCast(caster,target,spell)
             caster:setLocalVar("esunaDelEff",0);
             caster:setLocalVar("esunaDelEffMis",0);  -- again, this can't be a local because it would only delete from the caster if it were. For extra status deletion under Misery
         end;
-        
+
         if (statusNum >= 1 and caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then -- Misery second status removal.
             caster:delStatusEffect(has[delEff]); -- delete the first selected effect so it doesn't get selected again. Won't impact the ability to delete it from others at this point.
             local statusNumMis =  - 1 -- need a new var to track the amount of debuffs for the array
-            
+
             -- collect a list of what caster currently has, again.
             has = {}
             for i, effect in ipairs(removables) do
@@ -66,7 +64,7 @@ function onSpellCast(caster,target,spell)
     local statusDelMis = caster:getLocalVar("esunaDelEffMis")
 
     if (statusDel == 0) then -- this gets set to 0 if there's no status to delete.
-        spell:setMsg(75); -- no effect
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     elseif (statusDelMis ~= 0) then -- no need to check for statusDelMis because it can't be 0 if this isn't
         target:delStatusEffect(statusDel);
         target:delStatusEffect(statusDelMis);

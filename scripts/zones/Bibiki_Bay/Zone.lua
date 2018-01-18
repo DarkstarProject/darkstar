@@ -4,13 +4,11 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -81,7 +79,7 @@ function onZoneIn(player,prevZone)
         if ((prevZone == 3) and (bibiki == 3)) then
             cs = 0x000B;
         elseif ((prevZone ==3) and (bibiki == 4)) then
-            cs = 0x000A;
+            cs = 10;
         else
             player:setPos(669.917,-23.138,911.655,111);
         end
@@ -153,7 +151,7 @@ function onTransportEvent(player,transport)
     if (bibiki == 1) then
         if (player:hasKeyItem(MANACLIPPER_TICKET)) then
             player:delKeyItem(MANACLIPPER_TICKET);
-            player:startEvent(0x000E);
+            player:startEvent(14);
         elseif (player:hasKeyItem(MANACLIPPER_MULTITICKET)) then
             local remainingticket=player:getVar("Manaclipper_Ticket");
             player:setVar("Manaclipper_Ticket",(remainingticket - 1));
@@ -163,14 +161,14 @@ function onTransportEvent(player,transport)
                     player:messageSpecial(END_BILLET,0,MANACLIPPER_MULTITICKET);
                     player:delKeyItem(MANACLIPPER_MULTITICKET);
                 end
-            player:startEvent(0x000E);
+            player:startEvent(14);
         else
             player:messageSpecial(NO_BILLET,MANACLIPPER_TICKET);
             player:setVar("bibiki",0);
             player:setPos(489,-3,713,200);
         end
     elseif (bibiki == 2) then
-        player:startEvent(0x0010);
+        player:startEvent(16);
     end
 end;
 
@@ -188,13 +186,13 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x000E) then
+    if (csid == 14) then
         player:setPos(0,0,0,0,3)
-    elseif (csid == 0x000b) then
-        player:startEvent(0x000d)
-    elseif (csid == 0x0010) then
+    elseif (csid == 11) then
+        player:startEvent(13)
+    elseif (csid == 16) then
         player:setPos(0,0,0,0,3)
-    elseif (csid == 0x000A) then
-        player:startEvent(0x000c)
+    elseif (csid == 10) then
+        player:startEvent(12)
     end
 end;

@@ -4,14 +4,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+require("scripts/zones/Eastern_Altepa_Desert/MobIDs");
 require( "scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 
 -----------------------------------
@@ -62,11 +61,11 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    -- Cactrot Rapido
-    SetRespawnTime(17244539, 900, 10800);
+    UpdateNMSpawnPoint(CACTROT_RAPIDO);
+    GetMobByID(CACTROT_RAPIDO):setRespawnTime(math.random(900, 10800));
 
-    -- Centurio XII-I
-    SetRespawnTime(17244372, 900, 10800);
+    UpdateNMSpawnPoint(CENTURIO_XII_I);
+    GetMobByID(CENTURIO_XII_I):setRespawnTime(math.random(900, 10800));
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
@@ -95,7 +94,7 @@ function onZoneIn( player, prevZone)
     end
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0002;
+        cs = 2;
     end
 
     return cs;
@@ -115,7 +114,7 @@ end;
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0002) then
+    if (csid == 2) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
@@ -127,7 +126,7 @@ end;
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0002) then
+    if (csid == 2) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

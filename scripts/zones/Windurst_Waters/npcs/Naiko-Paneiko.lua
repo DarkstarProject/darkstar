@@ -45,7 +45,7 @@ function onTrigger(player,npc)
     MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
 
     if (MakingHeadlines == 0) then
-        player:startEvent(0x0299); -- Quest Start
+        player:startEvent(665); -- Quest Start
     elseif (MakingHeadlines == 1) then
         prog = player:getVar("QuestMakingHeadlines_var");
         --     Variable to track if player has talked to 4 NPCs and a door
@@ -57,22 +57,22 @@ function onTrigger(player,npc)
         if (testflag(tonumber(prog),1) == false or testflag(tonumber(prog),2) == false or testflag(tonumber(prog),4) == false or testflag(tonumber(prog),8) == false) then
             rand = math.random(1,2);
             if (rand == 1) then
-                player:startEvent(0x029a); -- Quest Reminder 1
+                player:startEvent(666); -- Quest Reminder 1
             else
-                player:startEvent(0x029f); -- Quest Reminder 2
+                player:startEvent(671); -- Quest Reminder 2
             end
         elseif (testflag(tonumber(prog),8) == true and testflag(tonumber(prog),16) == false) then
-            player:startEvent(0x02a1); -- Advises to validate story
+            player:startEvent(673); -- Advises to validate story
         elseif (prog == 31) then
             rand = math.random(1,2);
             if (rand == 1) then
-                player:startEvent(0x02a2); -- Quest finish 1
+                player:startEvent(674); -- Quest finish 1
             elseif (scoop == 4 and door == 1) then
-                player:startEvent(0x029e);    -- Quest finish 2
+                player:startEvent(670);    -- Quest finish 2
             end
         end
     else
-        player:startEvent(0x0297); -- Standard conversation
+        player:startEvent(663); -- Standard conversation
     end
 
 end;
@@ -94,9 +94,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0299) then
+    if (csid == 665) then
         player:addQuest(WINDURST,MAKING_HEADLINES);
-    elseif (csid == 0x029e or csid == 0x02a2) then
+    elseif (csid == 670 or csid == 674) then
         player:addTitle(EDITORS_HATCHET_MAN);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);

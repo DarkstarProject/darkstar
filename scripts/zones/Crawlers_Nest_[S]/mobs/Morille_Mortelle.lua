@@ -3,45 +3,14 @@
 --  NM:  Morille Mortelle
 -- !pos 59.788 -0.939 22.316 171
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
--- onMobSpawn
------------------------------------
+require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 function onMobSpawn(mob)
     mob:setMod(MOD_DOUBLE_ATTACK, 20);
     mob:setMod(MOD_STORETP, 10);
 end;
-
-
------------------------------------
--- onMobDespawn
------------------------------------
-
-function onMobDespawn(mob)
-    -- Set Window Open Time
-    SetServerVariable("[POP]Morille_Mortelle", os.time() + 18000); -- 5 hour
-    DeterMob(mob:getID(), true);
-
-    -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Morille_Mortelle");
-    SetServerVariable("[PH]Morille_Mortelle", 0);
-    DeterMob(PH, false);
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-end;
-
------------------------------------
--- onAdditionalEffect
------------------------------------
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
@@ -58,6 +27,12 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(EFFECT_PLAGUE)) then
             player:addStatusEffect(EFFECT_PLAGUE, 1, 0, duration);
         end
-        return SUBEFFECT_PLAGUE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PLAGUE;
+        return SUBEFFECT_PLAGUE, msgBasic.ADD_EFFECT_STATUS, EFFECT_PLAGUE;
     end
+end;
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+function onMobDespawn(mob)
 end;

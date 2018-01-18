@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
     if (newRank ~= 0) then
         player:setSkillRank(SKILL_COOKING,newRank);
-        player:startEvent(0x271e,0,0,0,0,newRank);
+        player:startEvent(10014,0,0,0,0,newRank);
     end
 end;
 
@@ -35,10 +35,10 @@ function onTrigger(player,npc)
     if (guildMember == 1) then guildMember = 150995375; end
     if (canGetNewRank(player,craftSkill,SKILL_COOKING) == 1) then getNewRank = 100; end
 
-    player:startEvent(0x271d,testItem,getNewRank,30,guildMember,44,0,0,0);
+    player:startEvent(10013,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 0x03d2  0x03d7  0x03d4  0x03d5  0x271d  0x271e
+-- 0x03d2  0x03d7  0x03d4  0x03d5  10013  10014
 
 -----------------------------------
 -- onEventUpdate
@@ -56,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x271d and option == 1) then
+    if (csid == 10013 and option == 1) then
         local crystal = 4096; -- fire crystal
 
         if (player:getFreeSlotsCount() == 0) then

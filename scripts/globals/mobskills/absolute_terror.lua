@@ -1,13 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Absolute Terror
 -- Causes Terror, which causes the victim to be stunned for the duration of the effect, this can not be removed.
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
@@ -27,7 +25,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local typeEffect = EFFECT_TERROR;
     local power = 30;
     -- Three minutes is WAY too long, especially on Wyrms. Reduced to Wiki's definition of 'long time'. Reference: http://wiki.ffxiclopedia.org/wiki/Absolute_Terror

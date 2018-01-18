@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     local TOTD = VanadielTOTD();
 
     if (TOTD == TIME_DUSK and LoversInTheDusk == QUEST_ACCEPTED) then
-        player:startEvent(0x00cc);
+        player:startEvent(204);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x00cc) then
+    if (csid == 204) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17346);
         else 

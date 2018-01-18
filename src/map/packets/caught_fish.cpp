@@ -37,14 +37,14 @@ CCaughtFishPacket::CCaughtFishPacket(CCharEntity * PChar, uint16 param0, uint16 
 
 	//DSP_DEBUG_BREAK_IF(PChar->name.size() > 15);
 
-	WBUFL(data,(0x04)) = PChar->id;
-	WBUFL(data,(0x08)) = PChar->targid;
+	ref<uint32>(0x04) = PChar->id;
+	ref<uint32>(0x08) = PChar->targid;
 
-	WBUFW(data,(0x0A)) = messageID + 0x8000;
-	WBUFW(data,(0x10)) = param0;
+	ref<uint16>(0x0A) = messageID + 0x8000;
+	ref<uint16>(0x10) = param0;
 
-	WBUFL(data,(0x14)) = 0x01;
-	WBUFL(data,(0x1C)) = 0xF0;
+	ref<uint32>(0x14) = 0x01;
+	ref<uint32>(0x1C) = 0xF0;
 
 	memcpy(data+(0x20), PChar->GetName(), PChar->name.size());
 }

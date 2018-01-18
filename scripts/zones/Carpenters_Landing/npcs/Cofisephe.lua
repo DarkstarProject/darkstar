@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x001f,618,652,50,300);
+    player:startEvent(31,618,652,50,300);
 end;
 
 -----------------------------------

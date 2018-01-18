@@ -25,9 +25,9 @@ end;
 
 function onTrigger(player,npc)
     if (hasMawActivated(player,7) == false) then
-        player:startEvent(0x0064);
+        player:startEvent(100);
     else
-        player:startEvent(0x0065);
+        player:startEvent(101);
     end
 end;
 
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
     if (option == 1) then
-        if (csid == 0x0064) then
+        if (csid == 100) then
             player:addNationTeleport(MAW,128);
         end
         toMaw(player,12);

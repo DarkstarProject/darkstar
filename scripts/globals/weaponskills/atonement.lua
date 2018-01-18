@@ -81,13 +81,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         local wsParams = {}
         wsParams.enmityMult = enmityMult
-        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, SLOT_MAIN, tpHits, extraHits, nil)
-    end
-
-    if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOBS.PLD)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
-        end
+        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, SLOT_MAIN, tpHits, extraHits, 0, 0, action, nil)
     end
 
     return tpHits, extraHits, criticalHit, damage;

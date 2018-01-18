@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
+require("scripts/zones/AlTaieu/MobIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -14,13 +15,18 @@ require("scripts/zones/AlTaieu/TextIDs");
 
 function onTrade(player,npc,trade)
     --[[
-    -- Trade the Second Virtue, Deed of Moderation, and HQ Xzomit Organ
-    if (GetMobAction(16912839) == 0 and trade:hasItemQty(1853,1) and trade:hasItemQty(1854,1) and trade:hasItemQty(1785,1) and
-    trade:getItemCount() == 3) then
+    -- JAILER OF JUSTICE
+    if (
+        not GetMobByID(JAILER_OF_JUSTICE):isSpawned() and
+        trade:hasItemQty(1853,1) and -- second_virtue
+        trade:hasItemQty(1854,1) and -- deed_of_moderation
+        trade:hasItemQty(1855,1) and -- hq_xzomit_organ
+        trade:getItemCount() == 3
+    ) then
         player:tradeComplete();
-        SpawnMob(16912839):updateClaim(player); -- Spawn Jailer of Justice
+        SpawnMob(JAILER_OF_JUSTICE):updateClaim(player);
     end
-    ]]
+    --]]
 end;
 
 -----------------------------------

@@ -22,17 +22,17 @@ function onTrigger(player,npc)
  local LouverancePathStatut = player:getVar("COP_Louverance_s_Path");
 
     if (currentCOPMission  == THE_LOST_CITY and player:getVar("PromathiaStatus") == 0) then
-        player:startEvent(0x0066);
+        player:startEvent(102);
     elseif (currentCOPMission  == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1) then
-        player:startEvent(0x006C);
+        player:startEvent(108);
     elseif (currentCOPMission  == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Despachaire") == 0) then
-        player:startEvent(0x0075); --117
+        player:startEvent(117); --117
     elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 0) then
-        player:startEvent(0x0076);
+        player:startEvent(118);
     elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 1 ) then
-         player:startEvent(0x0086);
+         player:startEvent(134);
     else
-        player:startEvent(0x006A);
+        player:startEvent(106);
     end
 
 end;
@@ -80,11 +80,11 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0066 or csid == 0x006C) then
+    if (csid == 102 or csid == 108) then
         player:setVar("PromathiaStatus",2);
-    elseif (csid == 0x0075) then
+    elseif (csid == 117) then
         player:setVar("COP_optional_CS_Despachaire",1);
-    elseif (csid == 0x0076) then
+    elseif (csid == 118) then
         player:setVar("COP_Louverance_s_Path",1);
     end
 

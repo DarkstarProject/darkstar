@@ -1,17 +1,15 @@
 ---------------------------------------------
---  Healing Stomp
+-- Healing Stomp
 --
---  Description: Stomps the ground to apply regeneration.
---  Type: Enhancing
---  Utsusemi/Blink absorb: N/A
---  Range: Self
---  Notes: Only used by notorious monsters.
+-- Description: Stomps the ground to apply regeneration.
+-- Type: Enhancing
+-- Utsusemi/Blink absorb: N/A
+-- Range: Self
+-- Notes: Only used by notorious monsters.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

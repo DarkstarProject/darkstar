@@ -1,17 +1,16 @@
----------------------------------------------------
+---------------------------------------------
 -- Binary Tap
 -- Attempts to absorb two buffs from a single target, or otherwise steals HP.
 -- Type: Magical
 -- Utsusemi/Blink absorb: Ignores Shadows
 -- Range: Melee
 -- Notes: Can be any (positive) buff, including food. Will drain about 100HP if it can't take any buffs
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+require("scripts/globals/msg");
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;
@@ -40,7 +39,7 @@ function onMobWeaponSkill(target, mob, skill)
 
 
         -- add buff to myself
-        skill:setMsg(MSG_EFFECT_DRAINED);
+        skill:setMsg(msgBasic.EFFECT_DRAINED);
 
         return count;
     else

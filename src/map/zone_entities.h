@@ -63,8 +63,7 @@ public:
     void			WeatherChange(WEATHER weather);
     void			PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);	// отправляем глобальный пакет в пределах зоны
 
-    void			ZoneServer(time_point tick);
-    void			ZoneServerRegion(time_point tick);
+    void			ZoneServer(time_point tick, bool check_region);
 
     CZone*          GetZone();
 
@@ -84,6 +83,7 @@ private:
 
     CZone* m_zone;
     CBaseEntity*    m_Transport;            // указатель на транспорт в зоне
+    time_point m_EffectCheckTime {server_clock::now()};
 
 };
 

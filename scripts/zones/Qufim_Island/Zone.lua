@@ -42,7 +42,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-286.271,-21.619,320.084,255);
     end
     if (prevZone == 127 and player:getVar("theTalekeepersGiftKilledNM") >= 3) then
-        cs = 0x0064;
+        cs = 100;
     end
     return cs;
 end;
@@ -70,7 +70,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0064) then
+    if (csid == 100) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
         else

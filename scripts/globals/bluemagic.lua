@@ -218,7 +218,12 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local magicAttack = 1.0;
     local multTargetReduction = 1.0; -- TODO: Make this dynamically change, temp static till implemented.
     magicAttack = math.floor(D * multTargetReduction);
-    magicAttack = math.floor(magicAttack * applyResistance(caster,spell,target,dStat,BLUE_SKILL,0));
+    
+    local rparams = {};
+    rparams.diff = dStat;
+    rparams.skillType = BLUE_SKILL;
+    magicAttack = math.floor(magicAttack * applyResistance(caster, target, spell, rparams));
+    
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
     caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
@@ -406,6 +411,8 @@ function getBlueEffectDuration(caster,resist,effect)
         duration = math.random(60,120) + resist * 15; -- 60- 120 -- Needs confirmation but capped max duration based on White Magic Spell Slow
     elseif (effect == EFFECT_SILENCE) then
         duration = math.random(60,180) + resist * 15; -- 60- 180 -- Needs confirmation but capped max duration based on White Magic Spell Silence
+    elseif (effect == EFFECT_POISON) then
+        duration = math.random(20,30) + resist * 9; -- 20-30 -- based on magic spell poison
     end
 
     return duration;

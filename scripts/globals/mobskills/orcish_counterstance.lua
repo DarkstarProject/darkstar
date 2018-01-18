@@ -3,9 +3,9 @@
 -- Used only by Orcs in Wings of the Goddess Areas.
 -- Certain NMs may have a higher power version of the effect.
 ---------------------------------------------
-require("scripts/globals/zone");
-require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
+require("scripts/globals/status");
+require("scripts/globals/zone");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

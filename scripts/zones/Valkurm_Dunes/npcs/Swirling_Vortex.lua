@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
-        player:startEvent(0x000c);
+        player:startEvent(12);
     else
         player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
     end
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x000c and option == 1) then
+    if (csid == 12 and option == 1) then
         toLufaiseMeadows(player);
     end
 

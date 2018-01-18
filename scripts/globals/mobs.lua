@@ -37,4 +37,53 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
             player:setVar("testingTime_crea_count",player:getVar("testingTime_crea_count") + 1);
         end
     end
-end;
+end
+
+-- is a lottery NM already spawned or primed to pop?
+function lotteryPrimed(phList)
+    local nm;
+    for k,v in pairs(phList) do
+        nm = GetMobByID(v);
+        if (nm ~= nil and (nm:isSpawned() or nm:getRespawnTime() ~= 0)) then
+            return true;
+        end
+    end
+    return false;
+end
+
+-- potential lottery placeholder was killed
+function phOnDespawn(ph,phList,chance,cooldown,immediate)
+    if (type(immediate) ~= "boolean") then immediate = false; end
+    
+    local phId = ph:getID();
+    local nmId = phList[phId];
+    if (nmId ~= nil) then
+        local nm = GetMobByID(nmId);
+        if (nm ~= nil) then
+            local pop = nm:getLocalVar("pop");
+            if (os.time() > pop and not lotteryPrimed(phList) and math.random(100) <= chance) then
+
+                -- on PH death, replace PH repop with NM repop
+                -- print(string.format("ph %i winner! nm %i will pop in place",phId,nmId));
+                DisallowRespawn(phId, true);
+                DisallowRespawn(nmId, false);
+                UpdateNMSpawnPoint(nmId);
+                nm:setRespawnTime(immediate and 1 or GetMobRespawnTime(phId)); -- if immediate is true, spawn the nm immediately (1ms) else use placeholder's timer
+
+                nm:addListener("DESPAWN", "DESPAWN_"..nmId, function(m)
+                    -- on NM death, replace NM repop with PH repop
+                    -- print(string.format("nm %i died. ph %i will pop in place",nmId,phId));
+                    DisallowRespawn(nmId, true);
+                    DisallowRespawn(phId, false);
+                    GetMobByID(phId):setRespawnTime(GetMobRespawnTime(phId));
+                    m:setLocalVar("pop", os.time() + cooldown);
+                    m:removeListener("DESPAWN_"..nmId);
+                end);
+
+                return true;
+            end
+        end
+    end
+    
+    return false;
+end

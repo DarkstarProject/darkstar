@@ -34,12 +34,12 @@ CLockOnPacket::CLockOnPacket(CCharEntity* PChar, CBattleEntity* PTarget)
 	this->type = 0x58;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)) = PChar->id;
-	WBUFW(data,(0x0C)) = PChar->targid;
+	ref<uint32>(0x04) = PChar->id;
+	ref<uint16>(0x0C) = PChar->targid;
 
 	if (PTarget != nullptr)
 	{
-		WBUFL(data,(0x08)) = PTarget->id;
-		WBUFW(data,(0x0E)) = PTarget->targid;
+		ref<uint32>(0x08) = PTarget->id;
+		ref<uint16>(0x0E) = PTarget->targid;
 	}
 }

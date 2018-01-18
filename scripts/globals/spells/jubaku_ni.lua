@@ -3,12 +3,9 @@
 -- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and INT.
 -- taken from paralyze
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -20,7 +17,12 @@ function onSpellCast(caster,target,spell)
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation
-    local duration = 300 * applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local duration = 300;
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = NINJUTSU_SKILL;
+    params.bonus = 0;
+    duration = duration * applyResistance(caster, target, spell, params);
     --Paralyze base power is 19.5 and is not affected by resistaces.
     local power = 30;
 
@@ -33,19 +35,19 @@ function onSpellCast(caster,target,spell)
                 if (paralysis:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
-                    spell:setMsg(237);
+                    spell:setMsg(msgBasic.MAGIC_ENFEEB);
                 else
-                    spell:setMsg(75);
+                    spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
                 end
             else
                 target:addStatusEffect(effect,power,0,duration);
-                spell:setMsg(237);
+                spell:setMsg(msgBasic.MAGIC_ENFEEB);
             end
         else
-            spell:setMsg(85);
+            spell:setMsg(msgBasic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(284);
+        spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
     return effect;
 end;

@@ -30,7 +30,7 @@ CInventoryModifyPacket::CInventoryModifyPacket(uint8 LocationID, uint8 slotID, u
 	this->type = 0x1E;
 	this->size = 0x08;
 
-	WBUFL(data,(0x04)) = quantity;
-	WBUFB(data,(0x08)) = LocationID;
-	WBUFB(data,(0x09)) = slotID;
+	ref<uint32>(0x04) = quantity;
+	ref<uint8>(0x08) = LocationID;
+	ref<uint8>(0x09) = slotID;
 }

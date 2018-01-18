@@ -19,7 +19,7 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(JEUNO,CHILD_S_PLAY) == QUEST_ACCEPTED and trade:hasItemQty(776,1) == true and trade:getItemCount() == 1) then
-        player:startEvent(0x0001); -- Finish quest
+        player:startEvent(1); -- Finish quest
     end
 end;
 
@@ -34,11 +34,11 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,16) == false) then
         player:startEvent(316);
     elseif (player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET) == QUEST_ACCEPTED and ChildsPlay == QUEST_AVAILABLE) then
-        player:startEvent(0x0000); -- Start quest
+        player:startEvent(0); -- Start quest
     elseif (ChildsPlay == QUEST_ACCEPTED) then
-        player:startEvent(0x003d); -- mid quest CS
+        player:startEvent(61); -- mid quest CS
     else
-        player:startEvent(0x003a); -- Standard dialog
+        player:startEvent(58); -- Standard dialog
     end
 
 end;
@@ -59,9 +59,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0000) then
+    if (csid == 0) then
         player:addQuest(JEUNO,CHILD_S_PLAY);
-    elseif (csid == 0x0001) then
+    elseif (csid == 1) then
         player:addTitle(TRADER_OF_MYSTERIES);
         player:addKeyItem(WONDER_MAGIC_SET);
         player:messageSpecial(KEYITEM_OBTAINED,WONDER_MAGIC_SET);

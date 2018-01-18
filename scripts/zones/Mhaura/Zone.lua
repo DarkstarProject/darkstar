@@ -37,7 +37,7 @@ function onZoneIn(player,prevZone)
         end
     end
     if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_shikarees_story")== 0 ) then
-        cs=0x0142;
+        cs=322;
     end
 return cs;
 end;
@@ -64,10 +64,10 @@ function onTransportEvent(player,transport)
             player:setPos(8.200,-1.363,3.445,192);
             player:messageSpecial(DO_NOT_POSSESS, BOARDING_PERMIT);
         else
-            player:startEvent(0x00c8);
+            player:startEvent(200);
         end
     else
-        player:startEvent(0x00c8);
+        player:startEvent(200);
     end
 end;
 
@@ -87,7 +87,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00c8) then
+    if (csid == 200) then
         local DepartureTime = VanadielHour();
         if (DepartureTime % 8 == 0) then
             player:setPos(0,0,0,0,220); -- Boat to Selbina
@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
         else
             player:setPos(8,-1,5,62,249); -- Something went wrong, dump them on the dock for safety.
         end
-    elseif (csid == 0x0142) then
+    elseif (csid == 322) then
         player:setVar("COP_shikarees_story",1);
     end
 end;

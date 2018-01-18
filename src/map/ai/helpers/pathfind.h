@@ -55,7 +55,7 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, uint8 roamFlags = 0);
+    bool RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, uint16 roamFlags = 0);
 
     // find and walk to the given point
     bool PathTo(const position_t& point, uint8 pathFlags = 0, bool clear = true);
@@ -129,7 +129,7 @@ class CPathFind
     bool FindClosestPath(const position_t& start, const position_t& end);
 
     // finds a random path around the given point
-    bool FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint8 roamFlags);
+    bool FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint16 roamFlags);
 
     void AddPoints(std::vector<position_t>&& points, bool reverse = false);
 

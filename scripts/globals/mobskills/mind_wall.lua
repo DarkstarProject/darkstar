@@ -1,14 +1,13 @@
 ---------------------------------------------
---  Mind Wall
+-- Mind Wall
 --
---  Description: Activates a shield to absorb all incoming magical damage.
---  Type: Magical
+-- Description: Activates a shield to absorb all incoming magical damage.
+-- Type: Magical
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -21,7 +20,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     MobBuffMove(mob, EFFECT_MAGIC_SHIELD, 2, 0, 30);
-    skill:setMsg(0);
+    skill:setMsg(msgBasic.NONE);
 
     return 0;
 end;

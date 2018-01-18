@@ -21,7 +21,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 function onTrigger(player,npc)
 
     if (player:getNation() ~= NATION_WINDURST) then
-        player:startEvent(0x0047); -- for other nation
+        player:startEvent(71); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
         MissionStatus = player:getVar("MissionStatus");
@@ -35,18 +35,18 @@ function onTrigger(player,npc)
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
         elseif (CurrentMission ~= 255) then
-            player:startEvent(0x004c);
+            player:startEvent(76);
         elseif (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
-            player:startEvent(0x0053);
+            player:startEvent(83);
         elseif (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
-            player:startEvent(0x0068);
+            player:startEvent(104);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
-            player:startEvent(0x006d);
+            player:startEvent(109);
         elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
-            player:startEvent(0x00a3);
+            player:startEvent(163);
         else
             flagMission, repeatMission = getMissionMask(player);
-            player:startEvent(0x004e,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
+            player:startEvent(78,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
 
@@ -71,9 +71,9 @@ function onEventFinish(player,csid,option)
 
     finishMissionTimeline(player,3,csid,option);
 
-    if (csid == 0x0076 and option == 1) then
+    if (csid == 118 and option == 1) then
         player:addTitle(NEW_BEST_OF_THE_WEST_RECRUIT);
-    elseif (csid == 0x004e and (option == 12 or option == 15)) then
+    elseif (csid == 78 and (option == 12 or option == 15)) then
         player:addKeyItem(STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
     end

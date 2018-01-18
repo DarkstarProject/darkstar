@@ -4,17 +4,9 @@
 -- Teaches the song Uncanny Etude
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     return target:canLearnSpell(432);
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addSpell(432);

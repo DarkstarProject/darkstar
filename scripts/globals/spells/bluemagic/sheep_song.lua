@@ -13,37 +13,35 @@
 -- Magic Bursts on: Transfixion, Fusion, and Light
 -- Combos: Auto Regen
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local typeEffect = EFFECT_SLEEP_I;
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+    params.bonus = 0;
+    params.effect = typeEffect;
+    local resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 60 * resist;
-    
+
     if (resist > 0.5) then -- Do it!
         if (target:addStatusEffect(typeEffect,1,0,duration)) then
-            spell:setMsg(236);
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(75);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(85);
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end;
 
     return typeEffect;

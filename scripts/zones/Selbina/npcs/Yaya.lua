@@ -25,9 +25,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getFameLevel(SELBINA) >= 2 and player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA) == QUEST_AVAILABLE) then
-        player:startEvent(0x001f); -- Start quest "Under the sea"
+        player:startEvent(31); -- Start quest "Under the sea"
     else
-        player:startEvent(0x0099); -- Standard dialog
+        player:startEvent(153); -- Standard dialog
     end
 end;
 
@@ -47,7 +47,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x001f) then
+    if (csid == 31) then
         player:addQuest(OTHER_AREAS,UNDER_THE_SEA);
         player:setVar("underTheSeaVar",1);
     end

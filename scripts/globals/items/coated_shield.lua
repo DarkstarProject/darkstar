@@ -3,28 +3,17 @@
 -- Item: Coated Shield
 -- Item Effect: Shell
 -----------------------------------------
-
-require("scripts/globals/settings");
-
------------------------------------------
--- OnItemCheck
------------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 function onItemCheck(target)
     return 0;
 end;
 
------------------------------------------
--- OnItemUse
------------------------------------------
-
 function onItemUse(target)
-
-    local power = 9;
-
-    if (target:addStatusEffect(EFFECT_SHELL, power, 0, 1800)) then
-        target:messageBasic(205);
+    if (target:addStatusEffect(EFFECT_SHELL, 9, 0, 1800)) then
+        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_SHELL);
     else
-        target:messageBasic(423); -- no effect
+        target:messageBasic(msgBasic.NO_EFFECT);
     end
 end;

@@ -4,16 +4,14 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/zone");
+require("scripts/zones/South_Gustaberg/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/chocobo_digging");
+require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/icanheararainbow");
-require("scripts/zones/South_Gustaberg/TextIDs");
-require("scripts/globals/chocobo_digging");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -69,11 +67,11 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("VowsDone") == 1) then
-        cs= 0x038A;
+        cs= 906;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
-        cs = 0x0385;
+        cs = 901;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0025;
+        cs = 37;
     end
 
     return cs;
@@ -106,9 +104,9 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0385) then
+    if (csid == 901) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x0025) then
+    elseif (csid == 37) then
         if (player:getXPos() > -390) then
             if (player:getZPos() > -301) then
             player:updateEvent(0,0,0,0,0,6);
@@ -126,13 +124,13 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x038A) then
+    if (csid == 906) then
         if (player:getCurrentMission(COP) == A_TRANSIENT_DREAM) then
             player:completeMission(COP,A_TRANSIENT_DREAM);
             player:addMission(COP,THE_CALL_OF_THE_WYRMKING);
         end
         player:setVar("VowsDone",0);
-    elseif (csid == 0x0385) then
+    elseif (csid == 901) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;

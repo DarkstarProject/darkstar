@@ -26,11 +26,11 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR, BOY_AND_THE_BEAST) == QUEST_ACCEPTED and player:getVar("BoyAndTheBeast") == 2) then
         if (VanadielHour() < 8) then
-            player:startEvent(0x006B);
+            player:startEvent(107);
         elseif (VanadielHour() < 16) then
-            player:startEvent(0x006B,1);
+            player:startEvent(107,1);
         else
-            player:startEvent(0x006B,2);
+            player:startEvent(107,2);
         end
     end
 end;
@@ -39,11 +39,14 @@ end;
 -- onEventFinish
 -----------------------------------
 
+function onEventUpdate(player,csid,option)
+end
+
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x006B) then
+    if (csid == 107) then
         if (option == 1) then
             player:addKeyItem(VUNKERL_HERB);
             player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);

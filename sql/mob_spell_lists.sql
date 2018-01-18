@@ -2434,6 +2434,22 @@ INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,366,1,255); -- graviga
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,367,1,255); -- death
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,498,1,255); -- aeroja
 
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,252,1,255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,277,1,255); -- Dread Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,245,1,255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,246,1,255); -- Drain II
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,275,1,255); -- Absorb-TP
+INSERT INTO `mob_spell_lists` VALUES ('Nosferatu',293,242,1,255); -- Absorb-ACC
+
+INSERT INTO `mob_spell_lists` VALUES ('Honor',294,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Honor',294,359,1,255); -- silencega
+
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,147,73,85); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,204,60,255); -- Flare
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,235,24,255); -- Burn
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,176,69,255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,100,24,255); -- Enfire
+INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,249,10,255); -- Blaze Spikes
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

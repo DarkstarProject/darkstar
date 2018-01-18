@@ -6,45 +6,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/zones/Batallia_Downs/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Batallia_Downs/MobIDs");
+require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    local Gob = GetMobAction(17207710);
-    if ( (Gob == ACTION_NONE or Gob == ACTION_SPAWN) and (player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD) == true) and (player:hasKeyItem(SEEDSPALL_ROSEUM) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
-        SpawnMob(17207710):updateClaim(player);
+    if (not GetMobByID(VEGNIX_GREENTHUMB):isSpawned() and player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD) and not player:hasKeyItem(SEEDSPALL_ROSEUM) and not player:hasKeyItem(VIRIDIAN_KEY)) then
+        SpawnMob(VEGNIX_GREENTHUMB):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
-
-function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

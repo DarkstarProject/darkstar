@@ -4,15 +4,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
+require("scripts/zones/Wajaom_Woodlands/TextIDs");
+require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/globals/chocobo_digging");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -81,7 +79,7 @@ function onZoneIn(player,prevZone)
             player:setPos(610.542,-28.547,356.247,122);
         end
     elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == 50) then
-        cs = 0x01fe;
+        cs = 510;
     end
     return cs;
 end;
@@ -109,7 +107,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("Finish CSID: %u",csid);
     -- printf("Finish RESULT: %u",option);
-    if (csid == 0x01fe) then
+    if (csid == 510) then
         player:setVar("threemenandaclosetCS",3);
     elseif (csid == 11) then
         player:startEvent(21);

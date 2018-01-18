@@ -4,10 +4,6 @@
 -- Dispenses Ginger Cookies
 -----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
-
 function onItemCheck(target)
     local result = 0;
     if (target:getFreeSlotsCount() == 0) then
@@ -15,10 +11,6 @@ function onItemCheck(target)
     end
     return result;
 end;
-
------------------------------------------
--- OnItemUse
------------------------------------------
 
 function onItemUse(target)
     target:addItem(4394,math.random(1,10));

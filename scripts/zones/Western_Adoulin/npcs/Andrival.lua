@@ -23,10 +23,10 @@ function onTrigger(player,npc)
 
     if (SOA_Mission == THE_MERCILESS_ONE) then
         -- Reminds player to accompany Ingrid to Castle Adoulin
-        player:startEvent(0x008B);
+        player:startEvent(139);
     else
         -- Standard dialogue
-        player:startEvent(0x0228);
+        player:startEvent(552);
     end
 end;
 

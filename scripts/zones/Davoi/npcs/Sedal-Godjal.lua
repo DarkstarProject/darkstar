@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(17437,1)) then
         if (CurrentMission == VAIN and MissionStatus == 3 and player:hasKeyItem(MAGIC_DRAINED_STAR_SEEKER) == true) then
-            player:startEvent(0x0078);
+            player:startEvent(120);
         end
     end
 end;
@@ -37,14 +37,14 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus");
 
     if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
-        player:startEvent(0x007A,0,276);
+        player:startEvent(122,0,276);
     elseif (CurrentMission == VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
         if (player:hasKeyItem(STAR_SEEKER) == true) then
-            player:startEvent(0x0076,0,17437,STAR_SEEKER);
+            player:startEvent(118,0,17437,STAR_SEEKER);
         elseif (player:hasKeyItem(MAGIC_DRAINED_STAR_SEEKER) and MissionStatus == 4) then
-            player:startEvent(0x0079);
+            player:startEvent(121);
         else
-            player:startEvent(0x0077,0,17437);
+            player:startEvent(119,0,17437);
         end
 
     elseif (player:hasKeyItem(CRIMSON_ORB) == false) then
@@ -53,16 +53,16 @@ function onTrigger(player,npc)
         local countRedPoolForORB = player:getVar("countRedPoolForORB");
 
         if (miniQuestForORB_CS == 0) then
-            player:startEvent(0x0018); --
+            player:startEvent(24); --
         elseif (miniQuestForORB_CS == 99) then
-            player:startEvent(0x0016); -- Start mini quest
+            player:startEvent(22); -- Start mini quest
         elseif (miniQuestForORB_CS == 1 and countRedPoolForORB ~= 15) then
-            player:startEvent(0x0015); -- During mini quest
+            player:startEvent(21); -- During mini quest
         elseif (miniQuestForORB_CS == 1 and countRedPoolForORB == 15) then
-            player:startEvent(0x0019,0,0,0,CRIMSON_ORB); -- Finish mini quest
+            player:startEvent(25,0,0,0,CRIMSON_ORB); -- Finish mini quest
         end
     else
-        player:startEvent(0x0018); -- Standard dialog
+        player:startEvent(24); -- Standard dialog
     end
 
 end;
@@ -84,24 +84,24 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0016 and option == 1) then
+    if (csid == 22 and option == 1) then
         player:setVar("miniQuestForORB_CS",1);
         player:addKeyItem(WHITE_ORB);
         player:messageSpecial(KEYITEM_OBTAINED, WHITE_ORB);
-    elseif (csid == 0x0019) then
+    elseif (csid == 25) then
         player:setVar("miniQuestForORB_CS",0);
         player:setVar("countRedPoolForORB",0);
         player:delKeyItem(CURSED_ORB);
         player:addKeyItem(CRIMSON_ORB);
         player:messageSpecial(KEYITEM_OBTAINED, CRIMSON_ORB);
-    elseif (csid == 0x0076) then
+    elseif (csid == 118) then
         player:delKeyItem(STAR_SEEKER);
         player:addKeyItem(MAGIC_DRAINED_STAR_SEEKER);
         player:setVar("MissionStatus",3);
-    elseif (csid == 0x0078) then
+    elseif (csid == 120) then
         player:tradeComplete();
         player:setVar("MissionStatus",4);
-    elseif (csid == 0x007A) then
+    elseif (csid == 122) then
         player:addKeyItem(AURASTERY_RING);
         player:messageSpecial(KEYITEM_OBTAINED,AURASTERY_RING);
         if (player:hasKeyItem(OPTISTERY_RING) and player:hasKeyItem(RHINOSTERY_RING)) then

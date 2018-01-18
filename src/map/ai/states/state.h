@@ -80,7 +80,7 @@ protected:
     std::unique_ptr<CBasicPacket> m_errorMsg;
 
     CBaseEntity* const m_PEntity;
-    uint16 m_targid;
+    uint16 m_targid {0};
 private:
     CBaseEntity* m_PTarget {nullptr};
     bool m_completed {false};
