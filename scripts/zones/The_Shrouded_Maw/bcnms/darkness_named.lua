@@ -4,14 +4,12 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
 require("scripts/zones/The_Shrouded_Maw/TextIDs");
+require("scripts/zones/The_Shrouded_Maw/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/battlefield")
-
------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/titles");
 
 function onBattlefieldTick(battlefield, tick)
     g_Battlefield.onBattlefieldTick(battlefield, tick)
@@ -19,43 +17,12 @@ end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
-
+    -- "close" all floor tiles
     local inst = player:getBattlefield():getArea();
-
-    if (inst == 1) then
-
-        local TileOffset = 16818258;
-
-        for i = TileOffset, TileOffset+7 do
-            local TileOffsetA = GetNPCByID(i):getAnimation();
-            if (TileOffsetA == 8) then
-                GetNPCByID(i):setAnimation(9);
+    local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
+    for i = tile, tile + 7 do
+        GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
             end
-        end
-
-    elseif (inst == 2) then
-
-        local TileOffset = 16818266;
-
-        for i = TileOffset, TileOffset+7 do
-            local TileOffsetA = GetNPCByID(i):getAnimation();
-            if (TileOffsetA == 8) then
-                GetNPCByID(i):setAnimation(9);
-            end
-        end
-
-    elseif (inst == 3) then
-
-        local TileOffset = 16818274;
-
-        for i = TileOffset, TileOffset+7 do
-            local TileOffsetA = GetNPCByID(i):getAnimation();
-            if (TileOffsetA == 8) then
-                GetNPCByID(i):setAnimation(9);
-            end
-        end
-
-    end
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
@@ -71,8 +38,6 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBattlefieldLeave(player,battlefield,leavecode)
--- print("leave code "..leavecode);
-
     if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
 
         local name, clearTime, partySize = battlefield:getRecord()
@@ -87,13 +52,10 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(32002);
     end
-
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
 end;
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
 end;

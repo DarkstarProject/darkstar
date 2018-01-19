@@ -5,7 +5,6 @@
 -- !pos 235 0 280 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 require("scripts/zones/The_Sanctuary_of_ZiTah/MobIDs");
@@ -46,12 +45,12 @@ function onTrigger(player,npc)
                 player:messageSpecial(KEYITEM_OBTAINED,LIGHT_FRAGMENT);
             end
         end
-    
-    -- SOUL SEARCHING    
+
+    -- SOUL SEARCHING
     elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and not player:hasCompleteQuest(OUTLANDS,SOUL_SEARCHING)) then
         player:addQuest(OUTLANDS,SOUL_SEARCHING);
         player:startEvent(202,PRISMATIC_FRAGMENT);
-        
+
     -- DEFAULT DIALOGS
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
         player:messageSpecial(ZILART_MONUMENT);

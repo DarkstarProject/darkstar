@@ -39,7 +39,6 @@
 
 #include "../ability.h"
 #include "../alliance.h"
-#include "../battlefield.h"
 #include "../enmity_container.h"
 #include "../guild.h"
 #include "../instance.h"
@@ -164,7 +163,7 @@ CLuaBaseEntity::CLuaBaseEntity(CBaseEntity* PEntity)
 *  Function: SendRevision()
 *  Purpose : Sends the current Git version to the character via message
 *  Example : player:SendRevision()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
@@ -357,7 +356,7 @@ inline int32 CLuaBaseEntity::messagePublic(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     uint16 messageID = (uint16)lua_tointeger(L, 1);
-    
+
     uint32 param0 = 0;
     uint32 param1 = 0;
 
@@ -379,7 +378,7 @@ inline int32 CLuaBaseEntity::messagePublic(lua_State* L)
 *  Function: messageSpecial()
 *  Purpose : Displays special messages
 *  Example : player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::messageSpecial(lua_State *L)
@@ -426,7 +425,7 @@ inline int32 CLuaBaseEntity::messageSpecial(lua_State *L)
 *  Function: messageSystem()
 *  Purpose : Sends a standard system message
 *  Example : player:messageSystem("Text")
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
@@ -454,7 +453,7 @@ inline int32 CLuaBaseEntity::messageSystem(lua_State* L)
 *  Function: getVar()
 *  Purpose : Returns a var value assigned to a PC (in char_vars.sql)
 *  Example : local status = player:getVar("[ZM]Status")
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getVar(lua_State *L)
@@ -535,7 +534,7 @@ inline int32 CLuaBaseEntity::addVar(lua_State *L)
 *  Function: getLocalVar()
 *  Purpose : Returns a variable assigned locally to an entity
 *  Example : if (KingArthro:getLocalVar("[POP]King_Arthro") > 0) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getLocalVar(lua_State* L)
@@ -554,7 +553,7 @@ inline int32 CLuaBaseEntity::getLocalVar(lua_State* L)
 *  Function: setLocalVar()
 *  Purpose : Assigns a local variable to an entity
 *  Example : mob:setLocalVar("pop", os.time() + math.random(1200,7200));
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setLocalVar(lua_State* L)
@@ -575,7 +574,7 @@ inline int32 CLuaBaseEntity::setLocalVar(lua_State* L)
 *  Function: resetLocalVars()
 *  Purpose : Reset local variables back to default (ex: on Mob disengage)
 *  Example : GetMobByID(Defender):resetLocalVars();
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
@@ -591,7 +590,7 @@ inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
 *  Function: getMaskBit()
 *  Purpose : Returns a single bit from a masked player variable
 *  Example : player:getMaskBit(player:getVar("CleanSignPost"),1)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMaskBit(lua_State *L)
@@ -614,7 +613,7 @@ inline int32 CLuaBaseEntity::getMaskBit(lua_State *L)
 *  Function: setMaskBit()
 *  Purpose : Performs a bitwise operation and stores a single bit in var
 *  Example : player:setMaskBit("Order_Up_NPCs", 8, true);
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setMaskBit(lua_State *L)
@@ -678,7 +677,7 @@ inline int32 CLuaBaseEntity::countMaskBits(lua_State *L)
 *  Function: isMaskFull()
 *  Purpose : Return true if var of specified size contains all set bits
 *  Example : if (player:isMaskFull(tradesMamaMia,7) == true) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isMaskFull(lua_State *L)
@@ -825,7 +824,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
 *  Function: entityVisualPacket()
 *  Purpose : Sends a visual packet to the PC
 *  Example : player:entityVisualPacket("byc7")
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
@@ -851,7 +850,7 @@ inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 *  Function: entityAnimationPacket()
 *  Purpose : Sends an animation packet to the entity
 *  Example : mob:entityAnimationPacket("sp00")
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
@@ -874,7 +873,7 @@ inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
 
 /************************************************************************
 *  Function: startEvent()
-*  Purpose : Starts an event (cutscene) 
+*  Purpose : Starts an event (cutscene)
 *  Example : player:startEvent(4)
 *  Notes   : Cutscene ID must be associated with the zone
 ************************************************************************/
@@ -1186,7 +1185,7 @@ inline int32 CLuaBaseEntity::getEventTarget(lua_State *L)
 *  Function: release()
 *  Purpose : Ends an event for a PC; releases from cutscene
 *  Example : player:release()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::release(lua_State *L)
@@ -1255,7 +1254,7 @@ inline int32 CLuaBaseEntity::moghouseFlag(lua_State *L)
 /************************************************************************
 *  Function: needToZone()
 *  Purpose : Checks to see if a player has zoned since the flag was raised
-*  Example : player:needToZone(true) 
+*  Example : player:needToZone(true)
 *  Notes   : Used in events where player needs to zone before continuing
 ************************************************************************/
 
@@ -1276,7 +1275,7 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 *  Function: getID()
 *  Purpose : Get Entity's ID
 *  Example : npc:getID(); target:getID()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getID(lua_State *L)
@@ -1289,7 +1288,7 @@ inline int32 CLuaBaseEntity::getID(lua_State *L)
 
 /************************************************************************
 *  Function: getShortID()
-*  Purpose : Gets the ID of a Target 
+*  Purpose : Gets the ID of a Target
 *  Example : mob:getShortID(); pet:getShortID()
 *  Notes   : To Do: Should be renamed to getTargID
 ************************************************************************/
@@ -1304,9 +1303,9 @@ inline int32 CLuaBaseEntity::getShortID(lua_State *L)
 
 /************************************************************************
 *  Function: getCursorTarget()
-*  Purpose : GM command - gets the ID of selected Mob's, NPC's, Players 
+*  Purpose : GM command - gets the ID of selected Mob's, NPC's, Players
 *  Example : player:getCursorTarget()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getCursorTarget(lua_State* L)
@@ -1338,7 +1337,7 @@ inline int32 CLuaBaseEntity::getCursorTarget(lua_State* L)
 *  Function: getObjType()
 *  Purpose : Returns the int value of an entity's object type (Mob,PC...)
 *  Example : if (caster:getObjType() == TYPE_PC) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getObjType(lua_State *L)
@@ -1353,7 +1352,7 @@ inline int32 CLuaBaseEntity::getObjType(lua_State *L)
 *  Function: isPC()
 *  Purpose : Returns true if entity is of the PC object type
 *  Example : if (target:isPC()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isPC(lua_State *L)
@@ -1368,7 +1367,7 @@ inline int32 CLuaBaseEntity::isPC(lua_State *L)
 *  Function: isNPC()
 *  Purpose : Returns true if entity is of the NPC object type
 *  Example : if (target:isNPC()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isNPC(lua_State *L)
@@ -1383,7 +1382,7 @@ inline int32 CLuaBaseEntity::isNPC(lua_State *L)
 *  Function: isMob()
 *  Purpose : Returns true if entity is of the Mob object type
 *  Example : if (target:isMob()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isMob(lua_State *L)
@@ -1398,7 +1397,7 @@ inline int32 CLuaBaseEntity::isMob(lua_State *L)
 *  Function: isPet()
 *  Purpose : Returns true if entity is of the Pet object type
 *  Example : if (caster:isPet()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isPet(lua_State *L)
@@ -1413,7 +1412,7 @@ inline int32 CLuaBaseEntity::isPet(lua_State *L)
 *  Function: isAlly()
 *  Purpose : Returns true if entity is an ally
 *  Example : if (mob:isAlly()) then table.insert(allies, mob) end
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isAlly(lua_State *L)
@@ -1457,9 +1456,9 @@ int32 CLuaBaseEntity::resetAI(lua_State* L)
 
 /************************************************************************
 *  Function: getStatus()
-*  Purpose : Returns the status (or 'state') of an entity 
+*  Purpose : Returns the status (or 'state') of an entity
 *  Example : if (qm2:getStatus() ~= STATUS_DISAPPEAR) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getStatus(lua_State *L)
@@ -1474,7 +1473,7 @@ inline int32 CLuaBaseEntity::getStatus(lua_State *L)
 *  Function: setStatus()
 *  Purpose : Updates the status (or 'state') of an entity
 *  Example : npc:setStatus(STATUS_NORMAL)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setStatus(lua_State *L)
@@ -1560,7 +1559,7 @@ inline int32 CLuaBaseEntity::getCurrentAction(lua_State* L)
 *  Function: lookAt()
 *  Purpose : Forces an entity to 'look' at something like it's self-aware
 *  Example : npc:lookAt(player:getPos()) -- Make an NPC look at the PC
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::lookAt(lua_State* L)
@@ -1758,7 +1757,7 @@ inline int32 CLuaBaseEntity::isFollowingPath(lua_State* L)
 *  Function: clearPath()
 *  Purpose : Clears all path points and stops entity movement
 *  Example : npc:clearPath()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::clearPath(lua_State* L)
@@ -1777,7 +1776,7 @@ inline int32 CLuaBaseEntity::clearPath(lua_State* L)
 *  Function: checkDistance()
 *  Purpose : Returns the yalm distance between entities
 *  Example : if (player:checkDistance(pet) <= 25) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::checkDistance(lua_State *L)
@@ -1824,7 +1823,7 @@ inline int32 CLuaBaseEntity::wait(lua_State* L)
 *  Function: openDoor()
 *  Purpose : Opens a door for 7 seconds; different time can be specified
 *  Example : npc:openDoor(30) -- Open for 30 sec; npc:openDoor() -- 7 sec
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::openDoor(lua_State *L)
@@ -1852,7 +1851,7 @@ inline int32 CLuaBaseEntity::openDoor(lua_State *L)
 *  Function: closeDoor()
 *  Purpose : Closes a door for 7 seconds; different delay can be specified
 *  Example : npc:closeDoor(); GetNPCByID(Lantern_ID):closeDoor(1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::closeDoor(lua_State *L)
@@ -2002,9 +2001,9 @@ inline int32 CLuaBaseEntity::updateNPCHideTime(lua_State *L)
 
 /************************************************************************
 *  Function: getWeather()
-*  Purpose : Returns the current weather status 
+*  Purpose : Returns the current weather status
 *  Example : if (player:getWeather() == WEATHER_WIND) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getWeather(lua_State *L)
@@ -2024,7 +2023,7 @@ inline int32 CLuaBaseEntity::getWeather(lua_State *L)
 
 /************************************************************************
 *  Function: setWeather()
-*  Purpose : Updates the current weather status 
+*  Purpose : Updates the current weather status
 *  Example : player:setWeather(weatherList.sunshine);
 *  Notes   : Only used for GM command: scripts/commands/setweather.lua
 ************************************************************************/
@@ -2048,7 +2047,7 @@ inline int32 CLuaBaseEntity::setWeather(lua_State *L)
 *  Function: setHomePoint()
 *  Purpose : Sets a PC's homepoint.
 *  Example : player:setHomePoint()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setHomePoint(lua_State *L)
@@ -2092,8 +2091,8 @@ inline int32 CLuaBaseEntity::ChangeMusic(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    uint8  BlockID = (uint32)lua_tointeger(L, 1);
-    uint32 MusicTrackID = (uint32)lua_tointeger(L, 2);
+    uint8 BlockID = (uint32)lua_tointeger(L, 1);
+    uint8 MusicTrackID = (uint32)lua_tointeger(L, 2);
 
     PChar->pushPacket(new CChangeMusicPacket(BlockID, MusicTrackID));
     return 0;
@@ -2103,7 +2102,7 @@ inline int32 CLuaBaseEntity::ChangeMusic(lua_State *L)
 *  Function: sendMenu()
 *  Purpose : Sends a menu to the PC (Ex: Auction, Mog House, Shop)
 *  Example : player:sendMenu(3)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
@@ -2129,7 +2128,7 @@ inline int32 CLuaBaseEntity::sendMenu(lua_State *L)
         case 3:
             PChar->pushPacket(new CAuctionHousePacket(2));
             break;
-        default: 
+        default:
             ShowDebug("Menu %i not implemented, yet.\n", menu);
             break;
     }
@@ -2189,7 +2188,7 @@ inline int32 CLuaBaseEntity::sendGuild(lua_State* L)
 *  Function: openSendBox()
 *  Purpose : Opens the send box for a PC
 *  Example : player:openSendBox()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::openSendBox(lua_State *L)
@@ -2317,7 +2316,7 @@ inline int32 CLuaBaseEntity::getZone(lua_State *L)
 *  Function: getZoneID()
 *  Purpose : Returns the integer value associated with the current zone
 *  Example : if (player:getZoneID() == 50) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getZoneID(lua_State *L)
@@ -2383,7 +2382,7 @@ inline int32 CLuaBaseEntity::getPreviousZone(lua_State *L)
 *  Function: getCurrentRegion()
 *  Purpose : Returns the integer value of the PC's region
 *  Example : local region = target:getCurrentRegion()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getCurrentRegion(lua_State *L)
@@ -2413,7 +2412,7 @@ inline int32 CLuaBaseEntity::getContinentID(lua_State *L)
 *  Function: isInMogHouse()
 *  Purpose : Returns true if a PC is in their Mog House
 *  Example : if (player:isInMogHouse()) then -- watch Netflix and chill
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isInMogHouse(lua_State* L)
@@ -2477,7 +2476,7 @@ inline int32 CLuaBaseEntity::showPosition(lua_State *L)
 *  Function: getXPos()
 *  Purpose : Returns a signed x coordinate
 *  Example : local x = player:getXPos()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getXPos(lua_State *L)
@@ -2492,7 +2491,7 @@ inline int32 CLuaBaseEntity::getXPos(lua_State *L)
 *  Function: getYPos()
 *  Purpose : Returns a signed y coordinate
 *  Example : local y = player:getYPos()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getYPos(lua_State *L)
@@ -2507,7 +2506,7 @@ inline int32 CLuaBaseEntity::getYPos(lua_State *L)
 *  Function: getZPos()
 *  Purpose : Returns a signed z coordinate
 *  Example : local z = player:getZPos()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getZPos(lua_State *L)
@@ -2614,7 +2613,7 @@ inline int32 CLuaBaseEntity::setPos(lua_State *L)
 *  Function: warp()
 *  Purpose : Warps a PC to their established homepoint
 *  Example : player:warp()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::warp(lua_State *L)
@@ -2734,10 +2733,48 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 }
 
 /************************************************************************
+*  Function: goToEntity()
+*  Purpose : Transports PC to a Mob or NPC; works across multiple servers
+*  Example : player:goToEntity(ID, Option)
+*  Notes   : Option 0: Spawned/Unspawned | Option 1: Spawned only
+************************************************************************/
+
+int32 CLuaBaseEntity::goToEntity(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        bool spawnedOnly  = !lua_isnil(L, 2) ? lua_tonumber(L, 2) : 0;
+
+        uint32 targetID   = (uint32)lua_tonumber(L, 1);
+        uint16 targetZone = (targetID >> 12) & 0x0FFF;
+        uint16 playerID   = m_PBaseEntity->id;
+        uint16 playerZone = PChar->loc.zone->GetID();
+
+        char buf[12];
+        memset(&buf[0], 0, sizeof(buf));
+
+        ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
+        ref<uint16>(&buf,  2) = targetZone;
+        ref<uint16>(&buf,  4) = playerZone;
+        ref<uint32>(&buf,  6) = targetID;
+        ref<uint16>(&buf, 10) = playerID;
+
+        message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
+	}	
+    return 0;
+}
+
+/************************************************************************
 *  Function: gotoPlayer()
 *  Purpose : Transports PC to another PC
 *  Example : player:gotoPlayer(playername)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
@@ -2771,7 +2808,7 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
 *  Function: bringPlayer()
 *  Purpose : Brings a PC to another PC; returns true if success
 *  Example : player:bringPlayer(playername)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
@@ -2812,7 +2849,7 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
 *  Function:getNationTeleport()
 *  Purpose : Returns the teleport point for a given value
 *  Example : player:getNationTeleport(guardnation)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getNationTeleport(lua_State *L)
@@ -2883,7 +2920,7 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
 *  Function: getEquipID()
 *  Purpose : Returns the Item ID for an item
 *  Example : player:getEquipID(SLOT_MAIN)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getEquipID(lua_State *L)
@@ -2960,15 +2997,15 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     /* FORMAT:
-    player:addItem(Item ID, 
+    player:addItem(Item ID,
                             Quantity (or bool for silent addition of 1 Qty),
-                             Augment 1, A1 Value, 
+                             Augment 1, A1 Value,
                              Augment 2, A2 Value,
-                             Augment 3, A3 Value, 
+                             Augment 3, A3 Value,
                              Augment 4, A4 Value,
                              Trial Number)
     */
-    
+
     bool silence = false;
     uint16 itemID = (uint16)lua_tointeger(L, 1);
     uint32 quantity = 1;
@@ -3278,7 +3315,7 @@ inline int32 CLuaBaseEntity::addShopItem(lua_State *L)
 *  Function: getCurrentGPItem()
 *  Purpose : Returns the current Guild Point Item needed
 *  Example : player:getCurrentGPItem(guildID)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getCurrentGPItem(lua_State* L)
@@ -3305,7 +3342,7 @@ inline int32 CLuaBaseEntity::getCurrentGPItem(lua_State* L)
 *  Function: getContainerSize()
 *  Purpose : Returns the size of an item container
 *  Example : player:getContainerSize(LOC_INVENTORY)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
@@ -3412,7 +3449,7 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
 *  Function: tradeComplete()
 *  Purpose : Completes trade and removes all items in trade container
 *  Example : player:tradeComplete()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::tradeComplete(lua_State *L)
@@ -3480,7 +3517,7 @@ inline int32 CLuaBaseEntity::canEquipItem(lua_State *L)
 *  Function: equipItem()
 *  Purpose : Equips an item on the player
 *  Example : equipItem(itemID, optional container ID)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::equipItem(lua_State *L)
@@ -3515,7 +3552,7 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
 *  Function: unequipItem()
 *  Purpose : Unequips an item from player
 *  Example : player:unequipItem(17845)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::unequipItem(lua_State* L)
@@ -3585,7 +3622,7 @@ inline int32 CLuaBaseEntity::lockEquipSlot(lua_State *L)
 *  Function: unlockEquipSlot()
 *  Purpose : Allows player to equip items in that slot again
 *  Example : player:unlockEquipSlot(SLOT)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::unlockEquipSlot(lua_State *L)
@@ -3705,7 +3742,7 @@ inline int32 CLuaBaseEntity::addGearSetMod(lua_State *L)
 *  Function: clearGearSetMods()
 *  Purpose : Clears all mods the player has from gear sets
 *  Example : player:clearGearSetMods()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::clearGearSetMods(lua_State *L)
@@ -3892,7 +3929,7 @@ inline int32 CLuaBaseEntity::getRetrievableItemsForSlip(lua_State *L)
 *  Function: retrieveItemFromSlip()
 *  Purpose : Retrieves an item stored with Porter Moogle
 *  Example : player:retrieveItemFromSlip(slipId, retrievedItemId, extraId, bitmask)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::retrieveItemFromSlip(lua_State *L)
@@ -3939,7 +3976,7 @@ inline int32 CLuaBaseEntity::retrieveItemFromSlip(lua_State *L)
 *  Function: getRace()
 *  Purpose : Returns the integer value of the race of the character
 *  Example : player:getRace()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getRace(lua_State *L)
@@ -3955,7 +3992,7 @@ inline int32 CLuaBaseEntity::getRace(lua_State *L)
 *  Function: getGender()
 *  Purpose : Returns the integer value of the gender of the character
 *  Example : player:getGender()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getGender(lua_State* L)
@@ -3973,7 +4010,7 @@ inline int32 CLuaBaseEntity::getGender(lua_State* L)
 *  Function: getName()
 *  Purpose : Returns the string name of the character
 *  Example : player:getName()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getName(lua_State *L)
@@ -3988,7 +4025,7 @@ inline int32 CLuaBaseEntity::getName(lua_State *L)
 *  Function: hideName()
 *  Purpose : Hides the name of the entity
 *  Example : mob:hideName()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hideName(lua_State* L)
@@ -4004,7 +4041,7 @@ inline int32 CLuaBaseEntity::hideName(lua_State* L)
 *  Function: checkNameFlags()
 *  Purpose : Returns true if a player has name flags
 *  Example : player:checkNameFlags()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::checkNameFlags(lua_State* L)
@@ -4025,7 +4062,7 @@ inline int32 CLuaBaseEntity::checkNameFlags(lua_State* L)
 *  Function: getModelId()
 *  Purpose : Returns the integer value of the entity's Model ID
 *  Example : mob:getModelId()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getModelId(lua_State* L)
@@ -4041,7 +4078,7 @@ inline int32 CLuaBaseEntity::getModelId(lua_State* L)
 *  Function: setModelId()
 *  Purpose : Updates the Model ID of the entity
 *  Example : mob:setModelId(1168)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setModelId(lua_State* L)
@@ -4099,7 +4136,7 @@ inline int32 CLuaBaseEntity::setModelId(lua_State* L)
 *  Function: costume()
 *  Purpose : Updates the PC's appearance or returns costume assigned to PC
 *  Example : player:costume( costumeId )
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::costume(lua_State *L)
@@ -4162,7 +4199,7 @@ inline int32 CLuaBaseEntity::costume2(lua_State *L)
 *  Function: canUseCostume()
 *  Purpose : Returns 0 if a player can use costume in that area
 *  Example : if (player:canUseCostume()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::canUseCostume(lua_State *L)
@@ -4221,7 +4258,7 @@ inline int32 CLuaBaseEntity::setAnimation(lua_State *L)
 *  Function: AnimationSub()
 *  Purpose : Returns animation sub for an entity or updates if var supplied
 *  Example : if (mob:AnimationSub() == 1) then mob:AnimationSub(2)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
@@ -4255,7 +4292,7 @@ inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
 *  Function: getNation()
 *  Purpose : Returns the integer value of the player's nation
 *  Example : player:getNation()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getNation(lua_State *L)
@@ -4271,7 +4308,7 @@ inline int32 CLuaBaseEntity::getNation(lua_State *L)
 *  Function: setNation()
 *  Purpose : Changes a player's nation allegiance
 *  Example : player:setNation(2)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setNation(lua_State *L)
@@ -4342,7 +4379,7 @@ inline int32 CLuaBaseEntity::getCampaignAllegiance(lua_State *L)
 *  Function: setCampaignAllegiance()
 *  Purpose : Affiliates the player with a particular nation in the past
 *  Example : targ:setCampaignAllegiance(nation)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setCampaignAllegiance(lua_State *L)
@@ -4363,7 +4400,7 @@ inline int32 CLuaBaseEntity::setCampaignAllegiance(lua_State *L)
 *  Function: getNewPlayer()
 *  Purpose : Returns true if a player is new
 *  Example : if not (player:getNewPlayer()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
@@ -4371,7 +4408,7 @@ inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isNewPlayer);
+    lua_pushboolean(L, (((CCharEntity*)m_PBaseEntity)->menuConfigFlags.flags & NFLAG_NEWPLAYER) == 0);
     return 1;
 }
 
@@ -4379,7 +4416,7 @@ inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
 *  Function: setNewPlayer()
 *  Purpose : Marks a player as being new and calls charutils to update DB
 *  Example : player:setNewPlayer(1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
@@ -4389,7 +4426,10 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_isNewPlayer = lua_toboolean(L, 1);
+    if (lua_toboolean(L, 1))
+        PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+    else
+        PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
     PChar->updatemask |= UPDATE_HP;
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     return 0;
@@ -4398,8 +4438,8 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
 /************************************************************************
 *  Function: getMentor()
 *  Purpose : Returns true if a player is flagged as a mentor
-*  Example : 
-*  Notes   : 
+*  Example :
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMentor(lua_State* L)
@@ -4408,7 +4448,7 @@ inline int32 CLuaBaseEntity::getMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    lua_pushnumber(L, PChar->m_mentor);
+    lua_pushnumber(L, PChar->m_mentorUnlocked ? 1 : 0);
     return 1;
 }
 
@@ -4416,7 +4456,7 @@ inline int32 CLuaBaseEntity::getMentor(lua_State* L)
 *  Function: setMentor()
 *  Purpose : Sets the mentor flag for a character
 *  Example : player:setMentor(1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setMentor(lua_State* L)
@@ -4426,8 +4466,12 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_mentor = (uint8)lua_tonumber(L, 1);
-    charutils::mentorMode(PChar);
+    if ((uint8)lua_tonumber(L, 1) == 1)
+        PChar->m_mentorUnlocked = true;
+    else
+        PChar->m_mentorUnlocked = false;
+
+    charutils::SaveMentorFlag(PChar);
     PChar->updatemask |= UPDATE_HP;
     return 0;
 }
@@ -4436,7 +4480,7 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
 *  Function: getGMLevel()
 *  Purpose : Returns the GM level (0-5)
 *  Example : if (player:getGMLevel() == 5) then -- kill pixies
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getGMLevel(lua_State* L)
@@ -4454,7 +4498,7 @@ inline int32 CLuaBaseEntity::getGMLevel(lua_State* L)
 *  Function: setGMLevel()
 *  Purpose : Updates a player's GM status (0-5)
 *  Example : player:setGMLevel(3)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
@@ -4473,7 +4517,7 @@ inline int32 CLuaBaseEntity::setGMLevel(lua_State* L)
 *  Function: getGMHidden()
 *  Purpose : Returns true if a GM is currently hidden
 *  Example : if (player:getGMHidden()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getGMHidden(lua_State* L)
@@ -4490,7 +4534,7 @@ inline int32 CLuaBaseEntity::getGMHidden(lua_State* L)
 *  Function: setGMHidden()
 *  Purpose : Sets a GM to hidden mode
 *  Example : player:setGMHidden(1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
@@ -4516,7 +4560,7 @@ inline int32 CLuaBaseEntity::setGMHidden(lua_State* L)
 *  Function: isJailed()
 *  Purpose : Returns true if a player is a violent felon
 *  Example : if (player:isJailed()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isJailed(lua_State *L)
@@ -4532,7 +4576,7 @@ inline int32 CLuaBaseEntity::isJailed(lua_State *L)
 *  Function: jail()
 *  Purpose : Locks up a misbehaving Elvaan
 *  Example : player:jail()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::jail(lua_State* L)
@@ -4548,7 +4592,7 @@ inline int32 CLuaBaseEntity::jail(lua_State* L)
 *  Function: speed()
 *  Purpose : Sets a player's speed or returns their current speed
 *  Example : player:speed(40) -- Sets; player:speed() -- returns value
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::speed(lua_State *L)
@@ -4605,7 +4649,7 @@ inline int32 CLuaBaseEntity::getPlaytime(lua_State *L)
 *  Function: getMainJob()
 *  Purpose : Returns the integer value of the entity's main job
 *  Example : mob:getMainJob(); player:getMainJob()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMainJob(lua_State *L)
@@ -4621,7 +4665,7 @@ inline int32 CLuaBaseEntity::getMainJob(lua_State *L)
 *  Function: getSubJob()
 *  Purpose : Returns the integer value of the entity's sub job
 *  Example : mob:getSubJob(); player:getSubJob()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getSubJob(lua_State *L)
@@ -4637,7 +4681,7 @@ inline int32 CLuaBaseEntity::getSubJob(lua_State *L)
 *  Function: changeJob()
 *  Purpose : Changes an entities main job
 *  Example : mob:changeJob(RDM); player:changeJob(2)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::changeJob(lua_State *L)
@@ -4818,7 +4862,7 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
 *  Function: getMainLvl()
 *  Purpose : Returns the main level of entity's current job
 *  Example : player:getMainLvl()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMainLvl(lua_State *L)
@@ -4834,7 +4878,7 @@ inline int32 CLuaBaseEntity::getMainLvl(lua_State *L)
 *  Function: getSubLvl()
 *  Purpose : Returns the level of entity's current sub job
 *  Example : player:getSubLvl()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getSubLvl(lua_State *L)
@@ -4850,7 +4894,7 @@ inline int32 CLuaBaseEntity::getSubLvl(lua_State *L)
 *  Function: setLevel()
 *  Purpose : Updates the level of the entity's main job
 *  Example : player:setLevel(50)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setLevel(lua_State *L)
@@ -4900,7 +4944,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
 *  Function: setsLevel()
 *  Purpose : Updates the level of the entity's sub job
 *  Example : player:setsLvl(30)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setsLevel(lua_State *L)
@@ -4978,7 +5022,7 @@ inline int32 CLuaBaseEntity::levelCap(lua_State *L)
 *  Function: levelRestriction()
 *  Purpose : Places a level restriction on the PC and recalculates stats
 *  Example : player:levelRestriction(50)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
@@ -5045,7 +5089,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
 *  Function: getTitle()
 *  Purpose : Returns the integer value of the player's current title
 *  Example : if (player:getTitle()) == 123) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getTitle(lua_State *L)
@@ -5061,7 +5105,7 @@ inline int32 CLuaBaseEntity::getTitle(lua_State *L)
 *  Function: hasTitle()
 *  Purpose : Returns true if a player's current title matches a value
 *  Example : if (player:hasTitle(AWESOME_SAUCE)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasTitle(lua_State *L)
@@ -5081,7 +5125,7 @@ inline int32 CLuaBaseEntity::hasTitle(lua_State *L)
 *  Function: addTitle()
 *  Purpose : Adds a title to the character's profile only (doesn't change current)
 *  Example : player:addTitle(BLACK_DRAGON_SLAYER)
-*  Notes   : Use setTitle to both change and add 
+*  Notes   : Use setTitle to both change and add
 ************************************************************************/
 
 inline int CLuaBaseEntity::addTitle(lua_State *L)
@@ -5107,7 +5151,7 @@ inline int CLuaBaseEntity::addTitle(lua_State *L)
 *  Function: setTitle()
 *  Purpose : Updates the player's current title and adds to their profile
 *  Example : player:setTitle(SOB_SUPERHERO)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setTitle(lua_State *L)
@@ -5130,7 +5174,7 @@ inline int32 CLuaBaseEntity::setTitle(lua_State *L)
 *  Function: delTitle()
 *  Purpose : Deletes a title from a character's profile
 *  Example : player:delTitle(IXION_HORNBREAKER)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delTitle(lua_State *L)
@@ -5161,7 +5205,7 @@ inline int32 CLuaBaseEntity::delTitle(lua_State *L)
 *  Function: getFame()
 *  Purpose : Returns the current fame level of the player
 *  Example : player:getFame(area)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getFame(lua_State *L)
@@ -5230,7 +5274,7 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
 *  Function: addFame()
 *  Purpose : Adds a specified amount of fame to the player's balance
 *  Example : player:addFame(WINDURST, 30)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addFame(lua_State *L)
@@ -5299,7 +5343,7 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
 *  Function: setFame()
 *  Purpose : Sets the fame level for a player to a specified amount
 *  Example : player:setFame(BASTOK,1500)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setFame(lua_State *L)
@@ -5366,7 +5410,7 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
 *  Function: getFameLevel()
 *  Purpose : Returns the player's baseline fame level for an area
 *  Example : player:getFameLevel(TENSHODO)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
@@ -5441,7 +5485,7 @@ inline int32 CLuaBaseEntity::getRank(lua_State *L)
 *  Function: setRank()
 *  Purpose : Sets the player's nation rank to a specified value
 *  Example : player:setRank(10)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setRank(lua_State *L)
@@ -5462,7 +5506,7 @@ inline int32 CLuaBaseEntity::setRank(lua_State *L)
 *  Function: getRankPoints()
 *  Purpose : Returns the current rank points (rank bar) of a player
 *  Example : player:getRankPoints()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getRankPoints(lua_State *L)
@@ -5520,7 +5564,7 @@ inline int32 CLuaBaseEntity::setRankPoints(lua_State *L)
 *  Function: addQuest()
 *  Purpose : Adds a new quest to the character's in-progress quest log
 *  Example : player:addQuest(BASTOK,LURE_OF_THE_WILDCAT)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addQuest(lua_State *L)
@@ -5611,7 +5655,7 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
 *  Function: getQuestStatus()
 *  Purpose : Gets the current quest status of the player
 *  Example : player:getQuestStatus(WINDURST,MAKING_THE_GRADE)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
@@ -5685,7 +5729,7 @@ inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
 *  Function: completeQuest()
 *  Purpose : Completes a current quest for the player
 *  Example : player:completeQuest(OTHER_AREAS,ONLY_THE_BEST)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
@@ -5730,7 +5774,7 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
 *  Function: addMission()
 *  Purpose : Adds a mission to the player's mission log
 *  Example : player:addMission(SANDORIA,JOURNEY_TO_BASTOK)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addMission(lua_State *L)
@@ -5856,7 +5900,7 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
 *  Function: hasCompletedMission()
 *  Purpose : Returns true if a player has completed a specified mission
 *  Example : if (player:hasCompletedMission(TOAU,PRESIDENT_SALAHEEM)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
@@ -5894,7 +5938,7 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
 *  Function: completeMission()
 *  Purpose : Completes a specified mission for the player
 *  Example : player:completeMission(COP,THREE_PATHS)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::completeMission(lua_State *L)
@@ -5975,7 +6019,7 @@ inline int32 CLuaBaseEntity::addAssault(lua_State *L)
 *  Function: delAssault()
 *  Purpose : Deletes an assault mission from a player's log
 *  Example : player:delAssault(currentAssault)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delAssault(lua_State *L)
@@ -6005,7 +6049,7 @@ inline int32 CLuaBaseEntity::delAssault(lua_State *L)
 *  Function: getCurrentAssault()
 *  Purpose : Returns the current assault mission for the player
 *  Example : local assaultid = player:getCurrentAssault()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getCurrentAssault(lua_State *L)
@@ -6077,7 +6121,7 @@ inline int32 CLuaBaseEntity::completeAssault(lua_State *L)
 *  Function: addKeyItem()
 *  Purpose : Adds a key item to the player
 *  Example : player:addKeyItem(512)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
@@ -6102,7 +6146,7 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
 *  Function: hasKeyItem()
 *  Purpose : Returns true if a player has a specified key item
 *  Example : if (player:hasItem(TORN_PAPER)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasKeyItem(lua_State *L)
@@ -6122,7 +6166,7 @@ inline int32 CLuaBaseEntity::hasKeyItem(lua_State *L)
 *  Function: delKeyItem()
 *  Purpose : Deletes a key item from the player
 *  Example : player:delKeyItem(SUNBEAM_FRAGMENT)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delKeyItem(lua_State *L)
@@ -6147,7 +6191,7 @@ inline int32 CLuaBaseEntity::delKeyItem(lua_State *L)
 *  Function: seenKeyItem()
 *  Purpose : Returns true if a player has peeked at the key item
 *  Example : if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::seenKeyItem(lua_State *L)
@@ -6230,7 +6274,7 @@ inline int32 CLuaBaseEntity::delExp(lua_State *L)
 *  Function: getMerit()
 *  Purpose : Checks for the existence of a merit and returns the value
 *  Example : caster:getMerit(MERIT_DOTON_EFFECT)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMerit(lua_State *L)
@@ -6258,7 +6302,7 @@ inline int32 CLuaBaseEntity::getMerit(lua_State *L)
 *  Function: getMeritCount()
 *  Purpose : Returns the current value of merits a player has
 *  Example : player:getMeritCount()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMeritCount(lua_State *L)
@@ -6374,7 +6418,7 @@ inline int32 CLuaBaseEntity::addGil(lua_State *L)
 *  Function: setGil()
 *  Purpose : Sets a player's current gil to a specified value
 *  Example : player:setGil(1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setGil(lua_State *L)
@@ -6402,7 +6446,7 @@ inline int32 CLuaBaseEntity::setGil(lua_State *L)
 *  Function: delGil()
 *  Purpose : Takes a specified amount of gil from the player
 *  Example : player:delGil(100)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delGil(lua_State *L)
@@ -6455,7 +6499,7 @@ inline int32 CLuaBaseEntity::getCurrency(lua_State *L)
 *  Function: addCurrency()
 *  Purpose : Add a specified amount to a player's currency balance
 *  Example : player:addCurrency("traverser_stones",3)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addCurrency(lua_State *L)
@@ -6479,7 +6523,7 @@ inline int32 CLuaBaseEntity::addCurrency(lua_State *L)
 *  Function: setCurrency()
 *  Purpose : Set a player's currency to a specified amount
 *  Example : player:setCurrency("zeni_points",400)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setCurrency(lua_State *L)
@@ -6503,7 +6547,7 @@ inline int32 CLuaBaseEntity::setCurrency(lua_State *L)
 *  Function: delCurrency()
 *  Purpose : Remove a specified amount from a player's currency balance
 *  Example : player:delCurrency("traverser_stones",2)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delCurrency(lua_State *L)
@@ -6716,7 +6760,7 @@ inline int32 CLuaBaseEntity::delSeals(lua_State *L)
 *  Function: getAssaultPoint()
 *  Purpose : Get the player's current assault points balance
 *  Example : player:getAssaultPoint(4)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getAssaultPoint(lua_State *L)
@@ -6756,7 +6800,7 @@ inline int32 CLuaBaseEntity::getAssaultPoint(lua_State *L)
 *  Function: addAssaultPoint()
 *  Purpose : Add a specified amount of Assault points to a defined region
 *  Example : player:addAssaultPoint(0,300)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addAssaultPoint(lua_State *L)
@@ -6799,7 +6843,7 @@ inline int32 CLuaBaseEntity::addAssaultPoint(lua_State *L)
 *  Function: delAssaultPoint()
 *  Purpose : Subtract Assault points from a particular region
 *  Example : player:delAssaultPoint(0,300)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delAssaultPoint(lua_State *L)
@@ -6841,7 +6885,7 @@ inline int32 CLuaBaseEntity::delAssaultPoint(lua_State *L)
 *  Function: addGuildPoints()
 *  Purpose : Add guild points based on the item in a specified slot ID
 *  Example : player:addGuildPoints(GuildID,SlotID)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
@@ -6871,7 +6915,7 @@ inline int32 CLuaBaseEntity::addGuildPoints(lua_State* L)
 *  Function: getHP()
 *  Purpose : Returns current Hit Points of an Entity
 *  Example : player:getHP()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getHP(lua_State *L)
@@ -6903,7 +6947,7 @@ inline int32 CLuaBaseEntity::getHPP(lua_State *L)
 *  Function: getMaxHP()
 *  Purpose : Returns the Max Hit Points of an Entity
 *  Example : player:getMaxHP()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMaxHP(lua_State *L)
@@ -6919,7 +6963,7 @@ inline int32 CLuaBaseEntity::getMaxHP(lua_State *L)
 *  Function: getBaseHP()
 *  Purpose : Returns the Base Hit Points of an Entity
 *  Example : player:getBaseHP()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getBaseHP(lua_State* L)
@@ -6937,7 +6981,7 @@ inline int32 CLuaBaseEntity::getBaseHP(lua_State* L)
 *  Function: addHP()
 *  Purpose : Adds to the Hit Points of an Entity
 *  Example : player:addHP(500)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addHP(lua_State *L)
@@ -6964,7 +7008,7 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
 *  Function: setHP()
 *  Purpose : Sets the Hit Points of an Entity
 *  Example : player:setHP(player:getMaxHP())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setHP(lua_State *L)
@@ -7011,7 +7055,7 @@ inline int32 CLuaBaseEntity::restoreHP(lua_State *L)
 *  Function: delHP()
 *  Purpose : Subtracts from the Hit Points of an Entity
 *  Example : player:delHP(500)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delHP(lua_State *L)
@@ -7030,7 +7074,7 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 *  Function: hideHP()
 *  Purpose : Toggles the display of the Hit Points bar for a Mob or NPC
 *  Example : mob:hideHP(true)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hideHP(lua_State* L)
@@ -7055,7 +7099,7 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
 *  Function: getMP()
 *  Purpose : Returns the current Mana Points of an entity
 *  Example : player:getMP()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMP(lua_State *L)
@@ -7071,7 +7115,7 @@ inline int32 CLuaBaseEntity::getMP(lua_State *L)
 *  Function: getMaxMP()
 *  Purpose : Returns the Max Mana Points of an entity
 *  Example : player:getMaxMP()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMaxMP(lua_State *L)
@@ -7087,7 +7131,7 @@ inline int32 CLuaBaseEntity::getMaxMP(lua_State *L)
 *  Function: getBaseMP()
 *  Purpose : Returns the Base Mana Points of an entity
 *  Example : player:getBaseMP()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getBaseMP(lua_State* L)
@@ -7105,7 +7149,7 @@ inline int32 CLuaBaseEntity::getBaseMP(lua_State* L)
 *  Function: addMP()
 *  Purpose : Adds Mana Points to an entity
 *  Example : player:addMP(50)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addMP(lua_State *L)
@@ -7125,7 +7169,7 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 *  Function: setMP()
 *  Purpose : Sets the Mana Points of an entity to a specified amount
 *  Example : player:setMP(player:getMaxMP())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setMP(lua_State *L)
@@ -7171,7 +7215,7 @@ inline int32 CLuaBaseEntity::restoreMP(lua_State *L)
 *  Function: delMP()
 *  Purpose : Subtracts Mana Points from an Entity
 *  Example : player:delMP(1000)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delMP(lua_State *L)
@@ -7189,7 +7233,7 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 *  Function: getTP()
 *  Purpose : Returns the current Tactical Points of an Entity
 *  Example : if (player:getTP() > 1000) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getTP(lua_State *L)
@@ -7205,7 +7249,7 @@ inline int32 CLuaBaseEntity::getTP(lua_State *L)
 *  Function: addTP()
 *  Purpose : Adds Tactical Points to an Entity
 *  Example : player:addTP(1000) - Icarus Wing
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addTP(lua_State *L)
@@ -7224,7 +7268,7 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 *  Function: setTP()
 *  Purpose : Sets the Tactical Points of an entity
 *  Example : player:setTP(1000)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setTP(lua_State *L)
@@ -7244,7 +7288,7 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
 *  Function: delTP()
 *  Purpose : Subtracts Tactical Points from an Entity
 *  Example : player:delTP(50)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delTP(lua_State *L)
@@ -7263,7 +7307,7 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 *  Function: updateHealth()
 *  Purpose : Forces a health update for an Entity
 *  Example : target:updateHealth()
-*  Notes   : Currently only used in Spirit Surge; Health update for 
+*  Notes   : Currently only used in Spirit Surge; Health update for
 *  Notes   : Level Sync is handled by CParty::SetSyncTarget
 ************************************************************************/
 
@@ -7278,7 +7322,7 @@ inline int32 CLuaBaseEntity::updateHealth(lua_State* L)
 *  Function: capSkill()
 *  Purpose : Caps a particular skill for a PC
 *  Example : player:capSkill(DAGGER_SKILL)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::capSkill(lua_State* L)
@@ -7322,7 +7366,7 @@ inline int32 CLuaBaseEntity::capSkill(lua_State* L)
 *  Function: capAllSkills()
 *  Purpose : Cap all skills for a PC
 *  Example : player:capAllSkills()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
@@ -7364,7 +7408,7 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
 *  Function: getSkillLevel()
 *  Purpose : Returns the level for a specified skill of a PC
 *  Example : player:getSkillLevel(ENHANCING_MAGIC)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
@@ -7383,7 +7427,7 @@ inline int32 CLuaBaseEntity::getSkillLevel(lua_State *L)
 *  Function: setSkillLevel()
 *  Purpose : Sets a particular skill for a PC
 *  Example : player:setSkillLevel(ENHANCING_MAGIC, 200)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setSkillLevel(lua_State *L)
@@ -7456,7 +7500,7 @@ inline int32 CLuaBaseEntity::getSkillRank(lua_State *L)
 *  Function: setSkillRank()
 *  Purpose : Sets a Skill Rank for a particular skill
 *  Example : player:setSkillRank(SKILL_DIG, 20)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setSkillRank(lua_State *L)
@@ -7537,7 +7581,7 @@ inline int32 CLuaBaseEntity::addLearnedWeaponskill(lua_State *L)
 *  Function: hasLearnedWeaponskill()
 *  Purpose : Returns true if a player has learned a particular weaponskill
 *  Example : if (player:hasLearnedWeaponskill(DECIMATION)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasLearnedWeaponskill(lua_State *L)
@@ -7557,7 +7601,7 @@ inline int32 CLuaBaseEntity::hasLearnedWeaponskill(lua_State *L)
 *  Function: delLearnedWeaponskill()
 *  Purpose : Removes a learned weaponskill from the player
 *  Example : player:delLearnedWeaponskill(ASURAN_FISTS)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delLearnedWeaponskill(lua_State *L)
@@ -7630,7 +7674,7 @@ inline int32 CLuaBaseEntity::hasLearnedAbility(lua_State *L)
 *  Function: canLearnAbility()
 *  Purpose : Returns true if player can learn the ability
 *  Example : if (player:canLearnAbility(89)) -- Chaos Roll
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::canLearnAbility(lua_State *L)
@@ -7659,7 +7703,7 @@ inline int32 CLuaBaseEntity::canLearnAbility(lua_State *L)
 *  Function: delLearnedAbility()
 *  Purpose : Removes a learned ability from the player
 *  Example : player:delLearnedAbility(89) -- Chaos Roll
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delLearnedAbility(lua_State *L)
@@ -7685,7 +7729,7 @@ inline int32 CLuaBaseEntity::delLearnedAbility(lua_State *L)
 *  Function: addSpell()
 *  Purpose : Adds a specified spell to the player
 *  Example : player:addSpell(128)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addSpell(lua_State *L)
@@ -7728,7 +7772,7 @@ inline int32 CLuaBaseEntity::addSpell(lua_State *L)
 *  Function: hasSpell()
 *  Purpose : Returns true if a player has learned a particular spell
 *  Example : if (player:hasSpell(125)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasSpell(lua_State *L)
@@ -7748,7 +7792,7 @@ inline int32 CLuaBaseEntity::hasSpell(lua_State *L)
 *  Function: canLearnSpell()
 *  Purpose : Returns true if a player can learn a particular spell
 *  Example : if (player:canLearnSpell(528)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::canLearnSpell(lua_State *L)
@@ -7777,7 +7821,7 @@ inline int32 CLuaBaseEntity::canLearnSpell(lua_State *L)
 *  Function: delSpell()
 *  Purpose : Deletes a learned spell from a player
 *  Example : player:delSpell(528)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delSpell(lua_State *L)
@@ -7850,7 +7894,7 @@ inline int32 CLuaBaseEntity::recalculateAbilitiesTable(lua_State* L)
 *  Function: getParty()
 *  Purpose : Returns a Lua table of party member Entity objects
 *  Example : local party = player:getParty()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getParty(lua_State* L)
@@ -7890,7 +7934,7 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
 *  Function: getPartySize()
 *  Purpose : Returns the count of members in the party
 *  Example : local count = getPartySize()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getPartySize(lua_State* L)
@@ -7998,7 +8042,7 @@ inline int32 CLuaBaseEntity::getPartyMember(lua_State* L)
 *  Notes   : Todo: also add ability for find Alliance Leader via lua?
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L) 
+inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -8025,7 +8069,7 @@ inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L)
 
 /************************************************************************
 *  Function: addPartyEffect()
-*  Purpose : Adds effect to members of the entire party 
+*  Purpose : Adds effect to members of the entire party
 *  Example : player:addPartyEffect(EFFECT, 1, 2, 3, ...)?
 *  Notes   : Must have at least three members, scales to six max
 ************************************************************************/
@@ -8098,7 +8142,7 @@ inline int32 CLuaBaseEntity::hasPartyEffect(lua_State *L)
 *  Function: removePartyEffect()
 *  Purpose : Deletes specified effect from all party members
 *  Example : player:removePartyEffect(EFFECT)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
@@ -8124,7 +8168,7 @@ inline int32 CLuaBaseEntity::removePartyEffect(lua_State *L)
 *  Function: getAlliance()
 *  Purpose : Returns a Lua table of all members of the alliance
 *  Example : local alliance = player:getAlliance()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
@@ -8170,7 +8214,7 @@ inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
 *  Function: getAllianceSize()
 *  Purpose : Returns the number of members in the alliance
 *  Example : local count = player:getAllianceSize()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getAllianceSize(lua_State* L)
@@ -8255,9 +8299,9 @@ inline int32 CLuaBaseEntity::checkSoloPartyAlliance(lua_State *L)
 
 /************************************************************************
 *  Function: checkFovAllianceAllowed()
-*  Purpose : Returns true if server owner has enabled FoV alliances 
+*  Purpose : Returns true if server owner has enabled FoV alliances
 *  Example : if (player:checkFovAllianceAllowed() == 1) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L)
@@ -8317,7 +8361,7 @@ inline int32 CLuaBaseEntity::checkValorCredit(lua_State *L)
 *  Function: getInstance()
 *  Purpose : Get the instance object that the Entity is part of
 *  Example : local instance = door:getInstance()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getInstance(lua_State* L)
@@ -8344,7 +8388,7 @@ inline int32 CLuaBaseEntity::getInstance(lua_State* L)
 *  Function: setInstance()
 *  Purpose : Registers a character for an established instance
 *  Example : player:setInstance()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setInstance(lua_State *L)
@@ -8370,7 +8414,7 @@ inline int32 CLuaBaseEntity::setInstance(lua_State *L)
 *  Function: createInstance()
 *  Purpose : Creates a new instance for a PC
 *  Example : player:createInstance(player:getCurrentAssault(), 63)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::createInstance(lua_State* L)
@@ -8392,7 +8436,7 @@ inline int32 CLuaBaseEntity::createInstance(lua_State* L)
 *  Function: instanceEntry()
 *  Purpose : Creates an instance entry packet for the player
 *  Example : player:instanceEntry(target,1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::instanceEntry(lua_State* L)
@@ -8415,7 +8459,7 @@ inline int32 CLuaBaseEntity::instanceEntry(lua_State* L)
 /************************************************************************
 *  Function: getConfrontationEffect()
 *  Purpose : None yet
-*  Example : 
+*  Example :
 *  Notes   : Not moved to scripts
 ************************************************************************/
 
@@ -8431,7 +8475,7 @@ inline int32 CLuaBaseEntity::getConfrontationEffect(lua_State* L)
 /************************************************************************
 *  Function: copyConfrontationEffect()
 *  Purpose : None yet
-*  Example : 
+*  Example :
 *  Notes   : Not moved to scripts
 ************************************************************************/
 
@@ -8574,7 +8618,7 @@ inline int32 CLuaBaseEntity::leaveBattlefield(lua_State* L)
 *  Function: isAlive()
 *  Purpose : Returns true if an Entity is alive
 *  Example : if (mob:isAlive())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::isAlive(lua_State* L)
@@ -8588,7 +8632,7 @@ int32 CLuaBaseEntity::isAlive(lua_State* L)
 *  Function: isDead()
 *  Purpose : Returns true if an Entity is dead
 *  Example : if (pet:isDead())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::isDead(lua_State* L)
@@ -8694,7 +8738,7 @@ inline int32 CLuaBaseEntity::sendTractor(lua_State *L)
 *  Function: engage()
 *  Purpose : Instructs a Battle Entity to engage in combat
 *  Example : pet:engage(target)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::engage(lua_State* L)
@@ -8717,7 +8761,7 @@ int32 CLuaBaseEntity::engage(lua_State* L)
 *  Function: isEngaged()
 *  Purpose : Returns true if an Entity is engaged in battle
 *  Example : if (mob:isEngaged()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::isEngaged(lua_State* L)
@@ -8768,9 +8812,9 @@ int32 CLuaBaseEntity::timer(lua_State* L)
 
 /************************************************************************
 *  Function: queue()
-*  Purpose : Queues a Lua function 
-*  Example : 
-*  Notes   : For instance, Sic can be used before a Pet reaches 100% TP. 
+*  Purpose : Queues a Lua function
+*  Example :
+*  Notes   : For instance, Sic can be used before a Pet reaches 100% TP.
 *          : Once the Pet reaches 100%, it will use it's Special Ability.
 *          : See scripts/globals/abilities/sic.lua for how the Special
 *          : Ability is delayed until 100% (essentially loops into Action Queue)
@@ -8793,7 +8837,7 @@ int32 CLuaBaseEntity::queue(lua_State* L)
 *  Function: addRecast()
 *  Purpose : Manually adds a cooldown for a particular Ability
 *  Example : automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addRecast(lua_State* L)
@@ -8861,7 +8905,7 @@ inline int32 CLuaBaseEntity::resetRecast(lua_State *L)
 *  Function: resetRecasts()
 *  Purpose : Resets all Ability cooldowns to 0 for an Entity
 *  Example : target:resetRecasts()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::resetRecasts(lua_State *L)
@@ -9038,7 +9082,7 @@ int32 CLuaBaseEntity::canChangeState(lua_State* L)
 *  Function: hideModel()
 *  Purpose : Toggles an NPC or Mob to either hidden or visible
 *  Example : npc:hideModel(true) -- or false to show
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hideModel(lua_State* L)
@@ -9063,7 +9107,7 @@ inline int32 CLuaBaseEntity::hideModel(lua_State* L)
 *  Function: wakeUp()
 *  Purpose : Removes any Sleep Effect from the Entity's Status Effect Container
 *  Example : target:wakeUp()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::wakeUp(lua_State *L)
@@ -9232,7 +9276,7 @@ inline int32 CLuaBaseEntity::setVE(lua_State *L)
 *  Function: addEnmity()
 *  Purpose : Adds CE and VE Enmity to the Mobs Enmity table against that Entity
 *  Example : target:addEnmity(automaton, 450, 900)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
@@ -9269,7 +9313,7 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
 *  Function: lowerEnmity()
 *  Purpose : Lowers Enmity towards an Entity by a specified percent
 *  Example : mob:lowerEnmity(target, 45)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::lowerEnmity(lua_State *L)
@@ -9512,7 +9556,7 @@ inline int32 CLuaBaseEntity::updateClaim(lua_State *L)
 *  Function: addStatusEffect()
 *  Purpose : Adds a specified Status Effect to the Entity
 *  Example : target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
@@ -9596,7 +9640,7 @@ inline int32 CLuaBaseEntity::addStatusEffectEx(lua_State *L)
 *  Function: getStatusEffect()
 *  Purpose : Returns the Object of a specified Status ID
 *  Example : local debilitation = target:getStatusEffect(EFFECT_DEBILITATION)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getStatusEffect(lua_State *L)
@@ -9688,7 +9732,7 @@ inline int32 CLuaBaseEntity::getStatusEffectElement(lua_State *L)
 *  Function: canGainStatusEffect()
 *  Purpose : Returns true if an Entity can gain a Status Effect
 *  Example : if (target:canGainStatusEffect(EFFECT_STR_DOWN)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::canGainStatusEffect(lua_State *L)
@@ -9699,7 +9743,7 @@ inline int32 CLuaBaseEntity::canGainStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     bool hasEffect = false;
-    
+
     CStatusEffect effect((EFFECT)lua_tointeger(L, 1), 0, (uint16)lua_tointeger(L, 2), 0, 0);
 
     hasEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->CanGainStatusEffect(&effect);
@@ -9762,7 +9806,7 @@ inline int32 CLuaBaseEntity::hasStatusEffectByFlag(lua_State *L)
 *  Function: countEffect()
 *  Purpose : Returns the number of Effects an Entity has in their container
 *  Example : if (target:countEffect() > 3) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::countEffect(lua_State *L)
@@ -9832,7 +9876,7 @@ inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
 
 /************************************************************************
 *  Function: delStatusEffectSilent()
-*  Purpose : Removes a Status Effect from the Entity without showing a message 
+*  Purpose : Removes a Status Effect from the Entity without showing a message
 *  Example : target:delStatusEffectSilent(EFFECT_SANDSTORM)
 *  Notes   : Used specifly for Status Effects that are not supposed to show a message once worn
 ************************************************************************/
@@ -9988,7 +10032,7 @@ inline int32 CLuaBaseEntity::addMod(lua_State *L)
 *  Function: getMod()
 *  Purpose : Returns the integer value of a specified Mod on the Entity
 *  Example : if (target:getMod(MOD_MND) > 10) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMod(lua_State *L)
@@ -10006,7 +10050,7 @@ inline int32 CLuaBaseEntity::getMod(lua_State *L)
 *  Function: setMod()
 *  Purpose : Sets a specified Mod and Amount for the Entity
 *  Example : target:setMod(MOD_STR, 20)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setMod(lua_State *L)
@@ -10027,7 +10071,7 @@ inline int32 CLuaBaseEntity::setMod(lua_State *L)
 *  Function: delMod()
 *  Purpose : Removes a specified Mod and amount from the Entity
 *  Example : target:delMod(MOD_STR,4)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delMod(lua_State *L)
@@ -10127,7 +10171,7 @@ inline int32 CLuaBaseEntity::addCorsairRoll(lua_State *L)
 *  Function: hasCorsairEffect()
 *  Purpose : Returns true if the Entity has Corsair Effect
 *  Example : if (target:hasCorsairEffect())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasCorsairEffect(lua_State* L)
@@ -10145,7 +10189,7 @@ inline int32 CLuaBaseEntity::hasCorsairEffect(lua_State* L)
 *  Function: hasBustEffect()
 *  Purpose : Returns true if an Entity has a Bust Effect of a specified type
 *  Example : if (target:hasBustEffect(EFFECT)) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasBustEffect(lua_State *L)
@@ -10168,7 +10212,7 @@ inline int32 CLuaBaseEntity::hasBustEffect(lua_State *L)
 *  Function: numBustEffects()
 *  Purpose : Returns the count of how many Bust Effects are in the Entity's container
 *  Example : if (player:numBustEffects() == 2) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::numBustEffects(lua_State *L)
@@ -10202,7 +10246,7 @@ inline int32 CLuaBaseEntity::healingWaltz(lua_State *L)
 *  Function: addBardSong()
 *  Purpose : Adds a song effect to Player(s') Status Effect Container(s); returns true if sucess
 *  Example : target:addBardSong(caster,EFFECT_BALLAD,power,0,duration,caster:getID(), 0, 1)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addBardSong(lua_State *L)
@@ -10229,9 +10273,9 @@ inline int32 CLuaBaseEntity::addBardSong(lua_State *L)
         (uint16)lua_tointeger(L, 6),  // SubID
         (uint16)lua_tointeger(L, 7),  // SubPower
         (uint16)lua_tointeger(L, 8)); // Tier
-        
+
     uint8 maxSongs = 2;
-    
+
     if (PEntity && PEntity->m_PBaseEntity && PEntity->m_PBaseEntity->objtype == TYPE_PC)
     {
         CCharEntity* PCaster = (CCharEntity*)PEntity->m_PBaseEntity;
@@ -10250,7 +10294,7 @@ inline int32 CLuaBaseEntity::addBardSong(lua_State *L)
 *  Function: charm()
 *  Purpose : Charms an entity target
 *  Example : mob:charm(target)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::charm(lua_State* L)
@@ -10268,7 +10312,7 @@ inline int32 CLuaBaseEntity::charm(lua_State* L)
 *  Function: uncharm()
 *  Purpose : Removes charm from an entity
 *  Example : target:uncharm()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::uncharm(lua_State* L)
@@ -10329,7 +10373,7 @@ int32 CLuaBaseEntity::setStatDebilitation(lua_State* L)
 *  Function: getStat()
 *  Purpose : Returns a particular stat for an Entity
 *  Example : caster:getStat(MOD_INT)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getStat(lua_State *L)
@@ -10574,7 +10618,7 @@ inline int32 CLuaBaseEntity::breathDmgTaken(lua_State *L)
 *  Function: handleAfflatusMiseryDamage()
 *  Purpose : Passes an argument to the HandleAfflatusMiseryDamage member of battleutils
 *  Example : target:handleAfflatusMiseryDamage(dmg)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::handleAfflatusMiseryDamage(lua_State* L)
@@ -10594,7 +10638,7 @@ int32 CLuaBaseEntity::handleAfflatusMiseryDamage(lua_State* L)
 *  Function: isWeaponTwoHanded()
 *  Purpose : Returns true if the Weapon in the Main Slot is two-handed
 *  Example : if (player:isWeaponTwoHanded()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
@@ -10617,7 +10661,7 @@ inline int32 CLuaBaseEntity::isWeaponTwoHanded(lua_State *L)
 *  Function: getMeleeHitDamage()
 *  Purpose : Calculates and returns total damage for a single hit
 *  Example : getMeleeHitDamage(Attacker,Local Hit Rate)
-*  Notes   : Battleutils calculates hit rate already, so inserting hit rate 
+*  Notes   : Battleutils calculates hit rate already, so inserting hit rate
 *          : here only increases chance of missing (assuming < 100)?
 *          : Not currently used in any scripts (handled by battleutils) - Is this even needed?
 ************************************************************************/
@@ -10726,7 +10770,7 @@ inline int32 CLuaBaseEntity::getOffhandDmgRank(lua_State *L)
 *  Function: getRangedDmg()
 *  Purpose : Returns the damage rating for the weapon in the Ranged slot
 *  Example : local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getRangedDmg(lua_State *L)
@@ -10762,7 +10806,7 @@ inline int32 CLuaBaseEntity::getRangedDmgForRank(lua_State *L)
 *  Function: getAmmoDmg()
 *  Purpose : Returns the damage rating for the weapon in Ammo slot
 *  Example : local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getAmmoDmg(lua_State *L)
@@ -10889,20 +10933,21 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
         if (weapon == nullptr)
         {
-            ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is NULL!\n" CL_RESET);
-            return 0;
+            lua_pushinteger(L, 0);
+            return 1;
         }
 
         lua_pushinteger(L, weapon->getSubSkillType());
         return 1;
     }
     ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
-    return 0;
+    lua_pushinteger(L, 0);
+    return 1;
 }
 
 /************************************************************************
 *  Function: getWSSkillchainProp()
-*  Purpose : For the current weaponskill in use, returns the properties of Primary, 
+*  Purpose : For the current weaponskill in use, returns the properties of Primary,
              Secondary, and Tertiary skillchains associated with that weaponskill
 *  Example : attacker:getWSSkillchainProp()
 *  Notes   : Used in determining Obi/Gorget bonuses (scripts/globals/weaponskills.lua)
@@ -10962,7 +11007,7 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
 *  Function: spawnPet()
 *  Purpose : Spawns a pet if a few correct conditions are met
 *  Example : caster:spawnPet(PET_CARBUNCLE)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
@@ -11045,7 +11090,7 @@ inline int32 CLuaBaseEntity::despawnPet(lua_State *L)
 *  Function: canUsePet()
 *  Purpose : Returns true if an Entity can use a pet in the current zone
 *  Example : if (target:canUsePet()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::canUsePet(lua_State *L)
@@ -11069,7 +11114,7 @@ inline int32 CLuaBaseEntity::canUsePet(lua_State *L)
 *  Function: isJugPet()
 *  Purpose : Returns true if the entity crawled out of a jug after birth
 *  Example : if (pet:isJugPet()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isJugPet(lua_State* L)
@@ -11115,7 +11160,7 @@ inline int32 CLuaBaseEntity::hasValidJugPetItem(lua_State* L)
 *  Function: hasPet()
 *  Purpose : Returns true if an entity has a pet spawned
 *  Example : if (target:hasPet()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasPet(lua_State *L)
@@ -11133,7 +11178,7 @@ inline int32 CLuaBaseEntity::hasPet(lua_State *L)
 *  Function: getPet()
 *  Purpose : Returns the Entity Object of a Pet-type entity
 *  Example : local pet = getPet()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getPet(lua_State* L)
@@ -11160,7 +11205,7 @@ inline int32 CLuaBaseEntity::getPet(lua_State* L)
 *  Function: getPetID()
 *  Purpose : Returns the Pet ID of an entity
 *  Example : local PetID = pet:getPetID()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getPetID(lua_State* L)
@@ -11180,7 +11225,7 @@ inline int32 CLuaBaseEntity::getPetID(lua_State* L)
 *  Function: getPetElement()
 *  Purpose : Returns the elemental affinity of a pet entity
 *  Example : pet:getPetElement()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getPetElement(lua_State *L)
@@ -11203,7 +11248,7 @@ inline int32 CLuaBaseEntity::getPetElement(lua_State *L)
 *  Function: getMaster()
 *  Purpose : Returns the Entity object for a pet's master
 *  Example : local master = pet:petMaster()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMaster(lua_State* L)
@@ -11233,7 +11278,7 @@ inline int32 CLuaBaseEntity::getMaster(lua_State* L)
 *  Function: getPetName()
 *  Purpose : Returns the string name of a pet (empty string if not a pet)
 *  Example : local hairball = pet:getPetName()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getPetName(lua_State *L)
@@ -11340,7 +11385,7 @@ inline int32 CLuaBaseEntity::getCharmChance(lua_State* L)
 *  Function: charmPet()
 *  Purpose : Attempts to charm a pet
 *  Example : player:charmPet(target)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::charmPet(lua_State *L)
@@ -11396,7 +11441,7 @@ inline int32 CLuaBaseEntity::petAbility(lua_State *L)
 *  Function: petRetreat()
 *  Purpose : Disengages a pet from battle, returns to master
 *  Example : player:petRetreat()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
@@ -11415,7 +11460,7 @@ inline int32 CLuaBaseEntity::petRetreat(lua_State *L)
 *  Function: familiar()
 *  Purpose : Increases the power of the entities pet
 *  Example : mob:familiar()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::familiar(lua_State* L)
@@ -11458,7 +11503,7 @@ inline int32 CLuaBaseEntity::addPetMod(lua_State* L)
 *  Function: setPetMod()
 *  Purpose : Sets a specified mod and power for a pet
 *  Example : target:setPetMod(MOD_HP, 20)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setPetMod(lua_State* L)
@@ -11480,7 +11525,7 @@ inline int32 CLuaBaseEntity::setPetMod(lua_State* L)
 *  Function: delPetMod()
 *  Purpose : Removes a specified mod and power from a pet
 *  Example : target:delPetMod(MOD_HP, 20)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delPetMod(lua_State* L)
@@ -11502,7 +11547,7 @@ inline int32 CLuaBaseEntity::delPetMod(lua_State* L)
 *  Function: hasAttachment()
 *  Purpose : Returns true if PC has attachment
 *  Example : if (player: hasAttachment()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasAttachment(lua_State* L)
@@ -11522,7 +11567,7 @@ inline int32 CLuaBaseEntity::hasAttachment(lua_State* L)
 *  Function: getAutomatonName()
 *  Purpose : Returns the string name of the automation pet
 *  Example : local name = pet:getAutomatonName()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
@@ -11549,7 +11594,7 @@ inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
 *  Function: getAutomatonFrame()
 *  Purpose : Returns the integer value of frame being used for automation
 *  Example : local frame = pet:getAutomatonFrame()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::getAutomatonFrame(lua_State* L)
@@ -11583,7 +11628,7 @@ int32 CLuaBaseEntity::getAutomatonHead(lua_State* L)
 *  Function: unlockAttachment()
 *  Purpose : Makes new attachment frames available to the Puppetmaster
 *  Example : player:unlockAttachment(8224) -- Harlequin Frame
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::unlockAttachment(lua_State* L)
@@ -11602,7 +11647,7 @@ inline int32 CLuaBaseEntity::unlockAttachment(lua_State* L)
 *  Function: getActiveManeuvers()
 *  Purpose : Get the amount of active maneuvers for an automation
 *  Example : if (target:getActiveManeuvers() == 3) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getActiveManeuvers(lua_State* L)
@@ -11677,7 +11722,7 @@ inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
 *  Function: getSystem()
 *  Purpose : Returns integer value of system associated with an Entity
 *  Example : if (pet:getSystem() ~= 5) then -- Not an avatar
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getSystem(lua_State* L)
@@ -11739,7 +11784,7 @@ inline int32 CLuaBaseEntity::isMobType(lua_State *L)
 *  Function: isUndead()
 *  Purpose : Returns true if Entity is Undead
 *  Example : if (target:isUndead()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isUndead(lua_State *L)
@@ -11755,7 +11800,7 @@ inline int32 CLuaBaseEntity::isUndead(lua_State *L)
 *  Function: isNM()
 *  Purpose : Returns true if Mob is a Notorious Monster
 *  Example : if (mob:isNM())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isNM(lua_State* L)
@@ -11777,7 +11822,7 @@ inline int32 CLuaBaseEntity::isNM(lua_State* L)
 *  Function: getModelSize()
 *  Purpose : Returns the Model Size of the entity
 *  Example : local size = mob:getModelSize()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getModelSize(lua_State *L)
@@ -11854,7 +11899,7 @@ inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
 *  Function: spawn()
 *  Purpose : Forces a mob to spawn with optional Despawn/Respawn values
 *  Example : mob:spawn(60,3600); mob:spawn()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::spawn(lua_State* L)
@@ -11892,7 +11937,7 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
 *  Function: isSpawned()
 *  Purpose : Returns true if a Mob is already spawned
 *  Example : if (mob:isSpawned())
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::isSpawned(lua_State* L)
@@ -11941,7 +11986,7 @@ inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
 *  Function: setSpawn()
 *  Purpose : Manually set the next spawn position for a Mob
 *  Example : mob:setSpawn(-100,243,0,123)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
@@ -11951,14 +11996,37 @@ inline int32 CLuaBaseEntity::setSpawn(lua_State *L)
 
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
-    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        PMob->m_SpawnPoint.x = (float)lua_tonumber(L, 1);
-    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
-        PMob->m_SpawnPoint.y = (float)lua_tonumber(L, 2);
-    if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
-        PMob->m_SpawnPoint.z = (float)lua_tonumber(L, 3);
-    if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
-        PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, 4);
+
+    if (lua_isnumber(L, 1))
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+            PMob->m_SpawnPoint.x = (float)lua_tonumber(L, 1);
+        if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            PMob->m_SpawnPoint.y = (float)lua_tonumber(L, 2);
+        if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+            PMob->m_SpawnPoint.z = (float)lua_tonumber(L, 3);
+        if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+            PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, 4);
+    }
+    else
+    {
+        // its a table
+        lua_rawgeti(L, 1, 1);
+        PMob->m_SpawnPoint.x = (float)lua_tonumber(L, -1);
+        lua_pop(L, 1);
+
+        lua_rawgeti(L, 1, 2);
+        PMob->m_SpawnPoint.y = (float)lua_tonumber(L, -1);
+        lua_pop(L, 1);
+
+        lua_rawgeti(L, 1, 3);
+        PMob->m_SpawnPoint.z = (float)lua_tonumber(L, -1);
+        lua_pop(L, 1);
+
+        lua_rawgeti(L, 1, 4);
+        PMob->m_SpawnPoint.rotation = (uint8)lua_tointeger(L, -1);
+        lua_pop(L, 1);
+    }
 
     return 0;
 }
@@ -12051,7 +12119,7 @@ inline int32 CLuaBaseEntity::instantiateMob(lua_State* L)
 *  Function: hasTrait()
 *  Purpose : Returns true if a Mob has an active trait
 *  Example : if (target:hasTrait(15)) -- Double Attack
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasTrait(lua_State *L)
@@ -12126,7 +12194,7 @@ inline int32 CLuaBaseEntity::setTrueDetection(lua_State* L)
 *  Function: setUnkillable()
 *  Purpose : Set a Mob to unkillable or not
 *  Example : mob:setUnkillable(true)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setUnkillable(lua_State* L)
@@ -12143,7 +12211,7 @@ inline int32 CLuaBaseEntity::setUnkillable(lua_State* L)
 *  Function: untargetable()
 *  Purpose : Returns true if a Mob or NPC is untargetable
 *  Example : if (target:untargetable()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::untargetable(lua_State* L)
@@ -12168,7 +12236,7 @@ inline int32 CLuaBaseEntity::untargetable(lua_State* L)
 *  Function: setDelay()
 *  Purpose : Override default delay settings for a Mob
 *  Example : mob:setDelay(2400)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setDelay(lua_State* L)
@@ -12186,7 +12254,7 @@ inline int32 CLuaBaseEntity::setDelay(lua_State* L)
 *  Function: setDamage()
 *  Purpose : Override default damage settings for a Mob
 *  Example : mob:setDamage(40)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setDamage(lua_State* L)
@@ -12204,7 +12272,7 @@ inline int32 CLuaBaseEntity::setDamage(lua_State* L)
 *  Function: hasSpellList()
 *  Purpose : Returns true if a Mob has spells to cast
 *  Example : if (mob:hasSpellList()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasSpellList(lua_State* L)
@@ -12221,7 +12289,7 @@ inline int32 CLuaBaseEntity::hasSpellList(lua_State* L)
 *  Function: setSpellList()
 *  Purpose : Specify a spell list for a Mob to use
 *  Example : mob:setSpellList(118 + DayofWeek)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
@@ -12309,7 +12377,7 @@ inline int32 CLuaBaseEntity::SetMobSkillAttack(lua_State* L)
 *  Function: getMobMod()
 *  Purpose : Returns the power value of a Mob Mod in effect
 *  Example : mob:getMobMod(MOBMOD_2HOUR_PROC)
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getMobMod(lua_State *L)
@@ -12381,7 +12449,7 @@ inline int32 CLuaBaseEntity::setMobMod(lua_State *L)
 
 /************************************************************************
 *  Function: delMobMod()
-*  Purpose : Removes a Mob Mod 
+*  Purpose : Removes a Mob Mod
 *  Example : mob:delMobMod(ModID,value to subtract?)
 *  Notes   : Currently not being used in any script
 ************************************************************************/
@@ -12411,7 +12479,7 @@ inline int32 CLuaBaseEntity::delMobMod(lua_State *L)
 *  Function: getBattleTime()
 *  Purpose : Returns the time the Mob has been engaged in seconds
 *  Example : if (mob:getBattleTime() == 3600) then -- 1 Hour
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getBattleTime(lua_State *L)
@@ -12478,7 +12546,7 @@ inline int32 CLuaBaseEntity::setBehaviour(lua_State* L)
 *  Function: getTarget()
 *  Purpose : Return available targets as a Lua table to the Mob
 *  Example : mob:getTarget(); pet:getTarget(); if not v:getTarget() then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getTarget(lua_State* L)
@@ -12528,7 +12596,7 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 
 /************************************************************************
 *  Function: getEnmityList()
-*  Purpose : Returns a Lua table list of PC's with active enmity 
+*  Purpose : Returns a Lua table list of PC's with active enmity
 *  Example : local targets = mob:getEnmityList()
 *  Notes   : Used in Tame and special Mob abilities
 ************************************************************************/
@@ -12619,7 +12687,7 @@ inline int32 CLuaBaseEntity::getTrickAttackChar(lua_State *L)
 
 /************************************************************************
 *  Function: actionQueueEmpty()
-*  Purpose : Returns true if a Mob's action queue is empty 
+*  Purpose : Returns true if a Mob's action queue is empty
 *  Example : if (mob:actionQueueEmpty() == true) then
 *  Notes   : See: scripts/zones/Temenos/mobs/Proto-Ultima.lua
 ************************************************************************/
@@ -12629,23 +12697,6 @@ inline int32 CLuaBaseEntity::actionQueueEmpty(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
     lua_pushboolean(L, m_PBaseEntity->PAI->QueueEmpty());
-
-    return 1;
-}
-
-/************************************************************************
-*  Function: actionQueueAbility()
-*  Purpose : Returns whether the Action is from the Action Queue or not
-*  Example : if (mob:actionQueueAbility() == false) then pwn
-*  Notes   : 
-************************************************************************/
-
-inline int32 CLuaBaseEntity::actionQueueAbility(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-
-    lua_pushboolean(L, m_PBaseEntity->GetLocalVar("actionQueueAction"));
 
     return 1;
 }
@@ -12778,7 +12829,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 *  Function: hasTPMoves()
 *  Purpose : Returns true if a Mob has TP moves in its skill list
 *  Example : if (mob:hasTPMoves()) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::hasTPMoves(lua_State* L)
@@ -12857,7 +12908,7 @@ inline int32 CLuaBaseEntity::stun(lua_State* L)
 *  Function: getPool()
 *  Purpose : Returns a Mob's Pool ID integer
 *  Example : if (mob:getPool() = 4006) then
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getPool(lua_State *L)
@@ -12881,7 +12932,7 @@ inline int32 CLuaBaseEntity::getPool(lua_State *L)
 *  Function: getDropID()
 *  Purpose : Returns the integer Drop ID assigned to a Mob
 *  Example : local DropID = mob:getDropID()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 int32 CLuaBaseEntity::getDropID(lua_State* L)
@@ -12895,7 +12946,7 @@ int32 CLuaBaseEntity::getDropID(lua_State* L)
 
 /************************************************************************
 *  Function: setDropID()
-*  Purpose : Changes the Drop ID assigned to a Mob (temporary?)
+*  Purpose : Permanently changes the Drop ID assigned to a Mob
 *  Example : target:setDropID(2408)
 *  Notes   : Useful for situations where drops only occur from conditions
 ************************************************************************/
@@ -12997,7 +13048,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
-    
+
     // Messaging System
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageText),
@@ -13006,7 +13057,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messagePublic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
-    
+
     // Variables
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVar),
@@ -13014,35 +13065,35 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLocalVar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetLocalVars),
-    
+
     // Masks and Bitwise Operations
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,countMaskBits),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMaskFull),
-    
+
     // Packets, Events, and Flags
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityVisualPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,entityAnimationPacket),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEventString),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEventString),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,release),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,moghouseFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
-    
-    // Object Identification    
+
+    // Object Identification
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCursorTarget),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getObjType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNPC),
@@ -13056,10 +13107,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAction),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lookAt),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearTargID),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,atPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathTo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathThrough),
@@ -13067,18 +13118,18 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openDoor),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,closeDoor),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showNPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateNPCHideTime),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeather),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setWeather),
-    
+
     // PC Instructions
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHomePoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,ChangeMusic),
@@ -13086,12 +13137,12 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
-    
+
     // Location and Positioning
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFacing),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAngle),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneName),
@@ -13100,28 +13151,29 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentRegion),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContinentID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isInMogHouse),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showPosition),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getXPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRotPos),    
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRotPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPos),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
-    
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addNationTeleport),
-    
+
     // Items
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),
@@ -13129,39 +13181,39 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasWornItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createWornItem),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createShop),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addShopItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentGPItem),
-    
+
     // Trading
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFreeSlotsCount),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,confirmTrade),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,tradeComplete),    
-    
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,tradeComplete),
+
     // Equipping
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canEquipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,equipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setEquipBlock),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lockEquipSlot),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockEquipSlot),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasGearSetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGearSetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearGearSetMods),
-    
+
     // Storing
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStorageItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,storeWithPorterMoogle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRetrievableItemsForSlip),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,retrieveItemFromSlip),
-    
+
     // Player Appearance
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRace),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGender),
@@ -13173,11 +13225,11 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume2),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,AnimationSub),
-    
+
     // Player Status
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNation),
@@ -13185,24 +13237,24 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAllegiance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCampaignAllegiance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCampaignAllegiance),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNewPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNewPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMentor),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMentor),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGMHidden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGMHidden),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJailed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,jail),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPlaytime),
-    
+
     // Player Jobs and Levels
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSubJob),
@@ -13210,21 +13262,21 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changesJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sjRestriction),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainLvl),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSubLvl),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setsLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelCap),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,levelRestriction),
-    
+
     // Player Titles and Fame
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTitle),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTitle), 
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTitle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTitle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTitle),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delTitle),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFame),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addFame),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFame),
@@ -13235,13 +13287,13 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRankPoints),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addRankPoints),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRankPoints),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompleteQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeQuest),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMission),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentMission),
@@ -13253,33 +13305,33 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrentAssault),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedAssault),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeAssault),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addKeyItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delKeyItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasKeyItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,seenKeyItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unseenKeyItem),
 
-    // Player Points    
+    // Player Points
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMerit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeritCount),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMerits),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delGil),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCP),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSeals),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addSeals),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSeals),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCurrency),
@@ -13288,10 +13340,10 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAssaultPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addAssaultPoint),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delAssaultPoint),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGuildPoints),
-    
-    // Health and Status    
+
+    // Health and Status
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxHP),
@@ -13301,7 +13353,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMP),
     // Got an MPP? Well, I then you don't know me...
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
@@ -13315,20 +13367,20 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delTP),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateHealth),
-    
-    // Skills and Abilities    
+
+    // Skills and Abilities
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,capSkill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,capAllSkills),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSkillRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSkillRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharSkillLevel),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedWeaponskill),
@@ -13342,41 +13394,41 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delSpell),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateSkillsTable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateAbilitiesTable),
-    
+
     // Parties and Alliances
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getParty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyLeader),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAlliance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllianceSize),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,reloadParty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,disableLevelSync),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkValorCredit),
-    
-    // Instances   
+
+    // Instances
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getInstance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setInstance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createInstance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instanceEntry),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getConfrontationEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,copyConfrontationEffect),
-    
+
     // Battlefields
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefieldID),
@@ -13387,35 +13439,35 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     // Battle Utilities
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAlive),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isDead),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendRaise),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendReraise),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendTractor),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,engage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isEngaged),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,disengage), 
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,disengage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,timer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,queue),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
-   
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEntity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canChangeState),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideModel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkImbuedItems),
-    
-    // Enmity 
+
+    // Enmity
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCE),
@@ -13428,7 +13480,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromCure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateClaim),
-    
+
     // Status Effects
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffectEx),
@@ -13438,8 +13490,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canGainStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffectByFlag),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,countEffect),  
-    
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,countEffect),
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffectsByFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffectSilent),
@@ -13448,12 +13500,12 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,dispelAllStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,stealStatusEffect),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMod),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,fold),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,doWildCard),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCorsairRoll),
@@ -13462,65 +13514,65 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,numBustEffects),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,healingWaltz),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBardSong),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,charm),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,uncharm),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatDebilitation),
-        
+
     // Damage Calculation
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStat),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getACC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEVA),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRACC),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),    
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRATT),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getILvlMacc),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpellAoE),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,physicalDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,magicDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,rangedDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,breathDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,handleAfflatusMiseryDamage),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isWeaponTwoHanded),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDmgRank),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),    
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getOffhandDmgRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmg),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRangedDmgForRank),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAmmoDmg),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
-        
+
     // Pets and Automations
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJugPet),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),    
-    
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaster),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetName),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharmChance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,charmPet),
 
@@ -13528,23 +13580,23 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,petAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,petRetreat),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,familiar),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delPetMod),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasAttachment),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonFrame),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonHead),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
-        
+
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
@@ -13554,24 +13606,24 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
-            
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRespawnTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instantiateMob),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAggressive),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTrueDetection),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setUnkillable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDelay),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasSpellList),
@@ -13580,35 +13632,34 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMagicCastingEnabled),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobAbilityEnabled),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetMobSkillAttack),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMobMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMobMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMobMod),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBehaviour),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTrickAttackChar),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueEmpty),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueAbility),
-        
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,useJobAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTPMoves),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,weaknessTrigger),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPreventActionEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,stun),
-    
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPool),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDropID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDropID),

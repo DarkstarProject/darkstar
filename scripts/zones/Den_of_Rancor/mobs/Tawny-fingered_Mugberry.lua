@@ -2,21 +2,10 @@
 -- Area: Den of Rancor
 --  NM:  Tawny-fingered Mugberry
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+mixins = {require("scripts/mixins/families/tonberry")}
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-    local kills = player:getVar("EVERYONES_GRUDGE_KILLS");
-    if (kills < 480) then
-        player:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
-    end
 end;

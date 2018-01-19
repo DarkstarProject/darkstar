@@ -28,6 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 #include "utils/puppetutils.h"
+#include "ai/ai_container.h"
 
 #include <math.h>
 
@@ -326,8 +327,12 @@ bool CAttack::CheckAnticipated()
             //chance to counter - 25% base
             if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(Mod::THIRD_EYE_COUNTER_RATE))
             {
-                m_isCountered = true;
-                m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+
+                if (m_victim->PAI->IsEngaged())
+                {
+                    m_isCountered = true;
+                    m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+                }
             }
             m_anticipated = true;
             return true;
@@ -346,6 +351,12 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
+    if (!m_victim->PAI->IsEngaged())
+    {
+        m_isCountered = false;
+        return m_isCountered;
+    }
+
     uint8 meritCounter = 0;
     if (m_victim->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_victim, TRAIT_COUNTER))
     {
@@ -445,7 +456,7 @@ void CAttack::ProcessDamage()
     }
 
     // Get damage multipliers.
-    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType);
+    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType, GetWeaponSlot());
 
     // Get critical bonus mods.
     if (m_isCritical)

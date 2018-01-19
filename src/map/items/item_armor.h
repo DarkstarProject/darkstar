@@ -49,6 +49,13 @@ enum SCRIPTTYPE : uint16
 	//...
 };
 
+enum class ITEMCHECK
+{
+    NONE                = 0,
+    EQUIP               = 1,
+    UNEQUIP             = 2
+};
+
 class CItemArmor : public CItemUsable
 {
 public:

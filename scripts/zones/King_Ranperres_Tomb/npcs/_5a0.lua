@@ -6,34 +6,26 @@
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/missions");
 require("scripts/zones/King_Ranperres_Tomb/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/King_Ranperres_Tomb/MobIDs");
+require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
-        if (GetMobAction(17555898) == 0 and GetMobAction(17555899) == 0 and GetMobAction(17555900) == 0) then
-            if (player:getVar("Mission6-2MobKilled") == 1) then
-                player:setVar("Mission6-2MobKilled",0);
-                player:setVar("MissionStatus",2);
-            else
-                SpawnMob(17555898):updateClaim(player);
-                SpawnMob(17555899):updateClaim(player);
-                SpawnMob(17555900):updateClaim(player);
-            end
+    if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1 and not GetMobByID(CORRUPTED_YORGOS):isSpawned()
+        and not GetMobByID(CORRUPTED_SOFFEIL):isSpawned() and not GetMobByID(CORRUPTED_ULBRIG):isSpawned()) then
+        if (player:getVar("Mission6-2MobKilled") == 1) then
+            player:setVar("Mission6-2MobKilled",0);
+            player:setVar("MissionStatus",2);
+        else
+            SpawnMob(CORRUPTED_YORGOS);
+            SpawnMob(CORRUPTED_SOFFEIL);
+            SpawnMob(CORRUPTED_ULBRIG);
         end
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
          player:startEvent(6);
@@ -49,18 +41,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

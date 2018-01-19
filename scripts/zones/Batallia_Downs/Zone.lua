@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/Batallia_Downs/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/zones/Batallia_Downs/MobIDs");

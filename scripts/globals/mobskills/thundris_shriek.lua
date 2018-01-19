@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
 
-    if (mobSkin == 1839) then
+    if (mobSkin == 1840) then
         return 0;
     else
         return 1;
@@ -27,7 +27,7 @@ function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 91) then
     local mobSkin = mob:getModelId();
 
-    if (mobSkin == 1840) then
+    if (mobSkin == 1839) then
         return 0;
     else
         return 1;

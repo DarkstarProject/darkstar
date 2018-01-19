@@ -4,15 +4,13 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/zone");
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 require( "scripts/globals/icanheararainbow");
 require("scripts/zones/East_Ronfaure/TextIDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars

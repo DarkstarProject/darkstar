@@ -1,48 +1,29 @@
 -----------------------------------
--- Area: Southern SandOria [S]
--- NPC: Moogle
--- @zone 80
--- !pos <many>
+-- Area: Southern San d'Oria [S]
+-- NPC:  Moogle
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil
+require("scripts/zones/Southern_San_dOria_[S]/TextIDs")
 require("scripts/globals/moghouse")
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-    moogleTrade(player,npc,trade);
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+    moogleTrade(player,npc,trade)
+end
 
 function onTrigger(player,npc)
-    if (not moogleTrigger(player,npc)) then
-        player:startEvent(61);
+    if not moogleTrigger(player,npc) then
+        player:startEvent(61)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+    -- printf("CSID: %u",csid)
+    -- printf("RESULT: %u",option)
+    moogleEventUpdate(player,csid,option)
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 30000) then
-        player:setVar("MoghouseExplication",0);
-    end
-end;
+    -- printf("CSID: %u",csid)
+    -- printf("RESULT: %u",option)
+    moogleEventFinish(player,csid,option)
+end

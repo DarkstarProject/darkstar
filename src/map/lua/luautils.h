@@ -28,6 +28,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 #include "../../common/taskmgr.h"
+#include "../items/item_armor.h"
 #include "../spell.h"
 #include "lua_ability.h"
 #include "lua_baseentity.h"
@@ -205,7 +206,7 @@ namespace luautils
     int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 
     int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);                        // triggers when item is used
-    int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);    // check to see if item can be used
+    int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param = ITEMCHECK::NONE, CBaseEntity* PCaster = nullptr);    // check to see if item can be used
     int32 CheckForGearSet(CBaseEntity* PTarget);                                // check for gear sets
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);    // triggers when a player attempts to cast a spell

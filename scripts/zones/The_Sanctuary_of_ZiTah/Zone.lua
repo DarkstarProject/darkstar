@@ -4,70 +4,58 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+require("scripts/zones/The_Sanctuary_of_ZiTah/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/missions");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
 -----------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
-                    { 688, 117, DIGREQ_NONE },
-                    { 17296, 150, DIGREQ_NONE },
-                    { 880, 100, DIGREQ_NONE },
-                    { 833, 83, DIGREQ_NONE },
-                    { 696, 100, DIGREQ_NONE },
-                    { 690, 33, DIGREQ_NONE },
-                    { 772, 17, DIGREQ_NONE },
-                    { 773, 33, DIGREQ_NONE },
-                    { 4386, 9, DIGREQ_NONE },
-                    { 703, 7, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 656, 117, DIGREQ_BURROW },
-                    { 750, 133, DIGREQ_BURROW },
-                    { 749, 117, DIGREQ_BURROW },
-                    { 748, 8, DIGREQ_BURROW },
-                    { 751, 14, DIGREQ_BURROW },
-                    { 720, 1, DIGREQ_BURROW },
-                    { 699, 9, DIGREQ_BORE },
-                    { 720, 1, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-                };
-
+local itemMap =
+{
+    -- itemid, abundance, requirement
+    { 688, 117, DIGREQ_NONE },
+    { 17296, 150, DIGREQ_NONE },
+    { 880, 100, DIGREQ_NONE },
+    { 833, 83, DIGREQ_NONE },
+    { 696, 100, DIGREQ_NONE },
+    { 690, 33, DIGREQ_NONE },
+    { 772, 17, DIGREQ_NONE },
+    { 773, 33, DIGREQ_NONE },
+    { 4386, 9, DIGREQ_NONE },
+    { 703, 7, DIGREQ_NONE },
+    { 4096, 100, DIGREQ_NONE },  -- all crystals
+    { 1255, 10, DIGREQ_NONE }, -- all ores
+    { 656, 117, DIGREQ_BURROW },
+    { 750, 133, DIGREQ_BURROW },
+    { 749, 117, DIGREQ_BURROW },
+    { 748, 8, DIGREQ_BURROW },
+    { 751, 14, DIGREQ_BURROW },
+    { 720, 1, DIGREQ_BURROW },
+    { 699, 9, DIGREQ_BORE },
+    { 720, 1, DIGREQ_BORE },
+    { 4570, 10, DIGREQ_MODIFIER },
+    { 4487, 11, DIGREQ_MODIFIER },
+    { 4409, 12, DIGREQ_MODIFIER },
+    { 1188, 10, DIGREQ_MODIFIER },
+    { 4532, 12, DIGREQ_MODIFIER },
+};
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
------------------------------------
--- onInitialize
------------------------------------
-
 function onInitialize(zone)
-    local Noble_Mold = 17273278;
-    GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
+    GetMobByID(NOBLE_MOLD):setLocalVar("pop",os.time() + math.random(43200, 57600)); -- 12 to 16 hr
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -76,10 +64,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -97,21 +81,10 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 2) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 4) then
@@ -123,14 +96,7 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 2) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end

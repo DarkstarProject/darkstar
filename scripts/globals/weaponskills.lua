@@ -886,6 +886,8 @@ function getMultiAttacks(attacker, numHits)
     local doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
     local tripleRate = (attacker:getMod(MOD_TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
     local quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
+    local oaThriceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_THRICE)/100;
+    local oaTwiceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_TWICE)/100;
 
     -- QA/TA/DA can only proc on the first hit of each weapon or each fist
     if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_H2H) then
@@ -893,12 +895,15 @@ function getMultiAttacks(attacker, numHits)
     end
 
     for i = 1, multiChances, 1 do
-        local chance = math.random()
-        if (chance < quadRate) then
+        if math.random() < quadRate then
             bonusHits = bonusHits + 3;
-        elseif (chance < tripleRate + quadRate) then
+        elseif math.random() < tripleRate then
             bonusHits = bonusHits + 2;
-        elseif(chance < doubleRate + tripleRate + quadRate) then
+        elseif math.random() < doubleRate then
+            bonusHits = bonusHits + 1;
+        elseif (i == 1 and math.random() < oaThriceRate) then -- Can only proc on first hit
+            bonusHits = bonusHits + 2;
+        elseif (i == 1 and math.random() < oaTwiceRate) then -- Can only proc on first hit
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
@@ -1023,78 +1028,65 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
     return finaldmg;
 end
 
--- Params should have the following members:
--- params.power.lv1: Base value for AM power @ level 1
--- params.power.lv2: Base value for AM power @ level 2
--- params.power.lv3: Base value for AM power @ level 3
-
--- params.power.lv1_inc: How much to increment at each power level
--- params.power.lv2_inc: How much to increment at each power level
-
--- params.subpower.lv1: Subpower for level 1
--- params.subpower.lv2: Subpower for level 2
--- params.subpower.lv3: Subpower for level 3
-
--- params.duration.lv1: Duration for AM level 1
--- params.duration.lv2: Duration for AM level 2
--- params.duration.lv3: Duration for AM level 3
-function applyAftermathEffect(player, tp, params)
-    if (params == nil) then
-        params = initAftermathParams()
+-- Mythic/Empyrean aftermath can be overwritten by equal or higher at tier 1 (1000-1999 tp)
+-- It can be overwritten by higher at tier 2 (2000-2999 tp)
+-- It cannot be overwritten at tier 3 (3000 tp)
+function shouldApplyAftermath(player, tp)
+    local effect = player:getStatusEffect(EFFECT_AFTERMATH);
+    if (effect) then
+        local power = effect:getPower();
+        if (power == 3) then
+            return false;
+        elseif (power == 2 and tp < 3000) then
+            return false;
+        end
     end
+    
+    return true;
+end
 
-    local apply_power = 0
-    if (tp == 3000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV3)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        player:delStatusEffect(EFFECT_AFTERMATH_LV2);
-        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0,
-            params.duration.lv3, 0, params.subpower.lv3);
-    elseif (tp >= 2000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV2)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        apply_power = math.floor(params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV2, apply_power, 0,
-            params.duration.lv2, 0, params.subpower.lv2);
-    elseif (tp >= 1000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV1)) then
-        apply_power = math.floor(params.power.lv1 + ((tp - 1000) / (100 / params.power.lv1_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV1, apply_power, 0,
-            params.duration.lv1, 0, params.subpower.lv1);
+function addAftermathEffect(player, tp, params)
+    player:addStatusEffect(EFFECT_AFTERMATH, params.power, 0, params.duration(tp));
+    for _,mod in pairs(params.mods) do
+        player:addMod(mod.id, mod.power);
     end
-end;
+end
 
-function initAftermathParams()
-    local params = {}
-    params.power = {}
-    params.subpower = {}
-    params.duration = {}
+function removeAftermathEffect(player, params)
+    for _,mod in pairs(params.mods) do
+        player:delMod(mod.id, mod.power);
+    end
+end
 
-    params.power.lv1 = 10
-    params.power.lv2 = 20
-    params.power.lv3 = 40
+function addMythicAftermathEffect(player, tp, params)
+    local tier = math.floor(tp / 1000);
+    player:addStatusEffectEx(EFFECT_AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration, 0, tp);
+    for _,mod in pairs(params[tier].mods) do
+        player:addMod(mod.id, mod.power(tp));
+    end
+end
 
-    params.power.lv1_inc = 1
-    params.power.lv2_inc = 4
+function removeMythicAftermathEffect(player, effect, params)
+    local tier = effect:getPower();
+    for _,mod in pairs(params[tier].mods) do
+        player:delMod(mod.id, mod.power(effect:getSubPower()));
+    end
+end
 
-    params.subpower.lv1 = 1
-    params.subpower.lv2 = 1
-    params.subpower.lv3 = 1
+function addEmpyreanAftermathEffect(player, tp, params)
+    local tier = math.floor(tp / 1000);
+    player:addStatusEffectEx(EFFECT_AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration);
+    for _,mod in pairs(params[tier].mods) do
+        player:addMod(mod.id, mod.power);
+    end
+end
 
-    params.duration.lv1 = 60
-    params.duration.lv2 = 90
-    params.duration.lv3 = 120
-
-    return params
-end;
-
-function shouldApplyAftermath(player, effect)
-    local result = true;
-    if (effect == EFFECT_AFTERMATH_LV1 and (player:hasStatusEffect(EFFECT_AFTERMATH_LV2) or player:hasStatusEffect(EFFECT_AFTERMATH_LV3))) then
-        result = false;
-    elseif (effect == EFFECT_AFTERMATH_LV2 and player:hasStatusEffect(EFFECT_AFTERMATH_LV3)) then
-        result = false;
-    end;
-
-    return result;
-end;
+function removeEmpyreanAftermathEffect(player, effect, params)
+    local tier = effect:getPower();
+    for _,mod in pairs(params[tier].mods) do
+        player:delMod(mod.id, mod.power);
+    end
+end
 
 function handleWSGorgetBelt(attacker)
     local ftpBonus = 0;

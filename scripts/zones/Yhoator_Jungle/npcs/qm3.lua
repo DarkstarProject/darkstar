@@ -6,56 +6,34 @@
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Yhoator_Jungle/TextIDs");
+require("scripts/zones/Yhoator_Jungle/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-
-    if (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:hasKeyItem(OLD_TRICK_BOX) == false) then
+    if (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(OLD_TRICK_BOX)) then
         if (player:getVar("trueWillKilledNM") >= 1) then
-            if (GetMobAction(17285544) == 0 and GetMobAction(17285545) == 0 and GetMobAction(17285546) == 0) then
+            if (GetMobByID(KAPPA_AKUSO):isDead() and GetMobByID(KAPPA_BONZE):isDead() and GetMobByID(KAPPA_BIWA):isDead()) then
                 player:addKeyItem(OLD_TRICK_BOX);
                 player:messageSpecial(KEYITEM_OBTAINED,OLD_TRICK_BOX);
                 player:setVar("trueWillKilledNM",0);
             end
         else
-            SpawnMob(17285544):updateClaim(player); -- Kappa Akuso
-            SpawnMob(17285545):updateClaim(player); -- Kappa Bonze
-            SpawnMob(17285546):updateClaim(player); -- Kappa Biwa
+            SpawnMob(KAPPA_AKUSO):updateClaim(player);
+            SpawnMob(KAPPA_BONZE):updateClaim(player);
+            SpawnMob(KAPPA_BIWA):updateClaim(player);
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

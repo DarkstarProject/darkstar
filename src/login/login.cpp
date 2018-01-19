@@ -169,6 +169,7 @@ void do_abort(void)
 void set_server_type()
 {
     SERVER_TYPE = DARKSTAR_SERVER_LOGIN;
+    SOCKET_TYPE = socket_type::TCP;
 }
 
 int do_sockets(fd_set* rfd, duration next)

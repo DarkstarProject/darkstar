@@ -104,7 +104,7 @@ void CLatentEffect::SetModPower(int16 power)
     m_ModPower = power;
 }
 
-void CLatentEffect::Activate()
+bool CLatentEffect::Activate()
 {
     if (!IsActivated())
     {
@@ -123,10 +123,12 @@ void CLatentEffect::Activate()
 
         m_Activated = true;
         //printf("LATENT ACTIVATED: %d, Current value: %d\n", m_ModValue, m_POwner->getMod(m_ModValue));
+        return true;
     }
+    return false;
 }
 
-void CLatentEffect::Deactivate()
+bool CLatentEffect::Deactivate()
 {
     if (IsActivated())
     {
@@ -165,5 +167,7 @@ void CLatentEffect::Deactivate()
 
         m_Activated = false;
         //printf("LATENT DEACTIVATED: %d\n", m_ModValue);
+        return true;
     }
+    return false;
 }
