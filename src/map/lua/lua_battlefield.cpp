@@ -375,8 +375,8 @@ inline int32 CLuaBattlefield::loadMobs(lua_State* L)
 inline int32 CLuaBattlefield::spawnLoot(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-    auto PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    lua_pushboolean(L, m_PLuaBattlefield->SpawnLoot(PEntity->GetBaseEntity()));
+    CBaseEntity* PEntity = !lua_isnil(L, 1) && lua_isuserdata(L, 1) ? Lunar<CLuaBaseEntity>::check(L, 1)->GetBaseEntity() : nullptr;
+    lua_pushboolean(L, m_PLuaBattlefield->SpawnLoot(PEntity));
     return 1;
 }
 

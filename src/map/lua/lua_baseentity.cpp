@@ -39,6 +39,7 @@
 
 #include "../ability.h"
 #include "../alliance.h"
+#include "../battlefield.h"
 #include "../enmity_container.h"
 #include "../guild.h"
 #include "../instance.h"
