@@ -14,8 +14,11 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(YAGUDO_AVATAR);
     GetMobByID(YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(17396210);
-    UpdateTreasureSpawnPoint(17396211);
+    Oz_handleSet = math.random(0,8);
+    Oz_passwordSet = math.random(0,8);
+
+    UpdateTreasureSpawnPoint(OZTROJA_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(OZTROJA_TREASURE_COFFER);
 end;
 
 function onZoneIn(player,prevZone)
@@ -37,24 +40,12 @@ end;
 function onRegionEnter(player,region)
 end;
 
-Oz_Handle_Table =
-{
-    [0] = {[17396196] = 8, [17396197] = 8, [17396198] = 8, [17396199] = 8},
-    [1] = {[17396196] = 8, [17396197] = 9, [17396198] = 9, [17396199] = 9},
-    [2] = {[17396196] = 9, [17396197] = 8, [17396198] = 9, [17396199] = 9},
-    [3] = {[17396196] = 9, [17396197] = 8, [17396198] = 8, [17396199] = 9},
-    [4] = {[17396196] = 9, [17396197] = 8, [17396198] = 9, [17396199] = 8},
-    [5] = {[17396196] = 8, [17396197] = 8, [17396198] = 9, [17396199] = 8},
-    [6] = {[17396196] = 9, [17396197] = 9, [17396198] = 8, [17396199] = 9},
-    [7] = {[17396196] = 9, [17396197] = 9, [17396198] = 9, [17396199] = 8},
-    [8] = {[17396196] = 8, [17396197] = 8, [17396198] = 9, [17396199] = 9},
-};
-
 function onGameHour(zone)
     local VanadielHour = VanadielHour();
-    if (VanadielHour % 24 == 0) then -- Change handles every game day
+    if (VanadielHour % 24 == 0) then -- Change handles and passwords every game day
         Oz_handleSet = math.random(0,8);
-        for i,v in pairs(Oz_Handle_Table[Oz_handleSet]) do
+        Oz_passwordSet = math.random(0,8);
+        for i,v in pairs(OZ_HANDLE_TABLE[Oz_handleSet]) do
             GetNPCByID(i):setAnimation(v);
         end
     end
