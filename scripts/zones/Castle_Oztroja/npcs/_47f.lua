@@ -4,43 +4,36 @@
 -- Notes: Opens door _471
 -- !pos -182 -15 -19 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-
--- To be implemented (This is temporary)
-
-    local DoorID = npc:getID() - 2;
+    local DoorID = npc:getID()-2;
     local DoorA = GetNPCByID(DoorID):getAnimation();
 
     if (DoorA == 9 and npc:getAnimation() == 9) then
-        npc:openDoor(8);
-        -- Should be a 1 second delay here before the door opens
-        GetNPCByID(DoorID):openDoor(6);
+        npc:setAnimation(8);
+    elseif (DoorA == 9 and npc:getAnimation() == 8) then
+        npc:setAnimation(9);
     end
 
-end;
+--    print (Oz_handleSet);
 
------------------------------------
--- onEventUpdate
------------------------------------
+    npc:timer(1500, function(npc)
+        if (npc:getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+34]
+            and GetNPCByID(npc:getID()+1):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+35]
+            and GetNPCByID(npc:getID()+2):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+36]
+            and GetNPCByID(npc:getID()+3):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+37]) then
+                GetNPCByID(DoorID):openDoor(6);
+                for i = npc:getID(), npc:getID()+3, 1 do GetNPCByID(i):setAnimation(9); end
+        end
+    end);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -7,28 +7,31 @@
 
 require("scripts/globals/settings");
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
+    local DoorID = npc:getID()-4;
+    local DoorA = GetNPCByID(DoorID):getAnimation();
 
--- To be implemented
+    if (DoorA == 9 and npc:getAnimation() == 9) then
+        npc:setAnimation(8);
+    elseif (DoorA == 9 and npc:getAnimation() == 8) then
+        npc:setAnimation(9);
+    end
 
+    npc:timer(1500, function(npc)
+        if (npc:getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+34]
+            and GetNPCByID(npc:getID()-2):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+32]
+            and GetNPCByID(npc:getID()-1):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+33]
+            and GetNPCByID(npc:getID()+1):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+35]) then
+                GetNPCByID(DoorID):openDoor(6);
+                for i = npc:getID()-2, npc:getID()+1, 1 do GetNPCByID(i):setAnimation(9); end
+        end
+    end);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
