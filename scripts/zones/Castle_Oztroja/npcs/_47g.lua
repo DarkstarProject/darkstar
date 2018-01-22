@@ -4,7 +4,7 @@
 -- Notes: Opens door _471
 -- !pos -182 -15 -19 151
 -----------------------------------
-
+require("scripts/zones/Castle_Oztroja/MobIDs");
 require("scripts/globals/settings");
 
 function onTrigger(player,npc)
@@ -18,10 +18,10 @@ function onTrigger(player,npc)
     end
 
     npc:timer(1500, function(npc)
-        if (npc:getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+34]
-           and GetNPCByID(npc:getID()-1):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+33]
-            and GetNPCByID(npc:getID()+1):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+35]
-            and GetNPCByID(npc:getID()+2):getAnimation() == Oz_Handle_Table[Oz_handleSet][npc:getID()+36]) then
+        if (npc:getAnimation() == OZ_HANDLE_TABLE[Oz_handleSet][npc:getID()+34]
+            and GetNPCByID(npc:getID()-1):getAnimation() == OZ_HANDLE_TABLE[Oz_handleSet][npc:getID()+33]
+            and GetNPCByID(npc:getID()+1):getAnimation() == OZ_HANDLE_TABLE[Oz_handleSet][npc:getID()+35]
+            and GetNPCByID(npc:getID()+2):getAnimation() == OZ_HANDLE_TABLE[Oz_handleSet][npc:getID()+36]) then
                 GetNPCByID(DoorID):openDoor(6);
                 for i = npc:getID()-1, npc:getID()+2, 1 do GetNPCByID(i):setAnimation(9); end
         end
