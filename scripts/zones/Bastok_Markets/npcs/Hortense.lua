@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Hortense
+--  NPC: Hortense
 -- Standard Merchant NPC
 -- !pos -82.503 -4.849 -132.376 235
 -----------------------------------
@@ -29,4 +29,4 @@ function onTrigger(player,npc)
         5006, 53820, 3, -- Scroll of Valor Minuet V
     }
     showNationShop(player, NATION_BASTOK, stock);
-end; 
+end;

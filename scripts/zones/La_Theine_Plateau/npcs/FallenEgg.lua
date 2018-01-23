@@ -8,9 +8,6 @@ package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/La_Theine_Plateau/TextIDs");
 require("scripts/globals/npc_util");
-
------------------------------------
--- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)

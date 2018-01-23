@@ -1,39 +1,23 @@
 -----------------------------------
 -- Area: Apollyon NW
--- NPC:  Kaiser Behemoth
+--  NPC: Kaiser Behemoth
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/zones/Apollyon/TextIDs");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_MAGIC_COOL, 60);
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onSpellPrecast
------------------------------------
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then
@@ -45,19 +29,11 @@ function onSpellPrecast(mob, spell)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-      local mobX = mob:getXPos();
+    local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
     GetNPCByID(16932864+111):setPos(mobX,mobY,mobZ);

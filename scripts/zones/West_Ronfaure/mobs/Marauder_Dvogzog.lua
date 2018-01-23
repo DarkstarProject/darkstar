@@ -2,7 +2,6 @@
 -- Area: West Ronfaure
 --  MOB: Marauder Dvogzog
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/missions");
 require("scripts/globals/status");

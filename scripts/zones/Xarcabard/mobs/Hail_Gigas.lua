@@ -2,11 +2,7 @@
 -- Area: Xarcabard
 --  MOB: Hail Gigas
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

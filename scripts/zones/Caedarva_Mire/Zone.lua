@@ -10,9 +10,6 @@ require("scripts/zones/Caedarva_Mire/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,13 +18,9 @@ function onInitialize(zone)
     GetMobByID(KHIMAIRA):setRespawnTime(math.random(12,36)*3600); -- 12 to 36 hours after maintenance, in 1-hour increments
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(339.996,2.5,-721.286,200);
     end
     if (prevZone == 69) then
@@ -40,13 +33,9 @@ function onZoneIn(player,prevZone)
     if (player:getCurrentMission(TOAU) == SHADES_OF_VENGEANCE and player:getVar("AhtUrganStatus") == 1) then
         cs = 21;
     end
- 
+
     return cs;
 end;
-
------------------------------------
--- afterZoneIn
------------------------------------
 
 function afterZoneIn(player)
     player:entityVisualPacket("1pb1");
@@ -55,29 +44,17 @@ function afterZoneIn(player)
     player:entityVisualPacket("2pc1");
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 21) then
         player:completeMission(TOAU,SHADES_OF_VENGEANCE);

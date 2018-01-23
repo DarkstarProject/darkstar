@@ -4,18 +4,12 @@
 -----------------------------------
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to paralysis on melee.
     if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_PARALYSIS) == true)) then
@@ -27,17 +21,9 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,61,2);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());

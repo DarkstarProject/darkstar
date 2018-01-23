@@ -2,11 +2,7 @@
 -- Area: Quicksand Caves
 --  MOB: Antican Antesiganus
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,29 +1,19 @@
 ----------------------------------
---  Area: Fort Karugo Narugo [S]
+-- Area: Fort Karugo Narugo [S]
 --  NPC: Indescript Markings
---  Type: Quest
+-- Type: Quest
 --  @zone 96
 -- !pos -63 -75 4
 -----------------------------------
 package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -58,18 +48,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -2,11 +2,7 @@
 -- Area: Konschtat Highlands
 --  MOB: Huge Wasp
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

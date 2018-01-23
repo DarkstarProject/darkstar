@@ -21,10 +21,6 @@ local anticanTagPositions =
     [4] = {814.000, -14.000, -761.000}
 }
 
------------------------------------
--- onInitialize
------------------------------------
-
 function onInitialize(zone)
     -- Weight Door System (RegionID, X, Radius, Z)
     zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 0x010D01EF Door
@@ -72,10 +68,6 @@ function onInitialize(zone)
     npcUtil.UpdateNPCSpawnPoint(17629761, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -84,10 +76,6 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
@@ -95,10 +83,6 @@ function onZoneIn(player,prevZone)
     end
     return cs;
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 
@@ -149,10 +133,6 @@ function onRegionEnter(player,region)
 
 end;
 
------------------------------------
--- OnRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 
     local RegionID = region:GetRegionID();
@@ -182,18 +162,10 @@ function onRegionLeave(player,region)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

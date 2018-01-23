@@ -1,26 +1,18 @@
 -----------------------------------
---  Area: Carpenters' Landing
---  NPC:  ??? (qm2)
+-- Area: Carpenters' Landing
+--  NPC: ??? (qm2)
 --  Involved in Missions: Calm Before the Storm (CoP 7-4)
 -- !pos 120.615 -5.457 -390.133 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-   if (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM ) then
+    if (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM ) then
 
     local ExecutorID = 16785710;
     local Assassin1ID = ExecutorID+1;
@@ -35,10 +27,10 @@ function onTrigger(player,npc)
     local Assassin3kill= player:getVar("Cryptonberry_Assassins-3_KILL");
     local Executorkill = player:getVar("Cryptonberry_Executor_KILL");
 
-        --printf("Assassin1: %u",Assassin1kill);
-     --printf("Assassin2: %u",Assassin2kill);
-     --printf("Assassin3: %u",Assassin3kill);
-     --printf("Executor: %u",Executorkill);
+        -- printf("Assassin1: %u",Assassin1kill);
+     -- printf("Assassin2: %u",Assassin2kill);
+     -- printf("Assassin3: %u",Assassin3kill);
+     -- printf("Executor: %u",Executorkill);
 
     if (Executorkill == 1 and Assassin1kill == 1 and Assassin2kill == 1 and Assassin3kill == 1) then -- If all Mobs have been killed
         player:startEvent(37);
@@ -54,18 +46,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

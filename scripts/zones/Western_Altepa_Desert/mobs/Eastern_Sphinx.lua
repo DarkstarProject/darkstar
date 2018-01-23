@@ -2,7 +2,6 @@
 -- Area: Western Altepa Desert
 --  MOB: Eastern Sphinx
 -----------------------------------
-
 require("scripts/globals/missions");
 
 function onMobInitialize(mob)

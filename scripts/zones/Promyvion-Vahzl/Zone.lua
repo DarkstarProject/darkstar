@@ -24,7 +24,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-14.744,0.036,-119.736,1); -- To Floor 1 {R}
     end
 
-    if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==0) then
+    if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") == 0) then
         cs = 50;
     end
     return cs;

@@ -1,20 +1,16 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Ghatsad
+--  NPC: Ghatsad
 -- Standard Info NPC
 -- Involved in quest: No String Attached
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/common");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -91,7 +87,7 @@ function onTrade(player,npc,trade)
                         player:tradeComplete();
                         player:startEvent(625);
                         player:setVar("PUP_AttachmentStatus", 9)
-                        player:setVar("PUP_AttachmentReady",getMidnight());    
+                        player:setVar("PUP_AttachmentReady",getMidnight());
                     end
                 elseif (attachments == 2) then
                     if (trade:getItemQty(2187) == 1) then
@@ -139,7 +135,7 @@ function onTrade(player,npc,trade)
                         player:setVar("PUP_AttachmentStatus", 10)
                         player:setVar("PUP_AttachmentReady",getMidnight());
                     end
-                end        
+                end
             end
         end
     elseif (attachmentStatus == 5) then
@@ -311,11 +307,7 @@ function onTrade(player,npc,trade)
             player:startEvent(904);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -326,7 +318,7 @@ function onTrigger(player,npc)
     --cs 625 - thanks, have everything, come back later
     --cs 626 - come back later
     --cs 627 - automaton frame done (param 2: frame)
-    --cs 628 - you can customise automaton by changing frame 
+    --cs 628 - you can customise automaton by changing frame
     --cs 629 - you can alter automatons abilities and character by equipping attachments (what are these last 2 for?)
     --cs 900 - start soulsoother/spiritreaver
     --cs 901 - start second head
@@ -334,7 +326,7 @@ function onTrigger(player,npc)
     --cs 903 - head almost done
     --cs 904 - give coffee
     --cs 905 - head complete
-    
+
     local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
     local Automaton = player:hasKeyItem(798);
@@ -348,7 +340,7 @@ function onTrigger(player,npc)
     local attachmentTime = player:getVar("PUP_AttachmentReady");
     local attachmentReady = (attachmentTime ~= 0 and attachmentTime < os.time());
     local attachmentWait = player:getVar("PUP_AttachmentWait");
-    
+
     --[[
         attachment status:
         0 - none
@@ -449,7 +441,7 @@ function onTrigger(player,npc)
             player:startEventString(901, automatonName, automatonName, automatonName, automatonName, 1, 0, 1, 0, 0, 2186, 4);
         elseif (unlockedAttachments == 46) then
             player:startEventString(901, automatonName, automatonName, automatonName, automatonName, 0, 0, 1, 0, 0, 2186, 4);
-        end    
+        end
     elseif (attachments > 0) then
         local rand = math.random(1,2);
         if (rand == 1) then
@@ -462,18 +454,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

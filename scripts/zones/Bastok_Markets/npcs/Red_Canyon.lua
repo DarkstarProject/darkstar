@@ -1,38 +1,24 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Red Canyon
+--  NPC: Red Canyon
 -- Standard NPC
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-player:startEvent(133);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(133);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

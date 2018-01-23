@@ -1,32 +1,24 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
--- NPC:  _5cs (Magical Gizmo) #4 
+--  NPC: _5cs (Magical Gizmo) #4
 --  Involved In Mission: The Horutoto Ruins Experiment
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
+
     -- The Magical Gizmo Number, this number will be compared to the random
     -- value created by the mission The Horutoto Ruins Experiment, when you
     -- reach the Gizmo Door and have the cutscene
     local magical_gizmo_no = 4; -- of the 6
-    
+
     -- Check if we are on Windurst Mission 1-1
     if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 2) then
         -- Check if we found the correct Magical Gizmo or not
@@ -42,23 +34,15 @@ function onTrigger(player,npc)
             end
         end
     end
-    
+
     return 1;
-    
-end; 
-        
------------------------------------
--- onEventUpdate
------------------------------------
+
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -77,5 +61,5 @@ function onEventFinish(player,csid,option)
         -- Give the message that thsi orb is not broken
         player:messageSpecial(NOT_BROKEN_ORB);
     end
-    
+
 end;

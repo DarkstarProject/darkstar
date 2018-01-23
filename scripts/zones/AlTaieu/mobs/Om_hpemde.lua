@@ -2,19 +2,12 @@
 -- Area: Al'Taieu
 --  MOB: Om'Hpemde
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/status");
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     mob:hideName(true);
@@ -26,10 +19,6 @@ function onMobSpawn(mob)
     mob:wait(2000);
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob, target)
     mob:hideName(false);
     mob:untargetable(false);
@@ -38,10 +27,6 @@ function onMobEngaged(mob, target)
         mob:wait(2000);
     end
 end;
-
------------------------------------
--- onMobDisengage
------------------------------------
 
 function onMobDisengage(mob)
     mob:hideName(true);
@@ -52,10 +37,6 @@ function onMobDisengage(mob)
     mob:setMod(MOD_REGEN, 10);
 end;
 
------------------------------------
--- onMobRoam Action
------------------------------------
-
 function onMobRoam(mob)
     if (mob:getHPP() == 100) then
         mob:setLocalVar("damaged", 0);
@@ -63,10 +44,6 @@ function onMobRoam(mob)
         mob:SetMobAbilityEnabled(false);
     end
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob, target)
 
@@ -97,10 +74,6 @@ function onMobFight(mob, target)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

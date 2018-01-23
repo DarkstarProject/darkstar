@@ -2,11 +2,7 @@
 -- Area: Xarcabard
 --  MOB: Demon Knight
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,16 +1,13 @@
 -----------------------------------
---  Area: Uleguerand Range
---  NPC:  Zebada
---  Type: ENM Quest Activator
+-- Area: Uleguerand Range
+--  NPC: Zebada
+-- Type: ENM Quest Activator
 -- !pos -308.112 -42.137 -570.096 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Uleguerand_Range/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,10 +17,6 @@ function onTrade(player,npc,trade)
         player:startEvent(13);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -45,18 +38,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

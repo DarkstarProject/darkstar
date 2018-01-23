@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Kohlo-Lakolo
+--  NPC: Kohlo-Lakolo
 -- Invloved In Quests: Truth, Justice, and the Onion Way!,
 --                       Know One's Onions,
 --                       Inspector's Gadget,
@@ -16,9 +16,6 @@ require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,7 +29,7 @@ KnowOnesOnions       = player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS);
 
         if (WildOnion == true and count == 4) then
             player:startEvent(398,0,4387);
-        end    
+        end
     elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
         count = trade:getItemCount();
         RarabTail = trade:hasItemQty(4444,1);
@@ -41,12 +38,8 @@ KnowOnesOnions       = player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS);
             player:startEvent(378,0,4444);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -65,13 +58,13 @@ Fame       = player:getFameLevel(WINDURST);
         player:startEvent(544);
     elseif (ThePromise == QUEST_ACCEPTED) then
         InvisibleManSticker = player:hasKeyItem(INVISIBLE_MAN_STICKER);
-        
+
         if (InvisibleManSticker == true) then
             ThePromiseCS_Seen = player:getVar("ThePromiseCS_Seen");
-            
+
             if (ThePromiseCS_Seen == 1) then
                 FreeSlots = player:getFreeSlotsCount();
-                
+
                 if (FreeSlots >= 1) then
                     player:completeQuest(WINDURST,THE_PROMISE);
                     player:addFame(WINDURST,150);
@@ -93,17 +86,17 @@ Fame       = player:getFameLevel(WINDURST);
         player:startEvent(513,0,INVISIBLE_MAN_STICKER);
     elseif (WildCard == QUEST_ACCEPTED) then
         WildCardVar = player:getVar("WildCard");
-        
+
         if (WildCardVar == 0) then
             player:setVar("WildCard",1);
         end
-        
+
         player:showText(npc,KOHLO_LAKOLO_DIALOG_A);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
         player:startEvent(505);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
         CryingOverOnionsVar = player:getVar("CryingOverOnions");
-        
+
         if (CryingOverOnionsVar == 3) then
             player:startEvent(512);
         elseif (CryingOverOnionsVar == 2) then
@@ -119,24 +112,24 @@ Fame       = player:getFameLevel(WINDURST);
         end
     elseif (OnionRings == QUEST_ACCEPTED) then
         OldRing = player:hasKeyItem(OLD_RING);
-        
+
         if (OldRing == true) then
             OnionRingsTime = player:getVar("OnionRingsTime");
             CurrentTime    = os.time();
-            
+
             if (CurrentTime >= OnionRingsTime) then
                 player:startEvent(433);
             else
                 player:startEvent(431);
-            end    
+            end
         end
     elseif (InspectorsGadget == QUEST_COMPLETED) then
         if (NeedToZone == false and Fame >= 3) then
             OldRing = player:hasKeyItem(OLD_RING);
-            
+
             if (OldRing == true) then
                 OnionRingsVar = player:getVar("OnionRings");
-                
+
                 if (OnionRingsVar == 1) then
                     player:startEvent(430,0,OLD_RING);
                 else
@@ -147,10 +140,10 @@ Fame       = player:getFameLevel(WINDURST);
             end
         else
             player:startEvent(422);
-        end        
+        end
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
         FakeMoustache = player:hasKeyItem(FAKE_MOUSTACHE);
-        
+
         if (FakeMoustache == true) then
             player:startEvent(421);
         else
@@ -166,9 +159,9 @@ Fame       = player:getFameLevel(WINDURST);
         KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
         KnowOnesOnionsTime = player:getVar("KnowOnesOnionsTime");
         CurrentTime = os.time();
-        
+
         if (KnowOnesOnionsVar == 2) then
-            player:startEvent(400);            
+            player:startEvent(400);
         elseif (KnowOnesOnionsVar == 1 and CurrentTime >= KnowOnesOnionsTime) then
             player:startEvent(386);
         elseif (KnowOnesOnionsVar == 1) then
@@ -176,9 +169,9 @@ Fame       = player:getFameLevel(WINDURST);
         else
             player:startEvent(392,0,4387);
         end
-    elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then        
+    elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
         if (NeedToZone == false and Level >= 5) then
-            player:startEvent(391,0,4387); 
+            player:startEvent(391,0,4387);
         else
             player:startEvent(379);
         end
@@ -189,12 +182,8 @@ Fame       = player:getFameLevel(WINDURST);
     else
         player:startEvent(361);
     end
-   
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
@@ -202,19 +191,15 @@ function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
     if (csid == 368 and option == 0) then
-        player:addQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);         
+        player:addQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
     elseif (csid == 378) then
         FreeSlots = player:getFreeSlotsCount();
-        
+
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
             player:addFame(WINDURST,75);
@@ -230,10 +215,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,KNOW_ONE_S_ONIONS);
     elseif (csid == 398) then
         FreeSlots = player:getFreeSlotsCount();
-        
+
         if (FreeSlots >= 1) then
             TradeTime = os.time();
-            
+
             player:tradeComplete();
             player:addItem(4857);
             player:messageSpecial(ITEM_OBTAINED,4857);
@@ -245,7 +230,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 386 or csid == 400) then
         player:completeQuest(WINDURST,KNOW_ONE_S_ONIONS);
         player:addFame(WINDURST,80);
-        player:addTitle(SOB_SUPER_HERO);    
+        player:addTitle(SOB_SUPER_HERO);
         player:setVar("KnowOnesOnions",0);
         player:setVar("KnowOnesOnionsTime",0);
         player:needToZone(true);
@@ -253,11 +238,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,INSPECTOR_S_GADGET);
     elseif (csid == 421) then
         FreeSlots = player:getFreeSlotsCount();
-        
+
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,INSPECTOR_S_GADGET);
             player:addFame(WINDURST,90);
-            player:addTitle(FAKEMOUSTACHED_INVESTIGATOR);    
+            player:addTitle(FAKEMOUSTACHED_INVESTIGATOR);
             player:addItem(13204);
             player:messageSpecial(ITEM_OBTAINED,13204);
             player:needToZone(true);
@@ -268,10 +253,10 @@ function onEventFinish(player,csid,option)
         player:setVar("OnionRings",1);
     elseif (csid == 430) then
         OnionRings = player:getQuestStatus(WINDURST,ONION_RINGS);
-        
+
         if (OnionRings == QUEST_AVAILABLE) then
             CurrentTime = os.time();
-            
+
             player:addQuest(WINDURST,ONION_RINGS);
             player:setVar("OnionRingsTime", CurrentTime + 86400);
         end
@@ -285,10 +270,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 440) then
         OnionRingsVar    = player:getVar("OnionRings");
         NeedToZone = player:getVar("NeedToZone");
-        
+
         if (OnionRingsVar == 2 and NeedToZone == 0) then
             FreeSlots = player:getFreeSlotsCount();
-            
+
             if (FreeSlots >= 1) then
                 player:setVar("OnionRings",0);
                 player:addItem(17029);
@@ -305,7 +290,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,THE_PROMISE);
     elseif (csid == 522) then
         FreeSlots = player:getFreeSlotsCount();
-        
+
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,THE_PROMISE);
             player:addFame(WINDURST,150);

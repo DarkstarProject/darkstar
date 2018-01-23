@@ -3,8 +3,8 @@
 -- Zone: Northern_San_dOria (231)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/zone");
 require("scripts/globals/settings");
@@ -12,8 +12,6 @@ require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/missions");
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -25,16 +23,12 @@ function onInitialize(zone)
     applyHalloweenNpcCostumes(zone:getID())
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
-    
+
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
     local cs = -1;
-    
+
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
@@ -44,7 +38,7 @@ function onZoneIn(player,prevZone)
         player:setHomePoint();
     end
     -- MOG HOUSE EXIT
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(130,-0.2,-3,160);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
             cs = 30004;
@@ -67,10 +61,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -78,10 +68,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
@@ -98,30 +84,18 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 535) then
         player:messageSpecial(ITEM_OBTAINED,0x218);
     elseif (csid == 1) then

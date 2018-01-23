@@ -2,11 +2,7 @@
 -- Area: Meriphataud Mountains
 --  MOB: Crane Fly
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

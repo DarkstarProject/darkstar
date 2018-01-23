@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Port San d'Oria
+-- Area: Port San d'Oria
 --   NPC: Antreneau
---  Type: Standard NPC
+-- Type: Standard NPC
 -- !pos -71 -5 -39 232
 -- Involved in Quest: A Taste For Meat
 -----------------------------------
@@ -10,18 +10,11 @@ package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
     player:startEvent(532);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_COMPLETED and player:getVar("aTasteForMeat") == 1) then
@@ -39,18 +32,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

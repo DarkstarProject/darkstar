@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Talib
+--  NPC: Talib
 -- Starts Quest: Beauty and the Galka
 -- Starts & Finishes Quest: Shady Business
 -----------------------------------
@@ -11,13 +11,10 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(BASTOK,SHADY_BUSINESS) >= QUEST_ACCEPTED) then
         if (trade:hasItemQty(642,4) and trade:getItemCount() == 4) then
             player:startEvent(91);
@@ -27,40 +24,28 @@ function onTrade(player,npc,trade)
             player:startEvent(3);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
     BeautyAndTheGalka = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
 
     if (BeautyAndTheGalka == QUEST_COMPLETED) then
-        player:startEvent(90);        
+        player:startEvent(90);
     elseif (BeautyAndTheGalka == QUEST_ACCEPTED or player:getVar("BeautyAndTheGalkaDenied") >= 1) then
         player:startEvent(4);
-    else 
+    else
         player:startEvent(2);
     end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -76,23 +61,23 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
     elseif (csid == 90) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
-        
+
         if (ShadyBusiness == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,SHADY_BUSINESS);
         end
     elseif (csid == 91) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
-            
+
         if (ShadyBusiness == QUEST_ACCEPTED) then
             player:addFame(NORG,100);
             player:completeQuest(BASTOK,SHADY_BUSINESS);
         else
             player:addFame(NORG,80);
         end
-        
+
         player:tradeComplete();
         player:addGil(GIL_RATE*350);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
     end
-    
+
 end;

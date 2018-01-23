@@ -1,13 +1,10 @@
 -----------------------------------
--- onMobDeath
+-- Area:
+--  MOB:
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local instance = mob:getInstance()

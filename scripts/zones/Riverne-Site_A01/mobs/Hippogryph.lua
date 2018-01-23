@@ -1,11 +1,6 @@
 -----------------------------------
 -- Area: Riverne Site A01
--- MOB:  Hippogryph
------------------------------------
-
-
------------------------------------
--- onMobRoam
+--  MOB: Hippogryph
 -----------------------------------
 
 function onMobRoam(mob)
@@ -41,16 +36,8 @@ function onMobRoam(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

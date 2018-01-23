@@ -5,24 +5,16 @@
 -----------------------------------
 package.loaded[ "scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/zone");
 require("scripts/globals/conquest");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -46,10 +38,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -58,16 +46,8 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
@@ -79,10 +59,6 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -92,10 +68,6 @@ function onEventFinish( player, csid, option)
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;
-
------------------------------------
--- onZoneWeatherChange
------------------------------------
 
 function onZoneWeatherChange(weather)
     local mirrorPond = GetNPCByID(17232196); -- Quest: Love And Ice

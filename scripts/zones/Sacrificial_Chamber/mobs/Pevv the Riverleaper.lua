@@ -1,22 +1,14 @@
 -----------------------------------
------------------------------------
 -- Area: Sacrificial Chamber
 --  MOB: Pevv the Riverleaper
 -- BCNM: Amphibian Assault
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/zones/Sacrificial Chamber/MobIDs");
+require("scripts/globals/status");
+-----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
@@ -36,22 +28,14 @@ function onMobFight(mob,target)
             GetMobByID(pets):updateEnmity(target);
         end
     end
-end
-
------------------------------------
--- onMobDeath
------------------------------------
+end;
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- OnMobDespawn
------------------------------------
 function onMobDespawn( mob )
     -- Despawn pets.
     DespawnMob(wyvernA);
     DespawnMob(wyvernB);
     DespawnMob(wyvernC);
-
 end

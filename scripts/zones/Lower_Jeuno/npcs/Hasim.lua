@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Hasim
+--  NPC: Hasim
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,HASIM_SHOP_DIALOG);
 
-stock = {0x1244,930,        -- Scroll of Baraera
+    player:showText(npc,HASIM_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x1244,930,        -- Scroll of Baraera
      0x123e,930,        -- Scroll of Baraero
      0x1243,3624,        -- Scroll of Barblizzara
      0x123d,3624,        -- Scroll of Barblizzard
@@ -39,22 +34,14 @@ stock = {0x1244,930,        -- Scroll of Baraera
      0x1209,19932,        -- Scroll of Curaga III
      0x1204,23400,        -- Scroll of Cure IV
      0x122d,32000}        -- Scroll of Protect III
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

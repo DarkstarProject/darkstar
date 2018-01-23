@@ -3,11 +3,6 @@
 --  MOB: Heliodromos
 -----------------------------------
 
-
------------------------------------
--- onMobRoam
------------------------------------
-
 function onMobRoam(mob)
 
     local Heliodromos_Table =
@@ -39,16 +34,8 @@ function onMobRoam(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

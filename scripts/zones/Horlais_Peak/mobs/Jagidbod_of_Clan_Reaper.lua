@@ -2,7 +2,6 @@
 -- Area: Horlais Peak
 --  MOB: Jagidbod of Clan Reaper
 -----------------------------------
-
 require("scripts/globals/status");
 
 function onMobInitialize(mob)

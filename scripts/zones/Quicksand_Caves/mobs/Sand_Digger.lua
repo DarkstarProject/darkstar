@@ -2,11 +2,7 @@
 -- Area: Quicksand Caves
 --  MOB: Sand Digger
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,18 +1,10 @@
 -----------------------------------
 -- Area: Riverne Site #B01
--- NPC:  Spacial Displacement
------------------------------------
-
------------------------------------
--- onTrade
+--  NPC: Spacial Displacement
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -46,7 +38,7 @@ function onTrigger(player,npc)
     elseif (id == base+13) then --  K-6 porter
         player:startEvent(15);
     elseif (id == base+14) then --  K-7 porter (SE)
-        player:startEvent(16);    
+        player:startEvent(16);
     elseif (id == base+15) then --  K-7 porter (NW)
         player:startEvent(17);
     elseif (id == base+16) then --  J-7 porter (ne corner)
@@ -73,7 +65,7 @@ function onTrigger(player,npc)
         player:startEvent(29);
     elseif (id == base+28) then -- F-6 porter (west)
         player:startEvent(30);
-    elseif (id == base+29) then -- E-7 porter (east) 
+    elseif (id == base+29) then -- E-7 porter (east)
         player:startEvent(31);
     elseif (id == base+30) then -- E-8 porter (north)
         player:startEvent(20);
@@ -96,31 +88,23 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 21 and option == 1) then
         player:setPos(12.527,0.345,-539.602,127,31); -- to Monarch Linn (Retail confirmed)
     elseif (csid == 10 and option == 1) then
         player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
     elseif (csid == 17 and option == 0) then -- Go! Go! Gobmuffin quest checks will have to be added here. Mobs are not currently spawning (db issue I think)
---        loc = Zone(29);
---        loc:spawnMob("ChemicalCookCh",227, 88, 842,33,nil); -- pop positions are not authentic.
---        loc:spawnMob("BookBrowserBok",224, 88, 837,33,nil);
---        loc:spawnMob("SpellSpitterSp",274, 89, 830,250,nil);
+        -- loc = Zone(29);
+        -- loc:spawnMob("ChemicalCookCh",227, 88, 842,33,nil); -- pop positions are not authentic.
+        -- loc:spawnMob("BookBrowserBok",224, 88, 837,33,nil);
+        -- loc:spawnMob("SpellSpitterSp",274, 89, 830,250,nil);
     end;
 end;

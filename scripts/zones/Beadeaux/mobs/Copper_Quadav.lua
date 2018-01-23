@@ -7,17 +7,10 @@ package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

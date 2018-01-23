@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
--- NPC: Blue Rafflesia
+--  NPC: Blue Rafflesia
 -- Used in quest Even More Gullible Travels
 -- !pos -468.876 -1 220.247 123 <many>
 -----------------------------------

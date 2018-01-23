@@ -6,36 +6,21 @@ package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,YAGUDO_KING_ENGAGE);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(DEITY_DEBUNKER);
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,YAGUDO_KING_DEATH);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Chetak
+--  NPC: Chetak
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,CHETAK_SHOP_DIALOG);
 
-stock = {0x30B2,20000, -- Red Cap
+    player:showText(npc,CHETAK_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x30B2,20000, -- Red Cap
      0x30B3,45760, -- Wool Cap
      0x30BA,11166, -- Wool Hat
      0x3132,32500, -- Gambison
@@ -32,25 +27,17 @@ stock = {0x30B2,20000, -- Red Cap
      0x313A,18088, -- Wool Robe
      0x3141,9527,  -- Black Tunic
      0x31B2,16900, -- Bracers
-     0x31C2,15732, -- Linen Mitts 
-     0x31BA,10234, -- Wool Cuffs 
+     0x31C2,15732, -- Linen Mitts
+     0x31BA,10234, -- Wool Cuffs
      0x31C1,4443}  -- White Mitts
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -31,7 +31,7 @@ Leujaoam = {
         TIME_REMAINING_SECONDS  = 7512, -- Time remaining: <number> [second/seconds] (Earth time).
         PARTY_FALLEN            = 7514  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
-    
+
     mobs = {
         -- Leujaoam Cleansing
         [1] = {
@@ -52,7 +52,7 @@ Leujaoam = {
             LEUJAOAM_WORM14 = 17059855,
         }
     },
-    
+
     npcs = {
         ANCIENT_LOCKBOX = 17060014,
         RUNE_OF_RELEASE = 17060015,

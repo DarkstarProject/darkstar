@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Dnegan
+--  NPC: Dnegan
 -- Standard Info NPC
 -- Involved in quest: Wayward Automation
 -- !pos 29.89 -6 55.83 53
@@ -10,7 +10,6 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 end;
-
 
 function onTrigger(player,npc)
 
@@ -25,7 +24,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(288);
     end
-end; 
+end;
 
 
 
@@ -34,11 +33,10 @@ function onEventUpdate(player,csid,option)
     -- printf("RESULT: %u",option);
 end;
 
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 289) then
         player:setVar("TheWaywardAutomationProgress",2);
     end

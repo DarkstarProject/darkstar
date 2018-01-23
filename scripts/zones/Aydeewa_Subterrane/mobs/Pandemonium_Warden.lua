@@ -2,21 +2,13 @@
 -- Area: Aydeewa Subterrane
 --  ZNM: Pandemonium_Warden
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     -- Make sure model is reset back to start
@@ -26,10 +18,6 @@ function onMobSpawn(mob)
     mob:setLocalVar("PWardenDespawnTime", os.time() + 7200);
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
     -- pop pets
     for i = 17056170, 17056177, 1 do
@@ -37,10 +25,6 @@ function onMobEngaged(mob,target)
         GetMobByID(i):setModelId(1841);
     end
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
     local depopTime = mob:getLocalVar("PWardenDespawnTime");
@@ -306,10 +290,6 @@ function onMobFight(mob,target)
     ]]--
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     -- TODO: Death speech.

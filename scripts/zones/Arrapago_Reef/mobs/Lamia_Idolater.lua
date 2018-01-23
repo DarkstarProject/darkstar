@@ -2,30 +2,18 @@
 -- Area: Arrapago Reef
 --  NPC: Lamia Idolator
 -----------------------------------
-
 require("scripts/globals/status");
-    
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobFight
------------------------------------
-
 function onMobFight(mob, target)
     local swapTimer = mob:getLocalVar("swapTime");
-    
+
     if (os.time() > swapTimer) then
         if (mob:AnimationSub() == 1) then -- swap from fists to second weapon
             mob:AnimationSub(2);
@@ -37,13 +25,9 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onCriticalHit
------------------------------------
+function onCriticalHit(mob)
 
-function onCriticalHit(mob)   
- 
-    if (math.random(100) < 10) then  -- 10% change to break the weapon on crit   
+    if (math.random(100) < 10) then  -- 10% change to break the weapon on crit
         if (mob:AnimationSub() == 0) then -- first weapon
             mob:AnimationSub(1);
             mob:setLocalVar("swapTime", os.time() + 60) -- start the timer for swapping between fists and the second weapon
@@ -52,10 +36,6 @@ function onCriticalHit(mob)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

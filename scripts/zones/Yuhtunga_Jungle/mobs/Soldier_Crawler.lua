@@ -2,11 +2,7 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Soldier Crawler
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Wyatt
+--  NPC: Wyatt
 -- @zone 80
 -- !pos 124 0 84
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,10 +16,6 @@ function onTrade(player,npc,trade)
         player:startEvent(4);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local seeingSpots = player:getQuestStatus(CRYSTAL_WAR,SEEING_SPOTS);
@@ -36,18 +28,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

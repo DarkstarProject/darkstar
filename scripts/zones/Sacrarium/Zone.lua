@@ -10,6 +10,7 @@ require("scripts/zones/Sacrarium/MobIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+-----------------------------------
 
 function onInitialize(zone)
     -- Set random variable for determining Old Prof. Mariselle's spawn location

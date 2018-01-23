@@ -1,10 +1,7 @@
 -----------------------------------
--- Area:  Sacrarium
--- NPC:   _0s9 (Wooden Gate)
+-- Area: Sacrarium
+--  NPC: _0s9 (Wooden Gate)
 -- !pos 20.000 0.500 19.500 28
------------------------------------
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -17,18 +14,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

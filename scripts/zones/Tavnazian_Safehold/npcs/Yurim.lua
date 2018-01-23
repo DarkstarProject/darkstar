@@ -1,16 +1,17 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Yurim
+--  NPC: Yurim
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
                      --reward              tradebase   tradeChip                     tradeOrgane1          tradeOrgane2            tradeOrgane3        tradeOrgane4
---Relaxing Earring     14792; Silver Earring 13327;  Black Chip  481; Luminian Tissue x5 1783; Euvhi Organ x5  1818; 
---Sanative Earring     14791; Silver Earring 13327;  White Chip  480; Luminian Tissue x5 1783; Euvhi Organ x5  1818; 
+--Relaxing Earring     14792; Silver Earring 13327;  Black Chip  481; Luminian Tissue x5 1783; Euvhi Organ x5  1818;
+--Sanative Earring     14791; Silver Earring 13327;  White Chip  480; Luminian Tissue x5 1783; Euvhi Organ x5  1818;
 --Karin Obi: (Fire)    15435; Silver Obi      13205;  Red Chip      474; Phuabo Organ x7    1784; Xzomit Organ x3 1785; Luminian Tissue x3 1783;
 --Dorin Obi: (Earth)   15438; Silver Obi     13205;  Yellow Chip 476; Hpemde Organ x7    1787; Aern Organ x3   1786; Luminian Tissue x3 1783;
 --Suirin Obi: (Water)  15440; Silver Obi     13205;  Blue Chip   475; Hpemde Organ x7    1787; Phuabo Organ x3 1784; Luminian Tissue x3 1783;
@@ -35,9 +36,9 @@ local XZOMIT_ORGAN = 1785;
 local EUVHI_ORGAN = 1818;
 local YOVRA_ORGAN = 1788;
 
-local SILVER_EARRING = 13327; 
-local SILVER_OBI = 13205; 
-local GORGET = 13080; 
+local SILVER_EARRING = 13327;
+local SILVER_OBI = 13205;
+local GORGET = 13080;
 
 local BLACK_CHIP = 481;
 local WHITE_CHIP = 480;
@@ -64,59 +65,57 @@ local APPLE_PIE = 4413;
 
 function getNOS(itemtarget,item)
     local returnITEM;
-    if (itemtarget == RELAXING_EARRING) then 
+    if (itemtarget == RELAXING_EARRING) then
         returnITEM={SILVER_EARRING,BLACK_CHIP};
-    elseif (itemtarget == SANATIVE_EARRING) then 
+    elseif (itemtarget == SANATIVE_EARRING) then
         returnITEM={SILVER_EARRING,WHITE_CHIP};
-    elseif (itemtarget == KARIN_OBI) then 
+    elseif (itemtarget == KARIN_OBI) then
         returnITEM={SILVER_OBI,RED_CHIP};
-    elseif (itemtarget == DORIN_OBI) then 
+    elseif (itemtarget == DORIN_OBI) then
         returnITEM={SILVER_OBI,YELLOW_CHIP};
-    elseif (itemtarget == SUIRIN_OBI) then 
+    elseif (itemtarget == SUIRIN_OBI) then
         returnITEM={SILVER_OBI,BLUE_CHIP};
-    elseif (itemtarget == FURIN_OBI) then 
+    elseif (itemtarget == FURIN_OBI) then
         returnITEM={SILVER_OBI,GREEN_CHIP};
-    elseif (itemtarget == HYORIN_OBI) then 
+    elseif (itemtarget == HYORIN_OBI) then
         returnITEM={SILVER_OBI,CLEAR_CHIP};
-    elseif (itemtarget == RAIRIN_OBI) then 
-        returnITEM={SILVER_OBI,PURPLE_CHIP}; 
-    elseif (itemtarget == KORIN_OBI) then 
+    elseif (itemtarget == RAIRIN_OBI) then
+        returnITEM={SILVER_OBI,PURPLE_CHIP};
+    elseif (itemtarget == KORIN_OBI) then
         returnITEM={SILVER_OBI,WHITE_CHIP};
-    elseif (itemtarget == ANRIN_OBI) then 
+    elseif (itemtarget == ANRIN_OBI) then
         returnITEM={SILVER_OBI,BLACK_CHIP};
-    elseif (itemtarget == FLAME_GORGET) then 
+    elseif (itemtarget == FLAME_GORGET) then
         returnITEM={GORGET,RED_CHIP};
-    elseif (itemtarget == SOIL_GORGET) then 
+    elseif (itemtarget == SOIL_GORGET) then
         returnITEM={GORGET,YELLOW_CHIP};
-    elseif (itemtarget == AQUA_GORGET) then 
+    elseif (itemtarget == AQUA_GORGET) then
         returnITEM={GORGET,BLUE_CHIP};
-    elseif (itemtarget == BREEZE_GORGET) then 
-        returnITEM={GORGET,GREEN_CHIP}; 
-    elseif (itemtarget == SNOW_GORGET) then 
+    elseif (itemtarget == BREEZE_GORGET) then
+        returnITEM={GORGET,GREEN_CHIP};
+    elseif (itemtarget == SNOW_GORGET) then
         returnITEM={GORGET,CLEAR_CHIP};
-    elseif (itemtarget == THUNDER_GORGET) then 
+    elseif (itemtarget == THUNDER_GORGET) then
         returnITEM={GORGET,PURPLE_CHIP};
-    elseif (itemtarget == LIGHT_GORGET) then 
+    elseif (itemtarget == LIGHT_GORGET) then
         returnITEM={GORGET,WHITE_CHIP};
-    elseif (itemtarget == SHADOW_GORGET) then 
+    elseif (itemtarget == SHADOW_GORGET) then
         returnITEM={GORGET,BLACK_CHIP};
     end
 
     return returnITEM[item];
 end;
-----------------------------------
--- onTrade Action
------------------------------------
+
 function onTrade(player,npc,trade)
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE); 
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
     local count = trade:getItemCount(); --nombre d'objet total
     local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
     local reward = false;
--- printf("count: %u",count);
+    -- printf("count: %u",count);
 -----------------------------------------trade the chip and the base item---------------------------------------------------------------------
-    if ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 2 and itemtarget == 0) then  
-        if (trade:hasItemQty(SILVER_EARRING,1)) then 
-            if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(RELAXING_EARRING)==false) then 
+    if ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 2 and itemtarget == 0) then
+        if (trade:hasItemQty(SILVER_EARRING,1)) then
+            if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(RELAXING_EARRING)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",RELAXING_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,BLACK_CHIP);
             elseif (trade:hasItemQty(WHITE_CHIP,1) and player:hasItem(SANATIVE_EARRING)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,WHITE_CHIP);
@@ -133,7 +132,7 @@ function onTrade(player,npc,trade)
             elseif (trade:hasItemQty(PURPLE_CHIP,1) and player:hasItem(SANATIVE_EARRING)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",SANATIVE_EARRING); player:tradeComplete(); player:startEvent(526,SILVER_EARRING,PURPLE_CHIP);
             end
-        elseif (trade:hasItemQty(SILVER_OBI,1)) then       
+        elseif (trade:hasItemQty(SILVER_OBI,1)) then
             if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(ANRIN_OBI)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",ANRIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,BLACK_CHIP);
             elseif (trade:hasItemQty(WHITE_CHIP,1) and player:hasItem(KORIN_OBI)==false) then
@@ -151,7 +150,7 @@ function onTrade(player,npc,trade)
             elseif (trade:hasItemQty(PURPLE_CHIP,1) and player:hasItem(RAIRIN_OBI)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",RAIRIN_OBI); player:tradeComplete(); player:startEvent(526,SILVER_OBI,PURPLE_CHIP);
             end
-        elseif (trade:hasItemQty(GORGET,1)) then 
+        elseif (trade:hasItemQty(GORGET,1)) then
             if (trade:hasItemQty(BLACK_CHIP,1) and player:hasItem(SHADOW_GORGET)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",SHADOW_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,BLACK_CHIP);
             elseif (trade:hasItemQty(WHITE_CHIP,1) and player:hasItem(LIGHT_GORGET)==false) then
@@ -168,55 +167,55 @@ function onTrade(player,npc,trade)
                 player:setVar("NAME_OF_SCIENCE_target",SNOW_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,CLEAR_CHIP);
             elseif (trade:hasItemQty(PURPLE_CHIP,1) and player:hasItem(THUNDER_GORGET)==false) then
                 player:setVar("NAME_OF_SCIENCE_target",THUNDER_GORGET); player:tradeComplete(); player:startEvent(526,GORGET,PURPLE_CHIP);
-            end  
+            end
         end
---------------------------------------------------apple pie trade-------------------------------------------------------------------------------          
-    elseif ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 1 and itemtarget > 0 and trade:hasItemQty(APPLE_PIE,1) ) then 
+--------------------------------------------------apple pie trade-------------------------------------------------------------------------------
+    elseif ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and count == 1 and itemtarget > 0 and trade:hasItemQty(APPLE_PIE,1) ) then
         player:startEvent(531,APPLE_PIE); player:tradeComplete();
---------------------------------------------------trade  organe-----------------------------------------------------------------------------------------------    
-    elseif ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and itemtarget > 0  ) then    
-        if (itemtarget == RELAXING_EARRING and count == 10) then     
+--------------------------------------------------trade  organe-----------------------------------------------------------------------------------------------
+    elseif ((NameOfScience == QUEST_ACCEPTED or NameOfScience == QUEST_COMPLETED) and itemtarget > 0  ) then
+        if (itemtarget == RELAXING_EARRING and count == 10) then
             if (trade:hasItemQty(LUMINIAN_TISSUE,5)and trade:hasItemQty(EUVHI_ORGAN,5)) then
                 reward = true;
             end
         elseif (itemtarget == SANATIVE_EARRING and count == 10) then
             if (trade:hasItemQty(LUMINIAN_TISSUE,5)and trade:hasItemQty(EUVHI_ORGAN,5)) then
-                reward = true;              
+                reward = true;
             end
         elseif (itemtarget == KARIN_OBI and count == 13) then
             if (trade:hasItemQty(PHUABOS_ORGAN,7)and trade:hasItemQty(XZOMIT_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
-                reward = true;              
+                reward = true;
             end
         elseif (itemtarget == DORIN_OBI and count == 13) then
             if (trade:hasItemQty(HPEMDE_ORGAN,7)and trade:hasItemQty(AERN_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == SUIRIN_OBI and count == 13) then
-            if (trade:hasItemQty(HPEMDE_ORGAN,7)and trade:hasItemQty(PHUABOS_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then    
+            if (trade:hasItemQty(HPEMDE_ORGAN,7)and trade:hasItemQty(PHUABOS_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == FURIN_OBI and count == 13) then
-            if (trade:hasItemQty(AERN_ORGAN,7)and trade:hasItemQty(HPEMDE_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then    
+            if (trade:hasItemQty(AERN_ORGAN,7)and trade:hasItemQty(HPEMDE_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == HYORIN_OBI and count == 13) then
             if (trade:hasItemQty(XZOMIT_ORGAN,7)and trade:hasItemQty(PHUABOS_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == RAIRIN_OBI and count == 13) then
             if (trade:hasItemQty(PHUABOS_ORGAN,7)and trade:hasItemQty(HPEMDE_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == KORIN_OBI and count == 13) then
             if (trade:hasItemQty(XZOMIT_ORGAN,7)and trade:hasItemQty(AERN_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == ANRIN_OBI and count == 13) then
             if (trade:hasItemQty(AERN_ORGAN,7)and trade:hasItemQty(XZOMIT_ORGAN,3)and trade:hasItemQty(LUMINIAN_TISSUE,3)) then
-                reward = true;              
-            end              
+                reward = true;
+            end
         elseif (itemtarget == SHADOW_GORGET and count == 15) then
-            if (trade:hasItemQty(HPEMDE_ORGAN,7)and trade:hasItemQty(PHUABOS_ORGAN,3)and trade:hasItemQty(AERN_ORGAN,3)and trade:hasItemQty(YOVRA_ORGAN,2)) then     
+            if (trade:hasItemQty(HPEMDE_ORGAN,7)and trade:hasItemQty(PHUABOS_ORGAN,3)and trade:hasItemQty(AERN_ORGAN,3)and trade:hasItemQty(YOVRA_ORGAN,2)) then
                 reward = true;
             end
         elseif (itemtarget == LIGHT_GORGET and count == 15) then
@@ -224,40 +223,36 @@ function onTrade(player,npc,trade)
                 reward = true;
             end
         elseif (itemtarget == FLAME_GORGET and count == 16) then
-            if (trade:hasItemQty(PHUABOS_ORGAN,10)and trade:hasItemQty(XZOMIT_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then    
+            if (trade:hasItemQty(PHUABOS_ORGAN,10)and trade:hasItemQty(XZOMIT_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == SOIL_GORGET and count == 16) then
             if (trade:hasItemQty(XZOMIT_ORGAN,10)and trade:hasItemQty(AERN_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then
-                reward = true;          
-            end              
+                reward = true;
+            end
         elseif (itemtarget == AQUA_GORGET and count == 16) then
             if (trade:hasItemQty(AERN_ORGAN,10)and trade:hasItemQty(HPEMDE_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == BREEZE_GORGET and count == 16) then
-            if (trade:hasItemQty(PHUABOS_ORGAN,10)and trade:hasItemQty(HPEMDE_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then    
+            if (trade:hasItemQty(PHUABOS_ORGAN,10)and trade:hasItemQty(HPEMDE_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then
                 reward = true;
-            end              
+            end
         elseif (itemtarget == SNOW_GORGET and count == 16) then
             if (trade:hasItemQty(PHUABOS_ORGAN,10)and trade:hasItemQty(AERN_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then
-                reward = true;              
+                reward = true;
             end
         elseif (itemtarget == THUNDER_GORGET and count == 16) then
             if (trade:hasItemQty(XZOMIT_ORGAN,10)and trade:hasItemQty(HPEMDE_ORGAN,5)and trade:hasItemQty(YOVRA_ORGAN,1)) then
-                reward = true;              
-            end              
-        end    
-    end       
+                reward = true;
+            end
+        end
+    end
     --------------------------------------------------------------------------------------------------------------------
     if (reward == true) then
         player:startEvent(529, GORGET, SILVER_EARRING, SILVER_OBI);
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -266,46 +261,38 @@ function onTrigger(player,npc)
     local rnd= math.random();
 
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then   --have SEA acces
-        if (NameOfScience == QUEST_AVAILABLE) then         
+        if (NameOfScience == QUEST_AVAILABLE) then
             player:startEvent(524,13205,13327,13080);
             player:addQuest(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
-        elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED  and itemtarget == 0) then         
+        elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED  and itemtarget == 0) then
             player:startEvent(525,13205,13327,13080);
-        elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED and itemtarget > 0) then                
+        elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED and itemtarget > 0) then
             if (rnd < 0.3) then
                 player:startEvent(532,getNOS(itemtarget,1),getNOS(itemtarget,2));
             else
                 player:startEvent(528,getNOS(itemtarget,1),getNOS(itemtarget,2));
             end
-        end         
-    else 
+        end
+    else
         if (rnd < 0.5) then
             player:startEvent(527); --no quest
         else
             player:startEvent(519); --no quest
         end
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 529) then
         local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
-        if (player:getFreeSlotsCount()==0) then
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,itemtarget);
         else
             player:tradeComplete();

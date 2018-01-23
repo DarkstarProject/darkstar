@@ -1,17 +1,19 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Lalapp
+--  NPC: Lalapp
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/pathfind");
+-----------------------------------
 
-local path = {
--63.243702, -11.000023, -97.916130,
--63.970551, -11.000027, -97.229286,
--64.771614, -11.000030, -96.499062
+local path =
+{
+    -63.243702, -11.000023, -97.916130,
+    -63.970551, -11.000027, -97.229286,
+    -64.771614, -11.000030, -96.499062
 };
 
 function onSpawn(npc)
@@ -24,23 +26,18 @@ function onPath(npc)
     pathfind.patrol(npc, path);
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
--- item IDs
-            -- 483       Broken Mithran Fishing Rod
-            -- 22        Workbench
-            -- 1008      Ten of Coins
-            -- 1157      Sands of Silence
-            -- 1158      Wandering Bulb
-            -- 904       Giant Fish Bones
-            -- 4599      Blackened Toad
-            -- 905       Wyvern Skull
-            -- 1147      Ancient Salt
-            -- 4600      Lucky Egg
-         
 function onTrade(player,npc,trade)
+    -- item IDs
+    -- 483       Broken Mithran Fishing Rod
+    -- 22        Workbench
+    -- 1008      Ten of Coins
+    -- 1157      Sands of Silence
+    -- 1158      Wandering Bulb
+    -- 904       Giant Fish Bones
+    -- 4599      Blackened Toad
+    -- 905       Wyvern Skull
+    -- 1147      Ancient Salt
+    -- 4600      Lucky Egg
     local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
@@ -58,16 +55,12 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local retry = player:getVar("OPO_OPO_RETRY");
-    
+
     if (OpoOpoAndIStatus == QUEST_ACCEPTED) then
         if retry >= 1 then                          -- has failed on future npc so disregard previous successful trade
             player:startEvent(205);
@@ -82,18 +75,11 @@ function onTrigger(player,npc)
         npc:wait();
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);
@@ -114,4 +100,3 @@ function onEventFinish(player,csid,option,npc)
         npc:wait(0);
     end
 end;
-

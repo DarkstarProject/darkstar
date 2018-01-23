@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Hujette
---  Type: Quest NPC and Shop NPC
+-- Type: Quest NPC and Shop NPC
 --  Involved with Quest: 'All the Way to the Bank'
 --  @zone 256
 --  !pos 35 0 -56 256
@@ -13,9 +13,6 @@ require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +24,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- Standard shop
@@ -46,16 +39,8 @@ function onTrigger(player,npc)
     showShop(player, STATIC, stock);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 5070) then

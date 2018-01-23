@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- @zone 176
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ local TreasureType = "Chest";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     -- trade:hasItemQty(1055,1);         -- Treasure Key
     -- trade:hasItemQty(1115,1);        -- Skeleton Key
@@ -28,12 +23,12 @@ function onTrade(player,npc,trade)
     local questItemNeeded = 0;
 
     -- Player traded a key.
-    if ((trade:hasItemQty(1055,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+    if ((trade:hasItemQty(1055,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: L'Ephemere & Map -----------
         if (player:hasKeyItem(MAP_OF_THE_SEA_SERPENT_GROTTO) == false) then
             questItemNeeded = 1;
-        elseif (player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(LEPHEMERE) == false) then 
+        elseif (player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(LEPHEMERE) == false) then
             questItemNeeded = 2;
         end
         --------------------------------------
@@ -61,7 +56,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(LEPHEMERE);
                     player:messageSpecial(KEYITEM_OBTAINED,LEPHEMERE); -- L'Ephemere for A Test Of True Love quest
                 else
-                    player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
+                    player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
                     local loot = chestLoot(zone,npc);
                     -- print("loot array: "); -- debug
@@ -84,26 +79,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1055);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

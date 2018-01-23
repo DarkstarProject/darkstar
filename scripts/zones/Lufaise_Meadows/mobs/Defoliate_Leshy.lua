@@ -3,17 +3,8 @@
 --  MOB: Defoliate Leshy
 -----------------------------------
 
-
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local Colorful_Leshy = 16875762;

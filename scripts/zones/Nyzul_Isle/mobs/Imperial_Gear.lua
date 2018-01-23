@@ -2,12 +2,8 @@
 -- Area: Nyzul Isle (Path of Darkness)
 --  MOB: Imperial Gear
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/zones/Nyzul_Isle/IDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -35,25 +31,13 @@ function onMobSpawn(mob)
     end
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob,target)
     local naja = mob:getInstance():getEntity(bit.band(NyzulIsle.mobs[58].NAJA, 0xFFF))
     naja:setLocalVar("ready",1)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local instance = mob:getInstance();

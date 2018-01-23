@@ -23,7 +23,7 @@ Arrapago = {
         TIME_REMAINING_SECONDS = 7447, -- Time remaining: <number> [second/seconds] (Earth time).
         PARTY_FALLEN           = 7449  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
-    
+
     mobs = {
         -- Arrapago Remnants
         [1] = {
@@ -54,7 +54,7 @@ Arrapago = {
             astrologer = 17080431,
         }
     },
-    
+
     npcs = {
         [1] = {
             [1] = {

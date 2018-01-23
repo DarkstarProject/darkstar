@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Uleguerand Range
---  NPC:  Fissure
+-- Area: Uleguerand Range
+--  NPC: Fissure
 --  Teleports players from underground to surface
 -- !pos 380.267 34.859 -179.655 5
 -- !pos 460.339 -29.137 220.311 5
@@ -8,20 +8,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Uleguerand_Range/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -40,18 +32,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

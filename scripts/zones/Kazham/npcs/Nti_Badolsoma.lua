@@ -1,22 +1,15 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Nti Badolsoma
+--  NPC: Nti Badolsoma
 -- Standard Info NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-require("scripts/zones/Kazham/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     if (player:getVar("BathedInScent") == 1) then
@@ -25,18 +18,11 @@ function onTrigger(player,npc)
         player:startEvent(88);
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

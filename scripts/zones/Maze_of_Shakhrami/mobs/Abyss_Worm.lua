@@ -2,11 +2,7 @@
 -- Area: Maze of Shakhrami
 --  MOB: Abyss Worm
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

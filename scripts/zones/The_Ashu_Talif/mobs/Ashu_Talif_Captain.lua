@@ -2,22 +2,14 @@
 -- Area: The Ashu Talif (The Black Coffin)
 --  MOB: Ashu Talif Crew
 -----------------------------------
-
 require("scripts/globals/instance");
 local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setUnkillable(true);
     mob:setMobMod(MOBMOD_SCRIPTED_2HOUR, 1);
 end;
-
------------------------------------
--- OnMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     -- The captain gives up at <= 20% HP. Everyone disengages
@@ -39,10 +31,6 @@ function onMobFight(mob, target)
         end
     end);
 end;
-
------------------------------------
--- onMobRoam Action
------------------------------------
 
 function onMobRoam(mob)
     local jumped = mob:getLocalVar("jump");
@@ -72,30 +60,14 @@ function onMobRoam(mob)
 
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onMobDisengage Action
------------------------------------
 
 function onMobDisengage(mob,target)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 end;

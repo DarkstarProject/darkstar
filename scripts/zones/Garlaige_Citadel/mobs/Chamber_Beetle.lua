@@ -2,11 +2,7 @@
 -- Area: Garlaige Citadel
 --  MOB: Chamber Beetle
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

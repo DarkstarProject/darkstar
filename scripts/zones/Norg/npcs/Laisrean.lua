@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Laisrean
+--  NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
 -- @zone 252
 -- !pos -2.251 -1 21.654
@@ -12,17 +12,10 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     Stash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
@@ -42,18 +35,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

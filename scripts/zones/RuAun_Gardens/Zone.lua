@@ -11,6 +11,7 @@ require("scripts/globals/missions");
 require("scripts/globals/conquest");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+-----------------------------------
 
 function onInitialize(zone)
     for k, v in pairs(RUAUN_PORTALS) do
@@ -32,7 +33,7 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(333.017,-44.896,-458.35,164);
     end
     if (player:getCurrentMission(ZILART) == THE_GATE_OF_THE_GODS and player:getVar("ZilartStatus") == 1) then

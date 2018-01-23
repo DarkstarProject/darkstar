@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Peritrage
+--  NPC: Peritrage
 -- Standard Merchant NPC
 -- !pos -286.985 -10.319 -142.586 235
 -----------------------------------
@@ -26,4 +26,4 @@ function onTrigger(player,npc)
         16450,  1867, 3, -- Dagger
     }
     showNationShop(player, NATION_BASTOK, stock);
-end; 
+end;

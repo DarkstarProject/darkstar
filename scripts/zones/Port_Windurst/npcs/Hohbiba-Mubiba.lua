@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Hohbiba-Mubiba
+--  NPC: Hohbiba-Mubiba
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/zones/Port_Windurst/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,HOHBIBAMUBIBA_SHOP_DIALOG);
@@ -43,20 +36,12 @@ function onTrigger(player,npc)
     }
     showNationShop(player, NATION_WINDURST, stock);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

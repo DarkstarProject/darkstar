@@ -1,33 +1,17 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Ze'Vho Fallsplitter
+--  NPC: Ze'Vho Fallsplitter
 -- Boss Trigger for Gu'Dha Effigy
------------------------------------
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

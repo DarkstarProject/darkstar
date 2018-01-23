@@ -1,25 +1,18 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Echo Hawk
+--  NPC: Echo Hawk
 -- Standard Info NPC
 -- Involved in Quest: The Siren's Tear
 -- !pos -0.965 5.999 -15.567 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -35,17 +28,11 @@ function onTrigger(player,npc)
         player:startEvent(13);
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

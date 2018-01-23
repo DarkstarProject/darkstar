@@ -2,27 +2,16 @@
 -- Area: Monarch Linn
 --  MOB: Mammet-19 Epsilon
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false);
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
 function onMobFight(mob,target)
     local form = mob:AnimationSub();
 
@@ -65,10 +54,6 @@ function changeForm(mob)
     mob:AnimationSub(newform);
     mob:setLocalVar('changeTime', mob:getBattleTime());
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

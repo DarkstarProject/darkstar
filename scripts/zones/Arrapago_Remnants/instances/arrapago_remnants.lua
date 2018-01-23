@@ -1,16 +1,12 @@
 -----------------------------------
--- 
+--
 -- Salvage: Arrapago Remnants
--- 
+--
 -----------------------------------
-
 require("scripts/globals/instance")
 
 package.loaded["scripts/zones/Arrapago_Remnants/IDs"] = nil;
 local Arrapago = require("scripts/zones/Arrapago_Remnants/IDs");
-
------------------------------------
--- afterInstanceRegister
 -----------------------------------
 
 function afterInstanceRegister(player)
@@ -25,11 +21,7 @@ function afterInstanceRegister(player)
     for i = 0,15 do
         player:unequipItem(i)
     end
-end;    
-
------------------------------------
--- onInstanceCreated
------------------------------------
+end;
 
 function onInstanceCreated(instance)
 
@@ -38,20 +30,12 @@ function onInstanceCreated(instance)
         npc:setStatus(STATUS_NORMAL)
     end
     instance:setStage(1)
-    
-end;
 
------------------------------------
--- onInstanceTimeUpdate
------------------------------------
+end;
 
 function onInstanceTimeUpdate(instance, elapsed)
     updateInstanceTime(instance, elapsed, Arrapago.text)
 end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
 
 function onInstanceFailure(instance)
 
@@ -63,10 +47,6 @@ function onInstanceFailure(instance)
     end
 end;
 
------------------------------------
--- onInstanceProgressUpdate
------------------------------------
-
 function onInstanceProgressUpdate(instance, progress)
 
     if instance:getStage() == 1 and progress == 10 then
@@ -74,12 +54,8 @@ function onInstanceProgressUpdate(instance, progress)
     elseif instance:getStage() == 3 and progress == 0 then
         SpawnMob(Arrapago.mobs[2].astrologer, instance)
     end
-    
-end;
 
------------------------------------
--- onInstanceComplete
------------------------------------
+end;
 
 function onInstanceComplete(instance)
 end;

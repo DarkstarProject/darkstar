@@ -2,11 +2,7 @@
 -- Area: Middle Delkfutt's Tower
 --  MOB: Goblin Furrier
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

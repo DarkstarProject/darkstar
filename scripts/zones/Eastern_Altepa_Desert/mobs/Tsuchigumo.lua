@@ -3,19 +3,11 @@
 --  MOB: Tsuchigumo
 -- Involved in Quest: 20 in Pirate Years
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

@@ -2,11 +2,7 @@
 -- Area: Beaucedine Glacier
 --  MOB: Living Statue
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
