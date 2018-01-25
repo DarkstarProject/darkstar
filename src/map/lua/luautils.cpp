@@ -1213,18 +1213,18 @@ namespace luautils
 
             bool contentEnabled;
 
-            try
+            if (auto contentEnabledIter = contentEnabledMap.find(contentVariable);  contentEnabledIter != contentEnabledMap.end())
             {
-                contentEnabled = contentEnabledMap.at(contentVariable);
+                contentEnabled = contentEnabledIter->second;
             }
-            catch (std::out_of_range)
+            else
             {
                 // Cache contentTag lookups in a map so that we don't re-hit the Lua file every time
                 contentEnabled = (GetSettingsVariable(contentVariable.c_str()) != 0);
                 contentEnabledMap[contentVariable] = contentEnabled;
             }
 
-            if (contentEnabled == false && contentRestrictionEnabled == true)
+            if (!contentEnabled && contentRestrictionEnabled)
             {
                 return false;
             }

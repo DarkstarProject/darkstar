@@ -133,14 +133,7 @@ void CBaseEntity::ResetLocalVars()
 
 uint32 CBaseEntity::GetLocalVar(const char* var)
 {
-    try
-    {
-        return m_localVars.at(var);
-    }
-    catch (std::out_of_range e)
-    {
-        return 0;
-    }
+    return m_localVars[var];
 }
 
 void CBaseEntity::SetLocalVar(const char* var, uint32 val)
