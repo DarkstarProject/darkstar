@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  NPC:  qm25
+--  NPC: qm25
 --  Notes: Antican Tag
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Quicksand_Caves/TextIDs");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)

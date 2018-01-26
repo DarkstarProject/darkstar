@@ -2,7 +2,6 @@
 -- Area: King Ranperres Tomb
 --  MOB: Corrupted Soffeil
 -----------------------------------
-
 require("scripts/zones/King_Ranperres_Tomb/MobIDs");
 require("scripts/globals/missions");
 

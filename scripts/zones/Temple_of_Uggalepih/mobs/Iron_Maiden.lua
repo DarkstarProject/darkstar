@@ -2,11 +2,7 @@
 -- Area: Temple Of Uggalepih
 --  MOB: Iron Maiden
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

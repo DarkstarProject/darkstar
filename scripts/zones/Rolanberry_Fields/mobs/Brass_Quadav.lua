@@ -2,11 +2,7 @@
 -- Area: Rolanberry Fields
 --  MOB: Brass Quadav
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -10,31 +10,20 @@ package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Jeuno/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, jeunoList, 1);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-    
+
     mobID = mob:getID();
-    
+
     -- Time Bonus (30min): 002
     if (mobID == 17547531 and mob:isInBattlefieldList() == false) then
         player:addTimeToDynamis(30);

@@ -11,19 +11,12 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(JORMUNGAND);
     GetMobByID(JORMUNGAND):setRespawnTime(math.random(86400, 259200));
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -32,10 +25,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -48,25 +37,13 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -75,10 +52,6 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_louverance_story",2);
     end
 end;
-
------------------------------------
--- onZoneWeatherChange
------------------------------------
 
 function onZoneWeatherChange(weather)
     local waterfall = GetNPCByID(WATERFALL);

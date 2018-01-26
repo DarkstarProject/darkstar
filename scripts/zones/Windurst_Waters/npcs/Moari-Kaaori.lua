@@ -9,16 +9,13 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
     local offer = trade:getItemId();
-    
+
     if (FlowerProgress == 3) then
         if (trade:hasItemQty(950, 1) and trade:getItemCount() == 1) then
             if (SayFlowers == QUEST_COMPLETED) then
@@ -32,15 +29,11 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
     local NeedToZone = player:needToZone();
-    
+
     if (FlowerProgress == 3 or FlowerProgress == 1) then
         player:startEvent(515); -- Waiting for trade.
     elseif (SayFlowers == QUEST_COMPLETED and NeedToZone == true and FlowerProgress == 0) then -- Must zone to retry quest.
@@ -52,20 +45,12 @@ function onTrigger(player,npc)
     else
         player:startEvent(512);
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

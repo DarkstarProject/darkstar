@@ -7,36 +7,28 @@
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
+
     local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
     local ANewDawnEvent = player:getVar("ANewDawn_Event");
     local ScatteredIntoShadow = player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW);
 
     local SaveMySon = player:getVar("SaveMySon_Event");
-    
+
     local ChocobosWounds = player:getQuestStatus(JEUNO, CHOCOBO_S_WOUNDS);
-    
+
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
-    
+
     -- A New Dawn (BST AF3)
     if (ScatteredIntoShadow == QUEST_COMPLETED and ANewDawn == QUEST_AVAILABLE) then
         if (mJob == 9 and mLvl >= 50) then
@@ -46,17 +38,17 @@ function onTrigger(player,npc)
                 player:startEvent(4);
             end
         else
-            player:startEvent(1); 
+            player:startEvent(1);
         end
     elseif (ANewDawn == QUEST_ACCEPTED) then
         if (ANewDawnEvent == 2) then
-            player:startEvent(2); 
+            player:startEvent(2);
         elseif (ANewDawnEvent >= 4) then
-            player:startEvent(3); 
+            player:startEvent(3);
         end
     elseif (ANewDawn == QUEST_COMPLETED and ANewDawnEvent == 6) then
-        player:startEvent(0); 
-    
+        player:startEvent(0);
+
     -- Save My Son
     elseif (player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_AVAILABLE and mLvl >= 30) then
         player:startEvent(164);
@@ -68,34 +60,26 @@ function onTrigger(player,npc)
         end
     elseif (player:needToZone() == false and player:getQuestStatus(JEUNO, SAVE_MY_SON) == QUEST_COMPLETED and SaveMySon == 2) then
         player:startEvent(132);
-    
+
     -- Chocobos Wounds
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(64);
     elseif (player:getVar("ChocobosWounds_Event") > 3) then
         player:startEvent(63);
-        
+
     -- Standard Dialogue?, Probably Wrong
     else
-        player:messageSpecial(ITS_LOCKED); 
+        player:messageSpecial(ITS_LOCKED);
     end
 
     return 1;
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -121,7 +105,7 @@ function onEventFinish(player,csid,option)
         player:setVar("SaveMySon_Event",0);
     elseif (csid == 5) then
         player:setVar("ANewDawn_Event",1);
-        if (option == 1) then     
+        if (option == 1) then
             player:addQuest(JEUNO, A_NEW_DAWN);
             player:setVar("ANewDawn_Event",2);
         end

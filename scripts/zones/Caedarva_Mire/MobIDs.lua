@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Caedarva_Mire (79)
+-- Area: Caedarva_Mire (79)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------

@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Charlaimagnat
--- Standard Info NPC 
+--  NPC: Charlaimagnat
+-- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,15 +24,11 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local realday = tonumber(tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d"));
     local TheMissingPiece = player:getQuestStatus(OUTLANDS,THE_MISSING_PIECE);
-    
+
     if (TheMissingPiece == QUEST_ACCEPTED and player:hasKeyItem(TABLET_OF_ANCIENT_MAGIC) and player:hasKeyItem(LETTER_FROM_ALFESAR)) then
         player:startEvent(703); -- Continuing the Quest
     elseif (TheMissingPiece == QUEST_ACCEPTED and realday < player:getVar("TheMissingPiece_date")) then
@@ -47,25 +39,17 @@ function onTrigger(player,npc)
         player:startEvent(702); -- standard dialogue
     end;
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 703) then
         player:setVar("TheMissingPiece_date", tostring(os.date("%Y")) .. os.date("%m") .. os.date("%d") + 1);
         player:addTitle(ACQUIRER_OF_ANCIENT_ARCANUM);
@@ -80,6 +64,6 @@ function onEventFinish(player,csid,option)
             player:addFame(RABAO,30);
             player:completeQuest(OUTLANDS,THE_MISSING_PIECE);
         end;
-    
+
     end;
 end;

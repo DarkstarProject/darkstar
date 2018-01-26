@@ -1,30 +1,24 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Yoyoroon
+--  NPC: Yoyoroon
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Nashmau/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,YOYOROON_SHOP_DIALOG);
 
-stock = {0x08BF,4940,        -- Tension Spring
+    player:showText(npc,YOYOROON_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x08BF,4940,        -- Tension Spring
      0x08C0,9925,        -- Inhibitor
      0x08C2,9925,        -- Mana Booster
      0x08C3,4940,        -- Loudspeaker
@@ -40,22 +34,14 @@ stock = {0x08BF,4940,        -- Tension Spring
      0x08D8,9925,        -- Damage Gauge
      0x08DA,4940,        -- Mana Tank
      0x08DC,9925}        -- Mana Conserver
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

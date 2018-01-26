@@ -1,28 +1,20 @@
 -----------------------------------
---  Area: Maze of Shakhrami
---  NPC:  Ahko Mhalijikhari
---  Type: Quest NPC
+-- Area: Maze of Shakhrami
+--  NPC: Ahko Mhalijikhari
+-- Type: Quest NPC
 -- !pos -344.617 -12.226 -166.233 198
 --  61  62  0x003f  64  65
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     --player:startEvent(64);
@@ -40,18 +32,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

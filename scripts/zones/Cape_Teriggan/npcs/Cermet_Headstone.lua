@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Wind Headstone)
 -- !pos -107 -8 450 113
 -----------------------------------

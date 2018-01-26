@@ -12,9 +12,6 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -25,14 +22,10 @@ function onInitialize(zone)
     zone:registerRegion(5,73,-7,-137,95,-3,-115); -- entering Shaharat Teahouse
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 46) then
             cs = 0x00c9;
         elseif (prevZone == 59) then
@@ -54,17 +47,9 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- afterZoneIn
------------------------------------
-
 function afterZoneIn(player)
     player:entityVisualPacket("1pb1");
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
@@ -121,16 +106,8 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onTransportEvent
------------------------------------
 
 function onTransportEvent(player,transport)
     if (transport == 46 or transport == 47) then
@@ -139,10 +116,6 @@ function onTransportEvent(player,transport)
         player:startEvent(203);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -163,10 +136,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -218,7 +187,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3093) then
         player:completeMission(TOAU,FINDERS_KEEPERS);
         player:setTitle(KARABABAS_BODYGUARD);
-        player:addMission(TOAU,SHIELD_OF_DIPLOMACY);    
+        player:addMission(TOAU,SHIELD_OF_DIPLOMACY);
     elseif (csid == 3095) then
         player:completeMission(TOAU,SOCIAL_GRACES);
         player:needToZone(true);

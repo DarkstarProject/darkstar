@@ -6,20 +6,13 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 require("scripts/globals/settings");
-
------------------------------------
--- OnMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- OnMobDeath Action
------------------------------------
 function onMobDeath(mob, player, isKiller)
     if (player:getVar("TheRequiemCS") == 3) then
         player:setVar("TheRequiemYumKilled",1);

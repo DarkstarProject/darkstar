@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Tavnazian Safehold
+-- Area: Tavnazian Safehold
 --   NPC: Morangeart
---  Type: ENM Quest Activator
+-- Type: ENM Quest Activator
 -- @zone 26
 -- !pos -74.308 -24.782 -28.475
 --
@@ -10,33 +10,17 @@
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(520);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

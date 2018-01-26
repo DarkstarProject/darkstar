@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria [S]
--- NPC:  Moogle
+--  NPC: Moogle
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs")

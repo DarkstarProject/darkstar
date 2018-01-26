@@ -7,26 +7,15 @@ package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 require("scripts/globals/dynamis");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, beaucedineHydraList, 5);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();

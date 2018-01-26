@@ -1,25 +1,17 @@
 ----------------------------------
---  Area: Meriphataud_Mountains_[S]
+-- Area: Meriphataud_Mountains_[S]
 --  NPC: Indescript Markings
---  Type: Quest
+-- Type: Quest
 -- !pos -629.179 -49.002 -429.104 1 83
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -39,19 +31,10 @@ function onTrigger(player,npc)
     end
 end;
 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

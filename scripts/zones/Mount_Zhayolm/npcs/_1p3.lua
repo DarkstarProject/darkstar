@@ -3,25 +3,16 @@
 -- Door: Runic Seal
 -- !pos 703 -18 382 61
 -----------------------------------
-
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
 require("scripts/zones/Mount_Zhayolm/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
@@ -36,10 +27,6 @@ function onTrigger(player,npc)
         player:messageSpecial(NOTHING_HAPPENS);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -80,10 +67,6 @@ function onEventUpdate(player,csid,option,target)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -92,10 +75,6 @@ function onEventFinish(player,csid,option,target)
         player:setPos(0,0,0,0,63);
     end
 end;
-
------------------------------------
--- onInstanceLoaded
------------------------------------
 
 function onInstanceCreated(player,target,instance)
     if (instance) then

@@ -2,11 +2,7 @@
 -- Area: West Ronfaure
 --  MOB: Carrion Worm
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,22 +1,14 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Oaken door (Gilgamesh's room)
+--  NPC: Oaken door (Gilgamesh's room)
 -- !pos 97 -7 -12 252
 -----------------------------------
-
 require("scripts/globals/missions");
-require("scripts/globals/settings")
-
------------------------------------
--- onTrade Action
+require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -30,7 +22,7 @@ function onTrigger(player,npc)
       if (player:hasItem(i)) then
          DMEarrings = DMEarrings + 1;
       end
-   end
+    end
 
     if (ZilartMission == WELCOME_TNORG) then
         player:startEvent(2); -- Zilart Missions 2
@@ -54,18 +46,10 @@ end;
 -- 0x00af  0x0000  2  3  0x0004  0x0007  0x0008  0x0009  0x000a  98  0x0063  0x001d  0x000c  0x000d
 -- 0x0092  0x009e  0x00a4  169  0x00aa  0x00ab  172  0x00ad  0x00b0  0x00b1  0x00e8  0x00e9  0x00ea
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 printf("CSID: %u",csid);

@@ -3,19 +3,12 @@
 --  MOB: Galgalim
 -- Involved in Quest: The Puppet Master
 -----------------------------------
-
 require("scripts/globals/settings");
-
------------------------------------
--- OnMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- OnMobDeath Action
------------------------------------
 function onMobDeath(mob, player, isKiller)
 
     player:setVar("BCNM_Killed",1);
@@ -27,18 +20,10 @@ function onMobDeath(mob, player, isKiller)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);

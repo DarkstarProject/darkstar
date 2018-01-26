@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Castle Oztroja
---  NPC:  Antiqix
---  Type: Dynamis Vendor
+-- Area: Castle Oztroja
+--  NPC: Antiqix
+-- Type: Dynamis Vendor
 -- !pos -207.835 -0.751 -25.498 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
@@ -34,6 +34,7 @@ local maps = {
     [MAP_OF_DYNAMIS_QUFIM]      = 10000,
     [MAP_OF_DYNAMIS_TAVNAZIA]   = 20000,
 }
+-----------------------------------
 
 function onTrade(player,npc,trade)
     local gil = trade:getGil();
@@ -146,7 +147,7 @@ function onEventFinish(player,csid,option)
             player:addItem(currency[2]);
             player:messageSpecial(ITEM_OBTAINED,currency[2]);
         end
-        
+
     -- hundos to 10k pieces
     elseif (csid == 56) then
         if (player:getFreeSlotsCount() == 0) then
@@ -156,7 +157,7 @@ function onEventFinish(player,csid,option)
             player:addItem(currency[3]);
             player:messageSpecial(ITEM_OBTAINED,currency[3]);
         end
-        
+
     -- 10k pieces to hundos
     elseif (csid == 58) then
         local slotsReq = math.ceil(CURRENCY_EXCHANGE_RATE / 99);
@@ -186,5 +187,5 @@ function onEventFinish(player,csid,option)
         end
         player:setLocalVar("hundoItemBought", 0);
 
-   end
+    end
 end;

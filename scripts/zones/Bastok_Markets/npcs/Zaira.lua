@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batok Markets
--- NPC: Zaira
+--  NPC: Zaira
 -- Standard Merchant NPC
 -- !pos -217.316 -2.824 49.235 235
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape

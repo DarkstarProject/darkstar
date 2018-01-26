@@ -1,38 +1,24 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Ihsan
+--  NPC: Ihsan
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-player:startEvent(16);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(16);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

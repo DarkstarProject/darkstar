@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Phamelise
+--  NPC: Phamelise
 -- Only sells when San d'Oria controlls Zulkheim Region
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -11,9 +11,6 @@ require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +24,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(ZULKHEIM);
@@ -40,31 +33,25 @@ function onTrigger(player,npc)
     else
         player:showText(npc,PHAMELISE_OPEN_DIALOG);
 
-        local stock = {0x1114,44,       --Giant Sheep Meat
-                         0x026e,44,       --Dried Marjoram
-                         0x0262,55,       --San d'Orian Flour
-                         0x0263,36,       --Rye Flour
-                         0x0730,1840, --Semolina
-                         0x110e,22,       --La Theine Cabbage
-                         0x111a,55}       --Selbina Milk
-
+        local stock =
+        {
+            4372,    44, -- Giant Sheep Meat
+            622,     44, -- Dried Marjoram
+            610,     55, -- San d'Orian Flour
+            611,     36, -- Rye Flour
+            1840,  1840, -- Semolina
+            4366,    22, -- La Theine Cabbage
+            4378,    55  -- Selbina Milk
+        }
         showShop(player,SANDORIA,stock);
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

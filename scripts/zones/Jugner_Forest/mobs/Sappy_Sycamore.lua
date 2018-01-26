@@ -3,27 +3,17 @@
 --  NM:  Sappy Sycamore
 -----------------------------------
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
     mob:addMod(MOD_SLEEPRES,20);
     mob:addMod(MOD_BINDRES,20);
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to slow on melee.
     if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_SLOW) == true)) then
@@ -35,16 +25,8 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());

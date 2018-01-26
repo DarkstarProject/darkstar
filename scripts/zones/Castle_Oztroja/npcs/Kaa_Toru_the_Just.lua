@@ -1,27 +1,17 @@
 -----------------------------------
---  Area: Castle Oztroja
---  NPC:  Kaa Toru the Just
---  Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
+-- Area: Castle Oztroja
+--  NPC: Kaa Toru the Just
+-- Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
 -- !pos -100.188 -62.125 145.422 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then
@@ -31,18 +21,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

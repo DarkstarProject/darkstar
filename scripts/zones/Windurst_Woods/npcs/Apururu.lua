@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Apururu
+--  NPC: Apururu
 -- Involved in Quests: The Kind Cardian, Can Cardians Cry?
 -- @zone 241
 -- !pos -11 -2 13
@@ -18,9 +18,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Windurst_Woods/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,10 +41,6 @@ local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
 
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -120,18 +113,10 @@ local MissionStatus = player:getVar("MissionStatus");
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

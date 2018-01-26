@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Monastic Cavern
--- NPC:  Altar
+--  NPC: Altar
 -- Involved in Quests: The Circle of Time
 -- !pos 108 -2 -144 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Monastic_Cavern/MobIDs");
 require("scripts/zones/Monastic_Cavern/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
@@ -42,16 +34,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- CIRCLE OF TIME

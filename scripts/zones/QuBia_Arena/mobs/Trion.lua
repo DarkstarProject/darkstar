@@ -7,18 +7,11 @@ package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/QuBia_Arena/TextIDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 30);
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
@@ -35,10 +28,6 @@ function onMobSpawn(mob)
     end);
 end;
 
------------------------------------
--- onMobRoam Action
------------------------------------
-
 function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
     local ready = mob:getLocalVar("ready");
@@ -52,10 +41,6 @@ function onMobRoam(mob)
         mob:setLocalVar("wait", wait+3);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mob:getBattlefield():lose();

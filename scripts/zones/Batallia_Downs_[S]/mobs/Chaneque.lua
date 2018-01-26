@@ -4,18 +4,12 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(mob,target,damage)
     local chance = 10;
 
@@ -36,10 +30,6 @@ function onAdditionalEffect(mob,target,damage)
         return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, mob:addHP(power);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

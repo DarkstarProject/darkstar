@@ -1,21 +1,13 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Latifah
+--  NPC: Latifah
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
@@ -27,18 +19,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

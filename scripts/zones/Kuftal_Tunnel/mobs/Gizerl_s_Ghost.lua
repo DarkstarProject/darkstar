@@ -2,11 +2,7 @@
 -- Area: Kuftal Tunnel
 --  MOB: Gizerl's Ghost
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

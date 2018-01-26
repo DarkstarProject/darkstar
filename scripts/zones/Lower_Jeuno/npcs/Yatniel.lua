@@ -1,17 +1,13 @@
 -----------------------------------
---  Area: Lower Jeuno
+-- Area: Lower Jeuno
 --   NPC: Yatniel
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 245
 -- !pos -66.817 -7 -126.594
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +19,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -43,18 +35,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,23 +1,17 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --   NPC: Umberto
---  Type: Quest NPC
+-- Type: Quest NPC
 -- Involved in Quest: Too Many Chefs
 -- !pos -56.896 -5 -134.267 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
@@ -27,18 +21,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

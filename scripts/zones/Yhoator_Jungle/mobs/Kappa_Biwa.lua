@@ -3,19 +3,11 @@
 --  MOB: Kappa Biwa
 -- Involved in Quest: True will
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

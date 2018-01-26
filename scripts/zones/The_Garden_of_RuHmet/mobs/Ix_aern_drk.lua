@@ -6,14 +6,10 @@
 -- !pos -560 5.00 239 35
 -- !pos -600 5.00 440 35
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -56,10 +52,6 @@ function onMobInitialize(mob)
     end)
 end;
 
------------------------------------
--- onMobSpawn
------------------------------------
-
 function onMobSpawn(mob)
     mob:AnimationSub(1);
     mob:setMobMod(MOBMOD_SCRIPTED_2HOUR,1);
@@ -74,18 +66,10 @@ function onMobSpawn(mob)
     end
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob)
     mob:setLocalVar("bloodMode", 0);
     mob:setLocalVar("bloodTime", os.time() + 120);
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob)
 
@@ -105,16 +89,8 @@ function onMobFight(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     mob:setLocalVar("AERN_RERAISES",0);

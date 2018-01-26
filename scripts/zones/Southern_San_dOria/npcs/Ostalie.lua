@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Ostalie
+--  NPC: Ostalie
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/globals/conquest");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,12 +25,8 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
+
     player:showText(npc,OSTALIE_SHOP_DIALOG);
 
     local stock = {0x1020,4445,1,    -- Ether
@@ -52,7 +44,7 @@ function onTrigger(player,npc)
              0x025D,180,3,    -- Pickaxe
              0x3138,216,3,    -- Robe
              0x3238,172,3}    -- Slops
-             
+
     rank = getNationRank(NATION_SANDORIA);
 
         if (rank ~= 1) then
@@ -68,20 +60,12 @@ function onTrigger(player,npc)
 
     showNationShop(player, NATION_SANDORIA, stock);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

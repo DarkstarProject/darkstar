@@ -1,41 +1,25 @@
 -----------------------------------
--- Area:  King Ranperre's Tomb
--- NPC:   ??? (qm1)
+-- Area: King Ranperre's Tomb
+--  NPC: ??? (qm1)
 -- Notes: Used to teleport down the stairs
 -- !pos -81 -1 -97 190
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/King_Ranperres_Tomb/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(10);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -3,7 +3,6 @@
 --  MOB: Korroloka Leech
 --  Involved in Quest: Ayame and Kaede
 -----------------------------------
-
 require("scripts/zones/Korroloka_Tunnel/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");

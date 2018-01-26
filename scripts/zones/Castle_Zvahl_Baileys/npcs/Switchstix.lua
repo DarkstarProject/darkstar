@@ -1,10 +1,11 @@
 -----------------------------------
---  Area: Castle Zvahl Baileys
+-- Area: Castle Zvahl Baileys
 --   NPC: Switchstix
---  Type: Standard NPC
+-- Type: Standard NPC
 -- !pos 386.091 -13 -17.399 161
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
@@ -98,19 +99,19 @@ function hasRelic(entity,checktype)
    -- Type 1 == Player is triggering NPC
    -- Type 2 == Player is trading an item
 
-   if checktype == 1 then
+    if checktype == 1 then
       for i=1, #relics, 2 do -- Step through the array grabbing every second (2 value, and see if it matches that itemid.
          if (entity:hasItem(relics[i],LOC_INVENTORY)) then -- Specifically checks inventory, so that items in other containers (mog safe, satchel, etc) will be ignored.
             return relics[i];
          end
       end
-   elseif checktype == 2 then
+    elseif checktype == 2 then
       for i=1, #relics,2 do
          if (entity:hasItemQty(relics[i],1)) then
             return relics[i];
          end
       end
-   end
+    end
 end;
 
 function getRelicParameters(itemid)
@@ -118,12 +119,8 @@ function getRelicParameters(itemid)
       if (relics[i] == itemid) then -- If you've found the right itemid, return the array stored in the next value.
          return relics[i + 1];
       end
-   end
+    end
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
    local itemid = hasRelic(trade,2);
@@ -137,7 +134,7 @@ function onTrade(player,npc,trade)
 
    -- Starting a stage upgrade.
    -- No relics in progress, found a relic in the trade with other items, and (doesn't already own next stage, or (owns it and has acknowledged this is a bad idea))
-   if (currentRelic == 0 and itemid ~= nil and gil == 0 and count > 1 and (player:hasItem(itemid+1) == false or (player:hasItem(itemid+1) == true and relicDupe == 1))) then
+    if (currentRelic == 0 and itemid ~= nil and gil == 0 and count > 1 and (player:hasItem(itemid+1) == false or (player:hasItem(itemid+1) == true and relicDupe == 1))) then
       eventParams = getRelicParameters(itemid);
 
          -- Stage 1->2 or 2->3, 3 items + relic itself
@@ -162,15 +159,15 @@ function onTrade(player,npc,trade)
          end
 
    -- Already owns the next stage and hasn't acknowledged this is a bad idea yet.
-   elseif (itemid ~= nil and relicDupe ~= 1 and player:hasItem(itemid+1) == true) then
+    elseif (itemid ~= nil and relicDupe ~= 1 and player:hasItem(itemid+1) == true) then
       player:startEvent(20,itemid);
 
    -- Trading a new relic with one already in progress.  Offer cancellation.
-   elseif (currentRelic ~= 0 and itemid ~= nil) then
+    elseif (currentRelic ~= 0 and itemid ~= nil) then
       player:startEvent(87);
 
    -- Has turned in a relic and items, has not turned in currency (no wait), so they must be bringing currency, but not 10,000 piece
-   elseif (currentRelic ~= 0 and relicWait == 0 and gil == 0 and itemid~=1451 and itemid~=1454 and itemid~=1457) then
+    elseif (currentRelic ~= 0 and relicWait == 0 and gil == 0 and itemid~=1451 and itemid~=1454 and itemid~=1457) then
       eventParams = getRelicParameters(currentRelic);
 
       -- Has currencyamount of currencytype, and nothing additional.  See below for Aegis, since it's different.
@@ -207,13 +204,9 @@ function onTrade(player,npc,trade)
          player:tradeComplete();
          player:startEvent(13, currentRelic, eventParams[5], eventParams[6], 0, 0, 0, 0, eventParams[8]);
       end
-   end
+    end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
    local itemid = hasRelic(player,1);
@@ -223,7 +216,7 @@ function onTrigger(player,npc)
    local relicConquest = player:getVar("RELIC_CONQUEST_WAIT");
 
    -- Working on a relic, waiting on completion, and time hasn't passed yet, so tell them to wait longer.
-   if (currentRelic ~= 0 and relicWait ~= 0 and relicWait > os.time()) then
+    if (currentRelic ~= 0 and relicWait ~= 0 and relicWait > os.time()) then
       eventParams = getRelicParameters(currentRelic);
 
       -- Determine cutscene to play by Stage
@@ -236,7 +229,7 @@ function onTrigger(player,npc)
       end
 
    -- Working on a relic, waiting on completion, and time has passed.
-   elseif (currentRelic ~= 0 and relicWait ~= 0 and relicWait <= os.time()) then
+    elseif (currentRelic ~= 0 and relicWait ~= 0 and relicWait <= os.time()) then
       eventParams = getRelicParameters(currentRelic);
 
       -- Determine the cutscene to play by Stage
@@ -249,16 +242,16 @@ function onTrigger(player,npc)
       end
 
    -- Working on a relic and not waiting, so currency is due
-   elseif (currentRelic ~= 0 and relicWait == 0) then
+    elseif (currentRelic ~= 0 and relicWait == 0) then
       eventParams = getRelicParameters(currentRelic);
       player:startEvent(12, currentRelic, eventParams[5], eventParams[6], 0, 0, 0, 0, eventParams[8]);
 
    -- No relic, or waiting until next conquest tally.
-   elseif (itemid == nil or relicConquest > os.time()) then
+    elseif (itemid == nil or relicConquest > os.time()) then
       player:startEvent(10);
 
    -- Found a relic and conquest tally is not due (0, or passed), time to explain a stage
-   elseif (itemid ~= nil and relicConquest <= os.time()) then
+    elseif (itemid ~= nil and relicConquest <= os.time()) then
       eventParams = getRelicParameters(itemid);
 
       -- Determine stage based on eventParams[7]
@@ -295,19 +288,15 @@ function onTrigger(player,npc)
    -- Should never happen, but should be here just in case.
    else
       player:startEvent(10);
-   end
+    end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
    -- printf("Update CSID: %u",csid);
    -- printf("Update RESULT: %u",option);
 
    -- Handles the displayed currency types and amounts for Aegis Stage 1->2, 2->3, and 3->4 based on option.
-   if ((csid == 11 or csid == 12 or csid == 13) and option ~= 0) then
+    if ((csid == 11 or csid == 12 or csid == 13) and option ~= 0) then
       if (option == 1) then
          player:updateEvent(15066, 1453, 1, 1456, 1, 1450, 1);
       elseif (option == 2) then
@@ -315,12 +304,8 @@ function onEventUpdate(player,csid,option)
       elseif (option == 3) then
          player:updateEvent(15068, 1453, 20, 1456, 20, 1450, 20);
       end
-   end
+    end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
    -- printf("Finish CSID: %u",csid);
@@ -329,18 +314,18 @@ function onEventFinish(player,csid,option)
    local reward = player:getVar("RELIC_IN_PROGRESS");
 
    -- User is cancelling a relic.  Null everything out, it never happened.
-   if (csid == 87 and option == 666) then
+    if (csid == 87 and option == 666) then
       player:setVar("RELIC_IN_PROGRESS",0);
       player:setVar("RELIC_DUE_AT",0);
       player:setVar("RELIC_MAKE_ANOTHER",0);
       player:setVar("RELIC_CONQUEST_WAIT",0);
 
    -- User is okay with making a relic they cannot possibly accept
-   elseif (csid == 20 and option == 1) then
+    elseif (csid == 20 and option == 1) then
       player:setVar("RELIC_MAKE_ANOTHER",1);
 
    -- Picking up a finished relic stage 1>2 and 2>3.
-   elseif ((csid == 16 or csid == 19) and reward ~= 0) then
+    elseif ((csid == 16 or csid == 19) and reward ~= 0) then
       if (player:getFreeSlotsCount() < 1) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward+1);
       else
@@ -352,7 +337,7 @@ function onEventFinish(player,csid,option)
          player:setVar("RELIC_CONQUEST_WAIT",getConquestTally());
       end
    -- Picking up a finished relic stage 3>4.
-   elseif (csid == 52 and reward ~= 0) then
+    elseif (csid == 52 and reward ~= 0) then
       if (player:getFreeSlotsCount() < 1) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward+1);
       else
@@ -365,7 +350,7 @@ function onEventFinish(player,csid,option)
       end
 
    -- Stage 4 cutscenes
-   elseif ((csid >= 68 and csid <= 82) or csid == 86) then
+    elseif ((csid >= 68 and csid <= 82) or csid == 86) then
       player:setVar("RELIC_CONQUEST_WAIT",0);
       switch (csid): caseof
       {
@@ -386,5 +371,5 @@ function onEventFinish(player,csid,option)
          [80] = function (x) player:setVar("RELIC_IN_PROGRESS",18347); end, -- Yoichinoyumi
          [86] = function (x) player:setVar("RELIC_IN_PROGRESS",15069); end, -- Aegis
       }
-   end
+    end
 end;

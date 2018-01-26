@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Norg
+-- Area: Norg
 --   NPC: Hayris
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 252
 -- !pos 45.296 -7.282 12.267
 --
@@ -10,33 +10,17 @@
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(215);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

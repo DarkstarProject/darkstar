@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Vunkerl Inlet (S) (I-6)
--- NPC: Leadavox
+--  NPC: Leadavox
 -- Involved in Quests
 -- !pos 206 -32 316
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +18,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -37,10 +29,6 @@ function onTrigger(player,npc)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

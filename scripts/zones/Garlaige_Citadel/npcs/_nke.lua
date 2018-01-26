@@ -1,16 +1,12 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- NPC: Strange Apparatus
+--  NPC: Strange Apparatus
 -- !pos 255 0 19 200
 -----------------------------------
-
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Garlaige_Citadel/TextIDs");
 require("scripts/globals/strangeapparatus");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,10 +38,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local docStatus = 0; -- Assistant
@@ -57,10 +49,6 @@ function onTrigger(player,npc)
 
     player:startEvent(20, docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -80,10 +68,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

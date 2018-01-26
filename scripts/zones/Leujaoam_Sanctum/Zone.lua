@@ -3,20 +3,12 @@
 -- Zone: Leujaoam_Sanctum
 --
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Leujaoam_Sanctum/IDs");
-
------------------------------------
---  onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
-
------------------------------------
--- onInstanceZoneIn
------------------------------------
 
 function onInstanceZoneIn(player,instance)
     local cs = -1;
@@ -30,25 +22,13 @@ function onInstanceZoneIn(player,instance)
     player:addTempItem(5343);
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -57,10 +37,6 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,79);
     end
 end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
 
 function onInstanceLoadFailed()
     return 79;

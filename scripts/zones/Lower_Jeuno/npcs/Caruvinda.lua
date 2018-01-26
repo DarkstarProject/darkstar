@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Caruvinda
+--  NPC: Caruvinda
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/armorstorage"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
@@ -21,9 +20,6 @@ G3 = 0;
 G4 = 0;
 G5 = 0;
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
    for SetId = 1,ArraySize,11 do
       TradeCount = trade:getItemCount();
@@ -56,12 +52,9 @@ function onTrade(player,npc,trade)
             end;
          end;
       end;
-   end;
+    end;
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
    CurrGil = player:getGil();
    for KeyItem = 11,ArraySize,11 do
@@ -78,29 +71,23 @@ function onTrigger(player,npc)
             G5 = G5 + StorageArray[KeyItem - 8];
          end;
       end;
-   end;
+    end;
    player:startEvent(Withdrawl,G1,G2,G3,G4,CurrGil,G5);
-end; 
+end;
 
------------------------------------
--- onEventUpdate
------------------------------------
 function onEventUpdate(player,csid,option)
-   if (csid == Withdrawl) then
+    if (csid == Withdrawl) then
       player:updateEvent(StorageArray[option * 11 - 6],
       StorageArray[option * 11 - 5],
       StorageArray[option * 11 - 4],
       StorageArray[option * 11 - 3],
       StorageArray[option * 11 - 2],
       StorageArray[option * 11 - 1]);
-   end;
+    end;
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
-   if (csid == Withdrawl) then
+    if (csid == Withdrawl) then
        if (option > 0 and option <= StorageArray[ArraySize] - 10) then
          if (player:getFreeSlotsCount() >= StorageArray[option * 11 - 7]) then
             for Item = 2,6,1 do
@@ -118,9 +105,9 @@ function onEventFinish(player,csid,option)
                end;
             end;
          end;
-      end;        
-   end;
-   if (csid == Deposit) then
+      end;
+    end;
+    if (csid == Deposit) then
       player:tradeComplete();
-   end;
+    end;
 end;

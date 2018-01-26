@@ -2,11 +2,7 @@
 -- Area: Beaucedine Glacier
 --  MOB: Goblin Pathfinder
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -2,11 +2,7 @@
 -- Area: Rolanberry Fields
 --  MOB: Garnet Quadav
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

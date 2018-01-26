@@ -1,32 +1,26 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Hagakoff
+--  NPC: Hagakoff
 -- Standard Merchant NPC
 -- Partitionally Implemented
 -- Difficult Shop Script needed
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,HAGAKOFF_SHOP_DIALOG);
 
-stock = {0x400f,15448,        -- Katars (Not available if beastmen have the AC.)
+    player:showText(npc,HAGAKOFF_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x400f,15448,        -- Katars (Not available if beastmen have the AC.)
      0x4010,67760,        -- Darksteel Katars
      0x4023,45760,        -- Patas (Not available if beastmen have the AC.)
      0x4040,156,        -- Bronze Dagger
@@ -43,22 +37,14 @@ stock = {0x400f,15448,        -- Katars (Not available if beastmen have the AC.)
      0x4280,72,            -- Ash Club
      0x4281,1740,        -- Chestnut Club (Not available if beastmen have the AC.)
      0x4753,238}        -- Angon
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

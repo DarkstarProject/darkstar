@@ -1,16 +1,12 @@
 -----------------------------------
--- Area:  Pso'xja
--- NPC:   ??? (qm1)
+-- Area: Pso'xja
+--  NPC: ??? (qm1)
 -- Notes: Used to spawn Golden-Tongued Culberry
 -- !pos -270.063 31.395 256.812 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/PsoXja/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,26 +25,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(BROKEN_KNIFE);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

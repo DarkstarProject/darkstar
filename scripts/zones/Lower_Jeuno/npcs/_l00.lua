@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Streetlamp
+--  NPC: Streetlamp
 -- Involved in Quests: Community Service
 -- !pos -107 0 -158 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/NPCIDs");
@@ -18,16 +17,8 @@ local lampNum = 0;
 local lampId = lampIdOffset + lampNum;
 local cs = lampCsOffset + lampNum;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local hour = VanadielHour();
@@ -58,18 +49,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if csid == cs and option == 1 then

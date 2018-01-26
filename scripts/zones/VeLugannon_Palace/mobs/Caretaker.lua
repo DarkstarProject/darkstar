@@ -2,11 +2,7 @@
 -- Area: Ve'Lugannon Palace
 --  MOB: Caretaker
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

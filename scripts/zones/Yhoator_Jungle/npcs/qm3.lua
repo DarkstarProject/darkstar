@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  ??? (qm3)
+--  NPC: ??? (qm3)
 -- Involved in Quest: True will
 -- !pos 203 0.1 82 124
 -----------------------------------
@@ -10,7 +10,6 @@ require("scripts/zones/Yhoator_Jungle/TextIDs");
 require("scripts/zones/Yhoator_Jungle/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
 function onTrade(player,npc,trade)
 end;
 

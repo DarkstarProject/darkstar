@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Port Windurst
+-- Area: Port Windurst
 --   NPC: Boronene
---  Type: Moghouse Renter
+-- Type: Moghouse Renter
 -- @zone 240
 -- !pos 201.651 -13 229.584
 --
@@ -10,33 +10,17 @@
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(638);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

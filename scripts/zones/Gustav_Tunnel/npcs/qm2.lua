@@ -9,18 +9,11 @@ package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 require("scripts/zones/Gustav_Tunnel/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
 -----------------------------------
--- onTrade Action
-----------------------------------
 
 function onTrade(player,npc,trade)
 
 end;
-
-----------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH) then
@@ -47,18 +40,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

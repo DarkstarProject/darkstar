@@ -1,16 +1,12 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- NPC: Strange Apparatus
+--  NPC: Strange Apparatus
 -- !pos 375 20 -259 198
 -----------------------------------
-
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/strangeapparatus");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,10 +38,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local docStatus = 0; -- Assistant
@@ -57,10 +49,6 @@ function onTrigger(player,npc)
 
     player:startEvent(53, docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -80,10 +68,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,29 +1,20 @@
 -----------------------------------
---  Area: Beaucedine Glacier
---  NPC:  Torino-Samarino
---  Type: Quest NPC
+-- Area: Beaucedine Glacier
+--  NPC: Torino-Samarino
+-- Type: Quest NPC
 --     Involved in Quests: Curses, Foiled A-Golem!?, Tuning Out
 -- !pos 105 -20 140 111
 -----------------------------------
-
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -51,18 +42,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
