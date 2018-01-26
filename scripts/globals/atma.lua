@@ -205,7 +205,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_TP_BONUS, 20);
     elseif (pwr == 55) then -- ATMA_OF_THE_BLINDING_HORN
         target:addMod(MOD_CONSERVE_MP, 20);
-        target:addMod(MOD_THUNDERATT, 30);F
+        target:addMod(MOD_THUNDERATT, 30);
         target:addMod(MOD_DMGMAGIC, -20);
     elseif (pwr == 56) then -- ATMA_OF_THE_DEMONIC_LASH
         target:addMod(MOD_ATT, 40);
