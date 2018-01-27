@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- NPC:  ??? (qm2)
+--  NPC: ??? (qm2)
 -- Involved In Quest: Ayame and Kaede
 -- !pos -208 -9 176 173
 -----------------------------------
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Korroloka_Tunnel/TextIDs");
 require("scripts/zones/Korroloka_Tunnel/MobIDs");
 require("scripts/globals/settings");

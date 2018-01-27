@@ -2,11 +2,7 @@
 -- Area: Qufim Island
 --  MOB: Land Worm
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

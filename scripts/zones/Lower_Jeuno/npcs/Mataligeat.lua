@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Mataligeat
+--  NPC: Mataligeat
 -- Standard Info NPC
 -- !pos -24 0 -60 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
@@ -47,16 +39,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

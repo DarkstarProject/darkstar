@@ -1,38 +1,25 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Lurouillat
+--  NPC: Lurouillat
 -- @zone 80
 -- !pos 44 2 -35
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-player:startEvent(350);
+    player:startEvent(350);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

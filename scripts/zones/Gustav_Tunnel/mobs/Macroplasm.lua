@@ -7,9 +7,6 @@ package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 require("scripts/zones/Gustav_Tunnel/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

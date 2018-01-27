@@ -1,23 +1,15 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- NPC:  ??? (qm1) - Morion Worm spawn
+--  NPC: ??? (qm1) - Morion Worm spawn
 -- !pos 254.652 -6.039 20.878 173
 -----------------------------------
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Korroloka_Tunnel/TextIDs");
-
------------------------------------
--- onSpawn Action
 -----------------------------------
 
 function onSpawn(npc)
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -34,10 +26,6 @@ function onTrade(player,npc,trade)
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(MORION_WORM_1);

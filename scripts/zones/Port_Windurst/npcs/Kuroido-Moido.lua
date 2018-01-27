@@ -13,34 +13,27 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     MakingAmends = player:getQuestStatus(WINDURST,MAKING_AMENDS); --First quest in series
     MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS); --Second quest in series
     WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS); --Third and final quest in series
     pfame = player:getFameLevel(WINDURST);
-    needToZone = player:needToZone();    
+    needToZone = player:needToZone();
     BrokenWand = player:hasKeyItem(128);
-    
+
     if (MakingAmends == QUEST_ACCEPTED) then -- MAKING AMENDS: During Quest
-        player:startEvent(276); 
-    elseif (MakingAmends == QUEST_COMPLETED and MakingAmens ~= QUEST_COMPLETED and WonderWands ~= QUEST_COMPLETED and needToZone) then -- MAKING AMENDS: After Quest  
-        player:startEvent(279); 
-    elseif (MakingAmends == QUEST_COMPLETED and MakingAmens == QUEST_AVAILABLE) then 
+        player:startEvent(276);
+    elseif (MakingAmends == QUEST_COMPLETED and MakingAmens ~= QUEST_COMPLETED and WonderWands ~= QUEST_COMPLETED and needToZone) then -- MAKING AMENDS: After Quest
+        player:startEvent(279);
+    elseif (MakingAmends == QUEST_COMPLETED and MakingAmens == QUEST_AVAILABLE) then
         if (pfame >=4 and not needToZone) then
             player:startEvent(280); -- Start Making Amens! if prerequisites are met
-        else 
+        else
             player:startEvent(279); -- MAKING AMENDS: After Quest
         end
     elseif (MakingAmens == QUEST_ACCEPTED and not BrokenWand) then -- Reminder for Making Amens!
@@ -58,7 +51,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD) then
         local item = 0;
         local asaStatus = player:getVar("ASA_Status");
-                
+
         -- TODO: Other Enfeebling Kits
         if (asaStatus == 0) then
             item = 2779;
@@ -66,8 +59,8 @@ function onTrigger(player,npc)
             printf("Error: Unknown ASA Status Encountered <%u>", asaStatus);
         end
 
-        -- The Parameters are Item IDs for the Recipe        
-        player:startEvent(858, item, 1134, 2778, 2778, 4099, 2778);        
+        -- The Parameters are Item IDs for the Recipe
+        player:startEvent(858, item, 1134, 2778, 2778, 4099, 2778);
     else
         rand = math.random(1,2);
         if (rand == 1) then
@@ -76,20 +69,12 @@ function onTrigger(player,npc)
             player:startEvent(226);   -- Standard Conversation
         end
     end
-end;     
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

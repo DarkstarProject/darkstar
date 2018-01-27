@@ -6,27 +6,16 @@ package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_UFASTCAST, 30);
     mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
     mob:setMobMod(MOBMOD_SUB_2HOUR, 1);
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
    local mobid = mob:getID()
@@ -38,9 +27,6 @@ function onMobEngaged(mob,target)
     end
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
 function onMobFight(mob,target)
 
     if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
@@ -56,10 +42,6 @@ function onMobFight(mob,target)
         mob:setSpellList(39);
     end
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
 -----------------------------------

@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 require("scripts/zones/King_Ranperres_Tomb/MobIDs");
 require("scripts/globals/missions");

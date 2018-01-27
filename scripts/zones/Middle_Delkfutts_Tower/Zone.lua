@@ -10,9 +10,6 @@ require("scripts/globals/zone");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
-
------------------------------------
---  onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -31,10 +28,6 @@ function onInitialize(zone)
     UpdateTreasureSpawnPoint(17420676);
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -43,19 +36,11 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
-local cs = -1;
+    local cs = -1;
 
 return cs;
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 
@@ -135,28 +120,16 @@ function onRegionEnter(player,region)
 
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 --print("onUpdateCSID: ",csid);
 --print("onUpdateRESULT: ",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---print("onFinishCSID: ",csid);
+    -- printf("onFinishCSID: ",csid);
 --print("onFinishRESULT: ",option);
 
     if (csid <= 11 and option == 1) then

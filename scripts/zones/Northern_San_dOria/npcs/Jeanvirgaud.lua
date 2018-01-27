@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Jeanvirgaud
+--  NPC: Jeanvirgaud
 -- Outpost Teleporter NPC
 -- !pos 111 -0.199 -6 231
 -----------------------------------

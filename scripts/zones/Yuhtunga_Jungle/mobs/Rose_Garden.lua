@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
--- MOB:  Rose Garden
+--  MOB: Rose Garden
 -----------------------------------
-
 require("scripts/zones/Yuhtunga_Jungle/MobIDs");
 
 function disturbMob(mob)

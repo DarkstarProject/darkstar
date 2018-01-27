@@ -1,22 +1,14 @@
 -----------------------------------
 -- Area: Al Zahbi
--- NPC:  Shihu-Danhu
+--  NPC: Shihu-Danhu
 -- Warp NPC
 -- !pos 62.768 -1.98 -51.299 48
 -----------------------------------
-
 require("scripts/globals/besieged");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -28,18 +20,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

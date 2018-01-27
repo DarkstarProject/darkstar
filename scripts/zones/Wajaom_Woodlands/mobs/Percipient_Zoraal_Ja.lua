@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
--- Mob:  Percipient Zoraal Ja
+--  MOB: Percipient Zoraal Ja
 -----------------------------------
 require("scripts/zones/Wajaom_Woodlands/MobIDs");
 

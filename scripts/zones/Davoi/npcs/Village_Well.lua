@@ -1,17 +1,13 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Village Well
+--  NPC: Village Well
 -- Involved in Quest: Under Oath
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Davoi/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,11 +18,7 @@ function onTrade(player,npc,trade)
     else
         player:messageSpecial(A_WELL);
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -38,21 +30,13 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(A_WELL);
     end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

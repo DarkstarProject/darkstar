@@ -1,20 +1,16 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Sedal-Godjal
+--  NPC: Sedal-Godjal
 -- Mini Quest used in : Whence Blows the Wind
 -- !pos 185 -3 -116 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Davoi/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
 
     local CurrentMission = player:getCurrentMission(WINDURST);
@@ -26,10 +22,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -67,18 +59,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

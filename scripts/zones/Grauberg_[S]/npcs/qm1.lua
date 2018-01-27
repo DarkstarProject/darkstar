@@ -1,25 +1,17 @@
 -----------------------------------
---  Area: Grauberg [S]
---  NPC:  ???
+-- Area: Grauberg [S]
+--  NPC: ???
 --  Quest - DNC AF1
 -----------------------------------
 package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/globals/harvesting");
 require("scripts/zones/Grauberg_[S]/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==2) then
@@ -35,17 +27,9 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid==12) then

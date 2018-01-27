@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Raminel
+--  NPC: Raminel
 -- Involved in Quests: Riding on the Clouds
 -- !pos -56 2 -21 230
 -----------------------------------

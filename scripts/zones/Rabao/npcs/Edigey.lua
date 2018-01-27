@@ -1,33 +1,27 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Edigey
+--  NPC: Edigey
 -- Starts and Ends Quest: Don't Forget the Antidote
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     ForgetTheAntidote = player:getQuestStatus(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
-    
-    if ((ForgetTheAntidote == QUEST_ACCEPTED or ForgetTheAntidote == QUEST_COMPLETED) and trade:hasItemQty(1209,1) and trade:getItemCount() == 1) then
-        player:startEvent(4,0,1209); 
-    end
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+    if ((ForgetTheAntidote == QUEST_ACCEPTED or ForgetTheAntidote == QUEST_COMPLETED) and trade:hasItemQty(1209,1) and trade:getItemCount() == 1) then
+        player:startEvent(4,0,1209);
+    end
+end;
 
 function onTrigger(player,npc)
     ForgetTheAntidote = player:getQuestStatus(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
-    
+
     if (ForgetTheAntidote == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 4) then
         player:startEvent(2,0,1209);
     elseif (ForgetTheAntidote == QUEST_ACCEPTED) then
@@ -37,20 +31,12 @@ function onTrigger(player,npc)
     else
         player:startEvent(50);
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -63,14 +49,14 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(262);
         player:addItem(16974); -- Dotanuki
-        player:messageSpecial(ITEM_OBTAINED, 16974); 
+        player:messageSpecial(ITEM_OBTAINED, 16974);
         player:completeQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
-        player:addFame(RABAO,60);  
+        player:addFame(RABAO,60);
     elseif (csid == 4) then --Subsequent completions
         player:tradeComplete();
         player:addGil(GIL_RATE*1800);
         player:messageSpecial(GIL_OBTAINED, 1800);
-        player:addFame(RABAO,30); 
+        player:addFame(RABAO,30);
     end
 
 end;

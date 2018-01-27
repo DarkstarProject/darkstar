@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Kazham
+-- Area: Kazham
 --   NPC: Romaa Mihgo
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 250
 -- !pos 29.000 -13.023 -176.500
 --
@@ -11,15 +11,9 @@ package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -33,18 +27,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

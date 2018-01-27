@@ -9,19 +9,12 @@
 require("scripts/globals/magic");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_GA_CHANCE, 50);
     mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     mob:addMod(MOD_MEVA, 95);
@@ -32,16 +25,8 @@ function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_RAGE, 3600); -- 60 minute rage timer
 end;
 
------------------------------------
--- onMobRoam Action
------------------------------------
-
 function onMobRoam(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
 
@@ -89,10 +74,6 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onAdditionalEffect
------------------------------------
-
 function onAdditionalEffect(mob, player)
     local chance = 40;
     local resist = applyResistanceAddEffect(mob,player,ELE_WATER,EFFECT_POISON);
@@ -111,10 +92,6 @@ function onAdditionalEffect(mob, player)
         return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

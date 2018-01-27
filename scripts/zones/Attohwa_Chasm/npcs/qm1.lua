@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
--- NPC:  ??? (qm1)
+--  NPC: ??? (qm1)
 -- !pos -402.574 3.999 -202.750 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;

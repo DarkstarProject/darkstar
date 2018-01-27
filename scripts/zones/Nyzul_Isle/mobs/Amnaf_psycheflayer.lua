@@ -5,28 +5,17 @@
 require("scripts/zones/Nyzul_Isle/IDs");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     -- mob:setMobMod(MOBMOD_AUTO_SPIKES, 1);
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         mob:showText(mob,NyzulIsle.text.WHEEZE);
     end);
 end;
-
------------------------------------
--- onMobEngaged Action
------------------------------------
 
 function onMobEngaged(mob,target)
     local allies = mob:getInstance():getAllies();
@@ -36,21 +25,14 @@ function onMobEngaged(mob,target)
     mob:showText(mob,NyzulIsle.text.CANNOT_LET_YOU_PASS);
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
 end;
 
------------------------------------
--- onSpikesDamage
--- Amnaf's Ice Spikes from blm spell will process first on retail.
--- In battleutils.cpp the spike effect is checked before trying to process onSpikesDamage()
--- thus no status effect = no proc, but 2 spike effects can't coexist..
------------------------------------
 --[[
 function onSpikesDamage(mob,target,damage)
+    -- Amnaf's Ice Spikes from blm spell will process first on retail.
+    -- In battleutils.cpp the spike effect is checked before trying to process onSpikesDamage()
+    -- thus no status effect = no proc, but 2 spike effects can't coexist..
     local resist = getEffectResistance(target, EFFECT_CURSE_I);
     local rnd = math.random (1,100);
     -- This res check is a little screwy till we get DSP's resistance handling closer to retail.
@@ -66,27 +48,15 @@ function onSpikesDamage(mob,target,damage)
 end;
 ]]
 
------------------------------------
--- onSpellPrecast
------------------------------------
-
 function onSpellPrecast(mob, spell)
     mob:showText(mob,NyzulIsle.text.PHSHOOO);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         mob:showText(mob,NyzulIsle.text.NOT_POSSIBLE);
     end
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local instance = mob:getInstance();

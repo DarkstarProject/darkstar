@@ -1,22 +1,17 @@
 -----------------------------------
---  Area: Southern San d'Oria
---  NPC:  Varchet
---  Type: NPC
+-- Area: Southern San d'Oria
+--  NPC: Varchet
+-- Type: NPC
 -- !pos 116.484 -1 91.554 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local GAME_WON = 0;
 local GAME_LOST = 2;
 local GAME_TIE = 3;
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     if (trade:getGil() == 5 and trade:getItemCount() == 1) then
         player:tradeComplete();
@@ -39,10 +34,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
@@ -53,18 +44,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("U CSID: %u",csid);
     -- printf("U RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("F CSID: %u",csid);

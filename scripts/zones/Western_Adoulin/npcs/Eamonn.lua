@@ -1,23 +1,16 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Eamonn
---  Type: Standard NPC and Quest NPC
+-- Type: Standard NPC and Quest NPC
 --  Starts and Involved with Quests: 'Scaredy-Cats'
 --  @zone 256
 --  !pos -91 3 2 256
 -----------------------------------
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Scaredycats = player:getQuestStatus(ADOULIN, SCAREDYCATS);
@@ -42,16 +35,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if ((csid == 5024) and (option == 1)) then

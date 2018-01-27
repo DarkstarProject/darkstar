@@ -1,21 +1,17 @@
 -----------------------------------
 -- Area: West Sarutabaruta
--- NPC:  Twinkle Tree
+--  NPC: Twinkle Tree
 -- Involved in Quest: To Catch a Falling Star
 --  Note: EventID for Twinkle Tree is unknown. Quest funtions but the full event is not played.
 -- !pos 156.003 -40.753 333.742 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,10 +34,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (VanadielHour() <= 3 and player:getVar("QuestCatchAFallingStar_prog") == 0) then
         player:messageSpecial(FROST_DEPOSIT_TWINKLES);
@@ -51,18 +43,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

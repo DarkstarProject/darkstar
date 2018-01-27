@@ -1,15 +1,11 @@
 -----------------------------------
--- NPC:  Small Keyhole
+--  NPC: Small Keyhole
 -- Area: Sacrarium
 -- !pos 99.772 -1.614 51.545 28
 -----------------------------------
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Sacrarium/TextIDs");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -24,10 +20,6 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(1659,1) and trade:getItemCount() == 1) then
@@ -37,10 +29,6 @@ function onTrade(player,npc,trade)
         -- print(os.time());
     end
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

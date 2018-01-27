@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Deadly Minnow
+--  NPC: Deadly Minnow
 -- Standard Merchant NPC
 -- Involved in Quest: Borghertz's Hands (1st quest only)
 -- @zone 244
@@ -8,20 +8,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -31,7 +23,8 @@ function onTrigger(player,npc)
     else
         player:showText(npc,DEADLYMINNOW_SHOP_DIALOG);
 
-        stock = {0x309A,13179,    --Studded Bandana
+        local stock =
+        {0x309A,13179,    --Studded Bandana
                  0x3089,22800,    --Silver Mask
                  0x308A,47025,    --Banded Helm
                  0x311A,20976,    --Studded Vest
@@ -48,18 +41,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

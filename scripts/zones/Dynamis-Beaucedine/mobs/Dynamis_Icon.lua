@@ -1,11 +1,7 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Dynamis Icon
+--  NPC: Dynamis Icon
 -- Trigger for Wind Pukis respawn
------------------------------------
-
------------------------------------
--- onMobEngaged
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,10 +10,6 @@ function onMobEngaged(mob,target)
     SpawnMob(17326295):updateEnmity(target);
     SpawnMob(17326319):updateEnmity(target);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

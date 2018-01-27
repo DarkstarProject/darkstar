@@ -18,10 +18,6 @@ require("scripts/globals/quests");
 body_list = {12554,13712,12594,13723,12603,13699,12610,13783,12572,12611,13796,12571,13750,12604,13752,12544,13730,12578,12553,12595}
 legs_list = {12829,12800,12866,12809,12810,12850,12828,12859,12837,14243,12838,12867,12827,12836,12860,12851}
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     local BrygidReturns = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST_RETURNS);
     local wantsSubligar = player:getVar("BrygidWantsSubligar");
@@ -47,10 +43,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local BrygidTheStylist = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST);
@@ -82,7 +74,7 @@ function onTrigger(player,npc)
             until(player:canEquipItem(getLegs,false))
             player:setVar("BrygidGetBody",getBody);
             player:setVar("BrygidGetLegs",getLegs);
-            --printf("Body %u Legs %u\n",getBody,getLegs);
+            -- printf("Body %u Legs %u\n",getBody,getLegs);
             player:startEvent(380,BrygidSet,getBody,getLegs,player:getMainJob());
     elseif (BrygidReturns == QUEST_ACCEPTED and body == getBody and legs == getLegs and wantsSubligar == 0) then
         -- Have the right equips, proceed with quest
@@ -105,10 +97,6 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -120,10 +108,6 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(0,option-1,hasBody,canEquip);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

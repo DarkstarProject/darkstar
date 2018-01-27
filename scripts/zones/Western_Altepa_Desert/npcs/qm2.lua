@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Mission: Bastok 6-1
 -- !pos -325 0 -111 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Western_Altepa_Desert/TextIDs");
 require("scripts/zones/Western_Altepa_Desert/MobIDs");
 require("scripts/globals/keyitems");

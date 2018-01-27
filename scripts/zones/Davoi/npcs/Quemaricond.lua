@@ -1,18 +1,19 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Quemaricond
+--  NPC: Quemaricond
 -- Involved in Mission: Infiltrate Davoi
 -- !pos 23 0.1 -23 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Davoi/TextIDs");
 require("scripts/globals/pathfind");
+-----------------------------------
 
-local path = {
+local path =
+{
     20.6, 0, -23,
     46, 0, -19,
     53.5, -1.8, -19,
@@ -32,16 +33,8 @@ function onPath(npc)
     pathfind.patrol(npc, path);
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -55,18 +48,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,npc)
     -- printf("CSID: %u",csid);

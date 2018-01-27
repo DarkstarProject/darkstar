@@ -2,11 +2,7 @@
 -- Area: Sauromugue Champaign
 --  MOB: Yagudo Votary
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

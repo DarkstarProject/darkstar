@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Orez-Ebrez
+--  NPC: Orez-Ebrez
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,OREZEBREZ_SHOP_DIALOG);
@@ -42,23 +35,15 @@ function onTrigger(player,npc)
         0x30D2,  1800,3,     --Cotton Headband
         0x30A0,   151,3,     --Bronze Cap
         0x30A1,  1471,3      --Brass Cap
-    } 
+    }
     showNationShop(player, NATION_WINDURST, stock);
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

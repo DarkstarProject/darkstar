@@ -14,9 +14,6 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/zone");
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
 local itemMap =
 {
     -- itemid, abundance, requirement
@@ -44,9 +41,6 @@ local itemMap =
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
@@ -77,7 +71,6 @@ function onZoneIn( player, prevZone)
 
     return cs;
 end;
-
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();

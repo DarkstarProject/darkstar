@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Washu
+--  NPC: Washu
 -- Involved in Quest: Yomi Okuri
 -- Starts and finishes Quest: Stop Your Whining
 -- !pos 49 -6 15 252
@@ -11,9 +11,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/zones/Norg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,10 +23,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     Whining = player:getQuestStatus(OUTLANDS,STOP_YOUR_WHINING);
@@ -58,18 +51,10 @@ end;
 
 -- 80  21  22  23  24  148  149  150  151  0x00d1  0x00d2  0x00dd  0x00de  0x00df
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

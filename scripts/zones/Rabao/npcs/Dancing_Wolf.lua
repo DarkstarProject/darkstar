@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Rabao
+-- Area: Rabao
 --   NPC: Dancing Wolf
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 247
 -- !pos 7.619 7 81.209
 --
@@ -10,16 +10,8 @@
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 1) then
@@ -34,18 +26,11 @@ else
 player:startEvent(106);
 end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

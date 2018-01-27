@@ -2,11 +2,7 @@
 -- Area: Buburimu Peninsula
 --  MOB: Puffer Pugil
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

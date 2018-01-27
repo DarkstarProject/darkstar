@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Aligi-Kufongi
+--  NPC: Aligi-Kufongi
 -- Title Change NPC
 -- !pos -23 -21 15 26
 -----------------------------------
-
 require("scripts/globals/titles");
 
 local title2 = { TAVNAZIAN_SQUIRE ,PUTRID_PURVEYOR_OF_PUNGENT_PETALS , MONARCH_LINN_PATROL_GUARD , SIN_HUNTER_HUNTER , DISCIPLE_OF_JUSTICE , DYNAMISTAVNAZIA_INTERLOPER ,
@@ -18,33 +17,17 @@ local title5 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(342,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid)

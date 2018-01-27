@@ -3,29 +3,19 @@
 --  MOB: Zeidpart2
 -- Mission 9-2 BASTOK BCNM Fight
 -----------------------------------
-
+require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-require("scripts/globals/settings");
-require("scripts/globals/monstertpmoves");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobRoam
------------------------------------
 function onMobRoam(mob)
     mob:setLocalVar("2hourtime",math.random(20,50));
 end;
 
------------------------------------
--- onMobFight
------------------------------------
 function onMobFight(mob, target)
 
     local zeid = mob:getID();
@@ -46,9 +36,6 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
 function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("2hour",0);
     mob:setLocalVar("2hourtime",0);
@@ -56,16 +43,8 @@ function onMobDeath(mob, player, isKiller)
     DespawnMob(mob:getID()+2);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

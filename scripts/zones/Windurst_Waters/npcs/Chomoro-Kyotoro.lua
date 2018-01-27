@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Chomoro-Kyotoro
+--  NPC: Chomoro-Kyotoro
 -- Involved in Quest: Making the Grade
 -- !pos 133 -5 167 238
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- needs check for TATTERED_TEST_SHEET then sets to var 3
@@ -38,18 +30,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

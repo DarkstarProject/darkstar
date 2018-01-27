@@ -2,11 +2,7 @@
 -- Area: RuAun Gardens
 --  MOB: Eraser (Monster)
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

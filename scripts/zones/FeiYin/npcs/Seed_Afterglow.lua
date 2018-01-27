@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
--- NPC: Seed Afterglow
+--  NPC: Seed Afterglow
 -- !pos -94.342 -15.656 -85.889 204     Red
 -- !pos -52.019 -16.525 38.848 204      Orange
 -- !pos 36.000 -15.000 -35.000 204      Green
@@ -14,21 +14,13 @@
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/FeiYin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local HasMark = player:hasKeyItem(MARK_OF_SEED);
@@ -192,18 +184,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

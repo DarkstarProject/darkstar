@@ -10,16 +10,13 @@ package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Windurst_Walls/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE) == QUEST_ACCEPTED) then 
+    if (player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4370,1) and trade:getItemCount() == 1) then
             local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
-            if (ToBeeOrNotStatus == 10) then 
+            if (ToBeeOrNotStatus == 10) then
                 player:startEvent(69); -- After Honey#1: Clearing throat
             elseif (ToBeeOrNotStatus == 1) then
                 player:startEvent(70); -- After Honey#2: Tries to speak again... coughs
@@ -34,18 +31,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
     local PostmanKOsTwice = player:getQuestStatus(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
     local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
-    
-    if ((player:getFameLevel(WINDURST) >= 2 and PostmanKOsTwice == QUEST_COMPLETED and ToBee == QUEST_AVAILABLE) or (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus == 10)) then 
+
+    if ((player:getFameLevel(WINDURST) >= 2 and PostmanKOsTwice == QUEST_COMPLETED and ToBee == QUEST_AVAILABLE) or (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus == 10)) then
         player:startEvent(64);   -- Just Before Quest Start "Too Bee or Not Too Be" (Speech given with lots of coughing)
-    elseif (ToBee == QUEST_ACCEPTED) then 
+    elseif (ToBee == QUEST_ACCEPTED) then
         if (ToBeeOrNotStatus == 1) then
             player:startEvent(69); -- After Honey#1: Clearing throat
         elseif (ToBeeOrNotStatus == 2) then
@@ -55,8 +48,8 @@ function onTrigger(player,npc)
         elseif (ToBeeOrNotStatus == 4) then
             player:startEvent(74); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
         end
-    elseif (ToBee == QUEST_COMPLETED and player:needToZone()) then    
-        player:startEvent(78); -- ToBee After Quest Finish but before zone (tooth still hurts)        
+    elseif (ToBee == QUEST_COMPLETED and player:needToZone()) then
+        player:startEvent(78); -- ToBee After Quest Finish but before zone (tooth still hurts)
     else
         player:startEvent(299); -- Normal speech
     end
@@ -73,18 +66,10 @@ end;
 --      player:startEvent(75); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
 --      player:startEvent(78); -- ToBee After Quest Finish but before zone (tooth still hurts)
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

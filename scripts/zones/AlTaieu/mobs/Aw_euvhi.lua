@@ -7,24 +7,13 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();

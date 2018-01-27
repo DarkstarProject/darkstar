@@ -4,9 +4,6 @@
 -----------------------------------
 require("scripts/zones/Nyzul_Isle/IDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -41,17 +38,9 @@ function onMobSpawn(mob)
     end);
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob,target)
     mob:showText(mob,NyzulIsle.text.SHALL_BE_JUDGED);
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     -- BG Wiki: "He will use this ability at 50% of his HP and several times again as his health decreases."
@@ -69,19 +58,11 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         mob:showText(mob,NyzulIsle.text.SHALL_KNOW_OBLIVION);
     end
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local instance = mob:getInstance();

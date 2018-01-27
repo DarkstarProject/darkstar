@@ -3,7 +3,6 @@
 --  MOB: Suparna
 -- Involved in Mission: San d'Orian 9-1
 -----------------------------------
-
 require("scripts/zones/Batallia_Downs/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");

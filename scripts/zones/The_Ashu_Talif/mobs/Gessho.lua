@@ -10,17 +10,10 @@ require("scripts/globals/allyassist");
 require("scripts/globals/instance");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
     -- Gessho will engage by himself ~1min in if you stall too long.
@@ -48,10 +41,6 @@ function onMobSpawn(mob)
     end);
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob, target)
     local dialog = mob:getLocalVar("dialog");
 
@@ -60,10 +49,6 @@ function onMobEngaged(mob, target)
         mob:setLocalVar("dialog",1);
     end
 end;
-
------------------------------------
--- onMobRoam Action
------------------------------------
 
 function onMobRoam(mob)
     local ready = mob:getLocalVar("ready");
@@ -74,10 +59,6 @@ function onMobRoam(mob)
     end
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob, target)
     local dialog = mob:getLocalVar("dialog");
 
@@ -86,10 +67,6 @@ function onMobFight(mob, target)
         mob:setLocalVar("dialog",2);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mob:showText(mob,TheAshuTalif.text.SO_I_FALL);

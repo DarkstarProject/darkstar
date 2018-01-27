@@ -2,11 +2,7 @@
 -- Area: Seas Serpent Grotto
 --  MOB: Delta Sahagin
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

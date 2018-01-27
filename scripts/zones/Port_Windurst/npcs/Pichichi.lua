@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Pichichi
+--  NPC: Pichichi
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -32,7 +24,7 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
 
     if (ThePromise == QUEST_COMPLETED) then
         Message = math.random(0,1)
-        
+
         if (Message == 1) then
             player:startEvent(530);
         else
@@ -54,7 +46,7 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
         player:startEvent(411);
     elseif (KnowOnesOnions == QUEST_ACCEPTED) then
         KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
-        
+
         if (KnowOnesOnionsVar == 2) then
             player:startEvent(410);
         else
@@ -67,22 +59,14 @@ ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
     else
         player:startEvent(364);
     end
-   
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

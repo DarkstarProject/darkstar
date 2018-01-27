@@ -6,29 +6,18 @@ require("scripts/globals/fieldsofvalor");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
     -- For its TP drain melee.
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 
     -- Hits especially hard for his level, even by NM standards.
     mob:addMod(MOD_ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
 end;
 
------------------------------------
--- onMobSpawn
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobRoam
------------------------------------
 
 function onMobRoam(mob)
     -- Fairly sure he shouldn't be storing up max TP while idle.
@@ -36,10 +25,6 @@ function onMobRoam(mob)
         mob:setMod(MOD_REGAIN,0);
     end
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
     -- Guesstimating the regain scales from 1-100,
@@ -49,10 +34,6 @@ function onMobFight(mob,target)
         mob:setMod(MOD_REGAIN,utils.clamp(TP,1,100));
     end
 end;
-
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 
 function onAdditionalEffect(mob,target,damage)
     -- wiki just says "29%" so thats what I am using (for now).
@@ -66,18 +47,10 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts for the FoV page? Most NM's do not though.
     checkRegime(player,mob,81,1);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

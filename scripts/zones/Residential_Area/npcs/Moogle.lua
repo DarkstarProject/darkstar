@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Residential Area
--- NPC:  Moogle
+--  NPC: Moogle
 -- Defunct Script - Should not be called by anything anymore
 -- Moogle scripts are in each zone, calling a function from moghouse.lua
 -----------------------------------

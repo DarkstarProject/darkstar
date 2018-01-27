@@ -8,27 +8,16 @@ package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
 require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     mob:addStatusEffectEx(EFFECT_SHOCK_SPIKES,0,60,0,0); -- ~60 damage
     -- TODO: Effect can be stolen, giving a THF (Aura Steal) or BLU (Voracious Trunk) a 60 minute shock spikes effect (unknown potency).
     -- If effect is stolen, he will recast it instantly.
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
    -- Keep pets linked
@@ -54,18 +43,10 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
-
 function onAdditionalEffect(mob,target,damage)
     -- TODO: Additional Effect for ~100 damage (theme suggests enthunder)
     -- Unknown if this can be stolen/dispelled like spikes.  Isn't mentioned, probably not.
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local MotherGlobe = mob:getID();

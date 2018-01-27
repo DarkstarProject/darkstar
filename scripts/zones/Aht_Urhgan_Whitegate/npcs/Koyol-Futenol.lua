@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Koyol-Futenol
+--  NPC: Koyol-Futenol
 -- Title Change NPC
 -- !pos -129 2 -20 50
 -----------------------------------
-
 require("scripts/globals/titles");
 
 local title2 = { DARK_RESISTANT , BEARER_OF_THE_MARK_OF_ZAHAK  , SEAGULL_PHRATRIE_CREW_MEMBER , PROUD_AUTOMATON_OWNER , WILDCAT_PUBLICIST ,
@@ -23,33 +22,17 @@ local title5 = { 0 , SUPERNAL_SAVANT , SOLAR_SAGE , BOLIDE_BARON , MOON_MAVEN  ,
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(644,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

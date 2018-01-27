@@ -2,11 +2,7 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Gigas Bonecutter
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -2,7 +2,6 @@
 -- Area: RoMaeve
 --  MOB: Mokkurkalfi
 -----------------------------------
-
 require("scripts/globals/missions");
 
 function onMobInitialize(mob)

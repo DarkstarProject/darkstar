@@ -2,19 +2,11 @@
 -- Area: VeLugannon Palace
 --  MOB: Detector
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn
------------------------------------
 
 function onMobSpawn(mob)
 
@@ -22,10 +14,6 @@ function onMobSpawn(mob)
     GetMobByID(Detector):setLocalVar("1",1);
 
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
 
@@ -55,10 +43,6 @@ function onMobFight(mob,target)
 
 end;
 
------------------------------------
--- onMobDisengage
------------------------------------
-
 function onMobDisengage(mob)
 
     local Detector = mob:getID();
@@ -72,17 +56,10 @@ function onMobDisengage(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,743,1);
 end;
 
------------------------------------
--- OnMobDespawn
------------------------------------
 function onMobDespawn( mob )
 
     local Detector = mob:getID();

@@ -2,22 +2,13 @@
 -- Area: Temenos
 --  MOB: Proto-Ultima
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/limbus");
-
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false);
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local phase = mob:getLocalVar("battlePhase");
@@ -38,10 +29,6 @@ function onMobFight(mob,target)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(TEMENOS_LIBERATOR);

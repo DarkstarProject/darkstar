@@ -1,25 +1,17 @@
 -----------------------------------
---  Area: Pashhow Marshlands
---  NPC:  Stone Monument
+-- Area: Pashhow Marshlands
+--  NPC: Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 -- !pos -300.672 21.620 304.179 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
-
------------------------------------
--- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(900);
 end;
-
------------------------------------
--- onTrade
------------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
@@ -30,18 +22,10 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
