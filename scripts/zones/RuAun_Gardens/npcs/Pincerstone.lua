@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     if (portalId ~= nil) then
         local portal = GetNPCByID(portalId);
         if (portal:getAnimation() == ANIMATION_CLOSE_DOOR) then
-            GetNPCByID(portalId - 1):openDoor(120);
+            GetNPCByID(npcId - 1):openDoor(120);
             portal:openDoor(120);
         else
             player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
