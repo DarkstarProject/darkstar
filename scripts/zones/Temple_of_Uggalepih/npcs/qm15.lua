@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         player:messageSpecial(SOME_SORT_OF_CEREMONY + 1); -- Your wyvern reacts violently to this spot!
         SpawnMob(CLEUVARION_M_RESOAIX);
         SpawnMob(ROMPAULION_S_CITALLE);
-    elseif (NM_Kill == 1) then
+    elseif (player:getVar("KnightStalker_Kill") == 1) then
         player:startEvent(67);
     else
         player:messageSpecial(SOME_SORT_OF_CEREMONY);
