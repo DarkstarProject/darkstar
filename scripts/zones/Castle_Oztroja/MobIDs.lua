@@ -3,6 +3,7 @@
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
+require("scripts/globals/status");
 
 MEE_DEGGI_THE_PUNISHER_PH =
 {
@@ -41,17 +42,18 @@ YAA_HAQA_THE_PROFANE_PH =
     [17395953] = 17395954, -- -32.302 -16.250 -139.169
 }
 
+local hdl = 17396196 -- Base handle for OZ_HANDLE_TABLE
 OZ_HANDLE_TABLE =
 {
-    [0] = {[17396196] = 8, [17396197] = 8, [17396198] = 8, [17396199] = 8},
-    [1] = {[17396196] = 8, [17396197] = 9, [17396198] = 9, [17396199] = 9},
-    [2] = {[17396196] = 9, [17396197] = 8, [17396198] = 9, [17396199] = 9},
-    [3] = {[17396196] = 9, [17396197] = 8, [17396198] = 8, [17396199] = 9},
-    [4] = {[17396196] = 9, [17396197] = 8, [17396198] = 9, [17396199] = 8},
-    [5] = {[17396196] = 8, [17396197] = 8, [17396198] = 9, [17396199] = 8},
-    [6] = {[17396196] = 9, [17396197] = 9, [17396198] = 8, [17396199] = 9},
-    [7] = {[17396196] = 9, [17396197] = 9, [17396198] = 9, [17396199] = 8},
-    [8] = {[17396196] = 8, [17396197] = 8, [17396198] = 9, [17396199] = 9},
+    [0] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_OPEN_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
+    [1] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_CLOSE_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
+    [2] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
+    [3] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_OPEN_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
+    [4] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
+    [5] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
+    [6] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_CLOSE_DOOR, [hdl+2] = ANIMATION_OPEN_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
+    [7] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_CLOSE_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
+    [8] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
 };
 
 OZ_PASSWORD_TABLE =
