@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Port San d'Oria
+-- Area: Port San d'Oria
 --   NPC: Ufanne
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 232
 -- !pos -15.965 -3 -47.748
 --
@@ -11,17 +11,10 @@ package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
    local fishCountVar = 0;
@@ -36,18 +29,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

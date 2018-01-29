@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Benita
+--  NPC: Benita
 -- Starts Quest: The Wisdom Of Elders
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -8,9 +8,6 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,18 +23,14 @@ BombAsh = trade:hasItemQty(928,1);
             player:startEvent(176);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
 TheWisdom = player:getQuestStatus(BASTOK,THE_WISDOM_OF_ELDERS);
 pLevel = player:getMainLvl();
-    
+
     if (TheWisdom == 0 and pLevel >= 6) then
         player:startEvent(174);
     else
@@ -48,21 +41,13 @@ pLevel = player:getMainLvl();
             player:startEvent(103);
         end
     end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -81,7 +66,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,12500);
         end
     end
-    
+
 end;
 
 

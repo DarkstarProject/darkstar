@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Arrapago Reef
--- NPC: ???
+--  NPC: ???
 -- Starts: Corsair Af1 ,AF2 ,AF3
 -- !pos 457.128 -8.249 60.795 54
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/zones/Arrapago_Reef/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -48,18 +40,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

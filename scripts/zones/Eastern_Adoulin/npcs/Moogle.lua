@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Eastern Adoulin
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Adoulin/TextIDs"] = nil
 -----------------------------------

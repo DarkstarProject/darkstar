@@ -1,36 +1,20 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Zadant
+--  NPC: Zadant
 -- Standard Info NPC
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-player:startEvent(326);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(326);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

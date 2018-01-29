@@ -9,9 +9,6 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/zones/AlTaieu/MobIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -31,25 +28,13 @@ function onTrade(player,npc,trade)
     --]]
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);

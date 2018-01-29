@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Southern San d'Oria
+-- Area: Southern San d'Oria
 --   NPC: Hinaree
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 230
 -- !pos -301.535 -10.199 97.698
 --
@@ -11,15 +11,9 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
  local currentday = tonumber(os.date("%j"));
@@ -34,18 +28,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

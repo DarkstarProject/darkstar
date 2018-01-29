@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Baudin
+--  NPC: Baudin
 -- Starts and Finishes Quest: Crest of Davoi, Save My Sister
 -- Involved in Quests: Save the Clock Tower
 -- @zone 244
@@ -14,9 +14,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,10 +27,6 @@ function onTrade(player,npc,trade)
         player:startEvent(171); -- Finish Quest "Crest of Davoi" Start Quest "Save my Sister" with var, not addquest()
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     CrestOfDavoi = player:getQuestStatus(JEUNO,CREST_OF_DAVOI);
@@ -59,18 +52,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

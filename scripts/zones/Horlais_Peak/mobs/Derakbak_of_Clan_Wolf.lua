@@ -2,7 +2,6 @@
 -- Area: Horlais Peak
 --  MOB: Derakbak of Clan Wolf
 -----------------------------------
-
 require("scripts/globals/status");
 
 function onMobInitialize(mob)

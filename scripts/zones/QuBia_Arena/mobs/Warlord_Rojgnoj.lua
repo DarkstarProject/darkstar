@@ -2,7 +2,6 @@
 -- Area: QuBia_Arena
 -- Mission 9-2 SANDO
 -----------------------------------
-
 require("scripts/zones/QuBia_Arena/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/titles");

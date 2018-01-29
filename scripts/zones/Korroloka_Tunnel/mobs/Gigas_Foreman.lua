@@ -2,11 +2,7 @@
 -- Area: Korroloka Tunnel
 --  MOB: Gigas Foreman
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

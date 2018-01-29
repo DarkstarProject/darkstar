@@ -2,30 +2,17 @@
 -- Area: Navukgo Execution Chamber
 -- MOB: Karababa
 -----------------------------------
-
 package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local warp = mob:getLocalVar("warp");
@@ -40,16 +27,8 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onSpellPrecast
------------------------------------
-
 function onSpellPrecast(mob, spell)
 end;
-
------------------------------------
--- onSpellPrecast
------------------------------------
 
 function onMonsterMagicPrepare(mob, target)
     local powerup = mob:getLocalVar("powerup");
@@ -85,17 +64,9 @@ function onMonsterMagicPrepare(mob, target)
 
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob, player, isKiller)
     mob:getBattlefield():lose();
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mob:getBattlefield():lose();

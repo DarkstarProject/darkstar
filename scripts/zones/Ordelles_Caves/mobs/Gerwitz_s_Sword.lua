@@ -4,19 +4,11 @@
 -- Involved In Quest: Dark Puppet
 -- !pos -51 0.1 3 193
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

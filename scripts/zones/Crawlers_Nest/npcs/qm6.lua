@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Crawlers Nest
--- NPC:  ??? - Matron Crawler spawn
+--  NPC: ??? - Matron Crawler spawn
 -- !pos -141.158 -33.689 20.944 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Crawlers_Nest/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,10 +20,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 end;

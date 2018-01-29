@@ -3,20 +3,12 @@
 --  MOB: Deloknok
 -- Involved in Quest: The First Meeting
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

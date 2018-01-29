@@ -1,19 +1,11 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Emeige A.M.A.N.
+--  NPC: Emeige A.M.A.N.
 -- Type: Mentor Recruiter
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local var = 0;
@@ -27,18 +19,10 @@ function onTrigger(player,npc)
     player:startEvent(739, var);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

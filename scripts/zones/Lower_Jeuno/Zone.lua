@@ -5,25 +5,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/pathfind");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/zones/Lower_Jeuno/NPCIDs");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, 23, 0, -43, 44, 7, -39); -- Inside Tenshodo HQ
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -37,13 +29,13 @@ function onZoneIn(player,prevZone)
     end
 
     -- MOG HOUSE EXIT
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(41.2,-5, 84,85);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
-    elseif (player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==0) then
+    elseif (player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus") == 0) then
         player:setVar("PromathiaStatus",1);
         cs = 0x0046;
     elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
@@ -52,9 +44,6 @@ function onZoneIn(player,prevZone)
 
     return cs;
 end;
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -63,10 +52,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     -- print("entered region")
@@ -78,15 +63,11 @@ function onRegionEnter(player,region)
     end
 end;
 
------------------------------------
--- onGameHour
------------------------------------
-
 function onGameHour(zone)
     local VanadielHour = VanadielHour();
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
     local playerOnQuest = GetPlayerByID(playerOnQuestId);
-    
+
     -- Community Service Quest
     -- 7AM: it's daytime. turn off all the lights
     if (VanadielHour == 7) then
@@ -97,7 +78,7 @@ function onGameHour(zone)
 
     -- 8PM: make quest available
     -- notify anyone in zone with membership card that zauko is recruiting
-    elseif (VanadielHour == 20) then        
+    elseif (VanadielHour == 20) then
         SetServerVariable("[JEUNO]CommService",0);
         local players = zone:getPlayers();
         for name, player in pairs(players) do
@@ -105,14 +86,14 @@ function onGameHour(zone)
                 player:messageSpecial(ZAUKO_IS_RECRUITING);
             end
         end
-        
+
     -- 9PM: notify the person on the quest that they can begin lighting lamps
     elseif (VanadielHour == 21) then
         local playerOnQuest = GetPlayerByID(GetServerVariable("[JEUNO]CommService"));
         if playerOnQuest then
             playerOnQuest:startEvent(114);
         end
-        
+
     -- 1AM: if nobody has accepted the quest yet, NPC Vhana Ehgaklywha takes up the task
     -- she starts near Zauko and paths all the way to the Rolanberry exit.
     -- PATHFLAG_WALLHACK because she gets stuck on some terrain otherwise.
@@ -129,18 +110,10 @@ function onGameHour(zone)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

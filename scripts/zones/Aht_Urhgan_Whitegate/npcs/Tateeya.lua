@@ -1,15 +1,12 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Tateeya
+--  NPC: Tateeya
 -- Automaton Attachment Unlocks
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,11 +29,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     local tradeStatus = player:getVar('TateeyaTradeStatus');
@@ -50,20 +43,12 @@ function onTrigger(player,npc)
     else
         player:startEventString(650, automatonName, automatonName, automatonName, automatonName, 1);
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

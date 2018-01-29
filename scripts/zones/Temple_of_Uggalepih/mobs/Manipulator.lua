@@ -1,5 +1,5 @@
 ----------------------------------
--- Area:  Temple of Uggalipeh
+-- Area: Temple of Uggalipeh
 -- NM:    Manipulator
 -- Notes: Paths around the 2 staircases
 -----------------------------------

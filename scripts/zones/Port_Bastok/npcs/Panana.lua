@@ -1,21 +1,13 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Panana
+--  NPC: Panana
 -- Involved in Quest: Out of One's Shell
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -24,22 +16,15 @@ function onTrigger(player,npc)
     if (OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfTheShellZone") == 0) then
         player:startEvent(83);
     else
-        player:startEvent(43);    
+        player:startEvent(43);
     end
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

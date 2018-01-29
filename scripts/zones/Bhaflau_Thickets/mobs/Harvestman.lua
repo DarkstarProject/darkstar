@@ -4,18 +4,12 @@
 -- !pos 398.130 -10.675 179.169 52
 -----------------------------------
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to poison on melee.
     if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_POISON) == true)) then
@@ -27,16 +21,8 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set Harvesman's spawnpoint and respawn time (21-24 hours)

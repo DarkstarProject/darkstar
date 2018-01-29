@@ -2,11 +2,7 @@
 -- Area: North Gustaberg
 --  MOB: Amethyst Quadav
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

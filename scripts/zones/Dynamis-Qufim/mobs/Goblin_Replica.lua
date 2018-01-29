@@ -21,6 +21,6 @@ function onMobDeath(mob, player, isKiller)
         player:restoreHP(3000);
      elseif (mobID == 16945529 or mobID == 16945545) then --mp
         player:messageBasic(msgBasic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
-        player:restoreMP(3000);        
+        player:restoreMP(3000);
     end
 end;

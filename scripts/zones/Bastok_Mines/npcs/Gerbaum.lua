@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Gerbaum
+--  NPC: Gerbaum
 -- Starts & Finishes Repeatable Quest: Minesweeper (100%)
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -9,9 +9,6 @@ require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,12 +23,8 @@ ZeruhnSoot = trade:hasItemQty(560,3);
             player:startEvent(109);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -50,18 +43,10 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -71,8 +56,8 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 
     if (csid == 108) then
         if (MineSweep == 0) then
-            player:addQuest(BASTOK,MINESWEEPER);            
-        end            
+            player:addQuest(BASTOK,MINESWEEPER);
+        end
     elseif (csid == 109) then
         if (MineSweep == 1) then
             player:completeQuest(BASTOK,MINESWEEPER);

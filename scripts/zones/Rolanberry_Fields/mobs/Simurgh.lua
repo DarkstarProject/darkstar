@@ -2,35 +2,18 @@
 -- Area: Rolanberry Fields (110)
 --  HMN: Simurgh
 -----------------------------------
-
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
 end;
-
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(SIMURGH_POACHER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

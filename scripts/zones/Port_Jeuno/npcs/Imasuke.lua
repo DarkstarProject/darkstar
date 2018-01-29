@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Imasuke
+--  NPC: Imasuke
 -- Starts and Finishes Quest: The Antique Collector
 -- !pos -165 11 94 246
 -----------------------------------
@@ -12,9 +12,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +22,6 @@ function onTrade(player,npc,trade)
         player:startEvent(15); -- End quest
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
@@ -61,17 +54,8 @@ function onTrigger(player,npc)
     end;
 end;
 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- THE ANTIQUE COLLECTOR

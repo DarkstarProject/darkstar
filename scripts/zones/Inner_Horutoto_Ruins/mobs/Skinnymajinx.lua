@@ -2,11 +2,7 @@
 -- Area: Inner Horutoto Ruins
 --  MOB: Skinnymajinx
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

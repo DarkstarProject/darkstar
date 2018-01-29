@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Derrick
+--  NPC: Derrick
 -- Involved in Quests and finish : Save the Clock Tower
 -- @zone 245
 -- !pos -32 -1 -7
@@ -13,9 +13,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,10 +21,6 @@ function onTrade(player,npc,trade)
         player:startEvent(231); -- Ending quest "save the clock tower"
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     AirshipKI = player:hasKeyItem(AIRSHIP_PASS);
@@ -50,10 +43,6 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate Action
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -68,10 +57,6 @@ function onEventUpdate(player,csid,option)
     end
 
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

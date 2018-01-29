@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  Fountain of Kings
+--  NPC: Fountain of Kings
 -- !pos 567 18 -939 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/zones/Quicksand_Caves/MobIDs");
 require("scripts/globals/missions");

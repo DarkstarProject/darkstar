@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
--- MOB:  Overgrown Rose
+--  MOB: Overgrown Rose
 -----------------------------------
-
 require("scripts/zones/Yuhtunga_Jungle/MobIDs");
 
 function disturbMob(mob)

@@ -1,26 +1,14 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  Xoo Kaza the Solemn
+--  NPC: Xoo Kaza the Solemn
 -- Boss Trigger for RDM NM
------------------------------------
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

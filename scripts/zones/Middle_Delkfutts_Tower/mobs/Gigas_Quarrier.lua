@@ -2,11 +2,7 @@
 -- Area: Middle Delkfutt's Tower
 --  MOB: Gigas Quarrier
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

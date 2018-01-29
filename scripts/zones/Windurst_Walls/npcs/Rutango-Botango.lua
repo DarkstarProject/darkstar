@@ -1,32 +1,24 @@
 -----------------------------------
 -- Area: Windurst Walls
 --  Location: X:-92  Y:-9  Z:107
--- NPC:  Rutango-Botango
+--  NPC: Rutango-Botango
 -- Working 100%
 --  Involved in Quest: To Bee or Not to Bee?
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
     local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
-    
-    if (ToBeeOrNotStatus == 10) then 
+
+    if (ToBeeOrNotStatus == 10) then
         player:startEvent(65); -- During Too Bee quest before honey given to Zayhi:  "Oh Crumb...lost his voice"
-    elseif (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus > 0) then 
+    elseif (ToBee == QUEST_ACCEPTED and ToBeeOrNotStatus > 0) then
         player:startEvent(71); -- During Too Bee quest after some honey was given to Zayhi: "lap up more honey"
     elseif (ToBee == QUEST_COMPLETED and player:needToZone()) then
         player:startEvent(76); -- After Too Bee quest but before zone: "master let me speak for you"
@@ -44,18 +36,10 @@ end;
 -- *Rutango-Botango    CS 75 - player:startEvent(75); -- Combo CS: During Too Bee quest, kicked off from Zayhi
 -- Rutango-Botango    CS 76 - player:startEvent(76); -- After Too Bee quest but before zone: "master let me speak for you"
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

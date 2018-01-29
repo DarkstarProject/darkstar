@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Pourette
+--  NPC: Pourette
 -- Only sells when San d'Oria controlls Derfland Region
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -8,9 +8,6 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,45 +21,33 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(DERFLAND);
-    
+
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,POURETTE_CLOSED_DIALOG);
     else
         player:showText(npc,POURETTE_OPEN_DIALOG);
-        
+
         local stock =
         {
-            0x1100,128,  --Derfland Pear
-            0x0269,142,  --Ginger
-            0x11c1,62,       --Gysahl Greens
-            0x0584,1656, --Olive Flower
-            0x0279,14,       --Olive Oil
-            0x03b7,110  --Wijnruit
+            4352,   128, -- Derfland Pear
+            617,    142, -- Ginger
+            4545,    62, -- Gysahl Greens
+            1412,  1656, -- Olive Flower
+            633,     14, -- Olive Oil
+            951,    110  -- Wijnruit
         }
         showShop(player,SANDORIA,stock);
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

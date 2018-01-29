@@ -1,24 +1,16 @@
 -----------------------------------
--- 
+--
 -- Assault: Wamoura Farm Raid
--- 
+--
 -----------------------------------
-
 require("scripts/zones/Lebros_Cavern/IDs");
-
------------------------------------
--- afterInstanceRegister
 -----------------------------------
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
     player:messageSpecial(Lebros.text.ASSAULT_27_START, 27);
     player:messageSpecial(Lebros.text.TIME_TO_COMPLETE, instance:getTimeLimit());
-end;    
-
------------------------------------
--- onInstanceCreated
------------------------------------
+end;
 
 function onInstanceCreated(instance)
 
@@ -28,22 +20,18 @@ function onInstanceCreated(instance)
 
 end;
 
------------------------------------
--- onInstanceTimeUpdate
------------------------------------
-
 function onInstanceTimeUpdate(instance, elapsed)
     local players = instance:getChars();
     local lastTimeUpdate = instance:getLastTimeUpdate();
     local remainingTimeLimit = (instance:getTimeLimit()) * 60 - (elapsed / 1000);
     local wipeTime = instance:getWipeTime();
     local message = 0;
-    
+
     if (remainingTimeLimit < 0) then
         instance:fail();
         return;
     end
-    
+
     if (wipeTime == 0) then
         local wipe = true;
         for i,v in pairs(players) do
@@ -71,7 +59,7 @@ function onInstanceTimeUpdate(instance, elapsed)
             end
         end
     end
-    
+
     if (lastTimeUpdate == 0 and elapsed > 20 * 60000) then
         message = 600;
     elseif (lastTimeUpdate == 600 and remainingTimeLimit < 300) then
@@ -83,7 +71,7 @@ function onInstanceTimeUpdate(instance, elapsed)
     elseif (lastTimeUpdate == 30 and remainingTimeLimit < 10) then
         message = 10;
     end
-    
+
     if (message ~= 0) then
         for i,v in pairs(players) do
             if (timeRemaining >= 60) then
@@ -96,10 +84,6 @@ function onInstanceTimeUpdate(instance, elapsed)
     end
 end;
 
------------------------------------
--- onInstanceFailure
------------------------------------
-
 function onInstanceFailure(instance)
 
     local chars = instance:getChars();
@@ -110,21 +94,13 @@ function onInstanceFailure(instance)
     end
 end;
 
------------------------------------
--- onInstanceProgressUpdate
------------------------------------
-
 function onInstanceProgressUpdate(instance, progress)
 
     if (progress >= 15) then
         instance:complete();
     end
-    
-end;
 
------------------------------------
--- onInstanceComplete
------------------------------------
+end;
 
 function onInstanceComplete(instance)
 
@@ -133,14 +109,14 @@ function onInstanceComplete(instance)
     for i,v in pairs(chars) do
         v:messageSpecial(Lebros.text.RUNE_UNLOCKED, 7, 8);
     end
-    
+
     local rune = instance:getEntity(bit.band(Lebros.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
     local box = instance:getEntity(bit.band(Lebros.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
     rune:setPos(414.29, -40.64, 301.523, 247);
     rune:setStatus(STATUS_NORMAL);
     box:setPos(410.41, -41.12, 300.743, 243);
     box:setStatus(STATUS_NORMAL);
-    
+
 end;
 function onEventUpdate(player,csid,option)
 end

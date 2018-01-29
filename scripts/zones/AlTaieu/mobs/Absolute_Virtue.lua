@@ -6,9 +6,6 @@ require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -25,16 +22,8 @@ function onMobSpawn(mob)
     end
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob, target)
 end;
-
-------------------------------------
--- onSpellPrecast
-------------------------------------
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then -- Meteor
@@ -46,16 +35,8 @@ function onSpellPrecast(mob, spell)
     end
 end;
 
-------------------------------------
--- onMonsterMagicPrepare
-------------------------------------
-
 function onMonsterMagicPrepare(caster, target)
 end;
-
------------------------------------
--- onMagicHit
------------------------------------
 
 function onMagicHit(caster, target, spell)
     local REGEN = target:getMod(MOD_REGEN);
@@ -71,16 +52,8 @@ function onMagicHit(caster, target, spell)
     return 1;
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(VIRTUOUS_SAINT);

@@ -1,27 +1,19 @@
 -----------------------------------
---  Area: Norg
+-- Area: Norg
 --  NPC: Chiyo
---  Type: Tenshodo Merchant
+-- Type: Tenshodo Merchant
 -- !pos 5.801 0.020 -18.739 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
 require("scripts/zones/Norg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
@@ -33,18 +25,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

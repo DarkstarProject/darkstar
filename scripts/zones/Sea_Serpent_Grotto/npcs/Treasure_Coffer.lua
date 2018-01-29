@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  Treasure Coffer
+--  NPC: Treasure Coffer
 -- @zone 176
 -- !pos 184 18 -107
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 local TreasureType = "Coffer";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -111,26 +106,14 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1059);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

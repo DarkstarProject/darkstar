@@ -2,11 +2,7 @@
 -- Area: South Gustaberg
 --  MOB: Walking Sapling
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

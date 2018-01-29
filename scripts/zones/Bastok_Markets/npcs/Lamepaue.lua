@@ -8,17 +8,10 @@ package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -142,10 +135,6 @@ function onTrigger(player,npc)
     player:startEvent(326,BastokMissions,BastokQuests,OtherQuests,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,10,gil);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf ("CSID: %u",csid);
     -- printf ("RESULT: %u",option);
@@ -157,10 +146,6 @@ function onEventUpdate(player,csid,option)
         player:setLocalVar("Lamepaue_PlayCutscene", 1)
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf ("CSID: %u",csid);

@@ -10,19 +10,11 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
@@ -30,10 +22,6 @@ function onMobSpawn(mob)
     mob:setMod(MOD_UDMGRANGE, -75);
     mob:setMod(MOD_UDMGMAGIC, 0);
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local mobID = mob:getID();
@@ -74,10 +62,6 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onAdditionalEffect
------------------------------------
-
 function onAdditionalEffect(mob, player)
     local chance = 20; -- wiki lists ~20% stun chance
     local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,EFFECT_STUN);
@@ -92,17 +76,9 @@ function onAdditionalEffect(mob, player)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(APOLLYON_RAVAGER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local mobX = mob:getXPos();

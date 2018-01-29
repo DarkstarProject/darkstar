@@ -1,23 +1,19 @@
 -----------------------------------
---  Area: Ru'Lude Gardens
---  NPC:  Magian Moogle (Green Bobble)
---  Type: Magian Trials NPC (Job Emotes)
+-- Area: Ru'Lude Gardens
+--  NPC: Magian Moogle (Green Bobble)
+-- Type: Magian Trials NPC (Job Emotes)
 -- !pos -4.558 2.451 111.305 64
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/magiantrials");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   if (trade:getItemCount() == 1) then
+    if (trade:getItemCount() == 1) then
         local ItemID = trade:getItemId();
         local TrialInfo = getEmoteTrialInfo(ItemID);
         local invalid = 0;
@@ -29,10 +25,6 @@ function onTrade(player,npc,trade)
         -- placeholder for torque+other required item trade.
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local LearnerLog = player:hasKeyItem(MAGIAN_LEARNERS_LOG);
@@ -50,22 +42,14 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 10160 and option == 1) then
         if (player:hasKeyItem(MAGIAN_TRIAL_LOG) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,MAGIAN_LEARNERS_LOG);

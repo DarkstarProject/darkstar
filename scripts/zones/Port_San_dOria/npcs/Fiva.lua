@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Fiva
---  Only sells when San d'Oria controls Kolshushu
+--  NPC: Fiva
+-- only sells when San d'Oria controls Kolshushu
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -9,9 +9,6 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,44 +24,33 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(KOLSHUSHU);
 
-if (RegionOwner ~= NATION_SANDORIA) then 
-    player:showText(npc,FIVA_CLOSED_DIALOG);
-else
-    player:showText(npc,FIVA_OPEN_DIALOG);
-    
-    local stock = {0x1197,184,  --Buburimu Grape
-             0x0460,1620, --Casablanca
-             0x1107,220,  --Dhalmel Meat
-             0x0266,72,   --Mhaura Garlic
-             0x115d,40}   --Yagudo Cherry
+    if (RegionOwner ~= NATION_SANDORIA) then
+        player:showText(npc,FIVA_CLOSED_DIALOG);
+    else
+        player:showText(npc,FIVA_OPEN_DIALOG);
 
-showShop(player,SANDORIA,stock);
-end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+        local stock =
+        {
+            4503,  184, -- Buburimu Grape
+            1120, 1620, -- Casablanca
+            4359,  220, -- Dhalmel Meat
+            614,    72, -- Mhaura Garlic
+            4445,   40  -- Yagudo Cherry
+        }
+        showShop(player,SANDORIA,stock);
+    end
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

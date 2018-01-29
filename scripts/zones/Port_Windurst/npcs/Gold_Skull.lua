@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Gold Skull
+--  NPC: Gold Skull
 -- Mission NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
+
     if (player:getCurrentMission(BASTOK) ~= 255) then
         currentMission = player:getCurrentMission(BASTOK);
         missionStatus = player:getVar("MissionStatus");
@@ -56,18 +48,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -78,5 +62,5 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
         player:delKeyItem(SWORD_OFFERING);
     end
-    
+
 end;

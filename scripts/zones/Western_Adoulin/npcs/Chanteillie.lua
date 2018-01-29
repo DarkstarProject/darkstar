@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Chanteillie
---  Type: Standard NPC and Quest NPC
+-- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'Do Not Go Into the Light'
 --                        'Vegetable Vegetable Crisis'
 --  @zone 256
@@ -13,9 +13,6 @@ require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,10 +29,6 @@ function onTrade(player,npc,trade)
         player:startEvent(5089);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
@@ -59,16 +52,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 5076) then

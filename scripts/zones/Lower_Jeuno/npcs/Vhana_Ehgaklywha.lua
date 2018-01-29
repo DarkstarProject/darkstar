@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Vhana Ehgaklywha
+--  NPC: Vhana Ehgaklywha
 -- Lights lamps in Lower Jeuno if nobody accepts Community Service by 1AM.
 -- !pos -122.853 0.000 -195.605
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Lower_Jeuno/NPCIDs");
 require("scripts/globals/pathfind");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/zones/Lower_Jeuno/NPCIDs");
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- speaking to pathing NPCs stops their progress, and they never resume
@@ -30,10 +22,6 @@ function onTrigger(player,npc)
 
     -- player:showText(npc, 7160);
 end;
-
------------------------------------
--- onPath
------------------------------------
 
 function onPath(npc)
     if npc:isFollowingPath() then
@@ -66,16 +54,8 @@ function onPath(npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

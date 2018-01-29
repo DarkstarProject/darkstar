@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Al'Taieu
---  NPC:  Rubious Crystal (West Tower)
+-- Area: Al'Taieu
+--  NPC: Rubious Crystal (West Tower)
 -- !pos -683.709 -6.250 -222.142 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
@@ -8,17 +8,10 @@ package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -49,18 +42,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

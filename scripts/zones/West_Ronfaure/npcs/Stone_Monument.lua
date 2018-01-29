@@ -1,25 +1,17 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Stone Monument
+-- Area: West Ronfaure
+--  NPC: Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 -- !pos -183.734 -12.678 -395.722 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/West_Ronfaure/TextIDs");
-
------------------------------------
--- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(900);
 end;
-
------------------------------------
--- onTrade
------------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
@@ -30,18 +22,10 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

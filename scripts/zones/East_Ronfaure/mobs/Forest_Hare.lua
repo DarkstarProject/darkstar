@@ -2,11 +2,7 @@
 -- Area: East Ronfaure
 --  MOB: Forest Hare
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

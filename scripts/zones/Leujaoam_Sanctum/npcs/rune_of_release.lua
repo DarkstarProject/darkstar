@@ -1,57 +1,41 @@
 -----------------------------------
 -- Area: Leujaoam Sanctum
 -----------------------------------
-
 require("scripts/globals/besieged")
 require("scripts/zones/Leujaoam_Sanctum/IDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
+
     local instance = npc:getInstance();
 
     if (instance:completed()) then
         player:startEvent(100,0);
     end
-    
-    return 1;
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+    return 1;
+
+end;
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
-    
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+
     if (csid == 100 and option == 1) then
         local instance = player:getInstance()
         local chars = instance:getChars();
-        
+
         local id = instance:getID();
         local points = 0;
-        
+
         if (id == 1) then
             points = 1000 - math.max(0, #chars - 3);
         end
@@ -64,11 +48,11 @@ function onEventFinish(player,csid,option)
             else
                 v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+5);
             end
-            
+
             if (v ~= player) then
                 v:startEvent(102);
             end
         end
     end
-    
+
 end;

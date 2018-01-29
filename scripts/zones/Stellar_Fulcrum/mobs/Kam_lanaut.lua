@@ -3,23 +3,15 @@
 --  MOB: Kam'lanaut
 -- Zilart Mission 8 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 local blades = {823, 826, 828, 825, 824, 827};
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
 
@@ -44,10 +36,6 @@ function onMobFight(mob, target)
         mob:setLocalVar("element", newelement);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(DESTROYER_OF_ANTIQUITY);

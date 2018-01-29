@@ -2,11 +2,7 @@
 -- Area: Toraimorai Canal
 --  MOB: Poroggo Excavator
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

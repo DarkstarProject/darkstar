@@ -2,11 +2,7 @@
 -- Area: Outer Horutoto
 --  MOB: Five of Coins
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

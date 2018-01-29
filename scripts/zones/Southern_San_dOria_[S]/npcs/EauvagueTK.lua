@@ -1,37 +1,21 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Eauvague T.K
+--  NPC: Eauvague T.K
 -- @zone 80
 -- !pos 105 0 -53
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-player:startEvent(200);
+    player:startEvent(200);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

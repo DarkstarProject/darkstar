@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: South San d'Oria
+-- Area: South San d'Oria
 --  NPC: Alivatand
---  Type: Guildworker's Union Representative
+-- Type: Guildworker's Union Representative
 --  @zone 230
 -- !pos -179.458 -1 15.857
 -----------------------------------
@@ -78,10 +78,6 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
@@ -96,17 +92,9 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 5, 690, "guild_leathercraft", keyitems);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -115,10 +103,6 @@ function onEventUpdate(player,csid,option,target)
         unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);

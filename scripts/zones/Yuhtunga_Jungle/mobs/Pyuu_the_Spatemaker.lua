@@ -2,11 +2,7 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Pyuu the Spatemaker
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

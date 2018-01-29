@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
 -----------------------------------

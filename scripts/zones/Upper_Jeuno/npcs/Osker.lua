@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC:  Osker
+--  NPC: Osker
 -- Involved in Quest: Chocobo's Wounds
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,12 +19,8 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         player:startEvent(148);
     end
-    
-end;
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -45,7 +37,7 @@ function onTrigger(player,npc)
         elseif (ANewDawnEvent >= 4) then
             player:startEvent(147);
         end
-        
+
     -- Chocobos Wounds
     elseif (ChocobosWounds == 0) then
         player:startEvent(62);
@@ -65,7 +57,7 @@ function onTrigger(player,npc)
         end
     elseif (ChocobosWounds == 2) then
         player:startEvent(55);
-        
+
     -- Standard Dialog 0036 probably isnt correct
     elseif (ANewDawn == QUEST_COMPLETED) then
         player:startEvent(145);
@@ -74,18 +66,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -98,11 +82,11 @@ function onEventFinish(player,csid,option)
             player:setVar("ANewDawn_Event",3);
         end
     elseif (csid == 148) then
-        player:addKeyItem(217); 
-        player:messageSpecial(KEYITEM_OBTAINED, 217); 
+        player:addKeyItem(217);
+        player:messageSpecial(KEYITEM_OBTAINED, 217);
         player:setVar("ANewDawn_Event",4);
     end
-    
+
 end;
 
 

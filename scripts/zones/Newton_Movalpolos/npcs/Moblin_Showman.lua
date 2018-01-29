@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Newton Movalpolos
--- NPC:  Moblin Showman - Bugbear Matman
+--  NPC: Moblin Showman - Bugbear Matman
 -- !pos 124.544 19.988 -60.670 12
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Newton_Movalpolos/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +19,6 @@ function onTrade(player,npc,trade)
         player:showText(npc, SHOWMAN_DECLINE); -- Moblin Showman refuses your trade
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
      player:showText(npc, SHOWMAN_TRIGGER);

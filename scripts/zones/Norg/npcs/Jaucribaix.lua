@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Jaucribaix
+--  NPC: Jaucribaix
 -- Starts and Finishes Quest: Forge Your Destiny, The Sacred Katana, Yomi Okuri, A Thief in Norg!?
 -- !pos 91 -7 -8 252
 -----------------------------------
@@ -13,9 +13,6 @@ require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,10 +36,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -133,18 +126,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

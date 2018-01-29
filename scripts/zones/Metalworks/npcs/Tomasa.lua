@@ -1,30 +1,24 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Tomasa
+--  NPC: Tomasa
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/zones/Metalworks/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,TOMASA_SHOP_DIALOG);
 
-stock = {0x112C,257,1,        -- Sausage Roll
+    player:showText(npc,TOMASA_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x112C,257,1,        -- Sausage Roll
      0x1139,73,1,        -- Hard-Boiled Egg
      0x1141,3036,1,        -- Egg Soup
      0x115A,368,1,        -- Pineapple Juice
@@ -37,22 +31,14 @@ stock = {0x112C,257,1,        -- Sausage Roll
      0x1154,294,3,        -- Baked Popoto
      0x1167,184,3,        -- Pebble Soup
      0x119D,10,3}        -- Distilled Water
- 
-showNationShop(player, NATION_BASTOK, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+showNationShop(player, NATION_BASTOK, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,17 +1,13 @@
 -----------------------------------
--- Area:  Castle Oztroja
--- NPC:   _47v (Handle)
+-- Area: Castle Oztroja
+--  NPC: _47v (Handle)
 -- Notes: Opens door _472 from behind
 -- !pos -61 0 -36 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -29,18 +25,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

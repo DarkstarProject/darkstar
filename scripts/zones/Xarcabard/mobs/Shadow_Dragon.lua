@@ -4,16 +4,8 @@
 -- ID: 17235987
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local B_ToD = GetServerVariable("[POP]Biast");

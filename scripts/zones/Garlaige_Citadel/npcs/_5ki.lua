@@ -1,23 +1,15 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- NPC:  _5ki (Banishing Gate #3)
+--  NPC: _5ki (Banishing Gate #3)
 -- !pos -100 -3.008 359 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Garlaige_Citadel/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:hasKeyItem(POUCH_OF_WEIGHTED_STONES) == false or player:getZPos() > 359) then
@@ -34,18 +26,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -11,9 +11,6 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,28 +21,16 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger
------------------------------------
-
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 0) then
-        player:startEvent(203);       
+        player:startEvent(203);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -60,7 +45,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(UNLOCK_CARBUNCLE);
         player:setVar("ICanHearARainbow",0);
         SetServerVariable("I_Can_Hear_a_Rainbow", 1);
-    elseif (csid == 203) then    
+    elseif (csid == 203) then
         player:setVar("COP_Tenzen_s_Path",1);
     end
 end;

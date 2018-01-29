@@ -2,11 +2,7 @@
 -- Area: Meriphataud Mountains
 --  MOB: Hill Lizard
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Black Mud
+--  NPC: Black Mud
 -- Starts & Finishes Quest: Drachenfall
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -9,9 +9,6 @@ require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,16 +19,12 @@ Drachenfall = player:getQuestStatus(BASTOK,DRACHENFALL);
         count = trade:getItemCount();
         DrachenfallWater = trade:hasItemQty(492,1);
 
-        if (DrachenfallWater == true and count == 1) then    
+        if (DrachenfallWater == true and count == 1) then
             player:startEvent(103);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -50,21 +43,13 @@ Fame = player:getFameLevel(BASTOK);
     else
         player:startEvent(100)
     end
-    
-end;
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -72,7 +57,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 101) then
         Drachenfall = player:getQuestStatus(BASTOK,DRACHENFALL);
-        
+
         if (Drachenfall == QUEST_AVAILABLE) then
             FreeSlots = player:getFreeSlotsCount();
             if (FreeSlots >= 1) then
@@ -94,12 +79,12 @@ function onEventFinish(player,csid,option)
     elseif (csid == 103) then
         player:tradeComplete();
         player:completeQuest(BASTOK,DRACHENFALL);
-        player:addFame(BASTOK,120); 
+        player:addFame(BASTOK,120);
         player:addTitle(DRACHENFALL_ASCETIC);
         player:addGil(GIL_RATE*2000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
     end
-    
+
 end;
 
 

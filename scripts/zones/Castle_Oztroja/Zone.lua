@@ -9,6 +9,7 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/zones/Castle_Oztroja/MobIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/zone");
+-----------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(YAGUDO_AVATAR);
