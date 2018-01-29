@@ -17,6 +17,12 @@
 PROBABLY_WORKS_WITH_SOMETHING_ELSE =    3; -- It probably works with something else.
                          TORCH_LIT =    5; -- The torch is lit.
 
+-- Brass Statue Passwords
+                         INCORRECT = 11; -- Incorrect.
+                        FIRST_WORD = 12; -- The first word.
+                       SECOND_WORD = 13; -- The second word.
+                        THIRD_WORD = 14; -- The third word.
+
 -- Treasure Coffer/Chest Dialog
                     CHEST_UNLOCKED = 7421; -- You unlock the chest!
                         CHEST_FAIL = 7422; -- Fails to open the chest.
