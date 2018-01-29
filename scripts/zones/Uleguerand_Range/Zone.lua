@@ -10,6 +10,7 @@ require("scripts/zones/Uleguerand_Range/MobIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/weather");
+require("scripts/globals/status");
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -32,7 +33,7 @@ function onZoneIn(player,prevZone)
         player:setPos(363.025,16,-60,12);
     end
     if (player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 1 ) then
-      cs=17;
+        cs=17;
     end
     return cs;
 end;
@@ -41,27 +42,23 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 17) then
         player:setVar("COP_louverance_story",2);
     end
 end;
 
 function onZoneWeatherChange(weather)
-    local waterfall = GetNPCByID(WATERFALL);
+    local waterfall = GetNPCByID(ULEGUERAND_WATERFALL);
     if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
-        if (waterfall:getAnimation() ~= 9) then
-            waterfall:setAnimation(9);
+        if (waterfall:getAnimation() ~= ANIMATION_CLOSE_DOOR) then
+            waterfall:setAnimation(ANIMATION_CLOSE_DOOR);
         end
     else
-        if (waterfall:getAnimation() ~= 8) then
-            waterfall:setAnimation(8);
+        if (waterfall:getAnimation() ~= ANIMATION_OPEN_DOOR) then
+            waterfall:setAnimation(ANIMATION_OPEN_DOOR);
         end
     end
 end;
