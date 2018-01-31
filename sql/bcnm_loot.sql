@@ -773,7 +773,7 @@ INSERT INTO `bcnm_loot` VALUES ('79', '775', '11', '5');
 INSERT INTO `bcnm_loot` VALUES ('79', '772', '11', '5');
 INSERT INTO `bcnm_loot` VALUES ('79', '776', '9', '5');
 INSERT INTO `bcnm_loot` VALUES ('79', '15185', '55', '6');
-INSERT INTO `bcnm_loot` VALUES ('79', '17440', '13', '5');
+INSERT INTO `bcnm_loot` VALUES ('79', '17440', '13', '6');
 INSERT INTO `bcnm_loot` VALUES ('35', '852', '1000', '0');
 INSERT INTO `bcnm_loot` VALUES ('35', '13014', '79', '1');
 INSERT INTO `bcnm_loot` VALUES ('35', '0', '950', '1');
