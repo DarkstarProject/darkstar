@@ -52,6 +52,11 @@ g_mixins.job_special = function(mob)
         end
 
     end);
+
+    mob:addListener("DISENGAGE", "JOB_SPECIAL_DISENGAGE", function(mob, target)
+        mob:setLocalVar("usedMainSpec", 0);
+        mob:setLocalVar("usedSubSpec", 0);
+    end);
     
 end
 
