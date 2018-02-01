@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Ro'Maeve
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Mission: Bastok 7-1
 -- !pos 102 -4 -114 122 and <many pos>
 -----------------------------------
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/RoMaeve/TextIDs");
 require("scripts/zones/RoMaeve/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -54,18 +46,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

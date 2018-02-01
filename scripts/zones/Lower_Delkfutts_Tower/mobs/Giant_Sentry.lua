@@ -2,11 +2,7 @@
 -- Area: Lower Delkfutt's Tower
 --  MOB: Giant Sentry
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

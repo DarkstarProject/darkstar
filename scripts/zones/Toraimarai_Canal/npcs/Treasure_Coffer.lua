@@ -1,13 +1,12 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  Treasure Coffer
+--  NPC: Treasure Coffer
 -- Involved In Quest: Wild Card
 -- @zone 169
 -- !pos 220 16 -50
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -17,10 +16,6 @@ require("scripts/zones/Toraimarai_Canal/TextIDs");
 local TreasureType = "Coffer";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -102,27 +97,15 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1057);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Pechiru-Mashiru
+--  NPC: Pechiru-Mashiru
 -- Involved in Quests: Hat in Hand
 -- !pos 162 -2 159 238
 -----------------------------------
@@ -10,17 +10,10 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     function testflag(set,flag)
@@ -34,18 +27,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

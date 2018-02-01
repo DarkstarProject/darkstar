@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Chipmy-Popmy
+--  NPC: Chipmy-Popmy
 -- Working 100%
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 -----------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    local currentday = tonumber(os.date("%j")); 
+    local currentday = tonumber(os.date("%j"));
     if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_3-taru_story")== 0 ) then
         player:startEvent(619);
     else
@@ -26,18 +19,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

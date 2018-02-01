@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Iruki-Waraki
---  Type: Standard NPC
+-- Area: Aht Urhgan Whitegate
+--  NPC: Iruki-Waraki
+-- Type: Standard NPC
 --  Involved in quest: No Strings Attached
 -- !pos 101.329 -6.999 -29.042 50
 -----------------------------------
@@ -17,7 +17,6 @@ require("scripts/globals/pets");
 
 function onTrade(player,npc,trade)
 end;
-
 
 function onTrigger(player,npc)
 
@@ -43,30 +42,28 @@ function onTrigger(player,npc)
     elseif (Job ~= JOBS.PUP and NoStringsAttached == QUEST_COMPLETED) then
         player:startEvent(267); -- asking you how are you doing with your automaton
     elseif (NoStringsAttached == QUEST_AVAILABLE) then
-        player:startEvent(259); -- Leave him alone     
+        player:startEvent(259); -- Leave him alone
 
     --Quest: The Wayward Automation
     elseif (Job == JOBS.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
         player:startEvent(774); -- he tells you to help find his auto
     elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1) then
         player:startEvent(775); -- reminder about to head to Nashmau
-    elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then 
+    elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then
         player:startEvent(776); -- tell him you found automation
     elseif (TheWaywardAutomation == QUEST_COMPLETED) then
         player:startEvent(777);
     end
 end;
 
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
-
 function onEventFinish(player,csid,option)
- --printf("CSID: %u",csid);
- --printf("RESULT: %u",option);
+ -- printf("CSID: %u",csid);
+ -- printf("RESULT: %u",option);
 
     if (csid == 260) then
         player:setVar("NoStringsAttachedProgress",2);
@@ -77,7 +74,7 @@ function onEventFinish(player,csid,option)
             player:unlockJob(JOBS.PUP);
             player:addItem(17859);
             player:messageSpecial(ITEM_OBTAINED,17859); -- animator
-            player:messageSpecial(YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster." 
+            player:messageSpecial(YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster."
             player:setVar("NoStringsAttachedProgress",0);
             player:setPetName(PETTYPE_AUTOMATON, option+118);
             player:unlockAttachment(8224); --Harlequin Frame

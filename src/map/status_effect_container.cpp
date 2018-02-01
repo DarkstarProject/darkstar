@@ -435,21 +435,11 @@ void CStatusEffectContainer::DeleteStatusEffects()
         auto PStatusEffect = *effect_iter;
         if (PStatusEffect->deleted)
         {
-            if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
-                PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
-                m_POwner->objtype == TYPE_PC)
-            {
-                puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), false);
-            }
             if (PStatusEffect->GetIcon() != 0)
             {
                 update_icons = true;
             }
             effect_iter = m_StatusEffectList.erase(effect_iter);
-            luautils::OnEffectLose(m_POwner, PStatusEffect);
-            m_POwner->PAI->EventHandler.triggerListener("EFFECT_LOSE", m_POwner, PStatusEffect);
-
-            m_POwner->delModifiers(&PStatusEffect->modList);
             delete PStatusEffect;
             effects_removed = true;
         }
@@ -459,23 +449,23 @@ void CStatusEffectContainer::DeleteStatusEffects()
         }
     }
 
-    if (m_POwner->objtype == TYPE_PC)
-    {
-        CCharEntity* PChar = (CCharEntity*)m_POwner;
-
-        if (update_icons)
-        {
-            UpdateStatusIcons();
-        }
-        //check for latents
-        PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
-        PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
-        PChar->PLatentEffectContainer->CheckLatentsRollSong();
-
-        PChar->pushPacket(new CCharSyncPacket(PChar));
-    }
     if (effects_removed)
     {
+        if (m_POwner->objtype == TYPE_PC)
+        {
+            CCharEntity* PChar = (CCharEntity*)m_POwner;
+
+            if (update_icons)
+            {
+                UpdateStatusIcons();
+            }
+
+            //check for latents
+            PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
+            PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
+            PChar->PLatentEffectContainer->CheckLatentsRollSong();
+            PChar->pushPacket(new CCharSyncPacket(PChar));
+        }
         m_POwner->UpdateHealth();
     }
 }
@@ -485,7 +475,17 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
     if (!PStatusEffect->deleted)
     {
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
+            m_POwner->objtype == TYPE_PC)
+        {
+            puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), false);
+        }
         PStatusEffect->deleted = true;
+        luautils::OnEffectLose(m_POwner, PStatusEffect);
+        m_POwner->PAI->EventHandler.triggerListener("EFFECT_LOSE", m_POwner, PStatusEffect);
+
+        m_POwner->delModifiers(&PStatusEffect->modList);
         if (m_POwner->objtype == TYPE_PC)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
@@ -1427,6 +1427,7 @@ void CStatusEffectContainer::TickEffects(time_point tick)
         }
     }
     DeleteStatusEffects();
+    m_POwner->PAI->EventHandler.triggerListener("EFFECTS_TICK", m_POwner);
 }
 
 /************************************************************************

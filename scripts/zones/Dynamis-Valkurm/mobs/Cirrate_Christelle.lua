@@ -4,25 +4,18 @@
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
 
-if (GetServerVariable("[DynaValkurm]Boss_Trigger")==0) then
+if (GetServerVariable("[DynaValkurm]Boss_Trigger") == 0) then
    --spwan additional mob :
            -- print("Serjeant_Tombstone:");
            for Serjeant_Tombstone = 16937494, 16937499, 1 do
@@ -100,14 +93,10 @@ if (GetServerVariable("[DynaValkurm]Boss_Trigger")==0) then
            SpawnMob(Nightmare_Goobbue);
            end
      SetServerVariable("[DynaValkurm]Boss_Trigger",1);
-   end
+    end
 
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
   if (player:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false) then

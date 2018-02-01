@@ -2,7 +2,7 @@
 --
 -- Host: 10.0.0.10    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.28
+-- Server version   5.5.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -333,18 +333,18 @@ INSERT INTO `treasure_spawn_points` VALUES (16826627,5,190,-24.070,16.841,18.666
 INSERT INTO `treasure_spawn_points` VALUES (16826627,6,60,140.090,20.000,-44.821); -- Newton Movalpolos
 INSERT INTO `treasure_spawn_points` VALUES (16826627,7,90,94.145,15.995,71.251); -- Newton Movalpolos
 INSERT INTO `treasure_spawn_points` VALUES (16826627,8,190,140.432,19.989,84.637); -- Newton Movalpolos
-INSERT INTO `treasure_spawn_points` VALUES (17310020,0,155,-306.824,-23.999,230.783); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,1,173,-98.092,-24.000,369.754); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,2,52,-149.167,-40.200,446.421); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,3,73,75.417,-24.000,412.146); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,4,105,285.520,-2.600,375.324); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,5,66,454.220,-40.200,29.944); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,6,80,378.977,-8.000,-133.852); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,7,21,295.992,-24.000,-241.582); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,8,110,128.749,-34.000,-173.096); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,9,22,-128.639,-34.000,-173.254); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,10,230,-377.675,-40.200,-268.597); -- Ru'Aun Gardens
-INSERT INTO `treasure_spawn_points` VALUES (17310020,11,103,-425.500,-36.000,69.185); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,0,155,-306.824,-23.999,230.783); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,1,173,-98.092,-24.000,369.754); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,2,52,-149.167,-40.200,446.421); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,3,73,75.417,-24.000,412.146); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,4,105,285.520,-2.600,375.324); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,5,66,454.220,-40.200,29.944); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,6,80,378.977,-8.000,-133.852); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,7,21,295.992,-24.000,-241.582); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,8,110,128.749,-34.000,-173.096); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,9,22,-128.639,-34.000,-173.254); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,10,230,-377.675,-40.200,-268.597); -- Ru'Aun Gardens
+INSERT INTO `treasure_spawn_points` VALUES (17310019,11,103,-425.500,-36.000,69.185); -- Ru'Aun Gardens
 INSERT INTO `treasure_spawn_points` VALUES (17379843,0,135,216.974,39.702,68.790); -- Beadeaux
 INSERT INTO `treasure_spawn_points` VALUES (17379843,1,255,369.956,24.075,59.954); -- Beadeaux
 INSERT INTO `treasure_spawn_points` VALUES (17379843,2,210,414.430,23.859,91.361); -- Beadeaux

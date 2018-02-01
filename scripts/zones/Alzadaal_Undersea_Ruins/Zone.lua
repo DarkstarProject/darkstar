@@ -10,9 +10,6 @@ require("scripts/globals/missions");
 require("scripts/globals/besieged");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -41,10 +38,6 @@ function onInitialize(zone)
     zone:registerRegion(23,382, -1,-582,399, 1,-572);    -- mission 9 TOAU
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
@@ -60,19 +53,11 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- afterZoneIn
------------------------------------
-
 function afterZoneIn(player)
     player:entityVisualPacket("1pa1");
     player:entityVisualPacket("1pb1");
     player:entityVisualPacket("2pb1");
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
@@ -151,16 +136,8 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("UPDATE CSID: %u",csid);
@@ -178,10 +155,6 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(player:getLocalVar("UnderseaScouting"),0,0,0,0,0,0,0);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("FINISH CSID: %u",csid);

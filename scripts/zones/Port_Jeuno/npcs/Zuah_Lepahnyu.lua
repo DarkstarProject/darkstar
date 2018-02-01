@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: ZuahLepahnyu
+--  NPC: ZuahLepahnyu
 -- Title Change NPC
 -- !pos 0 0 8 246
 -----------------------------------
-
 require("scripts/globals/titles");
 
 local title2 = { VISITOR_TO_ABYSSEA , FRIEND_OF_ABYSSEA , WARRIOR_OF_ABYSSEA , STORMER_OF_ABYSSEA , DEVASTATOR_OF_ABYSSEA ,
@@ -24,33 +23,17 @@ local title6 = { KARKINOS_CLAWCRUSHER , CARABOSSE_QUASHER , OVNI_OBLITERATOR , R
 local title7 = { HADHAYOSH_HALTERER , BRIAREUS_FELLER , ECCENTRICITY_EXPUNGER , KUKULKAN_DEFANGER , IRATHAM_CAPTURER , LACOVIE_CAPSIZER ,
                 LUSCA_DEBUNKER , TRISTITIA_DELIVERER , KETEA_BEACHER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(330,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

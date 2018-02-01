@@ -3,16 +3,8 @@
 --  NM:  Coo_Keja_the_Unseen
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

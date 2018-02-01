@@ -2,11 +2,7 @@
 -- Area: Valkurm Dunes
 --  MOB: Goblin Tinkerer
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

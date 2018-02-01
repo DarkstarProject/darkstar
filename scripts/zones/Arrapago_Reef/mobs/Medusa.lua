@@ -4,21 +4,13 @@
 -- !pos -458 -20 458
 -- TODO: resists, attack/def boosts
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/zones/Arrapago_Reef/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("eeshpp", math.random(5,99)); -- Uses EES randomly during the fight
 end;
-
------------------------------------
--- onMobEngaged Action
------------------------------------
 
 function onMobEngaged(mob, target)
     local mobID = mob:getID();
@@ -29,10 +21,6 @@ function onMobEngaged(mob, target)
     SpawnMob(mobID+4, 180):updateEnmity(target);
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob, target)
     local HPP = mob:getHPP();
     if (mob:getLocalVar("usedees") == 0) then
@@ -42,10 +30,6 @@ function onMobFight(mob, target)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:showText(mob, MEDUSA_DEATH);

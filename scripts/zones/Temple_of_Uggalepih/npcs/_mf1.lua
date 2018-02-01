@@ -6,24 +6,15 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    local guardian = GetMobByID(17428494);
+    local guardian = GetMobByID(TEMPLE_GUARDIAN);
 
     if ( npc:getAnimation() == 9) then
         player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
@@ -36,20 +27,8 @@ function onTrigger(player,npc)
     return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

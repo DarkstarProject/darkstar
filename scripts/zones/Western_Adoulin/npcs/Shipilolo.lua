@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Shipilolo
---  Type: Standard NPC and Quest NPC
+-- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'A Certain Substitute Patrolman'
 --                        'Fertile Ground'
 --                        'The Old Man and the Harpoon'
@@ -15,17 +15,10 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local TOMATH = player:getQuestStatus(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
@@ -58,16 +51,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2543) then

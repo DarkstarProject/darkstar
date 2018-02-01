@@ -9,9 +9,6 @@ package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +19,6 @@ function onTrade(player,npc,trade)
         player:startEvent(10012,0,0,0,0,newRank);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local getNewRank = 0;
@@ -40,18 +33,10 @@ end;
 
 -- 10011  10012  0x02bc  0x02bd  0x02be  0x02bf  0x02c0  0x02c1  0x0340  0x02fd
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

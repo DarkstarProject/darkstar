@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Vunkerl Inlet (S) (F-5)
--- NPC: Leafy Patch
+--  NPC: Leafy Patch
 -- Involved in Quests
 -- !pos -418 -33 576
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -34,10 +26,6 @@ function onTrigger(player,npc)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

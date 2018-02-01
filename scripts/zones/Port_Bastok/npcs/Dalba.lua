@@ -1,27 +1,19 @@
 -----------------------------------
---  Area: Port Bastok
+-- Area: Port Bastok
 --   NPC: Dalba
---  Type: Past Event Watcher
+-- Type: Past Event Watcher
 -- @zone 236
 -- !pos -174.101 -7 -19.611
 -----------------------------------
-
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -155,10 +147,6 @@ function onTrigger(player,npc)
     player:startEvent(260,BastokMissions,BastokQuests,OtherQuests,PromathiaMissions,AddonScenarios,0xFFFFFFFE,10,gil);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -170,10 +158,6 @@ function onEventUpdate(player,csid,option)
         player:setLocalVar("Dalba_PlayCutscene", 1)
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

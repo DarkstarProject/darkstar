@@ -5,24 +5,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -292,-10,90 ,-258,10,105);
     applyHalloweenNpcCostumes(zone:getID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -45,10 +37,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -57,34 +45,20 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
     if (regionID==1 and player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 2) then
         player:startEvent(758);
     end
 end;
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

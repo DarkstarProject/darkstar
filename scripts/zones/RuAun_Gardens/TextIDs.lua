@@ -24,10 +24,6 @@ FULL_INVENTORY_AFTER_TRADE =  6384; -- You cannot obtain the <item>. Try trading
 -- Other dialog
  IT_IS_ALREADY_FUNCTIONING =  7307; -- It is already functioning.
             SKY_GOD_OFFSET =  7357; -- A strange insignia pointing north is carved into the wall.
-          SKY_GOD_OFFSET_2 =  7358; -- A strange insignia pointing east is carved into the wall.
-          SKY_GOD_OFFSET_3 =  7359; -- A strange insignia pointing west is carved into the wall.
-          SKY_GOD_OFFSET_4 =  7360; -- A strange insignia pointing south is carved into the wall.
-
 
 -- conquest Base
              CONQUEST_BASE =  7147; -- Tallying conquest results...

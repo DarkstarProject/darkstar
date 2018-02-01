@@ -2,31 +2,19 @@
 -- Area: Dragons Aery
 --  HNM: Nidhogg
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn
------------------------------------
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
         GetNPCByID(17408033):setStatus(STATUS_DISAPPEAR);
     end
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     local battletime = mob:getBattleTime();
@@ -44,17 +32,9 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(NIDHOGG_SLAYER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set Nidhogg's Window Open Time

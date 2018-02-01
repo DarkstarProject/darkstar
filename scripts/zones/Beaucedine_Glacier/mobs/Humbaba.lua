@@ -2,11 +2,7 @@
 -- Area: Beaucedine Glacier
 --  MOB: Humbaba
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

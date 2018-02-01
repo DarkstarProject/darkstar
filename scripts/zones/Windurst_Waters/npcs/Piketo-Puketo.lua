@@ -9,9 +9,6 @@ package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +19,6 @@ function onTrade(player,npc,trade)
         player:startEvent(10014,0,0,0,0,newRank);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local getNewRank = 0;
@@ -40,18 +33,10 @@ end;
 
 -- 0x03d2  0x03d7  0x03d4  0x03d5  10013  10014
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -3,28 +3,23 @@
 -- NPC:  ???
 -- !pos -300 -175 22 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
+require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
-
     -- Trade moldy buckler
-    if (GetMobAction(17424480) == 0 and trade:hasItemQty(2385,1) and trade:getItemCount() == 1) then
+    if (not GetMobByID(ALKYONEUS):isSpawned() and trade:hasItemQty(2385,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
-        SpawnMob(17424480):updateClaim(player); -- Alkyoneus
+        SpawnMob(ALKYONEUS):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
+end;
+
+function onEventUpdate(player,csid,option)
+end;
+
+function onEventFinish(player,csid,option)
 end;

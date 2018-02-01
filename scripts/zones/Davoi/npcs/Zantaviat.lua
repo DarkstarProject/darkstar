@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Zantaviat
+--  NPC: Zantaviat
 -- Involved in Mission: The Davoi Report
 -- !pos 215 0.1 -10 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Davoi/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -41,18 +33,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

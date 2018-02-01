@@ -1,47 +1,31 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC:  HomePoint#2
+--  NPC: HomePoint#2
 -- !pos -212 0.001 -99 239
 -----------------------------------
-
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/homepoint");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    homepointMenu( player, 8701, 20);
+    homepointMenu(player, 8701, 20);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 8701) then
 
@@ -49,7 +33,7 @@ function onEventFinish(player,csid,option)
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else
-            hpTeleport( player, option);
+            hpTeleport(player, option);
         end
     end
 end;

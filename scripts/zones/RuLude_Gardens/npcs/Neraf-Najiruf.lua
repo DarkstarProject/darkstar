@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Ru'Lud Gardens
--- NPC:  Neraf-Najiruf
+--  NPC: Neraf-Najiruf
 -- Involved in Quests: Save my Sister
 -- @zone 243
 -- !pos -36 2 60
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/RuLude_Gardens/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     saveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
@@ -37,18 +29,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

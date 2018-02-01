@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Tosuka-Porika
+--  NPC: Tosuka-Porika
 --  Starts Quests: Early Bird Catches the Bookworm, Chasing Tales
 -- Involved in Quests: Hat in Hand, Past Reflections, Blessed Radiance
 --  Involved in Missions: Windurst 2-1, Windurst 7-1, Windurst 8-2, CoP 3-3
@@ -9,24 +9,16 @@
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -91,18 +83,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

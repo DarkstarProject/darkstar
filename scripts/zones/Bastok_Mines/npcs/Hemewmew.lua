@@ -91,25 +91,13 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 207, 7);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 7, 206, "guild_alchemy", keyitems);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -118,10 +106,6 @@ function onEventUpdate(player,csid,option,target)
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);

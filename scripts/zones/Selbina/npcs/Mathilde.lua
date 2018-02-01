@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Selbina
--- NPC:  Mathilde
+--  NPC: Mathilde
 -- Involved in Quest: Riding on the Clouds
 -- !pos 12.578 -8.287 -7.576 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,10 +24,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) ==MORE_QUESTIONS_THAN_ANSWERS and player:getVar("PromathiaStatus")==2) then
         player:startEvent(10005);
@@ -40,25 +32,17 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-   if (csid == 10005) then
+    if (csid == 10005) then
       player:setVar("PromathiaStatus",0);
       player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
       player:addMission(COP,ONE_TO_BE_FEARED);
-   end
+    end
 end;

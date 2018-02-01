@@ -304,6 +304,7 @@ void do_abort(void)
 void set_server_type()
 {
     SERVER_TYPE = DARKSTAR_SERVER_MAP;
+    SOCKET_TYPE = socket_type::UDP;
 }
 
 /************************************************************************

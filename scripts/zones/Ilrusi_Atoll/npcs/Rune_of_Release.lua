@@ -1,13 +1,11 @@
 -----------------------------------
 -- Area:
--- NPC:  rune of release
+--  NPC: rune of release
 -- @zone illrusi atoll
 -- !pos
 -----------------------------------
 package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
-
 require("scripts/globals/bcnm");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -15,16 +13,10 @@ require("scripts/globals/missions");
 require("scripts/zones/Ilrusi_Atoll/TextIDs");
 require("scripts/globals/besieged");
 -----------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -39,18 +31,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -79,7 +63,7 @@ function onEventFinish(player,csid,option)
         player:addAssaultPoint(ILRUSI_ASSAULT_POINT,point);
         player:delMission(ASSAULT,GOLDEN_SALVAGE);
         player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
-    print(point);
+    -- print(point);
      end
 
 

@@ -2,11 +2,7 @@
 -- Area: Western Altepa Desert
 --  MOB: Goblin Hunter
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

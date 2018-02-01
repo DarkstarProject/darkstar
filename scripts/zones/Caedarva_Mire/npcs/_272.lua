@@ -3,25 +3,16 @@
 -- Door: Runic Seal
 -- !pos 486 -23 -500 79
 -----------------------------------
-
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
 require("scripts/zones/Caedarva_Mire/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then
@@ -40,10 +31,6 @@ function onTrigger(player,npc)
         player:messageSpecial(NOTHING_HAPPENS);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -84,10 +71,6 @@ function onEventUpdate(player,csid,option,target)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -96,10 +79,6 @@ function onEventFinish(player,csid,option,target)
         player:setPos(0,0,0,0,69);
     end
 end;
-
------------------------------------
--- onInstanceLoaded
------------------------------------
 
 function onInstanceCreated(player,target,instance)
     if (instance) then

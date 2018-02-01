@@ -4,33 +4,27 @@
 -- Involved in Quests: Atop the Highest Mountains
 -- !pos 580 -9 290 112
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/settings");
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Xarcabard/TextIDs");
-
------------------------------------
--- onMobSpawn
------------------------------------
+require("scripts/zones/Xarcabard/MobIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 
 function onMobSpawn(mob)
     -- Failsafe to make sure NPC is down when NM is up
     if (OldSchoolG2) then
-        GetNPCByID(17236309):showNPC(0);
+        GetNPCByID(BOREAL_COEURL_QM):showNPC(0);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     if (OldSchoolG2) then
         -- show ??? for desired duration
         -- notify people on the quest who need the KI
-        GetNPCByID(17236309):showNPC(FrigiciteDuration);
-        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(SQUARE_FRIGICITE) == false) then
+        GetNPCByID(BOREAL_COEURL_QM):showNPC(FrigiciteDuration);
+        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(SQUARE_FRIGICITE)) then
             player:messageSpecial(BLOCKS_OF_ICE);
         end
     end

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
 -----------------------------------

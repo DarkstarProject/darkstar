@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Brutus
+--  NPC: Brutus
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster, Wings of gold, Scattered into Shadow, Chocobo on the Loose!
 -- !pos -55 8 95 244
 -----------------------------------
@@ -12,17 +12,10 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -106,18 +99,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

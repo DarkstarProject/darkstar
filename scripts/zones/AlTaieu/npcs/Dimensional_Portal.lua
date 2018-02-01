@@ -5,49 +5,22 @@
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/AlTaieu/MobIDs");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-
-    local Dimensional_Offset = 16912910;
-    local npcID = npc:getID();
-    
-    if (npcID == Dimensional_Offset) then
-       player:startEvent(151);    
-    elseif (npcID == Dimensional_Offset+1) then
-       player:startEvent(152);
-    elseif (npcID == Dimensional_Offset+2) then
-       player:startEvent(153); 
+    local offset = npc:getID() - DIMENSIONAL_PORTAL_OFFSET;
+    if (offset >= 0 and offset <=2) then
+        player:startEvent(151 + offset);
     end
-    
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ( csid == 151 and option == 1) then 
         player:setPos(420,19,-140,63,102);     -- To La Theine Plateau {R}
     elseif ( csid == 152 and option == 1) then

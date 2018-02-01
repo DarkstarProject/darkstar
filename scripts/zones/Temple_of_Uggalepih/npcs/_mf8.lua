@@ -1,16 +1,12 @@
 -----------------------------------
--- Area:  Temple of Uggalepih
--- NPC:   _mf8 (Granite Door)
+-- Area: Temple of Uggalepih
+--  NPC: _mf8 (Granite Door)
 -- Notes: Opens with Prelate Key
 -- !pos -11 -8 -99 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +18,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -39,18 +31,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

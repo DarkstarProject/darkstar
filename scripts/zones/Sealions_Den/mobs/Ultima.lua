@@ -4,25 +4,14 @@
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/msg");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     -- Gains regain at under 25% HP
@@ -33,10 +22,6 @@ function onMobFight(mob,target)
         end
     end
 end;
-
------------------------------------
--- onAdditionalEffect
------------------------------------
 
 function onAdditionalEffect(mob, player)
     local chance = 20;
@@ -53,10 +38,6 @@ function onAdditionalEffect(mob, player)
         return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(ULTIMA_UNDERTAKER);

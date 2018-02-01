@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Goltata
+--  NPC: Goltata
 --  Involved in Quests: Wonder Wands
 -- Working 100%
 -----------------------------------
@@ -11,17 +11,10 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
@@ -34,18 +27,10 @@ WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

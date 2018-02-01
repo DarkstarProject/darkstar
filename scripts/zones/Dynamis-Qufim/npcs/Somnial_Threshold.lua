@@ -1,10 +1,7 @@
 -----------------------------------
 -- Area: Dynamis
--- NPC:  Somnial Threshold
+--  NPC: Somnial Threshold
 -------------------------------------
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -12,19 +9,11 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
-    
-end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
+end;
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
@@ -33,5 +22,5 @@ function onEventFinish(player,csid,option)
     if (csid == 101 and option == 1) then
         player:setPos(18,-19,162,240, 126);
     end
-    
+
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Castilchat
+--  NPC: Castilchat
 -- Starts Quest: Trial Size Trial by Ice
 -- !pos -186 0 107 231
 -----------------------------------
@@ -10,9 +10,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/teleports");
 require("scripts/globals/status");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,9 +24,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
 
     local TrialSizeByIce = player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
@@ -54,18 +48,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

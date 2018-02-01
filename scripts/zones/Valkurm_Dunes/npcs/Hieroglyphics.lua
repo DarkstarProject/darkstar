@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Valkurm_Dunes
--- NPC:  Hieroglyphics
+--  NPC: Hieroglyphics
 -- Dynamis Valkurm_Dunes Enter
 -- !pos 117 -10 133 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if ((player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
@@ -45,18 +37,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("updateRESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

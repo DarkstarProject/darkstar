@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Shami
+--  NPC: Shami
 -- Orb Seller (BCNM)
 -- !pos -14 8 44 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -154,10 +150,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local oldBeastmensSeal = player:getVar("ShamiBeastmensSeal");
     local oldKindredsSeal = player:getVar("ShamiKindredsSeal");
@@ -216,18 +208,10 @@ end;
 -- 321 : trade sceau + nombre player:startEvent(321,0,15);
 --          0 shbete, 1 s-confrerie, 2 s-demons, 3 s-seigneurdes hombre
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

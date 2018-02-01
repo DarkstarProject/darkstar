@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Naruru
+--  NPC: Naruru
 -- Starts and Finishes Quests: Cook's Pride
 -- !pos -56 0.1 -138 245
 -----------------------------------
@@ -12,17 +12,10 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
@@ -57,18 +50,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

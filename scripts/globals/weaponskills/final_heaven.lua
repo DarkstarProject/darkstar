@@ -8,8 +8,8 @@
 -- 3.0x        3.0x    3.0x
 -- +10 Subtle Blow for a short duration after using the weapon skill. (Not implemented)
 -------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
-require("scripts/globals/weaponskills");
 require("scripts/globals/weaponskills");
 -------------------------------
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
@@ -38,11 +38,5 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     -- damage = damage * ftp(tp, ftp100, ftp200, ftp300);
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
-    if (damage > 0) then
-        local amDuration = 20 * math.floor(tp/1000);
-        player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, amDuration, 0, 1);
-    end
-
     return tpHits, extraHits, criticalHit, damage;
 end

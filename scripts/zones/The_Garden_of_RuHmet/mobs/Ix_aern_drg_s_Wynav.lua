@@ -3,25 +3,15 @@
 --  MOB: Ix'aern (drg)'s Wynav
 -----------------------------------
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
     mob:setLocalVar("hpTrigger", math.random(10,75));
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
 function onMobFight(mob,target)
     local hpTrigger = mob:getLocalVar("hpTrigger");
     if (mob:getLocalVar("SoulVoice") == 0 and mob:getHPP() <= hpTrigger) then
@@ -29,10 +19,6 @@ function onMobFight(mob,target)
         mob:useMobAbility(696); -- Soul Voice
     end
 end;
-
------------------------------------
--- onMonsterMagicPrepare
------------------------------------
 
 function onMonsterMagicPrepare(mob,target)
     local spellList =
@@ -54,16 +40,9 @@ function onMonsterMagicPrepare(mob,target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- OnMobDespawn
------------------------------------
 function onMobDespawn(mob)
     mob:setLocalVar("repop", mob:getBattleTime()); -- This get erased on respawn automatic.
 end;

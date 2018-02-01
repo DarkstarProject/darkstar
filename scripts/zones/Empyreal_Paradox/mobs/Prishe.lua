@@ -3,29 +3,17 @@
 --  MOB: Prishe
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/zones/Empyreal_Paradox/TextIDs");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 30);
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobRoam
------------------------------------
 
 function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
@@ -49,18 +37,10 @@ function onMobRoam(mob)
     end
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob, target)
     mob:useMobAbility(1487);
     mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     if (mob:getHPP() == 0 and mob:getLocalVar("Raise") == 1) then
@@ -81,10 +61,6 @@ function onMobFight(mob, target)
     end
     -- mob:setStatus(0);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mob:messageText(mob, PRISHE_TEXT + 2);

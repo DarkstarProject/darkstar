@@ -85,7 +85,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
         throw CStateInitException(std::move(m_errorMsg));
     }
 
-    auto error = luautils::OnItemCheck(PTarget, m_PItem);
+    auto error = luautils::OnItemCheck(PTarget, m_PItem, ITEMCHECK::NONE, m_PEntity);
 
     if (error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {
@@ -97,7 +97,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
         }
         else
         {
-            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, param, 0, error == -1 ? 0 : error));
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget ? PTarget : m_PEntity, param, 0, error == -1 ? 0 : error));
         }
     }
 

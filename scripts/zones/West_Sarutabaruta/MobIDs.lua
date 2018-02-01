@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: West Sarutabaruta (115)
+-- Area: West Sarutabaruta (115)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -23,3 +23,5 @@ TOM_TIT_TAT_PH =
     [17248544] = 17248468, -- 239.421 -19.659 583.122
     [17248545] = 17248468, -- 274.296 -20.357 587.339
 };
+
+W_SARUTA_SIGNPOST_OFFSET = 17248790;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Guttrix
+--  NPC: Guttrix
 -- Starts and Finishes Quest: The Goblin Tailor
 -- @zone 245
 -- !pos -36.010 4.499 -139.714
@@ -54,16 +54,8 @@ function getRSE(player, option)
     return -1;
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local pFame = player:getFameLevel(JEUNO);
@@ -91,18 +83,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -6,25 +6,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local X = player:getXPos();
     local Z = player:getZPos();
-    local DoorToRancor = 17428989;
 
     if (X < -60) then
         if (Z < -6) then -- SW frame
@@ -42,7 +34,7 @@ function onTrigger(player,npc)
         if (Z <-5) then -- SE picture
             player:messageSpecial(PAINTBRUSH_OFFSET + 12); -- It is a painting of a beautiful landscape.
         elseif (Z > -5 and Z < 5) then
-            if (GetNPCByID(DoorToRancor):getAnimation() == 8) then
+            if (GetNPCByID(UGGALEPIH_DOOR_TO_RANCOR):getAnimation() == ANIMATION_OPEN_DOOR) then
                 player:messageSpecial(PAINTBRUSH_OFFSET + 23,PAINTBRUSH_OF_SOULS); -- The <KEY_ITEM> begins to twitch. The canvas is graced with the image from your soul.
             elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS) and X >= -53.2 and Z <= 0.1 and Z >= -0.1) then -- has paintbrush of souls + close enough
                 player:messageSpecial(PAINTBRUSH_OFFSET + 17,PAINTBRUSH_OF_SOULS);
@@ -60,35 +52,20 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    local DoorToRancor = 17428989;
-
     if (csid == 50) then
         -- Soon !
     elseif (csid == 60) then
-        time_elapsed = os.time() - player:getVar("started_painting");
+        local time_elapsed = os.time() - player:getVar("started_painting");
         if (time_elapsed >= 30) then
             player:messageSpecial(PAINTBRUSH_OFFSET + 22); -- You succeeded in projecting the image in your soul to the blank canvas. The door to the Rancor Den has opened!<Prompt>
-            GetNPCByID(DoorToRancor):openDoor(45); -- Open the door to Den of Rancor for 45 sec
+            GetNPCByID(UGGALEPIH_DOOR_TO_RANCOR):openDoor(45); -- Open the door to Den of Rancor for 45 sec
         else
             player:messageSpecial(PAINTBRUSH_OFFSET + 21); -- You were unable to fill the canvas with an image from your soul.
         end
         player:setVar("started_painting",0);
     end
-
 end;

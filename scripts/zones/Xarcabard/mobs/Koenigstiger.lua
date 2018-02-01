@@ -4,19 +4,11 @@
 -- Involved in Quests: Unbridled Passion (RNG AF3)
 -- !zone 112
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

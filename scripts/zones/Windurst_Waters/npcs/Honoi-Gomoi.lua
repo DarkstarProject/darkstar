@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Honoi-Gumoi
+--  NPC: Honoi-Gumoi
 -- Involved In Quest: Crying Over Onions, Hat in Hand
 -- !pos -195 -11 -120 238
 -----------------------------------
@@ -10,9 +10,6 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +22,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     function testflag(set,flag)
@@ -75,19 +68,11 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

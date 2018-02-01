@@ -1,25 +1,18 @@
 -----------------------------------
 -- Area: Metalworks
 --   NPC: High Bear
---  Type: Quest Giver
+-- Type: Quest Giver
 -- @zone 237
 -- !pos 25.231 -14.999 4.552
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
 
     local BeaSmog = player:getQuestStatus(BASTOK,BEADEAUX_SMOG);
@@ -33,18 +26,11 @@ function onTrigger(player,npc)
         player:startEvent(732);
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

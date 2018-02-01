@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Southern Sandoria
+-- Area: Southern Sandoria
 --   NPC: Estiliphire
---  Type: Event Sideshow NPC
+-- Type: Event Sideshow NPC
 --  @zone 230
 -- !pos -41.550 1.999 -2.845
 --
@@ -11,10 +11,6 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,17 +24,9 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(897);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

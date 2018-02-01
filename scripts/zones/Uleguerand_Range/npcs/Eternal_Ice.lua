@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Uleguerand Range
---  NPC:  Eternal Ice
+-- Area: Uleguerand Range
+--  NPC: Eternal Ice
 --  Gives key item Mystic Ice upon examining
 -- !pos 575 -26 -101 5
 -- !pos 455 -82 421 5
@@ -8,20 +8,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Uleguerand_Range/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 

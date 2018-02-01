@@ -1,17 +1,13 @@
 -----------------------------------
--- Area:  Castle Oztroja
--- NPC:   _m73 (Torch Stand)
+-- Area: Castle Oztroja
+--  NPC: _m73 (Torch Stand)
 -- Notes: Opens door _477 when _m72 to _m75 are lit
 -- !pos -140.146 -72.058 -137.145 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -34,18 +30,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

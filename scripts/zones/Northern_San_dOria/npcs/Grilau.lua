@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Grilau
+--  NPC: Grilau
 -- !pos -241.987 6.999 57.887 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -45,10 +41,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -92,18 +84,10 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdateCSID: %u",csid);
     -- printf("onUpdateOPTION: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);

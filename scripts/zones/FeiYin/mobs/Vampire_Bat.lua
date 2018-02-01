@@ -2,11 +2,7 @@
 -- Area: Fei'Yin
 --  MOB: Vampire Bat
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

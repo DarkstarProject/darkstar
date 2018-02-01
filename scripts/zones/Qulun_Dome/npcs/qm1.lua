@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Qulun Dome
--- NPC:  qm1 (???)
+--  NPC: qm1 (???)
 -- Used In Quest: Whence Blows the Wind
 -- !pos 261 39 79 148
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Qulun_Dome/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -34,18 +26,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

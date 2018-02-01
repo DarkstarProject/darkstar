@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Agapito
+--  NPC: Agapito
 -- Start & Finishes Quest: The Stars of Ifrit
 -- @zone 236
 -- !pos -72.093 -3.097 9.309
@@ -12,17 +12,10 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
@@ -36,18 +29,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

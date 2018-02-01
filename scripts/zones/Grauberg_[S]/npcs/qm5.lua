@@ -1,26 +1,18 @@
 -----------------------------------
---  Area: Grauberg [S]
---  NPC:  ???
+-- Area: Grauberg [S]
+--  NPC: ???
 --  Quest - Fires of Discontent
 -- pos 258 33 516
 -----------------------------------
 package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/globals/harvesting");
 require("scripts/zones/Grauberg_[S]/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -31,20 +23,12 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    
+
     if (csid==11) then
         player:setVar("FiresOfDiscProg",4);
     end

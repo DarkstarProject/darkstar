@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Pso'Xja
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- @zone 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -15,10 +14,6 @@ local TreasureType = "Chest";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     -- trade:hasItemQty(1064,1);         -- Treasure Key
     -- trade:hasItemQty(1115,1);        -- Skeleton Key
@@ -27,7 +22,7 @@ function onTrade(player,npc,trade)
     local questItemNeeded = 0;
 
     -- Player traded a key.
-    if ((trade:hasItemQty(1064,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+    if ((trade:hasItemQty(1064,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: Map -----------
         if (player:hasKeyItem(MAP_OF_PSOXJA) == false) then
@@ -54,13 +49,13 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(MAP_OF_PSOXJA);
                     player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_PSOXJA); -- Map of Pso'Xja
                 else
-                    player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
+                    player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
                     local loot = chestLoot(zone,npc);
                     -- print("loot array: "); -- debug
                     -- print("[1]", loot[1]); -- debug
                     -- print("[2]", loot[2]); -- debug
-                    
+
                     if (loot[1]=="gil") then
                         player:addGil(loot[2]*GIL_RATE);
                         player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
@@ -77,26 +72,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1064);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

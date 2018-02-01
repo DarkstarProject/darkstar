@@ -13,10 +13,6 @@ local TreasureType = "Chest";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     --trade:hasItemQty(1034,1);         -- Treasure Key
     --trade:hasItemQty(1115,1);            -- Skeleton Key
@@ -64,26 +60,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1034);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

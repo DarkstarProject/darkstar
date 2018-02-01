@@ -10,9 +10,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +20,6 @@ function onTrade(player,npc,trade)
         player:startEvent(622,0,0,0,0,newRank);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local getNewRank = 0;
@@ -41,18 +34,10 @@ end;
 
 -- 621  622  0x02f7  0x0010  0x0000
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

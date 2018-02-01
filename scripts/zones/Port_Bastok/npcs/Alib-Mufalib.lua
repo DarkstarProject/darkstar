@@ -1,12 +1,11 @@
 -----------------------------------
---  Area: Port Bastok
---  NPC:  Alib-Mufalib
---  Type: Warp NPC
+-- Area: Port Bastok
+--  NPC: Alib-Mufalib
+-- Type: Warp NPC
 -- !pos 116.080 7.372 -31.820 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
@@ -52,10 +51,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local LureBastok = player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
     local WildcatBastok = player:getVar("WildcatBastok");
@@ -77,10 +72,6 @@ function onTrigger(player,npc)
         player:startEvent(361);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

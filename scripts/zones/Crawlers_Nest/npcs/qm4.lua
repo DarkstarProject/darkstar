@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- NPC:  ??? - Drown Crawler (Spawn area 2)
+--  NPC: ??? - Drown Crawler (Spawn area 2)
 -- !pos -74.939 -2.606 244.139 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Crawlers_Nest/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,10 +20,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 end;

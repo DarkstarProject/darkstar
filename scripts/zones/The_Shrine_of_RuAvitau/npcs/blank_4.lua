@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- NPC:  ??? divine might mission
+--  NPC: ??? divine might mission
 -- !pos -40 0 -151 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
    local CurrentZM = player:getCurrentMission(ZILART);
@@ -38,42 +30,38 @@ function onTrigger(player,npc)
       if (player:hasKeyItem(i) == true) then
          AAKeyitems = AAKeyitems + 1;
       end
-   end
+    end
 
    -- Count Earrings
    for i=14739, 14743 do
       if (player:hasItem(i) == true) then
          DMEarrings = DMEarrings + 1;
       end
-   end
+    end
 
-   if (CurrentZM == ARK_ANGELS and ZMProgress == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- First step in Ark Angels
+    if (CurrentZM == ARK_ANGELS and ZMProgress == 0 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- First step in Ark Angels
       player:startEvent(53,917,1408,1550);
-   elseif (CurrentZM == ARK_ANGELS and ZMProgress == 1 and DivineStatus < 2) then -- Reminder CS/starts Divine Might (per Wiki)
+    elseif (CurrentZM == ARK_ANGELS and ZMProgress == 1 and DivineStatus < 2) then -- Reminder CS/starts Divine Might (per Wiki)
       player:startEvent(54,917,1408,1550);
-   elseif (CurrentZM >= ARK_ANGELS and DMStatus == QUEST_AVAILABLE and AAKeyitems > 0) then -- Alternative cutscene for those that have done one or more AA fight
+    elseif (CurrentZM >= ARK_ANGELS and DMStatus == QUEST_AVAILABLE and AAKeyitems > 0) then -- Alternative cutscene for those that have done one or more AA fight
       player:startEvent(56,917,1408,1550);
-   elseif (DMStatus == QUEST_ACCEPTED and DivineStatus >= 2) then -- CS when player has completed Divine might, award earring
+    elseif (DMStatus == QUEST_ACCEPTED and DivineStatus >= 2) then -- CS when player has completed Divine might, award earring
       player:startEvent(55,14739,14740,14741,14742,14743);
-   elseif (DMStatus == QUEST_COMPLETED and DMEarrings < NUMBER_OF_DM_EARRINGS and DMRepeat ~= QUEST_ACCEPTED) then -- You threw away old Earring, start the repeat quest
+    elseif (DMStatus == QUEST_COMPLETED and DMEarrings < NUMBER_OF_DM_EARRINGS and DMRepeat ~= QUEST_ACCEPTED) then -- You threw away old Earring, start the repeat quest
       player:startEvent(57,player:getVar("DM_Earring"));
-   elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus < 2) then
+    elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus < 2) then
       if (MoonOre == false) then
          player:startEvent(58); -- Reminder for Moonlight Ore
       else
          player:startEvent(56,917,1408,1550); -- Reminder for Ark Pentasphere
       end
-   elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus == 2 and MoonOre == true) then -- Repeat turn in
+    elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus == 2 and MoonOre == true) then -- Repeat turn in
       player:startEvent(59);
    else
       player:messageSpecial(NOTHING_OUT_OF_ORDINARY); -- Need some kind of feedback
-   end
+    end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -83,25 +71,21 @@ function onEventUpdate(player,csid,option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-   if (csid == 53) then -- Got the required cutscene for AA
+    if (csid == 53) then -- Got the required cutscene for AA
       player:setVar("ZilartStatus",1);
 
-   elseif ((csid == 54 or csid == 56) and player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_AVAILABLE) then -- Flag Divine Might
+    elseif ((csid == 54 or csid == 56) and player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_AVAILABLE) then -- Flag Divine Might
       player:addQuest(OUTLANDS,DIVINE_MIGHT);
 
-   elseif (csid == 57) then -- Divine Might Repeat
+    elseif (csid == 57) then -- Divine Might Repeat
       player:delQuest(OUTLANDS,DIVINE_MIGHT_REPEAT);
       player:addQuest(OUTLANDS,DIVINE_MIGHT_REPEAT);
 
-   elseif (csid == 55 or csid == 59) then -- Turning in Divine Might or Repeat
+    elseif (csid == 55 or csid == 59) then -- Turning in Divine Might or Repeat
       local reward = 0;
       if (option == 1) then
          reward = 14739; -- Suppanomimi
@@ -130,5 +114,5 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
          end
       end
-   end
+    end
 end;

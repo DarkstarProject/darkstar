@@ -25,11 +25,11 @@ function onMobDeath(mob, player, isKiller)
         player:addTimeToDynamis(15);
         mob:addInBattlefieldList();
     -- HP Bonus: 005 013 018 023 028 030
-    elseif (mobID == 17326834 or mobID == 17326842 or mobID == 17326847 or mobID == 17326852 or mobID == 17326857 or mobID == 17326859) then 
+    elseif (mobID == 17326834 or mobID == 17326842 or mobID == 17326847 or mobID == 17326852 or mobID == 17326857 or mobID == 17326859) then
         player:restoreHP(2000);
         player:messageBasic(msgBasic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
     -- MP Bonus: 012 019 022 025 027 106
-    elseif (mobID == 17326841 or mobID == 17326848 or mobID == 17326851 or mobID == 17326854 or mobID == 17326856 or mobID == 17326935) then 
+    elseif (mobID == 17326841 or mobID == 17326848 or mobID == 17326851 or mobID == 17326854 or mobID == 17326856 or mobID == 17326935) then
         player:restoreMP(2000);
         player:messageBasic(msgBasic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
     end

@@ -499,6 +499,7 @@ void CMobController::DoCombatTick(time_point tick)
 
     float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
 
+    PMob->PAI->EventHandler.triggerListener("COMBAT_TICK", PMob);
     luautils::OnMobFight(PMob, PTarget);
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
@@ -820,6 +821,7 @@ void CMobController::DoRoamTick(time_point tick)
     }
     if (m_Tick >= m_LastRoamScript + 3s)
     {
+        PMob->PAI->EventHandler.triggerListener("ROAM_TICK", PMob);
         luautils::OnMobRoam(PMob);
         m_LastRoamScript = m_Tick;
     }
@@ -1053,7 +1055,7 @@ bool CMobController::IsSpellReady(float currentDistance)
         bonusTime = PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
     }
 
-    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL))
+    if (PMob->StatusEffectContainer->HasStatusEffect({EFFECT_CHAINSPELL,EFFECT_MANAFONT}))
     {
         return true;
     }

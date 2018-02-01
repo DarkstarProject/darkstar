@@ -1,18 +1,14 @@
 -----------------------------------
--- Area:  Pso'Xja
--- NPC:   _090 (Stone Gate)
+-- Area: Pso'Xja
+--  NPC: _090 (Stone Gate)
 -- Notes: Spawns Gargoyle when triggered
 -- !pos 341.600 -1.925 -50.000 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,10 +40,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger
------------------------------------
-
 function onTrigger(player,npc)
 
     local X=player:getXPos();
@@ -73,18 +65,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 26 and option == 1) then

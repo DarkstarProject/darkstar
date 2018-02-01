@@ -2,11 +2,7 @@
 -- Area: Misareaux Coast
 --  Mob: Warder_Thalia
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

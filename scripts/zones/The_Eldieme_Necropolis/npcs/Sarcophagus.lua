@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC: Sarcophagus
+--  NPC: Sarcophagus
 -- Involved in Quests: The Requiem (BARD AF2), A New Dawn (BST AF3)
 -- !pos -420 8 500 195
 -----------------------------------
@@ -12,7 +12,6 @@ require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/zones/The_Eldieme_Necropolis/MobIDs");
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
-
 -----------------------------------
 -- sarcophagusNumber
 -----------------------------------
@@ -31,10 +30,6 @@ function sarcophagusNumber(X,Z)
     end;
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     -- THE REQUIEM (holy water)
     if (player:getVar("TheRequiemCS") == 3 and trade:hasItemQty(4154,1) and trade:getItemCount() == 1) then
@@ -52,10 +47,6 @@ function onTrade(player,npc,trade)
         end;
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
@@ -94,16 +85,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- THE REQUIEM

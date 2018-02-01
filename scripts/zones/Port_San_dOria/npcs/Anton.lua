@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Anton
+--  NPC: Anton
 -- @zone 232
 -- !pos -19 -8 27
 -----------------------------------
@@ -10,9 +10,6 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,10 +25,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:hasKeyItem(AIRSHIP_PASS) == false) then
@@ -45,18 +38,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

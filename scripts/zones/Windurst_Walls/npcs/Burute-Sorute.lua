@@ -1,13 +1,12 @@
 -----------------------------------
---  Area: Windurst Walls
+-- Area: Windurst Walls
 --   NPC: Burute-Sorute
---  Type: Title Change NPC
+-- Type: Title Change NPC
 -- @zone 239
 -- !pos 0.080 -10.765 5.394 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-
 require("scripts/globals/titles");
 
 local title2 = { NEW_ADVENTURER , CAT_BURGLAR_GROUPIE , CRAWLER_CULLER , STAR_ONION_BRIGADE_MEMBER , SOB_SUPER_HERO ,
@@ -35,33 +34,17 @@ local title6 = { FREESWORD , MERCENARY , MERCENARY_CAPTAIN , COMBAT_CASTER , TAC
 local title7 = { MOG_HOUSE_HANDYPERSON , ARRESTER_OF_THE_ASCENSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ,
             0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(10004,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid)

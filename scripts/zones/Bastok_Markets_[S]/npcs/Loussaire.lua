@@ -1,27 +1,20 @@
 -----------------------------------
 -- Area: Bastok Markets (S) (G-10)
--- NPC:  Loussaire
+--  NPC: Loussaire
 -- !pos -248.677 -8.523 -125.734 87
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -135,10 +128,6 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -173,10 +162,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

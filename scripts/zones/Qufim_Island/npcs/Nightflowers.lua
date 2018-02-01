@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Qufim Island
--- NPC:  Nightflowers
+--  NPC: Nightflowers
 -- Involved in Quest: Save My Son (Beastmaster Flag #1)
 -- !pos -264.775 -3.718 28.767 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Qufim_Island/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -37,18 +29,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heaven's Tower
--- NPC:  Chumimi
+--  NPC: Chumimi
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- !pos 0.1 30 21 242
 -----------------------------------
@@ -11,9 +11,6 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Heavens_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -33,10 +30,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -73,18 +66,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

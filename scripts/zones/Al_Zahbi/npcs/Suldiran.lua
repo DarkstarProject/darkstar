@@ -10,9 +10,6 @@ require("scripts/zones/Al_Zahbi/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +20,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_AVAILABLE) then
         player:startEvent(14);
@@ -35,16 +28,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 14 and option == 1) then

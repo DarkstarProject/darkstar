@@ -1,16 +1,12 @@
 ----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC: Altar of Ashes
+--  NPC: Altar of Ashes
 -- Involved in Quest: Greetings to the Guardian
 -- !pos 16 .1 -58 205
 -----------------------------------
-
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +23,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
 
@@ -42,18 +34,11 @@ function onTrigger(player,npc)
         player:messageSpecial(ALTAR_STANDARD);
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

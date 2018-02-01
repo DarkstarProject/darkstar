@@ -2,7 +2,6 @@
 -- Area: Western Altepa Desert
 --  MOB: Sabotender Enamorado
 -----------------------------------
-
 require("scripts/globals/missions");
 
 function onMobInitialize(mob)

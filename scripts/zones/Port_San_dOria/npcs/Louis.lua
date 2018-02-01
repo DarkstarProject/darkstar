@@ -1,23 +1,15 @@
 -----------------------------------
---  Area: Port San d'Oria
+-- Area: Port San d'Oria
 --   NPC: Louis
---  Type: Standard NPC
+-- Type: Standard NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
-
-require("scripts/zones/Port_San_dOria/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -38,18 +30,10 @@ function onTrigger(player,npc)
     player:startEvent( 763, seconds, 0, 0, 0, 0, 0, 0, 0);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

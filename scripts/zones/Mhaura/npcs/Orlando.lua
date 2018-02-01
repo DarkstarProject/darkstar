@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mhaura
---  NPC:  Orlando
---  Type: Standard NPC
+--  NPC: Orlando
+-- Type: Standard NPC
 -- !pos -37.268 -9 58.047 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
@@ -10,9 +10,6 @@ require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -49,10 +46,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
 
@@ -71,18 +64,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

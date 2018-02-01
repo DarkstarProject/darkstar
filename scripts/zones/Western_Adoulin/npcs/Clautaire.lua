@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Clautaire
---  Type: Standard NPC and Quest Giver
+-- Type: Standard NPC and Quest Giver
 --  Starts, Involved with, and Finishes Quest: 'F.A.I.L.ure Is Not an Option'
 --  @zone 256
 --  !pos 44 4 -159 256
@@ -12,17 +12,10 @@ require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local FINAO = player:getQuestStatus(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
@@ -43,16 +36,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 78) then

@@ -1,18 +1,10 @@
 -----------------------------------
--- Area: Sealion den
--- NPC:  Tenzen
------------------------------------
-
------------------------------------
--- onMobSpawn
+-- Area: Sealions den
+--  NPC: Tenzen
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     switch (mob:getID()) : caseof
@@ -34,10 +26,6 @@ function onMobEngaged(mob,target)
         end,
     }
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

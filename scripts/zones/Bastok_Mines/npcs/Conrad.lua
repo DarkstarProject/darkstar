@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Conrad
+--  NPC: Conrad
 -- Outpost Teleporter NPC
 -- !pos 94.457 -0.375 -66.161 234
 -----------------------------------

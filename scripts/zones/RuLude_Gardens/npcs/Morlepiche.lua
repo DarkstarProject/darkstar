@@ -5,7 +5,6 @@
 -------------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
 require("scripts/zones/RuLude_Gardens/TextIDs");
@@ -13,17 +12,9 @@ require("scripts/zones/RuLude_Gardens/TextIDs");
 local guardnation = OTHER; -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Menu1 = getArg1(guardnation,player);
@@ -33,10 +24,6 @@ function onTrigger(player,npc)
 
     player:startEvent(32763,Menu1,0,Menu3,0,0,Menu6,Menu7,0);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdateCSID: %u",csid);
@@ -56,10 +43,6 @@ function onEventUpdate(player,csid,option)
 
     updateConquestGuard(player,csid,option,size,inventory);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);

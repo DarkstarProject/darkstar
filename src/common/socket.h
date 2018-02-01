@@ -134,6 +134,14 @@ int sSocket(int af, int type, int protocol);
 #define TOW(n) ((uint16)((n)&std::numeric_limits<uint16>::max()))
 #define TOL(n) ((uint32)((n)&std::numeric_limits<uint32>::max()))
 
+enum class socket_type
+{
+    TCP,
+    UDP
+};
+
+extern socket_type SOCKET_TYPE;
+
 extern fd_set readfds;
 extern int fd_max;
 extern time_t last_tick;
@@ -145,13 +153,12 @@ int32 do_sockets(fd_set* rfd,duration next);
 
 void do_close(int32 fd);
 
-bool socket_init(void);
+void socket_init();
 
-bool socket_final(void);
+void socket_final();
 
 // hostname/ip conversion functions
 uint32 host2ip(const char* hostname);
-
 
 const char* ip2str(uint32 ip, char ip_str[16]);
 
@@ -168,127 +175,125 @@ extern uint32 g_addr_[16];   // ip addresses of local host (host byte order)
 extern int32 naddr_;   // # of ip addresses
 
 /************************************************/
-#ifdef dsTCPSERV 
-	/*
-	*
-	*		TCP LEVEL
-	*
-	*/
+/*
+*
+*		TCP LEVEL
+*
+*/
 
-	// initial recv buffer size (this will also be the max. size)
-	// biggest known packet: S 0153 <len>.w <emblem data>.?B -> 24x24 256 color .bmp (0153 + len.w + 1618/1654/1756 bytes)
-	#define RFIFO_SIZE (2*1024)
-	// initial send buffer size (will be resized as needed)
-	#define WFIFO_SIZE (16*1024)
+// initial recv buffer size (this will also be the max. size)
+// biggest known packet: S 0153 <len>.w <emblem data>.?B -> 24x24 256 color .bmp (0153 + len.w + 1618/1654/1756 bytes)
+#define RFIFO_SIZE (2*1024)
+// initial send buffer size (will be resized as needed)
+#define WFIFO_SIZE (16*1024)
 
-	// Maximum size of pending data in the write fifo. (for non-server connections)
-	// The connection is closed if it goes over the limit.
-	#define WFIFO_MAX (1*1024*1024)
+// Maximum size of pending data in the write fifo. (for non-server connections)
+// The connection is closed if it goes over the limit.
+#define WFIFO_MAX (1*1024*1024)
 
-	// Struct declaration
-	typedef int (*RecvFunc)(int fd);
-	typedef int (*SendFunc)(int fd);
-	typedef int (*ParseFunc)(int fd);
+// Struct declaration
+typedef int (*RecvFunc)(int fd);
+typedef int (*SendFunc)(int fd);
+typedef int (*ParseFunc)(int fd);
 
-	// socket I/O macros
-	#define RFIFOHEAD(fd)
-	#define WFIFOHEAD(fd, size) do{ if((fd) && session[fd]->wdata_size + (size) > session[fd]->max_wdata ) realloc_writefifo(fd, size); }while(0)
-	//-------------------
-	#define RFIFOP(fd,pos) (session[fd]->rdata + session[fd]->rdata_pos + (pos))
-	#define WFIFOP(fd,pos) (session[fd]->wdata + session[fd]->wdata_size + (pos))
+// socket I/O macros
+#define RFIFOHEAD(fd)
+#define WFIFOHEAD(fd, size) do{ if((fd) && session[fd]->wdata_size + (size) > session[fd]->max_wdata ) realloc_writefifo(fd, size); }while(0)
+//-------------------
+#define RFIFOP(fd,pos) (session[fd]->rdata + session[fd]->rdata_pos + (pos))
+#define WFIFOP(fd,pos) (session[fd]->wdata + session[fd]->wdata_size + (pos))
 
+#define RFIFOB(fd,pos) (*(uint8*)RFIFOP(fd,pos))
+#define WFIFOB(fd,pos) (*(uint8*)WFIFOP(fd,pos))
+#define RFIFOW(fd,pos) (*(uint16*)RFIFOP(fd,pos))
+#define WFIFOW(fd,pos) (*(uint16*)WFIFOP(fd,pos))
+#define RFIFOL(fd,pos) (*(uint32*)RFIFOP(fd,pos))
+#define WFIFOL(fd,pos) (*(uint32*)WFIFOP(fd,pos))
 
-	#define RFIFOB(fd,pos) (*(uint8*)RFIFOP(fd,pos))
-	#define WFIFOB(fd,pos) (*(uint8*)WFIFOP(fd,pos))
-	#define RFIFOW(fd,pos) (*(uint16*)RFIFOP(fd,pos))
-	#define WFIFOW(fd,pos) (*(uint16*)WFIFOP(fd,pos))
-	#define RFIFOL(fd,pos) (*(uint32*)RFIFOP(fd,pos))
-	#define WFIFOL(fd,pos) (*(uint32*)WFIFOP(fd,pos))
+#define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata.size() - session[fd]->rdata_pos)
+#define RFIFOFLUSH(fd) \
+	do { \
+		if(session[fd]->rdata.size() == session[fd]->rdata_pos){ \
+			session[fd]->rdata_pos = 0; \
+            session[fd]->rdata.clear(); \
+		} else { \
+            session[fd]->rdata.erase(0, session[fd]->rdata_pos); \
+			session[fd]->rdata_pos = 0; \
+		} \
+	} while(0)
 
-	#define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata.size() - session[fd]->rdata_pos)
-	#define RFIFOFLUSH(fd) \
-		do { \
-			if(session[fd]->rdata.size() == session[fd]->rdata_pos){ \
-				session[fd]->rdata_pos = 0; \
-                session[fd]->rdata.clear(); \
-			} else { \
-                session[fd]->rdata.erase(0, session[fd]->rdata_pos); \
-				session[fd]->rdata_pos = 0; \
-			} \
-		} while(0)
-	struct socket_data
-	{
-		struct {
-			unsigned char eof : 1;
-			unsigned char server : 1;
-		} flag;
+struct socket_data
+{
+	struct {
+		unsigned char eof : 1;
+		unsigned char server : 1;
+	} flag;
 
-		uint32 client_addr; // remote client address
+	uint32 client_addr; // remote client address
 
-		std::string rdata, wdata;
-		size_t rdata_pos;
-		time_t rdata_tick; // time of last recv (for detecting timeouts); zero when timeout is disabled
+	std::string rdata, wdata;
+	size_t rdata_pos;
+	time_t rdata_tick; // time of last recv (for detecting timeouts); zero when timeout is disabled
 
-		RecvFunc func_recv;
-		SendFunc func_send;
-		ParseFunc func_parse;
+	RecvFunc func_recv;
+	SendFunc func_send;
+	ParseFunc func_parse;
 
-        bool ver_mismatch;
-		void* session_data; // stores application-specific data related to the session
-	};
+    bool ver_mismatch;
+	void* session_data; // stores application-specific data related to the session
+};
 
-	// Data prototype declaration
-    extern std::array<std::unique_ptr<socket_data>, FD_SETSIZE> session;
-	//////////////////////////////////
-	// some checking on sockets
-	bool session_isValid(int fd);
-	bool session_isActive(int fd);
+// Data prototype declaration
+extern std::array<std::unique_ptr<socket_data>, FD_SETSIZE> session;
+//////////////////////////////////
+// some checking on sockets
+bool session_isValid(int fd);
+bool session_isActive(int fd);
 
-	int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse);
-	int delete_session(int fd);
-	//////////////////////////////////
-	int32 recv_to_fifo(int32 fd);
+int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseFunc func_parse);
+int delete_session(int fd);
+//////////////////////////////////
+int32 recv_to_fifo(int32 fd);
 
-	int32 send_from_fifo(int32 fd);
+int32 send_from_fifo(int32 fd);
 
-	int32 connect_client(int32 listen_fd, sockaddr_in& client_address);
+int32 connect_client(int32 listen_fd, sockaddr_in& client_address);
 
-	int32 makeConnection_tcp(uint32 ip, uint16 port);
+int32 makeConnection_tcp(uint32 ip, uint16 port);
 
-	int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
+int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
 
-	int32 RFIFOSKIP(int32 fd, size_t len);
+int32 RFIFOSKIP(int32 fd, size_t len);
 
-	void socket_init_tcp(void);
-	void socket_final_tcp(void);
+void socket_init_tcp(void);
+void socket_final_tcp(void);
 
-	void do_close_tcp(int32 fd);
+void do_close_tcp(int32 fd);
 
-	void flush_fifo(int32 fd);
-	void flush_fifos(void);
-	//void set_nonblocking(int32 fd, ulong yes);
+void flush_fifo(int32 fd);
+void flush_fifos(void);
+//void set_nonblocking(int32 fd, ulong yes);
 
-	void set_defaultparse(ParseFunc defaultparse);
+void set_defaultparse(ParseFunc defaultparse);
 
-	void set_eof(int32 fd);
+void set_eof(int32 fd);
 
-	void set_nonblocking(int fd, unsigned long yes);
-#elif defined(dsUDPSERV)
-	/*
-	*
-	*		UDP LEVEL
-	*
-	*/
-	extern int32 listen_fd;
-	int32 makeBind_udp(uint32 ip, uint16 port);
+void set_nonblocking(int fd, unsigned long yes);
 
-	void socket_init_udp(void);
-	void do_close_udp(int32 fd);
-	void socket_final_udp(void);
+/*
+*
+*		UDP LEVEL
+*
+*/
+extern int32 listen_fd;
+int32 makeBind_udp(uint32 ip, uint16 port);
 
-	int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen);
-	int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen);
-#endif 
+void socket_init_udp(void);
+void do_close_udp(int32 fd);
+void socket_final_udp(void);
+
+int32 recvudp(int32 fd,void *buff,size_t nbytes,int32 flags,struct sockaddr *from, socklen_t *addrlen);
+int32 sendudp(int32 fd,void *buff,size_t nbytes,int32 flags,const struct sockaddr *from,socklen_t addrlen);
 
 template<typename T, typename U>
 T& ref(U* buf, std::size_t index)

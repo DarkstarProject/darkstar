@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Rolanberry Fields (110)
+-- Area: Rolanberry Fields (110)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------

@@ -57,10 +57,19 @@ enum FLAGTYPE : uint32
     FLAG_GM_LEAD        = 0x06000000,
     FLAG_GM_PRODUCER    = 0x07000000,
     FLAG_BAZAAR         = 0x80000000,
+};
 
-//  FLAG_AUTOGROUP      = 0x00000000,
-//  FLAG_NEWPLAYER      = 0x00000000,
-//  FLAG_MENTOR         = 0x00000000,
+enum NFLAGTYPE : uint32
+{
+    NFLAG_INVITE        = 0x00000001,
+    NFLAG_AWAY          = 0x00000002,
+    NFLAG_ANON          = 0x00000004,
+    NFLAG_AUTOTARGET    = 0x00004000,
+    NFLAG_AUTOGROUP     = 0x00008000,
+    NFLAG_MENTOR        = 0x02000000,
+    NFLAG_NEWPLAYER     = 0x04000000,
+    NFLAG_DISPLAY_HEAD  = 0x08000000,
+    NFLAG_RECRUIT       = 0x20000000,
 };
 
 enum ELEMENTS
@@ -93,6 +102,7 @@ enum MSGSERVTYPE : uint8
 
     // gm commands
     MSG_SEND_TO_ZONE,
+    MSG_SEND_TO_ENTITY,
 };
 
 typedef std::string string_t;

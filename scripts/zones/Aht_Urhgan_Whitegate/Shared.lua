@@ -1,7 +1,6 @@
 -----------------------------------
 -- Tables and Functions Used at Multiple Places within Aht Urgan Whitegate
 -----------------------------------
-
 require("scripts/globals/settings");
 
 -- Lua Set Initializer http://www.lua.org/pil/11.5.html
@@ -90,7 +89,7 @@ function doRoyalPalaceArmorCheck(player)
         check = false;
         -- printf("Royal Palace Armor Check for Player <%s> -> Missing Required Hand/Leg/Feet Armor", player:getName());
     end
-    
+
     -- printf("Royal Palace Armor Check for Player <%s> with Body Armor <%u>, allowed = %s", player:getName(), bodyArmor, check);
 
     return check;

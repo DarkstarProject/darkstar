@@ -1,29 +1,21 @@
 -----------------------------------
 -- Area: Bastok Markets (S)
--- NPC: Engelhart
+--  NPC: Engelhart
 -- Quest NPC
 -- pos -79 -4 -125
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_ACCEPTED) then
         if (player:getVar("BetterPartOfValProg") == 0) then
             player:startEvent(116);
@@ -54,20 +46,12 @@ function onTrigger(player,npc)
         player:startEvent(104);
     end
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

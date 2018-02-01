@@ -3,13 +3,9 @@
 -- TOAU-15: The Black Coffin
 --
 -----------------------------------
-
 require("scripts/globals/instance")
 require("scripts/globals/keyitems");
 local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
-
------------------------------------
--- afterInstanceRegister
 -----------------------------------
 
 function afterInstanceRegister(player)
@@ -19,10 +15,6 @@ function afterInstanceRegister(player)
     player:messageSpecial(TheAshuTalif.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 
------------------------------------
--- onInstanceCreated
------------------------------------
-
 function onInstanceCreated(instance)
     SpawnMob(TheAshuTalif.mobs.GESSHO, instance);
     for i,v in pairs(TheAshuTalif.mobs[1]) do
@@ -30,17 +22,9 @@ function onInstanceCreated(instance)
     end
 end;
 
------------------------------------
--- onInstanceTimeUpdate
------------------------------------
-
 function onInstanceTimeUpdate(instance, elapsed)
     updateInstanceTime(instance, elapsed, TheAshuTalif.text)
 end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
 
 function onInstanceFailure(instance)
 
@@ -51,10 +35,6 @@ function onInstanceFailure(instance)
         v:startEvent(102);
     end
 end;
-
------------------------------------
--- onInstanceProgressUpdate
------------------------------------
 
 function onInstanceProgressUpdate(instance, progress)
 
@@ -80,10 +60,6 @@ function onInstanceProgressUpdate(instance, progress)
 
 end;
 
------------------------------------
--- onInstanceComplete
------------------------------------
-
 function onInstanceComplete(instance)
 
     local chars = instance:getChars();
@@ -95,7 +71,6 @@ function onInstanceComplete(instance)
         end
     end
 end;
-
 
 function onEventUpdate(player,csid,option)
 end

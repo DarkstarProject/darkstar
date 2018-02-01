@@ -2,29 +2,15 @@
 -- Area: QuBia_Arena
 -- Mission 9-2 SANDO
 -----------------------------------
-
-require("scripts/zones/QuBia_Arena/TextIDs");
 require("scripts/zones/QuBia_Arena/MobIDs");
-require("scripts/globals/missions");
-require("scripts/globals/titles");
-require("scripts/globals/status");
-
-function onMobSpawn(mob)
-end;
-
-function onMobFight(mob,target)
-end;
 
 function onMobDeath(mob, player, isKiller)
+    -- if all mobs in list are dead, victory
     local inst = player:getBattlefield():getBattlefieldNumber();
-    local victory = true
-    for i,v in ipairs(MOBLIST[inst]) do
+    for i,v in ipairs(HEIR_TO_THE_LIGHT_MOBLIST[inst]) do
         if (not GetMobByID(v):isDead()) then
-            victory = false
+            return;
         end
     end
-
-    if (victory == true) then
-        player:startEvent(32004,0,0,4);
-    end
+    player:startEvent(32004,0,0,4);
 end;

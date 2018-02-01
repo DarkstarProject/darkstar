@@ -10,9 +10,6 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/missions");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +20,6 @@ function onTrade(player,npc,trade)
         player:startEvent(121,0,0,0,0,newRank);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local getNewRank = 0;
@@ -56,18 +49,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

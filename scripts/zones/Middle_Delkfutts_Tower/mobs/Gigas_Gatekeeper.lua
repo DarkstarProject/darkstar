@@ -2,11 +2,7 @@
 -- Area: Middle Delkfutt's Tower
 --  MOB: Gigas Gatekeeper
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

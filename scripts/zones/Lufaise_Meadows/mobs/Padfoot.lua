@@ -9,10 +9,6 @@
 -- TODO: the "true" Padfoot should not always be the same one at same pos every spawn cycle.
 -----------------------------------
 
------------------------------------
--- OnMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
     local PadfootCloneSpawn =
     {
@@ -60,16 +56,8 @@ function onMobSpawn(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- OnMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

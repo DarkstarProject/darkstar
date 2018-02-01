@@ -10,9 +10,6 @@ require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
-
------------------------------------
---  onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,14 +23,10 @@ function onInitialize(zone)
     zone:registerRegion(7,-240.797,-43.960,-291.552,-237.944,-39.960,-288.954); -- Dem Sky Teleporter
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(274,-82,-62 ,180);
 
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
@@ -57,10 +50,6 @@ function onZoneIn(player,prevZone)
 
     return cs;
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 
@@ -121,25 +110,13 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

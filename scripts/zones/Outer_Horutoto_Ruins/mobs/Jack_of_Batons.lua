@@ -2,21 +2,13 @@
 -- Area: Outer Horutoto Ruins
 --  MOB: Jack of Batons
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("popTime", os.time())
 end;
-
------------------------------------
--- onMobRoam Action
------------------------------------
 
 function onMobRoam(mob)
     local spawnTime = mob:getLocalVar("popTime");
@@ -26,10 +18,6 @@ function onMobRoam(mob)
     end
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local CurrentMission = player:getCurrentMission(WINDURST);

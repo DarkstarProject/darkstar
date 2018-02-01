@@ -4,8 +4,8 @@
 -- Type: Guildworker's Union Representative
 -- !pos -9.782 -5.249 -134.432 241
 -----------------------------------
-
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 require("scripts/zones/Windurst_Woods/TextIDs");
@@ -76,25 +76,13 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 10023, 6);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 6, 10022, "guild_bonecraft", keyitems);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -103,10 +91,6 @@ function onEventUpdate(player,csid,option,target)
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,target)
      -- printf("CSID: %u",csid);

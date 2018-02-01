@@ -7,43 +7,23 @@
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
+require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/limbus");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    if (npc:getID() == 16912908) then
-        player:startEvent(159);
-    else
-        player:startEvent(160);
+    local offset = npc:getID() - SWIRLING_VORTEX_OFFSET;
+    if (offset >= 0 and offset <= 1) then
+        player:startEvent(159 + offset);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 160 and option == 1 ) then
         ResetPlayerLimbusVariable(player);
         LimbusEntrance(player,APPOLLYON_NW_SW);

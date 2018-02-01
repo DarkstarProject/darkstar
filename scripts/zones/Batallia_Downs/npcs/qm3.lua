@@ -1,12 +1,11 @@
 -----------------------------------
---  Area: Batallia Downs
+-- Area: Batallia Downs
 --  NPC: qm3 (???)
 --  Involved in Mission 9-1 (San dOria)
 --  !pos 210 17 -615 105
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/zones/Batallia_Downs/MobIDs");
 require("scripts/globals/keyitems");
@@ -17,7 +16,7 @@ function onTrigger(player,npc)
         and not GetMobByID(SUPARNA):isSpawned() and not GetMobByID(SUPARNA_FLEDGLING):isSpawned()) then
         if (player:getVar("Mission9-1Kills") > 0) then
             player:startEvent(904);
-        else 
+        else
             SpawnMob(SUPARNA);
             SpawnMob(SUPARNA_FLEDGLING);
         end
