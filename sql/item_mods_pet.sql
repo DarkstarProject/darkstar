@@ -215,62 +215,62 @@ INSERT INTO `item_mods_pet` VALUES (27080,25,20,1);     -- Beckoner's Bracers Av
 INSERT INTO `item_mods_pet` VALUES (27081,25,30,1);     -- Beck. Bracers +1 Avatar: Accuracy+30
 INSERT INTO `item_mods_pet` VALUES (27180,30,10,1);     -- Glyphic Spats Avatar: Magic Accuracy+10
 INSERT INTO `item_mods_pet` VALUES (27181,30,13,1);     -- Glyphic Spats +1 Avatar: Magic Accuracy+13
-INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);   -- 	Beckoner's Spats Avatar: TP Bonus +550
-INSERT INTO `item_mods_pet` VALUES (27266,345,600,1);   -- Avatar: TP Bonus +600
-INSERT INTO `item_mods_pet` VALUES (27356,23,28,1);     -- Avatar: Attack +25
+INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);   -- Beckoner's Spats Avatar: TP Bonus +550
+INSERT INTO `item_mods_pet` VALUES (27266,345,600,1);   -- Beck. Spats +1 Avatar: TP Bonus +600
+INSERT INTO `item_mods_pet` VALUES (27356,23,28,1);     -- Glyphic Pigaches Avatar: Attack+25
 INSERT INTO `item_mods_pet` VALUES (27356,562,7,1);     -- Avatar: Magic critical hit rate +7%
-INSERT INTO `item_mods_pet` VALUES (27357,23,28,1);     -- Avatar: Attack +28
+INSERT INTO `item_mods_pet` VALUES (27357,23,28,1);     -- Glyph. Pigaches +1 Avatar: Attack+28
 INSERT INTO `item_mods_pet` VALUES (27357,562,9,1);     -- Avatar: Magic critical hit rate +9%
-INSERT INTO `item_mods_pet` VALUES (27439,30,17,1);     -- Avatar: MACC +17
-INSERT INTO `item_mods_pet` VALUES (27440,30,27,1);     -- Avatar: MACC +27
-INSERT INTO `item_mods_pet` VALUES (27677,27,4,1);      -- Avatar: Enmity +4
-INSERT INTO `item_mods_pet` VALUES (27698,27,4,1);      -- Avatar: Enmity +4
--- INSERT INTO `item_mods_pet` VALUES (27821,unimplemented,11,1); -- Avatar: Increases Blood Pact damage +11%
--- INSERT INTO `item_mods_pet` VALUES (27842,unimplemented,12,1); -- Avatar: Increases Blood Pact damage +12%
-INSERT INTO `item_mods_pet` VALUES (27957,27,5,1);      -- Avatar: Enmity +5
-INSERT INTO `item_mods_pet` VALUES (27978,27,5,1);      -- Avatar: Enmity +5
-INSERT INTO `item_mods_pet` VALUES (28025,25,20,0);     -- Pet: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (27439,30,17,1);     -- Beck. Pigaches Avatar: Magic Accuracy+17
+INSERT INTO `item_mods_pet` VALUES (27440,30,27,1);     -- Beck. Pigaches +1 Avatar: Magic Accuracy+27
+INSERT INTO `item_mods_pet` VALUES (27677,27,4,1);      -- Convoker's Horn Avatar: Enmity+4
+INSERT INTO `item_mods_pet` VALUES (27698,27,4,1);      -- Con. Horn +1 Avatar: Enmity+4
+-- INSERT INTO `item_mods_pet` VALUES (27821,unimplemented,11,1); -- Convo. Doublet Avatar: Increases "Blood Pact" damage +11% (?)
+-- INSERT INTO `item_mods_pet` VALUES (27842,unimplemented,12,1); -- Con. Doublet +1 Avatar: "Blood Pact" ability damage +12
+INSERT INTO `item_mods_pet` VALUES (27957,27,5,1);      -- Con. Bracers Avatar: Enmity+5
+INSERT INTO `item_mods_pet` VALUES (27978,27,5,1);      -- Con. Bracers +1 Avatar: Enmity+5
+INSERT INTO `item_mods_pet` VALUES (28025,25,20,0);     -- Regimen Mittens Pet: Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,26,20,0);     -- Pet: Ranged Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,30,20,0);     -- Pet: Magic Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,384,61,0);    -- Pet: Haste+6%
-INSERT INTO `item_mods_pet` VALUES (28104,25,20,1);     -- Avatar: Accuracy +20
-INSERT INTO `item_mods_pet` VALUES (28104,27,4,1);      -- Avatar: Enmity +4
-INSERT INTO `item_mods_pet` VALUES (28119,65,2,0);      -- Pet: Evasion +2
-INSERT INTO `item_mods_pet` VALUES (28125,25,20,1);     -- Avatar: Accuracy +20
-INSERT INTO `item_mods_pet` VALUES (28125,27,4,1);      -- Avatar: Enmity +4
-INSERT INTO `item_mods_pet` VALUES (28141,25,20,0);     -- Pet: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (28104,25,20,1);     -- Convoker's Spats Avatar: Increases Accuracy +20 (?)
+INSERT INTO `item_mods_pet` VALUES (28104,27,4,1);      -- Avatar: Enmity+4
+INSERT INTO `item_mods_pet` VALUES (28119,23,20,0);     -- Tot. Trousers +1 Pet: Attack+20
+INSERT INTO `item_mods_pet` VALUES (28125,25,20,1);     -- Con. Spats +1 Avatar: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (28125,27,4,1);      -- Avatar: Enmity+4
+INSERT INTO `item_mods_pet` VALUES (28141,25,20,0);     -- Wisent Kecks Pet: Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28141,23,10,0);     -- Pet: Attack+10
 INSERT INTO `item_mods_pet` VALUES (28141,26,20,0);     -- Pet: Ranged Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28141,24,10,0);     -- Pet: Ranged Attack+10
 INSERT INTO `item_mods_pet` VALUES (28141,68,20,0);     -- Pet: Evasion+20
 INSERT INTO `item_mods_pet` VALUES (28141,384,30,0);    -- Pet: Haste+3%
-INSERT INTO `item_mods_pet` VALUES (28211,23,15,1);     -- Avatar: Attack +15
-INSERT INTO `item_mods_pet` VALUES (28211,384,2,1);     -- Avatar: Haste +2%
-INSERT INTO `item_mods_pet` VALUES (28213,23,13,2);     -- Wyvern: Attack +13
-INSERT INTO `item_mods_pet` VALUES (28214,68,5,0);      -- Pet: Evasion +5
-INSERT INTO `item_mods_pet` VALUES (28219,68,2,0);      -- Pet: Evasion +2
-INSERT INTO `item_mods_pet` VALUES (28231,23,10,0);     -- Pet: Attack +10
-INSERT INTO `item_mods_pet` VALUES (28231,25,10,0);     -- Pet: Accuracy +10
-INSERT INTO `item_mods_pet` VALUES (28237,27,5,1);      -- Avatar: Enmity +5
-INSERT INTO `item_mods_pet` VALUES (28237,68,20,1);     -- Avatar: Evasion +20
--- INSERT INTO `item_mods_pet` VALUES (28237,unimplemented,5,1); -- Avatar: Increases Blood Pact damage +5%
-INSERT INTO `item_mods_pet` VALUES (28252,23,10,0);     -- Pet: Attack +10
-INSERT INTO `item_mods_pet` VALUES (28252,25,10,0);     -- Pet: Accuracy +10
-INSERT INTO `item_mods_pet` VALUES (28258,27,5,1);      -- Avatar: Enmity +5
-INSERT INTO `item_mods_pet` VALUES (28258,68,20,1);     -- Avatar: Evasion +20
--- INSERT INTO `item_mods_pet` VALUES (28258,unimplemented,6,1); -- Avatar: Increases Blood Pact damage +6%
-INSERT INTO `item_mods_pet` VALUES (28261,384,31,3);    -- Automaton: Haste +3%
-INSERT INTO `item_mods_pet` VALUES (28356,28,5,1);      -- Avatar: MAB +5
-INSERT INTO `item_mods_pet` VALUES (28432,25,15,3);     -- Automaton: Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (28211,23,15,1);     -- Mdk. Crackows +1 Avatar: Increases attack +15 (?)
+INSERT INTO `item_mods_pet` VALUES (28211,384,2,1);     -- Avatar: Haste+2%
+INSERT INTO `item_mods_pet` VALUES (28213,23,13,2);     -- Ker's Sollerets Wyvern: Attack+13
+INSERT INTO `item_mods_pet` VALUES (28214,68,5,0);      -- Sigyn's Jambeaux Pet: Evasion+5
+INSERT INTO `item_mods_pet` VALUES (28219,68,2,0);      -- Idi's Ledelsens Pet: Evasion+2
+INSERT INTO `item_mods_pet` VALUES (28231,23,10,0);     -- Totemic Gaiters Pet: Attack+10
+INSERT INTO `item_mods_pet` VALUES (28231,25,10,0);     -- Pet: Accuracy+10
+INSERT INTO `item_mods_pet` VALUES (28237,27,5,1);      -- Con. Pigaches Avatar: Enmity+5
+INSERT INTO `item_mods_pet` VALUES (28237,68,20,1);     -- Avatar: Enhances evasion +20 (?)
+-- INSERT INTO `item_mods_pet` VALUES (28237,unimplemented,5,1); -- Avatar: Increases "Blood Pact" damage +5% (?)
+INSERT INTO `item_mods_pet` VALUES (28252,23,10,0);     -- Tot. Gaiters +1 Pet: Attack+10
+INSERT INTO `item_mods_pet` VALUES (28252,25,10,0);     -- Pet: Accuracy+10
+INSERT INTO `item_mods_pet` VALUES (28258,27,5,1);      -- Con. Pigaches +1 Avatar: Enmity+5
+INSERT INTO `item_mods_pet` VALUES (28258,68,20,1);     -- Avatar: Evasion+20
+-- INSERT INTO `item_mods_pet` VALUES (28258,unimplemented,6,1); -- Avatar: "Blood Pact" damage +6
+INSERT INTO `item_mods_pet` VALUES (28261,384,31,3);    -- Foire Bab. +1 Automaton: Haste+3%
+INSERT INTO `item_mods_pet` VALUES (28356,28,5,1);      -- Eidolon Pendant +1 Avatar: "Magic Atk. Bonus"+5
+INSERT INTO `item_mods_pet` VALUES (28432,25,15,3);     -- Ukko Sash Automaton: Accuracy+15
 INSERT INTO `item_mods_pet` VALUES (28432,26,15,3);     -- Automaton: Ranged Accuracy+15
 INSERT INTO `item_mods_pet` VALUES (28432,30,15,3);     -- Automaton: Magic Accuracy+15
 INSERT INTO `item_mods_pet` VALUES (28432,384,51,3);    -- Automaton: Haste+5%
 INSERT INTO `item_mods_pet` VALUES (28432,170,5,3);     -- Automaton: "Fast Cast"+5%
-INSERT INTO `item_mods_pet` VALUES (28495,384,30,0);    -- Pet: Haste+3%
+INSERT INTO `item_mods_pet` VALUES (28495,384,30,0);    -- Rimeice Earring Pet: Haste+3%
 INSERT INTO `item_mods_pet` VALUES (28495,27,5,0);      -- Pet: Enmity+5
 INSERT INTO `item_mods_pet` VALUES (28495,160,1,0);     -- Pet: Damage taken -1%
-INSERT INTO `item_mods_pet` VALUES (28605,25,7,1);      -- Avatar: Accuracy +7
+INSERT INTO `item_mods_pet` VALUES (28605,25,7,1);      -- Samanisi Cape Avatar: Accuracy +7
 INSERT INTO `item_mods_pet` VALUES (28605,30,7,1);      -- Avatar: Magic Accuracy +7
-INSERT INTO `item_mods_pet` VALUES (28643,12,8,30;      -- Automaton: INT+8
+INSERT INTO `item_mods_pet` VALUES (28643,12,8,30);     -- Refraction Cape Automaton: INT+8
 INSERT INTO `item_mods_pet` VALUES (28643,13,8,3);      -- Automaton: MND+8
 INSERT INTO `item_mods_pet` VALUES (28643,30,3,3);      -- Automaton: Magic Accuracy+3
