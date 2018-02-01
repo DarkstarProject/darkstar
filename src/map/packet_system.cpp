@@ -1512,6 +1512,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
     PrintPacket(data);
 
+    if (jailutils::InPrison(PChar)) // If jailed, no mailbox menu for you.
+    {
+        return;
+    }
+
     // 0x01 - Send old items..
     // 0x02 - Add items to be sent..
     // 0x03 - Send confirmation..
@@ -2145,6 +2150,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  quantity = data.ref<uint8>(0x10);
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
+
+    if (jailutils::InPrison(PChar)) // If jailed, no AH menu for you.
+    {
+        return;
+    }
 
     // 0x04 - Selling Items
     // 0x05 - Open List Of Sales / Wait
