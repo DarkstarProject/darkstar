@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- Area: Balga's Dais
+-- MOB: Voo Tolu the Ghostfist
+-- BCNM Fight: Divine Punishers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

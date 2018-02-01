@@ -1,12 +1,13 @@
 -----------------------------------
--- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- Area: Waughroon Shrine
+-- MOB: The Waughroon Kid
+-- BCNM Fight: The Final Bout
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
 
 function onMobSpawn(mob)
+    mob:addStatusEffect(EFFECT_REGAIN,100,1,0);
 end;
+
 
 function onMobDeath(mob, player, isKiller)
 end;

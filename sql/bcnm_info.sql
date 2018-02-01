@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version   5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -98,7 +98,7 @@ INSERT INTO `bcnm_info` VALUES (96,146,'rank_2_mission','Shitstain',1,18,1800,25
 INSERT INTO `bcnm_info` VALUES (97,146,'steamed_sprouts','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (99,146,'saintly_invitation','Shitstain',1,18,1800,99,6,0,5);
-INSERT INTO `bcnm_info` VALUES (100,146,'treasures_and_tribulations','Shitstain',1,18,1800,50,6,100,15);
+INSERT INTO `bcnm_info` VALUES (100,146,'treasure_and_tribulations','Shitstain',1,18,1800,50,6,100,15);
 INSERT INTO `bcnm_info` VALUES (101,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (102,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (103,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);

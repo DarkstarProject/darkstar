@@ -1,11 +1,11 @@
 -----------------------------------
--- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- Area: Waughroon Shrine
+-- MOB: Flayer Franz
+-- BCNM Fight: The Worm's Turn
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
 
 function onMobSpawn(mob)
+    mob:setMobMod(MOBMOD_DRAW_IN, 1);
 end;
 
 function onMobDeath(mob, player, isKiller)

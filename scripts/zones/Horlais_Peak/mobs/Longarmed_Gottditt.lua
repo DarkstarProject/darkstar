@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- Area: Horlais Peak
+-- MOB: Longarmed Gottditt
+-- BCNM Fight: Dismemberment Brigade
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

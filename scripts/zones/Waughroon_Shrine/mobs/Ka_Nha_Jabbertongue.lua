@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- Area: Waughroon Shrine
+-- MOB: Ka'Nha Jabbertongue
+-- BCNM Fight: Grimshell Shocktroopers
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Chamber of Oracles
---  MOB: Centurio V-III
--- Zilart 6 Fight
+-- MOB: Retiarius XI-XIX
+-- BCNM Fight: Legion XI Comitatensis
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 
