@@ -3811,7 +3811,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (data.ref<uint8>(0x06) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if (data.ref<uint8>(0x06) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0 && !jailutils::InPrison(PChar))
     {
         //this makes sure a command isn't sent to chat
     }
