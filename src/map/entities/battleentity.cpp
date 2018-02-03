@@ -1494,6 +1494,12 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     actionTarget.reaction = REACTION_GUARD;
                 }
 
+                // Apply Feint
+                if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
+                {
+                    PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
+                }
+
                 // Process damage.
                 attack.ProcessDamage();
 

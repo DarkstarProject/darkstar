@@ -160,18 +160,20 @@ public:
 
     CTrait(uint8 id);
 
-    uint8   getID();
-    uint8   getJob();
-    uint8   getLevel();
-    Mod     getMod();
-    int16   getValue();
-    uint8   getRank();
+    __forceinline uint8     getID()         const { return m_id; }
+    __forceinline uint8     getJob()        const { return m_job; }
+    __forceinline uint8     getLevel()      const { return m_level; }
+    __forceinline Mod       getMod()        const { return m_mod; }
+    __forceinline int16     getValue()      const { return m_value; }
+    __forceinline uint8     getRank()       const { return m_rank; }
+    __forceinline uint32    getMeritID()    const { return m_meritId; }
 
-    void    setJob(int8 job);
-    void    setLevel(uint8 level);
-    void    setMod(Mod mod);
-    void    setValue(int16 value);
-    void    setRank(uint8 rank);
+    __forceinline void setJob(const int8 job)           { m_job = job; }
+    __forceinline void setLevel(const uint8 level)      { m_level = level; }
+    __forceinline void setMod(const Mod mod)            { m_mod = mod; }
+    __forceinline void setValue(const int16 value)      { m_value = value; }
+    __forceinline void setRank(const uint8 rank)        { m_rank = rank; }
+    __forceinline void setMeritId(const uint32 meritId) { m_meritId = meritId; }
 
 private:
 
@@ -181,6 +183,7 @@ private:
     Mod     m_mod;
     int16   m_value;
     uint8   m_rank;
+    uint32  m_meritId;
 };
 
 /************************************************************************
