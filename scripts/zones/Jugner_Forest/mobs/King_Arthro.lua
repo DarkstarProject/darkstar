@@ -2,8 +2,8 @@
 -- Area: Jugner Forest
 --  MOB: King Arthro
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
-require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -18,19 +18,8 @@ function onMobSpawn(mob)
         GetMobByID(KingArthroID - offset):setRespawnTime(0);
     end
 
-    -- Set the hp% to use hundred fists
-    mob:setLocalVar("jobSpecTrigger", math.random(10, 60));
-
     -- 20 minute rage timer
     mob:setMobMod(MOBMOD_RAGE, 1200);
-end;
-
-function onMobFight(mob, target)
-    local trigger = mob:getLocalVar("jobSpecTrigger")
-    if (mob:getHPP() <= trigger and mob:getLocalVar("HundredFists") == 0) then
-        mob:useMobAbility(jobSpec.HUNDRED_FISTS);
-        mob:setLocalVar("HundredFists", 1);
-    end
 end;
 
 function onAdditionalEffect(mob,target,damage)

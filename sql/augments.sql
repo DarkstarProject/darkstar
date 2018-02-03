@@ -99,10 +99,10 @@ INSERT INTO `augments` VALUES (64, 0, 30, 33, 0, 0); -- Mag. Acc.+33
 INSERT INTO `augments` VALUES (65, 0, 23, 33, 0, 0); -- Attack+33
 INSERT INTO `augments` VALUES (66, 0, 24, 33, 0, 0); -- Rng.Attack+33
 INSERT INTO `augments` VALUES (67, 0, 452, 1, 0, 0); -- All songs+1
-INSERT INTO `augments` VALUES (68, 0, 25, 33, 0, 0); -- Accuracy+33 Attack+33
-INSERT INTO `augments` VALUES (68, 0, 23, 33, 0, 0); -- Cont.
-INSERT INTO `augments` VALUES (69, 0, 26, 33, 0, 0); -- Rng.Acc.+33 Rng.Atk.+33
-INSERT INTO `augments` VALUES (69, 0, 25, 33, 0, 0); -- Cont.
+INSERT INTO `augments` VALUES (68, 0, 25, 1, 0, 0); -- Accuracy+1 Attack+1
+INSERT INTO `augments` VALUES (68, 0, 23, 1, 0, 0); -- Cont.
+INSERT INTO `augments` VALUES (69, 0, 26, 1, 0, 0); -- Rng.Acc.+1 Rng.Atk.+1
+INSERT INTO `augments` VALUES (69, 0, 24, 1, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (70, 0, 30, 33, 0, 0); -- Mag. Acc.+33 Mag.Atk.Bns+33
 INSERT INTO `augments` VALUES (70, 0, 28, 33, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (71, 0, 160, -1, 0, 0); -- Damage Taken -1%

@@ -8,6 +8,8 @@ g_mixins = g_mixins or {};
 g_mixins.job_special = function(mob)
 
     mob:addListener("SPAWN", "JOB_SPECIAL_SPAWN", function(mob)
+        mob:setLocalVar("useSpecAtHpMin", 40);
+        mob:setLocalVar("useSpecAtHpMax", 60);
         mob:setLocalVar("useMainSpecAtHPP", math.random(40,60));
     end);
     
@@ -56,6 +58,14 @@ g_mixins.job_special = function(mob)
     mob:addListener("DISENGAGE", "JOB_SPECIAL_DISENGAGE", function(mob, target)
         mob:setLocalVar("usedMainSpec", 0);
         mob:setLocalVar("usedSubSpec", 0);
+
+        local hpMin =  mob:getLocalVar("useSpecAtHpMin");
+        local hpMax =  mob:getLocalVar("useSpecAtHpMax");
+  
+        mob:setLocalVar("useMainSpecAtHPP", math.random(hpMin,hpMax));
+        if (mob:getLocalVar("useSubSpecAtHPP") > 0) then
+            mob:setLocalVar("useSubSpecAtHPP", math.random(hpMin,hpMax));
+        end
     end);
     
 end
