@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
 -----------------------------------

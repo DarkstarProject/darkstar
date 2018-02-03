@@ -1,27 +1,19 @@
 -----------------------------------
---  Area: Jugner Forest
---  NPC:  Alexius
+-- Area: Jugner Forest
+--  NPC: Alexius
 --  Involved in Quest: A purchase of Arms & Sin Hunting
 -- !pos  105 1 382 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Jugner_Forest/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -34,18 +26,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,23 +1,15 @@
 -----------------------------------
 -- Area: VeLugannon Palace
--- NPC:  ??? (qm1)
+--  NPC: ??? (qm1)
 -- !pos -370.039 16.014 -274.378 177
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/VeLugannon_Palace/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -52,18 +44,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

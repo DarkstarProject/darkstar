@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Northern San d'Oria
---  NPC:  Guillerme
+-- Area: Northern San d'Oria
+--  NPC: Guillerme
 --  Involved in Quest: Rosel the Armorer
 --  @zone 231
 -- !pos -4.500 0.000 99.000
@@ -12,9 +12,6 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,10 +27,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     -- "Rosel the Armorer" quest status var
@@ -48,18 +41,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

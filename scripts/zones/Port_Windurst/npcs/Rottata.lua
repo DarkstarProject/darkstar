@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Rottata
+--  NPC: Rottata
 -- Outpost Teleporter NPC
 -- !pos 193.111 -12.999 215.638 240
 -----------------------------------

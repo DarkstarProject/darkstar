@@ -1,5 +1,5 @@
 -----------------------------------
--- Area:  Sacrificial Chamber
+-- Area: Sacrificial Chamber
 -----------------------------------
 
 -- Pevv the Riverleaper's minions - Wyverns

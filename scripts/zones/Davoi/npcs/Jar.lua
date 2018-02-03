@@ -1,26 +1,18 @@
 -----------------------------------
--- Area:  Davoi
--- NPC:   Jar
+-- Area: Davoi
+--  NPC: Jar
 -- Involved in Quest: Test my Mettle
 -- Notes: Used to obtain Power Sandals
 -- !pos 183, 0, -190 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Davoi/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local POWER_SANDALS = 13012;
@@ -38,18 +30,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

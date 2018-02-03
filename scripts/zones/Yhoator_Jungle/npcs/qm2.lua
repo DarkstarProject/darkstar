@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Yhoator Jungle
--- NPC:  ??? Used for Norg quest "Stop Your Whining"
+--  NPC: ??? Used for Norg quest "Stop Your Whining"
 -- !pos -94.073 -0.999 22.295 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Yhoator_Jungle/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -37,18 +29,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

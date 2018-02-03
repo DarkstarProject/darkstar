@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Taza
+--  NPC: Taza
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,TAZA_SHOP_DIALOG);
 
-stock = {0x1311,10304,        -- Scroll of Sleepga
+    player:showText(npc,TAZA_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x1311,10304,        -- Scroll of Sleepga
      0x1232,26244,        -- Scroll of Shell III
      0x127f,19200,        -- Scroll of Protectra III
      0x1283,14080,        -- Scroll of Shellra II
@@ -39,22 +34,14 @@ stock = {0x1311,10304,        -- Scroll of Sleepga
      0x1292,33306,        -- Scroll of Fire III
      0x1297,39368,        -- Scroll of Blizzard III
      0x12a6,45930}        -- Scroll of Thunder III
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

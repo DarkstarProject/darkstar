@@ -1,17 +1,13 @@
 -----------------------------------
--- Area:  Castle Oztroja
--- NPC:   _47c (Handle)
+-- Area: Castle Oztroja
+--  NPC: _47c (Handle)
 -- Notes: Opens Trap Door (_47a) or Brass Door (_470)
 -- !pos 17.717 -1.087 -14.320 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -47,18 +43,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

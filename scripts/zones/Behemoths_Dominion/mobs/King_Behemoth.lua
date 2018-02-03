@@ -2,13 +2,9 @@
 -- Area: Behemoth's Dominion
 --  HNM: King Behemoth
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -26,17 +22,9 @@ function onMobSpawn(mob)
     end
 end;
 
------------------------------------
--- onMobInitialize Action
------------------------------------
-
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_MAGIC_COOL, 60);
 end;
-
------------------------------------
--- onSpellPrecast
------------------------------------
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then
@@ -48,17 +36,9 @@ function onSpellPrecast(mob, spell)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(BEHEMOTH_DETHRONER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set King_Behemoth's Window Open Time

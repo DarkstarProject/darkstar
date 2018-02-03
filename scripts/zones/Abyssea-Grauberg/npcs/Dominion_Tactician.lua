@@ -5,21 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/abyssea");
 require("scripts/zones/Abyssea-Grauberg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local DM = player:getDominionNotes();
@@ -27,22 +19,14 @@ function onTrigger(player,npc)
     player:startEvent(120, DM, 0, 0, 0, 0, Trophies);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local Price = 0;
     local TempItem = false;
     local ItemID = 0;
@@ -151,7 +135,7 @@ function onEventFinish(player,csid,option)
  -- Trophy trades for gear
     -- if (option == 65796) then
     --     .
-    -- elseif (option == 
+    -- elseif (option ==
     --     .
     -- end
 

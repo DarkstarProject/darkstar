@@ -6,23 +6,15 @@
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/abyssea");
 require("scripts/zones/North_Gustaberg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (ENABLE_ABYSSEA == 1 and player:getMainLvl() >= 30) then
@@ -38,18 +30,11 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);

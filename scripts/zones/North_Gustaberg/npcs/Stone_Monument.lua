@@ -1,25 +1,17 @@
 -----------------------------------
---  Area: North Gustaberg
---  NPC:  Stone Monument
+-- Area: North Gustaberg
+--  NPC: Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
 -- !pos -199.635 96.106 505.624 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/North_Gustaberg/TextIDs");
-
------------------------------------
--- onTrigger
 -----------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(900);
 end;
-
------------------------------------
--- onTrade
------------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(571,1)) then
@@ -30,18 +22,10 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

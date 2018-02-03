@@ -1,11 +1,12 @@
 -----------------------------------
---  Area: Metalworks
+-- Area: Metalworks
 --  NPC: Lorena
---  Type: Blacksmithing Guildworker's Union Representative
+-- Type: Blacksmithing Guildworker's Union Representative
 --  @zone 237
 -- !pos -104.990 1 30.995
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
@@ -82,25 +83,13 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 801, 2);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 2, 800, "guild_smithing", keyitems);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -109,10 +98,6 @@ function onEventUpdate(player,csid,option,target)
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);

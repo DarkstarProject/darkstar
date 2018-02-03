@@ -2,12 +2,8 @@
 -- Area: North Gustaberg
 --  NM:  Bedrock Barry
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/status");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -17,10 +13,6 @@ end;
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,16,1);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());

@@ -3,20 +3,12 @@
 --  MOB: Ogmios
 -- Involved in Quest: Carbuncle Debacle
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-
------------------------------------
--- OnMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- OnMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 
@@ -29,10 +21,6 @@ function onMobDeath(mob, player, isKiller)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
@@ -42,10 +30,6 @@ function onEventUpdate(player,csid,option)
     end
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);

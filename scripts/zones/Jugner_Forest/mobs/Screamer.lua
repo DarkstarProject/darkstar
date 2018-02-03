@@ -2,11 +2,7 @@
 -- Area: Jugner Forest
 --  MOB: Screamer
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

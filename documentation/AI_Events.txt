@@ -34,3 +34,6 @@ TICK - Entity
 EFFECTS_TICK - Entity
 EFFECT_GAIN - Entity, Effect
 EFFECT_LOSE - Entity, Effect
+
+COMBAT_TICK - Mob
+ROAM_TICK - Mob

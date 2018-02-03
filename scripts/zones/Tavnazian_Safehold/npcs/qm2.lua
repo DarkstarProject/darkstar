@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: ???
+--  NPC: ???
 -- Involved in Quest: Unforgiven
 -- @zone 26
 -- !pos 110.714 -40.856 -53.154
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Tavnazian_Safehold/TextIDs")
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -18,16 +19,8 @@ require("scripts/globals/keyitems");
 -- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
 -- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -39,18 +32,10 @@ local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
 
     end
 end
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -3,37 +3,21 @@
 --  MOB: Selh'teus
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/zones/Empyreal_Paradox/TextIDs");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 50);
     mob:SetAutoAttackEnabled(false);
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob, target)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     if (target:getTarget():getID() ~= mob:getID()) then
@@ -53,10 +37,6 @@ function onMobFight(mob, target)
         mob:setLocalVar("lanceOut", 1);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mob:messageText(mob, SELHTEUS_TEXT);

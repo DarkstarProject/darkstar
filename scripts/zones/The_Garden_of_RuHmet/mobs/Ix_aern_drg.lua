@@ -3,9 +3,6 @@
 --  MOB: Ix'aern (drg)
 -----------------------------------
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -17,10 +14,6 @@ function onMobSpawn(mob)
         SetDropRate(4396,1903,1000); -- Vice Of Aspersion
     end
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
@@ -38,11 +31,7 @@ function onMobFight(mob,target)
             end
         end
     end
-end
-
------------------------------------
--- onMobDeath
------------------------------------
+end;
 
 function onMobDeath(mob, player, isKiller)
     -- Despawn pets..
@@ -51,9 +40,6 @@ function onMobDeath(mob, player, isKiller)
     DespawnMob(mob:getID()+3);
 end;
 
------------------------------------
--- OnMobDespawn
------------------------------------
 function onMobDespawn( mob )
     -- Despawn pets.
     DespawnMob(mob:getID()+1);

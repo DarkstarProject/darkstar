@@ -2,11 +2,7 @@
 -- Area: Ranguemont Pass
 --  MOB: Hecteyes
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

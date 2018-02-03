@@ -8,19 +8,12 @@ package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 require("scripts/zones/Heavens_Tower/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-
------------------------------------
---  onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -1,-1,-35, 1,1,-33);
     zone:registerRegion(2, 6,-46,-30, 8,-44,-28);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -36,10 +29,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -47,10 +36,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
@@ -67,25 +52,13 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -5,24 +5,16 @@
 -----------------------------------
 package.loaded[ "scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Xarcabard/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
 require("scripts/globals/conquest");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -51,10 +43,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -63,16 +51,8 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
@@ -87,10 +67,6 @@ function onEventUpdate( player, csid, option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Sobane
+--  NPC: Sobane
 -- Starts and Finishes Quest: Signed in Blood
 -- Involved in quest: Sharpening the Sword, Riding on the Clouds
 -- @zone 230
@@ -15,9 +15,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -43,11 +40,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
         end
     end
-end
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
@@ -69,18 +62,11 @@ function onTrigger(player,npc)
     end
 
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

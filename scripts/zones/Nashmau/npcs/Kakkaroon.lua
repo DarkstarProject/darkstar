@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Kakkaroon
+--  NPC: Kakkaroon
 -- Standard Info NPC
 -- !pos 13.245 0.000 -25.307 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Nashmau/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local ratrace = player:getQuestStatus(AHT_URHGAN,RAT_RACE);
@@ -37,18 +29,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

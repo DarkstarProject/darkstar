@@ -1,21 +1,17 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Rakoh Buuma
+--  NPC: Rakoh Buuma
 -- Starts Windurst Missions
 -- !pos 106 -5 -23 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Windurst_Woods/TextIDs");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -52,18 +48,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

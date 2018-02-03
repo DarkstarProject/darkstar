@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Milma-Hapilma, W.W.
+--  NPC: Milma-Hapilma, W.W.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
@@ -11,7 +11,6 @@
 -------------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Port_Windurst/TextIDs");
@@ -21,17 +20,9 @@ local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local size        = #WindInv;
 local inventory   = WindInv;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -58,20 +49,12 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdateCSID: %u",csid);
     -- printf("onUpdateOPTION: %u",option);
 
     updateConquestGuard(player,csid,option,size,inventory);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);

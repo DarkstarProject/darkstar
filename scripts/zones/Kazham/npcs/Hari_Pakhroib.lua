@@ -1,33 +1,25 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Hari Pakhroib
+--  NPC: Hari Pakhroib
 -- Starts and Finishes Quest: Greetings to the Guardian
 -----------------------------------
-
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/zones/Kazham/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     Guardian = player:getQuestStatus(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
     Pamamas = player:getVar("PamamaVar");
     pfame = player:getFameLevel(KAZHAM)
     needToZone = player:needToZone();
-    
+
     if (Guardian == QUEST_ACCEPTED) then
         if (Pamamas == 1) then
             player:startEvent(71); --Finish Quest
@@ -48,18 +40,11 @@ function onTrigger(player,npc)
         player:startEvent(84); --Standard Dialogue
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

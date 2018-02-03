@@ -3,21 +3,13 @@
 --  MOB: Devil Manta
 -- Note: Place holder Charybdis
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
 require("scripts/zones/Sea_Serpent_Grotto/MobIDs");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,810,2);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Get Devil Manta ID and check if it is a PH of Charybdis

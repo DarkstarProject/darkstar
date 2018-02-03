@@ -1,33 +1,25 @@
 -----------------------------------
---  Area: Bibiki Bay
---  NPC:  Tswe Panipahr
---  Type: Manaclipper
+-- Area: Bibiki Bay
+--  NPC: Tswe Panipahr
+-- Type: Manaclipper
 -- !pos 484.604 -4.035 729.671 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
    local curentticket=0;
-   if  (player:hasKeyItem(MANACLIPPER_TICKET)) then
+    if  (player:hasKeyItem(MANACLIPPER_TICKET)) then
        curentticket=MANACLIPPER_TICKET;
-   elseif (player:hasKeyItem(MANACLIPPER_MULTITICKET)) then
+    elseif (player:hasKeyItem(MANACLIPPER_MULTITICKET)) then
        curentticket=MANACLIPPER_MULTITICKET;
-   end
+    end
 
   if ( curentticket ~= 0 ) then
     player:messageSpecial(HAVE_BILLET,curentticket);
@@ -37,18 +29,10 @@ function onTrigger(player,npc)
   end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -5,30 +5,18 @@
 -- Spawned with Pectin: @additem 2591
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Claret
 -----------------------------------
-
 require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     mob:addMod(MOD_REGEN, math.floor(mob:getMaxHP()*.004));
     mob:addMod(MOD_BINDRES, 40);
     mob:SetAutoAttackEnabled(false);
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     if (mob:checkDistance(target) < 3) then
@@ -42,10 +30,6 @@ function onMobFight(mob, target)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

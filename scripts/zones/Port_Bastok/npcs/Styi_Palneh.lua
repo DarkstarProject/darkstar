@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Styi Palneh
+--  NPC: Styi Palneh
 -- Title Change NPC
 -- !pos 28 4 -15 236
 -----------------------------------
-
 require("scripts/globals/titles");
 
 local title2 = { NEW_ADVENTURER , BASTOK_WELCOMING_COMMITTEE , BUCKET_FISHER , PURSUER_OF_THE_PAST , MOMMYS_HELPER , HOT_DOG ,
@@ -24,33 +23,17 @@ local title6 = { LEGIONNAIRE , DECURION , CENTURION , JUNIOR_MUSKETEER , SENIOR_
                 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(200,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

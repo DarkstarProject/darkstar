@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Dynamis tavnazia
--- NPC:  Vanguard_Eye
+--  NPC: Vanguard_Eye
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Tavnazia/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
-    if ( mob:getID() > 16949486 ) then 
+    if ( mob:getID() > 16949486 ) then
         -- second floor eyes spawn hydra mobs
         dynamis.spawnGroup(mob, TavnaziaEyesList, 1);
     else
@@ -32,7 +24,7 @@ function onMobEngaged(mob,target)
         local X = mob:getXPos();
         local Y = mob:getYPos();
         local Z = mob:getZPos();
-        
+
         for nt = 1, #TavnaziaTaurusList, 2 do
             if (mob:getID() == TavnaziaTaurusList[nt] and TavnaziaTaurusList[nt+1][1] ~= 0) then
                 for nf = 1 ,TavnaziaTaurusList[nt+1][1] , 1 do
@@ -52,10 +44,6 @@ function onMobEngaged(mob,target)
 
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

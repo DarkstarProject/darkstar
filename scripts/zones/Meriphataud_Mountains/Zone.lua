@@ -12,12 +12,11 @@ require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 646, 4, DIGREQ_NONE },
                     { 845, 12, DIGREQ_NONE },
                     { 640, 112, DIGREQ_NONE },
@@ -46,20 +45,13 @@ local itemMap = {
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(WARAXE_BEAK);
@@ -70,10 +62,6 @@ function onInitialize(zone)
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -91,11 +79,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
-
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -103,16 +86,9 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter( player, region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
@@ -127,10 +103,6 @@ function onEventUpdate( player, csid, option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);

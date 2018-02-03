@@ -1,25 +1,17 @@
 -----------------------------------
---  Area: Bastok Markets
---  NPC:  Ken
---  Type: Quest NPC
+-- Area: Bastok Markets
+--  NPC: Ken
+-- Type: Quest NPC
 -- !pos -340.857 -11.003 -149.008 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Bastok_Markets/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -32,18 +24,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Faurbellant
+--  NPC: Faurbellant
 -- Type: Quest NPC
 -- Involved in Quest: Gates of Paradise
 -- !pos 484 24 -89 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -42,18 +34,11 @@ function onTrigger(player,npc)
     end;
 
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

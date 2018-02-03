@@ -12,9 +12,6 @@ require("scripts/globals/settings");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,44 +25,33 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-        local RegionOwner = GetRegionOwner(RONFAURE);
--- player:startEvent(849) - are you the chicks owner
-        if (RegionOwner ~= NATION_SANDORIA) then
-                player:showText(npc,CORUA_CLOSED_DIALOG);
-        else
-                player:showText(npc,CORUA_OPEN_DIALOG);
+    local RegionOwner = GetRegionOwner(RONFAURE);
+    -- player:startEvent(849) - are you the chicks owner
+    if (RegionOwner ~= NATION_SANDORIA) then
+        player:showText(npc,CORUA_CLOSED_DIALOG);
+    else
+        player:showText(npc,CORUA_OPEN_DIALOG);
 
-                local stock = {0x1125,29,             -- San d'Orian Carrot
-                                 0x114f,69,             -- San d'Orian Grape
-                                 0x027f,110,    -- Chestnut
-                                 0x0262,55}             -- San d'Orian Flour
-
-                showShop(player,SANDORIA,stock);
-        end
+        local stock =
+        {
+        4389,  29,  -- San d'Orian Carrot
+        4431,  69,  -- San d'Orian Grape
+        639,  110, -- Chestnut
+        610,   55  -- San d'Orian Flour
+        }
+        showShop(player,SANDORIA,stock);
+    end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

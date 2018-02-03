@@ -1,27 +1,20 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Upih Khachla
+--  NPC: Upih Khachla
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     onHalloweenTrade(player,trade,npc);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:showText(npc,UPIHKHACHLA_SHOP_DIALOG);
@@ -43,7 +36,7 @@ function onTrigger(player,npc)
         0x0765,  3960,3,     --Salinator
         0x03FC,   276,3,     --Sickle
         0x04D9,   354,3      --Twinkle Powder
-    }               
+    }
 
     rank = getNationRank(NATION_WINDURST);
     if (rank ~= 1) then
@@ -60,18 +53,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

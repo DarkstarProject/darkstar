@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Oldton Movalpolos
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- @zone 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -15,10 +14,6 @@ local TreasureType = "Chest";
 local TreasureLvL = 43;
 local TreasureMinLvL = 33;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     -- trade:hasItemQty(1062,1);         -- Treasure Key
@@ -26,9 +21,9 @@ function onTrade(player,npc,trade)
     -- trade:hasItemQty(1023,1);        -- Living Key
     -- trade:hasItemQty(1022,1);        -- Thief's Tools
     local questItemNeeded = 0;
-    
+
     -- Player traded a key.
-    if ((trade:hasItemQty(1062,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+    if ((trade:hasItemQty(1062,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: Map -----------
         if (player:hasKeyItem(MAP_OF_OLDTON_MOVALPOLOS) == false) then
@@ -55,8 +50,8 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(MAP_OF_OLDTON_MOVALPOLOS);
                     player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_OLDTON_MOVALPOLOS); -- Map of Oldton Movalpolos
                 else
-                    player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
-                    
+                    player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
+
                     local loot = chestLoot(zone,npc);
                     -- print("loot array: "); -- debug
                     -- print("[1]", loot[1]); -- debug
@@ -78,26 +73,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1062);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

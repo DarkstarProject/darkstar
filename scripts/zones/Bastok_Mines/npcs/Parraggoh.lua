@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Parraggoh
+--  NPC: Parraggoh
 -- Finishes Quest: Beauty and the Galka
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -9,18 +9,11 @@ require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -32,12 +25,12 @@ PalboroughMinesLogs     = player:hasKeyItem(2);
         player:startEvent(10);
     elseif (BeautyAndTheGalka == QUEST_ACCEPTED) then
         Message = math.random(0,1);
-        
+
         if (Message == 1) then
             player:startEvent(8);
         else
             player:startEvent(9);
-        end 
+        end
     elseif (BeautyAndTheGalkaDenied == 1) then
         player:startEvent(7);
     elseif (BeautyAndTheGalka == QUEST_COMPLETED) then
@@ -48,18 +41,10 @@ PalboroughMinesLogs     = player:hasKeyItem(2);
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -69,19 +54,19 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
     elseif (csid == 10) then
         FreeSlots = player:getFreeSlotsCount();
-        
+
         if (FreeSlots >= 1) then
             player:completeQuest(BASTOK,BEAUTY_AND_THE_GALKA);
             player:setVar("BeautyAndTheGalkaDenied",0);
             player:delKeyItem(PALBOROUGH_MINES_LOGS);
-            player:addFame(BASTOK,75); 
+            player:addFame(BASTOK,75);
             player:addItem(16465);
             player:messageSpecial(ITEM_OBTAINED,16465);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16465);
         end
     end
-    
+
 end;
 
 

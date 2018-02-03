@@ -1,42 +1,34 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC:  Hiwon-Biwon
+--  NPC: Hiwon-Biwon
 --  Involved In Quest: Making Headlines, Curses, Foiled...Again!?
 -- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/zones/Windurst_Walls/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    
+
     local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
     local CFA2 = player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_2);
-    
+
     -- Curses,Foiled ... Again!?
     if (CFA2 == QUEST_ACCEPTED and player:hasItem(552) == false) then
         player:startEvent(182); -- get Hiwon's hair
     elseif (CFA2 == QUEST_COMPLETED and MakingHeadlines ~= QUEST_ACCEPTED) then
         player:startEvent(185); -- New Dialog after CFA2
-    
+
     -- Making Headlines
     elseif (MakingHeadlines == 1) then
         prog = player:getVar("QuestMakingHeadlines_var");
@@ -52,7 +44,7 @@ function onTrigger(player,npc)
                     player:startEvent(283); -- Give scoop while sick
                 else
                     player:startEvent(284); -- Give scoop while sick
-                end    
+                end
             else
                 player:startEvent(281); -- Give scoop
             end
@@ -78,11 +70,7 @@ function onTrigger(player,npc)
             player:startEvent(169); -- Standard Conversation
         end
     end
-end; 
-        
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -90,24 +78,20 @@ function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     -- Making Headlines
     if (csid == 281 or csid == 283 or csid == 284) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(WINDURST_WALLS_SCOOP);
         player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);
-    
+
     -- Curses,Foiled...Again!?
     elseif (csid == 182) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
         else
             player:addItem(552);

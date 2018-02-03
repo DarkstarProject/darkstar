@@ -4,24 +4,13 @@
 -----------------------------------
 require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

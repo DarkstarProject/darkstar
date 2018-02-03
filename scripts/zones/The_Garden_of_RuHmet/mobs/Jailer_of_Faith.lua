@@ -1,10 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
--- NPC:  Jailer_of_Faith
------------------------------------
-
------------------------------------
--- onMobSpawn Action
+--  NPC: Jailer_of_Faith
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -14,16 +10,11 @@ function onMobSpawn(mob)
     mob:AnimationSub(2);
 end;
 
------------------------------------
--- onMobFight Action
--- Randomly change forms 
------------------------------------
-
 function onMobFight(mob)
-    -- Forms: 0 = Closed  1 = Closed  2 = Open 3 = Closed 
+    -- Forms: 0 = Closed  1 = Closed  2 = Open 3 = Closed
     local randomTime = math.random(45,180);
     local changeTime = mob:getLocalVar("changeTime");
-    
+
     if (mob:getBattleTime() - changeTime > randomTime) then
         -- Change close to open.
         if (mob:AnimationSub() == 1) then
@@ -35,16 +26,8 @@ function onMobFight(mob)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local qm3 = GetNPCByID(Jailer_of_Faith_QM);

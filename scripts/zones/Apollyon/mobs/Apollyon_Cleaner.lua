@@ -1,47 +1,32 @@
 -----------------------------------
--- Area: Apollyon NE    
--- NPC:  Apollyon Cleaner
+-- Area: Apollyon NE
+--  NPC: Apollyon Cleaner
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/zones/Apollyon/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
- local mobID = mob:getID();    
+ local mobID = mob:getID();
  -- print(mobID);
       local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
- 
 
-   if (mobID ==16933082) then -- item
+
+    if (mobID ==16933082) then -- item
        GetNPCByID(16932864+140):setPos(mobX,mobY,mobZ);
     GetNPCByID(16932864+140):setStatus(STATUS_NORMAL);
   elseif (mobID ==16933085) then -- timer T1

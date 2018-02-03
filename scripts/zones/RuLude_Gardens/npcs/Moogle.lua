@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil
 -----------------------------------

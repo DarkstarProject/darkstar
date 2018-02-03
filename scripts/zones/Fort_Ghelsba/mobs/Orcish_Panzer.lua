@@ -3,10 +3,6 @@
 --  NM:  Orcish Panzer
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     if (isKiller == true) then
         local OrcFighter = 17354895;

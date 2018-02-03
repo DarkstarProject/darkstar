@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Vendavoq
+--  NPC: Vendavoq
 -- Only sells when San d'Oria controls Movalpolos
 -- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/shop");
+require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/shop");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,41 +25,29 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(MOVALPOLOS);
 
-if (RegionOwner ~= NATION_SANDORIA) then 
+if (RegionOwner ~= NATION_SANDORIA) then
     player:showText(npc,VENDAVOQ_CLOSED_DIALOG);
 else
     player:showText(npc,VENDAVOQ_OPEN_DIALOG);
-    
+
     local stock = {0x0280,11,   --Copper Ore
              0x1162,694,  --Coral Fungus
              0x1117,4032, --Danceshroom
              0x0672,6500, --Kopparnickel Ore
              0x142d,736}  --Movalpolos Water
 
-showShop(player,SANDORIA,stock);
+    showShop(player,SANDORIA,stock);
 end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

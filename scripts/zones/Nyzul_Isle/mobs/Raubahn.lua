@@ -4,9 +4,6 @@
 -----------------------------------
 require("scripts/zones/Nyzul_Isle/IDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -92,10 +89,6 @@ function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_BEHAVIOR, 5);
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob,target)
     -- localVar because we don't want it to repeat every reraise.
     if (mob:getLocalVar("started") == 0) then
@@ -103,10 +96,6 @@ function onMobEngaged(mob,target)
         mob:setLocalVar("started", 1);
     end
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     --[[ Mob version of Azure Lore needs scripted, then we can remove this block commenting.
@@ -117,15 +106,11 @@ function onMobFight(mob,target)
         if (mob:getHPP() <= hpTrigger and usedAzure == 0) then
             mob:setLocalVar("usedAzureLore", 1);
             mob:setLocalVar("AzureLoreHP", math.random(20,50); -- Re-rolling the % for next "life"
-            mob:useMobAbility(2257); -- Todo: enumerate all 2hrs in a global, remove this magic number..
+            mob:useMobAbility(jobSpec.AZURE_LORE);
         end
     end
     ]]
 end;
-
------------------------------------
--- onSpellPrecast
------------------------------------
 
 function onSpellPrecast(mob, spell)
     -- Eyes on Me
@@ -134,20 +119,12 @@ function onSpellPrecast(mob, spell)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     -- If he's out of reraises, display text
     if (isKiller and mob:getMobMod(MOBMOD_BEHAVIOR) == 0) then
         mob:showText(mob,NyzulIsle.text.MIRACLE);
     end
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 end;

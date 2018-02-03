@@ -8,7 +8,6 @@ require("scripts/globals/quests");
 function onMobSpawn(mob)
 end;
 
-
 function onMobFight(mob,target)
 end;
 

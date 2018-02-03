@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 --   NPC: Miageau
---  Type: Quest Giver NPC
+-- Type: Quest Giver NPC
 -- @zone 231
 -- !pos 115 0 108
 --
@@ -13,9 +13,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,10 +31,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     watersOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
@@ -55,18 +48,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

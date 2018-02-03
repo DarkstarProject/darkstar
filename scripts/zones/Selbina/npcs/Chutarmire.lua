@@ -1,30 +1,24 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Chutarmire
+--  NPC: Chutarmire
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,CHUTARMIRE_SHOP_DIALOG);
 
-stock = {0x12A0,5751,    -- Scroll of Stone II
+    player:showText(npc,CHUTARMIRE_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x12A0,5751,    -- Scroll of Stone II
      0x12AA,8100,    -- Scroll of Water II
      0x129B,11970,    -- Scroll of Aero II
      0x1291,16560,    -- Scroll of Fire II
@@ -40,22 +34,14 @@ stock = {0x12A0,5751,    -- Scroll of Stone II
      0x12E7,12600,    -- Scroll of Bio II
      0x12E1,4644,    -- Scroll of Poisonga
      0x12FB,8100}    -- Scroll of Shock Spikes
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

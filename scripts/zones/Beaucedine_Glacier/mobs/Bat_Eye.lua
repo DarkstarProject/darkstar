@@ -2,11 +2,7 @@
 -- Area: Beaucedine Glacier
 --  MOB: Bat Eye
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

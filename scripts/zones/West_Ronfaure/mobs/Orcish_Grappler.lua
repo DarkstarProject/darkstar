@@ -2,11 +2,7 @@
 -- Area: West Ronfaure
 --  MOB: Orcish Grappler
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

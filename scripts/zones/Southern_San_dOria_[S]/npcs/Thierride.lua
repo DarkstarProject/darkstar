@@ -1,22 +1,16 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Thierride
+--  NPC: Thierride
 -- @zone 80
 -- !pos -124 -2 14
 -----------------------------------
-
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
-
 -----------------------------------
 
 -- Item 1019 = Lufet Salt
 -- Had to use setVar because you have to trade Salts one at a time according to the wiki.
 -- Lufet Salt can be obtained by killing Crabs in normal West Ronfaure.
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     local lufetSalt = trade:hasItemQty(1019,1);
@@ -39,10 +33,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local beansAhoy = player:getQuestStatus(CRYSTAL_WAR,BEANS_AHOY);
     if (beansAhoy == QUEST_AVAILABLE) then
@@ -61,18 +51,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

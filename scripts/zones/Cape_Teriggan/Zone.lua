@@ -11,9 +11,6 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/conquest");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -23,10 +20,6 @@ function onInitialize(zone)
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -34,10 +27,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -53,16 +42,8 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
@@ -72,10 +53,6 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -83,10 +60,6 @@ function onEventFinish( player, csid, option)
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;
-
------------------------------------
--- onZoneWeatherChange
------------------------------------
 
 function onZoneWeatherChange(weather)
     if (GetMobAction(KREUTZET) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then

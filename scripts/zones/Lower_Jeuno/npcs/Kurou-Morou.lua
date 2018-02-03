@@ -10,9 +10,6 @@ require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,12 +24,8 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    printf("Ontrigger completed");
+    -- printf("Ontrigger completed");
     local YourCrystalBall = player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL);
     local SearchingForTheRightWords = player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
     local ACandlelightVigil = player:getQuestStatus(JEUNO,A_CANDLELIGHT_VIGIL);
@@ -80,18 +73,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

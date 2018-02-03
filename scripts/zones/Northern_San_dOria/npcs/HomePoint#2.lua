@@ -1,47 +1,31 @@
 -----------------------------------
 -- Area: Northern San dOria
--- NPC:  HomePoint#2
+--  NPC: HomePoint#2
 -- !pos 10 -0.2 95 231
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/homepoint");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    homepointMenu( player, 8701, 4);
+    homepointMenu(player, 8701, 4);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 8701) then
 
@@ -49,7 +33,7 @@ function onEventFinish(player,csid,option)
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else
-            hpTeleport( player, option);
+            hpTeleport(player, option);
         end
     end
 end;

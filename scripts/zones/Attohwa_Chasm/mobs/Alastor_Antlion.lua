@@ -8,7 +8,7 @@ require("scripts/globals/magic");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
     mob:setMobMod(MOBMOD_GA_CHANCE,50);
     mob:setMobMod(MOBMOD_MUG_GIL,10000);
     mob:addMod(MOD_FASTCAST,10);

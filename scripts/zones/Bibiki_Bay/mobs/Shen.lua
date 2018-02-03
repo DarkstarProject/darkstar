@@ -21,9 +21,8 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMonsterMagicPrepare(mob,target)
-
     -- casts Water IV, Waterga III, Flood, Drown
-    rnd = math.random();
+    local rnd = math.random();
 
     if (rnd < 0.5) then
         return 201; -- waterga 3

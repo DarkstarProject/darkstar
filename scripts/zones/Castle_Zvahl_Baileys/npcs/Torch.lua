@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys
--- NPC: Torch (x4)
+--  NPC: Torch (x4)
 -- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
 -- @zone 161
 -- !pos 63 -24 21
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     OldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
@@ -74,18 +66,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

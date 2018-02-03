@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC:  Ajithaam
+--  NPC: Ajithaam
 -- !pos -82 0.1 160 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -43,20 +43,12 @@ Port Jeuno (West to East)
 80000    (I-8) Sagheera (west of the Windurst Airship Agency)
 ]]--
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(10177);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local LureJeuno = player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
@@ -80,18 +72,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

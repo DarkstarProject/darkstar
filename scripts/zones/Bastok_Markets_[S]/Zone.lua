@@ -5,25 +5,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
     -- MOG HOUSE EXIT
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         position = math.random(1,5) - 33;
         player:setPos(-177,-8,position,127);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
@@ -34,27 +26,15 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

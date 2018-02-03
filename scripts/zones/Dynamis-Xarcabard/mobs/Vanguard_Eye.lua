@@ -1,50 +1,30 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Vanguard_Eye
+--  NPC: Vanguard_Eye
 -- Map Position: http://images.wikia.com/ffxi/images/c/cc/Xar.jpg
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob,target)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     dynamis.spawnGroup(mob, xarcabardList, 1);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    
+
     local mobID = mob:getID();
-    
+
     -- 035 039: spawn 043 when defeated
     if (mobID == 17330718 or mobID == 17330756) then
         local southTE = GetServerVariable("[DynaXarcabard]TE43_Trigger");

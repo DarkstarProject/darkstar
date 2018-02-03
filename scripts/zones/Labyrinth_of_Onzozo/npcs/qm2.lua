@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
--- NPC:  ??? (qm2)
+--  NPC: ??? (qm2)
 -- Involved in Quest: Yomi Okuri
 -- !pos -176 10 -60 213
 -----------------------------------
 package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -38,18 +30,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

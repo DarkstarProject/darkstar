@@ -4,13 +4,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

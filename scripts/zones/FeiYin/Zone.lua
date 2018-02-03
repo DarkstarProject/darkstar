@@ -12,9 +12,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -23,10 +20,6 @@ function onInitialize(zone)
 
     UpdateTreasureSpawnPoint(17613242);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local pNation = player:getNation();
@@ -59,10 +52,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -71,25 +60,13 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

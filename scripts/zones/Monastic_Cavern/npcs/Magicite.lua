@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Monastic Cavern
--- NPC:  Magicite
+--  NPC: Magicite
 -- Involved in Mission: Magicite
 -- !pos -22 1 -66 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Monastic_Cavern/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -35,18 +27,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

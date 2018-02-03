@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
 -----------------------------------
