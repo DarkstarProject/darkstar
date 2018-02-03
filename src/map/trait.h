@@ -160,20 +160,20 @@ public:
 
     CTrait(uint8 id);
 
-    __forceinline uint8     getID()         const { return m_id; }
-    __forceinline uint8     getJob()        const { return m_job; }
-    __forceinline uint8     getLevel()      const { return m_level; }
-    __forceinline Mod       getMod()        const { return m_mod; }
-    __forceinline int16     getValue()      const { return m_value; }
-    __forceinline uint8     getRank()       const { return m_rank; }
-    __forceinline uint32    getMeritID()    const { return m_meritId; }
+    uint8     getID()         const { return m_id; }
+    uint8     getJob()        const { return m_job; }
+    uint8     getLevel()      const { return m_level; }
+    Mod       getMod()        const { return m_mod; }
+    int16     getValue()      const { return m_value; }
+    uint8     getRank()       const { return m_rank; }
+    uint32    getMeritID()    const { return m_meritId; }
 
-    __forceinline void setJob(const int8 job)           { m_job = job; }
-    __forceinline void setLevel(const uint8 level)      { m_level = level; }
-    __forceinline void setMod(const Mod mod)            { m_mod = mod; }
-    __forceinline void setValue(const int16 value)      { m_value = value; }
-    __forceinline void setRank(const uint8 rank)        { m_rank = rank; }
-    __forceinline void setMeritId(const uint32 meritId) { m_meritId = meritId; }
+    void setJob(const int8 job)           { m_job = job; }
+    void setLevel(const uint8 level)      { m_level = level; }
+    void setMod(const Mod mod)            { m_mod = mod; }
+    void setValue(const int16 value)      { m_value = value; }
+    void setRank(const uint8 rank)        { m_rank = rank; }
+    void setMeritId(const uint32 meritId) { m_meritId = meritId; }
 
 private:
 
