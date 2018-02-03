@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Medusa
+--  MOB: Lamia No.19
 -----------------------------------
 
 function onMobSpawn(mob)
