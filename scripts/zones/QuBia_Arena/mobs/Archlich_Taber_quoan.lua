@@ -3,23 +3,14 @@
 --  NM:  Archlich Taber'quoan
 -- Mission 5-1 BCNM Fight
 -----------------------------------
-
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_SOUND_RANGE, 32);
 end;
 
-function onMobSpawn(mob)
-    mob:setLocalVar("jobSpecHPP", math.random(35,60));
-end;
-
 function onMobFight(mob, target)
-    if (mob:getLocalVar("jobSpecUsed") == 0 and mob:getHPP() <= mob:getLocalVar("jobSpecHPP")) then
-        mob:setLocalVar("jobSpecUsed", 1);
-        mob:useMobAbility(jobSpec.MANAFONT);
-    end
-
     local BattleTime = mob:getBattleTime();
     if (BattleTime - mob:getLocalVar("RepopWarriors") > 30) then
         local warriorsSpawned = 0;
@@ -35,10 +26,6 @@ function onMobFight(mob, target)
 
         mob:setLocalVar("RepopWarriors", BattleTime);
     end
-end;
-
-function onMobDisengage(mob, weather)
-    mob:setLocalVar("jobSpecUsed", 0);
 end;
 
 function onMobDeath(mob, player, isKiller)

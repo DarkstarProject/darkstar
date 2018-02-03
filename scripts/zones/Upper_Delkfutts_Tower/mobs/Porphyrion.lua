@@ -2,22 +2,11 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Porphyrion
 -----------------------------------
-
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
 
 function onMobSpawn(mob)
-    mob:setLocalVar("jobSpecHPP", math.random(35,60));
-end;
-
-function onMobFight(mob, target)
-    if (mob:getLocalVar("jobSpecUsed") == 0 and mob:getHPP() <= mob:getLocalVar("jobSpecHPP")) then
-        mob:setLocalVar("jobSpecUsed", 1);
-        mob:useMobAbility(jobSpec.EES_GIGA);
-    end
-end;
-
-function onMobDisengage(mob, weather)
-    mob:setLocalVar("jobSpecUsed", 0);
+    mob:setLocalVar("mainSpec", jobSpec.EES_GIGA);
 end;
 
 function onMobDeath(mob, player, isKiller)

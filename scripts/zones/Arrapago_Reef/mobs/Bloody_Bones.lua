@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Medusa
+--  MOB: Bloody Bones
 -----------------------------------
 require("scripts/globals/titles");
 -----------------------------------
