@@ -76,7 +76,9 @@ function onUseAbility(player,target,ability,action)
             local auraStealChance = math.min(player:getMerit(MERIT_AURA_STEAL), 95);
             if (math.random(100) < auraStealChance) then
                 stolen = player:stealStatusEffect(target);
-                ability:setMsg(msgBasic.STEAL_EFFECT);
+                if (stolen ~= 0) then
+                    ability:setMsg(msgBasic.STEAL_EFFECT);
+                end
             else
                 effect = target:dispelStatusEffect();
             end
