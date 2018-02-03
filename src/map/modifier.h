@@ -646,10 +646,14 @@ enum class Mod
     PHYS_ABSORB               = 512, // Occasionally absorbs physical damage taken, in percents
     ABSORB_DMG_TO_MP          = 516, // Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 
-    ADDITIONAL_EFFECT         = 431, //
-    ITEM_SPIKES_TYPE          = 499, // Type spikes an item has
-    ITEM_SPIKES_DMG           = 500, // Damage of an items spikes
-    ITEM_SPIKES_CHANCE        = 501, // Chance of an items spike proc
+    ITEM_ADDEFFECT_TYPE       = 431, // 1 = Status Effect/DMG/HP Drain, 2 = MP Drain, 3 = TP Drain, 4 = Dispel, 5 = Self-Buff, 6 = Instant Death
+    ITEM_SUBEFFECT            = 499, // Animation ID of Spikes and Additional Effects
+    ITEM_ADDEFFECT_DMG        = 500, // Damage of an items Additional Effect or Spikes
+    ITEM_ADDEFFECT_CHANCE     = 501, // Chance of an items Additional Effect or Spikes
+    ITEM_ADDEFFECT_ELEMENT    = 944, // Element of the Additional Effect or Spikes, for resist purposes
+    ITEM_ADDEFFECT_STATUS     = 945, // Status Effect ID to try to apply via Additional Effect or Spikes
+    ITEM_ADDEFFECT_POWER      = 946, // Base Power for effect in MOD_ITEM_ADDEFFECT_STATUS
+    ITEM_ADDEFFECT_DURATION   = 947, // Base Duration for effect in MOD_ITEM_ADDEFFECT_STATUS
 
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
 
@@ -770,9 +774,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 944, // stuff
-    // SPARE = 945, // stuff
-    // SPARE = 946, // stuff
+    // SPARE = 948, // stuff
+    // SPARE = 949, // stuff
+    // SPARE = 950, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
