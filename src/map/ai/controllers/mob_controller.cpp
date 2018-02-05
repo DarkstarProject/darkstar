@@ -898,6 +898,7 @@ void CMobController::Reset()
     m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(PMob->getBigMobMod(MOBMOD_ROAM_COOL)));
 
     // Don't attack player right off of spawn
+    PMob->m_neutral = true;
     m_NeutralTime = m_Tick;
 
     PTarget = nullptr;
