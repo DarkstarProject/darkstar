@@ -8712,7 +8712,7 @@ INSERT INTO `item_mods` VALUES (12643,1,44);
 INSERT INTO `item_mods` VALUES (12643,2,20);
 INSERT INTO `item_mods` VALUES (12643,8,3);
 INSERT INTO `item_mods` VALUES (12643,57,10);
-INSERT INTO `item_mods` VALUES (12643,871,1); -- Increase "Hide" duration
+INSERT INTO `item_mods` VALUES (12643,871,100); -- Increase "Hide" duration
 INSERT INTO `item_mods` VALUES (12644,1,47);
 INSERT INTO `item_mods` VALUES (12644,2,20);
 INSERT INTO `item_mods` VALUES (12644,10,4);
@@ -13978,7 +13978,7 @@ INSERT INTO `item_mods` VALUES (14478,1,45);
 INSERT INTO `item_mods` VALUES (14478,2,20);
 INSERT INTO `item_mods` VALUES (14478,8,6);
 INSERT INTO `item_mods` VALUES (14478,25,10);
-INSERT INTO `item_mods` VALUES (14478,871,1); -- Extends duration of "Hide"
+INSERT INTO `item_mods` VALUES (14478,871,100); -- Extends duration of "Hide"
 INSERT INTO `item_mods` VALUES (14479,1,55);
 INSERT INTO `item_mods` VALUES (14479,2,20);
 INSERT INTO `item_mods` VALUES (14479,10,6);
@@ -26365,7 +26365,7 @@ INSERT INTO `item_mods` VALUES (23112,68,69);     -- Evasion+69
 INSERT INTO `item_mods` VALUES (23112,302,4);     -- Triple Attack+4
 INSERT INTO `item_mods` VALUES (23112,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23112,421,5);     -- Critical Hit Damage+5
-INSERT INTO `item_mods` VALUES (23112,871,1);     -- Hide duration +100
+INSERT INTO `item_mods` VALUES (23112,871,100);     -- Hide duration +100
 INSERT INTO `item_mods` VALUES (23113,1,159);     -- rev._surcoat_+2 DEF:159
 INSERT INTO `item_mods` VALUES (23113,2,244);     -- HP+244
 INSERT INTO `item_mods` VALUES (23113,5,52);      -- MP+52
@@ -28337,7 +28337,7 @@ INSERT INTO `item_mods` VALUES (23447,68,79);     -- Evasion+79
 INSERT INTO `item_mods` VALUES (23447,302,7);     -- Triple Attack+7
 INSERT INTO `item_mods` VALUES (23447,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23447,421,6);     -- Critical Hit Damage+6
-INSERT INTO `item_mods` VALUES (23447,871,1);	  -- "Hide" duration +100
+INSERT INTO `item_mods` VALUES (23447,871,100);	  -- "Hide" duration +100
 INSERT INTO `item_mods` VALUES (23448,1,169);     -- rev._surcoat_+3 DEF:169
 INSERT INTO `item_mods` VALUES (23448,2,254);     -- HP+254
 INSERT INTO `item_mods` VALUES (23448,5,62);      -- MP+62
@@ -40978,7 +40978,7 @@ INSERT INTO `item_mods` VALUES (27812,31,43);
 INSERT INTO `item_mods` VALUES (27812,68,23);
 INSERT INTO `item_mods` VALUES (27812,384,40);
 INSERT INTO `item_mods` VALUES (27812,421,5);
-INSERT INTO `item_mods` VALUES (27812,871,1); -- Extends duration of "Hide"
+INSERT INTO `item_mods` VALUES (27812,871,100); -- Extends duration of "Hide"
 INSERT INTO `item_mods` VALUES (27813,1,108);
 INSERT INTO `item_mods` VALUES (27813,2,130);
 INSERT INTO `item_mods` VALUES (27813,5,29);
@@ -41329,7 +41329,7 @@ INSERT INTO `item_mods` VALUES (27833,31,64);
 INSERT INTO `item_mods` VALUES (27833,68,49);
 INSERT INTO `item_mods` VALUES (27833,384,40);
 INSERT INTO `item_mods` VALUES (27833,421,5);
-INSERT INTO `item_mods` VALUES (27833,871,1); -- Hide duration +100
+INSERT INTO `item_mods` VALUES (27833,871,100); -- Hide duration +100
 INSERT INTO `item_mods` VALUES (27834,1,149);
 INSERT INTO `item_mods` VALUES (27834,2,163);
 INSERT INTO `item_mods` VALUES (27834,5,35);
