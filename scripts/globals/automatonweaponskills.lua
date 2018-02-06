@@ -143,7 +143,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     -- Store first hit bonus for use after other calcs are done..
     local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
 
-    local numHits = getMultiAttacks(attacker, params.numHits);
+    local numHits = getMultiAttacks(attacker, target, params.numHits);
     local extraHitsLanded = 0;
 
     if (numHits > 1) then
