@@ -20,7 +20,6 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {};
     params.numHits = 1;
     params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
@@ -34,13 +33,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.6; params.vit_wsc = 0.6;
     end
 
-        local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    if (damage > 0) then
-        local duration = (tp/1000 * 70) + 60;
-        if (target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
-            target:addStatusEffect(EFFECT_DEFENSE_DOWN, 25, 0, duration);
-        end
-    end
-    return tpHits, extraHits, criticalHit, damage;
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
+    if (damage > 0 and target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
+        local duration = (120 + (tp/1000 * 60)) * applyResistanceAddEffect(player,target,ELE_WIND,0);
+        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 25, 0, duration);
+    end
+
+    return tpHits, extraHits, criticalHit, damage;
 end
