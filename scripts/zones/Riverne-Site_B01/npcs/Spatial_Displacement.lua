@@ -68,23 +68,23 @@ function onTrigger(player,npc)
     elseif (id == base+29) then -- E-7 porter (east)
         player:startEvent(31);
     elseif (id == base+30) then -- E-8 porter (north)
-        player:startEvent(20);
+        player:startEvent(32);
     elseif (id == base+31) then -- E-8 porter (middle, to Monarch Linn) --_STOP
-        player:startEvent(21);
+        player:startEvent(33);
     elseif (id == base+34) then -- E-7 porter (west)
-        player:startEvent(23);
-     elseif (id == base+35) then -- D-6 porter (exit from Bahamut Island)
-        player:startEvent(23);
+        player:startEvent(22);
+    elseif (id == base+35) then -- D-6 porter (exit from Bahamut Island)
+        player:startEvent(35);
     elseif (id == base+36) then -- E-7 porter (SW)
-        player:startEvent(24);
+        player:startEvent(36);
     elseif (id == base+37) then -- D-8 porter (north)
-        player:startEvent(25);
+        player:startEvent(37);
     elseif (id == base+39) then -- C-9 porter (NE)
-        player:startEvent(27);
+        player:startEvent(39);
     elseif (id == base+40) then -- C-9 porter (SE)
-        player:startEvent(28);
+        player:startEvent(40);
     elseif (id == base+41) then -- D-10 porter (Monument)
-        player:startEvent(29);
+        player:startEvent(41);
     end;
 end;
 
@@ -96,8 +96,8 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-
-    if (csid == 21 and option == 1) then
+    
+    if (csid == 33 and option == 1) then
         player:setPos(12.527,0.345,-539.602,127,31); -- to Monarch Linn (Retail confirmed)
     elseif (csid == 10 and option == 1) then
         player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
