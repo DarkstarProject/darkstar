@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     local fangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE);
-    local fangedOneStat = player:getVar("TheFangedOneCS");
+    local fangedOneCS = player:getVar("TheFangedOneCS");
 
     -- THE FANGED ONE
     if (fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID():isSpawned(OLD_SABERTOOTH)) then
