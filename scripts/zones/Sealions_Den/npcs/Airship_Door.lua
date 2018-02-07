@@ -1,50 +1,45 @@
 -----------------------------------
--- Area:
+-- Area: Sealion's Den
 --  NPC: Airship_Door
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/bcnm");
-require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
+require("scripts/zones/Sealions_Den/MobIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (npc:getID() == 16908420) then -- First door..
-        player:startEvent(32003, 1);
-    end
+    local offset = npc:getID() - AIRSHIP_DOOR_OFFSET;
+    player:startEvent(32003, offset + 1);
 end;
 
 function onEventUpdate(player,csid,option)
-
 end;
 
 function onEventFinish(player,csid,option)
-    local mammet_1_1    = GetMobAction(16908289);
-    local mammet_1_2    = GetMobAction(16908290);
-    local mammet_1_3    = GetMobAction(16908291);
-    local mammet_1_4    = GetMobAction(16908292);
-    local mammet_1_5    = GetMobAction(16908293);
-    local omega1        = GetMobAction(16908294);
-    local ultima1       = GetMobAction(16908295);
+    if (csid == 32003 and (option >= 100 and option <= 102)) then
+        local inst = option - 99;
+        local instOffset = ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1));
 
-    if (csid == 32003 and option == 100) then
-
-        -- Are any mammets alive still..
-        if (mammet_1_1 > 0 or mammet_1_2 > 0 or mammet_1_3 > 0 or mammet_1_4 > 0 or mammet_1_5 > 0) then
-            player:startEvent(0, 1);
-
-        -- Is Omega alive..
-        elseif (omega1 > 0) then
-            player:startEvent(1, 1);
-
-        -- Is Ultima alive..
-        elseif (ultima1 > 0) then
-            player:startEvent(2, 1);
+        local stillAlive = nil;
+        for i = 0, 6 do
+            if (GetMobByID(instOffset + i):isAlive()) then
+                stillAlive = i;
+                break;
+            end
+        end
+        
+        if (stillAlive ~= nil) then
+            if (stillAlive <= 4) then
+                player:startEvent(0, inst); -- send to mammet arena
+            elseif (stillAlive == 5) then
+                player:startEvent(1, inst); -- send to omega arena
+            elseif (stillAlive == 6) then
+                player:startEvent(2, inst); -- send to ultima arena
+            end
         end
     end
-
 end;
