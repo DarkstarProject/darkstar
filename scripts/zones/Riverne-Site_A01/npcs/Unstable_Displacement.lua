@@ -6,6 +6,8 @@ package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Riverne-Site_A01/TextIDs");
 require("scripts/zones/Riverne-Site_A01/MobIDs");
+require("scripts/globals/settings");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)

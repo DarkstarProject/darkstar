@@ -8,6 +8,7 @@ require("scripts/zones/Riverne-Site_B01/TextIDs");
 require("scripts/zones/Riverne-Site_B01/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/globals/status");
 require("scripts/globals/bcnm");
 
 function onTrade(player,npc,trade)
