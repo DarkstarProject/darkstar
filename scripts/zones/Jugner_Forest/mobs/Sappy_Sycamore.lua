@@ -2,6 +2,7 @@
 -- Area: Jugner_Forest
 --  NM:  Sappy Sycamore
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/msg");
 -----------------------------------
 
@@ -21,7 +22,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(15,25);
         target:addStatusEffect(EFFECT_SLOW,15,0,duration); -- sproud smack like
-        return SUBEFFECT_SLOW,msgBasic.ADD_EFFECT_STATUS,EFFECT_SLOW;
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
     end
 end;
 

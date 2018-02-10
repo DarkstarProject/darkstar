@@ -38,7 +38,7 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(EFFECT_SLOW)) then
             player:addStatusEffect(EFFECT_SLOW, power, 0, duration);
         end
-        return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
     end
 end;
 
