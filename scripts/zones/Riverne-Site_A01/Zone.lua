@@ -6,13 +6,12 @@
 package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Riverne-Site_A01/TextIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
-    SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
-    SetServerVariable("[NM]Carmine_Dobsonflies_Killed", 0);
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -43,12 +42,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

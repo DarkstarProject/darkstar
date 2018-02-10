@@ -10,6 +10,7 @@ require("scripts/zones/RoMaeve/TextIDs");
 require("scripts/zones/RoMaeve/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,9 +36,9 @@ function onTrigger(player,npc)
                 SpawnMob(MOKKURKALFI_I):lookAt(player:getPos());
                 SpawnMob(MOKKURKALFI_II):lookAt(player:getPos());
 
-                local newPosition = npcUtil.pickNewPosition(bastok71QM, bastok71QMPos, true);
+                local newPosition = npcUtil.pickNewPosition(BASTOK_7_1_QM, BASTOK_7_1_QM_POS, true);
                 npc:setStatus(STATUS_DISAPPEAR);
-                GetNPCByID(bastok71QM):setPos(newPosition.x, newPosition.y, newPosition.z);
+                GetNPCByID(BASTOK_7_1_QM):setPos(newPosition.x, newPosition.y, newPosition.z);
             end
         end
     else
@@ -47,11 +48,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

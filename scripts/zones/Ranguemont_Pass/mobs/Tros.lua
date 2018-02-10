@@ -7,9 +7,6 @@
 require("scripts/globals/keyitems");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
     if (player:hasKeyItem(MERTAIRES_BRACELET)) then
         player:setVar("TrosKilled",1);

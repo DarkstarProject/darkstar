@@ -16,10 +16,10 @@ end;
 
 function onTrigger(player,npc)
     local fangedOne = player:getQuestStatus(WINDURST,THE_FANGED_ONE);
-    local fangedOneStat = player:getVar("TheFangedOneCS");
+    local fangedOneCS = player:getVar("TheFangedOneCS");
 
     -- THE FANGED ONE
-    if (fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID():isSpawned(OLD_SABERTOOTH)) then
+    if (fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID(OLD_SABERTOOTH):isSpawned()) then
         SpawnMob(OLD_SABERTOOTH):addStatusEffect(EFFECT_POISON,40,10,210);
         player:messageSpecial(OLD_SABERTOOTH_DIALOG_I);
     elseif (fangedOne == QUEST_ACCEPTED and fangedOneCS == 2 and not player:hasKeyItem(OLD_TIGERS_FANG)) then

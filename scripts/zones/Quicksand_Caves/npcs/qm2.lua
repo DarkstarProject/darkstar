@@ -7,17 +7,18 @@
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Quicksand_Caves/TextIDs");
+require("scripts/zones/Quicksand_Caves/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     -- Trade Antican Tag
-    if (GetMobAction(17629643) == 0 and trade:hasItemQty(1190,1) and trade:getItemCount() == 1) then
-          player:tradeComplete();
-        SpawnMob(17629643):updateClaim(player);
+    if (npcUtil.tradeHas(trade, 1190) and not GetMobByID(TRIBUNUS_VII_I):isSpawned()) then
+        player:confirmTrade();
+        SpawnMob(TRIBUNUS_VII_I):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
-
 end;
 
 function onTrigger(player,npc)
@@ -25,11 +26,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

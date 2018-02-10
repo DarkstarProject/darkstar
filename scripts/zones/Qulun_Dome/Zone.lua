@@ -5,11 +5,14 @@
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
 require("scripts/zones/Qulun_Dome/TextIDs");
+require("scripts/zones/Qulun_Dome/MobIDs");
+require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(DIAMOND_QUADAV);
+    GetMobByID(DIAMOND_QUADAV):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn(player,prevZone)
@@ -32,11 +35,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

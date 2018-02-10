@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
 --  MOB: Shadow_Dragon
--- ID: 17235987
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -3435,8 +3435,7 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
         if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
         {
             uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-            auto quantity = (int32)std::max<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
-
+            auto quantity = (int32)std::min<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
         }
     }

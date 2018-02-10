@@ -2,7 +2,9 @@
 -- Area: RoMaeve
 --  MOB: Mokkurkalfi
 -----------------------------------
+require("scripts/zones/RoMaeve/MobIDs");
 require("scripts/globals/missions");
+require("scripts/globals/settings");
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
@@ -20,7 +22,6 @@ end;
 
 function onMobDespawn(mob)
     if (GetMobByID(MOKKURKALFI_I):isDead() and GetMobByID(MOKKURKALFI_II):isDead()) then
-        local npc = GetNPCByID(bastok71QM);
-        npc:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+        GetNPCByID(BASTOK_7_1_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
     end
 end;

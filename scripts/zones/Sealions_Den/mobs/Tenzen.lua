@@ -1,30 +1,19 @@
 -----------------------------------
--- Area: Sealions den
+-- Area: Sealion's Den
 --  NPC: Tenzen
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
+require("scripts/zones/Sealions_Den/MobIDs");
+-----------------------------------
 
 function onMobEngaged(mob,target)
-    switch (mob:getID()) : caseof
-    {
-        [16908310] = function (x)
-            GetMobByID(16908311):updateEnmity(target);
-            GetMobByID(16908312):updateEnmity(target);
-            GetMobByID(16908313):updateEnmity(target);
-        end,
-        [16908314] = function (x)
-            GetMobByID(16908315):updateEnmity(target);
-            GetMobByID(16908316):updateEnmity(target);
-            GetMobByID(16908317):updateEnmity(target);
-        end,
-        [16908318] = function (x)
-            GetMobByID(16908319):updateEnmity(target);
-            GetMobByID(16908320):updateEnmity(target);
-            GetMobByID(16908321):updateEnmity(target);
-        end,
-    }
+    -- three tarus fight with tenzen
+    local mobId = mob:getID();
+    local offset = mobId - WARRIORS_PATH_OFFSET;
+    if (offset >= 0 and offset <= 8) then
+        for i = mobId + 1, mobId + 3 do
+            GetMobByID(i):updateEnmity(target);
+        end
+    end
 end;
 
 function onMobDeath(mob, player, isKiller)
