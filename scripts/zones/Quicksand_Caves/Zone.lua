@@ -6,20 +6,12 @@
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Quicksand_Caves/TextIDs");
+require("scripts/zones/Quicksand_Caves/MobIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
-require("scripts/globals/zone");
-
-local base_id = 17629685;
-
-local anticanTagPositions =
-{
-    [1] = {590.000, -6.600, -663.000},
-    [2] = {748.000, 2.000, -570.000},
-    [3] = {479.000, -14.000, -815.000},
-    [4] = {814.000, -14.000, -761.000}
-}
+require("scripts/globals/status");
 
 function onInitialize(zone)
     -- Weight Door System (RegionID, X, Radius, Z)
@@ -37,22 +29,6 @@ function onInitialize(zone)
     zone:registerRegion(23, -409, 5, 800, 0,0,0); -- 0x010D0205 Door
     zone:registerRegion(25, -400, 5, 670, 0,0,0); -- 0x010D0207 Door
 
-    --[[ -- (Old)
-    zone:registerRegion(1,-18,-1, -62,-13,1, -57);
-    zone:registerRegion(3, 13,-1, -183, 18,1, -177);
-    zone:registerRegion(5,-583,-1,-422,-577,1,-418);
-    zone:registerRegion(7,-703,-1,-423,-697,1,-417);
-    zone:registerRegion(9,-703,-1,-383,-697,1,-377);
-    zone:registerRegion(11,-782,-1,-462,-777,1,-457);
-    zone:registerRegion(13,-823,-1,-383,-817,1,-377);
-    zone:registerRegion(15,-262,-1, 737,-257,1, 742);
-    zone:registerRegion(17,-343,-1, 657,-337,1, 662);
-    zone:registerRegion(19,-343,-1, 818,-337,1, 822);
-    zone:registerRegion(21,-411,-1, 797,-406,1, 803);
-    zone:registerRegion(23,-422,-1, 737,-417,1, 742);
-    zone:registerRegion(25,-403,-1, 669,-397,1, 674);
-    ]]--
-
     -- Hole in the Sand
     zone:registerRegion(30,495,-9,-817,497,-7,-815); -- E-11 (Map 2)
     zone:registerRegion(31,815,-9,-744,817,-7,-742); -- M-9 (Map 2)
@@ -61,16 +37,15 @@ function onInitialize(zone)
     zone:registerRegion(34,-137,6,-177,-135,8,-175); -- G-7 (Map 8)
 
     SetServerVariable("BastokFight8_1" ,0);
-    SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
+    SetServerVariable("Bastok8-1LastClear", os.time() - QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(17629739);
+    UpdateTreasureSpawnPoint(QC_TREASURE_COFFER);
 
-    npcUtil.UpdateNPCSpawnPoint(17629761, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(ANTICAN_TAG_QM, 60, 120, ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
 end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -84,90 +59,76 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
-function onRegionEnter(player,region)
+function getWeight(player)
+    local race = player:getRace();
+    if (race == 8) then -- Galka
+        return 3;
+    elseif (race == 5 or race == 6) then -- Taru male or female
+        return 1;
+    else -- Hume/Elvaan/Mithra
+        return 2;
+    end
+end;
 
+function onRegionEnter(player,region)
     local RegionID = region:GetRegionID();
+
+    -- holes in the sand
     if (RegionID >= 30) then
         switch (RegionID): caseof
         {
             [30] = function (x)
-            player:setPos(496,-6,-816);
+                player:setPos(496,-6,-816);
             end,
             [31] = function (x)
-            player:setPos(816,-6,-743);
+                player:setPos(816,-6,-743);
             end,
             [32] = function (x)
-            player:setPos(216,9,-16);
+                player:setPos(216,9,-16);
             end,
             [33] = function (x)
-            player:setPos(-296,9,416);
+                player:setPos(-296,9,416);
             end,
             [34] = function (x)
-            player:setPos(-136,9,-176);
+                player:setPos(-136,9,-176);
             end,
         }
+        
+    -- ornate door pressure plates
     else
-        -- printf("entering region %u",RegionID);
-        local race = player:getRace();
-        local raceWeight;
-        if (race == 8) then -- Galka
-            raceWeight = 3;
-        elseif (race == 5 or race == 6) then -- Taru male or female
-            raceWeight = 1;
-        else -- Hume/Elvaan/Mithra
-            raceWeight = 2;
-        end
+        local door = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID);
 
-        local varname = "[DOOR]Weight_Sensor_"..RegionID;
-        local totalWeight = GetServerVariable(varname);
-        totalWeight = totalWeight + raceWeight;
-        SetServerVariable(varname,totalWeight);
+        local totalWeight = plate:getLocalVar("weight");
+        totalWeight = totalWeight + getWeight(player);
+        plate:setLocalVar("weight", totalWeight);
 
         if (player:hasKeyItem(LOADSTONE) or totalWeight >= 3) then
-            local door = GetNPCByID(base_id + RegionID - 1);
             door:openDoor(15); -- open door with a 15 second time delay.
-            --platform = GetNPCByID(base_id + RegionID + 1);
-            --platform:setAnimation(8); -- this is supposed to light up the platform but it's not working. Tried other values too.
+            plate:setAnimation(ANIMATION_OPEN_DOOR); -- this is supposed to light up the platform but it's not working. Tried other values too.
         end
     end
-
 end;
 
 function onRegionLeave(player,region)
-
     local RegionID = region:GetRegionID();
+
     if (RegionID < 30) then
-        -- printf("exiting region %u",RegionID);
-        local race = player:getRace();
-        local raceWeight;
-        if (race == 8) then -- Galka
-            raceWeight = 3;
-        elseif (race == 5 or race == 6) then -- Taru male or female
-            raceWeight = 1;
-        else -- Hume/Elvaan/Mithra
-            raceWeight = 2;
-        end
+        local door = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID);
 
-        local varname = "[DOOR]Weight_Sensor_"..RegionID;
-        local totalWeight = GetServerVariable(varname);
-        local lastWeight = totalWeight;
-        totalWeight = totalWeight - raceWeight;
-        SetServerVariable(varname,totalWeight);
+        local totalWeight = plate:getLocalVar("weight");
+        totalWeight = totalWeight - getWeight(player);
+        plate:setLocalVar("weight", totalWeight);
 
-        if (lastWeight >= 3 and totalWeight < 3) then
-            --platform = GetNPCByID(base_id + RegionID + 1);
-            --platform:setAnimation(9);
+        if (plate:getAnimation() == ANIMATION_OPEN_DOOR and totalWeight < 3) then
+            plate:setAnimation(ANIMATION_CLOSE_DOOR);
         end
     end
-
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
