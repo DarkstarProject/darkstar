@@ -120,9 +120,9 @@ void InitializeWeather()
         }
         else
         {
-            if (PZone.second->m_WeatherVector.size() > 0)
+            if (!PZone.second->m_WeatherVector.empty())
             {
-                PZone.second->SetWeather((WEATHER)PZone.second->m_WeatherVector[0].common);
+                PZone.second->SetWeather((WEATHER)PZone.second->m_WeatherVector.at(0).common);
 
                 //ShowDebug(CL_YELLOW"zonetuils::InitializeWeather: Static weather of %s updated to %u\n" CL_RESET, PZone.second->GetName(), PZone.second->m_WeatherVector.at(0).m_common);
             }
