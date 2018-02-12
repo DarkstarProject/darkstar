@@ -377,11 +377,11 @@ namespace battleutils
 
     CMobSkill* GetMobSkill(uint16 SkillID)
     {
-        try
+        if (SkillID < g_PMobSkillList.size())
         {
             return g_PMobSkillList[SkillID];
         }
-        catch (std::out_of_range e)
+        else
         {
             return nullptr;
         }
@@ -2868,11 +2868,10 @@ namespace battleutils
         {
             for (auto& resonance_element : resonance)
             {
-                try
+                if (auto skillchain = skillchain_map.find({ resonance_element, skill_element }); skillchain != skillchain_map.end())
                 {
-                    return skillchain_map.at({resonance_element, skill_element});
+                    return skillchain->second;
                 }
-                catch (std::out_of_range&) {}
             }
         }
         return SC_NONE;
