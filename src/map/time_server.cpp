@@ -63,15 +63,15 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
     {
         if (tick > (CVanaTime::getInstance()->lastVHourlyUpdate + 4800ms))
         {
-			zoneutils::ForEachZone([](CZone* PZone)
+            zoneutils::ForEachZone([](CZone* PZone)
             {
                 luautils::OnGameHour(PZone);
-				PZone->ForEachChar([](CCharEntity* PChar)
-				{
-					PChar->PLatentEffectContainer->CheckLatentsHours();
-					PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
-				});
-			});
+                PZone->ForEachChar([](CCharEntity* PChar)
+                {
+                    PChar->PLatentEffectContainer->CheckLatentsHours();
+                    PChar->PLatentEffectContainer->CheckLatentsMoonPhase();
+                });
+            });
 
             CVanaTime::getInstance()->lastVHourlyUpdate = tick;
         }
@@ -92,14 +92,14 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
     {
         if (tick > (CVanaTime::getInstance()->lastVDailyUpdate + 4800ms))
         {
-			zoneutils::ForEachZone([](CZone* PZone)
-			{
+            zoneutils::ForEachZone([](CZone* PZone)
+            {
                 luautils::OnGameDay(PZone);
-				PZone->ForEachChar([](CCharEntity* PChar)
-				{
-					PChar->PLatentEffectContainer->CheckLatentsWeekDay();
-				});
-			});
+                PZone->ForEachChar([](CCharEntity* PChar)
+                {
+                    PChar->PLatentEffectContainer->CheckLatentsWeekDay();
+                });
+            });
 
             guildutils::UpdateGuildsStock();
             zoneutils::SavePlayTime();
@@ -114,18 +114,18 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
 
         if ((VanadielTOTD == TIME_DAY) || (VanadielTOTD == TIME_DUSK) || (VanadielTOTD == TIME_NIGHT))
         {
-			zoneutils::ForEachZone([](CZone* PZone)
-			{
-				PZone->ForEachChar([](CCharEntity* PChar)
-				{
-					PChar->PLatentEffectContainer->CheckLatentsDay();
-					PChar->PLatentEffectContainer->CheckLatentsJobLevel();
-				});
-			});
+            zoneutils::ForEachZone([](CZone* PZone)
+            {
+                PZone->ForEachChar([](CCharEntity* PChar)
+                {
+                    PChar->PLatentEffectContainer->CheckLatentsDay();
+                    PChar->PLatentEffectContainer->CheckLatentsJobLevel();
+                });
+            });
         }
     }
 
     CTransportHandler::getInstance()->TransportTimer();
-	instanceutils::CheckInstance();
+    instanceutils::CheckInstance();
     return 0;
 }

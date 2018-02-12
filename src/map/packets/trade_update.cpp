@@ -39,26 +39,26 @@
 
 CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
 {
-	this->type = 0x23;
-	this->size = 0x14;
+    this->type = 0x23;
+    this->size = 0x14;
 
-	uint32 amount = PItem->getReserve();
+    uint32 amount = PItem->getReserve();
 
     ref<uint32>(0x04) = amount;
-	ref<uint16>(0x0A) = amount == 0 ? 0 : PItem->getID();
-	ref<uint8>(0x0D) = SlotID;
+    ref<uint16>(0x0A) = amount == 0 ? 0 : PItem->getID();
+    ref<uint8>(0x0D) = SlotID;
 
     if (PItem->isSubType(ITEM_CHARGED))
     {
-		ref<uint8>(0x0E) = 0x01;
+        ref<uint8>(0x0E) = 0x01;
 
         if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
         {
-            ref<uint8>(0x0F) = ((CItemUsable*)PItem)->getCurrentCharges(); 
+            ref<uint8>(0x0F) = ((CItemUsable*)PItem)->getCurrentCharges();
         }
-	}
+    }
     if (PItem->isType(ITEM_LINKSHELL))
-	{	
+    {
         ref<uint32>(0x0E) = ((CItemLinkshell*)PItem)->GetLSID();
         ref<uint16>(0x14) = ((CItemLinkshell*)PItem)->GetLSRawColor();
         ref<uint8>(0x16) = ((CItemLinkshell*)PItem)->GetLSType();

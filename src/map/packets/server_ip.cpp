@@ -29,10 +29,10 @@
 
 CServerIPPacket::CServerIPPacket(CCharEntity* PChar, uint8 type, uint64 ipp)
 {
-	this->type = 0x0B;
-	this->size = 0x0E;
+    this->type = 0x0B;
+    this->size = 0x0E;
 
-	ref<uint8>(0x04) = type;
-	ref<uint32>(0x08) = (uint32)ipp;
-	ref<uint16>(0x0C) = (uint16)(ipp >> 32);
+    ref<uint8>(0x04) = type;
+    ref<uint32>(0x08) = (uint32)ipp;
+    ref<uint16>(0x0C) = (uint16)(ipp >> 32);
 }

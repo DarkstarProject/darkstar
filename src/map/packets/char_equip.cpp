@@ -28,10 +28,10 @@
 
 CEquipPacket::CEquipPacket(uint8 EquipSlot, uint8 SlotID, uint8 containerID)
 {
-	this->type = 0x50;
-	this->size = 0x04;
+    this->type = 0x50;
+    this->size = 0x04;
 
-	ref<uint8>(0x04) = EquipSlot;
-	ref<uint8>(0x05) = SlotID;
-	ref<uint8>(0x06) = containerID;
+    ref<uint8>(0x04) = EquipSlot;
+    ref<uint8>(0x05) = SlotID;
+    ref<uint8>(0x06) = containerID;
 }

@@ -29,16 +29,16 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CShopBuyPacket: public CBasicPacket
 {
 public:
 
-	CShopBuyPacket(uint8 slotID, uint32 quantity);
+    CShopBuyPacket(uint8 slotID, uint32 quantity);
 };
 
 #endif

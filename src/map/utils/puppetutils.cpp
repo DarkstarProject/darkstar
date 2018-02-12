@@ -38,7 +38,7 @@ namespace puppetutils
 
 void LoadAutomaton(CCharEntity* PChar)
 {
-	const char* Query =
+    const char* Query =
         "SELECT unlocked_attachments, name, equipped_attachments FROM "
             "char_pet LEFT JOIN pet_name ON automatonid = id "
             "WHERE charid = %u;";
@@ -49,10 +49,10 @@ void LoadAutomaton(CCharEntity* PChar)
         Sql_NumRows(SqlHandle) != 0 &&
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
-		size_t length = 0;
-		char* attachments = nullptr;
-		Sql_GetData(SqlHandle,0,&attachments,&length);
-		memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
+        size_t length = 0;
+        char* attachments = nullptr;
+        Sql_GetData(SqlHandle,0,&attachments,&length);
+        memcpy(&PChar->m_unlockedAttachments, attachments, (length > sizeof(PChar->m_unlockedAttachments) ? sizeof(PChar->m_unlockedAttachments) : length));
 
         if (PChar->PAutomaton != nullptr)
         {
@@ -145,48 +145,48 @@ void SaveAutomaton(CCharEntity* PChar)
             unlockedAttachmentsEscaped,
             PChar->id);
     }
-	//TODO: PUP only: save equipped automaton items
+    //TODO: PUP only: save equipped automaton items
 }
 
 bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 {
-	uint16 id = PItem->getID();
+    uint16 id = PItem->getID();
 
-	if (!PItem->isType(ITEM_PUPPET))
-		return false;
+    if (!PItem->isType(ITEM_PUPPET))
+        return false;
 
     uint8 slot = ((CItemPuppet*)PItem)->getEquipSlot();
-	
-	if (slot == 3) //automaton attachment
-	{
-		if (addBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
-		{
-			SaveAutomaton(PChar);
+
+    if (slot == 3) //automaton attachment
+    {
+        if (addBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments)))
+        {
+            SaveAutomaton(PChar);
             PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
-			return true;
-		}
-		return false;
-	}
-	else if (slot == 2) //automaton frame
-	{
-		if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames)))
-		{
-			SaveAutomaton(PChar);
+            return true;
+        }
+        return false;
+    }
+    else if (slot == 2) //automaton frame
+    {
+        if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames)))
+        {
+            SaveAutomaton(PChar);
             PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
-			return true;
-		}
-		return false;
-	}
-	else if (slot == 1) //automaton head
-	{
-		if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads)))
-		{
-			SaveAutomaton(PChar);
+            return true;
+        }
+        return false;
+    }
+    else if (slot == 1) //automaton head
+    {
+        if (addBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads)))
+        {
+            SaveAutomaton(PChar);
             PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
-			return true;
-		}
-		return false;
-	}
+            return true;
+        }
+        return false;
+    }
     return false;
 }
 

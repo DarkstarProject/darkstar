@@ -31,43 +31,43 @@
 #include "../entities/baseentity.h"
 
 
-CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE MessageType) 
+CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE MessageType)
 {
-	this->type = 0xD3;
-	this->size = 0x1E;
-	
-	ref<uint8>(0x14) = slotID;	
-	ref<uint8>(0x15) = MessageType;
-	
+    this->type = 0xD3;
+    this->size = 0x1E;
+
+    ref<uint8>(0x14) = slotID;
+    ref<uint8>(0x15) = MessageType;
+
 }
 
 CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotID, uint16 Lot, ITEMLOTTYPE MessageType)
 {
-	this->type = 0xD3;
-	this->size = 0x1E;
+    this->type = 0xD3;
+    this->size = 0x1E;
 
-	ref<uint32>(0x04) = PWinner->id;
-	ref<uint16>(0x0C) = PWinner->targid;
-	ref<uint16>(0x0E) = Lot;
+    ref<uint32>(0x04) = PWinner->id;
+    ref<uint16>(0x0C) = PWinner->targid;
+    ref<uint16>(0x0E) = Lot;
 
-	ref<uint8>(0x14) = slotID;	
-	ref<uint8>(0x15) = MessageType;
+    ref<uint8>(0x14) = slotID;
+    ref<uint8>(0x15) = MessageType;
 
-	memcpy(data+(0x16), PWinner->GetName(), PWinner->name.size());
+    memcpy(data+(0x16), PWinner->GetName(), PWinner->name.size());
 }
 
-CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID, uint16 Lot) 
+CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID, uint16 Lot)
 {
-	
-	this->type = 0xD3;
-	this->size = 0x1E;
 
-	ref<uint32>(0x08) = PChar->id;
-	ref<uint16>(0x10) = PChar->targid;	
-	packBitsBE(data, Lot, 144, 16);  //this fixes an offset problem with lot numbers
-	//ref<uint8>(data,(0x12)) = Lot;
-	ref<uint8>(0x14) = slotID; 
-	
-	memcpy(data+0x26, PChar->GetName(), 16);
-	
+    this->type = 0xD3;
+    this->size = 0x1E;
+
+    ref<uint32>(0x08) = PChar->id;
+    ref<uint16>(0x10) = PChar->targid;
+    packBitsBE(data, Lot, 144, 16);  //this fixes an offset problem with lot numbers
+    //ref<uint8>(data,(0x12)) = Lot;
+    ref<uint8>(0x14) = slotID;
+
+    memcpy(data+0x26, PChar->GetName(), 16);
+
 }

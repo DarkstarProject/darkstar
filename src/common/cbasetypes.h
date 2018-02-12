@@ -37,8 +37,8 @@ using uint64 = std::uint64_t;
 
 // string case comparison for *nix portability
 #if !defined(_MSC_VER)
-#define strcmpi				strcasecmp
-#define stricmp				strcasecmp
+#define strcmpi             strcasecmp
+#define stricmp             strcasecmp
 #endif
 
 #include <chrono>

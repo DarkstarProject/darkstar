@@ -30,7 +30,7 @@
 CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, uint32 posttime, bool ls1)
 {
     CBasicPacket::id(id);
-	this->size = 0x58;
+    this->size = 0x58;
 
     ref<uint8>(0x04) = 0x03;
     ref<uint8>(0x05) = 0x90;

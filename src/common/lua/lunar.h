@@ -6,89 +6,89 @@ template <typename T> class Lunar {
   /*Структура инкапсулирования объекта C++ в объект Lua*/
   struct user_t
   {
-	  T *pT; 
+      T *pT;
   };
 public:
   typedef int (T::*mfp)(lua_State *L);
 
   /* Стуктура для склеивания методов объекта Lua с методами объекта C++*/
   struct Register_t
-  { 
-	  const char *name; 
-	  mfp mfunc; 
+  {
+      const char *name;
+      mfp mfunc;
   };
 
   static void Register(lua_State *L) {
-    
+
     /* [1] - таблица методов объекта */
     lua_newtable(L);
     int methods = lua_gettop(L);
 
-	/* [2] - метатаблица будущих обектов*/
+    /* [2] - метатаблица будущих обектов*/
     luaL_newmetatable(L, T::className);
     int metatable = lua_gettop(L);
 
     // Размещение таблицы методов в глобальной переменной
-	// для того, чтобы код lua мог добавлять методы.
+    // для того, чтобы код lua мог добавлять методы.
     lua_pushvalue(L, methods);
     lua_setglobal(L, T::className);
 
-    // прячем метатаблицу от getmetattable() 
+    // прячем метатаблицу от getmetattable()
     lua_pushvalue(L, methods);
     set(L, metatable, "__metatable");
 
-	// Задаем значение поля __index мета таблицы
-	// адресом таблицы методов, для того чтобы 
-	// можно было использовать синтекс obj:method()
+    // Задаем значение поля __index мета таблицы
+    // адресом таблицы методов, для того чтобы
+    // можно было использовать синтекс obj:method()
     lua_pushvalue(L, methods);
     set(L, metatable, "__index");
 
-	// Задаем значение поля __tostring мета таблицы,
-	// для того, чтобы можно было выводить объект в текстовом виде.
+    // Задаем значение поля __tostring мета таблицы,
+    // для того, чтобы можно было выводить объект в текстовом виде.
     lua_pushcfunction(L, tostring_T);
     set(L, metatable, "__tostring");
 
-	// Задаем значение поля __gc  мета таблицы
-	// для того, чтобы сборщик мусора мог удалить нанаши объекты
+    // Задаем значение поля __gc  мета таблицы
+    // для того, чтобы сборщик мусора мог удалить нанаши объекты
     lua_pushcfunction(L, gc_T);
     set(L, metatable, "__gc");
 
-	// Добавляем новую таблицу для того, чтобы
-	// сделать её метатаблице таблицы методов.
-    lua_newtable(L);                // mt 
-	// Добавление функции сосздания объекта
+    // Добавляем новую таблицу для того, чтобы
+    // сделать её метатаблице таблицы методов.
+    lua_newtable(L);                // mt
+    // Добавление функции сосздания объекта
     lua_pushcfunction(L, new_T);
     lua_pushvalue(L, -1);           // копирование адреса функции для двух случаев.
-	// задаем метод new у таблицы, для реализации конструктора
-	// Class:new()
-    set(L, methods, "new");         // 
-	// Задаем метод __call у мета таблицы для того, чтобы
-	// можно было использовать метод Class(). 
+    // задаем метод new у таблицы, для реализации конструктора
+    // Class:new()
+    set(L, methods, "new");         //
+    // Задаем метод __call у мета таблицы для того, чтобы
+    // можно было использовать метод Class().
     set(L, -3, "__call");           // mt.__call = new_T
     lua_setmetatable(L, methods);
 
     // Заполнение таблицы lua, методами из класса.
     for (Register_t *l = T::methods; l->name; ++l) {
-	  // добавление имени метода 
+      // добавление имени метода
       lua_pushstring(L, l->name);
-	  // добавление склеивающего параметра.
+      // добавление склеивающего параметра.
       lua_pushlightuserdata(L, (void*)l);
-	   // добавление специального склеивателя.
+       // добавление специального склеивателя.
       lua_pushcclosure(L, thunk, 1);
 
       lua_settable(L, methods);
     }
 
-    lua_pop(L, 2);  
+    lua_pop(L, 2);
   }
 
   // Вызов метода из user_t
   static int call(lua_State *L, const char *method,
                   int nargs=0, int nresults=LUA_MULTRET, int errfunc=0)
   {
-	// Идекс в стеке для user_t
-    int base = lua_gettop(L) - nargs;  
-	// Проверка типа user_t
+    // Идекс в стеке для user_t
+    int base = lua_gettop(L) - nargs;
+    // Проверка типа user_t
     if (!luaL_checkudata(L, base, T::className)) {
       lua_settop(L, base-1);           // Удаление всех данных
       lua_pushfstring(L, "not a valid %s userdata", T::className);
@@ -119,17 +119,17 @@ public:
   // Добавление в стек пользовательского типа данных, содержащего указатель на
   // T *obj
   static int push(lua_State *L, T *obj, bool gc=false) {
-    if (!obj) 
-	{ 
-		lua_pushnil(L); 
-		return 0; 
-	}
+    if (!obj)
+    {
+        lua_pushnil(L);
+        return 0;
+    }
     luaL_getmetatable(L, T::className);  // поиск мета-таблицы в реестре.
     if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
     int mt = lua_gettop(L);
     subtable(L, mt, "userdata", "v");
-    
-	user_t *ud =
+
+    user_t *ud =
       static_cast<user_t*>(pushuserdata(L, obj, sizeof(user_t)));
     if (ud) {
       ud->pT = obj;  // размещение указателя в user_t
@@ -166,8 +166,8 @@ private:
   // распаковщик функции члена.
   static int thunk(lua_State *L) {
     // стек содержит user_t, следующим прямо за аргументами.
-    T *obj = check(L, 1);  
-    lua_remove(L, 1);  
+    T *obj = check(L, 1);
+    lua_remove(L, 1);
     // Получаем связанное с распаковщиком значение registration
     Register_t *l = static_cast<Register_t*>(lua_touserdata(L, lua_upvalueindex(1)));
     return (obj->*(l->mfunc))(L);  // Вызов метода объекта.
@@ -178,7 +178,7 @@ private:
     lua_remove(L, 1);   // удаление 'self'
     T *obj = new T(L);  // Вызов конструктора
     push(L, obj, true); // gc_T удалит этот объект когда надо
-    return 1;           
+    return 1;
   }
 
   // сборщик мусора
@@ -190,7 +190,7 @@ private:
     }
     user_t *ud = static_cast<user_t*>(lua_touserdata(L, 1));
     T *obj = ud->pT;
-    if (obj) delete obj;  
+    if (obj) delete obj;
     return 0;
   }
 

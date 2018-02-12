@@ -40,11 +40,11 @@ class CBaseEntity;
 #define VERTICAL_PATH_LIMIT 3.5
 
 enum PATHFLAG {
-  PATHFLAG_NONE			= 0x00,
-  PATHFLAG_RUN			= 0x01, // run twice the speed
-  PATHFLAG_WALLHACK		= 0x02, // run through walls if path is too long
-  PATHFLAG_REVERSE		= 0x04, // reverse the path
-  PATHFLAG_SCRIPT		= 0x08,	// don't overwrite this path before completion (except via another script)
+  PATHFLAG_NONE         = 0x00,
+  PATHFLAG_RUN          = 0x01, // run twice the speed
+  PATHFLAG_WALLHACK     = 0x02, // run through walls if path is too long
+  PATHFLAG_REVERSE      = 0x04, // reverse the path
+  PATHFLAG_SCRIPT       = 0x08, // don't overwrite this path before completion (except via another script)
   PATHFLAG_SLIDE                = 0x10  // Slide to end point if close enough (so no over shoot)
 };
 

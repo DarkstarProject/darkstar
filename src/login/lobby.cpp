@@ -144,15 +144,15 @@ int32 lobbydata_parse(int32 fd)
             }
 
             pfmtQuery = "SELECT charid, charname, pos_zone, pos_prevzone, mjob,\
-												 race, face, head, body, hands, legs, feet, main, sub,\
-												 war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
-												 sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
-										  FROM chars \
-											INNER JOIN char_stats USING(charid)\
-											INNER JOIN char_look  USING(charid) \
-											INNER JOIN char_jobs  USING(charid) \
-										  WHERE accid = %i \
-										  LIMIT %u;";
+                                                 race, face, head, body, hands, legs, feet, main, sub,\
+                                                 war, mnk, whm, blm, rdm, thf, pld, drk, bst, brd, rng,\
+                                                 sam, nin, drg, smn, blu, cor, pup, dnc, sch, geo, run \
+                                          FROM chars \
+                                            INNER JOIN char_stats USING(charid)\
+                                            INNER JOIN char_look  USING(charid) \
+                                            INNER JOIN char_jobs  USING(charid) \
+                                          WHERE accid = %i \
+                                          LIMIT %u;";
 
             ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid, CharList[28]);
             if (ret == SQL_ERROR)
@@ -269,8 +269,8 @@ int32 lobbydata_parse(int32 fd)
             uint32 charid = ref<uint32>(session[sd->login_lobbyview_fd]->rdata.data(), 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
-									    FROM zone_settings, chars \
-										WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
+                                        FROM zone_settings, chars \
+                                        WHERE IF(pos_zone = 0, zoneid = pos_prevzone, zoneid = pos_zone) AND charid = %u;";
             uint32 ZoneIP = sd->servip;
             uint16 ZonePort = 54230;
             uint16 ZoneID = 0;
@@ -611,9 +611,9 @@ int32 lobbyview_parse(int32 fd)
                 return -1;
             }
             // char lobbydata_code[] = { 0x15, 0x07 };
-            //				session[sd->login_lobbydata_fd]->wdata[0]  = 0x15;
-            //				session[sd->login_lobbydata_fd]->wdata[1]  = 0x07;
-            //				WFIFOSET(sd->login_lobbydata_fd,2);
+            //              session[sd->login_lobbydata_fd]->wdata[0]  = 0x15;
+            //              session[sd->login_lobbydata_fd]->wdata[1]  = 0x07;
+            //              WFIFOSET(sd->login_lobbydata_fd,2);
             ShowStatus(CL_WHITE"lobbyview_parse" CL_RESET": char <" CL_WHITE"%s" CL_RESET"> was successfully created\n", sd->charname);
             /////////////////////////
             LOBBY_ACTION_DONE(ReservePacket);
@@ -815,23 +815,23 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
     // people reported char creation errors, here is a fix.
 
     Query = "INSERT INTO char_exp(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
+            ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
     Query = "INSERT INTO char_jobs(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
+            ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
     Query = "INSERT INTO char_points(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
+            ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
     Query = "INSERT INTO char_profile(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
+            ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
     Query = "INSERT INTO char_storage(charid) VALUES(%u) \
-			ON DUPLICATE KEY UPDATE charid = charid;";
+            ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
 

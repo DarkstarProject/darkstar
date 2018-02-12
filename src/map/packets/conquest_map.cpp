@@ -33,10 +33,10 @@
 #include "conquest_map.h"
 
 
-CConquestPacket::CConquestPacket(CCharEntity * PChar) 
+CConquestPacket::CConquestPacket(CCharEntity * PChar)
 {
-	this->type = 0x5E; 
-	this->size = 0x5A;
+    this->type = 0x5E;
+    this->size = 0x5A;
 
     const char* Query = "SELECT region_id, region_control, region_control_prev, \
                          sandoria_influence, bastok_influence, windurst_influence, \
@@ -98,37 +98,37 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
         }
     }
 
-	ref<uint8>(0x04) = conquest::GetBalance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
+    ref<uint8>(0x04) = conquest::GetBalance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
     ref<uint8>(0x05) = conquest::GetAlliance(sandoria_regions, bastok_regions, windurst_regions, sandoria_prev, bastok_prev, windurst_prev);
 
-	ref<uint8>(0x8C) = conquest::GetNexTally();
+    ref<uint8>(0x8C) = conquest::GetNexTally();
     ref<uint32>(0x90) = charutils::GetPoints(PChar, charutils::GetConquestPointsName(PChar).c_str());
-	ref<uint8>(0x9C) = 0x01;
+    ref<uint8>(0x9C) = 0x01;
 
-	//uint8 packet[] = 
+    //uint8 packet[] =
     //{
-	//    0x80, 0x78, 0x52, 0x03, 0x1a, 0x46, 0x04, 0x00, 0x42, 0x46, 0x04, 0x00, 0x65, 0x3d, 0x04, 0x00
+    //    0x80, 0x78, 0x52, 0x03, 0x1a, 0x46, 0x04, 0x00, 0x42, 0x46, 0x04, 0x00, 0x65, 0x3d, 0x04, 0x00
     //};
-	//memcpy(data+(0xA0), &packet, 16);
+    //memcpy(data+(0xA0), &packet, 16);
 
-	ref<uint8>(0xA0) = 16; // Situation: mamool ja niveau -> (1) 16 (2) 32 (3) 48 (4) 64 (5) 80 (6) 96 (7) 112 (8) 128
-	ref<uint8>(0xA1) = 17; // Situation: mercenaire trolls niveau -> 1~12 la suite avec un autre 
-	ref<uint8>(0xA2) = 0; // Situation: mamool ja status du siege -> (0) entrainement > (1) en marche > (2) attaque > (3) retraite | (4) defense (5) preparation
-	ref<uint8>(0xA3) = 4; // Situation: undead status du siege ? (3) defense (4) entrainement (5) defense
+    ref<uint8>(0xA0) = 16; // Situation: mamool ja niveau -> (1) 16 (2) 32 (3) 48 (4) 64 (5) 80 (6) 96 (7) 112 (8) 128
+    ref<uint8>(0xA1) = 17; // Situation: mercenaire trolls niveau -> 1~12 la suite avec un autre
+    ref<uint8>(0xA2) = 0; // Situation: mamool ja status du siege -> (0) entrainement > (1) en marche > (2) attaque > (3) retraite | (4) defense (5) preparation
+    ref<uint8>(0xA3) = 4; // Situation: undead status du siege ? (3) defense (4) entrainement (5) defense
 
-	ref<uint8>(0xA4) = 0; // mamool ja: (13) preparation (26) attaque (32) entrainement
-	ref<uint8>(0xA5) = 0; // mamool ja: forces ennemies (1=32)
-	ref<uint8>(0xA6) = 0; // mamool ja: miroir archaique (1=2)
-	ref<uint8>(0xA7) = 0;
+    ref<uint8>(0xA4) = 0; // mamool ja: (13) preparation (26) attaque (32) entrainement
+    ref<uint8>(0xA5) = 0; // mamool ja: forces ennemies (1=32)
+    ref<uint8>(0xA6) = 0; // mamool ja: miroir archaique (1=2)
+    ref<uint8>(0xA7) = 0;
 
-	ref<uint8>(0xA8) = 0; // trolls: forces ennemies (66=8)
-	ref<uint8>(0xA9) = 0; // trolls: (70) attaque
-	ref<uint8>(0xAA) = 0; // trolls: miroir archaique (4=8)
-	ref<uint8>(0xAB) = 0;
-	ref<uint8>(0xAC) = 0; // undead: forces ennemies (101=12)
-	ref<uint8>(0xAD) = 0; // undead: (61) preparation
-	ref<uint8>(0xAE) = 0; // undead: miroir archaique (4=8)
-	ref<uint8>(0xAF) = 0;
+    ref<uint8>(0xA8) = 0; // trolls: forces ennemies (66=8)
+    ref<uint8>(0xA9) = 0; // trolls: (70) attaque
+    ref<uint8>(0xAA) = 0; // trolls: miroir archaique (4=8)
+    ref<uint8>(0xAB) = 0;
+    ref<uint8>(0xAC) = 0; // undead: forces ennemies (101=12)
+    ref<uint8>(0xAD) = 0; // undead: (61) preparation
+    ref<uint8>(0xAE) = 0; // undead: miroir archaique (4=8)
+    ref<uint8>(0xAF) = 0;
 
-	ref<uint32>(0xB0) = charutils::GetPoints(PChar, "imperial_standing");
+    ref<uint32>(0xB0) = charutils::GetPoints(PChar, "imperial_standing");
 }

@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CItem;
@@ -40,7 +40,7 @@ class CBazaarItemPacket: public CBasicPacket
 {
 public:
 
-	CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax);
+    CBazaarItemPacket(CItem* PItem, uint8 SlotID, uint16 Tax);
 };
 
 #endif

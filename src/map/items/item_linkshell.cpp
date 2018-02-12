@@ -30,7 +30,7 @@
 
 CItemLinkshell::CItemLinkshell(uint16 id) : CItem(id)
 {
-	setType(ITEM_LINKSHELL);
+    setType(ITEM_LINKSHELL);
 }
 
 CItemLinkshell::~CItemLinkshell()
@@ -54,7 +54,7 @@ LSTYPE CItemLinkshell::GetLSType()
 
 lscolor_t CItemLinkshell::GetLSColor()
 {
-	return *(lscolor_t*)(m_extra+0x06);
+    return *(lscolor_t*)(m_extra+0x06);
 }
 
 uint16 CItemLinkshell::GetLSRawColor()
@@ -64,7 +64,7 @@ uint16 CItemLinkshell::GetLSRawColor()
 
 void CItemLinkshell::SetLSColor(uint16 color)
 {
-	ref<uint16>(m_extra,0x06) = color;
+    ref<uint16>(m_extra,0x06) = color;
 }
 
 const int8* CItemLinkshell::getSignature()

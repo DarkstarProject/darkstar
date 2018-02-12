@@ -1,23 +1,23 @@
 // Copyright (c) 2010-2015 Darkstar Dev Teams
 
-#ifndef	_SOCKET_H_
+#ifndef _SOCKET_H_
 #define _SOCKET_H_
 
 #ifndef _CBASETYPES_H_
-	#include "../common/cbasetypes.h"
+    #include "../common/cbasetypes.h"
 #endif
 
 
 #ifdef WIN32
     #define FD_SETSIZE 1000
-	#include <winsock2.h>
-	typedef long in_addr_t;
+    #include <winsock2.h>
+    typedef long in_addr_t;
 #else
-	#include <sys/types.h>
-	#include <sys/socket.h>
+    #include <sys/types.h>
+    #include <sys/socket.h>
     #include <arpa/inet.h>
-	#include <netinet/in.h>
-	#include <errno.h>
+    #include <netinet/in.h>
+    #include <errno.h>
 #endif
 
 #include <time.h>
@@ -28,13 +28,13 @@
 
 /*
 *
-*				COMMON LEVEL
+*               COMMON LEVEL
 *
 */
 /////////////////////////////////////////////////////////////////////
 #if defined(WIN32)
 /////////////////////////////////////////////////////////////////////
-// windows portability layer 
+// windows portability layer
 typedef int socklen_t;
 
 #define sErrno WSAGetLastError()
@@ -69,7 +69,7 @@ int sock2fd(SOCKET s);
 
 /// Inserts the socket into the global array of sockets.
 /// Returns a new fd associated with the socket.
-/// If there are too many sockets it closes the socket, sets an error and 
+/// If there are too many sockets it closes the socket, sets an error and
 //  returns -1 instead.
 /// Since fd 0 is reserved, it returns values in the range [1,FD_SETSIZE[.
 ///
@@ -177,7 +177,7 @@ extern int32 naddr_;   // # of ip addresses
 /************************************************/
 /*
 *
-*		TCP LEVEL
+*       TCP LEVEL
 *
 */
 
@@ -212,35 +212,35 @@ typedef int (*ParseFunc)(int fd);
 
 #define RFIFOREST(fd)  (session[fd]->flag.eof ? 0 : session[fd]->rdata.size() - session[fd]->rdata_pos)
 #define RFIFOFLUSH(fd) \
-	do { \
-		if(session[fd]->rdata.size() == session[fd]->rdata_pos){ \
-			session[fd]->rdata_pos = 0; \
+    do { \
+        if(session[fd]->rdata.size() == session[fd]->rdata_pos){ \
+            session[fd]->rdata_pos = 0; \
             session[fd]->rdata.clear(); \
-		} else { \
+        } else { \
             session[fd]->rdata.erase(0, session[fd]->rdata_pos); \
-			session[fd]->rdata_pos = 0; \
-		} \
-	} while(0)
+            session[fd]->rdata_pos = 0; \
+        } \
+    } while(0)
 
 struct socket_data
 {
-	struct {
-		unsigned char eof : 1;
-		unsigned char server : 1;
-	} flag;
+    struct {
+        unsigned char eof : 1;
+        unsigned char server : 1;
+    } flag;
 
-	uint32 client_addr; // remote client address
+    uint32 client_addr; // remote client address
 
-	std::string rdata, wdata;
-	size_t rdata_pos;
-	time_t rdata_tick; // time of last recv (for detecting timeouts); zero when timeout is disabled
+    std::string rdata, wdata;
+    size_t rdata_pos;
+    time_t rdata_tick; // time of last recv (for detecting timeouts); zero when timeout is disabled
 
-	RecvFunc func_recv;
-	SendFunc func_send;
-	ParseFunc func_parse;
+    RecvFunc func_recv;
+    SendFunc func_send;
+    ParseFunc func_parse;
 
     bool ver_mismatch;
-	void* session_data; // stores application-specific data related to the session
+    void* session_data; // stores application-specific data related to the session
 };
 
 // Data prototype declaration
@@ -282,7 +282,7 @@ void set_nonblocking(int fd, unsigned long yes);
 
 /*
 *
-*		UDP LEVEL
+*       UDP LEVEL
 *
 */
 extern int32 listen_fd;

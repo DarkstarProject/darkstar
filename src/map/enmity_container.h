@@ -34,10 +34,10 @@ class CCharEntity;
 struct EnmityObject_t
 {
     CBattleEntity* PEnmityOwner;
-	int16 CE;						// Cumulative Enmity
-	int16 VE;						// Volatile Enmity
+    int16 CE;                       // Cumulative Enmity
+    int16 VE;                       // Volatile Enmity
     bool active;
-	uint8 maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
+    uint8 maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
 };
 
 typedef std::unordered_map<uint16,EnmityObject_t> EnmityList_t;
@@ -49,11 +49,11 @@ public:
     CEnmityContainer(CMobEntity* holder);
    ~CEnmityContainer();
 
-    CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
+    CBattleEntity*  GetHighestEnmity();         // Decays VE and gets target with highest enmity
 
     float   CalculateEnmityBonus(CBattleEntity* PEntity);
-    void    Clear(uint32 EntityID = 0);			// Removes Entries from list
-    void    LogoutReset(uint32 EntityID);		// Sets entry to inactive
+    void    Clear(uint32 EntityID = 0);         // Removes Entries from list
+    void    LogoutReset(uint32 EntityID);       // Sets entry to inactive
     void    AddBaseEnmity(CBattleEntity* PEntity);
     void    UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool tameable = false);
     void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
@@ -72,7 +72,7 @@ public:
     bool    IsTameable();
 
 private:
-	
+
     EnmityList_t    m_EnmityList;
     bool m_tameable{true};
     CMobEntity*  m_EnmityHolder; //usually a monster

@@ -30,15 +30,15 @@
 
 enum REVIVAL_TYPE
 {
-	TYPE_HOMEPOINT	= 0,
-	TYPE_RAISE		= 1,
-	TYPE_TRACTOR	= 2 
+    TYPE_HOMEPOINT  = 0,
+    TYPE_RAISE      = 1,
+    TYPE_TRACTOR    = 2
 };
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -47,7 +47,7 @@ class CRaiseTractorMenuPacket : public CBasicPacket
 {
 public:
 
-	CRaiseTractorMenuPacket(CCharEntity* PChar, REVIVAL_TYPE type);
+    CRaiseTractorMenuPacket(CCharEntity* PChar, REVIVAL_TYPE type);
 };
 
 #endif

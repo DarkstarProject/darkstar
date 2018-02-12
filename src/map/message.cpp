@@ -250,15 +250,15 @@ namespace message
                 {
                     //both party leaders?
                     int ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
-                                                   													   	((charid = %u OR charid = %u) AND partyflag & %u);", inviterId,
+                                                                                                        ((charid = %u OR charid = %u) AND partyflag & %u);", inviterId,
                                                                                                         inviteeId, PARTY_LEADER);
                     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 2)
                     {
                         if (PInviter->PParty->m_PAlliance)
                         {
                             ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE allianceid <> 0 AND \
-                                                       														   	allianceid = (SELECT allianceid FROM accounts_parties where \
-                                                                                                                															charid = %u) GROUP BY partyid;", inviterId);
+                                                                                                                allianceid = (SELECT allianceid FROM accounts_parties where \
+                                                                                                                                                                            charid = %u) GROUP BY partyid;", inviterId);
                             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NumRows(SqlHandle) < 3)
                             {
                                 PInviter->PParty->m_PAlliance->addParty(inviteeId);
@@ -284,7 +284,7 @@ namespace message
                         if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter)
                         {
                             ret = Sql_Query(SqlHandle, "SELECT * FROM accounts_parties WHERE partyid <> 0 AND \
-                                                       															charid = %u;", inviteeId);
+                                                                                                                charid = %u;", inviteeId);
                             if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 0)
                             {
                                 PInviter->PParty->AddMember(inviteeId);

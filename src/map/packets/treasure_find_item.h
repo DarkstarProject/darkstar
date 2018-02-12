@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class  CBaseEntity;
@@ -41,7 +41,7 @@ class CTreasureFindItemPacket : public CBasicPacket
 {
 public:
 
-	CTreasureFindItemPacket(TreasurePoolItem* PItem, CBaseEntity* PMob);
+    CTreasureFindItemPacket(TreasurePoolItem* PItem, CBaseEntity* PMob);
 };
 
 #endif

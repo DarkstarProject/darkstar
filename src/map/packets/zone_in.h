@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,7 +40,7 @@ class CZoneInPacket : public CBasicPacket
 {
 public:
 
-	CZoneInPacket(CCharEntity* PChar, int16);
+    CZoneInPacket(CCharEntity* PChar, int16);
 };
 
 #endif

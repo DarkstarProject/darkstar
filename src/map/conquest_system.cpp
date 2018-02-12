@@ -34,33 +34,33 @@
 
 /************************************************************************
 *                                                                       *
-*	Реализация namespace conquest                                       *
+*   Реализация namespace conquest                                       *
 *                                                                       *
 ************************************************************************/
 
 namespace conquest
 {
-	/************************************************************************
+    /************************************************************************
     *                                                                       *
-    *	UpdateConquestSystem		                                        *
+    *   UpdateConquestSystem                                                *
     *                                                                       *
     ************************************************************************/
 
-	void UpdateConquestSystem()
-	{
-		zoneutils::ForEachZone([](CZone* PZone)
-		{
+    void UpdateConquestSystem()
+    {
+        zoneutils::ForEachZone([](CZone* PZone)
+        {
             //only find chars for zones that have had conquest updated
             if (PZone->GetRegionID() <= 18)
             {
                 luautils::OnConquestUpdate(PZone, Conquest_Update);
-				PZone->ForEachChar([](CCharEntity* PChar)
-				{
-					PChar->PLatentEffectContainer->CheckLatentsZone();
-				});
+                PZone->ForEachChar([](CCharEntity* PChar)
+                {
+                    PChar->PLatentEffectContainer->CheckLatentsZone();
+                });
             }
-		});
-	}
+        });
+    }
 
     void UpdateInfluencePoints(int points, unsigned int nation, REGIONTYPE region)
     {
@@ -110,8 +110,8 @@ namespace conquest
 
     /************************************************************************
     *    GainInfluencePoints                                                *
-    *    +1 point for nation							                    *
-    *						                                                *
+    *    +1 point for nation                                                *
+    *                                                                       *
     ************************************************************************/
 
     void GainInfluencePoints(CCharEntity* PChar, uint32 points)
@@ -121,7 +121,7 @@ namespace conquest
 
     /************************************************************************
     *    LoseInfluencePoints                                                *
-    *    -x point for nation							                    *
+    *    -x point for nation                                                *
     *    +x point for beastmen                                              *
     ************************************************************************/
 
@@ -180,14 +180,14 @@ namespace conquest
         conquest::UpdateInfluencePoints(points, BEASTMEN, region);
     }
 
-	/************************************************************************
+    /************************************************************************
     *                                                                       *
-    *	GetInfluenceGraphics		                                        *
-    *												                        *
+    *   GetInfluenceGraphics                                                *
+    *                                                                       *
     ************************************************************************/
 
     uint8 GetInfluenceGraphics(int32 san_inf, int32 bas_inf, int32 win_inf, int32 bst_inf)
-	{
+    {
         //if all nations and beastmen == 0
         if (san_inf == 0 && bas_inf == 0 && win_inf == 0 && bst_inf == 0)
         {
@@ -213,26 +213,26 @@ namespace conquest
             int64 total = san_inf + bas_inf + win_inf;
 
             //Sandoria
-            if (san_inf >= total * 0.65)	  offset = 3;
+            if (san_inf >= total * 0.65)      offset = 3;
             else if (san_inf >= total * 0.5)  offset = 2;
             else if (san_inf >= total * 0.25) offset = 1;
-            else							  offset = 0;
+            else                              offset = 0;
 
             //Bastok
-            if (bas_inf >= total * 0.65)	  offset += 12;
+            if (bas_inf >= total * 0.65)      offset += 12;
             else if (bas_inf >= total * 0.5)  offset += 8;
             else if (bas_inf >= total * 0.25) offset += 4;
-            else							  offset += 0;
+            else                              offset += 0;
 
             //Windurst
-            if (win_inf >= total * 0.65)	  offset += 48;
+            if (win_inf >= total * 0.65)      offset += 48;
             else if (win_inf >= total * 0.5)  offset += 32;
             else if (win_inf >= total * 0.25) offset += 16;
-            else							  offset += 0;
+            else                              offset += 0;
 
             return offset;
         }
-	}
+    }
 
     uint8 GetInfluenceGraphics(REGIONTYPE regionid)
     {
@@ -285,10 +285,10 @@ namespace conquest
         return GetInfluenceRanking(san_inf, bas_inf, win_inf, 0);
     }
 
-	/************************************************************************
+    /************************************************************************
     *   UpdateConquestGM                                                    *
-    *	Update region control		                                        *
-    *   just used by GM command			                                    *
+    *   Update region control                                               *
+    *   just used by GM command                                             *
     ************************************************************************/
 
     void UpdateConquestGM(ConquestUpdate type)
@@ -297,18 +297,18 @@ namespace conquest
             UpdateWeekConquest();
         else
             UpdateConquestSystem();
-	}
+    }
 
-	/************************************************************************
+    /************************************************************************
     *   UpdateWeekConquest                                                  *
-    *	Update region control		                                        *
-    *   update 1 time per week			                                    *
+    *   Update region control                                               *
+    *   update 1 time per week                                              *
     ************************************************************************/
 
-	void UpdateWeekConquest()
-	{
-		//TODO: move to lobby server
-		//launch conquest message in all zone (monday server midnight)
+    void UpdateWeekConquest()
+    {
+        //TODO: move to lobby server
+        //launch conquest message in all zone (monday server midnight)
 
         zoneutils::ForEachZone([](CZone* PZone)
         {
@@ -329,11 +329,11 @@ namespace conquest
 
         Sql_Query(SqlHandle, Query);
 
-		//update conquest overseers
-		for (uint8 i=0; i <= 18; i++)
-		{
+        //update conquest overseers
+        for (uint8 i=0; i <= 18; i++)
+        {
             luautils::SetRegionalConquestOverseers(i);
-		}
+        }
 
         zoneutils::ForEachZone([](CZone* PZone)
         {
@@ -349,41 +349,41 @@ namespace conquest
             }
         });
 
-		ShowDebug(CL_CYAN"Conquest Weekly Update is finished\n" CL_RESET);
-	}
+        ShowDebug(CL_CYAN"Conquest Weekly Update is finished\n" CL_RESET);
+    }
 
-	/************************************************************************
+    /************************************************************************
     *                                                                       *
-    *	GetBalance					                                        *
+    *   GetBalance                                                          *
     *   Ranking for the 3 nations                                           *
     ************************************************************************/
 
     uint8 GetBalance(uint8 sandoria, uint8 bastok, uint8 windurst, uint8 sandoria_prev, uint8 bastok_prev, uint8 windurst_prev)
     {
-		// Based on the below values, it seems to be in pairs of bits.
-		// Order is Windurst, Bastok, San d'Oria
-		// 01 for first place, 10 for second, 11 for third.
-		// 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
-		// 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
+        // Based on the below values, it seems to be in pairs of bits.
+        // Order is Windurst, Bastok, San d'Oria
+        // 01 for first place, 10 for second, 11 for third.
+        // 45 = 0b101101 = Windurst in second, Bastok in third, San d'Oria in first
+        // 30 = 0b011110 = Windurst in first, Bastok in third, San d'Oria in second
 
-		uint8 ranking = 63;
+        uint8 ranking = 63;
         if (sandoria >= bastok)
-			ranking -= 1;
+            ranking -= 1;
 
         if (sandoria >= windurst)
-			ranking -= 1;
+            ranking -= 1;
 
         if (bastok >= sandoria)
-			ranking -= 4;
+            ranking -= 4;
 
         if (bastok >= windurst)
-			ranking -= 4;
+            ranking -= 4;
 
         if (windurst >= sandoria)
-			ranking -= 16;
+            ranking -= 16;
 
         if (windurst >= bastok)
-			ranking -= 16;
+            ranking -= 16;
 
         if (GetAlliance(sandoria_prev, bastok_prev, windurst_prev) != 0)
         {
@@ -402,7 +402,7 @@ namespace conquest
             }
         }
 
-		return ranking;
+        return ranking;
     }
 
     uint8 GetBalance()
@@ -563,7 +563,7 @@ namespace conquest
         return NEUTRAL;
     }
 
-	/************************************************************************
+    /************************************************************************
     *                                                                       *
     *  Добавляем персонажу conquest points, основываясь на полученном опыте *
     *                                                                       *
@@ -592,18 +592,18 @@ namespace conquest
     }
 
 
-	//GetConquestInfluence(region,nation)
-	//AddConquestInfluence(region,nation)
-	//ResetConquestInfluence()
-	//UpdateConquestInfluence()
+    //GetConquestInfluence(region,nation)
+    //AddConquestInfluence(region,nation)
+    //ResetConquestInfluence()
+    //UpdateConquestInfluence()
 
-	//gain/loss influence
-	//Dying in the Outlands decrease your Allegiance influence and increase the influence of the Beastmen hordes instead.
-	//Gain: XP/CP, Garrison quests, Expeditionary Forces, trade items to Outpost Vendors (influence only)
+    //gain/loss influence
+    //Dying in the Outlands decrease your Allegiance influence and increase the influence of the Beastmen hordes instead.
+    //Gain: XP/CP, Garrison quests, Expeditionary Forces, trade items to Outpost Vendors (influence only)
 
-	//Region control
-	//0: sandoria
-	//1: bastok
-	//2: windurst
-	//3: beastmen
+    //Region control
+    //0: sandoria
+    //1: bastok
+    //2: windurst
+    //3: beastmen
 };

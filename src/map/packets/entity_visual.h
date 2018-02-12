@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CBaseEntity;
@@ -40,7 +40,7 @@ class CEntityVisualPacket : public CBasicPacket
 {
 public:
 
-	CEntityVisualPacket(CBaseEntity * PEntity, const char type[4]);
+    CEntityVisualPacket(CBaseEntity * PEntity, const char type[4]);
 };
 
 #endif

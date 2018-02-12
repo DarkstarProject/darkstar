@@ -225,7 +225,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warp
 {
     if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
         return false;
-    
+
     uint16 effectid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
 
     for (int i = 0; i < m_MaxBattlefields; i++)
@@ -234,7 +234,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warp
         {
             if (m_Battlefields[i]->getID() == effectid)
             //PChar->PBCNM will be nullptr if the player has not yet entered so we check their status effect instead
-            { 
+            {
                 luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_WARPDC);
                 m_Battlefields[i]->delPlayerFromBcnm(PChar);
                 return true;
@@ -567,7 +567,7 @@ duration CBattlefieldHandler::SpecialBattlefieldLeftTime(uint16 id, time_point t
 
         if (m_Battlefields[id - 1] != nullptr) {
             auto Tremaining = (tick - m_Battlefields[id - 1]->getStartTime());  //66
-            auto timelimit = m_Battlefields[id - 1]->getTimeLimit();		  	 ///3600
+            auto timelimit = m_Battlefields[id - 1]->getTimeLimit();             ///3600
             return (timelimit - Tremaining);
         }
     }

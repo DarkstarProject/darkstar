@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,7 +40,7 @@ class CCharAbilitiesPacket : public CBasicPacket
 {
 public:
 
-	CCharAbilitiesPacket(CCharEntity* PChar);
+    CCharAbilitiesPacket(CCharEntity* PChar);
 };
 
 #endif

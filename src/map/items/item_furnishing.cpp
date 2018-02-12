@@ -26,12 +26,12 @@
 
 CItemFurnishing::CItemFurnishing(uint16 id) : CItem(id)
 {
-	setType(ITEM_FURNISHING);
+    setType(ITEM_FURNISHING);
 
-	m_storage      = 0;
-	m_moghancement = 0;
-	m_element      = 0;
-	m_aura         = 0;
+    m_storage      = 0;
+    m_moghancement = 0;
+    m_element      = 0;
+    m_aura         = 0;
 }
 
 CItemFurnishing::~CItemFurnishing()
@@ -53,49 +53,49 @@ bool CItemFurnishing::isInstalled()
 
 void CItemFurnishing::setStorage(uint8 storage)
 {
-	m_storage = std::min<uint8>(storage, 80);
+    m_storage = std::min<uint8>(storage, 80);
 }
 
 uint8 CItemFurnishing::getStorage()
 {
-	return m_storage;
+    return m_storage;
 }
 
 void CItemFurnishing::setMoghancement(uint8 moghancement)
 {
-	m_moghancement = moghancement;
+    m_moghancement = moghancement;
 }
 
 uint8 CItemFurnishing::getMoghancement()
 {
-	return m_moghancement;
+    return m_moghancement;
 }
 
 void CItemFurnishing::setElement(uint8 element)
 {
-	m_element = element;
+    m_element = element;
 }
 
 uint8 CItemFurnishing::getElement()
 {
-	return m_element;
+    return m_element;
 }
 
 void CItemFurnishing::setAura(uint8 aura)
 {
-	m_aura = aura;
+    m_aura = aura;
 }
 
 uint8 CItemFurnishing::getAura()
 {
-	return m_aura;
+    return m_aura;
 }
 
 void CItemFurnishing::setCol(uint8 col)
 {
-	ref<uint8>(m_extra, 0x06) = col;
+    ref<uint8>(m_extra, 0x06) = col;
 }
-	
+
 uint8 CItemFurnishing::getCol()
 {
     return ref<uint8>(m_extra, 0x06);

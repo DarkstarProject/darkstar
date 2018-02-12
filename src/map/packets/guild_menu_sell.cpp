@@ -43,7 +43,7 @@ CGuildMenuSellPacket::CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* P
     uint8 ItemCount = 0;
     uint8 PacketCount = 0;
 
-    for (uint8 SlotID = 1; SlotID <= PGuild->GetSize(); ++SlotID) 
+    for (uint8 SlotID = 1; SlotID <= PGuild->GetSize(); ++SlotID)
     {
         CItemShop* PItem = (CItemShop*)PGuild->GetItem(SlotID);
 
@@ -56,7 +56,7 @@ CGuildMenuSellPacket::CGuildMenuSellPacket(CCharEntity* PChar, CItemContainer* P
 
             ItemCount = 0;
             PacketCount++;
-						
+
             memset(data + 4, 0, PACKET_SIZE - 8);
         }
         ref<uint16>(0x08 * ItemCount + 0x04) = PItem->getID();

@@ -411,7 +411,7 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 
 /************************************************************************
 *                                                                       *
-*  Изменяем количество TP сущности	                                    *
+*  Изменяем количество TP сущности                                      *
 *                                                                       *
 ************************************************************************/
 
@@ -454,9 +454,9 @@ int16 CBattleEntity::addTP(int16 tp)
 }
 
 /************************************************************************
-*																		*
-*  Изменяем количество жизней сущности									*
-*																		*
+*                                                                       *
+*  Изменяем количество жизней сущности                                  *
+*                                                                       *
 ************************************************************************/
 
 int32 CBattleEntity::addHP(int32 hp)
@@ -661,7 +661,7 @@ uint16 CBattleEntity::DEF()
 {
     int32 DEF = 8 + m_modStat[Mod::DEF] + VIT() / 2;
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0)) {
-	return DEF / 2;
+    return DEF / 2;
     }
 
     return DEF + (DEF * m_modStat[Mod::DEFP] / 100) +
@@ -707,14 +707,14 @@ uint8 CBattleEntity::GetSLevel()
 
 void CBattleEntity::SetMJob(uint8 mjob)
 {
-    DSP_DEBUG_BREAK_IF(mjob == 0 || mjob >= MAX_JOBTYPE);	// выход за пределы доступных профессий
+    DSP_DEBUG_BREAK_IF(mjob == 0 || mjob >= MAX_JOBTYPE);   // выход за пределы доступных профессий
 
     m_mjob = (JOBTYPE)mjob;
 }
 
 void CBattleEntity::SetSJob(uint8 sjob)
 {
-    DSP_DEBUG_BREAK_IF(sjob >= MAX_JOBTYPE);				// выход за пределы доступных профессий
+    DSP_DEBUG_BREAK_IF(sjob >= MAX_JOBTYPE);                // выход за пределы доступных профессий
 
     m_sjob = (JOBTYPE)sjob;
 }
@@ -738,9 +738,9 @@ void CBattleEntity::SetSLevel(uint8 slvl)
 }
 
 /************************************************************************
-*																		*
-*  Добавляем модификатор												*
-*																		*
+*                                                                       *
+*  Добавляем модификатор                                                *
+*                                                                       *
 ************************************************************************/
 
 void CBattleEntity::addModifier(Mod type, int16 amount)
@@ -749,9 +749,9 @@ void CBattleEntity::addModifier(Mod type, int16 amount)
 }
 
 /************************************************************************
-*																		*
-*  Добавляем модификаторы												*
-*																		*
+*                                                                       *
+*  Добавляем модификаторы                                               *
+*                                                                       *
 ************************************************************************/
 
 void CBattleEntity::addModifiers(std::vector<CModifier> *modList)
@@ -843,9 +843,9 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier> *modList, uint8 ite
 }
 
 /************************************************************************
-*																		*
-*  Устанавливаем модификатор											*
-*																		*
+*                                                                       *
+*  Устанавливаем модификатор                                            *
+*                                                                       *
 ************************************************************************/
 
 void CBattleEntity::setModifier(Mod type, int16 amount)
@@ -854,9 +854,9 @@ void CBattleEntity::setModifier(Mod type, int16 amount)
 }
 
 /************************************************************************
-*																		*
-*  Устанавливаем модификаторы											*
-*																		*
+*                                                                       *
+*  Устанавливаем модификаторы                                           *
+*                                                                       *
 ************************************************************************/
 
 void CBattleEntity::setModifiers(std::vector<CModifier> *modList)
@@ -868,9 +868,9 @@ void CBattleEntity::setModifiers(std::vector<CModifier> *modList)
 }
 
 /************************************************************************
-*																		*
-*  Удаляем модификатор													*
-*																		*
+*                                                                       *
+*  Удаляем модификатор                                                  *
+*                                                                       *
 ************************************************************************/
 
 void CBattleEntity::delModifier(Mod type, int16 amount)
@@ -889,9 +889,9 @@ void CBattleEntity::restoreModifiers()
 }
 
 /************************************************************************
-*																		*
-*  Удаляем модификаторы													*
-*																		*
+*                                                                       *
+*  Удаляем модификаторы                                                 *
+*                                                                       *
 ************************************************************************/
 
 void CBattleEntity::delModifiers(std::vector<CModifier> *modList)
@@ -983,9 +983,9 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier> *modList, uint8 ite
 }
 
 /************************************************************************
-*																		*
-*  Получаем текущее значение указанного модификатора					*
-*																		*
+*                                                                       *
+*  Получаем текущее значение указанного модификатора                    *
+*                                                                       *
 ************************************************************************/
 
 int16 CBattleEntity::getMod(Mod modID)
@@ -1074,9 +1074,9 @@ void CBattleEntity::removePetModifiers(CPetEntity* PPet)
 }
 
 /************************************************************************
-*																		*
-*  Текущая величина умения (не максимальная, а ограниченная уровнем)	*
-*																		*
+*                                                                       *
+*  Текущая величина умения (не максимальная, а ограниченная уровнем)    *
+*                                                                       *
 ************************************************************************/
 
 uint16 CBattleEntity::GetSkill(uint16 SkillID)
@@ -1381,7 +1381,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
     list.ActionTargetID = PTarget->id;
 
     /////////////////////////////////////////////////////////////////////////
-    //	Start of the attack loop.
+    //  Start of the attack loop.
     /////////////////////////////////////////////////////////////////////////
     while (attackRound.GetAttackSwingCount() && !(PTarget->isDead()))
     {

@@ -31,9 +31,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -42,7 +42,7 @@ class CMeritPointsCategoriesPacket : public CBasicPacket
 {
     public:
 
-	CMeritPointsCategoriesPacket(CCharEntity* PChar);
+    CMeritPointsCategoriesPacket(CCharEntity* PChar);
     CMeritPointsCategoriesPacket(CCharEntity* PChar, MERIT_TYPE merit);
 
     private:

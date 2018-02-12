@@ -35,9 +35,9 @@
 
 namespace blueutils
 {
-	void	SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool addingSpell);
-	bool	HasEnoughSetPoints(CCharEntity* PChar, CBlueSpell* PSpellToAdd, uint8 slotToPut);
-	void	TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob);
+    void    SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool addingSpell);
+    bool    HasEnoughSetPoints(CCharEntity* PChar, CBlueSpell* PSpellToAdd, uint8 slotToPut);
+    void    TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob);
     void    UnequipAllBlueSpells(CCharEntity* PChar);
     bool    IsSpellSet(CCharEntity* PChar, CBlueSpell* PSpell);
     void    CompactSpells(CCharEntity* PChar);

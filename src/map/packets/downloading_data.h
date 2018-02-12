@@ -29,16 +29,16 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CDownloadingDataPacket: public CBasicPacket
 {
 public:
 
-	CDownloadingDataPacket();
+    CDownloadingDataPacket();
 };
 
 #endif

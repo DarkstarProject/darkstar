@@ -13,15 +13,15 @@ end
 
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(RECAST_ABILITY, skill:getID(), 45)
-	local highest = automaton:getSkillLevel(22)
-	local highestskill = 22
-	if automaton:getSkillLevel(23) > highest then
-		highestskill = 23
-		highest = automaton:getSkillLevel(23)
-	end
-	if automaton:getSkillLevel(24) > highest then
-		highestskill = 24
-	end
+    local highest = automaton:getSkillLevel(22)
+    local highestskill = 22
+    if automaton:getSkillLevel(23) > highest then
+        highestskill = 23
+        highest = automaton:getSkillLevel(23)
+    end
+    if automaton:getSkillLevel(24) > highest then
+        highestskill = 24
+    end
 
     local resist = applyResistanceAbility(automaton, target, 7, highestskill, 150)
     local duration = 12 * resist

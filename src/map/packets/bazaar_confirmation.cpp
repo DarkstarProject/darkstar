@@ -33,14 +33,14 @@
 
 CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity)
 {
-	this->type = 0x09;  // 0x109
-	this->size = 0x13;
+    this->type = 0x09;  // 0x109
+    this->size = 0x13;
 
     ref<uint32>(0x04) = PChar->id;
     ref<uint8>(0x08) = Quantity;
-	ref<uint8>(0x20) = SlotID;
+    ref<uint8>(0x20) = SlotID;
 
-	memcpy(data+(0x10), PChar->GetName(), PChar->name.size());	
+    memcpy(data+(0x10), PChar->GetName(), PChar->name.size());
 }
 
 CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, CItem* PItem)

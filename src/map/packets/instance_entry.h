@@ -29,9 +29,9 @@ This file is part of DarkStar-server source code.
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CBaseEntity;
@@ -40,7 +40,7 @@ class CInstanceEntryPacket : public CBasicPacket
 {
 public:
 
-	CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 response);
+    CInstanceEntryPacket(CBaseEntity* PEntrance, uint32 response);
 };
 
 #endif

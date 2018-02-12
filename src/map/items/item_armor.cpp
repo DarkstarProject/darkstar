@@ -28,47 +28,47 @@
 
 CItemArmor::CItemArmor(uint16 id) : CItemUsable(id)
 {
-	setType(ITEM_ARMOR);
+    setType(ITEM_ARMOR);
 
-	m_jobs         = 0;
-	m_modelID      = 0;
-	m_removeSlotID = 0;
-	m_shieldSize   = 0;
-	m_scriptType   = 0;
-	m_reqLvl       = 255;
+    m_jobs         = 0;
+    m_modelID      = 0;
+    m_removeSlotID = 0;
+    m_shieldSize   = 0;
+    m_scriptType   = 0;
+    m_reqLvl       = 255;
     m_iLvl         = 0;
-	m_equipSlotID  = 255;
+    m_equipSlotID  = 255;
     m_absorption   = 0;
 }
 
 CItemArmor::~CItemArmor()
 {
-	// ни в коем случае не освобождать здесь указатели на модификатоты и спецеффекты. они глобальны.
+    // ни в коем случае не освобождать здесь указатели на модификатоты и спецеффекты. они глобальны.
 }
 
 uint16 CItemArmor::getModelId()
 {
-	return m_modelID;
+    return m_modelID;
 }
 
 uint8 CItemArmor::getShieldSize()
 {
-	return m_shieldSize;
+    return m_shieldSize;
 }
 
 uint16 CItemArmor::getEquipSlotId()
 {
-	return m_equipSlotID;
+    return m_equipSlotID;
 }
 
 uint16 CItemArmor::getRemoveSlotId()
 {
-	return m_removeSlotID;
+    return m_removeSlotID;
 }
 
 uint8 CItemArmor::getReqLvl()
 {
-	return m_reqLvl;
+    return m_reqLvl;
 }
 
 uint8 CItemArmor::getILvl()
@@ -78,12 +78,12 @@ uint8 CItemArmor::getILvl()
 
 uint32 CItemArmor::getJobs()
 {
-	return m_jobs;
+    return m_jobs;
 }
 
 void CItemArmor::setReqLvl(uint8 lvl)
 {
-	m_reqLvl = lvl;
+    m_reqLvl = lvl;
 }
 
 void CItemArmor::setILvl(uint8 lvl)
@@ -93,40 +93,40 @@ void CItemArmor::setILvl(uint8 lvl)
 
 void CItemArmor::setJobs(uint32 jobs)
 {
-	m_jobs = jobs;
+    m_jobs = jobs;
 }
 
 void CItemArmor::setModelId(uint16 mdl)
 {
-	m_modelID = mdl;
+    m_modelID = mdl;
 }
 
 void CItemArmor::setShieldSize(uint8 shield)
 {
-	m_shieldSize = shield;
+    m_shieldSize = shield;
 }
 
 void CItemArmor::setEquipSlotId(uint16 equipSlot)
 {
-	m_equipSlotID = equipSlot;
+    m_equipSlotID = equipSlot;
 }
 
 void CItemArmor::setRemoveSlotId(uint16 removSlot)
 {
-	m_removeSlotID = removSlot;
+    m_removeSlotID = removSlot;
 }
 
 uint8 CItemArmor::getSlotType()
 {
-	uint32 result = 0;
-	getMSB(&result,(uint32)m_equipSlotID);
-	return result;
+    uint32 result = 0;
+    getMSB(&result,(uint32)m_equipSlotID);
+    return result;
 }
 
 /************************************************************************
-*																		*
+*                                                                       *
 *  Процент урона, блокируемого щитом                                    *
-*																		*
+*                                                                       *
 ************************************************************************/
 
 uint8 CItemArmor::getShieldAbsorption()
@@ -135,9 +135,9 @@ uint8 CItemArmor::getShieldAbsorption()
 }
 
 /************************************************************************
-*																		*
+*                                                                       *
 *  Проверяем, является ли проедмет щитом                                *
-*																		*
+*                                                                       *
 ************************************************************************/
 
 bool CItemArmor::IsShield()
@@ -146,23 +146,23 @@ bool CItemArmor::IsShield()
 }
 
 /************************************************************************
-*																		*
-*  Проверяем необходимость выполнения скрипта для экипировки при		*
-*  возникновении какого-либо из событий (экипировка, смена зоны и т.п.)	*
-*																		*
-*  Функция возвращает типы событий на которые предмет реагирует, что	*
-*  избавляет нас от необходимости проверять	предмет во всех событиях	*
-*																		*
+*                                                                       *
+*  Проверяем необходимость выполнения скрипта для экипировки при        *
+*  возникновении какого-либо из событий (экипировка, смена зоны и т.п.) *
+*                                                                       *
+*  Функция возвращает типы событий на которые предмет реагирует, что    *
+*  избавляет нас от необходимости проверять предмет во всех событиях    *
+*                                                                       *
 ************************************************************************/
 
 uint16 CItemArmor::getScriptType()
 {
-	return m_scriptType;
+    return m_scriptType;
 }
 
 void CItemArmor::setScriptType(uint16 ScriptType)
 {
-	m_scriptType = ScriptType;
+    m_scriptType = ScriptType;
 }
 
 /************************************************************************
@@ -177,7 +177,7 @@ void CItemArmor::addModifier(CModifier modifier)
     {
         // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
         // http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/33/ <~Aegis and Ochain
-		auto pdt = (uint8)(modifier.getModAmount() / 2);
+        auto pdt = (uint8)(modifier.getModAmount() / 2);
 
         switch(m_shieldSize)
         {
@@ -203,14 +203,14 @@ void CItemArmor::addModifier(CModifier modifier)
 
 int16 CItemArmor::getModifier(Mod mod)
 {
-	for (uint16 i = 0; i < modList.size(); ++i)
-	{
-		if (modList.at(i).getModID() == mod)
-		{
-			return modList.at(i).getModAmount();
-		}
-	}
-	return 0;
+    for (uint16 i = 0; i < modList.size(); ++i)
+    {
+        if (modList.at(i).getModID() == mod)
+        {
+            return modList.at(i).getModAmount();
+        }
+    }
+    return 0;
 }
 
 void CItemArmor::addPetModifier(CPetModifier modifier)

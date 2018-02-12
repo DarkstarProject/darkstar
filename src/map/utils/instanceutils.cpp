@@ -32,28 +32,28 @@ CInstanceLoader* Loader = nullptr;
 
 namespace instanceutils
 {
-	void CheckInstance()
-	{
-		if (Loader)
-		{
-			if (Loader->Check())
-			{
-				delete Loader;
-				Loader = nullptr;
-			}
-		}
-	}
+    void CheckInstance()
+    {
+        if (Loader)
+        {
+            if (Loader->Check())
+            {
+                delete Loader;
+                Loader = nullptr;
+            }
+        }
+    }
 
-	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
-	{
+    void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
+    {
         CZone* PZone = zoneutils::GetZone(zoneid);
-		if (!Loader && PZone)
-		{
-			Loader = new CInstanceLoader(instanceid, PZone, PRequester);
-		}
-		else
-		{
-			luautils::OnInstanceCreated(PRequester, nullptr);
-		}
-	}
+        if (!Loader && PZone)
+        {
+            Loader = new CInstanceLoader(instanceid, PZone, PRequester);
+        }
+        else
+        {
+            luautils::OnInstanceCreated(PRequester, nullptr);
+        }
+    }
 };

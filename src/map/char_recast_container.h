@@ -47,7 +47,7 @@ public:
 
 protected:
     RecastList_t RecastItemList;
-	RecastList_t RecastLootList;
+    RecastList_t RecastLootList;
 
 private:
     CCharEntity* m_PChar;

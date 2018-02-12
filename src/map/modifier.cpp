@@ -30,17 +30,17 @@ CModifier::CModifier(Mod type, int16 amount) :
 
 Mod CModifier::getModID()
 {
-	return m_id;
+    return m_id;
 }
 
 int16 CModifier::getModAmount()
 {
-	return m_amount;
+    return m_amount;
 }
-	
+
 void CModifier::setModAmount(int16 amount)
 {
-	m_amount = amount;
+    m_amount = amount;
 }
 
 CPetModifier::CPetModifier(Mod type, PetModType pettype, int16 amount)

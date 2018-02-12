@@ -21,8 +21,8 @@
 ===========================================================================
 */
 
-#ifndef	_KERNEL_H_
-#define	_KERNEL_H_
+#ifndef _KERNEL_H_
+#define _KERNEL_H_
 
 #include "cbasetypes.h"
 

@@ -33,7 +33,7 @@ namespace attackutils
 
     /************************************************************************
     *                                                                       *
-    *  Multihit calculator.											        *
+    *  Multihit calculator.                                                 *
     *                                                                       *
     ************************************************************************/
     uint8 getHitCount(uint8 hits)
@@ -100,7 +100,7 @@ namespace attackutils
 
     /************************************************************************
     *                                                                       *
-    *  Is parried.													        *
+    *  Is parried.                                                          *
     *                                                                       *
     ************************************************************************/
     bool IsParried(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -114,7 +114,7 @@ namespace attackutils
 
     /************************************************************************
     *                                                                       *
-    *  Is guarded.													        *
+    *  Is guarded.                                                          *
     *                                                                       *
     ************************************************************************/
     bool IsGuarded(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -128,7 +128,7 @@ namespace attackutils
 
     /************************************************************************
     *                                                                       *
-    *  Is blocked.													        *
+    *  Is blocked.                                                          *
     *                                                                       *
     ************************************************************************/
     bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -200,11 +200,11 @@ namespace attackutils
 
         switch (attackType)
         {
-            case PHYSICAL_ATTACK_TYPE::ZANSHIN:	    if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
-            case PHYSICAL_ATTACK_TYPE::TRIPLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::TA_TRIPLE_DAMAGE))			return originalDamage * 3;
-            case PHYSICAL_ATTACK_TYPE::DOUBLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::DA_DOUBLE_DAMAGE))			return originalDamage * 2;
-            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:	if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
-            case PHYSICAL_ATTACK_TYPE::SAMBA:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::SAMBA_DOUBLE_DAMAGE))		    return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::ZANSHIN:     if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::ZANSHIN_DOUBLE_DAMAGE))      return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::TRIPLE:      if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::TA_TRIPLE_DAMAGE))           return originalDamage * 3;
+            case PHYSICAL_ATTACK_TYPE::DOUBLE:      if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::DA_DOUBLE_DAMAGE))           return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:  if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::RAPID_SHOT_DOUBLE_DAMAGE))   return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::SAMBA:       if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::SAMBA_DOUBLE_DAMAGE))            return originalDamage * 2;
             default: break;
         }
         return originalDamage;

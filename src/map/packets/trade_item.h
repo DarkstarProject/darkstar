@@ -29,18 +29,18 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CItem;
 
 class CTradeItemPacket : public CBasicPacket
 {
-	public:
+    public:
 
-	CTradeItemPacket(CItem* PItem, uint8 slot);
+    CTradeItemPacket(CItem* PItem, uint8 slot);
 };
 
 #endif

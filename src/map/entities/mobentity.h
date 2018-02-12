@@ -215,16 +215,16 @@ public:
     uint8     accRank;
     uint8     evaRank;
 
-    uint16	  m_dmgMult;
+    uint16    m_dmgMult;
 
     // aggro ranges
     bool      m_disableScent;             // stop detecting by scent
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
     uint8     m_Type;                     // mob type
-    bool	  m_Aggro;
-    bool	  m_TrueDetection;   // Has true sight or sound
-    uint16	  m_Detects;                // mobs detection methods, sight, sound, etc
+    bool      m_Aggro;
+    bool      m_TrueDetection;   // Has true sight or sound
+    uint16    m_Detects;                // mobs detection methods, sight, sound, etc
     uint8     m_Link;                     // link with mobs of it's family
     uint16    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn

@@ -25,10 +25,10 @@
 
 #include "inventory_finish.h"
 
-CInventoryFinishPacket::CInventoryFinishPacket() 
+CInventoryFinishPacket::CInventoryFinishPacket()
 {
-	this->type = 0x1D;
-	this->size = 0x04;
+    this->type = 0x1D;
+    this->size = 0x04;
 
-	ref<uint8>(0x04) = 1;
+    ref<uint8>(0x04) = 1;
 }

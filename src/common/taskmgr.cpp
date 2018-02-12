@@ -30,64 +30,64 @@ CTaskMgr* CTaskMgr::_instance = NULL;
 
 CTaskMgr* CTaskMgr::getInstance()
 {
-	if( _instance == NULL )
-	{
-		_instance = new CTaskMgr();
-	}
-	return _instance;
+    if( _instance == NULL )
+    {
+        _instance = new CTaskMgr();
+    }
+    return _instance;
 }
 
 CTaskMgr::CTask *CTaskMgr::AddTask(std::string InitName, time_point InitTick, std::any InitData,TASKTYPE InitType,TaskFunc_t InitFunc,duration InitInterval)
 {
-	return AddTask( new CTask(InitName,InitTick,InitData,InitType,InitFunc,InitInterval) );
+    return AddTask( new CTask(InitName,InitTick,InitData,InitType,InitFunc,InitInterval) );
 }
 
 CTaskMgr::CTask *CTaskMgr::AddTask(CTask *PTask)
 {
-	m_TaskList.push(PTask);
-	return PTask;
+    m_TaskList.push(PTask);
+    return PTask;
 }
 
 void CTaskMgr::RemoveTask(std::string TaskName)
 {
-	//empty method
+    //empty method
 }
 
 duration CTaskMgr::DoTimer(time_point tick)
 {
-	duration diff = 1s; 
+    duration diff = 1s;
 
-	while( !m_TaskList.empty() )
-	{
-		CTask * PTask = m_TaskList.top();
-		diff = PTask->m_tick - tick;
+    while( !m_TaskList.empty() )
+    {
+        CTask * PTask = m_TaskList.top();
+        diff = PTask->m_tick - tick;
 
-		if( diff > 0s ) break; // no more expired timers to process
+        if( diff > 0s ) break; // no more expired timers to process
 
-		m_TaskList.pop();
+        m_TaskList.pop();
 
-		if( PTask->m_func )
-		{
-			PTask->m_func(( diff < -1s ? tick : PTask->m_tick),PTask);
-		}
+        if( PTask->m_func )
+        {
+            PTask->m_func(( diff < -1s ? tick : PTask->m_tick),PTask);
+        }
 
-		switch( PTask->m_type )
-		{
-			case TASK_INTERVAL:
-			{
-				PTask->m_tick = PTask->m_interval + (diff < - 1s ? tick : PTask->m_tick);
-				m_TaskList.push(PTask);
-			}
-				break;
-			case TASK_ONCE:
-			case TASK_REMOVE:
-			default:
-			{
-				delete PTask; // suppose that all tasks were allocated by new
-			}
-				break;
-		}
-		diff = std::clamp<duration>(diff, 50ms, 1000ms);
-	}
-	return diff;
+        switch( PTask->m_type )
+        {
+            case TASK_INTERVAL:
+            {
+                PTask->m_tick = PTask->m_interval + (diff < - 1s ? tick : PTask->m_tick);
+                m_TaskList.push(PTask);
+            }
+                break;
+            case TASK_ONCE:
+            case TASK_REMOVE:
+            default:
+            {
+                delete PTask; // suppose that all tasks were allocated by new
+            }
+                break;
+        }
+        diff = std::clamp<duration>(diff, 50ms, 1000ms);
+    }
+    return diff;
 }

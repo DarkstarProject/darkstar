@@ -29,10 +29,10 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  	Animates an entity in some fashion.  The parameter is a 4 byte      *
+*                                                                       *
+*   Animates an entity in some fashion.  The parameter is a 4 byte      *
 *   ASCII word that the client will parse (and change to a proper anim) *
-*																		*
+*                                                                       *
 ************************************************************************/
 
 class CBaseEntity;
@@ -40,8 +40,8 @@ class CBaseEntity;
 class CEntityAnimationPacket : public CBasicPacket
 {
 public:
-	static const char* Fade_Out;
-	CEntityAnimationPacket(CBaseEntity* PEntity, const char type[4]);
+    static const char* Fade_Out;
+    CEntityAnimationPacket(CBaseEntity* PEntity, const char type[4]);
 };
 
 #endif

@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CBaseEntity;
@@ -40,7 +40,7 @@ class CWideScanTrackPacket : public CBasicPacket
 {
 public:
 
-	CWideScanTrackPacket(CBaseEntity* PEntity);
+    CWideScanTrackPacket(CBaseEntity* PEntity);
 };
 
 #endif

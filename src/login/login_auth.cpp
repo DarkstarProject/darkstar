@@ -36,11 +36,11 @@
 
 #include <algorithm>
 
-int32 login_fd;					//main fd(socket) of server
+int32 login_fd;                 //main fd(socket) of server
 
 /*
 *
-*		LOGIN SECTION
+*       LOGIN SECTION
 *
 */
 int32 connect_client_login(int32 listenfd)
@@ -105,8 +105,8 @@ int32 login_parse(int32 fd)
         case LOGIN_ATTEMPT:
         {
             const char* fmtQuery = "SELECT accounts.id,accounts.status \
-									FROM accounts \
-									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
+                                    FROM accounts \
+                                    WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
             int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
             if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
             {
@@ -123,10 +123,10 @@ int32 login_parse(int32 fd)
 
                     //if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 )
                     //{
-                    //	ref<uint8>(session[fd]->wdata,0) = 0x05; // SESSION has already activated
-                    //	WFIFOSET(fd,33);
-                    //	do_close_login(sd,fd);
-                    //	return 0;
+                    //  ref<uint8>(session[fd]->wdata,0) = 0x05; // SESSION has already activated
+                    //  WFIFOSET(fd,33);
+                    //  do_close_login(sd,fd);
+                    //  return 0;
                     //}
                     fmtQuery = "UPDATE accounts SET accounts.timelastmodify = NULL WHERE accounts.id = %d";
                     Sql_Query(SqlHandle, fmtQuery, sd->accid);
@@ -163,13 +163,13 @@ int32 login_parse(int32 fd)
                 {
                     memset(&session[fd]->wdata[0], 0, 33);
                     session[fd]->wdata.resize(33);
-                    //	ref<uint8>(session[fd]->wdata,0) = LOGIN_SUCCESS;
+                    //  ref<uint8>(session[fd]->wdata,0) = LOGIN_SUCCESS;
                     do_close_login(sd, fd);
                 }
 
                 //////22/03/2012 Fix for when a client crashes before fully logging in:
-                //				Before: When retry to login, would freeze client since login data corrupt.
-                //				After: Removes older login info if a client logs in twice (based on acc id!)
+                //              Before: When retry to login, would freeze client since login data corrupt.
+                //              After: Removes older login info if a client logs in twice (based on acc id!)
 
                 //check for multiple logins from this account id
                 int numCons = 0;
@@ -238,7 +238,7 @@ int32 login_parse(int32 fd)
 
                 //creating new account
                 time_t timecreate;
-                tm*	   timecreateinfo;
+                tm*    timecreateinfo;
 
                 time(&timecreate);
                 timecreateinfo = localtime(&timecreate);
@@ -246,7 +246,7 @@ int32 login_parse(int32 fd)
                 char strtimecreate[128];
                 strftime(strtimecreate, sizeof(strtimecreate), "%Y:%m:%d %H:%M:%S", timecreateinfo);
                 fmtQuery = "INSERT INTO accounts(id,login,password,timecreate,timelastmodify,status,priv)\
-									   VALUES(%d,'%s',PASSWORD('%s'),'%s',NULL,%d,%d);";
+                                       VALUES(%d,'%s',PASSWORD('%s'),'%s',NULL,%d,%d);";
 
                 if (Sql_Query(SqlHandle, fmtQuery, accid, name.c_str(), password.c_str(),
                     strtimecreate, ACCST_NORMAL, ACCPRIV_USER) == SQL_ERROR)

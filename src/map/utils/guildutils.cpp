@@ -37,27 +37,27 @@
 //#define количество обновляемых предметов при restock (в процентах от максимального количества)
 
 /************************************************************************
-*																		*
-*  Список гильдий														*
-*																		*
+*                                                                       *
+*  Список гильдий                                                       *
+*                                                                       *
 ************************************************************************/
 
 std::vector<CGuild*> g_PGuildList;
 std::vector<CItemContainer*> g_PGuildShopList;
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 namespace guildutils
 {
 
 /************************************************************************
-*																		*
-*  Инициализация гильдий												*
-*																		*
+*                                                                       *
+*  Инициализация гильдий                                                *
+*                                                                       *
 ************************************************************************/
 
 void Initialize()
@@ -76,45 +76,45 @@ void Initialize()
 
     fmtQuery = "SELECT DISTINCT guildid FROM guild_shops ORDER BY guildid ASC LIMIT 256;";
 
-	if (Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	{
+    if (Sql_Query(SqlHandle,fmtQuery) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
         g_PGuildShopList.reserve((const unsigned int)Sql_NumRows(SqlHandle));
 
-		while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
+        while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
             g_PGuildShopList.push_back(new CItemContainer(Sql_GetIntData(SqlHandle, 0)));
-		}
-	}
+        }
+    }
     for (auto PGuildShop : g_PGuildShopList)
     {
-		fmtQuery = "SELECT itemid, min_price, max_price, max_quantity, daily_increase, initial_quantity \
-				    FROM guild_shops \
-					WHERE guildid = %u \
+        fmtQuery = "SELECT itemid, min_price, max_price, max_quantity, daily_increase, initial_quantity \
+                    FROM guild_shops \
+                    WHERE guildid = %u \
                     LIMIT %u";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PGuildShop->GetID(), MAX_CONTAINER_SIZE);
 
-		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-		{
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
             PGuildShop->SetSize((uint8)Sql_NumRows(SqlHandle));
 
-			while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-			{
-				CItemShop* PItem = new CItemShop(Sql_GetIntData(SqlHandle,0));
+            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                CItemShop* PItem = new CItemShop(Sql_GetIntData(SqlHandle,0));
 
-				PItem->setMinPrice(Sql_GetIntData(SqlHandle,1));
-				PItem->setMaxPrice(Sql_GetIntData(SqlHandle,2));
-				PItem->setStackSize(Sql_GetIntData(SqlHandle,3));
+                PItem->setMinPrice(Sql_GetIntData(SqlHandle,1));
+                PItem->setMaxPrice(Sql_GetIntData(SqlHandle,2));
+                PItem->setStackSize(Sql_GetIntData(SqlHandle,3));
                 PItem->setDailyIncrease(Sql_GetIntData(SqlHandle,4));
-				PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
+                PItem->setInitialQuantity(Sql_GetIntData(SqlHandle,5));
 
-				PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
-				PItem->setBasePrice((uint32)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
+                PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
+                PItem->setBasePrice((uint32)(PItem->getMinPrice() + ((float)(PItem->getStackSize() - PItem->getQuantity()) / PItem->getStackSize()) * (PItem->getMaxPrice() - PItem->getMinPrice())));
 
                 PGuildShop->InsertItem(PItem);
-			}
-		}
-	}
+            }
+        }
+    }
 
     UpdateGuildPointsPattern();
 }
@@ -188,21 +188,21 @@ void UpdateGuildPointsPattern()
 }
 
 /************************************************************************
-*																		*
-*  Получаем указатель на магазин гильдии с указанным ID					*
-*																		*
+*                                                                       *
+*  Получаем указатель на магазин гильдии с указанным ID                 *
+*                                                                       *
 ************************************************************************/
 
 CItemContainer* GetGuildShop(uint16 GuildShopID)
 {
     for (auto PGuildShop : g_PGuildShopList)
-	{
+    {
         if (PGuildShop->GetID() == GuildShopID)
-		{
+        {
             return PGuildShop;
-		}
-	}
-	ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET, GuildShopID);
+        }
+    }
+    ShowDebug(CL_CYAN"GuildShop with id <%u> is not found on server\n" CL_RESET, GuildShopID);
     return nullptr;
 }
 

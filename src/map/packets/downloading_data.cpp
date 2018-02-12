@@ -23,8 +23,8 @@
 
 #include "downloading_data.h"
 
-CDownloadingDataPacket::CDownloadingDataPacket() 
-{	
-	this->type = 0x4F;
-	this->size = 0x04;
+CDownloadingDataPacket::CDownloadingDataPacket()
+{
+    this->type = 0x4F;
+    this->size = 0x04;
 }

@@ -85,7 +85,7 @@ void CCharRecastContainer::Del(RECASTTYPE type, uint16 id)
 
 /************************************************************************
 *                                                                       *
-*  Deletes a recast by index				                            *
+*  Deletes a recast by index                                            *
 *                                                                       *
 ************************************************************************/
 

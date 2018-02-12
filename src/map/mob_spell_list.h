@@ -31,20 +31,20 @@
 
 #include "spell.h"
 
-#define MAX_MOBSPELLLIST_ID		500
+#define MAX_MOBSPELLLIST_ID     500
 
 typedef struct
 {
-	SpellID spellId;
-	uint16 min_level;
-	uint16 max_level;
+    SpellID spellId;
+    uint16 min_level;
+    uint16 max_level;
 } MobSpell_t;
 
 class CMobSpellList
 {
 public:
 
-	CMobSpellList();
+    CMobSpellList();
 
   void AddSpell(SpellID spellId, uint16 minLvl, uint16 maxLvl);
 

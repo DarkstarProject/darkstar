@@ -118,7 +118,7 @@ inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 /************************************************************************
 *                                                                       *
 * Returns remaining ticks until expiry                                  *
-*																		*
+*                                                                       *
 ************************************************************************/
 
 inline int32 CLuaStatusEffect::getLastTick(lua_State* L)

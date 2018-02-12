@@ -43,38 +43,38 @@ class CLatentEffectContainer
 {
 public:
 
-	void CheckLatentsHP();
-	void CheckLatentsTP();
-	void CheckLatentsMP();
-	void CheckLatentsEquip(uint8 slot);
-	void CheckLatentsWeaponDraw(bool drawn);
-	void CheckLatentsStatusEffect();
-	void CheckLatentsFoodEffect();
-	void CheckLatentsRollSong();
-	void CheckLatentsDay();
-	void CheckLatentsMoonPhase();
-	void CheckLatentsHours();
-	void CheckLatentsWeekDay();
-	void CheckLatentsPartyMembers(size_t members);
-	void CheckLatentsPartyJobs();
-	void CheckLatentsPartyAvatar();
-	void CheckLatentsJobLevel();
-	void CheckLatentsPetType();
-	void CheckLatentsTime();
-	void CheckLatentsWeaponBreak(uint8 slot);
-	void CheckLatentsZone();
+    void CheckLatentsHP();
+    void CheckLatentsTP();
+    void CheckLatentsMP();
+    void CheckLatentsEquip(uint8 slot);
+    void CheckLatentsWeaponDraw(bool drawn);
+    void CheckLatentsStatusEffect();
+    void CheckLatentsFoodEffect();
+    void CheckLatentsRollSong();
+    void CheckLatentsDay();
+    void CheckLatentsMoonPhase();
+    void CheckLatentsHours();
+    void CheckLatentsWeekDay();
+    void CheckLatentsPartyMembers(size_t members);
+    void CheckLatentsPartyJobs();
+    void CheckLatentsPartyAvatar();
+    void CheckLatentsJobLevel();
+    void CheckLatentsPetType();
+    void CheckLatentsTime();
+    void CheckLatentsWeaponBreak(uint8 slot);
+    void CheckLatentsZone();
     void CheckLatentsWeather();
     void CheckLatentsWeather(uint16 weather);
 
-	void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
-	void DelLatentEffects(uint8 reqLvl, uint8 slot);
+    void AddLatentEffects(std::vector<CItemArmor::itemLatent>& latentList, uint8 reqLvl, uint8 slot);
+    void DelLatentEffects(uint8 reqLvl, uint8 slot);
 
-	 CLatentEffectContainer(CCharEntity* PEntity);
+     CLatentEffectContainer(CCharEntity* PEntity);
 
 private:
 
-	CCharEntity* m_POwner;
-	std::vector<CLatentEffect>	m_LatentEffectList;
+    CCharEntity* m_POwner;
+    std::vector<CLatentEffect>  m_LatentEffectList;
 
     void ProcessLatentEffects(std::function <bool(CLatentEffect&)> logic);
     bool ProcessLatentEffect(CLatentEffect& latentEffect);

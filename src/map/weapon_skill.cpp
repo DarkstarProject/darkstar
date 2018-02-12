@@ -26,29 +26,29 @@
 
 CWeaponSkill::CWeaponSkill(uint16 id)
 {
-	m_ID = id;
+    m_ID = id;
 
-	m_AnimationId = 0;
-	m_AOE         = 0;
-	m_Skilllevel  = 0;
-	m_TypeID      = 0;
-	m_Range       = 0;
-	m_PrimarySkillchain   = SC_NONE;
+    m_AnimationId = 0;
+    m_AOE         = 0;
+    m_Skilllevel  = 0;
+    m_TypeID      = 0;
+    m_Range       = 0;
+    m_PrimarySkillchain   = SC_NONE;
     m_SecondarySkillchain = SC_NONE;
     m_TertiarySkillchain  = SC_NONE;
     m_mainOnly = 0;
 
-	memset(m_Job, 0, sizeof(m_Job));
+    memset(m_Job, 0, sizeof(m_Job));
 }
 
 void CWeaponSkill::setID(uint16 id)
 {
-	m_ID = id;
+    m_ID = id;
 }
 
 void CWeaponSkill::setType(uint8 type)
 {
-	m_TypeID = type;
+    m_TypeID = type;
 }
 
 bool CWeaponSkill::isAoE()
@@ -73,17 +73,17 @@ void CWeaponSkill::setUnlockId(uint8 id)
 
 void CWeaponSkill::setJob(int8* jobs)
 {
-	memcpy(&m_Job[1], jobs, 22);
+    memcpy(&m_Job[1], jobs, 22);
 }
 
 void CWeaponSkill::setSkillLevel(uint16 level)
 {
-	m_Skilllevel = level;
+    m_Skilllevel = level;
 }
 
 const int8* CWeaponSkill::getName()
 {
-	return (const int8*)m_name.c_str();
+    return (const int8*)m_name.c_str();
 }
 
 void CWeaponSkill::setElement(uint8 element)
@@ -93,7 +93,7 @@ void CWeaponSkill::setElement(uint8 element)
 
 void CWeaponSkill::setPrimarySkillchain(uint8 skillchain)
 {
-	m_PrimarySkillchain = skillchain;
+    m_PrimarySkillchain = skillchain;
 }
 
 void CWeaponSkill::setSecondarySkillchain(uint8 skillchain)
@@ -108,13 +108,13 @@ void CWeaponSkill::setTertiarySkillchain(uint8 skillchain)
 
 void CWeaponSkill::setName(int8* name)
 {
-	m_name.clear();
-	m_name.insert(0, (const char*)name);
+    m_name.clear();
+    m_name.insert(0, (const char*)name);
 }
 
 void CWeaponSkill::setAnimationId(int8 id)
 {
-	m_AnimationId = id;
+    m_AnimationId = id;
 }
 
 void CWeaponSkill::setAnimationTime(duration time)
@@ -124,22 +124,22 @@ void CWeaponSkill::setAnimationTime(duration time)
 
 void CWeaponSkill::setAoe(uint8 aoe)
 {
-	m_AOE = aoe;
+    m_AOE = aoe;
 }
 
 void CWeaponSkill::setRange(uint8 range)
 {
-	m_Range = range;
+    m_Range = range;
 }
 
 uint16 CWeaponSkill::getID()
 {
-	return m_ID;
+    return m_ID;
 }
 
 uint8 CWeaponSkill::getType()
 {
-	return m_TypeID;
+    return m_TypeID;
 }
 
 uint8 CWeaponSkill::getUnlockId()
@@ -149,17 +149,17 @@ uint8 CWeaponSkill::getUnlockId()
 
 uint8 CWeaponSkill::getJob(JOBTYPE job)
 {
-	return m_Job[job];
+    return m_Job[job];
 }
 
 uint16 CWeaponSkill::getSkillLevel()
 {
-	return m_Skilllevel;
+    return m_Skilllevel;
 }
 
 uint8 CWeaponSkill::getElement()
 {
-	return m_Element;
+    return m_Element;
 }
 
 bool CWeaponSkill::isElemental()
@@ -169,7 +169,7 @@ bool CWeaponSkill::isElemental()
 
 uint8 CWeaponSkill::getAnimationId()
 {
-	return m_AnimationId;
+    return m_AnimationId;
 }
 
 duration CWeaponSkill::getAnimationTime()
@@ -179,12 +179,12 @@ duration CWeaponSkill::getAnimationTime()
 
 uint8 CWeaponSkill::getAoe()
 {
-	return m_AOE;
+    return m_AOE;
 }
 
 uint8 CWeaponSkill::getRange()
 {
-	return m_Range;
+    return m_Range;
 }
 
 uint8 CWeaponSkill::getPrimarySkillchain()

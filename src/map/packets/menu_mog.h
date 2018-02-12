@@ -29,16 +29,16 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CMenuMogPacket : public CBasicPacket
 {
 public:
 
-	CMenuMogPacket();
+    CMenuMogPacket();
 };
 
 #endif

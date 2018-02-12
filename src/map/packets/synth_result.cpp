@@ -31,31 +31,31 @@ This file is part of DarkStar-server source code.
 
 CSynthResultMessagePacket::CSynthResultMessagePacket(CCharEntity* PChar, SYNTH_MESSAGE messageID, uint16 itemID, uint8 quantity)
 {
-	this->type = 0x70;
-	this->size = 0x30;
+    this->type = 0x70;
+    this->size = 0x30;
 
-	ref<uint8>(0x04) = messageID;
-	
-	ref<uint16>(0x1a) = PChar->id;
-	if (itemID != 0)
-	{
-		ref<uint8>(0x06) = quantity;
-		ref<uint16>(0x08) = itemID;
-	}
-	if (messageID == SYNTH_FAIL)
-	{
-		uint8 count = 0;
-		for (uint8 slotID = 1; slotID <= 8; ++slotID)
-		{
-			uint32 quantity = PChar->CraftContainer->getQuantity(slotID);
-			if (quantity == 0)
-			{
-				uint16 itemID = PChar->CraftContainer->getItemID(slotID);
-				ref<uint16>(0x0A + (count * 2)) = itemID;
-				count++;
-			}
-		}
-	}
-	memcpy(data + (0x1E) , PChar->GetName(), (PChar->name.size() > 15 ? 15 : PChar->name.size()));
+    ref<uint8>(0x04) = messageID;
+
+    ref<uint16>(0x1a) = PChar->id;
+    if (itemID != 0)
+    {
+        ref<uint8>(0x06) = quantity;
+        ref<uint16>(0x08) = itemID;
+    }
+    if (messageID == SYNTH_FAIL)
+    {
+        uint8 count = 0;
+        for (uint8 slotID = 1; slotID <= 8; ++slotID)
+        {
+            uint32 quantity = PChar->CraftContainer->getQuantity(slotID);
+            if (quantity == 0)
+            {
+                uint16 itemID = PChar->CraftContainer->getItemID(slotID);
+                ref<uint16>(0x0A + (count * 2)) = itemID;
+                count++;
+            }
+        }
+    }
+    memcpy(data + (0x1E) , PChar->GetName(), (PChar->name.size() > 15 ? 15 : PChar->name.size()));
 
 }

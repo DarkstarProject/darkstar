@@ -32,15 +32,15 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.01, 0.1, ELE_FIRE, 700);
-	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
     MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, 60);
 
-	target:delHP(dmg);
+    target:delHP(dmg);
 
     if (mob:getFamily() == 313 and bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) == 0) then -- re-enable no turn if all three heads are up
         mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_NO_TURN))
     end
 
-	return dmg;
+    return dmg;
 end;

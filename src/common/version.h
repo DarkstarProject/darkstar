@@ -24,16 +24,16 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-#define DARKSTAR_MAJOR_VERSION	1	// Major Version
-#define DARKSTAR_MINOR_VERSION	0	// Minor Version
-#define DARKSTAR_REVISION		0	// Revision
+#define DARKSTAR_MAJOR_VERSION  1   // Major Version
+#define DARKSTAR_MINOR_VERSION  0   // Minor Version
+#define DARKSTAR_REVISION       0   // Revision
 
-#define DARKSTAR_RELEASE_FLAG	1	// 1=Develop,0=Stable
-#define DARKSTAR_OFFICIAL_FLAG	1	// 1=Mod,0=Official
+#define DARKSTAR_RELEASE_FLAG   1   // 1=Develop,0=Stable
+#define DARKSTAR_OFFICIAL_FLAG  1   // 1=Mod,0=Official
 
-#define DARKSTAR_SERVER_NONE	0	// not defined
-#define DARKSTAR_SERVER_LOGIN	1	// login server
-#define DARKSTAR_SERVER_MAP		2	// map server
+#define DARKSTAR_SERVER_NONE    0   // not defined
+#define DARKSTAR_SERVER_LOGIN   1   // login server
+#define DARKSTAR_SERVER_MAP     2   // map server
 
 
 #endif /* _VERSION_H_ */

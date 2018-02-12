@@ -25,7 +25,7 @@
 
 CItemPuppet::CItemPuppet(uint16 id) : CItem(id)
 {
-	setType(ITEM_PUPPET);
+    setType(ITEM_PUPPET);
 }
 
 CItemPuppet::~CItemPuppet()

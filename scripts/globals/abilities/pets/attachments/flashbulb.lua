@@ -19,7 +19,7 @@ end
 
 function onUnequip(pet)
     pet:removeListener("ATTACHMENT_FLASHBULB", function(automaton, target)
-	end)
+    end)
 end
 
 function onManeuverGain(pet,maneuvers)

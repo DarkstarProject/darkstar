@@ -47,8 +47,8 @@
 const char* LOGIN_CONF_FILENAME = nullptr;
 const char* VERSION_INFO_FILENAME = nullptr;
 
-//lan_config_t   lan_config;		// lan settings
-login_config_t login_config;	//main settings
+//lan_config_t   lan_config;        // lan settings
+login_config_t login_config;    //main settings
 version_info_t version_info;
 
 Sql_t *SqlHandle = nullptr;
@@ -70,7 +70,7 @@ int32 do_init(int32 argc, char** argv)
             login_versionscreen(1);
         else if (strcmp(argv[i], "--login_config") == 0 || strcmp(argv[i], "--login-config") == 0)
             LOGIN_CONF_FILENAME = argv[i + 1];
-        else if (strcmp(argv[i], "--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
+        else if (strcmp(argv[i], "--run_once") == 0)    // close the map-server as soon as its done.. for testing [Celest]
             runflag = 0;
     }
 
@@ -102,8 +102,8 @@ int32 do_init(int32 argc, char** argv)
     Sql_Keepalive(SqlHandle);
 
     const char *fmtQuery = "OPTIMIZE TABLE `accounts`,`accounts_banned`, `accounts_sessions`, `chars`,`char_equip`, \
-						   `char_inventory`, `char_jobs`,`char_look`,`char_stats`, `char_vars`, `char_bazaar_msg`, \
-						   `char_skills`, `char_titles`, `char_effects`, `char_exp`;";
+                           `char_inventory`, `char_jobs`,`char_look`,`char_stats`, `char_vars`, `char_bazaar_msg`, \
+                           `char_skills`, `char_titles`, `char_effects`, `char_exp`;";
 
     if (Sql_Query(SqlHandle, fmtQuery) == SQL_ERROR)
     {
@@ -216,7 +216,7 @@ int do_sockets(fd_set* rfd, duration next)
                 if (!session[fd])
                     continue;
 
-                //				RFIFOFLUSH(fd);
+                //              RFIFOFLUSH(fd);
             }
         }
     }
@@ -240,7 +240,7 @@ int do_sockets(fd_set* rfd, duration next)
                     if (!session[i])
                         continue;
 
-                    //							RFIFOFLUSH(fd);
+                    //                          RFIFOFLUSH(fd);
                 }
                 --ret;
             }
@@ -339,7 +339,7 @@ int32 login_config_read(const char *cfgName)
             login_config.login_data_port = atoi(w2);
         }
         else if (strcmp(w1, "login_view_ip") == 0)
-        {   
+        {
             login_config.login_view_ip = std::string(w2);
         }
         else if (strcmp(w1, "login_view_port") == 0)
@@ -347,7 +347,7 @@ int32 login_config_read(const char *cfgName)
             login_config.login_view_port = atoi(w2);
         }
         else if (strcmp(w1, "login_auth_ip") == 0)
-        {   
+        {
             login_config.login_auth_ip = std::string(w2);
         }
         else if (strcmp(w1, "login_auth_port") == 0)
@@ -495,10 +495,10 @@ void login_helpscreen(int32 flag)
     ShowMessage("Options:\n");
     ShowMessage(CL_WHITE"  Commands\t\t\tDescription\n" CL_RESET);
     ShowMessage("-----------------------------------------------------------------------------\n");
-    ShowMessage("  --help, --h, --?, /?		Displays this help screen\n");
-    ShowMessage("  --login-config <file>	Load login-server configuration from <file>\n");
-    ShowMessage("  --lan-config	  <file>	Load lan configuration from <file>\n");
-    ShowMessage("  --version, --v, -v, /v	Displays the server's version\n");
+    ShowMessage("  --help, --h, --?, /?     Displays this help screen\n");
+    ShowMessage("  --login-config <file>    Load login-server configuration from <file>\n");
+    ShowMessage("  --lan-config   <file>    Load lan configuration from <file>\n");
+    ShowMessage("  --version, --v, -v, /v   Displays the server's version\n");
     ShowMessage("\n");
     if (flag) exit(EXIT_FAILURE);
 }

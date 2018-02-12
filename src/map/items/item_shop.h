@@ -29,9 +29,9 @@
 #include "item.h"
 
 /************************************************************************
-*																		*
-*  Предмет, используемый в магазине гильдий								*
-*																		*
+*                                                                       *
+*  Предмет, используемый в магазине гильдий                             *
+*                                                                       *
 ************************************************************************/
 
 class CItemShop : public CItem
@@ -53,7 +53,7 @@ public:
     uint16  getDailyIncrease();
     void    setInitialQuantity(uint16 quantity);
     uint16  getInitialQuantity();
-	uint16  getSellPrice();
+    uint16  getSellPrice();
 
 private:
 

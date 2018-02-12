@@ -30,39 +30,39 @@
 
 
 CEventPacket::CEventPacket(
-	CCharEntity* PChar,
-	uint16 EventID, 
-	uint8  numOfParams, 
-	uint32 param0,
-	uint32 param1,
-	uint32 param2,
-	uint32 param3,
-	uint32 param4,
-	uint32 param5,
-	uint32 param6,
-	uint32 param7,
+    CCharEntity* PChar,
+    uint16 EventID,
+    uint8  numOfParams,
+    uint32 param0,
+    uint32 param1,
+    uint32 param2,
+    uint32 param3,
+    uint32 param4,
+    uint32 param5,
+    uint32 param6,
+    uint32 param7,
     int16 textTable)
 {
-	this->type = 0x32;
-	this->size = 0x0A;
+    this->type = 0x32;
+    this->size = 0x0A;
 
-	ref<uint32>(0x04) = PChar->id;
+    ref<uint32>(0x04) = PChar->id;
 
-	if(numOfParams > 0) 
-	{
-		this->type = 0x34;
-		this->size = 0x1A;
+    if(numOfParams > 0)
+    {
+        this->type = 0x34;
+        this->size = 0x1A;
 
-		ref<uint32>(0x08) = param0;
-		ref<uint32>(0x0C) = param1;
-		ref<uint32>(0x10) = param2;
-		ref<uint32>(0x14) = param3;
-		ref<uint32>(0x18) = param4;
-		ref<uint32>(0x1C) = param5;
-		ref<uint32>(0x20) = param6;
-		ref<uint32>(0x24) = param7;
+        ref<uint32>(0x08) = param0;
+        ref<uint32>(0x0C) = param1;
+        ref<uint32>(0x10) = param2;
+        ref<uint32>(0x14) = param3;
+        ref<uint32>(0x18) = param4;
+        ref<uint32>(0x1C) = param5;
+        ref<uint32>(0x20) = param6;
+        ref<uint32>(0x24) = param7;
 
-		ref<uint16>(0x28) = PChar->m_TargID;
+        ref<uint16>(0x28) = PChar->m_TargID;
 
         ref<uint16>(0x2A) = PChar->getZone();
         if (textTable != -1)
@@ -74,16 +74,16 @@ CEventPacket::CEventPacket(
             ref<uint16>(0x30) = PChar->getZone();
         }
 
-		ref<uint16>(0x2C) = EventID;
-		ref<uint8>(0x2E) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу
-	}
+        ref<uint16>(0x2C) = EventID;
+        ref<uint8>(0x2E) = 8; // если патаметров меньше, чем 8, то после завершения события камера "прыгнет" за спину персонажу
+    }
     else
     {
-		ref<uint16>(0x08) = PChar->targid;
-		ref<uint16>(0x0C) = EventID;
-		
+        ref<uint16>(0x08) = PChar->targid;
+        ref<uint16>(0x0C) = EventID;
+
         ref<uint16>(0x0A) = PChar->getZone();
-		ref<uint16>(0x10) = PChar->getZone();
-	}
-	PChar->m_event.EventID = EventID;
+        ref<uint16>(0x10) = PChar->getZone();
+    }
+    PChar->m_event.EventID = EventID;
 }

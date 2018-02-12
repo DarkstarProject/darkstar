@@ -28,18 +28,18 @@
 #include "../entities/charentity.h"
 
 
-CCSPositionPacket::CCSPositionPacket(CCharEntity* PChar) 
+CCSPositionPacket::CCSPositionPacket(CCharEntity* PChar)
 {
-	this->type = 0x65;
-	this->size = 0x10;
-	
-	ref<float>(0x04) = PChar->loc.p.x;
+    this->type = 0x65;
+    this->size = 0x10;
+
+    ref<float>(0x04) = PChar->loc.p.x;
     ref<float>(0x08) = PChar->loc.p.y;
     ref<float>(0x0C) = PChar->loc.p.z;
-	ref<uint8>(0x17) = PChar->loc.p.rotation;
+    ref<uint8>(0x17) = PChar->loc.p.rotation;
 
-	ref<uint32>(0x10) = PChar->id;
-	ref<uint16>(0x14) = PChar->targid;
+    ref<uint32>(0x10) = PChar->id;
+    ref<uint16>(0x14) = PChar->targid;
 
     if (PChar->status == STATUS_DISAPPEAR)
     {

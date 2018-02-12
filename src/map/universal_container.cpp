@@ -29,21 +29,21 @@
 
 
 /************************************************************************
-*																		*
-*  Конструктор															*
-*																		*
+*                                                                       *
+*  Конструктор                                                          *
+*                                                                       *
 ************************************************************************/
 
 CUContainer::CUContainer()
 {
     m_ContainerType = UCONTAINER_EMPTY;
-	Clean();
+    Clean();
 }
 
 /************************************************************************
-*																		*
-*  Отчищаем контейнер													*
-*																		*
+*                                                                       *
+*  Отчищаем контейнер                                                   *
+*                                                                       *
 ************************************************************************/
 
 void CUContainer::Clean()
@@ -91,34 +91,34 @@ uint16 CUContainer::GetTarget()
 *  Устанавливаем цель обмена                                            *
 *                                                                       *
 ************************************************************************/
-	
+
 void CUContainer::SetTarget(uint16 Target)
 {
     m_target = Target;
 }
 
 /************************************************************************
-*																		*
-*  Узнаем текущий тип контейнера										*
-*																		*
+*                                                                       *
+*  Узнаем текущий тип контейнера                                        *
+*                                                                       *
 ************************************************************************/
 
 UCONTAINERTYPE CUContainer::GetType()
 {
-	return m_ContainerType;
+    return m_ContainerType;
 }
 
 /************************************************************************
-*																		*
-*  Устанавливаем текущий тип контейнера									*
-*																		*
+*                                                                       *
+*  Устанавливаем текущий тип контейнера                                 *
+*                                                                       *
 ************************************************************************/
 
 void CUContainer::SetType(UCONTAINERTYPE Type)
 {
-	DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
+    DSP_DEBUG_BREAK_IF(m_ContainerType != UCONTAINER_EMPTY);
 
-	m_ContainerType = Type;
+    m_ContainerType = Type;
 }
 
 /************************************************************************
@@ -134,13 +134,13 @@ void CUContainer::SetLock()
 
 /************************************************************************
 *                                                                       *
-*  Unlock container														*
+*  Unlock container                                                     *
 *                                                                       *
 ************************************************************************/
 
 void CUContainer::UnLock()
 {
-	m_lock = false;
+    m_lock = false;
 }
 
 /************************************************************************
@@ -151,18 +151,18 @@ void CUContainer::UnLock()
 
 bool CUContainer::IsLocked()
 {
-	return m_lock;
+    return m_lock;
 }
 
 /************************************************************************
-*																		*
-*  Проверяем, пуст ли контейнер											*
-*																		*
+*                                                                       *
+*  Проверяем, пуст ли контейнер                                         *
+*                                                                       *
 ************************************************************************/
 
 bool CUContainer::IsContainerEmpty()
 {
-	return (m_ContainerType == UCONTAINER_EMPTY);
+    return (m_ContainerType == UCONTAINER_EMPTY);
 }
 
 /************************************************************************
@@ -174,28 +174,28 @@ bool CUContainer::IsContainerEmpty()
 bool CUContainer::IsSlotEmpty(uint8 slotID)
 {
     if (slotID < m_PItem.size())
-	{
+    {
         return m_PItem[slotID] == nullptr;
     }
     return true;
 }
 
 /************************************************************************
-*																		*
-*  Добавляем предмет в указанныю ячейку контейнера						*
-*																		*
+*                                                                       *
+*  Добавляем предмет в указанныю ячейку контейнера                      *
+*                                                                       *
 ************************************************************************/
 
 bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 {
-	if (slotID < m_PItem.size() && !m_lock)
-	{
+    if (slotID < m_PItem.size() && !m_lock)
+    {
         if (PItem != nullptr && m_PItem[slotID] == nullptr) m_count++;
         if (PItem == nullptr && m_PItem[slotID] != nullptr) m_count--;
 
-		m_PItem[slotID] = PItem;
+        m_PItem[slotID] = PItem;
         return true;
-	}
+    }
     return false;
 }
 
@@ -224,16 +224,16 @@ uint8 CUContainer::GetItemsCount()
 }
 
 /************************************************************************
-*																		*
-*  Получаем предмет из указанной ячейки контейнера						*
-*																		*
+*                                                                       *
+*  Получаем предмет из указанной ячейки контейнера                      *
+*                                                                       *
 ************************************************************************/
 
 CItem* CUContainer::GetItem(uint8 slotID)
 {
-	if (slotID < m_PItem.size())
-	{
-		return m_PItem[slotID];
-	}
-	return nullptr;
+    if (slotID < m_PItem.size())
+    {
+        return m_PItem[slotID];
+    }
+    return nullptr;
 }

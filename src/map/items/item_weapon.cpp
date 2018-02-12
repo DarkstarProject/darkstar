@@ -36,22 +36,22 @@
 
 CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 {
-	setType(ITEM_WEAPON);
+    setType(ITEM_WEAPON);
 
-	m_skillType		= SKILL_NON;
-	m_subSkillType	= SUBSKILL_XBO;
+    m_skillType     = SKILL_NON;
+    m_subSkillType  = SUBSKILL_XBO;
     m_iLvlSkill     = 0;
     m_iLvlParry     = 0;
     m_iLvlMacc      = 0;
-	m_damage		= 0;
-    m_effect		= 0;
-	m_dmgType		= DAMAGE_NONE;
-	m_delay			= 8000;
-	m_baseDelay		= 8000;		//this should only be needed for mobs (specifically mnks)
-    m_maxHit		= 0;
-    m_ranged		= false;
-    m_twoHanded		= false;
-	m_wsunlockpoints= 0;
+    m_damage        = 0;
+    m_effect        = 0;
+    m_dmgType       = DAMAGE_NONE;
+    m_delay         = 8000;
+    m_baseDelay     = 8000;     //this should only be needed for mobs (specifically mnks)
+    m_maxHit        = 0;
+    m_ranged        = false;
+    m_twoHanded     = false;
+    m_wsunlockpoints= 0;
 }
 
 CItemWeapon::~CItemWeapon() {}
@@ -99,7 +99,7 @@ bool CItemWeapon::isUnlockable()
 {
     if(m_skillType == SKILL_NON) return false;
 
-	return ( m_wsunlockpoints > 0 ? true : false );
+    return ( m_wsunlockpoints > 0 ? true : false );
 }
 
 bool CItemWeapon::isUnlocked()
@@ -131,38 +131,38 @@ void CItemWeapon::setSkillType(uint8 skillType)
 {
     switch (skillType)
     {
-	    case SKILL_GSD:
-	    case SKILL_GAX:
-	    case SKILL_SYH:
-	    case SKILL_POL:
-	    case SKILL_GKT:
-	    case SKILL_STF:
+        case SKILL_GSD:
+        case SKILL_GAX:
+        case SKILL_SYH:
+        case SKILL_POL:
+        case SKILL_GKT:
+        case SKILL_STF:
             m_twoHanded = true;
-		break;
+        break;
         case SKILL_ARC:
         case SKILL_MRK:
         case SKILL_THR:
             m_ranged = true;
         break;
-	}
-	m_skillType = skillType;
+    }
+    m_skillType = skillType;
 }
 
 uint8 CItemWeapon::getSkillType()
 {
-	return m_skillType;
+    return m_skillType;
 }
 
 /************************************************************************
 *                                                                       *
-*   Set/get sub skillType.  Used for guns vs crossbows and other		*
-*	exclusives									                        *
+*   Set/get sub skillType.  Used for guns vs crossbows and other        *
+*   exclusives                                                          *
 *                                                                       *
 ************************************************************************/
 
 void CItemWeapon::setSubSkillType(uint8 subSkillType)
 {
-	m_subSkillType = subSkillType;
+    m_subSkillType = subSkillType;
 }
 
 void CItemWeapon::setILvlSkill(uint16 skill)
@@ -182,7 +182,7 @@ void CItemWeapon::setILvlMacc(uint16 macc)
 
 uint8 CItemWeapon::getSubSkillType()
 {
-	return m_subSkillType;
+    return m_subSkillType;
 }
 
 uint16 CItemWeapon::getILvlSkill()
@@ -201,49 +201,49 @@ uint16 CItemWeapon::getILvlMacc()
 }
 
 /************************************************************************
-*																		*
-*  Устанавливаем время задержки оружия. Сразу переводим значение в млс.	*
-*  Все математические операции происходят с целыми числами, именно по	*
-*  этому порядок действий очень важен, чтобы не потерять часть данных.	*
-*																		*
+*                                                                       *
+*  Устанавливаем время задержки оружия. Сразу переводим значение в млс. *
+*  Все математические операции происходят с целыми числами, именно по   *
+*  этому порядок действий очень важен, чтобы не потерять часть данных.  *
+*                                                                       *
 ************************************************************************/
 
 void CItemWeapon::setDelay(uint16 delay)
 {
-	m_delay = delay;
+    m_delay = delay;
 }
 
 int16 CItemWeapon::getDelay()
 {
-	return m_delay;
+    return m_delay;
 }
 
 /************************************************************************
-*																		*
-*  Set/get the un-adjusted delay of the weapon							*
-*  This is to fix delay adjustments of mobs and is not intended for		*
-*  use outside of zoneutils/mobutils									*
-*																		*
+*                                                                       *
+*  Set/get the un-adjusted delay of the weapon                          *
+*  This is to fix delay adjustments of mobs and is not intended for     *
+*  use outside of zoneutils/mobutils                                    *
+*                                                                       *
 ************************************************************************/
 
 void CItemWeapon::setBaseDelay(uint16 delay)
 {
-	m_baseDelay = delay;
+    m_baseDelay = delay;
 }
 
 int16 CItemWeapon::getBaseDelay()
 {
-	return m_baseDelay;
+    return m_baseDelay;
 }
 /************************************************************************
 *                                                                       *
-*  get unlock points	                                                *
+*  get unlock points                                                    *
 *                                                                       *
 ************************************************************************/
 
 uint16 CItemWeapon::getUnlockPoints()
 {
-	return m_wsunlockpoints;
+    return m_wsunlockpoints;
 }
 
 uint16 CItemWeapon::getCurrentUnlockPoints()
@@ -259,12 +259,12 @@ uint16 CItemWeapon::getCurrentUnlockPoints()
 
 void CItemWeapon::setDamage(uint16 damage)
 {
-	m_damage = damage;
+    m_damage = damage;
 }
 
 uint16 CItemWeapon::getDamage()
 {
-	return m_damage;
+    return m_damage;
 }
 
 /************************************************************************
@@ -275,12 +275,12 @@ uint16 CItemWeapon::getDamage()
 
 void CItemWeapon::setDmgType(uint16 dmgType)
 {
-	m_dmgType = dmgType;
+    m_dmgType = dmgType;
 }
 
 uint16 CItemWeapon::getDmgType()
 {
-	return m_dmgType;
+    return m_dmgType;
 }
 
 /************************************************************************
@@ -301,7 +301,7 @@ uint8 CItemWeapon::getAdditionalEffect()
 
 /************************************************************************
 *                                                                       *
-*  set unlockable points of weapon	    		                        *
+*  set unlockable points of weapon                                      *
 *                                                                       *
 ************************************************************************/
 
@@ -334,7 +334,7 @@ void CItemWeapon::setMaxHit(uint8 hit)
 
 uint8 CItemWeapon::getHitCount()
 {
-	return battleutils::getHitCount(m_maxHit);
+    return battleutils::getHitCount(m_maxHit);
 }
 
 

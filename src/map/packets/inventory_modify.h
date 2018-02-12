@@ -29,16 +29,16 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CInventoryModifyPacket: public CBasicPacket
 {
 public:
 
-	CInventoryModifyPacket(uint8 LocationID, uint8 slotID, uint32 quantity);
+    CInventoryModifyPacket(uint8 LocationID, uint8 slotID, uint32 quantity);
 };
 
 #endif

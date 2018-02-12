@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,7 +40,7 @@ class CCaughtFishPacket : public CBasicPacket
 {
 public:
 
-	CCaughtFishPacket(CCharEntity* PChar, uint16 param0, uint16 messageID);
+    CCaughtFishPacket(CCharEntity* PChar, uint16 param0, uint16 messageID);
 };
 
 #endif

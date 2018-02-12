@@ -32,24 +32,24 @@
 #include "../vana_time.h"
 
 
-CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8 SlotID) 
+CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8 SlotID)
 {
-	this->type = 0x20;
-	this->size = 0x16;
+    this->type = 0x20;
+    this->size = 0x16;
 
-	ref<uint8>(0x0E) = LocationID;
-	ref<uint8>(0x0F) = SlotID;	
+    ref<uint8>(0x0E) = LocationID;
+    ref<uint8>(0x0F) = SlotID;
 
-	if (PItem != nullptr)
-	{
-		ref<uint32>(0x04) = PItem->getQuantity();
-		ref<uint32>(0x08) = PItem->getCharPrice();
-		ref<uint16>(0x0C) = PItem->getID();
+    if (PItem != nullptr)
+    {
+        ref<uint32>(0x04) = PItem->getQuantity();
+        ref<uint32>(0x08) = PItem->getCharPrice();
+        ref<uint16>(0x0C) = PItem->getID();
         memcpy(data + 0x11 , PItem->m_extra, sizeof(PItem->m_extra));
 
-		if (PItem->isSubType(ITEM_CHARGED))
-		{
-			ref<uint8>(0x11) = 0x01;
+        if (PItem->isSubType(ITEM_CHARGED))
+        {
+            ref<uint8>(0x11) = 0x01;
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
@@ -67,7 +67,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
                     ref<uint32>(0x19) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;
                 }
             }
-		}
+        }
 
         if (PItem->isType(ITEM_WEAPON) && ((CItemWeapon*)PItem)->isUnlockable())
         {
@@ -98,5 +98,5 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
         {
             ref<uint8>(0x19) = ((CItemLinkshell*)PItem)->GetLSType();
         }
-	}
+    }
 }

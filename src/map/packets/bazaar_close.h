@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -40,7 +40,7 @@ class CBazaarClosePacket : public CBasicPacket
 {
 public:
 
-	CBazaarClosePacket(CCharEntity* PChar);
+    CBazaarClosePacket(CCharEntity* PChar);
 };
 
 #endif

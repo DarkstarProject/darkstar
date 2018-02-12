@@ -183,7 +183,7 @@ CCharEntity::CCharEntity()
 
     petZoningInfo.respawnPet = false;
     petZoningInfo.petID = 0;
-    petZoningInfo.petType = PETTYPE_AVATAR;			// dummy data, the bool tells us to respawn if required
+    petZoningInfo.petType = PETTYPE_AVATAR;         // dummy data, the bool tells us to respawn if required
     petZoningInfo.petHP = 0;
     petZoningInfo.petMP = 0;
     petZoningInfo.petTP = 0;
@@ -308,27 +308,27 @@ void CCharEntity::resetPetZoningInfo()
     petZoningInfo.petType = PETTYPE_AVATAR;
 }
 /************************************************************************
-*																		*
-*  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то	*
-*  защищаем сервер от падения использованием контейнера временных		*
-*  предметов в качестве заглушки (из этого контейнера предметы нельзя	*
-*  перемещать, надевать, передавать, продавать и т.д.). Отображаем		*
-*  сообщение о фатальной ошибке.										*
-*																		*
+*                                                                       *
+*  Возвращаем контейнер с указанным ID. Если ID выходит за рамки, то    *
+*  защищаем сервер от падения использованием контейнера временных       *
+*  предметов в качестве заглушки (из этого контейнера предметы нельзя   *
+*  перемещать, надевать, передавать, продавать и т.д.). Отображаем      *
+*  сообщение о фатальной ошибке.                                        *
+*                                                                       *
 ************************************************************************/
 
 CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 {
     switch (LocationID)
     {
-        case LOC_INVENTORY:	 return m_Inventory.get();
-        case LOC_MOGSAFE:	 return m_Mogsafe.get();
-        case LOC_STORAGE:	 return m_Storage.get();
-        case LOC_TEMPITEMS:	 return m_Tempitems.get();
-        case LOC_MOGLOCKER:	 return m_Moglocker.get();
+        case LOC_INVENTORY:  return m_Inventory.get();
+        case LOC_MOGSAFE:    return m_Mogsafe.get();
+        case LOC_STORAGE:    return m_Storage.get();
+        case LOC_TEMPITEMS:  return m_Tempitems.get();
+        case LOC_MOGLOCKER:  return m_Moglocker.get();
         case LOC_MOGSATCHEL: return m_Mogsatchel.get();
-        case LOC_MOGSACK:	 return m_Mogsack.get();
-        case LOC_MOGCASE:	 return m_Mogcase.get();
+        case LOC_MOGSACK:    return m_Mogsack.get();
+        case LOC_MOGCASE:    return m_Mogcase.get();
         case LOC_WARDROBE:   return m_Wardrobe.get();
         case LOC_MOGSAFE2:   return m_Mogsafe2.get();
         case LOC_WARDROBE2:  return m_Wardrobe2.get();
@@ -336,7 +336,7 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
         case LOC_WARDROBE4:  return m_Wardrobe4.get();
     }
 
-    DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
+    DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID); // неразрешенный ID хранилища
     return 0;
 }
 
@@ -364,10 +364,10 @@ int16 CCharEntity::addTP(int16 tp)
 {
     // int16 oldtp = health.tp;
     tp = CBattleEntity::addTP(tp);
-    //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
-    //	{
+    //  if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
+    //  {
     PLatentEffectContainer->CheckLatentsTP();
-    //	}
+    //  }
     return abs(tp);
 }
 
@@ -1131,8 +1131,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     actionList.ActionTargetID = PTarget->id;
 
     actionTarget_t& actionTarget = actionList.getNewActionTarget();
-    actionTarget.reaction = REACTION_HIT;		//0x10
-    actionTarget.speceffect = SPECEFFECT_HIT;		//0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
+    actionTarget.reaction = REACTION_HIT;       //0x10
+    actionTarget.speceffect = SPECEFFECT_HIT;       //0x60 (SPECEFFECT_HIT + SPECEFFECT_RECOIL)
     actionTarget.messageID = 352;
 
     CItemWeapon* PItem = (CItemWeapon*)this->getEquip(SLOT_RANGED);
@@ -1153,10 +1153,10 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     }
 
     uint8 shadowsTaken = 0;
-    uint8 hitCount = 1;			// 1 hit by default
-    uint8 realHits = 0;			// to store the real number of hit for tp multipler
+    uint8 hitCount = 1;         // 1 hit by default
+    uint8 realHits = 0;         // to store the real number of hit for tp multipler
     auto ammoConsumed = 0;
-    bool hitOccured = false;	// track if player hit mob at all
+    bool hitOccured = false;    // track if player hit mob at all
     bool isSange = false;
     bool isBarrage = StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0);
 
@@ -1339,7 +1339,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
     // Try to double shot
     //#TODO: figure out the packet structure of double/triple shot
-    //if (this->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !this->secondDoubleShotTaken &&	!isBarrage && !isSange)
+    //if (this->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !this->secondDoubleShotTaken &&    !isBarrage && !isSange)
     //{
     //    uint16 doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
     //    if (dsprand::GetRandomNumber(100) < doubleShotChance)

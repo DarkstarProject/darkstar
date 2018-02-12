@@ -30,9 +30,9 @@ This file is part of DarkStar-server source code.
 #include "ai/ai_container.h"
 
 /************************************************************************
-*																		*
-*  Класс CZoneInstance													*
-*																		*
+*                                                                       *
+*  Класс CZoneInstance                                                  *
+*                                                                       *
 ************************************************************************/
 
 CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)

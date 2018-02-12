@@ -29,16 +29,16 @@ This file is part of DarkStar-server source code.
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CSynthSuggestionPacket : public CBasicPacket
 {
 public:
 
-	CSynthSuggestionPacket(uint32 synthID);
+    CSynthSuggestionPacket(uint32 synthID);
 };
 
 #endif

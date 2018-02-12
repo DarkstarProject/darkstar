@@ -57,8 +57,8 @@ class CCharEntity;
 class CAutomatonEntity : public CPetEntity
 {
 public:
-	 CAutomatonEntity();
-	~CAutomatonEntity();
+     CAutomatonEntity();
+    ~CAutomatonEntity();
 
     automaton_equip_t m_Equip;
     std::array<uint8, 8> m_ElementMax {};

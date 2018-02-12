@@ -29,9 +29,9 @@
 #include "basic.h"
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -39,9 +39,9 @@ class CCharEntity;
 
 class CBazaarPurchasePacket : public CBasicPacket
 {
-	public:
+    public:
 
-	CBazaarPurchasePacket(CCharEntity* PChar, bool result);
+    CBazaarPurchasePacket(CCharEntity* PChar, bool result);
 };
 
 #endif

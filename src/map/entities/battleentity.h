@@ -87,7 +87,7 @@ enum JOBTYPE
     JOB_RUN = 22
 };
 
-#define MAX_JOBTYPE		23
+#define MAX_JOBTYPE     23
 
 enum SKILLTYPE
 {
@@ -144,7 +144,7 @@ enum SKILLTYPE
     SKILL_DIG = 59
 };
 
-#define MAX_SKILLTYPE	64
+#define MAX_SKILLTYPE   64
 
 enum SUBSKILLTYPE
 {
@@ -242,13 +242,13 @@ enum DAMAGETYPE
 
 enum REACTION
 {
-    REACTION_NONE = 0x00,		// отсутствие реакции
-    REACTION_MISS = 0x01,		// промах
-    REACTION_PARRY = 0x03,		// блокирование оружием (MISS + PARRY)
-    REACTION_BLOCK = 0x04,		// блокирование щитом
-    REACTION_HIT = 0x08,		// попадание
-    REACTION_EVADE = 0x09,		// уклонение (MISS + HIT)
-    REACTION_GUARD = 0x14,		// mnk guard (20 dec)
+    REACTION_NONE = 0x00,       // отсутствие реакции
+    REACTION_MISS = 0x01,       // промах
+    REACTION_PARRY = 0x03,      // блокирование оружием (MISS + PARRY)
+    REACTION_BLOCK = 0x04,      // блокирование щитом
+    REACTION_HIT = 0x08,        // попадание
+    REACTION_EVADE = 0x09,      // уклонение (MISS + HIT)
+    REACTION_GUARD = 0x14,      // mnk guard (20 dec)
 };
 
 enum SPECEFFECT
@@ -343,7 +343,7 @@ enum TARGETTYPE
     TARGET_PLAYER_ALLIANCE = 0x08,
     TARGET_PLAYER = 0x10,
     TARGET_PLAYER_DEAD = 0x20,
-    TARGET_NPC = 0x40,		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
+    TARGET_NPC = 0x40,      // скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
     TARGET_PLAYER_PARTY_PIANISSIMO = 0x80,
     TARGET_PET = 0x100
 };
@@ -393,13 +393,13 @@ enum IMMUNITY : uint16
 
 struct apAction_t
 {
-    CBattleEntity*    ActionTarget;		    // 32 bits
-    REACTION		  reaction;			    //  5 bits
-    uint16			  animation;			// 12 bits
-    SPECEFFECT		  speceffect;			// 7 bits
+    CBattleEntity*    ActionTarget;         // 32 bits
+    REACTION          reaction;             //  5 bits
+    uint16            animation;            // 12 bits
+    SPECEFFECT        speceffect;           // 7 bits
     uint8             knockback;            // 3 bits
-    int32			  param;				// 17 bits
-    uint16			  messageID;			// 10 bits
+    int32             param;                // 17 bits
+    uint16            messageID;            // 10 bits
     SUBEFFECT         additionalEffect;     // 10 bits
     int32             addEffectParam;       // 17 bits
     uint16            addEffectMessage;     // 10 bits
@@ -427,9 +427,9 @@ struct apAction_t
 };
 
 /************************************************************************
-*																		*
-*  TP хранится то пому же принципу, что и skill, т.е. 6,4% = 64			*
-*																		*
+*                                                                       *
+*  TP хранится то пому же принципу, что и skill, т.е. 6,4% = 64         *
+*                                                                       *
 ************************************************************************/
 
 struct health_t
@@ -458,8 +458,8 @@ struct action_t;
 class CBattleEntity : public CBaseEntity
 {
 public:
-    CBattleEntity();						// конструктор
-    virtual ~CBattleEntity();						// деструктор
+    CBattleEntity();                        // конструктор
+    virtual ~CBattleEntity();                       // деструктор
 
     uint16          STR();
     uint16          DEX();
@@ -470,67 +470,67 @@ public:
     uint16          CHR();
     uint16          DEF();
     uint16          ATT();
-    uint16			ACC(uint8 attackNumber, uint8 offsetAccuracy);
+    uint16          ACC(uint8 attackNumber, uint8 offsetAccuracy);
     uint16          EVA();
     uint16          RATT(uint8 skill, uint16 bonusSkill = 0);
     uint16          RACC(uint8 skill, uint16 bonusSkill = 0);
 
     uint8           GetSpeed();
 
-    bool		    isDead();					// проверяем, мертва ли сущность
-    bool		    isAlive();
-    bool			isInDynamis();
-    bool			hasImmunity(uint32 imID);
-    bool			isAsleep();
+    bool            isDead();                   // проверяем, мертва ли сущность
+    bool            isAlive();
+    bool            isInDynamis();
+    bool            hasImmunity(uint32 imID);
+    bool            isAsleep();
 
-    JOBTYPE		    GetMJob();					// главная профессия
-    JOBTYPE		    GetSJob();					// дополнительная профессия
-    uint8		    GetMLevel();				// уровень главной профессии
-    uint8		    GetSLevel();				// уровень дополнительной профессии
+    JOBTYPE         GetMJob();                  // главная профессия
+    JOBTYPE         GetSJob();                  // дополнительная профессия
+    uint8           GetMLevel();                // уровень главной профессии
+    uint8           GetSLevel();                // уровень дополнительной профессии
 
-    void		    SetMJob(uint8 mjob);		// главная профессия
-    void		    SetSJob(uint8 sjob);		// дополнительная профессия
-    void		    SetMLevel(uint8 mlvl);		// уровень главной профессии
-    void		    SetSLevel(uint8 slvl);		// уровень дополнительной профессии
+    void            SetMJob(uint8 mjob);        // главная профессия
+    void            SetSJob(uint8 sjob);        // дополнительная профессия
+    void            SetMLevel(uint8 mlvl);      // уровень главной профессии
+    void            SetSLevel(uint8 slvl);      // уровень дополнительной профессии
 
-    uint8		    GetHPP();					// количество hp в процентах
+    uint8           GetHPP();                   // количество hp в процентах
     int32           GetMaxHP();                 // максимальное количество hp
-    uint8		    GetMPP();					// количество mp в процентах
+    uint8           GetMPP();                   // количество mp в процентах
     int32           GetMaxMP();                 // максимальное количество mp
     void            UpdateHealth();             // пересчет максимального количества hp и mp, а так же корректировка их текущих значений
 
-    int16			GetWeaponDelay(bool tp);		//returns delay of combined weapons
+    int16           GetWeaponDelay(bool tp);        //returns delay of combined weapons
     uint8           GetMeleeRange();                //returns the distance considered to be within melee range of the entity
-    int16			GetRangedWeaponDelay(bool tp);	//returns delay of ranged weapon + ammo where applicable
-    int16			GetAmmoDelay();			        //returns delay of ammo (for cooldown between shots)
-    uint16			GetMainWeaponDmg();				//returns total main hand DMG
-    uint16			GetSubWeaponDmg();				//returns total sub weapon DMG
-    uint16			GetRangedWeaponDmg();			//returns total ranged weapon DMG
-    uint16			GetMainWeaponRank();			//returns total main hand DMG Rank
-    uint16			GetSubWeaponRank();				//returns total sub weapon DMG Rank
-    uint16			GetRangedWeaponRank();			//returns total ranged weapon DMG Rank
+    int16           GetRangedWeaponDelay(bool tp);  //returns delay of ranged weapon + ammo where applicable
+    int16           GetAmmoDelay();                 //returns delay of ammo (for cooldown between shots)
+    uint16          GetMainWeaponDmg();             //returns total main hand DMG
+    uint16          GetSubWeaponDmg();              //returns total sub weapon DMG
+    uint16          GetRangedWeaponDmg();           //returns total ranged weapon DMG
+    uint16          GetMainWeaponRank();            //returns total main hand DMG Rank
+    uint16          GetSubWeaponRank();             //returns total sub weapon DMG Rank
+    uint16          GetRangedWeaponRank();          //returns total ranged weapon DMG Rank
 
-    uint16		    GetSkill(uint16 SkillID);	// текущая величина умения (не максимальная, а ограниченная уровнем)
+    uint16          GetSkill(uint16 SkillID);   // текущая величина умения (не максимальная, а ограниченная уровнем)
 
-    virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
-    virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
-    virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
+    virtual int16   addTP(int16 tp);            // увеличиваем/уменьшаем количество tp
+    virtual int32   addHP(int32 hp);            // увеличиваем/уменьшаем количество hp
+    virtual int32   addMP(int32 mp);            // увеличиваем/уменьшаем количество mp
 
-    int16		    getMod(Mod modID);		// величина модификатора
+    int16           getMod(Mod modID);      // величина модификатора
 
     bool            CanRest(); // checks if able to heal
-    bool			Rest(float rate); // heal an amount of hp / mp
+    bool            Rest(float rate); // heal an amount of hp / mp
 
-    void		    addModifier(Mod type, int16 amount);
-    void		    setModifier(Mod type, int16 amount);
-    void		    delModifier(Mod type, int16 amount);
-    void		    addModifiers(std::vector<CModifier> *modList);
+    void            addModifier(Mod type, int16 amount);
+    void            setModifier(Mod type, int16 amount);
+    void            delModifier(Mod type, int16 amount);
+    void            addModifiers(std::vector<CModifier> *modList);
     void            addEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
-    void		    setModifiers(std::vector<CModifier> *modList);
-    void		    delModifiers(std::vector<CModifier> *modList);
+    void            setModifiers(std::vector<CModifier> *modList);
+    void            delModifiers(std::vector<CModifier> *modList);
     void            delEquipModifiers(std::vector<CModifier> *modList, uint8 itemLevel, uint8 slotid);
-    void 		    saveModifiers(); // save current state of modifiers
-    void 		    restoreModifiers(); // restore to saved state
+    void            saveModifiers(); // save current state of modifiers
+    void            restoreModifiers(); // restore to saved state
 
     void            addPetModifier(Mod type, PetModType, int16 amount);
     void            setPetModifier(Mod type, PetModType, int16 amount);
@@ -614,30 +614,30 @@ public:
     virtual void Tick(time_point) override;
     virtual void PostTick() override;
 
-    health_t	    health;						// hp,mp,tp
-    stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
-    skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
-    uint16		    m_Immunity;					// Mob immunity
-    uint16			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
+    health_t        health;                     // hp,mp,tp
+    stats_t         stats;                      // атрибуты STR,DEX,VIT,AGI,INT,MND,CHR
+    skills_t        WorkingSkills;              // структура всех доступных сущности умений, ограниченных уровнем
+    uint16          m_Immunity;                 // Mob immunity
+    uint16          m_magicEvasion;             // store this so it can be removed easily
+    uint8           m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
-    time_point  	charmTime;					// to hold the time entity is charmed
-    bool			isCharmed;					// is the battle entity charmed?
+    time_point      charmTime;                  // to hold the time entity is charmed
+    bool            isCharmed;                  // is the battle entity charmed?
 
-    uint8			m_ModelSize;			    // размер модели сущности, для расчета дальности физической атаки
-    ECOSYSTEM		m_EcoSystem;			    // эко-система сущности
-    CItemWeapon*	m_Weapons[4];			    // четыре основных ячейки, используемыж для хранения оружия (только оружия)
+    uint8           m_ModelSize;                // размер модели сущности, для расчета дальности физической атаки
+    ECOSYSTEM       m_EcoSystem;                // эко-система сущности
+    CItemWeapon*    m_Weapons[4];               // четыре основных ячейки, используемыж для хранения оружия (только оружия)
 
     TraitList_t     TraitList;                  // список постянно активных способностей в виде указателей
 
-    EntityID_t	    m_OwnerID;				    // ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
+    EntityID_t      m_OwnerID;                  // ID атакующей сущности (после смерти будет хранить ID сущности, нанесщей последний удар)
 
-    ActionList_t	m_ActionList;			    // список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
+    ActionList_t    m_ActionList;               // список совершенных действий за одну атаку (нужно будет написать структуру, включающую ActionList в которой будут категории анимации и т.д.)
 
-    CParty*			PParty;					    // описание группы, в которой состоит сущность
-    CBattleEntity*	PPet;					    // питомец сущности
-    CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
+    CParty*         PParty;                     // описание группы, в которой состоит сущность
+    CBattleEntity*  PPet;                       // питомец сущности
+    CBattleEntity*  PMaster;                    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
     std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
     std::unique_ptr<CRecastContainer> PRecastContainer;         //
@@ -646,15 +646,15 @@ public:
 
 private:
 
-    JOBTYPE		m_mjob;						// главная профессия
-    JOBTYPE		m_sjob;						// дополнительная профессия
-    uint8		m_mlvl;						// ТЕКУЩИЙ уровень главной профессии
-    uint8		m_slvl;						// ТЕКУЩИЙ уровень дополнительной профессии
+    JOBTYPE     m_mjob;                     // главная профессия
+    JOBTYPE     m_sjob;                     // дополнительная профессия
+    uint8       m_mlvl;                     // ТЕКУЩИЙ уровень главной профессии
+    uint8       m_slvl;                     // ТЕКУЩИЙ уровень дополнительной профессии
     uint16      m_battleTarget {0};
     time_point  m_battleStartTime;
 
-    std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
-    std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
+    std::unordered_map<Mod, int16, EnumClassHash>       m_modStat;  // массив модификаторов
+    std::unordered_map<Mod, int16, EnumClassHash>       m_modStatSave;  // saved state
     std::unordered_map<PetModType, std::unordered_map<Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
 };
 

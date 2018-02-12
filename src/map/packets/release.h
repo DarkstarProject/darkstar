@@ -30,17 +30,17 @@
 
 enum RELEASE_TYPE
 {
-	RELEASE_STANDARD	= 0,
-	RELEASE_EVENT		= 1,
-	RELEASE_SKIPPING	= 2,
-	RELEASE_UNKNOWN     = 3, /* Used by Event Update (String Update) - Packet 0x060  */
-	RELEASE_FISHING		= 4
+    RELEASE_STANDARD    = 0,
+    RELEASE_EVENT       = 1,
+    RELEASE_SKIPPING    = 2,
+    RELEASE_UNKNOWN     = 3, /* Used by Event Update (String Update) - Packet 0x060  */
+    RELEASE_FISHING     = 4
 };
 
 /************************************************************************
-*																		*
-*  																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 class CCharEntity;
@@ -49,7 +49,7 @@ class CReleasePacket : public CBasicPacket
 {
 public:
 
-	CReleasePacket(CCharEntity* PChar, RELEASE_TYPE releaseType = RELEASE_STANDARD);
+    CReleasePacket(CCharEntity* PChar, RELEASE_TYPE releaseType = RELEASE_STANDARD);
 };
 
 #endif

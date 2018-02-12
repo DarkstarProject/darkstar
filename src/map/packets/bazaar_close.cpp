@@ -29,10 +29,10 @@
 #include "../entities/charentity.h"
 
 
-CBazaarClosePacket::CBazaarClosePacket(CCharEntity * PChar) 
+CBazaarClosePacket::CBazaarClosePacket(CCharEntity * PChar)
 {
-	this->type = 0x07;	// 0x107
-	this->size = 0x0B;
+    this->type = 0x07;  // 0x107
+    this->size = 0x0B;
 
-	memcpy(data+(0x04), PChar->GetName(), PChar->name.size());
+    memcpy(data+(0x04), PChar->GetName(), PChar->name.size());
 }

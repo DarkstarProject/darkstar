@@ -31,38 +31,38 @@
 
 
 CMessageSpecialPacket::CMessageSpecialPacket(
-	CBaseEntity* PEntity, 
-	uint16 messageID,  
-	uint32 param0, 
-	uint32 param1, 
-	uint32 param2, 
-	uint32 param3, 
-	bool ShowName)
+    CBaseEntity* PEntity,
+    uint16 messageID,
+    uint32 param0,
+    uint32 param1,
+    uint32 param2,
+    uint32 param3,
+    bool ShowName)
 {
-	this->type = 0x2A;
-	this->size = 0x10;
+    this->type = 0x2A;
+    this->size = 0x10;
 
-	//DSP_DEBUG_BREAK_IF(PEntity == nullptr);
+    //DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 
-	ref<uint32>(0x04) = PEntity->id;
+    ref<uint32>(0x04) = PEntity->id;
 
-	ref<uint32>(0x08) = param0;
-	ref<uint32>(0x0C) = param1;
-	ref<uint32>(0x10) = param2;
-	ref<uint32>(0x14) = param3;
+    ref<uint32>(0x08) = param0;
+    ref<uint32>(0x0C) = param1;
+    ref<uint32>(0x10) = param2;
+    ref<uint32>(0x14) = param3;
 
-	ref<uint16>(0x18) = PEntity->targid;
+    ref<uint16>(0x18) = PEntity->targid;
 
-	if (ShowName)
-	{
-		this->size = 0x18;
+    if (ShowName)
+    {
+        this->size = 0x18;
 
-		memcpy(data+(0x1E), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size())); 
-	}
-	else if (PEntity->objtype == TYPE_PC)
-	{
-		messageID += 0x8000;
-	}
+        memcpy(data+(0x1E), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+    }
+    else if (PEntity->objtype == TYPE_PC)
+    {
+        messageID += 0x8000;
+    }
 
-	ref<uint16>(0x1A) = messageID;
+    ref<uint16>(0x1A) = messageID;
 }

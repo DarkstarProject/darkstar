@@ -103,21 +103,21 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 {
     const char* Query =
         "SELECT mobname, mobid, pos_rot, pos_x, pos_y, pos_z, \
-		respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
-		modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
-		systemid, mobsize, speed, \
-		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
-		Slash, Pierce, H2H, Impact, \
-		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, entityFlags, animationsub, \
-		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, detects, \
-		mob_family_system.charmable \
-		FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
-		INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
-		INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
-		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
-		WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
+        respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, minLevel, maxLevel, \
+        modelid, mJob, sJob, cmbSkill, cmbDmgMult, cmbDelay, behavior, links, mobType, immunity, \
+        systemid, mobsize, speed, \
+        STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
+        Slash, Pierce, H2H, Impact, \
+        Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
+        mob_pools.familyid, name_prefix, entityFlags, animationsub, \
+        (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
+        allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, detects, \
+        mob_family_system.charmable \
+        FROM instance_entities INNER JOIN mob_spawn_points ON instance_entities.id = mob_spawn_points.mobid \
+        INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid \
+        INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
+        INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
+        WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
 
     int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
 
@@ -241,11 +241,11 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
         Query =
             "SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
-			flag, speed, speedsub, animation, animationsub, namevis,\
-			status, entityFlags, look, name_prefix, widescan \
-			FROM instance_entities INNER JOIN npc_list ON \
-			(instance_entities.id = npc_list.npcid) \
-			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
+            flag, speed, speedsub, animation, animationsub, namevis,\
+            status, entityFlags, look, name_prefix, widescan \
+            FROM instance_entities INNER JOIN npc_list ON \
+            (instance_entities.id = npc_list.npcid) \
+            WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
 
         uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
         uint32 zoneMax = zoneMin + 1024;

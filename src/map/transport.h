@@ -32,12 +32,12 @@
 
 enum ELEVATOR
 {
-	ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK		= 1,
-	ELEVATOR_PORT_BASTOK_DRWBRDG			= 2
+    ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK      = 1,
+    ELEVATOR_PORT_BASTOK_DRWBRDG            = 2
 };
 
-#define INTERVAL_KUFTAL_TUNNEL_DSPPRNG_RCK	360
-#define INTERVAL_PORT_BASTOK_DRWBRDG		360
+#define INTERVAL_KUFTAL_TUNNEL_DSPPRNG_RCK  360
+#define INTERVAL_PORT_BASTOK_DRWBRDG        360
 
 struct Transport_t
 {
@@ -64,21 +64,21 @@ struct TransportZone_t
     uint16 TimeAnimationArrive;
 };
 
-struct Elevator_t 
+struct Elevator_t
 {
-	uint8 id;
-	uint16 zone;
+    uint8 id;
+    uint16 zone;
 
-	uint16 interval;
-	uint16 movetime;
+    uint16 interval;
+    uint16 movetime;
 
-	CNpcEntity * Elevator;
-	CNpcEntity * LowerDoor;
-	CNpcEntity * UpperDoor;
+    CNpcEntity * Elevator;
+    CNpcEntity * LowerDoor;
+    CNpcEntity * UpperDoor;
 
-	bool isMoving;
-	bool isStarted;
-	bool isPermanent;
+    bool isMoving;
+    bool isStarted;
+    bool isPermanent;
 };
 
 /************************************************************************
@@ -91,23 +91,23 @@ class CTransportHandler
 {
 public:
 
-	static	CTransportHandler * getInstance();
-	void startElevator(int32 elevatorID);
-	void TransportTimer();
+    static  CTransportHandler * getInstance();
+    void startElevator(int32 elevatorID);
+    void TransportTimer();
     void insertElevator(Elevator_t elevator);
     void InitializeTransport();
 
 private:
 
-	static CTransportHandler * _instance;
+    static CTransportHandler * _instance;
 
-	CTransportHandler();
+    CTransportHandler();
 
 
-	void startElevator(Elevator_t *);
-	void arriveElevator(Elevator_t *);
+    void startElevator(Elevator_t *);
+    void arriveElevator(Elevator_t *);
 
-	std::vector<Elevator_t> ElevatorList;
+    std::vector<Elevator_t> ElevatorList;
     std::vector<Transport_t*> TransportList;
     std::vector<TransportZone_t> TransportZoneList;
 };
