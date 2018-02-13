@@ -21,8 +21,6 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob, target)
-    local petIDs = {GULOOL_JA_JA + 1, GULOOL_JA_JA + 2, GULOOL_JA_JA + 3, GULOOL_JA_JA + 4};
-    local petStatus = {GetCurrentAction(petIDs[1]),GetCurrentAction(petIDs[2]),GetCurrentAction(petIDs[3]),GetCurrentAction(petIDs[4])};
 
     if (mob:getBattleTime() % 15 < 2 and mob:getBattleTime() > 10) then
         if (not GetMobByID(GULOOL_JA_JA + 1):isSpawned()) then
@@ -39,9 +37,10 @@ function onMobFight(mob, target)
             SpawnMob(GULOOL_JA_JA + 4):updateEnmity(target);
         end
     end
-    for i = 1, 4 do
-        if petStatus[i] == ACTION_ROAMING then
-            GetMobByID(petIDs[i]):updateEnmity(target);
+    for i = GULOOL_JA_JA + 1, GULOOL_JA_JA + 4 do
+        local pet = GetMobByID(i);
+        if (pet:getCurrentAction() == ACTION_ROAMING then
+            pet:updateEnmity(target);
         end
     end
 end;
