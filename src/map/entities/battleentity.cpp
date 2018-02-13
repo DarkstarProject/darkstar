@@ -150,7 +150,7 @@ void CBattleEntity::UpdateHealth()
         health.modmp = std::clamp(health.modmp, 0, 9999);
     }
 
-    health.hp = std::clamp(health.hp, 1, health.modhp);
+    health.hp = std::clamp(health.hp, 0, health.modhp);
     health.mp = std::clamp(health.mp, 0, health.modmp);
 
     updatemask |= UPDATE_HP;
