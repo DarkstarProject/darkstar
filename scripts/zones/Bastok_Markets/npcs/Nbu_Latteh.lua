@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
             player:setVar("MomTheAdventurer_Event",1);
             player:addItem(4096);
             player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
-            if (player:questStatus(BASTOK,MOM_THE_ADVENTURER == QUEST_AVAILABLE)) then
+            if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == QUEST_AVAILABLE) then
                 player:addQuest(BASTOK,MOM_THE_ADVENTURER);
             end
         else
