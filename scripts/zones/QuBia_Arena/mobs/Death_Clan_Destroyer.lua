@@ -9,38 +9,43 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_HP_STANDBACK, 60);
 end;
 
+function allHeirMobsDead(player)
+    local inst = player:getBattlefield():getBattlefieldNumber();
+    local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
+    for i = instOffset + 3, instOffset + 13 do
+        if (not GetMobByID(i):isDead()) then
+            return false;
+        end
+    end
+    return true;
+end;
+
 function onMobFight(mob,target)
     local inst = mob:getBattlefield():getBattlefieldNumber();
+    local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
     mob:setMP(9999);
 
-    for i,v in ipairs(HEIR_TO_THE_LIGHT_MOBLIST[inst]) do
-    -- printf("MP %u",mob:getMP());
-        if (GetMobAction(v) == 27) then
-            if (mob:actionQueueEmpty() == true) then
+    -- queue curaga II on any sleeping ally
+    for i = instOffset + 3, instOffset + 12 do
+        if (GetMobByID(i):getCurrentAction() == ACTION_SLEEP) then
+            if (mob:actionQueueEmpty()) then
                 if (mob:getLocalVar("cooldown") == 0) then
-                    mob:castSpell(8,GetMobByID(v));
-                    mob:setLocalVar("cooldown",20);
+                    mob:castSpell(8, GetMobByID(i));
+                    mob:setLocalVar("cooldown", 20);
                 end
-            elseif (mob:actionQueueEmpty() == false) then
+            else
                 mob:setLocalVar("cooldown",20);
             end
         end
     end
-
     if (mob:getLocalVar("cooldown") > 0) then
-        mob:setLocalVar("cooldown",mob:getLocalVar("cooldown")-1);
+        mob:setLocalVar("cooldown", mob:getLocalVar("cooldown") - 1);
     end
-
-    -- printf("cooldown %u",mob:getLocalVar("cooldown"));
 end;
 
 function onMobDeath(mob, player, isKiller)
-    -- if all mobs in list are dead, victory
-    local inst = player:getBattlefield():getBattlefieldNumber();
-    for i,v in ipairs(HEIR_TO_THE_LIGHT_MOBLIST[inst]) do
-        if (not GetMobByID(v):isDead()) then
-            return;
-        end
+    if (allHeirMobsDead(player)) then
+        player:release(); -- prevents event collision if player kills multiple remaining mobs with an AOE move/spell
+        player:startEvent(32004,0,0,4);
     end
-    player:startEvent(32004,0,0,4);
 end;

@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/QuBia_Arena/TextIDs");
+require("scripts/zones/QuBia_Arena/MobIDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -28,15 +29,21 @@ function onMobSpawn(mob)
     end);
 end;
 
+function onMobDisengage(mob)
+    mob:setLocalVar("wait", 0);
+end;
+
 function onMobRoam(mob)
     local wait = mob:getLocalVar("wait");
-    local ready = mob:getLocalVar("ready");
-    if (ready == 0 and wait > 40) then
-        local baseID = 17621014 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2;
-        mob:setLocalVar("ready", bit.band(baseID, 0xFFF));
-        mob:setLocalVar("wait", 0);
-    elseif (ready > 0) then
-        mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZoneID(), 12) + 0x1000000),0,1);
+    if (wait > 40) then
+        -- pick a random living target from the three enemies
+        local inst = mob:getBattlefield():getBattlefieldNumber();
+        local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
+        local target = GetMobByID(instOffset + math.random(0,2));
+        if (not target:isDead()) then
+            mob:addEnmity(target,0,1);
+            mob:setLocalVar("wait", 0);
+        end
     else
         mob:setLocalVar("wait", wait+3);
     end
