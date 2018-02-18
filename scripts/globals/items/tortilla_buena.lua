@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5181
--- Item: tortilla_bueno
+-- Item: tortilla_buena
 -- Food Effect: 60Min, All Races
 -----------------------------------------
 -- Health 8

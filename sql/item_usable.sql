@@ -997,7 +997,7 @@ INSERT INTO `item_usable` VALUES (5177,'plate_of_bream_sushi_+1',1,1,25,0,0,0,0,
 INSERT INTO `item_usable` VALUES (5178,'plate_of_dorado_sushi',1,1,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5179,'plate_of_dorado_sushi_+1',1,1,25,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5180,'bowl_of_sophic_stew',1,1,27,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5181,'tortilla_bueno',1,1,24,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5181,'tortilla_buena',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5182,'salty_bretzel',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5183,'viking_herring',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5184,'plate_of_vegan_sautee',1,1,24,0,0,0,0,0);
@@ -1990,7 +1990,7 @@ INSERT INTO `item_usable` VALUES (15763,'emperor_band',1,3,76,0,3,15,900,0);
 INSERT INTO `item_usable` VALUES (15769,'olduum_ring',1,3,0,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (15770,'random_ring',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (15782,'manashell_ring',1,3,0,0,50,30,1800,0);
-INSERT INTO `item_usable` VALUES (15783,'amored_ring',1,3,0,0,50,30,1800,0);
+INSERT INTO `item_usable` VALUES (15783,'armored_ring',1,3,0,0,50,30,1800,0);
 INSERT INTO `item_usable` VALUES (15793,'anniversary_ring',1,3,0,0,10,15,3600,0);
 INSERT INTO `item_usable` VALUES (15817,'ecphoria_ring',1,3,0,0,100,30,300,0);
 INSERT INTO `item_usable` VALUES (15834,'blind_ring',20,2,70,0,100,30,60,0);
