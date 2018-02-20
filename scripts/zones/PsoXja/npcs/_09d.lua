@@ -6,66 +6,65 @@
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/status");
 require("scripts/zones/PsoXja/TextIDs");
-require("scripts/globals/keyitems");
+require("scripts/zones/PsoXja/MobIDs");
+require("scripts/globals/status");
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function attemptPickLock(player, npc, correctSideOfDoor)
+    if (npc:getAnimation() == ANIMATION_CLOSE_DOOR and correctSideOfDoor) then
+        local offset = npc:getID() - STONE_DOOR_OFFSET;
+        local gargoyle = GARGOYLE_OFFSET + offset;
 
-    if ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == JOBS.THF) then
-
-        local X=player:getXPos();
-
-        if (npc:getAnimation() == 9) then
-            if (X <= 301) then
-                if (GetMobAction(16814094) == 0) then
-                    local Rand = math.random(1,2); -- estimated 50% success as per the wiki
-                    if (Rand == 1) then -- Spawn Gargoyle
-                        player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true);
-                        SpawnMob(16814094):updateClaim(player); -- Gargoyle
-                    else
-                        player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
-                        npc:openDoor(30);
-                    end
-                    player:tradeComplete();
-                else
-                    player:messageSpecial(DOOR_LOCKED);
-                end
+        if (GetMobByID(gargoyle):isSpawned()) then
+            player:messageSpecial(DOOR_LOCKED);
+        else
+            if (math.random(1,2) == 1) then
+                player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true); -- + 0x8000 and 6th param true makes it display player name in message.
+                SpawnMob(gargoyle):updateClaim(player);
+            else
+                player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
+                npc:openDoor(30);
             end
+            player:tradeComplete();
         end
     end
+end
 
-end;
-
-function onTrigger(player,npc)
-
-    local X=player:getXPos();
-
-    if (npc:getAnimation() == 9) then
-        if (X <= 301) then
-            if (GetMobAction(16814094) == 0) then
-                local Rand = math.random(1,10);
-                if (Rand <=9) then -- Spawn Gargoyle
-                    player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true);
-                    SpawnMob(16814094):updateClaim(player); -- Gargoyle
+function attemptOpenDoor(player, npc, correctSideOfDoor)
+    if (npc:getAnimation() == ANIMATION_CLOSE_DOOR) then
+        if (correctSideOfDoor) then
+            local offset = npc:getID() - STONE_DOOR_OFFSET;
+            local gargoyle = GARGOYLE_OFFSET + offset;
+            
+            if (GetMobByID(gargoyle):isSpawned()) then
+                player:messageSpecial(DOOR_LOCKED);
+            else
+                if (math.random(1,10) <= 9) then -- Spawn Gargoyle
+                    player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); -- + 0x8000 and 6th param true makes it display player name in message.
+                    SpawnMob(gargoyle):updateClaim(player);
                 else
                     player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
                     npc:openDoor(30);
                 end
-            else
-                player:messageSpecial(DOOR_LOCKED);
             end
-        elseif (X >= 302) then
-            player:startEvent(26);
+        else
+            player:startEvent(26); -- return to beginning of spiral
         end
     end
+end
 
+function onTrade(player,npc,trade)
+    if ( player:getMainJob() == JOBS.THF and trade:getItemCount() == 1 and (trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) ) then
+        attemptPickLock(player, npc, player:getXPos() <= 301);
+    end        
+end;
+
+function onTrigger(player,npc)
+    attemptOpenDoor(player, npc, player:getXPos() <= 301);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
