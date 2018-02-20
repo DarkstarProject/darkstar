@@ -2,11 +2,7 @@
 -- Area: Quicksand Caves
 --  MOB: Sand Tarantula
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

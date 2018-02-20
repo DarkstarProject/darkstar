@@ -1,20 +1,16 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Guddal
+--  NPC: Guddal
 -- Starts and Finishes Quest: Kazham Airship Pass (This quest does not appear in your quest log)
 -- @zone 246
 -- !pos -14 8 44
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,19 +24,11 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM) == false) then
         player:startEvent(300);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -52,10 +40,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

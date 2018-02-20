@@ -3,20 +3,12 @@
 --  MOB: Shadow Lord
 -- Mission 5-2 BCNM Fight
 -----------------------------------
-
-require("scripts/globals/titles");
+require("scripts/zones/Throne_Room/MobIDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/globals/titles");
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
     -- 1st form
@@ -24,7 +16,7 @@ function onMobFight(mob,target)
     -- 2nd form
     -- the Shadow Lord will do nothing but his Implosion attack. This attack hits everyone in the battlefield, but he only has 4000 HP
 
-    if (mob:getID() < 17453060) then -- first phase AI
+    if (mob:getID() < SHADOW_LORD_STAGE_2_OFFSET) then -- first phase AI
         -- once he's under 50% HP, start changing immunities and attack patterns
         if (mob:getHP() / mob:getMaxHP() <= 0.5) then
 
@@ -80,13 +72,8 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-
-    if (mob:getID() < 17453060) then
+    if (mob:getID() < SHADOW_LORD_STAGE_2_OFFSET) then
         player:startEvent(32004);
         player:setVar("mobid",mob:getID());
     else
@@ -98,12 +85,7 @@ function onMobDeath(mob, player, isKiller)
     mob:SetMagicCastingEnabled(true);
     mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
     mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- reset everything on despawn
@@ -114,23 +96,10 @@ function onMobDespawn(mob)
     mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 32004) then
         local mobid = player:getVar("mobid");
         DespawnMob(mobid);
@@ -144,5 +113,4 @@ function onEventFinish(player,csid,option)
         mob:SetAutoAttackEnabled(false);
         mob:SetMobAbilityEnabled(false);
     end
-
 end;

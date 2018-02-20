@@ -13,7 +13,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `char_recast`;
 CREATE TABLE `char_recast` (
-  `charid` int(10) NOT NULL,
+  `charid` int(10) unsigned NOT NULL,
   `id` smallint(5) NOT NULL DEFAULT '0',
   `time` int(10) NOT NULL DEFAULT '0',
   `recast` smallint(5) NOT NULL DEFAULT '0',

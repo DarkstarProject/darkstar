@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Dem/TextIDs"] = nil;
-package.loaded["scripts/zones/Promyvion-Dem/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Promyvion-Dem/TextIDs");
 require("scripts/zones/Promyvion-Dem/MobIDs");
@@ -14,7 +13,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 function onInitialize(zone)
-    for k, v in pairs(MEMORY_STREAMS) do
+    for k, v in pairs(DEM_MEMORY_STREAMS) do
         zone:registerRegion(k,v[1],v[2],v[3],v[4],v[5],v[6]);
     end
 end;
@@ -62,13 +61,13 @@ function onRegionEnter(player,region)
         local regionId = region:GetRegionID();
         local event = nil;
         if (regionId < 100) then
-            event = MEMORY_STREAMS[regionId][7][1];
+            event = DEM_MEMORY_STREAMS[regionId][7][1];
         else
             local stream = GetNPCByID(regionId);
             if (stream ~= nil and stream:getAnimation() == ANIMATION_OPEN_DOOR) then
                 event = stream:getLocalVar("destination");
                 if (event == nil or event == 0) then -- this should never happen, but sanity check
-                    event = MEMORY_STREAMS[regionId][7][1];
+                    event = DEM_MEMORY_STREAMS[regionId][7][1];
                 end
             end
         end

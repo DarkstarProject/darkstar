@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Waoud
+--  NPC: Waoud
 -- Standard Info NPC
 -- Involved in quests: An Empty Vessel (BLU flag), Beginnings (BLU AF1)
 -- !pos 65 -6 -78 50
@@ -12,9 +12,6 @@ require("scripts/globals/status");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +24,6 @@ function onTrade(player,npc,trade)
         player:startEvent(67,StoneID); -- get the stone to Aydeewa
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL);
@@ -87,10 +80,6 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- AN EMPTY VESSEL
     if (csid == 60) then
@@ -134,10 +123,6 @@ function onEventUpdate(player,csid,option)
 
     end;
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- AN EMPTY VESSEL

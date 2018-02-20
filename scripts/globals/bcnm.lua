@@ -548,11 +548,11 @@ function checkNonTradeBCNM(player, npc, mode)
                     [256] = function() return (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3)  end, -- Zilart Mission 8
                 },
         [180] = {
-                    [288] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514791 and player:hasKeyItem(SHARD_OF_APATHY) == false)  end, -- Hume, Ark Angels 1
-                    [289] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514792 and player:hasKeyItem(SHARD_OF_COWARDICE) == false)  end, -- Tarutaru, Ark Angels 2
-                    [290] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514793 and player:hasKeyItem(SHARD_OF_ENVY) == false)  end, -- Mithra, Ark Angels 3
-                    [291] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514794 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false)  end, -- Elvaan, Ark Angels 4
-                    [292] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and qmid == 17514795 and player:hasKeyItem(SHARD_OF_RAGE) == false)  end, -- Galka, Ark Angels 5
+                    [288] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514791 and player:hasKeyItem(SHARD_OF_APATHY) == false)  end, -- Hume, Ark Angels 1
+                    [289] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514792 and player:hasKeyItem(SHARD_OF_COWARDICE) == false)  end, -- Tarutaru, Ark Angels 2
+                    [290] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514793 and player:hasKeyItem(SHARD_OF_ENVY) == false)  end, -- Mithra, Ark Angels 3
+                    [291] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514794 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false)  end, -- Elvaan, Ark Angels 4
+                    [292] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514795 and player:hasKeyItem(SHARD_OF_RAGE) == false)  end, -- Galka, Ark Angels 5
                 },
         [181] = {
                     [320] = function() return (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS)  end, -- Zilart Mission 16

@@ -1,50 +1,62 @@
 -----------------------------------
 -- Area: Qulun Dome
---  NM:  Za Dha Adamantking
+--   NM: Za'Dha Adamantking
 -----------------------------------
-
-require("scripts/globals/titles");
+package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}; 
 require("scripts/zones/Qulun_Dome/TextIDs");
+require("scripts/globals/status");
+require("scripts/globals/titles");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
+-----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+end;
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
-    -- TODO: Addtionaleffect:Slow on melee attacks
     mob:showText(mob,QUADAV_KING_ENGAGE);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-
-    player:addTitle(ADAMANTKING_USURPER);
+function onAdditionalEffect(mob, player)
+    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_SLOW);
+    if (resist <= 0.5) then
+        return 0,0,0;
+    else
+        local power = 300;
+        local duration = 30;
+        if (mob:getMainLvl() > player:getMainLvl()) then
+            duration = duration + (mob:getMainLvl() - player:getMainLvl())
+        end
+        duration = utils.clamp(duration,1,45);
+        duration = duration * resist;
+        if (not player:hasStatusEffect(EFFECT_SLOW)) then
+            player:addStatusEffect(EFFECT_SLOW, power, 0, duration);
+        end
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
+    end
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(ADAMANTKING_USURPER);
+    if (isKiller) then
+        mob:showText(mob,QUADAV_KING_DEATH);
+    end
+end;
 
 function onMobDespawn(mob)
-    mob:showText(mob,QUADAV_KING_DEATH);
-
-    -- Set Za_Dha_Adamantking's Window Open Time
-    local wait = 48 * 3600
-    SetServerVariable("[POP]Za_Dha_Adamantking", os.time() + wait); -- 2 days
-
-    -- Set Diamond_Quadav's spawnpoint and respawn time (21-24 hours)
-    local Diamond_Quadav = 17383442;
-    DisallowRespawn(Diamond_Quadav, false);
-    GetMobByID(Diamond_Quadav):setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours
-
+    -- reset hqnm system back to the nm placeholder
+    local nqId = mob:getID() - 1;
+    local wait = 72 * 3600;
+    SetServerVariable("[POP]Za_Dha_Adamantking", os.time() + wait); -- 3 days
+    SetServerVariable("[PH]Za_Dha_Adamantking", 0);
+    DisallowRespawn(mob:getID(), true);
+    DisallowRespawn(nqId, false);
+    UpdateNMSpawnPoint(nqId);
+    GetMobByID(nqId):setRespawnTime(math.random(75600,86400));
 end;

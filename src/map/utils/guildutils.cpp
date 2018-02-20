@@ -208,13 +208,9 @@ CItemContainer* GetGuildShop(uint16 GuildShopID)
 
 CGuild* GetGuild(uint8 GuildID)
 {
-    try
+    if (GuildID < g_PGuildList.size())
     {
         return g_PGuildList.at(GuildID);
-    }
-    catch (std::out_of_range)
-    {
-        return nullptr;
     }
     ShowDebug(CL_CYAN"Guild with id <%u> is not found on server\n" CL_RESET, GuildID);
     return nullptr;

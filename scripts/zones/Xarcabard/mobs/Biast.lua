@@ -1,30 +1,16 @@
 -----------------------------------
 -- Area: Xarcabard
 --  NM:  Biast
--- ID: 17235988
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------
 
-
------------------------------------
--- onMobInitialize
------------------------------------
-
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 
@@ -35,9 +21,6 @@ function onMobDespawn(mob)
 
 end;
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(mob,target,damage)
 
     if ((math.random(1,15) ~= 5) or (target:hasStatusEffect(EFFECT_TERROR) == true)) then

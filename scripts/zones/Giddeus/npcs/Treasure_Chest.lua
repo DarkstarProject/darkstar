@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Giddeus
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 --
 -- !pos -158.563 0.999 -226.058 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ require("scripts/zones/Giddeus/TextIDs");
 local TreasureType = "Chest";
 local TreasureLvL = 43;
 local TreasureMinLvL = 33;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -69,26 +64,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1026);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

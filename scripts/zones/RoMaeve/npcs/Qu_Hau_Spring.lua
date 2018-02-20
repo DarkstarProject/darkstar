@@ -4,13 +4,9 @@
 -----------------------------------
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/RoMaeve/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,10 +25,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
@@ -44,22 +36,14 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventSelection
------------------------------------
-
 function onEventUpdate(player,csid,menuchoice)
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
     if (csid == 7) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1550);
-        else 
+        else
             player:addItem(1550);
             player:messageSpecial(ITEM_OBTAINED,1550);
             player:tradeComplete();

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
--- NPC: Trodden Snow
+--  NPC: Trodden Snow
 -- Mission: ASA - THAT_WHICH_CURDLES_BLOOD
 -- Mission: ASA - SUGAR_COATED_DIRECTIVE
 -- @zone 126
@@ -8,14 +8,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/zones/Qufim_Island/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,10 +33,6 @@ function onTrade(player,npc,trade)
     end
     end
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     --ASA 4 CS: Triggers With At Least 3 Counterseals.
@@ -78,18 +70,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

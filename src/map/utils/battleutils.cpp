@@ -377,11 +377,11 @@ namespace battleutils
 
     CMobSkill* GetMobSkill(uint16 SkillID)
     {
-        try
+        if (SkillID < g_PMobSkillList.size())
         {
             return g_PMobSkillList[SkillID];
         }
-        catch (std::out_of_range e)
+        else
         {
             return nullptr;
         }
@@ -708,7 +708,7 @@ namespace battleutils
                 // Dmg math.
                 float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
                 uint16 dmg = (uint32)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
-                dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, PHYSICAL_ATTACK_TYPE::NORMAL);
+                dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, PHYSICAL_ATTACK_TYPE::NORMAL, SLOT_MAIN);
                 uint16 bonus = dmg * (PDefender->getMod(Mod::RETALIATION) / 100);
                 dmg = dmg + bonus;
 
@@ -2868,11 +2868,10 @@ namespace battleutils
         {
             for (auto& resonance_element : resonance)
             {
-                try
+                if (auto skillchain = skillchain_map.find({ resonance_element, skill_element }); skillchain != skillchain_map.end())
                 {
-                    return skillchain_map.at({resonance_element, skill_element});
+                    return skillchain->second;
                 }
-                catch (std::out_of_range&) {}
             }
         }
         return SC_NONE;
@@ -3744,7 +3743,7 @@ namespace battleutils
                     realHits++;
 
                     // incase player has gungnir^^ (or any other damage increases weapons)
-                    damageForRound = attackutils::CheckForDamageMultiplier((CCharEntity*)PAttacker, PWeapon, damageForRound, PHYSICAL_ATTACK_TYPE::NORMAL);
+                    damageForRound = attackutils::CheckForDamageMultiplier((CCharEntity*)PAttacker, PWeapon, damageForRound, PHYSICAL_ATTACK_TYPE::NORMAL, SLOT_MAIN);
 
                     totalDamage += damageForRound;
                 }

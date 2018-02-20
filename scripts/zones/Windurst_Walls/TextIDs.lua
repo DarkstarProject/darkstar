@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-       ITEM_CANNOT_BE_OBTAINED = 6540; -- You cannot obtain the <item>. Come back after sorting your inventory.
+       ITEM_CANNOT_BE_OBTAINED = 6539; -- You cannot obtain the <item>. Come back after sorting your inventory.
     FULL_INVENTORY_AFTER_TRADE = 6543; -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-                 ITEM_OBTAINED = 6546; -- Obtained: <item>.
-                  GIL_OBTAINED = 6547; -- Obtained <number> gil.
+                 ITEM_OBTAINED = 6545; -- Obtained: <item>.
+                  GIL_OBTAINED = 6546; -- Obtained <number> gil.
               KEYITEM_OBTAINED = 6548; -- Obtained key item: <keyitem>.
                   KEYITEM_LOST = 6549; -- Lost key item: <keyitem>.
            NOT_HAVE_ENOUGH_GIL = 6552; -- You do not have enough gil.

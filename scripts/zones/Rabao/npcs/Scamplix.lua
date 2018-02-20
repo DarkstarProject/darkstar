@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Scamplix
+--  NPC: Scamplix
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,SCAMPLIX_SHOP_DIALOG);
 
-stock = {0x119D,10,        -- Distilled Waterr
+    player:showText(npc,SCAMPLIX_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x119D,10,        -- Distilled Waterr
      0x1118,108,        -- Meat Jerky
      0x116A,270,        -- Goblin Bread
      0x0719,720,        -- Cactus Arm
@@ -36,22 +31,14 @@ stock = {0x119D,10,        -- Distilled Waterr
      0x3410,4050,        -- Mythril Earring
      0x006B,180,        -- Water Jug
      0x0b34,9000}        -- Rabao Waystone
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

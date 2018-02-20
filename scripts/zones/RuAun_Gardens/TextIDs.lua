@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED =  6381; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+   ITEM_CANNOT_BE_OBTAINED =  6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE =  6384; -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED =  6387; -- Obtained: <item>.
-              GIL_OBTAINED =  6388; -- Obtained <number> gil.
+             ITEM_OBTAINED =  6386; -- Obtained: <item>.
+              GIL_OBTAINED =  6387; -- Obtained <number> gil.
           KEYITEM_OBTAINED =  6389; -- Obtained key item: <keyitem>.
             ITEMS_OBTAINED =  7389; -- You obtain
    NOTHING_OUT_OF_ORDINARY =  7370; -- There is nothing out of the ordinary here.
@@ -24,10 +24,6 @@ FULL_INVENTORY_AFTER_TRADE =  6384; -- You cannot obtain the <item>. Try trading
 -- Other dialog
  IT_IS_ALREADY_FUNCTIONING =  7307; -- It is already functioning.
             SKY_GOD_OFFSET =  7357; -- A strange insignia pointing north is carved into the wall.
-          SKY_GOD_OFFSET_2 =  7358; -- A strange insignia pointing east is carved into the wall.
-          SKY_GOD_OFFSET_3 =  7359; -- A strange insignia pointing west is carved into the wall.
-          SKY_GOD_OFFSET_4 =  7360; -- A strange insignia pointing south is carved into the wall.
-
 
 -- conquest Base
              CONQUEST_BASE =  7147; -- Tallying conquest results...

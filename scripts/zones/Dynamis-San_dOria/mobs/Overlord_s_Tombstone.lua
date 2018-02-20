@@ -2,20 +2,12 @@
 -- Area: Dynamis San d'Oria
 --  MOB: Overlord's Tombstone
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/dynamis");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     SpawnMob(17535350):updateEnmity(target); -- 110
@@ -25,10 +17,6 @@ function onMobEngaged(mob,target)
     SpawnMob(17534978):updateEnmity(target); -- Battlechoir Gitchfotch
     SpawnMob(17534979):updateEnmity(target); -- Soulsender Fugbrag
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

@@ -6,45 +6,28 @@
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Sauromugue_Champaign/MobIDs");
+require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    local Gob = GetMobAction(17269114);
-    if ( (Gob == ACTION_NONE or Gob == ACTION_SPAWN) and (player:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == true) and (player:hasKeyItem(SEEDSPALL_VIRIDIS) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
-        SpawnMob(17269114):updateClaim(player);
+    if (
+        not GetMobByID(DRIBBLIX_GREASEMAW):isSpawned() and
+        player:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) and
+        not player:hasKeyItem(SEEDSPALL_VIRIDIS) and
+        not player:hasKeyItem(VIRIDIAN_KEY)
+    ) then
+        SpawnMob(DRIBBLIX_GREASEMAW):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -52,7 +52,9 @@ function lotteryPrimed(phList)
 end
 
 -- potential lottery placeholder was killed
-function phOnDespawn(ph,phList,chance,cooldown)
+function phOnDespawn(ph,phList,chance,cooldown,immediate)
+    if (type(immediate) ~= "boolean") then immediate = false; end
+    
     local phId = ph:getID();
     local nmId = phList[phId];
     if (nmId ~= nil) then
@@ -66,7 +68,7 @@ function phOnDespawn(ph,phList,chance,cooldown)
                 DisallowRespawn(phId, true);
                 DisallowRespawn(nmId, false);
                 UpdateNMSpawnPoint(nmId);
-                nm:setRespawnTime(GetMobRespawnTime(phId));
+                nm:setRespawnTime(immediate and 1 or GetMobRespawnTime(phId)); -- if immediate is true, spawn the nm immediately (1ms) else use placeholder's timer
 
                 nm:addListener("DESPAWN", "DESPAWN_"..nmId, function(m)
                     -- on NM death, replace NM repop with PH repop
@@ -78,7 +80,10 @@ function phOnDespawn(ph,phList,chance,cooldown)
                     m:removeListener("DESPAWN_"..nmId);
                 end);
 
+                return true;
             end
         end
     end
+    
+    return false;
 end

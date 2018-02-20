@@ -1,5 +1,5 @@
 -- [receptacle] = {group, numStrays, portal}
-MEMORY_RECEPTACLES = {
+VAHZL_MEMORY_RECEPTACLES = {
     [16867382] = {1, 3, 16867699},
     [16867387] = {1, 3, 16867700},
     [16867429] = {2, 5, 16867697},
@@ -14,7 +14,7 @@ MEMORY_RECEPTACLES = {
 }
 
 -- [memory stream] = {region, {list of events}}
-MEMORY_STREAMS = {
+VAHZL_MEMORY_STREAMS = {
     [11]        = {  -2, -2, -122,    2, 2, -117, {45}}, -- floor 1 return
     [21]        = { -40, -2,  197,  -37, 2,  202, {41}}, -- floor 2 return
     [31]        = { 317, -2, -282,  322, 2, -277, {42}}, -- floor 3 return

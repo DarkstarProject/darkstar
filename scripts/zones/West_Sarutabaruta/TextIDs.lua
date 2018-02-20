@@ -1,9 +1,9 @@
 -- Variable TextID   Description text
 
 -- General Texts
-    ITEM_CANNOT_BE_OBTAINED =  6381; -- You cannot obtain the item <item> come back again after sorting your inventory.
-              ITEM_OBTAINED =  6387; -- Obtained: <item>.
-               GIL_OBTAINED =  6388; -- Obtained <number> gil.
+    ITEM_CANNOT_BE_OBTAINED =  6380; -- You cannot obtain the item <item> come back again after sorting your inventory.
+              ITEM_OBTAINED =  6386; -- Obtained: <item>.
+               GIL_OBTAINED =  6387; -- Obtained <number> gil.
            KEYITEM_OBTAINED =  6389; -- Obtained key item: <keyitem>.
      FISHING_MESSAGE_OFFSET =  7047; -- You can't fish here.
 
@@ -34,7 +34,7 @@ HARVESTING_IS_POSSIBLE_HERE =  7436; -- Harvesting is possible here if you have
 
 -- Signs
                      SIGN_1 =  7376; -- Northeast: Central Tower, Horutoto Ruins Northwest: Giddeus South: Port Windurst
-                     SIGN_3 =  7378; -- East: East Sarutabaruta West: Giddeus
+                     SIGN_3 =  7377; -- East: East Sarutabaruta West: Giddeus
                      SIGN_5 =  7378; -- Northeast: Central Tower, Horutoto Ruins East: East Sarutabaruta West: Giddeus
                      SIGN_7 =  7379; -- South: Windurst East: East Sarutabaruta
                      SIGN_9 =  7380; -- West: Giddeus North: East Sarutabaruta South: Windurst

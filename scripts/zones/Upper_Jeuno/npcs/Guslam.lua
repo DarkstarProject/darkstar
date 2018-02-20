@@ -1,21 +1,17 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Guslam
+--  NPC: Guslam
 -- Starts Quest: Borghertz's Hands (AF Hands, Many job)
 -- @zone 244
 -- !pos -5 1 48
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,10 +34,6 @@ function nbHandsQuestsCompleted(player)
     return questNotAvailable;
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -131,18 +123,10 @@ end;
 -- 26 Dialog avec Old Gauntlets KI
 -- 0x009c During Quest after Old Gauntlets KI ?
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

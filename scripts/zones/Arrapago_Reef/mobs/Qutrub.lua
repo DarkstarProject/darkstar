@@ -2,26 +2,14 @@
 -- Area: Arrapago Reef
 --  NPC: Qutrub
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob, target)
     local swapTimer = mob:getLocalVar("swapTime");
@@ -37,10 +25,6 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onCriticalHit
------------------------------------
-
 function onCriticalHit(mob)
 
     if (math.random(100) < 10) then  -- 10% change to break the weapon on crit
@@ -52,10 +36,6 @@ function onCriticalHit(mob)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

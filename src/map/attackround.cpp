@@ -255,6 +255,21 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
 
+    // Apply Mythic OAT mods (mainhand only)
+    if (direction == PHYSICAL_ATTACK_DIRECTION::RIGHTATTACK)
+    {
+        int16 occAttThriceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_THRICE), 0, 100);
+        int16 occAttTwiceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_TWICE), 0, 100);
+        if (num == 1 && dsprand::GetRandomNumber(100) < occAttThriceRate)
+        {
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 2);
+        }
+        else if (num == 1 && dsprand::GetRandomNumber(100) < occAttTwiceRate)
+        {
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
+        }
+    }
+
     // Ammo extra swing - players only
     if (isPC && m_attacker->getMod(Mod::AMMO_SWING) > 0)
     {

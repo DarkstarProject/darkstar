@@ -1,17 +1,17 @@
 -----------------------------------
 -- Area: Cape Teriggan
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Wind Headstone)
 -- !pos -107 -8 450 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
-package.loaded["scripts/zones/Cape_Teriggan/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Cape_Teriggan/TextIDs");
 require("scripts/zones/Cape_Teriggan/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
+require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 

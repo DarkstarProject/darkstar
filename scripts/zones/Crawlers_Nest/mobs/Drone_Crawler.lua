@@ -5,17 +5,8 @@
 -- !pos -74.939 -2.606 244.139 197 (Spawn 2)
 -----------------------------------
 
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     if (mob:getID() == 17584131) then
@@ -24,10 +15,6 @@ function onMobDespawn(mob)
         GetNPCByID(17584458):setStatus(STATUS_NORMAL); -- qm4
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

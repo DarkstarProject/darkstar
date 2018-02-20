@@ -1,27 +1,19 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Sorrowful Sage
---  Type: Assault Mission Giver
+-- Area: Aht Urhgan Whitegate
+--  NPC: Sorrowful Sage
+-- Type: Assault Mission Giver
 -- !pos 134.096 0.161 -30.401 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/besieged");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local rank = getMercenaryRank(player);
@@ -41,10 +33,6 @@ function onTrigger(player,npc)
     --end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -63,10 +51,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

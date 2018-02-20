@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- Involved In Quest: Scattered into Shadow
 -- !pos 7.378 -16.293 -193.590 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 local TreasureType = "Chest";
 local TreasureLvL = 43;
 local TreasureMinLvL = 33;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -83,26 +78,14 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1035);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

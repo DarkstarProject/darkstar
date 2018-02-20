@@ -19,7 +19,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `char_points`;
 CREATE TABLE `char_points` (
-  `charid` int(10) NOT NULL,
+  `charid` int(10) unsigned NOT NULL,
   `sandoria_cp` int(10) unsigned NOT NULL DEFAULT '0',
   `bastok_cp` int(10) unsigned NOT NULL DEFAULT '0',
   `windurst_cp` int(10) unsigned NOT NULL DEFAULT '0',

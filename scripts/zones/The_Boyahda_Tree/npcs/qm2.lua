@@ -6,32 +6,24 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/The_Boyahda_Tree/TextIDs");
-require("scripts/globals/quests");
+require("scripts/zones/The_Boyahda_Tree/MobIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
--- Notes: does ??? depop when Agas is spawned?
--- current implementation: when Agas is active, triggering ??? will result in detarget
-
 function onTrigger(player,npc)
+    -- Notes: does ??? depop when Agas is spawned?
+    -- current implementation: when Agas is active, triggering ??? will result in detarget
 
     local SearchingForWords = player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
     local zoneHour = VanadielHour();
     local zoneMinute = VanadielMinute();
     local correctTime = zoneHour >= 19 or zoneHour < 4 or (zoneHour == 4 and zoneMinute == 0);
 
-    if (GetMobAction(17404337) == 0) then
+    if (not GetMobByID(AGAS):isSpawned()) then
         if (player:hasKeyItem(MOONDROP)) then
             player:messageSpecial(CAN_SEE_SKY);
 
@@ -45,7 +37,7 @@ function onTrigger(player,npc)
 
             else
                 player:messageSpecial(SOMETHING_NOT_RIGHT);
-                SpawnMob(17404337):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
+                SpawnMob(AGAS):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
             end
 
         else
@@ -54,26 +46,13 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 14) then
         player:addKeyItem(MOONDROP);
         player:messageSpecial(KEYITEM_OBTAINED, MOONDROP);
         player:setVar("Searching_AgasKilled", 0);
     end
-
 end;

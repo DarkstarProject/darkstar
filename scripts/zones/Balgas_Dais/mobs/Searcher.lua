@@ -4,16 +4,12 @@
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_HP_STANDBACK, 50);
+end;
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

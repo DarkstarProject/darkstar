@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Yhoator Jungle
--- NPC:  Mugha Dovajaiho
+--  NPC: Mugha Dovajaiho
 -- !pos 202 0 -82 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Yhoator_Jungle/TextIDs");
@@ -13,16 +12,8 @@ require("scripts/zones/Yhoator_Jungle/TextIDs");
 local region     = ELSHIMOUPLANDS;
 local csid    = 0x7ff4;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -41,10 +32,6 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
@@ -52,10 +39,6 @@ function onEventUpdate(player,csid,option)
     player:updateEvent(player:getGil(),OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP());
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

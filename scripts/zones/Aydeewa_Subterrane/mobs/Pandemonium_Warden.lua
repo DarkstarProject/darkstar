@@ -2,33 +2,21 @@
 -- Area: Aydeewa Subterrane
 --  ZNM: Pandemonium_Warden
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
     -- Make sure model is reset back to start
-    mob:setModelId(1839);
+    mob:setModelId(1840);
 
     -- Two hours to forced depop
     mob:setLocalVar("PWardenDespawnTime", os.time() + 7200);
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     -- pop pets
@@ -37,10 +25,6 @@ function onMobEngaged(mob,target)
         GetMobByID(i):setModelId(1841);
     end
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
     local depopTime = mob:getLocalVar("PWardenDespawnTime");
@@ -64,13 +48,13 @@ function onMobFight(mob,target)
 
     ------------------------ FORM CHANGES ------------------------
     if (mobHPP <= 15 and change == 13) then -- Final Form, pets take Dvger form as well
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 14);
         for i = 1, 8 do
             if petStatus[i] == 0 then
                 SpawnMob(petIDs[i]):updateEnmity(target);
             end
-            GetMobByID(petIDs[i]):setModelId(1840);
+            GetMobByID(petIDs[i]):setModelId(1839);
         end
     elseif (mobHPP <= 26 and change == 12) then -- Khim and Co.
         mob:setModelId(1805);
@@ -82,7 +66,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1746);
         end;
     elseif (mobHPP <= 28 and change == 11) then -- Normal Form
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 12);
         for i = 1, 8 do
             if petStatus[i] == 0 then
@@ -104,7 +88,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(421);
         end
     elseif (mobHPP <= 40 and change == 9) then -- Normal Form
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 10);
         for i = 1, 8 do
             if petStatus[i] == 0 then
@@ -126,7 +110,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(281);
         end;
     elseif (mobHPP <= 52 and change == 7) then -- Normal Form
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 8);
         for i = 1, 8 do
             if petStatus[i] == 0 then
@@ -148,7 +132,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1680);
         end
     elseif (mobHPP <= 64 and change == 5) then -- Normal Form
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 6);
         for i = 1, 8 do
             if petStatus[i] == 0 then
@@ -170,7 +154,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1643);
         end
     elseif (mobHPP <= 76 and change == 3) then -- Normal Form
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 4);
         for i = 1, 8 do
             if petStatus[i] == 0 then
@@ -192,7 +176,7 @@ function onMobFight(mob,target)
             GetMobByID(petIDs[i]):setModelId(1639);
         end
     elseif (mobHPP <= 88 and change == 1) then -- Normal Form
-        mob:setModelId(1839);
+        mob:setModelId(1840);
         mob:setLocalVar("change", 2);
         for i = 1, 8 do
             if petStatus[i] == 0 then
@@ -306,10 +290,6 @@ function onMobFight(mob,target)
     ]]--
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     -- TODO: Death speech.

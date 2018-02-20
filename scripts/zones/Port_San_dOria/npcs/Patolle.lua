@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Patolle
+--  NPC: Patolle
 -- Only sells when San d'Oria controlls Kuzotz Region
 -- Working 100%
 -----------------------------------
@@ -10,9 +10,6 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,42 +25,31 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(KUZOTZ);
 
-if (RegionOwner ~= NATION_SANDORIA) then 
-    player:showText(npc,PATOLLE_CLOSED_DIALOG);
-else
-    player:showText(npc,PATOLLE_OPEN_DIALOG);
-    
-    local stock = {0x0394,855, --Cactuar Needle
-             0x113c,299, --Thundermelon
-             0x118b,184} --Watermelon
- 
-showShop(player,SANDORIA,stock);
-end
-end; 
+    if (RegionOwner ~= NATION_SANDORIA) then
+        player:showText(npc,PATOLLE_CLOSED_DIALOG);
+    else
+        player:showText(npc,PATOLLE_OPEN_DIALOG);
 
------------------------------------
--- onEventUpdate
------------------------------------
+        local stock =
+        {
+            916,  855, -- Cactuar Needle
+            4412, 299, -- Thundermelon
+            4491, 184  -- Watermelon
+        }
+        showShop(player,SANDORIA,stock);
+    end
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

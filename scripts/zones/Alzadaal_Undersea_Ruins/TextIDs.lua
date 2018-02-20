@@ -1,9 +1,9 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6387; -- Obtained: <item>
-           GIL_OBTAINED = 6388; -- Obtained <number> gil
+ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6386; -- Obtained: <item>
+           GIL_OBTAINED = 6387; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
 
 -- Assault / Salvage
@@ -14,7 +14,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back a
      MEMBER_IMBUED_ITEM = 7449; -- One or more party members are carrying imbued items. Unable to enter area
             IMBUED_ITEM = 7450; -- You are carrying imbued items. Unable to enter area
         MYTHIC_REQUIRED = 7452; -- You do not have the appropriate mythic weapon equipped. Unable to enter area.
-       
+
 -- Other Texts
         NOTHING_HAPPENS =  119; -- Nothing happens...
                RESPONSE = 7227; -- There is no response...

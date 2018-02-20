@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Cid
+--  NPC: Cid
 -- Starts & Finishes Quest: Cid's Secret, The Usual, Dark Puppet (start)
 -- Involved in Mission: Bastok 7-1
 -- !pos -12 -12 1 237
@@ -14,9 +14,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Metalworks/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,10 +25,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local currentday = tonumber(os.date("%j"));
@@ -52,7 +45,7 @@ function onTrigger(player,npc)
             player:startEvent(890); -- COP event
     elseif (currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1) then
               player:startEvent(857); -- COP event
-    elseif (currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==0) then
+    elseif (currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus") == 0) then
             player:startEvent(856); -- COP event
     elseif (currentCOPMission == THREE_PATHS and LouverancePath == 6 ) then
             player:startEvent(852); -- COP event
@@ -137,18 +130,10 @@ end;
 -- 849  850  852  853  854  855  856  857  0x0364  0x0365  0x0373  0x0374  0x037a  0x037b  0x037c  0x037d
 -- 0x037e  0x037f  897  0x0382
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 -- local currentday = tonumber(os.date("%j"));

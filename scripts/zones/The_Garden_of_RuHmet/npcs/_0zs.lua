@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  _0zs
+--  NPC: _0zs
 -----------------------------------
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
   return 1;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:hasCompletedMission(COP,WHEN_ANGELS_FALL)) then
@@ -27,18 +19,10 @@ function onTrigger(player,npc)
   return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action 
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);

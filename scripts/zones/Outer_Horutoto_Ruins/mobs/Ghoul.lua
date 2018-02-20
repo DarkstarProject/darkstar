@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Outer Horutoto Ruins   
+-- Area: Outer Horutoto Ruins
 --  MOB: Ghoul
 -- Note: Place holder for Ah Puch
 -----------------------------------

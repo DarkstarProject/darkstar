@@ -1,19 +1,10 @@
 -----------------------------------
 -- Zone: Lufaise_Meadows
--- Mob:  Sengann
------------------------------------
-
-
------------------------------------
--- onMobSpawn Action
+--  MOB: Sengann
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

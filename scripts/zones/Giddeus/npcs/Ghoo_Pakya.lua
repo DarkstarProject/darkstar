@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Giddeus
--- NPC:  Ghoo Pakya
+--  NPC: Ghoo Pakya
 -- Involved in Mission 1-3
 -- !pos -139 0 147 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Giddeus/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -45,20 +37,12 @@ function onTrigger(player,npc)
         player:startEvent(52);
     end
 
-end
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

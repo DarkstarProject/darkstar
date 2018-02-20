@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 require("scripts/zones/East_Sarutabaruta/MobIDs");
@@ -14,12 +13,11 @@ require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 689, 132, DIGREQ_NONE },
                     { 938, 79, DIGREQ_NONE },
                     { 17296, 132, DIGREQ_NONE },
@@ -42,34 +40,23 @@ local itemMap = {
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
                     { 572, 100, DIGREQ_NIGHT },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(DUKE_DECAPOD);
     GetMobByID(DUKE_DECAPOD):setRespawnTime(math.random(3600, 4200));
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn( player, prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(305.377,-36.092,660.435,71);
     end
 
@@ -88,10 +75,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -100,16 +83,8 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate( player, csid, option)
     -- printf("CSID: %u",csid);
@@ -132,10 +107,6 @@ function onEventUpdate( player, csid, option)
         player:setVar("ASA_Status",option);
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish( player, csid, option)
     -- printf("CSID: %u",csid);

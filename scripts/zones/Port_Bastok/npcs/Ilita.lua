@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Ilita
+--  NPC: Ilita
 -- Linkshell merchant
 --   !pos -142 -1 -25 236
 -- Confirmed shop stock, August 2013
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     player:showText(npc,ILITA_SHOP_DIALOG,513);
@@ -33,18 +25,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

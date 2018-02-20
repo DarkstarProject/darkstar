@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Melloa
+--  NPC: Melloa
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,MELLOA_SHOP_DIALOG);
@@ -37,23 +30,15 @@ function onTrigger(player,npc)
         0x1154,   294,3,     --Baked Popoto
         0x1167,   184,3,     --Pebble Soup
         0x119D,    10,3      --Distilled Water
-    } 
+    }
     showNationShop(player, NATION_BASTOK, stock);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -6,56 +6,26 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    local ParchmentID = 17428972;
-    local Book1 = ParchmentID + 1;
-    local Book2 = ParchmentID + 2;
-    local Book3 = ParchmentID + 3;
-    local rusty = player:hasKeyItem(OLD_RUSTY_KEY);
-    local soul = player:hasKeyItem(PAINTBRUSH_OF_SOULS);
-
-    if (soul or rusty) then
+    if (player:hasKeyItem(OLD_RUSTY_KEY) or player:hasKeyItem(PAINTBRUSH_OF_SOULS)) then
         player:messageSpecial(NO_REASON_TO_INVESTIGATE);
-    elseif (npc:getID() == Book1) then
-        player:startEvent(61); -- First Book
-    elseif (npc:getID() == Book2) then
-        player:startEvent(62); -- Second Book
-    elseif (npc:getID() == Book3) then
-        player:startEvent(63); -- Third Book
+    else
+        local offset = npc:getID() - UGGALEPIH_BOOK_OFFSET;
+        player:startEvent(61 + offset);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local book = player:getVar("paintbrushOfSouls_book");
 
     if (csid == 61 and option == 1 and (book == 0 or book == 2 or book == 4 or book == 6)) then
@@ -72,5 +42,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,OLD_RUSTY_KEY);
         player:setVar("paintbrushOfSouls_book",0);
     end
-
 end;

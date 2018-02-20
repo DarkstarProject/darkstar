@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC: Ambrosius
--- 
+--  NPC: Ambrosius
+--
 -- Quest NPC for "The Postman Always KOs Twice"
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
@@ -9,9 +9,6 @@ package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Walls/TextIDs");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -26,21 +23,17 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     QuestStatus = player:getQuestStatus(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
 
     if (QuestStatus ~= QUEST_AVAILABLE) then
         reward = 0;
-        
+
         if (trade:hasItemQty(584,1)) then reward = reward+1 end;
         if (trade:hasItemQty(585,1)) then reward = reward+1 end;
         if (trade:hasItemQty(586,1)) then reward = reward+1 end;
         if (trade:hasItemQty(587,1)) then reward = reward+1 end;
-        
+
         if (trade:getItemCount() == reward) then
             if (reward == 1) then
                 if (QuestStatus == QUEST_ACCEPTED) then
@@ -69,23 +62,15 @@ function onTrade(player,npc,trade)
             end
         end
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
-    --printf("Update CSID: %u",csid);
+    -- printf("Update CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("Finish CSID: %u",csid);
+    -- printf("Finish CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
     if (csid == 48 and option == 0) then

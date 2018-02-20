@@ -1,16 +1,12 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  Lantern (SW)
+--  NPC: Lantern (SW)
 -- !pos -59 45 24 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
 require("scripts/zones/Den_of_Rancor/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,7 +17,7 @@ function onTrade(player,npc,trade)
     local LSE = GetNPCByID(Lantern_ID+3):getAnimation();
 
 
--- Trade Crimson Rancor Flame
+    -- Trade Crimson Rancor Flame
     if (trade:hasItemQty(1139,1) and trade:getItemCount() == 1) then
         if (LSW == 8) then
             player:messageSpecial(LANTERN_OFFSET + 7); -- already lit
@@ -53,11 +49,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local npca = npc:getAnimation()
     if (npca == 8) then
@@ -65,5 +56,5 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(LANTERN_OFFSET + 20); -- unlit
     end
-return 0;
+    return 0;
 end;

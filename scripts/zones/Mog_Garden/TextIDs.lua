@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED  = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED  = 6387; -- Obtained: <item>
+ITEM_CANNOT_BE_OBTAINED  = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED  = 6386; -- Obtained: <item>
         ITEM_OBTAINEDX   = 6395; -- You obtain <number> <item>!
-           GIL_OBTAINED  = 6388; -- Obtained <number> gil
+           GIL_OBTAINED  = 6387; -- Obtained <number> gil
        KEYITEM_OBTAINED  = 6389; -- Obtained key item: <keyitem>
     NOT_HAVE_ENOUGH_GIL  = 6393; -- You do not have enough gil
 MOGLOCKER_MESSAGE_OFFSET = 7510; -- Your particular paid period of Mog Locker patronage has been extended until the following time, kupo!

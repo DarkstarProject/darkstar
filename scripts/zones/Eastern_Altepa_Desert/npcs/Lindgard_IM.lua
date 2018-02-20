@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/conquest");
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
@@ -15,17 +14,9 @@ local guardtype   = 3;      -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = KUZOTZ;
 local csid        = 0x7ff9;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -49,18 +40,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

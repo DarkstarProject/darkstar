@@ -1,25 +1,13 @@
 -----------------------------------
 -- Area: Dynamis Jeuno
--- NPC:  Vanguard Necromancer
------------------------------------
-
------------------------------------
--- onMobSpawn Action
+--  NPC: Vanguard Necromancer
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

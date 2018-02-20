@@ -2,11 +2,7 @@
 -- Area: Batallia Downs
 --  MOB: Orcish Beastrider
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Ghebi Damomohe
+--  NPC: Ghebi Damomohe
 -- Type: Standard Merchant
 -- Starts and Finishes Quest: Tenshodo Membership
 -- @zone 245
@@ -9,16 +9,12 @@
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,10 +28,6 @@ function onTrade(player,npc,trade)
     end
     -- cs 51 for "Wrong Gem" on Pso'Xja pass.  Not sure which gems should trigger this.
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local CoPMission = player:getCurrentMission(COP);
@@ -56,24 +48,17 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 106 and option == 0) then
-        stock = {0x1135,144,  -- Rice Ball
+        local stock =
+        {0x1135,144,  -- Rice Ball
                  0x1169,2700, -- Eel Kabob
                  0x1173,3}       -- Garlic Cracker
         showShop(player, NORG, stock);

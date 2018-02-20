@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Waters
 --  NPC: Lumomo
---  Type: Standard NPC
+-- Type: Standard NPC
 --  @zone 238
 -- !pos -55.770 -5.499 18.914
 --  0x027e  818 820    822  823
@@ -9,22 +9,14 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -43,22 +35,14 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("RESULT: %u",option);
     if (csid == 818 and option == 1) then
         if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) == QUEST_AVAILABLE) then
             player:addQuest(WINDURST,ECO_WARRIOR_WIN);

@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  Jersey
+--  NPC: Jersey
 -- Type: Outpost Vendor
 -- !pos -548.706 -7.197 -53.897 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
@@ -14,16 +13,8 @@ require("scripts/zones/Lufaise_Meadows/TextIDs");
 local region     = TAVNAZIANARCH;
 local csid    = 0x7ff4;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -42,10 +33,6 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
@@ -53,10 +40,6 @@ function onEventUpdate(player,csid,option)
     player:updateEvent(player:getGil(),OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP());
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

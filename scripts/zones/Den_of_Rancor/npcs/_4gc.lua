@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  Altar of Rancor
+--  NPC: Altar of Rancor
 -- !pos 199 32 -280 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Den_of_Rancor/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +18,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(LANTERN_OFFSET + 2); -- The altar glows an eerie red. The lanterns have been put out.

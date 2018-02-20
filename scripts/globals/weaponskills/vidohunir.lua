@@ -41,17 +41,5 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         end
     end
 
-
-    if ((player:getEquipID(SLOT_MAIN) == 18994) and (player:getMainJob() == JOBS.BLM)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.power.lv2_inc = 1
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 3
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
-        end
-    end
     return tpHits, extraHits, criticalHit, damage;
-
 end

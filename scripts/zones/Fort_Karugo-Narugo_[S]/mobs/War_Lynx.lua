@@ -3,19 +3,11 @@
 --  MOB: War Lynx
 -- The Tigress Strikes Fight
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

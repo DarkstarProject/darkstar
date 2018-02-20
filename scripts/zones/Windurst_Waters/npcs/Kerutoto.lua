@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Kerutoto
+--  NPC: Kerutoto
 -- Starts Quest Food For Thought
 -- Involved in Quest: Riding on the Clouds
 -- @zone 238
@@ -14,9 +14,6 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -48,10 +45,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local KerutotoFood = player:getVar("Kerutoto_Food_var"); -- Variable to track progress of Kerutoto in Food for Thought
     local FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
@@ -78,7 +71,7 @@ function onTrigger(player,npc)
         player:addQuest(WINDURST,WAKING_DREAMS);
         player:startEvent(918);--918
 
-    elseif (player:hasKeyItem(WHISPER_OF_DREAMS)==true) then
+    elseif (player:hasKeyItem(WHISPER_OF_DREAMS) == true) then
         local availRewards = 0
         if (player:hasItem(17599)) then availRewards = availRewards + 1; end -- Diabolos's Pole
         if (player:hasItem(14814)) then availRewards = availRewards + 2; end -- Diabolos's Earring
@@ -148,18 +141,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -253,7 +238,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,WAKING_DREAMS);
             player:addItem(item);
             player:messageSpecial(ITEM_OBTAINED,item); -- Item
-         elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount()==0) ) ) then
+         elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount() == 0) ) ) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
         end
         elseif (csid == 736) then

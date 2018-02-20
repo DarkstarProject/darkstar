@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Pagnelle
---  Type: Standard NPC and Quest NPC
+-- Type: Standard NPC and Quest NPC
 --  Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
 --  @zone 256
 --  !pos -8 0 -100 256
@@ -11,17 +11,10 @@ package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Raptor_Rapture = player:getQuestStatus(ADOULIN, RAPTOR_RAPTURE);
@@ -72,16 +65,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 5032) then

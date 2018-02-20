@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Luto Mewrilah
+--  NPC: Luto Mewrilah
 -- @zone 244
 -- !pos -53 0 45
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local WildcatJeuno = player:getVar("WildcatJeuno");
@@ -36,18 +28,10 @@ end;
 -- 0x274c  0x274b  0x274d  0x274e  0x274f  0x2750  0x2753  0x2751  0x2752  0x2758  0x2759  0x275a  0x275b  0x275e
 -- 0x275f  0x2760  0x2761  0x2762  0x2765  0x27be  0x27bf
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

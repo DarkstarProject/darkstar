@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Sugandhi
+--  NPC: Sugandhi
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,SUGANDHI_SHOP_DIALOG);
 
-stock = {0x4059,5589,1,        -- Kukri
+    player:showText(npc,SUGANDHI_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x4059,5589,1,        -- Kukri
      0x40A1,21067,1,        -- Broadsword
      0x4081,11588,1,        -- Tuck
      0x40AE,61200,1,        -- Falchion
@@ -38,22 +33,14 @@ stock = {0x4059,5589,1,        -- Kukri
      0x4098,7128,3,        -- Iron Sword
      0x4085,9201,3,        -- Degen
      0x40A7,698,3}        -- Sapara
- 
-showNationShop(player, NATION_BASTOK, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+showNationShop(player, NATION_BASTOK, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

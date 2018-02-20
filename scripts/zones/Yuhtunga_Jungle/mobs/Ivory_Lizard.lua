@@ -2,11 +2,7 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Ivory Lizard
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

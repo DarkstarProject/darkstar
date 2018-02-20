@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Davoi
---  NPC:  Lootblox
---  Type: Standard NPC
+-- Area: Davoi
+--  NPC: Lootblox
+-- Type: Standard NPC
 -- !pos 218.073 -0.982 -20.746 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
@@ -34,6 +34,7 @@ local maps = {
     [MAP_OF_DYNAMIS_QUFIM]      = 10000,
     [MAP_OF_DYNAMIS_TAVNAZIA]   = 20000,
 }
+-----------------------------------
 
 function onTrade(player,npc,trade)
     local gil = trade:getGil();
@@ -70,7 +71,7 @@ function onTrade(player,npc,trade)
                     break;
                 end
             end
-            
+
         end
     end
 end;
@@ -98,11 +99,11 @@ function onEventUpdate(player,csid,option)
             player:updateEvent(unpack(shop,1,8));
         elseif (option == 3) then
             player:updateEvent(unpack(shop,9,14));
-            
+
         -- offer to trade down from a 10k
         elseif (option == 10) then
             player:updateEvent(currency[3], currency[2], CURRENCY_EXCHANGE_RATE);
-        
+
         -- main menu (param1 = dynamis map bitmask, param2 = gil)
         elseif (option == 11) then
             player:updateEvent(getDynamisMapList(player), player:getGil());
@@ -118,7 +119,7 @@ function onEventUpdate(player,csid,option)
                 player:messageSpecial(KEYITEM_OBTAINED, option);
             end
             player:updateEvent(getDynamisMapList(player),player:getGil());
-            
+
         end
     end
 end;
@@ -146,7 +147,7 @@ function onEventFinish(player,csid,option)
             player:addItem(currency[2]);
             player:messageSpecial(ITEM_OBTAINED,currency[2]);
         end
-        
+
     -- hundos to 10k pieces
     elseif (csid == 136) then
         if (player:getFreeSlotsCount() == 0) then
@@ -156,7 +157,7 @@ function onEventFinish(player,csid,option)
             player:addItem(currency[3]);
             player:messageSpecial(ITEM_OBTAINED,currency[3]);
         end
-        
+
     -- 10k pieces to hundos
     elseif (csid == 138) then
         local slotsReq = math.ceil(CURRENCY_EXCHANGE_RATE / 99);
@@ -186,5 +187,5 @@ function onEventFinish(player,csid,option)
         end
         player:setLocalVar("hundoItemBought", 0);
 
-   end
+    end
 end;

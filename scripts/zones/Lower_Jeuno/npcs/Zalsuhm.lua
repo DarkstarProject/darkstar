@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Zalsuhm
+--  NPC: Zalsuhm
 -- Standard Info NPC
 -----------------------------------
-
 require("scripts/globals/equipment");
 require("scripts/globals/quests");
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Lower_Jeuno/TextIDs");
 
 function getQuestId(mainJobId)
@@ -15,25 +15,21 @@ function getQuestId(mainJobId)
 
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-    
-    --printf("LowerJeuno_Zalsuhm.onTrade() - ");
-    
+
+    -- printf("LowerJeuno_Zalsuhm.onTrade() - ");
+
     if (trade:getItemCount() == 1) then
         for i, wepId in pairs(BaseNyzulWeapons) do
             if (trade:hasItemQty(wepId, 1)) then
                 local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(i))
-                --printf("\tUnlockingAMyth" .. i .. " = %u", unlockingAMyth);
-                
+                -- printf("\tUnlockingAMyth" .. i .. " = %u", unlockingAMyth);
+
                 if (unlockingAMyth == QUEST_ACCEPTED) then
                     -- TODO: Logic for checking weapons current WS points
                     local wsPoints = 0;
-                    --printf("\twsPoints = %u", wsPoints);
-                    
+                    -- printf("\twsPoints = %u", wsPoints);
+
                     if (wsPoints >= 0 and wsPoints <= 49) then
                         player:startEvent(10091); -- Lowest Tier Dialog
                     elseif (wsPoints <= 200) then
@@ -44,33 +40,29 @@ function onTrade(player,npc,trade)
                         player:startEvent(10088, i); -- Quest Complete!
                     end
                 end
-                
+
                 return;
             end			
 	    end	
     end
 
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
-    --printf("LowerJeuno_Zalsuhm.onTrigger() - ");
-    
+    -- printf("LowerJeuno_Zalsuhm.onTrigger() - ");
+
     local mainJobId = player:getMainJob();
-    
+
     local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
-    --printf("\tUnlockingAMyth" .. mainJobId .. " = %u", unlockingAMyth);
-    
+    -- printf("\tUnlockingAMyth" .. mainJobId .. " = %u", unlockingAMyth);
+
     local mainWeaponId = player:getEquipID(SLOT_MAIN);
-    --printf("\tmainWeaponId: %u", mainWeaponId);
+    -- printf("\tmainWeaponId: %u", mainWeaponId);
     	
     local nyzulWeapon = isBaseNyzulWeapon(mainWeaponId);
-    --printf("\tIsBaseNyzulWeapon: %s", (nyzulWeapon and "TRUE" or "FALSE"));
-    
+    -- printf("\tIsBaseNyzulWeapon: %s", (nyzulWeapon and "TRUE" or "FALSE"));
+
     if (unlockingAMyth == QUEST_AVAILABLE) then
         local zalsuhmUpset = player:getVar("Upset_Zalsuhm");
         if (player:needToZone() and zalsuhmUpset > 0) then -- Zalsuhm is still angry
@@ -79,7 +71,7 @@ function onTrigger(player,npc)
             if (zalsuhmUpset > 0) then
                 player:setVar("Upset_Zalsuhm", 0);
             end
-            
+
             if (nyzulWeapon) then -- The player has a Nyzul weapon in the mainHand, try to initiate quest
                 player:startEvent(10086, mainJobId);
             else
@@ -92,30 +84,22 @@ function onTrigger(player,npc)
         player:startEvent(10089);
     end
 	
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    
-    --printf("LowerJeuno_Zalsuhm.onEventUpdate() - ");
-    --printf("\tCSID: %u", csid);
-    --printf("\tRESULT: %u", option);
-    
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+
+    -- printf("LowerJeuno_Zalsuhm.onEventUpdate() - ");
+    -- printf("\tCSID: %u", csid);
+    -- printf("\tRESULT: %u", option);
+
+end;
 
 function onEventFinish(player,csid,option)
-    
-    --printf("LowerJeuno_Zalsuhm.onEventFinish() - ");
-    --printf("\tCSID: %u", csid);
-    --printf("\tRESULT: %u", option);
-    
+
+    -- printf("LowerJeuno_Zalsuhm.onEventFinish() - ");
+    -- printf("\tCSID: %u", csid);
+    -- printf("\tRESULT: %u", option);
+
     -- Zalsuhm wants to research the player's Nyzul Weapon
     if (csid == 10086) then	
         -- The player chose "He has shifty eyes" (turns down the quest)
@@ -131,5 +115,5 @@ function onEventFinish(player,csid,option)
         local questId = getQuestId(option);
         player:completeQuest(JEUNO, questId);
     end
-    
+
 end;

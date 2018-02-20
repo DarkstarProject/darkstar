@@ -1,31 +1,25 @@
 -----------------------------------
 -- Area: Rabao
--- NPC:  Shiny Teeth
+--  NPC: Shiny Teeth
 -- Standard Merchant NPC
 -- !pos -30 8 99 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/zones/Rabao/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-player:showText(npc,SHINY_TEETH_SHOP_DIALOG);
+    player:showText(npc,SHINY_TEETH_SHOP_DIALOG);
 
-stock = {0x4042,1867,    --Dagger     1867 - 2111
+    local stock =
+    {
+        0x4042,1867,    --Dagger     1867 - 2111
          0x404C,11128,    --Kris     11128 - 12096
          0x4052,2231,    --Knife     2231 - 2522
          0x40A8,4163,    --Scimitar     4163 - 4706
@@ -40,21 +34,13 @@ stock = {0x4042,1867,    --Dagger     1867 - 2111
          0x43A3,5460,    --Riot Grenade     5460 - 5520
          0x4384,8996}    --Chakram     8996 - 10995
 
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Otto
+--  NPC: Otto
 -- Standard Info NPC
 -- Involved in Quest: The Siren's Tear
 -- @zone 236
 -- !pos -145.929 -7.48 -13.701
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
@@ -30,18 +22,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

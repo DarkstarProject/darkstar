@@ -1,20 +1,16 @@
 -----------------------------------
 -- Area: Qufim Island
--- NPC: ??? (qm3)
+--  NPC: ??? (qm3)
 -- Mission: ACP - The Echo Awakens
 -- @zone 126
 -- !pos -120.342 -19.471 306.661
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/zones/Qufim_Island/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +21,6 @@ function onTrade(player,npc,trade)
         player:startEvent(31);
     end
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     local ACPm = player:getCurrentMission(ACP);
@@ -70,18 +62,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

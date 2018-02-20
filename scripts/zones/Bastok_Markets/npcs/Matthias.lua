@@ -1,16 +1,15 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Matthias
+--  NPC: Matthias
 -- Standard Info NPC
 -- Involved in Quest:
 -----------------------------------
-
-require("scripts/globals/quests");
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/globals/quests");
 -----------------------------------
--- onTrade Action
------------------------------------
+
     --local variables for item IDs to make things clearer;
     local imperialSilk = 2340;
     local wolfFelt = 2010;
@@ -38,7 +37,7 @@ function onTrade(player,npc,trade)
 
                 rewardThePlayer(player);
 
-             elseif (playersAFChoice == 2 and 
+             elseif (playersAFChoice == 2 and
                 trade:hasItemQty(karakulCloth, 1) == true and
                 trade:hasItemQty(rainbowCloth, 1) == true and
                 trade:hasItemQty(rainbowVelvet, 1) == true and
@@ -57,7 +56,7 @@ function onTrade(player,npc,trade)
                 rewardThePlayer(player);
             end;
      end;
-end; 
+end;
 
 function rewardThePlayer(player)
     local playersAFChoice = player:getVar("dancerAFChoice");
@@ -68,10 +67,7 @@ function rewardThePlayer(player)
     player:startEvent(495, playersAFChoice-1);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
----local variables for item IDs to make things clearer
+-- local variables for item IDs to make things clearer
     local dancersTiara = 16139;
     local dancersBangles = 15003;
     local dancersToeshoes = 15747;
@@ -103,7 +99,7 @@ function onTrigger(player,npc)
         end;
 
         local completedPieces = playerCompletedShoes + playerCompletedBangles + playerCompletedTiara;
-        if (completedPieces == 3) then 
+        if (completedPieces == 3) then
             player:setVar("dancerTailorCS", 6);
             player:startEvent(498);
          else
@@ -120,7 +116,7 @@ function onTrigger(player,npc)
 
         if (currentVanaDay > tailorStartedWorkDay) then
 
-            local dancerAFID = 1; -- variable used to convert player's choice into an Item ID. 
+            local dancerAFID = 1; -- variable used to convert player's choice into an Item ID.
             local playerGender = player:getGender(); --gender is actually important here because it displays the item on screen for you.
 
             if (playersAFChoice == 1) then
@@ -141,18 +137,12 @@ function onTrigger(player,npc)
     else
         player:startEvent(499);
     end;
-end; 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -166,7 +156,7 @@ function onEventFinish(player,csid,option)
             player:setVar("dancerAFChoice", option);
             player:setVar("dancerTailorCS", 4);
         else
-            player:setVar("dancerTailorCS", 3); 
+            player:setVar("dancerTailorCS", 3);
         end;
 
     elseif (csid == 493) then
@@ -176,7 +166,7 @@ function onEventFinish(player,csid,option)
             local choiceBit = bit.lshift(1, option - 1) --check to see if the player already did this piece
 
             if (bit.band(choiceBit, completedPieces) == choiceBit) then
-                player:startEvent(498); 
+                player:startEvent(498);
 
             else
                 player:setVar("dancerAFChoice", option);
@@ -215,6 +205,6 @@ function onEventFinish(player,csid,option)
              end;
         end;
     else
-    --do nothing
+    -- do nothing
     end;
 end;

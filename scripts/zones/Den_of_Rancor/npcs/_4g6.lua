@@ -1,16 +1,12 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  Lantern (SE)
+--  NPC: Lantern (SE)
 -- !pos -59 45 24 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Den_of_Rancor/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -51,11 +47,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local npca = npc:getAnimation()

@@ -11,9 +11,6 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +19,6 @@ function onTrade(player,npc,trade)
         player:startEvent(199); -- Quest Finish
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     starstatus = player:getQuestStatus(WINDURST,TO_CATCH_A_FALLIHG_STAR);
@@ -41,18 +34,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

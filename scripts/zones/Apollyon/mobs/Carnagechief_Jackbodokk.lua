@@ -6,18 +6,11 @@ package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     local mobID = mob:getID();
@@ -28,10 +21,6 @@ function onMobEngaged(mob,target)
     SpawnMob(16933131):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
     SpawnMob(16933132):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local mobID = mob:getID();
@@ -59,10 +48,6 @@ function onMobFight(mob,target)
     end
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     if ((IsMobDead(16933144) == false or IsMobDead(16933137) == false) and alreadyReceived(player,1,GetInstanceRegion(1294)) == false) then

@@ -5,14 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/zones/Windurst_Woods/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,17 +19,13 @@ NeedToZone = player:needToZone();
     if (GiohAijhriSpokenTo == 1 and NeedToZone == false) then
         count = trade:getItemCount();
         TwinstoneEarring = trade:hasItemQty(13360,1);
-        
+
         if (TwinstoneEarring == true and count == 1) then
-            player:startEvent(490);    
+            player:startEvent(490);
         end
     end
-    
-end;
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -42,37 +34,29 @@ Fame = player:getFameLevel(WINDURST);
 
     if (TwinstoneBonding == QUEST_COMPLETED) then
         if (player:needToZone()) then
-            player:startEvent(491,0,13360);    
+            player:startEvent(491,0,13360);
         else
             player:startEvent(488,0,13360);
         end
     elseif (TwinstoneBonding == QUEST_ACCEPTED) then
-        player:startEvent(488,0,13360);    
+        player:startEvent(488,0,13360);
     elseif (TwinstoneBonding == QUEST_AVAILABLE and Fame >= 2) then
         player:startEvent(487,0,13360);
     else
         player:startEvent(424);
     end
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 487) then
         player:addQuest(WINDURST,TWINSTONE_BONDING);
         player:setVar("GiohAijhriSpokenTo",1);
@@ -81,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:needToZone(true);
         player:setVar("GiohAijhriSpokenTo",0);
-        
+
         if (TwinstoneBonding == QUEST_ACCEPTED) then
             if (player:getFreeSlotsCount() == 0) then
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17154);
@@ -100,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 488) then
         player:setVar("GiohAijhriSpokenTo",1);
     end
-    
+
 end;
 
 
