@@ -7,17 +7,18 @@
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Promyvion-Vahzl/TextIDs");
+require("scripts/zones/Promyvion-Vahzl/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(1756,1) and trade:getItemCount() == 1) then -- Cerebrator Remnant
-        player:tradeComplete();
+    if (not GetMobByID(DEVIATOR):isSpawned() and npcUtil.tradeHas(trade, 1756)) then -- Cerebrator Remnant
+        player:confirmTrade();
         player:messageSpecial(ON_NM_SPAWN);
-        SpawnMob(16867455):updateClaim(player); -- Spawn Deviator
+        SpawnMob(DEVIATOR):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
-
 end;
 
 function onTrigger(player,npc)
