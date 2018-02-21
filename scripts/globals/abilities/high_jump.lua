@@ -51,7 +51,7 @@ function onUseAbility(player,target,ability,action)
         if (criticalHit) then
             action:speceffect(target:getID(), 38)
         end
-        action:messageID(target:getID(), msgBasic.USES_JA)
+        action:messageID(target:getID(), msgBasic.USES_JA_TAKE_DAMAGE)
         action:speceffect(target:getID(), 32)
     else
         action:messageID(target:getID(), msgBasic.JA_MISS_2)
