@@ -5,8 +5,8 @@
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
--- General Variables
-local PW = 17056167;
+require("scripts/zones/Aydeewa_Subterrane/MobIDs");
+
 -- Pet Arrays, we'll alternate between phases
 local petIDs = {};
 petIDs[0] = {17056169, 17056170, 17056171, 17056172, 17056173, 17056174, 17056175, 17056176};
@@ -19,11 +19,11 @@ local mobHP =      { 10000, 147000, 10000, 147000, 10000, 147000, 10000, 147000,
 local mobModelID = {  1825,   1840,  1825,   1840,  1825,   1840,  1825,   1840,   1863,   1840,   1865,   1840,   1867,   1840,   1793,   1840,   1796,   1840,   1805,   1840};
 local petModelID = {  1823,   1841,  1821,   1841,  1825,   1841,  1824,   1841,   1639,   1841,   1643,   1841,   1680,   1841,    281,   1841,    421,   1841,   1746,   1839};
 local skillID =    {  1000,    316,  1001,    316,  1002,    316,  1003,    316,    285,    316,    725,    316,    326,    316,     62,    316,    164,    316,    168,    316};
- 
+
 -- Avatar Arrays         Shiva, Ramuh, Titan, Ifrit, Levia, Garud, Fenri, Carby
 local avatarAbilities = {  917,   918,   914,   913,   915,   916,   839,   919};
 local avatarSkins =     {   22,    23,    19,    18,    20,    21,    17,    16};
- 
+
 function onMobSpawn(mob)
 
     mob:setMod(MOD_DEF, 450);
@@ -36,12 +36,11 @@ function onMobSpawn(mob)
     mob:hideHP(true);
 
     -- Two hours to forced depop
-    mob:setLocalVar("PWardenDespawnTime", os.time() + 7200);
+    mob:setLocalVar("PWDespawnTime", os.time() + 7200);
     mob:setLocalVar("phase", 1);
     mob:setLocalVar("astralFlow", 1);
 end;
- 
- 
+
 function onMobDisengage(mob)
     -- Make sure model is reset back to start
     mob:setModelId(1840);
@@ -64,11 +63,7 @@ function onMobDisengage(mob)
         end
     end
 end;
- 
------------------------------------
--- onMobEngaged
------------------------------------
- 
+
 function onMobEngaged(mob,target)
     -- pop pets
     for i = 1, 8 do
@@ -77,11 +72,10 @@ function onMobEngaged(mob,target)
         pet:spawn();
 		pet:updateEnmity(target);
     end
-end;
- 
+
     -- Init Vars
     local mobHPP = mob:getHPP();
-    local depopTime = mob:getLocalVar("PWardenDespawnTime");
+    local depopTime = mob:getLocalVar("PWDespawnTime");
     local phase = mob:getLocalVar("phase");
     local astral = mob:getLocalVar("astralFlow");
     local pets = {};
@@ -91,7 +85,7 @@ end;
             pets[i][j] = GetMobByID(petIDs[i][j]);
         end
     end
-   
+  
     -- Check for phase change
     if (phase < 21 and mobHPP <= triggerHPP[phase]) then          
         if (phase == 20) then -- Prepare for death
@@ -131,10 +125,10 @@ end;
                 handlePet(mob, newPet, oldPet, target, 1839);
             end
         end
-       
+
         -- Increment astral
         mob:setLocalVar("astralFlow", astral + 1);
-       
+
     -- Or, at least make sure pets weren't drug off...
     else
         for i = 1, 8 do
@@ -146,7 +140,7 @@ end;
             end
         end
     end
-   
+
     -- Check for time limit, too
     if (os.time() > depopTime and mob:actionQueueEmpty() == true) then
         for i = 0, 1 do
@@ -156,12 +150,11 @@ end;
                 end
             end
         end
-        DespawnMob(PW);
+        DespawnMob(PANDEMONIUM_WARDEN);
     --  printf("Timer expired at %i. Despawning Pandemonium Warden.", depopTime);
     end
 end;
- 
- 
+
 function onMobDeath(mob, player, isKiller)
 
     player:addTitle(PANDEMONIUM_QUELLER);
@@ -175,11 +168,7 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 end;
- 
------------------------------------
--- onMobDespawn
------------------------------------
- 
+
 function onMobDespawn(mob)
     -- Despawn pets
     for i = 0, 1 do
@@ -190,11 +179,7 @@ function onMobDespawn(mob)
         end
     end
 end;
- 
------------------------------------
--- handlePet
------------------------------------
- 
+
 function handlePet(mob, newPet, oldPet, target, modelId)
 
     if oldPet:isSpawned() then
