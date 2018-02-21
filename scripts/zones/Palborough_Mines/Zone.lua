@@ -5,12 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
 require("scripts/zones/Palborough_Mines/TextIDs");
+require("scripts/zones/Palborough_Mines/MobIDs");
+require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17363371);
+    UpdateTreasureSpawnPoint(PALBOROUGH_TREASURE_CHEST);
 end;
 
 function onZoneIn(player,prevZone)
@@ -33,11 +34,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
