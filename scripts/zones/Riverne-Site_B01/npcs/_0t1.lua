@@ -2,28 +2,15 @@
 -- Area: Riverne Site #B01
 --  NPC: Unstable Displacement
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Riverne-Site_B01/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local RIVERNE_SITE_B01 = require("scripts/zones/Riverne-Site_B01/globals");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 1691)) then
-        player:confirmTrade();
-        npc:openDoor(RIVERNE_PORTERS);
-        player:messageSpecial(SD_HAS_GROWN);
-    end
+    RIVERNE_SITE_B01.unstableDisplacementTrade(player, npc, trade);
 end;
 
 function onTrigger(player,npc)
-    if (npc:getAnimation() == ANIMATION_OPEN_DOOR) then
-        player:startEvent(7);
-    else
-        player:messageSpecial(SD_VERY_SMALL);
-    end
+    RIVERNE_SITE_B01.unstableDisplacementTrigger(player, npc, 7);
 end;
 
 function onEventUpdate(player,csid,option)
