@@ -1,9 +1,9 @@
 -----------------------------------
--- Ability: Assassin's Charge
--- Will triple your next attack.
+-- Ability: Feint
+-- Reduces targets evasion by -150 (Assassin's Culottes +2 Aug: -10 more eva per merit)
 -- Obtained: Thief Level 75
--- Recast Time: 5:00
--- Duration: 1:00 minute
+-- Recast Time: 2:00 minutes
+-- Duration: 1:00 minutes
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -19,6 +19,6 @@ end;
 -- onUseAbility
 -----------------------------------
 function onUseAbility(player,target,ability)
-    local merits = player:getMerit(MERIT_ASSASSINS_CHARGE);
-    player:addStatusEffect(EFFECT_ASSASSINS_CHARGE, merits - 5, 0, 60, player:getMod(MOD_AUGMENTS_ASSASSINS_CHARGE), merits / 5);
+    local augment = player:getMod(MOD_AUGMENTS_FEINT) * player:getMerit(MERIT_FEINT) / 25; -- Divide by the merit value (feint is 25) to get the number of merit points
+    player:addStatusEffect(EFFECT_FEINT, 150 + augment, 0, 60); -- -150 Evasion base
 end;

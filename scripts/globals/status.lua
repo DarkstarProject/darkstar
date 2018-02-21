@@ -461,7 +461,7 @@ EFFECT_AVENGERS_ROLL            = 338
 -- EFFECT_NONE                      = 339
 EFFECT_WARRIOR_S_CHARGE         = 340
 EFFECT_FORMLESS_STRIKES         = 341
-EFFECT_ASSASSIN_S_CHARGE        = 342
+EFFECT_ASSASSINS_CHARGE         = 342
 EFFECT_FEINT                    = 343
 EFFECT_FEALTY                   = 344
 EFFECT_DARK_SEAL                = 345
@@ -1053,6 +1053,7 @@ MOD_AFFLATUS_MISERY    = 294
 MOD_CLEAR_MIND         = 295
 MOD_CONSERVE_MP        = 296
 MOD_STEAL              = 298
+MOD_PERFECT_DODGE      = 869 -- Increases Perfect Dodge duration in seconds
 MOD_BLINK              = 299
 MOD_STONESKIN          = 300
 MOD_PHALANX            = 301
@@ -1195,6 +1196,8 @@ MOD_COUNTERSTANCE_EFFECT     = 543 -- Counterstance effect in percents
 MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
 MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
 MOD_MUG_EFFECT               = 835 -- Mug effect as multiplier
+MOD_ACC_COLLAB_EFFECT        = 870 -- Increases amount of enmity transferred
+MOD_HIDE_DURATION            = 871 -- Hide duration increase (percentage based)
 MOD_REVERSE_FLOURISH_EFFECT  = 836 -- Reverse Flourish effect in tenths of squared term multiplier
 MOD_SENTINEL_EFFECT          = 837 -- Sentinel effect in percents
 MOD_REGEN_MULTIPLIER         = 838 -- Regen base multiplier
@@ -1321,6 +1324,7 @@ MOD_SCAVENGE_EFFECT           = 312 --
 MOD_DIA_DOT                   = 313 -- Increases the DoT damage of Dia
 MOD_SHARPSHOT                 = 314 -- Sharpshot accuracy bonus
 MOD_ENH_DRAIN_ASPIR           = 315 -- % damage boost to Drain and Aspir
+MOD_SNEAK_ATK_DEX             = 874 -- % DEX boost to Sneak Attack (if gear mod, needs to be equipped on hit)
 MOD_TRICK_ATK_AGI             = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
 MOD_NIN_NUKE_BONUS            = 522 -- magic attack bonus for NIN nukes
 MOD_AMMO_SWING                = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
@@ -1366,6 +1370,10 @@ MOD_AOE_NA                    = 524 -- Set to 1 to make -na spells/erase always 
 MOD_AUGMENTS_CONVERT          = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
 MOD_AUGMENTS_SA               = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
 MOD_AUGMENTS_TA               = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
+MOD_AUGMENTS_FEINT            = 873 -- Feint will give another -10 Evasion per merit level
+MOD_AUGMENTS_ASSASSINS_CHARGE = 872 -- Gives Assassin's Charge +1% Critical Hit Rate per merit level
+MOD_AUGMENTS_AMBUSH           = 875 -- Gives +1% Triple Attack per merit level when Ambush conditions are met
+MOD_AUGMENTS_AURA_STEAL       = 876 -- 20% chance of 2 effects to be dispelled or stolen per merit level
 MOD_JUG_LEVEL_RANGE           = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
 MOD_FORCE_JUMP_CRIT           = 828 -- Critical hit rate bonus for jump and high jump
 MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
@@ -1391,9 +1399,9 @@ MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 869 -- stuff
--- SPARE = 870 -- stuff
--- SPARE = 870 -- stuff
+-- SPARE = 877 -- stuff
+-- SPARE = 878 -- stuff
+-- SPARE = 879 -- stuff
 
 ------------------------------------
 -- Merit Definitions

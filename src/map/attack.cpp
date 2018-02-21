@@ -404,7 +404,7 @@ void CAttack::ProcessDamage()
         ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) ||
             m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)))
     {
-        m_trickAttackDamage = m_attacker->DEX();
+        m_trickAttackDamage += m_attacker->DEX() * (1 + m_attacker->getMod(Mod::SNEAK_ATK_DEX) / 100);
     }
 
     // Trick attack.
