@@ -1,11 +1,11 @@
 -----------------------------------------
--- ID: 5695
--- Item: margherita_pizza
--- Food Effect: 3 hours, all Races
+-- ID: 6213
+-- Item: slice of margherita pizza
+-- Food Effect: 30 minutes, all Races
 -----------------------------------------
 -- HP +30
--- Accuracy +10% (cap 8)
--- Attack +10% (cap 10)
+-- Accuracy+10% (Max. 8)
+-- Attack+10% (Max. 10)
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------
@@ -19,7 +19,7 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5695);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,6213);
 end;
 
 function onEffectGain(target,effect)
