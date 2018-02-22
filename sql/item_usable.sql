@@ -1755,6 +1755,12 @@ INSERT INTO `item_usable` VALUES (6069,'bowl_of_riverfin_soup',1,1,26,0,0,0,0,0)
 INSERT INTO `item_usable` VALUES (6070,'bowl_of_oceanfin_soup',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6071,'magma_steak',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6072,'magma_steak_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6211,'slice_of_marinara_pizza',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6212,'slice_of_marinara_pizza_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6213,'slice_of_margherita_pizza',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6214,'slice_of_margherita_pizza_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6215,'slice_of_pepperoni_pizza',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6216,'slice_of_pepperoni_pizza_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6217,'slice_of_anchovy_pizza',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6218,'slice_of_anchovy_pizza_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6223,'cehuetzi_snow_cone',1,1,26,0,0,0,0,0);
