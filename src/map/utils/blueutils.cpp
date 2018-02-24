@@ -133,8 +133,9 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
             // get player skill level and add in bonus from gear
             auto playerSkillLvl = PBlueMage->GetSkill(SKILL_BLU) + (uint16)PBlueMage->getMod(Mod::BLUE);
 
+            // either player skill greater than or equal to spell skill or
             // make sure the difference between spell skill and player is at most 31 points
-            if (std::abs(skillLvlForSpell - playerSkillLvl) <= 31)
+            if (playerSkillLvl >= skillLvlForSpell || std::abs(skillLvlForSpell - playerSkillLvl) <= 31)
             {
                 // TODO: check for blue learning bonus and adjust base percent
                 if (dsprand::GetRandomNumber(100) < 33) {
