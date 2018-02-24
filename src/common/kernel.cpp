@@ -54,10 +54,6 @@ char **arg_v = NULL;
 char *SERVER_NAME = NULL;
 char  SERVER_TYPE = DARKSTAR_SERVER_NONE;
 
-#ifndef GITVERSION
-	static char dsp_git_version[1024] = "";
-#endif
-
 // Copyright (c) Athena Dev Teams 
 // Added by Gabuzomeu
 //
@@ -206,50 +202,6 @@ void signals_init (void)
 #endif
 }
 
-#ifdef GITVERSION
-#define xstringify(x) stringify(x)
-#define stringify(x) #x
-const char* get_git_revision(void)
-{
-    return xstringify(GITVERSION);
-}
-#else
-
-/************************************************************************
-*																		*
-*																		*
-*																		*
-************************************************************************/
-
-const char* get_git_revision(void)
-{
-    FILE *fp = NULL;
-
-    // GIT_VER was copied in to working dir post-build
-    if ((fp = fopen("GIT_VER", "r")) != NULL)
-    {
-        char line[1024], w1[1024], w2[1024];
-
-        if (fgets(line, 1024, fp) == nullptr)
-        {
-            ShowError("fgets failed for git revision: %s", strerror(errno));
-            _exit(EXIT_FAILURE);
-        }
-        sscanf(line, "%[a-zA-Z0-9] %[^\t\r\n]", w1, w2);
-        snprintf(dsp_git_version, sizeof(dsp_git_version), "%s", w1);
-        fclose(fp);
-    }
-
-    // If no version was found, mark as unknown..
-    if (!(*dsp_git_version))
-    {
-        snprintf(dsp_git_version, sizeof(dsp_git_version), "Unknown");
-    }
-    
-    return dsp_git_version;
-}
-#endif
-
 /************************************************************************
 *																		*
 *  CORE : Display title													*
@@ -258,7 +210,7 @@ const char* get_git_revision(void)
 
 static void display_title(void)
 {
-	ShowInfo("DarkStar - Git Revision Hash: " CL_WHITE"%s" CL_RESET".\n", get_git_revision());
+	ShowInfo("DarkStar");
 }
 
 /************************************************************************
