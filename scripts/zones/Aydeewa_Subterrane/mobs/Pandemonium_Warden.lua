@@ -72,6 +72,9 @@ function onMobEngaged(mob,target)
         pet:spawn();
 		pet:updateEnmity(target);
     end
+end;
+
+function onMobFight(mob,target)
 
     -- Init Vars
     local mobHPP = mob:getHPP();
