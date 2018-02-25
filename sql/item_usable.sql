@@ -798,6 +798,7 @@ INSERT INTO `item_usable` VALUES (4901,'water_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4902,'light_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4903,'dark_spirit_pact',1,1,13,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4912,'scroll_of_distract',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4913,'scroll_of_distract_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4914,'scroll_of_frazzle',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4915,'scroll_of_frazzle_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4928,'scroll_of_katon_ichi',1,1,14,5,0,0,0,0);
