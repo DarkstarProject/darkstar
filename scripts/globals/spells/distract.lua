@@ -13,7 +13,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
 
     -- Base power.  May need more research.
     local power = 35;
@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
     local duration = 120;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = MOD_INT;
     params.skillType = 35;
     params.bonus = 0;
     params.effect = EFFECT_EVASION_DOWN;
