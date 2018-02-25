@@ -130,12 +130,11 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 
             // get the skill cap for the spell level
             auto skillLvlForSpell = battleutils::GetMaxSkill(SKILL_BLU, JOB_BLU, PSpell->getJob(JOB_BLU));
-            // get player skill level and add in bonus from gear
-            auto playerSkillLvl = PBlueMage->GetSkill(SKILL_BLU) + (uint16)PBlueMage->getMod(Mod::BLUE);
+            // get player skill level with bonus from gear
+            auto playerSkillLvl = PBlueMage->GetSkill(SKILL_BLU);
 
-            // either player skill greater than or equal to spell skill or
             // make sure the difference between spell skill and player is at most 31 points
-            if (playerSkillLvl >= skillLvlForSpell || std::abs(skillLvlForSpell - playerSkillLvl) <= 31)
+            if (playerSkillLvl >= skillLvlForSpell - 31)
             {
                 // TODO: check for blue learning bonus and adjust base percent
                 if (dsprand::GetRandomNumber(100) < 33) {
