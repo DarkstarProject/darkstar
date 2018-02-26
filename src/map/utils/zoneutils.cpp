@@ -155,7 +155,8 @@ void SavePlayTime()
 CZone* GetZone(uint16 ZoneID)
 {
     DSP_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
-    if (auto PZone = g_PZoneList.find(ZoneID); PZone != g_PZoneList.end())
+    auto PZone = g_PZoneList.find(ZoneID);
+    if (PZone != g_PZoneList.end())
     {
         return PZone->second;
     }

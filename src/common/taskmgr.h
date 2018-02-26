@@ -29,7 +29,7 @@
 #include <string>
 #include <queue>
 #include <functional>
-#include <any>
+#include <experimental/any>
 
 template<class _Ty>
     struct greater_equal
@@ -61,7 +61,7 @@ public:
     CTask* AddTask(
         std::string InitName,
         time_point InitTick,
-        std::any InitData,
+        std::experimental::any InitData,
         TASKTYPE InitType,
         TaskFunc_t InitFunc,
         duration InitInterval=1s);
@@ -88,7 +88,7 @@ public:
 
     CTask(std::string InitName,
         time_point InitTick,
-        std::any InitData,
+        std::experimental::any InitData,
         TASKTYPE InitType,
         TaskFunc_t InitFunc,
         duration InitInterval=1s
@@ -103,7 +103,7 @@ public:
     TASKTYPE    m_type;
     time_point  m_tick;
     duration    m_interval;
-    std::any    m_data;
+    std::experimental::any    m_data;
     TaskFunc_t  m_func;
 };
 
@@ -127,4 +127,12 @@ inline bool operator <=(const CTaskMgr::CTask& a,const CTaskMgr::CTask &b)
     return a.m_tick <= b.m_tick;
 }
 
+namespace std
+{
+    template <typename T>
+    T clamp(const T& n, const T& lower, const T& upper)
+    {
+        return std::max(lower, std::min(n, upper));
+    }
+};
 #endif

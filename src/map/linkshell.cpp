@@ -376,7 +376,8 @@ namespace linkshell
         if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             CLinkshell* PLinkshell = nullptr;
-            if (auto LinkshellListShell = LinkshellList.find(PItemLinkshell->GetLSID()); LinkshellListShell != LinkshellList.end())
+            auto LinkshellListShell = LinkshellList.find(PItemLinkshell->GetLSID());
+            if (LinkshellListShell != LinkshellList.end())
             {
                 PLinkshell = LinkshellListShell->second.get();
             }
@@ -450,7 +451,8 @@ namespace linkshell
 
 	CLinkshell* GetLinkshell(uint32 id)
 	{
-        if (auto PLinkshell = LinkshellList.find(id); PLinkshell != LinkshellList.end())
+        auto PLinkshell = LinkshellList.find(id);
+        if (PLinkshell != LinkshellList.end())
 		{
             return PLinkshell->second.get();
 		}

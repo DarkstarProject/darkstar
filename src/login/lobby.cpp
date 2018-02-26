@@ -70,8 +70,10 @@ int32 lobbydata_parse(int32 fd)
 
     if (sd == nullptr)
     {
+        char rdata[1000];
+        strcpy(rdata, session[fd]->rdata.data());
         if (RFIFOREST(fd) >= 5 &&
-            ref<uint8>(session[fd]->rdata.data(), 0) == 0xA1)
+            ref<uint8>(rdata, 0) == 0xA1)
         {
             char* buff = &session[fd]->rdata[0];
 
@@ -266,7 +268,9 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            uint32 charid = ref<uint32>(session[sd->login_lobbyview_fd]->rdata.data(), 28);
+            char rdata[1000];
+            strcpy(rdata, session[sd->login_lobbyview_fd]->rdata.data());
+            uint32 charid = ref<uint32>(rdata, 28);
 
             const char *fmtQuery = "SELECT zoneip, zoneport, zoneid, pos_prevzone \
 									    FROM zone_settings, chars \
@@ -525,7 +529,9 @@ int32 lobbyview_parse(int32 fd)
         case 0x14:
         {
             //delete char
-            uint32 CharID = ref<uint32>(session[fd]->rdata.data(), 0x20);
+            char rdata[1000];
+            strcpy(rdata, session[fd]->rdata.data());
+            uint32 CharID = ref<uint32>(rdata, 0x20);
 
             ShowInfo(CL_WHITE"lobbyview_parse" CL_RESET":attempt to delete char:<" CL_WHITE"%d" CL_RESET"> from ip:<%s>\n", CharID, ip2str(sd->client_addr, nullptr));
 
@@ -563,7 +569,7 @@ int32 lobbyview_parse(int32 fd)
                 return -1;
             }
             session[sd->login_lobbydata_fd]->wdata.resize(5);
-            ref<uint8>(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x01;
+            ref<uint8>(const_cast<char*>(session[sd->login_lobbydata_fd]->wdata.data()), 0) = 0x01;
         }
         break;
         case 0x24:
@@ -598,7 +604,8 @@ int32 lobbyview_parse(int32 fd)
             }
 
             session[sd->login_lobbydata_fd]->wdata.resize(5);
-            ref<uint8>(session[sd->login_lobbydata_fd]->wdata.data(), 0) = 0x02;
+            char* wdata = const_cast<char *>(session[sd->login_lobbydata_fd]->wdata.data());
+            ref<uint8>(wdata, 0) = 0x02;
         }
         break;
         case 0x21:

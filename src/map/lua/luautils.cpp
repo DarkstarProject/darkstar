@@ -79,7 +79,7 @@
 #include "../ai/states/ability_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../ai/states/magic_state.h"
-#include <optional>
+#include <experimental/optional>
 
 namespace luautils
 {
@@ -1213,7 +1213,8 @@ namespace luautils
 
             bool contentEnabled;
 
-            if (auto contentEnabledIter = contentEnabledMap.find(contentVariable);  contentEnabledIter != contentEnabledMap.end())
+            auto contentEnabledIter = contentEnabledMap.find(contentVariable);
+            if (contentEnabledIter != contentEnabledMap.end())
             {
                 contentEnabled = contentEnabledIter->second;
             }
@@ -2087,7 +2088,7 @@ namespace luautils
         return 0;
     }
 
-    std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
+    std::experimental::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
     {
         DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
 

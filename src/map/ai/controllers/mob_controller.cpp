@@ -383,7 +383,7 @@ bool CMobController::TryCastSpell()
     else
     {
         // find random spell
-        std::optional<SpellID> chosenSpellId;
+        std::experimental::optional<SpellID> chosenSpellId;
         if (m_firstSpell)
         {
             // mobs first spell, should be aggro spell

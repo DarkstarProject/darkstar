@@ -64,4 +64,13 @@ int32 do_close_lobbyview(login_session_data_t*, int32 fd);
 
 int32 lobby_createchar(login_session_data_t* loginsd, int8* buf);
 int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar);
+
+namespace std
+{
+    template <typename T>
+    T clamp(const T& n, const T& lower, const T& upper)
+    {
+        return std::max(lower, std::min(n, upper));
+    }
+};
 #endif
