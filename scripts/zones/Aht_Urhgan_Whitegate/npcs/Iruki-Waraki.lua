@@ -16,6 +16,20 @@ require("scripts/globals/pets");
 
 
 function onTrade(player,npc,trade)
+
+    OperationTeatimeProgress = player:getVar("OperationTeatimeProgress");
+    
+    if (player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED) == QUEST_COMPLETED and player:hasItem(17859) == false) then
+        if (trade:getGil() == 10000 and trade:getItemCount() == 1 and player:getFreeSlotsCount() >= 1) then
+            player:addItem(17859);
+            player:messageSpecial(ITEM_OBTAINED,17859); -- animator
+        end
+    elseif (OperationTeatimeProgress == 1) then
+        if (trade:hasItemQty(4161,1) and trade:hasItemQty(5570,1)) then -- Trade Chai and Sleeping Potion
+            player:tradeComplete();
+            player:startEvent(780);
+        end   
+    end
 end;
 
 function onTrigger(player,npc)
@@ -24,6 +38,8 @@ function onTrigger(player,npc)
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
     local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
     local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress");
+    local OperationTeatime = player:getQuestStatus(AHT_URHGAN,OPERATION_TEATIME);
+    local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress");
     local LvL = player:getMainLvl();
     local Job = player:getMainJob();
 
@@ -39,8 +55,6 @@ function onTrigger(player,npc)
     -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
         player:unlockAttachment(8224); --Harlequin Frame
         player:unlockAttachment(8193); --Harlequin Head
-    elseif (Job ~= JOBS.PUP and NoStringsAttached == QUEST_COMPLETED) then
-        player:startEvent(267); -- asking you how are you doing with your automaton
     elseif (NoStringsAttached == QUEST_AVAILABLE) then
         player:startEvent(259); -- Leave him alone
 
@@ -51,7 +65,22 @@ function onTrigger(player,npc)
         player:startEvent(775); -- reminder about to head to Nashmau
     elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then
         player:startEvent(776); -- tell him you found automation
-    elseif (TheWaywardAutomation == QUEST_COMPLETED) then
+    elseif (Job == JOBS.PUP and LvL < AF2_QUEST_LEVEL and TheWaywardAutomation == QUEST_COMPLETED) then
+        player:startEvent(777);
+    elseif (Job ~= JOBS.PUP and TheWaywardAutomation == QUEST_COMPLETED) then
+        player:startEvent(777);
+    elseif (Job ~= JOBS.PUP and NoStringsAttached == QUEST_COMPLETED) then
+        player:startEvent(267); -- asking you how are you doing with your automaton
+
+        
+    --Quest: Operation teatime
+    elseif (Job == JOBS.PUP and LvL >= AF2_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_COMPLETED and OperationTeatime == QUEST_AVAILABLE) then
+        player:startEvent(778);
+    elseif (OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 1) then
+        player:startEvent(779); -- Reminds you to get items
+    elseif (OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 2) then
+        player:startEvent(781); -- Reminds you to get items
+    elseif (OperationTeatime == QUEST_COMPLETED) then
         player:startEvent(777);
     end
 end;
@@ -94,6 +123,11 @@ function onEventFinish(player,csid,option)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17858);
         end
+    elseif (csid == 778) then
+        player:setVar("OperationTeatimeProgress",1);
+        player:addQuest(AHT_URHGAN,OPERATION_TEATIME);
+    elseif (csid == 780) then
+        player:setVar("OperationTeatimeProgress",2);
     end
 end;
 

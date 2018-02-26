@@ -10,6 +10,12 @@
 
 # Pull Request Contributions:
 
+All contributions must be done through pull requests to the darkstar repository.  We unfortunately don't have time to take fixes from Discord or the forums to apply ourselves.  If you need help with making a pull request, there is a GitHub guide on how to do so.  If you still need help after consulting the guide, you can ask for help in Discord and we will be happy to help you.
+
+After a pull request is made, if a developer leaves feedback for you to change, you must fix it for your pull request to be merged.  We cannot merge incomplete or misformatted code, and (like before) we don't really have time to fix these ourselves.
+
+Unfortunately, the team is small enough that we can't fix or open pull requests for others, or we would have no time to do anything else.
+
 ### Style Guide
 
 * *detailed examples coming soon*

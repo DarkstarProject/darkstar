@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5699
 -- Item: anchovy_pizza
--- Food Effect: 3hours, All Races
+-- Food Effect: 3 hours, all Races
 -----------------------------------------
 -- HP +30
 -- DEX +1
@@ -22,11 +22,6 @@ end;
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5699);
 end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(MOD_HP, 30);
     target:addMod(MOD_DEX, 1);

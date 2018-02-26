@@ -285,11 +285,7 @@ namespace luautils
 
     int32 SendEntityVisualPacket(lua_State* L)
     {
-        if ((!lua_isnil(L, 1) && lua_isnumber(L, 1)) &&
-            (!lua_isnil(L, 2) && lua_isnumber(L, 2)) &&
-            (!lua_isnil(L, 3) && lua_isnumber(L, 3)) &&
-            (!lua_isnil(L, 4) && lua_isnumber(L, 4)) &&
-            (!lua_isnil(L, 5) && lua_isnumber(L, 5)))
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint32 npcid = (uint32)lua_tointeger(L, 1);
             const char* command = lua_tostring(L, 2);

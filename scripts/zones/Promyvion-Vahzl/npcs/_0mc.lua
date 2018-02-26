@@ -4,18 +4,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/missions");
 require("scripts/zones/Promyvion-Vahzl/TextIDs");
-require("scripts/globals/keyitems");
+require("scripts/zones/Promyvion-Vahzl/MobIDs");
+require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==1) then
-        SpawnMob(16867330):updateClaim(player);
+    if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==1 and not GetMobByID(PROPAGATOR):isSpawned()) then
+        SpawnMob(PROPAGATOR):updateClaim(player);
     elseif (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==2) then
         player:startEvent(51);
     else
@@ -24,12 +23,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
     if (csid == 51) then
-      player:setVar("PromathiaStatus",3);
+        player:setVar("PromathiaStatus",3);
     end
 end;

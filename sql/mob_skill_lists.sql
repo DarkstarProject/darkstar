@@ -1225,6 +1225,16 @@ INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,787);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,788);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,920);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,921);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1731);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1732);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1733);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1734);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1738);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1797);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1798);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1799);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1800);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1801);
 -- INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1724);
 -- INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1723);
 INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1722);
@@ -1369,37 +1379,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,2022);
 INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,2023);
 INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,2024);
 -- INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,688);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2057);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2058);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2059);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2060);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1797);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1798);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1799);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1738);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1813);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1814);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1812);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1809);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1802);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1803);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1804);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1807);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1785);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1787);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1790);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1828);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1829);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1830);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1831);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1835);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1836);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2025);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2026);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2028);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2022);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2023);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2024);
 INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2113);
 INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2114);
 INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2116);
@@ -3640,3 +3619,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Hovering_Hotpot',998,521); -- spinning at
 
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,923);
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,924);
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle

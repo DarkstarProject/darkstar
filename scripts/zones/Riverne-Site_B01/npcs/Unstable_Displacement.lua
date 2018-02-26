@@ -15,10 +15,6 @@ function onTrade(player,npc,trade)
     local offset = npc:getID() - RIV_B_DISPLACEMENT_OFFSET;
     if (offset == 5 and TradeBCNM(player,player:getZoneID(),trade,npc)) then -- The Wyrmking Descends
         return;
-    elseif (offset ~= 5 and trade:hasItemQty(1691,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        npc:openDoor(RIVERNE_PORTERS);
-        player:messageSpecial(SD_HAS_GROWN);
     end
 end;
 
@@ -32,20 +28,6 @@ function onTrigger(player,npc)
         return 1;
     elseif (offset == 5) then
         player:messageSpecial(SPACE_SEEMS_DISTORTED);
-
-    -- GIANT SCALE DISPLACEMENTS
-    else
-        if (npc:getAnimation() == ANIMATION_OPEN_DOOR) then
-            if (offset == 20) then
-                player:startEvent(7);
-            elseif (offset == 34) then
-                player:startEvent(22);
-            elseif (offset == 38) then
-                player:startEvent(38);
-            end
-        else
-            player:messageSpecial(SD_VERY_SMALL);
-        end
     end
 end;
 

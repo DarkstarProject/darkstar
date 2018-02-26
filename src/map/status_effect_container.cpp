@@ -1204,7 +1204,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
     if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
         (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
+        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_AVENGERS_ROLL)
     {
         name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
