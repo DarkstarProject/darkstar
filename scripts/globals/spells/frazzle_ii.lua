@@ -11,12 +11,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local power = utils.clamp(40+math.floor(dINT/5), 40, 50);
+    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local power = utils.clamp(40+math.floor(dMND/5), 40, 50);
     local duration = 120;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = MOD_MND;
     params.skillType = power;
     params.bonus = 0;
     params.effect = EFFECT_MAGIC_EVASION_DOWN;
