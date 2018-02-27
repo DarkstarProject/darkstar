@@ -4,6 +4,7 @@
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/zones/RuAun_Gardens/TextIDs");
 require("scripts/zones/RuAun_Gardens/MobIDs");
 require("scripts/globals/settings");

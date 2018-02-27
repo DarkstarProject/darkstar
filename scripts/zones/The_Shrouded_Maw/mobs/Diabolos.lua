@@ -37,9 +37,11 @@ function onMobFight(mob,target)
                 local tileId = DARKNESS_NAMED_TILE_OFFSET + (inst * 8) + (k - 1);
                 local tile = GetNPCByID(tileId);
                 if (tile:getAnimation() == ANIMATION_CLOSE_DOOR) then
-                    tile:setAnimation(ANIMATION_OPEN_DOOR);     -- Floor opens
                     SendEntityVisualPacket(tileId, v[inst+2]);  -- Animation for floor dropping
                     SendEntityVisualPacket(tileId, "s123");     -- Tile dropping sound
+                    tile:timer(5000, function(tile)
+                        tile:setAnimation(ANIMATION_OPEN_DOOR);     -- Floor opens
+                    end)
                 end
                 break;
             end;

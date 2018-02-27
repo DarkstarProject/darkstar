@@ -2298,10 +2298,7 @@ namespace charutils
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
-            if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
-                (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
-                (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
+            if (battleutils::CanUseWeaponskill(PChar, PSkill) ||
                 PSkill->getID() == main_ws ||
                 (isInDynamis && (PSkill->getID() == main_ws_dyn)))
             {
@@ -2317,10 +2314,7 @@ namespace charutils
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
-                if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
-                    (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
-                    (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                    (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
+                if ((battleutils::CanUseWeaponskill(PChar, PSkill)) ||
                     PSkill->getID() == range_ws ||
                     (isInDynamis && (PSkill->getID() == range_ws_dyn)))
                 {
@@ -2767,12 +2761,10 @@ namespace charutils
         }
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         uint16 curSkill = PChar->RealSkills.skill[skill] / 10;
-        JOBTYPE curMainJob = PChar->GetMJob();
-        JOBTYPE curSubJob = PChar->GetSJob();
 
         for (auto&& PSkill : WeaponSkillList)
         {
-            if (curSkill == PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
+            if (curSkill == PSkill->getSkillLevel() && (battleutils::CanUseWeaponskill(PChar, PSkill)))
             {
                 addWeaponSkill(PChar, PSkill->getID());
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PSkill->getID(), PSkill->getID(), 45));

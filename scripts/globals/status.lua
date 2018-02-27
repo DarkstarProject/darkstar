@@ -2315,21 +2315,25 @@ ANIMATION_MOUNT                    = 85;
 ------------------------------------
 MOUNTS =
 {
-    MOUNT_CHOCOBO    = 0,
-    MOUNT_RAPTOR     = 1,
-    MOUNT_TIGER      = 2,
-    MOUNT_CRAB       = 3,
-    MOUNT_RED_CRAB   = 4,
-    MOUNT_BOMB       = 5,
-    MOUNT_RAM        = 6,
-    MOUNT_MORBOL     = 7,
-    MOUNT_CRAWLER    = 8,
-    MOUNT_FENRIR     = 9,
-    MOUNT_BEETLE     = 10,
-    MOUNT_MOOGLE     = 11,
-    MOUNT_MAGIC_POT  = 12,
-    MOUNT_TULFAIRE   = 13,
-    MOUNT_WARMACHINE = 14
+    CHOCOBO        = 0,
+    RAPTOR         = 1,
+    TIGER          = 2,
+    CRAB           = 3,
+    RED_CRAB       = 4,
+    BOMB           = 5,
+    RAM            = 6,
+    MORBOL         = 7,
+    CRAWLER        = 8,
+    FENRIR         = 9,
+    BEETLE         = 10,
+    MOOGLE         = 11,
+    MAGIC_POT      = 12,
+    TULFAIRE       = 13,
+    WARMACHINE     = 14,
+    XZOMIT         = 15,
+    HIPPOGRYPH     = 16,
+    SPECTRAL_CHAIR = 17,
+    SPHEROID       = 18
 }
 
 ------------------------------------

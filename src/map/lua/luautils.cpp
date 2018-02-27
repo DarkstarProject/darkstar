@@ -285,11 +285,7 @@ namespace luautils
 
     int32 SendEntityVisualPacket(lua_State* L)
     {
-        if ((!lua_isnil(L, 1) && lua_isnumber(L, 1)) &&
-            (!lua_isnil(L, 2) && lua_isnumber(L, 2)) &&
-            (!lua_isnil(L, 3) && lua_isnumber(L, 3)) &&
-            (!lua_isnil(L, 4) && lua_isnumber(L, 4)) &&
-            (!lua_isnil(L, 5) && lua_isnumber(L, 5)))
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint32 npcid = (uint32)lua_tointeger(L, 1);
             const char* command = lua_tostring(L, 2);
@@ -1213,18 +1209,18 @@ namespace luautils
 
             bool contentEnabled;
 
-            try
+            if (auto contentEnabledIter = contentEnabledMap.find(contentVariable);  contentEnabledIter != contentEnabledMap.end())
             {
-                contentEnabled = contentEnabledMap.at(contentVariable);
+                contentEnabled = contentEnabledIter->second;
             }
-            catch (std::out_of_range)
+            else
             {
                 // Cache contentTag lookups in a map so that we don't re-hit the Lua file every time
                 contentEnabled = (GetSettingsVariable(contentVariable.c_str()) != 0);
                 contentEnabledMap[contentVariable] = contentEnabled;
             }
 
-            if (contentEnabled == false && contentRestrictionEnabled == true)
+            if (!contentEnabled && contentRestrictionEnabled)
             {
                 return false;
             }

@@ -532,14 +532,7 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     }
     if (isDead())
     {
-        if (targetFlags & TARGET_PLAYER_DEAD)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (targetFlags & TARGET_PLAYER_DEAD) != 0;
     }
 
     if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
@@ -555,7 +548,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     if (((targetFlags & TARGET_PLAYER_PARTY) || ((targetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) &&
         PInitiator->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))) &&
         ((PParty && PInitiator->PParty == PParty) ||
-        (PInitiator->PMaster && PInitiator->PMaster->PParty == PParty)))
+        (PInitiator->PMaster && PInitiator->PMaster->PParty == PParty)) &&
+        PInitiator != this)
     {
         return true;
     }

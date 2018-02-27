@@ -32925,6 +32925,7 @@ INSERT INTO `mob_droplist` VALUES (4592,0,0,1000,2857,390);
 INSERT INTO `mob_droplist` VALUES (4593,0,0,1000,19045,400);
 INSERT INTO `mob_droplist` VALUES (4594,0,0,1000,16024,220);
 INSERT INTO `mob_droplist` VALUES (4595,0,0,1000,16036,49); -- 4.9% Wilhelm's Earring off Goblintrap
+INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,16032,169);
 
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;

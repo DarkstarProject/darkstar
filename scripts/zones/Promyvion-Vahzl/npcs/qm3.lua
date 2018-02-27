@@ -7,14 +7,16 @@
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Promyvion-Vahzl/TextIDs");
+require("scripts/zones/Promyvion-Vahzl/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(1758,1) and trade:getItemCount() == 1) then -- Satiator Remnant
-        player:tradeComplete();
+    if (not GetMobByID(PROVOKER):isSpawned() and npcUtil.tradeHas(trade, 1758)) then -- Satiator Remnant
+        player:confirmTrade();
         player:messageSpecial(ON_NM_SPAWN);
-        SpawnMob(16867642):updateClaim(player); -- Spawn Provoker
+        SpawnMob(PROVOKER):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
