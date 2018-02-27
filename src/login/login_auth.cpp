@@ -86,6 +86,8 @@ int32 login_parse(int32 fd)
 
         std::string name(buff, buff + 16);
         std::string password(buff + 16, buff + 32);
+        char escaped_name[16*2 +1];
+        char escaped_pass[32*2 +1];
 
         std::fill_n(sd->login, sizeof sd->login, '\0');
         std::copy(name.cbegin(), name.cend(), sd->login);
@@ -107,7 +109,9 @@ int32 login_parse(int32 fd)
             const char* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
-            int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
+            Sql_EscapeString(SqlHandle, escaped_name, name.c_str());
+            Sql_EscapeString(SqlHandle, escaped_pass, password.c_str());
+            int32 ret = Sql_Query(SqlHandle, fmtQuery, escaped_name, escaped_pass);
             if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
             {
                 ret = Sql_NextRow(SqlHandle);
@@ -206,7 +210,8 @@ int32 login_parse(int32 fd)
         break;
         case LOGIN_CREATE:
             //looking for same login
-            if (Sql_Query(SqlHandle, "SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", name.c_str()) == SQL_ERROR)
+            Sql_EscapeString(SqlHandle, escaped_name, name.c_str());
+            if (Sql_Query(SqlHandle, "SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", escaped_name) == SQL_ERROR)
             {
                 session[fd]->wdata.resize(1);
                 ref<uint8>(session[fd]->wdata.data(), 0) = LOGIN_ERROR_CREATE;
@@ -248,7 +253,7 @@ int32 login_parse(int32 fd)
                 fmtQuery = "INSERT INTO accounts(id,login,password,timecreate,timelastmodify,status,priv)\
 									   VALUES(%d,'%s',PASSWORD('%s'),'%s',NULL,%d,%d);";
 
-                if (Sql_Query(SqlHandle, fmtQuery, accid, name.c_str(), password.c_str(),
+                if (Sql_Query(SqlHandle, fmtQuery, accid, escaped_name, escaped_pass,
                     strtimecreate, ACCST_NORMAL, ACCPRIV_USER) == SQL_ERROR)
                 {
                     session[fd]->wdata.resize(1);
@@ -257,13 +262,13 @@ int32 login_parse(int32 fd)
                     return -1;
                 }
 
-                ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n", name.c_str());
+                ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n", escaped_name);
                 session[fd]->wdata.resize(1);
                 ref<uint8>(session[fd]->wdata.data(), 0) = LOGIN_SUCCESS_CREATE;
                 do_close_login(sd, fd);
             }
             else {
-                ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n", name.c_str());
+                ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n", escaped_name);
                 session[fd]->wdata.resize(1);
                 ref<uint8>(session[fd]->wdata.data(), 0) = LOGIN_ERROR_CREATE;
                 do_close_login(sd, fd);
