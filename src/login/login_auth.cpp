@@ -211,6 +211,7 @@ int32 login_parse(int32 fd)
         case LOGIN_CREATE:
             //looking for same login
             Sql_EscapeString(SqlHandle, escaped_name, name.c_str());
+            Sql_EscapeString(SqlHandle, escaped_pass, password.c_str());
             if (Sql_Query(SqlHandle, "SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", escaped_name) == SQL_ERROR)
             {
                 session[fd]->wdata.resize(1);
