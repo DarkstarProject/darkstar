@@ -184,7 +184,7 @@ int32 login_parse(int32 fd)
                 }
 
                 if (numCons > 1) {
-                    ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" has logged in %i times! Removing older logins.\n", name.c_str(), numCons);
+                    ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" has logged in %i times! Removing older logins.\n", escaped_name, numCons);
                     for (int j = 0; j < (numCons - 1); j++) {
                         for (login_sd_list_t::iterator i = login_sd_list.begin(); i != login_sd_list.end(); ++i) {
                             if ((*i)->accid == sd->accid) {
@@ -197,13 +197,13 @@ int32 login_parse(int32 fd)
                 }
                 //////
 
-                ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" was connected\n", name.c_str(), status);
+                ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" was connected\n", escaped_name, status);
                 return 0;
             }
             else {
                 session[fd]->wdata.resize(1);
                 ref<uint8>(session[fd]->wdata.data(), 0) = LOGIN_ERROR;
-                ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n", name.c_str());
+                ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n", escaped_name);
                 do_close_login(sd, fd);
             }
         }
