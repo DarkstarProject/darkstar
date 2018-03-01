@@ -1188,6 +1188,9 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItem->getFlag() & ITEM_FLAG_EX)
                 return;
 
+            if (PItem->isSubType(ITEM_LOCKED))
+                return;
+
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {
@@ -3663,11 +3666,21 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         slotQty[invSlotID]++;
 
-        if ((PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)) && (PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getID() == ItemID) &&
-            (slotQty[invSlotID] <= PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getQuantity()))
+        auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
+
+        if (PItem && PItem->getID() == ItemID && slotQty[invSlotID] <= (PItem->getQuantity() - PItem->getReserve()))
         {
             PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
-            PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setReserve(PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getReserve() + 1);
+        }
+    }
+
+    for (uint8 container_slotID = 0; container_slotID <= 8; ++container_slotID)
+    {
+        auto slotid = PChar->CraftContainer->getInvSlotID(container_slotID);
+        if (slotid != 0xFF)
+        {
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotid);
+            PItem->setReserve(PItem->getReserve() + 1);
         }
     }
 
