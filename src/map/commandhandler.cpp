@@ -129,6 +129,33 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 
         return -1;
     }
+    else
+    {
+        if (map_config.audit_gm_cmd <= permission && map_config.audit_gm_cmd > 0)
+        {
+            char escaped_name[16*2 +1];
+            char escaped_gm_cmd[256];      // Todo: Accurately size buffer from input string (x2 +1)
+            char escaped_full_string[256]; // Todo: Accurately size buffer from input string (x2 +1)
+            Sql_EscapeString(SqlHandle, escaped_name, PChar->name.c_str());
+            Sql_EscapeString(SqlHandle, escaped_gm_cmd, cmdname.c_str());
+            Sql_EscapeString(SqlHandle, escaped_full_string, (char*)commandline);
+
+            std::string qStr = ("INSERT into audit_gm (date_time,gm_name,command,full_string) VALUES(");
+            qStr += "current_timestamp(),'";
+            qStr += escaped_name;
+            qStr += "','";
+            qStr += escaped_gm_cmd;
+            qStr += "','";
+            qStr += escaped_full_string;
+            qStr += "');";
+            const char* fmtQuery = qStr.c_str();
+
+            if (Sql_QueryStr(SqlHandle, fmtQuery) == SQL_ERROR)
+            {
+                ShowError("cmdhandler::call: Failed to log GM command.\n");
+            }
+        }
+    }
 
     // Ensure the onTrigger function exists for this command..
     lua_getglobal(m_LState, "onTrigger");
