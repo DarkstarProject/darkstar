@@ -34,7 +34,7 @@ end;
 
 function onEffectLose(target, effect)
     target:delMod(MOD_HP, 25);
-    target:delMod(MOD_FOOD_ACCP, 111);
+    target:delMod(MOD_FOOD_ACCP, 11);
     target:delMod(MOD_FOOD_ACC_CAP, 58);
     target:delMod(MOD_FOOD_ATTP, 21);
     target:delMod(MOD_FOOD_ATT_CAP, 55);
