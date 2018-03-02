@@ -128,8 +128,15 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
 				continue;
 			}
 
-			uint8 learnableLevel = PSpell->getJob(JOB_BLU);
-			if (learnableLevel > 0 && learnableLevel < PBlueMage->GetMLevel()+7) { // TODO: Use blue magic skill check rather than level
+            // get the skill cap for the spell level
+            auto skillLvlForSpell = battleutils::GetMaxSkill(SKILL_BLU, JOB_BLU, PSpell->getJob(JOB_BLU));
+            // get player skill level with bonus from gear
+            auto playerSkillLvl = PBlueMage->GetSkill(SKILL_BLU);
+
+            // make sure the difference between spell skill and player is at most 31 points
+            if (playerSkillLvl >= skillLvlForSpell - 31)
+            {
+                // TODO: check for blue learning bonus and adjust base percent
                 if (dsprand::GetRandomNumber(100) < 33) {
 					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
