@@ -2,7 +2,7 @@
 -- Area: Outer Horutoto Ruins
 --  MOB: Jack of Swords
 -----------------------------------
-require("scripts/globals/titles");
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/missions");
 -----------------------------------
 

@@ -1356,7 +1356,7 @@ namespace charutils
             PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
             return 0;
         }
-        if ((int32)PItem->getQuantity() + quantity < 0)
+        if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
             ShowDebug("UpdateItem: Trying to move too much quantity\n");
             return 0;
@@ -1488,10 +1488,9 @@ namespace charutils
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
-                int32 qty = (PItem->getQuantity() - PItem->getReserve());
-                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - PItem->getReserve()));
-                if (qty > 0)
-                    PItem->setReserve(0);
+                auto amount = PItem->getReserve();
+                PItem->setReserve(0);
+                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - amount));
                 PChar->UContainer->ClearSlot(slotid);
             }
         }
