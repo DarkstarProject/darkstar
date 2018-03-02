@@ -2210,8 +2210,16 @@ namespace battleutils
 
             // add tp to attacker
             if (primary)
-            {
-                PChar->addTP((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
+
+            // Check if SAVETP value is more than WS would return and use it instead if so.
+            { 
+                int16 standbyTp = ((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
+                int16 savedTp = (PChar->getMod(Mod::SAVETP));
+
+                if (savedTp >= standbyTp) 
+                    PChar->addTP(savedTp);
+                else
+                    PChar->addTP(standbyTp);
             }
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender

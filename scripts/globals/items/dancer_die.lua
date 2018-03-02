@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 5477
--- Warrior Die
--- Teaches the job ability Fighter's Roll
+-- ID: 5495
+-- Dancer Die
+-- Teaches the job ability Dancer's Roll
 -----------------------------------------
 
 function onItemCheck(target)

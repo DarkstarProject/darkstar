@@ -435,9 +435,22 @@ enum class Mod
     ROLL_PUPPET               = 329, // Tracks totals
     ROLL_DANCERS              = 330, // Tracks totals
     ROLL_SCHOLARS             = 331, // Tracks totals
+    ROLL_BOLTERS              = 869, // Tracks totals
+    ROLL_CASTERS              = 870, // Tracks totals
+    ROLL_COURSERS             = 871, // Tracks totals
+    ROLL_BLITZERS             = 872, // Tracks totals
+    ROLL_TACTICIANS           = 873, // Tracks totals
+    ROLL_ALLIES               = 874, // Tracks totals
+    ROLL_MISERS               = 875, // Tracks totals
+    ROLL_COMPANIONS           = 876, // Tracks totals
+    ROLL_AVENGERS             = 877, // Tracks totals
+    ROLL_NATURALISTS          = 878, // Tracks totals
+    ROLL_RUNEISTS             = 879, // Tracks totals
     BUST                      = 332, // # of busts
     QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
     QUICK_DRAW_DMG_PERCENT    = 834, // Percentage increase to QD damage
+    PHANTOM_ROLL              = 881, // Phantom Roll+ Effect from SOA Rings.
+    PHANTOM_DURATION          = 882, // Phantom Roll Duration +.
 
     // Puppetmaster
     MANEUVER_BONUS            = 504, // Maneuver Stat Bonus
@@ -495,6 +508,7 @@ enum class Mod
     SPIKES_DMG                = 344, // stores the base damage of the spikes before reductions
 
     TP_BONUS                  = 345, //
+    SAVETP                    = 880, // SAVETP Effect for Miser's Roll / ATMA / Hagakure.
 
     // Stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
     FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
@@ -681,9 +695,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 869, // stuff
-    // SPARE = 870, // stuff
-    // SPARE = 871, // stuff
+    // SPARE = 883, // stuff
+    // SPARE = 884, // stuff
+    // SPARE = 885, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
