@@ -97,8 +97,7 @@ int32 login_parse(int32 fd)
         {
             ShowWarning(CL_WHITE"login_parse" CL_RESET":" CL_WHITE"%s" CL_RESET" send unreadable data\n", ip2str(sd->client_addr, nullptr));
             session[fd]->wdata.resize(1);
-            char* wdata = const_cast<char *>(session[fd]->wdata.data());
-            ref<uint8>(wdata, 0) = LOGIN_ERROR;
+            ref<uint8>(&session[fd]->wdata.front(), 0) = LOGIN_ERROR;
             do_close_login(sd, fd);
             return -1;
         }
@@ -159,9 +158,8 @@ int32 login_parse(int32 fd)
                     }
                     memset(&session[fd]->wdata[0], 0, 33);
                     session[fd]->wdata.resize(33);
-                    char* wdata = const_cast<char *>(session[fd]->wdata.data());
-                    ref<uint8>(wdata, 0) = LOGIN_SUCCESS;
-                    ref<uint32>(wdata, 1) = sd->accid;
+                    ref<uint8>(&session[fd]->wdata.front(), 0) = LOGIN_SUCCESS;
+                    ref<uint32>(&session[fd]->wdata.front(), 1) = sd->accid;
                     flush_fifo(fd);
                     do_close_tcp(fd);
                 }
@@ -204,18 +202,20 @@ int32 login_parse(int32 fd)
             }
             else {
                 session[fd]->wdata.resize(1);
-                ref<uint8>(const_cast<char*>(session[fd]->wdata.data()), 0) = LOGIN_ERROR;
-                ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n", name.c_str());
+                ref<uint8>(&session[fd]->wdata.front(), 0) = LOGIN_ERROR;
+                ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n", escaped_name);
                 do_close_login(sd, fd);
             }
         }
         break;
         case LOGIN_CREATE:
             //looking for same login
-            if (Sql_Query(SqlHandle, "SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", name.c_str()) == SQL_ERROR)
+            Sql_EscapeString(SqlHandle, escaped_name, name.c_str());
+            Sql_EscapeString(SqlHandle, escaped_pass, password.c_str());
+            if (Sql_Query(SqlHandle, "SELECT accounts.id FROM accounts WHERE accounts.login = '%s'", escaped_name) == SQL_ERROR)
             {
                 session[fd]->wdata.resize(1);
-                ref<uint8>(const_cast<char*>(session[fd]->wdata.data()), 0) = LOGIN_ERROR_CREATE;
+                ref<uint8>(&(session[fd]->wdata.front()), 0) = LOGIN_ERROR_CREATE;
                 do_close_login(sd, fd);
                 return -1;
             }
@@ -235,7 +235,7 @@ int32 login_parse(int32 fd)
                 }
                 else {
                     session[fd]->wdata.resize(1);
-                    ref<uint8>(const_cast<char*>(session[fd]->wdata.data()), 0) = LOGIN_ERROR_CREATE;
+                    ref<uint8>(&(session[fd]->wdata.front()), 0) = LOGIN_ERROR_CREATE;
                     do_close_login(sd, fd);
                     return -1;
                 }
@@ -258,20 +258,20 @@ int32 login_parse(int32 fd)
                     strtimecreate, ACCST_NORMAL, ACCPRIV_USER) == SQL_ERROR)
                 {
                     session[fd]->wdata.resize(1);
-                    ref<uint8>(const_cast<char*>(session[fd]->wdata.data()), 0) = LOGIN_ERROR_CREATE;
+                    ref<uint8>(&(session[fd]->wdata.front()), 0) = LOGIN_ERROR_CREATE;
                     do_close_login(sd, fd);
                     return -1;
                 }
 
-                ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n", name.c_str());
+                ShowStatus(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> was created\n", escaped_name);
                 session[fd]->wdata.resize(1);
-                ref<uint8>(const_cast<char*>(session[fd]->wdata.data()), 0) = LOGIN_SUCCESS_CREATE;
+                ref<uint8>(&(session[fd]->wdata.front()), 0) = LOGIN_SUCCESS_CREATE;
                 do_close_login(sd, fd);
             }
             else {
-                ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n", name.c_str());
+                ShowWarning(CL_WHITE"login_parse" CL_RESET": account<" CL_WHITE"%s" CL_RESET"> already exists\n", escaped_name);
                 session[fd]->wdata.resize(1);
-                ref<uint8>(const_cast<char*>(session[fd]->wdata.data()), 0) = LOGIN_ERROR_CREATE;
+                ref<uint8>(&(session[fd]->wdata.front()), 0) = LOGIN_ERROR_CREATE;
                 do_close_login(sd, fd);
             }
             break;

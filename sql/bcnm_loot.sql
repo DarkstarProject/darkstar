@@ -205,6 +205,47 @@ INSERT INTO `bcnm_loot` VALUES ('76', '831', '149', '9');
 
 INSERT INTO `bcnm_loot` VALUES ('76', '3343', '1', '10');
 
+-- Creeping Doom
+INSERT INTO `bcnm_loot` VALUES ('104', '816', '1000', '0'); -- Silk Thread
+INSERT INTO `bcnm_loot` VALUES ('104', '816', '500', '1'); -- Silk Thread
+INSERT INTO `bcnm_loot` VALUES ('104', '816', '330', '2'); -- Silk Thread
+INSERT INTO `bcnm_loot` VALUES ('104', '14738', '90', '3'); -- Magician's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14737', '90', '3'); -- Wyvern Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14736', '90', '3'); -- Genin Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14735', '90', '3'); -- Ashigaru Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14734', '90', '3'); -- Beater's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14733', '90', '3'); -- Singer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14732', '90', '3'); -- Trimmer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14731', '90', '3'); -- Killer Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14730', '90', '3'); -- Esquire's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14729', '90', '3'); -- Pilferer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13439', '90', '4');-- Warlock's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13438', '90', '4'); -- Wizard's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13437', '90', '4'); -- Healer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13436', '90', '4'); -- Wrestler's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13435', '90', '4'); -- Mercenary's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '1134', '110', '5'); -- Bast Parchment
+INSERT INTO `bcnm_loot` VALUES ('104', '4116', '150', '5'); -- Hi-Potion
+INSERT INTO `bcnm_loot` VALUES ('104', '4132', '150', '5'); -- Hi-Ether
+INSERT INTO `bcnm_loot` VALUES ('104', '694', '100', '6'); -- Chestnut Log
+INSERT INTO `bcnm_loot` VALUES ('104', '690', '100', '6'); -- Elm Log
+INSERT INTO `bcnm_loot` VALUES ('104', '651', '80', '6'); -- Iron Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '653', '80', '6'); -- Mythril Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '744', '80', '6'); -- Silver Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '652', '80', '6'); -- Steel Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '644', '100', '7'); -- Mythril Ore
+INSERT INTO `bcnm_loot` VALUES ('104', '645', '100', '7'); -- Darksteel Ore
+INSERT INTO `bcnm_loot` VALUES ('104', '736', '100', '7'); -- Silver Ore
+INSERT INTO `bcnm_loot` VALUES ('104', '806', '80', '7'); -- Tourmaline
+INSERT INTO `bcnm_loot` VALUES ('104', '814', '80', '7'); -- Amber
+INSERT INTO `bcnm_loot` VALUES ('104', '795', '80', '7'); -- Lapis Lazuli
+INSERT INTO `bcnm_loot` VALUES ('104', '799', '80', '7'); -- Onyx
+INSERT INTO `bcnm_loot` VALUES ('104', '807', '80', '7'); -- Sardonyx
+INSERT INTO `bcnm_loot` VALUES ('104', '4751', '200', '8'); -- Scroll of Erase
+INSERT INTO `bcnm_loot` VALUES ('104', '4868', '150', '8'); -- Scroll of Dispel
+INSERT INTO `bcnm_loot` VALUES ('104', '5070', '200', '8'); -- Scroll of Magic Finale
+INSERT INTO `bcnm_loot` VALUES ('104', '4947', '100', '8'); -- Scroll of Utsusemi: Ni
+
 --
 INSERT INTO `bcnm_loot` VALUES ('105', '1603', '100', '0');
 INSERT INTO `bcnm_loot` VALUES ('105', '915', '250', '1');
