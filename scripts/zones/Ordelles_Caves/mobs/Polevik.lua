@@ -4,15 +4,15 @@
 -- Involved In Quest: Dark Puppet
 -- !pos -51 0.1 3 193
 -----------------------------------
+require("scripts/globals/status");
+-----------------------------------
 
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
 end;
 
 function onMobDeath(mob, player, isKiller)
-
     if (player:getVar("sharpeningTheSwordCS") == 3) then
         player:setVar("PolevikKilled",1);
-        player:setVar("Polevik_Timer",os.time());
     end
-
 end;
