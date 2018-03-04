@@ -32,5 +32,7 @@ function onPetAbility(target, pet, skill)
         target:addStatusEffect(EFFECT_WEIGHT, 50, 0, duration);
     end
 
+    target:delHP(dmg);
+    target:updateEnmityFromDamage(pet,dmg);
     return dmg;
 end
