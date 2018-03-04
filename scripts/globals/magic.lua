@@ -696,57 +696,62 @@ function adjustForTarget(target,dmg,ele)
     return dmg;
 end;
 
-function calculateMagicBurst(caster, spell, target)
+function calculateMagicBurst(caster, spell, target, params)
 
     local burst = 1.0;
+    local skillchainburst = 1.0;
+    local modburst = 1.0;
 
     if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
         return burst;
     end
 
+    -- Obtain first multiplier from gear, atma and job traits
+    -- Add in bonus from BLM AMII merits (minimum 0, maximum 0.12 with 5/5 merits)
+    modburst = (caster:getMod(MOD_MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
+
+    -- Cap bonuses from first multiplier at 40% or 1.4
+    if (modburst > 1.4) then
+        modburst = 1.4;
+    end
+
+    -- Obtain second multiplier from skillchain
+    -- Starts at 35% damage bonus, increases by 10% for every additional weaponskill in the chain
     local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
 
     if (skillchainTier > 0) then
-        if (skillchainCount == 1) then
-            burst = 1.3;
-        elseif (skillchainCount == 2) then
-            burst = 1.35;
-        elseif (skillchainCount == 3) then
-             burst = 1.40;
-        elseif (skillchainCount == 4) then
-            burst = 1.45;
-        elseif (skillchainCount == 5) then
-            burst = 1.50;
+        if (skillchainCount == 1) then -- two weaponskills
+            skillchainburst = 1.35;
+        elseif (skillchainCount == 2) then -- three weaponskills
+            skillchainburst = 1.45;
+        elseif (skillchainCount == 3) then -- four weaponskills
+             skillchainburst = 1.55;
+        elseif (skillchainCount == 4) then -- five weaponskills
+            skillchainburst = 1.65;
+        elseif (skillchainCount == 5) then -- six weaponskills
+            skillchainburst = 1.75;
         else
             -- Something strange is going on if this occurs.
-            burst = 1.0;
-        end
-
-        --add burst bonus for BLM AMII spells
-        if (spell:getID() == 205 or spell:getID() == 207 or spell:getID() == 209 or spell:getID() == 211 or spell:getID() == 213 or spell:getID() == 215) then
-            if (caster:getMerit(blmAMIIMerit[spell:getElement()]) ~= 0) then -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
-                burst = burst + (caster:getMerit(blmAMIIMerit[spell:getElement()]) - 1) * 0.03; -- bonus value granted by merit is 1; subtract 1 since unlock doesn't give a magic burst bonus
-                -- print((caster:getMerit(blmAMIIMerit[spell:getElement()]) - 1) * 0.03)
-            end
+            skillchainburst = 1.0;
         end
     end
 
-    -- Add in Magic Burst Bonus Modifier
-    if (burst > 1) then
-        burst = burst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    -- Multiply
+    if (skillchainburst > 1) then
+        burst = burst * modburst * skillchainburst;
     end
 
     return burst;
 end;
 
-function addBonuses(caster, spell, target, dmg, bonusmab)
+function addBonuses(caster, spell, target, dmg, params)
     local ele = spell:getElement();
 
     local affinityBonus = AffinityBonusDmg(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
-    if (bonusmab == nil) then
-        bonusmab = 0;
+    if (params.bonusmab == nil) then
+        params.bonusmab = 0;
     end
 
     local magicDefense = getElementalDamageReduction(target, ele);
@@ -801,7 +806,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     dmg = math.floor(dmg * dayWeatherBonus);
 
-    local burst = calculateMagicBurst(caster, spell, target);
+    local burst = calculateMagicBurst(caster, spell, target, params);
 
     if (burst > 1.0) then
         spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
@@ -814,7 +819,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
         mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
         -- print(mabbonus);
     else
-        local mab = caster:getMod(MOD_MATT) + bonusmab;
+        local mab = caster:getMod(MOD_MATT) + params.bonusmab;
 
         local mab_crit = caster:getMod(MOD_MAGIC_CRITHITRATE);
         if ( math.random(1,100) < mab_crit ) then
@@ -1134,7 +1139,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     DMG = DMG * resist;
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    DMG = addBonuses(caster, spell, target, DMG);
+    DMG = addBonuses(caster, spell, target, DMG, spellParams);
 
     --add in target adjustment
     local ele = spell:getElement();
@@ -1197,7 +1202,7 @@ function doNuke(caster, target, spell, params)
     end
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg,mabBonus);
+    dmg = addBonuses(caster, spell, target, dmg, params);
     --add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     --add in final adjustments
@@ -1217,7 +1222,7 @@ function doDivineBanishNuke(caster, target, spell, params)
     dmg = dmg*resist;
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg);
+    dmg = addBonuses(caster, spell, target, dmg, params);
     --add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     --handling afflatus misery
