@@ -741,9 +741,7 @@ function addBonuses(caster, spell, target, dmg, params)
     local affinityBonus = AffinityBonusDmg(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
-    if (params.bonusmab == nil) then
-        params.bonusmab = 0;
-    end
+    params.bonusmab = params.bonusmab or 0;
 
     local magicDefense = getElementalDamageReduction(target, ele);
     dmg = math.floor(dmg * magicDefense);
