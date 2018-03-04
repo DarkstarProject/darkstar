@@ -13,13 +13,13 @@ end;
 
 function onSpellCast(caster,target,spell)
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
+    local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 
     local params = {};
 
     params.diff = nil;
 
-    params.attribute = MOD_INT;
+    params.attribute = MOD_CHR;
 
     params.skillType = SINGING_SKILL;
 
