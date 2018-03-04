@@ -57,7 +57,6 @@ require("scripts/globals/msg");
     nullMod = {MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL};
     blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
     rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
-    blmAMIIMerit = {MERIT_FLARE_II, MERIT_QUAKE_II, MERIT_FLOOD_II, MERIT_TORNADO_II, MERIT_FREEZE_II, MERIT_BURST_II};
     barSpells = {EFFECT_BARFIRE, EFFECT_BARSTONE, EFFECT_BARWATER, EFFECT_BARAERO, EFFECT_BARBLIZZARD, EFFECT_BARTHUNDER};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
@@ -339,7 +338,7 @@ function applyResistanceEffect(caster, target, spell, params)
 
     local element = spell:getElement();
     local percentBonus = 0;
-    local magicaccbonus = getSpellBonusAcc(caster, target, spell);
+    local magicaccbonus = getSpellBonusAcc(caster, target, spell, params);
 
     if (diff > 10) then
         magicaccbonus = magicaccbonus + 10 + (diff - 10)/2;
@@ -513,10 +512,8 @@ function getEffectResistance(target, effect)
 end;
 
 -- Returns the bonus magic accuracy for any spell
-function getSpellBonusAcc(caster, target, spell)
+function getSpellBonusAcc(caster, target, spell, params)
     local magicAccBonus = 0;
-    local spellId = spell:getID();
-    local element = spell:getElement();
     local castersWeather = caster:getWeather();
     local skill = spell:getSkillType();
     local spellGroup = spell:getSpellGroup();
@@ -532,13 +529,7 @@ function getSpellBonusAcc(caster, target, spell)
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
 
     --add acc for BLM AMII spells
-    if (spellId == 205 or spellId == 207 or spellId == 209 or spellId == 211 or spellId == 213 or spellId == 215) then
-        -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
-        if (caster:getMerit(blmAMIIMerit[element]) ~= 0) then
-            -- bonus value granted by merit is 1; subtract 1 since unlock doesn't give an accuracy bonus
-            magicAccBonus = magicAccBonus + (caster:getMerit(blmAMIIMerit[element]) - 1) * 5;
-        end
-    end
+    magicAccBonus = magicAccBonus + params.AMIIaccBonus;
 
     --add acc for skillchains
     if (skillchainTier > 0) then
@@ -1093,6 +1084,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
     local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
     local resistBonus = spellParams.resistBonus;
+    local AMIIaccBonus = spellParams.AMIIaccBonus;
     local mDMG = caster:getMod(MOD_MAGIC_DAMAGE);
 
     --[[
@@ -1132,6 +1124,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     params.attribute = MOD_INT;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
     params.resistBonus = resistBonus;
+    params.AMIIaccBonus = AMIIaccBonus;
 
     local resist = applyResistance(caster, target, spell, params);
 
