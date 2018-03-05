@@ -2235,6 +2235,12 @@ namespace battleutils
         // Apply TP 
         PChar->addTP(std::max((PChar->getMod(Mod::SAVETP)), standbyTp));
 
+        // Remove Hagakure Effect if present
+	if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HAGAKURE))
+        {
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HAGAKURE);
+        }
+
         return damage;
     }
 
