@@ -9,9 +9,9 @@
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+require("scripts/zones/Inner_Horutoto_Ruins/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -21,7 +21,15 @@ function onTrigger(player,npc)
         player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE);
     else
         if (player:hasKeyItem(PORTAL_CHARM)) then
-            npc:openDoor(30);
+        GetNPCByID(PORTAL_CIRCLE_BASE):openDoor(30);
+        GetNPCByID(PORTAL_CIRCLE_BASE+1):openDoor(30);
+        GetNPCByID(PORTAL_CIRCLE_BASE+2):openDoor(30);
+        npc:timer(500, function(npc)
+            GetNPCByID(PORTAL_CIRCLE_BASE+3):openDoor(30);
+        end);
+        npc:timer(2500, function(npc)
+            npc:openDoor(30)
+        end);
         else
             player:messageSpecial(PORTAL_SEALED_BY_3_MAGIC)
         end
