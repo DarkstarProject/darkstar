@@ -458,7 +458,7 @@ EFFECT_ALLIES_ROLL              = 335
 EFFECT_MISERS_ROLL              = 336
 EFFECT_COMPANIONS_ROLL          = 337
 EFFECT_AVENGERS_ROLL            = 338
--- EFFECT_NONE                      = 339
+EFFECT_NATURALISTS_ROLL         = 339
 EFFECT_WARRIOR_S_CHARGE         = 340
 EFFECT_FORMLESS_STRIKES         = 341
 EFFECT_ASSASSIN_S_CHARGE        = 342
@@ -715,7 +715,7 @@ EFFECT_VOIDSTORM_II             = 596
 EFFECT_INUNDATION               = 597
 EFFECT_CASCADE                  = 598
 EFFECT_CONSUME_MANA             = 599
-EFFECT_RUNEIST_S_ROLL           = 600
+EFFECT_RUNEISTS_ROLL            = 600
 EFFECT_CROOKED_CARDS            = 601
 EFFECT_VORSEAL                  = 602
 EFFECT_ELVORSEAL                = 603
@@ -1080,6 +1080,18 @@ MOD_ROLL_CORSAIRS      = 328
 MOD_ROLL_PUPPET        = 329
 MOD_ROLL_DANCERS       = 330
 MOD_ROLL_SCHOLARS      = 331
+-- Corsair Rolls Level 65+
+MOD_ROLL_BOLTERS       = 869
+MOD_ROLL_CASTERS       = 870
+MOD_ROLL_COURSERS      = 871
+MOD_ROLL_BLITZERS      = 872
+MOD_ROLL_TACTICIANS    = 873
+MOD_ROLL_ALLIES        = 874
+MOD_ROLL_MISERS        = 875
+MOD_ROLL_COMPANIONS    = 876
+MOD_ROLL_AVENGERS      = 877
+MOD_ROLL_NATURALISTS   = 878
+MOD_ROLL_RUNEISTS      = 879
 MOD_BUST               = 332
 MOD_FINISHING_MOVES    = 333
 MOD_SAMBA_DURATION     = 490 -- Samba duration bonus
@@ -1326,6 +1338,9 @@ MOD_NIN_NUKE_BONUS            = 522 -- magic attack bonus for NIN nukes
 MOD_AMMO_SWING                = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
 MOD_AMMO_SWING_TYPE           = 826 -- For the handedness of the weapon - 1h (1) vs. 2h/h2h (2). h2h can safely use the same function as 2h.
 MOD_ROLL_RANGE                = 528 -- Additional range for COR roll abilities.
+MOD_PHANTOM_ROLL              = 881 -- Phantom Roll+ Effect from SOA Rings.
+MOD_PHANTOM_DURATION          = 882 -- Phantom Roll Duration +.
+
 MOD_ENHANCES_REFRESH          = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
 MOD_NO_SPELL_MP_DEPLETION     = 530 -- % to not deplete MP on spellcast.
 MOD_FORCE_FIRE_DWBONUS        = 531 -- Set to 1 to force fire day/weather spell bonus/penalty. Do not have it total more than 1.
@@ -1388,12 +1403,14 @@ MOD_ANCIENT_CIRCLE_DURATION = 859
 
 -- Other
 MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
+MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
+
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 869 -- stuff
--- SPARE = 870 -- stuff
--- SPARE = 870 -- stuff
+-- SPARE = 883 -- stuff
+-- SPARE = 884 -- stuff
+-- SPARE = 885 -- stuff
 
 ------------------------------------
 -- Merit Definitions

@@ -1,13 +1,13 @@
 -----------------------------------------
--- ID: 5494
--- Puppetmaster Die
--- Teaches the job ability Puppet Roll
+-- ID: 6369
+-- Rune Fencer Die
+-- Teaches the job ability Runeist's Roll
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnAbility(99);
+    return target:canLearnAbility(375);
 end;
 
 function onItemUse(target)
-    target:addLearnedAbility(99);
+    target:addLearnedAbility(375);
 end;

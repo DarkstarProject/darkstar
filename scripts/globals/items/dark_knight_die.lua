@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 5477
--- Warrior Die
--- Teaches the job ability Fighter's Roll
+-- ID: 5484
+-- Dark Knight Die
+-- Teaches the job ability Chaos Roll
 -----------------------------------------
 
 function onItemCheck(target)

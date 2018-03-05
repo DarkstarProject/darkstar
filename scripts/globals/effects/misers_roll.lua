@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILLCHAINBONUS, effect:getPower());
+    target:addMod(MOD_SAVETP, effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SKILLCHAINBONUS, effect:getPower());
+    target:delMod(MOD_SAVETP, effect:getPower());
 end;

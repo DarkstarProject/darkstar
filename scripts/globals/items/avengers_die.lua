@@ -1,13 +1,13 @@
 -----------------------------------------
--- ID: 5494
--- Puppetmaster Die
--- Teaches the job ability Puppet Roll
+-- ID: 5505
+-- Avenger's Die
+-- Teaches the job ability Avengers Roll
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnAbility(99);
+    return target:canLearnAbility(289);
 end;
 
 function onItemUse(target)
-    target:addLearnedAbility(99);
+    target:addLearnedAbility(289);
 end;

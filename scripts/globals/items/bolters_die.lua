@@ -1,13 +1,13 @@
 -----------------------------------------
--- ID: 5494
--- Puppetmaster Die
--- Teaches the job ability Puppet Roll
+-- ID: 5497
+-- Bolter's Die
+-- Teaches the job ability Bolters Roll
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnAbility(99);
+    return target:canLearnAbility(102);
 end;
 
 function onItemUse(target)
-    target:addLearnedAbility(99);
+    target:addLearnedAbility(102);
 end;
