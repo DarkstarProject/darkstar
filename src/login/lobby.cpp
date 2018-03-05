@@ -638,7 +638,6 @@ int32 lobbyview_parse(int32 fd)
             break;
             case 0x22:
             {
-
                 //creating new char
                 char CharName[15];
                 memset(CharName, 0, sizeof(CharName));
@@ -650,13 +649,10 @@ int32 lobbyview_parse(int32 fd)
                 int32 sendsize = 0x24;
                 unsigned char MainReservePacket[0x24];
 
-                // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET"\n", CharName);
                 std::string myNameIs(&CharName[0]);
-                // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" myNameIs " CL_WHITE"<%s>" CL_RESET"\n", myNameIs);
                 bool invalidName = false;
                 for (auto letters : myNameIs)
                 {
-                    // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" letters " CL_WHITE"<%s>" CL_RESET"\n", letters);
                     if (!std::isalpha(letters))
                     {
                         invalidName = true;
@@ -668,7 +664,6 @@ int32 lobbyview_parse(int32 fd)
                 Sql_EscapeString(SqlHandle, escapedCharName, CharName);
                 if (Sql_Query(SqlHandle, fmtQuery, escapedCharName) == SQL_ERROR)
                 {
-                    // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" arrived at SQL_ERROR check " CL_RESET"\n");
                     do_close_lobbyview(sd, fd);
                     return -1;
                 }
@@ -692,7 +687,6 @@ int32 lobbyview_parse(int32 fd)
                 }
                 else
                 {
-                    // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" arrived at copy charname " CL_RESET"\n");
                     //copy charname
                     memcpy(sd->charname, CharName, 15);
                     sendsize = 0x20;
