@@ -518,6 +518,9 @@ function getSpellBonusAcc(caster, target, spell, params)
     local skill = spell:getSkillType();
     local spellGroup = spell:getSpellGroup();
 
+    params.AMIIaccBonus = params.AMIIaccBonus or 0
+    params.element = params.element or 0
+
     if caster:hasStatusEffect(EFFECT_ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
       magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_ALTRUISM):getPower();
     end
@@ -537,7 +540,7 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --Add acc for klimaform
-    if (caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element])) then
+    if (caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[params.element] or castersWeather == doubleWeatherStrong[params.element])) then
         magicAccBonus = magicAccBonus + 15;
     end
 
@@ -547,8 +550,8 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --add acc for RDM group 1 merits
-    if (element > 0 and element <= 6) then
-        magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[element]);
+    if (params.element > 0 and params.element <= 6) then
+        magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[params.element]);
     end
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
@@ -741,7 +744,9 @@ function addBonuses(caster, spell, target, dmg, params)
     local affinityBonus = AffinityBonusDmg(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
-    params.bonusmab = params.bonusmab or 0;
+    params.bonusmab = params.bonusmab or 0
+    params.AMIIaccBonus = params.AMIIaccBonus or 0
+    params.AMIIburstBonus = params.AMIIburstBonus or 0
 
     local magicDefense = getElementalDamageReduction(target, ele);
     dmg = math.floor(dmg * magicDefense);
