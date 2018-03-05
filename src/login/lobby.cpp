@@ -650,27 +650,49 @@ int32 lobbyview_parse(int32 fd)
                 int32 sendsize = 0x24;
                 unsigned char MainReservePacket[0x24];
 
-
-                if (Sql_Query(SqlHandle, fmtQuery, CharName) == SQL_ERROR)
+                // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET"\n", CharName);
+                std::string myNameIs(&CharName[0]);
+                // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" myNameIs " CL_WHITE"<%s>" CL_RESET"\n", myNameIs);
+                bool invalidName = false;
+                for (auto letters : myNameIs)
                 {
-                    //do_close_lobbyview
+                    // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" letters " CL_WHITE"<%s>" CL_RESET"\n", letters);
+                    if (!std::isalpha(letters))
+                    {
+                        invalidName = true;
+                        break;
+                    }
+                }
+
+                char escapedCharName[16*2 +1];
+                Sql_EscapeString(SqlHandle, escapedCharName, CharName);
+                if (Sql_Query(SqlHandle, fmtQuery, escapedCharName) == SQL_ERROR)
+                {
+                    // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" arrived at SQL_ERROR check " CL_RESET"\n");
                     do_close_lobbyview(sd, fd);
                     return -1;
                 }
 
-                if (Sql_NumRows(SqlHandle) != 0)
+                if (Sql_NumRows(SqlHandle) != 0 || invalidName == true)
                 {
-                    ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET"already taken\n", CharName);
+                    if (invalidName == true)
+                    {
+                        ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET" invalid\n", CharName);
+                    }
+                    else
+                    {
+                        ShowWarning(CL_WHITE"lobbyview_parse:" CL_RESET" character name " CL_WHITE"<%s>" CL_RESET" already taken\n", CharName);
+                    }
+                    // Send error code
                     LOBBBY_ERROR_MESSAGE(ReservePacket);
-                    // устанавливаем код ошибки
-
                     // The character name you entered is unavailable. Please choose another name.
-                    // сообщение отображается на японском
+                    // A message is displayed in Japanese
                     ref<uint16>(ReservePacket, 32) = 313;
                     memcpy(MainReservePacket, ReservePacket, sendsize);
                 }
                 else
                 {
+                    // ShowDebug(CL_WHITE"lobbyview_parse:" CL_RESET" arrived at copy charname " CL_RESET"\n");
                     //copy charname
                     memcpy(sd->charname, CharName, 15);
                     sendsize = 0x20;
