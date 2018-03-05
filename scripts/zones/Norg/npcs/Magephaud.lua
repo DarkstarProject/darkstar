@@ -1,11 +1,7 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Magephaud
+--  NPC: Magephaud
 -- Standard Info NPC
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,11 +11,7 @@ function onTrade(player,npc,trade)
             player:startEvent(118,748);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -33,21 +25,13 @@ function onTrigger(player,npc)
     else
         player:startEvent(115);
     end
-    printf("CSID: %u",nFame);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    -- printf("CSID: %u",nFame);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

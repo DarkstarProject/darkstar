@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Granite Door
+--  NPC: Granite Door
 -- Involved in Missions: San dOria Mission 8-2
 -- !pos -50 -17 -154
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 require("scripts/globals/keyitems");

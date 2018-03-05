@@ -1,32 +1,20 @@
 -----------------------------------
 -- Area: Bastok Markets (S) (H-6)
--- NPC: Adelinde 
+--  NPC: Adelinde
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/North_Gustaberg_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
     player:startEvent(103)
 
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

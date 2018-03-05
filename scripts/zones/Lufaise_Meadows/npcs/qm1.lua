@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  ??? - Amaltheia spawn
+--  NPC: ??? - Amaltheia spawn
 -- !pos 347.897 -10.895 264.382 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Lufaise_Meadows/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,10 +17,6 @@ function onTrade(player,npc,trade)
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 end;

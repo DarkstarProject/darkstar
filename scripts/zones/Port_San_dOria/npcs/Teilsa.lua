@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Teilsa
+--  NPC: Teilsa
 -- Adventurer's Assistant
 -- Only recieving Adv.Coupon and simple talk event are scrited
 -- This NPC participates in Quests and Missions
@@ -10,20 +10,17 @@ package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+-------------------------------------
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
-
-function onTrade(player,npc,trade) 
+function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
         player:startEvent(612);
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
     end
     -- "Flyers for Regine" conditional script
-   local count = trade:getItemCount();
-   local MagicFlyer = trade:hasItemQty(532,1);
+    local count = trade:getItemCount();
+    local MagicFlyer = trade:hasItemQty(532,1);
 
     if (MagicFlyer == true and count == 1) then
         local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
@@ -33,26 +30,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
------------------------------------
- 
-function onTrigger(player,npc) 
+function onTrigger(player,npc)
     player:startEvent(573);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -61,4 +46,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
     end
 end;
-

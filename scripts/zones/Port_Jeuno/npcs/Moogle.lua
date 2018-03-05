@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil
 -----------------------------------

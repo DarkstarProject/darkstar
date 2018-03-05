@@ -1,16 +1,12 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- NPC: Strange Apparatus
+--  NPC: Strange Apparatus
 -- !pos 214 0 -339 197
 -----------------------------------
-
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Crawlers_Nest/TextIDs");
 require("scripts/globals/strangeapparatus");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,10 +38,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local docStatus = 0; -- Assistant
@@ -57,10 +49,6 @@ function onTrigger(player,npc)
 
     player:startEvent(0, docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, player:getZoneID());
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -80,10 +68,6 @@ function onEventUpdate(player,csid,option)
         end
     end
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

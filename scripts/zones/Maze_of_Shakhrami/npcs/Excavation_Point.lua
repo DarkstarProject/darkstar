@@ -1,17 +1,13 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- NPC:  Excavation Point
+--  NPC: Excavation Point
 -- Used in Quest: The Holy Crest
 -- !pos 234 0.1 -110 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/excavation");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,26 +28,14 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

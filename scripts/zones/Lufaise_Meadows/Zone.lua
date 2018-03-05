@@ -12,9 +12,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -28,10 +25,6 @@ function onInitialize(zone)
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -39,9 +32,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -61,36 +51,20 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
-local regionID =region:GetRegionID();
-  if (regionID==1 and player:getCurrentMission(COP) == DAWN     and player:getVar("PromathiaStatus") == 6) then
-      player:startEvent(116);
-  end
+    local regionID =region:GetRegionID();
+        if (regionID==1 and player:getCurrentMission(COP) == DAWN     and player:getVar("PromathiaStatus") == 6) then
+        player:startEvent(116);
+    end
 end;
-
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -107,8 +81,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,14657);
             player:setVar("PromathiaStatus",1);
         end
-     elseif (csid == 116) then
-     player:setVar("PromathiaStatus",7);
-     player:addTitle(BANISHER_OF_EMPTINESS);
+    elseif (csid == 116) then
+        player:setVar("PromathiaStatus",7);
+        player:addTitle(BANISHER_OF_EMPTINESS);
     end
 end;

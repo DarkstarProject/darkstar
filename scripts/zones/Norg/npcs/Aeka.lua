@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Aeka
+--  NPC: Aeka
 -- Involved in Quest: Forge Your Destiny
 -- @zone 252
 -- !pos 4 0 -4
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,9 +33,6 @@ function testflag(set,flag)
     return (set % (2*flag) >= flag)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
 
     swordTimer = player:getVar("ForgeYourDestiny_timer")
@@ -67,18 +60,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

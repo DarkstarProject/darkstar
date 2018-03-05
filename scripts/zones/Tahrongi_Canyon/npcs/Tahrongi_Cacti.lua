@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
--- NPC:  Tahrongi Cacti
+--  NPC: Tahrongi Cacti
 -- Involved in Quest: Say It with Flowers
 --
 -- !pos -308.721 7.477 264.454
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/zone");
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -35,14 +31,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
 function onEventUpdate(player,csid,option)
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
 end;

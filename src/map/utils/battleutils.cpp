@@ -320,6 +320,18 @@ namespace battleutils
         return false;
     }
 
+    bool CanUseWeaponskill(CCharEntity* PChar, CWeaponSkill* PSkill)
+    {
+        if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(PSkill->getType()) >= PSkill->getSkillLevel() &&
+            (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
+            (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
+            (PSkill->getJob(PChar->GetMJob()) > 0 || (PSkill->getJob(PChar->GetSJob()) > 0 && !PSkill->mainOnly()))))
+        {
+            return true;
+        }
+        return false;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Get Enmity Modifier                                                  *
@@ -377,11 +389,11 @@ namespace battleutils
 
     CMobSkill* GetMobSkill(uint16 SkillID)
     {
-        try
+        if (SkillID < g_PMobSkillList.size())
         {
             return g_PMobSkillList[SkillID];
         }
-        catch (std::out_of_range e)
+        else
         {
             return nullptr;
         }
@@ -2137,6 +2149,8 @@ namespace battleutils
             }
         }
 
+        int16 standbyTp = 0;
+
         if (damage > 0)
         {
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
@@ -2198,8 +2212,9 @@ namespace battleutils
 
             // add tp to attacker
             if (primary)
+            // Calculate TP Return from WS
             {
-                PChar->addTP((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
+                standbyTp = ((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
             }
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender
@@ -2216,6 +2231,9 @@ namespace battleutils
 
         if (!isRanged)
             PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+
+        // Apply TP 
+        PChar->addTP(std::max((PChar->getMod(Mod::SAVETP)), standbyTp));
 
         return damage;
     }
@@ -2868,11 +2886,10 @@ namespace battleutils
         {
             for (auto& resonance_element : resonance)
             {
-                try
+                if (auto skillchain = skillchain_map.find({ resonance_element, skill_element }); skillchain != skillchain_map.end())
                 {
-                    return skillchain_map.at({resonance_element, skill_element});
+                    return skillchain->second;
                 }
-                catch (std::out_of_range&) {}
             }
         }
         return SC_NONE;

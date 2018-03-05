@@ -161,25 +161,6 @@ CLuaBaseEntity::CLuaBaseEntity(CBaseEntity* PEntity)
 }
 
 /************************************************************************
-*  Function: SendRevision()
-*  Purpose : Sends the current Git version to the character via message
-*  Example : player:SendRevision()
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    char version[100];
-    strcpy(version, "Revision is: ");
-    strcat(version, get_git_revision());
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, MESSAGE_SYSTEM_1, version));
-
-    return 0;
-}
-
-/************************************************************************
 *  Function: showText()
 *  Purpose : Displays dialogue for NPC
 *  Example : target:showText(mob,YOU_DECIDED_TO_SHOW_UP) -- Fighting Maat
@@ -3436,8 +3417,7 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
         if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
         {
             uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-            auto quantity = (int32)std::max<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
-
+            auto quantity = (int32)std::min<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
         }
     }
@@ -10154,9 +10134,9 @@ inline int32 CLuaBaseEntity::addCorsairRoll(lua_State *L)
         (EFFECT)lua_tointeger(L, 3), // Effect ID
         (uint16)lua_tointeger(L, 3), // Effect Icon (Associated with ID)
         (uint16)lua_tointeger(L, 4), // Power
-        (uint16)lua_tointeger(L, 5), // Tick
-        (uint16)lua_tointeger(L, 6), // Duration
-        (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0),  // SubID or 0
+        (uint32)lua_tointeger(L, 5), // Tick
+        (uint32)lua_tointeger(L, 6), // Duration
+        (n >= 7 ? (uint32)lua_tointeger(L, 7) : 0),  // SubID or 0
         (n >= 8 ? (uint16)lua_tointeger(L, 8) : 0),  // SubPower or 0
         (n >= 9 ? (uint16)lua_tointeger(L, 9) : 0)); // Tier or 0
     uint8 maxRolls = 2;
@@ -13047,8 +13027,6 @@ const char CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
-
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
 
     // Messaging System
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),

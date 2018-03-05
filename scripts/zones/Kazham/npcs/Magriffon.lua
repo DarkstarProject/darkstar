@@ -1,21 +1,17 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Magriffon
+--  NPC: Magriffon
 -- Involved in Quest: Gullible's Travels, Even More Gullible's Travels,
 -- Location: (I-7)
 -----------------------------------
-
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/zones/Kazham/TextIDs");
 
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
@@ -28,10 +24,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local gulliblesTravelsStatus = player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS);
@@ -60,20 +52,13 @@ function onTrigger(player,npc)
     else
         player:startEvent(143);
     end
-    
+
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 144 and option == 1)  then                     -- Gullible's Travels: First CS

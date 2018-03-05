@@ -1,10 +1,10 @@
 -----------------------------------
---  Area: Bostaunieux Oubliette (167)
+-- Area: Bostaunieux Oubliette (167)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
-SEWER_SYRUP_PH = 
+SEWER_SYRUP_PH =
 {
     [17461294] = 17461307, -- -19.000 1.000 -173.000
     [17461320] = 17461307, -- -20.000 1.000 -148.000

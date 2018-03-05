@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Fubruhn
+--  NPC: Fubruhn
 -- Mog Locker NPC
 --
 -- Event IDs:
@@ -24,7 +24,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -46,11 +45,7 @@ function getNumberOfCoinsToUpgradeSize(size)
     elseif (size == 80) then
         return 0;
     end
-end
-
------------------------------------
--- onTrade Action
------------------------------------
+end;
 
 function onTrade(player,npc,trade)
     local numBronze = trade:getItemQty(2184);
@@ -64,7 +59,7 @@ function onTrade(player,npc,trade)
                 -- send event
                 player:startEvent(601, getMogLockerExpiryTimestamp(player));
                 -- print("Expanded lease with "..numBronze.." bronze.");
-            end 
+            end
         elseif (numGold > 0 or numMythril > 0) then
             -- see if we can expand the size
             local slotSize = player:getContainerSize(LOC_MOGLOCKER);
@@ -90,28 +85,24 @@ function onTrade(player,npc,trade)
                 player:startEvent(602,0,0,0,80);
             end
         end
-    end    
-end; 
-
------------------------------------
--- onTrigger Action 
------------------------------------
+    end
+end;
 
 function onTrigger(player,npc)
-    -- TODO: Check if they are >= Mission 2 
-    -- if < mission 2 then 
-    --      player:startEvent(600); 
+    -- TODO: Check if they are >= Mission 2
+    -- if < mission 2 then
+    --      player:startEvent(600);
     -- else
-    if (player:getCurrentMission(TOAU) >= 2) then    
+    if (player:getCurrentMission(TOAU) >= 2) then
         local accessType = getMogLockerAccessType(player);
-        local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player); 
-    
+        local mogLockerExpiryTimestamp = getMogLockerExpiryTimestamp(player);
+
         if (mogLockerExpiryTimestamp == nil) then
             -- a nil timestamp means they haven't unlocked it yet. We're going to unlock it by merely talking to this NPC.
             --print("Unlocking mog locker for "..player:getName());
             mogLockerExpiryTimestamp = unlockMogLocker(player);
-            accessType = setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALLAREAS);     
-        end  
+            accessType = setMogLockerAccessType(player, MOGLOCKER_ACCESS_TYPE_ALLAREAS);
+        end
         player:startEvent(600,mogLockerExpiryTimestamp,accessType,
         MOGLOCKER_ALZAHBI_VALID_DAYS,player:getContainerSize(LOC_MOGLOCKER),
         getNumberOfCoinsToUpgradeSize(player:getContainerSize(LOC_MOGLOCKER)),2,3,
@@ -119,21 +110,13 @@ function onTrigger(player,npc)
     else
         player:startEvent(600);
     end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("fCSID: %u",csid);

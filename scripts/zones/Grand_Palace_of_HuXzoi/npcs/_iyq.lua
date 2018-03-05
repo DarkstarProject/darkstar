@@ -1,24 +1,16 @@
 -----------------------------------
---  Area: Grand Palace of Hu'Xzoi
---  NPC:  cermet portal
+-- Area: Grand Palace of Hu'Xzoi
+--  NPC: cermet portal
 -- !pos 440 0 401 34
 -----------------------------------
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == A_FATE_DECIDED  and player:getVar("PromathiaStatus")==1) then
@@ -30,18 +22,10 @@ function onTrigger(player,npc)
     return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

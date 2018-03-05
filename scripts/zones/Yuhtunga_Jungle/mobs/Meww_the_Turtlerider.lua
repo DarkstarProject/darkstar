@@ -2,11 +2,8 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Meww the Turtlerider
 -----------------------------------
-
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

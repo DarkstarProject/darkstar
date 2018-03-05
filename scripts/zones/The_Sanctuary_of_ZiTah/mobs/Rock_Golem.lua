@@ -2,11 +2,7 @@
 -- Area: The Sanctuary of ZiTah
 --  MOB: Rock Golem
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

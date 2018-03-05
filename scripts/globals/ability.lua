@@ -107,6 +107,11 @@ ABILITY_CORSAIRS_ROLL      = 98;
 ABILITY_PUPPET_ROLL        = 99;
 ABILITY_DANCERS_ROLL       = 100;
 ABILITY_SCHOLARS_ROLL      = 101;
+ABILITY_BOLTERS_ROLL       = 102;
+ABILITY_CASTERS_ROLL       = 103;
+ABILITY_COURSERS_ROLL      = 104;
+ABILITY_BLITZERS_ROLL      = 105;
+ABILITY_TACTICIANS_ROLL    = 106;
 ABILITY_DOUBLE_UP          = 107;
 ABILITY_QUICK_DRAW         = 108;
 ABILITY_FIRE_SHOT          = 109;
@@ -346,6 +351,8 @@ ABILITY_ONE_FOR_ALL        = 358;
 ABILITY_WARD               = 363;
 ABILITY_EFFUSION           = 364;
 ABILITY_APOGEE             = 369;
+ABILITY_NATURALISTS_ROLL   = 374;
+ABILITY_RUNEISTS_ROLL      = 375;
 ABILITY_HEALING_RUBY       = 496;
 ABILITY_POISON_NAILS       = 497;
 ABILITY_SHINING_RUBY       = 498;
@@ -469,9 +476,13 @@ function checkForElevenRoll(caster)
     local effects = caster:getStatusEffects()
     for _,effect in ipairs(effects) do
         if (effect:getType() >= EFFECT_FIGHTERS_ROLL and
-            effect:getType() <= EFFECT_SCHOLARS_ROLL and
+            effect:getType() <= EFFECT_NATURALISTS_ROLL and
             effect:getSubPower() == 11) then
             return true
+        end
+        if (effect:getType() == EFFECT_RUNEISTS_ROLL and
+                effect:getSubPower() == 11) then
+            return true 
         end
     end
     return false

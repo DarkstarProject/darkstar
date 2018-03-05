@@ -2,11 +2,7 @@
 -- Area: The Labyrinth of Onzozo
 --  MOB: Babaula
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

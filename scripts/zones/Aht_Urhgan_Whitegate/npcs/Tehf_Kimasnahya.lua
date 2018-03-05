@@ -1,29 +1,19 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
+-- Area: Aht Urhgan Whitegate
 --  NPC: Tehf Kimasnahya
---  Type: Standard NPC
+-- Type: Standard NPC
 -- !pos -89.897 -1 6.199 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local gotitall = player:getQuestStatus(AHT_URHGAN,GOT_IT_ALL);
@@ -50,18 +40,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

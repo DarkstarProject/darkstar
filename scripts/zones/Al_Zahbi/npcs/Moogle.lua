@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Al Zahbi
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil
 -----------------------------------

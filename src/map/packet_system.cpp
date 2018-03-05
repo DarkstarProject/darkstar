@@ -884,7 +884,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (charutils::UpdateItem(PChar, container, slotID, -quantity) != 0)
         {
             // TODO: Break linkshell if the main shell was disposed of.
-
+            // ShowNotice(CL_CYAN"Player %s DROPPING itemID %u \n" CL_RESET, PChar->GetName(), ItemID);
             PChar->pushPacket(new CMessageStandardPacket(nullptr, ItemID, quantity, 180));
             PChar->pushPacket(new CInventoryFinishPacket());
         }
@@ -1185,16 +1185,19 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItem->getFlag() & ITEM_FLAG_EX)
                 return;
 
+            if (PItem->isSubType(ITEM_LOCKED))
+                return;
+
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {
-                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
+                ShowNotice(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
                 PItem->setReserve(quantity + PItem->getReserve());
                 PChar->UContainer->SetItem(tradeSlotID, PItem);
             }
             else
             {
-                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+                ShowNotice(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
                 PItem->setReserve(0);
                 PChar->UContainer->SetItem(tradeSlotID, nullptr);
             }
@@ -1508,6 +1511,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
     PrintPacket(data);
+
+    if (jailutils::InPrison(PChar)) // If jailed, no mailbox menu for you.
+    {
+        return;
+    }
 
     // 0x01 - Send old items..
     // 0x02 - Add items to be sent..
@@ -2143,6 +2151,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
 
+    if (jailutils::InPrison(PChar)) // If jailed, no AH menu for you.
+    {
+        return;
+    }
+
     // 0x04 - Selling Items
     // 0x05 - Open List Of Sales / Wait
     // 0x0A - Retrieve List of Items Sold By Player
@@ -2708,7 +2721,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (zoneLineID == 1903324538)
         {
             uint16 prevzone = PChar->getZone();
-
+            // Note: zone zero actually exists but is unused in retail, we should stop using zero someday.
             // If zero, return to previous zone.. otherwise, determine the zone..
             if (zone != 0)
             {
@@ -3552,7 +3565,7 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (SlotID != ERROR_SLOTID)
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
-
+                ShowNotice(CL_CYAN"User '%s' purchased %u of item of ID %u [from VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                 PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
             }
@@ -3608,7 +3621,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
         charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
-
+        ShowNotice(CL_CYAN"User '%s' sold %u of item of ID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
         PChar->pushPacket(new CInventoryFinishPacket());
     }
@@ -3663,11 +3676,21 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         slotQty[invSlotID]++;
 
-        if ((PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)) && (PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getID() == ItemID) &&
-            (slotQty[invSlotID] <= PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getQuantity()))
+        auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
+
+        if (PItem && PItem->getID() == ItemID && slotQty[invSlotID] <= (PItem->getQuantity() - PItem->getReserve()))
         {
             PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
-            PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setReserve(PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getReserve() + 1);
+        }
+    }
+
+    for (uint8 container_slotID = 0; container_slotID <= 8; ++container_slotID)
+    {
+        auto slotid = PChar->CraftContainer->getInvSlotID(container_slotID);
+        if (slotid != 0xFF)
+        {
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotid);
+            PItem->setReserve(PItem->getReserve() + 1);
         }
     }
 
@@ -3706,7 +3729,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (SlotID != ERROR_SLOTID)
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
-
+                ShowNotice(CL_CYAN"User '%s' purchased %u of item of ID %u [from GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                 PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() - quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
@@ -3776,7 +3799,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
                 {
                     charutils::UpdateItem(PChar, LOC_INVENTORY, 0, shopItem->getSellPrice() * quantity);
-
+                    ShowNotice(CL_CYAN"User '%s' sold %u of item of ID %u [to GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                     PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity);
                     PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                     PChar->pushPacket(new CInventoryFinishPacket());
@@ -3811,7 +3834,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (data.ref<uint8>(0x06) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if (data.ref<uint8>(0x06) == '!' && !jailutils::InPrison(PChar) && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
     {
         //this makes sure a command isn't sent to chat
     }
@@ -5518,6 +5541,17 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if ((PBazaarItem != nullptr) && (PBazaarItem->getCharPrice() != 0) && (PBazaarItem->getQuantity() >= Quantity))
     {
         CItem* PItem = itemutils::GetItem(PBazaarItem);
+
+        // Validate purchase quantity..
+        if (Quantity < 1)
+        {
+            // Exploit attempt..
+            ShowError(
+                CL_RED"Player %s purchasing invalid quantity %u of itemID %u from Player %s bazaar! \n" CL_RESET,
+                PChar->GetName(), Quantity, PItem->getID(), PTarget->GetName()
+            );
+            return;
+        }
 
         PItem->setCharPrice(0);
         PItem->setQuantity(Quantity);

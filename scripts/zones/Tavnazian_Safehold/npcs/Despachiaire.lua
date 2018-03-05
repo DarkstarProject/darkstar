@@ -1,21 +1,13 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC:  Despachiaire
+--  NPC: Despachiaire
 -- !pos 108 -40 -83 26
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
  local currentCOPMission = player:getCurrentMission(COP);
@@ -63,18 +55,10 @@ end;
 --Despachiaire     579 chat
 --Despachiaire     617 XX
 --Despachiaire     618 XX
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

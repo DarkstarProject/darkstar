@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Yughott Grotto (142)
+-- Area: Yughott Grotto (142)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------

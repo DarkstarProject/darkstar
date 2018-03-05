@@ -3,16 +3,8 @@
 --  MOB: Orcish Fighter
 -----------------------------------
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local OrcPanzer = 17354894;

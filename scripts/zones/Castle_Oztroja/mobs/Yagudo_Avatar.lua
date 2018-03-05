@@ -5,34 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+
 require("scripts/zones/Castle_Oztroja/TextIDs");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-    -- Needs to be zone wide message
-    -- mob:messagePublic(mob, YAGUDO_AVATAR_ENGAGE);
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/globals/status");
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Needs to be zone wide message

@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Fort Ghelsba
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- @zone 141
 -----------------------------------
 package.loaded["scripts/zones/Fort_Ghelsba/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
 require("scripts/zones/Fort_Ghelsba/TextIDs");
@@ -13,10 +12,6 @@ require("scripts/zones/Fort_Ghelsba/TextIDs");
 local TreasureType = "Chest";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     -- trade:hasItemQty(1024,1);             -- Treasure Key
@@ -65,26 +60,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1024);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

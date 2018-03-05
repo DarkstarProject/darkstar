@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Hae Jakhya
+--  NPC: Hae Jakhya
 --  General Info NPC
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -8,9 +8,6 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,36 +23,24 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    
+
     chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-    
+
     if (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(126) == false) then
         player:startEvent(611); -- Neeed CS here
     elseif (player:hasKeyItem(126) == true) then
         player:startEvent(612,0,126);
     else
         player:startEvent(610);
-    end    
-        
-end;
+    end
 
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -63,5 +48,5 @@ function onEventFinish(player,csid,option)
     if (csid == 611) then
         player:addKeyItem(126);
     player:messageSpecial(KEYITEM_OBTAINED,126);
-    end        
+    end
 end;

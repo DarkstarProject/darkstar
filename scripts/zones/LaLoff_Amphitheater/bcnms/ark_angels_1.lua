@@ -4,12 +4,10 @@
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-
 -----------------------------------
 
 -- Death cutscenes:
@@ -62,7 +60,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 
 end;
 
@@ -72,7 +70,7 @@ function onEventFinish(player,csid,option)
    local AAKeyitems = (player:hasKeyItem(SHARD_OF_ARROGANCE) and player:hasKeyItem(SHARD_OF_COWARDICE)
          and player:hasKeyItem(SHARD_OF_ENVY) and player:hasKeyItem(SHARD_OF_RAGE));
 
-   if (csid == 32001) then
+    if (csid == 32001) then
       if (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1) then
          player:addKeyItem(SHARD_OF_APATHY);
          player:messageSpecial(KEYITEM_OBTAINED,SHARD_OF_APATHY);
@@ -82,5 +80,5 @@ function onEventFinish(player,csid,option)
             player:setVar("ZilartStatus",0);
          end
       end
-   end
+    end
 end;

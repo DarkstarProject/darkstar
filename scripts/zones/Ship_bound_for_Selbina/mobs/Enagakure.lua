@@ -3,19 +3,11 @@
 --  MOB: Enagakure
 -- Involved in Quest: I'll Take the Big Box
 -----------------------------------
-
 require("scripts/globals/keyitems");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

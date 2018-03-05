@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Ru'Lude Gardens
+-- Area: Ru'Lude Gardens
 --   NPC: Explorer Moogle
---  Type: Mog Tablet
+-- Type: Mog Tablet
 -- @zone 243
 -- !pos 1.000 -1 0.000
 --
@@ -10,33 +10,17 @@
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(10114);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

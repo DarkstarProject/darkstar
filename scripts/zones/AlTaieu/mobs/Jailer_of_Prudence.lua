@@ -7,9 +7,6 @@
 -----------------------------------
 require("scripts/zones/AlTaieu/MobIDs");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -17,10 +14,6 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
     mob:setMobMod(MOBMOD_NO_DROPS, 1);
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
     mob:AnimationSub(0); -- Mouth closed
@@ -36,26 +29,14 @@ function onMobSpawn(mob)
     mob:addMod(MOD_LULLABYRES, 30);
 end;
 
------------------------------------
--- onMobDisEngage Action
------------------------------------
-
 function onMobDisEngage(mob, target)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
 end;
 
------------------------------------
 -- onMobskill -- When this functionlity is added, this should work.
------------------------------------
-
 -- function onUseAbility(mob,target,ability)
-
     -- if (ability:getID() == 437) then -- Perfect Dodge
         -- mob:addStatusEffectEx(EFFECT_FLEE,0,100,0,30);
     -- else
@@ -71,16 +52,8 @@ end;
     -- end
 -- end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local firstPrudence     = GetMobByID(JAILER_OF_PRUDENCE_1);

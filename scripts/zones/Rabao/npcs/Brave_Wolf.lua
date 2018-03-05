@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Brave Wolf
+--  NPC: Brave Wolf
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
-    
-player:showText(npc,BRAVEWOLF_SHOP_DIALOG);
 
-stock = {0x300D,31201,    --Buckler
+    player:showText(npc,BRAVEWOLF_SHOP_DIALOG);
+
+    local stock =
+    {
+        0x300D,31201,    --Buckler
     0x300E,60260,    --Darksteel Buckler
     0x369B,24373,    --Silver Bangles
     0x310A,66066,    --Banded Mail
@@ -38,22 +33,14 @@ stock = {0x300D,31201,    --Buckler
     0x31A2,15724,    --Iron Mittens
     0x3224,23063,    --Iron Subligar
     0x32A2,14327}    --Leggins
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
+    showShop(player, STATIC, stock);
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

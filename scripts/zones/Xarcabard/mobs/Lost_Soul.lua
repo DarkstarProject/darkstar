@@ -2,11 +2,7 @@
 -- Area: Xarcabard
 --  MOB: Lost Soul
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

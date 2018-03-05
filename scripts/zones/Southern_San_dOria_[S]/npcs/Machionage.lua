@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Machionage
+--  NPC: Machionage
 -- @zone 80
 -- !pos -255 -3 109
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,26 +19,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-player:startEvent(619); -- Default Dialogue
+    player:startEvent(619); -- Default Dialogue
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

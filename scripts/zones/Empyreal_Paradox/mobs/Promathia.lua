@@ -7,19 +7,12 @@ package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
 require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 50);
     mob:addMod(MOD_UFASTCAST,50);
 end;
-
------------------------------------
--- onMobEngaged Action
------------------------------------
 
 function onMobEngaged(mob,target)
     local bcnmAllies = mob:getBattlefield():getAllies();
@@ -36,10 +29,6 @@ function onMobEngaged(mob,target)
     end
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
     if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(EFFECT_STUN)) then
         mob:AnimationSub(0);
@@ -55,37 +44,21 @@ function onMobFight(mob,target)
 
 end;
 
------------------------------------
--- onSpellPrecast
------------------------------------
-
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 219) then
         spell:setMPCost(1);
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     local battlefield = player:getBattlefield();
     player:startEvent(32004, battlefield:getBattlefieldNumber());
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option,target)
     -- printf("finishCSID: %u",csid);

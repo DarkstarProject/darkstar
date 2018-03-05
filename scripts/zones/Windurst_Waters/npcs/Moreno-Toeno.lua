@@ -5,18 +5,13 @@
 -- !pos
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,13 +20,9 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
+    local teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
 
     if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") == 0) then
         player:startEvent(752,0,STAR_SEEKER);
@@ -42,8 +33,8 @@ function onTrigger(player,npc)
             player:startEvent(758);
         end
     elseif (player:getCurrentMission(WINDURST) == A_TESTING_TIME) then
-        MissionStatus = player:getVar("MissionStatus");
-        alreadyCompleted = player:hasCompletedMission(WINDURST,A_TESTING_TIME);
+        local MissionStatus = player:getVar("MissionStatus");
+        local alreadyCompleted = player:hasCompletedMission(WINDURST,A_TESTING_TIME);
         if (MissionStatus == 0) then
             if (alreadyCompleted == false) then
                 player:startEvent(182); -- First start at tahrongi
@@ -123,18 +114,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

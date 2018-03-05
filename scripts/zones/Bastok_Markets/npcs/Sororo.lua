@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Sororo
+--  NPC: Sororo
 -- Standard Merchant NPC
 -- !pos -220.217 -2.824 51.542 235
 -----------------------------------
@@ -31,4 +31,4 @@ function onTrigger(player,npc)
         0x1271, 29700, 3, -- Repose
     }
     showNationShop(player, NATION_BASTOK, stock);
-end; 
+end;

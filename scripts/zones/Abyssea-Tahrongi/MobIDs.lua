@@ -2,7 +2,7 @@ require("scripts/globals/keyitems");
 
 -- [QM] = {'name', {list of required trades}, {list of required KIs}, nmID}
 -- uncomment lines as NMs are implemented
-NM_POPS = 
+NM_POPS =
 {
 --  [16961954] = { 'qm1',           {2915},                                                                                         {}, 16961917}, -- Halimede
 --  [16961955] = { 'qm2',           {2916},                                                                                         {}, 16961918}, -- Vetehinen

@@ -4,14 +4,12 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- OnMobSpawn Action
--- Set AnimationSub to 0, put it in pot form
--- Change it's damage resists. Pot for takes Blunt, no other type
 -----------------------------------
 
 function onMobSpawn(mob)
+    -- Set AnimationSub to 0, put it in pot form
+    -- Change it's damage resists. Pot for take
+
     -- Give it two hour
     mob:setMod(MOBMOD_MAIN_2HOUR, 1);
     -- Change animation to pot
@@ -29,11 +27,6 @@ function onMobSpawn(mob)
         mob:setMod(defenseMod[n],1000);
     end
 end;
-
------------------------------------
--- onMobFight Action
--- Randomly change forms
------------------------------------
 
 function onMobFight(mob)
     -- Forms: 0 = Pot  1 = Pot  2 = Poles  3 = Rings
@@ -101,16 +94,8 @@ function onMobFight(mob)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set PH back to normal, then set respawn time

@@ -3,8 +3,8 @@
 -- Zone: Bastok_Mines (234)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/zone");
 require("scripts/globals/settings");
@@ -12,18 +12,12 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 -----------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     SetExplorerMoogles(17735856);
 
     applyHalloweenNpcCostumes(zone:getID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -36,7 +30,7 @@ function onZoneIn(player,prevZone)
         player:setHomePoint();
     end
     -- MOG HOUSE EXIT
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         position = math.random(1,5) - 75;
         player:setPos(116,0.99,position,127);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
@@ -53,10 +47,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -65,25 +55,13 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

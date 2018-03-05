@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
 -----------------------------------

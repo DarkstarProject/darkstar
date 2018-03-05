@@ -1,45 +1,24 @@
 -----------------------------------
 -- Area: Pashhow_Marshlands(S)
--- NPC:  ??? (Kinepikwa)
+--  NPC: ??? (Kinepikwa)
 -- Allow player to spawn Kinepikwa with Peiste pellets
--- 
 -----------------------------------
------------------------------------
------------------------------------
--- onTrade Action
+require("scripts/zones/Pashhow_Marshlands_[S]/MobIDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    
-    if (GetMobAction(17146147) == 0 and trade:hasItemQty(2564,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(17146147):updateClaim(player); -- Kinepikwa
+    if (npcUtil.tradeHas(trade, 2564) and not GetMobByID(KINEPIKWA):isSpawned()) then
+        player:confirmTrade();
+        SpawnMob(KINEPIKWA):updateClaim(player);
     end
-    
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

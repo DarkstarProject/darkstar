@@ -75,7 +75,7 @@ INSERT INTO `mob_skills` VALUES (252,252,'dancing_chains',1,10.0,2000,0,4,0,0,0,
 INSERT INTO `mob_skills` VALUES (253,253,'barbed_crescent',0,7.0,2000,0,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (254,254,'vulcan_shot',1,14.0,2000,0,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (255,190,'dimensional_death',0,7.0,2000,0,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (256,0,'#0',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (256,253,'self-destruct_321',2,50.0,2000,500,6,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (257,1,'foot_kick',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (258,2,'dust_cloud',4,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (259,3,'whirl_claws',1,5.0,2000,1500,4,0,0,0,0,0,0);
@@ -1616,11 +1616,11 @@ INSERT INTO `mob_skills` VALUES (1793,62,'vampiric_root',0,7.0,2000,1500,4,0,0,0
 -- INSERT INTO `mob_skills` VALUES (1794,1538,'perdition',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1795,1539,'malediction',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1796,1540,'piercing_shriek',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1797,1147,'pw_rushing_slash',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1798,1147,'pw_decussate',1,16.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1799,1156,'pw_tyranic_blare',1,10.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1800,1544,'miasma',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1801,1545,'vorpal_wheel',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1797,1320,'rushing_slash',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1798,1321,'decussate',1,16.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1799,1322,'tyranic_blare',1,10.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1800,1323,'miasma',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1801,1324,'vorpal_wheel',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1802,1351,'sledgehammer',4,12,2000,0,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1803,1352,'head_snatch',0,7,2000,0,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1804,1353,'haymaker',4,12,2000,0,4,0,0,0,0,0,0);
@@ -1876,10 +1876,10 @@ INSERT INTO `mob_skills` VALUES (2045,1373,'pl_rail_cannon',1,15.0,2000,1500,4,0
 INSERT INTO `mob_skills` VALUES (2054,1407,'diffusion_ray',4,18.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2055,1408,'intertia_stream',1,10.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2056,1399,'discharge',1,10.0,2000,1000,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2057,1401,'pw_mortal_revolution',1,15.0,2000,1000,4,0,0,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (2058,1400,'pw_homing_missile',2,20.0,2000,1000,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2059,1402,'pw_discoid',4,10.0,2000,1000,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2060,1403,'pw_brainjack',0,10.0,2000,1000,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2057,1401,'mortal_revolution',1,15.0,2000,1000,4,0,0,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (2058,1400,'homing_missile',2,20.0,2000,1000,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2059,1402,'discoid',4,10.0,2000,1000,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2060,1403,'brainjack',0,10.0,2000,1000,4,0,0,0,0,0,0);
 -- for long armed chariot charm brainjack right one is 1410 (probably 1407-1409 for his other moves)
 -- INSERT INTO `mob_skills` VALUES (2060,1410,'pw_brainjack',0,10.0,2000,1000,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2061,1805,'restoral',0,7.0,2000,1500,4,0,0,0,0,0,0);

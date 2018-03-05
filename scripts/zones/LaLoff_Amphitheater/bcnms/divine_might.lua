@@ -4,13 +4,11 @@
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
 -----------------------------------
 
 -- Death cutscenes:
@@ -72,14 +70,14 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 
 end;
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
+    -- print("bc finish csid "..csid.." and option "..option);
 
-   if (csid == 32001) then
+    if (csid == 32001) then
       if (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED) then
          player:setVar("DivineMight",2); -- Used to use 2 to track completion, so that's preserved to maintain compatibility
          for i=SHARD_OF_APATHY, SHARD_OF_RAGE do
@@ -94,5 +92,5 @@ function onEventFinish(player,csid,option)
       elseif (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED and player:hasKeyItem(MOONLIGHT_ORE) == true) then
          player:setVar("DivineMight",2);
       end
-   end
+    end
 end;

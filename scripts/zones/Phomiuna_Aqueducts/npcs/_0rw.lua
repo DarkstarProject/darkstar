@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  _0rw (Oil Lamp)
+--  NPC: _0rw (Oil Lamp)
 -- Notes: Opens south door at J-9 from inside.
 -- !pos 103.703 -26.180 83.000 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -33,18 +25,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

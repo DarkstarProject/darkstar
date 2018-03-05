@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- Involved In Quest: Wings of Gold
 -- !pos -380 -143 23 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 local TreasureType = "Chest";
 local TreasureLvL = 43;
 local TreasureMinLvL = 33;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -82,26 +77,14 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1036);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

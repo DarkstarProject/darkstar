@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Woods
 --  NPC: Kuoh Rhel
---  Type: Standard NPC
+-- Type: Standard NPC
 -- Starts quests: Chocobilious, In a Stew
 -- !pos 131.437 -6 -102.723 241
 --  Note: In a Stew should only repeat once per conquest tally. The tally is not implemented at time of
@@ -13,17 +13,10 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -69,18 +62,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

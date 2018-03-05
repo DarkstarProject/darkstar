@@ -2,11 +2,7 @@
 -- Area: Gusgen Mines
 --  MOB: Wendigo
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

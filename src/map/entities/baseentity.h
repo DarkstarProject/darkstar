@@ -87,21 +87,25 @@ enum ANIMATIONTYPE
 
 enum MOUNTTYPE
 {
-    MOUNT_CHOCOBO    = 0,
-    MOUNT_RAPTOR     = 1,
-    MOUNT_TIGER      = 2,
-    MOUNT_CRAB       = 3,
-    MOUNT_RED_CRAB   = 4,
-    MOUNT_BOMB       = 5,
-    MOUNT_RAM        = 6,
-    MOUNT_MORBOL     = 7,
-    MOUNT_CRAWLER    = 8,
-    MOUNT_FENRIR     = 9,
-    MOUNT_BEETLE     = 10,
-    MOUNT_MOOGLE     = 11,
-    MOUNT_MAGIC_POT  = 12,
-    MOUNT_TULFAIRE   = 13,
-    MOUNT_WARMACHINE = 14
+    MOUNT_CHOCOBO        = 0,
+    MOUNT_RAPTOR         = 1,
+    MOUNT_TIGER          = 2,
+    MOUNT_CRAB           = 3,
+    MOUNT_RED_CRAB       = 4,
+    MOUNT_BOMB           = 5,
+    MOUNT_RAM            = 6,
+    MOUNT_MORBOL         = 7,
+    MOUNT_CRAWLER        = 8,
+    MOUNT_FENRIR         = 9,
+    MOUNT_BEETLE         = 10,
+    MOUNT_MOOGLE         = 11,
+    MOUNT_MAGIC_POT      = 12,
+    MOUNT_TULFAIRE       = 13,
+    MOUNT_WARMACHINE     = 14,
+    MOUNT_XZOMIT         = 15,
+    MOUNT_HIPPOGRYPH     = 16,
+    MOUNT_SPECTRAL_CHAIR = 17,
+    MOUNT_SPHEROID       = 18,
 };
 
 enum ALLEGIANCETYPE

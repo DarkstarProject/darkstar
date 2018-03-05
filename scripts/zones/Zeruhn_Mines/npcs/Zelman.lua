@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Zeruhn Mines
--- NPC:  Zelman
+--  NPC: Zelman
 -- Involved In Quest: Groceries
 -- !pos 17.095 7.704 -52.995 172
 -----------------------------------
@@ -10,7 +10,7 @@ require("scripts/zones/Zeruhn_Mines/TextIDs");
 require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 function onTrigger(player,npc)
     local groceries = player:getVar("Groceries");
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         end
     elseif (groceries >= 2) then
         player:showText(npc,ZELMAN_CANT_RUN_AROUND);
-        
+
     -- DEFAULT DIALOG
     else
         player:startEvent(160);

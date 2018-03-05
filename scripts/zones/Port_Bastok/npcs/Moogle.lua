@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Moogle
--- 
+--  NPC: Moogle
+--
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
 -----------------------------------

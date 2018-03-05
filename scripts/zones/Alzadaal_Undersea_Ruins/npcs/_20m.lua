@@ -3,25 +3,16 @@
 -- Door: Runic Seal
 -- !pos 125 -2 20 72
 -----------------------------------
-
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
 require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- See notes below
@@ -46,10 +37,6 @@ function onTrigger(player,npc)
         player:messageSpecial(NOTHING_HAPPENS);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("UPDATE CSID: %u",csid);
@@ -164,10 +151,6 @@ function onEventUpdate(player,csid,option,target)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,target)
     -- printf("FINISH CSID: %u",csid);
     -- printf("FINISH RESULT: %u",option);
@@ -178,10 +161,6 @@ function onEventFinish(player,csid,option,target)
         player:setPos(0,0,0,0,77);
     end
 end;
-
------------------------------------
--- onInstanceLoaded
------------------------------------
 
 function onInstanceCreated(player,target,instance)
     local pathOfDarkness = player:getVar("PathOfDarkness");

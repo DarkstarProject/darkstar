@@ -1,17 +1,13 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  ??? (qm4)
+--  NPC: ??? (qm4)
 -- Involved in Mission: Bastok 8.1 "The Chains That Bind Us"
 -- !pos
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/Quicksand_Caves/TextIDs");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -23,21 +19,15 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
 function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
---print("CSID:",csid);
---print("RESULT:",option);
+    -- printf("CSID:",csid);
+    -- printf("RESULT:",option);
     if (csid == 10) then
         player:setVar("MissionStatus", 3);
     end

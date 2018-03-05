@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Arrapago Reef
--- NPC: Cutter
+--  NPC: Cutter
 -- The ship for The Black Coffin Battle (TOAU-15)
 -- !pos -462 -2 -394 54
 -----------------------------------
-
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Arrapago_Reef/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN)) then
@@ -29,10 +21,6 @@ function onTrigger(player,npc)
         player:messageSpecial(YOU_NO_REQS);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,target)
     -- printf("CSID: %u",csid);
@@ -58,10 +46,6 @@ function onEventUpdate(player,csid,option,target)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
@@ -70,10 +54,6 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,60);
     end
 end;
-
------------------------------------
--- onInstanceCreated
------------------------------------
 
 function onInstanceCreated(player,target,instance)
     if (instance) then

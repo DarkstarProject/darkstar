@@ -10,18 +10,11 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1,-462,-4,-420,-455,-1,-392); -- approach the Cutter
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -43,18 +36,10 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- afterZoneIn
------------------------------------
-
 function afterZoneIn(player)
     player:entityVisualPacket("1pb1");
     player:entityVisualPacket("2pb1");
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
@@ -68,18 +53,10 @@ function onRegionEnter(player,region)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Imperial Whitegate
+--  NPC: Imperial Whitegate
 -- pos: 152, -2, 0, 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and
@@ -59,13 +51,9 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    printf("Update CSID: %u",csid);
-    printf("Update RESULT: %u",option);
+    -- printf("Update CSID: %u",csid);
+    -- printf("Update RESULT: %u",option);
 
     if(csid == 3140 or csid == 3155) then
         if (option == 1) then
@@ -108,13 +96,9 @@ function onEventUpdate(player,csid,option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    printf("Finish CSID: %u",csid);
-    printf("Finish RESULT: %u",option);
+    -- printf("Finish CSID: %u",csid);
+    -- printf("Finish RESULT: %u",option);
 
     if (csid == 3078) then
         player:completeMission(TOAU,GUESTS_OF_THE_EMPIRE);

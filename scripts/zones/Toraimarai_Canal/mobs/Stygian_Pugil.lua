@@ -2,11 +2,7 @@
 -- Area: Toraimorai Canal
 --  MOB: Stygian Pugil
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

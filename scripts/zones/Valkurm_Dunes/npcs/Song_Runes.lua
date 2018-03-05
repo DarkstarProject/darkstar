@@ -1,29 +1,21 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- NPC:  Song Runes
+--  NPC: Song Runes
 -- Finishes Quest: Path of the Bard
 -- !pos -721 -7 102 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     -- PATH OF THE BARD (Bard Flag)
@@ -36,16 +28,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2) then

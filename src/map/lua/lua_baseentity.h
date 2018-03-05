@@ -46,8 +46,6 @@ public:
         return m_PBaseEntity;
     }
 
-    int32 SendRevision(lua_State*);         // send Git revision to char
-
     // Messaging System
     int32 showText(lua_State*);             // Displays Dialog for npc
     int32 messageText(lua_State* L);

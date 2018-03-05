@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lud Gardens
--- NPC:  Pakh Jatalfih
+--  NPC: Pakh Jatalfih
 -- !pos 34 8 -35 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
@@ -8,17 +8,10 @@ package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -61,18 +54,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

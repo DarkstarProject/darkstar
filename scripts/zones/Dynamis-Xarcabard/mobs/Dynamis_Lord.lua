@@ -8,27 +8,15 @@
 -- In Neo Dynamis, he is spawned by trading
 -- a Shrouded Bijou to the ??? in front of Castle Zvahl.
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local YingID = 17330183;
@@ -50,10 +38,6 @@ function onMobFight(mob,target)
         GetMobByID(YangID):updateEnmity(target);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local npc = GetNPCByID(17330781); -- ID of the '???' target.

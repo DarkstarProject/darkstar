@@ -5,12 +5,10 @@
 ----------------------------------------
 package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
 ----------------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/battlefield")
 require("scripts/globals/quests");
 require("scripts/zones/Cloister_of_Flames/TextIDs");
-
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

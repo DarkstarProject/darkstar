@@ -1356,7 +1356,7 @@ namespace charutils
             PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
             return 0;
         }
-        if ((int32)PItem->getQuantity() + quantity < 0)
+        if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
             ShowDebug("UpdateItem: Trying to move too much quantity\n");
             return 0;
@@ -1488,10 +1488,9 @@ namespace charutils
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
-                int32 qty = (PItem->getQuantity() - PItem->getReserve());
-                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - PItem->getReserve()));
-                if (qty > 0)
-                    PItem->setReserve(0);
+                auto amount = PItem->getReserve();
+                PItem->setReserve(0);
+                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - amount));
                 PChar->UContainer->ClearSlot(slotid);
             }
         }
@@ -2298,10 +2297,7 @@ namespace charutils
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
-            if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
-                (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
-                (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
+            if (battleutils::CanUseWeaponskill(PChar, PSkill) ||
                 PSkill->getID() == main_ws ||
                 (isInDynamis && (PSkill->getID() == main_ws_dyn)))
             {
@@ -2317,10 +2313,7 @@ namespace charutils
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
-                if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
-                    (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
-                    (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                    (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
+                if ((battleutils::CanUseWeaponskill(PChar, PSkill)) ||
                     PSkill->getID() == range_ws ||
                     (isInDynamis && (PSkill->getID() == range_ws_dyn)))
                 {
@@ -2767,12 +2760,10 @@ namespace charutils
         }
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         uint16 curSkill = PChar->RealSkills.skill[skill] / 10;
-        JOBTYPE curMainJob = PChar->GetMJob();
-        JOBTYPE curSubJob = PChar->GetSJob();
 
         for (auto&& PSkill : WeaponSkillList)
         {
-            if (curSkill == PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
+            if (curSkill == PSkill->getSkillLevel() && (battleutils::CanUseWeaponskill(PChar, PSkill)))
             {
                 addWeaponSkill(PChar, PSkill->getID());
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PSkill->getID(), PSkill->getID(), 45));

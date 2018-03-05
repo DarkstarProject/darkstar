@@ -1,17 +1,13 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  Sahagin Key Door
+--  NPC: Sahagin Key Door
 -- @zone 176
 -- !pos 40 8.6 20.012
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +18,6 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     X = player:getXPos();
@@ -39,18 +31,10 @@ function onTrigger(player,npc)
     return 1 -- Keeps the door closed; it should not open onTrigger
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

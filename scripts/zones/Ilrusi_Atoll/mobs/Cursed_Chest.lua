@@ -2,21 +2,12 @@
 -- Area: Illrusi atoll
 --  MOB: Cursed Chest
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local PX = target:getXPos();
@@ -46,10 +37,6 @@ function CheckForDrawnIn(centerX,centerY,centerZ,playerX,playerY,playerZ,Rayon,m
     end
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

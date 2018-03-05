@@ -2648,10 +2648,10 @@
         {itemid = 775, droprate = 11}, -- Black Rock
         {itemid = 772, droprate = 11}, -- Green Rock
         {itemid = 776, droprate = 9}, -- White Rock
-        {itemid = 17440, droprate = 13}, -- Kraken Club
     },
     {
         {itemid = 15185, droprate = 55}, -- Walkure Mask
+        {itemid = 17440, droprate = 13}, -- Kraken Club
     },
 }
 -- 81
