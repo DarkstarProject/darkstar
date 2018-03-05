@@ -6,17 +6,19 @@
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Newton_Movalpolos/TextIDs");
+require("scripts/zones/Newton_Movalpolos/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (GetMobAction(16826570) == 0 and trade:hasItemQty(1878,1) and trade:getItemCount() == 1) then -- Air tank
-        player:tradeComplete();
-        player:showText(npc, SHOWMAN_ACCEPT); -- Moblin Showman's dialogue
-        SpawnMob(16826570):updateClaim(player); -- Bugbear Matman
+    if (not GetMobByID(BUGBEAR_MATMAN):isSpawned() and npcUtil.tradeHas(trade, 1878)) then -- Air tank
+        player:confirmTrade();
+        player:showText(npc, SHOWMAN_ACCEPT);
+        SpawnMob(BUGBEAR_MATMAN):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     else
-        player:showText(npc, SHOWMAN_DECLINE); -- Moblin Showman refuses your trade
+        player:showText(npc, SHOWMAN_DECLINE);
     end
 end;
 

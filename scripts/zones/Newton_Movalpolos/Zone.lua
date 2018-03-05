@@ -6,13 +6,12 @@
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Newton_Movalpolos/TextIDs");
-require("scripts/globals/settings");
+require("scripts/zones/Newton_Movalpolos/MobIDs");
+require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-
-    UpdateTreasureSpawnPoint(16826627);
-
+    UpdateTreasureSpawnPoint(NEWTON_TREASURE_COFFER);
 end;
 
 function onZoneIn(player,prevZone)
@@ -25,7 +24,6 @@ end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -35,11 +33,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
