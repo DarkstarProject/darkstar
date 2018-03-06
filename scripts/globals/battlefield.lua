@@ -87,7 +87,7 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
     end
 
     for _, mob in pairs(mobs) do
-        if mob:getHP() > 0 then
+        if mob:isAlive() then
             killedallmobs = false
             break
         end
@@ -184,18 +184,20 @@ end
 function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
     players = players or battlefield:getPlayers()
     local lootGroup = lootTable[math.random(1, #lootTable)]
-
+    print("fuck")
     if battlefield:getStatus() == g_Battlefield.STATUS.WON and battlefield:getLocalVar("lootSeen") == 0 then
+        print("shit")
         if npc then
             npc:setAnimation(90)
         end
         if lootGroup then
+            print("ass")
             for _, entry in pairs(lootGroup) do
                 local chansu = entry.droprate / 1000
                 local watashiNoChansu = math.random()
-
+                print("CHAAAAAAAAAAAAAAANSUU "..chansu)
                 if watashiNoChansu <= chansu then
-                    players[1]:addTreasure(entry.itemid)
+                    players[1]:addTreasure(entry.itemid, npc)
                 end
             end
         else

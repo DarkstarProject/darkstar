@@ -471,11 +471,10 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
     if (PEntity->objtype != TYPE_NPC)
     {
         auto entity = static_cast<CBattleEntity*>(PEntity);
-        entity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_CONFRONTATION);
+        entity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_CONFRONTATION, true);
         entity->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_RESTRICTION);
         ClearEnmityForEntity(entity);
     }
-    ClearEnmityForEntity(dynamic_cast<CBattleEntity*>(PEntity));
 
     PEntity->PBattlefield = nullptr;
     return found;
