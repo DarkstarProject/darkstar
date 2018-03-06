@@ -540,8 +540,10 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --Add acc for klimaform
-    if (caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[params.element] or castersWeather == doubleWeatherStrong[params.element])) then
-        magicAccBonus = magicAccBonus + 15;
+    if params.element > 0 then
+        if caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[params.element] or castersWeather == doubleWeatherStrong[params.element]) then
+            magicAccBonus = magicAccBonus + 15
+        end
     end
 
     --Add acc for dark seal

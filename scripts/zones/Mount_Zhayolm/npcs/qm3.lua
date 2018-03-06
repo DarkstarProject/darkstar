@@ -6,16 +6,14 @@
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Mount_Zhayolm/TextIDs");
-require("scripts/globals/status");
+require("scripts/zones/Mount_Zhayolm/MobIDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 17027473;
-    if (trade:hasItemQty(2587,1) and trade:getItemCount() == 1) then -- Trade Raw Buffalo
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if (npcUtil.tradeHas(trade, 2587) and not GetMobByID(ANANTABOGA):isSpawned()) then -- Raw Buffalo
+        player:confirmTrade();
+        SpawnMob(ANANTABOGA):updateClaim(player);
     end
 end;
 
@@ -24,11 +22,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
