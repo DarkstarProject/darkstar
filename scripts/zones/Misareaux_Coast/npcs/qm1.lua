@@ -6,14 +6,14 @@
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Misareaux_Coast/TextIDs");
+require("scripts/zones/Misareaux_Coast/MobIDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    -- Trade Hickory Shield OR Picaroon's Shield
-    if (GetMobAction(16879899) == 0 and (trade:hasItemQty(12370,1) or trade:hasItemQty(12359,1)) and trade:getItemCount() == 1) then
-          player:tradeComplete();
-        SpawnMob(16879899):updateClaim(player);
+    if ( not GetMobByID(GRATION):isSpawned() and (npcUtil.tradeHas(trade, 12370) or npcUtil.tradeHas(trade, 12359)) ) then -- Hickory Shield or Picaroon's Shield
+        player:confirmTrade();
+        SpawnMob(GRATION):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
@@ -23,11 +23,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
