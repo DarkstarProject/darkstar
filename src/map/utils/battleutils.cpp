@@ -2149,6 +2149,8 @@ namespace battleutils
             }
         }
 
+        int16 standbyTp = 0;
+
         if (damage > 0)
         {
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
@@ -2210,8 +2212,9 @@ namespace battleutils
 
             // add tp to attacker
             if (primary)
+            // Calculate TP Return from WS
             {
-                PChar->addTP((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
+                standbyTp = ((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
             }
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender
@@ -2228,6 +2231,9 @@ namespace battleutils
 
         if (!isRanged)
             PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+
+        // Apply TP 
+        PChar->addTP(std::max((PChar->getMod(Mod::SAVETP)), standbyTp));
 
         return damage;
     }
