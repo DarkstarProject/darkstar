@@ -5,6 +5,7 @@
 -- Lucky Number: 3
 -- Unlucky Number: 9
 -- Level: 81
+-- Phantom Roll +1 Value: 1
 --
 -- No Reliable Community Data available. Numbers Based on Blitzer's Roll Values.
 --
@@ -50,12 +51,36 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
     local effectpowers = {2, 3, 11, 4, 5, 6, 7, 8, 1, 10, 12, -5}
     local effectpower = effectpowers[total];
---    if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then -- TODO Add AF3
---        effectpower = effectpower + 15 --  TODO Add Logic for Phantom Roll+
---    end
+-- Apply Buffs from Courser's Roll Enhancing Gear if present
+    local equippedEnh = caster:getEquipID(SLOT_FEET);
+    if (equippedEnh == 11260) then -- Navarch's Bottes +1
+        if (math.random(0, 99) < 50) then  -- 50% Chance to buff roll if equipped
+            effectpower = effectpower + 3
+        end
+    end
+    if ((equippedEnh == 11160) or (equippedEnh == 27443) or (equippedEnh == 27444)) then -- Navarch's Bottes +2 / Chasseur's Bottes / +1
+        effectpower = effectpower + 3
+    end
+-- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+    local phantombuffValue = 0;
+    local phantomBase = 1; -- Base increment buff
+    if (phantomValue == 3) then
+        phantombuffMultiplier = 3;
+    elseif ((phantomValue == 5) or (phantomValue == 8)) then
+        phantombuffMultiplier = 5;
+    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
+        phantombuffMultiplier = 7;
+    else
+        phantombuffMultiplier = 0;
+    end
+-- Apply Additional Phantom Roll+ Buff
+    local phantombuffValue = phantomBase * phantombuffMultiplier;
+    local effectpower = effectpower + phantombuffValue
+-- Check if COR Main or Sub
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then

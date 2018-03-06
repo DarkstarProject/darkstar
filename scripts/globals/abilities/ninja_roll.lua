@@ -6,6 +6,7 @@
 -- Unlucky Number: 8
 -- Jobs:
 -- Corsair Level 8
+-- Phantom Roll +1 Value: 2
 --
 -- Die Roll    |With NIN
 -- --------    ----------
@@ -49,12 +50,29 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
     local effectpowers = {4, 5, 5, 14, 6, 7, 9, 2, 10, 11, 18, 6}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
         effectpower = effectpower + 6
     end
+-- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+    local phantombuffValue = 0;
+    local phantomBase = 2; -- Base increment buff
+    if (phantomValue == 3) then
+        phantombuffMultiplier = 3;
+    elseif ((phantomValue == 5) or (phantomValue == 8)) then
+        phantombuffMultiplier = 5;
+    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
+        phantombuffMultiplier = 7;
+    else
+        phantombuffMultiplier = 0;
+    end
+-- Apply Additional Phantom Roll+ Buff
+    local phantombuffValue = phantomBase * phantombuffMultiplier;
+    local effectpower = effectpower + phantombuffValue
+-- Check if COR Main or Sub
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then

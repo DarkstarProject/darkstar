@@ -1364,6 +1364,7 @@ MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
 MOD_WYVERN_EFFECTIVE_BREATH   = 829 -- Increases the threshold for triggering healing breath
 MOD_AQUAVEIL_COUNT            = 832 -- Modifies the amount of hits that Aquaveil absorbs before being removed
 MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time in seconds.
+MOD_ENH_MAGIC_DURATION        = 883 -- Naturalist's Roll Enhanging Magic Duration% 
 
 -- Automaton mods
 MOD_AUTO_DECISION_DELAY    = 842 -- Reduces the Automaton's global decision delay
@@ -1408,9 +1409,9 @@ MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hag
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 883 -- stuff
 -- SPARE = 884 -- stuff
 -- SPARE = 885 -- stuff
+-- SPARE = 886 -- stuff
 
 ------------------------------------
 -- Merit Definitions
