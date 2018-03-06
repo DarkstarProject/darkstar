@@ -6,22 +6,26 @@
 -----------------------------------
 package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/quests");
 require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
+require("scripts/zones/Middle_Delkfutts_Tower/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and player:getVar("bladeOfEvilCS") == 0) then
-        if (trade:hasItemQty(1114,1) and trade:getItemCount() == 1) then -- Trade Quadav Mage Blood
-            player:tradeComplete();
-            SpawnMob(17420629):updateClaim(player);
-            SpawnMob(17420630):updateClaim(player);
-            SpawnMob(17420631):updateClaim(player);
-        end
+    if (
+        player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED and
+        player:getVar("bladeOfEvilCS") == 0 and
+        npcUtil.tradeHas(trade, 1114) and
+        not GetMobByID(BLADE_OF_EVIL_MOB_OFFSET + 0):isSpawned() and
+        not GetMobByID(BLADE_OF_EVIL_MOB_OFFSET + 1):isSpawned() and
+        not GetMobByID(BLADE_OF_EVIL_MOB_OFFSET + 2):isSpawned()
+    ) then
+        player:confirmTrade();
+        SpawnMob(BLADE_OF_EVIL_MOB_OFFSET + 0):updateClaim(player);
+        SpawnMob(BLADE_OF_EVIL_MOB_OFFSET + 1):updateClaim(player);
+        SpawnMob(BLADE_OF_EVIL_MOB_OFFSET + 2):updateClaim(player);
     end
-
 end;
 
 function onTrigger(player,npc)
@@ -29,11 +33,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

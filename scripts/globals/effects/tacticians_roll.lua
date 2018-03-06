@@ -9,6 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(MOD_REGAIN, effect:getPower());
 end;
 
 -----------------------------------
@@ -23,4 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(MOD_REGAIN, effect:getPower());
 end;

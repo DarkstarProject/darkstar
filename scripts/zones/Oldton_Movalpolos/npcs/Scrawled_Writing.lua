@@ -3,21 +3,19 @@
 --  NPC: Scrawled_Writing
 -- Allows players to spawn NM Goblin Wolfman
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+require("scripts/zones/Oldton_Movalpolos/MobIDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local x = npc:getXPos();
-    local y = npc:getYPos();
-    local z = npc:getZPos();
-    local mob = GetMobByID(16822459);
-
-    if (GetMobAction(16822459) == 0 and trade:hasItemQty(4541,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(16822459):updateClaim(player);
+    local mob = GetMobByID(GOBLIN_WOLFMAN);
+    if ( npcUtil.tradeHas(trade, 4541) and not mob:isSpawned() ) then
+        player:confirmTrade();
+        local x = npc:getXPos();
+        local y = npc:getYPos();
+        local z = npc:getZPos();
         mob:setPos(x-1,y,z);
+        SpawnMob(GOBLIN_WOLFMAN):updateClaim(player);
     end
 end;
 
@@ -25,11 +23,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
