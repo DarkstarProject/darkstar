@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back 
            GIL_OBTAINED = 6387; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>.
 NOTHING_OUT_OF_ORDINARY = 7369; -- There is nothing out of the ordinary here.
-       FOSSIL_EXTRACTED = 7049; -- A large fossil has been excavated from here.
+       FOSSIL_EXTRACTED = 7047; -- A large fossil has been excavated from here.
          NOTHING_FOSSIL = 7048; -- It looks like a rock with fossils embedded in it. Nothing out of the ordinary.
 
 -- Treasure Coffer/Chest Dialog
