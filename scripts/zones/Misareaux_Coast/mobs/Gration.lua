@@ -2,6 +2,7 @@
 -- Area: Misareaux Coast
 --  MOB: Gration
 -----------------------------------
+mixins = {require("scripts/mixins/fomor_hate")}
 require("scripts/zones/Misareaux_Coast/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -12,16 +13,13 @@ end;
 
 function onMobSpawn(mob)
     mob:addStatusEffect(EFFECT_KILLER_INSTINCT,40,0,0);
+    mob:setLocalVar("fomorHateAdj", -2);
 end;
 
 function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    local kills = player:getVar("FOMOR_HATE");
-    if (kills > 1) then
-        player:setVar("FOMOR_HATE",kills -2);
-    end
 end;
 
 function onMobDespawn(mob)
