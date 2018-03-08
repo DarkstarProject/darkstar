@@ -1209,7 +1209,7 @@ namespace luautils
 
             bool contentEnabled;
 
-            if (auto contentEnabledIter = contentEnabledMap.find(contentVariable); contentEnabledIter != contentEnabledMap.end())
+            if (auto contentEnabledIter = contentEnabledMap.find(contentVariable);  contentEnabledIter != contentEnabledMap.end())
             {
                 contentEnabled = contentEnabledIter->second;
             }

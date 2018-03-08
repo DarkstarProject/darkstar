@@ -28,7 +28,7 @@
 #include "../../entities/automatonentity.h"
 #include "../../status_effect.h"
 #include "../../spell.h"
-#include </optional>
+#include <optional>
 
 struct CurrentManeuvers
 {
