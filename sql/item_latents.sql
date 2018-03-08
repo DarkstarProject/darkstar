@@ -3078,3 +3078,10 @@ INSERT INTO `item_latents` VALUES(16756,68,20,31,0);
 -- Latent effect: STR+8
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17810,8,8,6,1);
+
+-- -------------------------------------------------------
+-- Rollers Ring
+-- Latent effect: Refresh +1, Regain +10
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11667, 369, 1, 57, 0); -- Rollers Ring Refresh +1 with Eleven COR Roll
+INSERT INTO `item_latents` VALUES(11667, 368, 10, 57, 0); -- Rollers Ring Regain +10 with Eleven COR Roll
