@@ -111,7 +111,7 @@ bool CMobSpellContainer::HasMPSpells() const
     return false;
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetAggroSpell()
+std::optional<SpellID> CMobSpellContainer::GetAggroSpell()
 {
     // high chance to return ga spell
     if(HasGaSpells() && dsprand::GetRandomNumber(100) <= m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
@@ -122,7 +122,7 @@ std::experimental::optional<SpellID> CMobSpellContainer::GetAggroSpell()
     return GetDamageSpell();
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetSpell()
+std::optional<SpellID> CMobSpellContainer::GetSpell()
 {
     // prioritize curing if health low enough
     if(HasHealSpells() && m_PMob->GetHPP() <= m_PMob->getMobMod(MOBMOD_HP_HEAL_CHANCE) && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_HEAL_CHANCE)){
@@ -174,35 +174,35 @@ std::experimental::optional<SpellID> CMobSpellContainer::GetSpell()
     return {};
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetGaSpell()
+std::optional<SpellID> CMobSpellContainer::GetGaSpell()
 {
     if(m_gaList.empty()) return {};
 
     return m_gaList[dsprand::GetRandomNumber(m_gaList.size())];
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetDamageSpell()
+std::optional<SpellID> CMobSpellContainer::GetDamageSpell()
 {
     if(m_damageList.empty()) return {};
 
     return m_damageList[dsprand::GetRandomNumber(m_damageList.size())];
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetBuffSpell()
+std::optional<SpellID> CMobSpellContainer::GetBuffSpell()
 {
     if(m_buffList.empty()) return {};
 
     return m_buffList[dsprand::GetRandomNumber(m_buffList.size())];
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetHealSpell()
+std::optional<SpellID> CMobSpellContainer::GetHealSpell()
 {
     if(m_PMob->m_EcoSystem == SYSTEM_UNDEAD || m_healList.empty()) return {};
 
     return m_healList[dsprand::GetRandomNumber(m_healList.size())];
 }
 
-std::experimental::optional<SpellID> CMobSpellContainer::GetNaSpell()
+std::optional<SpellID> CMobSpellContainer::GetNaSpell()
 {
     if(m_naList.empty()) return {};
 

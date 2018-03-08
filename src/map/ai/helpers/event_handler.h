@@ -50,8 +50,7 @@ public:
     template<class... Args>
     void triggerListener(std::string eventname, Args&&... args)
     {
-        auto eventListener = eventListeners.find(eventname);
-        if (eventListener != eventListeners.end())
+        if (auto eventListener = eventListeners.find(eventname); eventListener != eventListeners.end())
         {
             for (auto&& event : eventListener->second)
             {
@@ -66,8 +65,7 @@ public:
     //calls event from lua
     void triggerListener(std::string eventname, int nargs)
     {
-        auto eventListener = eventListeners.find(eventname);
-        if (eventListener != eventListeners.end())
+        if (auto eventListener = eventListeners.find(eventname); eventListener != eventListeners.end())
         {
             for (auto&& event : eventListener->second)
             {
@@ -92,4 +90,3 @@ private:
 };
 
 #endif
-

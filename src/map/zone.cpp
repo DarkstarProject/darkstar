@@ -81,7 +81,7 @@
 
 int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 {
-    std::experimental::any_cast<CZone*>(PTask->m_data)->ZoneServer(tick, false);
+    std::any_cast<CZone*>(PTask->m_data)->ZoneServer(tick, false);
     return 0;
 }
 
@@ -94,7 +94,7 @@ int32 zone_server(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
-    CZone* PZone = std::experimental::any_cast<CZone*>(PTask->m_data);
+    CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
     if ((tick - PZone->m_RegionCheckTime) < 800ms)
     {
@@ -116,7 +116,7 @@ int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 
 int32 zone_update_weather(time_point tick, CTaskMgr::CTask* PTask)
 {
-    CZone* PZone = std::experimental::any_cast<CZone*>(PTask->m_data);
+    CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
 
     if (!PZone->IsWeatherStatic())
     {

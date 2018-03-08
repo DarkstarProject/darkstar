@@ -2886,8 +2886,7 @@ namespace battleutils
         {
             for (auto& resonance_element : resonance)
             {
-                auto skillchain = skillchain_map.find({ resonance_element, skill_element });
-                if (skillchain != skillchain_map.end())
+                if (auto skillchain = skillchain_map.find({ resonance_element, skill_element }); skillchain != skillchain_map.end())
                 {
                     return skillchain->second;
                 }

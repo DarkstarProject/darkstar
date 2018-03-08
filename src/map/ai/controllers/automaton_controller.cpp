@@ -930,7 +930,7 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
         if (PStatus->GetDuration() > 0)
         {
             auto id = autoSpell::FindNaSpell(PStatus);
-            if (id)
+            if (id.has_value())
             {
                 castPriority.push_back(id.value());
             }
@@ -948,7 +948,7 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
         if (PStatus->GetDuration() > 0)
         {
             auto id = autoSpell::FindNaSpell(PStatus);
-            if (id)
+            if (id.has_value())
             {
                 castPriority.push_back(id.value());
             }
@@ -973,7 +973,7 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
                     if (PStatus->GetDuration() > 0)
                     {
                         auto id = autoSpell::FindNaSpell(PStatus);
-                        if (id)
+                        if (id.has_value())
                         {
                             castPriority.push_back(id.value());
                         }
@@ -1450,7 +1450,7 @@ namespace autoSpell
         return (!statuses->HasStatusEffect(PSpell.enfeeble) && !PTarget->hasImmunity(PSpell.immunity));
     }
 
-    std::experimental::optional<SpellID> FindNaSpell(CStatusEffect* PStatus)
+    std::optional<SpellID> FindNaSpell(CStatusEffect* PStatus)
     {
         for (auto spell : naSpells)
         {
