@@ -712,6 +712,7 @@ int32 doSynthFail(CCharEntity* PChar)
             {
                 PItem->setSubType(ITEM_UNLOCKED);
                 PItem->setReserve(PItem->getReserve() - totalCount);
+                totalCount = 0;
 
                 if(lostCount > 0)
                 {
