@@ -90,6 +90,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char_recast.h"
 #include "packets/char_skills.h"
 #include "packets/char_spells.h"
+#include "packets/char_mounts.h"
 #include "packets/char_stats.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -447,6 +448,7 @@ void SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     charutils::SendQuestMissionLog(PChar);
 
     PChar->pushPacket(new CCharSpellsPacket(PChar));
+    PChar->pushPacket(new CCharMountsPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharSyncPacket(PChar));
     PChar->pushPacket(new CBazaarMessagePacket(PChar));
@@ -826,6 +828,23 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         else
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 142));
+    }
+    break;
+    case 0x1A: // mounts
+    {
+        uint8 MountID = data.ref<uint8>(0x0C);
+        uint16 MountKI = 3072;
+        if (MountID != 0)
+        {
+            MountKI += MountID;
+            MountID += 1;
+        }
+        if (charutils::hasKeyItem(PChar, MountKI))
+        {
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, MountID, 0, 1800), true);
+            PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
+            PChar->pushPacket(new CCharRecastPacket(PChar));
+        }
     }
     break;
     default:
