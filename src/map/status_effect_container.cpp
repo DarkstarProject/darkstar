@@ -1114,7 +1114,7 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 S
 * Used in mob abilities
 ************************************************************************/
 
-CStatusEffect* CStatusEffectContainer::StealStatusEffect(EFFECTFLAG flag /*= EFFECTFLAG_DISPELABLE*/)
+CStatusEffect* CStatusEffectContainer::StealStatusEffect(EFFECTFLAG flag)
 {
     std::vector<uint16> dispelableList;
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
