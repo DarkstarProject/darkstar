@@ -2,5 +2,6 @@
 -- Area: Monastic Cavern
 -----------------------------------
 
--- BRD AF3 MOBS
 BUGABOO = 17391804;
+
+MONASTIC_TREASURE_COFFER = 17391849;

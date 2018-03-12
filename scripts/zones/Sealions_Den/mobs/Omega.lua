@@ -2,6 +2,8 @@
 -- Area: Sealions Den
 --  MOB: Omega
 -----------------------------------
+require("scripts/zones/Sealions_Den/MobIDs");
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/msg");
 -----------------------------------
@@ -10,16 +12,11 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob,target)
     -- Gains regain at under 25% HP
-    if (mob:getHP() < (mob:getMaxHP() * 0.25)) then
-        if (mob:hasStatusEffect(EFFECT_REGAIN) == false) then
-            mob:addStatusEffect(EFFECT_REGAIN,5,3,0);
-            mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
-        end
+    if (mob:getHPP() < 25 and not mob:hasStatusEffect(EFFECT_REGAIN)) then
+        mob:addStatusEffect(EFFECT_REGAIN,5,3,0);
+        mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
     end
 end;
 
@@ -31,7 +28,7 @@ function onAdditionalEffect(mob, player)
     else
         local duration = 5;
         duration = duration * resist;
-        if (player:hasStatusEffect(EFFECT_STUN) == false) then
+        if (not player:hasStatusEffect(EFFECT_STUN)) then
             player:addStatusEffect(EFFECT_STUN, 0, 0, duration);
         end
         return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, EFFECT_STUN;
@@ -44,25 +41,28 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 11) then
-        local instance = player:getVar("bcnm_instanceid")
+        local inst = player:getVar("bcnm_instanceid");
+        if (inst >= 1 and inst <= 3) then
+            -- players are healed in between fights, but their TP is set to 0
+            player:setHP(player:getMaxHP());
+            player:setMP(player:getMaxMP());
+            player:setTP(0);
 
-        --Players are healed in between the fights, but their TP is set to 0
-        player:setHP(player:getMaxHP());
-        player:setMP(player:getMaxMP());
-        player:setTP(0);
+            -- spawn ultima for given instance
+            local ultimaId = ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 6;
+            if (ultimaId ~= nil and not GetMobByID(ultimaId):isSpawned()) then
+                SpawnMob(ultimaId);
+            end
 
-        if (instance == 1) then
-            player:setPos(-779, -103, -80);
-                SpawnMob(16908295); --ultima1
-        elseif (instance == 2) then
-            player:setPos(-140, -23, -440);
-            SpawnMob(16908302); --ultima2
-        else
+            -- move player to instance
+            if (inst == 1) then
+                player:setPos(-779, -103, -80);
+            elseif (inst == 2) then
+                player:setPos(-140, -23, -440);
+            elseif (inst == 3) then
                 player:setPos(499, 56, -802);
-            SpawnMob(16908309); --ultima3
+            end
         end
     end
 end;

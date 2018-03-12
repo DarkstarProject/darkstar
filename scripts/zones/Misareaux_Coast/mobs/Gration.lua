@@ -2,6 +2,8 @@
 -- Area: Misareaux Coast
 --  MOB: Gration
 -----------------------------------
+require("scripts/zones/Misareaux_Coast/MobIDs");
+require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -23,5 +25,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(16879918):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(GRATION_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

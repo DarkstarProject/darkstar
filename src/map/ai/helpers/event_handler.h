@@ -50,10 +50,9 @@ public:
     template<class... Args>
     void triggerListener(std::string eventname, Args&&... args)
     {
-        if (eventListeners.empty()) { return; }
-        try
+        if (auto eventListener = eventListeners.find(eventname); eventListener != eventListeners.end())
         {
-            for (auto&& event : eventListeners.at(eventname))
+            for (auto&& event : eventListener->second)
             {
                 int nargs = sizeof...(args);
                 luautils::pushFunc(event.lua_func);
@@ -61,21 +60,19 @@ public:
                 luautils::callFunc(nargs);
             }
         }
-        catch (std::out_of_range&) {}
     }
 
     //calls event from lua
     void triggerListener(std::string eventname, int nargs)
     {
-        try
+        if (auto eventListener = eventListeners.find(eventname); eventListener != eventListeners.end())
         {
-            for (auto&& event : eventListeners.at(eventname))
+            for (auto&& event : eventListener->second)
             {
                 luautils::pushFunc(event.lua_func, nargs);
                 luautils::callFunc(nargs);
             }
         }
-        catch (std::out_of_range&) {}
     }
 
 private:

@@ -2,6 +2,7 @@
 -- Area: Sealions Den
 --  MOB: Ultima
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/msg");
 -----------------------------------
@@ -10,16 +11,11 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob,target)
     -- Gains regain at under 25% HP
-    if (mob:getHP() < (mob:getMaxHP() * 0.25)) then
-        if (mob:hasStatusEffect(EFFECT_REGAIN) == false) then
-            mob:addStatusEffect(EFFECT_REGAIN,5,3,0);
-            mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
-        end
+    if (mob:getHPP() < 25 and not mob:hasStatusEffect(EFFECT_REGAIN)) then
+        mob:addStatusEffect(EFFECT_REGAIN,5,3,0);
+        mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
     end
 end;
 

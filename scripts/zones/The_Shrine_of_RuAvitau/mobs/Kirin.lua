@@ -4,6 +4,8 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/zones/The_Shrine_of_RuAvitau/MobIDs");
 require("scripts/globals/settings");
@@ -12,22 +14,20 @@ require("scripts/globals/titles");
 
 function onMobInitialize( mob )
     mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
 end
 
 function onMobSpawn(mob)
     mob:setMod(MOD_WINDRES, -64);
+    mob:setMod(MOD_SILENCERES, 35);
+    mob:setMod(MOD_STUNRES, 35);
+    mob:setMod(MOD_BINDRES, 35);
+    mob:setMod(MOD_GRAVITYRES, 35);
+    mob:addStatusEffect(EFFECT_REGEN,50,3,0);
     mob:setLocalVar("numAdds", 1);
 end
 
 function onMobFight( mob, target )
-
-    -- use astral flow
-    if (mob:getHPP() < math.random(50,60) and mob:getLocalVar("astralFlow") == 0) then
-        mob:useMobAbility(734);
-        mob:spawnPet();
-        mob:setLocalVar("astralFlow", 1);
-    end
-
     -- spawn gods
     local numAdds = mob:getLocalVar("numAdds");
     if (mob:getBattleTime() / 180 == numAdds) then
@@ -55,6 +55,20 @@ function onMobFight( mob, target )
         end
     end
 end
+
+function onAdditionalEffect(mob, target, damage)
+    local dmg = math.random(90,110)
+    local params = {};
+    params.bonusmab = 0;
+    params.includemab = false;
+
+    dmg = addBonusesAbility(mob, ELE_EARTH, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_EARTH,0);
+    dmg = adjustForTarget(target,dmg,ELE_EARTH);
+    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_EARTH,dmg);
+
+    return SUBEFFECT_EARTH_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle( KIRIN_CAPTIVATOR );

@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 5477
--- Warrior Die
--- Teaches the job ability Fighter's Roll
+-- ID: 5494
+-- Puppetmaster Die
+-- Teaches the job ability Puppet Roll
 -----------------------------------------
 
 function onItemCheck(target)

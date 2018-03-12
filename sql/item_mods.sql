@@ -39215,6 +39215,16 @@ INSERT INTO `item_mods` VALUES (27594,23,20); -- Attack +20
 INSERT INTO `item_mods` VALUES (27594,288,4); -- Double Attack +4
 INSERT INTO `item_mods` VALUES (27595,1,12);
 INSERT INTO `item_mods` VALUES (27595,28,12);
+INSERT INTO `item_mods` VALUES (27598,1,7); -- Dew Silk Cape - DEF: 7
+INSERT INTO `item_mods` VALUES (27598,13,5); -- MND +5
+INSERT INTO `item_mods` VALUES (27598,60,10); -- Light Resistance + 10
+INSERT INTO `item_mods` VALUES (27598,27,-2); -- Enmity -2
+INSERT INTO `item_mods` VALUES (27598,374,2); -- Cure Potency +2%
+INSERT INTO `item_mods` VALUES (27599,1,8); -- Dew Silk Cape +1 - DEF: 8
+INSERT INTO `item_mods` VALUES (27599,13,6); -- MND +6
+INSERT INTO `item_mods` VALUES (27599,60,15); -- Light Resistance + 15
+INSERT INTO `item_mods` VALUES (27599,27,-3); -- Enmity -3
+INSERT INTO `item_mods` VALUES (27599,374,3); -- Cure Potency +3%
 INSERT INTO `item_mods` VALUES (27608,1,19); -- Lupine cape - DEF:19
 INSERT INTO `item_mods` VALUES (27608,8,5); -- STR+5
 INSERT INTO `item_mods` VALUES (27608,11,5); -- AGI+5

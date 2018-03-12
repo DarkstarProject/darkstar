@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Jolly Green
+--   NM: Jolly Green
 -----------------------------------
 require("scripts/globals/fieldsofvalor");
 -----------------------------------

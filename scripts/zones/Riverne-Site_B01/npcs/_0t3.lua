@@ -2,40 +2,19 @@
 -- Area: Riverne Site #B01
 --  NPC: Unstable Displacement
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Riverne-Site_B01/TextIDs");
+local RIVERNE_SITE_B01 = require("scripts/zones/Riverne-Site_B01/globals");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(1691,1) and trade:getItemCount() == 1) then -- Trade Giant Scale
-        player:tradeComplete();
-        npc:openDoor(RIVERNE_PORTERS);
-        player:messageSpecial(SD_HAS_GROWN);
-    end
-
+    RIVERNE_SITE_B01.unstableDisplacementTrade(player, npc, trade);
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getAnimation() == 8) then
-        player:startEvent(38);
-    else
-        player:messageSpecial(SD_VERY_SMALL);
-    end;
-
-    return 1;
-
+    RIVERNE_SITE_B01.unstableDisplacementTrigger(player, npc, 38);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

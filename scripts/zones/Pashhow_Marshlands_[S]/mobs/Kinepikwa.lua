@@ -1,10 +1,9 @@
 -----------------------------------
--- Area: Pashhow Marshlands
---  MOB: BoWho Warmonger
+-- Area: Passhow Marshlands [S]
+--   NM: Kinepikwa
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,60,1);
 end;

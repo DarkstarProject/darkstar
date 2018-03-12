@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Port_San_dOria/TextIDs");
+require("scripts/globals/npc_util");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
