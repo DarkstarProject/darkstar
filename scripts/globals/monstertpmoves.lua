@@ -667,15 +667,9 @@ end;
 
 function MobDrainStatusEffectMove(mob, target)
     -- try to drain buff
-    local effect = target:stealStatusEffect();
-    local dmg = 0;
+    local effect = mob:stealStatusEffect(target);
 
-    if (effect ~= nil) then
-        if (mob:hasStatusEffect(effect:getType()) == false) then
-            -- add to myself
-            mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
-        end
-        -- add buff to myself
+    if (effect ~= 0) then
         return msgBasic.EFFECT_DRAINED;
     end
 
