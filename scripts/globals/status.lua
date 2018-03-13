@@ -2352,6 +2352,7 @@ MOUNTS =
     HIPPOGRYPH     = 17,
     SPECTRAL_CHAIR = 18,
     SPHEROID       = 19,
+    OMEGA          = 20,
 }
 
 ------------------------------------

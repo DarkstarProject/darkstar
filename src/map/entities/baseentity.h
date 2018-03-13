@@ -107,6 +107,7 @@ enum MOUNTTYPE
     MOUNT_HIPPOGRYPH     = 17,
     MOUNT_SPECTRAL_CHAIR = 18,
     MOUNT_SPHEROID       = 19,
+    MOUNT_OMEGA          = 20,
 };
 
 enum ALLEGIANCETYPE
