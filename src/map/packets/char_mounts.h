@@ -40,7 +40,7 @@ class CCharMountsPacket : public CBasicPacket
 {
 public:
 
-	CCharMountsPacket(CCharEntity* PChar);
+    CCharMountsPacket(CCharEntity* PChar);
 };
 
 #endif
