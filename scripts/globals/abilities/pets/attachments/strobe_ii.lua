@@ -3,12 +3,7 @@
 -- http://forum.square-enix.com/ffxi/threads/49065?p=565264#post565264
 -- Values are currently PRIOR TO NOVEMBER 2015 UPDATE!
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_ENMITY, 20)

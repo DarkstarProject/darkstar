@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Tension Spring III
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_ATTP, 9)

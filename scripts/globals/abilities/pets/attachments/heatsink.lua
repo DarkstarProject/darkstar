@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Heatsink
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_BURDEN_DECAY, 1)

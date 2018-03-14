@@ -5,21 +5,13 @@
 -- Recast Time: 0:05:00
 -- Duration: Apprx. 0:00:01 - 0:00:10
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local modAcc = player:getMerit(MERIT_FERAL_HOWL);

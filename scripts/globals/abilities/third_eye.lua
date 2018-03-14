@@ -5,12 +5,8 @@
 -- Recast Time: 1:00
 -- Duration: 0:30
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -19,10 +15,6 @@ function onAbilityCheck(player,target,ability)
     end
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     player:addStatusEffect(EFFECT_THIRD_EYE,0,0,30); --power keeps track of procs

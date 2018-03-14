@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Shock Absorber
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:setLocalVar("stoneskin", VanadielTime() + 180)

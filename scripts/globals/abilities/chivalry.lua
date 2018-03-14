@@ -5,21 +5,13 @@
 -- Recast Time: 0:10:00 (+5% MP granted per additional upgrade)
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(MERIT_CHIVALRY);

@@ -17,10 +17,6 @@ local idStrengths = {
     [19185] = 4  -- Automaton Oil + 3
 }
 
------------------------------------
--- onAbilityCheck
------------------------------------
-
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
         return msgBasic.REQUIRES_A_PET, 0
@@ -35,10 +31,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local id = player:getEquipID(SLOT_AMMO)

@@ -5,12 +5,8 @@
 -- Recast Time: 10 seconds (shared with all maneuvers)
 -- Duration: 1 minute
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -22,10 +18,6 @@ function onAbilityCheck(player,target,ability)
         return 71,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
 
