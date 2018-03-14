@@ -32,7 +32,7 @@ function onSpellCast(caster,target,spell)
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     dmg = dmg*resist;
-    dmg = addBonuses(caster,spell,target,dmg);
+    dmg = addBonuses(caster,spell,target,dmg,{});
     dmg = adjustForTarget(target,dmg,spell:getElement());
     if (dmg > (caster:getSkillLevel(BLUE_SKILL) + 20)) then
         dmg = (caster:getSkillLevel(BLUE_SKILL) + 20);
