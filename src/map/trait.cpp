@@ -37,10 +37,6 @@
 ************************************************************************/
 CTrait::CTrait(uint8 id)
     : m_id(id)
-    , m_level(0)
-    , m_job(0)
-    , m_mod(Mod::NONE)
-    , m_value(0)
 {
 }
 
@@ -74,7 +70,8 @@ namespace traits
 				char* contentTag = nullptr;
 				Sql_GetData(SqlHandle, 6, &contentTag, nullptr);
 
-				if (luautils::IsContentEnabled(contentTag)==false){
+				if (luautils::IsContentEnabled(contentTag)==false)
+                {
 					continue;
 				}
 

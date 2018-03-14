@@ -177,13 +177,13 @@ public:
 
 private:
 
-    uint8   m_id;
-    uint8   m_job;
-    uint8   m_level;
-    Mod     m_mod;
-    int16   m_value;
-    uint8   m_rank;
-    uint32  m_meritId;
+    uint8   m_id = { 0 };
+    uint8   m_job = { 0 };
+    uint8   m_level = { 0 };
+    Mod     m_mod = { Mod::NONE };
+    int16   m_value = { 0 };
+    uint8   m_rank = { 0 };
+    uint32  m_meritId = { 0 };
 };
 
 /************************************************************************
