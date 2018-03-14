@@ -3232,7 +3232,7 @@ INSERT INTO `item_mods` VALUES (11069,1,36);
 INSERT INTO `item_mods` VALUES (11069,25,12);
 INSERT INTO `item_mods` VALUES (11069,302,3);
 INSERT INTO `item_mods` VALUES (11069,384,61);
-INSERT INTO `item_mods` VALUES (11069,870,10); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
+INSERT INTO `item_mods` VALUES (11069,884,10); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (11070,1,44);      -- Creed Armet +2: DEF 44
 INSERT INTO `item_mods` VALUES (11070,2,40);      -- HP +40
 INSERT INTO `item_mods` VALUES (11070,5,40);      -- MP +40
@@ -3715,7 +3715,7 @@ INSERT INTO `item_mods` VALUES (11168,30,5);
 INSERT INTO `item_mods` VALUES (11169,1,34);
 INSERT INTO `item_mods` VALUES (11169,25,8);
 INSERT INTO `item_mods` VALUES (11169,384,51);
-INSERT INTO `item_mods` VALUES (11169,870,5); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
+INSERT INTO `item_mods` VALUES (11169,884,5); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (11170,1,42);
 INSERT INTO `item_mods` VALUES (11170,2,30);
 INSERT INTO `item_mods` VALUES (11170,5,30);
@@ -8715,7 +8715,7 @@ INSERT INTO `item_mods` VALUES (12643,1,44);
 INSERT INTO `item_mods` VALUES (12643,2,20);
 INSERT INTO `item_mods` VALUES (12643,8,3);
 INSERT INTO `item_mods` VALUES (12643,57,10);
-INSERT INTO `item_mods` VALUES (12643,871,100); -- Increase "Hide" duration
+INSERT INTO `item_mods` VALUES (12643,885,100); -- Increase "Hide" duration
 INSERT INTO `item_mods` VALUES (12644,1,47);
 INSERT INTO `item_mods` VALUES (12644,2,20);
 INSERT INTO `item_mods` VALUES (12644,10,4);
@@ -13981,7 +13981,7 @@ INSERT INTO `item_mods` VALUES (14478,1,45);
 INSERT INTO `item_mods` VALUES (14478,2,20);
 INSERT INTO `item_mods` VALUES (14478,8,6);
 INSERT INTO `item_mods` VALUES (14478,25,10);
-INSERT INTO `item_mods` VALUES (14478,871,100); -- Extends duration of "Hide"
+INSERT INTO `item_mods` VALUES (14478,885,100); -- Extends duration of "Hide"
 INSERT INTO `item_mods` VALUES (14479,1,55);
 INSERT INTO `item_mods` VALUES (14479,2,20);
 INSERT INTO `item_mods` VALUES (14479,10,6);
@@ -26370,7 +26370,7 @@ INSERT INTO `item_mods` VALUES (23112,68,69);     -- Evasion+69
 INSERT INTO `item_mods` VALUES (23112,302,4);     -- Triple Attack+4
 INSERT INTO `item_mods` VALUES (23112,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23112,421,5);     -- Critical Hit Damage+5
-INSERT INTO `item_mods` VALUES (23112,871,100);     -- Hide duration +100
+INSERT INTO `item_mods` VALUES (23112,885,100);     -- Hide duration +100
 INSERT INTO `item_mods` VALUES (23113,1,159);     -- rev._surcoat_+2 DEF:159
 INSERT INTO `item_mods` VALUES (23113,2,244);     -- HP+244
 INSERT INTO `item_mods` VALUES (23113,5,52);      -- MP+52
@@ -28343,7 +28343,7 @@ INSERT INTO `item_mods` VALUES (23447,68,79);     -- Evasion+79
 INSERT INTO `item_mods` VALUES (23447,302,7);     -- Triple Attack+7
 INSERT INTO `item_mods` VALUES (23447,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23447,421,6);     -- Critical Hit Damage+6
-INSERT INTO `item_mods` VALUES (23447,871,100);	  -- "Hide" duration +100
+INSERT INTO `item_mods` VALUES (23447,885,100);	  -- "Hide" duration +100
 INSERT INTO `item_mods` VALUES (23448,1,169);     -- rev._surcoat_+3 DEF:169
 INSERT INTO `item_mods` VALUES (23448,2,254);     -- HP+254
 INSERT INTO `item_mods` VALUES (23448,5,62);      -- MP+62
@@ -32734,7 +32734,7 @@ INSERT INTO `item_mods` VALUES (26750,31,40);
 INSERT INTO `item_mods` VALUES (26750,68,23);
 INSERT INTO `item_mods` VALUES (26750,302,3);
 INSERT INTO `item_mods` VALUES (26750,384,71);
-INSERT INTO `item_mods` VALUES (26750,870,12); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
+INSERT INTO `item_mods` VALUES (26750,884,12); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (26751,1,100);
 INSERT INTO `item_mods` VALUES (26751,2,41);
 INSERT INTO `item_mods` VALUES (26751,8,20);
@@ -32750,7 +32750,7 @@ INSERT INTO `item_mods` VALUES (26751,31,59);
 INSERT INTO `item_mods` VALUES (26751,68,49);
 INSERT INTO `item_mods` VALUES (26751,302,4);
 INSERT INTO `item_mods` VALUES (26751,384,81);
-INSERT INTO `item_mods` VALUES (26751,870,15); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
+INSERT INTO `item_mods` VALUES (26751,884,15); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (26752,1,85);      -- Chevalier's Armet: DEF 85
 INSERT INTO `item_mods` VALUES (26752,2,81);      -- HP +81
 INSERT INTO `item_mods` VALUES (26752,5,84);      -- MP +84
@@ -41000,7 +41000,7 @@ INSERT INTO `item_mods` VALUES (27812,31,43);
 INSERT INTO `item_mods` VALUES (27812,68,23);
 INSERT INTO `item_mods` VALUES (27812,384,40);
 INSERT INTO `item_mods` VALUES (27812,421,5);
-INSERT INTO `item_mods` VALUES (27812,871,100); -- Extends duration of "Hide"
+INSERT INTO `item_mods` VALUES (27812,885,100); -- Extends duration of "Hide"
 INSERT INTO `item_mods` VALUES (27813,1,108);
 INSERT INTO `item_mods` VALUES (27813,2,130);
 INSERT INTO `item_mods` VALUES (27813,5,29);
@@ -41351,7 +41351,7 @@ INSERT INTO `item_mods` VALUES (27833,31,64);
 INSERT INTO `item_mods` VALUES (27833,68,49);
 INSERT INTO `item_mods` VALUES (27833,384,40);
 INSERT INTO `item_mods` VALUES (27833,421,5);
-INSERT INTO `item_mods` VALUES (27833,871,100); -- Hide duration +100
+INSERT INTO `item_mods` VALUES (27833,885,100); -- Hide duration +100
 INSERT INTO `item_mods` VALUES (27834,1,149);
 INSERT INTO `item_mods` VALUES (27834,2,163);
 INSERT INTO `item_mods` VALUES (27834,5,35);
