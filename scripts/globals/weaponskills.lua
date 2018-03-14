@@ -146,7 +146,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
                     local cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
                     finaldmg = dmg * cpdif;
                     if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
-                        finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
+                        finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * (1 + attacker:getMod(MOD_SNEAK_ATK_DEX)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
                     end
                     if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
                         finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
@@ -200,7 +200,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     -- Store first hit bonus for use after other calcs are done..
     local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
 
-    local numHits = getMultiAttacks(attacker, params.numHits);
+    local numHits = getMultiAttacks(attacker, target, params.numHits);
     local extraHitsLanded = 0;
 
     if (numHits > 1) then
@@ -880,7 +880,7 @@ end;
     return finaldmg, crit, tpHitsLanded, extraHitsLanded, shadowsAbsorbed;
 end;
 
-function getMultiAttacks(attacker, numHits)
+function getMultiAttacks(attacker, target, numHits)
     local bonusHits = 0;
     local multiChances = 1;
     local doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
@@ -888,6 +888,11 @@ function getMultiAttacks(attacker, numHits)
     local quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
     local oaThriceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_THRICE)/100;
     local oaTwiceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_TWICE)/100;
+    
+    -- Add Ambush Augments to Triple Attack
+    if (attacker::hasTrait(76) and attacker:isBehind(target, 23)) then -- TRAIT_AMBUSH
+        tripleRate = tripleRate + attacker:getMerit(MERIT_AMBUSH) / 3; -- Value of Ambush is 3 per mert, augment gives +1 Triple Attack per merit
+    end
 
     -- QA/TA/DA can only proc on the first hit of each weapon or each fist
     if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_H2H) then
@@ -907,7 +912,7 @@ function getMultiAttacks(attacker, numHits)
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
-            attacker:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
+            attacker:delStatusEffect(EFFECT_ASSASSINS_CHARGE);
             attacker:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
 
             -- recalculate DA/TA/QA rate

@@ -377,7 +377,7 @@ INSERT INTO `status_effects` VALUES (339,'naturalists_roll',131360,0,0,0,0,0,0,0
 INSERT INTO `status_effects` VALUES (340,'warriors_charge',37,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (341,'formless_strikes',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (342,'assassins_charge',37,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (343,'feint',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (343,'feint',37,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (344,'fealty',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (345,'dark_seal',161,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (346,'diabolic_eye',32,0,0,0,0,0,0,0);

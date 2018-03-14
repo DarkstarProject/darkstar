@@ -9944,7 +9944,7 @@ int32 CLuaBaseEntity::transferEnmity(lua_State* L)
     {
         for (auto&& mob_pair : PIterEntity->SpawnMOBList)
         {
-            if (distance(mob_pair.second->loc.p, PEntity->loc.p) < range)
+            if (distanceSquared(mob_pair.second->loc.p, PEntity->loc.p) < (range * range))
             {
                 battleutils::TransferEnmity(static_cast<CBattleEntity*>(PEntity),
                     static_cast<CBattleEntity*>(m_PBaseEntity),static_cast<CMobEntity*>(mob_pair.second), percent);
@@ -10520,21 +10520,23 @@ inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->StealStatusEffect();
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
-    if (PStatusEffect == nullptr)
-        lua_pushnil(L);
+    EFFECTFLAG flag = EFFECTFLAG_DISPELABLE;
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+        flag = (EFFECTFLAG)lua_tointeger(L, 2);
+
+    if (CStatusEffect* PStatusEffect = ((CBattleEntity*)PEntity->m_PBaseEntity)->StatusEffectContainer->StealStatusEffect(flag))
+    {
+        ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PStatusEffect);
+        lua_pushinteger(L, PStatusEffect->GetStatusID());
+    }
     else
     {
-        lua_getglobal(L, CLuaStatusEffect::className);
-        lua_pushstring(L, "new");
-        lua_gettable(L, -2);
-        lua_insert(L, -2);
-        lua_pushlightuserdata(L, (void*)PStatusEffect);
-        lua_pcall(L, 2, 1, 0);
-
-        delete PStatusEffect;
+        lua_pushinteger(L, 0);
     }
+
     return 1;
 }
 

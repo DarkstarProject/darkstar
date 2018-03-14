@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    target:transferEnmity(player, 50, 20.6)
+    target:transferEnmity(player, 50 + player:getMod(MOD_ACC_COLLAB_EFFECT), 20.6)
 end;
