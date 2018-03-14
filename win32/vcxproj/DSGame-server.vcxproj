@@ -358,6 +358,7 @@
     <ClInclude Include="..\..\src\map\packets\char_health.h" />
     <ClInclude Include="..\..\src\map\packets\char_job_extra.h" />
     <ClInclude Include="..\..\src\map\packets\char_jobs.h" />
+    <ClInclude Include="..\..\src\map\packets\char_mounts.h" />
     <ClInclude Include="..\..\src\map\packets\char_recast.h" />
     <ClInclude Include="..\..\src\map\packets\char_skills.h" />
     <ClInclude Include="..\..\src\map\packets\char_spells.h" />
@@ -599,6 +600,7 @@
     <ClCompile Include="..\..\src\map\packets\char_health.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_job_extra.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_jobs.cpp" />
+    <ClCompile Include="..\..\src\map\packets\char_mounts.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_recast.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_skills.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_spells.cpp" />

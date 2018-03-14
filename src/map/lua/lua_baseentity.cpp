@@ -88,6 +88,7 @@
 #include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
+#include "../packets/char_mounts.h"
 #include "../packets/char_recast.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_spells.h"
@@ -6114,10 +6115,15 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
+    uint8 table = KeyItemID >> 9;
 
     charutils::addKeyItem(PChar, KeyItemID);
-    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
+    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)table));
 
+    if (table == 6)
+    {
+        PChar->pushPacket(new CCharMountsPacket(PChar));
+    }
     charutils::SaveKeyItems(PChar);
     return 0;
 }
