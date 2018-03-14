@@ -741,6 +741,8 @@ function calculateMagicBurst(caster, spell, target, params)
 end;
 
 function addBonuses(caster, spell, target, dmg, params)
+    params = params or {};
+
     local ele = spell:getElement();
 
     local affinityBonus = AffinityBonusDmg(caster, ele);
