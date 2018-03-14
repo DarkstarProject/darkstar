@@ -4673,7 +4673,7 @@ namespace battleutils
             {
                 // don't draw in dead players for now!
                 // see tractor
-                if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO || PMember->animation == ANIMATION_MOUNT)
+                if (PMember->isDead() || PMember->isMounted())
                 {
                     // don't do anything
                 }
