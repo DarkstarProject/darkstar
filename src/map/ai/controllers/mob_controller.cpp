@@ -69,8 +69,7 @@ bool CMobController::TryDeaggro()
 
     // target is no longer valid, so wipe them from our enmity list
     if (!PTarget || PTarget->isDead() ||
-        PTarget->animation == ANIMATION_CHOCOBO ||
-        PTarget->animation == ANIMATION_MOUNT ||
+        PTarget->isMounted() ||
         PTarget->loc.zone->GetID() != PMob->loc.zone->GetID() ||
         PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
         PMob->allegiance == PTarget->allegiance ||
@@ -186,7 +185,7 @@ void CMobController::TryLink()
 **/
 bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
-    if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO || PTarget->animation == ANIMATION_MOUNT) return false;
+    if (PTarget->isDead() || PTarget->isMounted()) return false;
 
     float verticalDistance = abs(PMob->loc.p.y - PTarget->loc.p.y);
 
@@ -975,7 +974,7 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
         return false;
     }
 
-    if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO || PTarget->animation == ANIMATION_MOUNT)
+    if (PTarget->isDead() || PTarget->isMounted())
     {
         return false;
     }
