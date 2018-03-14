@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Attuner
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_ATTUNER_ENGAGE", function(pet, target)

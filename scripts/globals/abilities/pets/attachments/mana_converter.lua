@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Mana Converter
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_MANA_CONVERTER", function(automaton, target)

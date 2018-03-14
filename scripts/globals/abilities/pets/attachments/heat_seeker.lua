@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Heat Seeker
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_HEAT_SEEKER_ENGAGE", function(pet, target)

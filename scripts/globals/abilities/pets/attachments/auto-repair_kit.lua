@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Auto-repair Kit
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_HPP, 6)

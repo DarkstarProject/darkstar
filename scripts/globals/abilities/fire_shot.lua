@@ -3,15 +3,11 @@
 -- Consumes a Fire Card to enhance fire-based debuffs. Deals fire-based magic damage
 -- Burn effect: Enhanced DoT and INT-
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/weaponskills");
 require("scripts/globals/ability");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -26,10 +22,6 @@ function onAbilityCheck(player,target,ability)
         return 71, 0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local params = {};

@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Stabilizer
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_ACC, 5)

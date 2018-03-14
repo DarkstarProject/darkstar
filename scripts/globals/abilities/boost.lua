@@ -5,20 +5,12 @@
 -- Recast Time: 0:15
 -- Duration: 3:00
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local power = 12.5 + (0.10 * player:getMod(MOD_BOOST_EFFECT));

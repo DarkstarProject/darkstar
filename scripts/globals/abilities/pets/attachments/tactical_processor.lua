@@ -3,12 +3,7 @@
 -- Not enough information to accurately recreate!
 -- Also, not implemented, increased tendency to overload prior to 2015!
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 function onEquip(pet)
     pet:addMod(MOD_AUTO_DECISION_DELAY, 50) -- -0.5s
 end

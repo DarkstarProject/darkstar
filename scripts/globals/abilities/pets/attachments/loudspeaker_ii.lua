@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Loudspeaker II
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_MATT, 10)

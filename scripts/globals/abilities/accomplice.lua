@@ -8,9 +8,6 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -20,10 +17,6 @@ function onAbilityCheck(player,target,ability)
         return 0, 0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     target:transferEnmity(player, 50 + player:getMod(MOD_ACC_COLLAB_EFFECT), 20.6)
