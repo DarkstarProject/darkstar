@@ -2232,7 +2232,7 @@ namespace battleutils
         if (!isRanged)
             PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
 
-        // Apply TP 
+        // Apply TP
         PChar->addTP(std::max((PChar->getMod(Mod::SAVETP)), standbyTp));
 
         // Remove Hagakure Effect if present
@@ -4673,7 +4673,7 @@ namespace battleutils
             {
                 // don't draw in dead players for now!
                 // see tractor
-                if (PMember->isDead() || PMember->animation == ANIMATION_CHOCOBO)
+                if (PMember->isDead() || PMember->isMounted())
                 {
                     // don't do anything
                 }
