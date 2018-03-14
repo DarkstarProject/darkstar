@@ -857,8 +857,8 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration)
 {
     //break if not a COR roll.
-    DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-        PStatusEffect->GetStatusID() <= EFFECT_SCHOLARS_ROLL));
+    DSP_DEBUG_BREAK_IF(!((PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+        PStatusEffect->GetStatusID() <= EFFECT_NATURALISTS_ROLL) || (PStatusEffect->GetStatusID() == EFFECT_RUNEISTS_ROLL)));
 
     //if all match tier/id/effect then overwrite
 
@@ -871,7 +871,8 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
     for (auto&& PEffect : m_StatusEffectList)
     {
         if ((PEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            PEffect->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            PEffect->GetStatusID() <= EFFECT_NATURALISTS_ROLL) ||
+            PEffect->GetStatusID() == EFFECT_RUNEISTS_ROLL || 
             PEffect->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
             if (PEffect->GetStatusID() == PStatusEffect->GetStatusID() &&
@@ -936,7 +937,8 @@ bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NATURALISTS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_RUNEISTS_ROLL ||
             m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
             if (m_StatusEffectList.at(i)->GetSubID() == charid ||
@@ -955,7 +957,8 @@ void CStatusEffectContainer::Fold(uint32 charid)
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NATURALISTS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_RUNEISTS_ROLL ||
             m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
             if (m_StatusEffectList.at(i)->GetSubID() == charid ||
@@ -1202,9 +1205,11 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     string_t name;
     EFFECT effect = StatusEffect->GetStatusID();
 
+    //Determine if this is a BRD Song or COR Effect.
     if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
         (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
+        (effect >= EFFECT_DOUBLE_UP_CHANCE && effect <= EFFECT_NATURALISTS_ROLL) || 
+        effect == EFFECT_RUNEISTS_ROLL)
     {
         name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
@@ -1561,9 +1566,11 @@ bool CStatusEffectContainer::CheckForElevenRoll()
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL &&
-            m_StatusEffectList.at(i)->GetSubPower() == 11)
+        if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NATURALISTS_ROLL &&
+            m_StatusEffectList.at(i)->GetSubPower() == 11) || (
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_RUNEISTS_ROLL &&
+            m_StatusEffectList.at(i)->GetSubPower() == 11))
         {
             return true;
         }

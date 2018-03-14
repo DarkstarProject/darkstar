@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5695
 -- Item: margherita_pizza
--- Food Effect: 3hours, All Races
+-- Food Effect: 3 hours, all Races
 -----------------------------------------
 -- HP +30
 -- Accuracy +10% (cap 8)
@@ -21,10 +21,6 @@ end;
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5695);
 end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HP, 30);

@@ -1,9 +1,9 @@
 -----------------------------------------
 -- ID: 5743
 -- Item: marinara_pizza
--- Food Effect: 3hours, All Races
+-- Food Effect: 3 hours, all Races
 -----------------------------------------
--- Health Points 20
+-- HP +20
 -- Attack +20% (cap 50 @ 250 base attack)
 -- Accuracy +10% (54)
 -- Undead Killer
@@ -22,10 +22,6 @@ end;
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,10800,5743);
 end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HP, 20);

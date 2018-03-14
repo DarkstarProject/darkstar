@@ -5,65 +5,34 @@
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Newton_Movalpolos/TextIDs");
+require("scripts/zones/Newton_Movalpolos/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:getItemCount() == 1 and trade:hasItemQty(947,1)) then
-        player:tradeComplete();
-        -- player:messageSpecial(???); -- Needs retail info
+    if (npcUtil.tradeHas(trade, 947)) then
+        local offset = npc:getID() - FURNACE_HATCH_OFFSET;
+        player:confirmTrade();
+        player:startEvent(21 + offset); -- THUD!
 
-        local npcid = npc:getID();
-        local Door_Offset = 16826582; -- _0c0 in NPC_List
-
-        if (npcid == Door_Offset+29 or npcid == Door_Offset+28 or npcid == Door_Offset+27) then
-            if (GetNPCByID(Door_Offset+10):getAnimation() == 8) then
-                GetNPCByID(Door_Offset+10):setAnimation(9);
-                GetNPCByID(Door_Offset+11):setAnimation(8);
-                GetNPCByID(Door_Offset+8):setAnimation(9);
-                GetNPCByID(Door_Offset+9):setAnimation(8);
-            else
-                GetNPCByID(Door_Offset+10):setAnimation(8);
-                GetNPCByID(Door_Offset+11):setAnimation(9);
-                GetNPCByID(Door_Offset+8):setAnimation(8);
-                GetNPCByID(Door_Offset+9):setAnimation(9);
-            end
-        elseif (npcid == Door_Offset+25) then
-            if (GetNPCByID(Door_Offset+3):getAnimation() == 8) then
-                GetNPCByID(Door_Offset+3):setAnimation(9);
-                GetNPCByID(Door_Offset+2):setAnimation(8);
-                GetNPCByID(Door_Offset+1):setAnimation(9);
-                GetNPCByID(Door_Offset):setAnimation(8);
-            else
-                GetNPCByID(Door_Offset+3):setAnimation(8);
-                GetNPCByID(Door_Offset+2):setAnimation(9);
-                GetNPCByID(Door_Offset+1):setAnimation(8);
-                GetNPCByID(Door_Offset):setAnimation(9);
-            end
-        elseif (npcid == Door_Offset+26) then
-            if (GetNPCByID(Door_Offset+4):getAnimation() == 8) then
-                GetNPCByID(Door_Offset+4):setAnimation(9);
-                GetNPCByID(Door_Offset+5):setAnimation(8);
-                GetNPCByID(Door_Offset+6):setAnimation(9);
-                GetNPCByID(Door_Offset+7):setAnimation(8);
-            else
-                GetNPCByID(Door_Offset+4):setAnimation(8);
-                GetNPCByID(Door_Offset+5):setAnimation(9);
-                GetNPCByID(Door_Offset+6):setAnimation(8);
-                GetNPCByID(Door_Offset+7):setAnimation(9);
-            end
+        -- toggle open/closed the four doors related to this hatch
+        local doorOffset = NEWTON_DOOR_OFFSET + (math.min(offset, 2) * 4);
+        for i = doorOffset, doorOffset + 3 do
+            local door = GetNPCByID(i);
+            door:setAnimation((door:getAnimation() == ANIMATION_OPEN_DOOR) and ANIMATION_CLOSE_DOOR or ANIMATION_OPEN_DOOR);
         end
+    else
+        player:startEvent(20); -- no firesand message
     end
 end;
 
 function onTrigger(player,npc)
+    player:startEvent(20); -- no firesand message
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

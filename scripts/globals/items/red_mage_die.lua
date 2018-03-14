@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 5477
--- Warrior Die
--- Teaches the job ability Fighter's Roll
+-- ID: 5481
+-- Red Mage Die
+-- Teaches the job ability Warlock's Roll
 -----------------------------------------
 
 function onItemCheck(target)

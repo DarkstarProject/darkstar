@@ -5,14 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
 require("scripts/zones/Monastic_Cavern/TextIDs");
+require("scripts/zones/Monastic_Cavern/MobIDs");
+require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-
-    UpdateTreasureSpawnPoint(17391849);
-
+    UpdateTreasureSpawnPoint(MONASTIC_TREASURE_COFFER);
 end;
 
 function onZoneIn(player,prevZone)
@@ -25,7 +24,6 @@ end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -35,11 +33,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

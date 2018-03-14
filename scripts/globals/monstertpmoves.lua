@@ -371,7 +371,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
         end
     elseif VanadielDayElement() == dayWeak[ele] then
         if math.random() < 0.33 then
-            dayWeatherBonus = dayWeatherBonus + 0.10;
+            dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
 

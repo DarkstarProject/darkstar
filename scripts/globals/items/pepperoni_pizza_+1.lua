@@ -1,9 +1,9 @@
 -----------------------------------------
 -- ID: 5698
 -- Item: pepperoni_pizza_+1
--- Food Effect: 4hours, All Races
+-- Food Effect: 4 hours, all Races
 -----------------------------------------
--- Health Points 35
+-- HP +35
 -- Strength 2
 -- Accuracy 9% (caps @ 11)
 -- Attack 10% (caps @ 16)
@@ -22,10 +22,6 @@ end;
 function onItemUse(target)
     target:addStatusEffect(EFFECT_FOOD,0,0,14400,5698);
 end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HP, 35);

@@ -6,47 +6,55 @@
 -----------------------------------
 package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
+require("scripts/zones/Outer_Horutoto_Ruins/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1 and player:hasKeyItem(SOUTHWESTERN_STAR_CHARM)) then
-        SpawnMob(17572197) -- Jack of Cups
-        SpawnMob(17572198) -- Jack of Batons
-        SpawnMob(17572199) -- Jack of Swords
-        SpawnMob(17572200) -- Jack of Coins
-
-    elseif (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 2) then
-        player:startEvent(68)
+    if (
+        CurrentMission == FULL_MOON_FOUNTAIN and
+        MissionStatus == 1 and
+        player:hasKeyItem(SOUTHWESTERN_STAR_CHARM) and
+        not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 0):isSpawned() and
+        not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 1):isSpawned() and
+        not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 2):isSpawned() and
+        not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 3):isSpawned()
+    ) then
+        for i = FULL_MOON_FOUNTAIN_OFFSET, FULL_MOON_FOUNTAIN_OFFSET + 3 do
+            SpawnMob(i);
+        end
+        
+    elseif (
+        CurrentMission == FULL_MOON_FOUNTAIN and
+        MissionStatus == 2 and
+        GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 0):isDead() and
+        GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 1):isDead() and
+        GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 2):isDead() and
+        GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 3):isDead()
+    ) then
+        player:startEvent(68);
+        
     else
         player:messageSpecial(DOOR_FIRMLY_SHUT);
     end
 
     return 1;
-
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 68) then
         player:setVar("MissionStatus",3);
         player:delKeyItem(SOUTHWESTERN_STAR_CHARM);
     end
-
 end;
