@@ -117,10 +117,6 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
         end
-        
-        if (attacker:hasStatusEffect(EFFECT_ASSASSINS_CHARGE)) then
-            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_ASSASSINS_CHARGE):getSubPower()/100;
-        end
 
         critrate = critrate + nativecrit;
     end

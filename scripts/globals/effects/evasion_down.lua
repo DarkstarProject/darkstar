@@ -19,7 +19,7 @@ end
 -- onEffectTick Action
 -----------------------------------
 function onEffectTick(target,effect)
-    -- If this is Feint, restore 10 evasion every tick
+    -- Only Feint uses the tick, restore 10 evasion every tick
     local evaDownAmt = effect:getPower();
     if (evaDownAmt > 0) then
         effect:setPower(evaDownAmt - 10);

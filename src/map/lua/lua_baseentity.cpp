@@ -10509,12 +10509,6 @@ inline int32 CLuaBaseEntity::dispelAllStatusEffect(lua_State *L)
 *  Notes   : Returns a Lua table with the information on the Status Effect stolen
 ************************************************************************/
 
-//DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
-//DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-//
-//CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-//battleutils::DoWildCardToEntity(static_cast<CCharEntity*>(m_PBaseEntity), static_cast<CCharEntity*>(PEntity->m_PBaseEntity), (uint8)lua_tointeger(L, 2));
-
 inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
