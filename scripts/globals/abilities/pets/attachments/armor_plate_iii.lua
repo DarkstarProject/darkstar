@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Armor Plate III
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_DMGPHYS, -15)

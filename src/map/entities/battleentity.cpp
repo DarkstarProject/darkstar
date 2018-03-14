@@ -1097,7 +1097,7 @@ void CBattleEntity::addTrait(CTrait* PTrait)
 void CBattleEntity::delTrait(CTrait* PTrait)
 {
     delModifier(PTrait->getMod(), PTrait->getValue());
-    std::remove(TraitList.begin(), TraitList.end(), PTrait);
+    TraitList.erase(std::remove(TraitList.begin(), TraitList.end(), PTrait), TraitList.end());
 }
 
 bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
@@ -1492,6 +1492,12 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (attack.IsGuarded())
                 {
                     actionTarget.reaction = REACTION_GUARD;
+                }
+
+                // Apply Feint
+                if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
+                {
+                    PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
                 }
 
                 // Process damage.

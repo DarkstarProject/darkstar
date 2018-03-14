@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Pattern Reader
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_PATTERN_READER_ENGAGE", function(pet, target)

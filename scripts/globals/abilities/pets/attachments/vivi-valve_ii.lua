@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Vivi-valve II
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_CURE_POTENCY, 10);

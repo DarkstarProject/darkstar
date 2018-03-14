@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Inhibitor
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_STORETP, 5)

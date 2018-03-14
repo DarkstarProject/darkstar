@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Volt Gun
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     local skill = math.max(pet:getSkillLevel(22), pet:getSkillLevel(23), pet:getSkillLevel(24))

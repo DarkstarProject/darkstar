@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Mana Jammer
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_MDEF, 10)

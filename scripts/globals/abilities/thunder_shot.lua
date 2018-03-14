@@ -3,15 +3,11 @@
 -- Consumes a Thunder Card to enhance lightning-based debuffs. Deals lightning-based magic damage
 -- Shock Effect: Enhanced DoT and MND-
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/weaponskills");
 require("scripts/globals/ability");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -26,10 +22,6 @@ function onAbilityCheck(player,target,ability)
         return 71, 0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local params = {};

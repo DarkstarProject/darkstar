@@ -17,14 +17,14 @@ local TreasureMinLvL = 43;
 
 function onTrade(player,npc,trade)
 
-    -- trade:hasItemQty(1048,1);             -- Treasure Key
+    -- trade:hasItemQty(1038,1);             -- Treasure Key
     -- trade:hasItemQty(1115,1);            -- Skeleton Key
     -- trade:hasItemQty(1023,1);            -- Living Key
     -- trade:hasItemQty(1022,1);            -- Thief's Tools
     local questItemNeeded = 0;
 
     -- Player traded a key.
-    if ((trade:hasItemQty(1048,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
+    if ((trade:hasItemQty(1038,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: keyitem -----------
         if (player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(UN_MOMENT) == false) then
@@ -76,7 +76,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1048);
+    player:messageSpecial(CHEST_LOCKED,1038);
 end;
 
 function onEventUpdate(player,csid,option)

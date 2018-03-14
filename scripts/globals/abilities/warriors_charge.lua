@@ -5,21 +5,13 @@
 -- Recast Time: 5:00
 -- Duration: 1:00 or next attack
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(MERIT_WARRIORS_CHARGE);

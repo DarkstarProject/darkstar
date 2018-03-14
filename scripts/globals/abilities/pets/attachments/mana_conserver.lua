@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Mana Conserver
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_CONSERVE_MP, 20);

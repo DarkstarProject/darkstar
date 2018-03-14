@@ -9,9 +9,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -25,10 +22,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     player:transferEnmity(player:getPet(), 99, 11.5)

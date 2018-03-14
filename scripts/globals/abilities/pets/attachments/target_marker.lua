@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Target Marker
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_TARGETMARKER_ENGAGE", function(pet, target)

@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Accelerator
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_EVA, 5)

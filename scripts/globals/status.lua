@@ -1423,9 +1423,9 @@ MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hag
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 891 -- stuff
--- SPARE = 892 -- stuff
--- SPARE = 893 -- stuff
+-- SPARE = 894 -- stuff
+-- SPARE = 895 -- stuff
+-- SPARE = 896 -- stuff
 ------------------------------------
 -- Merit Definitions
 ------------------------------------

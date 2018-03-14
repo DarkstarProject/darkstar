@@ -3,15 +3,11 @@
 -- Consumes a Ice Card to enhance ice-based debuffs. Deals ice-based magic damage
 -- Frost Effect: Enhanced DoT and AGI-
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/weaponskills");
 require("scripts/globals/ability");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -26,10 +22,6 @@ function onAbilityCheck(player,target,ability)
         return 71, 0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local params = {};

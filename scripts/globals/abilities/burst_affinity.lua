@@ -5,21 +5,13 @@
 -- Recast Time: 2 minutes
 -- Duration: 30 seconds
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player, target, ability)
     player:addStatusEffect(EFFECT_BURST_AFFINITY,1,0,30);

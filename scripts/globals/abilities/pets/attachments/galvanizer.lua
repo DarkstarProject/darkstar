@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Galvanizer
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_COUNTER, 10)
