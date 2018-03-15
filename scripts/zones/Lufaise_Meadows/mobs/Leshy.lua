@@ -2,64 +2,52 @@
 -- Area: Lufaise Meadows
 --  MOB: Leshy
 -----------------------------------
+require("scripts/zones/Lufaise_Meadows/MobIDs");
+-----------------------------------
 
-function onMobRoam(mob)
-
-    local Colorful_Leshy = 16875762;
-    local Colorful_Leshy_PH = 0;
-    local Colorful_Leshy_PH_Table =
-    {
-        16875754,
-        16875755,
-        16875756,
-        16875757,
-        16875758,
-        16875759,
-        16875760,
-        16875761
-    };
-    local Colorful_Leshy_ToD = GetMobByID(Colorful_Leshy):getLocalVar("1");
-
-    if (Colorful_Leshy_ToD <= os.time()) then
-        Colorful_Leshy_PH = math.random((0), (#Colorful_Leshy_PH_Table));
-        if (Colorful_Leshy_PH_Table[Colorful_Leshy_PH] ~= nil) then
-            if (GetMobAction(Colorful_Leshy) == 0) then
-                SetServerVariable("Colorful_Leshy_PH", Colorful_Leshy_PH_Table[Colorful_Leshy_PH]);
-                DisallowRespawn(Colorful_Leshy_PH_Table[Colorful_Leshy_PH], true);
-                DisallowRespawn(Colorful_Leshy, false);
-                DespawnMob(Colorful_Leshy_PH_Table[Colorful_Leshy_PH]);
-                SpawnMob(Colorful_Leshy, "", 0);
-            end
+function disturbMob(mob)
+    local offset = mob:getID() - LESHY_OFFSET;
+    if (offset >= 0 and offset <= 7) then
+        local nm = GetMobByID(COLORFUL_LESHY);
+        if (not nm:isSpawned() and not GetMobByID(COLORFUL_LESHY + 1):isSpawned()) then
+            nm:setLocalVar("timeToGrow", os.time() + math.random(43200, 86400)); -- Colorful in 12 to 24 hours
         end
     end
+end
 
+function onMobEngaged(mob, target)
+    disturbMob(mob);
+end;
+
+function onMobFight(mob, target)
+    disturbMob(mob);
+end;
+
+function onMobRoam(mob)
+    local ph = mob:getID();
+    local offset = ph - LESHY_OFFSET;
+    if (offset >= 0 and offset <= 7) then
+        local nm = GetMobByID(COLORFUL_LESHY);
+        if (
+            not nm:isSpawned() and
+            not GetMobByID(COLORFUL_LESHY + 1):isSpawned() and
+            os.time() > nm:getLocalVar("timeToGrow") and
+            nm:getLocalVar("phIndex") == 0 and
+            math.random(1,20) == 1 -- this prevents the same Leshy from growing every cycle
+        ) then  
+            local p = mob:getPos();
+            DisallowRespawn(ph, true);
+            DespawnMob(ph);
+            DisallowRespawn(COLORFUL_LESHY, false);
+            nm:setSpawn(p.x,p.y,p.z,p.rot);
+            SpawnMob(COLORFUL_LESHY);
+            nm:setLocalVar("phIndex", ph);
+        end
+    end
 end;
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-
-    local Leshy = mob:getID();
-    local Colorful_Leshy = 16875762;
-    local Colorful_Leshy_PH_Table =
-    {
-        16875754,
-        16875755,
-        16875756,
-        16875757,
-        16875758,
-        16875759,
-        16875760,
-        16875761
-    };
-
-    for i = 1, #Colorful_Leshy_PH_Table, 1 do
-        if (Colorful_Leshy_PH_Table[i] ~= nil) then
-            if (Leshy == Colorful_Leshy_PH_Table[i]) then
-                GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
-            end
-        end
-    end
-
 end;
