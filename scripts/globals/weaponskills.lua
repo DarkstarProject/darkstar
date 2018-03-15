@@ -888,9 +888,9 @@ function getMultiAttacks(attacker, target, numHits)
     local quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
     local oaThriceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_THRICE)/100;
     local oaTwiceRate = attacker:getMod(MOD_MYTHIC_OCC_ATT_TWICE)/100;
-    
+
     -- Add Ambush Augments to Triple Attack
-    if (attacker::hasTrait(76) and attacker:isBehind(target, 23)) then -- TRAIT_AMBUSH
+    if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then -- TRAIT_AMBUSH
         tripleRate = tripleRate + attacker:getMerit(MERIT_AMBUSH) / 3; -- Value of Ambush is 3 per mert, augment gives +1 Triple Attack per merit
     end
 
@@ -1046,7 +1046,7 @@ function shouldApplyAftermath(player, tp)
             return false;
         end
     end
-    
+
     return true;
 end
 
