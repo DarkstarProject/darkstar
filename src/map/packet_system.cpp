@@ -834,8 +834,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         uint8 MountID = data.ref<uint8>(0x0C);
 
-        // TODO: Check if player is in combat.
-        if (charutils::hasKeyItem(PChar, 3072 + MountID))
+        // TODO: Check if player is in combat and get proper list of zones you can use mounts.
+        if (charutils::hasKeyItem(PChar, 3072 + MountID) && PChar->loc.zone->GetType() == ZONETYPE_OUTDOORS)
         {
             if (PChar->GetMLevel() >= 20)
             {
