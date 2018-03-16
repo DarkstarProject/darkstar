@@ -843,6 +843,14 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
         else if (charutils::hasKeyItem(PChar, 3072 + MountID))
         {
+            if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, 256, 60))
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 94));
+
+                // add recast timer
+                //PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 202));
+                return;
+            }
             // Retail prevents mounts if a player has enmity on any mob in the zone, need a function for this
             for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
             {
