@@ -837,7 +837,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if (PChar->animation != ANIMATION_NONE)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 71));
-        else if (!PChar->loc.zone->CanUseMisc(MISC_CHOCOBO))
+        else if (PChar->loc.zone->GetType() != ZONETYPE_OUTDOORS)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         else if (PChar->GetMLevel() < 20)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
