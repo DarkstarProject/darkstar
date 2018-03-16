@@ -61,6 +61,7 @@ This file is part of DarkStar-server source code.
 #include "item_container.h"
 #include "universal_container.h"
 #include "recast_container.h"
+#include "enmity_container.h"
 
 #include "ai/ai_container.h"
 #include "ai/states/death_state.h"
