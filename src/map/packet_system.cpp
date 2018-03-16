@@ -834,11 +834,23 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         uint8 MountID = data.ref<uint8>(0x0C);
 
-        if (charutils::hasKeyItem(PChar, 3072 + MountID))
+        // TODO: Check if player is in combat and get proper list of zones you can use mounts.
+        if (charutils::hasKeyItem(PChar, 3072 + MountID) && PChar->loc.zone->GetType() == ZONETYPE_OUTDOORS)
         {
-            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? ++MountID : 0), 0, 1800), true);
-            PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
-            PChar->pushPacket(new CCharRecastPacket(PChar));
+            if (PChar->GetMLevel() >= 20)
+            {
+                PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? ++MountID : 0), 0, 1800), true);
+                PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
+                PChar->pushPacket(new CCharRecastPacket(PChar));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
+            }
+        }
+        else
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 71));
         }
     }
     break;
