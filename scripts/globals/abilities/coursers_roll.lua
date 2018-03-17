@@ -55,31 +55,12 @@ function applyRoll(caster,target,ability,action,total)
     local effectpowers = {2, 3, 11, 4, 5, 6, 7, 8, 1, 10, 12, -5}
     local effectpower = effectpowers[total];
 -- Apply Buffs from Courser's Roll Enhancing Gear if present
-    local equippedEnh = caster:getEquipID(SLOT_FEET);
-    if (equippedEnh == 11260) then -- Navarch's Bottes +1
-        if (math.random(0, 99) < 50) then  -- 50% Chance to buff roll if equipped
-            effectpower = effectpower + 3
-        end
-    end
-    if ((equippedEnh == 11160) or (equippedEnh == 27443) or (equippedEnh == 27444)) then -- Navarch's Bottes +2 / Chasseur's Bottes / +1
+    if (math.random(0, 99) < caster:getMod(MOD_ENHANCES_COURSERS_ROLL)) then
         effectpower = effectpower + 3
     end
--- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
-    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
-    local phantombuffValue = 0;
-    local phantomBase = 1; -- Base increment buff
-    if (phantomValue == 3) then
-        phantombuffMultiplier = 3;
-    elseif ((phantomValue == 5) or (phantomValue == 8)) then
-        phantombuffMultiplier = 5;
-    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
-        phantombuffMultiplier = 7;
-    else
-        phantombuffMultiplier = 0;
-    end
 -- Apply Additional Phantom Roll+ Buff
-    local phantombuffValue = phantomBase * phantombuffMultiplier;
-    local effectpower = effectpower + phantombuffValue
+    local phantomBase = 1; -- Base increment buff
+    local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
 -- Check if COR Main or Sub
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());

@@ -3285,6 +3285,7 @@ INSERT INTO `item_mods` VALUES (11080,1,35);
 INSERT INTO `item_mods` VALUES (11080,11,10);
 INSERT INTO `item_mods` VALUES (11080,26,16);
 INSERT INTO `item_mods` VALUES (11080,359,10);
+INSERT INTO `item_mods` VALUES (11080,893,100); -- Blitzer's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11081,1,33);      -- cirque_cappello_+2 DEF:+33
 INSERT INTO `item_mods` VALUES (11081,80,5);      -- Hand-to-Hand+5
 INSERT INTO `item_mods` VALUES (11081,288,3);     -- Double Attack+3
@@ -3390,6 +3391,7 @@ INSERT INTO `item_mods` VALUES (11100,1,61);
 INSERT INTO `item_mods` VALUES (11100,24,14);
 INSERT INTO `item_mods` VALUES (11100,26,14);
 INSERT INTO `item_mods` VALUES (11100,30,10);
+INSERT INTO `item_mods` VALUES (11100,895,100); -- Tactician's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11101,1,59);      -- cirque_farsetto_+2 DEF:+59
 INSERT INTO `item_mods` VALUES (11101,9,10);      -- DEX+10
 INSERT INTO `item_mods` VALUES (11101,25,20);     -- Accuracy+20
@@ -3489,6 +3491,7 @@ INSERT INTO `item_mods` VALUES (11120,24,16);
 INSERT INTO `item_mods` VALUES (11120,25,16);
 INSERT INTO `item_mods` VALUES (11120,165,5);
 INSERT INTO `item_mods` VALUES (11120,882,40); -- Phantom Roll Duration +
+INSERT INTO `item_mods` VALUES (11120,894,100); -- Allies' Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11121,1,26);      -- cirque_guanti_+2 DEF:+26
 INSERT INTO `item_mods` VALUES (11121,8,6);       -- STR+6
 INSERT INTO `item_mods` VALUES (11121,9,6);       -- DEX+6
@@ -3585,6 +3588,7 @@ INSERT INTO `item_mods` VALUES (11140,9,8);
 INSERT INTO `item_mods` VALUES (11140,11,8);
 INSERT INTO `item_mods` VALUES (11140,73,8);
 INSERT INTO `item_mods` VALUES (11140,365,6);
+INSERT INTO `item_mods` VALUES (11140,892,100); -- Caster's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11141,1,46);      -- cirq._pantaloni_+2 DEF:+46
 INSERT INTO `item_mods` VALUES (11141,25,10);     -- Accuracy+10
 INSERT INTO `item_mods` VALUES (11141,23,10);     -- Attack+10
@@ -3674,6 +3678,7 @@ INSERT INTO `item_mods` VALUES (11159,30,8);
 INSERT INTO `item_mods` VALUES (11160,1,22);
 INSERT INTO `item_mods` VALUES (11160,11,13);
 INSERT INTO `item_mods` VALUES (11160,30,10);
+INSERT INTO `item_mods` VALUES (11160,891,100); -- Courser's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11161,1,22);      -- cirque_scarpe_+2 DEF:+22
 INSERT INTO `item_mods` VALUES (11161,8,8);       -- STR+8
 INSERT INTO `item_mods` VALUES (11161,9,8);       -- DEX+8
@@ -3763,6 +3768,7 @@ INSERT INTO `item_mods` VALUES (11180,1,33);
 INSERT INTO `item_mods` VALUES (11180,11,8);
 INSERT INTO `item_mods` VALUES (11180,26,12);
 INSERT INTO `item_mods` VALUES (11180,359,7);
+INSERT INTO `item_mods` VALUES (11180,893,50); -- Blitzer's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11181,1,31);      -- cirque_cappello_+1 DEF:+31
 INSERT INTO `item_mods` VALUES (11181,288,2);     -- Double Attack+2
 INSERT INTO `item_mods` VALUES (11181,384,51);    -- Haste +5%
@@ -3860,6 +3866,7 @@ INSERT INTO `item_mods` VALUES (11200,1,58);
 INSERT INTO `item_mods` VALUES (11200,24,10);
 INSERT INTO `item_mods` VALUES (11200,26,10);
 INSERT INTO `item_mods` VALUES (11200,30,8);
+INSERT INTO `item_mods` VALUES (11200,895,50); -- Tactician's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11201,1,56);      -- cirque_farsetto_+1 DEF:+56
 INSERT INTO `item_mods` VALUES (11201,9,6);       -- DEX+6
 INSERT INTO `item_mods` VALUES (11201,25,14);     -- Accuracy+14
@@ -3956,6 +3963,7 @@ INSERT INTO `item_mods` VALUES (11220,25,13);
 INSERT INTO `item_mods` VALUES (11220,26,13);
 INSERT INTO `item_mods` VALUES (11220,165,4);
 INSERT INTO `item_mods` VALUES (11220,882,20); -- Phantom Roll Duration +
+INSERT INTO `item_mods` VALUES (11220,894,50); -- Allies' Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11221,1,24);
 INSERT INTO `item_mods` VALUES (11221,8,4);       -- STR+4
 INSERT INTO `item_mods` VALUES (11221,9,4);       -- DEX+4
@@ -4046,6 +4054,7 @@ INSERT INTO `item_mods` VALUES (11240,9,6);
 INSERT INTO `item_mods` VALUES (11240,11,6);
 INSERT INTO `item_mods` VALUES (11240,73,6);
 INSERT INTO `item_mods` VALUES (11240,365,3);
+INSERT INTO `item_mods` VALUES (11240,892,50); -- Caster's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11241,1,44);      -- cirq._pantaloni_+1 DEF:+44
 INSERT INTO `item_mods` VALUES (11241,25,7);      -- Accuracy+7
 INSERT INTO `item_mods` VALUES (11241,23,7);      -- Attack+7
@@ -4131,6 +4140,7 @@ INSERT INTO `item_mods` VALUES (11259,30,5);
 INSERT INTO `item_mods` VALUES (11260,1,20);
 INSERT INTO `item_mods` VALUES (11260,11,10);
 INSERT INTO `item_mods` VALUES (11260,30,8);
+INSERT INTO `item_mods` VALUES (11260,891,50); -- Courser's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (11261,1,20);      -- Cirque Scarpe +1: DEF:20
 INSERT INTO `item_mods` VALUES (11261,8,5);       -- STR+5
 INSERT INTO `item_mods` VALUES (11261,9,5);       -- DEX+5
@@ -33082,6 +33092,7 @@ INSERT INTO `item_mods` VALUES (26772,31,40);
 INSERT INTO `item_mods` VALUES (26772,68,21);
 INSERT INTO `item_mods` VALUES (26772,359,12);
 INSERT INTO `item_mods` VALUES (26772,384,71);
+INSERT INTO `item_mods` VALUES (26772,893,100); -- Blitzer's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (26773,1,100);
 INSERT INTO `item_mods` VALUES (26773,2,34);
 INSERT INTO `item_mods` VALUES (26773,8,18);
@@ -33097,6 +33108,7 @@ INSERT INTO `item_mods` VALUES (26773,31,59);
 INSERT INTO `item_mods` VALUES (26773,68,47);
 INSERT INTO `item_mods` VALUES (26773,359,14);
 INSERT INTO `item_mods` VALUES (26773,384,81);
+INSERT INTO `item_mods` VALUES (26773,893,100); -- Blitzer's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (26776,1,72);
 INSERT INTO `item_mods` VALUES (26776,2,19);
 INSERT INTO `item_mods` VALUES (26776,8,12);
@@ -34757,6 +34769,7 @@ INSERT INTO `item_mods` VALUES (26930,29,3);
 INSERT INTO `item_mods` VALUES (26930,31,47);
 INSERT INTO `item_mods` VALUES (26930,68,24);
 INSERT INTO `item_mods` VALUES (26930,422,11);
+INSERT INTO `item_mods` VALUES (26930,895,100); -- Tactician's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (26931,1,131);
 INSERT INTO `item_mods` VALUES (26931,2,57);
 INSERT INTO `item_mods` VALUES (26931,5,59);
@@ -34774,6 +34787,7 @@ INSERT INTO `item_mods` VALUES (26931,31,69);
 INSERT INTO `item_mods` VALUES (26931,68,52);
 INSERT INTO `item_mods` VALUES (26931,422,12);
 INSERT INTO `item_mods` VALUES (26931,386,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (26931,895,100); -- Tactician's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (26934,1,95);
 INSERT INTO `item_mods` VALUES (26934,2,30);
 INSERT INTO `item_mods` VALUES (26934,8,16);
@@ -36144,6 +36158,7 @@ INSERT INTO `item_mods` VALUES (27084,68,12);
 INSERT INTO `item_mods` VALUES (27084,165,5);
 INSERT INTO `item_mods` VALUES (27084,384,40);
 INSERT INTO `item_mods` VALUES (27084,882,45); -- Phantom Roll Duration +
+INSERT INTO `item_mods` VALUES (27084,894,100); -- Allies' Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27085,1,90);
 INSERT INTO `item_mods` VALUES (27085,2,22);
 INSERT INTO `item_mods` VALUES (27085,8,12);
@@ -36160,6 +36175,7 @@ INSERT INTO `item_mods` VALUES (27085,68,27);
 INSERT INTO `item_mods` VALUES (27085,165,6);
 INSERT INTO `item_mods` VALUES (27085,384,51);
 INSERT INTO `item_mods` VALUES (27085,882,50); -- Phantom Roll Duration +
+INSERT INTO `item_mods` VALUES (27085,894,100); -- Allies' Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27088,1,64);
 INSERT INTO `item_mods` VALUES (27088,2,12);
 INSERT INTO `item_mods` VALUES (27088,8,9);
@@ -37524,6 +37540,7 @@ INSERT INTO `item_mods` VALUES (27269,68,19);
 INSERT INTO `item_mods` VALUES (27269,73,9);
 INSERT INTO `item_mods` VALUES (27269,365,6);
 INSERT INTO `item_mods` VALUES (27269,384,61);
+INSERT INTO `item_mods` VALUES (27269,892,100); -- Caster's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27270,1,113);
 INSERT INTO `item_mods` VALUES (27270,2,45);
 INSERT INTO `item_mods` VALUES (27270,5,38);
@@ -37540,6 +37557,7 @@ INSERT INTO `item_mods` VALUES (27270,68,41);
 INSERT INTO `item_mods` VALUES (27270,73,10);
 INSERT INTO `item_mods` VALUES (27270,365,7);
 INSERT INTO `item_mods` VALUES (27270,384,61);
+INSERT INTO `item_mods` VALUES (27270,892,100); -- Caster's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27273,1,81);
 INSERT INTO `item_mods` VALUES (27273,2,23);
 INSERT INTO `item_mods` VALUES (27273,8,18);
@@ -38919,6 +38937,7 @@ INSERT INTO `item_mods` VALUES (27443,29,2);
 INSERT INTO `item_mods` VALUES (27443,31,51);
 INSERT INTO `item_mods` VALUES (27443,68,34);
 INSERT INTO `item_mods` VALUES (27443,384,40);
+INSERT INTO `item_mods` VALUES (27443,891,100); -- Courser's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27444,1,69);
 INSERT INTO `item_mods` VALUES (27444,2,11);
 INSERT INTO `item_mods` VALUES (27444,8,14);
@@ -38931,6 +38950,7 @@ INSERT INTO `item_mods` VALUES (27444,29,5);
 INSERT INTO `item_mods` VALUES (27444,31,75);
 INSERT INTO `item_mods` VALUES (27444,68,74);
 INSERT INTO `item_mods` VALUES (27444,384,40);
+INSERT INTO `item_mods` VALUES (27444,891,100); -- Courser's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27447,1,50);
 INSERT INTO `item_mods` VALUES (27447,2,7);
 INSERT INTO `item_mods` VALUES (27447,8,8);

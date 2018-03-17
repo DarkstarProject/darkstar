@@ -52,32 +52,13 @@ function applyRoll(caster,target,ability,action,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
     local effectpowers = {2, 3, 4, 11, 5, 6, 7, 8, 1, 10, 12, -5}
     local effectpower = effectpowers[total];
--- Apply Buffs from Blitzers Roll Enhancing Gear if present
-    local equippedEnh = caster:getEquipID(SLOT_HEAD);
-    if (equippedEnh == 11180) then -- Navarch's Tricorne +1
-        if (math.random(0, 99) < 50) then  -- 50% Chance to buff roll if equipped
-            effectpower = effectpower + 3
-        end
-    end
-    if ((equippedEnh == 11080) or (equippedEnh == 26772) or (equippedEnh == 26773)) then -- Navarch's Tricorne +2 / Chasseur's Tricorne / +1
+-- Apply Buffs from Blitzer's Roll Enhancing Gear if present
+    if (math.random(0, 99) < caster:getMod(MOD_ENHANCES_BLITZERS_ROLL)) then
         effectpower = effectpower + 3
     end
--- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
-    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
-    local phantombuffValue = 0;
-    local phantomBase = 1; -- Base increment buff
-    if (phantomValue == 3) then
-        phantombuffMultiplier = 3;
-    elseif ((phantomValue == 5) or (phantomValue == 8)) then
-        phantombuffMultiplier = 5;
-    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
-        phantombuffMultiplier = 7;
-    else
-        phantombuffMultiplier = 0;
-    end
 -- Apply Additional Phantom Roll+ Buff
-    local phantombuffValue = phantomBase * phantombuffMultiplier;
-    local effectpower = effectpower + phantombuffValue
+    local phantomBase = 1; -- Base increment buff
+    local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
 -- Check if COR Main or Sub
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
