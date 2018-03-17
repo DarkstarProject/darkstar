@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 5710
--- Item: Berry Snowcone
+-- Item: Berry Snow Cone
 -- Food Effect: 5 Min, All Races
 -----------------------------------------
 -- MP % 30 Cap 30

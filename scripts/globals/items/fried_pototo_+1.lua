@@ -1,13 +1,13 @@
 -----------------------------------------
--- ID: 6272
--- Item: fried_popoto
--- Food Effect: 30Min, All Races
+-- ID: 6273
+-- Item: fried_pototo_+1
+-- Food Effect: 60Min, All Races
 -----------------------------------------
--- HP +30
--- VIT +2
--- Fire resistance +20
--- DEF +20% (cap 145)
--- Subtle Blow +8
+-- HP +35
+-- VIT +3
+-- Fire resistance +21
+-- DEF +21% (cap 150)
+-- Subtle Blow +9
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------
@@ -21,7 +21,7 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,1800,6272);
+    target:addStatusEffect(EFFECT_FOOD,0,0,3600,6273);
 end;
 
 -----------------------------------------
@@ -29,19 +29,19 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 30);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_FIRERES, 20);
-    target:addMod(MOD_FOOD_DEFP, 20);
-    target:addMod(MOD_FOOD_DEF_CAP, 145);
-    target:addMod(MOD_SUBTLE_BLOW, 8);
+    target:addMod(MOD_HP, 35);
+    target:addMod(MOD_VIT, 3);
+    target:addMod(MOD_FIRERES, 21);
+    target:addMod(MOD_FOOD_DEFP, 21);
+    target:addMod(MOD_FOOD_DEF_CAP, 150);
+    target:addMod(MOD_SUBTLE_BLOW, 9);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 30);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_FIRERES, 20);
-    target:delMod(MOD_FOOD_DEFP, 20);
-    target:delMod(MOD_FOOD_DEF_CAP, 145);
-    target:delMod(MOD_SUBTLE_BLOW, 8);
+    target:delMod(MOD_HP, 35);
+    target:delMod(MOD_VIT, 3);
+    target:delMod(MOD_FIRERES, 21);
+    target:delMod(MOD_FOOD_DEFP, 21);
+    target:delMod(MOD_FOOD_DEF_CAP, 150);
+    target:delMod(MOD_SUBTLE_BLOW, 9);
 end;
