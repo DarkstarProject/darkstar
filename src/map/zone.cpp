@@ -847,7 +847,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     //remove temp items
     charutils::ClearTempItems(PChar);
 
-    if (PChar->isMounted() && !CanUseMisc(MISC_CHOCOBO))
+    if (PChar->isMounted() && !CanUseMisc(MISC_MOUNT))
     {
         PChar->animation = ANIMATION_NONE;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
