@@ -49,7 +49,8 @@ function onTrigger(player,npc)
             4816,56250,	    -- Scroll of Tornado
             4812,71250,	    -- Scroll of Flare
             4814,52500,	    -- Scroll of Freeze
-            4820,63750}	    -- Scroll of Burst
+            4820,63750	    -- Scroll of Burst
+        }
 
     showShop(player, STATIC, stock);
 end;
