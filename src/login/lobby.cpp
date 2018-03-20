@@ -639,7 +639,7 @@ int32 lobbyview_parse(int32 fd)
             case 0x22:
             {
                 //creating new char
-                char CharName[15];
+                char CharName[16];
                 memset(CharName, 0, sizeof(CharName));
                 memcpy(CharName, session[fd]->rdata.data() + 32, sizeof(CharName));
 
