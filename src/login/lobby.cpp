@@ -201,7 +201,7 @@ int32 lobbydata_parse(int32 fd)
                     ////////////////////////////////////////////////////
                     ref<uint32>(CharList, 4 + 32 + i * 140) = CharID;
 
-                    memcpy(CharList + 12 + 32 + i * 140, strCharName, 15);
+                    memcpy(CharList + 12 + 32 + i * 140, strCharName, 16);
 
                     ref<uint8>(CharList, 46 + 32 + i * 140) = MainJob;
                     ref<uint8>(CharList, 73 + 32 + i * 140) = lvlMainJob;
@@ -688,7 +688,7 @@ int32 lobbyview_parse(int32 fd)
                 else
                 {
                     //copy charname
-                    memcpy(sd->charname, CharName, 15);
+                    memcpy(sd->charname, CharName, 16);
                     sendsize = 0x20;
                     LOBBY_ACTION_DONE(ReservePacket);
                     memcpy(MainReservePacket, ReservePacket, sendsize);
