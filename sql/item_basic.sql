@@ -5904,8 +5904,8 @@ INSERT INTO `item_basic` VALUES (6268,0,'komanezumi','komanezumi',99,1548,63,0,0
 INSERT INTO `item_basic` VALUES (6269,0,'eminent_quiver','eminent_quiver',12,30292,99,0,0);
 INSERT INTO `item_basic` VALUES (6270,0,'eminent_bolt_quiver','em._bolt_quiver',12,30292,99,0,0);
 INSERT INTO `item_basic` VALUES (6271,0,'eminent_bullet_pouch','em._bul._pouch',12,30292,99,0,0);
-INSERT INTO `item_basic` VALUES (6272,0,'fried_popoto','fried_pototo',12,1548,54,0,0);
-INSERT INTO `item_basic` VALUES (6273,0,'fried_popoto_+1','fried_pototo_+1',12,1548,54,0,0);
+INSERT INTO `item_basic` VALUES (6272,0,'fried_pototo','fried_popoto',12,1548,54,0,0);
+INSERT INTO `item_basic` VALUES (6273,0,'fried_pototo_+1','fried_popoto_+1',12,1548,54,0,0);
 INSERT INTO `item_basic` VALUES (6274,0,'pukatrice_egg','pukatrice_egg',12,1548,52,0,0);
 INSERT INTO `item_basic` VALUES (6275,0,'pukatrice_egg_+1','pukatrice_egg_+1',12,1548,52,0,0);
 INSERT INTO `item_basic` VALUES (6276,0,'deep-fried_shrimp','d.-fried_shrimp',12,1548,53,0,0);
