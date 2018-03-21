@@ -29,7 +29,7 @@ CREATE TABLE `item_basic` (
   `sortname` tinytext NOT NULL,
   `stackSize` tinyint(2) unsigned NOT NULL DEFAULT '1',
   `flags` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `aH` tinyint(2) unsigned NOT NULL DEFAULT '99',
+  `aH` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `NoSale` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `BaseSell` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemid`)
@@ -1545,7 +1545,7 @@ INSERT INTO `item_basic` VALUES (1657,0,'spool_of_bundling_twine','bundling_twin
 INSERT INTO `item_basic` VALUES (1658,0,'sealion_crest_key','sealion_crest_key',1,61508,99,1,0);
 INSERT INTO `item_basic` VALUES (1659,0,'coral_crest_key','coral_crest_key',1,61508,99,1,0);
 INSERT INTO `item_basic` VALUES (1660,0,'bronze_key','bronze_key',1,61524,99,1,0);
-INSERT INTO `item_basic` VALUES (1661,0,'bulb_of_misareaux_garlic','misareaux_garlic',1,57428,59,0,382);
+INSERT INTO `item_basic` VALUES (1661,0,'bulb_of_misareaux_garlic','misareaux_garlic',1,57428,99,0,382);
 INSERT INTO `item_basic` VALUES (1662,0,'cathedral_tapestry','ctdl._tapestry',1,57428,99,0,294);
 INSERT INTO `item_basic` VALUES (1663,0,'arnica_root','arnica_root',12,4,44,0,390);
 INSERT INTO `item_basic` VALUES (1664,0,'eastern_gem','eastern_gem',12,4,39,0,484);
@@ -4100,7 +4100,7 @@ INSERT INTO `item_basic` VALUES (4360,0,'bastore_sardine','bastore_sardine',12,1
 INSERT INTO `item_basic` VALUES (4361,0,'nebimonite','nebimonite',12,1548,51,0,53);
 INSERT INTO `item_basic` VALUES (4362,0,'lizard_egg','lizard_egg',12,1548,59,0,15);
 INSERT INTO `item_basic` VALUES (4363,0,'faerie_apple','faerie_apple',12,1548,59,0,11);
-INSERT INTO `item_basic` VALUES (4364,0,'loaf_of_black_bread','black_bread',12,1548,59,0,28);
+INSERT INTO `item_basic` VALUES (4364,0,'loaf_of_black_bread','black_bread',12,1548,56,0,28);
 INSERT INTO `item_basic` VALUES (4365,0,'rolanberry','rolanberry',12,1548,59,0,30);
 INSERT INTO `item_basic` VALUES (4366,0,'la_theine_cabbage','la_theine_cbg.',12,1548,59,0,6);
 INSERT INTO `item_basic` VALUES (4367,0,'clump_of_batagreens','batagreens',12,1548,59,1,0);
@@ -4237,19 +4237,19 @@ INSERT INTO `item_basic` VALUES (4497,0,'heart_chocolate','heart_chocolate',12,1
 INSERT INTO `item_basic` VALUES (4498,0,'cup_of_chocomilk','chocomilk',1,1548,58,0,285);
 INSERT INTO `item_basic` VALUES (4499,0,'loaf_of_iron_bread','iron_bread',12,1548,56,0,25);
 INSERT INTO `item_basic` VALUES (4500,0,'greedie','greedie',12,1548,51,0,11);
-INSERT INTO `item_basic` VALUES (4501,0,'fat_greedie','fat_greedie',1,63064,51,1,0);
+INSERT INTO `item_basic` VALUES (4501,0,'fat_greedie','fat_greedie',1,63064,99,1,0);
 INSERT INTO `item_basic` VALUES (4502,0,'marron_glace','marron_glace',1,1548,57,0,320);
 INSERT INTO `item_basic` VALUES (4503,0,'bunch_of_buburimu_grapes','buburimu_grape',12,1548,59,0,38);
 INSERT INTO `item_basic` VALUES (4504,0,'acorn','acorn',12,4,59,0,2);
 INSERT INTO `item_basic` VALUES (4505,0,'handful_of_sunflower_seeds','sunflower_seeds',12,1548,59,0,24);
 INSERT INTO `item_basic` VALUES (4506,0,'mutton_tortilla','mutton_tortilla',12,1548,56,0,405);
 INSERT INTO `item_basic` VALUES (4507,0,'rarab_meatball','rarab_meatball',1,1580,52,0,326);
-INSERT INTO `item_basic` VALUES (4508,0,'serving_of_royal_jelly','royal_jelly',12,26204,59,0,150);
+INSERT INTO `item_basic` VALUES (4508,0,'serving_of_royal_jelly','royal_jelly',12,26204,99,0,150);
 INSERT INTO `item_basic` VALUES (4509,0,'flask_of_distilled_water','distilled_water',12,4,59,0,3);
 INSERT INTO `item_basic` VALUES (4510,0,'acorn_cookie','acorn_cookie',99,1548,57,0,6);
-INSERT INTO `item_basic` VALUES (4511,0,'bowl_of_ambrosia','ambrosia',1,30300,55,1,0);
+INSERT INTO `item_basic` VALUES (4511,0,'bowl_of_ambrosia','ambrosia',1,30300,0,1,0);
 INSERT INTO `item_basic` VALUES (4512,0,'bottle_of_vampire_juice','vampire_juice',1,1548,58,0,660);
-INSERT INTO `item_basic` VALUES (4513,0,'bottle_of_amrita','amrita',1,30300,58,0,1054);
+INSERT INTO `item_basic` VALUES (4513,0,'bottle_of_amrita','amrita',1,30300,0,0,1054);
 INSERT INTO `item_basic` VALUES (4514,0,'quus','quus',12,1548,51,0,19);
 INSERT INTO `item_basic` VALUES (4515,0,'copper_frog','copper_frog',12,1548,51,0,20);
 INSERT INTO `item_basic` VALUES (4516,0,'slice_of_grilled_black_hare','grilled_black_hare',1,1580,52,0,496);
@@ -4305,7 +4305,7 @@ INSERT INTO `item_basic` VALUES (4565,0,'sobbing_fungus','sobbing_fungus',12,154
 INSERT INTO `item_basic` VALUES (4566,0,'deathball','deathball',12,1540,59,0,20);
 INSERT INTO `item_basic` VALUES (4567,0,'moon_carrot','moon_carrot',12,5644,59,1,0);
 INSERT INTO `item_basic` VALUES (4568,0,'moon_ball','moon_ball',12,1548,56,0,25);
-INSERT INTO `item_basic` VALUES (4569,0,'bowl_of_quadav_stew','quadav_stew',1,63068,55,1,0);
+INSERT INTO `item_basic` VALUES (4569,0,'bowl_of_quadav_stew','quadav_stew',1,63068,0,1,0);
 INSERT INTO `item_basic` VALUES (4570,0,'bird_egg','bird_egg',12,1548,59,0,14);
 INSERT INTO `item_basic` VALUES (4571,0,'clump_of_beaugreens','beaugreens',12,1548,59,0,25);
 INSERT INTO `item_basic` VALUES (4572,0,'serving_of_beaugreen_saute','beaugr._saute',1,1580,54,0,160);
@@ -4867,7 +4867,7 @@ INSERT INTO `item_basic` VALUES (5217,0,'serving_of_salmon_eggs','salmon_eggs',1
 INSERT INTO `item_basic` VALUES (5218,0,'serving_of_salmon_roe','salmon_roe',12,1548,53,0,13);
 INSERT INTO `item_basic` VALUES (5219,0,'plate_of_ikra_gunkan','ikra_gunkan',12,1548,53,0,557);
 INSERT INTO `item_basic` VALUES (5220,0,'plate_of_ikra_gunkan_+1','ikra_gunkan_+1',12,1548,53,0,696);
-INSERT INTO `item_basic` VALUES (5221,0,'pitcher_of_homemade_herbal_tea','hmd._herbal_tea',1,30296,58,1,0);
+INSERT INTO `item_basic` VALUES (5221,0,'pitcher_of_homemade_herbal_tea','hmd._herbal_tea',1,30296,99,1,0);
 INSERT INTO `item_basic` VALUES (5222,0,'bowl_of_homemade_stew','homemade_stew',1,30296,99,1,0);
 INSERT INTO `item_basic` VALUES (5223,0,'cone_of_homemade_gelato','hmd._gelato',1,30296,99,1,0);
 INSERT INTO `item_basic` VALUES (5224,0,'homemade_rice_ball','hmd._rice_ball',1,30296,99,1,0);
@@ -5083,8 +5083,8 @@ INSERT INTO `item_basic` VALUES (5433,0,'dusty_elixir','dusty_elixir',1,63040,99
 INSERT INTO `item_basic` VALUES (5434,0,'bottle_of_fanatics_drink','fanatics_drink',1,63040,99,1,0);
 INSERT INTO `item_basic` VALUES (5435,0,'bottle_of_fools_drink','fools_drink',1,63040,99,1,0);
 INSERT INTO `item_basic` VALUES (5436,0,'dusty_scroll_of_reraise','dusty_reraise',1,63040,99,1,0);
-INSERT INTO `item_basic` VALUES (5437,0,'flask_of_strange_milk','strange_milk',1,63040,58,1,0);
-INSERT INTO `item_basic` VALUES (5438,0,'bottle_of_strange_juice','strange_juice',1,63040,58,1,0);
+INSERT INTO `item_basic` VALUES (5437,0,'flask_of_strange_milk','strange_milk',1,63040,99,1,0);
+INSERT INTO `item_basic` VALUES (5438,0,'bottle_of_strange_juice','strange_juice',1,63040,99,1,0);
 INSERT INTO `item_basic` VALUES (5439,0,'bottle_of_vicars_drink','vicars_drink',1,63040,99,1,0);
 INSERT INTO `item_basic` VALUES (5440,0,'dusty_wing','dusty_wing',1,63040,99,1,0);
 INSERT INTO `item_basic` VALUES (5441,0,'angelwing','angelwing',99,1548,63,0,24);
@@ -5265,9 +5265,9 @@ INSERT INTO `item_basic` VALUES (5616,0,'lebkuchen_house','lebkuchen_house',1,15
 INSERT INTO `item_basic` VALUES (5617,0,'lebkuchen_manse','lebkuchen_manse',1,1580,57,0,204);
 INSERT INTO `item_basic` VALUES (5618,0,'bowl_of_zoni_broth','zoni',1,1580,55,0,224);
 INSERT INTO `item_basic` VALUES (5619,0,'bowl_of_zesty_zoni','zesty_zoni',1,1580,55,0,280);
-INSERT INTO `item_basic` VALUES (5620,0,'roast_turkey','roast_turkey',1,30296,52,1,0);
-INSERT INTO `item_basic` VALUES (5621,0,'candy_ring','candy_ring',1,30296,57,1,0);
-INSERT INTO `item_basic` VALUES (5622,0,'candy_cane','candy_cane',1,30296,57,1,0);
+INSERT INTO `item_basic` VALUES (5620,0,'roast_turkey','roast_turkey',1,30296,99,1,0);
+INSERT INTO `item_basic` VALUES (5621,0,'candy_ring','candy_ring',1,30296,99,1,0);
+INSERT INTO `item_basic` VALUES (5622,0,'candy_cane','candy_cane',1,30296,99,1,0);
 INSERT INTO `item_basic` VALUES (5623,0,'dish_of_spaghetti_tonno_rosso','tonno_rosso',12,1548,56,0,388);
 INSERT INTO `item_basic` VALUES (5624,0,'dish_of_spaghetti_tonno_rosso_+1','tonno_rosso_+1',12,1548,56,0,485);
 INSERT INTO `item_basic` VALUES (5625,0,'maple_cake','maple_cake',1,1580,57,0,299);
@@ -5284,9 +5284,9 @@ INSERT INTO `item_basic` VALUES (5635,0,'shrimp_cracker','shrimp_cracker',99,154
 INSERT INTO `item_basic` VALUES (5636,0,'shrimp_cracker_+1','shr._cracker_+1',99,1548,56,0,3);
 INSERT INTO `item_basic` VALUES (5637,0,'pogaca','pogaca',99,1548,56,0,299);
 INSERT INTO `item_basic` VALUES (5638,0,'pogaca_+1','pogaca_+1',99,1548,56,0,373);
-INSERT INTO `item_basic` VALUES (5639,0,'skewer_of_m&p_chicken','m&p_chicken',12,13900,52,1,0);
-INSERT INTO `item_basic` VALUES (5640,0,'m&p_cracker','m&p_cracker',12,13900,56,1,0);
-INSERT INTO `item_basic` VALUES (5641,0,'m&p_dumpling','m&p_dumpling',12,13900,56,1,0);
+INSERT INTO `item_basic` VALUES (5639,0,'skewer_of_m&p_chicken','m&p_chicken',12,13900,99,1,0);
+INSERT INTO `item_basic` VALUES (5640,0,'m&p_cracker','m&p_cracker',12,13900,99,1,0);
+INSERT INTO `item_basic` VALUES (5641,0,'m&p_dumpling','m&p_dumpling',12,13900,99,1,0);
 INSERT INTO `item_basic` VALUES (5642,0,'serving_of_cilbir','cilbir',1,1580,52,0,241);
 INSERT INTO `item_basic` VALUES (5643,0,'serving_of_cibarious_cilbir','cibarious_cilbir',1,1580,52,0,301);
 INSERT INTO `item_basic` VALUES (5644,0,'jack-o-pie','jack-o-pie',12,1548,57,0,200);
@@ -5305,7 +5305,7 @@ INSERT INTO `item_basic` VALUES (5656,0,'coffeecake_muffin_+1','coff._muffin_+1'
 INSERT INTO `item_basic` VALUES (5657,0,'army_biscuit','army_biscuit',99,1548,56,0,30);
 INSERT INTO `item_basic` VALUES (5658,0,'dish_of_spaghetti_ortolana','ortolana',12,1548,56,0,274);
 INSERT INTO `item_basic` VALUES (5659,0,'dish_of_spaghetti_ortolana_+1','ortolana_+1',12,1548,56,0,342);
-INSERT INTO `item_basic` VALUES (5660,0,'stick_of_pepperoni','pepperoni',12,1548,59,0,1147);
+INSERT INTO `item_basic` VALUES (5660,0,'stick_of_pepperoni','pepperoni',12,1548,52,0,1147);
 INSERT INTO `item_basic` VALUES (5661,0,'walnut','walnut',12,1548,59,0,312);
 INSERT INTO `item_basic` VALUES (5662,0,'dragon_fruit','dragon_fruit',12,1548,59,0,1738);
 INSERT INTO `item_basic` VALUES (5663,0,'plate_of_salmon_sushi','salmon_sushi',12,1548,53,0,523);
@@ -5314,13 +5314,13 @@ INSERT INTO `item_basic` VALUES (5665,0,'plate_of_fin_sushi','fin_sushi',12,1548
 INSERT INTO `item_basic` VALUES (5666,0,'plate_of_fin_sushi_+1','fin_sushi_+1',12,1548,53,0,627);
 INSERT INTO `item_basic` VALUES (5667,0,'slice_of_lynx_meat','lynx_meat',12,1548,59,0,306);
 INSERT INTO `item_basic` VALUES (5668,0,'smilodon_liver','smilodon_liver',12,1548,59,0,320);
-INSERT INTO `item_basic` VALUES (5669,0,'bowl_of_loach_slop','loach_slop',1,1580,55,0,530);
-INSERT INTO `item_basic` VALUES (5670,0,'bowl_of_loach_gruel','loach_gruel',1,1580,55,0,424);
-INSERT INTO `item_basic` VALUES (5671,0,'bowl_of_loach_soup','loach_soup',1,1580,55,0,662);
+INSERT INTO `item_basic` VALUES (5669,0,'bowl_of_loach_slop','loach_slop',1,1580,53,0,530);
+INSERT INTO `item_basic` VALUES (5670,0,'bowl_of_loach_gruel','loach_gruel',1,1580,53,0,424);
+INSERT INTO `item_basic` VALUES (5671,0,'bowl_of_loach_soup','loach_soup',1,1580,53,0,662);
 INSERT INTO `item_basic` VALUES (5672,0,'dried_berry','dried_berry',12,1548,57,0,67);
 INSERT INTO `item_basic` VALUES (5673,0,'rolsin','rolsin',12,1548,57,0,84);
-INSERT INTO `item_basic` VALUES (5674,0,'aileens_delight','aileens_delight',1,58968,57,0,3198);
-INSERT INTO `item_basic` VALUES (5675,0,'withered_rolanberry','withered_berry',1,58968,57,0,4624);
+INSERT INTO `item_basic` VALUES (5674,0,'aileens_delight','aileens_delight',1,58968,99,0,3198);
+INSERT INTO `item_basic` VALUES (5675,0,'withered_rolanberry','withered_berry',1,58968,99,0,4624);
 INSERT INTO `item_basic` VALUES (5676,0,'serving_of_mushroom_saute','mushroom_saute',1,1580,54,0,764);
 INSERT INTO `item_basic` VALUES (5677,0,'serving_of_patriarch_saute','patriarch_saute',1,1580,54,0,955);
 INSERT INTO `item_basic` VALUES (5678,0,'mushroom_salad','mushroom_salad',1,1580,54,0,681);
@@ -5355,7 +5355,7 @@ INSERT INTO `item_basic` VALUES (5706,0,'dish_of_homemade_carbonara','hmd._carbo
 INSERT INTO `item_basic` VALUES (5707,0,'homemade_omelette','hmd._omelette',1,30296,99,1,0);
 INSERT INTO `item_basic` VALUES (5708,0,'mihgo_mithkabob','mihgo_mithkabob',1,58968,99,0,4888);
 INSERT INTO `item_basic` VALUES (5709,0,'stick_of_cotton_candy','cotton_candy',12,13900,99,1,0);
-INSERT INTO `item_basic` VALUES (5710,0,'berry_snow_cone','b._snow_cone',12,13900,57,1,0);
+INSERT INTO `item_basic` VALUES (5710,0,'berry_snow_cone','b._snow_cone',12,13900,99,1,0);
 INSERT INTO `item_basic` VALUES (5711,0,'kitron_snow_cone','k._snow_cone',12,13900,99,0,0);
 INSERT INTO `item_basic` VALUES (5712,0,'melon_snow_cone','m._snow_cone',12,13900,99,1,0);
 INSERT INTO `item_basic` VALUES (5713,0,'orange_snow_cone','o._snow_cone',12,13900,99,1,0);
@@ -5415,8 +5415,8 @@ INSERT INTO `item_basic` VALUES (5767,0,'crepe_delice','crepe_delice',12,1548,57
 INSERT INTO `item_basic` VALUES (5768,0,'pair_of_magian_spectacles','magian_specs.',1,62528,99,1,0);
 INSERT INTO `item_basic` VALUES (5769,0,'popper','popper',99,1548,63,0,2);
 INSERT INTO `item_basic` VALUES (5770,0,'super_reraiser','super_reraiser',1,38412,33,1,0);
-INSERT INTO `item_basic` VALUES (5771,0,'ham_and_cheese_crepe','ham_&_ch._crepe',12,1548,57,0,33);
-INSERT INTO `item_basic` VALUES (5772,0,'crepe_paysanne','crepe_paysanne',12,1548,57,0,40);
+INSERT INTO `item_basic` VALUES (5771,0,'ham_and_cheese_crepe','ham_&_ch._crepe',12,1548,56,0,33);
+INSERT INTO `item_basic` VALUES (5772,0,'crepe_paysanne','crepe_paysanne',12,1548,56,0,40);
 INSERT INTO `item_basic` VALUES (5773,0,'mushroom_crepe','mushroom_crepe',12,1548,56,0,65);
 INSERT INTO `item_basic` VALUES (5774,0,'crepe_forestiere','crepe_forestiere',12,1548,56,0,73);
 INSERT INTO `item_basic` VALUES (5775,0,'chocolate_crepe','chocolate_crepe',12,1548,57,0,78);
@@ -5536,8 +5536,8 @@ INSERT INTO `item_basic` VALUES (5889,0,'stuffed_pitaru','stuffed_pitaru',12,154
 INSERT INTO `item_basic` VALUES (5890,0,'poultry_pitaru','poultry_pitaru',12,1548,56,0,147);
 INSERT INTO `item_basic` VALUES (5891,0,'seafood_pitaru','seafood_pitaru',12,1548,56,0,0);
 INSERT INTO `item_basic` VALUES (5892,0,'bew_pitaru','b.e.w._pitaru',12,1548,56,0,0);
-INSERT INTO `item_basic` VALUES (5893,0,'marine_stewpot','marine_stewpot',1,1580,53,0,0);
-INSERT INTO `item_basic` VALUES (5894,0,'prime_marine_stewpot','prm._mn._stewpot',1,1580,53,0,0);
+INSERT INTO `item_basic` VALUES (5893,0,'marine_stewpot','marine_stewpot',1,1580,99,0,0);
+INSERT INTO `item_basic` VALUES (5894,0,'prime_marine_stewpot','prm._mn._stewpot',1,1580,99,0,0);
 INSERT INTO `item_basic` VALUES (5895,0,'odorless_fungus','odorless_fungus',1,46660,99,1,0);
 INSERT INTO `item_basic` VALUES (5896,0,'clump_of_absorbent_moss','absorbent_moss',1,46660,99,1,0);
 INSERT INTO `item_basic` VALUES (5897,0,'redolent_root','redolent_root',1,46660,99,1,0);
@@ -5559,12 +5559,12 @@ INSERT INTO `item_basic` VALUES (5912,0,'gargouille_quiver','gargou._quiver',12,
 INSERT INTO `item_basic` VALUES (5913,0,'adaman_bolt_quiver','a._bolt_quiver',12,1540,15,0,0);
 INSERT INTO `item_basic` VALUES (5914,0,'orichalcum_bullet_pouch','o._bull._pouch',12,1540,15,0,0);
 INSERT INTO `item_basic` VALUES (5915,0,'adaman_bullet_pouch','a._bull._pouch',12,1540,15,0,0);
-INSERT INTO `item_basic` VALUES (5916,0,'temple_truffle','temple_truffle',12,1608,57,0,0);
-INSERT INTO `item_basic` VALUES (5917,0,'choco-scroll','choco-scroll',12,1608,57,0,0);
-INSERT INTO `item_basic` VALUES (5918,0,'choco-katana','choco-katana',12,1608,57,0,0);
-INSERT INTO `item_basic` VALUES (5919,0,'choco-ligar','choco-ligar',12,1608,57,0,0);
-INSERT INTO `item_basic` VALUES (5920,0,'fudgy-wudge','fudgy-wudge',12,1608,57,0,0);
-INSERT INTO `item_basic` VALUES (5921,0,'chocolate_rarab_tail','choco_r._tail',12,1608,57,0,0);
+INSERT INTO `item_basic` VALUES (5916,0,'temple_truffle','temple_truffle',12,1608,99,0,0);
+INSERT INTO `item_basic` VALUES (5917,0,'choco-scroll','choco-scroll',12,1608,99,0,0);
+INSERT INTO `item_basic` VALUES (5918,0,'choco-katana','choco-katana',12,1608,99,0,0);
+INSERT INTO `item_basic` VALUES (5919,0,'choco-ligar','choco-ligar',12,1608,99,0,0);
+INSERT INTO `item_basic` VALUES (5920,0,'fudgy-wudge','fudgy-wudge',12,1608,99,0,0);
+INSERT INTO `item_basic` VALUES (5921,0,'chocolate_rarab_tail','choco_r._tail',12,1608,99,0,0);
 INSERT INTO `item_basic` VALUES (5922,0,'walnut_cookie','walnut_cookie',99,1548,57,0,0);
 INSERT INTO `item_basic` VALUES (5923,0,'juglan_jumble','juglan_jumble',99,1548,57,0,0);
 INSERT INTO `item_basic` VALUES (5924,0,'smoldering_salisbury_steak','s._salis._steak',1,1580,52,0,0);
@@ -5573,12 +5573,12 @@ INSERT INTO `item_basic` VALUES (5926,0,'cup_of_date_tea','date_tea',1,1580,58,0
 INSERT INTO `item_basic` VALUES (5927,0,'cup_of_caravan_tea','caravan_tea',1,1580,58,0,0);
 INSERT INTO `item_basic` VALUES (5928,0,'himesama_rice_ball','himesama_r._ball',12,1548,56,0,0);
 INSERT INTO `item_basic` VALUES (5929,0,'ojo_rice_ball','ojo_rice_ball',12,1548,56,0,0);
-INSERT INTO `item_basic` VALUES (5930,0,'bowl_of_sprightly_soup','sprightly_soup',1,1580,54,0,0);
-INSERT INTO `item_basic` VALUES (5931,0,'bowl_of_shimmy_soup','shimmy_soup',1,1580,54,0,0);
+INSERT INTO `item_basic` VALUES (5930,0,'bowl_of_sprightly_soup','sprightly_soup',1,1580,55,0,0);
+INSERT INTO `item_basic` VALUES (5931,0,'bowl_of_shimmy_soup','shimmy_soup',1,1580,55,0,0);
 INSERT INTO `item_basic` VALUES (5932,0,'bottle_of_kitron_juice','kitron_juice',1,1580,58,0,0);
 INSERT INTO `item_basic` VALUES (5933,0,'flask_of_dragon_fruit_au_lait','d._fruit_au_lait',1,1580,58,0,0);
 INSERT INTO `item_basic` VALUES (5934,0,'chocobiscuit','chocobiscuit',99,1544,57,0,0);
-INSERT INTO `item_basic` VALUES (5935,0,'bowl_of_moogurt','moogurt',12,1544,59,0,0);
+INSERT INTO `item_basic` VALUES (5935,0,'bowl_of_moogurt','moogurt',12,1544,57,0,0);
 INSERT INTO `item_basic` VALUES (5936,0,'mog_missile','mog_missile',99,5644,63,1,0);
 INSERT INTO `item_basic` VALUES (5937,0,'bubble_breeze','bubble_breeze',99,5640,63,1,0);
 INSERT INTO `item_basic` VALUES (5938,0,'hiatus_whistle','hiatus_whistle',1,63168,99,1,0);
@@ -5639,7 +5639,7 @@ INSERT INTO `item_basic` VALUES (5995,0,'malicious_perch','malicious_perch',1,15
 INSERT INTO `item_basic` VALUES (5997,0,'shen','shen',1,1544,51,1,0);
 INSERT INTO `item_basic` VALUES (5998,0,'bowl_of_adoulinian_soup','adoulinian_soup',1,1580,55,1,0);
 INSERT INTO `item_basic` VALUES (5999,0,'bowl_of_adoulinian_soup_+1','adoulinian_soup_+1',1,1580,55,1,0);
-INSERT INTO `item_basic` VALUES (6001,0,'clotflagration','clotflagration',12,1548,51,1,0);
+INSERT INTO `item_basic` VALUES (6001,0,'clotflagration','clotflagration',12,1548,59,1,0);
 INSERT INTO `item_basic` VALUES (6002,0,'trailblazing_pickaxe','trbl._pickaxe',12,29780,99,1,0);
 INSERT INTO `item_basic` VALUES (6003,0,'trailblazing_pickaxe_+1','trbl._pickaxe_+1',12,29780,99,1,0);
 INSERT INTO `item_basic` VALUES (6004,0,'trailblazing_hatchet','trbl._hatchet',12,29780,99,1,0);
@@ -5701,8 +5701,8 @@ INSERT INTO `item_basic` VALUES (6060,309,'animus_minuo_schema','animus_minuo',1
 INSERT INTO `item_basic` VALUES (6061,495,'adloquium_schema','adloquium',1,34444,28,0,1815);
 INSERT INTO `item_basic` VALUES (6063,0,'fruit_parfait','fruit_parfait',1,1580,57,0,100);
 INSERT INTO `item_basic` VALUES (6064,0,'queens_crown','queens_crown',1,1580,57,0,100);
-INSERT INTO `item_basic` VALUES (6065,0,'tiny_macaron','tiny_macaron',99,30280,57,1,0);
-INSERT INTO `item_basic` VALUES (6066,0,'tiny_rusk','tiny_rusk',99,30280,57,1,0);
+INSERT INTO `item_basic` VALUES (6065,0,'tiny_macaron','tiny_macaron',99,30280,99,1,0);
+INSERT INTO `item_basic` VALUES (6066,0,'tiny_rusk','tiny_rusk',99,30280,99,1,0);
 INSERT INTO `item_basic` VALUES (6067,0,'ontic_extremity','ontic_extremity',1,63168,99,1,0);
 INSERT INTO `item_basic` VALUES (6068,0,'slice_of_gabbrath_meat','gabbrath_meat',12,1548,59,1,0);
 INSERT INTO `item_basic` VALUES (6069,0,'bowl_of_riverfin_soup','riverfin_soup',1,1580,53,1,0);
@@ -5904,8 +5904,8 @@ INSERT INTO `item_basic` VALUES (6268,0,'komanezumi','komanezumi',99,1548,63,0,0
 INSERT INTO `item_basic` VALUES (6269,0,'eminent_quiver','eminent_quiver',12,30292,99,0,0);
 INSERT INTO `item_basic` VALUES (6270,0,'eminent_bolt_quiver','em._bolt_quiver',12,30292,99,0,0);
 INSERT INTO `item_basic` VALUES (6271,0,'eminent_bullet_pouch','em._bul._pouch',12,30292,99,0,0);
-INSERT INTO `item_basic` VALUES (6272,0,'fried_pototo','fried_popoto',12,1548,54,0,0);
-INSERT INTO `item_basic` VALUES (6273,0,'fried_pototo_+1','fried_popoto_+1',12,1548,54,0,0);
+INSERT INTO `item_basic` VALUES (6272,0,'fried_popoto','fried_popoto',12,1548,54,0,0);
+INSERT INTO `item_basic` VALUES (6273,0,'fried_popoto_+1','fried_popoto_+1',12,1548,54,0,0);
 INSERT INTO `item_basic` VALUES (6274,0,'pukatrice_egg','pukatrice_egg',12,1548,52,0,0);
 INSERT INTO `item_basic` VALUES (6275,0,'pukatrice_egg_+1','pukatrice_egg_+1',12,1548,52,0,0);
 INSERT INTO `item_basic` VALUES (6276,0,'deep-fried_shrimp','d.-fried_shrimp',12,1548,53,0,0);
@@ -6607,7 +6607,7 @@ INSERT INTO `item_basic` VALUES (9073,0,'arcanic_cell_ii','arcanic_cell_ii',12,4
 INSERT INTO `item_basic` VALUES (9074,0,'regulator','regulator',12,4,61,0,0);
 INSERT INTO `item_basic` VALUES (9075,0,'chunk_of_vulcanite_ore','vulcanite_ore',12,4,38,0,0);
 INSERT INTO `item_basic` VALUES (9076,0,'gravewood_log','gravewood_log',12,4,64,0,0);
-INSERT INTO `item_basic` VALUES (9077,0,'duskcrawler','duskcrawler',12,4,51,0,0);
+INSERT INTO `item_basic` VALUES (9077,0,'duskcrawler','duskcrawler',12,4,64,0,0);
 INSERT INTO `item_basic` VALUES (9078,0,'tuft_of_ashweed','ashweed',12,4,64,0,0);
 INSERT INTO `item_basic` VALUES (9079,0,'kitchen_brick','kitchen_brick',1,61504,99,0,0);
 INSERT INTO `item_basic` VALUES (9080,0,'kitchen_stove','kitchen_stove',1,61504,99,0,0);
