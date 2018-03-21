@@ -679,6 +679,7 @@ public:
     int32 setDropID(lua_State* L);    
     int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 getStealItem(lua_State*);         // gets ItemID of droplist steal item from mob
+    int32 getDespoilItem(lua_State*);       // gets ItemID of droplist despoil item from mob (steal item if no despoil item)
     int32 itemStolen(lua_State*);           // sets mob's ItemStolen var = true    
 };
 

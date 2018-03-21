@@ -13539,21 +13539,59 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
+    CMobEntity* Mob = static_cast<CMobEntity*>(m_PBaseEntity);
 
-    if (!(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != nullptr && DropList->size()))
+    if (Mob)
     {
-        for (uint8 i = 0; i < DropList->size(); ++i)
+        DropList_t* DropList = itemutils::GetDropList(Mob->m_DropID);
+
+        if (DropList && !Mob->m_ItemStolen)
         {
-            if (DropList->at(i).DropType == DROP_STEAL)
+            for (const DropItem_t& drop : *DropList)
             {
-                lua_pushinteger(L, DropList->at(i).ItemID);
-                return 1;
+                if (drop.DropType == DROP_STEAL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
             }
         }
     }
+
     lua_pushinteger(L, 0);
     return 1;
+}
+
+/************************************************************************
+*  Function: getDespoilItem()
+*  Purpose : Used to return the Item ID of a mob's item which can be despoiled
+*  Example : despoilItem = target:getDespoilItem()
+*  Notes   : Defaults to getStealItem() if no despoil item exists
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* Mob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (Mob)
+    {
+        DropList_t* DropList = itemutils::GetDropList(Mob->m_DropID);
+        if (DropList && !Mob->m_ItemStolen)
+        {
+            for (const DropItem_t& drop : *DropList)
+            {
+                if (drop.DropType == DROP_DESPOIL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return getStealItem(L);
 }
 
 /************************************************************************
@@ -14218,6 +14256,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDropID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 
     {nullptr,nullptr}
