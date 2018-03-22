@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Predator Claws M=10 subsequent hits M=2
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/summon");

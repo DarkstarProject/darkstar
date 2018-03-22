@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Megalith Throw M=5.5 (guesstimated)
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/summon");

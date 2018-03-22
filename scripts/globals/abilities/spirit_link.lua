@@ -7,9 +7,6 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -23,10 +20,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
 

@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(1168,1) and trade:getItemCount() == 1 and not GetMobByID():isSpawned(ISONADE)) then -- Trade Sack of Fish Bait
+        if (trade:hasItemQty(1168,1) and trade:getItemCount() == 1 and not GetMobByID(ISONADE):isSpawned()) then -- Trade Sack of Fish Bait
             player:tradeComplete();
             player:messageSpecial(SENSE_OF_FOREBODING);
             SpawnMob(ISONADE):updateClaim(player);

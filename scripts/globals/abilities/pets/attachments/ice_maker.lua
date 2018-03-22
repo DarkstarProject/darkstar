@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Ice Maker
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addListener("MAGIC_START", "AUTO_ICE_MAKER_START", function(pet, spell, action)

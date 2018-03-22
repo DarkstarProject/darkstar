@@ -10,9 +10,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -24,10 +21,6 @@ function onAbilityCheck(player,target,ability)
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local pTP = (player:getTP() - 1000) * (1 + ((player:getMerit(MERIT_SHIKIKOYO) - 12) / 100));

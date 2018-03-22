@@ -10,9 +10,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -26,10 +23,6 @@ function onAbilityCheck(player,target,ability)
         return 0,0;
     end;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance.

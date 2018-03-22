@@ -11,9 +11,6 @@ require("scripts/globals/pets");
 require("scripts/globals/magic")
 require("scripts/globals/utils")
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -24,10 +21,6 @@ function onAbilityCheck(player,target,ability)
         return msgBasic.UNABLE_TO_USE_JA,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local spiritEle = player:getPetID() + 1; -- get the spirit's ID, then make it line up with element value for the day order.

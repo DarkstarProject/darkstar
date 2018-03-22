@@ -9,9 +9,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -28,10 +25,6 @@ function onAbilityCheck(player,target,ability)
         end
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     -- 1st need to get the pet food is equipped in the range slot.

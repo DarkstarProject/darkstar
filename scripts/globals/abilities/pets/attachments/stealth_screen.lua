@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Stealth Screen
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_ENMITY, -10)

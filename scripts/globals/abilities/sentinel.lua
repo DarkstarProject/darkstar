@@ -5,20 +5,12 @@
 -- Recast Time: 5:00
 -- Duration: 0:30
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
    -- Whether feet have to be equipped before using ability, or if they can be swapped in

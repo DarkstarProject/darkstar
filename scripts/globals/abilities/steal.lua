@@ -67,6 +67,35 @@ function onUseAbility(player,target,ability,action)
         action:animation(target:getID(), 182);
     end
 
+    -- Attempt Aura steal
+    local effect = EFFECT_NONE;
+    if (stolen == 0 and player:hasTrait(75)) then
+        local resist = applyResistanceAbility(player, target, ELE_NONE, 0, 0);
+        local effectStealSuccess = false;
+        if (resist > 0.0625) then
+            local auraStealChance = math.min(player:getMerit(MERIT_AURA_STEAL), 95);
+            if (math.random(100) < auraStealChance) then
+                stolen = player:stealStatusEffect(target);
+                if (stolen ~= 0) then
+                    ability:setMsg(msgBasic.STEAL_EFFECT);
+                end
+            else
+                effect = target:dispelStatusEffect();
+            end
+
+            -- Try for a second effect if we have the augment
+            if ((effect ~= EFFECT_NONE or stolen ~= 0) and player:getMod(MOD_AUGMENTS_AURA_STEAL) > 0) then
+                if (math.random(100) < auraStealChance) then
+                    if (stolenEffect2 ~= nil and math.random(100) < auraStealChance) then
+                        player:stealStatusEffect(target);
+                    else
+                        target:dispelStatusEffect();
+                    end
+                end
+            end
+        end
+    end
+    
     return stolen;
 end;
 

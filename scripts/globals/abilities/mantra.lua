@@ -5,20 +5,12 @@
 -- Recast Time: 0:10:00
 -- Duration: 0:03:00
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     player:delStatusEffect(EFFECT_MAX_HP_BOOST);

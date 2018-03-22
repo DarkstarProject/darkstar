@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Damage Gauge
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:setLocalVar("damagegauge", 1)

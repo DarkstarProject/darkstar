@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Eraser
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 local removable = {
     EFFECT_PETRIFICATION,
