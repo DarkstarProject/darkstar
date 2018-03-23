@@ -19,26 +19,17 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    local effectFirst = target:stealStatusEffect();
-    local effectSecond = target:stealStatusEffect();
+    local effectFirst = mob:stealStatusEffect(target, EFFECTFLAG_DISPELABLE+EFFECTFLAG_FOOD);
+    local effectSecond = mob:stealStatusEffect(target, EFFECTFLAG_DISPELABLE+EFFECTFLAG_FOOD);
     local dmg = 0;
 
-    if (effectFirst ~= nil) then
-
+    if (effectFirst ~= 0) then
         local count = 1;
 
-            -- add to myself
-        mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
-
-        if (effectSecond ~= nil) then
+        if (effectSecond ~= 0) then
             count = count + 1;
-                -- add to myself
-            mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
-
         end
 
-
-        -- add buff to myself
         skill:setMsg(msgBasic.EFFECT_DRAINED);
 
         return count;

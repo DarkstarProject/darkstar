@@ -67,6 +67,15 @@ end;
 function onEventFinish(player,csid,option)
 end;
 
+function onGameHour(zone)
+    local nm = GetMobByID(GEYSER_LIZARD);
+    local pop = nm:getLocalVar("pop");
+    if (os.time() > pop and not nm:isSpawned()) then
+        UpdateNMSpawnPoint(GEYSER_LIZARD);
+        nm:spawn();
+    end
+end;
+
 function onZoneWeatherChange(weather)
     if (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
         GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_NORMAL);

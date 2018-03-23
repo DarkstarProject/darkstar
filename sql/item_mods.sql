@@ -3231,6 +3231,7 @@ INSERT INTO `item_mods` VALUES (11069,1,36);
 INSERT INTO `item_mods` VALUES (11069,25,12);
 INSERT INTO `item_mods` VALUES (11069,302,3);
 INSERT INTO `item_mods` VALUES (11069,384,61);
+INSERT INTO `item_mods` VALUES (11069,884,10); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (11070,1,44);      -- Creed Armet +2: DEF 44
 INSERT INTO `item_mods` VALUES (11070,2,40);      -- HP +40
 INSERT INTO `item_mods` VALUES (11070,5,40);      -- MP +40
@@ -3434,6 +3435,7 @@ INSERT INTO `item_mods` VALUES (11109,8,8);
 INSERT INTO `item_mods` VALUES (11109,9,8);
 INSERT INTO `item_mods` VALUES (11109,23,16);
 INSERT INTO `item_mods` VALUES (11109,25,12);
+INSERT INTO `item_mods` VALUES (11109,874,12); -- Increases "Sneak Attack" damage
 INSERT INTO `item_mods` VALUES (11110,1,35);
 INSERT INTO `item_mods` VALUES (11110,8,11);
 INSERT INTO `item_mods` VALUES (11110,10,11);
@@ -3711,6 +3713,7 @@ INSERT INTO `item_mods` VALUES (11168,30,5);
 INSERT INTO `item_mods` VALUES (11169,1,34);
 INSERT INTO `item_mods` VALUES (11169,25,8);
 INSERT INTO `item_mods` VALUES (11169,384,51);
+INSERT INTO `item_mods` VALUES (11169,884,5); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (11170,1,42);
 INSERT INTO `item_mods` VALUES (11170,2,30);
 INSERT INTO `item_mods` VALUES (11170,5,30);
@@ -3900,6 +3903,7 @@ INSERT INTO `item_mods` VALUES (11209,8,6);
 INSERT INTO `item_mods` VALUES (11209,9,6);
 INSERT INTO `item_mods` VALUES (11209,23,10);
 INSERT INTO `item_mods` VALUES (11209,25,8);
+INSERT INTO `item_mods` VALUES (11209,874,10); -- Increases "Sneak Attack" damage
 INSERT INTO `item_mods` VALUES (11210,1,33);
 INSERT INTO `item_mods` VALUES (11210,8,7);
 INSERT INTO `item_mods` VALUES (11210,10,7);
@@ -8708,6 +8712,7 @@ INSERT INTO `item_mods` VALUES (12643,1,44);
 INSERT INTO `item_mods` VALUES (12643,2,20);
 INSERT INTO `item_mods` VALUES (12643,8,3);
 INSERT INTO `item_mods` VALUES (12643,57,10);
+INSERT INTO `item_mods` VALUES (12643,885,100); -- Increase "Hide" duration
 INSERT INTO `item_mods` VALUES (12644,1,47);
 INSERT INTO `item_mods` VALUES (12644,2,20);
 INSERT INTO `item_mods` VALUES (12644,10,4);
@@ -13973,6 +13978,7 @@ INSERT INTO `item_mods` VALUES (14478,1,45);
 INSERT INTO `item_mods` VALUES (14478,2,20);
 INSERT INTO `item_mods` VALUES (14478,8,6);
 INSERT INTO `item_mods` VALUES (14478,25,10);
+INSERT INTO `item_mods` VALUES (14478,885,100); -- Extends duration of "Hide"
 INSERT INTO `item_mods` VALUES (14479,1,55);
 INSERT INTO `item_mods` VALUES (14479,2,20);
 INSERT INTO `item_mods` VALUES (14479,10,6);
@@ -26359,6 +26365,7 @@ INSERT INTO `item_mods` VALUES (23112,68,69);     -- Evasion+69
 INSERT INTO `item_mods` VALUES (23112,302,4);     -- Triple Attack+4
 INSERT INTO `item_mods` VALUES (23112,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23112,421,5);     -- Critical Hit Damage+5
+INSERT INTO `item_mods` VALUES (23112,885,100);     -- Hide duration +100
 INSERT INTO `item_mods` VALUES (23113,1,159);     -- rev._surcoat_+2 DEF:159
 INSERT INTO `item_mods` VALUES (23113,2,244);     -- HP+244
 INSERT INTO `item_mods` VALUES (23113,5,52);      -- MP+52
@@ -26769,8 +26776,8 @@ INSERT INTO `item_mods` VALUES (23179,31,57);     -- Magic Evasion+57
 INSERT INTO `item_mods` VALUES (23179,68,44);     -- Evasion+44
 INSERT INTO `item_mods` VALUES (23179,259,3);     -- Dual Wield+3
 INSERT INTO `item_mods` VALUES (23179,384,51);    -- Haste +5%
-INSERT INTO `item_mods` VALUES (23179,409,18);    -- Triple Attack Damage+18
 INSERT INTO `item_mods` VALUES (23179,421,3);     -- Critical Hit Damage+3
+INSERT INTO `item_mods` VALUES (23179,520,18);	  -- "Trick Attack" +18
 INSERT INTO `item_mods` VALUES (23180,1,117);     -- rev._gauntlets_+2 DEF:117
 INSERT INTO `item_mods` VALUES (23180,2,107);     -- HP+107
 INSERT INTO `item_mods` VALUES (23180,8,15);      -- STR+15
@@ -28330,6 +28337,7 @@ INSERT INTO `item_mods` VALUES (23447,68,79);     -- Evasion+79
 INSERT INTO `item_mods` VALUES (23447,302,7);     -- Triple Attack+7
 INSERT INTO `item_mods` VALUES (23447,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23447,421,6);     -- Critical Hit Damage+6
+INSERT INTO `item_mods` VALUES (23447,885,100);	  -- "Hide" duration +100
 INSERT INTO `item_mods` VALUES (23448,1,169);     -- rev._surcoat_+3 DEF:169
 INSERT INTO `item_mods` VALUES (23448,2,254);     -- HP+254
 INSERT INTO `item_mods` VALUES (23448,5,62);      -- MP+62
@@ -28740,8 +28748,8 @@ INSERT INTO `item_mods` VALUES (23514,31,67);     -- Magic Evasion+67
 INSERT INTO `item_mods` VALUES (23514,68,54);     -- Evasion+54
 INSERT INTO `item_mods` VALUES (23514,259,5);     -- Dual Wield+5
 INSERT INTO `item_mods` VALUES (23514,384,51);    -- Haste +5%
-INSERT INTO `item_mods` VALUES (23514,409,20);    -- Triple Attack Damage+20
 INSERT INTO `item_mods` VALUES (23514,421,4);     -- Critical Hit Damage+4
+INSERT INTO `item_mods` VALUES (23514,520,20);	  -- "Trick Attack" +20
 INSERT INTO `item_mods` VALUES (23515,1,127);     -- rev._gauntlets_+3 DEF:127
 INSERT INTO `item_mods` VALUES (23515,2,113);     -- HP+113
 INSERT INTO `item_mods` VALUES (23515,8,20);      -- STR+20
@@ -32716,6 +32724,7 @@ INSERT INTO `item_mods` VALUES (26750,31,40);
 INSERT INTO `item_mods` VALUES (26750,68,23);
 INSERT INTO `item_mods` VALUES (26750,302,3);
 INSERT INTO `item_mods` VALUES (26750,384,71);
+INSERT INTO `item_mods` VALUES (26750,884,12); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (26751,1,100);
 INSERT INTO `item_mods` VALUES (26751,2,41);
 INSERT INTO `item_mods` VALUES (26751,8,20);
@@ -32731,6 +32740,7 @@ INSERT INTO `item_mods` VALUES (26751,31,59);
 INSERT INTO `item_mods` VALUES (26751,68,49);
 INSERT INTO `item_mods` VALUES (26751,302,4);
 INSERT INTO `item_mods` VALUES (26751,384,81);
+INSERT INTO `item_mods` VALUES (26751,884,15); -- Enhances "Accomplice" effect / Enhances "Collaborator" effect
 INSERT INTO `item_mods` VALUES (26752,1,85);      -- Chevalier's Armet: DEF 85
 INSERT INTO `item_mods` VALUES (26752,2,81);      -- HP +81
 INSERT INTO `item_mods` VALUES (26752,5,84);      -- MP +84
@@ -35789,6 +35799,7 @@ INSERT INTO `item_mods` VALUES (27062,29,1);
 INSERT INTO `item_mods` VALUES (27062,31,29);
 INSERT INTO `item_mods` VALUES (27062,68,16);
 INSERT INTO `item_mods` VALUES (27062,384,40);
+INSERT INTO `item_mods` VALUES (27062,874,12); -- Increases "Sneak Attack" damage
 INSERT INTO `item_mods` VALUES (27063,1,91);
 INSERT INTO `item_mods` VALUES (27063,2,27);
 INSERT INTO `item_mods` VALUES (27063,8,14);
@@ -35804,6 +35815,7 @@ INSERT INTO `item_mods` VALUES (27063,29,2);
 INSERT INTO `item_mods` VALUES (27063,31,43);
 INSERT INTO `item_mods` VALUES (27063,68,36);
 INSERT INTO `item_mods` VALUES (27063,384,51);
+INSERT INTO `item_mods` VALUES (27063,874,12.5); -- Increases "Sneak Attack" damage
 INSERT INTO `item_mods` VALUES (27064,1,77);
 INSERT INTO `item_mods` VALUES (27064,2,16);
 INSERT INTO `item_mods` VALUES (27064,5,12);
@@ -39171,6 +39183,7 @@ INSERT INTO `item_mods` VALUES (27584,122,10);
 INSERT INTO `item_mods` VALUES (27584,369,1);
 INSERT INTO `item_mods` VALUES (27585,298,2);
 INSERT INTO `item_mods` VALUES (27585,303,1);
+INSERT INTO `item_mods` VALUES (27858,835,1);	-- "Mug" +1
 INSERT INTO `item_mods` VALUES (27586,26,20); -- Ranged Accuracy +20
 INSERT INTO `item_mods` VALUES (27586,118,10); -- Ninjutsu skill +10
 INSERT INTO `item_mods` VALUES (27586,259,5); -- "Dual Wield" +5
@@ -40975,6 +40988,7 @@ INSERT INTO `item_mods` VALUES (27812,31,43);
 INSERT INTO `item_mods` VALUES (27812,68,23);
 INSERT INTO `item_mods` VALUES (27812,384,40);
 INSERT INTO `item_mods` VALUES (27812,421,5);
+INSERT INTO `item_mods` VALUES (27812,885,100); -- Extends duration of "Hide"
 INSERT INTO `item_mods` VALUES (27813,1,108);
 INSERT INTO `item_mods` VALUES (27813,2,130);
 INSERT INTO `item_mods` VALUES (27813,5,29);
@@ -41325,6 +41339,7 @@ INSERT INTO `item_mods` VALUES (27833,31,64);
 INSERT INTO `item_mods` VALUES (27833,68,49);
 INSERT INTO `item_mods` VALUES (27833,384,40);
 INSERT INTO `item_mods` VALUES (27833,421,5);
+INSERT INTO `item_mods` VALUES (27833,885,100); -- Hide duration +100
 INSERT INTO `item_mods` VALUES (27834,1,149);
 INSERT INTO `item_mods` VALUES (27834,2,163);
 INSERT INTO `item_mods` VALUES (27834,5,35);
@@ -42569,6 +42584,7 @@ INSERT INTO `item_mods` VALUES (27948,68,11);
 INSERT INTO `item_mods` VALUES (27948,298,2);
 INSERT INTO `item_mods` VALUES (27948,384,40);
 INSERT INTO `item_mods` VALUES (27948,421,2);
+INSERT INTO `item_mods` VALUES (27948,520,15); -- Increases "Trick Attack" damage
 INSERT INTO `item_mods` VALUES (27949,1,78);
 INSERT INTO `item_mods` VALUES (27949,2,54);
 INSERT INTO `item_mods` VALUES (27949,8,6);
@@ -42893,6 +42909,7 @@ INSERT INTO `item_mods` VALUES (27969,68,24);
 INSERT INTO `item_mods` VALUES (27969,298,2);
 INSERT INTO `item_mods` VALUES (27969,384,51);
 INSERT INTO `item_mods` VALUES (27969,421,2);
+INSERT INTO `item_mods` VALUES (27969,520,16); -- Increases "Trick Attack" damage
 INSERT INTO `item_mods` VALUES (27970,1,107);
 INSERT INTO `item_mods` VALUES (27970,2,69);
 INSERT INTO `item_mods` VALUES (27970,8,10);

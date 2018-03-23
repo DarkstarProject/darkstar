@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Percolator
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_COMBAT_SKILLUP_RATE, 20);

@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Flame Holder
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 local validskills = {
     [1940] = true,

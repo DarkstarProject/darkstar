@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Coiler
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_DOUBLE_ATTACK, 3)

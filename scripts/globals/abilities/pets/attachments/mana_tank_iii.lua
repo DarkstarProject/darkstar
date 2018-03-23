@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Mana Tank III
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_MPP, 13);

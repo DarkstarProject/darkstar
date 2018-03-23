@@ -6,17 +6,9 @@
 -- Duration: Instant
 -----------------------------------
 
------------------------------------
--- onAbilityCheck
------------------------------------
-
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     -- To Do: Benediction can remove Charm only while in Assault Mission Lamia No.13

@@ -90,6 +90,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char_recast.h"
 #include "packets/char_skills.h"
 #include "packets/char_spells.h"
+#include "packets/char_mounts.h"
 #include "packets/char_stats.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -447,6 +448,7 @@ void SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     charutils::SendQuestMissionLog(PChar);
 
     PChar->pushPacket(new CCharSpellsPacket(PChar));
+    PChar->pushPacket(new CCharMountsPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharSyncPacket(PChar));
     PChar->pushPacket(new CBazaarMessagePacket(PChar));
@@ -826,6 +828,30 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         else
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 142));
+    }
+    break;
+    case 0x1A: // mounts
+    {
+        uint8 MountID = data.ref<uint8>(0x0C);
+
+        // TODO: Check if player is in combat and get proper list of zones you can use mounts.
+        if (charutils::hasKeyItem(PChar, 3072 + MountID) && PChar->loc.zone->GetType() == ZONETYPE_OUTDOORS)
+        {
+            if (PChar->GetMLevel() >= 20)
+            {
+                PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? ++MountID : 0), 0, 1800), true);
+                PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
+                PChar->pushPacket(new CCharRecastPacket(PChar));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
+            }
+        }
+        else
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 71));
+        }
     }
     break;
     default:

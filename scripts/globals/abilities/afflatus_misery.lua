@@ -6,20 +6,12 @@
 -- Duration: 2 hours
 -- Restriction: WHM main only
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     target:delStatusEffect(EFFECT_AFFLATUS_SOLACE);

@@ -149,6 +149,7 @@ msgBasic =
     STATUS_PREVENTS        = 569, -- Your current status prevents you from using that ability.
     STEAL_SUCCESS          = 125, -- <user> uses <ability>. <user> steals <item> from <target>.
     STEAL_FAIL             = 153, -- <user> uses <ability>. <user> fails to steal from <target>.
+    STEAL_EFFECT           = 453, -- <user> uses <ability>. <user> steals the effect of <status> from <target>.
     MUG_SUCCESS            = 129, -- <user> uses <ability>. <user> mugs <amount> gil from <target>.
     MUG_FAIL               = 244, -- <user> fails to mug <target>.
     FULL_INVENTORY         = 356, --  Cannot execute command. Your inventory is full.

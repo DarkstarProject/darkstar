@@ -6,20 +6,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
 require("scripts/zones/Ordelles_Caves/TextIDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (player:getVar("darkPuppetCS") >= 3 and player:hasItem(16940) == false) then
-        if (trade:hasItemQty(16681,1) and trade:getItemCount() == 1) then -- Trade Gerwitz's Axe
-            player:tradeComplete();
-            player:messageSpecial(GERWITZS_SWORD_DIALOG);
-            SpawnMob(17568136):updateClaim(player);
-        end
+    -- DARK PUPPET: Gerwitz's Axe
+    if ( player:getVar("darkPuppetCS") >= 3 and not player:hasItem(16940) and npcUtil.tradeHas(trade, 16681) ) then
+        player:confirmTrade();
+        player:messageSpecial(GERWITZS_SWORD_DIALOG);
+        SpawnMob(DARK_PUPPET_OFFSET + 1):updateClaim(player);
     end
-
 end;
 
 function onTrigger(player,npc)
@@ -27,11 +24,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

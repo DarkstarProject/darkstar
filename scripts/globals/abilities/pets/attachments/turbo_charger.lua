@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Turbo Charger
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onEquip(pet)
     pet:addMod(MOD_HASTE_MAGIC, 50)
