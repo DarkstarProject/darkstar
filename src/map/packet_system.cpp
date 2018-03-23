@@ -965,6 +965,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         return;
     }
+
     if (PItem->getQuantity() - PItem->getReserve() < quantity)
     {
         ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n" CL_RESET, FromLocationID, FromSlotID);
@@ -3635,14 +3636,31 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if ((PItem != nullptr) && ((gil != nullptr) && gil->isType(ITEM_CURRENCY)))
     {
+        if (quantity < 1 || quantity > PItem->getStackSize()) // Possible exploit
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell invalid quantity %u of itemID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity);
+            return;
+        }
+
+        if (PItem->isSubType(ITEM_LOCKED)) // Possible exploit
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell %u of a LOCKED item! ID %i [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, PItem->getID());
+            return;
+        }
+
+        if (PItem->getReserve() > 0) // Usually caused by bug during synth, trade, etc. reserving the item. We don't want such items sold in this state.
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell %u of a RESERVED(%u) item! ID %i [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, PItem->getReserve(), PItem->getID());
+            return;
+        }
+
         charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
         charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
-        ShowNotice(CL_CYAN"User '%s' sold %u of item of ID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
+        ShowNotice(CL_CYAN"SmallPacket0x085: Player '%s' sold %u of itemID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
         PChar->pushPacket(new CInventoryFinishPacket());
+        PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     }
-
-    PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     return;
 }
 
@@ -3745,7 +3763,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (SlotID != ERROR_SLOTID)
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
-                ShowNotice(CL_CYAN"User '%s' purchased %u of item of ID %u [from GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
+                ShowNotice(CL_CYAN"SmallPacket0x0AA: Player '%s' purchased %u of itemID %u [from GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                 PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() - quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
@@ -3815,7 +3833,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
                 {
                     charutils::UpdateItem(PChar, LOC_INVENTORY, 0, shopItem->getSellPrice() * quantity);
-                    ShowNotice(CL_CYAN"User '%s' sold %u of item of ID %u [to GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
+                    ShowNotice(CL_CYAN"SmallPacket0x0AC: Player '%s' sold %u of itemID %u [to GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                     PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity);
                     PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                     PChar->pushPacket(new CInventoryFinishPacket());
