@@ -5,6 +5,7 @@
 -- Lucky Number: 2
 -- Unlucky Number: 10
 -- Level: 95
+-- Phantom Roll +1 Value: 5/2
 --
 -- Die Roll Logic in globals/effects/companions_roll.lua
 --
@@ -50,12 +51,13 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
     local effectpowers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0}
     local effectpower = effectpowers[total];
---    if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then -- TODO Add Logic for Phantom Roll+
---        effectpower = effectpower + 15 
---    end
+-- Apply Additional Phantom Roll+ Buff
+    local phantomBase = 10; -- Used to pass either 30, 50, or 70 to effects/companions_roll.lua
+    local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
+-- Check if COR Main or Sub
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then

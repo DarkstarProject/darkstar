@@ -685,6 +685,12 @@ enum class Mod
     RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
     AQUAVEIL_COUNT            = 832, // Modifies the amount of hits that Aquaveil absorbs before being removed
+    ENH_MAGIC_DURATION        = 890, // Enhancing Magic Duration increase %
+    ENHANCES_COURSERS_ROLL    = 891, // Courser's Roll Bonus % chance
+    ENHANCES_CASTERS_ROLL     = 892, // Caster's Roll Bonus % chance
+    ENHANCES_BLITZERS_ROLL    = 893, // Blitzer's Roll Bonus % chance
+    ENHANCES_ALLIES_ROLL      = 894, // Allies' Roll Bonus % chance
+    ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance    
 
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
@@ -703,9 +709,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 890, // stuff
-    // SPARE = 891, // stuff
-    // SPARE = 892, // stuff
+    // SPARE = 896, // stuff
+    // SPARE = 897, // stuff
+    // SPARE = 898, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
