@@ -356,7 +356,7 @@ function startMining(player, zone, npc, trade, cutsceneId)
         local item = getMiningItem(player, zone);
         local full = (player:getFreeSlotsCount() == 0 and 1 or 0);
         local hitCount = npc:getLocalVar("HIT_COUNT") - 1;
-        --Mining:full: ("s,item: : full: %s,hitCount: , item: %s,id: , hitCount: %s, id: %s", full, item, hitCount, npc);
+        --printf("Mining: full: %s, item: %s, hitCount: %s, id: %s", full, item, hitCount, npc);
         if (item ~= 0) then
             if (hitCount == -1) then -- hits will only ever be -1 after a server reset.
                 hitCount = math.random(4, 5);
@@ -365,7 +365,7 @@ function startMining(player, zone, npc, trade, cutsceneId)
                 moveMiningPoint(player, npc, zone);
             end;
         end
-        --printf(hitcountto : setting s,id:  to %s, id: %s", hitCount, npc);
+        --printf("Mining: setting hitcount to %s, id: %s", hitCount, npc);
 
         -- Mining event
         player:startEvent(cutsceneId, item, broken, full);
@@ -420,7 +420,7 @@ function getMiningItem(player, zone)
         total = total+drops[i][1] -- [1] = rate, [2] = item
     end;
 
-    Total: ("Total: %s", total);
+    --printf("Total: %s", total);
 
     -- Get a random number that will determine the drop from the array.
     local tickerStop = math.random(1, total);
@@ -435,7 +435,7 @@ function getMiningItem(player, zone)
         end;
     end;
 
-    Item: ("Item: %s", item);
+    --printf("Item: %s", item);
 
     -- if the item was a coloured rock, turn it into the appropriate element
     local day = VanadielDayElement();
