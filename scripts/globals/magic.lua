@@ -704,7 +704,7 @@ function calculateMagicBurst(caster, spell, target, params)
 
     -- Obtain first multiplier from gear, atma and job traits
     -- Add in bonus from BLM AMII merits (minimum 0, maximum 0.12 with 5/5 merits)
-    modburst = (caster:getMod(MOD_MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
+    modburst = modburst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
 
     -- Cap bonuses from first multiplier at 40% or 1.4
     if (modburst > 1.4) then
