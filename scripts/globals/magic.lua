@@ -529,7 +529,7 @@ function getSpellBonusAcc(caster, target, spell, params)
       magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_FOCALIZATION):getPower();
     end
 
-    local skillchainTier, skillchainCount = FormMagicBurst(element, target);
+    local skillchainTier, skillchainCount = FormMagicBurst(params.element, target);
 
     --add acc for BLM AMII spells
     magicAccBonus = magicAccBonus + params.AMIIaccBonus;
