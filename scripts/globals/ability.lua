@@ -488,6 +488,22 @@ function checkForElevenRoll(caster)
     return false
 end
 
+function phantombuffMultiple(caster) -- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+    local phantombuffValue = 0;
+    if (phantomValue == 3) then
+        phantombuffMultiplier = 3;
+    elseif ((phantomValue == 5) or (phantomValue == 8)) then
+        phantombuffMultiplier = 5;
+    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
+        phantombuffMultiplier = 7;
+    else
+        phantombuffMultiplier = 0;
+    end
+
+    return phantombuffMultiplier;
+end
+
 function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
     -- physical attack missed, skip rest
     local msg = skill:getMsg()

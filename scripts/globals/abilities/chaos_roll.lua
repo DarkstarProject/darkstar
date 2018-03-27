@@ -5,6 +5,7 @@
 -- Lucky Number: 4
 -- Unlucky Number: 8
 -- Level: 14
+-- Phantom Roll +1 Value: 3
 --
 -- Die Roll    |No DRK    |With DRK
 -- --------    -------- -----------
@@ -47,50 +48,18 @@ function onUseAbility(caster,target,ability,action)
     return applyRoll(caster,target,ability,action,total)
 end;
 
-function onUseAbilityRoll(caster,target,ability,total)
-
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
-    local effectpowers = {6, 8, 9, 25, 11, 13, 16, 3, 17, 19, 31, 10}
-    local effectpower = effectpowers[total];
-    local jobBonus = caster:getLocalVar("DRK_roll_bonus");
-
-    if (total < 12) then
-        if (jobBonus == 0) then -- this happens on the first roll only, and only for the roller
-            if (caster:hasPartyJob(JOBS.DRK) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
-                jobBonus = 1; -- enables job boost
-                -- print("first roll w/ bonus")
-            else
-                jobBonus = 2; -- setting this to 2 so it doesn't allow for another attempt to apply the job bonus with the modifier upon double-up.
-                -- print("first roll")
-            end
-        end
-        if (jobBonus == 1) then
-            effectpower = effectpower + 10;
-            -- print("activate job bonus");
-        end
-        if (target:getID() == caster:getID()) then -- only need to set the variable for the caster, and just once.
-            caster:setLocalVar("DRK_roll_bonus", jobBonus);
-        end
-        -- print(caster:getLocalVar("DRK_roll_bonus"));
-    end
-
-    if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
-        effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
-    elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
-        effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
-    end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CHAOS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_ATTP) == false) then
-        ability:setMsg(msgBasic.ROLL_SUB_FAIL);
-    end
-end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
     local effectpowers = {6, 8, 9, 25, 11, 13, 16, 3, 17, 19, 31, 10}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
         effectpower = effectpower + 10
     end
+-- Apply Additional Phantom Roll+ Buff
+    local phantomBase = 3; -- Base increment buff
+    local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
+-- Check if COR Main or Sub    
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
