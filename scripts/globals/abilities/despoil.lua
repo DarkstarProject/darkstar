@@ -5,9 +5,8 @@
 -- Recast Time: 5:00
 -- Duration: Instant
 -----------------------------------
-require("scripts/global/magic");
+require("scripts/globals/magic");
 require("scripts/globals/msg");
-require("scripts/global/util");
 
 local despoilDebuffs =
 {
@@ -19,14 +18,6 @@ local despoilDebuffs =
     EFFECT_MAGIC_DEF_DOWN,
     EFFECT_SLOW
 }
---despoilDebuffs.default  = EFFECT_EVASION_DOWN;
---despoilDebuffs[644]     = EFFECT_DEFENSE_DOWN; -- Mythril Ore
---despoilDebuffs[842]     = EFFECT_ACCURACY_DOWN; -- Giant Bird Feather
---despoilDebuffs[881]     = EFFECT_DEFENSE_DOWN; -- Crab Shell
---despoilDebuffs[955]     = EFFECT_MAGIC_DEF_DOWN; -- Golem Shard
---despoilDebuffs[2334]    = EFFECT_MAGIC_ATK_DOWN; -- Poroggo Hat
---despoilDebuffs[4376]    = EFFECT_ATTACK_DOWN; -- Meat Jerky
---despoilDebuffs[4400]    = EFFECT_SLOW; -- Land Crab Meat
 
 function onAbilityCheck(player, target, ability)
     if (player:getFreeSlotsCount() == 0) then
@@ -39,17 +30,19 @@ end
 function onUseAbility(player, target, ability, action)
     local level = player:getMainLvl(); -- Can only reach THF77 as main job
     local despoilMod = player:getMod(MOD_DESPOIL);
-    local despoilChance = 50 + despoilMod * 2 + level - target:getMainLvl(); -- Same math as Steal
+    local despoilChance = 101; --50 + despoilMod * 2 + level - target:getMainLvl(); -- Same math as Steal
     
     local stolen = target:getDespoilItem();
     if (target:isMob() and math.random(100) < despoilChance and stolen ~= 0) then
         player:addItem(stolen);
         target:itemStolen();
 
-        -- Apply a random debuff for now
-        -- TODO: Make this based on item stolen. We need a lot more retail data to implement that.
-        local debuffIdx = math.random(#despoilDebuffs);
-        local debuff = despoilDebuffs[debuffIdx];
+        -- Attempt to grab the debuff from the DB
+        -- If there isn't a debuff assigned to the item stolen, select one at random
+        local debuff = player:getDespoilDebuff(stolen);
+        if (debuff == nil) then
+            debuf = despoilDebuffs[math.random(#despoilDebuffs)];
+        end
         local power = processDebuff(player, target, ability, debuff); -- Also sets ability message
         target:addStatusEffect(debuff, power, 0, 90);
     else

@@ -5,7 +5,8 @@
 -- Lucky Number: 4
 -- Unlucky Number: 8
 -- Level: 34
---
+-- Phantom Roll +1 Value: 3
+-- 
 -- Die Roll |No BST     |With BST
 -- -------- --------    -----------
 -- 1        |16         |41
@@ -48,12 +49,16 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
     local effectpowers = {4, 5, 7, 19, 8, 9, 11, 2, 13, 14, 23, 7}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
         effectpower = effectpower + 10
     end
+-- Apply Additional Phantom Roll+ Buff
+    local phantomBase = 3; -- Base increment buff
+    local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
+-- Check if COR Main or Sub
     if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then

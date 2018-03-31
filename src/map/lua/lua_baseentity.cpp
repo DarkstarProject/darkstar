@@ -13595,6 +13595,30 @@ inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
 }
 
 /************************************************************************
+*  Function: getDespoilDebuff()
+*  Purpose : Used to get a status effect id to apply to a mob on successful despoil
+*  Example : effect = player:getDespoilDebuff()
+*  Notes   : 
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilDebuff(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 effectId = luautils::GetDespoilDebuff(lua_tointeger(L, 1));
+    if (effectId > 0)
+    {
+        lua_pushinteger(L, effectId);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+
+    return 1;
+}
+
+/************************************************************************
 *  Function: itemStolen()
 *  Purpose : Flags a mob's item as stolen, returns true upon update
 *  Example : target:itemStolen()
@@ -14257,6 +14281,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 
     {nullptr,nullptr}

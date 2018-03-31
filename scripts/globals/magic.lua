@@ -517,9 +517,9 @@ function getSpellBonusAcc(caster, target, spell, params)
     local castersWeather = caster:getWeather();
     local skill = spell:getSkillType();
     local spellGroup = spell:getSpellGroup();
+    local element = spell:getElement();
 
     params.AMIIaccBonus = params.AMIIaccBonus or 0
-    params.element = params.element or 0
 
     if caster:hasStatusEffect(EFFECT_ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
       magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_ALTRUISM):getPower();
@@ -540,8 +540,8 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --Add acc for klimaform
-    if params.element > 0 then
-        if caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[params.element] or castersWeather == doubleWeatherStrong[params.element]) then
+    if element > 0 then
+        if caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
             magicAccBonus = magicAccBonus + 15
         end
     end
@@ -552,8 +552,8 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --add acc for RDM group 1 merits
-    if (params.element > 0 and params.element <= 6) then
-        magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[params.element]);
+    if (element > 0 and element <= 6) then
+        magicAccBonus = magicAccBonus + caster:getMerit(rdmMerit[element]);
     end
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
@@ -704,7 +704,7 @@ function calculateMagicBurst(caster, spell, target, params)
 
     -- Obtain first multiplier from gear, atma and job traits
     -- Add in bonus from BLM AMII merits (minimum 0, maximum 0.12 with 5/5 merits)
-    modburst = (caster:getMod(MOD_MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
+    modburst = modburst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
 
     -- Cap bonuses from first multiplier at 40% or 1.4
     if (modburst > 1.4) then

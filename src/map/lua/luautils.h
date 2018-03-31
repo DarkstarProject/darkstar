@@ -274,6 +274,8 @@ namespace luautils
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
+
+    uint16 GetDespoilDebuff(uint16 itemId);                                   // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)
 };
 
 #endif //- _LUAUTILS_H -

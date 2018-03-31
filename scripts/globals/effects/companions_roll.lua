@@ -1,97 +1,60 @@
 -----------------------------------
 --
---
+--    Companions Roll
 --
 -----------------------------------
 
 require("scripts/globals/status");
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    if (effect:getPower() == 1) then
-        target:addPetMod(MOD_REGAIN, 20);
-        target:addPetMod(MOD_REGEN, 4);
-    elseif (effect:getPower() == 2) then
-        target:addPetMod(MOD_REGAIN, 50);
-        target:addPetMod(MOD_REGEN, 20);
-    elseif (effect:getPower() == 3) then
-        target:addPetMod(MOD_REGAIN, 20);
-        target:addPetMod(MOD_REGEN, 6);
-    elseif (effect:getPower() == 4) then
-        target:addPetMod(MOD_REGAIN, 20);
-        target:addPetMod(MOD_REGEN, 8);
-    elseif (effect:getPower() == 5) then
-        target:addPetMod(MOD_REGAIN, 30);
-        target:addPetMod(MOD_REGEN, 10);
-    elseif (effect:getPower() == 6) then
-        target:addPetMod(MOD_REGAIN, 30);
-        target:addPetMod(MOD_REGEN, 12);
-    elseif (effect:getPower() == 7) then
-        target:addPetMod(MOD_REGAIN, 30);
-        target:addPetMod(MOD_REGEN, 14);
-    elseif (effect:getPower() == 8) then
-        target:addPetMod(MOD_REGAIN, 40);
-        target:addPetMod(MOD_REGEN, 16);
-    elseif (effect:getPower() == 9) then
-        target:addPetMod(MOD_REGAIN, 40);
-        target:addPetMod(MOD_REGEN, 18);
-    elseif (effect:getPower() == 10) then
-        target:addPetMod(MOD_REGAIN, 10);
-        target:addPetMod(MOD_REGEN, 3);
-    elseif (effect:getPower() == 11) then
-        target:addPetMod(MOD_REGAIN, 60);
-        target:addPetMod(MOD_REGEN, 25);
+    local effectregain = {20, 50, 20, 20, 30, 30, 30, 40, 40, 10, 60, 0}
+    local effectregen = {4, 20, 6, 8, 10, 12, 14, 16, 18, 3, 25, 0}
+    if (effect:getPower() > 69) then
+        local rollnum = (effect:getPower() - 70)
+        target:addPetMod(MOD_REGAIN, (effectregain[rollnum] + 35));
+        target:addPetMod(MOD_REGEN, (effectregen[rollnum] +14));
+    end
+    if (effect:getPower() > 49 and effect:getPower() <69) then
+        local rollnum = (effect:getPower() - 50)
+        target:addPetMod(MOD_REGAIN, (effectregain[rollnum] +25));
+        target:addPetMod(MOD_REGEN, (effectregen[rollnum] +10));
+    end
+    if (effect:getPower() > 29 and effect:getPower() <49) then
+        local rollnum = (effect:getPower() - 30)
+        target:addPetMod(MOD_REGAIN, (effectregain[rollnum] +15));
+        target:addPetMod(MOD_REGEN, (effectregen[rollnum] +6));
+    end
+    if (effect:getPower() < 19 ) then
+        local rollnum = effect:getPower()
+        target:addPetMod(MOD_REGAIN, effectregain[rollnum]);
+        target:addPetMod(MOD_REGEN, effectregen[rollnum]);
     end
 end;
-
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
 end;
 
------------------------------------
--- onEffectLose Action
------------------------------------
-
 function onEffectLose(target,effect)
-    if (effect:getPower() == 1) then
-        target:delPetMod(MOD_REGAIN, 20);
-        target:delPetMod(MOD_REGEN, 4);
-    elseif (effect:getPower() == 2) then
-        target:delPetMod(MOD_REGAIN, 50);
-        target:delPetMod(MOD_REGEN, 20);
-    elseif (effect:getPower() == 3) then
-        target:delPetMod(MOD_REGAIN, 20);
-        target:delPetMod(MOD_REGEN, 6);
-    elseif (effect:getPower() == 4) then
-        target:delPetMod(MOD_REGAIN, 20);
-        target:delPetMod(MOD_REGEN, 8);
-    elseif (effect:getPower() == 5) then
-        target:delPetMod(MOD_REGAIN, 30);
-        target:delPetMod(MOD_REGEN, 10);
-    elseif (effect:getPower() == 6) then
-        target:delPetMod(MOD_REGAIN, 30);
-        target:delPetMod(MOD_REGEN, 12);
-    elseif (effect:getPower() == 7) then
-        target:delPetMod(MOD_REGAIN, 30);
-        target:delPetMod(MOD_REGEN, 14);
-    elseif (effect:getPower() == 8) then
-        target:delPetMod(MOD_REGAIN, 40);
-        target:delPetMod(MOD_REGEN, 16);
-    elseif (effect:getPower() == 9) then
-        target:delPetMod(MOD_REGAIN, 40);
-        target:delPetMod(MOD_REGEN, 18);
-    elseif (effect:getPower() == 10) then
-        target:delPetMod(MOD_REGAIN, 10);
-        target:delPetMod(MOD_REGEN, 3);
-    elseif (effect:getPower() == 11) then
-        target:delPetMod(MOD_REGAIN, 60);
-        target:delPetMod(MOD_REGEN, 25);
+    local effectregain = {20, 50, 20, 20, 30, 30, 30, 40, 40, 10, 60, 0}
+    local effectregen = {4, 20, 6, 8, 10, 12, 14, 16, 18, 3, 25, 0}
+    if (effect:getPower() > 69) then
+        local rollnum = (effect:getPower() - 70)
+        target:delPetMod(MOD_REGAIN, (effectregain[rollnum] + 35));
+        target:delPetMod(MOD_REGEN, (effectregen[rollnum] +14));
+    end
+    if (effect:getPower() > 49 and effect:getPower() <69) then
+        local rollnum = (effect:getPower() - 50)
+        target:delPetMod(MOD_REGAIN, (effectregain[rollnum] +25));
+        target:delPetMod(MOD_REGEN, (effectregen[rollnum] +10));
+    end
+    if (effect:getPower() > 29 and effect:getPower() <49) then
+        local rollnum = (effect:getPower() - 30)
+        target:delPetMod(MOD_REGAIN, (effectregain[rollnum] +15));
+        target:delPetMod(MOD_REGEN, (effectregen[rollnum] +6));
+    end
+    if (effect:getPower() < 19) then
+        local rollnum = effect:getPower() 
+        target:delPetMod(MOD_REGAIN, effectregain[rollnum]);
+        target:delPetMod(MOD_REGEN, effectregen[rollnum]);
     end
 end;
