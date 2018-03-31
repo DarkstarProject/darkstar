@@ -13,4 +13,3 @@ CEHN_TEYOHNGO_SHOP_DIALOG = 7310; -- If you're looking for fishing gear, you've 
 
 -- Other
        ON_WAY_TO_AL_ZAHBI = 7306; -- We are on our way to Al Zahbi. We should arrive in
- 
