@@ -13604,7 +13604,7 @@ inline int32 CLuaBaseEntity::getDespoilDebuff(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint16 effectId = luautils::GetDespoilDebuff(lua_tointeger(L, 1));
+    uint16 effectId = luautils::GetDespoilDebuff((uint16)lua_tointeger(L, 1));
     if (effectId > 0)
     {
         lua_pushinteger(L, effectId);
