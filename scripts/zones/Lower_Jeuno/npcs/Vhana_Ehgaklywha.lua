@@ -2,14 +2,11 @@
 -- Area: Lower Jeuno
 --  NPC: Vhana Ehgaklywha
 -- Lights lamps in Lower Jeuno if nobody accepts Community Service by 1AM.
--- !pos -122.853 0.000 -195.605
+-- !pos -122.853 0.000 -195.605 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
-require("scripts/zones/Lower_Jeuno/NPCIDs");
+require("scripts/zones/Lower_Jeuno/globals");
+require("scripts/zones/Lower_Jeuno/MobIDs");
 require("scripts/globals/pathfind");
-require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -24,7 +21,7 @@ function onTrigger(player,npc)
 end;
 
 function onPath(npc)
-    if npc:isFollowingPath() then
+    if (npc:isFollowingPath()) then
 
         -- if vasha reaches the end node, halt and disappear her.
         -- do this at node 48 instead of 49 because isFollowingPath will be false by 49.
@@ -32,7 +29,7 @@ function onPath(npc)
         -- once a pathThrough begins, there doesn't seem to be a clean way to stop onPath
         -- from being called forever.
 
-        if (npc:atPoint(pathfind.get(lampPath,48))) then
+        if (npc:atPoint(pathfind.get(LOWER_JEUNO.lampPath,48))) then
             npc:clearPath();
             npc:setStatus(2);
 
@@ -40,11 +37,11 @@ function onPath(npc)
         -- she reaches the lamps in reverse order of their npcIds, hence (12 - i).
 
         else
-            for i, v in ipairs(lampPoints) do
-                local lampPos = pathfind.get(lampPath,v);
-                if npc:atPoint(lampPos) then
+            for i, v in ipairs(LOWER_JEUNO.lampPoints) do
+                local lampPos = pathfind.get(LOWER_JEUNO.lampPath,v);
+                if (npc:atPoint(lampPos)) then
                     -- Vhana is at a lamp (she reaches them in reverse order)
-                    local lampId = lampIdOffset + (12 - i);
+                    local lampId = LOWER_JEUNO_STREETLAMP_OFFSET + (12 - i);
                     GetNPCByID(lampId):setAnimation(ANIMATION_OPEN_DOOR);
                     break;
                 end

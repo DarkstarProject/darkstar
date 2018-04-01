@@ -147,6 +147,7 @@ end
             gil = 200,
             xp = 1000,
             title = ENTRANCE_DENIED,
+            var = {"foo1", "foo2"}      -- variable(s) to set to 0. string or table
         });
 ******************************************************************************* --]]
 function npcUtil.completeQuest(player, area, quest, params)
@@ -192,6 +193,18 @@ function npcUtil.completeQuest(player, area, quest, params)
 
     if (params["title"] ~= nil) then
         player:addTitle(params["title"]);
+    end
+    
+    if (params["var"] ~= nil) then
+        local playerVarsToZero = {};
+        if (type(params["var"]) == "table") then
+            playerVarsToZero = params["var"];
+        elseif (type(params["var"]) == "string") then
+            table.insert(playerVarsToZero, params["var"]);
+        end
+        for _, v in pairs(playerVarsToZero) do
+            player:setVar(v, 0);
+        end
     end
 
     -- successfully complete the quest
