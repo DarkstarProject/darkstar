@@ -4,7 +4,7 @@ pull_requests:
 image: Visual Studio 2017
 configuration: Debug
 platform:
-- Win32
+- x86
 - x64
 shallow_clone: true
 build:
