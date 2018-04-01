@@ -28,30 +28,31 @@ local extracted =
         {1100, 640},  -- 11.00% Copper Ore
         {1080, 641},  -- 10.80% Tin Ore
         {1050, 736},  -- 10.50% Silver Ore
-        {0970, 643},  -- 9.70% Iron Ore
-        {0680, 1632}, -- 6.80% Moblin Mail
-        {0630, 1625}, -- 6.30% Moblin Helm
-        {0600, 1638}, -- 6.00% Moblin Mask
-        {0570, 568},  -- 5.70% Goblin Die
-        {0571, 1631}, -- 5.70% Moblin Armor
-        {0080, 645},  -- 0.80% Darksteel Ore
-        {0081, 644},  -- 0.80% Mythril Ore
-        {0070, 737},  -- 0.70% Gold Ore
-        {0071, 738}   -- 0.70% Platium Ore
+        {970, 643},  -- 9.70% Iron Ore
+        {680, 1632}, -- 6.80% Moblin Mail
+        {630, 1625}, -- 6.30% Moblin Helm
+        {600, 1638}, -- 6.00% Moblin Mask
+        {570, 568},  -- 5.70% Goblin Die
+        {570, 1631}, -- 5.70% Moblin Armor
+        {80, 645},  -- 0.80% Darksteel Ore
+        {80, 644},  -- 0.80% Mythril Ore
+        {70, 737},  -- 0.70% Gold Ore
+        {70, 738}   -- 0.70% Platium Ore
     },
     [12] = -- Newton
     {
-        {2200, 640},  -- 22.00% Copper Ore
-        {1670, 641},  -- 16.70% Tin Ore
-        {1110, 642},  -- 11.10% Zinc Ore
-        {1670, 1654}, -- 16.70% Igneous Rock
-        {0560, 736},  -- 5.60% Silver Ore
---      {0000, 678},  -- 0.00% Aluminum Ore
-        {2220, 643},  -- 22.20% Iron Ore
-        {0080, 645},  -- 0.80% Darksteel Ore
-        {0080, 644},  -- 0.80% Mythril Ore
-        {0560, 737},  -- 5.60% Gold Ore
-        {0070, 738}   -- 0.70% Platium Ore
+        {1660, 640},  -- 16.60% Copper Ore
+        {1170, 641},  -- 11.70% Tin Ore
+        {1450, 642},  -- 14.50% Zinc Ore
+        {1790, 1654}, -- 17.90% Igneous Rock
+        {1450, 736},  -- 14.50% Silver Ore
+        {140, 678},  -- 1.40% Aluminum Ore
+        {1720, 643},  -- 17.20% Iron Ore
+        {70, 645},  -- 0.70% Darksteel Ore
+        {210, 644},  -- 2.10% Mythril Ore
+        {140, 737},  -- 1.40% Gold Ore
+        {340, 738}   -- 3.40% Platium Ore
+        {70, 769} -- 0.70% Colored Rock
     },
     [61] = -- Mount Zhayolm
     {
@@ -60,33 +61,33 @@ local extracted =
         {1590, 1155}, -- 15.90% Iron Sand
         {1540, 768},  -- 15.40% Flint Stone
         {1340, 928},  -- 13.40% Bomb Ash
-        {0960, 1632}, -- 9.60% Moblin Mail
+        {960, 1632}, -- 9.60% Moblin Mail
         {1150, 1625}, -- 11.50% Moblin Helm
-        {0450, 1631}, -- 4.50% Moblin Armor
-        {0380, 2160}, -- 3.80% Troll Pauldron
-        {0450, 2161}, -- 4.50% Troll Vambrace
-        {0430, 1638}, -- 4.30% Moblin Mask
-        {0210, 902},  -- 2.10% Demon Horn
-        {0140, 646},  -- 1.40% Adaman Ore
-        {0030, 685}   -- 0.30% Khroma Ore
+        {450, 1631}, -- 4.50% Moblin Armor
+        {380, 2160}, -- 3.80% Troll Pauldron
+        {450, 2161}, -- 4.50% Troll Vambrace
+        {430, 1638}, -- 4.30% Moblin Mask
+        {210, 902},  -- 2.10% Demon Horn
+        {140, 646},  -- 1.40% Adaman Ore
+        {30, 685}   -- 0.30% Khroma Ore
 --      {1560, 2860} -- 15.60% Slab of Plumbago quest item
     },
     [62] = -- Halvung
     {
         {2010, 2417}, -- 20.10% Aht Urhgan Brass
-        {1000, 928},  -- 10.0% Bomb Ash
+        {1000, 928},  -- 10.00% Bomb Ash
         {1720, 768},  -- 17.20% Flint Stone
-        {0290, 737},  -- 2.90% Gold Ore
+        {290, 737},  -- 2.90% Gold Ore
         {1440, 1155}, -- 14.40% Iron Sand
-        {0050, 2228}, -- 0.50% Luminium Ore
-        {0430, 1631}, -- 4.30% Moblin Armor
-        {0480, 1625}, -- 4.80% Moblin Helm
-        {0480, 1632}, -- 4.80% Moblin Mail
-        {0290, 1638}, -- 2.90% Moblin Mask
-        {0100, 739},  -- 1.0% Orichalcum Ore
+        {50, 2228}, -- 0.50% Luminium Ore
+        {430, 1631}, -- 4.30% Moblin Armor
+        {430, 1625}, -- 4.30% Moblin Helm
+        {480, 1632}, -- 4.80% Moblin Mail
+        {290, 1638}, -- 2.90% Moblin Mask
+        {100, 739},  -- 1.00% Orichalcum Ore
         {1200, 1108}, -- 12.00% Pinch of Sulfur
-        {0480, 2160}, -- 4.80% Troll Pauldron
-        {0330, 2161}  -- 3.30% Troll Vambrace
+        {480, 2160}, -- 4.80% Troll Pauldron
+        {330, 2161}  -- 3.30% Troll Vambrace
     },
     [88] = -- North Gustaberg [S]
     {
@@ -94,14 +95,14 @@ local extracted =
         {1930, 642},   -- 19.30% Zinc Ore
         {1500, 641},   -- 15.00% Tin Ore
         {1340, 17296}, -- 13.40% Pebble
-        {0860, 736},   -- 8.6% Silver Ore
+        {860, 736},   -- 8.60% Silver Ore
         {1180, 643},   -- 11.80% Iron Ore
-        {0750, 644},   -- 7.50% Mythril Ore
-        {0050, 1631},  -- 0.50% Moblin Armor
-        {0110, 1625},  -- 1.10% Moblin Helm
-        {0110, 1632},  -- 1.10% Moblin Mail
-        {0210, 1638},  -- 2.10% Moblin Mask
-        {0160, 738},   -- 1.60% Platium Ore
+        {750, 644},   -- 7.50% Mythril Ore
+        {50, 1631},  -- 0.50% Moblin Armor
+        {110, 1625},  -- 1.10% Moblin Helm
+        {110, 1632},  -- 1.10% Moblin Mail
+        {210, 1638},  -- 2.10% Moblin Mask
+        {160, 738},   -- 1.60% Platium Ore
     },
     [142] = -- Yughott Grotto
     {
@@ -110,65 +111,63 @@ local extracted =
         {1300, 641},   -- 13.00% Tin Ore
         {1140, 17296}, -- 11.40% Pebble
         {1320, 642},   -- 13.20% Zinc Ore
-        {0840, 768},   -- 8.40% Flint Stone
-        {0360, 736},   -- 3.6% Silver Ore
-        {0301, 769},   -- 1.7% Red Rock
-        {0300, 645},   -- 1.5% Darksteel Ore
-        {0110, 737}    -- 1.1% Gold Ore
+        {840, 768},   -- 8.40% Flint Stone
+        {360, 736},   -- 3.60% Silver Ore
+        {170, 769},   -- 1.70% Colored Rock
+        {150, 645},   -- 1.50% Darksteel Ore
+        {110, 737}    -- 1.10% Gold Ore
     },
     [143] = -- Palborough Mines
     {
         {1130, 642},   -- 11.30% Zinc Ore
-        {0940, 643},   -- 9.40% Iron Ore
+        {940, 643},   -- 9.40% Iron Ore
         {1040, 17296}, -- 10.40% Pebble
-        {0970, 641},   -- 9.70% Tin Ore
-        {0900, 644},   -- 9.00% Mythril Ore
-        {0900, 736},   -- 9.00% Silver Ore
-        {0800, 640},   -- 8.00% Copper Ore
-        {0100, 738}    --  1.00% Platium Ore
---      {0000, 0} -- Sturdy metal strip 16.7% for a quest
+        {970, 641},   -- 9.70% Tin Ore
+        {900, 644},   -- 9.00% Mythril Ore
+        {900, 736},   -- 9.00% Silver Ore
+        {800, 640},   -- 8.00% Copper Ore
+        {100, 738}    --  1.00% Platium Ore
+--      {1670, 0} -- 16.70% metal strip quest key item
     },
     [172] = -- Zeruhn Mines
     {
-        {1450, 643},   -- 24.50% Iron Ore
-        {1200, 17296}, -- 18.00% Pebble
-        {1860, 640},   -- 18.60% Copper Ore
-        {1310, 642},   -- 13.10% Zinc Ore
+        {2450, 643},   -- 24.50% Iron Ore
+        {1800, 17296}, -- 18.00% Pebble
+        {1850, 640},   -- 18.50% Copper Ore
+        {1330, 642},   -- 13.30% Zinc Ore
         {1120, 641},   -- 11.20% Tin Ore
-        {0550, 1984},  -- 5.5% Snapping Mole
-        {0190, 736},   -- 1.9% Silver Ore
-        {0180, 645}    -- 0.4% Darksteel Ore
---      {0000, 0} -- Sturdy metal strip 16.7% for a quest
+        {550, 1984},  -- 5.50% Snapping Mole
+        {180, 736},   -- 1.80% Silver Ore
+        {40, 645}    -- 0.40% Darksteel Ore
+--      {1670, 0} -- 16.70% metal strip quest key item
     },
     [196] = -- Gusgen Mines
     {
         {1890, 17296}, -- 18.90% Pebble
         {1670, 642},   -- 16.70% Zinc Ore
-        {0510, 640},   -- 15.10% Copper Ore
-        {0470, 641},   -- 14.70% Tin Ore
-        {0450, 643},   -- 14.50% Iron Ore
-        {0810, 736},   -- 8.10% Silver Ore
-        {0600, 645},   -- 5.9% Darksteel Ore
-        {0400, 769},   -- 4% Red Rock
-        {0180, 737},   -- 1.8% Gold Ore
-        {0080, 644}    -- 0.80% Mythril Ore
---      {0000, 0} -- Sturdy metal strip 16.7% for a quest
+        {1510, 640},   -- 15.10% Copper Ore
+        {1470, 641},   -- 14.70% Tin Ore
+        {1450, 643},   -- 14.50% Iron Ore
+        {810, 736},   -- 8.10% Silver Ore
+        {590, 645},   -- 5.90% Darksteel Ore
+        {400, 769},   -- 4.00% Colored Rock
+        {80, 737},   -- 0.80% Gold Ore
+--      {1670, 0} -- 16.70% metal strip quest key item
     },
     [205] = -- Ifrit's Cauldron
     {
-        -- {0020, 1255},  -- Fire Ore (commented out, appears to be non retail..)
-        {0840, 768},   -- 8.40% Flint Stone
-        {0950, 643},   -- 14.50% Iron Ore
-        {0980, 1108},  -- 9.80% Pinch of Sulfur
-        {0700, 17316}, -- 7.0% Bomb Arm
-        {0500, 928},   -- 5.0% Bomb Ash
-        {0600, 1155},  -- 6.0% Iron Sand
-        {0250, 646},   -- 2.5% Adaman Ore
-        {0690, 645},   -- 6.9% Darksteel Ore
-        {0000, 2126},  -- 0.0% Orpiment
-        {0250, 739},   -- 0.0% Orichalcum Ore
-        {0400, 769}    -- 4% Red Rock
---      {0000, 0} -- Sturdy metal strip 16.7% for a quest
+        {3260, 768},   -- 32.60% Flint Stone
+        {1520, 643},   -- 15.20% Iron Ore
+        {430, 1108},  -- 4.30% Pinch of Sulfur
+        {650, 17316}, -- 6.50% Bomb Arm
+        {870, 928},   -- 8.70% Bomb Ash
+        {1300, 1155},  -- 13.00% Iron Sand
+        {250, 646},   -- 2.50% Adaman Ore
+        {600, 645},   -- 6.00% Darksteel Ore
+        {100, 2126},  -- 1.00% Orpiment
+        {100, 739},   -- 1.00% Orichalcum Ore
+        {400, 769}    -- 4.00% Colored Rock
+--      {1670, 0} -- 16.70% metal strip quest key item
     }
 }
 
