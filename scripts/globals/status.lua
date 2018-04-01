@@ -1059,6 +1059,7 @@ MOD_AFFLATUS_MISERY    = 294
 MOD_CLEAR_MIND         = 295
 MOD_CONSERVE_MP        = 296
 MOD_STEAL              = 298
+MOD_DESPOIL            = 896
 MOD_PERFECT_DODGE      = 883 -- Increases Perfect Dodge duration in seconds
 MOD_BLINK              = 299
 MOD_STONESKIN          = 300
@@ -1428,9 +1429,10 @@ MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hag
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 896 -- stuff
 -- SPARE = 897 -- stuff
 -- SPARE = 898 -- stuff
+-- SPARE = 899 -- stuff
+
 ------------------------------------
 -- Merit Definitions
 ------------------------------------

@@ -317,6 +317,7 @@ enum class Mod
     // Thief
     FLEE_DURATION             = 93,  // Flee duration in seconds
     STEAL                     = 298, // Increase/Decrease THF Steal chance
+    DESPOIL                   = 896, // Increases THF Despoil chance
     PERFECT_DODGE             = 883, // Increases Perfect Dodge duration in seconds
     TRIPLE_ATTACK             = 302, // Percent chance
     TREASURE_HUNTER           = 303, // Percent chance
@@ -709,9 +710,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 896, // stuff
     // SPARE = 897, // stuff
     // SPARE = 898, // stuff
+    // SPARE = 899, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
