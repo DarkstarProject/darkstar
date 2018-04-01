@@ -249,7 +249,7 @@ function finishConquestGuard(player,csid,option,size,inventory,guardnation)
                     end
 
                     local itemCP;
-                    if (player:getNation() == guardnation) then
+                    if (player:getNation() == guardnation or guardnation == OTHER) then
                         itemCP = inventory[Item + 1];
                     else
                         if (inventory[Item + 1] <= 8000) then
