@@ -123,6 +123,7 @@ struct map_config_t
     uint8  max_merit_points;          // global variable, amount of merit points players are allowed
     uint16 yell_cooldown;             // Minimum time between uses of yell command (in seconds).
     float  fame_multiplier;           // Fame multiplier
+    uint8  audit_gm_cmd;              // Minimum permission level of GM command to bother logging.
     bool   audit_chat;
     bool   audit_say;
     bool   audit_shout;
