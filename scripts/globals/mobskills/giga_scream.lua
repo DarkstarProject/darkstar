@@ -1,11 +1,12 @@
 ---------------------------------------------
--- Dread Dive
+-- Giga Scream
 --
--- Description: Dives into a single target. Additional effect: Knockback + Stun
+-- Description: Delivers a threefold attack on a single target.
 -- Type: Physical
--- Utsusemi/Blink absorb: 1 shadow
+-- Can be dispelled: N/A
+-- Utsusemi/Blink absorb: 3 shadows
 -- Range: Melee
--- Notes: Used instead of Gliding Spike by certain notorious monsters.
+-- Notes: Used by some notorious monsters in place of Triple Attack.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/status");
@@ -16,13 +17,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 2.4;
+    local numhits = 3;
+    local accmod = 1.5;
+    local dmgmod = 2;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 4);
 
     target:delHP(dmg);
     return dmg;
