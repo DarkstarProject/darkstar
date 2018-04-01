@@ -34,6 +34,8 @@ function onTrigger(player, spellId, target)
     end
 
     -- add spell
-    targ:addSpell(spellId);
+    local save = true;
+    local silent = false;
+    targ:addSpell(spellId, silent, save);
     player:PrintToPlayer(string.format("Added spell %i to %s.",spellId,targ:getName()));
 end;

@@ -220,9 +220,9 @@ CActionPacket::CActionPacket(action_t& action)
         break;
         case SPELLGROUP_TRUST:
         {
-            ref<uint8>(0x0C) = 0xD8;
-            ref<uint8>(0x0D) = 0x5C;
-            ref<uint8>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0x98;
+            ref<uint8>(0x0D) = 0x59;
+            ref<uint8>(0x0E) = 0x18;
         }
         break;
         default:
@@ -290,9 +290,9 @@ CActionPacket::CActionPacket(action_t& action)
         break;
         case SPELLGROUP_TRUST:
         {
-            ref<uint8>(0x0C) = 0xDC;
-            ref<uint8>(0x0D) = 0x5C;
-            ref<uint8>(0x0E) = 0x1B;
+            ref<uint8>(0x0C) = 0x9C;
+            ref<uint8>(0x0D) = 0x59;
+            ref<uint8>(0x0E) = 0x18;
         }
         break;
         default:

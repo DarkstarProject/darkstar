@@ -3028,18 +3028,15 @@ namespace luautils
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
     {
-        auto scriptPath = "scripts/globals/spells";
-
-        if (PSpell->getSpellGroup() == SPELLGROUP_BLUE)
-            scriptPath = "scripts/globals/spells/bluemagic";
-        else if (PSpell->getSpellGroup() == SPELLGROUP_TRUST)
-            scriptPath = "scripts/globals/spells/trust";
-
-        lua_prepscript("%s/%s.lua", scriptPath, PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trusts/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onMagicCastingCheck"))
         {
-            //ShowDebug("luautils::OnMagicCastingCheck: could not load %s/%s.lua \n", scriptPath, PSpell->getName());
+            // ShowDebug("luautils::OnMagicCastingCheck: could not load %s/%s.lua \n", scriptPath, PSpell->getName());
             return 47;
         }
 
