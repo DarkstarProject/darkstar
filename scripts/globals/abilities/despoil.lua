@@ -41,7 +41,7 @@ function onUseAbility(player, target, ability, action)
         -- If there isn't a debuff assigned to the item stolen, select one at random
         local debuff = player:getDespoilDebuff(stolen);
         if (debuff == nil) then
-            debuf = despoilDebuffs[math.random(#despoilDebuffs)];
+            debuff = despoilDebuffs[math.random(#despoilDebuffs)];
         end
         local power = processDebuff(player, target, ability, debuff); -- Also sets ability message
         target:addStatusEffect(debuff, power, 0, 90);
@@ -49,6 +49,8 @@ function onUseAbility(player, target, ability, action)
         action:animation(target:getID(), 182);
         ability:setMsg(msgBasic.STEAL_FAIL); -- Failed
     end
+    
+    return stolen;
 end
 
 function processDebuff(player, target, ability, debuff)

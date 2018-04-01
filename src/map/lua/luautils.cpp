@@ -4158,9 +4158,9 @@ namespace luautils
     {
         uint16 effectId = 0;
         int32 ret = Sql_Query(SqlHandle, "SELECT effectId FROM despoil_effects WHERE itemId = %u", itemId);
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            effectId = Sql_GetUIntData(SqlHandle, 0);
+            effectId = (uint16)Sql_GetUIntData(SqlHandle, 0);
         }
 
         return effectId;
