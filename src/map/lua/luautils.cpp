@@ -2021,14 +2021,12 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
-        auto scriptPath = "scripts/globals/spells";
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
-        if (PSpell->getSpellGroup() == SPELLGROUP_BLUE)
-            scriptPath = "scripts/globals/spells/bluemagic";
-        else if (PSpell->getSpellGroup() == SPELLGROUP_TRUST)
-            scriptPath = "scripts/globals/spells/trust";
-
-        lua_prepscript("%s/%s.lua", scriptPath, PSpell->getName());
         if (prepFile(File, "onSpellCast"))
         {
             return 0;
@@ -3030,7 +3028,7 @@ namespace luautils
     {
         lua_prepscript(
             PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
-            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trusts/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
             "scripts/globals/spells/%s.lua", PSpell->getName()
         );
 
