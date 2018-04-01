@@ -51,7 +51,7 @@ local extracted =
         {70, 645},  -- 0.70% Darksteel Ore
         {210, 644},  -- 2.10% Mythril Ore
         {140, 737},  -- 1.40% Gold Ore
-        {340, 738}   -- 3.40% Platium Ore
+        {340, 738},   -- 3.40% Platium Ore
         {70, 769} -- 0.70% Colored Rock
     },
     [61] = -- Mount Zhayolm
