@@ -13540,7 +13540,6 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     CMobEntity* Mob = static_cast<CMobEntity*>(m_PBaseEntity);
-
     if (Mob)
     {
         DropList_t* DropList = itemutils::GetDropList(Mob->m_DropID);
