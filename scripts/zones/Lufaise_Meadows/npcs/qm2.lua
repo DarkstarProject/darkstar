@@ -6,13 +6,15 @@
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Lufaise_Meadows/TextIDs");
+require("scripts/zones/Lufaise_Meadows/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(5210,1) and trade:getItemCount() == 1) then -- Adamantoise Soup
-        player:tradeComplete();
-        SpawnMob(16875778):updateClaim(player); -- Kurrea
+    if (npcUtil.tradeHas(trade, 5210) and not GetMobByID(KURREA):isSpawned()) then -- Adamantoise Soup
+        player:confirmTrade();
+        SpawnMob(KURREA):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;

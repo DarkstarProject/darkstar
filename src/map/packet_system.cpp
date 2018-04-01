@@ -61,6 +61,7 @@ This file is part of DarkStar-server source code.
 #include "item_container.h"
 #include "universal_container.h"
 #include "recast_container.h"
+#include "enmity_container.h"
 
 #include "ai/ai_container.h"
 #include "ai/states/death_state.h"
@@ -834,23 +835,36 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         uint8 MountID = data.ref<uint8>(0x0C);
 
-        // TODO: Check if player is in combat and get proper list of zones you can use mounts.
-        if (charutils::hasKeyItem(PChar, 3072 + MountID) && PChar->loc.zone->GetType() == ZONETYPE_OUTDOORS)
-        {
-            if (PChar->GetMLevel() >= 20)
-            {
-                PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? ++MountID : 0), 0, 1800), true);
-                PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
-                PChar->pushPacket(new CCharRecastPacket(PChar));
-            }
-            else
-            {
-                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
-            }
-        }
-        else
-        {
+        if (PChar->animation != ANIMATION_NONE)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 71));
+        else if (!PChar->loc.zone->CanUseMisc(MISC_MOUNT))
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        else if (PChar->GetMLevel() < 20)
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
+        else if (charutils::hasKeyItem(PChar, 3072 + MountID))
+        {
+            if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, 256, 60))
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 94));
+
+                // add recast timer
+                //PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 202));
+                return;
+            }
+            // Retail prevents mounts if a player has enmity on any mob in the zone, need a function for this
+            for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+            {
+                CMobEntity* PMob = (CMobEntity*)it->second;
+
+                if (PMob->PEnmityContainer->HasID(PChar->id))
+                {
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 339));
+                    return;
+                }
+            }
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? ++MountID : 0), 0, 1800), true);
+            PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
+            PChar->pushPacket(new CCharRecastPacket(PChar));
         }
     }
     break;
@@ -965,6 +979,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         return;
     }
+
     if (PItem->getQuantity() - PItem->getReserve() < quantity)
     {
         ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n" CL_RESET, FromLocationID, FromSlotID);
@@ -3635,14 +3650,31 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if ((PItem != nullptr) && ((gil != nullptr) && gil->isType(ITEM_CURRENCY)))
     {
+        if (quantity < 1 || quantity > PItem->getStackSize()) // Possible exploit
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell invalid quantity %u of itemID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity);
+            return;
+        }
+
+        if (PItem->isSubType(ITEM_LOCKED)) // Possible exploit
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell %u of a LOCKED item! ID %i [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, PItem->getID());
+            return;
+        }
+
+        if (PItem->getReserve() > 0) // Usually caused by bug during synth, trade, etc. reserving the item. We don't want such items sold in this state.
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell %u of a RESERVED(%u) item! ID %i [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, PItem->getReserve(), PItem->getID());
+            return;
+        }
+
         charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
         charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
-        ShowNotice(CL_CYAN"User '%s' sold %u of item of ID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
+        ShowNotice(CL_CYAN"SmallPacket0x085: Player '%s' sold %u of itemID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
         PChar->pushPacket(new CInventoryFinishPacket());
+        PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     }
-
-    PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     return;
 }
 
@@ -3745,7 +3777,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (SlotID != ERROR_SLOTID)
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
-                ShowNotice(CL_CYAN"User '%s' purchased %u of item of ID %u [from GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
+                ShowNotice(CL_CYAN"SmallPacket0x0AA: Player '%s' purchased %u of itemID %u [from GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                 PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() - quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
@@ -3815,7 +3847,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
                 {
                     charutils::UpdateItem(PChar, LOC_INVENTORY, 0, shopItem->getSellPrice() * quantity);
-                    ShowNotice(CL_CYAN"User '%s' sold %u of item of ID %u [to GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
+                    ShowNotice(CL_CYAN"SmallPacket0x0AC: Player '%s' sold %u of itemID %u [to GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                     PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity);
                     PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                     PChar->pushPacket(new CInventoryFinishPacket());

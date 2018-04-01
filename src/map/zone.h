@@ -423,7 +423,7 @@ enum ZONEMISC
     MISC_NONE       = 0x0000,   // Able to be used in any area
     MISC_ESCAPE     = 0x0001,   // Ability to use Escape Spell
     MISC_FELLOW     = 0x0002,   // Ability to summon Fellow NPC
-    MISC_CHOCOBO    = 0x0004,   // Ability to use Chocobos
+    MISC_MOUNT      = 0x0004,   // Ability to use Chocobos and mounts
     MISC_MAZURKA    = 0x0008,   // Ability to use Mazurka Spell
     MISC_TRACTOR    = 0x0010,   // Ability to use Tractor Spell
     MISC_MOGMENU    = 0x0020,   // Ability to communicate with Nomad Moogle (menu access mog house)

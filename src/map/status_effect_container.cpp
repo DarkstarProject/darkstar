@@ -44,7 +44,6 @@ When a status effect is gained twice on a player. It can do one or more of the f
 
 #include "packets/char_health.h"
 #include "packets/char_job_extra.h"
-#include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
 #include "packets/party_effects.h"
@@ -405,7 +404,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 PChar->PLatentEffectContainer->CheckLatentsRollSong();
                 PChar->UpdateHealth();
             }
-            PChar->pushPacket(new CCharSyncPacket(PChar));
         }
         m_POwner->updatemask |= UPDATE_HP;
 
@@ -464,7 +462,6 @@ void CStatusEffectContainer::DeleteStatusEffects()
             PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
             PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
             PChar->PLatentEffectContainer->CheckLatentsRollSong();
-            PChar->pushPacket(new CCharSyncPacket(PChar));
         }
         m_POwner->UpdateHealth();
     }

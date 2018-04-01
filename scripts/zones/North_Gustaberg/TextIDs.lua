@@ -4,7 +4,7 @@
 ITEM_CANNOT_BE_OBTAINED_TWICE = 6561; -- You cannot obtain the item <item>.
       ITEM_CANNOT_BE_OBTAINED = 6562; -- You cannot obtain the item <item>. Come back after sorting your inventory.
    FULL_INVENTORY_AFTER_TRADE = 6565; -- You cannot obtain the #. Try trading again after sorting your inventory.
-                ITEM_OBTAINED = 6568; -- Obtained: <item>.
+                ITEM_OBTAINED = 6567; -- Obtained: <item>.
                  GIL_OBTAINED = 6569; -- Obtained <number> gil.
              KEYITEM_OBTAINED = 6570; -- Obtained key item: <keyitem>.
                ITEMS_OBTAINED = 6576; -- You obtain
@@ -12,7 +12,7 @@ ITEM_CANNOT_BE_OBTAINED_TWICE = 6561; -- You cannot obtain the item <item>.
 
 -- Conquest
                      CONQUEST = 7479; -- You've earned conquest points!
-                
+
 -- Quests
     SHINING_OBJECT_SLIPS_AWAY = 7436; -- The shining object slips through your fingers and is washed further down the stream.
 

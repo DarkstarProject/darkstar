@@ -216,6 +216,7 @@ ABILITY_VELOCITY_SHOT      = 208;
 ABILITY_SNARL              = 209;
 ABILITY_RETALIATION        = 210;
 ABILITY_FOOTWORK           = 211;
+ABILITY_DESPOIL            = 212;
 ABILITY_PIANISSIMO         = 213;
 ABILITY_SEKKANOKI          = 214;
 ABILITY_ELEMENTAL_SIPHON   = 216;
@@ -486,6 +487,22 @@ function checkForElevenRoll(caster)
         end
     end
     return false
+end
+
+function phantombuffMultiple(caster) -- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+    local phantombuffValue = 0;
+    if (phantomValue == 3) then
+        phantombuffMultiplier = 3;
+    elseif ((phantomValue == 5) or (phantomValue == 8)) then
+        phantombuffMultiplier = 5;
+    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
+        phantombuffMultiplier = 7;
+    else
+        phantombuffMultiplier = 0;
+    end
+
+    return phantombuffMultiplier;
 end
 
 function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
