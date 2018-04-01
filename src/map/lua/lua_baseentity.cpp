@@ -13539,14 +13539,14 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    CMobEntity* Mob = static_cast<CMobEntity*>(m_PBaseEntity);
-    if (Mob)
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
     {
-        DropList_t* DropList = itemutils::GetDropList(Mob->m_DropID);
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
 
-        if (DropList && !Mob->m_ItemStolen)
+        if (PDropList && !PMob->m_ItemStolen)
         {
-            for (const DropItem_t& drop : *DropList)
+            for (const DropItem_t& drop : *PDropList)
             {
                 if (drop.DropType == DROP_STEAL)
                 {
@@ -13573,13 +13573,13 @@ inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    CMobEntity* Mob = static_cast<CMobEntity*>(m_PBaseEntity);
-    if (Mob)
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
     {
-        DropList_t* DropList = itemutils::GetDropList(Mob->m_DropID);
-        if (DropList && !Mob->m_ItemStolen)
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+        if (PDropList && !PMob->m_ItemStolen)
         {
-            for (const DropItem_t& drop : *DropList)
+            for (const DropItem_t& drop : *PDropList)
             {
                 if (drop.DropType == DROP_DESPOIL)
                 {
