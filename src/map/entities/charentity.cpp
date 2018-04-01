@@ -30,6 +30,7 @@
 #include "../packets/action.h"
 #include "../packets/basic.h"
 #include "../packets/char.h"
+#include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/char_recast.h"
 #include "../packets/lock_on.h"
@@ -481,6 +482,7 @@ void CCharEntity::PostTick()
     if (m_EffectsChanged)
     {
         pushPacket(new CCharUpdatePacket(this));
+        pushPacket(new CCharSyncPacket(this));
         pushPacket(new CCharJobExtraPacket(this, true));
         pushPacket(new CCharJobExtraPacket(this, false));
         pushPacket(new CStatusEffectPacket(this));
