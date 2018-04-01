@@ -854,9 +854,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             // Retail prevents mounts if a player has enmity on any mob in the zone, need a function for this
             for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
             {
-                CMobEntity* MOB = (CMobEntity*)it->second;
+                CMobEntity* PMob = (CMobEntity*)it->second;
 
-                if (MOB->PEnmityContainer->HasID(PChar->id))
+                if (PMob->PEnmityContainer->HasID(PChar->id))
                 {
                     PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 339));
                     return;
