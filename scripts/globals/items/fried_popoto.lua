@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 6272
--- Item: fried_popoto
+-- Item: fried_pototo
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- HP +30
