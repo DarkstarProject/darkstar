@@ -43,6 +43,18 @@ Much of this can be automated. We highly recommend [editorconfig](http://editorc
 * No using tabs for alignment
 * UPPER_SNAKE_CASE for ENUM
 * UpperCamelCase for namespaced functions
+* Asterisk goes up against the type, not the value. We want:
+  ```
+  Foo* Bar
+  ```
+  not:
+  ```
+  Foo *Bar
+  ```
+  and *definitely* not:
+  ```
+  Foo * Bar
+  ```
 
 ### Lua
 
