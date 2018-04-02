@@ -34,7 +34,6 @@ This file is part of DarkStar-server source code.
 
 #include "battleentity.h"
 #include "petentity.h"
-#include "charentity.h"
 #include "trustentity.h"
 
 #define MAX_QUESTAREA	 11
