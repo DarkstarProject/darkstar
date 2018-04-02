@@ -1,7 +1,7 @@
-/*
+﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,31 +21,25 @@
 ===========================================================================
 */
 
-#ifndef _CPARTYMEMBERUPDATEPACKET_H
-#define _CPARTYMEMBERUPDATEPACKET_H
+#ifndef _CTRUSTENTITY_H
+#define _CTRUSTENTITY_H
 
-#include "../../common/cbasetypes.h"
-
-#include "basic.h"
-
-
-/************************************************************************
-*																		*
-*  																		*
-*																		*
-************************************************************************/
+#include "mobentity.h"
 
 class CCharEntity;
-class CTrustEntity;
-class CAlliance;
-
-class CPartyMemberUpdatePacket : public CBasicPacket
+class CTrustEntity : public CMobEntity
 {
 public:
+    CTrustEntity(CCharEntity*);
+	~CTrustEntity();
+	uint8 m_Element;
+	uint32 m_PetID;
 
-	CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 zoneid);
-    CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 MemberNumber);
-	CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID);
+    virtual void PostTick() override;
+    virtual void FadeOut() override;
+    virtual void Die() override;
+    virtual void Spawn() override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 };
 
 #endif

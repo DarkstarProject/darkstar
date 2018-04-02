@@ -64,7 +64,7 @@ public:
         std::any InitData,
         TASKTYPE InitType,
         TaskFunc_t InitFunc,
-        duration InitInterval=1s);
+        duration InitInterval);
 
     duration    DoTimer(time_point tick);
     void    RemoveTask(std::string TaskName);

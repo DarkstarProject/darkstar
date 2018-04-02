@@ -34,6 +34,7 @@ This file is part of DarkStar-server source code.
 
 #include "battleentity.h"
 #include "petentity.h"
+#include "trustentity.h"
 
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
@@ -204,6 +205,8 @@ public:
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 
+    std::vector<CTrustEntity*> PTrusts; // Active trusts
+
 
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
@@ -313,6 +316,8 @@ public:
     void		ReloadPartyInc();
     void        ReloadPartyDec();
     bool        ReloadParty();
+    void        ClearTrusts();
+    void        RemoveTrust(CTrustEntity*);
 
     void        PostTick() override;
 

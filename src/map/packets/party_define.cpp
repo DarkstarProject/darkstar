@@ -44,13 +44,14 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 			allianceid = PParty->m_PAlliance->m_AllianceID;
 		}
 
+        uint8 i = 0;
+
 		int ret = Sql_Query(SqlHandle, "SELECT chars.charid, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
 									   	LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
 										IF (allianceid <> 0, allianceid = %d, partyid = %d) ORDER BY partyflag & %u, timestamp;", 
 										allianceid, PParty->GetPartyID(), PARTY_SECOND | PARTY_THIRD);
 		if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
 		{
-			uint8 i = 0;
 			while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
 				uint16 targid = 0;
@@ -63,5 +64,16 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 				i++;
 			}
 		}
+
+        if (PParty->GetLeader() != nullptr && PParty->GetLeader()->objtype == TYPE_PC) {
+            CCharEntity* leader = (CCharEntity*)PParty->GetLeader();
+            for (auto trust : leader->PTrusts) {
+                ref<uint32>(12 * i + (0x08)) = trust->id;
+                ref<uint16>(12 * i + (0x0C)) = trust->targid;
+                ref<uint16>(12 * i + (0x0E)) = 0;
+                ref<uint16>(12 * i + (0x10)) = trust->getZone();
+                i++;
+            }
+        }
 	}
 }

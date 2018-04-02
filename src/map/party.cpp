@@ -123,6 +123,7 @@ void CParty::DisbandParty(bool playerInitiated)
         for (uint8 i = 0; i < members.size(); ++i)
         {
             CCharEntity* PChar = (CCharEntity*)members.at(i);
+            PChar->ClearTrusts();
 
             PChar->PParty = nullptr;
             PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
@@ -236,6 +237,9 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
 
     if (m_PLeader == PEntity)
     {
+        // Remove their trusts
+        CCharEntity* PChar = (CCharEntity*)PEntity;
+        PChar->ClearTrusts();
         RemovePartyLeader(PEntity);
     }
     else
@@ -520,6 +524,9 @@ void CParty::AddMember(CBattleEntity* PEntity)
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CCharSyncPacket(PChar));
             }
         }
+
+        // You lose all your summoned trusts upon joining a party
+        PChar->ClearTrusts();
     }
 }
 
@@ -745,6 +752,18 @@ void CParty::ReloadParty()
                     PChar->pushPacket(new CPartyMemberUpdatePacket(PPartyMember, j, memberinfo.flags, PChar->getZone()));
                     //if (PPartyMember != PChar)
                     //    effects->AddMemberEffects(PChar);
+
+                    // Inject the party leader's trusts into the party list
+                    CCharEntity* leader = (CCharEntity*)GetLeader();
+                    if (leader->PTrusts.size() > 0)
+                    {
+                        for (auto trust : leader->PTrusts)
+                        {
+                            j++;
+                            // trusts don't persist over zonelines, so we know their zone has be the same as the leader.
+                            PChar->pushPacket(new CPartyMemberUpdatePacket(trust, j));
+                        }
+                    }
                 }
                 else
                 {
@@ -756,6 +775,8 @@ void CParty::ReloadParty()
                 }
                 j++;
             }
+
+
             //PChar->pushPacket(effects.release());
         }
     }
