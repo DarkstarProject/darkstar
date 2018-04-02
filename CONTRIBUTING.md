@@ -47,10 +47,11 @@ Much of this can be automated. We highly recommend [editorconfig](http://editorc
 ### Lua
 
 * Curly braces go on a newline unless empty.
+* Our lua functions are typically lowerCamelCased, with few exceptions (just FYI).
 * No parentheses unless needed to clarify order of operations.
 * No semicolons unless multiple statements on a single line.
 * No excess whitespace inside of parentheses solely for alignment.
-* *When* aligning, it is preferred to do so like this:
+* *When* aligning (not always needed), it is preferred to do so like this:
   ```
   variable  = thing
   variable2 = thing2
