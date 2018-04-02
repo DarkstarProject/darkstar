@@ -23,17 +23,17 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_WEIGHT;
+    params.effect = EFFECT.WEIGHT;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then --Do it!
 
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        if (caster:hasStatusEffect(EFFECT.SABOTEUR)) then
         duration = duration * 2;
     end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
+    caster:delStatusEffect(EFFECT.SABOTEUR);
 
-        if (target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
+        if (target:addStatusEffect(EFFECT.WEIGHT,power,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -42,5 +42,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
 
-    return EFFECT_WEIGHT;
+    return EFFECT.WEIGHT;
 end;

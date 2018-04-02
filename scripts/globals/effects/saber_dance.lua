@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_SABER_DANCE
+-- EFFECT.SABER_DANCE
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ function onEffectGain(target,effect)
     end
     target:addMod(MOD_DOUBLE_ATTACK,effect:getPower());
     
-    target:delStatusEffect(EFFECT_FAN_DANCE);
+    target:delStatusEffect(EFFECT.FAN_DANCE);
 end;
 
 -----------------------------------

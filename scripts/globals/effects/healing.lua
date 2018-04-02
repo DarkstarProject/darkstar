@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_HEALING
+-- EFFECT.HEALING
 --
 --    Activated through the /heal command
 -----------------------------------
@@ -26,9 +26,9 @@ function onEffectTick(target,effect)
 
     if (healtime > 1) then
         -- curse II also known as "zombie"
-        if (not(target:hasStatusEffect(EFFECT_DISEASE)) and target:hasStatusEffect(EFFECT_PLAGUE) == false and target:hasStatusEffect(EFFECT_CURSE_II) == false) then
+        if (not(target:hasStatusEffect(EFFECT.DISEASE)) and target:hasStatusEffect(EFFECT.PLAGUE) == false and target:hasStatusEffect(EFFECT.CURSE_II) == false) then
             local healHP = 0;
-            if (target:getContinentID() == 1 and target:hasStatusEffect(EFFECT_SIGNET)) then
+            if (target:getContinentID() == 1 and target:hasStatusEffect(EFFECT.SIGNET)) then
                 healHP = 10+(3*math.floor(target:getMainLvl()/10))+(healtime-2)*(1+math.floor(target:getMaxHP()/300))+(target:getMod(MOD_HPHEAL));
             else
                 target:addTP(HEALING_TP_CHANGE);
@@ -53,5 +53,5 @@ end;
 
 function onEffectLose(target,effect)
     target:setAnimation(0);
-    target:delStatusEffect(EFFECT_LEAVEGAME);
+    target:delStatusEffect(EFFECT.LEAVEGAME);
 end;

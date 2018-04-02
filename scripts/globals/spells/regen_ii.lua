@@ -23,21 +23,21 @@ function onSpellCast(caster,target,spell)
 
     duration = duration + caster:getMod(MOD_REGEN_DURATION);
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(EFFECT.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
     duration = calculateDurationForLvl(duration, 44, target:getMainLvl());
 
-    if (target:hasStatusEffect(EFFECT_REGEN) and target:getStatusEffect(EFFECT_REGEN):getTier() == 1) then
-        target:delStatusEffect(EFFECT_REGEN);
+    if (target:hasStatusEffect(EFFECT.REGEN) and target:getStatusEffect(EFFECT.REGEN):getTier() == 1) then
+        target:delStatusEffect(EFFECT.REGEN);
     end
 
-    if (target:addStatusEffect(EFFECT_REGEN,hp,3,duration,0,0,0)) then
+    if (target:addStatusEffect(EFFECT.REGEN,hp,3,duration,0,0,0)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     end
 
-    return EFFECT_REGEN;
+    return EFFECT.REGEN;
 end;

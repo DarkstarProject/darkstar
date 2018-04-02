@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_SABOTEUR,0,0,60);
+    player:addStatusEffect(EFFECT.SABOTEUR,0,0,60);
 end;

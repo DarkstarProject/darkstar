@@ -19,18 +19,18 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_PETRIFICATION;
+    params.effect = EFFECT.PETRIFICATION;
     local resist = applyResistanceEffect(caster, target, spell, params);
     -- Duration, including resistance.  Unconfirmed.
     local duration = 30 * resist;
 
     if (resist > 0.5) then
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        if (caster:hasStatusEffect(EFFECT.SABOTEUR)) then
             duration = duration * 2;
-            caster:delStatusEffect(EFFECT_SABOTEUR);
+            caster:delStatusEffect(EFFECT.SABOTEUR);
         end
 
-        if (target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
+        if (target:addStatusEffect(EFFECT.PETRIFICATION,1,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -39,5 +39,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
-    return EFFECT_PETRIFICATION;
+    return EFFECT.PETRIFICATION;
 end;

@@ -19,24 +19,24 @@ function onMobWeaponSkill(target, mob, skill)
     local currentMsg = msgBasic.NONE;
     local msg = msgBasic.NONE;
 
-    msg = MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 25, 0, 300);
+    msg = MobStatusEffectMove(mob, target, EFFECT.CURSE_I, 25, 0, 300);
 
     if (msg == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_CURSE_I;
+        typeEffect = EFFECT.CURSE_I;
         currentMsg = msg;
     end
 
-    msg = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 20, 0, 180);
+    msg = MobStatusEffectMove(mob, target, EFFECT.BLINDNESS, 20, 0, 180);
 
     if (msg == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_BLINDNESS;
+        typeEffect = EFFECT.BLINDNESS;
         currentMsg = msg;
     end
 
-    msg = MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 30);
+    msg = MobStatusEffectMove(mob, target, EFFECT.SLEEP_I, 1, 0, 30);
 
     if (msg == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_SLEEP_I;
+        typeEffect = EFFECT.SLEEP_I;
         currentMsg = msg;
     end
 

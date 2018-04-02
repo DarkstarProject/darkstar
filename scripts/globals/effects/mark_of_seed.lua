@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_MARK_OF_SEED
+-- EFFECT.MARK_OF_SEED
 --
 --  DO NOT try to use this anywhere else but Fei'Yin!
 -----------------------------------

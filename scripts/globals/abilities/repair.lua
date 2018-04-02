@@ -64,17 +64,17 @@ function onUseAbility(player,target,ability)
     }
 
     local function removeStatus()
-        --if pet:delStatusEffect(EFFECT_DOOM) then return true end
-        if pet:delStatusEffect(EFFECT_PETRIFICATION) then return true end
-        if pet:delStatusEffect(EFFECT_SILENCE) then return true end
-        if pet:delStatusEffect(EFFECT_BANE) then return true end
-        if pet:delStatusEffect(EFFECT_CURSE_II) then return true end
-        if pet:delStatusEffect(EFFECT_CURSE) then return true end
-        if pet:delStatusEffect(EFFECT_PARALYSIS) then return true end
-        if pet:delStatusEffect(EFFECT_PLAGUE) then return true end
-        if pet:delStatusEffect(EFFECT_POISON) then return true end
-        if pet:delStatusEffect(EFFECT_DISEASE) then return true end
-        if pet:delStatusEffect(EFFECT_BLINDNESS) then return true end
+        --if pet:delStatusEffect(EFFECT.DOOM) then return true end
+        if pet:delStatusEffect(EFFECT.PETRIFICATION) then return true end
+        if pet:delStatusEffect(EFFECT.SILENCE) then return true end
+        if pet:delStatusEffect(EFFECT.BANE) then return true end
+        if pet:delStatusEffect(EFFECT.CURSE_II) then return true end
+        if pet:delStatusEffect(EFFECT.CURSE) then return true end
+        if pet:delStatusEffect(EFFECT.PARALYSIS) then return true end
+        if pet:delStatusEffect(EFFECT.PLAGUE) then return true end
+        if pet:delStatusEffect(EFFECT.POISON) then return true end
+        if pet:delStatusEffect(EFFECT.DISEASE) then return true end
+        if pet:delStatusEffect(EFFECT.BLINDNESS) then return true end
         if pet:eraseStatusEffect() ~= 255 then return true end
         return false
     end
@@ -109,8 +109,8 @@ function onUseAbility(player,target,ability)
 
     -- Apply regen effect.
 
-    pet:delStatusEffect(EFFECT_REGEN);
-    pet:addStatusEffect(EFFECT_REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
+    pet:delStatusEffect(EFFECT.REGEN);
+    pet:addStatusEffect(EFFECT.REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
     player:removeAmmo();
 
     return totalHealing;

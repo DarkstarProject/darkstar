@@ -12,8 +12,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect1 = EFFECT_PLAGUE;
-    local typeEffect2 = EFFECT_CURSE_I;
+    local typeEffect1 = EFFECT.PLAGUE;
+    local typeEffect2 = EFFECT.CURSE_I;
 
     MobStatusEffectMove(mob, target, typeEffect1, 5, 3, 60);
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect2, 25, 0, 60));

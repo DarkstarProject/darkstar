@@ -26,7 +26,7 @@ function onEventUpdate(player,csid,option)
     -- printf("onUpdate RESULT: %u",option);
 
     if (csid == 32001) then
-        player:delStatusEffect(EFFECT_BATTLEFIELD);
+        player:delStatusEffect(EFFECT.BATTLEFIELD);
     end
 
 end;

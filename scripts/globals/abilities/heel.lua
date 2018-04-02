@@ -21,8 +21,8 @@ end;
 function onUseAbility(player,target,ability)
     local pet = player:getPet()
 
-    if (pet:hasStatusEffect(EFFECT_HEALING)) then
-        pet:delStatusEffect(EFFECT_HEALING)
+    if (pet:hasStatusEffect(EFFECT.HEALING)) then
+        pet:delStatusEffect(EFFECT.HEALING)
     end
 
     player:petRetreat();

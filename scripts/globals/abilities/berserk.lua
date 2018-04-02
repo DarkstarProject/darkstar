@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_BERSERK,1,0,180);
+    player:addStatusEffect(EFFECT.BERSERK,1,0,180);
 
-    return EFFECT_BERSERK;
+    return EFFECT.BERSERK;
 end;

@@ -15,7 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_ENFIRE;
+    local typeEffect = EFFECT.ENFIRE;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60));
 

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_FIELD_SUPPORT_FOOD
+-- EFFECT.FIELD_SUPPORT_FOOD
 -- From FoV and GoV
 -----------------------------------
 

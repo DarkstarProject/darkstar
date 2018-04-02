@@ -104,8 +104,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
-    if (target:hasStatusEffect(EFFECT_YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
-        eva = eva + target:getStatusEffect(EFFECT_YONIN):getPower();
+    if (target:hasStatusEffect(EFFECT.YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(EFFECT.YONIN):getPower();
     end
 
     --apply WSC
@@ -480,7 +480,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(EFFECT.PERFECT_DODGE) or target:hasStatusEffect(EFFECT.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.SKILL_MISS);
         return 0;
@@ -506,13 +506,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(EFFECT.COPY_IMAGE);
+        target:delStatusEffect(EFFECT.BLINK);
+        target:delStatusEffect(EFFECT.THIRD_EYE);
     end
 
     if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(EFFECT.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide

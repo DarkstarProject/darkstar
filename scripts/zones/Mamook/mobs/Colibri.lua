@@ -17,7 +17,7 @@ function onMobFight(mob, target)
             mob:AnimationSub(0);
         end
 
-        if (spell > 0 and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
+        if (spell > 0 and mob:hasStatusEffect(EFFECT.SILENCE) == false) then
             if (delay >= 3) then
                 mob:castSpell(spell);
                 mob:setLocalVar("COPY_SPELL", 0);

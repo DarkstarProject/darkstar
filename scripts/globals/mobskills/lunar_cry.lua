@@ -32,8 +32,8 @@ function onMobWeaponSkill(target, mob, skill)
         buffvalue = 6;
     end
 
-    target:addStatusEffect(EFFECT_ACCURACY_DOWN,buffvalue,0,180);
-    target:addStatusEffect(EFFECT_EVASION_DOWN,32-buffvalue,0,180);
+    target:addStatusEffect(EFFECT.ACCURACY_DOWN,buffvalue,0,180);
+    target:addStatusEffect(EFFECT.EVASION_DOWN,32-buffvalue,0,180);
     return 0;
 
 end

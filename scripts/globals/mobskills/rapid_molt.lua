@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 
     local dispel = target:eraseStatusEffect();
 
-    if (dispel ~= EFFECT_NONE) then
+    if (dispel ~= EFFECT.NONE) then
         return 0;
     end;
 
@@ -26,7 +26,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     mob:eraseAllStatusEffect();
-    local typeEffect = EFFECT_REGEN;
+    local typeEffect = EFFECT.REGEN;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 10, 3, 180));
     return typeEffect;

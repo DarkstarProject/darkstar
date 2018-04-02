@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : "Killer" effects bonus
+-- EFFECT.PROWESS : "Killer" effects bonus
 --
 -----------------------------------
 

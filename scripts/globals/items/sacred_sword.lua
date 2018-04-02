@@ -37,6 +37,6 @@ function onItemCheck(target)
     return 0;
 end;
 function onItemUse(target)
-    local effect = EFFECT_ENLIGHT;
+    local effect = EFFECT.ENLIGHT;
     doEnspell(target,target,nil,effect);
 end;

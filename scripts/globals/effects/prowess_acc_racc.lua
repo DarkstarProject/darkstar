@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced accuracy and ranged accuracy
+-- EFFECT.PROWESS : Enhanced accuracy and ranged accuracy
 --
 -----------------------------------
 

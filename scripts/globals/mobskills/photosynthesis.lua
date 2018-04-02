@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = mob:getMainLvl()/10 * 4 + 5;
     local duration = 30;
 
-    local typeEffect = EFFECT_REGEN;
+    local typeEffect = EFFECT.REGEN;
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
     return typeEffect;
 end;

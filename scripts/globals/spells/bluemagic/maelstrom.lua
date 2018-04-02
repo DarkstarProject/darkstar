@@ -59,8 +59,8 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.0625) then
-        if (target:canGainStatusEffect(EFFECT_STR_DOWN)) then
-            target:addStatusEffect(EFFECT_STR_DOWN,20,3,60);
+        if (target:canGainStatusEffect(EFFECT.STR_DOWN)) then
+            target:addStatusEffect(EFFECT.STR_DOWN,20,3,60);
         end
     end
     

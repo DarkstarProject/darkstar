@@ -11,10 +11,10 @@ function onMobInitialise(mob)
 end;
 
 function onMobSpawn(mob)
-    mob:addStatusEffect(EFFECT_PHALANX,35,0,180);
-    mob:addStatusEffect(EFFECT_STONESKIN,350,0,300);
-    mob:addStatusEffect(EFFECT_PROTECT,175,0,1800);
-    mob:addStatusEffect(EFFECT_SHELL,24,0,1800);
+    mob:addStatusEffect(EFFECT.PHALANX,35,0,180);
+    mob:addStatusEffect(EFFECT.STONESKIN,350,0,300);
+    mob:addStatusEffect(EFFECT.PROTECT,175,0,1800);
+    mob:addStatusEffect(EFFECT.SHELL,24,0,1800);
 end;
 
 function onMobFight(mob,target)

@@ -33,10 +33,10 @@ function onPetAbility(target, pet, skill, summoner)
     else
         buffvalue = 1;
     end
-    target:delStatusEffect(EFFECT_ACCURACY_BOOST);
-    target:delStatusEffect(EFFECT_EVASION_BOOST);
-    target:addStatusEffect(EFFECT_ACCURACY_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_EVASION_BOOST,25-buffvalue,0,duration);
+    target:delStatusEffect(EFFECT.ACCURACY_BOOST);
+    target:delStatusEffect(EFFECT.EVASION_BOOST);
+    target:addStatusEffect(EFFECT.ACCURACY_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(EFFECT.EVASION_BOOST,25-buffvalue,0,duration);
     skill:setMsg(msgBasic.NONE);
     return 0;
 end

@@ -17,11 +17,11 @@ function onMobWeaponSkill(target, mob, skill)
     local dis2 = target:dispelStatusEffect();
     local num = 0;
 
-    if (dis ~= EFFECT_NONE) then
+    if (dis ~= EFFECT.NONE) then
         num = num + 1;
     end
 
-    if (dis2 ~= EFFECT_NONE) then
+    if (dis2 ~= EFFECT.NONE) then
         num = num + 1;
     end
 

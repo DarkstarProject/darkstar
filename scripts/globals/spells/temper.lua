@@ -13,12 +13,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_MULTI_STRIKES;
+    local effect = EFFECT.MULTI_STRIKES;
     local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
     local final = 0;
     local duration = 180;
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(EFFECT.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 

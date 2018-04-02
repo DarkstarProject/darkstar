@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased combat and magic skill gain
+-- EFFECT.PROWESS : Increased combat and magic skill gain
 --
 -----------------------------------
 

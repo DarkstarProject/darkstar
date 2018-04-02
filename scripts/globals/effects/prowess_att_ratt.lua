@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased treasure casket discovery. 
+-- EFFECT.PROWESS : Increased treasure casket discovery. 
 --
 -----------------------------------
 

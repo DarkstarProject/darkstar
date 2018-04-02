@@ -36,23 +36,23 @@ function onSpellCast(caster,target,spell)
     local iBoost = caster:getMod(MOD_ETUDE_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     power = power + iBoost;
 
-    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (caster:hasStatusEffect(EFFECT.SOUL_VOICE)) then
         power = power * 2;
-    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+    elseif (caster:hasStatusEffect(EFFECT.MARCATO)) then
         power = power * 1.5;
     end
-    caster:delStatusEffect(EFFECT_MARCATO);
+    caster:delStatusEffect(EFFECT.MARCATO);
 
     local duration = 120;
     duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (caster:hasStatusEffect(EFFECT.TROUBADOUR)) then
         duration = duration * 2;
     end
 
-    if not (target:addBardSong(caster,EFFECT_ETUDE,power,0,duration,caster:getID(), MOD_AGI, 1)) then
+    if not (target:addBardSong(caster,EFFECT.ETUDE,power,0,duration,caster:getID(), MOD_AGI, 1)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_ETUDE;
+    return EFFECT.ETUDE;
 end;

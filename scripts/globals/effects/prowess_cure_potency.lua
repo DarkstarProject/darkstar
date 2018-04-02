@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced "Cure" potency
+-- EFFECT.PROWESS : Enhanced "Cure" potency
 --
 -----------------------------------
 

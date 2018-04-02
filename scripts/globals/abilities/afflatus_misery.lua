@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(EFFECT_AFFLATUS_SOLACE);
-    target:delStatusEffect(EFFECT_AFFLATUS_MISERY);
-    target:addStatusEffect(EFFECT_AFFLATUS_MISERY,8,0,7200);
+    target:delStatusEffect(EFFECT.AFFLATUS_SOLACE);
+    target:delStatusEffect(EFFECT.AFFLATUS_MISERY);
+    target:addStatusEffect(EFFECT.AFFLATUS_MISERY,8,0,7200);
 end;

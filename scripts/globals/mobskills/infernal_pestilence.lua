@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_DISEASE;
+    local typeEffect = EFFECT.DISEASE;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 360);
 

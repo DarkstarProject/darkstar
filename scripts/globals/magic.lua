@@ -106,7 +106,7 @@ end;
 
 function doBoostGain(caster,target,spell,effect)
     local duration = 300;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(EFFECT.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
@@ -144,12 +144,12 @@ end;
 function doEnspell(caster,target,spell,effect)
 
     if (effect==EFFECT_BLOOD_WEAPON) then
-        target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
+        target:addStatusEffect(EFFECT.BLOOD_WEAPON,1,0,30);
         return;
     end
 
     local duration = 180;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(EFFECT.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
     --calculate potency
@@ -205,15 +205,15 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
     end
 
     local dSeal = 1;
-    if (caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
+    if (caster:hasStatusEffect(EFFECT.DIVINE_SEAL)) then
         dSeal = 2;
     end
 
     local rapture = 1;
     if (isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
-        if (caster:hasStatusEffect(EFFECT_RAPTURE)) then
+        if (caster:hasStatusEffect(EFFECT.RAPTURE)) then
             rapture = 1.5 + caster:getMod(MOD_RAPTURE_AMOUNT)/100;
-            caster:delStatusEffectSilent(EFFECT_RAPTURE);
+            caster:delStatusEffectSilent(EFFECT.RAPTURE);
         end
     end
 
@@ -324,13 +324,13 @@ function applyResistanceEffect(caster, target, spell, params)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
-        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
-            caster:delStatusEffect(EFFECT_STYMIE);
+        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(EFFECT.STYMIE) and target:canGainStatusEffect(effect)) then
+            caster:delStatusEffect(EFFECT.STYMIE);
             return 1;
         end
     end
 
-    if (skill == SINGING_SKILL and caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (skill == SINGING_SKILL and caster:hasStatusEffect(EFFECT.TROUBADOUR)) then
         if (math.random(0,99) < caster:getMerit(MERIT_TROUBADOUR)-25) then
             return 1.0;
         end
@@ -376,7 +376,7 @@ end;
 
 function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
     -- resist everything if magic shield is active
-    if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+    if (target:hasStatusEffect(EFFECT.MAGIC_SHIELD, 0)) then
         return 0;
     end
 
@@ -521,12 +521,12 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     params.AMIIaccBonus = params.AMIIaccBonus or 0
 
-    if caster:hasStatusEffect(EFFECT_ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_ALTRUISM):getPower();
+    if caster:hasStatusEffect(EFFECT.ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
+      magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT.ALTRUISM):getPower();
     end
 
-    if caster:hasStatusEffect(EFFECT_FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_FOCALIZATION):getPower();
+    if caster:hasStatusEffect(EFFECT.FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
+      magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT.FOCALIZATION):getPower();
     end
 
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
@@ -541,13 +541,13 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     --Add acc for klimaform
     if element > 0 then
-        if caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
+        if caster:hasStatusEffect(EFFECT.KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
             magicAccBonus = magicAccBonus + 15
         end
     end
 
     --Add acc for dark seal
-    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(EFFECT_DARK_SEAL)) then
+    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(EFFECT.DARK_SEAL)) then
         magicAccBonus = magicAccBonus + 256;
     end
 
@@ -565,7 +565,7 @@ function getSpellBonusAcc(caster, target, spell, params)
 end;
 
 function handleAfflatusMisery(caster, spell, dmg)
-    if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(EFFECT.AFFLATUS_MISERY)) then
         local misery = caster:getMod(MOD_AFFLATUS_MISERY);
         local miseryMax = caster:getMaxHP() / 4;
 
@@ -603,8 +603,8 @@ end;
         end
 
         -- kill shadows
-        -- target:delStatusEffect(EFFECT_COPY_IMAGE);
-        -- target:delStatusEffect(EFFECT_BLINK);
+        -- target:delStatusEffect(EFFECT.COPY_IMAGE);
+        -- target:delStatusEffect(EFFECT.BLINK);
     else
         -- this logic will eventually be moved here
         -- dmg = utils.takeShadows(target, dmg, 1);
@@ -698,7 +698,7 @@ function calculateMagicBurst(caster, spell, target, params)
     local skillchainburst = 1.0;
     local modburst = 1.0;
 
-    if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+    if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT.BURST_AFFINITY)) then
         return burst;
     end
 
@@ -840,9 +840,9 @@ function addBonuses(caster, spell, target, dmg, params)
 
     dmg = math.floor(dmg * mabbonus);
 
-    if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
+    if (caster:hasStatusEffect(EFFECT.EBULLIENCE)) then
         dmg = dmg * (1.2 + caster:getMod(MOD_EBULLIENCE_AMOUNT)/100);
-        caster:delStatusEffectSilent(EFFECT_EBULLIENCE);
+        caster:delStatusEffectSilent(EFFECT.EBULLIENCE);
     end
 
     dmg = math.floor(dmg);
@@ -1036,31 +1036,31 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     end
 
     -- Remove previous Threnody
-    target:delStatusEffect(EFFECT_THRENODY);
+    target:delStatusEffect(EFFECT.THRENODY);
 
     local iBoost = caster:getMod(MOD_THRENODY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     local power = basePower + iBoost*5;
     local duration = baseDuration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (caster:hasStatusEffect(EFFECT.SOUL_VOICE)) then
         power = power * 2;
-    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+    elseif (caster:hasStatusEffect(EFFECT.MARCATO)) then
         power = power * 1.5;
     end
 
-    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (caster:hasStatusEffect(EFFECT.TROUBADOUR)) then
         duration = duration * 2;
     end
 
     -- Set spell message and apply status effect
-    target:addStatusEffect(EFFECT_THRENODY, power, 0, duration, 0, modifier, 0);
+    target:addStatusEffect(EFFECT.THRENODY, power, 0, duration, 0, modifier, 0);
 
     return EFFECT_THRENODY;
 end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
     -- Add new
-    target:addStatusEffectEx(EFFECT_NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
+    target:addStatusEffectEx(EFFECT.NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
     return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;
 
@@ -1164,8 +1164,8 @@ function doNinjutsuNuke(caster, target, spell, params)
     mabBonus = mabBonus or 0;
 
     mabBonus = mabBonus + caster:getMod(MOD_NIN_NUKE_BONUS); -- "enhances ninjutsu damage" bonus
-    if (caster:hasStatusEffect(EFFECT_INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
-        mabBonus = mabBonus + caster:getStatusEffect(EFFECT_INNIN):getPower();
+    if (caster:hasStatusEffect(EFFECT.INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
+        mabBonus = mabBonus + caster:getStatusEffect(EFFECT.INNIN):getPower();
     end
     params.skillType = NINJUTSU_SKILL;
     params.attribute = MOD_INT;
@@ -1195,9 +1195,9 @@ function doNuke(caster, target, spell, params)
             dmg = dmg * ninSkillBonus/100;
         end
         -- boost with Futae
-        if (caster:hasStatusEffect(EFFECT_FUTAE)) then
+        if (caster:hasStatusEffect(EFFECT.FUTAE)) then
             dmg = math.floor(dmg * 1.50);
-            caster:delStatusEffect(EFFECT_FUTAE);
+            caster:delStatusEffect(EFFECT.FUTAE);
         end
     end
 

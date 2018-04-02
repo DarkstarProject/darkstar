@@ -23,8 +23,8 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffectOne = EFFECT_BLINDNESS;
-    local typeEffectTwo = EFFECT_BIND;
+    local typeEffectOne = EFFECT.BLINDNESS;
+    local typeEffectTwo = EFFECT.BIND;
     local params = {};
     params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
     params.attribute = MOD_INT;

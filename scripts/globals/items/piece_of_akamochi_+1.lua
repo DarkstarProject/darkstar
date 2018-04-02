@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD)) then
+    if (target:hasStatusEffect(EFFECT.FOOD) or target:hasStatusEffect(EFFECT.FIELD_SUPPORT_FOOD)) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,6261);
+    target:addStatusEffect(EFFECT.FOOD,0,0,3600,6261);
 end;
 
 function onEffectGain(target, effect)

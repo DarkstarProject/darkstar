@@ -28,5 +28,5 @@ function onUseAbility(player,target,ability)
         target:resetRecast(RECAST_ABILITY,193);
     end
 
-    return EFFECT_FOLD;
+    return EFFECT.FOLD;
 end;

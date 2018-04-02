@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased crystal yield
+-- EFFECT.PROWESS : Increased crystal yield
 --
 -----------------------------------
 

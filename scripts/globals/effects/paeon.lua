@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_PAEON
+-- EFFECT.PAEON
 --
 -----------------------------------
 require("scripts/globals/status");

@@ -11,8 +11,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_PETRIFICATION)) then
-        target:addStatusEffect(EFFECT_PETRIFICATION,1,3,180);
+    if (not target:hasStatusEffect(EFFECT.PETRIFICATION)) then
+        target:addStatusEffect(EFFECT.PETRIFICATION,1,3,180);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

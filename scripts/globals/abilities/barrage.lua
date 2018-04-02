@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_BARRAGE,0,0,60);
+    player:addStatusEffect(EFFECT.BARRAGE,0,0,60);
 end;

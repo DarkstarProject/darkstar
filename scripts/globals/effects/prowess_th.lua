@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Treasure Hunter bonus
+-- EFFECT.PROWESS : Treasure Hunter bonus
 --
 -----------------------------------
 

@@ -4,22 +4,22 @@
 require("scripts/globals/status");
 
 local removable = {
-    EFFECT_PETRIFICATION,
-    EFFECT_SILENCE,
-    EFFECT_BANE,
-    EFFECT_CURSE_II,
-    EFFECT_CURSE,
-    EFFECT_PARALYSIS,
-    EFFECT_PLAGUE,
-    EFFECT_POISON,
-    EFFECT_DISEASE,
-    EFFECT_BLINDNESS
+    EFFECT.PETRIFICATION,
+    EFFECT.SILENCE,
+    EFFECT.BANE,
+    EFFECT.CURSE_II,
+    EFFECT.CURSE,
+    EFFECT.PARALYSIS,
+    EFFECT.PLAGUE,
+    EFFECT.POISON,
+    EFFECT.DISEASE,
+    EFFECT.BLINDNESS
 }
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_ERASER", function(automaton, target)
         local master = automaton:getMaster()
-        if master and master:countEffect(EFFECT_LIGHT_MANEUVER) > 0 and automaton:getLocalVar("erase") < VanadielTime() then
+        if master and master:countEffect(EFFECT.LIGHT_MANEUVER) > 0 and automaton:getLocalVar("erase") < VanadielTime() then
             local erasetarget = false
 
             local function checkEffects(entity)

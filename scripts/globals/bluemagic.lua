@@ -104,7 +104,7 @@ function BluePhysicalSpell(caster, target, spell, params)
     local multiplier = params.multiplier;
 
     -- If under CA, replace multiplier with fTP(multiplier, tp150, tp300)
-    local chainAffinity = caster:getStatusEffect(EFFECT_CHAIN_AFFINITY);
+    local chainAffinity = caster:getStatusEffect(EFFECT.CHAIN_AFFINITY);
     if chainAffinity ~= nil then
         -- Calculate the total TP available for the fTP multiplier.
         local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
@@ -181,13 +181,13 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 
     local ST = BlueGetWsc(caster, params); -- According to Wiki ST is the same as WSC, essentially Blue mage spells that are magical use the dmg formula of Magical type Weapon skills
 
-    if (caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+    if (caster:hasStatusEffect(EFFECT.BURST_AFFINITY)) then
         ST = ST * 2;
     end
 
     local convergenceBonus = 1.0;
-    if (caster:hasStatusEffect(EFFECT_CONVERGENCE)) then
-        convergenceEffect = getStatusEffect(EFFECT_CONVERGENCE);
+    if (caster:hasStatusEffect(EFFECT.CONVERGENCE)) then
+        convergenceEffect = getStatusEffect(EFFECT.CONVERGENCE);
         local convLvl = convergenceEffect:getPower();
         if (convLvl == 1) then
             convergenceBonus = 1.05;
@@ -226,7 +226,7 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
-    caster:delStatusEffectSilent(EFFECT_BURST_AFFINITY);
+    caster:delStatusEffectSilent(EFFECT.BURST_AFFINITY);
 
     return dmg;
 end;

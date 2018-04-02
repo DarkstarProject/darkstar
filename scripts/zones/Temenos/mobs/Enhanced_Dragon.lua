@@ -21,8 +21,8 @@ end;
 
 function onMobEngaged(mob,target)
   if (IsMobDead(16929051)==true) then
-     mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
-     mob:addStatusEffect(EFFECT_REGEN,50,3,0);
+     mob:addStatusEffect(EFFECT.REGAIN,7,3,0);
+     mob:addStatusEffect(EFFECT.REGEN,50,3,0);
   end
 end;
 

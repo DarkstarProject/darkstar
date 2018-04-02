@@ -31,8 +31,8 @@ function onItemCheck(target, param, caster)
 end;
 
 function onItemUse(target)
-    target:delStatusEffect(EFFECT_SIGIL);
-    target:delStatusEffect(EFFECT_SANCTION);
-    target:delStatusEffect(EFFECT_SIGNET);
-    target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
+    target:delStatusEffect(EFFECT.SIGIL);
+    target:delStatusEffect(EFFECT.SANCTION);
+    target:delStatusEffect(EFFECT.SIGNET);
+    target:addStatusEffect(EFFECT.SIGNET,0,0,18000);
 end;

@@ -11,7 +11,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_CURSE_I;
+    local typeEffect = EFFECT.CURSE_I;
 
     MobStatusEffectMove(mob, target, typeEffect, 35, 0, 45);
 

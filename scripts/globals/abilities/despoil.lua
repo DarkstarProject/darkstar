@@ -10,13 +10,13 @@ require("scripts/globals/msg");
 
 local despoilDebuffs =
 {
-    EFFECT_EVASION_DOWN,
-    EFFECT_DEFENSE_DOWN,
-    EFFECT_ACCURACY_DOWN,
-    EFFECT_ATTACK_DOWN,
-    EFFECT_MAGIC_ATK_DOWN,
-    EFFECT_MAGIC_DEF_DOWN,
-    EFFECT_SLOW
+    EFFECT.EVASION_DOWN,
+    EFFECT.DEFENSE_DOWN,
+    EFFECT.ACCURACY_DOWN,
+    EFFECT.ATTACK_DOWN,
+    EFFECT.MAGIC_ATK_DOWN,
+    EFFECT.MAGIC_DEF_DOWN,
+    EFFECT.SLOW
 }
 
 function onAbilityCheck(player, target, ability)
@@ -55,24 +55,24 @@ end
 
 function processDebuff(player, target, ability, debuff)
     local power = 10;
-    if (debuff == EFFECT_ATTACK_DOWN) then
+    if (debuff == EFFECT.ATTACK_DOWN) then
         ability:setMsg(msgBasic.DESPOIL_ATT_DOWN);
         power = 20;
-    elseif (debuff == EFFECT_DEFENSE_DOWN) then
+    elseif (debuff == EFFECT.DEFENSE_DOWN) then
         ability:setMsg(msgBasic.DESPOIL_DEF_DOWN);
         power = 30;
-    elseif (debuff == EFFECT_MAGIC_ATK_DOWN) then
+    elseif (debuff == EFFECT.MAGIC_ATK_DOWN) then
         ability:setMsg(msgBasic.DESPOIL_MATT_DOWN);
-    elseif (debuff == EFFECT_MAGIC_DEF_DOWN) then
+    elseif (debuff == EFFECT.MAGIC_DEF_DOWN) then
         ability:setMsg(msgBasic.DESPOIL_MDEF_DOWN);
         power = 20;
-    elseif (debuff == EFFECT_EVASION_DOWN) then
+    elseif (debuff == EFFECT.EVASION_DOWN) then
         ability:setMsg(msgBasic.DESPOIL_EVA_DOWN);
         power = 30;
-    elseif (debuff == EFFECT_ACCURACY_DOWN) then
+    elseif (debuff == EFFECT.ACCURACY_DOWN) then
         ability:setMsg(msgBasic.DESPOIL_ACC_DOWN);
         power = 20;
-    elseif (debuff == EFFECT_SLOW) then
+    elseif (debuff == EFFECT.SLOW) then
         ability:setMsg(msgBasic.DESPOIL_SLOW);
         local dMND = player:getStat(MOD_MND) - target:getStat(MOD_MND);
         if (dMND >= 0) then

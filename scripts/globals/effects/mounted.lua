@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_MOUNTED
+-- EFFECT.MOUNTED
 --
 -----------------------------------
 require("scripts/globals/status");

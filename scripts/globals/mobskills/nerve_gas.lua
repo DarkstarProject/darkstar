@@ -34,7 +34,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT_CURSE_I, 50, 0, 420));
-    MobStatusEffectMove(mob, target, EFFECT_POISON, 20, 3, 60);
-    return EFFECT_CURSE_I;
+    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT.CURSE_I, 50, 0, 420));
+    MobStatusEffectMove(mob, target, EFFECT.POISON, 20, 3, 60);
+    return EFFECT.CURSE_I;
 end;

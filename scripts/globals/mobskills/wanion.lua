@@ -14,7 +14,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     -- list of effects to give in AoE
-    local effects = {EFFECT_SLOW, EFFECT_DIA, EFFECT_BIO, EFFECT_WEIGHT, EFFECT_DEFENSE_DOWN, EFFECT_PARALYSIS, EFFECT_BLINDNESS, EFFECT_SILENCE, EFFECT_POISON}
+    local effects = {EFFECT.SLOW, EFFECT.DIA, EFFECT.BIO, EFFECT.WEIGHT, EFFECT.DEFENSE_DOWN, EFFECT.PARALYSIS, EFFECT.BLINDNESS, EFFECT.SILENCE, EFFECT.POISON}
     local lastEffect = 0;
     local effectCount = false;
 

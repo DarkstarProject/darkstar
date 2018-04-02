@@ -15,8 +15,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target,mob,skill)
-    local typeEffectOne = EFFECT_SILENCE;
-    local typeEffectTwo = EFFECT_BLINDNESS;
+    local typeEffectOne = EFFECT.SILENCE;
+    local typeEffectTwo = EFFECT.BLINDNESS;
 
     MobStatusEffectMove(mob,target,typeEffectOne,1,0,60);
     MobStatusEffectMove(mob,target,typeEffectTwo,15,0,60);

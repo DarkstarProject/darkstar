@@ -13,7 +13,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = 10;
     local duration = 180;
-    local typeEffect = EFFECT_ICE_SPIKES;
+    local typeEffect = EFFECT.ICE_SPIKES;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
 

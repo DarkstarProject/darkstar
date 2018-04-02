@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     duration = 60;
 
     isEnfeeble = true;
-    typeEffect = EFFECT_NAME;
+    typeEffect = EFFECT.NAME;
     statmod = MOD_INT;
 
     resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod);

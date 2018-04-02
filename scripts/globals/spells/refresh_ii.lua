@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
 
     mp = mp + caster:getMod(MOD_ENHANCES_REFRESH);
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(EFFECT.COMPOSURE) and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
@@ -25,13 +25,13 @@ function onSpellCast(caster,target,spell)
         duration = duration * target:getMainLvl() / 82;
     end
 
-    if (target:hasStatusEffect(EFFECT_SUBLIMATION_ACTIVATED) or target:hasStatusEffect(EFFECT_SUBLIMATION_COMPLETE)) then
+    if (target:hasStatusEffect(EFFECT.SUBLIMATION_ACTIVATED) or target:hasStatusEffect(EFFECT.SUBLIMATION_COMPLETE)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         return 0;
     end
 
-    target:delStatusEffect(EFFECT_REFRESH);
-    target:addStatusEffect(EFFECT_REFRESH,mp,6,duration);
+    target:delStatusEffect(EFFECT.REFRESH);
+    target:addStatusEffect(EFFECT.REFRESH,mp,6,duration);
 
-    return EFFECT_REFRESH;
+    return EFFECT.REFRESH;
 end;

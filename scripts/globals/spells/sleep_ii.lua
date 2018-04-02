@@ -12,12 +12,12 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = 90;
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        if (caster:hasStatusEffect(EFFECT.SABOTEUR)) then
         duration = duration * 2;
     end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
+    caster:delStatusEffect(EFFECT.SABOTEUR);
 
-    local typeEffect = EFFECT_SLEEP_II;
+    local typeEffect = EFFECT.SLEEP_II;
     local pINT = caster:getStat(MOD_INT);
     local mINT = target:getStat(MOD_INT);
     local dINT = (pINT - mINT);

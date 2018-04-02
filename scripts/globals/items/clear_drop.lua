@@ -7,13 +7,13 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+    if (target:hasStatusEffect(EFFECT.MEDICINE)) then
         return msgBasic.ITEM_NO_USE_MEDICATED;
     end
     return 0;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_INT_BOOST,5,0,600);
-    target:addStatusEffect(EFFECT_MEDICINE,0,0,3600);
+    target:addStatusEffect(EFFECT.INT_BOOST,5,0,600);
+    target:addStatusEffect(EFFECT.MEDICINE,0,0,3600);
 end;

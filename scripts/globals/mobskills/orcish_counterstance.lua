@@ -19,7 +19,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = 10;
     local duration = 60;
-    local typeEffect = EFFECT_COUNTERSTANCE;
+    local typeEffect = EFFECT.COUNTERSTANCE;
 
     -- if ( Conquerer Bakgodek ) then
         -- power = 50? He's not implemented yet anyway :P

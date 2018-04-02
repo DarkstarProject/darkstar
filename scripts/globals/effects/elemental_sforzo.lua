@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ELEMENTAL_SFORZO
+-- EFFECT.ELEMENTAL_SFORZO
 --
 -----------------------------------
 require("scripts/globals/status");

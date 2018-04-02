@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ASSASSINS_CHARGE
+-- EFFECT.ASSASSINS_CHARGE
 --
 -----------------------------------
 require("scripts/globals/status");

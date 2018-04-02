@@ -26,11 +26,11 @@ function onSpellCast(caster,target,spell)
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(EFFECT.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_BARPARALYZE,power,0,duration);
+    target:addStatusEffect(EFFECT.BARPARALYZE,power,0,duration);
 
-    return EFFECT_BARPARALYZE;
+    return EFFECT.BARPARALYZE;
 end;

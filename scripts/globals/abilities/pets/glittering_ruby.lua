@@ -14,21 +14,21 @@ end;
 function onPetAbility(target, pet, skill)
     --randomly give str/dex/vit/agi/int/mnd/chr (+12)
     local effect = math.random();
-    local effectid = EFFECT_STR_BOOST;
+    local effectid = EFFECT.STR_BOOST;
     if (effect<=0.14) then --STR
-        effectid = EFFECT_STR_BOOST;
+        effectid = EFFECT.STR_BOOST;
     elseif (effect<=0.28) then --DEX
-        effectid = EFFECT_DEX_BOOST;
+        effectid = EFFECT.DEX_BOOST;
     elseif (effect<=0.42) then --VIT
-        effectid = EFFECT_VIT_BOOST;
+        effectid = EFFECT.VIT_BOOST;
     elseif (effect<=0.56) then --AGI
-        effectid = EFFECT_AGI_BOOST;
+        effectid = EFFECT.AGI_BOOST;
     elseif (effect<=0.7) then --INT
-        effectid = EFFECT_INT_BOOST;
+        effectid = EFFECT.INT_BOOST;
     elseif (effect<=0.84) then --MND
-        effectid = EFFECT_MND_BOOST;
+        effectid = EFFECT.MND_BOOST;
     else --CHR
-        effectid = EFFECT_CHR_BOOST;
+        effectid = EFFECT.CHR_BOOST;
     end
 
     target:addStatusEffect(effectid,math.random(12,14),0,90);

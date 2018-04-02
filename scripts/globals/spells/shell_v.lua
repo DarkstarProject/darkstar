@@ -13,7 +13,7 @@ function onSpellCast(caster,target,spell)
     local power = 24;
     local duration = 1800;
 
-    local typeEffect = EFFECT_SHELL;
+    local typeEffect = EFFECT.SHELL;
     if (target:addStatusEffect(typeEffect, power, 0, duration)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else

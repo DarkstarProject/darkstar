@@ -15,7 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_ENBLIZZARD;
+    local typeEffect = EFFECT.ENBLIZZARD;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60));
 

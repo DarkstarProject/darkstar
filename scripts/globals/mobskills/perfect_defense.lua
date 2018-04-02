@@ -22,8 +22,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    MobBuffMove(mob, EFFECT_PERFECT_DEFENSE, 1, 0, skill:getParam());
+    MobBuffMove(mob, EFFECT.PERFECT_DEFENSE, 1, 0, skill:getParam());
 
     skill:setMsg(msgBasic.USES);
-    return EFFECT_PERFECT_DEFENSE;
+    return EFFECT.PERFECT_DEFENSE;
 end;

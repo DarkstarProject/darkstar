@@ -13,7 +13,7 @@ function onItemCheck(target)
     local result = 0;
     if (target:getRace() ~= 7) then
         result = 247;
-    elseif (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    elseif (target:hasStatusEffect(EFFECT.FOOD) == true or target:hasStatusEffect(EFFECT.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
@@ -23,7 +23,7 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,4315);
+    target:addStatusEffect(EFFECT.FOOD,0,0,300,4315);
 end;
 
 function onEffectGain(target, effect)

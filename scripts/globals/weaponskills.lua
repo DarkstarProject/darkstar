@@ -54,7 +54,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 
-        if (params.kick and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
+        if (params.kick and attacker:hasStatusEffect(EFFECT.FOOTWORK)) then
             weaponDamage = attacker:getMod(MOD_KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
         else
             weaponDamage = utils.clamp(attacker:getWeaponDmg()-3, 0);
@@ -81,13 +81,13 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local cratio, ccritratio = cMeleeRatio(attacker, target, params, ignoredDef);
     local ccmin = 0;
     local ccmax = 0;
-    local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
-    local isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(EFFECT_HIDE))) then
+    local hasMightyStrikes = attacker:hasStatusEffect(EFFECT.MIGHTY_STRIKES);
+    local isSneakValid = attacker:hasStatusEffect(EFFECT.SNEAK_ATTACK);
+    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(EFFECT.HIDE))) then
         isSneakValid = false;
     end
     attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-    attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
+    attacker:delStatusEffect(EFFECT.SNEAK_ATTACK);
     local isTrickValid = taChar ~= nil
 
     local isAssassinValid = isTrickValid;
@@ -101,7 +101,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-        local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+        local flourisheffect = attacker:getStatusEffect(EFFECT.BUILDING_FLOURISH);
         if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
@@ -114,8 +114,8 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         end
 
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
-        if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
-            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+        if (attacker:hasStatusEffect(EFFECT.INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
+            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT.INNIN):getPower();
         end
 
         critrate = critrate + nativecrit;
@@ -138,7 +138,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local tpHitsLanded = 0;
     local shadowsAbsorbed = 0;
     if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
-            not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
+            not target:hasStatusEffect(EFFECT.PERFECT_DODGE) and not target:hasStatusEffect(EFFECT.ALL_MISS) ) then
         if not shadowAbsorb(target) then
             if (params.canCrit or isSneakValid or isAssassinValid) then
                 local critchance = math.random();
@@ -175,7 +175,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
-                and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then -- it hit
+                and not target:hasStatusEffect(EFFECT.PERFECT_DODGE) and not target:hasStatusEffect(EFFECT.ALL_MISS) ) then -- it hit
             if not shadowAbsorb(target) then
                 pdif = generatePdif (cratio[1], cratio[2], true);
                 if (params.canCrit) then
@@ -210,7 +210,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
             local chance = math.random();
             local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
-                    not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  -- it hit
+                    not target:hasStatusEffect(EFFECT.PERFECT_DODGE) and not target:hasStatusEffect(EFFECT.ALL_MISS) ) then  -- it hit
                 if not shadowAbsorb(target) then
                     pdif = generatePdif (cratio[1], cratio[2], true);
                     if (params.canCrit) then
@@ -266,7 +266,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
     end
 
-    attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
+    attacker:delStatusEffectSilent(EFFECT.BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
@@ -328,7 +328,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
 end
 
 function souleaterBonus(attacker, numhits)
-    if attacker:hasStatusEffect(EFFECT_SOULEATER) then
+    if attacker:hasStatusEffect(EFFECT.SOULEATER) then
         local damage = 0;
         local percent = 0.1;
         if attacker:getMainJob() ~= JOBS.DRK then
@@ -367,7 +367,7 @@ function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
 end;
 
 function getHitRate(attacker,target,capHitRate,bonus)
-    local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+    local flourisheffect = attacker:getStatusEffect(EFFECT.BUILDING_FLOURISH);
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
         attacker:addMod(MOD_ACC, 20 + flourisheffect:getSubPower())
     end
@@ -379,11 +379,11 @@ function getHitRate(attacker,target,capHitRate,bonus)
     if (bonus == nil) then
         bonus = 0;
     end
-    if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost if attacker is behind target
-        bonus = bonus + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+    if (attacker:hasStatusEffect(EFFECT.INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost if attacker is behind target
+        bonus = bonus + attacker:getStatusEffect(EFFECT.INNIN):getPower();
     end
-    if (target:hasStatusEffect(EFFECT_YONIN) and attacker:isFacing(target, 23)) then -- Yonin evasion boost if attacker is facing target
-        bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
+    if (target:hasStatusEffect(EFFECT.YONIN) and attacker:isFacing(target, 23)) then -- Yonin evasion boost if attacker is facing target
+        bonus = bonus - target:getStatusEffect(EFFECT.YONIN):getPower();
     end
     if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
         bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
@@ -429,8 +429,8 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
     if (bonus == nil) then
         bonus = 0;
     end
-    if (target:hasStatusEffect(EFFECT_YONIN) and target:isFacing(attacker, 23)) then -- Yonin evasion boost if defender is facing attacker
-        bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
+    if (target:hasStatusEffect(EFFECT.YONIN) and target:isFacing(attacker, 23)) then -- Yonin evasion boost if defender is facing attacker
+        bonus = bonus - target:getStatusEffect(EFFECT.YONIN):getPower();
     end
     if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
         bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
@@ -495,7 +495,7 @@ end
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function cMeleeRatio(attacker, defender, params, ignoredDef)
 
-    local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+    local flourisheffect = attacker:getStatusEffect(EFFECT.BUILDING_FLOURISH);
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
         attacker:addMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
     end
@@ -760,7 +760,7 @@ end;
     local cratio, ccritratio = cRangedRatio( attacker, target, params, ignoredDef);
     local ccmin = 0;
     local ccmax = 0;
-    local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
+    local hasMightyStrikes = attacker:hasStatusEffect(EFFECT.MIGHTY_STRIKES);
     local critrate = 0;
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
@@ -774,8 +774,8 @@ end;
         end
 
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
-        if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
-            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+        if (attacker:hasStatusEffect(EFFECT.INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
+            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT.INNIN):getPower();
         end
 
         critrate = critrate + nativecrit;
@@ -912,8 +912,8 @@ function getMultiAttacks(attacker, target, numHits)
             bonusHits = bonusHits + 1;
         end
         if (i == 1) then
-            attacker:delStatusEffect(EFFECT_ASSASSINS_CHARGE);
-            attacker:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
+            attacker:delStatusEffect(EFFECT.ASSASSINS_CHARGE);
+            attacker:delStatusEffect(EFFECT.WARRIOR_S_CHARGE);
 
             -- recalculate DA/TA/QA rate
             doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
@@ -1037,7 +1037,7 @@ end
 -- It can be overwritten by higher at tier 2 (2000-2999 tp)
 -- It cannot be overwritten at tier 3 (3000 tp)
 function shouldApplyAftermath(player, tp)
-    local effect = player:getStatusEffect(EFFECT_AFTERMATH);
+    local effect = player:getStatusEffect(EFFECT.AFTERMATH);
     if (effect) then
         local power = effect:getPower();
         if (power == 3) then
@@ -1051,7 +1051,7 @@ function shouldApplyAftermath(player, tp)
 end
 
 function addAftermathEffect(player, tp, params)
-    player:addStatusEffect(EFFECT_AFTERMATH, params.power, 0, params.duration(tp));
+    player:addStatusEffect(EFFECT.AFTERMATH, params.power, 0, params.duration(tp));
     for _,mod in pairs(params.mods) do
         player:addMod(mod.id, mod.power);
     end
@@ -1065,7 +1065,7 @@ end
 
 function addMythicAftermathEffect(player, tp, params)
     local tier = math.floor(tp / 1000);
-    player:addStatusEffectEx(EFFECT_AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration, 0, tp);
+    player:addStatusEffectEx(EFFECT.AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration, 0, tp);
     for _,mod in pairs(params[tier].mods) do
         player:addMod(mod.id, mod.power(tp));
     end
@@ -1080,7 +1080,7 @@ end
 
 function addEmpyreanAftermathEffect(player, tp, params)
     local tier = math.floor(tp / 1000);
-    player:addStatusEffectEx(EFFECT_AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration);
+    player:addStatusEffectEx(EFFECT.AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration);
     for _,mod in pairs(params[tier].mods) do
         player:addMod(mod.id, mod.power);
     end
@@ -1150,21 +1150,21 @@ function shadowAbsorb(target)
 
     if targShadows > 0 then
         if shadowType == MOD_UTSUSEMI then
-            local effect = target:getStatusEffect(EFFECT_COPY_IMAGE)
+            local effect = target:getStatusEffect(EFFECT.COPY_IMAGE)
             if effect then
                 if targShadows - 1 == 1 then
-                    effect:setIcon(EFFECT_COPY_IMAGE)
+                    effect:setIcon(EFFECT.COPY_IMAGE)
                 elseif targShadows - 1 == 2 then
-                    effect:setIcon(EFFECT_COPY_IMAGE_2)
+                    effect:setIcon(EFFECT.COPY_IMAGE_2)
                 elseif targShadows - 1 == 3 then
-                    effect:setIcon(EFFECT_COPY_IMAGE_3)
+                    effect:setIcon(EFFECT.COPY_IMAGE_3)
                 end
             end
         end
         target:setMod(shadowType, targShadows - 1)
         if targShadows - 1 == 0 then
-            target:delStatusEffect(EFFECT_COPY_IMAGE)
-            target:delStatusEffect(EFFECT_COPY_BLINK)
+            target:delStatusEffect(EFFECT.COPY_IMAGE)
+            target:delStatusEffect(EFFECT.COPY_BLINK)
         end
         return true
     end

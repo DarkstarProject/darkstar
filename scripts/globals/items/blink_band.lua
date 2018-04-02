@@ -11,10 +11,10 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_COPY_IMAGE) or target:hasStatusEffect(EFFECT_THIRD_EYE)) then
+    if (target:hasStatusEffect(EFFECT.COPY_IMAGE) or target:hasStatusEffect(EFFECT.THIRD_EYE)) then
         target:messageBasic(msgBasic.NO_EFFECT);
     else
-        target:addStatusEffect(EFFECT_BLINK, 3, 0, 300);
-        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_BLINK);
+        target:addStatusEffect(EFFECT.BLINK, 3, 0, 300);
+        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT.BLINK);
     end
 end;

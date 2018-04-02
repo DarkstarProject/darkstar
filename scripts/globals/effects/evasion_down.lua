@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_EVASION_DOWN
+-- EFFECT.EVASION_DOWN
 --
 -----------------------------------
 require("scripts/globals/status");

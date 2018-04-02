@@ -9,21 +9,21 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    local effect = target:getStatusEffect(EFFECT_ENCHANTMENT);
+    local effect = target:getStatusEffect(EFFECT.ENCHANTMENT);
     if (effect ~= nil) then
         if (effect:getSubType() == 15487) then
-            target:delStatusEffect(EFFECT_ENCHANTMENT);
+            target:delStatusEffect(EFFECT.ENCHANTMENT);
         end;
     end;
     return 0;
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == true) then
-        target:delStatusEffect(EFFECT_ENCHANTMENT);
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,1800,15487);
+    if (target:hasStatusEffect(EFFECT.ENCHANTMENT) == true) then
+        target:delStatusEffect(EFFECT.ENCHANTMENT);
+        target:addStatusEffect(EFFECT.ENCHANTMENT,0,0,1800,15487);
     else
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,1800,15487);
+        target:addStatusEffect(EFFECT.ENCHANTMENT,0,0,1800,15487);
     end;
 end;
 

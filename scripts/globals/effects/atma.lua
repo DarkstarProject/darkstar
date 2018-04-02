@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ATMA
+-- EFFECT.ATMA
 --
 -- Global needs redone into table instead of functions
 --

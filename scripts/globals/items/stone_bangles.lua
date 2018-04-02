@@ -9,6 +9,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    local effect = EFFECT_ENSTONE;
+    local effect = EFFECT.ENSTONE;
     doEnspell(target,target,nil,effect);
 end;

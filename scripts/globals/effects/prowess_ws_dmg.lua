@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased weapon skill damage
+-- EFFECT.PROWESS : Increased weapon skill damage
 --
 -----------------------------------
 

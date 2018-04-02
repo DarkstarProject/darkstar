@@ -14,8 +14,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_ENCHANTMENT) == false) then
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,3600,17592);
+    if (target:addStatusEffect(EFFECT.ENCHANTMENT) == false) then
+        target:addStatusEffect(EFFECT.ENCHANTMENT,0,0,3600,17592);
     end;    
 end;
 

@@ -27,7 +27,7 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(EFFECT_BATTLEFIELD);
+        target:getPet():delStatusEffect(EFFECT.BATTLEFIELD);
     end
 end;
 

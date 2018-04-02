@@ -22,15 +22,15 @@ function onPetAbility(target, pet, skill)
     if (target:getHP()+base > target:getMaxHP()) then
         base = target:getMaxHP() - target:getHP(); --cap it
     end
-    target:delStatusEffect(EFFECT_BLINDNESS);
-    target:delStatusEffect(EFFECT_POISON);
-    target:delStatusEffect(EFFECT_PARALYSIS);
-    target:delStatusEffect(EFFECT_DISEASE);
-    target:delStatusEffect(EFFECT_PETRIFICATION);
+    target:delStatusEffect(EFFECT.BLINDNESS);
+    target:delStatusEffect(EFFECT.POISON);
+    target:delStatusEffect(EFFECT.PARALYSIS);
+    target:delStatusEffect(EFFECT.DISEASE);
+    target:delStatusEffect(EFFECT.PETRIFICATION);
         target:wakeUp();
-    target:delStatusEffect(EFFECT_SILENCE);
+    target:delStatusEffect(EFFECT.SILENCE);
     if math.random() > 0.5 then
-        target:delStatusEffect(EFFECT_SLOW);
+        target:delStatusEffect(EFFECT.SLOW);
     end
     skill:setMsg(msgBasic.SELF_HEAL);
     target:addHP(base);

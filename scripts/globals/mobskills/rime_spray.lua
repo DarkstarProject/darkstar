@@ -19,16 +19,16 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_FROST;
+    local typeEffect = EFFECT.FROST;
 
-    MobStatusEffectMove(mob, target, EFFECT_FROST, 15, 3, 120);
-    MobStatusEffectMove(mob, target, EFFECT_STR_DOWN, 20, 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT_VIT_DOWN, 20, 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT_DEX_DOWN, 20, 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT_AGI_DOWN, 20, 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT_MND_DOWN, 20, 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT_INT_DOWN, 20, 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT_CHR_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.FROST, 15, 3, 120);
+    MobStatusEffectMove(mob, target, EFFECT.STR_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.VIT_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.DEX_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.AGI_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.MND_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.INT_DOWN, 20, 3, 60);
+    MobStatusEffectMove(mob, target, EFFECT.CHR_DOWN, 20, 3, 60);
 
     local dmgmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_ICE,dmgmod,TP_NO_EFFECT);

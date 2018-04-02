@@ -13,8 +13,8 @@ function onMobSkillCheck(target, mob, skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 20));
+    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT.SLEEP_I, 1, 0, 20));
     target:setTP(target:getTP() * 0.5);
 
-    return EFFECT_SLEEP_I;
+    return EFFECT.SLEEP_I;
 end;

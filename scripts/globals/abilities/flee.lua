@@ -14,5 +14,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local duration = 30 + player:getMod(MOD_FLEE_DURATION);
-    player:addStatusEffect(EFFECT_FLEE,100,0,duration);
+    player:addStatusEffect(EFFECT.FLEE,100,0,duration);
 end;

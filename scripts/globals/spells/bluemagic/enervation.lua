@@ -23,8 +23,8 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffectOne = EFFECT_DEFENSE_DOWN;
-    local typeEffectTwo = EFFECT_MAGIC_DEF_DOWN;
+    local typeEffectOne = EFFECT.DEFENSE_DOWN;
+    local typeEffectTwo = EFFECT.MAGIC_DEF_DOWN;
     local params = {};
     params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
     params.attribute = MOD_INT;

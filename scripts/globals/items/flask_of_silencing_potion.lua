@@ -11,8 +11,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_SILENCE)) then
-        target:addStatusEffect(EFFECT_SILENCE,1,3,180);
+    if (not target:hasStatusEffect(EFFECT.SILENCE)) then
+        target:addStatusEffect(EFFECT.SILENCE,1,3,180);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced magic acc. and magic atk
+-- EFFECT.PROWESS : Enhanced magic acc. and magic atk
 --
 -----------------------------------
 

@@ -11,29 +11,29 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_DARK_ARTS) or player:hasStatusEffect(EFFECT_ADDENDUM_BLACK) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(EFFECT.DARK_ARTS) or player:hasStatusEffect(EFFECT.ADDENDUM_BLACK) then
+        return msgBasic.EFFECT.ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(EFFECT_LIGHT_ARTS);
-    player:delStatusEffect(EFFECT_ADDENDUM_WHITE);
-    player:delStatusEffect(EFFECT_PENURY);
-    player:delStatusEffect(EFFECT_CELERITY);
-    player:delStatusEffect(EFFECT_ACCESSION);
-    player:delStatusEffect(EFFECT_RAPTURE);
-    player:delStatusEffect(EFFECT_ALTRUISM);
-    player:delStatusEffect(EFFECT_TRANQUILITY);
-    player:delStatusEffect(EFFECT_PERPETUANCE);
+    player:delStatusEffectSilent(EFFECT.LIGHT_ARTS);
+    player:delStatusEffect(EFFECT.ADDENDUM_WHITE);
+    player:delStatusEffect(EFFECT.PENURY);
+    player:delStatusEffect(EFFECT.CELERITY);
+    player:delStatusEffect(EFFECT.ACCESSION);
+    player:delStatusEffect(EFFECT.RAPTURE);
+    player:delStatusEffect(EFFECT.ALTRUISM);
+    player:delStatusEffect(EFFECT.TRANQUILITY);
+    player:delStatusEffect(EFFECT.PERPETUANCE);
 
     local helixbonus = 0;
     if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
         helixbonus = math.floor(player:getMainLvl() / 4);
     end
 
-    player:addStatusEffect(EFFECT_DARK_ARTS,1,0,7200,0,helixbonus);
+    player:addStatusEffect(EFFECT.DARK_ARTS,1,0,7200,0,helixbonus);
 
-    return EFFECT_DARK_ARTS;
+    return EFFECT.DARK_ARTS;
 end;

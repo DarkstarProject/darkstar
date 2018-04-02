@@ -14,7 +14,7 @@ end;
 function onSpellCast(caster,target,spell)
     local count = 1;
 
-    local removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_PARALYSIS, EFFECT_POISON, EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE};
+    local removables = {EFFECT.FLASH, EFFECT.BLINDNESS, EFFECT.PARALYSIS, EFFECT.POISON, EFFECT.CURSE_I, EFFECT.CURSE_II, EFFECT.DISEASE, EFFECT.PLAGUE};
 
     -- remove one effect and add it to me
     for i, effect in ipairs(removables) do

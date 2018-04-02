@@ -11,22 +11,22 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_LIGHT_ARTS) or player:hasStatusEffect(EFFECT_ADDENDUM_WHITE) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(EFFECT.LIGHT_ARTS) or player:hasStatusEffect(EFFECT.ADDENDUM_WHITE) then
+        return msgBasic.EFFECT.ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(EFFECT_DARK_ARTS);
-    player:delStatusEffect(EFFECT_ADDENDUM_BLACK);
-    player:delStatusEffect(EFFECT_PARSIMONY);
-    player:delStatusEffect(EFFECT_ALACRITY);
-    player:delStatusEffect(EFFECT_MANIFESTATION);
-    player:delStatusEffect(EFFECT_EBULLIENCE);
-    player:delStatusEffect(EFFECT_FOCALIZATION);
-    player:delStatusEffect(EFFECT_EQUANIMITY);
-    player:delStatusEffect(EFFECT_IMMANENCE);
+    player:delStatusEffectSilent(EFFECT.DARK_ARTS);
+    player:delStatusEffect(EFFECT.ADDENDUM_BLACK);
+    player:delStatusEffect(EFFECT.PARSIMONY);
+    player:delStatusEffect(EFFECT.ALACRITY);
+    player:delStatusEffect(EFFECT.MANIFESTATION);
+    player:delStatusEffect(EFFECT.EBULLIENCE);
+    player:delStatusEffect(EFFECT.FOCALIZATION);
+    player:delStatusEffect(EFFECT.EQUANIMITY);
+    player:delStatusEffect(EFFECT.IMMANENCE);
 
     local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
     local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
@@ -35,7 +35,7 @@ function onUseAbility(player,target,ability)
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
     end
 
-    player:addStatusEffect(EFFECT_LIGHT_ARTS,effectbonus,0,7200,0,regenbonus);
+    player:addStatusEffect(EFFECT.LIGHT_ARTS,effectbonus,0,7200,0,regenbonus);
 
-    return EFFECT_LIGHT_ARTS;
+    return EFFECT.LIGHT_ARTS;
 end;

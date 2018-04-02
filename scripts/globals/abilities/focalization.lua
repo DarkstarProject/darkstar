@@ -19,14 +19,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_FOCALIZATION) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(EFFECT.FOCALIZATION) then
+        return msgBasic.EFFECT.ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_FOCALIZATION,player:getMerit(MERIT_FOCALIZATION),0,60);
+    player:addStatusEffect(EFFECT.FOCALIZATION,player:getMerit(MERIT_FOCALIZATION),0,60);
 
-    return EFFECT_FOCALIZATION;
+    return EFFECT.FOCALIZATION;
 end;

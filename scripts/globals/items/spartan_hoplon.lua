@@ -11,8 +11,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_PHALANX,10,0,180)) then -- Retail potency unknown, 10 is a guess. (someone 1000 needles test this thing!)
-        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_PHALANX);
+    if (target:addStatusEffect(EFFECT.PHALANX,10,0,180)) then -- Retail potency unknown, 10 is a guess. (someone 1000 needles test this thing!)
+        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT.PHALANX);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

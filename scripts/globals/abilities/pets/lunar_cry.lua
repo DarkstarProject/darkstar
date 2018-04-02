@@ -29,10 +29,10 @@ function onPetAbility(target, pet, skill)
     else
         buffvalue = 1;
     end
-    target:delStatusEffect(EFFECT_ACCURACY_DOWN);
-    target:delStatusEffect(EFFECT_EVASION_DOWN);
-    target:addStatusEffect(EFFECT_ACCURACY_DOWN,buffvalue,0,180);
-    target:addStatusEffect(EFFECT_EVASION_DOWN,32-buffvalue,0,180);
+    target:delStatusEffect(EFFECT.ACCURACY_DOWN);
+    target:delStatusEffect(EFFECT.EVASION_DOWN);
+    target:addStatusEffect(EFFECT.ACCURACY_DOWN,buffvalue,0,180);
+    target:addStatusEffect(EFFECT.EVASION_DOWN,32-buffvalue,0,180);
     skill:setMsg(msgBasic.NONE);
     return 0;
 end

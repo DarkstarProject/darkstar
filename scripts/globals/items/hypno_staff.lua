@@ -20,9 +20,9 @@ function onAdditionalEffect(player,target,damage)
         end
         duration = utils.clamp(duration,1,25);
         duration = duration * applyResistanceAddEffect(player,target,ELE_DARK,0);
-        if (not target:hasStatusEffect(EFFECT_SLEEP_I)) then
-            target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
+        if (not target:hasStatusEffect(EFFECT.SLEEP_I)) then
+            target:addStatusEffect(EFFECT.SLEEP_I, 1, 0, duration);
         end
-        return SUBEFFECT_SLEEP, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLEEP_I;
+        return SUBEFFECT_SLEEP, msgBasic.ADD_EFFECT_STATUS, EFFECT.SLEEP_I;
     end
 end;
