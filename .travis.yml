@@ -16,6 +16,7 @@ addons:
       - mysql-client-core-5.6
       - mysql-server-5.6
       - mysql-client-5.6
+      - luarocks
 
 install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
@@ -28,4 +29,5 @@ before_script:
 script:
   - ./configure
   - make
-  - sh travis_sql.sh 
+  - sh travis_sql.sh
+  - sh travis_lua.sh
