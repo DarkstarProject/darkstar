@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Acid Spray
--- Deals Water damage to targets in a fan-shaped area of effect. Additional effect: Poison
+-- Deals Water damage to targets in a fan-shaped area of dsp.effects. Additional effect: Poison
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.POISON;
+    local typeEffect = dsp.effects.POISON;
     local power = mob:getMainLvl() / 3.5;
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 120);

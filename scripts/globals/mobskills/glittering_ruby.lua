@@ -14,21 +14,21 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     --randomly give str/dex/vit/agi/int/mnd/chr (+12)
     local effect = math.random();
-    local effectid = EFFECT.STR_BOOST;
+    local effectid = dsp.effects.STR_BOOST;
     if (effect<=0.14) then --STR
-        effectid = EFFECT.STR_BOOST;
+        effectid = dsp.effects.STR_BOOST;
     elseif (effect<=0.28) then --DEX
-        effectid = EFFECT.DEX_BOOST;
+        effectid = dsp.effects.DEX_BOOST;
     elseif (effect<=0.42) then --VIT
-        effectid = EFFECT.VIT_BOOST;
+        effectid = dsp.effects.VIT_BOOST;
     elseif (effect<=0.56) then --AGI
-        effectid = EFFECT.AGI_BOOST;
+        effectid = dsp.effects.AGI_BOOST;
     elseif (effect<=0.7) then --INT
-        effectid = EFFECT.INT_BOOST;
+        effectid = dsp.effects.INT_BOOST;
     elseif (effect<=0.84) then --MND
-        effectid = EFFECT.MND_BOOST;
+        effectid = dsp.effects.MND_BOOST;
     else --CHR
-        effectid = EFFECT.CHR_BOOST;
+        effectid = dsp.effects.CHR_BOOST;
     end
 
     target:addStatusEffect(effectid,math.random(12,14),0,90);

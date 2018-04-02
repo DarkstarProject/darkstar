@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT.AFFLATUS_SOLACE
+-- dsp.effects.AFFLATUS_SOLACE
 --
 -----------------------------------
 

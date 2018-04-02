@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Vitriolic Spray
 --  Family: Wamouracampa
---  Description: Expels a caustic stream at targets in a fan-shaped area of effect. Additional effect: Burn
+--  Description: Expels a caustic stream at targets in a fan-shaped area of dsp.effects. Additional effect: Burn
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadow
 --  Range: Cone
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BURN;
+    local typeEffect = dsp.effects.BURN;
     local power = math.random(10,30);
 
 

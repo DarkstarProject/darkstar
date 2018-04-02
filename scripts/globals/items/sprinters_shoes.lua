@@ -11,6 +11,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT.QUICKENING, 10, 0, 3600);
-    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT.QUICKENING);
+    target:addStatusEffect(dsp.effects.QUICKENING, 10, 0, 3600);
+    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, dsp.effects.QUICKENING);
 end;

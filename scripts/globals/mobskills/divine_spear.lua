@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Divine Spear
--- Description: Deals Light elemental damage within conal area of effect.
+-- Description: Deals Light elemental damage within conal area of dsp.effects.
 -- Type: Magical (Light)
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

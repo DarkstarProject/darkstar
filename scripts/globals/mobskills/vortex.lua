@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Vortex
--- Creates a vortex that damages targets in an area of effect. Additional effect: Terror
+-- Creates a vortex that damages targets in an area of dsp.effects. Additional effect: Terror
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -19,8 +19,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1.5;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.TERROR, 1, 0, 9);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.BIND, 1, 0, 30);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.TERROR, 1, 0, 9);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.BIND, 1, 0, 30);
     target:delHP(dmg);
     mob:resetEnmity(target);
     return dmg;

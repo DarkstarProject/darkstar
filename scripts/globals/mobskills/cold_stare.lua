@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Cold Stare
--- Silences enemies in a line area of effect.
+-- Silences enemies in a line area of dsp.effects.
 -- Notes: Only applies when face-to-face with the dhalmel.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.SILENCE;
+    local typeEffect = dsp.effects.SILENCE;
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 60));
     return typeEffect;
 end;

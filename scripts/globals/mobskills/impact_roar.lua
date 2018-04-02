@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Impact Roar
--- Emits the roar of an impact event, dealing damage in a fan-shaped area of effect.
+-- Emits the roar of an impact event, dealing damage in a fan-shaped area of dsp.effects.
 -- Ignores Shadows
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

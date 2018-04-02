@@ -14,8 +14,8 @@ end;
 
 function onSpellCast(caster,target,spell)
     --duration = 1800;
-    target:delStatusEffect(EFFECT.RERAISE);
-    target:addStatusEffect(EFFECT.RERAISE,3,0,3600); --reraise 3, 30min duration
+    target:delStatusEffect(dsp.effects.RERAISE);
+    target:addStatusEffect(dsp.effects.RERAISE,3,0,3600); --reraise 3, 30min duration
 
-    return EFFECT.RERAISE;
+    return dsp.effects.RERAISE;
 end;

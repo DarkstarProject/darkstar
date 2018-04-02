@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Acid Breath
 --
---  Description: Deals Water damage to enemies in a fan-shaped area of effect. Additional effect: STR Down
+--  Description: Deals Water damage to enemies in a fan-shaped area of dsp.effects. Additional effect: STR Down
 --  Type: Breath
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown cone
@@ -19,7 +19,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STR_DOWN;
+    local typeEffect = dsp.effects.STR_DOWN;
     local power = 20;
     local tick = 3;
     local duration = power * tick;

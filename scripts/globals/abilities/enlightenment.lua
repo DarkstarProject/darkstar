@@ -11,14 +11,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT.ENLIGHTENMENT) then
-        return msgBasic.EFFECT.ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effects.ENLIGHTENMENT) then
+        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
     local merit = (player:getMerit(MERIT_ENLIGHTENMENT) - 5);
-    player:addStatusEffect(EFFECT.ENLIGHTENMENT,merit,0,60);
-    return EFFECT.ENLIGHTENMENT;
+    player:addStatusEffect(dsp.effects.ENLIGHTENMENT,merit,0,60);
+    return dsp.effects.ENLIGHTENMENT;
 end;

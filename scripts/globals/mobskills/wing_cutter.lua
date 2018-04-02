@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Wing Cutter
--- Deals Wind damage to targets in a fan-shaped area of effect.
+-- Deals Wind damage to targets in a fan-shaped area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

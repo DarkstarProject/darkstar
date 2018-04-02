@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Great Bleat
 --
--- Description: Lowers maximum HP of targets in an area of effect.
+-- Description: Lowers maximum HP of targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.MAX_HP_DOWN;
+    local typeEffect = dsp.effects.MAX_HP_DOWN;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 30, 0, 60));
 

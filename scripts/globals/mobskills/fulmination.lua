@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Fulmination
 --
--- Description: Deals heavy magical damage in an area of effect. Additional effect: Paralysis + Stun
+-- Description: Deals heavy magical damage in an area of dsp.effects. Additional effect: Paralysis + Stun
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes Shadows
 -- Range: 30 yalms
@@ -41,8 +41,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 3;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,ELE_THUNDER,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_THUNDER,MOBPARAM_WIPE_SHADOWS);
-    MobStatusEffectMove(mob,target,EFFECT.PARALYSIS, 40, 0, 60);
-    MobStatusEffectMove(mob,target,EFFECT.STUN, 1, 0, 4);
+    MobStatusEffectMove(mob,target,dsp.effects.PARALYSIS, 40, 0, 60);
+    MobStatusEffectMove(mob,target,dsp.effects.STUN, 1, 0, 4);
 
     target:delHP(dmg);
     return dmg;

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Frigid Shuffle
 --
--- Description: An icy waltz paralyzes targets in an area of effect.
+-- Description: An icy waltz paralyzes targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 50, 0, 60))
 

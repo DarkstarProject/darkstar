@@ -27,6 +27,6 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(EFFECT.ALLIED_TAGS);
+        target:getPet():delStatusEffect(dsp.effects.ALLIED_TAGS);
     end
 end;

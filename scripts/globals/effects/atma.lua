@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT.ATMA
+-- dsp.effects.ATMA
 --
 -- Global needs redone into table instead of functions
 --

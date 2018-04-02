@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Thunderbolt
 --
---  Description: Deals Lightning damage in an area of effect. Additional effect: Stun
+--  Description: Deals Lightning damage in an area of dsp.effects. Additional effect: Stun
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range:
@@ -19,7 +19,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STUN;
+    local typeEffect = dsp.effects.STUN;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 4);
 

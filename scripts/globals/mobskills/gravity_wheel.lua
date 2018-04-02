@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gravity Wheel
 --
---  Description: Deals heavy damage to players in an area of effect. Additional effect: Weight
+--  Description: Deals heavy damage to players in an area of dsp.effects. Additional effect: Weight
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Unknown
@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW);
 
     target:delHP(dmg);
-    MobStatusEffectMove(mob, target, EFFECT.WEIGHT, 1, 0, 30);
+    MobStatusEffectMove(mob, target, dsp.effects.WEIGHT, 1, 0, 30);
     return dmg;
 end;

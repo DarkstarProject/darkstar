@@ -14,8 +14,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target,mob,skill)
-    local typeEffectOne = EFFECT.PLAGUE;
-    local typeEffectTwo = EFFECT.SLOW;
+    local typeEffectOne = dsp.effects.PLAGUE;
+    local typeEffectTwo = dsp.effects.SLOW;
     MobStatusEffectMove(mob,target,typeEffectOne,1,3,60);
     MobStatusEffectMove(mob,target,typeEffectTwo,1,3,60);
     local dmgmod = 1; 

@@ -9,16 +9,16 @@ require("scripts/globals/msg");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT.FOOD) or target:hasStatusEffect(EFFECT.FIELD_SUPPORT_FOOD)) then
+    if (target:hasStatusEffect(dsp.effects.FOOD) or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD)) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT.FOOD,0,0,180,5967);
-    if (not target:hasStatusEffect(EFFECT.POISON)) then
-        target:addStatusEffect(EFFECT.POISON,2,3,180);
+    target:addStatusEffect(dsp.effects.FOOD,0,0,180,5967);
+    if (not target:hasStatusEffect(dsp.effects.POISON)) then
+        target:addStatusEffect(dsp.effects.POISON,2,3,180);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

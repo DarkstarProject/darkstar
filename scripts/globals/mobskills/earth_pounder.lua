@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Earth Pounder
 --
---  Description: Deals Earth damage to enemies within area of effect. Additional effect: Dexterity Down
+--  Description: Deals Earth damage to enemies within area of dsp.effects. Additional effect: Dexterity Down
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 15' radial
@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.DEX_DOWN;
+    local typeEffect = dsp.effects.DEX_DOWN;
     MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120);
 
     local dmgmod = 1;

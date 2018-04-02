@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Gala Macabre
 -- Family: Corse
--- Description: Charms all targets in an area of effect.
+-- Description: Charms all targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: N/A
 -- Range: Radial
@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.CHARM_I;
+    local typeEffect = dsp.effects.CHARM_I;
     local power = 0;
 
     if (not target:isPC()) then

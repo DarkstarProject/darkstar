@@ -12,29 +12,29 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT.SILENCE) or target:hasStatusEffect(EFFECT.BLINDNESS) or target:hasStatusEffect(EFFECT.POISON) or target:hasStatusEffect(EFFECT.PARALYSIS) or target:hasStatusEffect(EFFECT.PLAGUE)) then
+    if (target:hasStatusEffect(dsp.effects.SILENCE) or target:hasStatusEffect(dsp.effects.BLINDNESS) or target:hasStatusEffect(dsp.effects.POISON) or target:hasStatusEffect(dsp.effects.PARALYSIS) or target:hasStatusEffect(dsp.effects.PLAGUE)) then
         local effectRemoved = 0;
         while effectRemoved == 0 do
             num = math.random(1,5);
-            if (num == 1 and target:hasStatusEffect(EFFECT.SILENCE)) then
+            if (num == 1 and target:hasStatusEffect(dsp.effects.SILENCE)) then
                 effectRemoved = effectRemoved + 1;
-                target:delStatusEffect(EFFECT.SILENCE);
+                target:delStatusEffect(dsp.effects.SILENCE);
 
-            elseif (num == 2 and target:hasStatusEffect(EFFECT.BLINDNESS)) then
+            elseif (num == 2 and target:hasStatusEffect(dsp.effects.BLINDNESS)) then
                 effectRemoved = effectRemoved + 1;
-                target:delStatusEffect(EFFECT.BLINDNESS);
+                target:delStatusEffect(dsp.effects.BLINDNESS);
 
-            elseif (num == 3 and target:hasStatusEffect(EFFECT.POISON)) then
+            elseif (num == 3 and target:hasStatusEffect(dsp.effects.POISON)) then
                 effectRemoved = effectRemoved + 1;
-                target:delStatusEffect(EFFECT.POISON);
+                target:delStatusEffect(dsp.effects.POISON);
 
-            elseif (num == 4 and target:hasStatusEffect(EFFECT.PARALYSIS)) then
+            elseif (num == 4 and target:hasStatusEffect(dsp.effects.PARALYSIS)) then
                 effectRemoved = effectRemoved + 1;
-                target:delStatusEffect(EFFECT.PARALYSIS);
+                target:delStatusEffect(dsp.effects.PARALYSIS);
 
-            elseif (num == 5 and target:hasStatusEffect(EFFECT.PLAGUE)) then
+            elseif (num == 5 and target:hasStatusEffect(dsp.effects.PLAGUE)) then
                 effectRemoved = effectRemoved + 1;
-                target:delStatusEffect(EFFECT.PLAGUE);
+                target:delStatusEffect(dsp.effects.PLAGUE);
             end
         end
     end

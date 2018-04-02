@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Aerial Blast
--- Deals wind elemental damage to enemies within area of effect.
+-- Deals wind elemental damage to enemies within area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

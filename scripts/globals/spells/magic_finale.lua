@@ -28,12 +28,12 @@ function onSpellCast(caster,target,spell)
     params.effect = nil;
 
     local resist = applyResistance(caster, target, spell, params);
-    local effect = EFFECT.NONE;
+    local effect = dsp.effects.NONE;
 
     if (resist > 0.0625) then
         spell:setMsg(msgBasic.MAGIC_ERASE);
         effect = target:dispelStatusEffect();
-        if (effect == EFFECT.NONE) then
+        if (effect == dsp.effects.NONE) then
             -- no effect
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end

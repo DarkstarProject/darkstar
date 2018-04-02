@@ -19,14 +19,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT.ALTRUISM) then
-        return msgBasic.EFFECT.ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effects.ALTRUISM) then
+        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT.ALTRUISM,player:getMerit(MERIT_ALTRUISM),0,60);
+    player:addStatusEffect(dsp.effects.ALTRUISM,player:getMerit(MERIT_ALTRUISM),0,60);
 
-    return EFFECT.ALTRUISM;
+    return dsp.effects.ALTRUISM;
 end;

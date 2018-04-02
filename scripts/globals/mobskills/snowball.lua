@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Snowball
--- Deals Ice damage in an area of effect.
+-- Deals Ice damage in an area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

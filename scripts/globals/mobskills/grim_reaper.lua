@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Grim Reaper
 --
---  Description: Deals damage in a threefold attack to targets in a fan-shaped area of effect. Additional effect: Doom
+--  Description: Deals damage in a threefold attack to targets in a fan-shaped area of dsp.effects. Additional effect: Doom
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown cone

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Mantra
--- Increases the max. HP of party members within area of effect.
+-- Increases the max. HP of party members within area of dsp.effects.
 -- Obtainable: Monk Level 75
 -- Recast Time: 0:10:00
 -- Duration: 0:03:00
@@ -13,11 +13,11 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffect(EFFECT.MAX_HP_BOOST);
+    player:delStatusEffect(dsp.effects.MAX_HP_BOOST);
 
     local merits = player:getMerit(MERIT_MANTRA);
 
-    target:addStatusEffect(EFFECT.MAX_HP_BOOST,merits,0,180);
+    target:addStatusEffect(dsp.effects.MAX_HP_BOOST,merits,0,180);
 
-    return EFFECT.MANTRA;
+    return dsp.effects.MANTRA;
 end;

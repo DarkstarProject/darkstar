@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Thundaga 
--- Deals thunder damage to enemies within area of effect.
+-- Deals thunder damage to enemies within area of dsp.effects.
 -----------------------------------------
 
 require("scripts/globals/magic");

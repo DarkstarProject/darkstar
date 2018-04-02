@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Arrow Deluge
 --
---  Description: Delivers a threefold ranged attack to targets in an area of effect.
+--  Description: Delivers a threefold ranged attack to targets in an area of dsp.effects.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown

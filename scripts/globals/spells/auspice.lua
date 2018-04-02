@@ -16,7 +16,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT.AUSPICE;
+    local effect = dsp.effects.AUSPICE;
         doEnspell(caster,target,spell,effect);     
     return effect;
 end;

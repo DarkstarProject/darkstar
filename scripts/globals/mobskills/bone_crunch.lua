@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PLAGUE;
+    local typeEffect = dsp.effects.PLAGUE;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 5, 0, 30);
 

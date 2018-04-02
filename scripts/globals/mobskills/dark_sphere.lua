@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Dark Sphere
--- Deals Dark damage to targets in a fan-shaped area of effect. Additional effect: Blind
+-- Deals Dark damage to targets in a fan-shaped area of dsp.effects. Additional effect: Blind
 -- Range: 15' cone
 ---------------------------------------------------
 
@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BLINDNESS;
+    local typeEffect = dsp.effects.BLINDNESS;
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120);
 

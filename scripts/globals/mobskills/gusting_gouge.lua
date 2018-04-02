@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gusting Gouge
 --
---  Description: Deals Wind damage in a threefold attack to targets in a fan-shaped area of effect.
+--  Description: Deals Wind damage in a threefold attack to targets in a fan-shaped area of dsp.effects.
 --  Type: Physical?
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Melee?

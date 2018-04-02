@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sand Blast
--- Deals Earth damage to targets in a fan-shaped area of effect. Additional effect: Blind
+-- Deals Earth damage to targets in a fan-shaped area of dsp.effects. Additional effect: Blind
 -- Range: 8' cone
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BLINDNESS;
+    local typeEffect = dsp.effects.BLINDNESS;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120));
 
     if (mob:getPool() == 1318 and mob:getLocalVar("SAND_BLAST") == 1) then -- Feeler Anltion

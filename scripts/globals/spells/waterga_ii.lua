@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Waterga II
--- Deals water damage to enemies within area of effect.
+-- Deals water damage to enemies within area of dsp.effects.
 -----------------------------------------
 
 require("scripts/globals/magic");

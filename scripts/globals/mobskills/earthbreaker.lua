@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Earthbreaker
 --
--- Description: Deals Earth damage to enemies within area of effect. Additional effect: Stun
+-- Description: Deals Earth damage to enemies within area of dsp.effects. Additional effect: Stun
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 15' radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STUN;
+    local typeEffect = dsp.effects.STUN;
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 8);
 
     local dmgmod = 1;

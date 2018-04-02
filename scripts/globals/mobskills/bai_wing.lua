@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Bai Wing
 --
--- Description: A dust storm deals Earth damage to enemies within a very wide area of effect. Additional effect: Slow
+-- Description: A dust storm deals Earth damage to enemies within a very wide area of dsp.effects. Additional effect: Slow
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 30' radial.
@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_EARTH,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 
-    MobStatusEffectMove(mob, target, EFFECT.SLOW, 300, 0, 120);
+    MobStatusEffectMove(mob, target, dsp.effects.SLOW, 300, 0, 120);
 
     target:delHP(dmg);
     return dmg;

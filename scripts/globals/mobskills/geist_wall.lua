@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Geist Wall
 --
--- Description: Dispels one effects from targets in an area of effect.
+-- Description: Dispels one effects from targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial
@@ -20,7 +20,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local dispel = target:dispelStatusEffect();
 
-    if (dispel == EFFECT.NONE) then
+    if (dispel == dsp.effects.NONE) then
         -- no effect
         skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     else

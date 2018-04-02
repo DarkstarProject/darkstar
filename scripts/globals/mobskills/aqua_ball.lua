@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Aqua Ball
--- Deals Water damage in a splash area of effect. Additional effect: STR Down
+-- Deals Water damage in a splash area of dsp.effects. Additional effect: STR Down
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STR_DOWN;
+    local typeEffect = dsp.effects.STR_DOWN;
     local power = 20;
     local tick = 3;
     local duration = power * tick;

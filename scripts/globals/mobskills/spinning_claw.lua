@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Spinning Claw
 --
---  Description: Slashes targets in an area of effect.
+--  Description: Slashes targets in an area of dsp.effects.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 15' radial

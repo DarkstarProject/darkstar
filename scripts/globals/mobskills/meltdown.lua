@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Meltdown
--- Reactor failure causes self-destruct, dealing magic damage to targets in an area of effect.
+-- Reactor failure causes self-destruct, dealing magic damage to targets in an area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

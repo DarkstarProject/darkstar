@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT.PROWESS : "Killer" effects bonus
+-- dsp.effects.PROWESS : "Killer" effects bonus
 --
 -----------------------------------
 

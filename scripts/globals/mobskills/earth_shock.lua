@@ -1,6 +1,6 @@
 ---------------------------------------------
 --  Earthshock
---  Creates a seismic wave to damage targets in an area of effect. Additional effect: Stun
+--  Creates a seismic wave to damage targets in an area of dsp.effects. Additional effect: Stun
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 ---------------------------------------------
@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,MOBPARAM_3_SHADOW);
 
-    local typeEffect = EFFECT.STUN;
+    local typeEffect = dsp.effects.STUN;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
 
     target:delHP(dmg);

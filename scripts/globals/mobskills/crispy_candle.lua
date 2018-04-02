@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Crispy Candle
--- Fires a blowtorch at targets in a fan-shaped area of effect.
+-- Fires a blowtorch at targets in a fan-shaped area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

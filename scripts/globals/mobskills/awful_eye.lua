@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Awful Eye
--- 15' Reduces STR of players in area of effect.
+-- 15' Reduces STR of players in area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STR_DOWN;
+    local typeEffect = dsp.effects.STR_DOWN;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 33, 3, 120));
     return typeEffect;

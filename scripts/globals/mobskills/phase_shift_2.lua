@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Phase Shift
--- A shockwave deals damage to targets in an area of effect. Additional effect: Stun + Bind
+-- A shockwave deals damage to targets in an area of dsp.effects. Additional effect: Stun + Bind
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 5;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,3.5,3.5,3.5);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.STUN, 1, 0, 15);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.STUN, 1, 0, 15);
     target:delHP(dmg);
     return dmg;
 end;

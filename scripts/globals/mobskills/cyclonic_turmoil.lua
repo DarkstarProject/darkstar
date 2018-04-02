@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Cyclonic Turmoil
 --
--- Deals Wind damage in an area of effect. Additional effect: Knockback & Dispel
+-- Deals Wind damage in an area of dsp.effects. Additional effect: Knockback & Dispel
 -- Notes: Dispels multiple buffs. Wipes shadows.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
@@ -22,11 +22,11 @@ function onMobWeaponSkill(target, mob, skill)
     local dispel2 = target:dispelStatusEffect();
     local total = 0;
 
-    if (dispel1 ~= EFFECT.NONE) then
+    if (dispel1 ~= dsp.effects.NONE) then
         total = total+1;
     end
 
-    if (dispel2 ~= EFFECT.NONE) then
+    if (dispel2 ~= dsp.effects.NONE) then
         total = total+1;
     end
 

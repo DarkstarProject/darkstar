@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Call of the Grave
 --
--- Description: Lowers INT of targets in an area of effect.
+-- Description: Lowers INT of targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.INT_DOWN;
+    local typeEffect = dsp.effects.INT_DOWN;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120));
 
     return typeEffect;

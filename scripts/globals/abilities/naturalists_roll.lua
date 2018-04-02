@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Naturalists's Roll
--- Increases the duration of enhancing magic effects received for party members within area of effect.
+-- Increases the duration of enhancing magic effects received for party members within area of dsp.effects.
 -- Optimal Job: Geomancer
 -- Lucky Number: 3
 -- Unlucky Number: 7
@@ -29,7 +29,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = EFFECT.NATURALISTS_ROLL
+    local effectID = dsp.effects.NATURALISTS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return msgBasic.ROLL_ALREADY_ACTIVE,0;
@@ -42,7 +42,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, EFFECT.NATURALISTS_ROLL, JOBS.GEO);
+        corsairSetup(caster, ability, action, dsp.effects.NATURALISTS_ROLL, JOBS.GEO);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
@@ -64,7 +64,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT.NATURALISTS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_ENH_MAGIC_DURATION) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effects.NATURALISTS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_ENH_MAGIC_DURATION) == false) then
         ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(msgBasic.DOUBLEUP_BUST);

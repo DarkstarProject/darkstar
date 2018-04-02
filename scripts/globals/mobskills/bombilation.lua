@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Bombilation
 --
--- Description: Resets TP of all targets in an area of effect.
+-- Description: Resets TP of all targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Ignores Shadows
 -- Range: Unknown radial

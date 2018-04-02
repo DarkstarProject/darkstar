@@ -24,20 +24,20 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffectOne = EFFECT.MAGIC_ATK_BOOST
-    local typeEffectTwo = EFFECT.MAGIC_DEF_BOOST
+    local typeEffectOne = dsp.effects.MAGIC_ATK_BOOST
+    local typeEffectTwo = dsp.effects.MAGIC_DEF_BOOST
     local power = 10;
     local duration = 90;
     local returnEffect = typeEffectOne;
 
-    if (caster:hasStatusEffect(EFFECT.DIFFUSION)) then
+    if (caster:hasStatusEffect(dsp.effects.DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end;
 
-        caster:delStatusEffect(EFFECT.DIFFUSION);
+        caster:delStatusEffect(dsp.effects.DIFFUSION);
     end;
 
     if (target:addStatusEffect(typeEffectOne,power,0,duration) == false and target:addStatusEffect(typeEffectTwo,power,0,duration) == false) then -- both statuses fail to apply

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Ichor Stream
 -- Family: Hpemde
--- Description: Spews venomous ichor at targets in a fan-shaped area of effect.
+-- Description: Spews venomous ichor at targets in a fan-shaped area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Cone
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.POISON;
+    local typeEffect = dsp.effects.POISON;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 5, 0, 120));
 

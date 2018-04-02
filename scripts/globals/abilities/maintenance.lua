@@ -37,20 +37,20 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet()
 
     local function removeStatus()
-        --if pet:delStatusEffect(EFFECT.DOOM) then return true end
-        if pet:delStatusEffect(EFFECT.PETRIFICATION) then return true end
-        --if pet:delStatusEffect(EFFECT.LULLABY) then return true end
-        --if pet:delStatusEffect(EFFECT.SLEEP_II) then return true end
-        --if pet:delStatusEffect(EFFECT.SLEEP) then return true end
-        if pet:delStatusEffect(EFFECT.SILENCE) then return true end
-        if pet:delStatusEffect(EFFECT.BANE) then return true end
-        if pet:delStatusEffect(EFFECT.CURSE_II) then return true end
-        if pet:delStatusEffect(EFFECT.CURSE) then return true end
-        if pet:delStatusEffect(EFFECT.PARALYSIS) then return true end
-        if pet:delStatusEffect(EFFECT.PLAGUE) then return true end
-        if pet:delStatusEffect(EFFECT.POISON) then return true end
-        if pet:delStatusEffect(EFFECT.DISEASE) then return true end
-        if pet:delStatusEffect(EFFECT.BLINDNESS) then return true end
+        --if pet:delStatusEffect(dsp.effects.DOOM) then return true end
+        if pet:delStatusEffect(dsp.effects.PETRIFICATION) then return true end
+        --if pet:delStatusEffect(dsp.effects.LULLABY) then return true end
+        --if pet:delStatusEffect(dsp.effects.SLEEP_II) then return true end
+        --if pet:delStatusEffect(dsp.effects.SLEEP) then return true end
+        if pet:delStatusEffect(dsp.effects.SILENCE) then return true end
+        if pet:delStatusEffect(dsp.effects.BANE) then return true end
+        if pet:delStatusEffect(dsp.effects.CURSE_II) then return true end
+        if pet:delStatusEffect(dsp.effects.CURSE) then return true end
+        if pet:delStatusEffect(dsp.effects.PARALYSIS) then return true end
+        if pet:delStatusEffect(dsp.effects.PLAGUE) then return true end
+        if pet:delStatusEffect(dsp.effects.POISON) then return true end
+        if pet:delStatusEffect(dsp.effects.DISEASE) then return true end
+        if pet:delStatusEffect(dsp.effects.BLINDNESS) then return true end
         if pet:eraseStatusEffect() ~= 255 then return true end
         return false
     end

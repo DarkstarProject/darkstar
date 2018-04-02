@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Warding Circle
--- Grants resistance, defense, and attack against Demons to party members within the area of effect.
+-- Grants resistance, defense, and attack against Demons to party members within the area of dsp.effects.
 -- Obtained: Samurai Level 5
 -- Recast Time: 5:00
 -- Duration: 3:00
@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local duration = 180 + player:getMod(MOD_WARDING_CIRCLE_DURATION);
-    target:addStatusEffect(EFFECT.WARDING_CIRCLE,15,0,duration);
+    target:addStatusEffect(dsp.effects.WARDING_CIRCLE,15,0,duration);
 end;

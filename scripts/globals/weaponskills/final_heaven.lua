@@ -2,7 +2,7 @@
 -- Skill: Final Heaven
 -- H2H weapon skill
 -- Skill Level N/A
--- Additional effect: temporarily enhances Subtle Blow effect. 
+-- Additional effect: temporarily enhances Subtle Blow dsp.effects. 
 -- Mods : VIT:60%
 -- 100%TP     200%TP     300%TP
 -- 3.0x        3.0x    3.0x

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Tortoise Song
 --
--- Description: Removes all status effects in an area of effect.
+-- Description: Removes all status effects in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 20' radial

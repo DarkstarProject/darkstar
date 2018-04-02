@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT.MOUNTED
+-- dsp.effects.MOUNTED
 --
 -----------------------------------
 require("scripts/globals/status");

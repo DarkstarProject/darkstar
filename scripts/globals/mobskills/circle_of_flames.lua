@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Circle of Flames
 --
---  Description: Deals damage to targets in an area of effect. Additional effect: Weight
+--  Description: Deals damage to targets in an area of dsp.effects. Additional effect: Weight
 --  Type: Physical
 --  Utsusemi/Blink absorb: 1-3 shadows
 --  Range: 10' radial
@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     target:delHP(dmg);
 
-    local typeEffect = EFFECT.WEIGHT;
+    local typeEffect = dsp.effects.WEIGHT;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 60);
 

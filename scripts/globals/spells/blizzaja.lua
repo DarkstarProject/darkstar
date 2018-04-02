@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Blizzaja
--- Deals ice damage to enemies within area of effect.
+-- Deals ice damage to enemies within area of dsp.effects.
 -- Successive use enhances spell potency.
 -----------------------------------------
 

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tera Slash
 --
---  Description: Deals high damage to players within a fan-shaped area of effect.
+--  Description: Deals high damage to players within a fan-shaped area of dsp.effects.
 --  Type: Physical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown cone

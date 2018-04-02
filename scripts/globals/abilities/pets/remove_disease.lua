@@ -12,12 +12,12 @@ end;
 
 function onUseAbility(pet, target, skill, action)
     local effect
-    if (target:delStatusEffect(EFFECT.DISEASE)) then
+    if (target:delStatusEffect(dsp.effects.DISEASE)) then
         skill:setMsg(msgBasic.JA_REMOVE_EFFECT);
-        effect = EFFECT.DISEASE
-    elseif (target:delStatusEffect(EFFECT.PLAGUE)) then
+        effect = dsp.effects.DISEASE
+    elseif (target:delStatusEffect(dsp.effects.PLAGUE)) then
         skill:setMsg(msgBasic.JA_REMOVE_EFFECT);
-        effect = EFFECT.PLAGUE
+        effect = dsp.effects.PLAGUE
     else
         skill:setMsg(msgBasic.JA_NO_EFFECT);
     end

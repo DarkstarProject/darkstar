@@ -3,7 +3,7 @@
 --
 --  Description: Party memory erase.
 --  Type: Enfeebling
---  Notes: Removes one detrimental magic effect for party members within area of effect.
+--  Notes: Removes one detrimental magic effect for party members within area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local dispel = target:eraseStatusEffect();
 
-    if (dispel == EFFECT.NONE) then
+    if (dispel == dsp.effects.NONE) then
         -- no effect
         skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     else

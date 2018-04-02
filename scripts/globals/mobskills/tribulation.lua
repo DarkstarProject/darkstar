@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tribulation
 --
---  Description: Inflicts Bio and blinds all targets in an area of effect.
+--  Description: Inflicts Bio and blinds all targets in an area of dsp.effects.
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: AoE
@@ -21,16 +21,16 @@ function onMobWeaponSkill(target, mob, skill)
     local blinded = false;
     local bio = false;
 
-    blinded = MobStatusEffectMove(mob, target, EFFECT.BLINDNESS, 20, 0, 120);
-    bio = MobStatusEffectMove(mob, target, EFFECT.BIO, 39, 0, 120);
+    blinded = MobStatusEffectMove(mob, target, dsp.effects.BLINDNESS, 20, 0, 120);
+    bio = MobStatusEffectMove(mob, target, dsp.effects.BIO, 39, 0, 120);
 
     skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
 
     -- display blind first, else bio
     if (blinded == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT.BLINDNESS;
+        typeEffect = dsp.effects.BLINDNESS;
     elseif (bio == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT.BIO;
+        typeEffect = dsp.effects.BIO;
     else
         skill:setMsg(msgBasic.SKILL_MISS);
     end

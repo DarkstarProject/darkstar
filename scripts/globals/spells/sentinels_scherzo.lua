@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Sentinel's Scherzo
--- Mitigates the impact of severely damaging attacks for party members within an area of effect.
+-- Mitigates the impact of severely damaging attacks for party members within an area of dsp.effects.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");
@@ -27,20 +27,20 @@ function onSpellCast(caster,target,spell)
 
     duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT.SOUL_VOICE)) then
+    if (caster:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
         duration = duration * 2;
-    elseif (caster:hasStatusEffect(EFFECT.MARCATO)) then
+    elseif (caster:hasStatusEffect(dsp.effects.MARCATO)) then
         duration = duration * 1.5;
     end
-    caster:delStatusEffect(EFFECT.MARCATO);
+    caster:delStatusEffect(dsp.effects.MARCATO);
 
-    if (caster:hasStatusEffect(EFFECT.TROUBADOUR)) then
+    if (caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
         duration = duration * 2;
     end
 
-    if not (target:addBardSong(caster,EFFECT.SCHERZO,power,0,duration,caster:getID(), 0, 1)) then
+    if not (target:addBardSong(caster,dsp.effects.SCHERZO,power,0,duration,caster:getID(), 0, 1)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT.SCHERZO;
+    return dsp.effects.SCHERZO;
 end;

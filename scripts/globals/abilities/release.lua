@@ -14,5 +14,5 @@ end;
 
 function onUseAbility(player,target,ability)
     target:despawnPet();
-    target:delStatusEffect(EFFECT.AVATAR);
+    target:delStatusEffect(dsp.effects.AVATAR);
 end;

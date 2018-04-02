@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Thunderspark
--- Ramuh deals lightning damage and paralyzes enemies within area of effect.
+-- Ramuh deals lightning damage and paralyzes enemies within area of dsp.effects.
 ---------------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -11,7 +11,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
     MobStatusEffectMove(mob, target, typeEffect, 30, 0, 60);
 
     local dmgmod = 1;

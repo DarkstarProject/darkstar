@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Ululation
--- Paralyzes all enemies in an area of effect.
+-- Paralyzes all enemies in an area of dsp.effects.
 --
 ---------------------------------------------
 
@@ -9,7 +9,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, math.random(18,22), 0, 120));
 

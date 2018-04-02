@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Charged Whisker
--- Deals Lightning damage to enemies within area of effect.
+-- Deals Lightning damage to enemies within area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

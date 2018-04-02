@@ -13,7 +13,7 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT.INVISIBLE)) then
-        target:addStatusEffect(EFFECT.INVISIBLE, 0, 10, math.floor(200 * SNEAK_INVIS_DURATION_MULTIPLIER));
+    if (not target:hasStatusEffect(dsp.effects.INVISIBLE)) then
+        target:addStatusEffect(dsp.effects.INVISIBLE, 0, 10, math.floor(200 * SNEAK_INVIS_DURATION_MULTIPLIER));
     end
 end;

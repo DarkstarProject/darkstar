@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Aeroga
--- Deals wind damage to enemies within area of effect.
+-- Deals wind damage to enemies within area of dsp.effects.
 -----------------------------------------
 
 require("scripts/globals/magic");

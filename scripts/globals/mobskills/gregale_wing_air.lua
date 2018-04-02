@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gregale Wing
 --
---  Description: An icy wind deals Ice damage to enemies within a very wide area of effect. Additional effect: Paralyze
+--  Description: An icy wind deals Ice damage to enemies within a very wide area of dsp.effects. Additional effect: Paralyze
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 30' radial.
@@ -20,7 +20,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
     MobStatusEffectMove(mob, target, typeEffect, 40, 0, 120);
 

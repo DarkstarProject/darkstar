@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Dread Shriek
 --
--- Description: An unsettling shriek paralyzes targets in an area of effect.
+-- Description: An unsettling shriek paralyzes targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 0, 60));
 

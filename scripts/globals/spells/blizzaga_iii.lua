@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Blizzaga III
--- Deals ice damage to enemies within area of effect.
+-- Deals ice damage to enemies within area of dsp.effects.
 -----------------------------------------
 
 require("scripts/globals/magic");

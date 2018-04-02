@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Crystal Rain
--- Invokes the power of a crystal to deal Light damage to targets in an area of effect.
+-- Invokes the power of a crystal to deal Light damage to targets in an area of dsp.effects.
 -- Range: 15' radial
 ---------------------------------------------------
 

@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Vulcan Shot
 --
--- Description: Fires an explosive bullet at targets in an area of effect.
+-- Description: Fires an explosive bullet at targets in an area of dsp.effects.
 -- Type: Magical
 -- Can be dispelled: N/A
 -- Utsusemi/Blink absorb: Wipes shadows?

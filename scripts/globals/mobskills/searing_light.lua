@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Searing Light
--- Deals light elemental damage to enemies within area of effect.
+-- Deals light elemental damage to enemies within area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

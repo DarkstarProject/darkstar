@@ -4,6 +4,7 @@
 --
 -- Contains variable-ized definitions of things like core enums for use in lua scripts.
 ------------------------------------
+dsp = dsp or {}
 
 
 ------------------------------------
@@ -125,7 +126,7 @@ SUBEFFECT_IMPACTION     = 14;
 -- These codes represent the actual status effects.
 -- They are simply for convenience.
 ------------------------------------
-EFFECT =
+dsp.effects =
 {
     KO                       = 0,
     WEAKNESS                 = 1,
@@ -818,15 +819,15 @@ EFFECTFLAG_NO_CANCEL       = 0x800000
 ------------------------------------
 
 function removeSleepEffects(target)
-    target:delStatusEffect(EFFECT.SLEEP_I);
-    target:delStatusEffect(EFFECT.SLEEP_II);
-    target:delStatusEffect(EFFECT.LULLABY);
+    target:delStatusEffect(dsp.effects.SLEEP_I);
+    target:delStatusEffect(dsp.effects.SLEEP_II);
+    target:delStatusEffect(dsp.effects.LULLABY);
 end;
 
 function hasSleepEffects(target)
-    if (target:hasStatusEffect(EFFECT.SLEEP_I) or
-        target:hasStatusEffect(EFFECT.SLEEP_II) or
-        target:hasStatusEffect(EFFECT.LULLABY)) then
+    if (target:hasStatusEffect(dsp.effects.SLEEP_I) or
+        target:hasStatusEffect(dsp.effects.SLEEP_II) or
+        target:hasStatusEffect(dsp.effects.LULLABY)) then
         return true;
     end
     return false;
@@ -1230,7 +1231,7 @@ MOD_SHADOW_BIND_EXT           = 425 -- Extends the time of shadowbind
 MOD_ABSORB_PHYSDMG_TO_MP      = 426 -- Absorbs a percentage of physical damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL = 427 -- Reduces Enmity decrease when taking physical damage
 MOD_SHIELD_MASTERY_TP         = 485 -- Shield mastery TP bonus when blocking with a shield
-MOD_PERFECT_COUNTER_ATT       = 428 -- Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
+MOD_PERFECT_COUNTER_ATT       = 428 -- Raises weapon damage by 20 when countering while under the Perfect Counter dsp.effects. This also affects Weapon Rank (though not if fighting barehanded).
 MOD_FOOTWORK_ATT_BONUS        = 429 -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
 
 MOD_MINNE_EFFECT        = 433 --

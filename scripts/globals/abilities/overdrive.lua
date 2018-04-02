@@ -22,6 +22,6 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT.OVERDRIVE, 0, 0, 60)
-    return EFFECT.OVERDRIVE
+    player:addStatusEffect(dsp.effects.OVERDRIVE, 0, 0, 60)
+    return dsp.effects.OVERDRIVE
 end

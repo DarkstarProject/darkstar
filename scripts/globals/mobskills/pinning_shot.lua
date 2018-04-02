@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Pinning Shot
 --
---  Description: Delivers a threefold ranged attack to targets in an area of effect. Additional effect: Bind
+--  Description: Delivers a threefold ranged attack to targets in an area of dsp.effects. Additional effect: Bind
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded);
 
-    local typeEffect = EFFECT.BIND;
+    local typeEffect = dsp.effects.BIND;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
 

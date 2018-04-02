@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Typhoon
 --
---  Description: Spins around dealing damage to targets in an area of effect.
+--  Description: Spins around dealing damage to targets in an area of dsp.effects.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-4 shadows
 --  Range: 10' radial

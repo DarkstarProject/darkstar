@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Flame_Thrower
--- Description: Uses a flamethrower that deals Fire damage to players in a fan-shaped area of effect. Additional effect: Plague
+-- Description: Uses a flamethrower that deals Fire damage to players in a fan-shaped area of dsp.effects. Additional effect: Plague
 -- Type: Magical
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
@@ -25,7 +25,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PLAGUE;
+    local typeEffect = dsp.effects.PLAGUE;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 5, 3, 30);
 
     local dmgmod = 2;

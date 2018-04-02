@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Goblin Dice
 --
--- Description: Benediction for party members within area of effect.
+-- Description: Benediction for party members within area of dsp.effects.
 -- Type: Magical (Wind)
 --
 --

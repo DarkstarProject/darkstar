@@ -2,7 +2,7 @@
 -- Tidal Slash
 --
 -- Description: Deals Water damage in a threefold 
--- attack to targets in a fan-shaped area of effect.
+-- attack to targets in a fan-shaped area of dsp.effects.
 -- Type: Physical?
 -- Utsusemi/Blink absorb: 2-3 shadows
 -- Range: Melee?

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Wild Rage
 --
---  Description: Deals physical damage to enemies within area of effect.
+--  Description: Deals physical damage to enemies within area of dsp.effects.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 15' radial
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- king vinegrroon
     if (mob:getPool() == 2262) then
-        local typeEffect = EFFECT.POISON;
+        local typeEffect = dsp.effects.POISON;
         local power = 25;
         MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60);
     end

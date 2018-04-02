@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Cursed Sphere
 --
---  Description: Deals water damage to enemies within area of effect.
+--  Description: Deals water damage to enemies within area of dsp.effects.
 --  Type: Magical Water (Element)
 --
 --

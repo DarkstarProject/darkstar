@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = 25;
     local duration = 180;
 
-    local typeEffect = EFFECT.REGEN;
+    local typeEffect = dsp.effects.REGEN;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 3, duration));
     return typeEffect;

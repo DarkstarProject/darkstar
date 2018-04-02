@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Boiling Point
 --
--- Description: Reduces magic defense in a fan-shaped area of effect.
+-- Description: Reduces magic defense in a fan-shaped area of dsp.effects.
 -- Type: Magical
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.MAGIC_DEF_DOWN;
+    local typeEffect = dsp.effects.MAGIC_DEF_DOWN;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 180));
     return typeEffect;
 end;

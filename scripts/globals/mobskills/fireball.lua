@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Fireball
--- Deals Fire damage in an area of effect.
+-- Deals Fire damage in an area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

@@ -108,7 +108,7 @@ function onWeaponskill(user, target, wsid, tp, action)
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
                 -- Add a listener for when aftermath wears (to remove mods)
-                user:addListener("EFFECT.LOSE", NAME_EFFECT_LOSE, aftermathLost);
+                user:addListener("dsp.effects.LOSE", NAME_EFFECT_LOSE, aftermathLost);
                 
                 -- Aftermath applies to pets
                 local pet = user:getPet();
@@ -121,7 +121,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT.AFTERMATH) then
+    if (effect:getType() == dsp.effects.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -143,8 +143,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

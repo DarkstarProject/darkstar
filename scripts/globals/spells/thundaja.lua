@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Thundaja
--- Deals lightning damage to enemies within area of effect.
+-- Deals lightning damage to enemies within area of dsp.effects.
 -- Successive use enhances spell potency.
 -----------------------------------------
 

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Water Bomb
 --
---  Description: Deals water damage to enemies within area of effect. Additional effect: Silence.
+--  Description: Deals water damage to enemies within area of dsp.effects. Additional effect: Silence.
 --  Type: Magical (Water)
 --
 --
@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.SILENCE;
+    local typeEffect = dsp.effects.SILENCE;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
 

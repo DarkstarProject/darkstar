@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Lava_Spit
--- Deals Fire damage to enemies within an area of effect.
+-- Deals Fire damage to enemies within an area of dsp.effects.
 --
 ---------------------------------------------
 

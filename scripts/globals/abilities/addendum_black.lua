@@ -19,16 +19,16 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT.ADDENDUM_BLACK) then
-        return msgBasic.EFFECT.ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effects.ADDENDUM_BLACK) then
+        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(EFFECT.LIGHT_ARTS);
-    player:delStatusEffectSilent(EFFECT.ADDENDUM_WHITE);
-    player:delStatusEffectSilent(EFFECT.DARK_ARTS);
+    player:delStatusEffectSilent(dsp.effects.LIGHT_ARTS);
+    player:delStatusEffectSilent(dsp.effects.ADDENDUM_WHITE);
+    player:delStatusEffectSilent(dsp.effects.DARK_ARTS);
 
     local skillbonus = player:getMod(MOD_DARK_ARTS_SKILL);
     local effectbonus = player:getMod(MOD_DARK_ARTS_EFFECT);
@@ -37,7 +37,7 @@ function onUseAbility(player,target,ability)
         helixbonus = math.floor(player:getMainLvl() / 4);
     end
 
-    player:addStatusEffectEx(EFFECT.ADDENDUM_BLACK,EFFECT.ADDENDUM_BLACK,effectbonus,0,7200,0,helixbonus,true);
+    player:addStatusEffectEx(dsp.effects.ADDENDUM_BLACK,dsp.effects.ADDENDUM_BLACK,effectbonus,0,7200,0,helixbonus,true);
 
-    return EFFECT.ADDENDUM_BLACK;
+    return dsp.effects.ADDENDUM_BLACK;
 end;

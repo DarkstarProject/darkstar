@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Sound Vacuum
 --
--- Description: Silences opponents in a fan-shaped area of effect.
+-- Description: Silences opponents in a fan-shaped area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown cone
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.SILENCE;
+    local typeEffect = dsp.effects.SILENCE;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 45));
 

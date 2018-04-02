@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Sleet Blast
 --
---  Description: Deals ice damage to enemies in area of effect.
+--  Description: Deals ice damage to enemies in area of dsp.effects.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 18' radial.

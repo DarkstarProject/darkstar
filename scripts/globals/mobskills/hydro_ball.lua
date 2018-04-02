@@ -1,6 +1,6 @@
 ---------------------------------------------
 --  Hydroball
---  Deals Water damage to targets in a fan-shaped area of effect. Additional effect: STR Down
+--  Deals Water damage to targets in a fan-shaped area of dsp.effects. Additional effect: STR Down
 --  Type: Breath
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Notes: STR reduced by 15%.
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STR_DOWN;
+    local typeEffect = dsp.effects.STR_DOWN;
 
     MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120);
 

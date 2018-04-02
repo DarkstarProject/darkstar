@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Voidsong
 --
---  Description: Removes all status effects in an area of effect.
+--  Description: Removes all status effects in an area of dsp.effects.
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: 20' radial
@@ -15,7 +15,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     -- can only used if not silenced
-    if (mob:getMainJob() == JOBS.BRD and mob:hasStatusEffect(EFFECT.SILENCE) == false) then
+    if (mob:getMainJob() == JOBS.BRD and mob:hasStatusEffect(dsp.effects.SILENCE) == false) then
         return 0;
     end
     return 1;

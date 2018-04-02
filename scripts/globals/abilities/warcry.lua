@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Warcry
--- Enhances attacks of party members within area of effect.
+-- Enhances attacks of party members within area of dsp.effects.
 -- Obtained: Warrior Level 35
 -- Recast Time: 5:00
 -- Duration: 0:30
@@ -27,5 +27,5 @@ function onUseAbility(player,target,ability)
     duration = duration + player:getMod(MOD_WARCRY_DURATION);
 
 
-    target:addStatusEffect(EFFECT.WARCRY,power,0,duration,0,merit);
+    target:addStatusEffect(dsp.effects.WARCRY,power,0,duration,0,merit);
 end;

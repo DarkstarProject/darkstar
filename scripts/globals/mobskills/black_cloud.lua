@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Black Cloud
 --
---  Description: A cloud deals Dark damage to enemies in an area of effect. Additional effect: Blind
+--  Description: A cloud deals Dark damage to enemies in an area of dsp.effects. Additional effect: Blind
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 15' radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BLINDNESS;
+    local typeEffect = dsp.effects.BLINDNESS;
 
     MobStatusEffectMove(mob, target, typeEffect, 18, 0, 180);
 

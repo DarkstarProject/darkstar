@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Cyclone Wing
 --
--- Description: Deals darkness damage to enemies within a very wide area of effect. Additional effect: Sleep
+-- Description: Deals darkness damage to enemies within a very wide area of dsp.effects. Additional effect: Sleep
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 30' radial.
@@ -22,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.SLEEP_I;
+    local typeEffect = dsp.effects.SLEEP_I;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
 

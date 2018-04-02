@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Wind Shear
 --
---  Description: Deals damage to enemies within an area of effect. Additional effect: Knockback
+--  Description: Deals damage to enemies within an area of dsp.effects. Additional effect: Knockback
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 10' radial
@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    -- EFFECT.KNOCKBACK
+    -- dsp.effects.KNOCKBACK
 
 
     local numhits = 1;
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 
-    local typeEffect = EFFECT.WEIGHT;
+    local typeEffect = dsp.effects.WEIGHT;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120);
 

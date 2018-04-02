@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Ochre Blast
 --
---  Description: Deals fire damage to enemies in area of effect.
+--  Description: Deals fire damage to enemies in area of dsp.effects.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 18' radial.

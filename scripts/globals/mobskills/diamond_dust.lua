@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Diamond Dust
--- Deals ice elemental damage to enemies within area of effect.
+-- Deals ice elemental damage to enemies within area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Earthen Ward
--- Titan grants Stoneskin to party members within area of effect.
+-- Titan grants Stoneskin to party members within area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,11 +12,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STONESKIN;
+    local typeEffect = dsp.effects.STONESKIN;
     local base = mob:getMainLvl()*2 + 50;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 180));
 
-    return EFFECT.STONESKIN;
+    return dsp.effects.STONESKIN;
 
 end

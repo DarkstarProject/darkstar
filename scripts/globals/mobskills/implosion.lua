@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Implosion
 --
--- Description: Channels a wave of negative energy, damaging all targets in very wide area of effect.
+-- Description: Channels a wave of negative energy, damaging all targets in very wide area of dsp.effects.
 -- Type: Magical
 -- Wipes Shadows
 -- Range: 10' radial

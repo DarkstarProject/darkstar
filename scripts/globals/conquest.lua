@@ -230,10 +230,10 @@ end;
 function finishConquestGuard(player,csid,option,size,inventory,guardnation)
     if (option == 1) then
         local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
-        player:delStatusEffectSilent(EFFECT.SIGIL);
-        player:delStatusEffectSilent(EFFECT.SANCTION);
-        player:delStatusEffectSilent(EFFECT.SIGNET);
-        player:addStatusEffect(EFFECT.SIGNET,0,0,duration); -- Grant Signet
+        player:delStatusEffectSilent(dsp.effects.SIGIL);
+        player:delStatusEffectSilent(dsp.effects.SANCTION);
+        player:delStatusEffectSilent(dsp.effects.SIGNET);
+        player:addStatusEffect(dsp.effects.SIGNET,0,0,duration); -- Grant Signet
     elseif (option >= 32768 and option <= 32944) then
         for Item = 1,size,3 do
             if (option == inventory[Item]) then

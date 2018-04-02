@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Leafstorm
 --
---  Description: Deals wind damage within area of effect.
+--  Description: Deals wind damage within area of dsp.effects.
 --  Type: Magical Wind
 --
 --

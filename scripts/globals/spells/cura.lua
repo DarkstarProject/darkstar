@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Cura
--- Restores hp in area of effect. Self target only
+-- Restores hp in area of dsp.effects. Self target only
 -- From what I understand, Cura's base potency is the same as Cure's.
 -- With Afflatus Misery Bonus, it can be as potent as a Curaga II
 -- Modeled after our Cure.lua, which was modeled after the below reference
@@ -76,7 +76,7 @@ function onSpellCast(caster,target,spell)
     end
 
     --Apply Afflatus Misery Bonus to Final Result
-    if (caster:hasStatusEffect(EFFECT.AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(dsp.effects.AFFLATUS_MISERY)) then
         if (caster:getID() == target:getID()) then -- Let's use a local var to hold the power of Misery so the boost is applied to all targets,
             caster:setLocalVar("Misery_Power", caster:getMod(MOD_AFFLATUS_MISERY));
         end;

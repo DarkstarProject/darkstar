@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Splash Breath
--- Deals Water damage in a fan-shaped cone area of effect.
+-- Deals Water damage in a fan-shaped cone area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

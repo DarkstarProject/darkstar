@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Laser_Shower
 --
--- Description: Fires several lasers into a fan-shaped area of effect. Additional effect: Defense Down
+-- Description: Fires several lasers into a fan-shaped area of dsp.effects. Additional effect: Defense Down
 -- Type: Breath
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown cone
@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.DEFENSE_DOWN, 25, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.DEFENSE_DOWN, 25, 0, 60);
 
     target:delHP(dmg);
     return dmg;

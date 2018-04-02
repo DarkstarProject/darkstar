@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Empty Beleaguer
--- Deals damage in an area of effect.
+-- Deals damage in an area of dsp.effects.
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

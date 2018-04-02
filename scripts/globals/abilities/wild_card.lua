@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Wild Card
--- Has a random effect on all party members within area of effect.
+-- Has a random effect on all party members within area of dsp.effects.
 -- Obtained: Corsair Level 1
 -- Recast Time: 1:00:00
 -- Duration: Instant

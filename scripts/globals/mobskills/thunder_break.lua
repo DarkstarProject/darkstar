@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Thunder Break
--- Channels the power of Thunder toward targets in an area of effect. Additional effect: Stun
+-- Channels the power of Thunder toward targets in an area of dsp.effects. Additional effect: Stun
 
 ---------------------------------------------------
 
@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.STUN;
+    local typeEffect = dsp.effects.STUN;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 4);
 

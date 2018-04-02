@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Gorgon Dance
 --
--- Description: Petrifies all targets in an area of effect.
+-- Description: Petrifies all targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial?
@@ -23,7 +23,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PETRIFICATION;
+    local typeEffect = dsp.effects.PETRIFICATION;
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, math.random(60,180)));
     return typeEffect;
 end;

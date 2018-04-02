@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Snort
 --
--- Description: Deals Wind damage to targets in a fan-shaped area of effect. Additional effect: Knockback
+-- Description: Deals Wind damage to targets in a fan-shaped area of dsp.effects. Additional effect: Knockback
 -- Type: Magical (Wind)
 --
 ---------------------------------------------

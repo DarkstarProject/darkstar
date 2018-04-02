@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Hurricane Wing
 --
---  Description: Deals hurricane-force wind damage to enemies within a very wide area of effect. Additional effect: Blind
+--  Description: Deals hurricane-force wind damage to enemies within a very wide area of dsp.effects. Additional effect: Blind
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 30' radial.
@@ -23,7 +23,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BLINDNESS;
+    local typeEffect = dsp.effects.BLINDNESS;
 
     MobStatusEffectMove(mob, target, typeEffect, 60, 0, 30);
 

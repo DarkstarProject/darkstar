@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Bilgestorm
 --
---  Description: Deals damage in an area of effect. Additional effect: Lowers attack, accuracy, and defense
+--  Description: Deals damage in an area of dsp.effects. Additional effect: Lowers attack, accuracy, and defense
 --  Type: Physical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: Unknown
@@ -28,9 +28,9 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = math.random(20,25);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.ACCURACY_DOWN, power, 0, 60);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.ATTACK_DOWN, power, 0, 60);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.DEFENSE_DOWN, power, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.ACCURACY_DOWN, power, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.ATTACK_DOWN, power, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.DEFENSE_DOWN, power, 0, 60);
 
     local numhits = 1;
     local accmod = 1;

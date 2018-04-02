@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT.GOLDSMITHING_IMAGERY) == true) then
+    if (target:hasStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY) == true) then
         result = 238;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT.GOLDSMITHING_IMAGERY,3,0,120);
+    target:addStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

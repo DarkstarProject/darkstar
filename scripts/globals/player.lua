@@ -33,18 +33,18 @@ function onGameIn(player, firstlogin, zoning)
 
     if (player:getVar("GodMode") == 1) then
         -- Add bonus effects to the player..
-        player:addStatusEffect(EFFECT.MAX_HP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT.MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT.MIGHTY_STRIKES,1,0,0);
-        player:addStatusEffect(EFFECT.HUNDRED_FISTS,1,0,0);
-        player:addStatusEffect(EFFECT.CHAINSPELL,1,0,0);
-        player:addStatusEffect(EFFECT.PERFECT_DODGE,1,0,0);
-        player:addStatusEffect(EFFECT.INVINCIBLE,1,0,0);
-        player:addStatusEffect(EFFECT.ELEMENTAL_SFORZO,1,0,0);
-        player:addStatusEffect(EFFECT.MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT.REGAIN,300,0,0);
-        player:addStatusEffect(EFFECT.REFRESH,99,0,0);
-        player:addStatusEffect(EFFECT.REGEN,99,0,0);
+        player:addStatusEffect(dsp.effects.MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effects.MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effects.MIGHTY_STRIKES,1,0,0);
+        player:addStatusEffect(dsp.effects.HUNDRED_FISTS,1,0,0);
+        player:addStatusEffect(dsp.effects.CHAINSPELL,1,0,0);
+        player:addStatusEffect(dsp.effects.PERFECT_DODGE,1,0,0);
+        player:addStatusEffect(dsp.effects.INVINCIBLE,1,0,0);
+        player:addStatusEffect(dsp.effects.ELEMENTAL_SFORZO,1,0,0);
+        player:addStatusEffect(dsp.effects.MANAFONT,1,0,0);
+        player:addStatusEffect(dsp.effects.REGAIN,300,0,0);
+        player:addStatusEffect(dsp.effects.REFRESH,99,0,0);
+        player:addStatusEffect(dsp.effects.REGEN,99,0,0);
 
         -- Add bonus mods to the player..
         player:addMod(MOD_RACC,2500);

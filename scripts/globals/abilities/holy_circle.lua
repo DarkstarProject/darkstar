@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Holy Circle
--- Grants resistance, defense, and attack against Undead to party members within the area of effect.
+-- Grants resistance, defense, and attack against Undead to party members within the area of dsp.effects.
 -- Obtained: Paladin Level 5
 -- Recast Time: 5:00 minutes
 -- Duration: 3:00 minutes
@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local duration = 180 + player:getMod(MOD_HOLY_CIRCLE_DURATION);
-    target:addStatusEffect(EFFECT.HOLY_CIRCLE,15,0,duration);
+    target:addStatusEffect(dsp.effects.HOLY_CIRCLE,15,0,duration);
 end;

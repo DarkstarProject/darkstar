@@ -54,8 +54,8 @@ function onMobFight(mob,target)
             mob:setMod(MOD_UDMGPHYS, -50);
             mob:setMod(MOD_UDMGRANGE, -50);
             mob:setMod(MOD_UDMGMAGIC, -50);
-            mob:addStatusEffect(EFFECT.REGAIN,7,3,0); -- The final form has Regain,
-            mob:getStatusEffect(EFFECT.REGAIN):setFlag(32);
+            mob:addStatusEffect(dsp.effects.REGAIN,7,3,0); -- The final form has Regain,
+            mob:getStatusEffect(dsp.effects.REGAIN):setFlag(32);
             currentForm = 2;
             mob:setLocalVar("form", currentForm)
         end
@@ -69,8 +69,8 @@ function onAdditionalEffect(mob, player)
         return 0,0,0;
     else
         local duration = 5 * resist;
-        if (player:hasStatusEffect(EFFECT.STUN) == false) then
-            player:addStatusEffect(EFFECT.STUN, 0, 0, duration);
+        if (player:hasStatusEffect(dsp.effects.STUN) == false) then
+            player:addStatusEffect(dsp.effects.STUN, 0, 0, duration);
         end
         return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, EFFECT_STUN;
     end

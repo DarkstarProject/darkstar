@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sticky Thread
--- Inflicts slow on targets in a fan-shaped area of effect.
+-- Inflicts slow on targets in a fan-shaped area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.SLOW;
+    local typeEffect = dsp.effects.SLOW;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 128, 0, 120));
 

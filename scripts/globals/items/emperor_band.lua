@@ -12,12 +12,12 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT.DEDICATION) == true) then
+    if (target:hasStatusEffect(dsp.effects.DEDICATION) == true) then
         result = 56;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT.DEDICATION,50,0,43200,0,30000);
+    target:addStatusEffect(dsp.effects.DEDICATION,50,0,43200,0,30000);
 end;

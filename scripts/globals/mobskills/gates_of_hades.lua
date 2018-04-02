@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gates of Hades
 --
---  Description: Deals severe Fire damage to enemies within an area of effect. Additional effect: Burn
+--  Description: Deals severe Fire damage to enemies within an area of dsp.effects. Additional effect: Burn
 --  Type:  Magical
 --
 --
@@ -35,7 +35,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BURN;
+    local typeEffect = dsp.effects.BURN;
     local power = 21;
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);

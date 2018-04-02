@@ -104,8 +104,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
-    if (target:hasStatusEffect(EFFECT.YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
-        eva = eva + target:getStatusEffect(EFFECT.YONIN):getPower();
+    if (target:hasStatusEffect(dsp.effects.YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(dsp.effects.YONIN):getPower();
     end
 
     --apply WSC
@@ -255,7 +255,7 @@ end
 -- 2 = TP_MAB_BONUS
 -- 3 = TP_DMG_BONUS
 -- tpvalue affects the strength of having more TP along the following lines:
--- TP_NO_EFFECT -> tpvalue has no effect.
+-- TP_NO_EFFECT -> tpvalue has no dsp.effects.
 -- TP_MACC_BONUS -> direct multiplier to macc (1 for default)
 -- TP_MAB_BONUS -> direct multiplier to mab (1 for default)
 -- TP_DMG_BONUS -> direct multiplier to damage (V+dINT) (1 for default)
@@ -480,7 +480,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT.PERFECT_DODGE) or target:hasStatusEffect(EFFECT.ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.SKILL_MISS);
         return 0;
@@ -506,13 +506,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT.COPY_IMAGE);
-        target:delStatusEffect(EFFECT.BLINK);
-        target:delStatusEffect(EFFECT.THIRD_EYE);
+        target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        target:delStatusEffect(dsp.effects.BLINK);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
-        target:delStatusEffect(EFFECT.THIRD_EYE);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide

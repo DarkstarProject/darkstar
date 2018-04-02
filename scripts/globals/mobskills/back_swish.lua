@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Back Swish
 --
---  Description: Inflicts damage in a frontal area of effect. Additional effect: Knockback.
+--  Description: Inflicts damage in a frontal area of dsp.effects. Additional effect: Knockback.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Melee

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Curaga II
--- Restores HP of all party members within area of effect.
+-- Restores HP of all party members within area of dsp.effects.
 -----------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

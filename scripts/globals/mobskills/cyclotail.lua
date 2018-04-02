@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Cyclotail
--- Deals damage in an area of effect.
+-- Deals damage in an area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

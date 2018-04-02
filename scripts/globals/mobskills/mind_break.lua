@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Mind Break
 --
--- Description: Reduces maximum MP in an area of effect.
+-- Description: Reduces maximum MP in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 15' radial
@@ -18,7 +18,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local message = msgBasic.SKILL_MISS;
-    local typeEffect = EFFECT.MAX_MP_DOWN;
+    local typeEffect = dsp.effects.MAX_MP_DOWN;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 42, 0, 120));
 

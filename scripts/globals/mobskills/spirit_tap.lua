@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = 0;
 
     if (effect ~= 0) then
-        skill:setMsg(msgBasic.EFFECT.DRAINED);
+        skill:setMsg(msgBasic.EFFECT_DRAINED);
         return 1;
     else
         -- time to drain HP. 50-100

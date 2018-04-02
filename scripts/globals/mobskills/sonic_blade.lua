@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Sonic Blade
 --
---  Description: Deals damage in an area of effect.
+--  Description: Deals damage in an area of dsp.effects.
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Unknown

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Obfuscate
 --
--- Description: A blinding wave hits players in an area of effect.
+-- Description: A blinding wave hits players in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.BLINDNESS;
+    local typeEffect = dsp.effects.BLINDNESS;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120));
 

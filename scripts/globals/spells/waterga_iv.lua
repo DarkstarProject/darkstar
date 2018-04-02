@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Waterga IV
--- Deals water damage to enemies within area of effect.
+-- Deals water damage to enemies within area of dsp.effects.
 -----------------------------------------
 
 require("scripts/globals/magic");

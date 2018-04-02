@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Rampart
--- Grants a Magic Shield effect and enhances defense for party members within area of effect.
+-- Grants a Magic Shield effect and enhances defense for party members within area of dsp.effects.
 -- Obtained: Paladin Level 62
 -- Recast Time: 5:00
 -- Duration: 0:30
@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local duration = 30 + player:getMod(MOD_RAMPART_DURATION);
-    target:addStatusEffect(EFFECT.MAGIC_SHIELD, 1, 0, duration);
+    target:addStatusEffect(dsp.effects.MAGIC_SHIELD, 1, 0, duration);
 end;

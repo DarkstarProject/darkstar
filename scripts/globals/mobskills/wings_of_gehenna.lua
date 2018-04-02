@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Wings of Gehenna
 --
---  Description: Deals damage to players in an area of effect. Additional effect: Knockback &amp; Stun
+--  Description: Deals damage to players in an area of dsp.effects. Additional effect: Knockback &amp; Stun
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: Unknown radial
@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- KNOCKBACK
 
-    local typeEffect = EFFECT.STUN;
+    local typeEffect = dsp.effects.STUN;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 4);
 

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tebbad Wing
 --
---  Description: A hot wind deals Fire damage to enemies within a very wide area of effect. Additional effect: Plague
+--  Description: A hot wind deals Fire damage to enemies within a very wide area of dsp.effects. Additional effect: Plague
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 30' radial.
@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT.MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
         return 1;
     elseif (mob:AnimationSub() == 1) then
         return 1;
@@ -24,7 +24,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PLAGUE;
+    local typeEffect = dsp.effects.PLAGUE;
 
     MobStatusEffectMove(mob, target, typeEffect, 10, 0, 120);
 

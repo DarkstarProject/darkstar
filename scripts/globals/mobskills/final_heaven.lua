@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Final Heaven
 --
---  Description: Caestus/Spharai: Temporarily enhances Subtle Blow effect. 
+--  Description: Caestus/Spharai: Temporarily enhances Subtle Blow dsp.effects. 
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

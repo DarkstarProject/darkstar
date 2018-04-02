@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT.PROWESS : Enhanced magic acc. and magic atk
+-- dsp.effects.PROWESS : Enhanced magic acc. and magic atk
 --
 -----------------------------------
 

@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Gravity Field
--- Entangles all targets in an area of effect.
+-- Entangles all targets in an area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.SLOW;
+    local typeEffect = dsp.effects.SLOW;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 128, 0, 120));
 
     return typeEffect;

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Flying Hip Press
 --
---  Description: Deals Wind damage to enemies within area of effect.
+--  Description: Deals Wind damage to enemies within area of dsp.effects.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: 15' radial

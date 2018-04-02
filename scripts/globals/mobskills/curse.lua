@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Curse
 --
--- Description: Inflicts a curse on all targets in an area of effect.
+-- Description: Inflicts a curse on all targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 15' radial
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.CURSE_I;
+    local typeEffect = dsp.effects.CURSE_I;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 0, 480));
 

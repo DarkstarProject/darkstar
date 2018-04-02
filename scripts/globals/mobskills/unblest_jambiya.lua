@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Unblest Jambiya
 --  Family: Qutrub
---  Description: Steals HP from targets in an area of effect.
+--  Description: Steals HP from targets in an area of dsp.effects.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: AoE 15'

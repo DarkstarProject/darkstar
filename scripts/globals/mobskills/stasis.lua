@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Stasis
 --
--- Description: Paralyzes targets in an area of effect.
+-- Description: Paralyzes targets in an area of dsp.effects.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial
@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local shadows = MOBPARAM_1_SHADOW;
     local dmg = MobFinalAdjustments(10,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,shadows);
 
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
         mob:resetEnmity(target);
 

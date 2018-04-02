@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Snow Cloud
--- Deals Ice damage to targets in a fan-shaped area of effect. Additional effect: Paralyze
+-- Deals Ice damage to targets in a fan-shaped area of dsp.effects. Additional effect: Paralyze
 -- Range: 10' cone
 ---------------------------------------------------
 
@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120);
 

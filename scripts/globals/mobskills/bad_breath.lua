@@ -16,14 +16,14 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    MobStatusEffectMove(mob, target, EFFECT.SLOW, 128, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.SLOW, 128, 0, 60);
 
-    MobStatusEffectMove(mob, target, EFFECT.POISON, (mob:getMainLvl()/10), 3, 60);
-    MobStatusEffectMove(mob, target, EFFECT.SILENCE, 1, 0, 60);
-    MobStatusEffectMove(mob, target, EFFECT.PARALYSIS, 15, 0, 60);
-    MobStatusEffectMove(mob, target, EFFECT.BIND, 1, 0, 30);
-    MobStatusEffectMove(mob, target, EFFECT.BLINDNESS, 15, 0, 60);
-    MobStatusEffectMove(mob, target, EFFECT.WEIGHT, 50, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.POISON, (mob:getMainLvl()/10), 3, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.SILENCE, 1, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.PARALYSIS, 15, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.BIND, 1, 0, 30);
+    MobStatusEffectMove(mob, target, dsp.effects.BLINDNESS, 15, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.WEIGHT, 50, 0, 60);
 
     local dmgmod = MobBreathMove(mob, target, 0.15, 3, ELE_EARTH, 500);
 

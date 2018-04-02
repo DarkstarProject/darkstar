@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Thundaga III
--- Deals lightning damage to enemies within area of effect.
+-- Deals lightning damage to enemies within area of dsp.effects.
 -----------------------------------------
 
 require("scripts/globals/magic");

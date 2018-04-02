@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sonic Wave
--- Reduces defense of enemies in an area of effect.
+-- Reduces defense of enemies in an area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.DEFENSE_DOWN;
+    local typeEffect = dsp.effects.DEFENSE_DOWN;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 30, 0, 120));
 
     return typeEffect;

@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Tidal Wave
--- Deals water elemental damage to enemies within area of effect.
+-- Deals water elemental damage to enemies within area of dsp.effects.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

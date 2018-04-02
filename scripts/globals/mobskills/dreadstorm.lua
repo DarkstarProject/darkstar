@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Dreadstorm
 --
--- Description: Deals magical damage in an area of effect. Additional effect: Terror
+-- Description: Deals magical damage in an area of dsp.effects. Additional effect: Terror
 -- Type: Magical
 -- Wipes Shadows
 -- Range: 13' radial
@@ -25,7 +25,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT.TERROR;
+    local typeEffect = dsp.effects.TERROR;
     local duration = 10;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration));

@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Hellsnap
--- Stuns targets in an area of effect.
+-- Stuns targets in an area of dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -32,7 +32,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT.STUN, 1, 0, 4);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.STUN, 1, 0, 4);
 
-    return EFFECT.STUN;
+    return dsp.effects.STUN;
 end;
