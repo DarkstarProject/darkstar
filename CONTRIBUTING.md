@@ -58,8 +58,8 @@ Much of this can be automated. We highly recommend [editorconfig](http://editorc
   ```
   not like this:
   ```
-  variable  = thing
-  variable2 = thing2
+  variable1 = thing1
+   variable = thing
   ```
   and definitely not like this:
   ```
