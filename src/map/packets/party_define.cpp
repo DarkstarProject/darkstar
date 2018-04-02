@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "party_define.h"
 
 #include "../entities/charentity.h"
+#include "../entities/trustentity.h"
 #include "../party.h"
 #include "../alliance.h"
 #include "../utils/zoneutils.h"

@@ -34,12 +34,13 @@ This file is part of DarkStar-server source code.
 
 #include "battleentity.h"
 #include "petentity.h"
-#include "trustentity.h"
 
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
+
+class CTrustEntity;
 
 struct jobs_t
 {

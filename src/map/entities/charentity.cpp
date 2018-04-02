@@ -53,6 +53,7 @@
 
 #include "charentity.h"
 #include "automatonentity.h"
+#include "trustentity.h"
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"

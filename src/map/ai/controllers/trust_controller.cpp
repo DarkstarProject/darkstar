@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "../ai_container.h"
 #include "../../status_effect_container.h"
 #include "../../entities/charentity.h"
+#include "../../entities/trustentity.h"
 #include "../../packets/char.h"
 #include "../../../common/utils.h"
 
