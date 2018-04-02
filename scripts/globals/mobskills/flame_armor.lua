@@ -19,7 +19,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = 50;
     local duration = 180;
-    local typeEffect = EFFECT_BLAZE_SPIKES;
+    local typeEffect = dsp.effects.BLAZE_SPIKES;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
 

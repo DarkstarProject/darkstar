@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
     if (math.random(1,100) < skill:getTP()/3) then
-        MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_INT_DOWN, 10, 3, 120);
+        MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.INT_DOWN, 10, 3, 120);
     end
 
     target:delHP(dmg);

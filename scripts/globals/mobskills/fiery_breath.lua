@@ -14,7 +14,7 @@ require("scripts/globals/utils");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
         return 1;
     elseif (target:isBehind(mob, 48) == true) then
         return 1;

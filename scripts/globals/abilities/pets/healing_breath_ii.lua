@@ -23,9 +23,9 @@ function onUseAbility(pet, target, skill, action)
    -- TODO: 5 per merit for augmented AF2 (10663 *w/ augment*)
     local master = pet:getMaster()
     local deep = 0;
-   if (pet:hasStatusEffect(EFFECT_MAGIC_ATK_BOOST) == true) then
+   if (pet:hasStatusEffect(dsp.effects.MAGIC_ATK_BOOST) == true) then
       deep = 50 + (master:getMerit(MERIT_DEEP_BREATHING)-1)*5;
-      pet:delStatusEffect(EFFECT_MAGIC_ATK_BOOST);
+      pet:delStatusEffect(dsp.effects.MAGIC_ATK_BOOST);
    end
 
     local gear = master:getMod(MOD_WYVERN_BREATH); -- Master gear that enhances breath

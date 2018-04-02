@@ -3,7 +3,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    local encumbrance = target:getStatusEffect(EFFECT_ENCUMBRANCE_I);
+    local encumbrance = target:getStatusEffect(dsp.effects.ENCUMBRANCE_I);
     if (encumbrance) then
         local power = encumbrance:getPower()
         if bit.band(power, 0x0020) > 0 then
@@ -14,12 +14,12 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    local encumbrance = target:getStatusEffect(EFFECT_ENCUMBRANCE_I)
+    local encumbrance = target:getStatusEffect(dsp.effects.ENCUMBRANCE_I)
     local power = encumbrance:getPower()
     local newpower = bit.band(power, bit.bnot(0x0020))
-    target:delStatusEffectSilent(EFFECT_ENCUMBRANCE_I)
+    target:delStatusEffectSilent(dsp.effects.ENCUMBRANCE_I)
     if (newpower > 0) then
-        target:addStatusEffectEx(EFFECT_ENCUMBRANCE_I, EFFECT_ENCUMBRANCE_I, newpower, 0, 0)
+        target:addStatusEffectEx(dsp.effects.ENCUMBRANCE_I, dsp.effects.ENCUMBRANCE_I, newpower, 0, 0)
     end
     target:messageText(target, 7210)
 end;

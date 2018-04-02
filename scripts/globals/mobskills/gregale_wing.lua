@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
+    if (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
         return 1;
     elseif (mob:AnimationSub() == 1) then
         return 1;
@@ -24,7 +24,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
     MobStatusEffectMove(mob, target, typeEffect, 40, 0, 120);
 

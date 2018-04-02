@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_ATTACK_DOWN;
+    local effect = dsp.effects.ATTACK_DOWN;
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation

@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
         -- Spell succeeds if a 1 or 1/2 resist check is achieved
         if (duration >= 210) then
 
-            if (target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
+            if (target:addStatusEffect(dsp.effects.SLOW,power,0,duration)) then
                 spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
                 spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -40,5 +40,5 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
-    return EFFECT_SLOW;
+    return dsp.effects.SLOW;
 end;

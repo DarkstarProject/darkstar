@@ -14,5 +14,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(MERIT_ASSASSINS_CHARGE);
-    player:addStatusEffect(EFFECT_ASSASSINS_CHARGE, merits - 5, 0, 60, player:getMod(MOD_AUGMENTS_ASSASSINS_CHARGE), merits / 5);
+    player:addStatusEffect(dsp.effects.ASSASSINS_CHARGE, merits - 5, 0, 60, player:getMod(MOD_AUGMENTS_ASSASSINS_CHARGE), merits / 5);
 end;

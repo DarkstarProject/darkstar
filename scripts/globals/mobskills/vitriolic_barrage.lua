@@ -17,7 +17,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local needles = 1000 / skill:getTotalTargets();
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effects.POISON;
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 3, 60);
 

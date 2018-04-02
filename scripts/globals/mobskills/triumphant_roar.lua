@@ -23,7 +23,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = 15;
     local duration = 90;
-    local typeEffect = EFFECT_ATTACK_BOOST;
+    local typeEffect = dsp.effects.ATTACK_BOOST;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
 

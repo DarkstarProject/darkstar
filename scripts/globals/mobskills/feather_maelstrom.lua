@@ -13,8 +13,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect1 = EFFECT_BIO;
-    local typeEffect2 = EFFECT_AMNESIA;
+    local typeEffect1 = dsp.effects.BIO;
+    local typeEffect2 = dsp.effects.AMNESIA;
     local numhits = 1;
     local accmod = 2;
     local dmgmod = 2.8;

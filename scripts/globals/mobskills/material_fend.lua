@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_EVASION_BOOST;
+    local typeEffect = dsp.effects.EVASION_BOOST;
     skill:setMsg(MobBuffMove(mob, typeEffect, 35, 0, 120));
     return typeEffect;
 end;

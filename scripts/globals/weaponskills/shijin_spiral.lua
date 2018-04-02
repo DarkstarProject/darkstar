@@ -34,8 +34,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (damage > 0) then
         local duration = (tp/1000) + 4;
-        if (target:hasStatusEffect(EFFECT_PLAGUE) == false) then
-            target:addStatusEffect(EFFECT_PLAGUE, 5, 0, duration);
+        if (target:hasStatusEffect(dsp.effects.PLAGUE) == false) then
+            target:addStatusEffect(dsp.effects.PLAGUE, 5, 0, duration);
         end
     end
     return tpHits, extraHits, criticalHit, damage;

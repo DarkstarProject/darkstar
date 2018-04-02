@@ -20,8 +20,8 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability,action)
-    if (not target:hasStatusEffect(EFFECT_CHAINBOUND, 0) and not target:hasStatusEffect(EFFECT_SKILLCHAIN, 0)) then
-        target:addStatusEffectEx(EFFECT_CHAINBOUND, 0, 2, 0, 5, 0, 1);
+    if (not target:hasStatusEffect(dsp.effects.CHAINBOUND, 0) and not target:hasStatusEffect(dsp.effects.SKILLCHAIN, 0)) then
+        target:addStatusEffectEx(dsp.effects.CHAINBOUND, 0, 2, 0, 5, 0, 1);
     else
         ability:setMsg(msgBasic.JA_NO_EFFECT);
     end

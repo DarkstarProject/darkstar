@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Osmosis
 --
--- Description: Steals an enemy's HP and one beneficial status effect. Ineffective against undead.
+-- Description: Steals an enemy's HP and one beneficial status dsp.effects. Ineffective against undead.
 -- Type: Magical
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

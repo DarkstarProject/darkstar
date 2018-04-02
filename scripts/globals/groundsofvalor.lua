@@ -225,8 +225,8 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     local msg_jobs = msg_offset+1;
     local msg_cancel = msg_offset+2;
     local tabs = player:getCurrency("valor_point");
-    local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
-    local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
+    local HAS_FOOD = player:hasStatusEffect(dsp.effects.FOOD);
+    local HAS_SUPPORT_FOOD = player:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD);
     local fov_repeat = bit.band(option, 0x80000000);
 
     if (fov_repeat ~= 0) then
@@ -244,57 +244,57 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_CIRCUMSPECTION) then -- Sneak + Invis
         if (tabs >= 5) then
             player:delCurrency("valor_point", 5);
-            player:delStatusEffect(EFFECT_SNEAK);
-            player:addStatusEffect(EFFECT_SNEAK,0,10,900);
-            player:delStatusEffect(EFFECT_INVISIBLE);
-            player:addStatusEffect(EFFECT_INVISIBLE,0,10,900);
+            player:delStatusEffect(dsp.effects.SNEAK);
+            player:addStatusEffect(dsp.effects.SNEAK,0,10,900);
+            player:delStatusEffect(dsp.effects.INVISIBLE);
+            player:addStatusEffect(dsp.effects.INVISIBLE,0,10,900);
         end
     elseif (option == GOV_MENU_HOMING_INSTINCT) then -- Send to Homepoint
         if (tabs >= 50) then
             player:delCurrency("valor_point", 50);
-            player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
+            player:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_WARP,0,1);
         end
     elseif (option == GOV_MENU_RERAISE) then -- Reraise 1
         if (tabs >= 10) then
             player:delCurrency("valor_point", 10);
-            player:delStatusEffect(EFFECT_RERAISE);
-            player:addStatusEffect(EFFECT_RERAISE,1,0,7200);
+            player:delStatusEffect(dsp.effects.RERAISE);
+            player:addStatusEffect(dsp.effects.RERAISE,1,0,7200);
         end
     elseif (option == GOV_MENU_RERAISE_II) then -- Reraise 2
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
-            player:delStatusEffect(EFFECT_RERAISE);
-            player:addStatusEffect(EFFECT_RERAISE,2,0,7200);
+            player:delStatusEffect(dsp.effects.RERAISE);
+            player:addStatusEffect(dsp.effects.RERAISE,2,0,7200);
         end
     elseif (option == GOV_MENU_RERAISE_III) then -- ReRaise 3
         if (tabs >= 30) then
             player:delCurrency("valor_point", 30);
-            player:delStatusEffect(EFFECT_RERAISE);
-            player:addStatusEffect(EFFECT_RERAISE,3,0,7200);
+            player:delStatusEffect(dsp.effects.RERAISE);
+            player:addStatusEffect(dsp.effects.RERAISE,3,0,7200);
         end
     elseif (option == GOV_MENU_REGEN) then -- Overwrites all other forms of regen.
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
             -- Removes regen if on player
-            player:delStatusEffect(EFFECT_REGEN);
+            player:delStatusEffect(dsp.effects.REGEN);
             -- Adds regen
-            player:addStatusEffect(EFFECT_REGEN,1,3,3600);
+            player:addStatusEffect(dsp.effects.REGEN,1,3,3600);
         end
     elseif (option == GOV_MENU_REFRESH) then -- Overwrites all other forms of refresh.
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
             -- Removes refresh if on player
-            player:delStatusEffect(EFFECT_REFRESH);
-            player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
-            player:delStatusEffect(EFFECT_SUBLIMATION_ACTIVATED);
+            player:delStatusEffect(dsp.effects.REFRESH);
+            player:delStatusEffect(dsp.effects.SUBLIMATION_COMPLETE);
+            player:delStatusEffect(dsp.effects.SUBLIMATION_ACTIVATED);
             -- Add refresh
-            player:addStatusEffect(EFFECT_REFRESH,1,3,3600, 0, 3);
+            player:addStatusEffect(dsp.effects.REFRESH,1,3,3600, 0, 3);
         end
     elseif (option == GOV_MENU_PROTECT) then -- Overwrites all other forms of protect.
         if (tabs >= 15) then
             player:delCurrency("valor_point", 15);
             -- Removes protect if on player
-            player:delStatusEffect(EFFECT_PROTECT);
+            player:delStatusEffect(dsp.effects.PROTECT);
             -- Work out how much def to give (highest tier dependent on level)
             local def = 0;
             if (player:getMainLvl()<27) then -- Before protect 2, give protect 1
@@ -307,13 +307,13 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 def = 120;
             end
             -- Add protect
-            player:addStatusEffect(EFFECT_PROTECT,def,0,1800);
+            player:addStatusEffect(dsp.effects.PROTECT,def,0,1800);
         end
     elseif (option == GOV_MENU_SHELL) then -- Overwrites all other forms of shell.
         if (tabs >= 15) then
             player:delCurrency("valor_point", 15);
             -- Removes shell if on player
-            player:delStatusEffect(EFFECT_SHELL);
+            player:delStatusEffect(dsp.effects.SHELL);
             -- Work out how much mdef to give (highest tier dependent on level)
             -- values taken from Shell scripts by Tenjou.
             local def = 0;
@@ -327,13 +327,13 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 def = 56;
             end
             -- Add shell
-            player:addStatusEffect(EFFECT_SHELL,def,0,1800);
+            player:addStatusEffect(dsp.effects.SHELL,def,0,1800);
         end
     elseif (option == GOV_MENU_HASTE) then -- Wiki info on haste amount is iffy at best. People guessed at 15 and, I went with 10.
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
-            player:delStatusEffect(EFFECT_HASTE);
-            player:addStatusEffect(EFFECT_HASTE,10,0,600);
+            player:delStatusEffect(dsp.effects.HASTE);
+            player:addStatusEffect(dsp.effects.HASTE,10,0,600);
         end
     elseif (option == GOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
         if (tabs >= 50) then
@@ -342,7 +342,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 return;
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
+                player:addStatusEffectEx(dsp.effects.FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
             end
         end
     elseif (option == GOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
@@ -351,7 +351,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
+                player:addStatusEffectEx(dsp.effects.FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
             end
         end
     elseif (option == GOV_MENU_HARD_COOKIE) then -- - Hard Cookie: INT+4, MaxMP+30
@@ -360,7 +360,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
+                player:addStatusEffectEx(dsp.effects.FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
             end
         end
     elseif (option == GOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
@@ -369,7 +369,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
+                player:addStatusEffectEx(dsp.effects.FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
             end
         end
     elseif (option == GOV_MENU_DRIED_AGARICUS) then -- Dried Agaricus: MND+4
@@ -378,7 +378,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 5, 0, 1800);
+                player:addStatusEffectEx(dsp.effects.FIELD_SUPPORT_FOOD, 251, 5, 0, 1800);
             end
         end
     elseif (option == GOV_MENU_INSTANT_RICE) then -- Instant Rice: CHR+6
@@ -387,7 +387,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
                 player:messageBasic(msgBasic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 6, 0, 1800);
+                player:addStatusEffectEx(dsp.effects.FIELD_SUPPORT_FOOD, 251, 6, 0, 1800);
             end
         end
     elseif (option == GOV_MENU_CANCEL_REGIME) then -- Canceled Regime.
@@ -540,16 +540,16 @@ function checkGoVregime(player,mob,rid,index)
                         end
 
                         -- Apply repeat bonus and Prowess buffs
-                        if (player:hasStatusEffect(EFFECT_PROWESS) == true) then
-                            GoV_clears = player:getStatusEffect(EFFECT_PROWESS):getPower();
+                        if (player:hasStatusEffect(dsp.effects.PROWESS) == true) then
+                            GoV_clears = player:getStatusEffect(dsp.effects.PROWESS):getPower();
                             reward = reward * ((100+(GoV_clears*4))/100);
-                            player:delStatusEffect(EFFECT_PROWESS);
+                            player:delStatusEffect(dsp.effects.PROWESS);
                             player:delStatusEffect(RandomProwess);
-                            player:addStatusEffect(EFFECT_PROWESS,(GoV_clears + 1),0,0);
+                            player:addStatusEffect(dsp.effects.PROWESS,(GoV_clears + 1),0,0);
                             player:addStatusEffectEx(RandomProwess,0,power,0,0);
                             ProwessMessage = (RandomProwess - 152);
                         else
-                            player:addStatusEffect(EFFECT_PROWESS,1,0,0);
+                            player:addStatusEffect(dsp.effects.PROWESS,1,0,0);
                             player:addStatusEffectEx(RandomProwess,0,power,0,0);
                             ProwessMessage = (RandomProwess - 168);
                         end

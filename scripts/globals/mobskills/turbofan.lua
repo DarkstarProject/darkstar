@@ -26,7 +26,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effects.SILENCE;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 3, 30);
 
     local dmgmod = 2;

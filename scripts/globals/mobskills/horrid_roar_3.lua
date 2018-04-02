@@ -9,11 +9,11 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
         return 1;
-    elseif (mob:hasStatusEffect(EFFECT_INVINCIBLE)) then
+    elseif (mob:hasStatusEffect(dsp.effects.INVINCIBLE)) then
         return 1;
-    elseif (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
+    elseif (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
         return 1;
     elseif (target:isBehind(mob, 48) == true) then
         return 1;

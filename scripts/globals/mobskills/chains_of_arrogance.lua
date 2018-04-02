@@ -27,7 +27,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_TERROR;
+    local typeEffect = dsp.effects.TERROR;
     local power = 30;
     local duration = 30;
 

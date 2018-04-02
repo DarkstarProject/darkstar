@@ -16,5 +16,5 @@ end;
 function onUseAbility(player,target,ability)
     local potency = player:getMerit(MERIT_SANGE)-1;
 
-    player:addStatusEffect(EFFECT_SANGE,potency * 25,0,60);
+    player:addStatusEffect(dsp.effects.SANGE,potency * 25,0,60);
 end;

@@ -11,10 +11,10 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:delStatusEffect(EFFECT_BLINDNESS)) then
+    if (target:delStatusEffect(dsp.effects.BLINDNESS)) then
         spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
-    return EFFECT_BLINDNESS;
+    return dsp.effects.BLINDNESS;
 end;

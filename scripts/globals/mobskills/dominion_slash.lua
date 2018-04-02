@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW);
 
-    MobStatusEffectMove(mob, target, EFFECT_SILENCE, 1, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.SILENCE, 1, 0, 60);
 
     -- Due to conflicting information, making the dispel resistable.  Correct/tweak if wrong.
     -- Dispel has no status effect or resistance gear, so 0s instead of nulls.

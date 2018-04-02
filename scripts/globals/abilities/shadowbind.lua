@@ -26,14 +26,14 @@ function onUseAbility(player,target,ability,action)
 
     local duration = 30 + player:getMod(MOD_SHADOW_BIND_EXT);
     local recycleChance = player:getMod(MOD_RECYCLE) + player:getMerit(MERIT_RECYCLE);
-    if (player:hasStatusEffect(EFFECT_UNLIMITED_SHOT)) then
-        player:delStatusEffect(EFFECT_UNLIMITED_SHOT);
+    if (player:hasStatusEffect(dsp.effects.UNLIMITED_SHOT)) then
+        player:delStatusEffect(dsp.effects.UNLIMITED_SHOT);
         recycleChance = 100;
     end
 
      -- TODO: Acc penalty for /RNG, acc vs. mob level?
-    if (math.random(0, 99) >= target:getMod(MOD_BINDRES) and target:hasStatusEffect(EFFECT_BIND) == false) then
-        target:addStatusEffect(EFFECT_BIND, 0, 0, duration);
+    if (math.random(0, 99) >= target:getMod(MOD_BINDRES) and target:hasStatusEffect(dsp.effects.BIND) == false) then
+        target:addStatusEffect(dsp.effects.BIND, 0, 0, duration);
         ability:setMsg(msgBasic.IS_EFFECT); -- Target is bound.
     else
         ability:setMsg(msgBasic.JA_MISS); -- Player uses Shadowbind, but misses.
@@ -43,5 +43,5 @@ function onUseAbility(player,target,ability,action)
         player:removeAmmo(); -- Shadowbind depletes one round of ammo.
     end
 
-    return EFFECT_BIND;
+    return dsp.effects.BIND;
 end;

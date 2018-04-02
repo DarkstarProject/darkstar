@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local Cost = getAdvImageSupportCost(player,SKILL_ALCHEMY);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_ALCHEMY_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.ALCHEMY_IMAGERY) == false) then
             player:startEvent(122,Cost,SkillLevel,0,0xB0001AF,player:getGil(),0,0,0); -- Event doesn't work
         else
             player:startEvent(122,Cost,SkillLevel,0,0xB0001AF,player:getGil(),0x6FE2,0,0);
@@ -43,6 +43,6 @@ function onEventFinish(player,csid,option)
     if (csid == 122 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(ALCHEMY_SUPPORT,0,7,0);
-        player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effects.ALCHEMY_IMAGERY,3,0,480);
     end
 end;

@@ -15,7 +15,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD)) then
+    if (target:hasStatusEffect(dsp.effects.FOOD)) then
         result = 246;
     end
     if (target:getFreeSlotsCount() == 0) then
@@ -25,7 +25,7 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,5875);
+    target:addStatusEffect(dsp.effects.FOOD,0,0,10800,5875);
     local rand = math.random(784,815);
     target:addItem(rand); -- Random Jewel
 end;

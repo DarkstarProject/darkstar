@@ -183,7 +183,7 @@ function onHalloweenTrade(player,trade,npc)
                     halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
 
                     local costumePicked = halloween_costume_list[math.random(1,#halloween_costume_list)]; -- will randomly pick one of the costumes in the list
-                    player:addStatusEffect(EFFECT_COSTUME,costumePicked,0,3600);
+                    player:addStatusEffect(dsp.effects.COSTUME,costumePicked,0,3600);
 
                     -- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
                     -- zone, costumeID

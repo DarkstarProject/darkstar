@@ -19,11 +19,11 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_MND;
     params.skillType = power;
     params.bonus = 0;
-    params.effect = EFFECT_MAGIC_EVASION_DOWN;
+    params.effect = dsp.effects.MAGIC_EVASION_DOWN;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then
-        if (target:addStatusEffect(EFFECT_MAGIC_EVASION_DOWN,power,0,duration)) then
+        if (target:addStatusEffect(dsp.effects.MAGIC_EVASION_DOWN,power,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -32,5 +32,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
-    return EFFECT_MAGIC_EVASION_DOWN;
+    return dsp.effects.MAGIC_EVASION_DOWN;
 end;

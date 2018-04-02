@@ -60,13 +60,13 @@ function onWeaponskill(user, target, wsid, tp, action)
                 end
             end
             -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
+            user:addListener("dsp.effects.LOSE", NAME_EFFECT_LOSE, aftermathLost);
         end
     end
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
+    if (effect:getType() == dsp.effects.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -89,8 +89,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -104,7 +104,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_CHOKE, 17, 0, 60);
-        return SUBEFFECT_CHOKE, msgBasic.ADD_EFFECT_STATUS, EFFECT_CHOKE;
+        target:addStatusEffect(dsp.effects.CHOKE, 17, 0, 60);
+        return SUBEFFECT_CHOKE, msgBasic.ADD_EFFECT_STATUS, dsp.effects.CHOKE;
     end
 end;

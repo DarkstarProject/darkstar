@@ -24,7 +24,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if (target:hasStatusEffect(EFFECT_STR_DOWN)) then
+    if (target:hasStatusEffect(dsp.effects.STR_DOWN)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     elseif (target:isFacing(caster)) then
         local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
@@ -39,11 +39,11 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(msgBasic.MAGIC_RESIST);
         else
             spell:setMsg(msgBasic.MAGIC_ERASE);
-            target:addStatusEffect(EFFECT_STR_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE); -- target loses STR
+            target:addStatusEffect(dsp.effects.STR_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE); -- target loses STR
         end;
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
-    return EFFECT_STR_DOWN;
+    return dsp.effects.STR_DOWN;
 end;

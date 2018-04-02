@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_PAEON
+-- dsp.effects.PAEON
 --
 -----------------------------------
 require("scripts/globals/status");

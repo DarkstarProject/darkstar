@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effectType = EFFECT_SILENCE;
+    local effectType = dsp.effects.SILENCE;
 
     if (target:hasStatusEffect(effectType)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
@@ -24,10 +24,10 @@ function onSpellCast(caster,target,spell)
     --Duration, including resistance.  May need more research.
     local duration = 120;
 
-    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
         duration = duration * 2;
     end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
+    caster:delStatusEffect(dsp.effects.SABOTEUR);
 
     --Resist
     local params = {};
@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_MND;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_SILENCE;
+    params.effect = dsp.effects.SILENCE;
     local resist = applyResistanceEffect(caster, target, spell, params);
 
     if (resist >= 0.5) then --Do it!

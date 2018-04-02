@@ -18,10 +18,10 @@ function onPetAbility(target, pet, skill, summoner)
     local hour = VanadielHour();
     local buffvalue = 0;
     buffvalue = math.abs(12 - hour) + 1
-    target:delStatusEffect(EFFECT_MAGIC_ATK_BOOST);
-    target:delStatusEffect(EFFECT_MAGIC_DEF_BOOST);
-    target:addStatusEffect(EFFECT_MAGIC_ATK_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_MAGIC_DEF_BOOST,14 - buffvalue,0,duration);
+    target:delStatusEffect(dsp.effects.MAGIC_ATK_BOOST);
+    target:delStatusEffect(dsp.effects.MAGIC_DEF_BOOST);
+    target:addStatusEffect(dsp.effects.MAGIC_ATK_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effects.MAGIC_DEF_BOOST,14 - buffvalue,0,duration);
     skill:setMsg(msgBasic.NONE);
     return 0;
 end

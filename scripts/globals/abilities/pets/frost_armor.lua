@@ -16,8 +16,8 @@ function onPetAbility(target, pet, skill, summoner)
     local bonusTime = utils.clamp(summoner:getSkillLevel(SKILL_SUM) - 300, 0, 200);
     local duration = 180 + bonusTime;
 
-    target:delStatusEffect(EFFECT_ICE_SPIKES);
-    target:addStatusEffect(EFFECT_ICE_SPIKES,15,0,duration);
+    target:delStatusEffect(dsp.effects.ICE_SPIKES);
+    target:addStatusEffect(dsp.effects.ICE_SPIKES,15,0,duration);
     skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
-    return EFFECT_ICE_SPIKES;
+    return dsp.effects.ICE_SPIKES;
 end

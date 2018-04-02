@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     local loafersQuestProgress = player:getVar("AF_SCH_BOOTS");
 
-    player:delStatusEffect(EFFECT_SNEAK);
+    player:delStatusEffect(dsp.effects.SNEAK);
 
     -- SCH AF Quest - Boots
     if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(DROGAROGAN_BONEMEAL) == false) then

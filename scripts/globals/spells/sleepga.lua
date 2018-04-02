@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
     params.bonus = 0;
-    params.effect = EFFECT_SLEEP_I;
+    params.effect = dsp.effects.SLEEP_I;
     resm = applyResistanceEffect(caster, target, spell, params);
 
     if (caster:isMob()) then
@@ -36,16 +36,16 @@ function onSpellCast(caster,target,spell)
 
     if (resm < 0.5) then
         spell:setMsg(msgBasic.MAGIC_RESIST); -- Resist
-        return EFFECT_SLEEP_I;
+        return dsp.effects.SLEEP_I;
     end
 
     duration = duration * resm;
 
-    if (target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration)) then
+    if (target:addStatusEffect(dsp.effects.SLEEP_I,1,0,duration)) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
     end
 
-    return EFFECT_SLEEP_I;
+    return dsp.effects.SLEEP_I;
 end;

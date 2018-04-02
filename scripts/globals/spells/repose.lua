@@ -17,18 +17,18 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_MND;
     params.skillType = DIVINE_MAGIC_SKILL;
     params.bonus = 0;
-    params.effect = EFFECT_SLEEP_II;
+    params.effect = dsp.effects.SLEEP_II;
     local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist < 0.5) then
         spell:setMsg(msgBasic.MAGIC_RESIST); -- Resist
-        return EFFECT_SLEEP_II;
+        return dsp.effects.SLEEP_II;
     end
 
-    if (target:addStatusEffect(EFFECT_SLEEP_II,2,0,90*resist)) then
+    if (target:addStatusEffect(dsp.effects.SLEEP_II,2,0,90*resist)) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
     end
 
-    return EFFECT_SLEEP_II;
+    return dsp.effects.SLEEP_II;
 end;

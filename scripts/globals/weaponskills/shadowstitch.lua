@@ -35,9 +35,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (damage > 0) then
         local chance = (tp-1000) * applyResistanceAddEffect(player,target,ELE_ICE,0) > math.random() * 150;
-        if (target:hasStatusEffect(EFFECT_BIND) == false and chance) then
+        if (target:hasStatusEffect(dsp.effects.BIND) == false and chance) then
             local duration = (5 + (tp/1000 * 5)) * applyResistanceAddEffect(player,target,ELE_ICE,0);
-            target:addStatusEffect(EFFECT_BIND, 1, 0, duration);
+            target:addStatusEffect(dsp.effects.BIND, 1, 0, duration);
         end
     end
     return tpHits, extraHits, criticalHit, damage;

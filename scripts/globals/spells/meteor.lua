@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
    -- The client blocks the spell via menus, but it can still be cast via text commands, so we have to block it here, albiet with the wrong message.
     if (caster:isMob()) then
         return 0;
-    elseif (caster:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true) then
+    elseif (caster:hasStatusEffect(dsp.effects.ELEMENTAL_SEAL) == true) then
         return 0;
     else
         return msgBasic.STATUS_PREVENTS;

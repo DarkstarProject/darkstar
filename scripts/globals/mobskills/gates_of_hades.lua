@@ -35,7 +35,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BURN;
+    local typeEffect = dsp.effects.BURN;
     local power = 21;
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);

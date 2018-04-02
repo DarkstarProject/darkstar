@@ -23,7 +23,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local typeEffect = EFFECT_DEFENSE_DOWN;
+    local typeEffect = dsp.effects.DEFENSE_DOWN;
     local duration = 15 + player:getMerit(MERIT_ANGON); -- This will return 30 sec at one investment because merit power is 15.
 
     if (target:addStatusEffect(typeEffect,20,0,duration) == false) then

@@ -22,7 +22,7 @@ end;
 function onUseAbility(player,target,ability)
     -- Applying Weapon Bash stun. Rate is said to be near 100%, so let's say 99%.
     if (math.random()*100 < 99) then
-        target:addStatusEffect(EFFECT_STUN,1,0,6);
+        target:addStatusEffect(dsp.effects.STUN,1,0,6);
     end
 
     -- Weapon Bash deals damage dependant of Dark Knight level

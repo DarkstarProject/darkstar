@@ -23,8 +23,8 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS);
 
-    MobStatusEffectMove(mob, target, EFFECT_BIND, 1, 0, 120);
-    MobStatusEffectMove(mob, target, EFFECT_AMNESIA, 1, 0, 120);
+    MobStatusEffectMove(mob, target, dsp.effects.BIND, 1, 0, 120);
+    MobStatusEffectMove(mob, target, dsp.effects.AMNESIA, 1, 0, 120);
 
     target:delHP(dmg);
     return dmg;

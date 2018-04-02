@@ -52,7 +52,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,30,0,0); -- LV30 cap
+        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION,30,0,0); -- LV30 cap
     end
 end;
 

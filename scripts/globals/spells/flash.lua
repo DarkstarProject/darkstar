@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
     local duration = 12 * resist;
 
     if (resist > 0.0625) then
-        if (target:addStatusEffect(EFFECT_FLASH,200,0,duration)) then
+        if (target:addStatusEffect(dsp.effects.FLASH,200,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -39,5 +39,5 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
-    return EFFECT_FLASH;
+    return dsp.effects.FLASH;
 end;

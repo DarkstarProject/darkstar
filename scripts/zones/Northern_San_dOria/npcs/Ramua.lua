@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local SkillLevel = player:getSkillLevel(SKILL_WOODWORKING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_WOODWORKING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.WOODWORKING_IMAGERY) == false) then
             player:startEvent(625,SkillCap,SkillLevel,2,207,player:getGil(),0,0,0);
         else
             player:startEvent(625,SkillCap,SkillLevel,2,207,player:getGil(),6857,0,0);
@@ -40,6 +40,6 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 625 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,1,2);
-        player:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,1,0,120);
+        player:addStatusEffect(dsp.effects.WOODWORKING_IMAGERY,1,0,120);
     end
 end;

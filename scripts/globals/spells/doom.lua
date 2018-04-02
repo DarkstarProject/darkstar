@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_DOOM;
+    local effect = dsp.effects.DOOM;
     if (target:hasStatusEffect(effect) == false) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB); -- gains effect
         target:addStatusEffect(effect,10,3,30);

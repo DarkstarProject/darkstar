@@ -17,13 +17,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effects.POISON;
     local duration = 60;
     local power = mob:getMainLvl() / 3;
 
     if (math.random() <= 0.5) then
         -- stun
-        typeEffect = EFFECT_STUN;
+        typeEffect = dsp.effects.STUN;
         duration = 10;
         power = 1;
     end

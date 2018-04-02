@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effects.POISON;
     local power = mob:getMainLvl() / 3.5;
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 120);

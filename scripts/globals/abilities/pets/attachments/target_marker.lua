@@ -13,7 +13,7 @@ function onEquip(pet)
 
         if pet:getMainLvl() < target:getMainLvl() then
             local master = pet:getMaster()
-            local maneuvers = master:countEffect(EFFECT_THUNDER_MANEUVER)
+            local maneuvers = master:countEffect(dsp.effects.THUNDER_MANEUVER)
             local eva = target:getEVA()
             local percentage = 0.05
             if maneuvers == 1 then

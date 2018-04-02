@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_WOODWORKING_IMAGERY) == true) then
+    if (target:hasStatusEffect(dsp.effects.WOODWORKING_IMAGERY) == true) then
         result = 236;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,3,0,120);
+    target:addStatusEffect(dsp.effects.WOODWORKING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

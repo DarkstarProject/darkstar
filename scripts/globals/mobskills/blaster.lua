@@ -5,7 +5,7 @@
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows.
 -- Range: Melee?
--- Notes: Very potent paralysis effect. Is NOT a Gaze Attack, unlike Chaotic Eye.
+-- Notes: Very potent paralysis dsp.effects. Is NOT a Gaze Attack, unlike Chaotic Eye.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
 
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 50, 0, 60));

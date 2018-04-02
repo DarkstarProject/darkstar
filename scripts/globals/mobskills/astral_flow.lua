@@ -21,7 +21,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ASTRAL_FLOW;
+    local typeEffect = dsp.effects.ASTRAL_FLOW;
     skill:setMsg(msgBasic.USES);
     local mobID = mob:getID();
     local avatar = 0;

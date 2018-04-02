@@ -12,12 +12,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (not target:hasStatusEffect(EFFECT_SNEAK)) then
+    if (not target:hasStatusEffect(dsp.effects.SNEAK)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
-        target:addStatusEffect(EFFECT_SNEAK, 0, 10, math.floor(420 * SNEAK_INVIS_DURATION_MULTIPLIER));
+        target:addStatusEffect(dsp.effects.SNEAK, 0, 10, math.floor(420 * SNEAK_INVIS_DURATION_MULTIPLIER));
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect.
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no dsp.effects.
     end
 
-    return EFFECT_SNEAK;
+    return dsp.effects.SNEAK;
 end;

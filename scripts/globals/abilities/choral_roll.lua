@@ -29,7 +29,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = EFFECT_CHORAL_ROLL
+    local effectID = dsp.effects.CHORAL_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return msgBasic.ROLL_ALREADY_ACTIVE,0;
@@ -42,7 +42,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, EFFECT_CHORAL_ROLL, JOBS.BRD);
+        corsairSetup(caster, ability, action, dsp.effects.CHORAL_ROLL, JOBS.BRD);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
@@ -64,7 +64,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CHORAL_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_SPELLINTERRUPT) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effects.CHORAL_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_SPELLINTERRUPT) == false) then
         ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(msgBasic.DOUBLEUP_BUST);

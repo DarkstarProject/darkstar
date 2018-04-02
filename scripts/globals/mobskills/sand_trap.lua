@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PETRIFICATION;
+    local typeEffect = dsp.effects.PETRIFICATION;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, math.random(12,20)));
 

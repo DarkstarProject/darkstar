@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local Cost = getAdvImageSupportCost(player, SKILL_GOLDSMITHING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_GOLDSMITHING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY) == false) then
             player:startEvent(302,Cost,SkillLevel,0,0xB0001AF,player:getGil(),0,0,0); -- Event doesn't work
         else
             player:startEvent(302,Cost,SkillLevel,0,0xB0001AF,player:getGil(),28674,0,0);
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     if (csid == 302 and option == 1) then
         if (player:getGil() >= Cost) then
             player:messageSpecial(GOLDSMITHING_SUPPORT,0,3,0);
-            player:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,3,0,480);
+            player:addStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY,3,0,480);
             player:delGil(Cost);
         else
             player:messageSpecial(NOT_HAVE_ENOUGH_GIL);

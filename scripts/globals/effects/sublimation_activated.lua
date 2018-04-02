@@ -35,12 +35,12 @@ function onEffectTick(target,effect)
         target:getMerit(MERIT_MAX_SUBLIMATION);
     
     if not (target:getHPP() < 51 ) then
-        if (target:hasStatusEffect(EFFECT_STONESKIN)) then
+        if (target:hasStatusEffect(dsp.effects.STONESKIN)) then
             local skin = target:getMod(MOD_STONESKIN);
             if (skin >= dmg) then --absorb all damage
                 target:delMod(MOD_STONESKIN,dmg);
             else
-                target:delStatusEffect(EFFECT_STONESKIN);
+                target:delStatusEffect(dsp.effects.STONESKIN);
                 target:delHP(dmg - skin);
                 target:wakeUp();
                 if (target:getHPP() < 51 ) then
@@ -64,8 +64,8 @@ function onEffectTick(target,effect)
     end
     
     if (complete) then
-        target:delStatusEffectSilent(EFFECT_SUBLIMATION_ACTIVATED);
-        target:addStatusEffect(EFFECT_SUBLIMATION_COMPLETE,store,0,7200);
+        target:delStatusEffectSilent(dsp.effects.SUBLIMATION_ACTIVATED);
+        target:addStatusEffect(dsp.effects.SUBLIMATION_COMPLETE,store,0,7200);
     else
         effect:setPower(store);
     end

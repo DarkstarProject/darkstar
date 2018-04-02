@@ -34,7 +34,7 @@ function utils.stoneskin(target, dmg)
                 target:delMod(MOD_STONESKIN,dmg);
                 return 0;
             else --absorbs some damage then wear
-                target:delStatusEffect(EFFECT_STONESKIN);
+                target:delStatusEffect(dsp.effects.STONESKIN);
                 target:setMod(MOD_STONESKIN, 0);
                 return dmg - skin;
             end
@@ -67,27 +67,27 @@ function utils.takeShadows(target, dmg, shadowbehav)
             target:setMod(shadowType, shadowsLeft);
 
             if (shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
-                effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+                effect = target:getStatusEffect(dsp.effects.COPY_IMAGE);
                 if (effect ~= nil) then
                     if (shadowsLeft == 1) then
-                        effect:setIcon(EFFECT_COPY_IMAGE);
+                        effect:setIcon(dsp.effects.COPY_IMAGE);
                     elseif (shadowsLeft == 2) then
-                        effect:setIcon(EFFECT_COPY_IMAGE_2);
+                        effect:setIcon(dsp.effects.COPY_IMAGE_2);
                     elseif (shadowsLeft == 3) then
-                        effect:setIcon(EFFECT_COPY_IMAGE_3);
+                        effect:setIcon(dsp.effects.COPY_IMAGE_3);
                     end
                 end
             end
             -- remove icon
             if (shadowsLeft <= 0) then
-                target:delStatusEffect(EFFECT_COPY_IMAGE);
-                target:delStatusEffect(EFFECT_BLINK);
+                target:delStatusEffect(dsp.effects.COPY_IMAGE);
+                target:delStatusEffect(dsp.effects.BLINK);
             end
 
             return 0;
         else --less shadows than this move will take, remove all and factor damage down
-            target:delStatusEffect(EFFECT_COPY_IMAGE);
-            target:delStatusEffect(EFFECT_BLINK);
+            target:delStatusEffect(dsp.effects.COPY_IMAGE);
+            target:delStatusEffect(dsp.effects.BLINK);
             return dmg * ((shadowbehav-targShadows)/shadowbehav);
         end
     end
@@ -99,7 +99,7 @@ end;
 function utils.thirdeye(target)
     --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
     --chance of anticipate based on previous successful anticipates.
-    local teye = target:getStatusEffect(EFFECT_THIRD_EYE);
+    local teye = target:getStatusEffect(dsp.effects.THIRD_EYE);
 
     if (teye == nil) then
         return false;
@@ -109,7 +109,7 @@ function utils.thirdeye(target)
 
     if ( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
         --anticipated!
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
         return true;
     end
 

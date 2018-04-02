@@ -14,10 +14,10 @@ end;
 
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_ENDARK;
+    local effect = dsp.effects.ENDARK;
     local magicskill = target:getSkillLevel(DARK_MAGIC_SKILL);
     local duration = 180;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 

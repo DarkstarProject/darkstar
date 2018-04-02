@@ -15,18 +15,18 @@ function onTrigger(player)
         player:setVar("GodMode", 1);
 
         -- Add bonus effects to the player..
-        player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
-        player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
-        player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
-        player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
-        player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
-        player:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,0);
-        player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,300,0,0);
-        player:addStatusEffect(EFFECT_REFRESH,99,0,0);
-        player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        player:addStatusEffect(dsp.effects.MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effects.MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effects.MIGHTY_STRIKES,1,0,0);
+        player:addStatusEffect(dsp.effects.HUNDRED_FISTS,1,0,0);
+        player:addStatusEffect(dsp.effects.CHAINSPELL,1,0,0);
+        player:addStatusEffect(dsp.effects.PERFECT_DODGE,1,0,0);
+        player:addStatusEffect(dsp.effects.INVINCIBLE,1,0,0);
+        player:addStatusEffect(dsp.effects.ELEMENTAL_SFORZO,1,0,0);
+        player:addStatusEffect(dsp.effects.MANAFONT,1,0,0);
+        player:addStatusEffect(dsp.effects.REGAIN,300,0,0);
+        player:addStatusEffect(dsp.effects.REFRESH,99,0,0);
+        player:addStatusEffect(dsp.effects.REGEN,99,0,0);
 
         -- Add bonus mods to the player..
         player:addMod(MOD_RACC,2500);
@@ -47,18 +47,18 @@ function onTrigger(player)
         player:setVar("GodMode", 0);
 
         -- Remove bonus effects..
-        player:delStatusEffect(EFFECT_MAX_HP_BOOST);
-        player:delStatusEffect(EFFECT_MAX_MP_BOOST);
-        player:delStatusEffect(EFFECT_MIGHTY_STRIKES);
-        player:delStatusEffect(EFFECT_HUNDRED_FISTS);
-        player:delStatusEffect(EFFECT_CHAINSPELL);
-        player:delStatusEffect(EFFECT_PERFECT_DODGE);
-        player:delStatusEffect(EFFECT_INVINCIBLE);
-        player:delStatusEffect(EFFECT_ELEMENTAL_SFORZO);
-        player:delStatusEffect(EFFECT_MANAFONT);
-        player:delStatusEffect(EFFECT_REGAIN);
-        player:delStatusEffect(EFFECT_REFRESH);
-        player:delStatusEffect(EFFECT_REGEN);
+        player:delStatusEffect(dsp.effects.MAX_HP_BOOST);
+        player:delStatusEffect(dsp.effects.MAX_MP_BOOST);
+        player:delStatusEffect(dsp.effects.MIGHTY_STRIKES);
+        player:delStatusEffect(dsp.effects.HUNDRED_FISTS);
+        player:delStatusEffect(dsp.effects.CHAINSPELL);
+        player:delStatusEffect(dsp.effects.PERFECT_DODGE);
+        player:delStatusEffect(dsp.effects.INVINCIBLE);
+        player:delStatusEffect(dsp.effects.ELEMENTAL_SFORZO);
+        player:delStatusEffect(dsp.effects.MANAFONT);
+        player:delStatusEffect(dsp.effects.REGAIN);
+        player:delStatusEffect(dsp.effects.REFRESH);
+        player:delStatusEffect(dsp.effects.REGEN);
 
         -- Remove bonus mods..
         player:delMod(MOD_RACC,2500);

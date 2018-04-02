@@ -46,7 +46,7 @@ function onSpellCast(caster,target,spell)
     dmg = adjustForTarget(target,dmg,spell:getElement());
     dmg = finalMagicAdjustments(caster,target,spell,dmg);
 
-    target:addStatusEffect(EFFECT_KAUSTRA,math.floor(dmg/3),3,duration);
+    target:addStatusEffect(dsp.effects.KAUSTRA,math.floor(dmg/3),3,duration);
 
     return dmg;
 end;

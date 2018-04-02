@@ -23,11 +23,11 @@ function onSpellCast(caster,target,spell)
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_BARAERO,power,0,duration,0,mdefBonus);
+    target:addStatusEffect(dsp.effects.BARAERO,power,0,duration,0,mdefBonus);
 
-    return EFFECT_BARAERO;
+    return dsp.effects.BARAERO;
 end;

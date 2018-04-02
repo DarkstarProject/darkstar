@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
         return 1;
     elseif (mob:AnimationSub() == 1) then
         return 1;
@@ -24,7 +24,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PLAGUE;
+    local typeEffect = dsp.effects.PLAGUE;
 
     MobStatusEffectMove(mob, target, typeEffect, 10, 0, 120);
 

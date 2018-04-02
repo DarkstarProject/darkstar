@@ -24,7 +24,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 
-        if (params.kick and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
+        if (params.kick and attacker:hasStatusEffect(dsp.effects.FOOTWORK)) then
             weaponDamage = attacker:getMod(MOD_KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
         else
             weaponDamage = utils.clamp(weaponDamage-3, 0);
@@ -52,13 +52,13 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local cratio, ccritratio = getAutocRatio(attacker, target, params, ignoredDef, true);
     local ccmin = 0;
     local ccmax = 0;
-    local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
-    local isSneakValid = attacker:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(EFFECT_HIDE))) then
+    local hasMightyStrikes = attacker:hasStatusEffect(dsp.effects.MIGHTY_STRIKES);
+    local isSneakValid = attacker:hasStatusEffect(dsp.effects.SNEAK_ATTACK);
+    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effects.HIDE))) then
         isSneakValid = false;
     end
     attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
-    attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
+    attacker:delStatusEffect(dsp.effects.SNEAK_ATTACK);
     local isTrickValid = taChar ~= nil
 
     local isAssassinValid = isTrickValid;
@@ -72,14 +72,14 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-        local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
+        local flourisheffect = attacker:getStatusEffect(dsp.effects.BUILDING_FLOURISH);
         if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
         nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
-        if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
-            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+        if (attacker:hasStatusEffect(dsp.effects.INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
+            nativecrit = nativecrit + attacker:getStatusEffect(dsp.effects.INNIN):getPower();
         end
 
         if (nativecrit > 0.2) then -- caps!
@@ -107,7 +107,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local tpHitsLanded = 0;
     local shadowsAbsorbed = 0;
     if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
-            not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
+            not target:hasStatusEffect(dsp.effects.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effects.ALL_MISS) ) then
         if not shadowAbsorb(target) then
             if (params.canCrit or isSneakValid or isAssassinValid) then
                 local critchance = math.random();
@@ -153,7 +153,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
             local chance = math.random();
             local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
-                    not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  -- it hit
+                    not target:hasStatusEffect(dsp.effects.PERFECT_DODGE) and not target:hasStatusEffect(dsp.effects.ALL_MISS) ) then  -- it hit
                 if not shadowAbsorb(target) then
                     pdif = generatePdif(cratio[1], cratio[2], true);
                     if (params.canCrit) then
@@ -203,7 +203,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
         finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
     end
 
-    attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
+    attacker:delStatusEffectSilent(dsp.effects.BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
@@ -387,15 +387,15 @@ end;
     local cratio, ccritratio = getAutocRatio(attacker, target, params, ignoredDef, false);
     local ccmin = 0;
     local ccmax = 0;
-    local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
+    local hasMightyStrikes = attacker:hasStatusEffect(dsp.effects.MIGHTY_STRIKES);
     local critrate = 0;
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
-        if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
-            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+        if (attacker:hasStatusEffect(dsp.effects.INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
+            nativecrit = nativecrit + attacker:getStatusEffect(dsp.effects.INNIN):getPower();
         end
 
         if (nativecrit > 0.2) then -- caps!

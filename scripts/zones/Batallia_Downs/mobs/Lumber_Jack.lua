@@ -14,12 +14,12 @@ end;
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating the chance to stun before resistance applied (it's fairly low rate on retail).
     -- Does not proc if Jack's enstone is up.
-    if (math.random(1,100) <= 75 or mob:hasStatusEffect(EFFECT_ENSTONE)
+    if (math.random(1,100) <= 75 or mob:hasStatusEffect(dsp.effects.ENSTONE)
     or applyResistanceAddEffect(mob, target, ELE_LIGHTNING, 0) <= 0.5) then
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(EFFECT_STUN,5,0,duration);
+        target:addStatusEffect(dsp.effects.STUN,5,0,duration);
         return SUBEFFECT_STUN,0,EFFECT_STUN; -- Todo: confirm retail message. Unsure if says "is stunned" on proc.
     end
 end;

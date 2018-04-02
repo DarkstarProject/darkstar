@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.125;
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effects.AZURE_LORE)) then
         multi = multi + 0.50;
     end
         params.multiplier = multi;
@@ -61,8 +61,8 @@ function onSpellCast(caster,target,spell)
     params.bonus = 1.0;
 
     local resist = applyResistance(caster, target, spell, params);
-    local typeEffectOne = EFFECT_DEFENSE_DOWN;
-    local typeEffectTwo = EFFECT_ATTACK_DOWN;
+    local typeEffectOne = dsp.effects.DEFENSE_DOWN;
+    local typeEffectTwo = dsp.effects.ATTACK_DOWN;
     local duration = 60;
 
     if (damage > 0 and resist > 0.3) then

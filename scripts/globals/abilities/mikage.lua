@@ -13,5 +13,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_MIKAGE,0,0,45);
+    target:addStatusEffect(dsp.effects.MIKAGE,0,0,45);
 end;

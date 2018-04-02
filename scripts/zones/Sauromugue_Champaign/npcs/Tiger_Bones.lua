@@ -20,7 +20,7 @@ function onTrigger(player,npc)
 
     -- THE FANGED ONE
     if (fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID(OLD_SABERTOOTH):isSpawned()) then
-        SpawnMob(OLD_SABERTOOTH):addStatusEffect(EFFECT_POISON,40,10,210);
+        SpawnMob(OLD_SABERTOOTH):addStatusEffect(dsp.effects.POISON,40,10,210);
         player:messageSpecial(OLD_SABERTOOTH_DIALOG_I);
     elseif (fangedOne == QUEST_ACCEPTED and fangedOneCS == 2 and not player:hasKeyItem(OLD_TIGERS_FANG)) then
         player:addKeyItem(OLD_TIGERS_FANG);

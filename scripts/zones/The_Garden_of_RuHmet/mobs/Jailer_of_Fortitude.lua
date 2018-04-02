@@ -28,7 +28,7 @@ function onMobFight(mob, target)
     end;
 
     if (not GetMobByID(Kf_Ghrah_WHM):isDead() or not GetMobByID(Kf_Ghrah_BLM):isDead()) then -- check for kf'ghrah
-        if (spell > 0 and not mob:hasStatusEffect(EFFECT_SILENCE)) then
+        if (spell > 0 and not mob:hasStatusEffect(dsp.effects.SILENCE)) then
             if (delay >= 3) then
                 mob:castSpell(spell);
                 mob:setLocalVar("COPY_SPELL", 0);

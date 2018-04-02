@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_EVASION_DOWN;
+    local typeEffect = dsp.effects.EVASION_DOWN;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120));
 

@@ -24,7 +24,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_STONESKIN;
+    local typeEffect = dsp.effects.STONESKIN;
     local blueskill = caster:getSkillLevel(BLUE_SKILL);
     local power = ((blueskill)/3) *2;
     local duration = 300;

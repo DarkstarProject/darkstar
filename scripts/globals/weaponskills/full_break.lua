@@ -34,17 +34,17 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (damage > 0) then
         local duration = (tp/1000 * 30) + 60;
-        if (target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
-            target:addStatusEffect(EFFECT_DEFENSE_DOWN, 12.5, 0, duration * applyResistanceAddEffect(player,target,ELE_WIND,0));
+        if (target:hasStatusEffect(dsp.effects.DEFENSE_DOWN) == false) then
+            target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 12.5, 0, duration * applyResistanceAddEffect(player,target,ELE_WIND,0));
         end
-        if (target:hasStatusEffect(EFFECT_ATTACK_DOWN) == false) then
-            target:addStatusEffect(EFFECT_ATTACK_DOWN, 12.5, 0, duration * applyResistanceAddEffect(player,target,ELE_WATER,0));
+        if (target:hasStatusEffect(dsp.effects.ATTACK_DOWN) == false) then
+            target:addStatusEffect(dsp.effects.ATTACK_DOWN, 12.5, 0, duration * applyResistanceAddEffect(player,target,ELE_WATER,0));
         end
-        if (target:hasStatusEffect(EFFECT_EVASION_DOWN) == false) then
-            target:addStatusEffect(EFFECT_EVASION_DOWN, 20, 0, duration * applyResistanceAddEffect(player,target,ELE_ICE,0));
+        if (target:hasStatusEffect(dsp.effects.EVASION_DOWN) == false) then
+            target:addStatusEffect(dsp.effects.EVASION_DOWN, 20, 0, duration * applyResistanceAddEffect(player,target,ELE_ICE,0));
         end
-        if (target:hasStatusEffect(EFFECT_ACCURACY_DOWN) == false) then
-            target:addStatusEffect(EFFECT_ACCURACY_DOWN, 20, 0, duration * applyResistanceAddEffect(player,target,ELE_EARTH,0));
+        if (target:hasStatusEffect(dsp.effects.ACCURACY_DOWN) == false) then
+            target:addStatusEffect(dsp.effects.ACCURACY_DOWN, 20, 0, duration * applyResistanceAddEffect(player,target,ELE_EARTH,0));
         end
     end
     return tpHits, extraHits, criticalHit, damage;

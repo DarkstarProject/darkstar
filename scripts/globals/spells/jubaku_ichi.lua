@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_PARALYSIS;
+    local effect = dsp.effects.PARALYSIS;
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation

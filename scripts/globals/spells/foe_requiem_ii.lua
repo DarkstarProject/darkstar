@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_REQUIEM;
+    local effect = dsp.effects.REQUIEM;
     local duration = 79;
     local power = 2;
 
@@ -33,16 +33,16 @@ function onSpellCast(caster,target,spell)
     local iBoost = caster:getMod(MOD_REQUIEM_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     power = power + iBoost;
 
-    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (caster:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
         power = power * 2;
-    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+    elseif (caster:hasStatusEffect(dsp.effects.MARCATO)) then
         power = power * 1.5;
     end
-    caster:delStatusEffect(EFFECT_MARCATO);
+    caster:delStatusEffect(dsp.effects.MARCATO);
 
     duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
         duration = duration * 2;
     end
     -- Try to overwrite weaker slow / haste

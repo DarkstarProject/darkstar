@@ -3,7 +3,7 @@
 -- Katana weapon skill
 -- Skill Level: N/A
 -- Additional effect: Paralysis
--- Hidden effect: temporarily enhances Subtle Blow effect.
+-- Hidden effect: temporarily enhances Subtle Blow dsp.effects.
 -- One hit weapon skill, despite non single-hit animation.
 -- This weapon skill is only available with the stage 5 relic Katana Kikoku or within Dynamis with the stage 4 Yoshimitsu.
 -- Weaponskill is also available with the Sekirei Katana obtained from Abyssea NM Sedna.
@@ -36,9 +36,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    if (damage > 0 and target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+    if (damage > 0 and target:hasStatusEffect(dsp.effects.PARALYSIS) == false) then
         local duration = 60 * applyResistanceAddEffect(player,target,ELE_ICE,0);
-        target:addStatusEffect(EFFECT_PARALYSIS, 10, 0, duration);
+        target:addStatusEffect(dsp.effects.PARALYSIS, 10, 0, duration);
     end
 
     return tpHits, extraHits, criticalHit, damage;

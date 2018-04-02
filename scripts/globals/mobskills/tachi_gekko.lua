@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1.56,1.88,2.50);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
-    MobStatusEffectMove(mob, target, EFFECT_SILENCE, 1, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.SILENCE, 1, 0, 60);
 
     -- About 300-400 to a DD.
     target:delHP(dmg);

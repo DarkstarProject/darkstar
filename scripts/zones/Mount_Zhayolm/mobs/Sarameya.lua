@@ -56,7 +56,7 @@ function onMobFight(mob, target)
     end
 
     -- Spams TP moves and -ga spells
-    if (mob:hasStatusEffect(EFFECT_CHAINSPELL) == true) then
+    if (mob:hasStatusEffect(dsp.effects.CHAINSPELL) == true) then
         mob:setTP(2000);
     else
         if (mob:getMobMod(MOBMOD_GA_CHANCE) == 100) then
@@ -65,7 +65,7 @@ function onMobFight(mob, target)
     end;
 
     -- Regens 1% of his HP a tick with Blaze Spikes on
-    if (mob:hasStatusEffect(EFFECT_BLAZE_SPIKES) == true) then
+    if (mob:hasStatusEffect(dsp.effects.BLAZE_SPIKES) == true) then
         mob:setMod(MOD_REGEN, math.floor(mob:getMaxHP()/100));
     else
         if (mob:getMod(MOD_REGEN) > 0) then
@@ -86,8 +86,8 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,30);
         duration = duration * resist;
-        if (player:hasStatusEffect(EFFECT_POISON) == false) then
-            player:addStatusEffect(EFFECT_POISON, 50, 3, duration); -- Don't know potency on the poison.
+        if (player:hasStatusEffect(dsp.effects.POISON) == false) then
+            player:addStatusEffect(dsp.effects.POISON, 50, 3, duration); -- Don't know potency on the poison.
         end
         return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
     end

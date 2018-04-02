@@ -18,7 +18,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_NONE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
-    mob:delStatusEffect(EFFECT_ALL_MISS);
+    mob:delStatusEffect(dsp.effects.ALL_MISS);
     mob:SetMobSkillAttack(0);
     mob:AnimationSub(2);
     return dmg;

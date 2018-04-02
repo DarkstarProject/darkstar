@@ -35,8 +35,8 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,45);
         duration = duration * resist;
-        if (not player:hasStatusEffect(EFFECT_SLOW)) then
-            player:addStatusEffect(EFFECT_SLOW, power, 0, duration);
+        if (not player:hasStatusEffect(dsp.effects.SLOW)) then
+            player:addStatusEffect(dsp.effects.SLOW, power, 0, duration);
         end
         return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
     end

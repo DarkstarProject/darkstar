@@ -22,8 +22,8 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,45);
         duration = duration * resist;
-        if (not player:hasStatusEffect(EFFECT_POISON)) then
-            player:addStatusEffect(EFFECT_POISON, 1, 3, duration); -- Don't know potency on the poison.
+        if (not player:hasStatusEffect(dsp.effects.POISON)) then
+            player:addStatusEffect(dsp.effects.POISON, 1, 3, duration); -- Don't know potency on the poison.
         end
         return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
     end
