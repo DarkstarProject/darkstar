@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Avenger's Roll
--- Increases chance of countering for party members within area of dsp.effects.
+-- Increases chance of countering for party members within area of effect.
 -- Optimal Job: None
 -- Lucky Number: 4
 -- Unlucky Number: 8

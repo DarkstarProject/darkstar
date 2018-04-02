@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Riddle
 --
--- Description: Reduces maximum MP in an area of dsp.effects.
+-- Description: Reduces maximum MP in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 15' radial

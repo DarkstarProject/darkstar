@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Lightning Roar
--- Emits the roar of an impact event, dealing damage in a fan-shaped area of dsp.effects. Lightning damage
+-- Emits the roar of an impact event, dealing damage in a fan-shaped area of effect. Lightning damage
 -- Ignores Shadows
 ---------------------------------------------------
 

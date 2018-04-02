@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Dust Cloud
--- Deals Earth damage to targets in a fan-shaped area of dsp.effects. Additional effect: Blind
+-- Deals Earth damage to targets in a fan-shaped area of effect. Additional effect: Blind
 -- Range: 10' cone
 ---------------------------------------------------
 

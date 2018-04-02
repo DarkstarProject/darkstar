@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Stellar Burst
--- A starburst damages targets in an area of dsp.effects. Additional effect: Silence
+-- A starburst damages targets in an area of effect. Additional effect: Silence
 ---------------------------------------------------
 
 require("scripts/globals/settings");

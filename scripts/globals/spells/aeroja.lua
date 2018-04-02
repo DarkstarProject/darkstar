@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Aeroja
--- Deals wind damage to enemies within area of dsp.effects.
+-- Deals wind damage to enemies within area of effect.
 -- successive use enhances spell potency.
 -----------------------------------------
 

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Dispelling Wind
 --
--- Description: Dispels two effects from targets in an area of dsp.effects.
+-- Description: Dispels two effects from targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial

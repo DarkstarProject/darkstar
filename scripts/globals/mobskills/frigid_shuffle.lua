@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Frigid Shuffle
 --
--- Description: An icy waltz paralyzes targets in an area of dsp.effects.
+-- Description: An icy waltz paralyzes targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown radial

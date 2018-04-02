@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Wild Rage
 --
---  Description: Deals physical damage to enemies within area of dsp.effects.
+--  Description: Deals physical damage to enemies within area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 15' radial

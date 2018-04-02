@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Caster's Roll
--- Enhances "Fast Cast" effect for party members within area of dsp.effects. 
+-- Enhances "Fast Cast" effect for party members within area of effect. 
 -- Optimal Job: None
 -- Lucky Number: 2
 -- Unlucky Number: 7

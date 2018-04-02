@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Rampart
--- Grants a Magic Shield effect and enhances defense for party members within area of dsp.effects.
+-- Grants a Magic Shield effect and enhances defense for party members within area of effect.
 -- Obtained: Paladin Level 62
 -- Recast Time: 5:00
 -- Duration: 0:30

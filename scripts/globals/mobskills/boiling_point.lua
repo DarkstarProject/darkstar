@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Boiling Point
 --
--- Description: Reduces magic defense in a fan-shaped area of dsp.effects.
+-- Description: Reduces magic defense in a fan-shaped area of effect.
 -- Type: Magical
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

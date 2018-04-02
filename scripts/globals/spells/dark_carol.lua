@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Dark Carol
--- Increases dark resistance for party members within the area of dsp.effects.
+-- Increases dark resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

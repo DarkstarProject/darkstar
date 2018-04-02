@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Deafening Tantara
 --
--- Description: Inflicts silence in an area of dsp.effects.
+-- Description: Inflicts silence in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10'

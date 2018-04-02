@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Painful Whip
--- Deals Water damage to targets in a fan-shaped area of dsp.effects. Additional effect: Poison
+-- Deals Water damage to targets in a fan-shaped area of effect. Additional effect: Poison
 ---------------------------------------------------
 
 require("scripts/globals/settings");

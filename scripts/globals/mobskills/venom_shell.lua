@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gas Shell
 --
---  Description: Releases a toxic gas from its shell, poisoning targets in an area of dsp.effects.
+--  Description: Releases a toxic gas from its shell, poisoning targets in an area of effect.
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown radial

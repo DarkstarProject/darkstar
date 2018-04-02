@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Runeist's Roll
--- Enhances magic evasion for party members within area of dsp.effects. 
+-- Enhances magic evasion for party members within area of effect. 
 -- Optimal Job: Rune Fencer
 -- Lucky Number: 4
 -- Unlucky Number: 8

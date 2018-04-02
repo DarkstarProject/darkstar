@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Cyclone Wing
 --
--- Description: Deals darkness damage to enemies within a very wide area of dsp.effects. Additional effect: Sleep
+-- Description: Deals darkness damage to enemies within a very wide area of effect. Additional effect: Sleep
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 30' radial.

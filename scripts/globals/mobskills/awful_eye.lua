@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Awful Eye
--- 15' Reduces STR of players in area of dsp.effects.
+-- 15' Reduces STR of players in area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

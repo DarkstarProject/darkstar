@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Sprout Spin
--- Smacks around enemies in an area of dsp.effects. Additional effect: Knockback
+-- Smacks around enemies in an area of effect. Additional effect: Knockback
 ---------------------------------------------------
 
 require("scripts/globals/settings");

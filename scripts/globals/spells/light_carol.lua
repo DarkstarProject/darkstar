@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Light Carol
--- Increases light resistance for party members within the area of dsp.effects.
+-- Increases light resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

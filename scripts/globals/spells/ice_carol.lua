@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Ice Carol
--- Increases ice resistance for party members within the area of dsp.effects.
+-- Increases ice resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

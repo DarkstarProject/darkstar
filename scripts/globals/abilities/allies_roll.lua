@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Allies's Roll
--- Enhances skillchain damage and skillchain accuracy for party members within area of dsp.effects.
+-- Enhances skillchain damage and skillchain accuracy for party members within area of effect.
 -- Optimal Job: None
 -- Lucky Number: 3
 -- Unlucky Number: 10

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Calcifying Deluge
 --
--- Description: Delivers a threefold ranged attack to targets in an area of dsp.effects. Additional effect: Petrification
+-- Description: Delivers a threefold ranged attack to targets in an area of effect. Additional effect: Petrification
 -- Type: Physical
 -- Utsusemi/Blink absorb: 2-3 shadows
 -- Range: Unknown

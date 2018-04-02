@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sandstorm
--- Kicks up a blinding dust cloud on targets in an area of dsp.effects.
+-- Kicks up a blinding dust cloud on targets in an area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

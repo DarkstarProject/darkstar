@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Thunder Break
--- Channels the power of Thunder toward targets in an area of dsp.effects. Additional effect: Stun
+-- Channels the power of Thunder toward targets in an area of effect. Additional effect: Stun
 
 ---------------------------------------------------
 

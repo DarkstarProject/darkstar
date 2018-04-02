@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Thundris Shriek
 --
--- Description: Deals heavy lightning damage to targets in area of dsp.effects. Additional effect: Terror
+-- Description: Deals heavy lightning damage to targets in area of effect. Additional effect: Terror
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: Unknown

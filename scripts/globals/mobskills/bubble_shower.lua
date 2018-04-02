@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Bubble Shower
--- Deals Water damage in an area of dsp.effects. Additional effect: STR Down
+-- Deals Water damage in an area of effect. Additional effect: STR Down
 ---------------------------------------------------
 
 require("scripts/globals/settings");

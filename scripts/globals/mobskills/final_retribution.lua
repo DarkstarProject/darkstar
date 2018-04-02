@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Final Retribution
 --  Family: Corse
---  Description: Damages enemies in an area of dsp.effects. Additional effect: Stun
+--  Description: Damages enemies in an area of effect. Additional effect: Stun
 --  Type: Physical
 --  Utsusemi/Blink absorb: 1-3 shadows
 --  Range: Radial

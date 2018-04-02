@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Optic Induration
 --
---  Description: Charges up a powerful, calcifying beam directed at targets in a fan-shaped area of dsp.effects. Additional effect: Petrification &amp; enmity reset
+--  Description: Charges up a powerful, calcifying beam directed at targets in a fan-shaped area of effect. Additional effect: Petrification &amp; enmity reset
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown cone

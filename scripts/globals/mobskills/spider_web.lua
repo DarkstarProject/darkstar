@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Spider Web
--- Entangles all targets in an area of dsp.effects.
+-- Entangles all targets in an area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

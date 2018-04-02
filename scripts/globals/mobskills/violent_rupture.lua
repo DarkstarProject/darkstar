@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Dynamic Implosion
 --
---  Description: Deals Water damage to enemies in a fan-shaped area of dsp.effects. Additional effect: STR Down
+--  Description: Deals Water damage to enemies in a fan-shaped area of effect. Additional effect: STR Down
 --  Type: Breath
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown cone

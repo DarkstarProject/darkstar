@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Heavy Stomp
 --
---  Description: Deals heavy damage to targets within an area of dsp.effects. Additional effect: Paralysis
+--  Description: Deals heavy damage to targets within an area of effect. Additional effect: Paralysis
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown radial

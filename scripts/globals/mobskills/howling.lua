@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Howling
 --
--- Description: Paralyzes enemies in an area of dsp.effects.
+-- Description: Paralyzes enemies in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Ichor Stream
 -- Family: Hpemde
--- Description: Spews venomous ichor at targets in a fan-shaped area of dsp.effects.
+-- Description: Spews venomous ichor at targets in a fan-shaped area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Cone

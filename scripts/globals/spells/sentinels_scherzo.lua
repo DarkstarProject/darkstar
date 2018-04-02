@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Sentinel's Scherzo
--- Mitigates the impact of severely damaging attacks for party members within an area of dsp.effects.
+-- Mitigates the impact of severely damaging attacks for party members within an area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");

@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Snow Cloud
--- Deals Ice damage to targets in a fan-shaped area of dsp.effects. Additional effect: Paralyze
+-- Deals Ice damage to targets in a fan-shaped area of effect. Additional effect: Paralyze
 -- Range: 10' cone
 ---------------------------------------------------
 

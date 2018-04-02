@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Cronos Sling: Eta
--- Deals damage in a fan-shaped area of dsp.effects.
+-- Deals damage in a fan-shaped area of effect.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

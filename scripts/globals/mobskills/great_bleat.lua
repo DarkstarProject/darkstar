@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Great Bleat
 --
--- Description: Lowers maximum HP of targets in an area of dsp.effects.
+-- Description: Lowers maximum HP of targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown radial

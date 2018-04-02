@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Stonaga IV
--- Deals earth damage to enemies within area of dsp.effects.
+-- Deals earth damage to enemies within area of effect.
 -----------------------------------------
 
 require("scripts/globals/magic");

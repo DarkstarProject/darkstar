@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Laser_Shower
 --
--- Description: Fires several lasers into a fan-shaped area of dsp.effects. Additional effect: Defense Down
+-- Description: Fires several lasers into a fan-shaped area of effect. Additional effect: Defense Down
 -- Type: Breath
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown cone

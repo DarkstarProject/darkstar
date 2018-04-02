@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Cura
--- Restores hp in area of dsp.effects. Self target only
+-- Restores hp in area of effect. Self target only
 -- From what I understand, Cura's base potency is the same as Cure II's.
 -- With Afflatus Misery Bonus, it can be as potent as a Curaga III
 -- Modeled after our cure_ii.lua, which was modeled after the below reference

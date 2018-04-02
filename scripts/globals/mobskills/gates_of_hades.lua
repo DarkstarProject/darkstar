@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gates of Hades
 --
---  Description: Deals severe Fire damage to enemies within an area of dsp.effects. Additional effect: Burn
+--  Description: Deals severe Fire damage to enemies within an area of effect. Additional effect: Burn
 --  Type:  Magical
 --
 --

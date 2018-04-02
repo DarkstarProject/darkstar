@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Divine Waltz
--- Heals party members within area of dsp.effects.
+-- Heals party members within area of effect.
 -- Obtained: Dancer Level 25
 -- TP Required: 40%
 -- Recast Time: 00:13

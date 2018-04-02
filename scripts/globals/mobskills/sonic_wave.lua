@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sonic Wave
--- Reduces defense of enemies in an area of dsp.effects.
+-- Reduces defense of enemies in an area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

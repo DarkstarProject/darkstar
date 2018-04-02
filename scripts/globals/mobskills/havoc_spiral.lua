@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Havoc Spiral
 --
---  Description: Deals damage to players in an area of dsp.effects. Additional effect: Sleep
+--  Description: Deals damage to players in an area of effect. Additional effect: Sleep
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Unknown

@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sound Blast
--- 15' Reduces INT of players in area of dsp.effects.
+-- 15' Reduces INT of players in area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Naturalists's Roll
--- Increases the duration of enhancing magic effects received for party members within area of dsp.effects.
+-- Increases the duration of enhancing magic effects received for party members within area of effect.
 -- Optimal Job: Geomancer
 -- Lucky Number: 3
 -- Unlucky Number: 7

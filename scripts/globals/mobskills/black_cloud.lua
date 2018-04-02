@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Black Cloud
 --
---  Description: A cloud deals Dark damage to enemies in an area of dsp.effects. Additional effect: Blind
+--  Description: A cloud deals Dark damage to enemies in an area of effect. Additional effect: Blind
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 15' radial

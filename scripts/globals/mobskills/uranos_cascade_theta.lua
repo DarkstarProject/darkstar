@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Uranos Cascade: Theta
--- Deals damage in an area of dsp.effects.
+-- Deals damage in an area of effect.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

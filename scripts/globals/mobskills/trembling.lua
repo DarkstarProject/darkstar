@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Trembling
 --
---  Description: Deals physical damage to enemies within an area of dsp.effects. Additional effect: Dispel
+--  Description: Deals physical damage to enemies within an area of effect. Additional effect: Dispel
 --  Type: Physical
 --  Wipes Shadows
 --  Range: 10' radial

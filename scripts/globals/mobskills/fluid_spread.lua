@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Fluid Spread
 --
---  Description: Splashes around liquid in an area of dsp.effects.
+--  Description: Splashes around liquid in an area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 10' radial

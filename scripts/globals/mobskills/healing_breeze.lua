@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Healing Breeze
 --
--- Description: Restores HP for party members within area of dsp.effects.
+-- Description: Restores HP for party members within area of effect.
 -- Type: Magical (Wind)
 --
 --

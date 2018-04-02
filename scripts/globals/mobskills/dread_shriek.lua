@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Dread Shriek
 --
--- Description: An unsettling shriek paralyzes targets in an area of dsp.effects.
+-- Description: An unsettling shriek paralyzes targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 10' radial

@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Condemnation
--- Deals damage in a threefold attack to enemies within a fan-shaped area of dsp.effects.
+-- Deals damage in a threefold attack to enemies within a fan-shaped area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

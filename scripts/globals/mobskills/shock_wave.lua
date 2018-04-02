@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Shock_Wave
--- Deals damage in a frontal area of dsp.effects. Additional effect: Knockback
+-- Deals damage in a frontal area of effect. Additional effect: Knockback
 --
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Lightning Carol
--- Increases lightning resistance for party members within the area of dsp.effects.
+-- Increases lightning resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

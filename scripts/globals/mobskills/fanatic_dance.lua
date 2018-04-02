@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Fanatic Dance
 -- Family: Orc
--- Description: Charms all targets in an area of dsp.effects.
+-- Description: Charms all targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: N/A
 -- Range: AoE around user

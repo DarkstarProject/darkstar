@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Ululation
--- Paralyzes all enemies in an area of dsp.effects.
+-- Paralyzes all enemies in an area of effect.
 --
 ---------------------------------------------
 

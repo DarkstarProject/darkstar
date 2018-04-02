@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Tacticians's Roll
--- Grants a Regain effect to party members within area of dsp.effects.
+-- Grants a Regain effect to party members within area of effect.
 -- Optimal Job: None
 -- Lucky Number: 5
 -- Unlucky Number: 8

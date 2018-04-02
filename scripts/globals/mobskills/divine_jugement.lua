@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Diving Judgement
--- Description: Deals Light elemental damage to enemies within area of dsp.effects.
+-- Description: Deals Light elemental damage to enemies within area of effect.
 -- Type: Magical (Light)
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");

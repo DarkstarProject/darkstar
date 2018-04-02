@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Hi-Freq Field
--- Lowers the evasion of enemies in a fan-shaped area of dsp.effects.
+-- Lowers the evasion of enemies in a fan-shaped area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

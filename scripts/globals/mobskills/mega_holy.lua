@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Mega Holy
 --
--- Description:     Deals Light damage to targets in an area of dsp.effects.
+-- Description:     Deals Light damage to targets in an area of effect.
 -- Type: Magical
 -- Can be dispelled: N/A
 -- Utsusemi/Blink absorb: Wipes shadows

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Curse
 --
--- Description: Inflicts a curse on all targets in an area of dsp.effects.
+-- Description: Inflicts a curse on all targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 15' radial

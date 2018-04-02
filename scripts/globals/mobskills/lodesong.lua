@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Lodesong
 --
--- Description: Weighs down targets in an area of dsp.effects.
+-- Description: Weighs down targets in an area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

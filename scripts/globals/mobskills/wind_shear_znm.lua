@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Wind Shear
 --
---  Description: Deals damage to enemies within an area of dsp.effects. Additional effect: Knockback
+--  Description: Deals damage to enemies within an area of effect. Additional effect: Knockback
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 10' radial

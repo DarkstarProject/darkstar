@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Aqua Ball
--- Deals Water damage in a splash area of dsp.effects. Additional effect: STR Down
+-- Deals Water damage in a splash area of effect. Additional effect: STR Down
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

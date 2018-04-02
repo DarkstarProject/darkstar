@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Purulent Ooze
 -- Family: Slugs
--- Description: Deals Water damage in a fan-shaped area of dsp.effects. Additional effect: Bio and Max HP Down
+-- Description: Deals Water damage in a fan-shaped area of effect. Additional effect: Bio and Max HP Down
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: Cone

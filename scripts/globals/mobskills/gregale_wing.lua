@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gregale Wing
 --
---  Description: An icy wind deals Ice damage to enemies within a very wide area of dsp.effects. Additional effect: Paralyze
+--  Description: An icy wind deals Ice damage to enemies within a very wide area of effect. Additional effect: Paralyze
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 30' radial.

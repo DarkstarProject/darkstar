@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Spinning Top
 --
---  Description: Deals damage in an area of dsp.effects.
+--  Description: Deals damage in an area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-4 shadows
 --  Range: 10' radial

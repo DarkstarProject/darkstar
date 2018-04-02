@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Pinning Shot
 --
--- Description: Delivers a threefold ranged attack to targets in an area of dsp.effects. Additional effect: Bind
+-- Description: Delivers a threefold ranged attack to targets in an area of effect. Additional effect: Bind
 -- Type: Physical
 -- Utsusemi/Blink absorb: 2-3 shadows
 -- Range: Unknown

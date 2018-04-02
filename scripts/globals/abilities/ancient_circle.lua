@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Ancient Circle
--- Grants resistance, defense, and attack against dragons to party members within the area of dsp.effects.
+-- Grants resistance, defense, and attack against dragons to party members within the area of effect.
 -- Obtained: Dragoon Level 5
 -- Recast Time: 5:00
 -- Duration: 03:00

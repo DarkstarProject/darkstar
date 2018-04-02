@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Deal Out
 --
---  Description: Damages enemies in an area of dsp.effects.
+--  Description: Damages enemies in an area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 10' radial

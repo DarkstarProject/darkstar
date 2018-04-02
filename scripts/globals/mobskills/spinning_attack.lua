@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Spinning Attack
 --
---  Description: Spins into targets in a fan-shaped area of dsp.effects. Additional effect: Knockback
+--  Description: Spins into targets in a fan-shaped area of effect. Additional effect: Knockback
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 10' radial

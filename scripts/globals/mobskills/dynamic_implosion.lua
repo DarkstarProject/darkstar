@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Dynamic Implosion
 --
---  Description: Deals damage to players within an area of dsp.effects. Additional effect: Stun (Status Effect)
+--  Description: Deals damage to players within an area of effect. Additional effect: Stun (Status Effect)
 --  Type: Physical 
 --  Utsusemi/Blink absorb: Unknown
 --  Range: Unknown radial

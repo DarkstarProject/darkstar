@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Warding Circle
--- Grants resistance, defense, and attack against Demons to party members within the area of dsp.effects.
+-- Grants resistance, defense, and attack against Demons to party members within the area of effect.
 -- Obtained: Samurai Level 5
 -- Recast Time: 5:00
 -- Duration: 3:00

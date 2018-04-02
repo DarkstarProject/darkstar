@@ -1,6 +1,6 @@
 ---------------------------------------------
 --  Ill Wind
---  Description: Deals Wind damage to enemies within an area of dsp.effects. Additional effect: Dispel
+--  Description: Deals Wind damage to enemies within an area of effect. Additional effect: Dispel
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes Shadows
 --  Range: Unknown radial

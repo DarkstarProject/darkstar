@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Mow
 --
---  Description: Deals damage in an area of dsp.effects. Additional effect: Poison
+--  Description: Deals damage in an area of effect. Additional effect: Poison
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown radial

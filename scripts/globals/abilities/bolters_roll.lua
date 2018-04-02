@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Bolter's Roll
--- Increases Movement speed for party members with area of dsp.effects.
+-- Increases Movement speed for party members with area of effect.
 -- Optimal Job: None
 -- Lucky Number: 3
 -- Unlucky Number: 9

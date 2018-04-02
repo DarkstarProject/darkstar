@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Miser's Roll
--- Grants "Save TP" effect to party members within area of dsp.effects.
+-- Grants "Save TP" effect to party members within area of effect.
 -- Optimal Job: None
 -- Lucky Number: 5
 -- Unlucky Number: 7

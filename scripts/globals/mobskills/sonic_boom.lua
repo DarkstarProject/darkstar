@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sonic Boom
--- Reduces attack of targets in area of dsp.effects.
+-- Reduces attack of targets in area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

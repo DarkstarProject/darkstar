@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Touchdown
 --
---  Description: Deals magical damage to enemies in an area of dsp.effects.
+--  Description: Deals magical damage to enemies in an area of effect.
 --  Further Notes: Bahamut can use this as a regular move at will.
 ---------------------------------------------
 require("scripts/globals/settings");

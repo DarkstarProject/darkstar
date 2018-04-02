@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Dark Wave
 --
---  Description: A wave of dark energy washes over targets in an area of dsp.effects. Additional effect: Bio
+--  Description: A wave of dark energy washes over targets in an area of effect. Additional effect: Bio
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: 10' radial

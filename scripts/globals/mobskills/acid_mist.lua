@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Acid Mist
--- Deals Water damage to enemies within an area of dsp.effects. Additional effect: Attack Down
+-- Deals Water damage to enemies within an area of effect. Additional effect: Attack Down
 ---------------------------------------------------
 
 require("scripts/globals/settings");

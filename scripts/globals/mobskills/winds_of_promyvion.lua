@@ -3,7 +3,7 @@
 --
 --  Description: Party memory erase.
 --  Type: Enfeebling
---  Notes: Removes one detrimental magic effect for party members within area of dsp.effects.
+--  Notes: Removes one detrimental magic effect for party members within area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

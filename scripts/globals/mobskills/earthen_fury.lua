@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Earthen Fury
--- Deals Earth elemental damage to enemies within area of dsp.effects.
+-- Deals Earth elemental damage to enemies within area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

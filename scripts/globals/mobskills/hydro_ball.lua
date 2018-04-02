@@ -1,6 +1,6 @@
 ---------------------------------------------
 --  Hydroball
---  Deals Water damage to targets in a fan-shaped area of dsp.effects. Additional effect: STR Down
+--  Deals Water damage to targets in a fan-shaped area of effect. Additional effect: STR Down
 --  Type: Breath
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Notes: STR reduced by 15%.

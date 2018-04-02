@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Gravity Wheel
 --
---  Description: Deals heavy damage to players in an area of dsp.effects. Additional effect: Weight
+--  Description: Deals heavy damage to players in an area of effect. Additional effect: Weight
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Unknown

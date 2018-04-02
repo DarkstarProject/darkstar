@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Mantra
--- Increases the max. HP of party members within area of dsp.effects.
+-- Increases the max. HP of party members within area of effect.
 -- Obtainable: Monk Level 75
 -- Recast Time: 0:10:00
 -- Duration: 0:03:00

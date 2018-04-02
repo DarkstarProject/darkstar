@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Earthen Ward
--- Titan grants Stoneskin to party members within area of dsp.effects.
+-- Titan grants Stoneskin to party members within area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

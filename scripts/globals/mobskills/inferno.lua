@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Inferno
--- Deals fire elemental damage to enemies within area of dsp.effects.
+-- Deals fire elemental damage to enemies within area of effect.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

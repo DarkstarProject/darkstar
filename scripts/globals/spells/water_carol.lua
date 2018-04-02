@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Water Carol
--- Increases water resistance for party members within the area of dsp.effects.
+-- Increases water resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

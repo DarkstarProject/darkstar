@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Incinerate
--- Description: Deals Fire damage to targets in a fan-shaped area of dsp.effects.
+-- Description: Deals Fire damage to targets in a fan-shaped area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

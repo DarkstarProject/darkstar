@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Blastbomb
--- Deals fire damage to enemies within area of dsp.effects. Additional effect: "Bind"
+-- Deals fire damage to enemies within area of effect. Additional effect: "Bind"
 -- Spell cost: 36 MP
 -- Monster Type: Beastmen
 -- Spell Type: Magical (Fire)

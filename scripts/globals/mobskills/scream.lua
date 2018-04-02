@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Scream
--- 15' Reduces MND of players in area of dsp.effects.
+-- 15' Reduces MND of players in area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

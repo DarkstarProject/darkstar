@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tebbad Wing
 --
---  Description: A hot wind deals Fire damage to enemies within a very wide area of dsp.effects. Additional effect: Plague
+--  Description: A hot wind deals Fire damage to enemies within a very wide area of effect. Additional effect: Plague
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 30' radial.

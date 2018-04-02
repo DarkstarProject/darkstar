@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Sound Vacuum
 --
--- Description: Silences opponents in a fan-shaped area of dsp.effects.
+-- Description: Silences opponents in a fan-shaped area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown cone

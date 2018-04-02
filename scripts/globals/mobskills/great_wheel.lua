@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Great Wheel
 --
---  Description: Damages enemies in an area of dsp.effects. Additional effect: Enmity Reset
+--  Description: Damages enemies in an area of effect. Additional effect: Enmity Reset
 --  Type: Physical
 --  Wipes Shadows
 --  Range: Melee range radial

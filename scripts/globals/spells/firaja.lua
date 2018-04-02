@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Firaja
--- Deals fire damage to enemies within area of dsp.effects.
+-- Deals fire damage to enemies within area of effect.
 -- Successive use enhances spell potency.
 -----------------------------------------
 

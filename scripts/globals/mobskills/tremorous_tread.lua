@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tremorous Tread
 --
---  Description: Deals damage to players in an area of dsp.effects. Additional effect: Stun
+--  Description: Deals damage to players in an area of effect. Additional effect: Stun
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Unknown

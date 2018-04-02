@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tremorous Tread
 --
---  Description: Deals damage in a fan-shaped area of dsp.effects.
+--  Description: Deals damage in a fan-shaped area of effect.
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Unknown

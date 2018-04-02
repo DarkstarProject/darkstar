@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Thunderbolt
 --
---  Description: Deals Lightning damage in an area of dsp.effects. Additional effect: Stun
+--  Description: Deals Lightning damage in an area of effect. Additional effect: Stun
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range:

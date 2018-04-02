@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Bilgestorm
 --
---  Description: Deals damage in an area of dsp.effects. Additional effect: Lowers attack, accuracy, and defense
+--  Description: Deals damage in an area of effect. Additional effect: Lowers attack, accuracy, and defense
 --  Type: Physical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: Unknown

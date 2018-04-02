@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Mangle
 --  Family: Qutrub
---  Description: Deals damage in a threefold attack to targets in a fan-shaped area of dsp.effects.
+--  Description: Deals damage in a threefold attack to targets in a fan-shaped area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 3 shadows
 --  Range: Front cone

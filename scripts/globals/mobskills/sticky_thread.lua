@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Sticky Thread
--- Inflicts slow on targets in a fan-shaped area of dsp.effects.
+-- Inflicts slow on targets in a fan-shaped area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

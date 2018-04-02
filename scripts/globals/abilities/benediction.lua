@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Benediction
--- Restores a large amount of HP and removes (almost) all status ailments for party members within area of dsp.effects.
+-- Restores a large amount of HP and removes (almost) all status ailments for party members within area of effect.
 -- Obtained: White Mage Level 1
 -- Recast Time: 1:00:00
 -- Duration: Instant

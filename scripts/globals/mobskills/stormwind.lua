@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Stormwind
 --
---  Description: Creates a whirlwind that deals Wind damage to targets in an area of dsp.effects.
+--  Description: Creates a whirlwind that deals Wind damage to targets in an area of effect.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: Unknown radial

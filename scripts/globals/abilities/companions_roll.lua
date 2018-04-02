@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Companion's Roll
--- Grants "Regain" and "Regen" effects to pets of party members within area of dsp.effects.
+-- Grants "Regain" and "Regen" effects to pets of party members within area of effect.
 -- Optimal Job: None
 -- Lucky Number: 2
 -- Unlucky Number: 10

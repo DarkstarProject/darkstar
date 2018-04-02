@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Groundburst
 --
--- Description: Expels a fireball on targets in an area of dsp.effects.
+-- Description: Expels a fireball on targets in an area of effect.
 -- Type: Physical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: Unknown radial

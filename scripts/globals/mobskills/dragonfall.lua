@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Dragonfall
 --
---  Description: Deals damage to players an area of dsp.effects. Additional effect: Bind
+--  Description: Deals damage to players an area of effect. Additional effect: Bind
 --  Type: Physical
 --  2-3 Shadows
 --  Range: Melee

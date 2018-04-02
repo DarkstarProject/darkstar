@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Fire Carol
--- Increases fire resistance for party members within the area of dsp.effects.
+-- Increases fire resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

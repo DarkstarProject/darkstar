@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Gravitic Horn
 -- Family: Antlion (Only used by Formiceros subspecies)
--- Description: Heavy wind, Throat Stab-like damage in a fan-shaped area of dsp.effects. Resets enmity.
+-- Description: Heavy wind, Throat Stab-like damage in a fan-shaped area of effect. Resets enmity.
 -- Type: Magical
 -- Can be dispelled: N/A
 -- Utsusemi/Blink absorb: Ignores shadows

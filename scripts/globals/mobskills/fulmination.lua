@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Fulmination
 --
--- Description: Deals heavy magical damage in an area of dsp.effects. Additional effect: Paralysis + Stun
+-- Description: Deals heavy magical damage in an area of effect. Additional effect: Paralysis + Stun
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes Shadows
 -- Range: 30 yalms

@@ -1,6 +1,6 @@
 ---------------------------------------------
 --  Earthshock
---  Creates a seismic wave to damage targets in an area of dsp.effects. Additional effect: Stun
+--  Creates a seismic wave to damage targets in an area of effect. Additional effect: Stun
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 ---------------------------------------------

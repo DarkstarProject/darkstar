@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Dreadstorm
 --
--- Description: Deals magical damage in an area of dsp.effects. Additional effect: Terror
+-- Description: Deals magical damage in an area of effect. Additional effect: Terror
 -- Type: Magical
 -- Wipes Shadows
 -- Range: 13' radial

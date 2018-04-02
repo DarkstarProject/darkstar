@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Wind Carol
--- Increases wind resistance for party members within the area of dsp.effects.
+-- Increases wind resistance for party members within the area of effect.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

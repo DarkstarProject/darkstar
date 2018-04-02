@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Earth Pounder
 --
---  Description: Deals Earth damage to enemies within area of dsp.effects. Additional effect: Dexterity Down
+--  Description: Deals Earth damage to enemies within area of effect. Additional effect: Dexterity Down
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 15' radial

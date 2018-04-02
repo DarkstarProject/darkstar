@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Howling Moon
--- Deals dark elemental damage to enemies within area of dsp.effects. (2H)
+-- Deals dark elemental damage to enemies within area of effect. (2H)
 ---------------------------------------------------
 
 require("scripts/globals/settings");

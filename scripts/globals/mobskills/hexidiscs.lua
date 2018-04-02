@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Hexidiscs
 --
---  Description: A sixfold attack damages targets in a fan-shaped area of dsp.effects.
+--  Description: A sixfold attack damages targets in a fan-shaped area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 6 shadows
 --  Range: Unknown cone

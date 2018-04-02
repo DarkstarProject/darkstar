@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Whirl Claws
--- Deals damage in an area of dsp.effects.
+-- Deals damage in an area of effect.
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 

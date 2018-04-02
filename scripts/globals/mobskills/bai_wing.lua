@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Bai Wing
 --
--- Description: A dust storm deals Earth damage to enemies within a very wide area of dsp.effects. Additional effect: Slow
+-- Description: A dust storm deals Earth damage to enemies within a very wide area of effect. Additional effect: Slow
 -- Type: Magical
 -- Utsusemi/Blink absorb: Wipes shadows
 -- Range: 30' radial.

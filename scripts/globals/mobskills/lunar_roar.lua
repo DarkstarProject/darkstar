@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Lunar Roar
--- Fenrir removes two beneficial status effects from enemies within Area of dsp.effects.
+-- Fenrir removes two beneficial status effects from enemies within Area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

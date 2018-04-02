@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Rumble
 --
--- Description: A disorienting vibration lowers evasion of targets in an area of dsp.effects.
+-- Description: A disorienting vibration lowers evasion of targets in an area of effect.
 -- Type: Enfeebling
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Unknown radial

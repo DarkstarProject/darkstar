@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Blitzer's Roll
--- Reduces melee attack delay for party members within area of dsp.effects. 
+-- Reduces melee attack delay for party members within area of effect. 
 -- Optimal Job: None
 -- Lucky Number: 4
 -- Unlucky Number: 9

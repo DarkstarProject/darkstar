@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Water Bomb
 --
---  Description: Deals water damage to enemies within area of dsp.effects. Additional effect: Silence.
+--  Description: Deals water damage to enemies within area of effect. Additional effect: Silence.
 --  Type: Magical (Water)
 --
 --

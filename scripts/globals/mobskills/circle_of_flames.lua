@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Circle of Flames
 --
---  Description: Deals damage to targets in an area of dsp.effects. Additional effect: Weight
+--  Description: Deals damage to targets in an area of effect. Additional effect: Weight
 --  Type: Physical
 --  Utsusemi/Blink absorb: 1-3 shadows
 --  Range: 10' radial

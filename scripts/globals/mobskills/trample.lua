@@ -1,7 +1,7 @@
 ---------------------------------------------------
 --  Trample
 --  Family: Bahamut
---  Description: Deals physical damage to enemies in an area of dsp.effects. Additional effect: Knockback + Bind
+--  Description: Deals physical damage to enemies in an area of effect. Additional effect: Knockback + Bind
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: 

@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Ultrasonics
--- Reduces evasion of targets in area of dsp.effects.
+-- Reduces evasion of targets in area of effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
