@@ -3,7 +3,7 @@
 --     Deals earth damage that gradually reduces
 --  a target's HP. Damage dealt is greatly affected by the weather.
 --------------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -40,7 +40,7 @@ function onSpellCast(caster,target,spell)
     -- get the resisted damage
     dmg = dmg*resist;
     -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg,merit*2);
+    dmg = addBonuses(caster,spell,target,dmg,params);
     -- add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     local dot = dmg;
