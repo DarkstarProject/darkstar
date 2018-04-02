@@ -637,6 +637,14 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PNpc->PAI->Trigger(PChar->targid);
         }
 
+        // Releasing a trust
+        // TODO: 0x0c is set to 0x1, not sure if that is relevant or not.
+        CBaseEntity* PTrust = PChar->GetEntity(TargID, TYPE_TRUST);
+        if (PTrust != nullptr)
+        {
+            PChar->RemoveTrust((CTrustEntity*)PTrust);
+        }
+
         if (PChar->m_event.EventID == -1)
         {
             PChar->m_event.reset();
@@ -2729,6 +2737,8 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  town = data.ref<uint8>(0x16);
     uint8  zone = data.ref<uint8>(0x17);
 
+    PChar->ClearTrusts();
+
     if (PChar->status == STATUS_NORMAL)
     {
         PChar->status = STATUS_DISAPPEAR;
@@ -4012,7 +4022,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     }
                     else // You must wait longer to perform that action.
                     {
-                        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 38));
+                        PChar->pushPacket(new CMessageStandardPacket(PChar, 0, MSGSTD_WAIT_LONGER));
                     }
 
                     if (map_config.audit_chat == 1 && map_config.audit_yell == 1)

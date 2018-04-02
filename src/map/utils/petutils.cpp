@@ -36,6 +36,7 @@ This file is part of DarkStar-server source code.
 #include "petutils.h"
 #include "zoneutils.h"
 #include "../entities/mobentity.h"
+#include "../entities/trustentity.h"
 #include "../entities/automatonentity.h"
 #include "../ability.h"
 #include "../status_effect_container.h"
@@ -54,7 +55,9 @@ This file is part of DarkStar-server source code.
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
+#include "../packets/message_standard.h"
 #include "../packets/pet_sync.h"
+#include "../packets/trust_sync.h"
 
 struct Pet_t
 {
@@ -799,7 +802,8 @@ namespace petutils
 
                 // check latents affected by pets
                 ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType();
-                PMaster->ForParty([](CBattleEntity* PMember) {
+                PMaster->ForParty([](CBattleEntity* PMember)
+                {
                     ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
                 });
             }
@@ -815,6 +819,76 @@ namespace petutils
         {
             static_cast<CCharEntity*>(PMaster)->resetPetZoningInfo();
         }
+    }
+
+    void SpawnTrust(CCharEntity* PMaster, uint32 TrustID)
+    {
+        // TODO: You can only spawn trusts in battle areas, similar to pets. See MSGBASIC_TRUST_NOT_HERE
+
+        // TODO: There is an expandable limit of trusts you can summon, based on key items.
+        size_t maxTrusts = 5;
+
+        // TODO: These checks should be done at before spellcast time!!
+        // If you're in a party, you can only spawn trusts if:
+        //  * You're the party leader
+        //  * The party isn't full
+        //  * The party isn't part of an alliance
+        if (PMaster->PParty != nullptr)
+        {
+            CBattleEntity* PLeader = PMaster->PParty->GetLeader();
+            if (PLeader == nullptr || PLeader->id != PMaster->id)
+            {
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SOLO_OR_LEADER));
+                return;
+            }
+            if (PMaster->PParty->members.size() >= 6)
+            {
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_LIMIT));
+                return;
+            }
+            if (PMaster->PParty->m_PAlliance != nullptr)
+            {
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SOLO_OR_LEADER));
+                return;
+            }
+
+            // Reduce the max number of summonable trusts
+            maxTrusts = 6 - PMaster->PParty->members.size();
+        }
+
+        if (PMaster->PTrusts.size() >= maxTrusts)
+        {
+            PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_LIMIT));
+            return;
+        }
+
+        // You can't spawn the same trust twice
+        // TODO: This includes otherwise distinct trusts, e.g. Shantotto and Shantotto II, only 1 can be called.
+        //       It'd probably be "good enough" to use the name as a heuristic, looking for "II" (this catches 99% of them).
+        for (auto PTrust : PMaster->PTrusts)
+        {
+            if (PTrust->m_PetID == TrustID)
+            {
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SAME));
+                return;
+            }
+        }
+
+        // Make a new party if we weren't in one.
+        // TODO: It's actually not a real party: /sea shows your name as grey not yellow, but it shows as a party on the GUI.
+        if (PMaster->PParty == nullptr)
+        {
+            PMaster->PParty = new CParty(PMaster);
+        }
+
+        CTrustEntity* PTrust = LoadTrust(PMaster, TrustID);
+        PMaster->PTrusts.insert(PMaster->PTrusts.begin(), PTrust);
+        PMaster->StatusEffectContainer->CopyConfrontationEffect(PTrust);
+        PMaster->loc.zone->InsertPET(PTrust);
+        PMaster->PParty->ReloadParty();
+
+        // Tell the client this is a trust (shows the 'Release' option on the menu).
+        PMaster->pushPacket(new CTrustSyncPacket(PMaster, PTrust));
     }
 
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
@@ -1113,9 +1187,9 @@ namespace petutils
     void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
-        if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN) {
+        if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN)
             return;
-        }
+        
 
         Pet_t* PPetData = g_PPetList.at(PetID);
 
@@ -1309,9 +1383,11 @@ namespace petutils
             PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
             // cap all magic skills so they play nice with spell scripts
-            for (int i = SKILL_DIV; i <= SKILL_BLU; i++) {
+            for (int i = SKILL_DIV; i <= SKILL_BLU; i++)
+            {
                 uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetMJob(), PPet->GetMLevel());
-                if (maxSkill != 0) {
+                if (maxSkill != 0)
+                {
                     PPet->WorkingSkills.skill[i] = maxSkill;
                 }
                 else //if the mob is WAR/BLM and can cast spell
@@ -1418,11 +1494,52 @@ namespace petutils
         PMaster->PPet = PPet;
     }
 
-    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
+    CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
+    {
+        DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
+        Pet_t* PPetData = g_PPetList.at(TrustID);
+        CTrustEntity* PTrust = new CTrustEntity(PMaster);
+        PTrust->loc = PMaster->loc;
+        PTrust->m_OwnerID.id = PMaster->id;
+        PTrust->m_OwnerID.targid = PMaster->targid;
+
+        // spawn me randomly around master
+        PTrust->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, (float)M_PI);
+        Pet_t* trust = g_PPetList.at(TrustID);
+        PTrust->look = trust->look;
+        PTrust->name = trust->name;
+        PTrust->m_name_prefix = trust->name_prefix;
+        PTrust->m_Family = trust->m_Family;
+        PTrust->m_MobSkillList = trust->m_MobSkillList;
+        PTrust->SetMJob(trust->mJob);
+        PTrust->SetSJob(trust->mJob); // TODO: This may not be true for some trusts
+        PTrust->m_Element = trust->m_Element;
+        PTrust->m_PetID = TrustID;
+        PTrust->status = STATUS_NORMAL;
+        PTrust->m_ModelSize = trust->size;
+        PTrust->m_EcoSystem = trust->EcoSystem;
+
+        // assume level matches master
+        PTrust->SetMLevel(PMaster->GetMLevel());
+        PTrust->SetSLevel(PMaster->GetSLevel());
+
+        //set C magic evasion
+        PTrust->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PTrust->GetMLevel()));
+        PTrust->health.tp = 0;
+        PTrust->UpdateHealth();
+        PTrust->health.hp = PTrust->GetMaxHP();
+        PTrust->health.mp = PTrust->GetMaxMP();
+
+        // TODO: Load stats from script
+        return PTrust;
+    }
+
+    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize)
+    {
         //set the wyvern job based on master's SJ
-        if (PMaster->GetSJob() != JOB_NON){
+        if (PMaster->GetSJob() != JOB_NON)
             PPet->SetSJob(PMaster->GetSJob());
-        }
+        
         PPet->SetMJob(JOB_DRG);
         PPet->SetMLevel(PMaster->GetMLevel());
 
@@ -1436,12 +1553,12 @@ namespace petutils
         PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
         PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
 
-        if (finalize) {
+        if (finalize)
             FinalizePetStatistics(PMaster, PPet);
-        }
     }
 
-    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet)
+    {
         //set C magic evasion
         PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
         PPet->health.tp = 0;
@@ -1455,6 +1572,7 @@ namespace petutils
     {
         if (petmod == PetModType::All)
             return true;
+
         if (auto PPetEntity = dynamic_cast<CPetEntity*>(PPet))
         {
             if (petmod == PetModType::Avatar && PPetEntity->getPetType() == PETTYPE_AVATAR)

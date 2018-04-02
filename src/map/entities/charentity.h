@@ -40,6 +40,8 @@ This file is part of DarkStar-server source code.
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
 
+class CTrustEntity;
+
 struct jobs_t
 {
     uint32 unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
@@ -204,6 +206,8 @@ public:
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 
+    std::vector<CTrustEntity*> PTrusts; // Active trusts
+
 
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
@@ -313,6 +317,8 @@ public:
     void		ReloadPartyInc();
     void        ReloadPartyDec();
     bool        ReloadParty();
+    void        ClearTrusts();
+    void        RemoveTrust(CTrustEntity*);
 
     void        PostTick() override;
 

@@ -863,6 +863,15 @@
     <ClInclude Include="..\..\src\map\packets\event_update_string.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\trustentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\trust_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\trust_sync.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1580,6 +1589,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\event_update_string.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\trustentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\trust_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\trust_sync.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>

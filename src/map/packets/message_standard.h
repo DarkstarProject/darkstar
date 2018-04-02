@@ -28,6 +28,25 @@
 
 #include "basic.h"
 
+/*
+ * Valid MessageIDs
+ * Complete list at 1/27/76.DAT
+ */
+enum MSGSTD_ID : uint16
+{
+    MSGSTD_WAIT_LONGER          = 38, /* You must wait longer to perform that action. */
+    /* Trusts */
+    MSGSTD_TRUST_CANNOT_JOIN_PT = 265, /* You are unable to join a party whose leader currently has an alter ego present. */
+    MSGSTD_TRUST_CANNOT_JOIN_AL = 266, /* You are unable to join an alliance whose leader currently has an alter ego present. */
+    MSGSTD_TRUST_CANNOT_LFP     = 296, /* You cannot use Trust magic while seeking a party. */
+    MSGSTD_TRUST_WAIT_PT        = 297, /* While inviting a party member, you must wait a while before using Trust magic. */
+    MSGSTD_TRUST_LIMIT          = 298, /* You have called forth your maximum number of alter egos. */
+    MSGSTD_TRUST_SAME           = 299, /* That alter ego has already been called forth. */
+    MSGSTD_TRUST_ENMITY         = 300, /* You cannot use Trust magic while having gained enmity. */
+    MSGSTD_TRUST_SOLO_OR_LEADER = 301  /* You cannot use Trust magic unless you are solo or the party leader. */
+
+};
+
 /************************************************************************
 *																		*
 *  																		*

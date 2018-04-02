@@ -53,6 +53,7 @@
 
 #include "charentity.h"
 #include "automatonentity.h"
+#include "trustentity.h"
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
@@ -462,6 +463,37 @@ void CCharEntity::ReloadPartyDec()
 bool CCharEntity::ReloadParty()
 {
     return m_reloadParty;
+}
+
+void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
+{
+    if (!PTrust->PAI->IsSpawned())
+        return;
+
+    auto trustIt = std::remove_if(PTrusts.begin(), PTrusts.end(), [PTrust](auto trust) { return PTrust == trust; });
+    if (trustIt != PTrusts.end())
+    {
+        PTrust->PAI->Despawn();
+        PTrusts.erase(trustIt);
+    }
+    if (PParty != nullptr)
+    {
+        PParty->ReloadParty();
+    }
+}
+
+void CCharEntity::ClearTrusts()
+{
+    if (PTrusts.size() == 0)
+    {
+        return;
+    }
+
+    for (auto trust : PTrusts)
+    {
+        trust->PAI->Despawn();
+    }
+    PTrusts.clear();
 }
 
 void CCharEntity::PostTick()
