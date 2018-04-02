@@ -1,6 +1,6 @@
 #!/bin/bash
-luarocks install luacheck --local
-luarocks install lanes --local
+sudo luarocks install luacheck
+sudo luarocks install lanes
 
 luacheck scripts -j 4
 exit $?
