@@ -28,9 +28,6 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
 
-#include "../entities/petentity.h"
-#include "../entities/trustentity.h"
-
 enum PETID
 {
 	PETID_FIRESPIRIT         = 0,
@@ -65,6 +62,8 @@ enum PETID
 
 
 class CBattleEntity;
+class CPetEntity;
+class CTrustEntity;
 
 namespace petutils
 {

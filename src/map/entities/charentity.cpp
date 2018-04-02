@@ -466,9 +466,9 @@ bool CCharEntity::ReloadParty()
 
 void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
 {
-    if (!PTrust->PAI->IsSpawned()) {
+    if (!PTrust->PAI->IsSpawned())
         return;
-    }
+
     for (uint8 i = 0; i < PTrusts.size(); i++)
     {
         if (PTrust != PTrusts[i]) {

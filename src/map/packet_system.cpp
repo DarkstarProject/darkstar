@@ -639,8 +639,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         // Releasing a trust
         // TODO: 0x0c is set to 0x1, not sure if that is relevant or not.
-        CBaseEntity* PTrust = nullptr;
-        PTrust = PChar->GetEntity(TargID, TYPE_TRUST);
+        CBaseEntity* PTrust = PChar->GetEntity(TargID, TYPE_TRUST);
         if (PTrust != nullptr)
         {
             PChar->RemoveTrust((CTrustEntity*)PTrust);

@@ -1,22 +1,22 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2018 Darkstar Dev Teams
+Copyright (c) 2018 Darkstar Dev Teams
 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see http://www.gnu.org/licenses/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/
 
-  This file is part of DarkStar-server source code.
+This file is part of DarkStar-server source code.
 
 ===========================================================================
 */
@@ -42,8 +42,8 @@
 CTrustEntity::CTrustEntity(CCharEntity* PChar)
 {
     objtype = TYPE_TRUST;
-	m_EcoSystem = SYSTEM_UNCLASSIFIED;
-	allegiance = ALLEGIANCE_PLAYER;
+    m_EcoSystem = SYSTEM_UNCLASSIFIED;
+    allegiance = ALLEGIANCE_PLAYER;
     m_MobSkillList = 0;
     PMaster = PChar;
     PAI = std::make_unique<CAIContainer>(this);
@@ -59,13 +59,13 @@ void CTrustEntity::PostTick()
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
-        
+
         if (PMaster && PMaster->PPet == this)
         {
             ShowDebug("CTrustSyncPacket");
             ((CCharEntity*)PMaster)->pushPacket(new CTrustSyncPacket((CCharEntity*)PMaster, this));
         }
-        
+
         updatemask = 0;
     }
 }
@@ -84,7 +84,8 @@ void CTrustEntity::Die()
     CBattleEntity::Die();
     if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
     {
-        petutils::DetachPet(PMaster);
+        CCharEntity* PChar = (CCharEntity*)PMaster;
+        PChar->RemoveTrust(this);
     }
 }
 

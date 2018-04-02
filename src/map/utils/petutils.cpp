@@ -834,8 +834,8 @@ namespace petutils
         //  * The party isn't part of an alliance
         if (PMaster->PParty != nullptr)
         {
-            CBattleEntity* leader = PMaster->PParty->GetLeader();
-            if (leader == nullptr || leader->id != PMaster->id)
+            CBattleEntity* PLeader = PMaster->PParty->GetLeader();
+            if (PLeader == nullptr || PLeader->id != PMaster->id)
             {
                 PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SOLO_OR_LEADER));
                 return;
@@ -864,8 +864,9 @@ namespace petutils
         // You can't spawn the same trust twice
         // TODO: This includes otherwise distinct trusts, e.g. Shantotto and Shantotto II, only 1 can be called.
         //       It'd probably be "good enough" to use the name as a heuristic, looking for "II" (this catches 99% of them).
-        for (auto trust : PMaster->PTrusts) {
-            if (trust->m_PetID == TrustID) {
+        for (auto PTrust : PMaster->PTrusts) {
+            if (PTrust->m_PetID == TrustID)
+            {
                 PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SAME));
                 return;
             }

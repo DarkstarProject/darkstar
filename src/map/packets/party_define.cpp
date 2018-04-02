@@ -66,12 +66,12 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
 		}
 
         if (PParty->GetLeader() != nullptr && PParty->GetLeader()->objtype == TYPE_PC) {
-            CCharEntity* leader = (CCharEntity*)PParty->GetLeader();
-            for (auto trust : leader->PTrusts) {
-                ref<uint32>(12 * i + (0x08)) = trust->id;
-                ref<uint16>(12 * i + (0x0C)) = trust->targid;
+            CCharEntity* PLeader = (CCharEntity*)PParty->GetLeader();
+            for (auto PTrust : PLeader->PTrusts) {
+                ref<uint32>(12 * i + (0x08)) = PTrust->id;
+                ref<uint16>(12 * i + (0x0C)) = PTrust->targid;
                 ref<uint16>(12 * i + (0x0E)) = 0;
-                ref<uint16>(12 * i + (0x10)) = trust->getZone();
+                ref<uint16>(12 * i + (0x10)) = PTrust->getZone();
                 i++;
             }
         }

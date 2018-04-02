@@ -163,7 +163,8 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
     }
 
     // TODO: Read from the trust model itself
-    if (PEntity->objtype == TYPE_TRUST) {
+    if (PEntity->objtype == TYPE_TRUST)
+    {
         ref<uint32>(0x21) = 0x21b;
         ref<uint8>(0x2B) = 0x06;
         ref<uint8>(0x2A) = 0x08;

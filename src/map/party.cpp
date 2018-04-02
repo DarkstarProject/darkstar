@@ -754,15 +754,12 @@ void CParty::ReloadParty()
                     //    effects->AddMemberEffects(PChar);
 
                     // Inject the party leader's trusts into the party list
-                    CCharEntity* leader = (CCharEntity*)GetLeader();
-                    if (leader->PTrusts.size() > 0)
+                    CCharEntity* PLeader = (CCharEntity*)GetLeader();
+                    for (auto PTrust : PLeader->PTrusts)
                     {
-                        for (auto trust : leader->PTrusts)
-                        {
-                            j++;
-                            // trusts don't persist over zonelines, so we know their zone has be the same as the leader.
-                            PChar->pushPacket(new CPartyMemberUpdatePacket(trust, j));
-                        }
+                        j++;
+                        // trusts don't persist over zonelines, so we know their zone has be the same as the leader.
+                        PChar->pushPacket(new CPartyMemberUpdatePacket(PTrust, j));
                     }
                 }
                 else

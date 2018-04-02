@@ -25,8 +25,9 @@ This file is part of DarkStar-server source code.
 #define _TRUSTCONTROLLER_H
 
 #include "controller.h"
-#include "../../entities/charentity.h"
-#include "../../entities/trustentity.h"
+
+class CCharEntity;
+class CTrustEntity;
 
 class CTrustController : public CController
 {
