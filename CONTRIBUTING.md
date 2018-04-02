@@ -20,14 +20,19 @@ Unfortunately, the team is small enough that we can't fix or open pull requests 
 
 ### Code Editor Configuration
 
-Much of this can be automated. We highly recommend [editorconfig](http://editorconfig.org/#download), which most code editors have either a plugin or native support for.
-* [Visual Studio Plugin](https://github.com/editorconfig/editorconfig-visualstudio#readme)
-* [Notepad++](https://github.com/editorconfig/editorconfig-notepad-plus-plus#readme)
-  * As the plugin manager is usually installed by default\*, the easy way is to use that:
-  Launch Notepad++, click on the `Plugins` menu, then `Plugin Manager` -> `Show Plugin Manager`. In the `Available` tab, find `EditorConfig` in the list, check the checkbox and click on the `Install` button.
-    * \*64bit may require manual installation.
-* [Sublime](https://github.com/sindresorhus/editorconfig-sublime#readme): Install EditorConfig with Package Control and restart Sublime.
-* [Vim](https://github.com/editorconfig/editorconfig-vim#readme)
+Much of this can be automated. 
+* We highly recommend [editorconfig](http://editorconfig.org/#download), which most code editors have either a plugin or native support for.
+  * [Visual Studio Plugin](https://github.com/editorconfig/editorconfig-visualstudio#readme)
+  * [Notepad++](https://github.com/editorconfig/editorconfig-notepad-plus-plus#readme)
+    * As the plugin manager is usually installed by default\*, the easy way is to use that:
+    Launch Notepad++, click on the `Plugins` menu, then `Plugin Manager` -> `Show Plugin Manager`. In the `Available` tab, find `EditorConfig` in the list, check the checkbox and click on the `Install` button.
+      * \*64bit may require manual installation.
+  * [Sublime](https://github.com/sindresorhus/editorconfig-sublime#readme): Install EditorConfig with Package Control and restart Sublime.
+  * [Vim](https://github.com/editorconfig/editorconfig-vim#readme)
+
+* clangFormat is also an option for C++
+  * [vs2017 extension](https://marketplace.visualstudio.com/items?itemName=LLVMExtensions.ClangFormat)
+  * [vscode plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
 
 ### General code guidlines (all languages):
 
