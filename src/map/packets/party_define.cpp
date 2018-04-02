@@ -69,7 +69,8 @@ CPartyDefinePacket::CPartyDefinePacket(CParty* PParty)
         if (PParty->GetLeader() != nullptr && PParty->GetLeader()->objtype == TYPE_PC)
         {
             CCharEntity* PLeader = (CCharEntity*)PParty->GetLeader();
-            for (auto PTrust : PLeader->PTrusts) {
+            for (auto PTrust : PLeader->PTrusts)
+            {
                 ref<uint32>(12 * i + (0x08)) = PTrust->id;
                 ref<uint16>(12 * i + (0x0C)) = PTrust->targid;
                 ref<uint16>(12 * i + (0x0E)) = 0;

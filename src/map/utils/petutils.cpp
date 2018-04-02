@@ -802,7 +802,8 @@ namespace petutils
 
                 // check latents affected by pets
                 ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType();
-                PMaster->ForParty([](CBattleEntity* PMember) {
+                PMaster->ForParty([](CBattleEntity* PMember)
+                {
                     ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
                 });
             }
@@ -864,7 +865,8 @@ namespace petutils
         // You can't spawn the same trust twice
         // TODO: This includes otherwise distinct trusts, e.g. Shantotto and Shantotto II, only 1 can be called.
         //       It'd probably be "good enough" to use the name as a heuristic, looking for "II" (this catches 99% of them).
-        for (auto PTrust : PMaster->PTrusts) {
+        for (auto PTrust : PMaster->PTrusts)
+        {
             if (PTrust->m_PetID == TrustID)
             {
                 PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SAME));
@@ -1185,9 +1187,9 @@ namespace petutils
     void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
-        if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN) {
+        if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN)
             return;
-        }
+        
 
         Pet_t* PPetData = g_PPetList.at(PetID);
 
@@ -1381,9 +1383,11 @@ namespace petutils
             PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
             // cap all magic skills so they play nice with spell scripts
-            for (int i = SKILL_DIV; i <= SKILL_BLU; i++) {
+            for (int i = SKILL_DIV; i <= SKILL_BLU; i++)
+            {
                 uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetMJob(), PPet->GetMLevel());
-                if (maxSkill != 0) {
+                if (maxSkill != 0)
+                {
                     PPet->WorkingSkills.skill[i] = maxSkill;
                 }
                 else //if the mob is WAR/BLM and can cast spell
@@ -1530,11 +1534,12 @@ namespace petutils
         return PTrust;
     }
 
-    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
+    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize)
+    {
         //set the wyvern job based on master's SJ
-        if (PMaster->GetSJob() != JOB_NON){
+        if (PMaster->GetSJob() != JOB_NON)
             PPet->SetSJob(PMaster->GetSJob());
-        }
+        
         PPet->SetMJob(JOB_DRG);
         PPet->SetMLevel(PMaster->GetMLevel());
 
@@ -1548,12 +1553,12 @@ namespace petutils
         PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
         PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
 
-        if (finalize) {
+        if (finalize)
             FinalizePetStatistics(PMaster, PPet);
-        }
     }
 
-    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet)
+    {
         //set C magic evasion
         PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
         PPet->health.tp = 0;
@@ -1567,6 +1572,7 @@ namespace petutils
     {
         if (petmod == PetModType::All)
             return true;
+
         if (auto PPetEntity = dynamic_cast<CPetEntity*>(PPet))
         {
             if (petmod == PetModType::Avatar && PPetEntity->getPetType() == PETTYPE_AVATAR)

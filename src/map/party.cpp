@@ -755,7 +755,8 @@ void CParty::ReloadParty()
 
                     // Inject the party leader's trusts into the party list
                     CBattleEntity* PLeader = GetLeader();
-                    if (PLeader != nullptr) {
+                    if (PLeader != nullptr)
+                    {
                         for (auto PTrust : ((CCharEntity*)PLeader)->PTrusts)
                         {
                             j++;
@@ -830,9 +831,9 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-    if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE) {
+    if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() == TREASUREPOOL_ZONE)
         return;
-    }
+    
 
 
     //alliance
@@ -860,8 +861,10 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
             }//regular party
         }
-        else if (PChar->PParty->m_PAlliance == nullptr) {
-            for (uint8 i = 0; i < members.size(); ++i) {
+        else if (PChar->PParty->m_PAlliance == nullptr)
+        {
+            for (uint8 i = 0; i < members.size(); ++i)
+            {
                 CCharEntity* PPartyMember = (CCharEntity*)members.at(i);
 
                 if (PPartyMember != PChar &&
