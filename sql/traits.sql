@@ -380,6 +380,10 @@ INSERT INTO `traits` VALUES ('94','fine-tuning','18','75','1','0','0','TOAU','0'
 INSERT INTO `traits` VALUES ('95','optimization','18','75','1','0','0','TOAU','0');
 INSERT INTO `traits` VALUES ('96','closed position','19','75','1','0','0','WOTG','0');
 INSERT INTO `traits` VALUES ('97','stormsurge','20','75','1','0','0','WOTG','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','78','1','421','5','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','84','2','421','8','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','91','3','421','11','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','97','4','421','14','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','8','88','10','486','2','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','8','98','20','486','3','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','13','77','10','486','2','ABYSSEA','0');
