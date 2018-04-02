@@ -10,6 +10,6 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    print("Trust example onSpellCast: working");
+    caster:spawnTrust(73);
     return 0;
 end;

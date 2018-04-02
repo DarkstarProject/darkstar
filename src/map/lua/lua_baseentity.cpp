@@ -11624,6 +11624,29 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 }
 
 /************************************************************************
+*  Function: spawnTrust()
+*  Purpose : Spawns a Trust if a few correct conditions are met
+*  Example : caster:spawnTrust(TRUST_SHANTOTTO)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::spawnTrust(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC); // only PCs can spawn trusts
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        uint8 trustId = lua_tointeger(L, 1);
+        petutils::SpawnTrust((CCharEntity*)m_PBaseEntity, trustId);
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaBaseEntity::spawnTrust : TrustID is NULL\n" CL_RESET);
+    }
+    return 0;
+}
+
+/************************************************************************
 *  Function: despawnPet()
 *  Purpose : Despawns a Pet Entity
 *  Example : target:despawnPet()
@@ -14172,6 +14195,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, spawnTrust),
 
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),

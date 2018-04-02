@@ -464,6 +464,40 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
+void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
+{
+    if (!PTrust->PAI->IsSpawned()) {
+        return;
+    }
+    for (uint8 i = 0; i < PTrusts.size(); i++)
+    {
+        if (PTrust != PTrusts[i]) {
+            continue;
+        }
+        PTrust->PAI->Despawn();
+        PTrusts.erase(PTrusts.begin() + i);
+        break;
+    }
+    if (PParty != nullptr)
+    {
+        PParty->ReloadParty();
+    }
+}
+
+void CCharEntity::ClearTrusts()
+{
+    if (PTrusts.size() == 0)
+    {
+        return;
+    }
+
+    for (auto trust : PTrusts)
+    {
+        trust->PAI->Despawn();
+    }
+    PTrusts.clear();
+}
+
 void CCharEntity::PostTick()
 {
     CBattleEntity::PostTick();
