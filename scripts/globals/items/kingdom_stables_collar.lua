@@ -3,11 +3,17 @@
 -- Item: Kingdom Stables Collar
 -- Teleports to Chocobo Stables (San d'Oria)
 -----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
 
 function onItemCheck(target)
-    return 0;
+    local result = 0
+    if not target:isZoneVisited(230) then
+        result = 56
+    end
+    return result
 end;
 
 function onItemUse(target)
-    target:setPos(-8.557,1.999,-80.093,64,230);  -- {R}
+    kingdomStablesCollar(target)
 end;

@@ -3,11 +3,17 @@
 -- Item: Republic Stables Medal
 -- Teleports to Chocobo Stables (Bastok)
 -----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
 
 function onItemCheck(target)
-    return 0;
+    local result = 0
+    if not target:isZoneVisited(234) then
+        result = 56
+    end
+    return result
 end;
 
 function onItemUse(target)
-    target:setPos(40.164,0.000,-83.578,64,234);  -- {R}
+    republicStablesMedal(target)
 end;

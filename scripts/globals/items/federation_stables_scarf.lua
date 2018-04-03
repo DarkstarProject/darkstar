@@ -3,11 +3,17 @@
 -- Item: Federation Stables Scarf
 -- Teleports to Chocobo Stables (Windurst)
 -----------------------------------------
+require("scripts/globals/teleports");
+-----------------------------------------
 
 function onItemCheck(target)
-    return 0;
+    local result = 0
+    if not target:isZoneVisited(241) then
+        result = 56
+    end
+    return result
 end;
 
 function onItemUse(target)
-    target:setPos(114.908,-5.000,-133.766,0,241);  -- Guess based on other two until retail confirm
+    federationStablesScarf(target)
 end;
