@@ -20,7 +20,9 @@ Unfortunately, the team is small enough that we can't fix or open pull requests 
 
 ### Code Editor Configuration
 
-Much of this can be automated. We highly recommend [editorconfig](http://editorconfig.org/#download), which most code editors have either a plugin or native support for.
+Much of this can be automated. 
+
+We highly recommend [editorconfig](http://editorconfig.org/#download), which most code editors have either a plugin or native support for.
 * [Visual Studio Plugin](https://github.com/editorconfig/editorconfig-visualstudio#readme)
 * [Notepad++](https://github.com/editorconfig/editorconfig-notepad-plus-plus#readme)
   * As the plugin manager is usually installed by default\*, the easy way is to use that:
@@ -29,20 +31,26 @@ Much of this can be automated. We highly recommend [editorconfig](http://editorc
 * [Sublime](https://github.com/sindresorhus/editorconfig-sublime#readme): Install EditorConfig with Package Control and restart Sublime.
 * [Vim](https://github.com/editorconfig/editorconfig-vim#readme)
 
+Clang-Format is also an option for C++
+* [Visual Studio plugin](https://marketplace.visualstudio.com/items?itemName=LLVMExtensions.ClangFormat)
+* [Visual Studio Code plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
+
 ### General code guidlines (all languages):
 
-* Try not to exceed 100 chars width. Exceptions will occur, but try.
+* Try not to exceed 120 chars width. Exceptions will occur, but try.
 * 4 space indent (death to tabs)
 * No using tabs for alignment either.
 * Trim trailing whitespace.
-
-### C++
-
-* Braces go on a newline unless it's a lambda or empty ([allman](https://en.wikipedia.org/wiki/Indent_style#Allman_style) style)
-* Space between keyword and parentheses
-* No using tabs for alignment
-* UPPER_SNAKE_CASE for ENUM
-* UpperCamelCase for namespaced functions
+  Foo* Bar
+  ```
+  not:
+  ```
+  Foo *Bar
+  ```
+  and *definitely* not:
+  ```
+  Foo * Bar
+  ```
 
 ### Lua
 
