@@ -4,6 +4,7 @@
 -- Enchantment: "Teleport-RuLude Gardens"
 -----------------------------------------
 require("scripts/globals/teleports");
+require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
@@ -12,8 +13,8 @@ function onItemCheck(target)
         result = 56
     end
     return result
-end
+end;
 
 function onItemUse(target)
-    ducalGuardRing(target)
-end
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_DUCALGUARD,0,3);
+end;

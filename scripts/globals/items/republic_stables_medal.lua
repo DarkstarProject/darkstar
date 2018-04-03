@@ -4,6 +4,7 @@
 -- Teleports to Chocobo Stables (Bastok)
 -----------------------------------------
 require("scripts/globals/teleports");
+require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,5 +16,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    republicStablesMedal(target)
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_CHOCOBASTOK,0,4);
 end;
