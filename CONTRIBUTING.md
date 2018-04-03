@@ -41,6 +41,16 @@ Clang-Format is also an option for C++
 * 4 space indent (death to tabs)
 * No using tabs for alignment either.
 * Trim trailing whitespace.
+
+### C++
+
+* Braces go on a newline unless it's a lambda or empty ([allman](https://en.wikipedia.org/wiki/Indent_style#Allman_style) style)
+* Space between keyword and parentheses
+* No using tabs for alignment
+* UpperCamelCase for namespaced functions and classes
+* UPPER_SNAKE_CASE for ENUM (exception for enum classes: style as classes)
+* Asterisk goes up against the type, not the value. We want:
+  ```
   Foo* Bar
   ```
   not:
