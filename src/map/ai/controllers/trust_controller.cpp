@@ -90,7 +90,6 @@ void CTrustController::DoCombatTick(time_point tick)
 
 void CTrustController::DoRoamTick(time_point tick)
 {
-    // FIXME: POwner->PMaster->PAI can be null. When does this get nulled?
     if (POwner->PMaster->PAI->IsEngaged())
     {
         POwner->PAI->Internal_Engage(POwner->PMaster->GetBattleTargetID());
