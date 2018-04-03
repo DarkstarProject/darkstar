@@ -536,7 +536,9 @@ void CCharEntity::PostTick()
         {
             ForAlliance([&](auto PEntity)
             {
-                static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                if (PEntity->objtype == TYPE_PC) {
+                    static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                }
             });
         }
         pushPacket(new CCharUpdatePacket(this));

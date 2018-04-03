@@ -26,6 +26,7 @@
 #include "char_health.h"
 
 #include "../entities/charentity.h"
+#include "../entities/trustentity.h"
 
 
 CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
@@ -51,4 +52,26 @@ CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
         ref<uint8>(0x22) = PChar->GetSJob();
         ref<uint8>(0x23) = PChar->GetSLevel();
     }
+}
+
+CCharHealthPacket::CCharHealthPacket(CTrustEntity* PTrust)
+{
+    this->type = 0xDF;
+    this->size = 0x12;
+
+    ref<uint32>(0x04) = PTrust->id;
+
+    ref<uint32>(0x08) = PTrust->health.hp;
+    ref<uint32>(0x0C) = PTrust->health.mp;
+    ref<uint32>(0x10) = PTrust->health.tp;
+
+    ref<uint16>(0x14) = PTrust->targid;
+
+    ref<uint8>(0x16) = PTrust->GetHPP();
+    ref<uint8>(0x17) = PTrust->GetMPP();
+
+    ref<uint8>(0x20) = PTrust->GetMJob();
+    ref<uint8>(0x21) = PTrust->GetMLevel();
+    ref<uint8>(0x22) = PTrust->GetSJob();
+    ref<uint8>(0x23) = PTrust->GetSLevel();
 }

@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "trustentity.h"
 #include "../mob_spell_container.h"
 #include "../mob_spell_list.h"
+#include "../packets/char_health.h"
 #include "../packets/entity_update.h"
 #include "../packets/trust_sync.h"
 #include "../ai/ai_container.h"
@@ -66,6 +67,21 @@ void CTrustEntity::PostTick()
                 ((CCharEntity*)PMaster)->pushPacket(new CTrustSyncPacket((CCharEntity*)PMaster, this));
             }
         }
+
+        if (updatemask & UPDATE_HP)
+        {
+            if (PMaster->PParty != nullptr)
+            {
+                for (auto PEntity : ((CCharEntity*)PMaster)->PParty->members)
+                {
+                    if (PEntity->objtype == TYPE_PC)
+                    {
+                        static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                    }
+                }
+            }
+        }
+
         updatemask = 0;
     }
 }
@@ -82,7 +98,7 @@ void CTrustEntity::Die()
     PAI->Internal_Die(0s);
     luautils::OnMobDeath(this, nullptr);
     CBattleEntity::Die();
-    if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
+    if (PMaster->objtype == TYPE_PC)
     {
         CCharEntity* PChar = (CCharEntity*)PMaster;
         PChar->RemoveTrust(this);
