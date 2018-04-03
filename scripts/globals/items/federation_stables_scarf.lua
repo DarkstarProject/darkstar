@@ -1,19 +1,19 @@
 -----------------------------------------
--- ID: 14657
--- Ducal Guard Ring
--- Enchantment: "Teleport-RuLude Gardens"
+-- ID: 13181
+-- Item: Federation Stables Scarf
+-- Teleports to Chocobo Stables (Windurst)
 -----------------------------------------
 require("scripts/globals/teleports");
 -----------------------------------------
 
 function onItemCheck(target)
     local result = 0
-    if not target:isZoneVisited(243) then
+    if not target:isZoneVisited(241) then
         result = 56
     end
     return result
-end
+end;
 
 function onItemUse(target)
-    ducalGuardRing(target)
-end
+    federationStablesScarf(target)
+end;

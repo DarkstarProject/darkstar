@@ -1,19 +1,19 @@
 -----------------------------------------
--- ID: 14657
--- Ducal Guard Ring
--- Enchantment: "Teleport-RuLude Gardens"
+-- ID: 13179
+-- Item: Kingdom Stables Collar
+-- Teleports to Chocobo Stables (San d'Oria)
 -----------------------------------------
 require("scripts/globals/teleports");
 -----------------------------------------
 
 function onItemCheck(target)
     local result = 0
-    if not target:isZoneVisited(243) then
+    if not target:isZoneVisited(230) then
         result = 56
     end
     return result
-end
+end;
 
 function onItemUse(target)
-    ducalGuardRing(target)
-end
+    kingdomStablesCollar(target)
+end;
