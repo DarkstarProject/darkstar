@@ -44,6 +44,7 @@ Clang-Format is also an option for C++
 
 ### C++
 
+* Unix (LF) line ends
 * Braces go on a newline unless it's a lambda or empty ([allman](https://en.wikipedia.org/wiki/Indent_style#Allman_style) style)
 * Space between keyword and parentheses
 * No using tabs for alignment
@@ -64,6 +65,7 @@ Clang-Format is also an option for C++
 
 ### Lua
 
+* Unix (LF) line ends
 * Curly braces go on a newline unless empty.
 * Our lua functions are typically lowerCamelCased, with few exceptions (just FYI).
 * No parentheses unless needed to clarify order of operations.
