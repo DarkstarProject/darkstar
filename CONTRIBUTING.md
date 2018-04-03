@@ -31,13 +31,13 @@ We highly recommend [editorconfig](http://editorconfig.org/#download), which mos
 * [Sublime](https://github.com/sindresorhus/editorconfig-sublime#readme): Install EditorConfig with Package Control and restart Sublime.
 * [Vim](https://github.com/editorconfig/editorconfig-vim#readme)
 
-clangFormat is also an option for C++
+Clang-Format is also an option for C++
 * [Visual Studio plugin](https://marketplace.visualstudio.com/items?itemName=LLVMExtensions.ClangFormat)
 * [Visual Studio Code plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
 
 ### General code guidlines (all languages):
 
-* Try not to exceed 100 chars width. Exceptions will occur, but try.
+* Try not to exceed 120 chars width. Exceptions will occur, but try.
 * 4 space indent (death to tabs)
 * No using tabs for alignment either.
 * Trim trailing whitespace.
