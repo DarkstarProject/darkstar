@@ -4,6 +4,7 @@
 -- Teleports to Chocobo Stables (San d'Oria)
 -----------------------------------------
 require("scripts/globals/teleports");
+require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
@@ -15,5 +16,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    kingdomStablesCollar(target)
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_CHOCOSANDORIA,0,4);
 end;
