@@ -2473,7 +2473,7 @@ inline int32 CLuaBaseEntity::showPosition(lua_State *L)
         (uint32)m_PBaseEntity->loc.p.y,
         (uint32)m_PBaseEntity->loc.p.z,
         m_PBaseEntity->loc.p.rotation,
-        239));
+        MsgStd::Compass));
     return 0;
 }
 

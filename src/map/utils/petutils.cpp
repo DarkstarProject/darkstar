@@ -838,17 +838,17 @@ namespace petutils
             CBattleEntity* PLeader = PMaster->PParty->GetLeader();
             if (PLeader == nullptr || PLeader->id != PMaster->id)
             {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SOLO_OR_LEADER));
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSoloOrLeader));
                 return;
             }
             if (PMaster->PParty->members.size() >= 6)
             {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_LIMIT));
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustLimit));
                 return;
             }
             if (PMaster->PParty->m_PAlliance != nullptr)
             {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SOLO_OR_LEADER));
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSoloOrLeader));
                 return;
             }
 
@@ -858,7 +858,7 @@ namespace petutils
 
         if (PMaster->PTrusts.size() >= maxTrusts)
         {
-            PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_LIMIT));
+            PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustLimit));
             return;
         }
 
@@ -869,7 +869,7 @@ namespace petutils
         {
             if (PTrust->m_PetID == TrustID)
             {
-                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MSGSTD_TRUST_SAME));
+                PMaster->pushPacket(new CMessageStandardPacket(PMaster, 0, MsgStd::TrustSame));
                 return;
             }
         }

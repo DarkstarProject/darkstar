@@ -979,7 +979,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
                     if (member->status != STATUS_DISAPPEAR &&
                         member->getZone() == PChar->getZone())
                     {
-                        member->pushPacket(new CMessageStandardPacket(PChar->GetMLevel(), 0, 0, 0, message));
+                        member->pushPacket(new CMessageStandardPacket(PChar->GetMLevel(), 0, 0, 0, static_cast<MsgStd>(message)));
                         member->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
                             EFFECT_LEVEL_SYNC,
                             EFFECT_LEVEL_SYNC,
