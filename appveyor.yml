@@ -10,4 +10,5 @@ shallow_clone: true
 build:
   project: win32\darkstar.sln
   verbosity: normal
+  parallel: true
 test: off
