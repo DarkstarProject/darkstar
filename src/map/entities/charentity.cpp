@@ -492,6 +492,7 @@ void CCharEntity::ClearTrusts()
     for (auto trust : PTrusts)
     {
         trust->PAI->Despawn();
+        loc.zone->DeletePET(trust);
     }
     PTrusts.clear();
 }
