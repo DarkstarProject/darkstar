@@ -2,7 +2,6 @@
 
 * Issues will be closed without being looked into if the following information is missing (unless its not applicable).
 * Client version (type `/ver` in game)
-* Darkstar revision (type `!revision` in game)
 * Branch name \(such as [stable](https://github.com/DarkstarProject/darkstar/tree/stable) or [master](https://github.com/DarkstarProject/darkstar/tree/master))
 
 
@@ -41,6 +40,17 @@ Clang-Format is also an option for C++
 * 4 space indent (death to tabs)
 * No using tabs for alignment either.
 * Trim trailing whitespace.
+
+### C++
+
+* Unix (LF) line ends
+* Braces go on a newline unless it's a lambda or empty ([allman](https://en.wikipedia.org/wiki/Indent_style#Allman_style) style)
+* Space between keyword and parentheses
+* No using tabs for alignment
+* UpperCamelCase for namespaced functions and classes
+* UPPER_SNAKE_CASE for ENUM (exception for enum classes: style as classes)
+* Asterisk goes up against the type, not the value. We want:
+  ```
   Foo* Bar
   ```
   not:
@@ -54,6 +64,7 @@ Clang-Format is also an option for C++
 
 ### Lua
 
+* Unix (LF) line ends
 * Curly braces go on a newline unless empty.
 * Our lua functions are typically lowerCamelCased, with few exceptions (just FYI).
 * No parentheses unless needed to clarify order of operations.
