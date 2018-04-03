@@ -9,5 +9,6 @@ platform:
 shallow_clone: true
 build:
   project: win32\darkstar.sln
-  verbosity: minimal
+  verbosity: normal
+  parallel: true
 test: off
