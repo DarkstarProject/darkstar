@@ -886,9 +886,6 @@ namespace petutils
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PTrust);
         PMaster->loc.zone->InsertPET(PTrust);
         PMaster->PParty->ReloadParty();
-
-        // Tell the client this is a trust (shows the 'Release' option on the menu).
-        PMaster->pushPacket(new CTrustSyncPacket(PMaster, PTrust));
     }
 
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
