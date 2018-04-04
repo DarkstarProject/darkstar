@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `auction_house` (
   `sell_date` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `itemid` (`itemid`)
+  KEY `charid` (`seller`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
