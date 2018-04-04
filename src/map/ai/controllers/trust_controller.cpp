@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "../ai_container.h"
 #include "../../status_effect_container.h"
+#include "../../ai/states/despawn_state.h"
 #include "../../entities/charentity.h"
 #include "../../entities/trustentity.h"
 #include "../../packets/char.h"
@@ -45,9 +46,25 @@ CTrustController::~CTrustController()
     POwner->allegiance = ALLEGIANCE_PLAYER;
 }
 
+void CTrustController::Despawn()
+{
+    if (POwner)
+    {
+        POwner->PMaster = nullptr;
+    }
+    CController::Despawn();
+}
+
 void CTrustController::Tick(time_point tick)
 {
     m_Tick = tick;
+
+    if (POwner->PAI->IsCurrentState<CDespawnState>())
+    {
+        // Despawn takes 3s so it's possible we'll tick in this state.
+        // If we do, we don't want to execute any logic since we just nullptr'd everything.
+        return;
+    }
 
     if (POwner->PAI->IsEngaged())
     {
