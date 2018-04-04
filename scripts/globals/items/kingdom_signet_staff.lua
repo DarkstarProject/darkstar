@@ -33,9 +33,9 @@ end;
 
 function onItemUse(target)
 
-    target:delStatusEffect(EFFECT_SIGIL);
-    target:delStatusEffect(EFFECT_SANCTION);
-    target:delStatusEffect(EFFECT_SIGNET);
-    target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
+    target:delStatusEffect(dsp.effects.SIGIL);
+    target:delStatusEffect(dsp.effects.SANCTION);
+    target:delStatusEffect(dsp.effects.SIGNET);
+    target:addStatusEffect(dsp.effects.SIGNET,0,0,18000);
     
 end;

@@ -17,24 +17,24 @@ function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
         return msgBasic.REQUIRES_COMBAT,0;
     else
-        if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
-            player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
+        if (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_1)) then
+            player:delStatusEffect(dsp.effects.FINISHING_MOVE_1);
             return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_2)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_2);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_1,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_2)) then
+            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_2);
+            player:addStatusEffect(dsp.effects.FINISHING_MOVE_1,1,0,7200);
             return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_3)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_3);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_2,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_3)) then
+            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_3);
+            player:addStatusEffect(dsp.effects.FINISHING_MOVE_2,1,0,7200);
             return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_4)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_4);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_3,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_4)) then
+            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_4);
+            player:addStatusEffect(dsp.effects.FINISHING_MOVE_3,1,0,7200);
             return 0,0;
-        elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
-            player:delStatusEffectSilent(EFFECT_FINISHING_MOVE_5);
-            player:addStatusEffect(EFFECT_FINISHING_MOVE_4,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_5)) then
+            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_5);
+            player:addStatusEffect(dsp.effects.FINISHING_MOVE_4,1,0,7200);
             return 0,0;
         else
             return msgBasic.NO_FINISHINGMOVES,0;
@@ -62,7 +62,7 @@ function onUseAbility(player,target,ability,action)
 
     local base = weaponDamage + fstr
     local cratio, ccritratio = cMeleeRatio(player, target, params, 0);
-    local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
+    local isSneakValid = player:hasStatusEffect(dsp.effects.SNEAK_ATTACK);
     if (isSneakValid and not player:isBehind(target)) then
         isSneakValid = false;
     end
@@ -81,7 +81,7 @@ function onUseAbility(player,target,ability,action)
         local resist = applyResistance(player, target, spell, params);
 
         if resist > 0.25 then
-            target:addStatusEffect(EFFECT_STUN, 1, 0, 2);
+            target:addStatusEffect(dsp.effects.STUN, 1, 0, 2);
         else
             ability:setMsg(msgBasic.JA_DAMAGE);
         end

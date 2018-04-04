@@ -68,7 +68,7 @@ function onUseAbility(player,target,ability,action)
     end
 
     -- Attempt Aura steal
-    local effect = EFFECT_NONE;
+    local effect = dsp.effects.NONE;
     if (stolen == 0 and player:hasTrait(75)) then
         local resist = applyResistanceAbility(player, target, ELE_NONE, 0, 0);
         local effectStealSuccess = false;
@@ -84,7 +84,7 @@ function onUseAbility(player,target,ability,action)
             end
 
             -- Try for a second effect if we have the augment
-            if ((effect ~= EFFECT_NONE or stolen ~= 0) and player:getMod(MOD_AUGMENTS_AURA_STEAL) > 0) then
+            if ((effect ~= dsp.effects.NONE or stolen ~= 0) and player:getMod(MOD_AUGMENTS_AURA_STEAL) > 0) then
                 if (math.random(100) < auraStealChance) then
                     if (stolenEffect2 ~= nil and math.random(100) < auraStealChance) then
                         player:stealStatusEffect(target);

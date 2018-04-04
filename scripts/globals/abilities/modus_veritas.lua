@@ -16,7 +16,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local helix = target:getStatusEffect(EFFECT_HELIX);
+    local helix = target:getStatusEffect(dsp.effects.HELIX);
     if (helix ~= nil) then
         local mvPower = helix:getSubPower();
         local resist = applyResistanceAbility(player,target,ELE_NONE,SKILL_ELE,0); -- seems reasonable...

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased treasure casket discovery
+-- dsp.effects.PROWESS : Increased treasure casket discovery
 --
 -----------------------------------
 

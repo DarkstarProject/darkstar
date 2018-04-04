@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,0,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,0,info.hitslanded);
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effects.POISON;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 18, 3, 60);
 

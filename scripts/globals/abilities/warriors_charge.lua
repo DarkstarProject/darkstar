@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(MERIT_WARRIORS_CHARGE);
-    player:addStatusEffect(EFFECT_WARRIOR_S_CHARGE,merits-5,0,60);
+    player:addStatusEffect(dsp.effects.WARRIOR_S_CHARGE,merits-5,0,60);
 end;

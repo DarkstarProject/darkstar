@@ -12,7 +12,7 @@ end;
 
 function onItemUse(target)
     local duration = 7200;
-    target:delStatusEffect(EFFECT_RERAISE);
-    target:addStatusEffect(EFFECT_RERAISE,1,0,duration);
-    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_RERAISE);
+    target:delStatusEffect(dsp.effects.RERAISE);
+    target:addStatusEffect(dsp.effects.RERAISE,1,0,duration);
+    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, dsp.effects.RERAISE);
 end;

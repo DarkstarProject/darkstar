@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Perfect Defense
 --
--- Description: Reduces damage taken and greatly increases resistance to most status effect.
+-- Description: Reduces damage taken and greatly increases resistance to most status dsp.effects.
 -- Type: Enhancing
 -- Can be dispelled: No
 -- Range: Self
@@ -22,8 +22,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    MobBuffMove(mob, EFFECT_PERFECT_DEFENSE, 1, 0, skill:getParam());
+    MobBuffMove(mob, dsp.effects.PERFECT_DEFENSE, 1, 0, skill:getParam());
 
     skill:setMsg(msgBasic.USES);
-    return EFFECT_PERFECT_DEFENSE;
+    return dsp.effects.PERFECT_DEFENSE;
 end;

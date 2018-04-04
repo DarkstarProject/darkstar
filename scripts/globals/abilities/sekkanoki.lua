@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(EFFECT_SEKKANOKI);
-    target:addStatusEffect(EFFECT_SEKKANOKI,1,0,60);
+    target:delStatusEffect(dsp.effects.SEKKANOKI);
+    target:addStatusEffect(dsp.effects.SEKKANOKI,1,0,60);
 end;

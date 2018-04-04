@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-    local typeEffect = EFFECT_SLOW;
+    local typeEffect = dsp.effects.SLOW;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 100, 0, 120);
 

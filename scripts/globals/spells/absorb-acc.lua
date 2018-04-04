@@ -14,7 +14,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if (caster:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
+    if (caster:hasStatusEffect(dsp.effects.ACCURACY_BOOST)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     else
         local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
@@ -29,9 +29,9 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(msgBasic.MAGIC_RESIST);
         else
             spell:setMsg(msgBasic.MAGIC_ABSORB_ACC);
-            caster:addStatusEffect(EFFECT_ACCURACY_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains ACC
-            target:addStatusEffect(EFFECT_ACCURACY_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE);    -- target loses ACC
+            caster:addStatusEffect(dsp.effects.ACCURACY_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE); -- caster gains ACC
+            target:addStatusEffect(dsp.effects.ACCURACY_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(MOD_AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE);    -- target loses ACC
         end
     end
-    return EFFECT_ACCURACY_BOOST;
+    return dsp.effects.ACCURACY_BOOST;
 end;

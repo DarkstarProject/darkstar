@@ -56,13 +56,13 @@ function onSpellCast(caster,target,spell)
     local duration = 120;
 
     -- Check for Dia.
-    local dia = target:getStatusEffect(EFFECT_DIA);
+    local dia = target:getStatusEffect(dsp.effects.DIA);
 
     -- Calculate DoT (rough, though fairly accurate)
     local dotdmg = 3 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
 
     -- Do it!
-    if (target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 10,2)) then
+    if (target:addStatusEffect(dsp.effects.BIO,dotdmg,3,duration,FLAG_ERASABLE, 10,2)) then
         spell:setMsg(msgBasic.MAGIC_DMG);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -71,7 +71,7 @@ function onSpellCast(caster,target,spell)
     --Try to kill same tier Dia (default behavior)
     if (DIA_OVERWRITE == 1 and dia ~= nil) then
         if (dia:getPower() <= 2) then
-            target:delStatusEffect(EFFECT_DIA);
+            target:delStatusEffect(dsp.effects.DIA);
         end
     end
 

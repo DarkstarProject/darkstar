@@ -13,7 +13,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     if (target:hasKeyItem(YHOATOR_GATE_CRYSTAL) == true) then
-            target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_YHOAT,0,4.7);
+            target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_YHOAT,0,4.7);
         spell:setMsg(msgBasic.MAGIC_TELEPORT);
     else
         spell:setMsg(msgBasic.NO_EFFECT);

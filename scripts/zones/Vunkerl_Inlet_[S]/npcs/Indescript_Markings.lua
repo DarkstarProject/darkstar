@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     local pantsQuestProgress = player:getVar("AF_SCH_PANTS");
 
-    player:delStatusEffect(EFFECT_SNEAK);
+    player:delStatusEffect(dsp.effects.SNEAK);
 
     -- SCH AF Quest - Legs
     if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(DJINN_EMBER) == false) then

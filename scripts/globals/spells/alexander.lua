@@ -11,7 +11,7 @@ require("scripts/globals/msg");
 function onMagicCastingCheck(caster,target,spell)
     if (not caster:canUsePet()) then
         return msgBasic.CANT_BE_USED_IN_AREA;
-    elseif (not caster:hasStatusEffect(EFFECT_ASTRAL_FLOW)) then
+    elseif (not caster:hasStatusEffect(dsp.effects.ASTRAL_FLOW)) then
         return 581;
     elseif (caster:hasPet()) then
         return msgBasic.ALREADY_HAS_A_PET;

@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local Cost = getAdvImageSupportCost(player,SKILL_WOODWORKING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_WOODWORKING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.WOODWORKING_IMAGERY) == false) then
             player:startEvent(623,Cost,SkillLevel,0,207,player:getGil(),0,4095,0);
         else
             player:startEvent(623,Cost,SkillLevel,0,207,player:getGil(),28482,4095,0);
@@ -43,6 +43,6 @@ function onEventFinish(player,csid,option)
     if (csid == 623 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(IMAGE_SUPPORT,0,1,0);
-        player:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effects.WOODWORKING_IMAGERY,3,0,480);
     end
 end;

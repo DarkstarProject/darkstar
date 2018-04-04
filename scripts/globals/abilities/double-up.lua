@@ -13,7 +13,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
-    if (not player:hasStatusEffect(EFFECT_DOUBLE_UP_CHANCE)) then
+    if (not player:hasStatusEffect(dsp.effects.DOUBLE_UP_CHANCE)) then
         return msgBasic.NO_ELIGIBLE_ROLL,0;
     else
         return 0,0;
@@ -22,24 +22,24 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        local du_effect = caster:getStatusEffect(EFFECT_DOUBLE_UP_CHANCE);
+        local du_effect = caster:getStatusEffect(dsp.effects.DOUBLE_UP_CHANCE);
         local prev_roll = caster:getStatusEffect(du_effect:getSubPower());
         local roll = prev_roll:getSubPower();
         local job = du_effect:getTier()
         caster:setLocalVar("corsairActiveRoll", du_effect:getSubType())
-        local snake_eye = caster:getStatusEffect(EFFECT_SNAKE_EYE);
+        local snake_eye = caster:getStatusEffect(dsp.effects.SNAKE_EYE);
         if (snake_eye) then
             if (prev_roll:getPower() > 5 and math.random(100) < snake_eye:getPower()) then
                 roll = 11
             else
                 roll = roll + 1
             end
-            caster:delStatusEffect(EFFECT_SNAKE_EYE)
+            caster:delStatusEffect(dsp.effects.SNAKE_EYE)
         else
             roll = roll + math.random(1,6)
             if (roll > 12) then
                 roll = 12
-                caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE)
+                caster:delStatusEffectSilent(dsp.effects.DOUBLE_UP_CHANCE)
             end
         end
         if (roll == 11) then

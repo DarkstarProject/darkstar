@@ -10,7 +10,7 @@ function onEquip(pet)
     pet:addListener("AUTOMATON_AI_TICK", "AUTO_PATTERN_READER_TICK", function(pet, target)
         if pet:getLocalVar("patternreadertick") > 0 then
             local master = pet:getMaster()
-            local maneuvers = master:countEffect(EFFECT_WIND_MANEUVER)
+            local maneuvers = master:countEffect(dsp.effects.WIND_MANEUVER)
             local lasttick = pet:getLocalVar("patternreadertick")
             local tick = VanadielTime()
             local dt = tick - lasttick

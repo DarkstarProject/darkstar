@@ -11,8 +11,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_EVASION_BOOST)) then
-        target:addStatusEffect(EFFECT_EVASION_BOOST,20,0,180);
+    if (not target:hasStatusEffect(dsp.effects.EVASION_BOOST)) then
+        target:addStatusEffect(dsp.effects.EVASION_BOOST,20,0,180);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

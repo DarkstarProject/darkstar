@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local Cost = getAdvImageSupportCost(player,SKILL_SMITHING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_SMITHING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.SMITHING_IMAGERY) == false) then
             player:startEvent(103,Cost,SkillLevel,0,207,player:getGil(),0,4095,0);
         else
             player:startEvent(103,Cost,SkillLevel,0,207,player:getGil(),28721,4095,0);
@@ -43,6 +43,6 @@ function onEventFinish(player,csid,option)
     if (csid == 103 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(SMITHING_SUPPORT,0,2,0);
-        player:addStatusEffect(EFFECT_SMITHING_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effects.SMITHING_IMAGERY,3,0,480);
     end
 end;

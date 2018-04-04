@@ -17,13 +17,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_ELEGY, EFFECT_REQUIEM, EFFECT_PARALYSIS, EFFECT_POISON,
-                        EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE, EFFECT_WEIGHT, EFFECT_BIND,
-                        EFFECT_BIO, EFFECT_DIA, EFFECT_BURN, EFFECT_FROST, EFFECT_CHOKE, EFFECT_RASP, EFFECT_SHOCK, EFFECT_DROWN,
-                        EFFECT_STR_DOWN, EFFECT_DEX_DOWN, EFFECT_VIT_DOWN, EFFECT_AGI_DOWN, EFFECT_INT_DOWN, EFFECT_MND_DOWN,
-                        EFFECT_CHR_DOWN, EFFECT_ADDLE, EFFECT_SLOW, EFFECT_HELIX, EFFECT_ACCURACY_DOWN, EFFECT_ATTACK_DOWN,
-                        EFFECT_EVASION_DOWN, EFFECT_DEFENSE_DOWN, EFFECT_MAGIC_ACC_DOWN, EFFECT_MAGIC_ATK_DOWN, EFFECT_MAGIC_EVASION_DOWN,
-                        EFFECT_MAGIC_DEF_DOWN, EFFECT_MAX_TP_DOWN, EFFECT_MAX_MP_DOWN, EFFECT_MAX_HP_DOWN};
+    local removables = {dsp.effects.FLASH, dsp.effects.BLINDNESS, dsp.effects.ELEGY, dsp.effects.REQUIEM, dsp.effects.PARALYSIS, dsp.effects.POISON,
+                        dsp.effects.CURSE_I, dsp.effects.CURSE_II, dsp.effects.DISEASE, dsp.effects.PLAGUE, dsp.effects.WEIGHT, dsp.effects.BIND,
+                        dsp.effects.BIO, dsp.effects.DIA, dsp.effects.BURN, dsp.effects.FROST, dsp.effects.CHOKE, dsp.effects.RASP, dsp.effects.SHOCK, dsp.effects.DROWN,
+                        dsp.effects.STR_DOWN, dsp.effects.DEX_DOWN, dsp.effects.VIT_DOWN, dsp.effects.AGI_DOWN, dsp.effects.INT_DOWN, dsp.effects.MND_DOWN,
+                        dsp.effects.CHR_DOWN, dsp.effects.ADDLE, dsp.effects.SLOW, dsp.effects.HELIX, dsp.effects.ACCURACY_DOWN, dsp.effects.ATTACK_DOWN,
+                        dsp.effects.EVASION_DOWN, dsp.effects.DEFENSE_DOWN, dsp.effects.MAGIC_ACC_DOWN, dsp.effects.MAGIC_ATK_DOWN, dsp.effects.MAGIC_EVASION_DOWN,
+                        dsp.effects.MAGIC_DEF_DOWN, dsp.effects.MAX_TP_DOWN, dsp.effects.MAX_MP_DOWN, dsp.effects.MAX_HP_DOWN};
 
     local dmg = utils.takeShadows(target, 1, math.random(2,3)); --removes 2-3 shadows
     --if removed more shadows than were up or there weren't any

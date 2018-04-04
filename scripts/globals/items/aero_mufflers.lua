@@ -9,6 +9,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    local effect = EFFECT_ENAERO;
+    local effect = dsp.effects.ENAERO;
     doEnspell(target,target,nil,effect);
 end;

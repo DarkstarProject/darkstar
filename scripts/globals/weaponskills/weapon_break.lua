@@ -36,9 +36,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_ATTACK_DOWN) == false) then
+    if (damage > 0 and target:hasStatusEffect(dsp.effects.ATTACK_DOWN) == false) then
         local duration = (120 + (tp/1000 * 60)) * applyResistanceAddEffect(player,target,ELE_WATER,0);
-        target:addStatusEffect(EFFECT_ATTACK_DOWN, 25, 0, duration);
+        target:addStatusEffect(dsp.effects.ATTACK_DOWN, 25, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 

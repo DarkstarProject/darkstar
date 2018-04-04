@@ -22,15 +22,15 @@ function onMobWeaponSkill(target, mob, skill)
     local effect3 = target:dispelStatusEffect();
     local num = 0;
 
-    if (effect ~= EFFECT_NONE) then
+    if (effect ~= dsp.effects.NONE) then
         num = num + 1;
     end
 
-    if (effect2 ~= EFFECT_NONE) then
+    if (effect2 ~= dsp.effects.NONE) then
         num = num + 1;
     end
 
-    if (effect3 ~= EFFECT_NONE) then
+    if (effect3 ~= dsp.effects.NONE) then
         num = num + 1;
     end
 

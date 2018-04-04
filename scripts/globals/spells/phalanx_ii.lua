@@ -19,17 +19,17 @@ function onSpellCast(caster,target,spell)
 
     local duration = 90 + (10 * merits);
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
     final = (enhskill / 25) + merits + 1;
 
-    if (target:addStatusEffect(EFFECT_PHALANX,final,0,duration)) then
+    if (target:addStatusEffect(dsp.effects.PHALANX,final,0,duration)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_PHALANX;
+    return dsp.effects.PHALANX;
 end;

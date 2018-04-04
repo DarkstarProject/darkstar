@@ -1,5 +1,5 @@
 -----------------------------------
--- EFFECT_RETALIATION
+-- dsp.effects.RETALIATION
 -- Allows you to counterattack but reduces movement speed.
 -- Unlike counter, grants TP like a regular melee attack.
 -----------------------------------

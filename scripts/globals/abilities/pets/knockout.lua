@@ -9,7 +9,7 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(EFFECT_WIND_MANEUVER)
+    return master:countEffect(dsp.effects.WIND_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
@@ -43,8 +43,8 @@ function onPetAbility(target, automaton, skill, master, action)
     local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill, action)
 
     if damage > 0 then
-        if not target:hasStatusEffect(EFFECT_EVASION_DOWN) then
-            target:addStatusEffect(EFFECT_EVASION_DOWN, 10, 0, 30)
+        if not target:hasStatusEffect(dsp.effects.EVASION_DOWN) then
+            target:addStatusEffect(dsp.effects.EVASION_DOWN, 10, 0, 30)
         end
     end
 

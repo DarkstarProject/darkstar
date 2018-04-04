@@ -10,7 +10,7 @@ function onEquip(pet)
     pet:addListener("AUTOMATON_AI_TICK", "AUTO_HEAT_SEEKER_TICK", function(pet, target)
         if pet:getLocalVar("heatseekertick") > 0 then
             local master = pet:getMaster()
-            local maneuvers = master:countEffect(EFFECT_THUNDER_MANEUVER)
+            local maneuvers = master:countEffect(dsp.effects.THUNDER_MANEUVER)
             local lasttick = pet:getLocalVar("heatseekertick")
             local tick = VanadielTime()
             local dt = tick - lasttick

@@ -11,12 +11,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:delStatusEffect(EFFECT_DISEASE)) then
+    if (target:delStatusEffect(dsp.effects.DISEASE)) then
         spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
-        return EFFECT_DISEASE;
-    elseif (target:delStatusEffect(EFFECT_PLAGUE)) then
+        return dsp.effects.DISEASE;
+    elseif (target:delStatusEffect(dsp.effects.PLAGUE)) then
         spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
-        return EFFECT_PLAGUE;
+        return dsp.effects.PLAGUE;
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end

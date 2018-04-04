@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Orcish Counterstance
 -- Used only by Orcs in Wings of the Goddess Areas.
--- Certain NMs may have a higher power version of the effect.
+-- Certain NMs may have a higher power version of the dsp.effects.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/status");
@@ -19,7 +19,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = 10;
     local duration = 60;
-    local typeEffect = EFFECT_COUNTERSTANCE;
+    local typeEffect = dsp.effects.COUNTERSTANCE;
 
     -- if ( Conquerer Bakgodek ) then
         -- power = 50? He's not implemented yet anyway :P

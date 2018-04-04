@@ -7,12 +7,12 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(EFFECT_NEGATE_PETRIFY)) then
+    if (target:hasStatusEffect(dsp.effects.NEGATE_PETRIFY)) then
         return 56;
     end
     return 0;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_NEGATE_PETRIFY,1,0,120);
+    target:addStatusEffect(dsp.effects.NEGATE_PETRIFY,1,0,120);
 end;

@@ -39,8 +39,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
     if (damage > 0) then
         local duration = (tp/1000 * 20) - 5;
-        if (target:hasStatusEffect(EFFECT_MAGIC_EVASION_DOWN) == false) then
-            target:addStatusEffect(EFFECT_MAGIC_EVASION_DOWN, 10, 0, duration);
+        if (target:hasStatusEffect(dsp.effects.MAGIC_EVASION_DOWN) == false) then
+            target:addStatusEffect(dsp.effects.MAGIC_EVASION_DOWN, 10, 0, duration);
         end
     end
 

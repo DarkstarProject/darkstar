@@ -12,12 +12,12 @@ end;
 
 function onItemUse(target)
     local worked = false;
-    if (not target:hasStatusEffect(EFFECT_REGEN)) then
-        target:addStatusEffect(EFFECT_REGEN,2,3,90);
+    if (not target:hasStatusEffect(dsp.effects.REGEN)) then
+        target:addStatusEffect(dsp.effects.REGEN,2,3,90);
         worked = true;
     end
-    if (not target:hasStatusEffect(EFFECT_REFRESH)) then
-        target:addStatusEffect(EFFECT_REFRESH,2,3,90);
+    if (not target:hasStatusEffect(dsp.effects.REFRESH)) then
+        target:addStatusEffect(dsp.effects.REFRESH,2,3,90);
         worked = true;
     end
     if (not worked) then

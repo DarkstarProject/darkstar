@@ -19,7 +19,7 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    player:delStatusEffect(EFFECT_LEVEL_RESTRICTION); -- can't be capped at 50 for this fight !
+    player:delStatusEffect(dsp.effects.LEVEL_RESTRICTION); -- can't be capped at 50 for this fight !
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -44,7 +44,7 @@ function onBcnmLeave(player,instance,leavecode)
     end
 
     if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION, 50, 0, 0);
+        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION, 50, 0, 0);
     end;
 end;
 
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
             player:setVar('StormsOfFate',3);
             player:addTitle(CONQUEROR_OF_FATE);
             if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
-                player:addStatusEffect(EFFECT_LEVEL_RESTRICTION, 50, 0, 0);
+                player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION, 50, 0, 0);
             end;
         end
     end

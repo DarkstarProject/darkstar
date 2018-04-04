@@ -43,5 +43,5 @@ function onUseAbility(player,target,ability)
     target:resetRecast(RECAST_ABILITY,159); -- High Jump
     target:resetRecast(RECAST_ABILITY,160); -- Super Jump
 
-    target:addStatusEffect(EFFECT_SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
+    target:addStatusEffect(dsp.effects.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
 end;

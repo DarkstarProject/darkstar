@@ -36,8 +36,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local chance = tp-1000 > math.random()*150;
-    if (damage > 0 and chance) and (target:hasStatusEffect(EFFECT_WEIGHT) == false) then
-        target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
+    if (damage > 0 and chance) and (target:hasStatusEffect(dsp.effects.WEIGHT) == false) then
+        target:addStatusEffect(dsp.effects.WEIGHT, 50, 0, 60);
     end
 
     return tpHits, extraHits, criticalHit, damage;

@@ -13,11 +13,11 @@ function afterInstanceRegister(player)
     local instance = player:getInstance();
     player:messageSpecial(Arrapago.text.TIME_TO_COMPLETE, instance:getTimeLimit());
     player:messageSpecial(Arrapago.text.SALVAGE_START, 1);
-    player:addStatusEffectEx(EFFECT_ENCUMBRANCE_I, EFFECT_ENCUMBRANCE_I, 0xFFFF, 0, 0)
-    player:addStatusEffectEx(EFFECT_OBLIVISCENCE, EFFECT_OBLIVISCENCE, 0, 0, 0)
-    player:addStatusEffectEx(EFFECT_OMERTA, EFFECT_OMERTA, 0, 0, 0)
-    player:addStatusEffectEx(EFFECT_IMPAIRMENT, EFFECT_IMPAIRMENT, 0, 0, 0)
-    player:addStatusEffectEx(EFFECT_DEBILITATION, EFFECT_DEBILITATION, 0x1FF, 0, 0)
+    player:addStatusEffectEx(dsp.effects.ENCUMBRANCE_I, EFFECT_ENCUMBRANCE_I, 0xFFFF, 0, 0)
+    player:addStatusEffectEx(dsp.effects.OBLIVISCENCE, EFFECT_OBLIVISCENCE, 0, 0, 0)
+    player:addStatusEffectEx(dsp.effects.OMERTA, EFFECT_OMERTA, 0, 0, 0)
+    player:addStatusEffectEx(dsp.effects.IMPAIRMENT, EFFECT_IMPAIRMENT, 0, 0, 0)
+    player:addStatusEffectEx(dsp.effects.DEBILITATION, EFFECT_DEBILITATION, 0x1FF, 0, 0)
     for i = 0,15 do
         player:unequipItem(i)
     end

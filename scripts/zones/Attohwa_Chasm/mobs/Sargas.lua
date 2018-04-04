@@ -9,17 +9,17 @@ require("scripts/globals/magic");
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
     mob:setMobMod(MOBMOD_AUTO_SPIKES,mob:getShortID());
-    mob:addStatusEffect(EFFECT_SHOCK_SPIKES,50,0,0);
-    mob:getStatusEffect(EFFECT_SHOCK_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effects.SHOCK_SPIKES,50,0,0);
+    mob:getStatusEffect(dsp.effects.SHOCK_SPIKES):setFlag(32);
 end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guestimating 2 in 3 chance to stun on melee.
-    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(EFFECT_STUN) == true)) then
+    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(dsp.effects.STUN) == true)) then
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(EFFECT_STUN,5,0,duration);
+        target:addStatusEffect(dsp.effects.STUN,5,0,duration);
         return SUBEFFECT_STUN,0,EFFECT_STUN;
     end
 

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (guildMember == 1) then
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
-            if (player:hasStatusEffect(EFFECT_ALCHEMY_IMAGERY) == false) then
+            if (player:hasStatusEffect(dsp.effects.ALCHEMY_IMAGERY) == false) then
                 player:tradeComplete();
                 player:startEvent(637,17160,1,19405,21215,30030,0,7,0);
             else
@@ -47,6 +47,6 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 637) then
         player:messageSpecial(IMAGE_SUPPORT,0,7,0);
-        player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effects.ALCHEMY_IMAGERY,3,0,480);
     end
 end;

@@ -48,12 +48,12 @@ function onEventFinish(player,csid,option)
                 player:delCurrency("imperial_standing", 100);
             end
 
-            player:delStatusEffect(EFFECT_SIGIL);
-            player:delStatusEffect(EFFECT_SANCTION);
-            player:delStatusEffect(EFFECT_SIGNET);
+            player:delStatusEffect(dsp.effects.SIGIL);
+            player:delStatusEffect(dsp.effects.SANCTION);
+            player:delStatusEffect(dsp.effects.SIGNET);
             local duration = getSanctionDuration(player);
             local subPower = 0; -- getImperialDefenseStats()
-            player:addStatusEffect(EFFECT_SANCTION,option / 16,0,duration,subPower); -- effect size 1 = regen, 2 = refresh, 3 = food.
+            player:addStatusEffect(dsp.effects.SANCTION,option / 16,0,duration,subPower); -- effect size 1 = regen, 2 = refresh, 3 = food.
             player:messageSpecial(SANCTION);
 
         elseif (option % 256 == 17) then -- player bought one of the maps

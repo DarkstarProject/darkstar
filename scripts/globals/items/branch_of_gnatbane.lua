@@ -8,16 +8,16 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(EFFECT_FOOD) or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD)) then
+    if (target:hasStatusEffect(dsp.effects.FOOD) or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD)) then
         return msgBasic.IS_FULL;
     end
     return 0;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,600,5984);
-    if (not target:hasStatusEffect(EFFECT_POISON)) then
-        target:addStatusEffect(EFFECT_POISON,10,3,600);
+    target:addStatusEffect(dsp.effects.FOOD,0,0,600,5984);
+    if (not target:hasStatusEffect(dsp.effects.POISON)) then
+        target:addStatusEffect(dsp.effects.POISON,10,3,600);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
 
         duration = duration * (caster:getMod(MOD_SONG_DURATION_BONUS)/100)
 
-        target:addBardSong(caster,EFFECT_HYMNUS,1,0,duration,caster:getID(), 0, 1);
+        target:addBardSong(caster,dsp.effects.HYMNUS,1,0,duration,caster:getID(), 0, 1);
 
-    return EFFECT_HYMNUS;
+    return dsp.effects.HYMNUS;
 end;

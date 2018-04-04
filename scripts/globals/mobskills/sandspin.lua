@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ACCURACY_DOWN;
+    local typeEffect = dsp.effects.ACCURACY_DOWN;
 
     MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120);
 

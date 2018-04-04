@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_HUNDRED_FISTS;
+    local typeEffect = dsp.effects.HUNDRED_FISTS;
     local duration = 30;
     if (skill:getParam() ~= 0 and mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
         duration = skill:getParam();

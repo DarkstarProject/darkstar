@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffect(EFFECT_COMPOSURE);
-    player:addStatusEffect(EFFECT_COMPOSURE,1,0,7200);
+    player:delStatusEffect(dsp.effects.COMPOSURE);
+    player:addStatusEffect(dsp.effects.COMPOSURE,1,0,7200);
 end;

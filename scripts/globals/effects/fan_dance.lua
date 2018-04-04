@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_FAN_DANCE
+-- dsp.effects.FAN_DANCE
 --
 -----------------------------------
 
@@ -12,10 +12,10 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
     -- Waltz recast effect is handled in the waltz scripts
-    target:delStatusEffect(EFFECT_HASTE_SAMBA);
-    target:delStatusEffect(EFFECT_ASPIR_SAMBA);
-    target:delStatusEffect(EFFECT_DRAIN_SAMBA);
-    target:delStatusEffect(EFFECT_SABER_DANCE);
+    target:delStatusEffect(dsp.effects.HASTE_SAMBA);
+    target:delStatusEffect(dsp.effects.ASPIR_SAMBA);
+    target:delStatusEffect(dsp.effects.DRAIN_SAMBA);
+    target:delStatusEffect(dsp.effects.SABER_DANCE);
     target:addMod(MOD_ENMITY, 15);
 end;
 

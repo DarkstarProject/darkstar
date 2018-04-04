@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-   player:addStatusEffect(EFFECT_TRICK_ATTACK,1,0,60);
+   player:addStatusEffect(dsp.effects.TRICK_ATTACK,1,0,60);
 end;

@@ -71,8 +71,8 @@ function onRegionEnter(player,region)
         local gasponia = GetNPCByID(GASPONIA_OFFSET + (regionId - 1));
         if (gasponia ~= nil) then
             gasponia:openDoor(3);
-            if (not player:hasStatusEffect(EFFECT_POISON)) then
-                player:addStatusEffect(EFFECT_POISON, 15, 0, math.random(30,60));
+            if (not player:hasStatusEffect(dsp.effects.POISON)) then
+                player:addStatusEffect(dsp.effects.POISON, 15, 0, math.random(30,60));
                 player:messageSpecial(GASPONIA_POISON);
             end
         end

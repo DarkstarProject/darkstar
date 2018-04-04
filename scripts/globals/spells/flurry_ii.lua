@@ -12,11 +12,11 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if target:addStatusEffect(EFFECT_FLURRY_II, 30, 0, 150) then
+    if target:addStatusEffect(dsp.effects.FLURRY_II, 30, 0, 150) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end;
 
-    return EFFECT_FLURRY_II;
+    return dsp.effects.FLURRY_II;
 end;

@@ -32,9 +32,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary, action);
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+    if (damage > 0 and target:hasStatusEffect(dsp.effects.PARALYSIS) == false) then
         local duration = (tp/1000 * 60) * applyResistanceAddEffect(player,target,ELE_ICE,0);
-        target:addStatusEffect(EFFECT_PARALYSIS, 30, 0, duration);
+        target:addStatusEffect(dsp.effects.PARALYSIS, 30, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 

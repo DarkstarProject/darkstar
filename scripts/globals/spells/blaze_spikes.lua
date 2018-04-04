@@ -11,8 +11,8 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = SPIKE_EFFECT_DURATION;
-  local typeEffect = EFFECT_BLAZE_SPIKES;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+  local typeEffect = dsp.effects.BLAZE_SPIKES;
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 

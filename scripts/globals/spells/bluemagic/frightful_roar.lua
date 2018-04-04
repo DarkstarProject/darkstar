@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
-    params.effect = EFFECT_DEFENSE_DOWN;
+    params.effect = dsp.effects.DEFENSE_DOWN;
     local resist = applyResistance(caster, target, spell, params);
     local duration = 60 * resist;
     local power = 10;

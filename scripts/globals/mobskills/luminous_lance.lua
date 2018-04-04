@@ -9,7 +9,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 function onMobSkillCheck(target,mob,skill)
     local lanceTime = mob:getLocalVar("lanceTime");
     local lanceOut = mob:getLocalVar("lanceOut");
-    if (not (target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)))
+    if (not (target:hasStatusEffect(dsp.effects.PHYSICAL_SHIELD) and target:hasStatusEffect(dsp.effects.MAGIC_SHIELD)))
         and (lanceTime + 60 < mob:getBattleTime()) and target:getCurrentAction() ~= ACTION_MOBABILITY_USING
         and lanceOut == 1 then
 
@@ -36,7 +36,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:AnimationSub(3);
 
     -- Cannot be resisted
-    target:addStatusEffect(EFFECT_STUN, 0, 0, 20);
+    target:addStatusEffect(dsp.effects.STUN, 0, 0, 20);
     
     target:delHP(dmg);
     return dmg;

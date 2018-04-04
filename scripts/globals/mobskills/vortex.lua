@@ -19,8 +19,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1.5;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_TERROR, 1, 0, 9);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_BIND, 1, 0, 30);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.TERROR, 1, 0, 9);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.BIND, 1, 0, 30);
     target:delHP(dmg);
     mob:resetEnmity(target);
     return dmg;

@@ -14,7 +14,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    target:delStatusEffect(EFFECT_AQUAVEIL);
+    target:delStatusEffect(dsp.effects.AQUAVEIL);
 
     -- duration is said to be based on enhancing skill with max 5 minutes, but I could find no
     -- tests that quantify the relationship so I'm using 5 minutes for now.
@@ -28,12 +28,12 @@ function onSpellCast(caster,target,spell)
         power = 1;
     end;
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_AQUAVEIL,power,0,duration);
+    target:addStatusEffect(dsp.effects.AQUAVEIL,power,0,duration);
     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
 
-    return EFFECT_AQUAVEIL;
+    return dsp.effects.AQUAVEIL;
 end;

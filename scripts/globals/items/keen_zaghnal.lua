@@ -10,13 +10,13 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     if (target:getEquipID(SLOT_MAIN) ~= 18067) then
-        target:delStatusEffect(EFFECT_ACCURACY_BOOST,18067);
+        target:delStatusEffect(dsp.effects.ACCURACY_BOOST,18067);
     end
     return 0;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_ACCURACY_BOOST,0,0,1800,18067);
+    target:addStatusEffect(dsp.effects.ACCURACY_BOOST,0,0,1800,18067);
 end;
 
 -----------------------------------------

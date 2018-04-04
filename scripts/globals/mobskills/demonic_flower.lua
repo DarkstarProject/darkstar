@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_WEAKNESS;
+    local typeEffect = dsp.effects.WEAKNESS;
     local dmg1 = mob:getHP()*0.24;
     local dmg2 = dmg1*0.5;
     -- The dmg amounts and duration are guesstimated based on wiki info.

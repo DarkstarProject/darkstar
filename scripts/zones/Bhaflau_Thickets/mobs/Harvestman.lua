@@ -12,11 +12,11 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to poison on melee.
-    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_POISON) == true)) then
+    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effects.POISON) == true)) then
         return 0,0,0;
     else
         local duration = math.random(6,9); -- 2-3 Tick's
-        target:addStatusEffect(EFFECT_POISON,100,3,duration);
+        target:addStatusEffect(dsp.effects.POISON,100,3,duration);
         return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,EFFECT_POISON;
     end
 end;

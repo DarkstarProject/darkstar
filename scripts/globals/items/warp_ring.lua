@@ -14,5 +14,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
+    target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_WARP,0,1);
 end;

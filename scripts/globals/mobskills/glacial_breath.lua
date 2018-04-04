@@ -14,7 +14,7 @@ require("scripts/globals/utils");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
+    if (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
         return 1;
     elseif (target:isBehind(mob, 48) == true) then
         return 1;

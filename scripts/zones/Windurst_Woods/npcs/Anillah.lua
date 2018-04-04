@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local SkillLevel = player:getSkillLevel(SKILL_CLOTHCRAFT);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.CLOTHCRAFT_IMAGERY) == false) then
             player:startEvent(10015,SkillCap,SkillLevel,2,511,player:getGil(),0,0,0); -- p1 = skill level
         else
             player:startEvent(10015,SkillCap,SkillLevel,2,511,player:getGil(),7108,0,0);
@@ -40,6 +40,6 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 10015 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,4,2);
-        player:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,1,0,120);
+        player:addStatusEffect(dsp.effects.CLOTHCRAFT_IMAGERY,1,0,120);
     end
 end;

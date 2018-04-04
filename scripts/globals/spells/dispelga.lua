@@ -16,12 +16,12 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
     local resist = applyResistance(caster, target, spell, params);
-    local effect = EFFECT_NONE;
+    local effect = dsp.effects.NONE;
 
     if (resist > 0.0625) then
         spell:setMsg(msgBasic.MAGIC_ERASE);
         effect = target:dispelStatusEffect();
-        if (effect == EFFECT_NONE) then
+        if (effect == dsp.effects.NONE) then
             -- no effect
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end

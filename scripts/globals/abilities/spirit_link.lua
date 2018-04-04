@@ -29,20 +29,20 @@ function onUseAbility(player,target,ability)
         drainamount = 0; -- Prevents player HP lose if wyvern is at full HP
     end
 
-    if (player:hasStatusEffect(EFFECT_STONESKIN)) then
+    if (player:hasStatusEffect(dsp.effects.STONESKIN)) then
         local skin = player:getMod(MOD_STONESKIN);
 
         if (skin >= drainamount) then
             if (skin == drainamount) then
-                player:delStatusEffect(EFFECT_STONESKIN);
+                player:delStatusEffect(dsp.effects.STONESKIN);
             else
-                local effect = player:getStatusEffect(EFFECT_STONESKIN);
+                local effect = player:getStatusEffect(dsp.effects.STONESKIN);
                 effect:setPower(effect:getPower() - drainamount); -- fixes the status effeect so when it ends it uses the new power instead of old
                 player:delMod(MOD_STONESKIN,drainamount); --removes the amount from the mod
 
             end
         else
-            player:delStatusEffect(EFFECT_STONESKIN);
+            player:delStatusEffect(dsp.effects.STONESKIN);
             player:delHP((drainamount-skin));
         end
 
@@ -59,19 +59,19 @@ function onUseAbility(player,target,ability)
         healPet = healPet + 15;
     end
 
-    pet:delStatusEffect(EFFECT_POISON);
-    pet:delStatusEffect(EFFECT_BLINDNESS);
-    pet:delStatusEffect(EFFECT_PARALYSIS);
+    pet:delStatusEffect(dsp.effects.POISON);
+    pet:delStatusEffect(dsp.effects.BLINDNESS);
+    pet:delStatusEffect(dsp.effects.PARALYSIS);
 
     if (math.random(1,2) == 1) then
-        pet:delStatusEffect(EFFECT_DOOM);
+        pet:delStatusEffect(dsp.effects.DOOM);
     end
     if (pet:getHP() < pet:getMaxHP()) then -- sleep is only removed if it heals the wyvern
         removeSleepEffects(pet);
     end
 
     pet:addHP(healPet); --add the hp to pet
-    pet:addStatusEffect(EFFECT_REGEN,regenAmount,3,90,0,0,0); -- 90 seconds of regen
+    pet:addStatusEffect(dsp.effects.REGEN,regenAmount,3,90,0,0,0); -- 90 seconds of regen
     player:addTP(petTP/2); --add half pet tp to you
     pet:delTP(petTP/2); -- remove half tp from pet
 end;

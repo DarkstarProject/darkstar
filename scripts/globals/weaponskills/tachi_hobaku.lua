@@ -35,8 +35,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local chance = (tp - 1000) * applyResistanceAddEffect(player,target,ELE_LIGHTNING,0) > math.random() * 150;
     if (damage > 0 and chance) then
-        if (target:hasStatusEffect(EFFECT_STUN) == false) then
-            target:addStatusEffect(EFFECT_STUN, 1, 0, 4);
+        if (target:hasStatusEffect(dsp.effects.STUN) == false) then
+            target:addStatusEffect(dsp.effects.STUN, 1, 0, 4);
         end
     end
     return tpHits, extraHits, criticalHit, damage;

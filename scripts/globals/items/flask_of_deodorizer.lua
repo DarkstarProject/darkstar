@@ -11,8 +11,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_DEODORIZE)) then
-        target:addStatusEffect(EFFECT_DEODORIZE,1,10,180);
+    if (not target:hasStatusEffect(dsp.effects.DEODORIZE)) then
+        target:addStatusEffect(dsp.effects.DEODORIZE,1,10,180);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

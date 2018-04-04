@@ -51,10 +51,10 @@ function onTrigger(player,npc)
     elseif (ALittleKnowledgeProgress == 1 and ALittleKnowledge == QUEST_ACCEPTED) then
         player:startEvent(11);
     elseif (ALittleKnowledgeProgress == 2 and ALittleKnowledge == QUEST_ACCEPTED) then
-        if (player:hasStatusEffect(EFFECT_MANAFONT) or
-            player:hasStatusEffect(EFFECT_CHAINSPELL) or
-            player:hasStatusEffect(EFFECT_ASTRAL_FLOW) or
-            player:hasStatusEffect(EFFECT_AZURE_LORE)) then
+        if (player:hasStatusEffect(dsp.effects.MANAFONT) or
+            player:hasStatusEffect(dsp.effects.CHAINSPELL) or
+            player:hasStatusEffect(dsp.effects.ASTRAL_FLOW) or
+            player:hasStatusEffect(dsp.effects.AZURE_LORE)) then
             player:startEvent(14);
         else
             player:startEvent(13);

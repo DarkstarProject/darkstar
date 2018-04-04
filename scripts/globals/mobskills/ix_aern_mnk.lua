@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_HUNDRED_FISTS;
+    local typeEffect = dsp.effects.HUNDRED_FISTS;
     MobBuffMove(mob, typeEffect, 1, 0, 45);
     mob:setLocalVar("BracerMode", 2);
     skill:setMsg(msgBasic.USES);

@@ -24,22 +24,22 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_DEFENSE_DOWN;
+    local typeEffect = dsp.effects.DEFENSE_DOWN;
 
     local silenced = false;
     local blinded = false;
 
-    silenced = MobStatusEffectMove(mob, target, EFFECT_DEFENSE_DOWN, 10, 0, 120);
+    silenced = MobStatusEffectMove(mob, target, dsp.effects.DEFENSE_DOWN, 10, 0, 120);
 
-    blinded = MobStatusEffectMove(mob, target, EFFECT_MAGIC_DEF_DOWN, 8, 0, 120);
+    blinded = MobStatusEffectMove(mob, target, dsp.effects.MAGIC_DEF_DOWN, 8, 0, 120);
 
     skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
 
     -- display silenced first, else blind
     if (silenced == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_DEFENSE_DOWN;
+        typeEffect = dsp.effects.DEFENSE_DOWN;
     elseif (blinded == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_MAGIC_DEF_DOWN;
+        typeEffect = dsp.effects.MAGIC_DEF_DOWN;
     else
         skill:setMsg(msgBasic.SKILL_MISS);
     end

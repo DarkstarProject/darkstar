@@ -107,32 +107,32 @@ function onRegionEnter(player,region)
             -- print("APPOLLYON_NW_SW");
         end,
         [3] = function (x) 
-              if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then 
+              if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then 
                   RegisterLimbusInstance(player,1293);
               end   --create instance appolyon SE     
         end,
         [4] = function (x) 
-              if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then 
+              if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then 
                   RegisterLimbusInstance(player,1292);
               end   --create instance appolyon NE     
         end,
         [5] = function (x) 
-              if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then 
+              if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then 
                   RegisterLimbusInstance(player,1291);
               end   --create instance appolyon SW     
         end,
         [6] = function (x) 
-              if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then 
+              if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then 
                   RegisterLimbusInstance(player,1290);
               end   --create instance appolyon NW     
         end,
         [7] = function (x) 
-              if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then 
+              if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then 
                   RegisterLimbusInstance(player,1294);
               end   --create instance appolyon CS     
         end,        
         [8] = function (x) 
-              if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then 
+              if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then 
                   RegisterLimbusInstance(player,1296);
               end   --create instance appolyon CENTER     
         end,    

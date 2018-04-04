@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
     target:delHP(dmg);
 
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effects.PARALYSIS;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 30, 0, 180);
 
     return dmg;

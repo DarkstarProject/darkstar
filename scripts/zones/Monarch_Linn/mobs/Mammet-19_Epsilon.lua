@@ -21,7 +21,7 @@ function onMobFight(mob,target)
         -- Believe it or not, these changes may be too slow @ 50% chance.  Probability is a pain.
     -- L40 means their "weapons" are 40 DMG by default.
     if ((mob:getBattleTime() > mob:getLocalVar('changeTime') + 60 or mob:getLocalVar('changeTime') == 0) and math.random(0,1) == 1
-        and not mob:hasStatusEffect(EFFECT_FOOD)) then
+        and not mob:hasStatusEffect(dsp.effects.FOOD)) then
         changeForm(mob)
     end
 

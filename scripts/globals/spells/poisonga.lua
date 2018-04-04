@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_POISON;
+    local effect = dsp.effects.POISON;
 
     local duration = 60;
 

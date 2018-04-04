@@ -35,7 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-    local typeEffect = EFFECT_PETRIFICATION;
+    local typeEffect = dsp.effects.PETRIFICATION;
     local power = math.random(25, 40) + mob:getMainLvl()/3;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, power);

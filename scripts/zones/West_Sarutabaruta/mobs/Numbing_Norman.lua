@@ -12,11 +12,11 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to paralysis on melee.
-    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_PARALYSIS) == true)) then
+    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effects.PARALYSIS) == true)) then
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(EFFECT_PARALYSIS,5,3,duration);
+        target:addStatusEffect(dsp.effects.PARALYSIS,5,3,duration);
         return SUBEFFECT_PARALYSIS,msgBasic.ADD_EFFECT_STATUS,EFFECT_PARALYSIS;
     end
 end;

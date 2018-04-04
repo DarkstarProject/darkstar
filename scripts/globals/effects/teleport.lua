@@ -1,29 +1,17 @@
 -----------------------------------
 --
--- EFFECT_TELEPORT
+-- dsp.effects.TELEPORT
 --
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/teleports");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local Teleport = effect:getPower();
@@ -87,5 +75,13 @@ function onEffectLose(target,effect)
         toExitPromDem(target);
     elseif (Teleport == TELEPORT_LUFAISE) then
         toLufaise(target);
+    elseif (Teleport == TELEPORT_CHOCOWINDURST) then
+        federationStablesScarf(target);
+    elseif (Teleport == TELEPORT_CHOCOSANDORIA) then
+        kingdomStablesCollar(target);
+    elseif (Teleport == TELEPORT_CHOCOBASTOK) then
+        republicStablesMedal(target);
+    elseif (Teleport == TELEPORT_DUCALGUARD) then
+        ducalGuardRing(target);
     end
 end;

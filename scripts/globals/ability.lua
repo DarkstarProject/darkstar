@@ -441,8 +441,8 @@ SPECEFFECT_CRITICAL_HIT = 0x22
 
 function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
-    caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
-    caster:addStatusEffectEx(EFFECT_DOUBLE_UP_CHANCE,
+    caster:delStatusEffectSilent(dsp.effects.DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(dsp.effects.DOUBLE_UP_CHANCE,
                              EFFECT_DOUBLE_UP_CHANCE,
                              roll,
                              0,
@@ -513,7 +513,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
             and skilltype == MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.JA_MISS_2);
         return 0;
@@ -535,9 +535,9 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        target:delStatusEffect(dsp.effects.BLINK);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide

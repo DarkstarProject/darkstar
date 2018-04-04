@@ -10,7 +10,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+    local effect = target:getStatusEffect(dsp.effects.COPY_IMAGE);
 
     -- Get extras shadows
     local bonusShadow = 0;
@@ -20,11 +20,11 @@ function onSpellCast(caster,target,spell)
 
     if (effect == nil) then
         if caster:getMainJob() == JOBS.NIN then
-            target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_4, 4 + bonusShadow,0,900);
+            target:addStatusEffectEx(dsp.effects.COPY_IMAGE,dsp.effects.COPY_IMAGE_4, 4 + bonusShadow,0,900);
             target:setMod(MOD_UTSUSEMI, 4 + bonusShadow);
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
         else
-            target:addStatusEffectEx(EFFECT_COPY_IMAGE,EFFECT_COPY_IMAGE_3, 3 + bonusShadow,0,900);
+            target:addStatusEffectEx(dsp.effects.COPY_IMAGE,dsp.effects.COPY_IMAGE_3, 3 + bonusShadow,0,900);
             target:setMod(MOD_UTSUSEMI, 3 + bonusShadow);
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
         end
@@ -32,7 +32,7 @@ function onSpellCast(caster,target,spell)
         if (effect:getPower() <= 4) then
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
             effect:setPower(4);
-            effect:setIcon(EFFECT_COPY_IMAGE_4);
+            effect:setIcon(dsp.effects.COPY_IMAGE_4);
             effect:resetStartTime();
             target:setMod(MOD_UTSUSEMI, 4 + bonusShadow);
         else
@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
         if (effect:getPower() <= 3) then
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
             effect:setPower(3);
-            effect:setIcon(EFFECT_COPY_IMAGE_3);
+            effect:setIcon(dsp.effects.COPY_IMAGE_3);
             effect:resetStartTime();
             target:setMod(MOD_UTSUSEMI, 3 + bonusShadow);
         else
@@ -50,5 +50,5 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    return EFFECT_COPY_IMAGE;
+    return dsp.effects.COPY_IMAGE;
 end;

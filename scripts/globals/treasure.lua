@@ -222,7 +222,7 @@ end
 function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
     local success = 0;
     local chance_answer = {nil,nil}; -- {success%,messageType}
-    local weak = player:getStatusEffect(EFFECT_WEAKNESS);
+    local weak = player:getStatusEffect(dsp.effects.WEAKNESS);
     local illu  = player:getVar("["..player:getZoneID().."]".."Treasure_"..TreasureType);
 
     -- SE implemented this in order to prevent coffer farming.

@@ -12,12 +12,12 @@ end;
 
 function onUseAbility(pet, target, skill, action)
     local effect
-    if (target:delStatusEffect(EFFECT_CURSE_I)) then
+    if (target:delStatusEffect(dsp.effects.CURSE_I)) then
         skill:setMsg(msgBasic.JA_REMOVE_EFFECT);
-        effect = EFFECT_CURSE_I
-    elseif (target:delStatusEffect(EFFECT_DOOM)) then
+        effect = dsp.effects.CURSE_I
+    elseif (target:delStatusEffect(dsp.effects.DOOM)) then
         skill:setMsg(msgBasic.JA_REMOVE_EFFECT);
-        effect = EFFECT_DOOM
+        effect = dsp.effects.DOOM
     else
         skill:setMsg(msgBasic.JA_NO_EFFECT);
     end

@@ -23,7 +23,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local message = msgBasic.SKILL_MISS;
-    local typeEffect = EFFECT_AMNESIA;
+    local typeEffect = dsp.effects.AMNESIA;
     local power = 1;
     local duration = 60;
 

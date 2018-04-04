@@ -63,7 +63,7 @@ function onSpellCast(caster,target,spell)
             basecure = getBaseCure(power,divisor,constant,basepower)
         end
         final = getCureFinal(caster,spell,basecure,minCure,false);
-        if (caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN) == false) then
+        if (caster:hasStatusEffect(dsp.effects.AFFLATUS_SOLACE) and target:hasStatusEffect(dsp.effects.STONESKIN) == false) then
             local solaceStoneskin = 0;
             local equippedBody = caster:getEquipID(SLOT_BODY);
             if (equippedBody == 11186) then
@@ -73,7 +73,7 @@ function onSpellCast(caster,target,spell)
             else
                 solaceStoneskin = math.floor(final * 0.25);
             end
-            target:addStatusEffect(EFFECT_STONESKIN,solaceStoneskin,0,25);
+            target:addStatusEffect(dsp.effects.STONESKIN,solaceStoneskin,0,25);
         end;
         final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
 

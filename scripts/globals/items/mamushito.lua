@@ -14,8 +14,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_LIGHTNING,0) <= 0.5) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_STUN, 1, 0, 3);
-        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, EFFECT_STUN;
+        target:addStatusEffect(dsp.effects.STUN, 1, 0, 3);
+        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.STUN;
     end
 end;
 

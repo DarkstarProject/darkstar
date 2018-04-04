@@ -31,8 +31,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN) == false) then
-        target:addStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN, 5, 0, 60);
+    if (damage > 0 and target:hasStatusEffect(dsp.effects.CRIT_HIT_EVASION_DOWN) == false) then
+        target:addStatusEffect(dsp.effects.CRIT_HIT_EVASION_DOWN, 5, 0, 60);
     end
     return tpHits, extraHits, criticalHit, damage;
 

@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_DEFENSE_BOOST;
+    local typeEffect = dsp.effects.DEFENSE_BOOST;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 50, 0, 60));
 

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Exuviation
--- Restores HP and removes one detrimental magic effect.
+-- Restores HP and removes one detrimental magic dsp.effects.
 -- Can be used with Diffusion.
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------

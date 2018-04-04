@@ -19,13 +19,13 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_PETRIFICATION;
+    params.effect = dsp.effects.PETRIFICATION;
     local resist = applyResistanceEffect(caster, target, spell, params);
     -- Duration, including resistance.  Unconfirmed.
     local duration = 30 * resist;
 
     if (resist > 0.5) then
-        if (target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
+        if (target:addStatusEffect(dsp.effects.PETRIFICATION,1,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -34,5 +34,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
-    return EFFECT_PETRIFICATION;
+    return dsp.effects.PETRIFICATION;
 end;

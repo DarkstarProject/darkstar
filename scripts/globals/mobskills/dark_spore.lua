@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = dsp.effects.BLINDNESS;
     MobStatusEffectMove(mob, target, typeEffect, 15, 3, 120);
 
     local dmgmod = MobBreathMove(mob, target, 0.25, 2, ELE_DARK, 800);
