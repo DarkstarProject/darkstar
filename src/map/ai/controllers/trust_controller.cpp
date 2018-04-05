@@ -48,7 +48,7 @@ CTrustController::~CTrustController()
 
 void CTrustController::Despawn()
 {
-    if (POwner)
+    if (POwner->PMaster)
     {
         POwner->PMaster = nullptr;
     }

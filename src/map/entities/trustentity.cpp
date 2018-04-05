@@ -72,13 +72,13 @@ void CTrustEntity::PostTick()
         {
             if (PMaster->PParty != nullptr)
             {
-                for (auto PEntity : ((CCharEntity*)PMaster)->PParty->members)
+                PMaster->ForParty([this](auto PMember)
                 {
-                    if (PEntity->objtype == TYPE_PC)
+                    if (PMember->objtype == TYPE_PC)
                     {
-                        static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+                        static_cast<CCharEntity*>(PMember)->pushPacket(new CCharHealthPacket(this));
                     }
-                }
+                });
             }
         }
 
