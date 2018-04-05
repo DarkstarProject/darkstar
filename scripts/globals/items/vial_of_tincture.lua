@@ -12,12 +12,12 @@ end;
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(EFFECT_PLAGUE) == true) then
-        target:delStatusEffect(EFFECT_PLAGUE);
+    if (target:hasStatusEffect(dsp.effects.PLAGUE) == true) then
+        target:delStatusEffect(dsp.effects.PLAGUE);
     end
 
-    if (target:hasStatusEffect(EFFECT_DISEASE) == true) then
-        target:delStatusEffect(EFFECT_DISEASE);
+    if (target:hasStatusEffect(dsp.effects.DISEASE) == true) then
+        target:delStatusEffect(dsp.effects.DISEASE);
     end
 end;
 

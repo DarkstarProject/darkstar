@@ -17,7 +17,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_BLACK_MAGIC_CAST, -bonus);
     target:addMod(MOD_BLACK_MAGIC_RECAST, -bonus);
 
-    if not (target:hasStatusEffect(EFFECT_TABULA_RASA)) then
+    if not (target:hasStatusEffect(dsp.effects.TABULA_RASA)) then
         target:addMod(MOD_BLACK_MAGIC_COST, -10);
         target:addMod(MOD_BLACK_MAGIC_CAST, -10);
         target:addMod(MOD_BLACK_MAGIC_RECAST, -10);
@@ -50,7 +50,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_BLACK_MAGIC_CAST, -bonus);
     target:delMod(MOD_BLACK_MAGIC_RECAST, -bonus);
 
-    if not (target:hasStatusEffect(EFFECT_TABULA_RASA)) then
+    if not (target:hasStatusEffect(dsp.effects.TABULA_RASA)) then
         target:delMod(MOD_BLACK_MAGIC_COST, -10);
         target:delMod(MOD_BLACK_MAGIC_CAST, -10);
         target:delMod(MOD_BLACK_MAGIC_RECAST, -10);

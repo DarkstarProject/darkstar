@@ -24,7 +24,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_SLEEP_II;
+    local typeEffect = dsp.effects.SLEEP_II;
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local params = {};
     params.diff = nil;

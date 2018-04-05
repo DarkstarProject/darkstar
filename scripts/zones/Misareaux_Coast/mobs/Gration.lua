@@ -12,7 +12,7 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-    mob:addStatusEffect(EFFECT_KILLER_INSTINCT,40,0,0);
+    mob:addStatusEffect(dsp.effects.KILLER_INSTINCT,40,0,0);
     mob:setLocalVar("fomorHateAdj", -2);
 end;
 

@@ -61,13 +61,13 @@ function onTrigger(player, arg1, arg2, arg3, arg4, arg5, arg6)
             return;
         end
     end
-    
+
     -- validate power
     if (power < 0) then
         error(player, "Invalid power.");
         return;
     end
-    
+
     -- validate duration
     if (duration < 1) then
         error(player, "Invalid duration.");

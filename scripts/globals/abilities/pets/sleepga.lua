@@ -16,7 +16,7 @@ function onPetAbility(target, pet, skill)
     local resm = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
     if (resm < 0.5) then
         skill:setMsg(msgBasic.RESIST); -- resist message
-        return EFFECT_SLEEP_I;
+        return dsp.effects.SLEEP_I;
     end
     duration = duration * resm;
     if (target:hasImmunity(1) or hasSleepEffects(target)) then
@@ -25,8 +25,8 @@ function onPetAbility(target, pet, skill)
     else
         skill:setMsg(msgBasic.SKILL_ENFEEB);
 
-        target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration);
+        target:addStatusEffect(dsp.effects.SLEEP_I,1,0,duration);
     end
 
-    return EFFECT_SLEEP_I;
+    return dsp.effects.SLEEP_I;
 end;

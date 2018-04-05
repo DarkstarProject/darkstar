@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local SkillLevel = player:getSkillLevel(SKILL_SMITHING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_SMITHING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.SMITHING_IMAGERY) == false) then
             player:startEvent(630,SkillCap,SkillLevel,2,205,player:getGil(),0,90,0);
         else
             player:startEvent(630,SkillCap,SkillLevel,2,205,player:getGil(),7054,90,0);
@@ -40,6 +40,6 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 630 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,2,2);
-        player:addStatusEffect(EFFECT_SMITHING_IMAGERY,1,0,120);
+        player:addStatusEffect(dsp.effects.SMITHING_IMAGERY,1,0,120);
     end
 end;

@@ -13,5 +13,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_SPONTANEITY,1,0,60);
+    target:addStatusEffect(dsp.effects.SPONTANEITY,1,0,60);
 end;

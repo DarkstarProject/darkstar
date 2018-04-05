@@ -17,14 +17,14 @@ function onItemCheck(target)
     if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
         result = 0;
     end
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,4311);
+    target:addStatusEffect(dsp.effects.FOOD,0,0,300,4311);
 end;
 
 -----------------------------------------

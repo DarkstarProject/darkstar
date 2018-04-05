@@ -22,7 +22,7 @@ function onMobSkillCheck(target, mob, skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_CHARM_I;
+    local typeEffect = dsp.effects.CHARM_I;
 
     if (not target:isPC()) then
         skill:setMsg(msgBasic.SKILL_MISS);

@@ -43,9 +43,9 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local eald_narche = GetMobByID(mob:getID() - 1);
-    eald_narche:delStatusEffect(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
-    eald_narche:delStatusEffect(EFFECT_ARROW_SHIELD, 0, 1, 0, 0);
-    eald_narche:delStatusEffect(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+    eald_narche:delStatusEffect(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
+    eald_narche:delStatusEffect(dsp.effects.ARROW_SHIELD, 0, 1, 0, 0);
+    eald_narche:delStatusEffect(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
 end;
 
 function onEventUpdate(player,csid,option)
@@ -65,8 +65,8 @@ function onEventFinish(player,csid,option,target)
         mob = SpawnMob(target:getID()+1);
         mob:updateEnmity(player);
         -- the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
-        mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
-        mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);
+        mob:addStatusEffectEx(dsp.effects.BIND, 0, 1, 0, 30);
+        mob:addStatusEffectEx(dsp.effects.SILENCE, 0, 1, 0, 40);
     end
 
 end;

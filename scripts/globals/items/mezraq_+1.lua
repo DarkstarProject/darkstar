@@ -14,8 +14,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_EVASION_BOOST);
-        target:addStatusEffect(EFFECT_EVASION_DOWN, 25, 0, 30);
-        return SUBEFFECT_EVASION_DOWN, msgBasic.ADD_EFFECT_STATUS, EFFECT_EVASION_DOWN;
+        target:delStatusEffect(dsp.effects.EVASION_BOOST);
+        target:addStatusEffect(dsp.effects.EVASION_DOWN, 25, 0, 30);
+        return SUBEFFECT_EVASION_DOWN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.EVASION_DOWN;
     end
 end;

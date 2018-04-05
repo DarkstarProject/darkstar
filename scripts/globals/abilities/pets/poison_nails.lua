@@ -24,8 +24,8 @@ function onPetAbility(target, pet, skill)
     target:delHP(totaldamage);
     target:updateEnmityFromDamage(pet,totaldamage);
 
-    if (AvatarPhysicalHit(skill, totalDamage) and target:hasStatusEffect(EFFECT_POISON) == false) then
-        target:addStatusEffect(EFFECT_POISON,1,3,60);
+    if (AvatarPhysicalHit(skill, totalDamage) and target:hasStatusEffect(dsp.effects.POISON) == false) then
+        target:addStatusEffect(dsp.effects.POISON,1,3,60);
     end
 
     return totaldamage;

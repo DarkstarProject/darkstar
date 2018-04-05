@@ -12,6 +12,6 @@ end;
 
 function onItemUse(target)
     local duration = 5400;
-    target:delStatusEffect(EFFECT_RERAISE);
-    target:addStatusEffect(EFFECT_RERAISE,2,0,duration);
+    target:delStatusEffect(dsp.effects.RERAISE);
+    target:addStatusEffect(dsp.effects.RERAISE,2,0,duration);
 end;

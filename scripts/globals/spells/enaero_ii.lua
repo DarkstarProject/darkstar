@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_ENAERO_II;
+    local effect = dsp.effects.ENAERO_II;
     doEnspell(caster,target,spell,effect);
     return effect;
 end;

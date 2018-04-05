@@ -37,8 +37,8 @@ function onPetAbility(target, pet, skill)
     target:delHP(damage);
     target:updateEnmityFromDamage(pet,damage);
 
-    if (target:hasStatusEffect(EFFECT_STUN) == false) then
-        target:addStatusEffect(EFFECT_STUN,3,3,3);
+    if (target:hasStatusEffect(dsp.effects.STUN) == false) then
+        target:addStatusEffect(dsp.effects.STUN,3,3,3);
     end
 
     return damage;

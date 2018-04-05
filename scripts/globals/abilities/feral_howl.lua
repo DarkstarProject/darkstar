@@ -20,7 +20,7 @@ function onUseAbility(player,target,ability)
     --printf("feralHowlMod : %u",feralHowlMod);
         local duration = 10;
     --printf("Duration : %u",duration);
-    if target:hasStatusEffect(EFFECT_TERROR) == true or target:hasStatusEffect(EFFECT_STUN) == true then -- effect already on, or target stunned, do nothing
+    if target:hasStatusEffect(dsp.effects.TERROR) == true or target:hasStatusEffect(dsp.effects.STUN) == true then -- effect already on, or target stunned, do nothing
     -- reserved for miss based on target already having stun or terror effect active
     else
         -- Calculate duration.
@@ -70,10 +70,10 @@ function onUseAbility(player,target,ability)
     
     -- execute ability based off of resistance value; space reserved for resist message
     if resist <= 90 then -- still experimental. not exactly sure how to calculate hit %
-        target:addStatusEffect(EFFECT_TERROR,potency,0,duration);
+        target:addStatusEffect(dsp.effects.TERROR,potency,0,duration);
     else
         -- reserved for text related to resist
     end
 
-    return EFFECT_TERROR;
+    return dsp.effects.TERROR;
 end;

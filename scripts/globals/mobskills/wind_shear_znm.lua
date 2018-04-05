@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    -- EFFECT_KNOCKBACK
+    -- dsp.effects.KNOCKBACK
 
 
     local numhits = 1;
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 
-    local typeEffect = EFFECT_WEIGHT;
+    local typeEffect = dsp.effects.WEIGHT;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120);
 

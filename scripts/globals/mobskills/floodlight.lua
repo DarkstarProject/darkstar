@@ -24,8 +24,8 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_LIGHT,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
 
-    MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 15, 3, 120);
-    MobStatusEffectMove(mob, target, EFFECT_SILENCE, 1, 0, 60);
+    MobStatusEffectMove(mob, target, dsp.effects.BLINDNESS, 15, 3, 120);
+    MobStatusEffectMove(mob, target, dsp.effects.SILENCE, 1, 0, 60);
 
     target:delHP(dmg);
     return dmg;

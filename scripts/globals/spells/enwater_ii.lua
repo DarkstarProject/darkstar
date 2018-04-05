@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_ENWATER_II;
+    local effect = dsp.effects.ENWATER_II;
     doEnspell(caster,target,spell,effect);
     return effect;
 end;

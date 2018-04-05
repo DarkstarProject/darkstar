@@ -22,7 +22,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effects.SILENCE;
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     local params = {};
     params.diff = nil;

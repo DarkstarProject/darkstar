@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_LAST_RESORT,player:getMerit(MERIT_DESPERATE_BLOWS),0,180);
+    player:addStatusEffect(dsp.effects.LAST_RESORT,player:getMerit(MERIT_DESPERATE_BLOWS),0,180);
 end;

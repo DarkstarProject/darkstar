@@ -45,7 +45,7 @@ function onUseAbility(player,target,ability,action)
 
     if (tpHits + extraHits > 0) then
         -- Under Spirit Surge, High Jump reduces TP of target
-        if (player:hasStatusEffect(EFFECT_SPIRIT_SURGE) == true) then
+        if (player:hasStatusEffect(dsp.effects.SPIRIT_SURGE) == true) then
             target:delTP(damage * 0.2)
         end
         if (criticalHit) then

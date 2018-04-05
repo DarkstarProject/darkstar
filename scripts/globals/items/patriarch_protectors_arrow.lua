@@ -17,10 +17,10 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_PARALYSIS)
-        if (not target:hasStatusEffect(EFFECT_PARALYSIS)) then
-            target:addStatusEffect(EFFECT_PARALYSIS, 30, 0, 30);
+        target:delStatusEffect(dsp.effects.PARALYSIS)
+        if (not target:hasStatusEffect(dsp.effects.PARALYSIS)) then
+            target:addStatusEffect(dsp.effects.PARALYSIS, 30, 0, 30);
         end
-        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, dsp.effects.PARALYSIS;
     end
 end;

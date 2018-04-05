@@ -27,8 +27,8 @@ function onMobFight(mob,target)
             -- subanimation 0 is first phase subanim, so just go straight to magic mode
             if (mob:AnimationSub() == 0) then
                 mob:AnimationSub(1);
-                mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-                mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+                mob:delStatusEffect(dsp.effects.PHYSICAL_SHIELD);
+                mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(false);
                 mob:SetMagicCastingEnabled(true);
                 mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
@@ -39,8 +39,8 @@ function onMobFight(mob,target)
             elseif (mob:AnimationSub() == 2 and (mob:getHP() <= changeHP - 1000 or
                     mob:getBattleTime() - changeTime > 300)) then
                 mob:AnimationSub(1);
-                mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
-                mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+                mob:delStatusEffect(dsp.effects.PHYSICAL_SHIELD);
+                mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(false);
                 mob:SetMagicCastingEnabled(true);
                 mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
@@ -52,8 +52,8 @@ function onMobFight(mob,target)
                 -- and use an ability before changing
                 mob:useMobAbility(673);
                 mob:AnimationSub(2);
-                mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-                mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
+                mob:delStatusEffect(dsp.effects.MAGIC_SHIELD);
+                mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(true);
                 mob:SetMagicCastingEnabled(false);
                 mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
@@ -83,8 +83,8 @@ function onMobDeath(mob, player, isKiller)
     mob:AnimationSub(0);
     mob:SetAutoAttackEnabled(true);
     mob:SetMagicCastingEnabled(true);
-    mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+    mob:delStatusEffect(dsp.effects.MAGIC_SHIELD);
+    mob:delStatusEffect(dsp.effects.PHYSICAL_SHIELD);
 end;
 
 function onMobDespawn(mob)
@@ -92,8 +92,8 @@ function onMobDespawn(mob)
     mob:AnimationSub(0);
     mob:SetAutoAttackEnabled(true);
     mob:SetMagicCastingEnabled(true);
-    mob:delStatusEffect(EFFECT_MAGIC_SHIELD);
-    mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
+    mob:delStatusEffect(dsp.effects.MAGIC_SHIELD);
+    mob:delStatusEffect(dsp.effects.PHYSICAL_SHIELD);
 end;
 
 function onEventUpdate(player,csid,option)

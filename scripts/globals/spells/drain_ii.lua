@@ -54,7 +54,7 @@ function onSpellCast(caster,target,spell)
     local leftOver = (caster:getHP() + dmg) - caster:getMaxHP();
 
     if (leftOver > 0) then
-        caster:addStatusEffect(EFFECT_MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
+        caster:addStatusEffect(dsp.effects.MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
     end
 
     caster:addHP(dmg);

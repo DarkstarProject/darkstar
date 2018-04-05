@@ -24,7 +24,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
    local dmgmod = 1.5;
-   local typeEffect = EFFECT_PARALYSIS;
+   local typeEffect = dsp.effects.PARALYSIS;
    
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 120);
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_THUNDER,dmgmod,TP_MAB_BONUS,1);

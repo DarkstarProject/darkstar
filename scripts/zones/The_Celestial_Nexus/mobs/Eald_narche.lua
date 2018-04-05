@@ -17,13 +17,13 @@ end;
 function onMobSpawn(mob)
     mob:SetAutoAttackEnabled(false);
     mob:setMobMod(MOBMOD_GA_CHANCE,25);
-    mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD, 0, 1, 0, 0);
-    mob:addStatusEffectEx(EFFECT_ARROW_SHIELD, 0, 1, 0, 0);
-    mob:addStatusEffectEx(EFFECT_MAGIC_SHIELD, 0, 1, 0, 0);
+    mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
+    mob:addStatusEffectEx(dsp.effects.ARROW_SHIELD, 0, 1, 0, 0);
+    mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
 end;
 
 function onMobEngaged(mob, target)
-    mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 5);
+    mob:addStatusEffectEx(dsp.effects.SILENCE, 0, 1, 0, 5);
     GetMobByID(mob:getID() + 1):updateEnmity(target);
 end;
 
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option,target)
         mob = SpawnMob(target:getID()+2);
         mob:updateEnmity(player);
         --the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
-        mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
-        mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);
+        mob:addStatusEffectEx(dsp.effects.BIND, 0, 1, 0, 30);
+        mob:addStatusEffectEx(dsp.effects.SILENCE, 0, 1, 0, 40);
     end
 end;

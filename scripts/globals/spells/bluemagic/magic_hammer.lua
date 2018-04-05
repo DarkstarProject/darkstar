@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
     local dmg = 0;
     local multi = 1.5;
 
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effects.AZURE_LORE)) then
         multi = multi + 0.50;
     end
 

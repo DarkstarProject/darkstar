@@ -12,16 +12,16 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ICE_SPIKES;
-    local typeEffect2 = EFFECT_DEFENSE_BOOST;
+    local typeEffect = dsp.effects.ICE_SPIKES;
+    local typeEffect2 = dsp.effects.DEFENSE_BOOST;
     local randy = math.random(15,30);
 
     -- Todo: check message behavior, this double setMsg() looks wrong
     skill:setMsg(MobBuffMove(mob, typeEffect, randy, 0, 60));
-    local effect1 = mob:getStatusEffect(EFFECT_ICE_SPIKES);
+    local effect1 = mob:getStatusEffect(dsp.effects.ICE_SPIKES);
     effect1:unsetFlag(EFFECTFLAG_DISPELABLE);
     skill:setMsg(MobBuffMove(mob, typeEffect2, 26, 0, 60));
-    local effect2 = mob:getStatusEffect(EFFECT_DEFENSE_BOOST);
+    local effect2 = mob:getStatusEffect(dsp.effects.DEFENSE_BOOST);
     effect2:unsetFlag(EFFECTFLAG_DISPELABLE);
 
     return typeEffect;

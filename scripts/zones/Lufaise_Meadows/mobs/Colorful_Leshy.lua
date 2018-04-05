@@ -3,31 +3,40 @@
 --  MOB: Colorful Leshy
 -----------------------------------
 
+function onMobInitialize(mob)
+    mob:setLocalVar("timeToGrow", os.time() + math.random(43200, 86400)); -- Colorful in 12 to 24 hours
+end
+
+function disturbMob(mob)
+    GetMobByID(mob:getID() + 1):setLocalVar("timeToGrow", os.time() + math.random(43200, 86400)); -- Defoliate in 12 to 24 hours
+end
+
 function onMobSpawn(mob)
-    local Defoliate_Leshy = 16875763;
-    GetMobByID(Defoliate_Leshy):setLocalVar("1", os.time() + math.random((43200), (86400)));
+    disturbMob(mob);
+end;
+
+function onMobEngaged(mob, target)
+    disturbMob(mob);
+end;
+
+function onMobFight(mob, target)
+    disturbMob(mob);
 end;
 
 function onMobRoam(mob)
-    local Defoliate_Leshy = 16875763;
-    local Defoliate_Leshy_PH = 0;
-    local Defoliate_Leshy_PH_Table =
-    {
-        16875762
-    };
-    local Defoliate_Leshy_ToD = GetMobByID(Defoliate_Leshy):getLocalVar("1");
+    local ph = mob:getID();
+    local nm = GetMobByID(ph + 1);
+    if (not nm:isSpawned() and os.time() > nm:getLocalVar("timeToGrow")) then
+        local phIndex = mob:getLocalVar("phIndex");
+        local p = mob:getPos();
+        DisallowRespawn(ph, true);
+        mob:setLocalVar("phIndex", 0);
+        DespawnMob(ph);
 
-    if (Defoliate_Leshy_ToD <= os.time()) then
-        Defoliate_Leshy_PH = math.random((0), (#Defoliate_Leshy_PH_Table));
-        if (Defoliate_Leshy_PH_Table[Defoliate_Leshy_PH] ~= nil) then
-            if (GetMobAction(Defoliate_Leshy) == 0) then
-                SetServerVariable("Defoliate_Leshy_PH", Defoliate_Leshy_PH_Table[Defoliate_Leshy_PH]);
-                DisallowRespawn(Defoliate_Leshy_PH_Table[Defoliate_Leshy_PH], true);
-                DisallowRespawn(Defoliate_Leshy, false);
-                DespawnMob(Defoliate_Leshy_PH_Table[Defoliate_Leshy_PH]);
-                SpawnMob(Defoliate_Leshy, "", 0);
-            end
-        end
+        DisallowRespawn(ph + 1, false);
+        nm:setSpawn(p.x,p.y,p.z,p.rot);
+        SpawnMob(ph + 1);
+        nm:setLocalVar("phIndex", phIndex);
     end
 end;
 
@@ -35,12 +44,12 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    local Colorful_Leshy = 16875762;
-    local Colorful_Leshy_PH = GetServerVariable("Colorful_Leshy_PH");
-
-    GetMobByID(Colorful_Leshy):setLocalVar("1", os.time() + math.random((43200), (86400)));
-    SetServerVariable("Colorful_Leshy_PH", 0);
-    DisallowRespawn(Colorful_Leshy, true);
-    DisallowRespawn(Colorful_Leshy_PH, false);
-    SpawnMob(Colorful_Leshy_PH, "", GetMobRespawnTime(Colorful_Leshy_PH));
+    local phIndex = mob:getLocalVar("phIndex");
+    if (phIndex ~= 0) then
+        mob:setLocalVar("phIndex", 0);
+        DisallowRespawn(mob:getID(), true);
+        DisallowRespawn(phIndex, false);
+        GetMobByID(phIndex):setRespawnTime(GetMobRespawnTime(phIndex));
+        mob:setLocalVar("timeToGrow", os.time() + math.random(3200, 86400)); -- Colorful in 12 to 24 hours
+    end
 end;

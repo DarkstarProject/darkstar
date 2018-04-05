@@ -22,10 +22,10 @@ function onMobWeaponSkill(target, mob, skill)
     local dis2 = target:dispelStatusEffect();
 
 
-    if (dis1 ~= EFFECT_NONE and dis2 ~= EFFECT_NONE) then
+    if (dis1 ~= dsp.effects.NONE and dis2 ~= dsp.effects.NONE) then
         skill:setMsg(msgBasic.DISAPPEAR_NUM);
         return 2;
-    elseif (dis1 ~= EFFECT_NONE or dis2 ~= EFFECT_NONE) then
+    elseif (dis1 ~= dsp.effects.NONE or dis2 ~= dsp.effects.NONE) then
         -- dispeled only one
         skill:setMsg(msgBasic.DISAPPEAR_NUM);
         return 1;

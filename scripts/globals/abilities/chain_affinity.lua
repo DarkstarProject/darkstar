@@ -15,7 +15,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_CHAIN_AFFINITY,1,0,30);
+    player:addStatusEffect(dsp.effects.CHAIN_AFFINITY,1,0,30);
 
-    return EFFECT_CHAIN_AFFINITY;
+    return dsp.effects.CHAIN_AFFINITY;
 end;

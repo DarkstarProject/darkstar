@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:delHP(dmg);
 
     -- curse LAST so you don't die
-    local typeEffect = EFFECT_CURSE_I;
+    local typeEffect = dsp.effects.CURSE_I;
     MobStatusEffectMove(mob, target, typeEffect, 25, 0, 60);
 
     return dmg;

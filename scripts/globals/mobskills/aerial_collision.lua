@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_DEFENSE_DOWN;
+    local typeEffect = dsp.effects.DEFENSE_DOWN;
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 1;

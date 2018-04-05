@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     local gownQuestProgress = player:getVar("AF_SCH_BODY");
 
-    player:delStatusEffect(EFFECT_SNEAK);
+    player:delStatusEffect(dsp.effects.SNEAK);
 
     -- SCH AF Quest - Boots
     if (gownQuestProgress > 0 and gownQuestProgress < 3 and player:hasKeyItem(SAMPLE_OF_GRAUBERG_CHERT) == false) then

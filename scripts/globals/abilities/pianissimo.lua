@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_PIANISSIMO,0,0,60);
+    player:addStatusEffect(dsp.effects.PIANISSIMO,0,0,60);
 end;

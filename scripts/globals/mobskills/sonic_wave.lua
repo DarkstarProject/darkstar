@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_DEFENSE_DOWN;
+    local typeEffect = dsp.effects.DEFENSE_DOWN;
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 30, 0, 120));
 
     return typeEffect;

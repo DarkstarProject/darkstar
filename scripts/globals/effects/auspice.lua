@@ -1,6 +1,6 @@
 --------------------------------------
 --
--- EFFECT_AUSPICE
+-- dsp.effects.AUSPICE
 --
 -- Power: Used for Enspell Effect
 -- SubPower: Tracks Subtle Blow Bonus
@@ -20,8 +20,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_SUBTLE_BLOW, subtleBlowBonus);    
 
     --Afflatus Misery Bonuses    
-    if (target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
-        target:getStatusEffect(EFFECT_AFFLATUS_MISERY):setSubPower(0);
+    if (target:hasStatusEffect(dsp.effects.AFFLATUS_MISERY)) then
+        target:getStatusEffect(dsp.effects.AFFLATUS_MISERY):setSubPower(0);
         target:addMod(MOD_ENSPELL,18);
         target:addMod(MOD_ENSPELL_DMG,effect:getPower());
     end
@@ -44,11 +44,11 @@ function onEffectLose(target,effect)
     target:delMod(MOD_SUBTLE_BLOW, subtleBlow);
     
     --Clean Up Any Bonuses That From Afflatus Misery Combo
-    if (target:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
-        local accuracyBonus = target:getStatusEffect(EFFECT_AFFLATUS_MISERY):getSubPower();
+    if (target:hasStatusEffect(dsp.effects.AFFLATUS_MISERY)) then
+        local accuracyBonus = target:getStatusEffect(dsp.effects.AFFLATUS_MISERY):getSubPower();
         --printf("AUSPICE: Removing Accuracy Bonus +%d!", accuracyBonus);
         target:delMod(MOD_ACC, accuracyBonus);
-        local accuracyBonus = target:getStatusEffect(EFFECT_AFFLATUS_MISERY):setSubPower(0);
+        local accuracyBonus = target:getStatusEffect(dsp.effects.AFFLATUS_MISERY):setSubPower(0);
     
         target:setMod(MOD_ENSPELL_DMG,0);
         target:setMod(MOD_ENSPELL,0);

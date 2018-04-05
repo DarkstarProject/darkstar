@@ -19,7 +19,7 @@ function onMobSpawn(mob)
 end;
 
 function onMonsterMagicPrepare(mob,target)
-    if (not mob:hasStatusEffect(EFFECT_HUNDRED_FISTS,0)) then
+    if (not mob:hasStatusEffect(dsp.effects.HUNDRED_FISTS,0)) then
         local rnd = math.random();
         if (rnd < 0.5) then
             return 186; -- aeroga 3

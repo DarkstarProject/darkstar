@@ -15,6 +15,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local effect = EFFECT_BLOOD_WEAPON;
+    local effect = dsp.effects.BLOOD_WEAPON;
     doEnspell(player,target,nil,effect);
 end;

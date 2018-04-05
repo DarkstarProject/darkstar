@@ -12,9 +12,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_INVISIBLE)) then
+    if (target:hasStatusEffect(dsp.effects.INVISIBLE)) then
         target:messageBasic(msgBasic.NO_EFFECT);
     else
-        target:addStatusEffect(EFFECT_INVISIBLE, 0, 10, math.floor(180 * SNEAK_INVIS_DURATION_MULTIPLIER));
+        target:addStatusEffect(dsp.effects.INVISIBLE, 0, 10, math.floor(180 * SNEAK_INVIS_DURATION_MULTIPLIER));
     end
 end;

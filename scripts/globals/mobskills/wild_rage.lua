@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- king vinegrroon
     if (mob:getPool() == 2262) then
-        local typeEffect = EFFECT_POISON;
+        local typeEffect = dsp.effects.POISON;
         local power = 25;
         MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60);
     end

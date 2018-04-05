@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_FAN_DANCE,90,0,300);
+    player:addStatusEffect(dsp.effects.FAN_DANCE,90,0,300);
 end;

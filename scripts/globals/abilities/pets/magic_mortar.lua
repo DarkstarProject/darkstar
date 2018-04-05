@@ -9,7 +9,7 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(EFFECT_LIGHT_MANEUVER)
+    return master:countEffect(dsp.effects.LIGHT_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)

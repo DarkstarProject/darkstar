@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ATTACK_DOWN;
+    local typeEffect = dsp.effects.ATTACK_DOWN;
     local power = 50;
     local duration = 120;
 

@@ -4641,7 +4641,8 @@ INSERT INTO `synth_recipes` VALUES (4526,1,1989,0,0,0,0,0,0,0,115,4096,4238,4074
 INSERT INTO `synth_recipes` VALUES (4527,1,0,5,0,0,0,0,0,0,0,4103,4245,8889,0,0,0,0,0,0,0,929,929,929,929,2,2,2,2); -- black ink
 INSERT INTO `synth_recipes` VALUES (4528,1,0,15,0,0,0,0,0,0,0,4099,4241,8891,0,0,0,0,0,0,0,4167,4167,4167,4167,33,33,33,33); -- cracker
 INSERT INTO `synth_recipes` VALUES (4529,1,0,45,0,0,0,0,0,0,0,4100,4242,8897,0,0,0,0,0,0,0,932,932,932,932,3,3,3,3); -- carbon fiber
-
+INSERT INTO `synth_recipes` VALUES (4530,0,0,0,0,0,0,0,0,73,8,4100,4242,16652,0,0,0,0,0,0,0,654,654,707,707,1,1,1,1); -- Darksteel Pick (desynth)
+INSERT INTO `synth_recipes` VALUES (4531,0,0,0,0,0,0,0,0,73,8,4100,4242,16682,0,0,0,0,0,0,0,654,654,707,707,1,1,1,1); -- Darskteel Pick +1 (desynth)
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Type,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4); -- template
 -- crystals = fire(4096,4238) ice(4097,4239) wind(4098,4240) earth(4099,4241) lightning(4100,4242) water(4101,4243) light(4102,4244) dark(4103,4245)

@@ -29,13 +29,13 @@ end;
 
 function onMobFight(mob,target)
 
-    if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
+    if (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
         mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_STANDBACK)))
         mob:setMobMod(MOBMOD_TELEPORT_TYPE,0);
         mob:setMobMod(MOBMOD_SPAWN_LEASH,0);
         mob:setSpellList(0);
     end
-    if (not mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) == 0) then
+    if (not mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) == 0) then
         mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_STANDBACK))
         mob:setMobMod(MOBMOD_TELEPORT_TYPE,1);
         mob:setMobMod(MOBMOD_SPAWN_LEASH,22);

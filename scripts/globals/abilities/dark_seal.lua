@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(MERIT_DARK_SEAL);
-    player:addStatusEffect(EFFECT_DARK_SEAL,merits,0,60);
+    player:addStatusEffect(dsp.effects.DARK_SEAL,merits,0,60);
 end;

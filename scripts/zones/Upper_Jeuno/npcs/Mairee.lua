@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 
             local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
 
-            player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,duration,true);
+            player:addStatusEffectEx(dsp.effects.MOUNTED,EFFECT_MOUNTED,0,0,duration,true);
 
             player:setPos(486,8,-160,0x80,0x69);
         end

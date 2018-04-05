@@ -23,14 +23,14 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_STUN;
+    local typeEffect = dsp.effects.STUN;
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
     local params = {};
     params.diff = nil;
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
-    params.effect = EFFECT_STUN;
+    params.effect = dsp.effects.STUN;
     local resist = applyResistanceEffect(caster, target, spell, params);
     local duration = 5 * resist;
 

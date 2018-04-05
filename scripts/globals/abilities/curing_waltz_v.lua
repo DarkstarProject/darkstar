@@ -13,9 +13,9 @@ require("scripts/globals/msg");
 function onAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
         return msgBasic.CANNOT_ON_THAT_TARG,0;
-    elseif (player:hasStatusEffect(EFFECT_SABER_DANCE)) then
+    elseif (player:hasStatusEffect(dsp.effects.SABER_DANCE)) then
         return msgBasic.UNABLE_TO_USE_JA2, 0;
-    elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
+    elseif (player:hasStatusEffect(dsp.effects.TRANCE)) then
         return 0,0;
     elseif (player:getTP() < 800) then
         return msgBasic.NOT_ENOUGH_TP,0;
@@ -28,7 +28,7 @@ function onAbilityCheck(player,target,ability)
             ability:setRecast(utils.clamp(newRecast,0,newRecast));
         end
         -- Apply "Fan Dance" Waltz recast reduction
-        if (player:hasStatusEffect(EFFECT_FAN_DANCE)) then
+        if (player:hasStatusEffect(dsp.effects.FAN_DANCE)) then
             local fanDanceMerits = target:getMerit(MERIT_FAN_DANCE);
             -- Every tier beyond the 1st is -5% recast time
             if (fanDanceMerits > 5) then
@@ -41,7 +41,7 @@ end;
 
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance.
-    if not player:hasStatusEffect(EFFECT_TRANCE) then
+    if not player:hasStatusEffect(dsp.effects.TRANCE) then
         player:delTP(800);
     end;
 

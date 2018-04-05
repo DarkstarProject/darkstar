@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased attack speed
+-- dsp.effects.PROWESS : Increased attack speed
 --
 -- Note: Doesn't alter TP gain like -delay would, and
 -- doesn't alter JA timers like other sources of haste.

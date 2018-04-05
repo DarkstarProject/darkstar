@@ -13,5 +13,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_STYMIE,0,0,60);
+    target:addStatusEffect(dsp.effects.STYMIE,0,0,60);
 end;

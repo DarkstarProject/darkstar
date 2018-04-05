@@ -55,7 +55,7 @@ printf("currentlimbus: %u",currentlimbus);
 
 
    if (player:hasKeyItem(COSMOCLEANSE)) then
-       if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+       if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then
          local LimbusTradeItem = player:getVar("Limbus_Trade_Item");
            for nt = 1,#instancelist,2 do
                  --   printf("list d'instance: %u",instancelist[nt]);
@@ -78,7 +78,7 @@ printf("currentlimbus: %u",currentlimbus);
         limbusbitmap= limbusbitmap + LimbusTradeItem;
       ----- /////////////////////////////////////////////on doit ajouter le mipmap pour l'item trade ici
        else
-             local    status = player:getStatusEffect(EFFECT_BATTLEFIELD);
+             local    status = player:getStatusEffect(dsp.effects.BATTLEFIELD);
             local    playerbcnmid = status:getPower();
            -- check if the player has the key item for the current battlefield
            for nt = 1,#instancelist,2 do
@@ -140,11 +140,11 @@ function onEventUpdate(player,csid,option)
 
 
      if (csid == 32000) then
-       if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then
+       if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then
            ResetPlayerLimbusVariable(player);
            player:setVar("characterLimbusKey",0);
        else
-               local status = player:getStatusEffect(EFFECT_BATTLEFIELD);
+               local status = player:getStatusEffect(dsp.effects.BATTLEFIELD);
             player:setVar("LimbusID",status:getPower());
              player:setVar("characterLimbusKey",GetLimbusKeyFromInstance(status:getPower()));
        end

@@ -23,7 +23,7 @@ function onMobSpawn(mob)
     mob:setMod(MOD_STUNRES, 35);
     mob:setMod(MOD_BINDRES, 35);
     mob:setMod(MOD_GRAVITYRES, 35);
-    mob:addStatusEffect(EFFECT_REGEN,50,3,0);
+    mob:addStatusEffect(dsp.effects.REGEN,50,3,0);
     mob:setLocalVar("numAdds", 1);
 end
 

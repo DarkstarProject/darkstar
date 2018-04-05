@@ -43,8 +43,8 @@ function onSpellCast(caster,target,spell)
         magAttBoost = 1;
         attBoost = 15;
     end
-    caster:addStatusEffect(EFFECT_ATTACK_BOOST,attBoost,0,duration);
-    caster:addStatusEffect(EFFECT_MAGIC_ATK_BOOST,magAttBoost,0,duration);
+    caster:addStatusEffect(dsp.effects.ATTACK_BOOST,attBoost,0,duration);
+    caster:addStatusEffect(dsp.effects.MAGIC_ATK_BOOST,magAttBoost,0,duration);
 
     local minCure = 350;
 

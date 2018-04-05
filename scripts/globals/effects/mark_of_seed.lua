@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_MARK_OF_SEED
+-- dsp.effects.MARK_OF_SEED
 --
 --  DO NOT try to use this anywhere else but Fei'Yin!
 -----------------------------------

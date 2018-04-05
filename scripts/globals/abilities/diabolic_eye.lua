@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_DIABOLIC_EYE,player:getMerit(MERIT_DIABOLIC_EYE),0,180);
+    player:addStatusEffect(dsp.effects.DIABOLIC_EYE,player:getMerit(MERIT_DIABOLIC_EYE),0,180);
 end;

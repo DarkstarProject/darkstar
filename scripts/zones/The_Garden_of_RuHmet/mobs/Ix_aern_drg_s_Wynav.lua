@@ -33,7 +33,7 @@ function onMonsterMagicPrepare(mob,target)
         [8] = 462,
         [9] = 466 -- Virelai (charm)
     };
-    if (mob:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (mob:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
         return spellList[math.random(1,9)]; -- Virelai possible.
     else
         return spellList[math.random(1,8)]; -- No Virelai!

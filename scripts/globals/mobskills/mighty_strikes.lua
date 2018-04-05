@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_MIGHTY_STRIKES;
+    local typeEffect = dsp.effects.MIGHTY_STRIKES;
     local duration = 45;
     if (skill:getParam() ~= 0 and mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
         duration = skill:getParam();

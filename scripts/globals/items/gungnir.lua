@@ -57,13 +57,13 @@ function onWeaponskill(user, target, wsid, tp, action)
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
             -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
+            user:addListener("dsp.effects.LOSE", NAME_EFFECT_LOSE, aftermathLost);
         end
     end
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
+    if (effect:getType() == dsp.effects.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -79,8 +79,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -94,8 +94,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_DEFENSE_BOOST)
-        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 17, 0, 60); -- Power and duration needs verification
-        return SUBEFFECT_DEFENSE_DOWN, msgBasic.ADD_EFFECT_STATUS, EFFECT_DEFENSE_DOWN;
+        target:delStatusEffect(dsp.effects.DEFENSE_BOOST)
+        target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 17, 0, 60); -- Power and duration needs verification
+        return SUBEFFECT_DEFENSE_DOWN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.DEFENSE_DOWN;
     end
 end;

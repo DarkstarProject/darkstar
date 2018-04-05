@@ -58,7 +58,7 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (damage > 0 and resist > 0.125) then
-        local typeEffect = EFFECT_BLINDNESS;
+        local typeEffect = dsp.effects.BLINDNESS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,5,0,getBlueEffectDuration(caster,resist,typeEffect));
     end

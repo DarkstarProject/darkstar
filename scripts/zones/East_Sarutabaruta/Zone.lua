@@ -68,7 +68,7 @@ function onZoneIn( player, prevZone)
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 52; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and
-        player:hasStatusEffect(EFFECT_MOUNTED) == false ) then
+        player:hasStatusEffect(dsp.effects.MOUNTED) == false ) then
         cs = 71;
     end
 

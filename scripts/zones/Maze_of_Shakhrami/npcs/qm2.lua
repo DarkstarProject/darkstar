@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
     if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and
         player:getVar("ECO_WARRIOR_ACTIVE") == 238 and
-        player:hasStatusEffect(EFFECT_LEVEL_RESTRICTION) and
+        player:hasStatusEffect(dsp.effects.LEVEL_RESTRICTION) and
         not player:hasKeyItem(INDIGESTED_MEAT)
     ) then
         if (player:getVar("ECOR_WAR_WIN-NMs_killed") == 1) then

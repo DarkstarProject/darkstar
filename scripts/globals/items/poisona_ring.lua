@@ -12,8 +12,8 @@ end;
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(EFFECT_POISON) == true) then
-        target:delStatusEffect(EFFECT_POISON);
+    if (target:hasStatusEffect(dsp.effects.POISON) == true) then
+        target:delStatusEffect(dsp.effects.POISON);
     end
 end;
 

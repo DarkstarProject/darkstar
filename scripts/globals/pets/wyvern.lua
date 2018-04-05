@@ -48,19 +48,19 @@ function onMobSpawn(mob)
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
             local party = player:getParty()
             for _,member in ipairs(party) do
-                if member:hasStatusEffect(EFFECT_POISON) then
+                if member:hasStatusEffect(dsp.effects.POISON) then
                     player:getPet():useJobAbility(627, member)
                     break
-                elseif member:hasStatusEffect(EFFECT_BLINDNESS) and player:getPet():getMainLvl() > 20 then
+                elseif member:hasStatusEffect(dsp.effects.BLINDNESS) and player:getPet():getMainLvl() > 20 then
                     player:getPet():useJobAbility(628, member)
                     break
-                elseif member:hasStatusEffect(EFFECT_PARALYSIS) and player:getPet():getMainLvl() > 40 then
+                elseif member:hasStatusEffect(dsp.effects.PARALYSIS) and player:getPet():getMainLvl() > 40 then
                     player:getPet():useJobAbility(629, member)
                     break
-                elseif (member:hasStatusEffect(EFFECT_CURSE_I) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
+                elseif (member:hasStatusEffect(dsp.effects.CURSE_I) or member:hasStatusEffect(dsp.effects.DOOM)) and player:getPet():getMainLvl() > 60 then
                     player:getPet():useJobAbility(637, member)
                     break
-                elseif (member:hasStatusEffect(EFFECT_DISEASE) or member:hasStatusEffect(EFFECT_PLAGUE)) and player:getPet():getMainLvl() > 80 then
+                elseif (member:hasStatusEffect(dsp.effects.DISEASE) or member:hasStatusEffect(dsp.effects.PLAGUE)) and player:getPet():getMainLvl() > 80 then
                     player:getPet():useJobAbility(638, member)
                     break
                 end

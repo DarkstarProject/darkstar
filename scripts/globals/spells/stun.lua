@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = 37;
     params.bonus = 0;
-    params.effect = EFFECT_STUN;
+    params.effect = dsp.effects.STUN;
     local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist <= (1/16)) then
         -- resisted!
@@ -27,16 +27,16 @@ function onSpellCast(caster,target,spell)
         return 0;
     end
 
-    if (target:hasStatusEffect(EFFECT_STUN)) then
+    if (target:hasStatusEffect(dsp.effects.STUN)) then
         -- no effect
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
-        if (target:addStatusEffect(EFFECT_STUN,1,0,duration*resist)) then
+        if (target:addStatusEffect(dsp.effects.STUN,1,0,duration*resist)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     end
 
-    return EFFECT_STUN;
+    return dsp.effects.STUN;
 end;

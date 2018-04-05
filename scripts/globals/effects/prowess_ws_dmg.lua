@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased weapon skill damage
+-- dsp.effects.PROWESS : Increased weapon skill damage
 --
 -----------------------------------
 

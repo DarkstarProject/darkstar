@@ -186,17 +186,17 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
                 skill:setMsg(msgBasic.SHADOW_ABSORB);
                 target:setMod(shadowType,(targShadows-shadowbehav));
                 if (shadowType == MOD_UTSUSEMI) then --update icon
-                    effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+                    effect = target:getStatusEffect(dsp.effects.COPY_IMAGE);
                     if (effect ~= nil) then
                         if ((targShadows-shadowbehav) == 0) then
-                            target:delStatusEffect(EFFECT_COPY_IMAGE);
-                            target:delStatusEffect(EFFECT_BLINK);
+                            target:delStatusEffect(dsp.effects.COPY_IMAGE);
+                            target:delStatusEffect(dsp.effects.BLINK);
                         elseif ((targShadows-shadowbehav) == 1) then
-                            effect:setIcon(EFFECT_COPY_IMAGE);
+                            effect:setIcon(dsp.effects.COPY_IMAGE);
                         elseif ((targShadows-shadowbehav) == 2) then
-                            effect:setIcon(EFFECT_COPY_IMAGE_2);
+                            effect:setIcon(dsp.effects.COPY_IMAGE_2);
                         elseif ((targShadows-shadowbehav) == 3) then
-                            effect:setIcon(EFFECT_COPY_IMAGE_3);
+                            effect:setIcon(dsp.effects.COPY_IMAGE_3);
                         end
                     end
                 end
@@ -205,22 +205,22 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
                 dmg = dmg * ((shadowbehav-targShadows)/shadowbehav);
                 target:setMod(MOD_UTSUSEMI,0);
                 target:setMod(MOD_BLINK,0);
-                target:delStatusEffect(EFFECT_COPY_IMAGE);
-                target:delStatusEffect(EFFECT_BLINK);
+                target:delStatusEffect(dsp.effects.COPY_IMAGE);
+                target:delStatusEffect(dsp.effects.BLINK);
             end
         end
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
         target:setMod(MOD_UTSUSEMI,0);
         target:setMod(MOD_BLINK,0);
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
+        target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        target:delStatusEffect(dsp.effects.BLINK);
     end
 
     -- handle Third Eye using shadowbehav as a guide
-    teye = target:getStatusEffect(EFFECT_THIRD_EYE);
+    teye = target:getStatusEffect(dsp.effects.THIRD_EYE);
     if (teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
         if (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
-            target:delStatusEffect(EFFECT_THIRD_EYE);
+            target:delStatusEffect(dsp.effects.THIRD_EYE);
         elseif (shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --it can be absorbed by shadows
             --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
             --chance of anticipate based on previous successful anticipates.
@@ -237,7 +237,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
                 skill:setMsg(msgBasic.ANTICIPATE);
                 return 0;
             end
-            target:delStatusEffect(EFFECT_THIRD_EYE);
+            target:delStatusEffect(dsp.effects.THIRD_EYE);
         end
     end
 
@@ -245,16 +245,16 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     --TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
 
 
-    if (skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD)) then
+    if (skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(dsp.effects.PHYSICAL_SHIELD)) then
         return 0;
     end
 
-    if (skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
+    if (skilltype == MOBSKILL_RANGED and target:hasStatusEffect(dsp.effects.ARROW_SHIELD)) then
         return 0;
     end
 
     -- handle elemental resistence
-    if (skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+    if (skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(dsp.effects.MAGIC_SHIELD)) then
         return 0;
     end
 
@@ -265,11 +265,11 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     end
 
     --handle invincible
-    if (target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL) then
+    if (target:hasStatusEffect(dsp.effects.INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
     -- handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
@@ -280,12 +280,12 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         if (skin >= dmg) then --absorb all damage
             target:delMod(MOD_STONESKIN,dmg);
             if (target:getMod(MOD_STONESKIN)==0) then
-                target:delStatusEffect(EFFECT_STONESKIN);
+                target:delStatusEffect(dsp.effects.STONESKIN);
             end
             return 0;
         else -- absorbs some damage then wear
             target:delMod(MOD_STONESKIN,skin);
-            target:delStatusEffect(EFFECT_STONESKIN);
+            target:delStatusEffect(dsp.effects.STONESKIN);
             return dmg - skin;
         end
     end
@@ -317,8 +317,8 @@ end;
 function avatarMiniFightCheck(caster)
     local result = 0;
     local bcnmid;
-    if (caster:hasStatusEffect(EFFECT_BATTLEFIELD) == true) then
-        bcnmid = caster:getStatusEffect(EFFECT_BATTLEFIELD):getPower();
+    if (caster:hasStatusEffect(dsp.effects.BATTLEFIELD) == true) then
+        bcnmid = caster:getStatusEffect(dsp.effects.BATTLEFIELD):getPower();
         if (bcnmid == 418 or bcnmid == 609 or bcnmid == 450 or bcnmid == 482 or bcnmid == 545 or bcnmid == 578) then -- Mini Avatar Fights
             result = 40; -- Cannot use <spell> in this area.
         end

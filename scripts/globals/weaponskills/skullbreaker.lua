@@ -32,8 +32,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 1.0;
     end
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_INT_DOWN) == false) then
-        target:addStatusEffect(EFFECT_INT_DOWN, 10, 0, 140);
+    if (damage > 0 and target:hasStatusEffect(dsp.effects.INT_DOWN) == false) then
+        target:addStatusEffect(dsp.effects.INT_DOWN, 10, 0, 140);
     end
     return tpHits, extraHits, criticalHit, damage;
 

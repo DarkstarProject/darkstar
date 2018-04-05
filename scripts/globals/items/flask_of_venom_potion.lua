@@ -11,8 +11,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_POISON)) then
-        target:addStatusEffect(EFFECT_POISON,5,3,180);
+    if (not target:hasStatusEffect(dsp.effects.POISON)) then
+        target:addStatusEffect(dsp.effects.POISON,5,3,180);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

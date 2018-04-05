@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SOUL_VOICE;
+    local typeEffect = dsp.effects.SOUL_VOICE;
     local duration = 180;
     if (skill:getParam() ~= 0 and mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
         duration = skill:getParam();

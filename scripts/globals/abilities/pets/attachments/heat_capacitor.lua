@@ -6,7 +6,7 @@ require("scripts/globals/status");
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_HEAT_CAPACITOR", function(automaton, target)
         local master = automaton:getMaster()
-        if master and master:countEffect(EFFECT_FIRE_MANEUVER) > 0 and automaton:getLocalVar("meditate") < VanadielTime() then
+        if master and master:countEffect(dsp.effects.FIRE_MANEUVER) > 0 and automaton:getLocalVar("meditate") < VanadielTime() then
             automaton:useMobAbility(2745, automaton)
         end
     end)

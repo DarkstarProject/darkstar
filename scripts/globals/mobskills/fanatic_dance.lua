@@ -21,7 +21,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_CHARM_I;
+    local typeEffect = dsp.effects.CHARM_I;
     local power = 0;
 
     if (not target:isPC()) then

@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_TERROR;
+    local typeEffect = dsp.effects.TERROR;
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 10)
 
     local count = target:dispelAllStatusEffect();

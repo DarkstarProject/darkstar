@@ -17,10 +17,10 @@ function onPetAbility(target, pet, skill, summoner)
         duration = 350;
     end;
 
-    if (target:addStatusEffect(EFFECT_SLOW,300,0,duration)) then
+    if (target:addStatusEffect(dsp.effects.SLOW,300,0,duration)) then
         skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
     else
         skill:setMsg(msgBasic.SKILL_NO_EFFECT);
     end
-    return EFFECT_SLOW;
+    return dsp.effects.SLOW;
 end

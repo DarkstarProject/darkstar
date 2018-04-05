@@ -33,14 +33,14 @@ function onTrigger(player,npc)
     local NeedToZone = player:needToZone();
     local Afterglow = npc:getID();
     local First = 17613148;
-    local MARK_EFFECT = player:hasStatusEffect(EFFECT_MARK_OF_SEED);
+    local MARK_EFFECT = player:hasStatusEffect(dsp.effects.MARK_OF_SEED);
     local PROGRESS = player:getVar("SEED_AFTERGLOW_MASK");
     local INTENSITY = player:getVar("SEED_AFTERGLOW_INTENSITY");
     -- Awful lot to keep track of, ain't it?
 
     if (HasMark or HasAzureKey or HasIvoryKey or CurrentDay == LastAzure or CurrentDay == LastIvory or Mission < THOSE_WHO_LURK_IN_SHADOWS_II) then
         player:messageSpecial(SOFTLY_SHIMMERING_LIGHT);
-    elseif (NeedToZone == true and player:hasStatusEffect(EFFECT_MARK_OF_SEED) == false) then
+    elseif (NeedToZone == true and player:hasStatusEffect(dsp.effects.MARK_OF_SEED) == false) then
         player:messageSpecial(YOU_REACH_FOR_THE_LIGHT);
     elseif (Mission >= THOSE_WHO_LURK_IN_SHADOWS_II) then
         if (Afterglow == First and player:getMaskBit(PROGRESS,0) == false) then -- Red
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -66,7 +66,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -81,7 +81,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -96,7 +96,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -111,7 +111,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -126,7 +126,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -141,7 +141,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -156,7 +156,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -171,7 +171,7 @@ function onTrigger(player,npc)
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
                 player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
-                player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
+                player:addStatusEffectEx(dsp.effects.MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
                 player:messageSpecial(THE_LIGHT_DWINDLES,0);
             else
@@ -201,6 +201,6 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(AZURE_KEY);
             player:messageSpecial(KEYITEM_OBTAINED,AZURE_KEY);
         end
-        player:delStatusEffectSilent(EFFECT_MARK_OF_SEED);
+        player:delStatusEffectSilent(dsp.effects.MARK_OF_SEED);
     end
 end;

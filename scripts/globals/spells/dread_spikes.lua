@@ -12,10 +12,10 @@ end;
 function onSpellCast(caster,target,spell)
     local duration = 180;
     local power = 0;
-    local typeEffect = EFFECT_DREAD_SPIKES;
+    local typeEffect = dsp.effects.DREAD_SPIKES;
     local drainAmount = target:getMaxHP() / 2;
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 

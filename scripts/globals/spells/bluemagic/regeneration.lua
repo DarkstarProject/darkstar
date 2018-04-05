@@ -24,22 +24,22 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_REGEN;
+    local typeEffect = dsp.effects.REGEN;
     local power = 25;
     local duration = 90;
 
-    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(dsp.effects.DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end;
 
-        caster:delStatusEffect(EFFECT_DIFFUSION);
+        caster:delStatusEffect(dsp.effects.DIFFUSION);
     end;
 
-    if (target:hasStatusEffect(EFFECT_REGEN) and target:getStatusEffect(EFFECT_REGEN):getTier() == 1) then
-        target:delStatusEffect(EFFECT_REGEN);
+    if (target:hasStatusEffect(dsp.effects.REGEN) and target:getStatusEffect(dsp.effects.REGEN):getTier() == 1) then
+        target:delStatusEffect(dsp.effects.REGEN);
     end
 
     if (target:addStatusEffect(typeEffect,power,3,duration,0,0,0) == false) then

@@ -20,5 +20,5 @@ function onUseAbility(player,target,ability)
     local durationMultiplier = 1.0 + utils.clamp(player:getMod(MOD_JIG_DURATION), 0, 50) / 100;
     local finalDuration = math.floor(baseDuration * durationMultiplier);
     
-    player:addStatusEffect(EFFECT_QUICKENING,20,0,finalDuration);
+    player:addStatusEffect(dsp.effects.QUICKENING,20,0,finalDuration);
 end;
