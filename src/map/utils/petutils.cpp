@@ -260,7 +260,8 @@ namespace petutils
         }
     }
 
-    void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
+    void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget)
+    {
         DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         CBattleEntity* PPet = PMaster->PPet;
@@ -271,7 +272,8 @@ namespace petutils
         }
     }
 
-    void RetreatToMaster(CBattleEntity* PMaster){
+    void RetreatToMaster(CBattleEntity* PMaster)
+    {
         DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         CBattleEntity* PPet = PMaster->PPet;
@@ -291,8 +293,10 @@ namespace petutils
     {
 
         uint8 lvl = PMob->GetMLevel();
-        if (lvl > 50){
-            switch (rank){
+        if (lvl > 50)
+        {
+            switch (rank)
+        {
             case 1:
                 return (uint16)(153 + (lvl - 50) * 5.0f);
             case 2:
@@ -309,8 +313,10 @@ namespace petutils
                 return (uint16)(96 + (lvl - 50) * 4.3f);
             }
         }
-        else {
-            switch (rank){
+        else
+        {
+            switch (rank)
+        {
             case 1:
                 return (uint16)(6 + (lvl - 1) * 3.0f);
             case 2:
@@ -344,7 +350,8 @@ namespace petutils
         return 0;
     }
 
-    void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
+    void LoadJugStats(CPetEntity* PMob, Pet_t* petStats)
+    {
         //follows monster formulas but jugs have no subjob
 
         float growth = 1.0;
@@ -352,31 +359,39 @@ namespace petutils
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
-        if (lvl > 75){
+        if (lvl > 75)
+        {
             growth = 1.22f;
         }
-        else if (lvl > 65){
+        else if (lvl > 65)
+        {
             growth = 1.20f;
         }
-        else if (lvl > 55){
+        else if (lvl > 55)
+        {
             growth = 1.18f;
         }
-        else if (lvl > 50){
+        else if (lvl > 50)
+        {
             growth = 1.16f;
         }
-        else if (lvl > 45){
+        else if (lvl > 45)
+        {
             growth = 1.12f;
         }
-        else if (lvl > 35){
+        else if (lvl > 35)
+        {
             growth = 1.09f;
         }
-        else if (lvl > 25){
+        else if (lvl > 25)
+        {
             growth = 1.07f;
         }
 
         PMob->health.maxhp = (int16)(17.0 * pow(lvl, growth) * petStats->HPscale);
 
-        switch (PMob->GetMJob()){
+        switch (PMob->GetMJob())
+        {
         case JOB_PLD:
         case JOB_WHM:
         case JOB_BLM:
@@ -406,7 +421,8 @@ namespace petutils
         PMob->m_Weapons[SLOT_MAIN]->setDamage(GetJugWeaponDamage(PMob));
 
         //reduce weapon delay of MNK
-        if (PMob->GetMJob() == JOB_MNK){
+        if (PMob->GetMJob() == JOB_MNK)
+        {
             PMob->m_Weapons[SLOT_MAIN]->resetDelay();
         }
 
@@ -875,8 +891,10 @@ namespace petutils
         //Если у main job нет МП рейтинга, расчитиваем расовый бонус на основе уровня subjob уровня(при условии, что у него есть МП рейтинг)
         if (grade::GetJobGrade(mjob, 1) == 0)
         {
+            // empty
         }
-        else{
+        else
+        {
             //Расчет нормального расового бонуса
             raceStat = grade::GetMPScale(grade, 0) +
                 grade::GetMPScale(grade, scaleTo60Column) * mainLevelUpTo60 +
@@ -1139,10 +1157,12 @@ namespace petutils
         CCharEntity* PChar = (CCharEntity*)PMaster;
 
 
-        if (PPet->objtype == TYPE_MOB){
+        if (PPet->objtype == TYPE_MOB)
+        {
             CMobEntity* PMob = (CMobEntity*)PPet;
 
-            if (!PMob->isDead()){
+            if (!PMob->isDead())
+            {
                 PMob->PAI->Disengage();
 
                 // charm time is up, mob attacks player now
@@ -1161,14 +1181,16 @@ namespace petutils
 
                 //master using leave command
                 auto state = dynamic_cast<CAbilityState*>(PMaster->PAI->GetCurrentState());
-                if ((state && state->GetAbility()->getID() == ABILITY_LEAVE) || PChar->loc.zoning || PChar->isDead()){
+                if ((state && state->GetAbility()->getID() == ABILITY_LEAVE) || PChar->loc.zoning || PChar->isDead())
+                {
                     PMob->PEnmityContainer->Clear();
                     PMob->m_OwnerID.clean();
                     PMob->updatemask |= UPDATE_STATUS;
                 }
 
             }
-            else {
+            else
+            {
                 PMob->m_OwnerID.clean();
                 PMob->updatemask |= UPDATE_STATUS;
             }
@@ -1180,7 +1202,8 @@ namespace petutils
 
             PMob->PAI->SetController(std::make_unique<CMobController>(PMob));
         }
-        else if (PPet->objtype == TYPE_PET){
+        else if (PPet->objtype == TYPE_PET)
+        {
             if (!PPet->isDead())
                 PPet->Die();
             CPetEntity* PPetEnt = (CPetEntity*)PPet;
@@ -1189,11 +1212,13 @@ namespace petutils
                 PMaster->setModifier(Mod::AVATAR_PERPETUATION, 0);
 
             ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType();
-            PMaster->ForParty([](CBattleEntity* PMember){
+            PMaster->ForParty([](CBattleEntity* PMember)
+            {
                 ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
             });
 
-            if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
+            if (PPetEnt->getPetType() != PETTYPE_AUTOMATON)
+            {
                 PPetEnt->PMaster = nullptr;
             }
             else
@@ -1370,7 +1395,6 @@ namespace petutils
         DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
         if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN)
             return;
-        
 
         Pet_t* PPetData = g_PPetList.at(PetID);
 
@@ -1519,11 +1543,14 @@ namespace petutils
         PPet->m_Element = g_PPetList.at(PetID)->m_Element;
         PPet->m_PetID = PetID;
 
-        if (PPet->getPetType() == PETTYPE_AVATAR){
-            if (PMaster->GetMJob() == JOB_SMN){
+        if (PPet->getPetType() == PETTYPE_AVATAR)
+        {
+            if (PMaster->GetMJob() == JOB_SMN)
+            {
                 PPet->SetMLevel(PMaster->GetMLevel());
             }
-            else if (PMaster->GetSJob() == JOB_SMN){
+            else if (PMaster->GetSJob() == JOB_SMN)
+            {
                 PPet->SetMLevel(PMaster->GetSLevel());
             }
             else{ //should never happen
@@ -1535,24 +1562,33 @@ namespace petutils
             PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(PPetData->spellList);
 
             PPet->setModifier(Mod::DMGPHYS, -50); //-50% PDT
-            if (PPet->GetMLevel() >= 70){
+
+            if (PPet->GetMLevel() >= 70)
+            {
                 PPet->setModifier(Mod::MATT, 32);
             }
-            else if (PPet->GetMLevel() >= 50){
+            else if (PPet->GetMLevel() >= 50)
+            {
                 PPet->setModifier(Mod::MATT, 28);
             }
-            else if (PPet->GetMLevel() >= 30){
+            else if (PPet->GetMLevel() >= 30)
+            {
                 PPet->setModifier(Mod::MATT, 24);
             }
-            else if (PPet->GetMLevel() >= 10){
+            else if (PPet->GetMLevel() >= 10)
+            {
                 PPet->setModifier(Mod::MATT, 20);
             }
             PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0f * (320.0f / 60.0f))));
-            if (PetID == PETID_FENRIR){
+
+            if (PetID == PETID_FENRIR)
+            {
                 PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0 * (280.0f / 60.0f))));
             }
             PPet->m_Weapons[SLOT_MAIN]->setDamage((uint16)(floor(PPet->GetMLevel() * 0.74f)));
-            if (PetID == PETID_CARBUNCLE){
+
+            if (PetID == PETID_CARBUNCLE)
+            {
                 PPet->m_Weapons[SLOT_MAIN]->setDamage((uint16)(floor(PPet->GetMLevel() * 0.67f)));
             }
 
@@ -1595,7 +1631,8 @@ namespace petutils
 
             PMaster->addModifier(Mod::AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
-        else if (PPet->getPetType() == PETTYPE_JUG_PET){
+        else if (PPet->getPetType() == PETTYPE_JUG_PET)
+        {
             PPet->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000.0f*(240.0f / 60.0f))));
 
             //Get the Jug pet cap level
@@ -1617,7 +1654,8 @@ namespace petutils
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
         }
-        else if (PPet->getPetType() == PETTYPE_WYVERN){
+        else if (PPet->getPetType() == PETTYPE_WYVERN)
+        {
             LoadWyvernStatistics(PMaster, PPet, false);
         }
         else if (PPet->getPetType() == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
@@ -1728,7 +1766,7 @@ namespace petutils
         //set the wyvern job based on master's SJ
         if (PMaster->GetSJob() != JOB_NON)
             PPet->SetSJob(PMaster->GetSJob());
-        
+
         PPet->SetMJob(JOB_DRG);
         PPet->SetMLevel(PMaster->GetMLevel());
 
