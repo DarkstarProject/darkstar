@@ -36,6 +36,7 @@ public:
     virtual ~CTrustController();
 
     virtual void Tick(time_point) override;
+    virtual void Despawn() override;
 
     virtual bool Cast(uint16 targid, SpellID spellid) override { return false; }
     virtual bool ChangeTarget(uint16 targid) override { return false; }

@@ -45,7 +45,6 @@ CTrustSyncPacket::CTrustSyncPacket(CCharEntity* PChar, CTrustEntity* PTrust)
     ref<uint32>(0x08) = PTrust->id;
     ref<uint16>(0x0C) = PChar->targid;
 
-
-    // No idea what this means, it might be ref<uint16>(0x09) = PChar->targid;
+    // Unknown
     ref<uint8>(0x10) = 0x04;
 }

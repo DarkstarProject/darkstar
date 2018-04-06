@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "trustentity.h"
 #include "../mob_spell_container.h"
 #include "../mob_spell_list.h"
+#include "../packets/char_health.h"
 #include "../packets/entity_update.h"
 #include "../packets/trust_sync.h"
 #include "../ai/ai_container.h"
@@ -46,7 +47,7 @@ CTrustEntity::CTrustEntity(CCharEntity* PChar)
     allegiance = ALLEGIANCE_PLAYER;
     m_MobSkillList = 0;
     PMaster = PChar;
-    PAI = std::make_unique<CAIContainer>(this);
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CTrustController>(PChar, this), std::make_unique<CTargetFind>(this));
 }
 
 CTrustEntity::~CTrustEntity()
@@ -59,11 +60,26 @@ void CTrustEntity::PostTick()
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
-
-        if (PMaster && PMaster->PPet == this)
+        for (auto PTrust : ((CCharEntity*)PMaster)->PTrusts)
         {
-            ShowDebug("CTrustSyncPacket");
-            ((CCharEntity*)PMaster)->pushPacket(new CTrustSyncPacket((CCharEntity*)PMaster, this));
+            if (PTrust == this)
+            {
+                ((CCharEntity*)PMaster)->pushPacket(new CTrustSyncPacket((CCharEntity*)PMaster, this));
+            }
+        }
+
+        if (updatemask & UPDATE_HP)
+        {
+            if (PMaster->PParty != nullptr)
+            {
+                PMaster->ForParty([this](auto PMember)
+                {
+                    if (PMember->objtype == TYPE_PC)
+                    {
+                        static_cast<CCharEntity*>(PMember)->pushPacket(new CCharHealthPacket(this));
+                    }
+                });
+            }
         }
 
         updatemask = 0;
@@ -82,7 +98,7 @@ void CTrustEntity::Die()
     PAI->Internal_Die(0s);
     luautils::OnMobDeath(this, nullptr);
     CBattleEntity::Die();
-    if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
+    if (PMaster->objtype == TYPE_PC)
     {
         CCharEntity* PChar = (CCharEntity*)PMaster;
         PChar->RemoveTrust(this);
@@ -93,8 +109,6 @@ void CTrustEntity::Spawn()
 {
     //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
     CBattleEntity::Spawn();
-
-    ShowDebug("CTrustSyncPacket2");
     ((CCharEntity*)PMaster)->pushPacket(new CTrustSyncPacket((CCharEntity*)PMaster, this));
     luautils::OnMobSpawn(this);
 }
