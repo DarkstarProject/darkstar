@@ -57,7 +57,7 @@ require("scripts/globals/msg");
     nullMod = {MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL};
     blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
     rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
-    barSpells = {EFFECT_BARFIRE, EFFECT_BARSTONE, EFFECT_BARWATER, EFFECT_BARAERO, EFFECT_BARBLIZZARD, EFFECT_BARTHUNDER};
+    barSpells = {dsp.effects.BARFIRE, dsp.effects.BARSTONE, dsp.effects.BARWATER, dsp.effects.BARAERO, dsp.effects.BARBLIZZARD, dsp.effects.BARTHUNDER};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -143,7 +143,7 @@ end;
 
 function doEnspell(caster,target,spell,effect)
 
-    if (effect==EFFECT_BLOOD_WEAPON) then
+    if (effect==dsp.effects.BLOOD_WEAPON) then
         target:addStatusEffect(dsp.effects.BLOOD_WEAPON,1,0,30);
         return;
     end
@@ -472,35 +472,35 @@ end
 -- target has to the given effect (stun, sleep, etc..)
 function getEffectResistance(target, effect)
     local effectres = 0;
-    if (effect == EFFECT_SLEEP_I or effect == EFFECT_SLEEP_II) then
+    if (effect == dsp.effects.SLEEP_I or effect == dsp.effects.SLEEP_II) then
         effectres = MOD_SLEEPRES;
-    elseif (effect == EFFECT_LULLABY) then
+    elseif (effect == dsp.effects.LULLABY) then
         effectres = MOD_LULLABYRES;
-    elseif (effect == EFFECT_POISON) then
+    elseif (effect == dsp.effects.POISON) then
         effectres = MOD_POISONRES;
-    elseif (effect == EFFECT_PARALYSIS) then
+    elseif (effect == dsp.effects.PARALYSIS) then
         effectres = MOD_PARALYZERES;
-    elseif (effect == EFFECT_BLINDNESS) then
+    elseif (effect == dsp.effects.BLINDNESS) then
         effectres = MOD_BLINDRES
-    elseif (effect == EFFECT_SILENCE) then
+    elseif (effect == dsp.effects.SILENCE) then
         effectres = MOD_SILENCERES;
-    elseif (effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
+    elseif (effect == dsp.effects.PLAGUE or effect == dsp.effects.DISEASE) then
         effectres = MOD_VIRUSRES;
-    elseif (effect == EFFECT_PETRIFICATION) then
+    elseif (effect == dsp.effects.PETRIFICATION) then
         effectres = MOD_PETRIFYRES;
-    elseif (effect == EFFECT_BIND) then
+    elseif (effect == dsp.effects.BIND) then
         effectres = MOD_BINDRES;
-    elseif (effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
+    elseif (effect == dsp.effects.CURSE_I or effect == dsp.effects.CURSE_II or effect == dsp.effects.BANE) then
         effectres = MOD_CURSERES;
-    elseif (effect == EFFECT_WEIGHT) then
+    elseif (effect == dsp.effects.WEIGHT) then
         effectres = MOD_GRAVITYRES;
-    elseif (effect == EFFECT_SLOW or effect == EFFECT_ELEGY) then
+    elseif (effect == dsp.effects.SLOW or effect == dsp.effects.ELEGY) then
         effectres = MOD_SLOWRES;
-    elseif (effect == EFFECT_STUN) then
+    elseif (effect == dsp.effects.STUN) then
         effectres = MOD_STUNRES;
-    elseif (effect == EFFECT_CHARM) then
+    elseif (effect == dsp.effects.CHARM) then
         effectres = MOD_CHARMRES;
-    elseif (effect == EFFECT_AMNESIA) then
+    elseif (effect == dsp.effects.AMNESIA) then
         effectres = MOD_AMNESIARES;
     end
 
@@ -1032,7 +1032,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     if (resm < 0.5) then
         -- print("resm resist");
         spell:setMsg(msgBasic.MAGIC_RESIST);
-        return EFFECT_THRENODY;
+        return dsp.effects.THRENODY;
     end
 
     -- Remove previous Threnody
@@ -1055,17 +1055,17 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     -- Set spell message and apply status effect
     target:addStatusEffect(dsp.effects.THRENODY, power, 0, duration, 0, modifier, 0);
 
-    return EFFECT_THRENODY;
+    return dsp.effects.THRENODY;
 end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
     -- Add new
     target:addStatusEffectEx(dsp.effects.NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
-    return EFFECT_NINJUTSU_ELE_DEBUFF;
+    return dsp.effects.NINJUTSU_ELE_DEBUFF;
 end;
 
 -- Returns true if you can overwrite the effect
--- Example: canOverwrite(target, EFFECT_SLOW, 25)
+-- Example: canOverwrite(target, dsp.effects.SLOW, 25)
 function canOverwrite(target, effect, power, mod)
     mod = mod or 1;
 

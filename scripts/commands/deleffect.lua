@@ -38,7 +38,7 @@ function onTrigger(player, arg1, arg2)
     end
 
     -- validate effect
-    id = tonumber(id) or _G[string.upper(id)];
+    id = tonumber(id) or dsp.effects[string.upper(id)];
     if (id == nil) then
         error(player, "Invalid effect.");
         return;

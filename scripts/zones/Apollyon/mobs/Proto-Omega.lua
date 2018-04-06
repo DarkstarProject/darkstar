@@ -64,7 +64,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 20; -- wiki lists ~20% stun chance
-    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,EFFECT_STUN);
+    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,dsp.effects.STUN);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -72,7 +72,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(dsp.effects.STUN) == false) then
             player:addStatusEffect(dsp.effects.STUN, 0, 0, duration);
         end
-        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, EFFECT_STUN;
+        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.STUN;
     end
 end;
 

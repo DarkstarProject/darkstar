@@ -314,7 +314,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
 end
 
 -- mob version
--- effect = EFFECT_WHATEVER if enfeeble
+-- effect = dsp.effects.WHATEVER if enfeeble
 -- statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 -- This determines how much the monsters ability resists on the player.
 function applyPlayerResistance(mob,effect,target,diff,bonus,element)
@@ -634,20 +634,20 @@ end;
 
 function MobDrainAttribute(mob, target, typeEffect, power, tick, duration)
     local positive = nil;
-    if (typeEffect == EFFECT_STR_DOWN) then
-        positive = EFFECT_STR_BOOST;
-    elseif (typeEffect == EFFECT_DEX_DOWN) then
-        positive = EFFECT_DEX_BOOST;
-    elseif (typeEffect == EFFECT_AGI_DOWN) then
-        positive = EFFECT_AGI_BOOST;
-    elseif (typeEffect == EFFECT_VIT_DOWN) then
-        positive = EFFECT_VIT_BOOST;
-    elseif (typeEffect == EFFECT_MND_DOWN) then
-        positive = EFFECT_MND_BOOST;
-    elseif (typeEffect == EFFECT_INT_DOWN) then
-        positive = EFFECT_INT_BOOST;
-    elseif (typeEffect == EFFECT_CHR_DOWN) then
-        positive = EFFECT_CHR_BOOST;
+    if (typeEffect == dsp.effects.STR_DOWN) then
+        positive = dsp.effects.STR_BOOST;
+    elseif (typeEffect == dsp.effects.DEX_DOWN) then
+        positive = dsp.effects.DEX_BOOST;
+    elseif (typeEffect == dsp.effects.AGI_DOWN) then
+        positive = dsp.effects.AGI_BOOST;
+    elseif (typeEffect == dsp.effects.VIT_DOWN) then
+        positive = dsp.effects.VIT_BOOST;
+    elseif (typeEffect == dsp.effects.MND_DOWN) then
+        positive = dsp.effects.MND_BOOST;
+    elseif (typeEffect == dsp.effects.INT_DOWN) then
+        positive = dsp.effects.INT_BOOST;
+    elseif (typeEffect == dsp.effects.CHR_DOWN) then
+        positive = dsp.effects.CHR_BOOST;
     end
 
     if (positive ~= nil) then

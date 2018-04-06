@@ -1,6 +1,6 @@
 -----------------------------------
 --    
---    EFFECT_MINNE
+--    dsp.effects.MINNE
 --
 -----------------------------------
 require("scripts/globals/status");
