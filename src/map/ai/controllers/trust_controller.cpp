@@ -59,18 +59,11 @@ void CTrustController::Tick(time_point tick)
 {
     m_Tick = tick;
 
-    if (POwner->PAI->IsCurrentState<CDespawnState>())
-    {
-        // Despawn takes 3s so it's possible we'll tick in this state.
-        // If we do, we don't want to execute any logic since we just nullptr'd everything.
-        return;
-    }
-
     if (POwner->PAI->IsEngaged())
     {
         DoCombatTick(tick);
     }
-    else
+    else if (!POwner->isDead())
     {
         DoRoamTick(tick);
     }
