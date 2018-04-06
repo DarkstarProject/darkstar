@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_SIGNET
+--     dsp.effects.SIGNET
 --
 --   Signet is a a beneficial Status Effect that allows the acquisition of Conquest Points and Crystals 
 --   from defeated enemies that grant Experience Points.

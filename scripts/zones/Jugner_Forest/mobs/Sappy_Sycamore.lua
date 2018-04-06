@@ -22,7 +22,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(15,25);
         target:addStatusEffect(dsp.effects.SLOW,15,0,duration); -- sproud smack like
-        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, dsp.effects.SLOW;
     end
 end;
 

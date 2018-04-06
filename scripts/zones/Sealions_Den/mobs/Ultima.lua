@@ -21,7 +21,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 20;
-    local resist = applyResistanceAddEffect(mob,player,ELE_ICE,EFFECT_PARALYSIS);
+    local resist = applyResistanceAddEffect(mob,player,ELE_ICE,dsp.effects.PARALYSIS);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -31,7 +31,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(dsp.effects.PARALYSIS) == false) then
             player:addStatusEffect(dsp.effects.PARALYSIS, power, 0, duration);
         end
-        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, dsp.effects.PARALYSIS;
     end
 end;
 

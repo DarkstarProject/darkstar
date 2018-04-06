@@ -24,7 +24,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_SLOW);
+    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effects.SLOW);
     if (resist <= 0.5) then
         return 0,0,0;
     else
@@ -38,7 +38,7 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(dsp.effects.SLOW)) then
             player:addStatusEffect(dsp.effects.SLOW, power, 0, duration);
         end
-        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, dsp.effects.SLOW;
     end
 end;
 
