@@ -1,34 +1,23 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---   NM: Steelfleece_Baldarich
+--   NM: Rampaging Ram
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
-require("scripts/globals/titles");
------------------------------------
-
-function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1); -- not currently implemented
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
-end;
 
 function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(THE_HORNSPLITTER);
 end;
 
 function onMobDespawn(mob)
     local mobId = mob:getID();
     
     DisallowRespawn(mob:getID(), true);
-    mob:setLocalVar("cooldown", os.time() + math.random(75600,86400)); -- 21 to 24 hours
+    mob:setLocalVar("cooldown", os.time() + 3600); -- 1 hour
     
-    local nmId  = mobId - 1;
+    local nmId  = mobId + 1;
     local nm    = GetMobByID(nmId);
-    local phId  = mobId - 2;
+    local phId  = mobId - 1;
     local ph    = GetMobByID(phId);
     
     if (math.random(1,100) <= 10 and os.time() > nm:getLocalVar("cooldown")) then
