@@ -602,7 +602,6 @@ INSERT INTO `bcnm_loot` VALUES ('11', '722', '141', '10');
 INSERT INTO `bcnm_loot` VALUES ('12', '846', '1000', '0'); -- LootID 12 needs 100% chance to drop 4k gil
 INSERT INTO `bcnm_loot` VALUES ('12', '1601', '1000', '1');
 INSERT INTO `bcnm_loot` VALUES ('12', '12486', '364', '2');
-INSERT INTO `bcnm_loot` VALUES ('12', '846', '636', '2'); -- Temp fix for Chance to get zero items (This item doesnt drop here)  ~63.6%
 INSERT INTO `bcnm_loot` VALUES ('12', '12400', '175', '3');
 INSERT INTO `bcnm_loot` VALUES ('12', '12399', '175', '3');
 INSERT INTO `bcnm_loot` VALUES ('12', '12395', '175', '3');
@@ -624,7 +623,6 @@ INSERT INTO `bcnm_loot` VALUES ('12', '4868', '150', '5'); -- putting all 4 unko
 INSERT INTO `bcnm_loot` VALUES ('12', '4751', '100', '5');
 INSERT INTO `bcnm_loot` VALUES ('12', '690', '90', '5');
 INSERT INTO `bcnm_loot` VALUES ('12', '1602', '70', '5');
-INSERT INTO `bcnm_loot` VALUES ('14', '939', '50', '0'); --  Temp fix for Chance to get zero items (This item doesnt drop here)  ~5%
 INSERT INTO `bcnm_loot` VALUES ('14', '13254', '95', '0');
 INSERT INTO `bcnm_loot` VALUES ('14', '13253', '95', '0');
 INSERT INTO `bcnm_loot` VALUES ('14', '13255', '95', '0');
@@ -650,7 +648,6 @@ INSERT INTO `bcnm_loot` VALUES ('14', '13288', '64', '1');
 INSERT INTO `bcnm_loot` VALUES ('14', '13291', '65', '1');
 INSERT INTO `bcnm_loot` VALUES ('14', '13297', '64', '1');
 INSERT INTO `bcnm_loot` VALUES ('14', '13447', '30', '1');
-INSERT INTO `bcnm_loot` VALUES ('14', '939', '166', '2'); -- Temp fix for Chance to get zero items (This item doesnt drop here) ~16.6% 
 INSERT INTO `bcnm_loot` VALUES ('14', '4902', '10', '2');
 INSERT INTO `bcnm_loot` VALUES ('14', '4814', '176', '2');
 INSERT INTO `bcnm_loot` VALUES ('14', '4719', '176', '2');
@@ -710,14 +707,11 @@ INSERT INTO `bcnm_loot` VALUES ('15', '837', '96', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '1132', '288', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '1110', '41', '6');
 INSERT INTO `bcnm_loot` VALUES ('16', '13056', '90', '0');
-INSERT INTO `bcnm_loot` VALUES ('16', '939', '910', '0'); -- temp fix for 100% drop rate PCC (This item doesnt drop here) 91%
-INSERT INTO `bcnm_loot` VALUES ('16', '939', '467', '1'); -- temp placeholder for the "chance to get no item" (This item doesnt drop here) 46.7%
 INSERT INTO `bcnm_loot` VALUES ('16', '18086', '48', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '18046', '61', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '18210', '46', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '15286', '302', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '18350', '76', '1');
-INSERT INTO `bcnm_loot` VALUES ('16', '939', '413', '2'); -- temp placeholder for the "chance to get no item" (This item doesnt drop here) 41.3%
 INSERT INTO `bcnm_loot` VALUES ('16', '17696', '42', '2');
 INSERT INTO `bcnm_loot` VALUES ('16', '17936', '77', '2');
 INSERT INTO `bcnm_loot` VALUES ('16', '17693', '73', '2');
