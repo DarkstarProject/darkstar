@@ -31,7 +31,7 @@ function onAdditionalEffect(mob,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effects.PARALYSIS, 20, 0, 30); -- Potency unconfirmed
-        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, dsp.effects.PARALYSIS;
     end
 end;
 

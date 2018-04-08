@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_SNEAK
+--     dsp.effects.SNEAK
 --     
 -----------------------------------
 require("scripts/globals/msg")

@@ -76,7 +76,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 40;
-    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,EFFECT_POISON);
+    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,dsp.effects.POISON);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -89,7 +89,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(dsp.effects.POISON) == false) then
             player:addStatusEffect(dsp.effects.POISON, 50, 3, duration); -- Don't know potency on the poison.
         end
-        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
+        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, dsp.effects.POISON;
     end
 end;
 

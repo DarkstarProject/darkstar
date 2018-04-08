@@ -16,7 +16,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(10,25);
         target:addStatusEffect(dsp.effects.POISON,15,3,duration);
-        return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,EFFECT_POISON;
+        return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,dsp.effects.POISON;
     end
 end;
 

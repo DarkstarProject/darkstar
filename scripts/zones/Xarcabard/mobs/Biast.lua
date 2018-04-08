@@ -29,7 +29,7 @@ function onAdditionalEffect(mob,target,damage)
         local duration = 5;
         target:addStatusEffect(dsp.effects.TERROR,1,0,duration);
         mob:resetEnmity(target);
-        return SUBEFFECT_NONE,0,EFFECT_TERROR;
+        return SUBEFFECT_NONE,0,dsp.effects.TERROR;
     end
 
 end;

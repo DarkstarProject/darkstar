@@ -1,6 +1,6 @@
 -----------------------------------
 --    
---    EFFECT_MINUET
+--    dsp.effects.MINUET
 --
 -----------------------------------
 require("scripts/globals/status");

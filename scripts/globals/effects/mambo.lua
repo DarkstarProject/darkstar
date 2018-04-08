@@ -1,6 +1,6 @@
 -----------------------------------
 --    
---    EFFECT_MAMBO
+--    dsp.effects.MAMBO
 --
 -----------------------------------
 require("scripts/globals/status");

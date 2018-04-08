@@ -9,6 +9,8 @@ TUMBLING_TRUFFLE_PH =
     [17195256] = 17195259, -- 450.472 70.657 238.237
 };
 
-Battering_Ram       = 17195316;
-Lumbering_Lambert   = 17195317;
-Bloodtear_Baldurf   = 17195318;
+BATTERING_RAM       = 17195316;
+NIHNIKNOOVI         = 17195475;
+
+FALLEN_EGG          = 17195582;
+LA_THEINE_RAINBOW   = 17195606;

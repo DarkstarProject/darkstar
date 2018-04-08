@@ -16,5 +16,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_DUCALGUARD,0,3);
+    target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_DUCALGUARD,0,3);
 end;

@@ -24,7 +24,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_PETRIFICATION);
+    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effects.PETRIFICATION);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -37,7 +37,7 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(dsp.effects.PETRIFICATION)) then
             player:addStatusEffect(dsp.effects.PETRIFICATION, 1, 0, duration);
         end
-        return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
+        return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, dsp.effects.PETRIFICATION;
     end
 end;
 
