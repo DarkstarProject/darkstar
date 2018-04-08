@@ -175,6 +175,8 @@ function npcUtil.completeQuest(player, area, quest, params)
     end
     if (area["fame_area"] ~= nil and type(params["fame"]) == "number") then
         player:addFame(area, params["fame"]);
+    elseif (params["fameArea"] ~= nil and params["fameArea"]["fame_area"] ~= nil and type(params["fame"]) == "number") then
+        player:addFame(params["fameArea"], params["fame"]);
     end
 
     if (params["gil"] ~= nil and type(params["gil"]) == "number") then
