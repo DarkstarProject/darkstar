@@ -3,7 +3,7 @@
 -- General Texts
        ITEM_CANNOT_BE_OBTAINED =  6425; -- Come back after sorting your inventory.
     FULL_INVENTORY_AFTER_TRADE =  6428; -- Try trading again after sorting your inventory.
-                 ITEM_OBTAINED =  6807; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                 ITEM_OBTAINED =  6431; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
                   GIL_OBTAINED =  6432; -- Obtained <<<Numeric Parameter 0>>> gil.
               KEYITEM_OBTAINED =  6433; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
                   KEYITEM_LOST =  6434; -- Lost key item:
@@ -52,7 +52,7 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL =  7414; -- Players who have not reached level <<
               NOKKHI_BAD_COUNT =  7375; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
              NOKKHI_GOOD_TRADE =  7377; -- And here you go! Come back soon, and bring your friends!
                NOKKHI_BAD_ITEM =  7378; -- I'm real sorry, but there's nothing I can do with those.
-               CLOUD_BAD_COUNT = 10103; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and 
+               CLOUD_BAD_COUNT = 10103; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and
               CLOUD_GOOD_TRADE = 10107; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
                 CLOUD_BAD_ITEM = 10108; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
           ITEM_DELIVERY_DIALOG =  8407; -- Parcels delivered to rooms anywhere in Vana'diel!
