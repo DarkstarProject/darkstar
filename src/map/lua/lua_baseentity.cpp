@@ -2741,14 +2741,14 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
         memset(&buf[0], 0, sizeof(buf));
 
         ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
-        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any
         ref<uint16>(&buf,  2) = targetZone;
         ref<uint16>(&buf,  4) = playerZone;
         ref<uint32>(&buf,  6) = targetID;
         ref<uint16>(&buf, 10) = playerID;
 
         message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
-	}	
+    }
     return 0;
 }
 
@@ -13597,7 +13597,7 @@ inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
 *  Function: getDespoilDebuff()
 *  Purpose : Used to get a status effect id to apply to a mob on successful despoil
 *  Example : effect = player:getDespoilDebuff()
-*  Notes   : 
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getDespoilDebuff(lua_State *L)
@@ -13757,7 +13757,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),	
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
