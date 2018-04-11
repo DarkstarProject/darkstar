@@ -609,8 +609,6 @@ public:
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
 
-    int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
-
     // Mob Entity-Specific
     int32 getSystem(lua_State*);
     int32 getFamily(lua_State*);

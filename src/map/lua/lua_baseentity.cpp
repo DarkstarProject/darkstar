@@ -10391,7 +10391,7 @@ inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 *  Function: delStatusEffectsByFlag()
 *  Purpose : Removes all Status Effects of a specified flag
 *  Example : target:delEffectsByFlag(FLAG)
-*  Notes   : Not currently used in any script
+*  Notes   : Used for removal of multiple effects with matching flag
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
@@ -10409,7 +10409,7 @@ inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
 *  Function: delStatusEffectSilent()
 *  Purpose : Removes a Status Effect from the Entity without showing a message
 *  Example : target:delStatusEffectSilent(EFFECT_SANDSTORM)
-*  Notes   : Used specifly for Status Effects that are not supposed to show a message once worn
+*  Notes   : Used specifically for Status Effects that are not supposed to show a message once worn
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffectSilent(lua_State* L)
@@ -12228,27 +12228,6 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
     PEntity->StatusEffectContainer->RemoveAllManeuvers();
 
     return 0;
-}
-
-/************************************************************************
-*  Function: canUseChocobo()
-*  Purpose : Returns true if player can use a Chocobo
-*  Example : if (player:canUseChocobo()) then -- kew
-*  Notes   : Checks for Chocobo License and if Chocos are allowed in area
-************************************************************************/
-
-inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    if (m_PBaseEntity->animation == ANIMATION_CHOCOBO || !charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, 138)) //keyitem CHOCOBO_LICENSE
-    {
-        lua_pushinteger(L, 445);
-        return 1;
-    }
-    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_MOUNT) ? 0 : MSGBASIC_CANT_BE_USED_IN_AREA)); //316
-    return 1;
 }
 
 /************************************************************************
@@ -14208,8 +14187,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
-
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
 
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
