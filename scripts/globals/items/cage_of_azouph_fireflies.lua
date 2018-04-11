@@ -10,7 +10,7 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:getZone() == 69) then
+    if (target:getZoneID() == 69) then
         return 0;
     end
     return 56;
