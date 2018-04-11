@@ -3,7 +3,7 @@
 -- General Texts
        ITEM_CANNOT_BE_OBTAINED =  6425; -- Come back after sorting your inventory.
     FULL_INVENTORY_AFTER_TRADE =  6428; -- Try trading again after sorting your inventory.
-                 ITEM_OBTAINED =  6431; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                 ITEM_OBTAINED =  6430; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
                   GIL_OBTAINED =  6432; -- Obtained <<<Numeric Parameter 0>>> gil.
               KEYITEM_OBTAINED =  6433; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
                   KEYITEM_LOST =  6434; -- Lost key item:
