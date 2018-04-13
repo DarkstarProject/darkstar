@@ -16,21 +16,21 @@
 require("scripts/globals/common");
 
 -- Enable Expansion (1= yes 0= no)
-ENABLE_COP     = 0;
-ENABLE_TOAU    = 0;
-ENABLE_WOTG    = 0;
-ENABLE_ACP     = 0;
-ENABLE_AMK     = 0;
-ENABLE_ASA     = 0;
-ENABLE_ABYSSEA = 0;
-ENABLE_SOA     = 0;
-ENABLE_ROV     = 0;
+ENABLE_COP     = 1;
+ENABLE_TOAU    = 1;
+ENABLE_WOTG    = 1;
+ENABLE_ACP     = 1;
+ENABLE_AMK     = 1;
+ENABLE_ASA     = 1;
+ENABLE_ABYSSEA = 1;
+ENABLE_SOA     = 1;
+ENABLE_ROV     = 1;
 
 ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
 
 -- FIELDS OF VALOR/Grounds of Valor settings
-ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
-ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
+ENABLE_FIELD_MANUALS  = 0; -- Enables Fields of Valor
+ENABLE_GROUNDS_TOMES  = 0; -- Enables Grounds of Valor
 REGIME_WAIT = 1; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
 LOW_LEVEL_REGIME = 0; -- Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
 
@@ -43,8 +43,8 @@ RESTRICT_CONTENT = 0;
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
 MAX_LEVEL = 75; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
-NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 81; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
-NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 84; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
+NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 0; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
+NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 0; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 START_GIL = 10; -- Amount of gil given to newly created characters.
 START_INVENTORY = 30; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
 OPENING_CUTSCENE_ENABLE = 0; -- Set to 1 to enable opening cutscenes, 0 to disable.
@@ -139,7 +139,7 @@ SNEAK_INVIS_DURATION_MULTIPLIER = 1; -- multiplies duration of sneak,invis,deodo
 USE_OLD_CURE_FORMULA = false; -- true/false. if true, uses older cure formula (3*MND + VIT + 3*(healing skill/5)) // cure 6 will use the newer formula
 
 -- CELEBRATIONS
-EXPLORER_MOOGLE = 1; -- Enables Explorer Moogle teleports
+EXPLORER_MOOGLE = 0; -- Enables Explorer Moogle teleports
 EXPLORER_MOOGLE_LEVELCAP = 10;
 HALLOWEEN_2005 = 0; -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
 HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outside of normal times.
