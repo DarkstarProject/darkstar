@@ -62,6 +62,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 ref<uint16>(0x1A) = PChar->m_TargID << 1;
                 ref<uint8>(0x1C) = PChar->GetSpeed();
                 ref<uint8>(0x1D) = PChar->speedsub;
+                ref<uint16>(0x30) = PChar->m_Costum;
             }
 
             if (updatemask & UPDATE_HP)
@@ -108,8 +109,6 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 // New Player Flag..
                 if (PChar->isNewPlayer())
                     ref<uint8>(0x2A) |= 0x80;
-
-                ref<uint16>(0x30) = PChar->m_Costum;
 
                 ref<uint32>(0x34) = 0x010CA248; // black chocobo
 
