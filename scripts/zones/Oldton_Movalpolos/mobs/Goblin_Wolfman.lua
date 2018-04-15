@@ -2,12 +2,6 @@
 -- Area: Oldton Movalpolos (11)
 --  Mob: Goblin Wolfman
 -----------------------------------
-<<<<<<< HEAD
-require("scripts/zones/Oldton_Movalpolos/MobIDs");
-require("scripts/globals/settings");
-require("scripts/mixins/job_special")
-=======
->>>>>>> 225f7c5f1ee6a44797c8faf501af217dc417f0a0
 
 function onMobDeath(mob, player, isKiller)
 end;
@@ -15,29 +9,18 @@ end;
 
 function onMobSpawn(mob)
     local GoblinWolfmanID = mob:getID();
-<<<<<<< HEAD
-	
-   -- Set the hp% to use blood weapon
-    mob:setLocalVar("useSpecAtHpMin", 50);
-    mob:setLocalVar("useSpecAtHpMax", 75);
-=======
 
    -- Set the hp% to use blood weapon
     mob:setLocalVar("jobSpecTrigger", math.random(50, 75));
->>>>>>> 225f7c5f1ee6a44797c8faf501af217dc417f0a0
 
 end;
 
 function onMobFight(mob, target)
-<<<<<<< HEAD
-    
-=======
     local trigger = mob:getLocalVar("jobSpecTrigger")
     if (mob:getHPP() <= trigger and mob:getLocalVar("BloodWeapon") == 0) then
         mob:useMobAbility(jobSpec.BLOOD_WEAPON);
         mob:setLocalVar("BloodWeapon", 1);
     end
->>>>>>> 225f7c5f1ee6a44797c8faf501af217dc417f0a0
 end;
 
 function onMobDespawn(mob)
