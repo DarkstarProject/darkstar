@@ -51,8 +51,8 @@ function onSpellCast(caster,target,spell)
 
         if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
         duration = duration * 2;
-    end
-    caster:delStatusEffect(dsp.effects.SABOTEUR);
+        end
+        caster:delStatusEffect(dsp.effects.SABOTEUR);
 
         if (target:addStatusEffect(dsp.effects.BLINDNESS,power,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
