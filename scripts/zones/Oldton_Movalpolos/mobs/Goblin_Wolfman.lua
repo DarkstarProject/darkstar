@@ -24,7 +24,7 @@ function onMobFight(mob, target)
 end;
 
 function onMobDespawn(mob)
-    local npc = GetNPCByID(16822469);
+    local npc = GetNPCByID(SCRAWLED_WRITING);
 
     npc:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 
