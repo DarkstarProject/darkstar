@@ -38,14 +38,14 @@ function onSpellCast(caster,target,spell)
         potency = potency * 2;
     end
 
-        local duration = 120;
-        local params = {};
-        params.diff = nil;
-        params.attribute = MOD_MND;
-        params.skillType = 35;
-        params.bonus = merits*2;
-        params.effect = dsp.effects.PARALYSIS;
-        local resist = applyResistanceEffect(caster, target, spell, params);
+    local duration = 120;
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_MND;
+    params.skillType = 35;
+    params.bonus = merits*2;
+    params.effect = dsp.effects.PARALYSIS;
+    local resist = applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 90) then
         if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then

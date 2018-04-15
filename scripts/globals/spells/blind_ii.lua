@@ -50,7 +50,7 @@ function onSpellCast(caster,target,spell)
     if (duration >= 90) then --Do it!
 
         if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
-        duration = duration * 2;
+            duration = duration * 2;
         end
         caster:delStatusEffect(dsp.effects.SABOTEUR);
 
