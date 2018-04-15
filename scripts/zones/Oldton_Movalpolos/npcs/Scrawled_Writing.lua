@@ -5,6 +5,7 @@
 -----------------------------------
 require("scripts/zones/Oldton_Movalpolos/MobIDs");
 require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,6 +17,7 @@ function onTrade(player,npc,trade)
         local z = npc:getZPos();
         mob:setPos(x-1,y,z);
         SpawnMob(GOBLIN_WOLFMAN):updateClaim(player);
+		npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
 
