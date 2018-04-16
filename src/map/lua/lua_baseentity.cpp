@@ -4136,7 +4136,7 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
             PChar->status != STATUS_DISAPPEAR)
         {
             PChar->m_Costum = costum;
-            PChar->updatemask |= UPDATE_HP;
+            PChar->updatemask |= UPDATE_POS;
         }
         return 0;
     }
