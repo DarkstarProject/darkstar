@@ -14,7 +14,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
-    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,EFFECT_PLAGUE);
+    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,dsp.effects.PLAGUE);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -27,7 +27,7 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(dsp.effects.PLAGUE)) then
             player:addStatusEffect(dsp.effects.PLAGUE, 1, 0, duration);
         end
-        return SUBEFFECT_PLAGUE, msgBasic.ADD_EFFECT_STATUS, EFFECT_PLAGUE;
+        return SUBEFFECT_PLAGUE, msgBasic.ADD_EFFECT_STATUS, dsp.effects.PLAGUE;
     end
 end;
 

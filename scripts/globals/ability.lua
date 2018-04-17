@@ -443,7 +443,7 @@ function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
     caster:delStatusEffectSilent(dsp.effects.DOUBLE_UP_CHANCE);
     caster:addStatusEffectEx(dsp.effects.DOUBLE_UP_CHANCE,
-                             EFFECT_DOUBLE_UP_CHANCE,
+                             dsp.effects.DOUBLE_UP_CHANCE,
                              roll,
                              0,
                              45,
@@ -476,12 +476,12 @@ end
 function checkForElevenRoll(caster)
     local effects = caster:getStatusEffects()
     for _,effect in ipairs(effects) do
-        if (effect:getType() >= EFFECT_FIGHTERS_ROLL and
-            effect:getType() <= EFFECT_NATURALISTS_ROLL and
+        if (effect:getType() >= dsp.effects.FIGHTERS_ROLL and
+            effect:getType() <= dsp.effects.NATURALISTS_ROLL and
             effect:getSubPower() == 11) then
             return true
         end
-        if (effect:getType() == EFFECT_RUNEISTS_ROLL and
+        if (effect:getType() == dsp.effects.RUNEISTS_ROLL and
                 effect:getSubPower() == 11) then
             return true 
         end

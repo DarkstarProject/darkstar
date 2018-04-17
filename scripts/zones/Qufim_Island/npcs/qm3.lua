@@ -39,13 +39,13 @@ function onTrigger(player,npc)
             -- Spawn Seed mandragora's
             player:setVar("SEED_MANDY",1); -- This will need moved into Seed mandies onDeath script later.
             player:PrintToPlayer( "Confrontation Battles are not working yet." );
-            -- EFFECT_CONFRONTATION for 30 min
+            -- dsp.effects.CONFRONTATION for 30 min
         elseif (ACPm == GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 1) then -- change SEED_MANDY var number later when battle actually works (intended purpose is to track number of slain mandies).
             player:setVar("SEED_MANDY",0);
             player:startEvent(34);
         -- elseif (ACPm >= THOSE_WHO_LURK_IN_SHADOWS_I and AmberKey == false and now ~= LastAmber and now ~= LastViridian and SR and SC and SV and player:getVar("SEED_MANDY") == 0) then
             -- This is for repeats to get amber keys.
-            -- Spawn Seed mandragora's with EFFECT_CONFRONTATION for 30 min
+            -- Spawn Seed mandragora's with dsp.effects.CONFRONTATION for 30 min
         -- elseif (SR and SC and SV and ACPm >= THOSE_WHO_LURK_IN_SHADOWS_I and player:getVar("SEED_MANDY") == 1) then
             -- player:addKeyItem(AMBER_KEY);
             -- player:setVar("LastAmberKey", os.date("%j"));

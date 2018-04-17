@@ -4663,9 +4663,13 @@ namespace battleutils
             return false;
         }
 
+        bool success = false;
         float drawInDistance = (float)(PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->GetMeleeRange() * 2);
 
-        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
+        if (std::chrono::time_point_cast<std::chrono::seconds>(server_clock::now()).time_since_epoch().count() - PMob->GetLocalVar("DrawInTime") < 2)
+            return false;
+
+        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, &nearEntity, &success](CBattleEntity* PMember)
         {
             float pDistance = distance(PMob->loc.p, PMember->loc.p);
 
@@ -4697,6 +4701,7 @@ namespace battleutils
 
                     luautils::OnMobDrawIn(PMob, PMember);
                     PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                    success = true;
                 }
             }
         };
@@ -4712,7 +4717,10 @@ namespace battleutils
             drawInFunc(PEntity);
         }
 
-        return true;
+        if (success)
+            PMob->SetLocalVar("DrawInTime", (uint32)std::chrono::time_point_cast<std::chrono::seconds>(server_clock::now()).time_since_epoch().count());
+
+        return success;
     }
 
     /************************************************************************

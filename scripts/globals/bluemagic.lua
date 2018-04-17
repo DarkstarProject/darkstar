@@ -398,20 +398,20 @@ function getBlueEffectDuration(caster,resist,effect)
         resist = 4;
     end
 
-    if (effect == EFFECT_BIND) then
+    if (effect == dsp.effects.BIND) then
         duration = math.random(0,5) + resist * 5;
-    elseif (effect == EFFECT_STUN) then
+    elseif (effect == dsp.effects.STUN) then
         duration = math.random(2,3) + resist;
         -- printf("Duration of stun is %i",duration);
-    elseif (effect == EFFECT_WEIGHT) then
+    elseif (effect == dsp.effects.WEIGHT) then
         duration = math.random(20,24) + resist * 9; -- 20-24
-    elseif (effect == EFFECT_PARALYSIS) then
+    elseif (effect == dsp.effects.PARALYSIS) then
         duration = math.random(50,60) + resist * 15; -- 50- 60
-    elseif (effect == EFFECT_SLOW) then
+    elseif (effect == dsp.effects.SLOW) then
         duration = math.random(60,120) + resist * 15; -- 60- 120 -- Needs confirmation but capped max duration based on White Magic Spell Slow
-    elseif (effect == EFFECT_SILENCE) then
+    elseif (effect == dsp.effects.SILENCE) then
         duration = math.random(60,180) + resist * 15; -- 60- 180 -- Needs confirmation but capped max duration based on White Magic Spell Silence
-    elseif (effect == EFFECT_POISON) then
+    elseif (effect == dsp.effects.POISON) then
         duration = math.random(20,30) + resist * 9; -- 20-30 -- based on magic spell poison
     end
 

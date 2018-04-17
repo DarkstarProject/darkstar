@@ -18,7 +18,7 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:delStatusEffect(dsp.effects.DEFENSE_BOOST);
-        target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 1, 0, 60);
+        target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 12, 0, 60);
         return SUBEFFECT_DEFENSE_DOWN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.DEFENSE_DOWN;
     end
 end;

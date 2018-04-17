@@ -587,8 +587,8 @@ void CMobController::Move()
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
         {
-            if (currentDistance >= PMob->GetMeleeRange() * 2)
-                battleutils::DrawIn(PTarget, PMob, PMob->GetMeleeRange() - 0.2f);
+            if (currentDistance >= PMob->GetMeleeRange() * 2 && battleutils::DrawIn(PTarget, PMob, PMob->GetMeleeRange() - 0.2f))
+                FaceTarget();
         }
         if (PMob->speed != 0 && PMob->getMobMod(MOBMOD_NO_MOVE) == 0 && m_Tick >= m_LastSpecialTime)
         {
