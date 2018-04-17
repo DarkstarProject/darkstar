@@ -3119,13 +3119,13 @@ namespace charutils
             if (members.size() > 0)
             {
                 // distribute gil
-                uint32 gilPerPerson = gil / members.size();
+                int32 gilPerPerson = static_cast<int32>(gil / members.size());
                 for (auto PMember : members)
                 {
                     // Check for gilfinder
                     gilPerPerson += gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100;
-                    UpdateItem(PMember, LOC_INVENTORY, 0, static_cast<int32>(gilPerPerson));
-                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, static_cast<int32>(gilPerPerson), 0, 565));
+                    UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
+                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
                 }
             }
         }
