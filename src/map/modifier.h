@@ -326,6 +326,7 @@ enum class Mod
     MUG_EFFECT                = 835, // Mug effect as multiplier
     ACC_COLLAB_EFFECT         = 884, // Increases amount of enmity transferred for Accomplice/Collaborator
     HIDE_DURATION             = 885, // Hide duration increase (percentage based)
+    GILFINDER                 = 897, // Gilfinder, duh
 
     // Paladin
     HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
@@ -710,9 +711,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 897, // stuff
     // SPARE = 898, // stuff
     // SPARE = 899, // stuff
+    // SPARE = 900, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
