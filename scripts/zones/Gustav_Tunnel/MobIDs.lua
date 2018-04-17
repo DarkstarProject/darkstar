@@ -4,7 +4,8 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
-BUNE = 17645578;
+BUNE        = 17645578;
+GIGAPLASM   = 17645794;
 
 GOBLINSAVIOR_HERONOX_PH =
 {
