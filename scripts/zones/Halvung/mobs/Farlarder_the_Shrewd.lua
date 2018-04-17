@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
---  MOB: Kirlirger the Abhorrent
+--  MOB: Farlarder the Shrewd
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
