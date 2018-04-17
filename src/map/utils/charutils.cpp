@@ -3123,7 +3123,7 @@ namespace charutils
                 for (auto PMember : members)
                 {
                     // Check for gilfinder
-                    gilPerPerson += (uint32)(gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100.f);
+                    gilPerPerson += (int32)(gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100.f);
                     UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
                     PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
                 }
@@ -3132,7 +3132,7 @@ namespace charutils
         else if (distanceSquared(PChar->loc.p, PMob->loc.p) < square(100.f))
         {
             // Check for gilfinder
-            gil += (uint32)(gil * PChar->getMod(Mod::GILFINDER) / 100.f);
+            gil += (int32)(gil * PChar->getMod(Mod::GILFINDER) / 100.f);
             UpdateItem(PChar, LOC_INVENTORY, 0, gil);
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, gil, 0, 565));
         }
