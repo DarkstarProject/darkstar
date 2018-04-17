@@ -3119,22 +3119,22 @@ namespace charutils
             if (members.size() > 0)
             {
                 // distribute gil
-                int32 gilPerPerson = (int32)(gil / members.size());
+                uint32 gilPerPerson = gil / members.size();
                 for (auto PMember : members)
                 {
                     // Check for gilfinder
-                    gilPerPerson += (int32)(gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100.f);
-                    UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
-                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+                    gilPerPerson += gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100;
+                    UpdateItem(PMember, LOC_INVENTORY, 0, static_cast<int32>(gilPerPerson));
+                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, static_cast<int32>(gilPerPerson), 0, 565));
                 }
             }
         }
         else if (distanceSquared(PChar->loc.p, PMob->loc.p) < square(100.f))
         {
             // Check for gilfinder
-            gil += (int32)(gil * PChar->getMod(Mod::GILFINDER) / 100.f);
-            UpdateItem(PChar, LOC_INVENTORY, 0, gil);
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, gil, 0, 565));
+            gil += gil * PChar->getMod(Mod::GILFINDER) / 100;
+            UpdateItem(PChar, LOC_INVENTORY, 0, static_cast<int32>(gil));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, static_cast<int32>(gil), 0, 565));
         }
     }
 
