@@ -273,7 +273,6 @@ local zone_list =
     { 0x27, 0x59, 284 }, -- Celennia Memorial Library
     { 0x27, 0x5B, 285 }, -- Feretory
     { 0x14, 0x09, 288 }, -- Escha - Zi'Tah
-	
 };
 
 function error(player, msg)
