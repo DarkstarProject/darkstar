@@ -273,6 +273,7 @@ local zone_list =
     { 0x27, 0x59, 284 }, -- Celennia Memorial Library
     { 0x27, 0x5B, 285 }, -- Feretory
     { 0x14, 0x09, 288 }, -- Escha - Zi'Tah
+	
 };
 
 function error(player, msg)
@@ -331,7 +332,7 @@ function onTrigger(player, bytes)
     else
         -- destination is a zone ID.
         zone = tonumber(bytes);
-        if (zone == nil or zone < 0 or zone > 293) then
+        if (zone == nil or zone < 0 or zone > 297) then
             error(player, "Invalid zone ID.");
             return;
         end
