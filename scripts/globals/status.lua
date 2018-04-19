@@ -1238,7 +1238,8 @@ MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
 MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
 MOD_MUG_EFFECT               = 835 -- Mug effect as multiplier
 MOD_ACC_COLLAB_EFFECT        = 884 -- Increases amount of enmity transferred
-MOD_HIDE_DURATION            = 885 -- Hide duration increase (percentage based)
+MOD_HIDE_DURATION            = 885 -- Hide duration increase (percentage based
+MOD_GILFINDER                = 897 -- Gil % increase
 MOD_REVERSE_FLOURISH_EFFECT  = 836 -- Reverse Flourish effect in tenths of squared term multiplier
 MOD_SENTINEL_EFFECT          = 837 -- Sentinel effect in percents
 MOD_REGEN_MULTIPLIER         = 838 -- Regen base multiplier
@@ -1451,9 +1452,9 @@ MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hag
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 897 -- stuff
 -- SPARE = 898 -- stuff
 -- SPARE = 899 -- stuff
+-- SPARE = 900 -- stuff
 
 ------------------------------------
 -- Merit Definitions
