@@ -161,8 +161,8 @@ INSERT INTO `traits` VALUES ('14','store tp','12','90','5','73','30','ABYSSEA','
 INSERT INTO `traits` VALUES ('15','double attack','1','25','1','288','10',null,'0');
 INSERT INTO `traits` VALUES ('16','triple attack','6','55','1','302','5',null,'0');
 INSERT INTO `traits` VALUES ('16','triple attack','6','95','2','302','6','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('17','counter','2','10','1','291','10',null,'0');
-INSERT INTO `traits` VALUES ('17','counter','2','81','2','291','13','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('17','counter','2','10','1','291','8',null,'0');
+INSERT INTO `traits` VALUES ('17','counter','2','81','2','291','12','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','83','1','259','10','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','90','2','259','15','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','98','3','259','25','ABYSSEA','0');
