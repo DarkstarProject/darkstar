@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
     if (mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
         return 1;
     end
-    if (mob:getMainJob() ~= JOBS.THF and math.random() < 0.2) then
+    if (mob:getMainJob() ~= dsp.jobs.THF and math.random() < 0.2) then
         return 1;
     end
     return 0;
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = math.random(12,18);
 
     -- thfs drop bombs like crazy
-    if (job == JOBS.THF) then
+    if (job == dsp.jobs.THF) then
         power = power + 4;
     end
 

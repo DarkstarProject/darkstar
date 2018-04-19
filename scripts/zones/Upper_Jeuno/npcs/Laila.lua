@@ -39,10 +39,10 @@ function onTrigger(player,npc)
     elseif ((player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_AVAILABLE
         or (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED
         and player:hasItem(19203) == false))
-        and player:getMainJob() == JOBS.DNC and player:getMainLvl()>=40) then
+        and player:getMainJob() == dsp.jobs.DNC and player:getMainLvl()>=40) then
 
         player:startEvent(10129);
-    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(THE_ESSENCE_OF_DANCE) and player:getMainJob() == JOBS.DNC) then
+    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(THE_ESSENCE_OF_DANCE) and player:getMainJob() == dsp.jobs.DNC) then
         player:startEvent(10133);
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED) then
         player:startEvent(10134);
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
     -- Dancer AF: The Road to Divadom
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED
         and player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_AVAILABLE
-        and player:getMainJob() == JOBS.DNC) then
+        and player:getMainJob() == dsp.jobs.DNC) then
 
         player:startEvent(10136); -- CSID 10136
     elseif (player:getVar("roadToDivadomCS") == 1) then
@@ -63,7 +63,7 @@ function onTrigger(player,npc)
     -- Dancer AF: Comeback Queen
     elseif (player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_COMPLETED
         and player:getQuestStatus(JEUNO, COMEBACK_QUEEN) == QUEST_AVAILABLE
-        and player:getMainJob() == JOBS.DNC) then
+        and player:getMainJob() == dsp.jobs.DNC) then
 
         player:startEvent(10143);
     elseif (player:getVar("comebackQueenCS") == 1) then
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Lakeside_Minuet_Progress",0);
         player:completeQuest(JEUNO,LAKESIDE_MINUET);
         player:addTitle(TROUPE_BRILIOTH_DANCER);
-        player:unlockJob(JOBS.DNC);
+        player:unlockJob(dsp.jobs.DNC);
         player:messageSpecial(UNLOCK_DANCER);
         player:addFame(JEUNO, 30);
         player:delKeyItem(STARDUST_PEBBLE);

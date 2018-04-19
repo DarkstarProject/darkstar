@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:completeQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
         player:addTitle(RAINBOW_WEAVER);
-        player:unlockJob(JOBS.SMN);
+        player:unlockJob(dsp.jobs.SMN);
         player:addSpell(296);
         player:messageSpecial(UNLOCK_SUMMONER);
         player:messageSpecial(UNLOCK_CARBUNCLE);

@@ -50,13 +50,13 @@ function onTrigger(player,npc)
         end
         
     -- THE SACRED KATANA
-    elseif (forgeYourDestiny == QUEST_COMPLETED and theSacredKatana == QUEST_AVAILABLE and mJob == JOBS.SAM and mLvl >= AF1_QUEST_LEVEL) then
+    elseif (forgeYourDestiny == QUEST_COMPLETED and theSacredKatana == QUEST_AVAILABLE and mJob == dsp.jobs.SAM and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(139); -- start quest
     elseif (theSacredKatana == QUEST_ACCEPTED) then
         player:startEvent(player:hasItem(17809) and 140 or 143); -- event with or without Mumeito
         
     -- YOMI OKURI
-    elseif (theSacredKatana == QUEST_COMPLETED and yomiOkuri == QUEST_AVAILABLE and mJob == JOBS.SAM and mLvl >= AF2_QUEST_LEVEL) then
+    elseif (theSacredKatana == QUEST_COMPLETED and yomiOkuri == QUEST_AVAILABLE and mJob == dsp.jobs.SAM and mLvl >= AF2_QUEST_LEVEL) then
         player:startEvent(player:needToZone() and 142 or 146); -- event with or without needing to zone
     elseif (yomiOkuri == QUEST_ACCEPTED) then
         if (yomiOkuriCS <= 3) then
@@ -70,7 +70,7 @@ function onTrigger(player,npc)
         end
         
     -- A THIEF IN NORG
-    elseif (yomiOkuri == QUEST_COMPLETED and aThiefinNorg == QUEST_AVAILABLE and mJob == JOBS.SAM and mLvl >= AF3_QUEST_LEVEL) then
+    elseif (yomiOkuri == QUEST_COMPLETED and aThiefinNorg == QUEST_AVAILABLE and mJob == dsp.jobs.SAM and mLvl >= AF3_QUEST_LEVEL) then
         player:startEvent(player:needToZone() and 157 or 158) -- even with or without needing to zone
     elseif (aThiefinNorg == QUEST_ACCEPTED) then
         if (aThiefinNorgCS < 5) then
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ForgeYourDestiny_timer", os.time() + 10368); -- 3 game days
     elseif (csid == 29 and npcUtil.completeQuest(player, OUTLANDS, FORGE_YOUR_DESTINY, {item=17809, fame=30, fameArea=NORG, title=BUSHIDO_BLADE, var={"ForgeYourDestiny_timer", "ForgeYourDestiny_Event"}})) then -- Mumeito
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_SAMURAI, 17809);
-        player:unlockJob(JOBS.SAM);
+        player:unlockJob(dsp.jobs.SAM);
 
     -- THE SACRED KATANA
     elseif (csid == 139 and option == 1) then

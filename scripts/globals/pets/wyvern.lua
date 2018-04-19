@@ -8,28 +8,28 @@ WYVERN_OFFENSIVE = 1
 WYVERN_DEFENSIVE = 2
 WYVERN_MULTI = 3
 local wyvernTypes = {
-    [JOBS.WAR] = WYVERN_OFFENSIVE,
-    [JOBS.MNK] = WYVERN_OFFENSIVE,
-    [JOBS.WHM] = WYVERN_DEFENSIVE,
-    [JOBS.BLM] = WYVERN_DEFENSIVE,
-    [JOBS.RDM] = WYVERN_DEFENSIVE,
-    [JOBS.THF] = WYVERN_OFFENSIVE,
-    [JOBS.PLD] = WYVERN_MULTI,
-    [JOBS.DRK] = WYVERN_MULTI,
-    [JOBS.BST] = WYVERN_OFFENSIVE,
-    [JOBS.BRD] = WYVERN_MULTI,
-    [JOBS.RNG] = WYVERN_OFFENSIVE,
-    [JOBS.SAM] = WYVERN_OFFENSIVE,
-    [JOBS.NIN] = WYVERN_MULTI,
-    [JOBS.DRG] = WYVERN_OFFENSIVE,
-    [JOBS.SMN] = WYVERN_DEFENSIVE,
-    [JOBS.BLU] = WYVERN_DEFENSIVE,
-    [JOBS.COR] = WYVERN_OFFENSIVE,
-    [JOBS.PUP] = WYVERN_OFFENSIVE,
-    [JOBS.DNC] = WYVERN_OFFENSIVE,
-    [JOBS.SCH] = WYVERN_DEFENSIVE,
-    [JOBS.GEO] = WYVERN_DEFENSIVE,
-    [JOBS.RUN] = WYVERN_MULTI
+    [dsp.jobs.WAR] = WYVERN_OFFENSIVE,
+    [dsp.jobs.MNK] = WYVERN_OFFENSIVE,
+    [dsp.jobs.WHM] = WYVERN_DEFENSIVE,
+    [dsp.jobs.BLM] = WYVERN_DEFENSIVE,
+    [dsp.jobs.RDM] = WYVERN_DEFENSIVE,
+    [dsp.jobs.THF] = WYVERN_OFFENSIVE,
+    [dsp.jobs.PLD] = WYVERN_MULTI,
+    [dsp.jobs.DRK] = WYVERN_MULTI,
+    [dsp.jobs.BST] = WYVERN_OFFENSIVE,
+    [dsp.jobs.BRD] = WYVERN_MULTI,
+    [dsp.jobs.RNG] = WYVERN_OFFENSIVE,
+    [dsp.jobs.SAM] = WYVERN_OFFENSIVE,
+    [dsp.jobs.NIN] = WYVERN_MULTI,
+    [dsp.jobs.DRG] = WYVERN_OFFENSIVE,
+    [dsp.jobs.SMN] = WYVERN_DEFENSIVE,
+    [dsp.jobs.BLU] = WYVERN_DEFENSIVE,
+    [dsp.jobs.COR] = WYVERN_OFFENSIVE,
+    [dsp.jobs.PUP] = WYVERN_OFFENSIVE,
+    [dsp.jobs.DNC] = WYVERN_OFFENSIVE,
+    [dsp.jobs.SCH] = WYVERN_DEFENSIVE,
+    [dsp.jobs.GEO] = WYVERN_DEFENSIVE,
+    [dsp.jobs.RUN] = WYVERN_MULTI
 }
 
 -----------------------------------
@@ -66,7 +66,7 @@ function onMobSpawn(mob)
                 end
             end
         end);
-        if (master:getSubJob() ~= JOBS.SMN) then
+        if (master:getSubJob() ~= dsp.jobs.SMN) then
             master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
                 -- check master first!
                 local threshold = 33;

@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (effect == nil) then
-        if caster:getMainJob() == JOBS.NIN then
+        if caster:getMainJob() == dsp.jobs.NIN then
             target:addStatusEffectEx(dsp.effects.COPY_IMAGE,dsp.effects.COPY_IMAGE_4, 4 + bonusShadow,0,900);
             target:setMod(MOD_UTSUSEMI, 4 + bonusShadow);
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
             target:setMod(MOD_UTSUSEMI, 3 + bonusShadow);
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
         end
-    elseif caster:getMainJob() == JOBS.NIN then
+    elseif caster:getMainJob() == dsp.jobs.NIN then
         if (effect:getPower() <= 4) then
             spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
             effect:setPower(4);

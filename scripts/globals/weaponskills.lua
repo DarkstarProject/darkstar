@@ -145,21 +145,21 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
                 if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
                     local cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
                     finaldmg = dmg * cpdif;
-                    if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
+                    if (isSneakValid and attacker:getMainJob() == dsp.jobs.THF) then -- have to add on DEX bonus if on THF main
                         finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * (1 + attacker:getMod(MOD_SNEAK_ATK_DEX)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
                     end
-                    if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                    if (isTrickValid and attacker:getMainJob() == dsp.jobs.THF) then
                         finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                     end
                 else
                     finaldmg = dmg * pdif;
-                    if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                    if (isTrickValid and attacker:getMainJob() == dsp.jobs.THF) then
                         finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                     end
                 end
             else
                 finaldmg = dmg * pdif;
-                if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                if (isTrickValid and attacker:getMainJob() == dsp.jobs.THF) then
                     finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                 end
             end
@@ -331,7 +331,7 @@ function souleaterBonus(attacker, numhits)
     if attacker:hasStatusEffect(dsp.effects.SOULEATER) then
         local damage = 0;
         local percent = 0.1;
-        if attacker:getMainJob() ~= JOBS.DRK then
+        if attacker:getMainJob() ~= dsp.jobs.DRK then
             percent = percent / 2;
         end
         percent = percent + math.min(0.02, 0.01 * attacker:getMod(MOD_SOULEATER_EFFECT));

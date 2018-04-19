@@ -38,7 +38,7 @@ function onTrigger(player,npc)
         player:startEvent(182); -- mentions song runes in Valkurm
 
     -- THE REQUIEM (Bard AF2)
-    elseif (painfulMemory == QUEST_COMPLETED and theRequiem == QUEST_AVAILABLE and player:getMainJob() == JOBS.BRD and player:getMainLvl() >= AF2_QUEST_LEVEL) then
+    elseif (painfulMemory == QUEST_COMPLETED and theRequiem == QUEST_AVAILABLE and player:getMainJob() == dsp.jobs.BRD and player:getMainLvl() >= AF2_QUEST_LEVEL) then
         if (player:getVar("TheRequiemCS") == 0) then
             player:startEvent(145); -- Long dialog & Start Quest "The Requiem"
         else

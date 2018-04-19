@@ -34,17 +34,17 @@ function onTrigger(player,npc)
             player:startEvent(385,1125,1125,1125,1125,1125,1125,1125,1125);
         ----------------------------------------------------
         -- The Puppet Master (AF weapon)
-        elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_AVAILABLE and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
+        elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == dsp.jobs.SMN and ThePuppetMaster == QUEST_AVAILABLE and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
             player:startEvent(402); -- Carby asks for your help, visit Juroro
         elseif (player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getVar("ThePuppetMasterProgress") == 1) then
             player:startEvent(403); -- reminder to visit Juroro
         ----------------------------------------------------
         -- Class Reunion (AF pants)
-        elseif (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
+        elseif (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == dsp.jobs.SMN and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
             player:startEvent(413); -- Carby asks for your help again.
         ----------------------------------------------------
         -- Carbuncle Debacle (AF head)
-        elseif (player:getMainLvl() >= AF3_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
+        elseif (player:getMainLvl() >= AF3_QUEST_LEVEL and player:getMainJob() == dsp.jobs.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
             player:startEvent(415); -- Carby begs for your help
         ----------------------------------------------------
         elseif (player:hasKeyItem(JOKER_CARD)) then

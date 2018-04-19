@@ -462,7 +462,7 @@ end
 
 function atMaxCorsairBusts(caster)
     local numBusts = caster:numBustEffects();
-    return (numBusts >= 2 and caster:getMainJob() == JOBS.COR) or (numBusts >= 1 and caster:getMainJob() ~= JOBS.COR);
+    return (numBusts >= 2 and caster:getMainJob() == dsp.jobs.COR) or (numBusts >= 1 and caster:getMainJob() ~= dsp.jobs.COR);
 end
 
 function checkForJobBonus(caster, job)

@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         player:startEvent(102);
 
     -- PAINFUL MEMORY (Bard AF1)
-    elseif (painfulMemory == QUEST_AVAILABLE and job == JOBS.BRD and level >= AF1_QUEST_LEVEL) then
+    elseif (painfulMemory == QUEST_AVAILABLE and job == dsp.jobs.BRD and level >= AF1_QUEST_LEVEL) then
         if (player:getVar("PainfulMemoryCS") == 0) then
             player:startEvent(138); -- Long dialog for "Painful Memory"
         else
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
         player:startEvent(136); -- During Quest "Painful Memory"
 
     -- CIRCLE OF TIME (Bard AF3)
-    elseif (theRequiem == QUEST_COMPLETED and circleOfTime == QUEST_AVAILABLE and job == JOBS.BRD and level >= AF3_QUEST_LEVEL) then
+    elseif (theRequiem == QUEST_COMPLETED and circleOfTime == QUEST_AVAILABLE and job == dsp.jobs.BRD and level >= AF3_QUEST_LEVEL) then
         player:startEvent(139); -- Start "The Circle of Time"
     elseif (circleOfTime == QUEST_ACCEPTED) then
         player:messageSpecial(MERTAIRE_RING);

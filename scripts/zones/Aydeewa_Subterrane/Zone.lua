@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:setVar("AnEmptyVesselProgress",0);
         player:setVar("EmptyVesselStone",0);
         player:addKeyItem(MARK_OF_ZAHAK);
-        player:unlockJob(JOBS.BLU);
+        player:unlockJob(dsp.jobs.BLU);
         player:addTitle(BEARER_OF_THE_MARK_OF_ZAHAK);
         player:completeQuest(AHT_URHGAN,AN_EMPTY_VESSEL);
         player:setPos(148,-2,0,130,50);
