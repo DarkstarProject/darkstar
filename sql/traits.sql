@@ -327,8 +327,8 @@ INSERT INTO `traits` VALUES ('63','resist amnesia','18','75','4','253','6','SOA'
 INSERT INTO `traits` VALUES ('64','treasure hunter ii','6','45','2','303','1',null,'0');
 INSERT INTO `traits` VALUES ('65','treasure hunter iii','6','90','3','303','1','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('66','kick attacks','2','51','1','292','10',null,'0');
-INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','13',null,'0');
-INSERT INTO `traits` VALUES ('66','kick attacks','2','96','3','292','15','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','12',null,'0');
+INSERT INTO `traits` VALUES ('66','kick attacks','2','76','3','292','14','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('67','subtle blow','2','5','1','289','5',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','2','25','2','289','10',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','2','40','3','289','15',null,'0'); -- ROTZ
