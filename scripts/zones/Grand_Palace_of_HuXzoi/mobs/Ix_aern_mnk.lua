@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
---  MOB: Ix_aern_mnk
--- ID: 16916815
+--  MOB: Ix'aern (MNK)
 -----------------------------------
+require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
+require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -10,16 +11,18 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-    local QuestionMark = 16916819; -- The ??? that spawned this mob.
-    local chance = GetNPCByID(QuestionMark):getLocalVar("[SEA]IxAern_DropRate"); -- Adjust drop rate for the items based on the organs traded to the ???.
+    -- adjust drops based on number of HQ Aern Organs traded to QM
+    local qm = GetNPCByID(IXAERN_MNK_QM);
+    local chance = qm:getLocalVar("[SEA]IxAern_DropRate");
     if (math.random(0,1) > 0) then
-        SetDropRate(4398,1851,chance*10); -- Deed Of Placidity
-        SetDropRate(4398,1901,0);
+        SetDropRate(4398, 1851, chance * 10); -- Deed Of Placidity
+        SetDropRate(4398, 1901, 0);
     else
-        SetDropRate(4398,1851,0);
-        SetDropRate(4398,1901,chance*10); -- Vice of Antipathy
+        SetDropRate(4398, 1851, 0);
+        SetDropRate(4398, 1901, chance * 10); -- Vice of Antipathy
     end
-    GetNPCByID(QuestionMark):setLocalVar("[SEA]IxAern_DropRate", 0); -- Clears the var from the ???.
+    qm:setLocalVar("[SEA]IxAern_DropRate", 0);
+    
     mob:AnimationSub(1); -- Reset the subanim - otherwise it will respawn with bracers on. Note that Aerns are never actually supposed to be in subanim 0.
 end;
 
@@ -32,33 +35,37 @@ function onMobFight(mob,target)
     if (mob:getLocalVar("BracerMode") == 0) then
         if (mob:getHPP() < math.random(50,60)) then
             -- Go into bracer mode
-            mob:setLocalVar("BracerMode",1);
-            mob:AnimationSub(2); -- Puts on the bracers! He gonna fuck you up now.
+            mob:setLocalVar("BracerMode", 1);
+            mob:AnimationSub(2);
             mob:addMod(MOD_ATT, 200);
             mob:addMod(MOD_HASTE_ABILITY, 150);
             mob:useMobAbility(3411); -- Hundred Fists
 
             -- Force minions to 2hour
-            if (GetMobAction(mob:getID()+1) ~= 0) then
-                GetMobByID(mob:getID()+1):useMobAbility(3412); -- Chainspell
+            for i = 1, 2 do
+                local minion = GetMobByID(mob:getID() + i);
+                if (minion:getCurrentAction() ~= ACTION_NONE) then
+                    minion:useMobAbility(3411 + i); -- Chainspell or Benediction
+                end
             end
-            if (GetMobAction(mob:getID()+2) ~= 0) then
-                GetMobByID(mob:getID()+2):useMobAbility(3413); -- Benediction
-            end
-        end;
-    end;
+        end
+    end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
 end;
 
 function onMobDespawn(mob)
-    -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
-    local QuestionMark = GetNPCByID(16916819); -- The ??? that spawned this mob.
-    QuestionMark:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    
+    local qm = GetNPCByID(IXAERN_MNK_QM);
+    if (math.random(0,1) == 1) then
+        qm:setPos(380,0,540,0); -- G-7
+    else
+        qm:setPos(460,0,540,0); -- I-7
+    end;
+    qm:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;
