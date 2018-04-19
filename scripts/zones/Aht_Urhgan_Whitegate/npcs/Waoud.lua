@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 
     -- BEGINNINGS
     elseif (anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES
-            and player:getMainJob() == JOBS.BLU and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
+            and player:getMainJob() == dsp.jobs.BLU and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
         if (not divinationReady) then
             player:startEvent(63);
         elseif (player:needToZone()) then

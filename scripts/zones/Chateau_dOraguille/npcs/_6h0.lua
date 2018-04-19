@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 
     if (player:getVar("aBoysDreamCS") == 8) then
         player:startEvent(88);
-    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == JOBS.PLD) then
+    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == dsp.jobs.PLD) then
         player:startEvent(90);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(89);
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
         else
-            if (player:getMainJob() == JOBS.PLD) then
+            if (player:getMainJob() == dsp.jobs.PLD) then
                 player:addQuest(SANDORIA,UNDER_OATH);
             end
             player:delKeyItem(KNIGHTS_BOOTS);

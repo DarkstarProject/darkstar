@@ -42,7 +42,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, dsp.effects.NATURALISTS_ROLL, JOBS.GEO);
+        corsairSetup(caster, ability, action, dsp.effects.NATURALISTS_ROLL, dsp.jobs.GEO);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
@@ -59,9 +59,9 @@ function applyRoll(caster,target,ability,action,total)
     local phantomBase = 1; -- Base increment buff
     local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
 -- Check if COR Main or Sub
-    if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
+    if (caster:getMainJob() == dsp.jobs.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
-    elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
+    elseif (caster:getSubJob() == dsp.jobs.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effects.NATURALISTS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_ENH_MAGIC_DURATION) == false) then

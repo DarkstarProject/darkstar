@@ -10,7 +10,7 @@ require("scripts/globals/status");
 
 function onMobSkillCheck(target,mob,skill)
     -- can only used if not silenced
-    if (mob:getMainJob() == JOBS.BRD and mob:hasStatusEffect(dsp.effects.SILENCE) == false) then
+    if (mob:getMainJob() == dsp.jobs.BRD and mob:hasStatusEffect(dsp.effects.SILENCE) == false) then
         return 0;
     end
     return 1;

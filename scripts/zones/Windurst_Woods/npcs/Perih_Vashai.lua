@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(THE_FANGED_ONE);
             player:addItem(13117);
             player:messageSpecial(ITEM_OBTAINED,13117);
-            player:unlockJob(JOBS.RNG);
+            player:unlockJob(dsp.jobs.RNG);
             player:messageSpecial(PERIH_VASHAI_DIALOG);
             player:addFame(WINDURST, 30);
             player:completeQuest(WINDURST,THE_FANGED_ONE);

@@ -19,7 +19,7 @@ end;
 function onEffectTick(target,effect)
     local complete = false;
     local level = 0;
-    if (target:getMainJob() == JOBS.SCH) then
+    if (target:getMainJob() == dsp.jobs.SCH) then
         level = target:getMainLvl();
     else
         level = target:getSubLvl();

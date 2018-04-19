@@ -919,12 +919,12 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
     local mJob = mob:getMainJob();
 
     -- Spawn Pet for BST, and SMN
-    if (mJob == JOBS.BST or mJob == JOBS.SMN) then
+    if (mJob == dsp.jobs.BST or mJob == dsp.jobs.SMN) then
         if(mob:getPet() ~= nil) then
             local petId = nil;
 
             -- randomize pet for SMN
-            if (mJob == JOBS.SMN) then
+            if (mJob == dsp.jobs.SMN) then
                 petId = math.random(8, 14);
 
                 -- switch pet to Ramuh if pet is Fenrir
