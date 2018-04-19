@@ -118,7 +118,7 @@ INSERT INTO `traits` VALUES ('7','max hp boost','2','35','2','2','60',null,'0');
 INSERT INTO `traits` VALUES ('7','max hp boost','2','55','3','2','120',null,'0');
 INSERT INTO `traits` VALUES ('7','max hp boost','2','70','4','2','180',null,'0');
 INSERT INTO `traits` VALUES ('7','max hp boost','2','86','5','2','240','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('7','max hp boost','2','96','6','2','280','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('7','max hp boost','2','96','6','2','300','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('7','max hp boost','7','45','1','2','30','SOA','0');
 INSERT INTO `traits` VALUES ('7','max hp boost','7','85','2','2','60','SOA','0');
 INSERT INTO `traits` VALUES ('7','max hp boost','13','20','1','2','30','SOA','0');
