@@ -422,6 +422,8 @@ INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','99','3','487','9','A
 INSERT INTO `traits` VALUES ('114','tranquil heart','3','21','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','5','26','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','20','30','1','0','0','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('127','smite','2','40','1','898','25','SOA','0'); -- 25/256 ~ 9.7%
+INSERT INTO `traits` VALUES ('127','smite','2','80','2','898','38','SOA','0'); -- 38/256 ~ 15%
 
 -- --- RUNE FENCER --- -- (Tenacity needs verifying)
 -- Tenacity Tier I

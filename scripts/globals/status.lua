@@ -1449,12 +1449,14 @@ MOD_ANCIENT_CIRCLE_DURATION = 859
 MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
 
+MOD_SMITE                   = 898
+
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 898 -- stuff
 -- SPARE = 899 -- stuff
 -- SPARE = 900 -- stuff
+-- SPARE = 901 -- stuff
 
 ------------------------------------
 -- Merit Definitions
