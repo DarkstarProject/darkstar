@@ -33,7 +33,7 @@ function onUseAbility(player,target,ability,action)
 
     if (target:isMob()) then
         local enmityShed = 50;
-        if player:getMainJob() ~= JOBS.DRG then
+        if player:getMainJob() ~= dsp.jobs.DRG then
             enmityShed = 30;
         end
         target:lowerEnmity(player, enmityShed + player:getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION)); -- reduce total accumulated enmity

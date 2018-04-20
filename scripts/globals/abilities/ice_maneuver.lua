@@ -39,7 +39,7 @@ function onUseAbility(player,target,ability)
         target:addStatusEffect(dsp.effects.OVERLOAD, 0, 0, overload);
     else
         local level;
-        if (target:getMainJob() == JOBS.PUP) then
+        if (target:getMainJob() == dsp.jobs.PUP) then
             level = target:getMainLvl()
         else
             level = target:getSubLvl()

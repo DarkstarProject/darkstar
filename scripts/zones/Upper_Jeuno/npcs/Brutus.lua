@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 70) then
         player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
         player:addTitle(ANIMAL_TRAINER);
-        player:unlockJob(JOBS.BST);
+        player:unlockJob(dsp.jobs.BST);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
         player:addFame(JEUNO, 30);
         player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);

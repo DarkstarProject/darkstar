@@ -22,7 +22,7 @@ function onTrigger(player,npc)
     if (
         player:getVar("KnightStalker_Progress") == 4 and
         player:getVar("KnightStalker_Kill") == 0 and
-        player:getMainJob() == JOBS.DRG and
+        player:getMainJob() == dsp.jobs.DRG and
         player:getPetID() == PET_WYVERN and
         not GetMobByID(CLEUVARION_M_RESOAIX):isSpawned() and
         not GetMobByID(ROMPAULION_S_CITALLE):isSpawned()

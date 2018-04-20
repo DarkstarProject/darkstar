@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 246) then
         player:delKeyItem(SEALED_DAGGER);
         player:addTitle(SHADOW_WALKER);
-        player:unlockJob(JOBS.NIN);
+        player:unlockJob(dsp.jobs.NIN);
         player:messageSpecial(UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);

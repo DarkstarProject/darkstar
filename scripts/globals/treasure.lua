@@ -243,7 +243,7 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
         end
     elseif (not(isTHFKey(trade))) then
         chance_answer = {1,nil}; -- Zone Key is always 100% success
-    elseif (player:getMainJob() == JOBS.THF and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
+    elseif (player:getMainJob() == dsp.jobs.THF and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
         success = thfKeySuccess(trade,player:getMainLvl(),treasureLVL);
         chance_answer = {success,nil};
     else

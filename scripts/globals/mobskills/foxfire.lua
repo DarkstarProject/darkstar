@@ -12,7 +12,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local job = mob:getMainJob();
-    if (job == JOBS.RDM or job == JOBS.THF or job == JOBS.PLD or job == JOBS.BST or job == JOBS.RNG or job == JOBS.BRD or job == JOBS.NIN or job == JOBS.COR) then
+    if (job == dsp.jobs.RDM or job == dsp.jobs.THF or job == dsp.jobs.PLD or job == dsp.jobs.BST or job == dsp.jobs.RNG or job == dsp.jobs.BRD or job == dsp.jobs.NIN or job == dsp.jobs.COR) then
         return 0;
     end
     return 1;

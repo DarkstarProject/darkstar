@@ -14,7 +14,7 @@ end;
 
 function onUseAbility(player,target,ability)
     local amount = 12;
-    if (player:getMainJob() == JOBS.SAM) then
+    if (player:getMainJob() == dsp.jobs.SAM) then
         amount = 20;
     end
     local duration = 15 + player:getMod(MOD_MEDITATE_DURATION);

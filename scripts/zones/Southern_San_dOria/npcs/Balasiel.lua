@@ -141,7 +141,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(BOOK_OF_THE_EAST);
             player:addItem(12306);
             player:messageSpecial(ITEM_OBTAINED, 12306); -- Kite Shield
-            player:unlockJob(JOBS.PLD);
+            player:unlockJob(dsp.jobs.PLD);
             player:messageSpecial(UNLOCK_PALADIN);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,A_KNIGHT_S_TEST);
