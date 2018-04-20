@@ -1503,6 +1503,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (attack.IsGuarded())
                 {
                     actionTarget.reaction = REACTION_GUARD;
+                    battleutils::HandleTacticalGuard(PTarget);
                 }
 
                 // Apply Feint

@@ -395,6 +395,9 @@ INSERT INTO `traits` VALUES ('100','tactical parry','19','97','40','486','5','AB
 INSERT INTO `traits` VALUES ('100','tactical parry','22','40','10','486','2',null,'0');
 INSERT INTO `traits` VALUES ('100','tactical parry','22','60','20','486','3',null,'0');
 INSERT INTO `traits` VALUES ('100','tactical parry','22','97','30','486','4',null,'0');
+INSERT INTO `traits` VALUES ('101','tactical guard','2','77','1','899','30','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('101','tactical guard','2','87','2','899','45','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('101','tactical guard','2','97','3','899','60','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','85','1','174','8','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','95','2','174','12','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','12','78','1','174','8','ABYSSEA','0');
