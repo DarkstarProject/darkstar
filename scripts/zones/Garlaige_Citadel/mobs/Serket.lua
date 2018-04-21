@@ -1,11 +1,17 @@
 -----------------------------------
 -- Area: Garlaige Citadel (200)
---  NM:  Serket
+--   NM: Serket
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/titles");
 -----------------------------------
 
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+end;
+
 function onMobSpawn(mob)
+    mob:setMobMod(MOBMOD_RAGE, 1800); -- 30 minute rage timer
 end;
 
 function onMobDeath(mob, player, isKiller)
@@ -13,9 +19,6 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-
-    -- Set Serket's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
+    mob:setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours
 end;
