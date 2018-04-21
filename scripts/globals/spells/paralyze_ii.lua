@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = 35;
     params.bonus = merits*2;
     params.effect = dsp.effects.PARALYSIS;
-    local resist = applyResistanceEffect(caster, target, spell, params);
+    duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 90) then
         if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
@@ -53,15 +53,13 @@ function onSpellCast(caster,target,spell)
         end
         caster:delStatusEffect(dsp.effects.SABOTEUR);
 
-        if (resist >= 0.5) then -- There are no quarter or less hits, if target resists more than .5 spell is resisted completely
-            if (target:addStatusEffect(dsp.effects.PARALYSIS,potency,0,duration*resist)) then
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
-            else
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
-            end
+        if (target:addStatusEffect(dsp.effects.PARALYSIS,potency,0,duration*resist)) then
+            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
+    else
+        spell:setMsg(msgBasic.MAGIC_RESIST);
     end
     return dsp.effects.PARALYSIS;
 end;
