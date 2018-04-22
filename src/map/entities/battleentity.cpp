@@ -1425,11 +1425,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 actionTarget.messageID = 70;
                 actionTarget.reaction = REACTION_PARRY;
                 actionTarget.speceffect = SPECEFFECT_NONE;
-
-                if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PTarget))
-                {
-                    battleutils::HandleTacticalParry(PChar);
-                }
+                battleutils::HandleTacticalParry(PTarget);
                 battleutils::HandleIssekiganEnmityBonus(PTarget, this);
             }
             else if (attack.CheckAnticipated() || attack.CheckCounter())
@@ -1506,10 +1502,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (attack.IsGuarded())
                 {
                     actionTarget.reaction = REACTION_GUARD;
-                    if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PTarget))
-                    {
-                        battleutils::HandleTacticalGuard(PChar);
-                    }
+                    battleutils::HandleTacticalGuard(PTarget);
                 }
 
                 // Apply Feint
