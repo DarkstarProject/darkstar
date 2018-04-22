@@ -53,7 +53,7 @@ function onSpellCast(caster,target,spell)
         end
         caster:delStatusEffect(dsp.effects.SABOTEUR);
 
-        if (target:addStatusEffect(dsp.effects.PARALYSIS,potency,0,duration*resist)) then
+        if (target:addStatusEffect(dsp.effects.PARALYSIS,potency,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
