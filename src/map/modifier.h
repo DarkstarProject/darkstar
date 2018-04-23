@@ -397,6 +397,7 @@ enum class Mod
 
     // Ninja
     UTSUSEMI                  = 307, // Everyone's favorite --tracks shadows.
+    UTSUSEMI_BONUS            = 900, // Extra shadows from gear
     NINJA_TOOL                = 308, // Percent chance to not use a tool.
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
 
@@ -711,9 +712,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 898, // stuff
-    // SPARE = 899, // stuff
-    // SPARE = 900, // stuff
+    // SPARE = 901, // stuff
+    // SPARE = 902, // stuff
+    // SPARE = 903, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

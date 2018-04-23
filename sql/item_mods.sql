@@ -3662,6 +3662,8 @@ INSERT INTO `item_mods` VALUES (11156,1,23);
 INSERT INTO `item_mods` VALUES (11156,8,5);
 INSERT INTO `item_mods` VALUES (11156,9,5);
 INSERT INTO `item_mods` VALUES (11156,384,40);
+INSERT INTO `item_mods` VALUES (11156,486,15); -- Tactical Parry +15 TP/Parry
+INSERT INTO `item_mods` VALUES (11156,900,1); -- Enhances "Utsusemi"
 INSERT INTO `item_mods` VALUES (11157,1,26);
 INSERT INTO `item_mods` VALUES (11157,10,10);
 INSERT INTO `item_mods` VALUES (11157,23,12);
@@ -4125,6 +4127,7 @@ INSERT INTO `item_mods` VALUES (11256,1,21);
 INSERT INTO `item_mods` VALUES (11256,8,4);
 INSERT INTO `item_mods` VALUES (11256,9,4);
 INSERT INTO `item_mods` VALUES (11256,384,30);
+INSERT INTO `item_mods` VALUES (11256,486,10); -- Tactial Parry +10 TP/Parry
 INSERT INTO `item_mods` VALUES (11257,1,24);
 INSERT INTO `item_mods` VALUES (11257,10,7);
 INSERT INTO `item_mods` VALUES (11257,23,8);
@@ -31614,6 +31617,8 @@ INSERT INTO `item_mods` VALUES (26202,247,17);    -- Resist Bind+17
 INSERT INTO `item_mods` VALUES (26202,249,17);    -- Resist Gravity+17
 INSERT INTO `item_mods` VALUES (26248,1,15);      -- Alaunus's Cape: DEF 15
 INSERT INTO `item_mods` VALUES (26248,310,25);    -- Cursna effect +25%
+INSERT INTO `item_mods` VALUES (26258,1,16);	  -- Andartia's Mantle: DEF 16
+INSERT INTO `item_mods` VALUES (26258,900,1);	  -- "Utsusemi" +1
 INSERT INTO `item_mods` VALUES (26324,8,7); -- Latria Sash STR+7
 INSERT INTO `item_mods` VALUES (26324,9,7); -- DEX+7
 INSERT INTO `item_mods` VALUES (26324,10,7); -- VIT+7
@@ -38822,6 +38827,7 @@ INSERT INTO `item_mods` VALUES (27435,31,51);
 INSERT INTO `item_mods` VALUES (27435,68,37);
 INSERT INTO `item_mods` VALUES (27435,384,40);
 INSERT INTO `item_mods` VALUES (27435,486,17);
+INSERT INTO `item_mods` VALUES (27435,900,1); -- "Utsusemi" +1
 INSERT INTO `item_mods` VALUES (27436,1,73);
 INSERT INTO `item_mods` VALUES (27436,2,15);
 INSERT INTO `item_mods` VALUES (27436,8,14);
@@ -38835,6 +38841,7 @@ INSERT INTO `item_mods` VALUES (27436,31,75);
 INSERT INTO `item_mods` VALUES (27436,68,80);
 INSERT INTO `item_mods` VALUES (27436,384,51);
 INSERT INTO `item_mods` VALUES (27436,486,20);
+INSERT INTO `item_mods` VALUES (27436,900,1); -- "Utsusemi" +1
 INSERT INTO `item_mods` VALUES (27437,1,60);
 INSERT INTO `item_mods` VALUES (27437,2,7);
 INSERT INTO `item_mods` VALUES (27437,8,10);
