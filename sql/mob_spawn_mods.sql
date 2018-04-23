@@ -671,6 +671,11 @@ INSERT INTO `mob_spawn_mods` VALUES (17588701,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588702,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588703,55,180,1);
 
+-- [Tonberry Kinq]
+-- Values taken from wiki on 04/23/2018 (http://ffxiclopedia.wikia.com/wiki/Tonberry_Kinq)
+INSERT INTO `mob_spawn_mods` VALUES (17428677,1,18000,1); -- min gil 18000 
+INSERT INTO `mob_spawn_mods` VALUES (17428677,2,30000,1); -- max gil 30000
+
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
