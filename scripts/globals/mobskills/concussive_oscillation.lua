@@ -18,7 +18,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.3;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,MOBPARAM_3_SHADOW);
-    local typeEffect = EFFECT_WEIGHT;
+    local typeEffect = dsp.effects.WEIGHT;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 300);
 

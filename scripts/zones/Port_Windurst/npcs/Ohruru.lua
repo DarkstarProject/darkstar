@@ -21,14 +21,14 @@ end;
 function onTrigger(player,npc)
 --    player:delQuest(WINDURST,CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
---    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
+--    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effects.MUTE) == false and player:hasStatusEffect(dsp.effects.BANE) == false and player:hasStatusEffect(dsp.effects.PLAGUE) == false) then
 --        rand = math.random(1,3);
 --        if (rand == 1) then
---            player:addStatusEffect(EFFECT_MUTE,0,0,100);
+--            player:addStatusEffect(dsp.effects.MUTE,0,0,100);
 --        elseif (rand == 2) then
---            player:addStatusEffect(EFFECT_BANE,0,0,100);
+--            player:addStatusEffect(dsp.effects.BANE,0,0,100);
 --        elseif (rand == 3) then
---            player:addStatusEffect(EFFECT_PLAGUE,0,0,100);
+--            player:addStatusEffect(dsp.effects.PLAGUE,0,0,100);
 --        end
 --    end
 -- ======== FOR TESTING ONLY ==========-----
@@ -49,11 +49,11 @@ function onTrigger(player,npc)
             player:startEvent(231); -- CATCH IT IF YOU CAN: Before Quest 2
         end
 
-    elseif (Catch >= 1 and (player:hasStatusEffect(EFFECT_MUTE) == true or player:hasStatusEffect(EFFECT_BANE) == true or player:hasStatusEffect(EFFECT_PLAGUE) == true)) then
+    elseif (Catch >= 1 and (player:hasStatusEffect(dsp.effects.MUTE) == true or player:hasStatusEffect(dsp.effects.BANE) == true or player:hasStatusEffect(dsp.effects.PLAGUE) == true)) then
         player:startEvent(246); -- CATCH IT IF YOU CAN: Quest Turn In 1
     elseif (Catch >= 1 and player:needToZone()) then
         player:startEvent(255); -- CATCH IT IF YOU CAN: After Quest
-    elseif (Catch == 1 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
+    elseif (Catch == 1 and player:hasStatusEffect(dsp.effects.MUTE) == false and player:hasStatusEffect(dsp.effects.BANE) == false and player:hasStatusEffect(dsp.effects.PLAGUE) == false) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(248); -- CATCH IT IF YOU CAN: During Quest 1
@@ -79,16 +79,16 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then
         player:needToZone(true);
-        if (player:hasStatusEffect(EFFECT_MUTE) == true) then
-            player:delStatusEffect(EFFECT_MUTE);
+        if (player:hasStatusEffect(dsp.effects.MUTE) == true) then
+            player:delStatusEffect(dsp.effects.MUTE);
             player:addGil(GIL_RATE*1000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
-        elseif (player:hasStatusEffect(EFFECT_BANE) == true) then
-            player:delStatusEffect(EFFECT_BANE);
+        elseif (player:hasStatusEffect(dsp.effects.BANE) == true) then
+            player:delStatusEffect(dsp.effects.BANE);
             player:addGil(GIL_RATE*1200);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200);
-        elseif (player:hasStatusEffect(EFFECT_PLAGUE) == true) then
-            player:delStatusEffect(EFFECT_PLAGUE);
+        elseif (player:hasStatusEffect(dsp.effects.PLAGUE) == true) then
+            player:delStatusEffect(dsp.effects.PLAGUE);
             player:addGil(GIL_RATE*1500);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         end

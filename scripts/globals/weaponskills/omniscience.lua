@@ -36,8 +36,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (damage > 0) then
         local duration = (tp/1000 * 60);
-        if (target:hasStatusEffect(EFFECT_MAGIC_ATK_DOWN) == false) then
-            target:addStatusEffect(EFFECT_MAGIC_ATK_DOWN, 10, 0, duration);
+        if (target:hasStatusEffect(dsp.effects.MAGIC_ATK_DOWN) == false) then
+            target:addStatusEffect(dsp.effects.MAGIC_ATK_DOWN, 10, 0, duration);
         end
     end
 

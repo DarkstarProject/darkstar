@@ -11,10 +11,10 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onUseAbility(pet, target, skill, action)
-    if (target:delStatusEffect(EFFECT_POISON)) then
+    if (target:delStatusEffect(dsp.effects.POISON)) then
         skill:setMsg(msgBasic.JA_REMOVE_EFFECT);
     else
         skill:setMsg(msgBasic.JA_NO_EFFECT);
     end
-    return EFFECT_POISON;
+    return dsp.effects.POISON;
 end

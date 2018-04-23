@@ -21,7 +21,7 @@ function onPetAbility(target, pet, skill)
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
 
     if (damage.hitslanded > 0) then
-        target:addStatusEffect(EFFECT_PARALYSIS, 22.5, 0, 90);
+        target:addStatusEffect(dsp.effects.PARALYSIS, 22.5, 0, 90);
     end;
 
     target:delHP(totaldamage);

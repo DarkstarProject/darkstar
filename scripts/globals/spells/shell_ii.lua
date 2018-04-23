@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
 
     duration = calculateDurationForLvl(duration, 37, target:getMainLvl());
 
-    local typeEffect = EFFECT_SHELL;
+    local typeEffect = dsp.effects.SHELL;
     if (target:addStatusEffect(typeEffect, power, 0, duration)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else

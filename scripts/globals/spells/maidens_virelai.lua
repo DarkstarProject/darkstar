@@ -30,13 +30,13 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = bonus;
-    params.effect = EFFECT_CHARM_I;
+    params.effect = dsp.effects.CHARM_I;
     local resist = applyResistanceEffect(caster, target, spell, params);
     -- print(resist);
     if (resist >= 0.25 and caster:getCharmChance(target, false) > 0) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         if (caster:isMob()) then
-            target:addStatusEffect(EFFECT_CHARM_I, 0, 0, 30*resist);
+            target:addStatusEffect(dsp.effects.CHARM_I, 0, 0, 30*resist);
             caster:charm(target);
         else
             caster:charmPet(target);
@@ -46,5 +46,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
-    return EFFECT_CHARM_I;
+    return dsp.effects.CHARM_I;
 end;

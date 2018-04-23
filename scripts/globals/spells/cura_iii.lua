@@ -72,7 +72,7 @@ function onSpellCast(caster,target,spell)
     end
 
     --Apply Afflatus Misery Bonus to the Result
-    if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(dsp.effects.AFFLATUS_MISERY)) then
         if (caster:getID() == target:getID()) then -- Let's use a local var to hold the power of Misery so the boost is applied to all targets,
             caster:setLocalVar("Misery_Power", caster:getMod(MOD_AFFLATUS_MISERY));
         end;

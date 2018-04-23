@@ -19,7 +19,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     local duration = 300;
-    local typeEffect = EFFECT_MAGIC_SHIELD;
+    local typeEffect = dsp.effects.MAGIC_SHIELD;
     local msg = MobBuffMove(mob,typeEffect,3,0,duration);
 
     skill:setMsg(msg);

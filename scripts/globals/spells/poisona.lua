@@ -11,10 +11,10 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:delStatusEffect(EFFECT_POISON)) then
+    if (target:delStatusEffect(dsp.effects.POISON)) then
         spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
-    return EFFECT_POISON;
+    return dsp.effects.POISON;
 end;

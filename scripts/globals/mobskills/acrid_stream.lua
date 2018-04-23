@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_MAGIC_DEF_DOWN;
+    local typeEffect = dsp.effects.MAGIC_DEF_DOWN;
     local power = 20;
 
     local duration = 120;

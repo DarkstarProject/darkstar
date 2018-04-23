@@ -22,14 +22,14 @@ end;
 function onUseAbility(player,target,ability)
     -- Applying Weapon Bash stun. Rate is said to be near 100%, so let's say 99%.
     if (math.random()*100 < 99) then
-        target:addStatusEffect(EFFECT_STUN,1,0,6);
+        target:addStatusEffect(dsp.effects.STUN,1,0,6);
     end
 
     -- Weapon Bash deals damage dependant of Dark Knight level
     local darkKnightLvl = 0;
-    if (player:getMainJob() == JOBS.DRK) then
+    if (player:getMainJob() == dsp.jobs.DRK) then
         darkKnightLvl = player:getMainLvl();    -- Use Mainjob Lvl
-    elseif (player:getSubJob() == JOBS.DRK) then
+    elseif (player:getSubJob() == dsp.jobs.DRK) then
         darkKnightLvl = player:getSubLvl();    -- Use Subjob Lvl
     end
 

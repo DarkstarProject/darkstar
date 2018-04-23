@@ -29,6 +29,6 @@ function onMobWeaponSkill(target, mob, skill)
 
    -- Witnessed 280 to a melee, 400 to a BRD, and 500 to a wyvern, so...
    target:delHP(dmg);
-   MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, math.random(30, 60));
+   MobStatusEffectMove(mob, target, dsp.effects.SLEEP_I, 1, 0, math.random(30, 60));
    return dmg;
 end;

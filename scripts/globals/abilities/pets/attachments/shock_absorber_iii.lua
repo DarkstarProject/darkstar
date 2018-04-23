@@ -8,7 +8,7 @@ function onEquip(pet)
     pet:setLocalVar("shockabsorber", pet:getLocalVar("shockabsorber") + 4)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_SHOCK_ABSORBER_III", function(automaton, target)
         local master = automaton:getMaster()
-        if master and master:countEffect(EFFECT_EARTH_MANEUVER) > 0 and automaton:getLocalVar("stoneskin") < VanadielTime() then
+        if master and master:countEffect(dsp.effects.EARTH_MANEUVER) > 0 and automaton:getLocalVar("stoneskin") < VanadielTime() then
             automaton:useMobAbility(1946, automaton)
         end
     end)

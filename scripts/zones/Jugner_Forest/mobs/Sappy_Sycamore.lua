@@ -17,12 +17,12 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to slow on melee.
-    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_SLOW) == true)) then
+    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effects.SLOW) == true)) then
         return 0,0,0;
     else
         local duration = math.random(15,25);
-        target:addStatusEffect(EFFECT_SLOW,15,0,duration); -- sproud smack like
-        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
+        target:addStatusEffect(dsp.effects.SLOW,15,0,duration); -- sproud smack like
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, dsp.effects.SLOW;
     end
 end;
 

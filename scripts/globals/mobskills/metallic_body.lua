@@ -20,6 +20,6 @@ function onMobWeaponSkill(target, mob, skill)
         power = ???  Betting NMs aren't 25 but I don't have data..
     end
     ]]
-    skill:setMsg(MobBuffMove(mob, EFFECT_STONESKIN, power, 0, 300));
-    return EFFECT_STONESKIN;
+    skill:setMsg(MobBuffMove(mob, dsp.effects.STONESKIN, power, 0, 300));
+    return dsp.effects.STONESKIN;
 end;

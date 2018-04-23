@@ -8,28 +8,28 @@ WYVERN_OFFENSIVE = 1
 WYVERN_DEFENSIVE = 2
 WYVERN_MULTI = 3
 local wyvernTypes = {
-    [JOBS.WAR] = WYVERN_OFFENSIVE,
-    [JOBS.MNK] = WYVERN_OFFENSIVE,
-    [JOBS.WHM] = WYVERN_DEFENSIVE,
-    [JOBS.BLM] = WYVERN_DEFENSIVE,
-    [JOBS.RDM] = WYVERN_DEFENSIVE,
-    [JOBS.THF] = WYVERN_OFFENSIVE,
-    [JOBS.PLD] = WYVERN_MULTI,
-    [JOBS.DRK] = WYVERN_MULTI,
-    [JOBS.BST] = WYVERN_OFFENSIVE,
-    [JOBS.BRD] = WYVERN_MULTI,
-    [JOBS.RNG] = WYVERN_OFFENSIVE,
-    [JOBS.SAM] = WYVERN_OFFENSIVE,
-    [JOBS.NIN] = WYVERN_MULTI,
-    [JOBS.DRG] = WYVERN_OFFENSIVE,
-    [JOBS.SMN] = WYVERN_DEFENSIVE,
-    [JOBS.BLU] = WYVERN_DEFENSIVE,
-    [JOBS.COR] = WYVERN_OFFENSIVE,
-    [JOBS.PUP] = WYVERN_OFFENSIVE,
-    [JOBS.DNC] = WYVERN_OFFENSIVE,
-    [JOBS.SCH] = WYVERN_DEFENSIVE,
-    [JOBS.GEO] = WYVERN_DEFENSIVE,
-    [JOBS.RUN] = WYVERN_MULTI
+    [dsp.jobs.WAR] = WYVERN_OFFENSIVE,
+    [dsp.jobs.MNK] = WYVERN_OFFENSIVE,
+    [dsp.jobs.WHM] = WYVERN_DEFENSIVE,
+    [dsp.jobs.BLM] = WYVERN_DEFENSIVE,
+    [dsp.jobs.RDM] = WYVERN_DEFENSIVE,
+    [dsp.jobs.THF] = WYVERN_OFFENSIVE,
+    [dsp.jobs.PLD] = WYVERN_MULTI,
+    [dsp.jobs.DRK] = WYVERN_MULTI,
+    [dsp.jobs.BST] = WYVERN_OFFENSIVE,
+    [dsp.jobs.BRD] = WYVERN_MULTI,
+    [dsp.jobs.RNG] = WYVERN_OFFENSIVE,
+    [dsp.jobs.SAM] = WYVERN_OFFENSIVE,
+    [dsp.jobs.NIN] = WYVERN_MULTI,
+    [dsp.jobs.DRG] = WYVERN_OFFENSIVE,
+    [dsp.jobs.SMN] = WYVERN_DEFENSIVE,
+    [dsp.jobs.BLU] = WYVERN_DEFENSIVE,
+    [dsp.jobs.COR] = WYVERN_OFFENSIVE,
+    [dsp.jobs.PUP] = WYVERN_OFFENSIVE,
+    [dsp.jobs.DNC] = WYVERN_OFFENSIVE,
+    [dsp.jobs.SCH] = WYVERN_DEFENSIVE,
+    [dsp.jobs.GEO] = WYVERN_DEFENSIVE,
+    [dsp.jobs.RUN] = WYVERN_MULTI
 }
 
 -----------------------------------
@@ -48,25 +48,25 @@ function onMobSpawn(mob)
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
             local party = player:getParty()
             for _,member in ipairs(party) do
-                if member:hasStatusEffect(EFFECT_POISON) then
+                if member:hasStatusEffect(dsp.effects.POISON) then
                     player:getPet():useJobAbility(627, member)
                     break
-                elseif member:hasStatusEffect(EFFECT_BLINDNESS) and player:getPet():getMainLvl() > 20 then
+                elseif member:hasStatusEffect(dsp.effects.BLINDNESS) and player:getPet():getMainLvl() > 20 then
                     player:getPet():useJobAbility(628, member)
                     break
-                elseif member:hasStatusEffect(EFFECT_PARALYSIS) and player:getPet():getMainLvl() > 40 then
+                elseif member:hasStatusEffect(dsp.effects.PARALYSIS) and player:getPet():getMainLvl() > 40 then
                     player:getPet():useJobAbility(629, member)
                     break
-                elseif (member:hasStatusEffect(EFFECT_CURSE_I) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
+                elseif (member:hasStatusEffect(dsp.effects.CURSE_I) or member:hasStatusEffect(dsp.effects.DOOM)) and player:getPet():getMainLvl() > 60 then
                     player:getPet():useJobAbility(637, member)
                     break
-                elseif (member:hasStatusEffect(EFFECT_DISEASE) or member:hasStatusEffect(EFFECT_PLAGUE)) and player:getPet():getMainLvl() > 80 then
+                elseif (member:hasStatusEffect(dsp.effects.DISEASE) or member:hasStatusEffect(dsp.effects.PLAGUE)) and player:getPet():getMainLvl() > 80 then
                     player:getPet():useJobAbility(638, member)
                     break
                 end
             end
         end);
-        if (master:getSubJob() ~= JOBS.SMN) then
+        if (master:getSubJob() ~= dsp.jobs.SMN) then
             master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
                 -- check master first!
                 local threshold = 33;

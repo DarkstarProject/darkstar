@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-   player:addStatusEffect(EFFECT_SNEAK_ATTACK,1,0,60);
+   player:addStatusEffect(dsp.effects.SNEAK_ATTACK,1,0,60);
 end;

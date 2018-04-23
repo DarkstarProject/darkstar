@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
     OrcishDriedFood = player:hasKeyItem(ORCISH_DRIED_FOOD);
 
-    if (player:getMainJob() == JOBS.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
+    if (player:getMainJob() == dsp.jobs.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
         if (player:getVar("has_seen_rdmaf1_quest_already") == 0) then
             player:startEvent(70);
         else

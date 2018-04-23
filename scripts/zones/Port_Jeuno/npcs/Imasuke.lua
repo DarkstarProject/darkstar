@@ -66,7 +66,11 @@ function onEventFinish(player,csid,option)
         if (player:hasKeyItem(MAP_OF_DELKFUTTS_TOWER) == false) then
             player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
             player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_DELKFUTTS_TOWER);
-        end;
+        else
+            player:addGil(2000 * GIL_RATE);
+            player:messageSpecial(GIL_OBTAINED, 2000 * GIL_RATE);
+            player:addExp(2000 * EXP_RATE);
+        end
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);

@@ -14,5 +14,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local power = 20 + player:getMod(MOD_FOCUS_EFFECT);
-    player:addStatusEffect(EFFECT_FOCUS,power,0,120);
+    player:addStatusEffect(dsp.effects.FOCUS,power,0,120);
 end;

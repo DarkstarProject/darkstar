@@ -1,6 +1,6 @@
 -----------------------------------
 --
---    EFFECT_PRELUDE
+--    dsp.effects.PRELUDE
 -- getPower returns the TIER (e.g. 1,2,3,4)
 -----------------------------------
 

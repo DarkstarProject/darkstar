@@ -15,7 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_ENSTONE;
+    local typeEffect = dsp.effects.ENSTONE;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60));
 

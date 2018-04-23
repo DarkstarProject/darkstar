@@ -36,7 +36,7 @@ function onUseAbility(player, target, ability)
         damage = 90 + damage;
     end
 
-    if (player:getMainJob() ~= JOBS.PLD) then
+    if (player:getMainJob() ~= dsp.jobs.PLD) then
         damage = math.floor(damage / 2.5);
         chance = 60;
     else
@@ -46,7 +46,7 @@ function onUseAbility(player, target, ability)
     chance = chance + (player:getMainLvl() - target:getMainLvl())*5;
 
     if (math.random()*100 < chance) then
-        target:addStatusEffect(EFFECT_STUN,1,0,6);
+        target:addStatusEffect(dsp.effects.STUN,1,0,6);
     end
 
     -- randomize damage

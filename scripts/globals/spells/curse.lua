@@ -24,11 +24,11 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_CURSE_I;
+    params.effect = dsp.effects.CURSE_I;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 150) then --Do it!
-        if (target:addStatusEffect(EFFECT_CURSE_I,power,0,duration)) then
+        if (target:addStatusEffect(dsp.effects.CURSE_I,power,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -37,5 +37,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
-    return EFFECT_CURSE_I;
+    return dsp.effects.CURSE_I;
 end;

@@ -17,7 +17,7 @@ end;
 
 function onMobSpawn(mob)
     mob:AnimationSub(0); -- Mouth closed
-    mob:addStatusEffectEx(EFFECT_FLEE,0,100,0,60);
+    mob:addStatusEffectEx(dsp.effects.FLEE,0,100,0,60);
     mob:setMod(MOD_TRIPLE_ATTACK, 20);
     mob:setMod(MOD_REGEN, 10);
     mob:addMod(MOD_BINDRES, 30);
@@ -38,7 +38,7 @@ end;
 -- onMobskill -- When this functionlity is added, this should work.
 -- function onUseAbility(mob,target,ability)
     -- if (ability:getID() == 437) then -- Perfect Dodge
-        -- mob:addStatusEffectEx(EFFECT_FLEE,0,100,0,30);
+        -- mob:addStatusEffectEx(dsp.effects.FLEE,0,100,0,30);
     -- else
         -- if (mob:getID() == JAILER_OF_PRUDENCE_1 and GetMobAction(JAILER_OF_PRUDENCE_2) > 0 and GetMobAction(JAILER_OF_PRUDENCE_2) ~= ACTION_SLEEP and GetMobAction(JAILER_OF_PRUDENCE_2) ~= ACTION_STUN) then
             -- if (GetMobByID(PrudenceTwo):checkDistance(mob) <= 10) then

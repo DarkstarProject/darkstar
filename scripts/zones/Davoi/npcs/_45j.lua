@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(BLOOD_ORB);
             player:addKeyItem(CURSED_ORB);
             player:messageSpecial(KEYITEM_OBTAINED, CURSED_ORB);
-            player:addStatusEffect(EFFECT_CURSE_I,50,0,900);
+            player:addStatusEffect(dsp.effects.CURSE_I,50,0,900);
         end
     end
 

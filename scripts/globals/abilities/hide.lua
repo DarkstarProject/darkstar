@@ -16,5 +16,5 @@ end;
 function onUseAbility(player,target,ability)
     local duration = math.random(30, 300);
     duration = duration * (1 + player:getMod(MOD_HIDE_DURATION)/100);
-    player:addStatusEffect(EFFECT_HIDE, 1, 0, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
+    player:addStatusEffect(dsp.effects.HIDE, 1, 0, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
 end;

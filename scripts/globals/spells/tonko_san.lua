@@ -12,11 +12,11 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:hasStatusEffect(EFFECT_INVISIBLE) == false) then
-        target:addStatusEffect(EFFECT_INVISIBLE,0,10,420);
+    if (target:hasStatusEffect(dsp.effects.INVISIBLE) == false) then
+        target:addStatusEffect(dsp.effects.INVISIBLE,0,10,420);
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect.
+        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no dsp.effects.
     end
-    return EFFECT_INVISIBLE;
+    return dsp.effects.INVISIBLE;
 end;

@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
         player:addTitle(HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(DRAGON_CURSE_REMEDY);
-        player:unlockJob(JOBS.DRG);
+        player:unlockJob(dsp.jobs.DRG);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);

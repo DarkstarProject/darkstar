@@ -53,7 +53,7 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.0625) then
-        local typeEffect = EFFECT_STUN;
+        local typeEffect = dsp.effects.STUN;
         target:delStatusEffect(typeEffect); -- Wiki says it can overwrite itself or other binds
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));
     end

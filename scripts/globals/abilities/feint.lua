@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local augment = player:getMod(MOD_AUGMENTS_FEINT) * player:getMerit(MERIT_FEINT) / 25; -- Divide by the merit value (feint is 25) to get the number of merit points
-    player:addStatusEffect(EFFECT_FEINT, 150 + augment, 0, 60); -- -150 Evasion base
+    player:addStatusEffect(dsp.effects.FEINT, 150 + augment, 0, 60); -- -150 Evasion base
 end;

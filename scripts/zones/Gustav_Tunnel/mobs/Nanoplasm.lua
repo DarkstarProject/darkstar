@@ -1,22 +1,24 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Nanoplasm
+--   NM: Nanoplasm
+-- Note: Part of mission "The Salt of the Earth"
 -----------------------------------
-package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
+require("scripts/zones/Gustav_Tunnel/MobIDs");
+require("scripts/globals/missions");
 -----------------------------------
-require("scripts/zones/Gustav_Tunnel/TextIDs");
-require("scripts/globals/status");
 
 function onMobDeath(mob, player, isKiller)
-    local victory = true;
-
-    for plasm = 17645801,17645808 do
-        if (not GetMobByID(plasm):isDead()) then
-            victory = false;
+    if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 2) then
+        local victory = true;
+        for i = GIGAPLASM, GIGAPLASM + 14 do
+            if (GetMobByID(i):isAlive()) then
+                victory = false;
+                break;
+            end
         end
-    end
 
-    if (victory == true) then
-        player:setVar("BASTOK91",3);
+        if (victory) then
+            player:setVar("BASTOK91", 3);
+        end
     end
 end;

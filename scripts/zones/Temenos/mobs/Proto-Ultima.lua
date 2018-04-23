@@ -20,9 +20,9 @@ function onMobFight(mob,target)
                 mob:SetMagicCastingEnabled(true);
             end
             if (phase == 4) then -- add Regain in final phase
-                if (mob:hasStatusEffect(EFFECT_REGAIN) == false) then
-                    mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
-                    mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
+                if (mob:hasStatusEffect(dsp.effects.REGAIN) == false) then
+                    mob:addStatusEffect(dsp.effects.REGAIN,7,3,0);
+                    mob:getStatusEffect(dsp.effects.REGAIN):setFlag(32);
                 end
             end
             mob:setLocalVar("battlePhase", phase); -- incrementing the phase here instead of in the Dissipation skill because stunning it prevents use.

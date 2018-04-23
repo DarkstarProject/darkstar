@@ -17,8 +17,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffectOne = EFFECT_ATTACK_DOWN;
-    local typeEffectTwo = EFFECT_DEFENSE_DOWN;
+    local typeEffectOne = dsp.effects.ATTACK_DOWN;
+    local typeEffectTwo = dsp.effects.DEFENSE_DOWN;
     local duration = 120;
 
     MobStatusEffectMove(mob, target, typeEffectOne, 15, 0, duration);

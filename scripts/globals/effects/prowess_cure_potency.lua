@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced "Cure" potency
+-- dsp.effects.PROWESS : Enhanced "Cure" potency
 --
 -----------------------------------
 

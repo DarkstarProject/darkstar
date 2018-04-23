@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
    -- The client blocks the spell via menus, but it can still be cast via text commands, so we have to block it here, albiet with the wrong message.
     if (caster:isMob()) then
         return 0;
-    elseif (caster:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true) then
+    elseif (caster:hasStatusEffect(dsp.effects.ELEMENTAL_SEAL) == true) then
         return 0;
     else
         return msgBasic.STATUS_PREVENTS;
@@ -32,7 +32,7 @@ function onSpellCast(caster,target,spell)
     if (caster:isPC()) then
         dmg = ((100+caster:getMod(MOD_MATT))/(100+target:getMod(MOD_MDEF))) * (caster:getStat(MOD_INT) + caster:getSkillLevel(ELEMENTAL_MAGIC_SKILL)/6) * 3.5;
     else
-        dmg = ((100+caster:getMod(MOD_MATT))/(100+target:getMod(MOD_MDEF))) * (caster:getStat(MOD_INT) + (caster:getMaxSkillLevel(caster:getMainLvl(), JOBS.BLM, ELEMENTAL_MAGIC_SKILL))/6) * 9.4;
+        dmg = ((100+caster:getMod(MOD_MATT))/(100+target:getMod(MOD_MDEF))) * (caster:getStat(MOD_INT) + (caster:getMaxSkillLevel(caster:getMainLvl(), dsp.jobs.BLM, ELEMENTAL_MAGIC_SKILL))/6) * 9.4;
     end
 
     --add in target adjustment

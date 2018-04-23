@@ -55,7 +55,7 @@ function onSpellCast(caster,target,spell)
     local chance = math.random();
 
     if (damage > 0 and chance > 4) then
-        local typeEffect = EFFECT_ACCURACY_DOWN;
+        local typeEffect = dsp.effects.ACCURACY_DOWN;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
     end

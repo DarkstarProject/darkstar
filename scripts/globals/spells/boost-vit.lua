@@ -16,7 +16,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_VIT_BOOST;
+    local effect = dsp.effects.VIT_BOOST;
     doBoostGain(caster,target,spell,effect);
     return effect;
 end;

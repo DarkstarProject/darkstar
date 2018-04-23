@@ -33,7 +33,7 @@ function onPetAbility(target, pet, skill)
     end
     damage.dmg = damage.dmg * tp / 1000;
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,numhits);
-    target:addStatusEffect(EFFECT_PARALYSIS, 15, 0, 60);
+    target:addStatusEffect(dsp.effects.PARALYSIS, 15, 0, 60);
     target:delHP(totaldamage);
     target:updateEnmityFromDamage(pet,totaldamage);
 

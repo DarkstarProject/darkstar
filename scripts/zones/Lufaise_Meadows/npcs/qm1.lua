@@ -6,17 +6,19 @@
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Lufaise_Meadows/TextIDs");
+require("scripts/zones/Lufaise_Meadows/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    -- Trade Relic Shield
-    if (GetMobAction(16875779) == 0 and trade:hasItemQty(15066,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(16875779):updateClaim(player); -- Amaltheia
+    if (npcUtil.tradeHas(trade, 15066) and not GetMobByID(AMALTHEIA):isSpawned()) then -- Relic Shield
+        player:confirmTrade();
+        SpawnMob(AMALTHEIA):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
 
 function onTrigger(player,npc)
+    player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
 end;

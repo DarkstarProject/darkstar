@@ -12,7 +12,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = 90;
-    local typeEffect = EFFECT_SLEEP_II;
+    local typeEffect = dsp.effects.SLEEP_II;
     local pINT = caster:getStat(MOD_INT);
     local mINT = target:getStat(MOD_INT);
     local dINT = (pINT - mINT);

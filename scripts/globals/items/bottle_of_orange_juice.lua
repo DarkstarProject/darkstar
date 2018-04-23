@@ -16,8 +16,8 @@ function onItemUse(target)
     if (legs == 11966 or legs == 11968) then -- Dream Trousers +1 & Dream Pants +1
         power = power + 1;
     end
-    if (not target:hasStatusEffect(EFFECT_REFRESH)) then
-        target:addStatusEffect(EFFECT_REFRESH,power,3,90);
+    if (not target:hasStatusEffect(dsp.effects.REFRESH)) then
+        target:addStatusEffect(dsp.effects.REFRESH,power,3,90);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

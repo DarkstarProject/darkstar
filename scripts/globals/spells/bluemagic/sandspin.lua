@@ -59,8 +59,8 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.0625) then
-        if (target:canGainStatusEffect(EFFECT_ACCURACY_DOWN)) then
-            target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60);
+        if (target:canGainStatusEffect(dsp.effects.ACCURACY_DOWN)) then
+            target:addStatusEffect(dsp.effects.ACCURACY_DOWN,20,3,60);
         end
     end
     

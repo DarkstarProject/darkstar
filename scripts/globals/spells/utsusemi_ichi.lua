@@ -10,7 +10,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+    local effect = target:getStatusEffect(dsp.effects.COPY_IMAGE);
 
     -- Get extras shadows
     local bonusShadow = 0;
@@ -19,12 +19,12 @@ function onSpellCast(caster,target,spell)
     end
 
     if (effect == nil) then
-        target:addStatusEffectEx(EFFECT_COPY_IMAGE, EFFECT_COPY_IMAGE_3, 3 + bonusShadow, 0, 900);
+        target:addStatusEffectEx(dsp.effects.COPY_IMAGE, dsp.effects.COPY_IMAGE_3, 3 + bonusShadow, 0, 900);
         target:setMod(MOD_UTSUSEMI, 3 + bonusShadow);
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     elseif (effect:getPower() <= 3) then
         effect:setPower(3);
-        effect:setIcon(EFFECT_COPY_IMAGE_3);
+        effect:setIcon(dsp.effects.COPY_IMAGE_3);
         effect:resetStartTime();
         target:setMod(MOD_UTSUSEMI, 3 + bonusShadow);
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
@@ -32,5 +32,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_COPY_IMAGE;
+    return dsp.effects.COPY_IMAGE;
 end;

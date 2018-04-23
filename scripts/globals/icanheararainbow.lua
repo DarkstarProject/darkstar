@@ -144,7 +144,7 @@ end;
 -----------------------------------
 
 function fixChocoboBug( player)
-    if (player:hasStatusEffect(EFFECT_MOUNTED)) then
+    if (player:hasStatusEffect(dsp.effects.MOUNTED)) then
         if (player:getAnimation() == 5) then
             player:setAnimation( 0);
         elseif (player:getAnimation() == 0) then

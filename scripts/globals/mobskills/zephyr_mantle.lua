@@ -15,7 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local base = math.random(4,10);
-    local typeEffect = EFFECT_BLINK;
+    local typeEffect = dsp.effects.BLINK;
     skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 180));
     return typeEffect;
 end;

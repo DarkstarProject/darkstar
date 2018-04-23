@@ -42,17 +42,17 @@ function onUseAbility(player,target,ability,action)
     
         local effects = {};
         local counter = 1;
-        local frost = target:getStatusEffect(EFFECT_FROST);
+        local frost = target:getStatusEffect(dsp.effects.FROST);
         if (frost ~= nil) then
             effects[counter] = frost;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(EFFECT_THRENODY);
+        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
         if (threnody ~= nil and threnody:getSubPower() == MOD_WINDRES) then
             effects[counter] = threnody;
             counter = counter + 1;
         end
-        local paralyze = target:getStatusEffect(EFFECT_PARALYSIS);
+        local paralyze = target:getStatusEffect(dsp.effects.PARALYSIS);
         if (paralyze ~= nil) then
             effects[counter] = paralyze;
             counter = counter + 1;

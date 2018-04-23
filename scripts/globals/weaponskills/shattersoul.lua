@@ -38,8 +38,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
-        target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, 120);
+    if (damage > 0 and target:hasStatusEffect(dsp.effects.MAGIC_DEF_DOWN) == false) then
+        target:addStatusEffect(dsp.effects.MAGIC_DEF_DOWN, 10, 0, 120);
     end
     return tpHits, extraHits, criticalHit, damage;
 

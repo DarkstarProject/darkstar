@@ -3,7 +3,7 @@
 --     Deals dark damage that gradually reduces
 --  a target's HP. Damage dealt is greatly affected by the weather.
 --------------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -35,14 +35,17 @@ function onSpellCast(caster,target,spell)
     params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
     params.attribute = MOD_INT;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
+    -- bonus accuracy from merit
     params.bonus = merit*3;
     local resist = applyResistance(caster, target, spell, params);
     -- get the resisted damage
     dmg = dmg*resist;
     -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg,merit*2);
+    dmg = addBonuses(caster,spell,target,dmg,params);
     -- add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
+    -- helix MAB merits are actually a percentage increase
+    dmg = dmg * ((100 + merit*2)/100);
     local dot = dmg;
     -- add in final adjustments
     dmg = finalMagicAdjustments(caster,target,spell,dmg);
@@ -54,7 +57,7 @@ function onSpellCast(caster,target,spell)
     duration = duration * (resist/2);
 
     if (dot > 0) then
-        target:addStatusEffect(EFFECT_HELIX,dot,3,duration);
+        target:addStatusEffect(dsp.effects.HELIX,dot,3,duration);
     end;
 
     return dmg;

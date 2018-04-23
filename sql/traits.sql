@@ -160,11 +160,11 @@ INSERT INTO `traits` VALUES ('14','store tp','12','70','4','73','25',null,'0'); 
 INSERT INTO `traits` VALUES ('14','store tp','12','90','5','73','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('15','double attack','1','25','1','288','10',null,'0');
 INSERT INTO `traits` VALUES ('16','triple attack','6','55','1','302','5',null,'0');
-INSERT INTO `traits` VALUES ('16','triple attack','6','96','2','302','6','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('16','triple attack','6','95','2','302','6','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('17','counter','2','10','1','291','10',null,'0');
 INSERT INTO `traits` VALUES ('17','counter','2','81','2','291','13','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','83','1','259','10','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('18','dual wield','6','87','2','259','15','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('18','dual wield','6','90','2','259','15','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','98','3','259','25','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','13','10','1','259','10',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('18','dual wield','13','25','2','259','15',null,'0'); -- ROTZ
@@ -176,8 +176,7 @@ INSERT INTO `traits` VALUES ('18','dual wield','19','40','2','259','15','ABYSSEA
 INSERT INTO `traits` VALUES ('18','dual wield','19','60','3','259','25','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','19','80','4','259','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('19','treasure hunter','6','15','1','303','1',null,'0');
-INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','0','0',null,'0'); -- Not implemented. Remove this note when it is.
-INSERT INTO `traits` VALUES ('20','gilfinder','6','85','2','0','0','ABYSSEA','0'); -- 2nd tier does NOT have its own separate ID in client.
+INSERT INTO `traits` VALUES ('20','gilfinder','6','5','1','897','50',null,'0');
 INSERT INTO `traits` VALUES ('21','alertness','11','5','1','0','0',null,'0');
 INSERT INTO `traits` VALUES ('22','stealth','13','5','1','358','3',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('23','martial arts','2','1','1','173','80',null,'0');
@@ -294,7 +293,7 @@ INSERT INTO `traits` VALUES ('57','resist bind','13','50','3','247','5',null,'0'
 INSERT INTO `traits` VALUES ('57','resist bind','13','70','4','247','6',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('58','resist gravity','6','20','1','249','10',null,'0');
 INSERT INTO `traits` VALUES ('58','resist gravity','6','40','2','249','15',null,'0');
-INSERT INTO `traits` VALUES ('58','resist gravity','6','60','3','249','20',null,'0');
+INSERT INTO `traits` VALUES ('58','resist gravity','6','66','3','249','20',null,'0');
 INSERT INTO `traits` VALUES ('58','resist gravity','6','75','4','249','25',null,'0');
 INSERT INTO `traits` VALUES ('58','resist gravity','6','81','5','249','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('59','resist slow','9','15','1','250','2',null,'0');
@@ -380,6 +379,10 @@ INSERT INTO `traits` VALUES ('94','fine-tuning','18','75','1','0','0','TOAU','0'
 INSERT INTO `traits` VALUES ('95','optimization','18','75','1','0','0','TOAU','0');
 INSERT INTO `traits` VALUES ('96','closed position','19','75','1','0','0','WOTG','0');
 INSERT INTO `traits` VALUES ('97','stormsurge','20','75','1','0','0','WOTG','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','78','1','421','5','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','84','2','421','8','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','91','3','421','11','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','97','4','421','14','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','8','88','10','486','2','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','8','98','20','486','3','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','13','77','10','486','2','ABYSSEA','0');

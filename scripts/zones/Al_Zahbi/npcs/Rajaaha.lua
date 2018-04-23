@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (guildMember == 1) then
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
-            if (player:hasStatusEffect(EFFECT_GOLDSMITHING_IMAGERY) == false) then
+            if (player:hasStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY) == false) then
                 player:tradeComplete();
                 player:startEvent(231,8,0,0,0,188,0,3,0);
             else
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local SkillLevel = player:getSkillLevel(SKILL_GOLDSMITHING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_GOLDSMITHING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY) == false) then
             player:startEvent(230,8,SkillLevel,0,511,188,0,3,2184);
         else
             player:startEvent(230,8,SkillLevel,0,511,188,7101,3,2184);
@@ -52,9 +52,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 230 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,3,1);
-        player:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,1,0,120);
+        player:addStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY,1,0,120);
     elseif (csid == 231) then
         player:messageSpecial(IMAGE_SUPPORT,0,3,0);
-        player:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effects.GOLDSMITHING_IMAGERY,3,0,480);
     end
 end;

@@ -30,12 +30,12 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guestimating 2 in 3 chance to stun on melee.
-    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(EFFECT_STUN) == true)) then
+    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(dsp.effects.STUN) == true)) then
         return 0,0,0;
     else
         local duration = math.random(4,8);
-        target:addStatusEffect(EFFECT_STUN,5,0,duration);
-        return SUBEFFECT_STUN,0,EFFECT_STUN;
+        target:addStatusEffect(dsp.effects.STUN,5,0,duration);
+        return SUBEFFECT_STUN,0,dsp.effects.STUN;
     end
 end;
 

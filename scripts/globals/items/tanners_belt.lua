@@ -17,7 +17,7 @@ require("scripts/globals/status");
  
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == true) then
+    if (target:hasStatusEffect(dsp.effects.LEATHERCRAFT_IMAGERY) == true) then
         result = 240;
     end
     return result;
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
  
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,120);
+    target:addStatusEffect(dsp.effects.LEATHERCRAFT_IMAGERY,3,0,120);
 end;
  
 -----------------------------------------

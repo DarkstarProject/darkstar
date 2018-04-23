@@ -11,9 +11,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REGAIN)) then
+    if (target:hasStatusEffect(dsp.effects.REGAIN)) then
         target:messageBasic(msgBasic.NO_EFFECT);
     else
-        target:addStatusEffect(EFFECT_REGAIN, 5, 3, 30);
+        target:addStatusEffect(dsp.effects.REGAIN, 5, 3, 30);
     end
 end;

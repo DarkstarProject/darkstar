@@ -2741,14 +2741,14 @@ int32 CLuaBaseEntity::goToEntity(lua_State* L)
         memset(&buf[0], 0, sizeof(buf));
 
         ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
-        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any 
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any
         ref<uint16>(&buf,  2) = targetZone;
         ref<uint16>(&buf,  4) = playerZone;
         ref<uint32>(&buf,  6) = targetID;
         ref<uint16>(&buf, 10) = playerID;
 
         message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
-	}	
+    }
     return 0;
 }
 
@@ -4136,7 +4136,7 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
             PChar->status != STATUS_DISAPPEAR)
         {
             PChar->m_Costum = costum;
-            PChar->updatemask |= UPDATE_HP;
+            PChar->updatemask |= UPDATE_POS;
         }
         return 0;
     }
@@ -10391,7 +10391,7 @@ inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 *  Function: delStatusEffectsByFlag()
 *  Purpose : Removes all Status Effects of a specified flag
 *  Example : target:delEffectsByFlag(FLAG)
-*  Notes   : Not currently used in any script
+*  Notes   : Used for removal of multiple effects with matching flag
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
@@ -10409,7 +10409,7 @@ inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
 *  Function: delStatusEffectSilent()
 *  Purpose : Removes a Status Effect from the Entity without showing a message
 *  Example : target:delStatusEffectSilent(EFFECT_SANDSTORM)
-*  Notes   : Used specifly for Status Effects that are not supposed to show a message once worn
+*  Notes   : Used specifically for Status Effects that are not supposed to show a message once worn
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffectSilent(lua_State* L)
@@ -12231,27 +12231,6 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 }
 
 /************************************************************************
-*  Function: canUseChocobo()
-*  Purpose : Returns true if player can use a Chocobo
-*  Example : if (player:canUseChocobo()) then -- kew
-*  Notes   : Checks for Chocobo License and if Chocos are allowed in area
-************************************************************************/
-
-inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    if (m_PBaseEntity->animation == ANIMATION_CHOCOBO || !charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, 138)) //keyitem CHOCOBO_LICENSE
-    {
-        lua_pushinteger(L, 445);
-        return 1;
-    }
-    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_CHOCOBO) ? 0 : MSGBASIC_CANT_BE_USED_IN_AREA)); //316
-    return 1;
-}
-
-/************************************************************************
 *  Function: getSystem()
 *  Purpose : Returns integer value of system associated with an Entity
 *  Example : if (pet:getSystem() ~= 5) then -- Not an avatar
@@ -13539,20 +13518,81 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
-
-    if (!(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != nullptr && DropList->size()))
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
     {
-        for (uint8 i = 0; i < DropList->size(); ++i)
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+
+        if (PDropList && !PMob->m_ItemStolen)
         {
-            if (DropList->at(i).DropType == DROP_STEAL)
+            for (const DropItem_t& drop : *PDropList)
             {
-                lua_pushinteger(L, DropList->at(i).ItemID);
-                return 1;
+                if (drop.DropType == DROP_STEAL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
             }
         }
     }
+
     lua_pushinteger(L, 0);
+    return 1;
+}
+
+/************************************************************************
+*  Function: getDespoilItem()
+*  Purpose : Used to return the Item ID of a mob's item which can be despoiled
+*  Example : despoilItem = target:getDespoilItem()
+*  Notes   : Defaults to getStealItem() if no despoil item exists
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
+    {
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+        if (PDropList && !PMob->m_ItemStolen)
+        {
+            for (const DropItem_t& drop : *PDropList)
+            {
+                if (drop.DropType == DROP_DESPOIL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return getStealItem(L);
+}
+
+/************************************************************************
+*  Function: getDespoilDebuff()
+*  Purpose : Used to get a status effect id to apply to a mob on successful despoil
+*  Example : effect = player:getDespoilDebuff()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilDebuff(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 effectId = luautils::GetDespoilDebuff((uint16)lua_tointeger(L, 1));
+    if (effectId > 0)
+    {
+        lua_pushinteger(L, effectId);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+
     return 1;
 }
 
@@ -13696,7 +13736,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),	
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNationTeleport),
@@ -14148,8 +14188,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
-
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
@@ -14218,6 +14256,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDropID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 
     {nullptr,nullptr}

@@ -20,12 +20,12 @@ end;
 
 function onMobFight(mob, target)
     if (mob:checkDistance(target) < 3) then
-        if (target:hasStatusEffect(EFFECT_POISON) == false) then
-            target:addStatusEffect(EFFECT_POISON, 100, 3, math.random(3,6) * 3); -- Poison for 3-6 ticks.
+        if (target:hasStatusEffect(dsp.effects.POISON) == false) then
+            target:addStatusEffect(dsp.effects.POISON, 100, 3, math.random(3,6) * 3); -- Poison for 3-6 ticks.
         else
-            if (target:getStatusEffect(EFFECT_POISON):getPower() < 100) then
-                target:delStatusEffect(EFFECT_POISON);
-                target:addStatusEffect(EFFECT_POISON, 100, 3, math.random(3,6) * 3); -- Poison for 3-6 ticks.
+            if (target:getStatusEffect(dsp.effects.POISON):getPower() < 100) then
+                target:delStatusEffect(dsp.effects.POISON);
+                target:addStatusEffect(dsp.effects.POISON, 100, 3, math.random(3,6) * 3); -- Poison for 3-6 ticks.
             end
         end
     end

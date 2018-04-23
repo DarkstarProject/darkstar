@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
             cs = 121;
         elseif (player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1) then
             cs = 120;
-        elseif (player:getMainJob() == JOBS.DRK and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_AVAILABLE) then
+        elseif (player:getMainJob() == dsp.jobs.DRK and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_AVAILABLE) then
             cs = 122;
         end
     end
@@ -57,8 +57,8 @@ end;
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() <= 6) then
-        if (player:hasStatusEffect(EFFECT_CURSE_I) == false and player:hasStatusEffect(EFFECT_SILENCE) == false) then
-            player:addStatusEffect(EFFECT_CURSE_I,50,0,300);
+        if (player:hasStatusEffect(dsp.effects.CURSE_I) == false and player:hasStatusEffect(dsp.effects.SILENCE) == false) then
+            player:addStatusEffect(dsp.effects.CURSE_I,50,0,300);
             if (player:getQuestStatus(BASTOK,THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getVar("cCollectCurse") == 0) then
                 player:setVar("cCollectCurse",1);
             end
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 121) then
-        player:unlockJob(JOBS.DRK);
+        player:unlockJob(dsp.jobs.DRK);
         player:addTitle(DARK_SIDER);
         player:setVar("ZeruhnMines_Zeid_CS", 0);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT);

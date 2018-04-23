@@ -9,7 +9,7 @@ function onEquip(pet)
         if pet:getLocalVar("attuner") > 0 then
             pet:delMod(MOD_ATTP, 5) -- Ignore 5% def
             pet:delMod(MOD_RATTP, 5)
-            for maneuvers = master:countEffect(EFFECT_FIRE_MANEUVER), 1, -1  do
+            for maneuvers = master:countEffect(dsp.effects.FIRE_MANEUVER), 1, -1  do
                 if maneuvers == 1 then
                     pet:delMod(MOD_ATTP, 13) -- Ignore 15% def
                     pet:delMod(MOD_RATTP, 13)
@@ -28,7 +28,7 @@ function onEquip(pet)
             pet:setLocalVar("attuner", 1)
             pet:addMod(MOD_ATTP, 5) -- Ignore 5% def
             pet:addMod(MOD_RATTP, 5)
-            for maneuvers = 1, master:countEffect(EFFECT_FIRE_MANEUVER) do
+            for maneuvers = 1, master:countEffect(dsp.effects.FIRE_MANEUVER) do
                 if maneuvers == 1 then
                     pet:addMod(MOD_ATTP, 13) -- Ignore 15% def
                     pet:addMod(MOD_RATTP, 13)
@@ -47,7 +47,7 @@ function onEquip(pet)
             local master = pet:getMaster()
             pet:delMod(MOD_ATTP, 5) -- Ignore 5% def
             pet:delMod(MOD_RATTP, 5)
-            for maneuvers = master:countEffect(EFFECT_FIRE_MANEUVER), 1, -1  do
+            for maneuvers = master:countEffect(dsp.effects.FIRE_MANEUVER), 1, -1  do
                 if maneuvers == 1 then
                     pet:delMod(MOD_ATTP, 13) -- Ignore 15% def
                     pet:delMod(MOD_RATTP, 13)

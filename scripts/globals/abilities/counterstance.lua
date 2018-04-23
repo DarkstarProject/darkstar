@@ -16,6 +16,6 @@ end;
 function onUseAbility(player,target,ability)
     local power = 45 + player:getMod(MOD_COUNTERSTANCE_EFFECT);
 
-    target:delStatusEffect(EFFECT_COUNTERSTANCE); --if not found this will do nothing
-    target:addStatusEffect(EFFECT_COUNTERSTANCE,power,0,300);
+    target:delStatusEffect(dsp.effects.COUNTERSTANCE); --if not found this will do nothing
+    target:addStatusEffect(dsp.effects.COUNTERSTANCE,power,0,300);
 end;

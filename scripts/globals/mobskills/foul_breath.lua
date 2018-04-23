@@ -20,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_DISEASE;
+    local typeEffect = dsp.effects.DISEASE;
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 300);
 
     local dmgmod = MobBreathMove(mob, target, 0.333, 0.625, ELE_FIRE, 500);

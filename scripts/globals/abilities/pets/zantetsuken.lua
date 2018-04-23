@@ -32,7 +32,7 @@ function onPetAbility(target, pet, skill, master)
         if math.random(0,99) < chance and target:getAnimation() ~= 33 then
             skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
             target:delHP(target:getHP());
-            return EFFECT_KO;
+            return dsp.effects.KO;
         else
             skill:setMsg(msgBasic.EVADES);
             return 0;

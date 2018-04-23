@@ -31,7 +31,7 @@ itemid_bcnmid_map =
     139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
     140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
     144, {1166, 68, 1553, 76, 1130, 79, 1178, 81, 1180, 82}, -- Waughroon Shrine
-    146, {1551, 105, 1553, 107}, -- Balgas Dias
+    146, {1552, 104, 1551, 105, 1553, 107}, -- Balgas Dias
     163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
     168, {0, 0}, -- Chamber of Oracles
     170, {0, 0}, -- Full Moon Fountain
@@ -108,7 +108,7 @@ function TradeBCNM(player, zone, trade, npc)
         return false
     end
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then -- cant start a new bc
+    if (player:hasStatusEffect(dsp.effects.BATTLEFIELD)) then -- cant start a new bc
         player:messageBasic(94, 0, 0)
         return false
     elseif (player:hasWornItem(trade:getItemId())) then -- If already used orb or testimony
@@ -151,11 +151,11 @@ function EventTriggerBCNM(player, npc)
     player:setVar("trade_bcnmid", 0)
     player:setVar("trade_itemid", 0)
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+    if (player:hasStatusEffect(dsp.effects.BATTLEFIELD)) then
         if (player:isInBcnm() == 1) then
             player:startEvent(0x7d03) -- Run Away or Stay menu
-        else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
-            status = player:getStatusEffect(EFFECT_BATTLEFIELD)
+        else -- You're not in the BCNM but you have the Battlefield dsp.effects. Think: non-trader in a party
+            status = player:getStatusEffect(dsp.effects.BATTLEFIELD)
             playerbcnmid = status:getPower()
             playermask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 1)
             if (playermask~=-1) then
@@ -190,7 +190,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         return true
     end
     if (option == 255 and csid == 0x7d00) then -- Clicked yes, try to register bcnmid
-        if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+        if (player:hasStatusEffect(dsp.effects.BATTLEFIELD)) then
             -- You're entering a bcnm but you already had the battlefield effect, so you want to go to the
             -- instance that your battlefield effect represents.
             player:setVar("bcnm_instanceid_tick", 0)
@@ -226,7 +226,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         if (instance == player:getVar("bcnm_instanceid")) then
             -- respond to this packet
             local mask = GetBattleBitmask(id, player:getZoneID(), 2)
-            local status = player:getStatusEffect(EFFECT_BATTLEFIELD)
+            local status = player:getStatusEffect(dsp.effects.BATTLEFIELD)
             local playerbcnmid = status:getPower()
             local battlefield = player:getBattlefield()
             local name = 'Meme';
@@ -286,7 +286,7 @@ end
 function EventFinishBCNM(player, csid, option)
     print("FINISH csid "..csid.." option "..option)
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
+    if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
         return false
     else
         local id = player:getVar("trade_bcnmid")
@@ -392,7 +392,7 @@ function ItemToBCNMID(player, zone, trade)
                     local questTimelineOK = 0
 
                     -- Job/lvl condition for smn battle lvl20
-                    if (item >= 1544 and item <= 1549 and player:getMainJob() == JOBS.SMN and player:getMainLvl() >= 20) then
+                    if (item >= 1544 and item <= 1549 and player:getMainJob() == dsp.jobs.SMN and player:getMainLvl() >= 20) then
                         questTimelineOK = 1
                     elseif (item == 1166 and player:getVar("aThiefinNorgCS") == 6) then -- AF3 SAM condition
                         questTimelineOK = 1

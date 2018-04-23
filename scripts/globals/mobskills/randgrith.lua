@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     
     local duration = 60;
-    local typeEffect = EFFECT_EVASION_DOWN;
+    local typeEffect = dsp.effects.EVASION_DOWN;
     local power = 32;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);

@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     target:delHP(dmg);
 
-    local typeEffect = EFFECT_PLAGUE;
+    local typeEffect = dsp.effects.PLAGUE;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 5, 3, 60);
 

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ELEMENTAL_SFORZO
+-- dsp.effects.ELEMENTAL_SFORZO
 --
 -----------------------------------
 require("scripts/globals/status");

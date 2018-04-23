@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_AMNESIA;
+    local typeEffect = dsp.effects.AMNESIA;
     local power = 30;
     local duration = 75;
 

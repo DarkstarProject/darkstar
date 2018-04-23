@@ -104,8 +104,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
-    if (target:hasStatusEffect(EFFECT_YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
-        eva = eva + target:getStatusEffect(EFFECT_YONIN):getPower();
+    if (target:hasStatusEffect(dsp.effects.YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(dsp.effects.YONIN):getPower();
     end
 
     --apply WSC
@@ -255,7 +255,7 @@ end
 -- 2 = TP_MAB_BONUS
 -- 3 = TP_DMG_BONUS
 -- tpvalue affects the strength of having more TP along the following lines:
--- TP_NO_EFFECT -> tpvalue has no effect.
+-- TP_NO_EFFECT -> tpvalue has no dsp.effects.
 -- TP_MACC_BONUS -> direct multiplier to macc (1 for default)
 -- TP_MAB_BONUS -> direct multiplier to mab (1 for default)
 -- TP_DMG_BONUS -> direct multiplier to damage (V+dINT) (1 for default)
@@ -298,7 +298,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     if (mob:isPet() and mob:getMaster() ~= nil) then
         local master = mob:getMaster();
         if (master:getPetID() >= 0 and master:getPetID() <= 20) then -- check to ensure pet is avatar
-            avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), JOBS.SMN, SUMMONING_SKILL), 0, 200);
+            avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), dsp.jobs.SMN, SUMMONING_SKILL), 0, 200);
         end
     end
     resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),avatarAccBonus,element);
@@ -314,7 +314,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
 end
 
 -- mob version
--- effect = EFFECT_WHATEVER if enfeeble
+-- effect = dsp.effects.WHATEVER if enfeeble
 -- statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
 -- This determines how much the monsters ability resists on the player.
 function applyPlayerResistance(mob,effect,target,diff,bonus,element)
@@ -480,7 +480,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.SKILL_MISS);
         return 0;
@@ -506,13 +506,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        target:delStatusEffect(dsp.effects.BLINK);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide
@@ -634,20 +634,20 @@ end;
 
 function MobDrainAttribute(mob, target, typeEffect, power, tick, duration)
     local positive = nil;
-    if (typeEffect == EFFECT_STR_DOWN) then
-        positive = EFFECT_STR_BOOST;
-    elseif (typeEffect == EFFECT_DEX_DOWN) then
-        positive = EFFECT_DEX_BOOST;
-    elseif (typeEffect == EFFECT_AGI_DOWN) then
-        positive = EFFECT_AGI_BOOST;
-    elseif (typeEffect == EFFECT_VIT_DOWN) then
-        positive = EFFECT_VIT_BOOST;
-    elseif (typeEffect == EFFECT_MND_DOWN) then
-        positive = EFFECT_MND_BOOST;
-    elseif (typeEffect == EFFECT_INT_DOWN) then
-        positive = EFFECT_INT_BOOST;
-    elseif (typeEffect == EFFECT_CHR_DOWN) then
-        positive = EFFECT_CHR_BOOST;
+    if (typeEffect == dsp.effects.STR_DOWN) then
+        positive = dsp.effects.STR_BOOST;
+    elseif (typeEffect == dsp.effects.DEX_DOWN) then
+        positive = dsp.effects.DEX_BOOST;
+    elseif (typeEffect == dsp.effects.AGI_DOWN) then
+        positive = dsp.effects.AGI_BOOST;
+    elseif (typeEffect == dsp.effects.VIT_DOWN) then
+        positive = dsp.effects.VIT_BOOST;
+    elseif (typeEffect == dsp.effects.MND_DOWN) then
+        positive = dsp.effects.MND_BOOST;
+    elseif (typeEffect == dsp.effects.INT_DOWN) then
+        positive = dsp.effects.INT_BOOST;
+    elseif (typeEffect == dsp.effects.CHR_DOWN) then
+        positive = dsp.effects.CHR_BOOST;
     end
 
     if (positive ~= nil) then
@@ -744,7 +744,7 @@ function MobTakeAoEShadow(mob, target, max)
 
     -- this is completely crap and should be using actual nin skill
     -- TODO fix this
-    if (target:getMainJob() == JOBS.NIN and math.random() < 0.6) then
+    if (target:getMainJob() == dsp.jobs.NIN and math.random() < 0.6) then
         max = max - 1;
         if (max < 1) then
             max = 1;

@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effects.POISON;
     MobStatusEffectMove(mob, target, typeEffect, math.random(20,40), 3, 60);
 
     local dmgmod = MobBreathMove(mob, target, 0.3, 1.875, ELE_WATER, 500);

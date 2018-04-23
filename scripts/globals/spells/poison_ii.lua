@@ -11,11 +11,11 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_POISON;
+    local effect = dsp.effects.POISON;
 
     local duration = 120;
 
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
         duration = duration * 2;
     end
 
@@ -28,10 +28,10 @@ function onSpellCast(caster,target,spell)
         power = 10;
     end
 
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
         power = power * 2;
     end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
+    caster:delStatusEffect(dsp.effects.SABOTEUR);
 
     local params = {};
 

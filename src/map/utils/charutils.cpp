@@ -3109,7 +3109,7 @@ namespace charutils
             // First gather all valid party members
             PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
+                if (PPartyMember->getZone() == PMob->getZone() && distanceSquared(PPartyMember->loc.p, PMob->loc.p) < square(100.f))
                 {
                     members.push_back((CCharEntity*)PPartyMember);
                 }
@@ -3119,18 +3119,22 @@ namespace charutils
             if (members.size() > 0)
             {
                 // distribute gil
-                auto gilPerPerson = (int32)(gil / members.size());
+                int32 gilPerPerson = static_cast<int32>(gil / members.size());
                 for (auto PMember : members)
                 {
+                    // Check for gilfinder
+                    gilPerPerson += gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100;
                     UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
                     PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
                 }
             }
         }
-        else if (distance(PChar->loc.p, PMob->loc.p) < 100)
+        else if (distanceSquared(PChar->loc.p, PMob->loc.p) < square(100.f))
         {
-            UpdateItem(PChar, LOC_INVENTORY, 0, gil);
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, gil, 0, 565));
+            // Check for gilfinder
+            gil += gil * PChar->getMod(Mod::GILFINDER) / 100;
+            UpdateItem(PChar, LOC_INVENTORY, 0, static_cast<int32>(gil));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, static_cast<int32>(gil), 0, 565));
         }
     }
 

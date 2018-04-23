@@ -19,25 +19,25 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_ADDENDUM_WHITE) then
+    if player:hasStatusEffect(dsp.effects.ADDENDUM_WHITE) then
         return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(EFFECT_DARK_ARTS);
-    player:delStatusEffectSilent(EFFECT_ADDENDUM_BLACK);
-    player:delStatusEffectSilent(EFFECT_LIGHT_ARTS);
+    player:delStatusEffectSilent(dsp.effects.DARK_ARTS);
+    player:delStatusEffectSilent(dsp.effects.ADDENDUM_BLACK);
+    player:delStatusEffectSilent(dsp.effects.LIGHT_ARTS);
 
     local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
     local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
     local regenbonus = 0;
-    if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == dsp.jobs.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
     end
 
-    player:addStatusEffectEx(EFFECT_ADDENDUM_WHITE,EFFECT_ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true);
+    player:addStatusEffectEx(dsp.effects.ADDENDUM_WHITE,dsp.effects.ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true);
 
-    return EFFECT_ADDENDUM_WHITE;
+    return dsp.effects.ADDENDUM_WHITE;
 end;

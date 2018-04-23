@@ -13,7 +13,7 @@ end;
 function onItemUse(target)
     local pet = target:getPet();
     if (pet) then
-        pet:addStatusEffect(EFFECT_REGAIN, 15, 3, 15);
+        pet:addStatusEffect(dsp.effects.REGAIN, 15, 3, 15);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

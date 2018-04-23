@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_WARCRY
+--     dsp.effects.WARCRY
 --
 -- Notes:
 -- Savagery TP bonus not cut in half like ffxclopedia says.

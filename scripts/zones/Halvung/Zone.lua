@@ -3,11 +3,6 @@
 -- Zone: Halvung (62)
 --
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Halvung/TextIDs");
------------------------------------
 
 function onInitialize(zone)
 end;
@@ -24,11 +19,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

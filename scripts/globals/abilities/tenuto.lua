@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_TENUTO,0,0,60);
+    player:addStatusEffect(dsp.effects.TENUTO,0,0,60);
 end;

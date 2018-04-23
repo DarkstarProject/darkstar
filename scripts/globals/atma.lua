@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ATMA
+-- dsp.effects.ATMA
 --
 -- Also used for Voidwatch Atmacite
 -- (it is a single effect in the client).

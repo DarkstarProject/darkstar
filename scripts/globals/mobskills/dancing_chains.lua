@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-    local typeEffect = EFFECT_DROWN;
+    local typeEffect = dsp.effects.DROWN;
     local power = mob:getMainLvl() / 3;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60);

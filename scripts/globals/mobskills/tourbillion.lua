@@ -35,7 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     local duration = 20 * (skill:getTP() / 1000);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, 20, 0, duration);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effects.DEFENSE_DOWN, 20, 0, duration);
 
     target:delHP(dmg);
     return dmg;

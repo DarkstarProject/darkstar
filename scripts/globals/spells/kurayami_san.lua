@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
     if (math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
         if (duration >= 210) then
 
-            if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
+            if (target:addStatusEffect(dsp.effects.BLINDNESS,power,0,duration)) then
                 spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
                 spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -39,5 +39,5 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(msgBasic.MAGIC_RESIST_2);
     end
-    return EFFECT_BLINDNESS;
+    return dsp.effects.BLINDNESS;
 end;

@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         player:startEvent(935);
     elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
         player:startEvent(712);
-    elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == JOBS.MNK and player:getMainLvl() >= 50) then
+    elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == dsp.jobs.MNK and player:getMainLvl() >= 50) then
         player:startEvent(748); -- Start Quest "True Strength"
     else
         player:startEvent(701); -- Standard dialog

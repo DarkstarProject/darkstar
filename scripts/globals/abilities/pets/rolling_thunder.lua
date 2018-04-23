@@ -22,7 +22,7 @@ function onPetAbility(target, pet, skill, summoner)
         potency = 5 + ((5*magicskill)/100);
     end
 
-    local typeEffect = EFFECT_ENTHUNDER;
+    local typeEffect = dsp.effects.ENTHUNDER;
 
     skill:setMsg(MobBuffMove(target, typeEffect, potency, 0, duration));
 

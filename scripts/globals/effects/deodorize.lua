@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_DEODORIZE
+-- dsp.effects.DEODORIZE
 --
 -----------------------------------
 require("scripts/globals/msg")
