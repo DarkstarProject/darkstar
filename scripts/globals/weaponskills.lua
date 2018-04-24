@@ -1065,7 +1065,8 @@ end
 
 function addMythicAftermathEffect(player, tp, params)
     local tier = math.floor(tp / 1000);
-    player:addStatusEffectEx(dsp.effects.AFTERMATH, _G["dsp.effects.AFTERMATH_LV"..tier], tier, 0, params[tier].duration, 0, tp);
+    local icon = "AFTERMATH_LV"..tier;
+    player:addStatusEffectEx(dsp.effects.AFTERMATH, dsp.effects[icon], tier, 0, params[tier].duration, 0, tp);
     for _,mod in pairs(params[tier].mods) do
         player:addMod(mod.id, mod.power(tp));
     end
@@ -1080,7 +1081,8 @@ end
 
 function addEmpyreanAftermathEffect(player, tp, params)
     local tier = math.floor(tp / 1000);
-    player:addStatusEffectEx(dsp.effects.AFTERMATH, _G["dsp.effects.AFTERMATH_LV"..tier], tier, 0, params[tier].duration);
+    local icon = "AFTERMATH_LV"..tier;
+    player:addStatusEffectEx(dsp.effects.AFTERMATH, dsp.effects[icon], tier, 0, params[tier].duration);
     for _,mod in pairs(params[tier].mods) do
         player:addMod(mod.id, mod.power);
     end
