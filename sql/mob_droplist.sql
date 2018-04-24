@@ -17969,18 +17969,18 @@ INSERT INTO `mob_droplist` VALUES (3053,0,0,1000,922,160);
 
 -- [Sapphire Quadav]
 -- Data taken from ffxidb on 4/24/2018 (http://www.ffxidb.com/zones/147/sapphire-quadav)
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,501,0); -- Quadav Helm (0%) 
-INSERT INTO `mob_droplist` VALUES (3054,2,0,1000,748,0); -- Gold Beastcoin (0%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,501,0); -- Quadav Helm (0%, was 3%) Suspected not to actually drop in retail
+INSERT INTO `mob_droplist` VALUES (3054,2,0,1000,748,0); -- Gold Beastcoin (0%) (steal)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,1043,10); -- Beadeaux Coffer Key (1%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,1429,80); -- Black Mage's Testimony (8%)
-INSERT INTO `mob_droplist` VALUES (3054,4,0,1000,4552,0); -- Serving of Herb Crawler Eggs (0%)
+INSERT INTO `mob_droplist` VALUES (3054,4,0,1000,4552,0); -- Serving of Herb Crawler Eggs (0%) (despoil)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4779,50); -- Water III (5%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4780,10); -- Water IV (1%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4808,30); -- Waterga II (3%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4809,20); -- Waterga III (2%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4822,10); -- Flood (1%)
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4862,0); -- Blind (0%)
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4866,0); -- Bind (0%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4862,0); -- Blind (0%, was 3%) Suspected not to actually drop in retail
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4866,0); -- Bind (0%, was 3%) Suspected not to actually drop in retail
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12739,2); -- Black Mitts (0.2%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12867,2); -- White Slacks (0.2%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12995,2); -- Moccasins (0.2%) 
