@@ -118,7 +118,7 @@ INSERT INTO `traits` VALUES ('7','max hp boost','2','35','2','2','60',null,'0');
 INSERT INTO `traits` VALUES ('7','max hp boost','2','55','3','2','120',null,'0');
 INSERT INTO `traits` VALUES ('7','max hp boost','2','70','4','2','180',null,'0');
 INSERT INTO `traits` VALUES ('7','max hp boost','2','86','5','2','240','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('7','max hp boost','2','96','6','2','280','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('7','max hp boost','2','96','6','2','300','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('7','max hp boost','7','45','1','2','30','SOA','0');
 INSERT INTO `traits` VALUES ('7','max hp boost','7','85','2','2','60','SOA','0');
 INSERT INTO `traits` VALUES ('7','max hp boost','13','20','1','2','30','SOA','0');
@@ -161,8 +161,8 @@ INSERT INTO `traits` VALUES ('14','store tp','12','90','5','73','30','ABYSSEA','
 INSERT INTO `traits` VALUES ('15','double attack','1','25','1','288','10',null,'0');
 INSERT INTO `traits` VALUES ('16','triple attack','6','55','1','302','5',null,'0');
 INSERT INTO `traits` VALUES ('16','triple attack','6','95','2','302','6','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('17','counter','2','10','1','291','10',null,'0');
-INSERT INTO `traits` VALUES ('17','counter','2','81','2','291','13','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('17','counter','2','10','1','291','8',null,'0');
+INSERT INTO `traits` VALUES ('17','counter','2','81','2','291','12','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','83','1','259','10','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','90','2','259','15','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('18','dual wield','6','98','3','259','25','ABYSSEA','0');
@@ -327,11 +327,11 @@ INSERT INTO `traits` VALUES ('63','resist amnesia','18','75','4','253','6','SOA'
 INSERT INTO `traits` VALUES ('64','treasure hunter ii','6','45','2','303','1',null,'0');
 INSERT INTO `traits` VALUES ('65','treasure hunter iii','6','90','3','303','1','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('66','kick attacks','2','51','1','292','10',null,'0');
-INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','13',null,'0');
-INSERT INTO `traits` VALUES ('66','kick attacks','2','96','3','292','15','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('66','kick attacks','2','71','2','292','12',null,'0');
+INSERT INTO `traits` VALUES ('66','kick attacks','2','76','3','292','14','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('67','subtle blow','2','5','1','289','5',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','2','25','2','289','10',null,'0'); -- ROTZ
-INSERT INTO `traits` VALUES ('67','subtle blow','2','45','3','289','15',null,'0'); -- ROTZ
+INSERT INTO `traits` VALUES ('67','subtle blow','2','40','3','289','15',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','2','65','4','289','20',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('67','subtle blow','2','91','5','289','25','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('67','subtle blow','13','15','1','289','5',null,'0'); -- ROTZ
@@ -395,6 +395,9 @@ INSERT INTO `traits` VALUES ('100','tactical parry','19','97','40','486','5','AB
 INSERT INTO `traits` VALUES ('100','tactical parry','22','40','10','486','2',null,'0');
 INSERT INTO `traits` VALUES ('100','tactical parry','22','60','20','486','3',null,'0');
 INSERT INTO `traits` VALUES ('100','tactical parry','22','97','30','486','4',null,'0');
+INSERT INTO `traits` VALUES ('101','tactical guard','2','77','1','899','30','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('101','tactical guard','2','87','2','899','45','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('101','tactical guard','2','97','3','899','60','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','85','1','174','8','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','95','2','174','12','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','12','78','1','174','8','ABYSSEA','0');
@@ -422,6 +425,8 @@ INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','99','3','487','9','A
 INSERT INTO `traits` VALUES ('114','tranquil heart','3','21','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','5','26','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','20','30','1','0','0','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('127','smite','2','40','1','898','25','SOA','0'); -- 25/256 ~ 9.7%
+INSERT INTO `traits` VALUES ('127','smite','2','80','2','898','38','SOA','0'); -- 38/256 ~ 15%
 
 -- --- RUNE FENCER --- -- (Tenacity needs verifying)
 -- Tenacity Tier I

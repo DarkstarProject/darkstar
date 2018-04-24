@@ -4297,15 +4297,26 @@ namespace battleutils
         }
     }
 
-    void HandleTacticalParry(CBattleEntity* PEntity) {
-        for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+    void HandleTacticalParry(CBattleEntity* PEntity)
+    {
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity))
         {
-            CTrait* PExistingTrait = PEntity->TraitList.at(j);
+            if (charutils::hasTrait(PChar, TRAIT_TACTICAL_PARRY))
+            {
+                int16 tpBonus = PChar->getMod(Mod::TACTICAL_PARRY);
+                PChar->addTP(tpBonus);
+            }
+        }
+    }
 
-            if (PExistingTrait->getID() == TRAIT_TACTICAL_PARRY) {
-                int16 tpBonus = PEntity->getMod(Mod::TACTICAL_PARRY);
-                //ShowDebug(CL_CYAN"HandleTacticalParry: Tactical Parry Tp Bonus = %d\n" CL_RESET, tpBonus);
-                PEntity->addTP(tpBonus);
+    void HandleTacticalGuard(CBattleEntity* PEntity)
+    {
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity))
+        {
+            if (charutils::hasTrait(PChar, TRAIT_TACTICAL_GUARD))
+            {
+                int16 tpBonus = PChar->getMod(Mod::TACTICAL_GUARD);
+                PChar->addTP(tpBonus);
             }
         }
     }
