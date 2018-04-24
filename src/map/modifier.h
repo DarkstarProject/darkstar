@@ -209,6 +209,9 @@ enum class Mod
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
+    SMITE                     = 898, // Raises attack when using H2H or 2H weapons (256 scale)
+    TACTICAL_GUARD            = 899, // Tp increase when guarding
+
     HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap) Truncate at decimal, do not round.
     HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?) Truncate at decimal, do not round.
     HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 1024 base! (256 cap) Truncate at decimal, do not round.
@@ -711,9 +714,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 898, // stuff
-    // SPARE = 899, // stuff
     // SPARE = 900, // stuff
+    // SPARE = 901, // stuff
+    // SPARE = 902, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
