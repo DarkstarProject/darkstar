@@ -26,6 +26,7 @@ SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10165; -- Nobody sees the sovereign without a
         YOU_CANNOT_ENTER_DYNAMIS = 11220; -- You cannot enter Dynamis
   PLAYERS_HAVE_NOT_REACHED_LEVEL = 11222; -- Players who have not reached level   are prohibited from entering Dynamis.
       UNUSUAL_ARRANGEMENT_LEAVES = 11235; -- There is an unusual arrangement of leaves on the ground.
+         TEAR_IN_FABRIC_OF_SPACE = 15863; -- There appears to be a tear in the fabric of space...
 
 -- Quest Dialog
       YOUR_LEVEL_LIMIT_IS_NOW_55 = 10373; -- Your level limit is now 55.
