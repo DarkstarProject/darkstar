@@ -20534,10 +20534,15 @@ INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1138,110);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1162,10);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1429,40);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,4158,80);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1119,30);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1162,10);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4901,40);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4902,40);
+
+-- [Tonberry Kinq] 
+-- Values taken from ffxidb on 04/23/2018 (http://www.ffxidb.com/zones/159/tonberry-kinq)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1119,400); -- Tonberry Coat (40%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1162,160); -- Tonberry Lantern (16%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4901,60); -- Water Spirit (6%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1443,40); -- Dried Mugwort (4%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4902,40); -- Light Spirit (4%)
+
 INSERT INTO `mob_droplist` VALUES (3553,0,0,1000,1311,30);
 INSERT INTO `mob_droplist` VALUES (3553,0,0,1000,1633,10);
 INSERT INTO `mob_droplist` VALUES (3553,0,0,1000,1829,10);
