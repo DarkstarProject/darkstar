@@ -27,13 +27,13 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     local resist = applyResistance(caster, target, spell, params);
-    local power = 300 * resist;
+    local power = 3000 * resist;
 
     if (target:getTP() == 0) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
         target:delTP(power);
-        spell:setMsg(msgBasic.MAGIC_ERASE);
+        spell:setMsg(msgBasic.MAGIC_TP_REDUCE);
     end
 
     return tp;
