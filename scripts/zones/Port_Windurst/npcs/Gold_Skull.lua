@@ -19,9 +19,9 @@ function onTrigger(player,npc)
         currentMission = player:getCurrentMission(BASTOK);
         missionStatus = player:getVar("MissionStatus");
 
-        if (player:hasKeyItem(SWORD_OFFERING)) then
+        if (player:hasKeyItem(dsp.kis.SWORD_OFFERING)) then
             player:startEvent(53);
-        elseif (player:hasKeyItem(KINDRED_REPORT)) then
+        elseif (player:hasKeyItem(dsp.kis.KINDRED_REPORT)) then
             player:startEvent(68);
         elseif (currentMission == THE_EMISSARY_WINDURST2) then
             if (missionStatus == 7) then
@@ -58,9 +58,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 53) then
-        player:addKeyItem(DULL_SWORD);
-        player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
-        player:delKeyItem(SWORD_OFFERING);
+        player:addKeyItem(dsp.kis.DULL_SWORD);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DULL_SWORD);
+        player:delKeyItem(dsp.kis.SWORD_OFFERING);
     end
 
 end;

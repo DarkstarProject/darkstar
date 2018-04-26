@@ -19,7 +19,7 @@ function onTrigger(player,npc)
         player:startEvent(12);
     elseif (player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 1) then
       player:startEvent(16);
-    elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:hasKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE)) then
+    elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.kis.LETTERS_FROM_ULMIA_AND_PRISHE)) then
       player:startEvent(17);
     else
       player:startEvent(20);

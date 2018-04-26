@@ -25,7 +25,7 @@ function onTrigger(player,npc)
 
     if (toCureaCough == QUEST_AVAILABLE and player:getVar("toCureaCough") == 0 and medicineWoman == QUEST_COMPLETED) then
         player:startEvent(538);
-    elseif (player:hasKeyItem(COUGH_MEDICINE) == true) then
+    elseif (player:hasKeyItem(dsp.kis.COUGH_MEDICINE) == true) then
         player:startEvent(647);
     else
         player:startEvent(584);
@@ -48,9 +48,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(A_MOSS_KIND_PERSON);
         player:setVar("toCureaCough",0);
         player:setVar("DiaryPage",0);
-        player:delKeyItem(COUGH_MEDICINE);
-        player:addKeyItem(SCROLL_OF_TREASURE);
-        player:messageSpecial(KEYITEM_OBTAINED,SCROLL_OF_TREASURE);
+        player:delKeyItem(dsp.kis.COUGH_MEDICINE);
+        player:addKeyItem(dsp.kis.SCROLL_OF_TREASURE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SCROLL_OF_TREASURE);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,TO_CURE_A_COUGH);
     end

@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    OldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
-    ShadowFlames = player:hasKeyItem(SHADOW_FLAMES);
+    OldGauntlets = player:hasKeyItem(dsp.kis.OLD_GAUNTLETS);
+    ShadowFlames = player:hasKeyItem(dsp.kis.SHADOW_FLAMES);
     BorghertzCS = player:getVar("BorghertzCS");
     X = player:getXPos();
     Z = player:getZPos();

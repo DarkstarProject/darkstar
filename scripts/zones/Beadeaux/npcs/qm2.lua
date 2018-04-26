@@ -17,9 +17,9 @@ end;
 
 function onTrigger(player,npc)
 -- TODO: The ??? should only spawn during rainy weather, temporary fix in place to prevent players from getting the keyitem unless the proper weather is present.
-    if (player:getQuestStatus(BASTOK,BEADEAUX_SMOG) == QUEST_ACCEPTED and player:hasKeyItem(CORRUPTED_DIRT) == false and player:getWeather() == WEATHER_RAIN) then
-        player:addKeyItem(CORRUPTED_DIRT);
-        player:messageSpecial(KEYITEM_OBTAINED,CORRUPTED_DIRT);
+    if (player:getQuestStatus(BASTOK,BEADEAUX_SMOG) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.CORRUPTED_DIRT) == false and player:getWeather() == WEATHER_RAIN) then
+        player:addKeyItem(dsp.kis.CORRUPTED_DIRT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CORRUPTED_DIRT);
     end
 end;
 

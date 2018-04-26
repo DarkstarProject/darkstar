@@ -21,8 +21,8 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
         if (not GetMobByID(MOKKURKALFI_I):isSpawned() and not GetMobByID(MOKKURKALFI_II):isSpawned()) then
             if (player:getVar("Mission7-1MobKilled") == 1) then
-                player:addKeyItem(REINFORCED_CERMET);
-                player:messageSpecial(KEYITEM_OBTAINED,REINFORCED_CERMET);
+                player:addKeyItem(dsp.kis.REINFORCED_CERMET);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.REINFORCED_CERMET);
                 player:setVar("Mission7-1MobKilled",0);
                 player:setVar("MissionStatus",2);
             else

@@ -14,7 +14,7 @@ require("scripts/zones/Selbina/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA) == QUEST_ACCEPTED and player:hasKeyItem(ETCHED_RING) == false) then
+    if (player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.ETCHED_RING) == false) then
         if (trade:hasItemQty(4501,1) == true and trade:getItemCount() == 1) then
             rand = math.random(1,5);
             if (rand == 3) then
@@ -496,12 +496,12 @@ function onEventFinish(player,csid,option)
     elseif (csid == 36) then
         player:tradeComplete();
     elseif (csid == 35) then
-        player:addKeyItem(ETCHED_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,ETCHED_RING);
+        player:addKeyItem(dsp.kis.ETCHED_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ETCHED_RING);
         player:tradeComplete();
     elseif (csid == 85) then
-        player:addKeyItem(KNIGHTS_BOOTS);
-        player:messageSpecial(KEYITEM_OBTAINED,KNIGHTS_BOOTS);
+        player:addKeyItem(dsp.kis.KNIGHTS_BOOTS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.KNIGHTS_BOOTS);
         player:setVar("aBoysDreamCS",6);
         player:tradeComplete();
 --------------------- Inside the Belly -----------------------------------------------------------------------------

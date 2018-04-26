@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("ALittleKnowledge", 2);
     elseif (csid == 14) then
-        player:addKeyItem(GRIMOIRE);
+        player:addKeyItem(dsp.kis.GRIMOIRE);
         player:unlockJob(dsp.jobs.SCH);
         player:addTitle(SCHULTZ_SCHOLAR);
         player:setVar("ALittleKnowledge", 0);
@@ -118,15 +118,15 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 18) then
         player:addQuest(CRYSTAL_WAR, ON_SABBATICAL);
-        player:addKeyItem(ULBRECHTS_SEALED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, ULBRECHTS_SEALED_LETTER);
+        player:addKeyItem(dsp.kis.ULBRECHTS_SEALED_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.ULBRECHTS_SEALED_LETTER);
         player:setVar("OnSabbatical", 1);
     elseif (csid == 20) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         else
-            player:delKeyItem(ULBRECHTS_SEALED_LETTER);
-            player:delKeyItem(SCHULTS_SEALED_LETTER);
+            player:delKeyItem(dsp.kis.ULBRECHTS_SEALED_LETTER);
+            player:delKeyItem(dsp.kis.SCHULTS_SEALED_LETTER);
             player:completeQuest(CRYSTAL_WAR,ON_SABBATICAL);
             player:addItem(6058); --klimaform
             player:messageSpecial(ITEM_OBTAINED, 6058);

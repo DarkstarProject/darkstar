@@ -39,11 +39,11 @@ function onTrigger(player,npc)
         player:startEvent(50);
     elseif (player:getVar("aBoysDreamCS") >= 7) then
         player:startEvent(32);
-    elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(STRANGE_SHEET_OF_PAPER)) then
+    elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.kis.STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(77);
     elseif (player:getVar("UnderOathCS") == 5) then
         player:startEvent(79);
-    elseif (player:hasKeyItem(KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+    elseif (player:hasKeyItem(dsp.kis.KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
         player:startEvent(51);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(19);

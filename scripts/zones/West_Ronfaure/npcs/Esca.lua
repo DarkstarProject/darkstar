@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED, 579);
     elseif (csid == 137) then
         player:setVar("ChasingQuotas_Progress",5);
-        player:delKeyItem(SHINY_EARRING);
+        player:delKeyItem(dsp.kis.SHINY_EARRING);
     end;
 end;
 

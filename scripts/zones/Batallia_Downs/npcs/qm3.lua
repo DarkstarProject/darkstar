@@ -37,8 +37,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 904) then
-        player:addKeyItem(FIGURE_OF_LEVIATHAN);
-        player:messageSpecial(KEYITEM_OBTAINED,FIGURE_OF_LEVIATHAN);
+        player:addKeyItem(dsp.kis.FIGURE_OF_LEVIATHAN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.FIGURE_OF_LEVIATHAN);
         player:setVar("MissionStatus",4);
         player:setVar("Mission9-1Kills",0);
     end

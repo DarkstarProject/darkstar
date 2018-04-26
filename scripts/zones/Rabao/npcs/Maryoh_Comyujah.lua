@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL) then
         if (player:getVar("ZilartStatus") == 0) then
             player:startEvent(81); -- Start
-        elseif (player:hasKeyItem(SCRAP_OF_PAPYRUS)) then
+        elseif (player:hasKeyItem(dsp.kis.SCRAP_OF_PAPYRUS)) then
             player:startEvent(83); -- Finish
         elseif (player:getVar("ZilartStatus") == 2) then
             player:startEvent(84); -- Go to hall of the gods
@@ -47,9 +47,9 @@ function onEventFinish(player,csid,option)
         player:setVar("ZilartStatus",1);
     elseif (csid == 83) then
         player:setVar("ZilartStatus",2);
-        player:delKeyItem(SCRAP_OF_PAPYRUS);
-        player:addKeyItem(CERULEAN_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,CERULEAN_CRYSTAL);
+        player:delKeyItem(dsp.kis.SCRAP_OF_PAPYRUS);
+        player:addKeyItem(dsp.kis.CERULEAN_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CERULEAN_CRYSTAL);
     end
 
 end;

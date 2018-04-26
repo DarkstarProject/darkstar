@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1062,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: Map -----------
-        if (player:hasKeyItem(MAP_OF_OLDTON_MOVALPOLOS) == false) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_OLDTON_MOVALPOLOS) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -47,8 +47,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(MAP_OF_OLDTON_MOVALPOLOS);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_OLDTON_MOVALPOLOS); -- Map of Oldton Movalpolos
+                    player:addKeyItem(dsp.kis.MAP_OF_OLDTON_MOVALPOLOS);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_OLDTON_MOVALPOLOS); -- Map of Oldton Movalpolos
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

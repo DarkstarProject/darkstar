@@ -19,10 +19,10 @@ function onTrigger(player,npc)
     local ZilartStatus = player:getVar("ZilartStatus");
 
     if (player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then
-        if (player:hasKeyItem(EARTH_FRAGMENT)) then
-            player:delKeyItem(EARTH_FRAGMENT);
+        if (player:hasKeyItem(dsp.kis.EARTH_FRAGMENT)) then
+            player:delKeyItem(dsp.kis.EARTH_FRAGMENT);
             player:setVar("ZilartStatus",ZilartStatus + 4);
-            player:messageSpecial(YOU_PLACE_THE,EARTH_FRAGMENT);
+            player:messageSpecial(YOU_PLACE_THE,dsp.kis.EARTH_FRAGMENT);
 
             if (ZilartStatus == 255) then
                 player:startEvent(1);
@@ -30,10 +30,10 @@ function onTrigger(player,npc)
         elseif (ZilartStatus == 255) then -- Execute cutscene if the player is interrupted.
             player:startEvent(1);
         else
-            player:messageSpecial(IS_SET_IN_THE_PEDESTAL,EARTH_FRAGMENT);
+            player:messageSpecial(IS_SET_IN_THE_PEDESTAL,dsp.kis.EARTH_FRAGMENT);
         end
     elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES)) then
-        player:messageSpecial(HAS_LOST_ITS_POWER,EARTH_FRAGMENT);
+        player:messageSpecial(HAS_LOST_ITS_POWER,dsp.kis.EARTH_FRAGMENT);
     else
         player:messageSpecial(PLACED_INTO_THE_PEDESTAL);
     end
@@ -52,8 +52,8 @@ function onEventFinish(player,csid,option)
     if (csid == 1) then
         player:addTitle(LIGHTWEAVER);
         player:setVar("ZilartStatus",0);
-        player:addKeyItem(PRISMATIC_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_FRAGMENT);
+        player:addKeyItem(dsp.kis.PRISMATIC_FRAGMENT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PRISMATIC_FRAGMENT);
         player:completeMission(ZILART,THE_CHAMBER_OF_ORACLES);
         player:addMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
     end

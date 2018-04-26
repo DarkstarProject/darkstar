@@ -41,9 +41,9 @@ function onEventFinish(player,csid,option)
 
     if (csid == 106) then
         player:completeMission(TOAU,TESTING_THE_WATERS);
-        player:delKeyItem(EPHRAMADIAN_GOLD_COIN);
-        player:addKeyItem(PERCIPIENT_EYE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCIPIENT_EYE);
+        player:delKeyItem(dsp.kis.EPHRAMADIAN_GOLD_COIN);
+        player:addKeyItem(dsp.kis.PERCIPIENT_EYE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PERCIPIENT_EYE);
         player:setTitle(TREASURE_TROVE_TENDER);
         player:setVar("AhtUrganStatus", 0);
         player:addMission(TOAU,LEGACY_OF_THE_LOST);

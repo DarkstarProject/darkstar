@@ -82,7 +82,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if ( player:hasKeyItem(CLAMMING_KIT)) then -- Player has clamming kit
+    if ( player:hasKeyItem(dsp.kis.CLAMMING_KIT)) then -- Player has clamming kit
 
         if (player:getVar("ClammingKitBroken") == 1) then -- Broken bucket
             player:startEvent(30, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -109,7 +109,7 @@ function onEventUpdate(player,csid,option)
             enoughMoney = 1; --Player has enough Money
         end
 
-        player:updateEvent(CLAMMING_KIT, enoughMoney, 0, 0, 0, 500, 0, 0);
+        player:updateEvent(dsp.kis.CLAMMING_KIT, enoughMoney, 0, 0, 0, 500, 0, 0);
     elseif  (csid == 29) then
         local clammingKitSize = player:getVar("ClammingKitSize");
 
@@ -124,17 +124,17 @@ function onEventFinish(player,csid,option)
     if (csid == 28) then
         if (option == 1) then -- Give 50pz clamming kit
             player:setVar("ClammingKitSize", 50);
-            player:addKeyItem(CLAMMING_KIT);
+            player:addKeyItem(dsp.kis.CLAMMING_KIT);
             player:delGil(500);
-            player:messageSpecial(KEYITEM_OBTAINED,CLAMMING_KIT);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CLAMMING_KIT);
         end
     elseif (csid == 29) then
         if (option == 2) then -- Give player clammed items
 
             player:setVar("ClammingKitSize", 0);
             player:setVar("ClammingKitWeight", 0);
-            player:delKeyItem(CLAMMING_KIT);
-            player:messageSpecial(YOU_RETURN_THE,CLAMMING_KIT);
+            player:delKeyItem(dsp.kis.CLAMMING_KIT);
+            player:messageSpecial(YOU_RETURN_THE,dsp.kis.CLAMMING_KIT);
 
             giveClammedItems(player);
 
@@ -148,7 +148,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ClammingKitSize", 0);
         player:setVar("ClammingKitBroken", 0);
         player:setVar("ClammingKitWeight", 0);
-        player:delKeyItem(CLAMMING_KIT);
-        player:messageSpecial(YOU_RETURN_THE,CLAMMING_KIT);
+        player:delKeyItem(dsp.kis.CLAMMING_KIT);
+        player:messageSpecial(YOU_RETURN_THE,dsp.kis.CLAMMING_KIT);
     end
 end;

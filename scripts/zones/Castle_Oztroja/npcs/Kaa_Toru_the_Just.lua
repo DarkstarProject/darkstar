@@ -33,9 +33,9 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13134);
         else
-            player:delKeyItem(HOLY_ONES_INVITATION);
-            player:addKeyItem(HOLY_ONES_OATH);
-            player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_OATH);
+            player:delKeyItem(dsp.kis.HOLY_ONES_INVITATION);
+            player:addKeyItem(dsp.kis.HOLY_ONES_OATH);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.HOLY_ONES_OATH);
             player:addItem(13134); -- Ashura Necklace
             player:messageSpecial(ITEM_OBTAINED,13134);
             player:setVar("MissionStatus",3);

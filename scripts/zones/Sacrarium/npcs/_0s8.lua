@@ -13,9 +13,9 @@ function onTrigger(player,npc)
     if (player:getXPos() > 45) then
         if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2) then
             player:startEvent(6,0,582);
-        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY) == true) then
+        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(dsp.kis.RELIQUIARIUM_KEY) == true) then
             player:startEvent(5);
-        elseif (player:hasKeyItem(RELIQUIARIUM_KEY) == true) then
+        elseif (player:hasKeyItem(dsp.kis.RELIQUIARIUM_KEY) == true) then
             player:startEvent(110);
         end
     else

@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     if (player:getZPos() >= -15) then
         player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE);
     else
-        if (player:hasKeyItem(PORTAL_CHARM)) then
+        if (player:hasKeyItem(dsp.kis.PORTAL_CHARM)) then
         GetNPCByID(PORTAL_CIRCLE_BASE):openDoor(30);
         GetNPCByID(PORTAL_CIRCLE_BASE+1):openDoor(30);
         GetNPCByID(PORTAL_CIRCLE_BASE+2):openDoor(30);

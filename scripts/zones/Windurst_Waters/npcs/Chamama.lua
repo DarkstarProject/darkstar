@@ -15,8 +15,8 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
 
-FakeMoustache       = player:hasKeyItem(FAKE_MOUSTACHE);
-InvisibleManSticker = player:hasKeyItem(INVISIBLE_MAN_STICKER);
+FakeMoustache       = player:hasKeyItem(dsp.kis.FAKE_MOUSTACHE);
+InvisibleManSticker = player:hasKeyItem(dsp.kis.INVISIBLE_MAN_STICKER);
 InAPickle            = player:getQuestStatus(WINDURST,IN_A_PICKLE);
 count                = trade:getItemCount();
 gil                    = trade:getGil();
@@ -55,7 +55,7 @@ gil                    = trade:getGil();
             ShoalWeed = trade:hasItemQty(1148,1);
 
             if (ShoalWeed == true and count == 1) then
-                player:startEvent(799,0,0,INVISIBLE_MAN_STICKER);
+                player:startEvent(799,0,0,dsp.kis.INVISIBLE_MAN_STICKER);
             end
         end
     end
@@ -68,7 +68,7 @@ ThePromise       = player:getQuestStatus(WINDURST,THE_PROMISE);
 InAPickle         = player:getQuestStatus(WINDURST,IN_A_PICKLE);
 NeedToZone         = player:needToZone();
     if (ThePromise == QUEST_ACCEPTED) then
-        InvisibleManSticker = player:hasKeyItem(INVISIBLE_MAN_STICKER);
+        InvisibleManSticker = player:hasKeyItem(dsp.kis.INVISIBLE_MAN_STICKER);
 
         if (InvisibleManSticker == true) then
             player:startEvent(800);
@@ -76,18 +76,18 @@ NeedToZone         = player:needToZone();
             ThePromiseVar = player:getVar("ThePromise");
 
             if (ThePromiseVar == 1) then
-                player:startEvent(798,0,1148,INVISIBLE_MAN_STICKER);
+                player:startEvent(798,0,1148,dsp.kis.INVISIBLE_MAN_STICKER);
             else
-                player:startEvent(797,0,1148,INVISIBLE_MAN_STICKER);
+                player:startEvent(797,0,1148,dsp.kis.INVISIBLE_MAN_STICKER);
             end
         end
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
-        FakeMoustache = player:hasKeyItem(FAKE_MOUSTACHE);
+        FakeMoustache = player:hasKeyItem(dsp.kis.FAKE_MOUSTACHE);
         printf("mustach check");
         if (FakeMoustache == true) then
             player:startEvent(553);
         else
-            player:startEvent(551,0,FAKE_MOUSTACHE);
+            player:startEvent(551,0,dsp.kis.FAKE_MOUSTACHE);
         end
     elseif (InAPickle == QUEST_AVAILABLE and NeedToZone == false) then
         rand = math.random(1,2);
@@ -124,14 +124,14 @@ function onEventFinish(player,csid,option)
 
     if (csid == 552) then
         player:tradeComplete();
-        player:addKeyItem(FAKE_MOUSTACHE);
-        player:messageSpecial(KEYITEM_OBTAINED,FAKE_MOUSTACHE);
+        player:addKeyItem(dsp.kis.FAKE_MOUSTACHE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.FAKE_MOUSTACHE);
     elseif (csid == 797) then
         player:setVar("ThePromise",1);
     elseif (csid == 799) then
         player:tradeComplete();
-        player:addKeyItem(INVISIBLE_MAN_STICKER);
-        player:messageSpecial(KEYITEM_OBTAINED,INVISIBLE_MAN_STICKER);
+        player:addKeyItem(dsp.kis.INVISIBLE_MAN_STICKER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.INVISIBLE_MAN_STICKER);
     elseif (csid == 654 and option == 1) then  -- IN A PICKLE + RARAB TAIL: Quest Begin
         player:addQuest(WINDURST,IN_A_PICKLE);
     elseif (csid == 659) then  -- IN A PICKLE: Quest Turn In (1st Time)

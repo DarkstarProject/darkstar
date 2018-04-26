@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     local level = player:getMainLvl();
     local gil = player:getGil();
 
-    if (player:hasKeyItem(CHOCOBO_LICENSE) and level >= 15) then
+    if (player:hasKeyItem(dsp.kis.CHOCOBO_LICENSE) and level >= 15) then
         local price = getChocoboPrice(player);
         player:setLocalVar("chocoboPriceOffer",price);
 

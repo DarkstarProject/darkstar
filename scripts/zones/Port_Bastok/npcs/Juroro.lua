@@ -18,7 +18,7 @@ end;
 function onTrigger(player,npc)
 
     local TrialByEarth = player:getQuestStatus(BASTOK,TRIAL_BY_EARTH);
-    local WhisperOfTremors = player:hasKeyItem(WHISPER_OF_TREMORS);
+    local WhisperOfTremors = player:hasKeyItem(dsp.kis.WHISPER_OF_TREMORS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
     local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
@@ -30,11 +30,11 @@ function onTrigger(player,npc)
     elseif (ThePuppetMaster == QUEST_ACCEPTED and ThePuppetMasterProgress == 3) then
         player:startEvent(258);
     elseif ((TrialByEarth == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 6) or (TrialByEarth == QUEST_COMPLETED and realday ~= player:getVar("TrialByEarth_date"))) then
-        player:startEvent(249,0,TUNING_FORK_OF_EARTH); -- Start and restart quest "Trial by Earth"
-    elseif (TrialByEarth == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_EARTH) == false and WhisperOfTremors == false) then
-        player:startEvent(284,0,TUNING_FORK_OF_EARTH); -- Defeat against Titan : Need new Fork
+        player:startEvent(249,0,dsp.kis.TUNING_FORK_OF_EARTH); -- Start and restart quest "Trial by Earth"
+    elseif (TrialByEarth == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TUNING_FORK_OF_EARTH) == false and WhisperOfTremors == false) then
+        player:startEvent(284,0,dsp.kis.TUNING_FORK_OF_EARTH); -- Defeat against Titan : Need new Fork
     elseif (TrialByEarth == QUEST_ACCEPTED and WhisperOfTremors == false) then
-        player:startEvent(250,0,TUNING_FORK_OF_EARTH,1);
+        player:startEvent(250,0,dsp.kis.TUNING_FORK_OF_EARTH,1);
     elseif (TrialByEarth == QUEST_ACCEPTED and WhisperOfTremors) then
         numitem = 0;
 
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         if (player:hasItem(1205)) then numitem = numitem + 8; end   -- Desert Light
         if (player:hasSpell(299)) then numitem = numitem + 32; end  -- Ability to summon Titan
 
-        player:startEvent(252,0,TUNING_FORK_OF_EARTH,1,0,numitem);
+        player:startEvent(252,0,dsp.kis.TUNING_FORK_OF_EARTH,1,0,numitem);
     else
         player:startEvent(253); -- Standard dialog
     end
@@ -83,11 +83,11 @@ function onEventFinish(player,csid,option)
         end
         player:addQuest(BASTOK,TRIAL_BY_EARTH);
         player:setVar("TrialByEarth_date", 0);
-        player:addKeyItem(TUNING_FORK_OF_EARTH);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_EARTH);
+        player:addKeyItem(dsp.kis.TUNING_FORK_OF_EARTH);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_EARTH);
     elseif (csid == 284) then
-        player:addKeyItem(TUNING_FORK_OF_EARTH);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_EARTH);
+        player:addKeyItem(dsp.kis.TUNING_FORK_OF_EARTH);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_EARTH);
     elseif (csid == 252) then
         local item = 0;
         if (option == 1) then item = 17438;         -- Titan's Cudgel
@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial(ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_EARTH);
-            player:delKeyItem(WHISPER_OF_TREMORS); --Whisper of Tremors, as a trade for the above rewards
+            player:delKeyItem(dsp.kis.WHISPER_OF_TREMORS); --Whisper of Tremors, as a trade for the above rewards
             player:setVar("TrialByEarth_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,TRIAL_BY_EARTH);

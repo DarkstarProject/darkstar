@@ -95,8 +95,8 @@ function onEventFinish(player,csid,option)
         player:setVar("TheRequiemYumKilled",0);
         player:setVar("TheRequiemRandom",0);
         player:setVar("TheRequiemAlreadyPoped",0);
-        player:addKeyItem(STAR_RING1);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_RING1); -- Star Ring (Key Item).
+        player:addKeyItem(dsp.kis.STAR_RING1);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_RING1); -- Star Ring (Key Item).
 
     -- A NEW DAWN
     elseif (csid == 45) then

@@ -20,8 +20,8 @@ function onTrigger(player,npc)
 
     if (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2 and not GetMobByID(SABOTENDER_ENAMORADO):isSpawned()) then
         if (player:getVar("Mission6-1MobKilled") == 1) then
-            player:addKeyItem(DREAMROSE);
-            player:messageSpecial(KEYITEM_OBTAINED,DREAMROSE);
+            player:addKeyItem(dsp.kis.DREAMROSE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DREAMROSE);
             player:setVar("Mission6-1MobKilled",0);
             player:setVar("MissionStatus",3);
         else

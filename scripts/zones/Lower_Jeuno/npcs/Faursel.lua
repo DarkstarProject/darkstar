@@ -104,10 +104,10 @@ function onEventFinish(player,csid,option)
             player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",VanadielYear());
         end
     elseif (csid == 10067) then
-        player:addKeyItem(MAP_OF_WAJAOM_WOODLANDS);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_WAJAOM_WOODLANDS);
-        player:addKeyItem(BOARDING_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
+        player:addKeyItem(dsp.kis.MAP_OF_WAJAOM_WOODLANDS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_WAJAOM_WOODLANDS);
+        player:addKeyItem(dsp.kis.BOARDING_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.BOARDING_PERMIT);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",4);
         toWajaomLaypoint(player);
     elseif (csid == 10068) then
@@ -117,8 +117,8 @@ function onEventFinish(player,csid,option)
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",0);
         player:addFame(JEUNO, 30);
     elseif (csid == 10070) then
-        player:addKeyItem(BOARDING_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
+        player:addKeyItem(dsp.kis.BOARDING_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.BOARDING_PERMIT);
         player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);

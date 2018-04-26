@@ -27,8 +27,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local LearnerLog = player:hasKeyItem(MAGIAN_LEARNERS_LOG);
-    local TrialLog = player:hasKeyItem(MAGIAN_TRIAL_LOG);
+    local LearnerLog = player:hasKeyItem(dsp.kis.MAGIAN_LEARNERS_LOG);
+    local TrialLog = player:hasKeyItem(dsp.kis.MAGIAN_TRIAL_LOG);
     if (player:getMainLvl() < 30) then
         player:startEvent(10151);
     elseif (player:getVar("MetGreenMagianMog") == 0 and LearnerLog == false) then
@@ -51,9 +51,9 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 10160 and option == 1) then
-        if (player:hasKeyItem(MAGIAN_TRIAL_LOG) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,MAGIAN_LEARNERS_LOG);
-            player:addKeyItem(MAGIAN_LEARNERS_LOG);
+        if (player:hasKeyItem(dsp.kis.MAGIAN_TRIAL_LOG) == false) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAGIAN_LEARNERS_LOG);
+            player:addKeyItem(dsp.kis.MAGIAN_LEARNERS_LOG);
         end
         player:setVar("MetGreenMagianMog",1);
     --elseif

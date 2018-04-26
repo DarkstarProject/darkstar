@@ -17,7 +17,7 @@ require("scripts/zones/Temenos/TextIDs");
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
 local InstanceTrade=0;
-if (player:hasKeyItem(COSMOCLEANSE) and player:hasKeyItem(WHITE_CARD) ) then
+if (player:hasKeyItem(dsp.kis.COSMOCLEANSE) and player:hasKeyItem(dsp.kis.WHITE_CARD) ) then
 
 
      if (count==1 and trade:hasItemQty(2127,1)) then -- Central Temenos - Basement 1
@@ -64,22 +64,22 @@ function onTrigger(player,npc)
   printf("currentlimbus: %u",currentlimbus);
 
 
-   if (player:hasKeyItem(COSMOCLEANSE)) then
+   if (player:hasKeyItem(dsp.kis.COSMOCLEANSE)) then
        if (player:hasStatusEffect(dsp.effects.BATTLEFIELD) == false) then
          local LimbusTradeItem = player:getVar("Limbus_Trade_Item-T");
            for nt = 1,#instancelist,2 do
                 --    printf("list d'instance: %u",instancelist[nt]);
-               if (instancelist[nt+1][1]==true and player:hasKeyItem(WHITE_CARD)) then
+               if (instancelist[nt+1][1]==true and player:hasKeyItem(dsp.kis.WHITE_CARD)) then
                --    print("player_have_white_card");
                    limbusbitmap = limbusbitmap + instancelist[nt+1][4];
                --   printf("bitmapadd: %u",instancelist[nt+1][4]);
                end
-               if (instancelist[nt+1][2]==true and player:hasKeyItem(RED_CARD)) then
+               if (instancelist[nt+1][2]==true and player:hasKeyItem(dsp.kis.RED_CARD)) then
                 --  print("player_have_red_card");
                     limbusbitmap = limbusbitmap + instancelist[nt+1][4];
                 --   printf("bitmapadd: %u",instancelist[nt+1][4]);
                end
-               if (instancelist[nt+1][3]==true and player:hasKeyItem(BLACK_CARD)) then
+               if (instancelist[nt+1][3]==true and player:hasKeyItem(dsp.kis.BLACK_CARD)) then
                  -- print("player_have_black_card");
                     limbusbitmap = limbusbitmap + instancelist[nt+1][4];
                  --  printf("bitmapadd: %u",instancelist[nt+1][4]);
@@ -94,13 +94,13 @@ function onTrigger(player,npc)
            for nt = 1,#instancelist,2 do
                --     printf("list d'instance: %u",instancelist[nt]);
                     if (instancelist[nt] == playerbcnmid) then
-                        if (instancelist[nt+1][1]== true and player:hasKeyItem(WHITE_CARD) == false) then
+                        if (instancelist[nt+1][1]== true and player:hasKeyItem(dsp.kis.WHITE_CARD) == false) then
                            AllowLimbusToPlayer = false;
                         end
-                        if (instancelist[nt+1][2]== true  and player:hasKeyItem(RED_CARD) == false ) then
+                        if (instancelist[nt+1][2]== true  and player:hasKeyItem(dsp.kis.RED_CARD) == false ) then
                            AllowLimbusToPlayer = false;
                         end
-                        if (instancelist[nt+1][3]== true and player:hasKeyItem(BLACK_CARD) == false ) then
+                        if (instancelist[nt+1][3]== true and player:hasKeyItem(dsp.kis.BLACK_CARD) == false ) then
                            AllowLimbusToPlayer = false;
                         end
                         if (AllowLimbusToPlayer == true) then --player have the correct key item for the current battflield

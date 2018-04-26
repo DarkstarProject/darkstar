@@ -66,8 +66,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 381) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        player:addKeyItem(WINDURST_WOODS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WOODS_SCOOP);
+        player:addKeyItem(dsp.kis.WINDURST_WOODS_SCOOP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WINDURST_WOODS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+8);
     elseif (csid == 731) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",3,true);

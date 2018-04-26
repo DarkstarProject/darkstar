@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,9) == false) then
         player:startEvent(935);
-    elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
+    elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(dsp.kis.C_L_REPORTS)) then
         player:startEvent(712);
     elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == dsp.jobs.MNK and player:getMainLvl() >= 50) then
         player:startEvent(748); -- Start Quest "True Strength"

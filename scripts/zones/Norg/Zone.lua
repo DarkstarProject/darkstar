@@ -52,9 +52,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 1) then
-        if (player:hasKeyItem(MAP_OF_NORG) == false) then
-            player:addKeyItem(MAP_OF_NORG);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_NORG);
+        if (player:hasKeyItem(dsp.kis.MAP_OF_NORG) == false) then
+            player:addKeyItem(dsp.kis.MAP_OF_NORG);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_NORG);
         end
         player:completeMission(ZILART,THE_NEW_FRONTIER);
         player:addMission(ZILART,WELCOME_TNORG);

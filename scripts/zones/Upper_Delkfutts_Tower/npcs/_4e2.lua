@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(DELKFUTT_KEY)) then
+    if (player:hasKeyItem(dsp.kis.DELKFUTT_KEY)) then
         player:startEvent(6);
     else
         player:messageSpecial(THIS_ELEVATOR_GOES_DOWN);
@@ -33,10 +33,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 6) then
-        if (player:hasKeyItem(DELKFUTT_KEY) == false) then
+        if (player:hasKeyItem(dsp.kis.DELKFUTT_KEY) == false) then
             player:tradeComplete();
-            player:addKeyItem(DELKFUTT_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
+            player:addKeyItem(dsp.kis.DELKFUTT_KEY);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DELKFUTT_KEY);
         end
     end
 end;

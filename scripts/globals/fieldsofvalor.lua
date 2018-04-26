@@ -13,16 +13,6 @@ require("scripts/globals/msg")
 
 TABS = 12; -- What is this for? Where is it used?
 
--- key item IDs
-ELITE_TRAINING_INTRODUCTION = 1116;
-ELITE_TRAINING_CHAPTER_1    = 1117;
-ELITE_TRAINING_CHAPTER_2    = 1118;
-ELITE_TRAINING_CHAPTER_3    = 1119;
-ELITE_TRAINING_CHAPTER_4    = 1120;
-ELITE_TRAINING_CHAPTER_5    = 1121;
-ELITE_TRAINING_CHAPTER_6    = 1122;
-ELITE_TRAINING_CHAPTER_7    = 1123;
-
 -- EVENT PARAM ID CONSTANTS (change these if even seqs displayed break!)
 -- onEventUpdate params
 FOV_MENU_PAGE_1      = 18;
@@ -346,7 +336,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         writeRegime(player, r5, msg_accept, msg_jobs, fov_repeat);
 
     elseif (option == FOV_MENU_ELITE_INTRO) then -- Want elite, 100tabs
-        -- giveEliteRegime(player, ELITE_TRAINING_CHAPTER_7, 100);
+        -- giveEliteRegime(player, dsp.kis.ELITE_TRAINING_CHAPTER_7, 100);
 
     elseif (option == FOV_MENU_ELITE_CHAP1) then -- Want elite, 150tabs
         -- local tabs = player:getVar("tabs");

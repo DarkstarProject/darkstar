@@ -34,10 +34,10 @@ function onTrigger(player,npc)
                 player:messageSpecial(G_ORB_ALREADY_GOTTEN);
             end
         else
-            player:messageSpecial(DARK_MANA_ORB_RECHARGER);
+            player:messageSpecial(dsp.kis.DARK_MANA_ORB_RECHARGER);
         end
     else
-        player:messageSpecial(DARK_MANA_ORB_RECHARGER);
+        player:messageSpecial(dsp.kis.DARK_MANA_ORB_RECHARGER);
     end
 
     return 1;
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             -- Push the text that the player has placed the orb
             player:messageSpecial(FIRST_DARK_ORB_IN_PLACE);
             --Delete the key item
-            player:delKeyItem(FIRST_DARK_MANA_ORB);
+            player:delKeyItem(dsp.kis.FIRST_DARK_MANA_ORB);
 
             -- Check if all orbs have been placed or not
             if (player:getVar("MissionStatus_orb2") == 2 and
@@ -75,8 +75,8 @@ function onEventFinish(player,csid,option)
         elseif (orb_value == 2) then
             player:setVar("MissionStatus_orb1",3);
             -- Time to get the glowing orb out
-            player:addKeyItem(FIRST_GLOWING_MANA_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED,FIRST_GLOWING_MANA_ORB);
+            player:addKeyItem(dsp.kis.FIRST_GLOWING_MANA_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.FIRST_GLOWING_MANA_ORB);
 
             -- Check if all orbs have been placed or not
             if (player:getVar("MissionStatus_orb2") == 3 and

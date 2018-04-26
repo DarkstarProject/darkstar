@@ -32,15 +32,15 @@ function onZoneIn(player,prevZone)
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
         if (player:getVar("cspromy3") == 1) then
             if (prevZone == 102) then
-                if (player:hasKeyItem(LIGHT_OF_DEM) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
+                if (player:hasKeyItem(dsp.kis.LIGHT_OF_DEM) and player:hasKeyItem(dsp.kis.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.kis.LIGHT_OF_HOLLA))) then
                     cs = 155;
                 end
             elseif (prevZone == 108) then
-                if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_DEM))) then
+                if (player:hasKeyItem(dsp.kis.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.kis.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.kis.LIGHT_OF_DEM))) then
                     cs = 155;
                 end
             elseif (prevZone == 117) then
-                if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM) and not(player:hasKeyItem(LIGHT_OF_MEA))) then
+                if (player:hasKeyItem(dsp.kis.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.kis.LIGHT_OF_DEM) and not(player:hasKeyItem(dsp.kis.LIGHT_OF_MEA))) then
                     cs = 155;
                 end
             -- cs you got when you enter hall of transference for the last promyvion
@@ -131,13 +131,13 @@ function onEventFinish(player,csid,option)
     elseif (csid == 155) then
         player:setVar("cspromy3",0)
         player:setVar("cslastpromy",1)
-        if (not(player:hasKeyItem(LIGHT_OF_DEM))) then
+        if (not(player:hasKeyItem(dsp.kis.LIGHT_OF_DEM))) then
             -- print("shouldbezonedtodem")
             player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
-        elseif (not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
+        elseif (not(player:hasKeyItem(dsp.kis.LIGHT_OF_HOLLA))) then
             -- print("shouldbezonedtoholla")
             player:setPos(92.033, 0, 80.380, 255, 16); -- To Promyvion Holla {R}
-        elseif (not(player:hasKeyItem(LIGHT_OF_MEA))) then
+        elseif (not(player:hasKeyItem(dsp.kis.LIGHT_OF_MEA))) then
             player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
         end
     elseif (csid == 161 and option == 1) then

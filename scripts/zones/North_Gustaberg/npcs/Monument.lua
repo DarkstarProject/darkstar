@@ -19,7 +19,7 @@ function onTrigger(player,npc)
 
     local Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 
-    if (Hearts == QUEST_ACCEPTED and player:hasKeyItem(BOUQUETS_FOR_THE_PIONEERS)) then
+    if (Hearts == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.BOUQUETS_FOR_THE_PIONEERS)) then
         player:startEvent(11);
     end
 
@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 11 and option == 0) then
         player:setVar("HeartsOfMythril",1);
-        player:delKeyItem(BOUQUETS_FOR_THE_PIONEERS);
+        player:delKeyItem(dsp.kis.BOUQUETS_FOR_THE_PIONEERS);
     end
 
 end;

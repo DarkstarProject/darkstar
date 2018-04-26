@@ -21,9 +21,9 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED) then
         local npcID = npc:getID();
-        local aquaKI1 = player:hasKeyItem(AQUAFLORA1);
-        local aquaKI2 = player:hasKeyItem(AQUAFLORA2);
-        local aquaKI3 = player:hasKeyItem(AQUAFLORA3);
+        local aquaKI1 = player:hasKeyItem(dsp.kis.AQUAFLORA1);
+        local aquaKI2 = player:hasKeyItem(dsp.kis.AQUAFLORA2);
+        local aquaKI3 = player:hasKeyItem(dsp.kis.AQUAFLORA3);
         local Z = player:getZPos();
         local X = player:getXPos();
 
@@ -56,11 +56,11 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 21) then
-        player:delKeyItem(AQUAFLORA1);
+        player:delKeyItem(dsp.kis.AQUAFLORA1);
     elseif (csid == 20) then
-        player:delKeyItem(AQUAFLORA2);
+        player:delKeyItem(dsp.kis.AQUAFLORA2);
     elseif (csid == 18) then
-        player:delKeyItem(AQUAFLORA3);
+        player:delKeyItem(dsp.kis.AQUAFLORA3);
         player:setVar("DabotzKilled",0);
     end
 

@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(MAGIAN_TRIAL_LOG) == false) then
+    if (player:hasKeyItem(dsp.kis.MAGIAN_TRIAL_LOG) == false) then
         player:startEvent(10141);
     else
         player:startEvent(10142); -- parameters unknown

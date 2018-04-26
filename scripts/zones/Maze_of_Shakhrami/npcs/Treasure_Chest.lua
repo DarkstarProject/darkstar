@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
         local zone = player:getZoneID();
 
         -- IMPORTANT ITEM: The Goblin Tailor Quest -----------
-        if (player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and player:hasKeyItem(MAGICAL_PATTERN) == false) then
+        if (player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and player:hasKeyItem(dsp.kis.MAGICAL_PATTERN) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -53,8 +53,8 @@ function onTrade(player,npc,trade)
 
                 if (questItemNeeded == 1) then
                     respawn = true;
-                    player:addKeyItem(MAGICAL_PATTERN);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAGICAL_PATTERN);
+                    player:addKeyItem(dsp.kis.MAGICAL_PATTERN);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAGICAL_PATTERN);
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

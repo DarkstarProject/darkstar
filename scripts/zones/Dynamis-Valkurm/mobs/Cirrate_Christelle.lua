@@ -99,9 +99,9 @@ if (GetServerVariable("[DynaValkurm]Boss_Trigger") == 0) then
 end;
 
 function onMobDeath(mob, player, isKiller)
-  if (player:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false) then
-       player:addKeyItem(DYNAMIS_VALKURM_SLIVER);
-       player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
+  if (player:hasKeyItem(dsp.kis.DYNAMIS_VALKURM_SLIVER ) == false) then
+       player:addKeyItem(dsp.kis.DYNAMIS_VALKURM_SLIVER);
+       player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DYNAMIS_VALKURM_SLIVER);
   end
        player:addTitle(DYNAMISVALKURM_INTERLOPER);
 end;

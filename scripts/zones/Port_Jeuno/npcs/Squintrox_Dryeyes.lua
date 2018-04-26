@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
     local ACPm = player:getCurrentMission(ACP);
     local AMKm = player:getCurrentMission(AMK);
     local ASAm = player:getCurrentMission(ASA);
-    local CrimsonKey = player:hasKeyItem(CRIMSON_KEY);
+    local CrimsonKey = player:hasKeyItem(dsp.kis.CRIMSON_KEY);
     local LastCrimson = player:getVar("LastCrimsonKey"); -- When last Crimson key was obtained
 
     if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
@@ -39,12 +39,12 @@ function onTrade(player,npc,trade)
     else    -- Crimson Key: Trade Seedspall's Lux, Luna, Astrum
         if (ENABLE_ACP == 1 and sLux and sLuna and sAstrum and count == 3 and ACPm >= GATHERER_OF_LIGHT_I and CrimsonKey == false and now ~= LastCrimson) then -- and timer stuff here) then
             player:tradeComplete();
-            player:addKeyItem(CRIMSON_KEY);
+            player:addKeyItem(dsp.kis.CRIMSON_KEY);
             player:setVar("LastCrimsonKey", os.date("%j"));
             player:messageSpecial(DRYEYES_2);
-            player:messageSpecial(KEYITEM_OBTAINED,CRIMSON_KEY);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CRIMSON_KEY);
         elseif (sLux and sLuna and sAstrum and count == 3 and (now == LastCrimson or CrimsonKey == true)) then
-            player:messageSpecial(DRYEYES_3,CRIMSON_KEY);
+            player:messageSpecial(DRYEYES_3,dsp.kis.CRIMSON_KEY);
         -- White Coral Key:
         -- elseif (ENABLE_AMK == 1 and
             -- haven't even started AMK related trades yet.
@@ -73,10 +73,10 @@ function onEventFinish(player,csid,option)
     local ACPm = player:getCurrentMission(ACP);
     local AMKm = player:getCurrentMission(AMK);
     local ASAm = player:getCurrentMission(ASA);
-    local salad = player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD);
-    local juice = player:hasKeyItem(JUG_OF_GREASY_GOBLIN_JUICE);
-    local grub = player:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
-    local ViridianKey = player:hasKeyItem(VIRIDIAN_KEY);
+    local salad = player:hasKeyItem(dsp.kis.BOWL_OF_BLAND_GOBLIN_SALAD);
+    local juice = player:hasKeyItem(dsp.kis.JUG_OF_GREASY_GOBLIN_JUICE);
+    local grub = player:hasKeyItem(dsp.kis.CHUNK_OF_SMOKED_GOBLIN_GRUB);
+    local ViridianKey = player:hasKeyItem(dsp.kis.VIRIDIAN_KEY);
     local LastViridian = player:getVar("LastViridianKey"); -- When last Viridian key was obtained
 
     if (csid == 323) then
@@ -84,15 +84,15 @@ function onEventFinish(player,csid,option)
             player:showText(player,DRYEYES_1);
         elseif (option == 100) then
             if (salad and juice and grub and ACPm >= GATHERER_OF_LIGHT_I and ViridianKey == false and now ~= LastViridian) then
-                player:addKeyItem(VIRIDIAN_KEY);
-                player:delKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD);
-                player:delKeyItem(JUG_OF_GREASY_GOBLIN_JUICE);
-                player:delKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
+                player:addKeyItem(dsp.kis.VIRIDIAN_KEY);
+                player:delKeyItem(dsp.kis.BOWL_OF_BLAND_GOBLIN_SALAD);
+                player:delKeyItem(dsp.kis.JUG_OF_GREASY_GOBLIN_JUICE);
+                player:delKeyItem(dsp.kis.CHUNK_OF_SMOKED_GOBLIN_GRUB);
                 player:setVar("LastViridianKey", os.date("%j"));
                 player:showText(player,DRYEYES_2);
-                player:messageSpecial(KEYITEM_OBTAINED,VIRIDIAN_KEY);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.VIRIDIAN_KEY);
             elseif (now == LastViridian or ViridianKey == true) then
-                player:messageSpecial(DRYEYES_3,VIRIDIAN_KEY);
+                player:messageSpecial(DRYEYES_3,dsp.kis.VIRIDIAN_KEY);
             else
                 -- player:showText(player, ? );
                 -- Doesn't seem to be a message for trying when you don't have the key items?

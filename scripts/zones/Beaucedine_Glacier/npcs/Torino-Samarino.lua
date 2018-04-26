@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local FoiledAGolem = player:getQuestStatus(WINDURST,CURSES_FOILED_A_GOLEM);
 
     -- Curses, Foiled A_Golem!?
-    if (player:hasKeyItem(SHANTOTTOS_EXSPELL) and FoiledAGolem == QUEST_ACCEPTED) then
+    if (player:hasKeyItem(dsp.kis.SHANTOTTOS_EXSPELL) and FoiledAGolem == QUEST_ACCEPTED) then
         player:startEvent(108); -- key item taken, wait one game day for new spell
     elseif (player:getVar("golemwait") == 1 and FoiledAGolem == QUEST_ACCEPTED) then
         local gDay = VanadielDayOfTheYear();
@@ -53,16 +53,16 @@ function onEventFinish(player,csid,option)
 
     -- Curses, Foiled A_Golem!?
     if (csid == 104 and option == 1) then
-        player:addKeyItem(SHANTOTTOS_NEW_SPELL);
-        player:messageSpecial(KEYITEM_OBTAINED,SHANTOTTOS_NEW_SPELL);  -- add new spell key item
+        player:addKeyItem(dsp.kis.SHANTOTTOS_NEW_SPELL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
     elseif (csid == 108) then                                       -- start wait for new scroll
-        player:delKeyItem(SHANTOTTOS_EXSPELL);
+        player:delKeyItem(dsp.kis.SHANTOTTOS_EXSPELL);
         player:setVar("golemday",VanadielDayOfTheYear());
         player:setVar("golemyear",VanadielYear());
         player:setVar("golemwait",1);
     elseif (csid == 109) then
-        player:addKeyItem(SHANTOTTOS_NEW_SPELL);
-        player:messageSpecial(KEYITEM_OBTAINED,SHANTOTTOS_NEW_SPELL);  -- add new spell key item
+        player:addKeyItem(dsp.kis.SHANTOTTOS_NEW_SPELL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SHANTOTTOS_NEW_SPELL);  -- add new spell key item
         player:setVar("golemday",0);
         player:setVar("golemyear",0);
         player:setVar("golemwait",0);

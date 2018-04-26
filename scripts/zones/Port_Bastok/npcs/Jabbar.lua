@@ -18,12 +18,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
+    if (player:hasKeyItem(dsp.kis.TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60419, 1, 23, 4)) then
             player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
         end
     elseif (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(TENSHODO_APPLICATION_FORM)) then
+        if (player:hasKeyItem(dsp.kis.TENSHODO_APPLICATION_FORM)) then
             player:startEvent(152);
         else
             player:startEvent(151);
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 151) then
-        player:addKeyItem(TENSHODO_APPLICATION_FORM);
-        player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_APPLICATION_FORM);
+        player:addKeyItem(dsp.kis.TENSHODO_APPLICATION_FORM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TENSHODO_APPLICATION_FORM);
     end
 end;

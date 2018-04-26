@@ -23,9 +23,9 @@ function onTrigger(player,npc)
     if (ActingInGoodFaith == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(10019); -- Start quest "Acting in Good Faith"
     elseif (ActingInGoodFaith == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(SPIRIT_INCENSE) == true) then
+        if (player:hasKeyItem(dsp.kis.SPIRIT_INCENSE) == true) then
             player:startEvent(10020); -- During quest "Acting in Good Faith" (with Spirit Incense KI)
-        elseif (player:hasKeyItem(GANTINEUXS_LETTER) == true) then
+        elseif (player:hasKeyItem(dsp.kis.GANTINEUXS_LETTER) == true) then
             player:startEvent(10022); --  During quest "Acting in Good Faith" (with Gantineux's Letter)
         else
             player:startEvent(10021); -- During quest "Acting in Good Faith" (before Gantineux's Letter)
@@ -47,11 +47,11 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 10019 and option == 0) then
         player:addQuest(WINDURST,ACTING_IN_GOOD_FAITH);
-        player:addKeyItem(SPIRIT_INCENSE);
-        player:messageSpecial(KEYITEM_OBTAINED,SPIRIT_INCENSE);
+        player:addKeyItem(dsp.kis.SPIRIT_INCENSE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SPIRIT_INCENSE);
     elseif (csid == 10021) then
-        player:addKeyItem(GANTINEUXS_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,GANTINEUXS_LETTER);
+        player:addKeyItem(dsp.kis.GANTINEUXS_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.GANTINEUXS_LETTER);
     end
 end;
 

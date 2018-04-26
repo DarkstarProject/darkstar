@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local npcID = npc:getID();
     if (npcID == LELEROON_GREEN_DOOR) then
         local letterGreen = player:getVar("LeleroonsLetterGreen");
-        if (player:hasKeyItem(LELEROONS_LETTER_GREEN)) then
+        if (player:hasKeyItem(dsp.kis.LELEROONS_LETTER_GREEN)) then
             player:startEvent(941); -- accept letter, now bring me four items
         elseif (letterGreen == 2) then
             player:startEvent(942); -- i'm waiting for four items
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 941) then
         player:setVar("LeleroonsLetterGreen", 2);
-        player:delKeyItem(LELEROONS_LETTER_GREEN);
+        player:delKeyItem(dsp.kis.LELEROONS_LETTER_GREEN);
     elseif (csid == 943) then
         player:tradeComplete();
         player:setVar("LeleroonsletterGreen", 3);

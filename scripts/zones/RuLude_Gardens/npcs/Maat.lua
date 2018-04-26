@@ -52,7 +52,7 @@ function onTrigger(player,npc)
     elseif (atopTheHighestMountains == QUEST_AVAILABLE and LvL >= 51 and player:levelCap() == 55 and MAX_LEVEL >= 60) then
         player:startEvent(82); -- Start Quest "Atop the Highest Mountains"
     elseif (atopTheHighestMountains == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(ROUND_FRIGICITE) and player:hasKeyItem(SQUARE_FRIGICITE) and player:hasKeyItem(TRIANGULAR_FRIGICITE)) then
+        if (player:hasKeyItem(dsp.kis.ROUND_FRIGICITE) and player:hasKeyItem(dsp.kis.SQUARE_FRIGICITE) and player:hasKeyItem(dsp.kis.TRIANGULAR_FRIGICITE)) then
             player:startEvent(84); -- Finish Quest "Atop the Highest Mountains"
         else
             player:startEvent(83); -- During Quest "Atop the Highest Mountains"
@@ -60,7 +60,7 @@ function onTrigger(player,npc)
     elseif (whenceBlowsTheWind == QUEST_AVAILABLE and LvL >= 56 and player:levelCap() == 60 and MAX_LEVEL >= 65) then
         player:startEvent(85); -- Start Quest "Whence Blows the Wind"
     elseif (whenceBlowsTheWind == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(ORCISH_CREST) and player:hasKeyItem(QUADAV_CREST) and player:hasKeyItem(YAGUDO_CREST)) then
+        if (player:hasKeyItem(dsp.kis.ORCISH_CREST) and player:hasKeyItem(dsp.kis.QUADAV_CREST) and player:hasKeyItem(dsp.kis.YAGUDO_CREST)) then
             player:startEvent(87); -- Finish Quest "Whence Blows the Wind"
         else
             player:startEvent(86); -- During Quest "Whence Blows the Wind"
@@ -73,7 +73,7 @@ function onTrigger(player,npc)
 
         player:startEvent(88,rand1,rand2,rand4,rand3,180); -- Start Quest "Riding on the Clouds"
     elseif (ridingOnTheClouds == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(SMILING_STONE) and player:hasKeyItem(SCOWLING_STONE) and player:hasKeyItem(SOMBER_STONE) and player:hasKeyItem(SPIRITED_STONE)) then
+        if (player:hasKeyItem(dsp.kis.SMILING_STONE) and player:hasKeyItem(dsp.kis.SCOWLING_STONE) and player:hasKeyItem(dsp.kis.SOMBER_STONE) and player:hasKeyItem(dsp.kis.SPIRITED_STONE)) then
             player:startEvent(90); -- Finish Quest "Riding on the Clouds"
         else
             rand1 = player:getVar("ridingOnTheClouds_1") ; rand2 = player:getVar("ridingOnTheClouds_2");
@@ -124,9 +124,9 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
     elseif (csid == 84) then
         player:addTitle(SUMMIT_BREAKER);
-        player:delKeyItem(ROUND_FRIGICITE);
-        player:delKeyItem(SQUARE_FRIGICITE);
-        player:delKeyItem(TRIANGULAR_FRIGICITE);
+        player:delKeyItem(dsp.kis.ROUND_FRIGICITE);
+        player:delKeyItem(dsp.kis.SQUARE_FRIGICITE);
+        player:delKeyItem(dsp.kis.TRIANGULAR_FRIGICITE);
         player:levelCap(60);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_60);
         player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
@@ -136,9 +136,9 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
     elseif (csid == 87) then
         player:addTitle(SKY_BREAKER);
-        player:delKeyItem(ORCISH_CREST);
-        player:delKeyItem(QUADAV_CREST);
-        player:delKeyItem(YAGUDO_CREST);
+        player:delKeyItem(dsp.kis.ORCISH_CREST);
+        player:delKeyItem(dsp.kis.QUADAV_CREST);
+        player:delKeyItem(dsp.kis.YAGUDO_CREST);
         player:levelCap(65);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_65);
         player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
@@ -154,10 +154,10 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 90) then
         player:addTitle(CLOUD_BREAKER);
-        player:delKeyItem(SMILING_STONE);
-        player:delKeyItem(SCOWLING_STONE);
-        player:delKeyItem(SOMBER_STONE);
-        player:delKeyItem(SPIRITED_STONE);
+        player:delKeyItem(dsp.kis.SMILING_STONE);
+        player:delKeyItem(dsp.kis.SCOWLING_STONE);
+        player:delKeyItem(dsp.kis.SOMBER_STONE);
+        player:delKeyItem(dsp.kis.SPIRITED_STONE);
         player:levelCap(70);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
         player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);

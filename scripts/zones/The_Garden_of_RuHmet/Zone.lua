@@ -148,7 +148,7 @@ function onRegionEnter(player,region)
             end, --101
 
             [2] = function (x)
-                if (player:hasKeyItem(BRAND_OF_DAWN) and player:hasKeyItem(BRAND_OF_TWILIGHT)) then
+                if (player:hasKeyItem(dsp.kis.BRAND_OF_DAWN) and player:hasKeyItem(dsp.kis.BRAND_OF_TWILIGHT)) then
                     player:startEvent(156);
                 else
                     player:startEvent(183);

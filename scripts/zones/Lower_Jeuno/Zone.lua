@@ -83,7 +83,7 @@ function onGameHour(zone)
         SetServerVariable("[JEUNO]CommService",0);
         local players = zone:getPlayers();
         for name, player in pairs(players) do
-            if player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) then
+            if player:hasKeyItem(dsp.kis.LAMP_LIGHTERS_MEMBERSHIP_CARD) then
                 player:messageSpecial(ZAUKO_IS_RECRUITING);
             end
         end

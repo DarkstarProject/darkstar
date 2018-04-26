@@ -82,8 +82,8 @@ function onEventFinish(player,csid,option)
     elseif ((csid == 137 or csid == 138) and option == 1) then
         player:addQuest(JEUNO,PAINFUL_MEMORY);
         player:setVar("PainfulMemoryCS",0);
-        player:addKeyItem(MERTAIRES_BRACELET);
-        player:messageSpecial(KEYITEM_OBTAINED,MERTAIRES_BRACELET);
+        player:addKeyItem(dsp.kis.MERTAIRES_BRACELET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MERTAIRES_BRACELET);
 
     -- CIRCLE OF TIME (Bard AF3)
     elseif (csid == 139) then

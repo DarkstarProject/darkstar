@@ -30,12 +30,12 @@ function onZoneIn(player,prevZone)
         player:addMission(COP,THE_MOTHERCRYSTALS); -- start mission 1.3
         player:setVar("PromathiaStatus",0);
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
-        if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM)) then
+        if (player:hasKeyItem(dsp.kis.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.kis.LIGHT_OF_DEM)) then
             if (player:getVar("cslastpromy") == 1) then
                 player:setVar("cslastpromy",0)
                 cs = 52;
             end
-        elseif (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_DEM)) then
+        elseif (player:hasKeyItem(dsp.kis.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.kis.LIGHT_OF_DEM)) then
             if (player:getVar("cs2ndpromy") == 1) then
                 player:setVar("cs2ndpromy",0)
                 cs = 51;

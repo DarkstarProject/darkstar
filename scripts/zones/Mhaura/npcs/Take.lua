@@ -43,7 +43,7 @@ elseif (player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_AVAILABLE and player
 
 
 elseif (player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED) then --
-    if (player:hasKeyItem(LAND_CRAB_BISQUE)) then -- if have the Land Crab Bisque from Valgeir
+    if (player:hasKeyItem(dsp.kis.LAND_CRAB_BISQUE)) then -- if have the Land Crab Bisque from Valgeir
         player:startEvent(62,132);-- expertice completed
     else
         player:startEvent(63);-- expertice not done yet
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:setVar("QuestHNIVCCompYear_var",0);
             player:setVar("QuestExpertiseCompDay_var",VanadielDayOfTheYear()); -- completition day of expertise quest
             player:setVar("QuestExpertiseCompYear_var",VanadielYear());
-            player:delKeyItem(LAND_CRAB_BISQUE); --give Land Crab Bisque from Valgeir
+            player:delKeyItem(dsp.kis.LAND_CRAB_BISQUE); --give Land Crab Bisque from Valgeir
             player:completeQuest(OTHER_AREAS,EXPERTISE);
         end
     end

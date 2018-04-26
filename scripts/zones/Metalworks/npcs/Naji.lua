@@ -21,8 +21,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.kis.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SMILING_STONE);
         end
     end
 
@@ -30,32 +30,32 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(YASINS_SWORD)) then -- The Doorman, WAR AF1
+    if (player:hasKeyItem(dsp.kis.YASINS_SWORD)) then -- The Doorman, WAR AF1
         player:startEvent(750);
     elseif (player:getCurrentMission(BASTOK) ~= 255) then
         local currentMission = player:getCurrentMission(BASTOK);
 
-        if (currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(ZERUHN_REPORT)) then
-            if (player:seenKeyItem(ZERUHN_REPORT)) then
+        if (currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(dsp.kis.ZERUHN_REPORT)) then
+            if (player:seenKeyItem(dsp.kis.ZERUHN_REPORT)) then
                 player:startEvent(710,0);
             else
                 player:startEvent(710,1);
             end
-        elseif (currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
+        elseif (currentMission == THE_CRYSTAL_LINE and player:hasKeyItem(dsp.kis.C_L_REPORTS)) then
             player:startEvent(711);
-        elseif (currentMission == THE_EMISSARY and player:hasKeyItem(KINDRED_REPORT)) then
+        elseif (currentMission == THE_EMISSARY and player:hasKeyItem(dsp.kis.KINDRED_REPORT)) then
             player:startEvent(714);
         elseif (currentMission == THE_EMISSARY) then
-            if (player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
+            if (player:hasKeyItem(dsp.kis.LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
                 player:startEvent(713);
             else
                 player:showText(npc,GOOD_LUCK);
             end
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
+        elseif (player:hasKeyItem(dsp.kis.MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
             player:startEvent(720);
         elseif (currentMission == DARKNESS_RISING and player:getVar("MissionStatus") == 1) then
             player:startEvent(721);
-        elseif (player:hasKeyItem(BURNT_SEAL)) then
+        elseif (player:hasKeyItem(dsp.kis.BURNT_SEAL)) then
             player:startEvent(722);
         elseif (currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 0) then
             player:startEvent(761);
@@ -64,7 +64,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(700);
         end
-    elseif (player:hasKeyItem(YASINS_SWORD)) then -- The Doorman
+    elseif (player:hasKeyItem(dsp.kis.YASINS_SWORD)) then -- The Doorman
         player:startEvent(750);
     else
         player:startEvent(700);
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(16678);
             player:messageSpecial(ITEM_OBTAINED, 16678); -- Razor Axe
-            player:delKeyItem(YASINS_SWORD);
+            player:delKeyItem(dsp.kis.YASINS_SWORD);
             player:setVar("theDoormanCS",0);
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_DOORMAN);
@@ -96,19 +96,19 @@ function onEventFinish(player,csid,option)
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
     elseif (csid == 710) then
-        player:delKeyItem(ZERUHN_REPORT);
+        player:delKeyItem(dsp.kis.ZERUHN_REPORT);
         player:completeMission(BASTOK,THE_ZERUHN_REPORT);
     elseif (csid == 713) then
-        player:addKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
+        player:addKeyItem(dsp.kis.LETTER_TO_THE_CONSULS_BASTOK);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_TO_THE_CONSULS_BASTOK);
         player:setVar("MissionStatus",1);
     elseif (csid == 720 and option == 0 or csid == 721) then
-        player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
-        player:addKeyItem(NEW_FEIYIN_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
+        player:delKeyItem(dsp.kis.MESSAGE_TO_JEUNO_BASTOK);
+        player:addKeyItem(dsp.kis.NEW_FEIYIN_SEAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.NEW_FEIYIN_SEAL);
         player:setVar("MissionStatus",10);
     elseif (csid == 720 and option == 1) then
-        player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
+        player:delKeyItem(dsp.kis.MESSAGE_TO_JEUNO_BASTOK);
         player:setVar("MissionStatus",1);
     elseif (csid == 761) then
         player:setVar("MissionStatus",1);

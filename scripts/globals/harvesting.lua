@@ -7,6 +7,7 @@
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/quests");
 
 -------------------------------------------------
 -- npcid and drop by zone
@@ -57,9 +58,9 @@ function startHarvesting(player,zone,npc,trade,csid)
         if (GetServerVariable("[HARVESTING]Zone "..zone) >= 3) then
             getNewHarvestingPositionNPC(player,npc,zone);
         end
-        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
-           player:addKeyItem(RAINBOW_BERRY);
-           player:messageSpecial(KEYITEM_OBTAINED,RAINBOW_BERRY);
+        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
+           player:addKeyItem(dsp.kis.RAINBOW_BERRY);
+           player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RAINBOW_BERRY);
         end
     else
         player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);

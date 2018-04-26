@@ -12,22 +12,22 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 local keyitems = {
      [0] = {
-        id = BONE_PURIFICATION,
+        id = dsp.kis.BONE_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = BONE_ENSORCELLMENT,
+        id = dsp.kis.BONE_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = FILING,
+        id = dsp.kis.FILING,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = WAY_OF_THE_BONEWORKER,
+        id = dsp.kis.WAY_OF_THE_BONEWORKER,
         rank = 9,
         cost = 20000
     }

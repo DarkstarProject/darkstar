@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
 
     local BeaSmog = player:getQuestStatus(BASTOK,BEADEAUX_SMOG);
-    local keyitem = player:hasKeyItem(CORRUPTED_DIRT);
+    local keyitem = player:hasKeyItem(dsp.kis.CORRUPTED_DIRT);
 
     if (BeaSmog == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4) then
         player:startEvent(731);
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
             player:addQuest(BASTOK,BEADEAUX_SMOG);
     elseif (csid == 732) then
             player:addFame(BASTOK,30);
-            player:delKeyItem(CORRUPTED_DIRT);
+            player:delKeyItem(dsp.kis.CORRUPTED_DIRT);
             player:addItem(17284,1);
             player:messageSpecial(QUEST_COMPLETED);
             player:messageSpecial(ITEM_OBTAINED,17284);

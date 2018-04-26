@@ -58,8 +58,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10009) then
         player:setVar("unbridledPassion",2);
     elseif (csid == 10011) then
-        player:addKeyItem(KOHS_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,KOHS_LETTER);
+        player:addKeyItem(dsp.kis.KOHS_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.KOHS_LETTER);
         player:tradeComplete();
         player:setVar("unbridledPassion",3);
     end

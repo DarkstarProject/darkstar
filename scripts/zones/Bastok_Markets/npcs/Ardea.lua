@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 
     -- Rock Racketeer
-    if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(SHARP_GRAY_STONE)) then
+    if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.SHARP_GRAY_STONE)) then
         player:startEvent(261);
 
     elseif (Quotas_Status == 3) then
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     -- Rock Racketeer
     if (csid == 261 and option ~= 1) then
-        player:delKeyItem(SHARP_GRAY_STONE);
+        player:delKeyItem(dsp.kis.SHARP_GRAY_STONE);
         player:addGil(GIL_RATE*10);
         player:setVar("rockracketeer_sold",1);
     elseif (csid == 261 and option ~= 2) then

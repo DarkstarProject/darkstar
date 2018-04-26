@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         else -- If player has seen the big cut scene, give them a smaller one.
             player:startEvent(71);
         end
-    elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(ALTEPA_POLISHING_STONE) == false) then
+    elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.ALTEPA_POLISHING_STONE) == false) then
         player:startEvent(69);
     elseif (aCraftsmansWork == QUEST_ACCEPTED) then
             player:startEvent(70);
@@ -63,15 +63,15 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
         else
             player:setVar("aCraftsmanWork",0);
-            player:delKeyItem(ALTEPA_POLISHING_STONE);
+            player:delKeyItem(dsp.kis.ALTEPA_POLISHING_STONE);
             player:addItem(16887);
             player:messageSpecial(ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
             player:addFame(SANDORIA,AF1_FAME);
             player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then
-        player:addKeyItem(SHINY_EARRING);
-        player:messageSpecial(KEYITEM_OBTAINED,SHINY_EARRING);
+        player:addKeyItem(dsp.kis.SHINY_EARRING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SHINY_EARRING);
         player:setVar("ChasingQuotas_Progress",3);
     end
 

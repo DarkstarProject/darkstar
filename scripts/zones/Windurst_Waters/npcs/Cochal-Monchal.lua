@@ -18,11 +18,11 @@ end;
 function onTrigger(player,npc)
 
     if (player:getVar("darkLegacyCS") == 2) then
-        player:startEvent(697,0,DARKSTEEL_FORMULA);
+        player:startEvent(697,0,dsp.kis.DARKSTEEL_FORMULA);
     elseif (player:getVar("darkLegacyCS") == 3) then
-        player:startEvent(698,0,DARKSTEEL_FORMULA);
-    elseif (player:hasKeyItem(DARKSTEEL_FORMULA)) then
-        player:startEvent(699,0,DARKSTEEL_FORMULA);
+        player:startEvent(698,0,dsp.kis.DARKSTEEL_FORMULA);
+    elseif (player:hasKeyItem(dsp.kis.DARKSTEEL_FORMULA)) then
+        player:startEvent(699,0,dsp.kis.DARKSTEEL_FORMULA);
     else
         player:startEvent(696);
     end
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 697) then
         player:setVar("darkLegacyCS",3);
-        player:delKeyItem(LETTER_FROM_THE_DARKSTEEL_FORGE);
+        player:delKeyItem(dsp.kis.LETTER_FROM_THE_DARKSTEEL_FORGE);
     end
 
 end;

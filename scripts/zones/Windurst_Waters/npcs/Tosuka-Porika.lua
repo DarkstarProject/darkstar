@@ -62,7 +62,7 @@ function onTrigger(player,npc)
         if (testflag(tonumber(player:getVar("QuestHatInHand_var")),32) == false) then
             player:startEvent(55); -- Show Off Hat
         end
-    -- Book is A_SONG_OF_LOVE, KeyItem ID = 126
+    -- Book is dsp.kis.A_SONG_OF_LOVE, KeyItem ID = 126
     elseif (chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHO_D_BE_KING and Fame >= 3 and player:needToZone() == false) then
         player:startEvent(403); --  Add initial cutscene
     elseif (chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
@@ -73,9 +73,9 @@ function onTrigger(player,npc)
         player:startEvent(406); --  Add follow up cutscene
         -- Windurst Mission 7-1 --
     elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 0) then
-        player:startEvent(715,0,OPTISTERY_RING);
+        player:startEvent(715,0,dsp.kis.OPTISTERY_RING);
     elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
-        player:startEvent(716,0,OPTISTERY_RING);
+        player:startEvent(716,0,dsp.kis.OPTISTERY_RING);
     elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 2) then
         player:startEvent(724);
     else
@@ -106,15 +106,15 @@ function onEventFinish(player,csid,option)
     elseif (csid ==875) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then
-        player:addKeyItem(OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
+        player:addKeyItem(dsp.kis.OPTISTERY_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OPTISTERY_RING);
         player:setVar("MissionStatus",1);
     elseif (csid == 724) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 801) then
-        player:addKeyItem(OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
-        if (player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(RHINOSTERY_RING)) then
+        player:addKeyItem(dsp.kis.OPTISTERY_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OPTISTERY_RING);
+        if (player:hasKeyItem(dsp.kis.AURASTERY_RING) and player:hasKeyItem(dsp.kis.RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end
     end

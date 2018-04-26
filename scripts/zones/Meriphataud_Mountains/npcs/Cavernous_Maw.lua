@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) and hasMawActivated(player,5)) then
+    if (ENABLE_WOTG == 1 and player:hasKeyItem(dsp.kis.PURE_WHITE_FEATHER) and hasMawActivated(player,5)) then
         player:startEvent(905);
     else
         player:messageSpecial(NOTHING_HAPPENS);

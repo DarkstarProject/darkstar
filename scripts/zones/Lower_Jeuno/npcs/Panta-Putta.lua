@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
     TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
-    WonderMagicSetKI = player:hasKeyItem(WONDER_MAGIC_SET);
+    WonderMagicSetKI = player:hasKeyItem(dsp.kis.WONDER_MAGIC_SET);
     TheLostCardianCS = player:getVar("theLostCardianVar");
     TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
 
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13328);
         else
             player:addTitle(FOOLS_ERRAND_RUNNER);
-            player:delKeyItem(WONDER_MAGIC_SET);
+            player:delKeyItem(dsp.kis.WONDER_MAGIC_SET);
             player:addItem(13328);
             player:messageSpecial(ITEM_OBTAINED,13328);
             player:addFame(JEUNO, 30);
@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13596);
         else
             player:addTitle(BRINGER_OF_BLISS);
-            player:delKeyItem(TWO_OF_SWORDS);
+            player:delKeyItem(dsp.kis.TWO_OF_SWORDS);
             player:setVar("theKindCardianVar",0);
             player:addItem(13596);
             player:messageSpecial(ITEM_OBTAINED,13596); -- Green Cape

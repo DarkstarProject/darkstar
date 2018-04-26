@@ -85,8 +85,8 @@ function onEventFinish(player,csid,option)
     -- Making Headlines
     if (csid == 281 or csid == 283 or csid == 284) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        player:addKeyItem(WINDURST_WALLS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WALLS_SCOOP);
+        player:addKeyItem(dsp.kis.WINDURST_WALLS_SCOOP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);
 
     -- Curses,Foiled...Again!?

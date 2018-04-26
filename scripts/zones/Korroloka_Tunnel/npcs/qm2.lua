@@ -18,13 +18,13 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
-        if (player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
+        if (player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(dsp.kis.STRANGELY_SHAPED_CORAL) == false) then
 
             if (not GetMobByID(KORROLOKA_LEECH_I):isSpawned() and not GetMobByID(KORROLOKA_LEECH_II):isSpawned()
             and not GetMobByID(KORROLOKA_LEECH_III):isSpawned()) then
                 if (player:getVar("KorrolokaLeeches_Killed") > 0) then
-                    player:addKeyItem(STRANGELY_SHAPED_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,STRANGELY_SHAPED_CORAL);
+                    player:addKeyItem(dsp.kis.STRANGELY_SHAPED_CORAL);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STRANGELY_SHAPED_CORAL);
                     player:setVar("KorrolokaLeeches_Killed",0);
 
                     if (player:getVar("KorrolokaLeeches_SpawningPC") > 0) then

@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(268); -- New standard dialog after "The Three Magi"
     elseif (theThreeMagi == QUEST_COMPLETED and mJob == 4 and mLvl >= AF2_QUEST_LEVEL and player:needToZone() == false and recollections == QUEST_AVAILABLE) then
         player:startEvent(270,0,1105); -- Start Quest "Recollections"
-    elseif (recollections == QUEST_ACCEPTED and player:hasKeyItem(FOE_FINDER_MK_I)) then
+    elseif (recollections == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.FOE_FINDER_MK_I)) then
         player:startEvent(275); -- Finish Quest "Recollections"
     elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == 4 and mLvl >= 50 and player:needToZone() == false) then
             player:startEvent(276,0,829); -- Start Quest "The Root of The problem"
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
         else
             player:setVar("recollectionsQuest",0);
-            player:delKeyItem(FOE_FINDER_MK_I);
+            player:delKeyItem(dsp.kis.FOE_FINDER_MK_I);
             player:addItem(14092);
             player:messageSpecial(ITEM_OBTAINED,14092); -- wizards sabots
             player:addFame(WINDURST,AF2_FAME);
@@ -121,8 +121,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
         player:setVar("rootProblem",1);
     elseif (csid == 279) then
-        player:addKeyItem(SLUICE_SURVEYOR_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,SLUICE_SURVEYOR_MK_I);
+        player:addKeyItem(dsp.kis.SLUICE_SURVEYOR_MK_I);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SLUICE_SURVEYOR_MK_I);
     elseif (csid == 281) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
@@ -131,7 +131,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13856);
             player:messageSpecial(ITEM_OBTAINED,13856);
             player:addTitle(PARAGON_OF_BLACK_MAGE_EXCELLENCE);
-            player:delKeyItem(SLUICE_SURVEYOR_MK_I);
+            player:delKeyItem(dsp.kis.SLUICE_SURVEYOR_MK_I);
         end
     end
 

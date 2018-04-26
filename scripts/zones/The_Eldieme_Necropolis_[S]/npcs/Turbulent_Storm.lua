@@ -24,9 +24,9 @@ function onTrigger(player,npc)
             -- message for other nations missing
             player:startEvent(9);
         end
-    elseif (player:hasKeyItem(RED_RECOMMENDATION_LETTER) == true) then
+    elseif (player:hasKeyItem(dsp.kis.RED_RECOMMENDATION_LETTER) == true) then
         player:startEvent(8);
-    elseif (player:hasKeyItem(RED_RECOMMENDATION_LETTER) == false) then
+    elseif (player:hasKeyItem(dsp.kis.RED_RECOMMENDATION_LETTER) == false) then
         player:startEvent(7);
     end
 end;
@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 7 and option == 0) then
-        player:addKeyItem(BLUE_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,BLUE_RECOMMENDATION_LETTER);
+        player:addKeyItem(dsp.kis.BLUE_RECOMMENDATION_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.BLUE_RECOMMENDATION_LETTER);
     end
 end;

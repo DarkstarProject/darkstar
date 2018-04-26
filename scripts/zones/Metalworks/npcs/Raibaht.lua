@@ -19,8 +19,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.kis.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SMILING_STONE);
         end
     end
 
@@ -38,7 +38,7 @@ function onTrigger(player,npc)
         player:startEvent(933);
     elseif (darkLegacy == QUEST_AVAILABLE and mJob == 8 and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(751); -- Start Quest "Dark Legacy"
-    elseif (player:hasKeyItem(DARKSTEEL_FORMULA)) then
+    elseif (player:hasKeyItem(dsp.kis.DARKSTEEL_FORMULA)) then
         player:startEvent(755); -- Finish Quest "Dark Legacy"
     elseif (player:hasKeyItem(127) and player:getVar("TheUsual_Event") ~= 1) then
         player:startEvent(510);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
         else
-            player:delKeyItem(DARKSTEEL_FORMULA);
+            player:delKeyItem(dsp.kis.DARKSTEEL_FORMULA);
             player:addItem(16798);
             player:messageSpecial(ITEM_OBTAINED, 16798); -- Raven Scythe
             player:setVar("darkLegacyCS",0);

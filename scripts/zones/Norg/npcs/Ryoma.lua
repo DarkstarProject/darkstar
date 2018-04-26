@@ -34,13 +34,13 @@ function onTrigger(player,npc)
         end
     elseif (twentyInPirateYears == QUEST_AVAILABLE and mJob == 13 and mLvl >= 40) then
         player:startEvent(133); -- Start Quest "20 in Pirate Years"
-    elseif (twentyInPirateYears == QUEST_ACCEPTED and player:hasKeyItem(TRICK_BOX)) then
+    elseif (twentyInPirateYears == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRICK_BOX)) then
         player:startEvent(134); -- Finish Quest "20 in Pirate Years"
     elseif (twentyInPirateYears == QUEST_COMPLETED and illTakeTheBigBox == QUEST_AVAILABLE and mJob == 13 and mLvl >= 50 and player:needToZone() == false) then
         player:startEvent(135); -- Start Quest "I'll Take the Big Box"
     elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE and mJob == 13) then
         player:startEvent(136); -- Start Quest "True Will"
-    elseif (player:hasKeyItem(OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
+    elseif (player:hasKeyItem(dsp.kis.OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
         player:startEvent(137);
     elseif (player:getVar("trueWillCS") == 1) then
         player:startEvent(138);
@@ -62,9 +62,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 95) then
-        player:addKeyItem(SEALED_DAGGER);
-        player:messageSpecial(KEYITEM_OBTAINED, SEALED_DAGGER);
-        player:delKeyItem(STRANGELY_SHAPED_CORAL);
+        player:addKeyItem(dsp.kis.SEALED_DAGGER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.SEALED_DAGGER);
+        player:delKeyItem(dsp.kis.STRANGELY_SHAPED_CORAL);
         player:setVar("AyameAndKaede_Event", 4);
     elseif (csid == 133) then
         player:addQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS);
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() <= 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17771);
         else
-            player:delKeyItem(TRICK_BOX);
+            player:delKeyItem(dsp.kis.TRICK_BOX);
             player:addItem(17771);
             player:addItem(17772);
             player:messageSpecial(ITEM_OBTAINED, 17771); -- Anju

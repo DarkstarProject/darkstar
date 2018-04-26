@@ -23,15 +23,15 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(MIMEO_JEWEL) == true) then
-        player:delKeyItem(MIMEO_JEWEL);
-        player:messageSpecial(KEYITEM_LOST,MIMEO_JEWEL);
-        player:addKeyItem(MIMEO_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED, MIMEO_FEATHER);
-        player:addKeyItem(SECOND_MIMEO_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED, SECOND_MIMEO_FEATHER);
-        player:addKeyItem(THIRD_MIMEO_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED, THIRD_MIMEO_FEATHER);
+    if (player:hasKeyItem(dsp.kis.MIMEO_JEWEL) == true) then
+        player:delKeyItem(dsp.kis.MIMEO_JEWEL);
+        player:messageSpecial(KEYITEM_LOST,dsp.kis.MIMEO_JEWEL);
+        player:addKeyItem(dsp.kis.MIMEO_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.MIMEO_FEATHER);
+        player:addKeyItem(dsp.kis.SECOND_MIMEO_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.SECOND_MIMEO_FEATHER);
+        player:addKeyItem(dsp.kis.THIRD_MIMEO_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.THIRD_MIMEO_FEATHER);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

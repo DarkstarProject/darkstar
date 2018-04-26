@@ -39,27 +39,27 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE) then
         local completedSeals = 0;
 
-        if (player:hasKeyItem(AMBER_COUNTERSEAL)) then
+        if (player:hasKeyItem(dsp.kis.AMBER_COUNTERSEAL)) then
             completedSeals = completedSeals + 1;
         end;
 
-        if (player:hasKeyItem(AZURE_COUNTERSEAL)) then
+        if (player:hasKeyItem(dsp.kis.AZURE_COUNTERSEAL)) then
             completedSeals = completedSeals + 1;
         end;
 
-        if (player:hasKeyItem(CERULEAN_COUNTERSEAL)) then
+        if (player:hasKeyItem(dsp.kis.CERULEAN_COUNTERSEAL)) then
             completedSeals = completedSeals + 1;
         end;
 
-        if (player:hasKeyItem(EMERALD_COUNTERSEAL)) then
+        if (player:hasKeyItem(dsp.kis.EMERALD_COUNTERSEAL)) then
             completedSeals = completedSeals + 1;
         end;
 
-        if (player:hasKeyItem(SCARLET_COUNTERSEAL)) then
+        if (player:hasKeyItem(dsp.kis.SCARLET_COUNTERSEAL)) then
             completedSeals = completedSeals + 1;
         end;
 
-        if (player:hasKeyItem(VIOLET_COUNTERSEAL)) then
+        if (player:hasKeyItem(dsp.kis.VIOLET_COUNTERSEAL)) then
             completedSeals = completedSeals + 1;
         end;
 
@@ -80,18 +80,18 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
      if (csid==44) then
-            player:addKeyItem(DOMINAS_SCARLET_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_SCARLET_SEAL);
-            player:addKeyItem(DOMINAS_CERULEAN_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_CERULEAN_SEAL);
-            player:addKeyItem(DOMINAS_EMERALD_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_EMERALD_SEAL);
-            player:addKeyItem(DOMINAS_AMBER_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_AMBER_SEAL);
-            player:addKeyItem(DOMINAS_VIOLET_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_VIOLET_SEAL);
-            player:addKeyItem(DOMINAS_AZURE_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,DOMINAS_AZURE_SEAL);
+            player:addKeyItem(dsp.kis.DOMINAS_SCARLET_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DOMINAS_SCARLET_SEAL);
+            player:addKeyItem(dsp.kis.DOMINAS_CERULEAN_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DOMINAS_CERULEAN_SEAL);
+            player:addKeyItem(dsp.kis.DOMINAS_EMERALD_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DOMINAS_EMERALD_SEAL);
+            player:addKeyItem(dsp.kis.DOMINAS_AMBER_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DOMINAS_AMBER_SEAL);
+            player:addKeyItem(dsp.kis.DOMINAS_VIOLET_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DOMINAS_VIOLET_SEAL);
+            player:addKeyItem(dsp.kis.DOMINAS_AZURE_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DOMINAS_AZURE_SEAL);
 
             player:completeMission(ASA,THAT_WHICH_CURDLES_BLOOD);
         player:addMission(ASA,SUGAR_COATED_DIRECTIVE);
@@ -118,19 +118,19 @@ function onEventFinish(player,csid,option)
             end
 
         -- Clean Up Remaining Key Items
-        player:delKeyItem(DOMINAS_SCARLET_SEAL);
-            player:delKeyItem(DOMINAS_CERULEAN_SEAL);
-            player:delKeyItem(DOMINAS_EMERALD_SEAL);
-            player:delKeyItem(DOMINAS_AMBER_SEAL);
-            player:delKeyItem(DOMINAS_VIOLET_SEAL);
-            player:delKeyItem(DOMINAS_AZURE_SEAL);
+        player:delKeyItem(dsp.kis.DOMINAS_SCARLET_SEAL);
+            player:delKeyItem(dsp.kis.DOMINAS_CERULEAN_SEAL);
+            player:delKeyItem(dsp.kis.DOMINAS_EMERALD_SEAL);
+            player:delKeyItem(dsp.kis.DOMINAS_AMBER_SEAL);
+            player:delKeyItem(dsp.kis.DOMINAS_VIOLET_SEAL);
+            player:delKeyItem(dsp.kis.DOMINAS_AZURE_SEAL);
 
-            player:delKeyItem(SCARLET_COUNTERSEAL);
-        player:delKeyItem(CERULEAN_COUNTERSEAL);
-        player:delKeyItem(EMERALD_COUNTERSEAL);
-        player:delKeyItem(AMBER_COUNTERSEAL);
-        player:delKeyItem(VIOLET_COUNTERSEAL);
-            player:delKeyItem(AZURE_COUNTERSEAL);
+            player:delKeyItem(dsp.kis.SCARLET_COUNTERSEAL);
+        player:delKeyItem(dsp.kis.CERULEAN_COUNTERSEAL);
+        player:delKeyItem(dsp.kis.EMERALD_COUNTERSEAL);
+        player:delKeyItem(dsp.kis.AMBER_COUNTERSEAL);
+        player:delKeyItem(dsp.kis.VIOLET_COUNTERSEAL);
+            player:delKeyItem(dsp.kis.AZURE_COUNTERSEAL);
 
         -- Advance Mission
             player:completeMission(ASA,SUGAR_COATED_DIRECTIVE);

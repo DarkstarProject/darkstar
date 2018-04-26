@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 13) then
         player:setVar("MissionStatus",6);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ZONPAZIPPA);
-        player:addKeyItem(LETTER_FROM_ZONPAZIPPA);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_FROM_ZONPAZIPPA);
+        player:addKeyItem(dsp.kis.LETTER_FROM_ZONPAZIPPA);
     end
 end;
 

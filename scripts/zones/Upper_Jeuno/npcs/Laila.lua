@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         player:startEvent(10111); -- Start quest csid, asks for Key Item Stardust Pebble
     elseif (lakesideMin == QUEST_COMPLETED and player:needToZone()) then
         player:startEvent(10119);
-    elseif (player:hasKeyItem(STARDUST_PEBBLE)) then
+    elseif (player:hasKeyItem(dsp.kis.STARDUST_PEBBLE)) then
         player:startEvent(10118); -- Ends Quest
     elseif (lakeProg == 3) then
         player:startEvent(10113);
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         and player:getMainJob() == dsp.jobs.DNC and player:getMainLvl()>=40) then
 
         player:startEvent(10129);
-    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(THE_ESSENCE_OF_DANCE) and player:getMainJob() == dsp.jobs.DNC) then
+    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(dsp.kis.THE_ESSENCE_OF_DANCE) and player:getMainJob() == dsp.jobs.DNC) then
         player:startEvent(10133);
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED) then
         player:startEvent(10134);
@@ -101,12 +101,12 @@ function onEventFinish(player,csid,option)
         player:unlockJob(dsp.jobs.DNC);
         player:messageSpecial(UNLOCK_DANCER);
         player:addFame(JEUNO, 30);
-        player:delKeyItem(STARDUST_PEBBLE);
+        player:delKeyItem(dsp.kis.STARDUST_PEBBLE);
         player:needToZone(true);
     elseif (csid== 10129) then
         if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED) then
             player:delQuest(JEUNO,THE_UNFINISHED_WALTZ);
-            player:delKeyItem(THE_ESSENCE_OF_DANCE);
+            player:delKeyItem(dsp.kis.THE_ESSENCE_OF_DANCE);
         end
         player:addQuest(JEUNO,THE_UNFINISHED_WALTZ)
         player:setVar("QuestStatus_DNC_AF1", 1);
@@ -152,8 +152,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10143) then
         player:setVar("comebackQueenCS", 1);
         player:addQuest(JEUNO, COMEBACK_QUEEN);
-        player:addKeyItem(WYATTS_PROPOSAL);
-        player:messageSpecial( KEYITEM_OBTAINED, WYATTS_PROPOSAL);
+        player:addKeyItem(dsp.kis.WYATTS_PROPOSAL);
+        player:messageSpecial( KEYITEM_OBTAINED, dsp.kis.WYATTS_PROPOSAL);
     elseif (csid == 10147) then
         player:setVar("comebackQueenCS", 3);
         local danceOffTimer = VanadielDayOfTheYear();

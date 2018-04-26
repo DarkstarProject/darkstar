@@ -63,8 +63,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 668) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        player:addKeyItem(WINDURST_WATERS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WATERS_SCOOP);
+        player:addKeyItem(dsp.kis.WINDURST_WATERS_SCOOP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WINDURST_WATERS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);

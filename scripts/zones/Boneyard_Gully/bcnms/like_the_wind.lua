@@ -19,8 +19,8 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    if (player:hasKeyItem(MIASMA_FILTER)) then
-        player:delKeyItem(MIASMA_FILTER);
+    if (player:hasKeyItem(dsp.kis.MIASMA_FILTER)) then
+        player:delKeyItem(dsp.kis.MIASMA_FILTER);
     end;
 end;
 

@@ -63,8 +63,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 110) then
-        player:messageSpecial(KI_STOLEN,0,MYSTERIOUS_AMULET);
-        player:delKeyItem(MYSTERIOUS_AMULET);
+        player:messageSpecial(KI_STOLEN,0,dsp.kis.MYSTERIOUS_AMULET);
+        player:delKeyItem(dsp.kis.MYSTERIOUS_AMULET);
         player:setVar("PromathiaStatus",1);
     elseif (csid == 111 and npcUtil.giveItem(player, 14657)) then
         player:setVar("PromathiaStatus",1);

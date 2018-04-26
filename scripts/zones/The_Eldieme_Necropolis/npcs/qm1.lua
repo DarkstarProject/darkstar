@@ -22,7 +22,7 @@ end;
 function onTrigger(player,npc)
     local ActingInGoodFaith = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
 
-    if (ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(SPIRIT_INCENSE) == true) then
+    if (ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.SPIRIT_INCENSE) == true) then
         player:startEvent(50);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 50 and option == 0) then
-        player:messageSpecial(SPIRIT_INCENSE_EMITS_PUTRID_ODOR,SPIRIT_INCENSE);
-        player:delKeyItem(SPIRIT_INCENSE);
+        player:messageSpecial(dsp.kis.SPIRIT_INCENSE_EMITS_PUTRID_ODOR,dsp.kis.SPIRIT_INCENSE);
+        player:delKeyItem(dsp.kis.SPIRIT_INCENSE);
     end
 end;

@@ -9,8 +9,8 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if (not player:hasKeyItem(SEEDSPALL_CAERULUM) and not player:hasKeyItem(VIRIDIAN_KEY)) then
-        player:addKeyItem(SEEDSPALL_CAERULUM);
-        player:messageSpecial(KEYITEM_OBTAINED, SEEDSPALL_CAERULUM);
+    if (not player:hasKeyItem(dsp.kis.SEEDSPALL_CAERULUM) and not player:hasKeyItem(dsp.kis.VIRIDIAN_KEY)) then
+        player:addKeyItem(dsp.kis.SEEDSPALL_CAERULUM);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.SEEDSPALL_CAERULUM);
     end
 end;

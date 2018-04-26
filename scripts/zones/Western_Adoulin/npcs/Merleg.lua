@@ -52,8 +52,8 @@ function onEventFinish(player,csid,option)
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 200 * BAYLD_RATE);
         player:messageSpecial(BAYLD_OBTAINED, 200 * BAYLD_RATE);
-        player:addKeyItem(FAIL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED, FAIL_BADGE);
+        player:addKeyItem(dsp.kis.FAIL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.FAIL_BADGE);
         player:addFame(ADOULIN);
     end
 end;

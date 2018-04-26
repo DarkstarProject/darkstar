@@ -85,8 +85,8 @@ function onEventFinish(player,csid,option)
             player:addTitle(SUPER_MODEL);
             player:addItem(206);
             player:messageSpecial(ITEM_OBTAINED,206);
-            player:addKeyItem(ANGELICAS_AUTOGRAPH);
-            player:messageSpecial(KEYITEM_OBTAINED,ANGELICAS_AUTOGRAPH);
+            player:addKeyItem(dsp.kis.ANGELICAS_AUTOGRAPH);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ANGELICAS_AUTOGRAPH);
             player:addFame(WINDURST,75);
             player:setVar("QuestAPoseByOtherName_time",0);
             player:setVar("QuestAPoseByOtherName_equip",0);

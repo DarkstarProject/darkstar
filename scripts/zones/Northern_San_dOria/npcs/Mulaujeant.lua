@@ -45,14 +45,14 @@ function onEventFinish(player,csid,option)
     if (csid == 698) then
         player:setVar("MissionaryManVar",3);
         player:setVar("MissionaryMan_date", os.date("%j")); -- %M for next minute, %j for next day
-        player:delKeyItem(RAUTEINOTS_PARCEL);
+        player:delKeyItem(dsp.kis.RAUTEINOTS_PARCEL);
         player:needToZone(true);
 
     elseif (csid == 700) then
         player:setVar("MissionaryManVar",4);
         player:setVar("MissionaryMan_date", 0);
-        player:addKeyItem(SUBLIME_STATUE_OF_THE_GODDESS);
-        player:messageSpecial(KEYITEM_OBTAINED,SUBLIME_STATUE_OF_THE_GODDESS);
+        player:addKeyItem(dsp.kis.SUBLIME_STATUE_OF_THE_GODDESS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SUBLIME_STATUE_OF_THE_GODDESS);
     end
 end;
 

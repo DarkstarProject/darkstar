@@ -44,8 +44,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,CANDLE_MAKING);
     elseif (csid == 37) then
         player:addTitle(BELIEVER_OF_ALTANA);
-        player:addKeyItem(HOLY_CANDLE);
-        player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);
+        player:addKeyItem(dsp.kis.HOLY_CANDLE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.HOLY_CANDLE);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,CANDLE_MAKING);

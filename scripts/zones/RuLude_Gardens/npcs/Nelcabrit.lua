@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         player:startEvent(136);
     elseif (currentMission == MAGICITE_SAN_D_ORIA and missionStatus == 6) then
         player:startEvent(36);
-    elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
+    elseif (player:hasKeyItem(dsp.kis.MESSAGE_TO_JEUNO_SANDORIA)) then
         player:startEvent(56);
     elseif (pNation == NATION_WINDURST) then
         player:startEvent(47);
@@ -59,11 +59,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 42) then
         player:setVar("MissionStatus",4);
-        player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
+        player:delKeyItem(dsp.kis.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 130 and option == 1) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+        player:addKeyItem(dsp.kis.ARCHDUCAL_AUDIENCE_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ARCHDUCAL_AUDIENCE_PERMIT);
     elseif (csid == 39 or csid == 36) then
         finishMissionTimeline(player,3,csid,option);
     end

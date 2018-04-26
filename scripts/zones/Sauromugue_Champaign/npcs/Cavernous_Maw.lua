@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
+    if (ENABLE_WOTG == 1 and player:hasKeyItem(dsp.kis.PURE_WHITE_FEATHER) == false) then
         player:startEvent(500,2);
     elseif (ENABLE_WOTG == 1 and hasMawActivated(player,2)) then
         if (player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING and
@@ -44,8 +44,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT:",option);
     if (csid == 500) then
         local r = math.random(1,3);
-        player:addKeyItem(PURE_WHITE_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
+        player:addKeyItem(dsp.kis.PURE_WHITE_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PURE_WHITE_FEATHER);
         player:completeMission(WOTG,CAVERNOUS_MAWS);
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then

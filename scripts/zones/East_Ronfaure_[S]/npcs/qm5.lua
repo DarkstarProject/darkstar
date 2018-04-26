@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(OXIDIZED_PLATE)) then
+        if (player:hasKeyItem(dsp.kis.OXIDIZED_PLATE)) then
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         else
             player:startEvent(3);
@@ -35,7 +35,7 @@ function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
     if (csid == 3) then
-        player:addKeyItem(OXIDIZED_PLATE);
-        player:messageSpecial(KEYITEM_OBTAINED,OXIDIZED_PLATE);
+        player:addKeyItem(dsp.kis.OXIDIZED_PLATE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OXIDIZED_PLATE);
     end
 end;

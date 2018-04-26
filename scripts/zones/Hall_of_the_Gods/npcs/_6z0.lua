@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(CERULEAN_CRYSTAL) == false) then
+    if (player:hasKeyItem(dsp.kis.CERULEAN_CRYSTAL) == false) then
         player:startEvent(1);
     else
         if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL) then

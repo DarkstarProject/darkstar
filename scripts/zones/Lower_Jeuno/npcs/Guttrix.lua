@@ -70,7 +70,7 @@ function onTrigger(player,npc)
         if (rseGear < 15 ) then
             if (questStatus == QUEST_AVAILABLE) then
                 player:startEvent(10016,rseLocation,rseRace);
-            elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(MAGICAL_PATTERN) and rseRace == pRace) then
+            elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.MAGICAL_PATTERN) and rseRace == pRace) then
                 player:startEvent(10018,rseGear);
             else
                 player:startEvent(10017,rseLocation,rseRace);
@@ -106,7 +106,7 @@ function onEventFinish(player,csid,option)
                 player:completeQuest(JEUNO,THE_GOBLIN_TAILOR);
             end
 
-            player:delKeyItem(MAGICAL_PATTERN);
+            player:delKeyItem(dsp.kis.MAGICAL_PATTERN);
             player:addItem(rseGear);
             player:messageSpecial(ITEM_OBTAINED,rseGear);
         end

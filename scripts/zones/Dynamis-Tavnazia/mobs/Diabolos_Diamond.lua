@@ -10,9 +10,9 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:hasKeyItem(DYNAMIS_TAVNAZIA_SLIVER ) == false) then
-        player:addKeyItem(DYNAMIS_TAVNAZIA_SLIVER);
-        player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_TAVNAZIA_SLIVER);
+    if (player:hasKeyItem(dsp.kis.DYNAMIS_TAVNAZIA_SLIVER ) == false) then
+        player:addKeyItem(dsp.kis.DYNAMIS_TAVNAZIA_SLIVER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DYNAMIS_TAVNAZIA_SLIVER);
     end
     player:addTitle(NIGHTMARE_AWAKENER);
 end;

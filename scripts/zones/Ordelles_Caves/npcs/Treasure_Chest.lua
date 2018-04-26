@@ -29,10 +29,10 @@ function onTrade(player,npc,trade)
         local zone = player:getZoneID();
 
         -- IMPORTANT ITEM: Signed In Blood Quest -----------
-        if (player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and player:hasKeyItem(TORN_OUT_PAGES) == false) then
+        if (player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and player:hasKeyItem(dsp.kis.TORN_OUT_PAGES) == false) then
             questItemNeeded = 1;
         -- IMPORTANT ITEM: The Goblin Tailor Quest -----------
-        elseif (player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and player:hasKeyItem(MAGICAL_PATTERN) == false) then
+        elseif (player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and player:hasKeyItem(dsp.kis.MAGICAL_PATTERN) == false) then
             questItemNeeded = 2;
         end
         --------------------------------------
@@ -56,12 +56,12 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(TORN_OUT_PAGES);
-                    player:messageSpecial(KEYITEM_OBTAINED,TORN_OUT_PAGES);
+                    player:addKeyItem(dsp.kis.TORN_OUT_PAGES);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TORN_OUT_PAGES);
                 elseif (questItemNeeded == 2) then
                     respawn = true;
-                    player:addKeyItem(MAGICAL_PATTERN);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAGICAL_PATTERN);
+                    player:addKeyItem(dsp.kis.MAGICAL_PATTERN);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAGICAL_PATTERN);
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

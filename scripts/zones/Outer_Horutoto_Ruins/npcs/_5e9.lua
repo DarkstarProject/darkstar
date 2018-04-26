@@ -18,7 +18,7 @@ function onTrigger(player,npc)
 
     -- Check if we are on Windurst Mission 1-2
     if (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER and
-       player:getVar("MissionStatus") == 3 and player:hasKeyItem(SOUTHEASTERN_STAR_CHARM)) then
+       player:getVar("MissionStatus") == 3 and player:hasKeyItem(dsp.kis.SOUTHEASTERN_STAR_CHARM)) then
         player:startEvent(44);
     else
         player:messageSpecial(DOOR_FIRMLY_SHUT);
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);
         player:messageSpecial(ALL_G_ORBS_ENERGIZED);
         -- Remove the charm that opens this door
-        player:delKeyItem(SOUTHEASTERN_STAR_CHARM);
+        player:delKeyItem(dsp.kis.SOUTHEASTERN_STAR_CHARM);
     end
 
 end;

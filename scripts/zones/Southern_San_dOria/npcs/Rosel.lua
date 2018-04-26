@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
 function onTrigger(player,npc)
 
     local RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
-    local receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
+    local receiprForThePrince = player:hasKeyItem(dsp.kis.RECEIPT_FOR_THE_PRINCE);
 
     if (player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE) then
         player:startEvent(524);
@@ -60,8 +60,8 @@ function onEventFinish(player,csid,option)
     if ((csid == 523 or csid == 524) and option == 0) then
         player:addQuest(SANDORIA, ROSEL_THE_ARMORER);
         player:setVar("RefuseRoselTheArmorerQuest",0);
-        player:addKeyItem(RECEIPT_FOR_THE_PRINCE);
-        player:messageSpecial(KEYITEM_OBTAINED,RECEIPT_FOR_THE_PRINCE);
+        player:addKeyItem(dsp.kis.RECEIPT_FOR_THE_PRINCE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RECEIPT_FOR_THE_PRINCE);
     -- Rosel the Armorer, finished quest, recieve 200gil
     elseif (csid == 527) then
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {

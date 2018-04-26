@@ -23,10 +23,10 @@ function onTrigger(player,npc)
    local AAKeyitems = 0;
    local DMEarrings = 0;
    local DivineStatus = player:getVar("DivineMight");
-   local MoonOre = player:hasKeyItem(MOONLIGHT_ORE);
+   local MoonOre = player:hasKeyItem(dsp.kis.MOONLIGHT_ORE);
 
    -- Count keyitems
-   for i=SHARD_OF_APATHY, SHARD_OF_RAGE do
+   for i=dsp.kis.SHARD_OF_APATHY, dsp.kis.SHARD_OF_RAGE do
       if (player:hasKeyItem(i) == true) then
          AAKeyitems = AAKeyitems + 1;
       end
@@ -106,7 +106,7 @@ function onEventFinish(player,csid,option)
                player:completeQuest(OUTLANDS,DIVINE_MIGHT);
             else
                player:completeQuest(OUTLANDS,DIVINE_MIGHT_REPEAT);
-               player:delKeyItem(MOONLIGHT_ORE);
+               player:delKeyItem(dsp.kis.MOONLIGHT_ORE);
             end
             player:setVar("DivineMight",0);
             player:setVar("DM_Earring",reward);

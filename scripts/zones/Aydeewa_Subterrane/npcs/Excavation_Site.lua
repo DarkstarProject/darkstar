@@ -10,16 +10,16 @@ require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:hasKeyItem(DKHAAYAS_RESEARCH_JOURNAL)) then -- If no journal, just stop right here
+    if (player:hasKeyItem(dsp.kis.DKHAAYAS_RESEARCH_JOURNAL)) then -- If no journal, just stop right here
         if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then -- Trade Pickaxe
             local keyItems =
             {
-                ELECTROCELL,
-                ELECTROPOT,
-                ELECTROLOCOMOTIVE,
+                dsp.kis.ELECTROCELL,
+                dsp.kis.ELECTROPOT,
+                dsp.kis.ELECTROLOCOMOTIVE,
             }
             local KI = math.random(1,3);
-            if (player:hasKeyItem(ELECTROCELL) or player:hasKeyItem(ELECTROPOT) or player:hasKeyItem(ELECTROLOCOMOTIVE)) == false then
+            if (player:hasKeyItem(dsp.kis.ELECTROCELL) or player:hasKeyItem(dsp.kis.ELECTROPOT) or player:hasKeyItem(dsp.kis.ELECTROLOCOMOTIVE)) == false then
                 player:tradeComplete();
                 player:addKeyItem(keyItems[KI]);
                 player:messageSpecial(KEYITEM_OBTAINED, keyItems[KI]);

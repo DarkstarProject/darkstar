@@ -31,11 +31,11 @@ function onTrade(player,npc,trade)
         local zone = player:getZoneID();
         local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
         local listAF = getAFbyZone(zone);
-        if (player:hasKeyItem(MAP_OF_THE_BOYAHDA_TREE) == false) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_THE_BOYAHDA_TREE) == false) then
             questItemNeeded = 3;
         end
 
-        if (AFHandsActivated == 14 and player:hasKeyItem(OLD_GAUNTLETS) == false) then
+        if (AFHandsActivated == 14 and player:hasKeyItem(dsp.kis.OLD_GAUNTLETS) == false) then
             questItemNeeded = 1;
         else
             for nb = 1,#listAF,3 do
@@ -64,8 +64,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(OLD_GAUNTLETS);
-                    player:messageSpecial(KEYITEM_OBTAINED,OLD_GAUNTLETS); -- Old Gauntlets (KI)
+                    player:addKeyItem(dsp.kis.OLD_GAUNTLETS);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OLD_GAUNTLETS); -- Old Gauntlets (KI)
                 elseif (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
@@ -75,8 +75,8 @@ function onTrade(player,npc,trade)
                         end
                     end
                 elseif (questItemNeeded == 3) then
-                    player:addKeyItem(MAP_OF_THE_BOYAHDA_TREE);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_BOYAHDA_TREE); -- Map of the Boyahda Tree (KI)
+                    player:addKeyItem(dsp.kis.MAP_OF_THE_BOYAHDA_TREE);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_BOYAHDA_TREE); -- Map of the Boyahda Tree (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
