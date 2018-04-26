@@ -3766,6 +3766,11 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     CItem* gil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
     CItem* PItem = itemutils::GetItemPointer(itemID);
+    if (PItem == nullptr)
+    {
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy an invalid item from guild vendor!\n" CL_RESET, PChar->GetName());
+        return;
+    }
 
     // Prevent purchasing larger stacks than the actual stack size in database.
     if (quantity > PItem->getStackSize())
