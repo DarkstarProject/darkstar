@@ -3578,6 +3578,11 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint32 price = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
     CItem* PItem = itemutils::GetItemPointer(itemID);
+    if (PItem == nullptr)
+    {
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy an invalid item from vendor!\n" CL_RESET, PChar->GetName());
+        return;
+    }
 
     // Prevent purchasing larger stacks than the actual stack size in database.
     if (quantity > PItem->getStackSize())
