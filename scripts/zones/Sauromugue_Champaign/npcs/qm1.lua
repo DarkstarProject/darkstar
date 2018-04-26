@@ -16,9 +16,9 @@ end;
 function onTrigger(player,npc)
     if (
         not GetMobByID(DRIBBLIX_GREASEMAW):isSpawned() and
-        player:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) and
-        not player:hasKeyItem(SEEDSPALL_VIRIDIS) and
-        not player:hasKeyItem(VIRIDIAN_KEY)
+        player:hasKeyItem(dsp.kis.CHUNK_OF_SMOKED_GOBLIN_GRUB) and
+        not player:hasKeyItem(dsp.kis.SEEDSPALL_VIRIDIS) and
+        not player:hasKeyItem(dsp.kis.VIRIDIAN_KEY)
     ) then
         SpawnMob(DRIBBLIX_GREASEMAW):updateClaim(player);
     else

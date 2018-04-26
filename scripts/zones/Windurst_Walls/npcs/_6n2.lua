@@ -47,8 +47,8 @@ function onTrigger(player,npc)
         elseif (player:getMainLvl() >= AF3_QUEST_LEVEL and player:getMainJob() == dsp.jobs.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
             player:startEvent(415); -- Carby begs for your help
         ----------------------------------------------------
-        elseif (player:hasKeyItem(JOKER_CARD)) then
-            player:startEvent(387,0,JOKER_CARD);
+        elseif (player:hasKeyItem(dsp.kis.JOKER_CARD)) then
+            player:startEvent(387,0,dsp.kis.JOKER_CARD);
         elseif (player:getVar("WildCard") == 1) then
             player:startEvent(386);
         elseif (player:getVar("OnionRings") == 1) then
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,ONION_RINGS);
         player:addFame(WINDURST,100);
         player:addTitle(STAR_ONION_BRIGADIER);
-        player:delKeyItem(OLD_RING);
+        player:delKeyItem(dsp.kis.OLD_RING);
         player:setVar("OnionRingsTime",0);
         player:setVar("OnionRings",2);
     elseif (csid == 384) then
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 386) then
         player:setVar("WildCard",2);
     elseif (csid == 387) then
-        player:delKeyItem(JOKER_CARD);
+        player:delKeyItem(dsp.kis.JOKER_CARD);
         player:addGil(GIL_RATE*8000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
     elseif (csid == 337) then
@@ -102,8 +102,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 413) then
         player:setVar("ClassReunionProgress",1);
         player:addQuest(WINDURST,CLASS_REUNION);
-        player:addKeyItem(CARBUNCLES_TEAR);
-        player:messageSpecial(KEYITEM_OBTAINED,CARBUNCLES_TEAR);
+        player:addKeyItem(dsp.kis.CARBUNCLES_TEAR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CARBUNCLES_TEAR);
     elseif (csid == 415) then
         player:addQuest(WINDURST,CARBUNCLE_DEBACLE);
         player:setVar("CarbuncleDebacleProgress",1);

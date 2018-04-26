@@ -29,7 +29,7 @@ end;
 function onTrigger(player,npc)
     if (player:getMainLvl() < 75) then
         player:startEvent(10121);
-    elseif (player:hasKeyItem(MAGIAN_TRIAL_LOG) == false) then
+    elseif (player:hasKeyItem(dsp.kis.MAGIAN_TRIAL_LOG) == false) then
         player:startEvent(10122);
     else
         player:startEvent(10123); -- parameters unknown
@@ -54,8 +54,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 10122 and option == 1) then
-        player:messageSpecial(KEYITEM_OBTAINED,MAGIAN_TRIAL_LOG);
-        player:addKeyItem(MAGIAN_TRIAL_LOG);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAGIAN_TRIAL_LOG);
+        player:addKeyItem(dsp.kis.MAGIAN_TRIAL_LOG);
     --elseif
         --
     end

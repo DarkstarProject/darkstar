@@ -59,8 +59,8 @@ function onEventFinish(player,csid,option,npc)
 
     if (csid == 117) then
         player:setVar("MissionStatus",4);
-        player:addKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:addKeyItem(dsp.kis.ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ROYAL_KNIGHTS_DAVOI_REPORT);
     end
 
     npc:wait(0);

@@ -17,13 +17,13 @@ end;
 
 function onTrigger(player,npc)
     if (OldSchoolG1 == false) then
-        if (player:hasItem(1089) == false and player:hasKeyItem(EXORAY_MOLD_CRUMB2) == false
+        if (player:hasItem(1089) == false and player:hasKeyItem(dsp.kis.EXORAY_MOLD_CRUMB2) == false
         and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
-            player:addKeyItem(EXORAY_MOLD_CRUMB2);
-            player:messageSpecial(KEYITEM_OBTAINED,EXORAY_MOLD_CRUMB2);
+            player:addKeyItem(dsp.kis.EXORAY_MOLD_CRUMB2);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.EXORAY_MOLD_CRUMB2);
         end
 
-        if (player:hasKeyItem(EXORAY_MOLD_CRUMB1) and player:hasKeyItem(EXORAY_MOLD_CRUMB2) and player:hasKeyItem(EXORAY_MOLD_CRUMB3)) then
+        if (player:hasKeyItem(dsp.kis.EXORAY_MOLD_CRUMB1) and player:hasKeyItem(dsp.kis.EXORAY_MOLD_CRUMB2) and player:hasKeyItem(dsp.kis.EXORAY_MOLD_CRUMB3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1089, 1);
                 player:messageSpecial(ITEM_OBTAINED, 1089);
@@ -33,9 +33,9 @@ function onTrigger(player,npc)
         end
 
         if (player:hasItem(1089)) then
-            player:delKeyItem(EXORAY_MOLD_CRUMB1);
-            player:delKeyItem(EXORAY_MOLD_CRUMB2);
-            player:delKeyItem(EXORAY_MOLD_CRUMB3);
+            player:delKeyItem(dsp.kis.EXORAY_MOLD_CRUMB1);
+            player:delKeyItem(dsp.kis.EXORAY_MOLD_CRUMB2);
+            player:delKeyItem(dsp.kis.EXORAY_MOLD_CRUMB3);
         end
     end
 end;

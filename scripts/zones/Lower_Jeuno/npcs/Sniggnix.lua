@@ -54,9 +54,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10026) then
         player:tradeComplete();
         player:setVar("thickAsThievesGamblingCS",8);
-        player:delKeyItem(SECOND_FORGED_ENVELOPE);
-        player:addKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SECOND_SIGNED_FORGED_ENVELOPE);
+        player:delKeyItem(dsp.kis.SECOND_FORGED_ENVELOPE);
+        player:addKeyItem(dsp.kis.SECOND_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SECOND_SIGNED_FORGED_ENVELOPE);
     end
 
 

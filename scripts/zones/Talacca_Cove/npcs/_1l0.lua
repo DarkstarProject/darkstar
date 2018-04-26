@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
             player:setVar("LuckOfTheDraw",5); -- var will remain for af quests
             player:addItem(5493);
             player:messageSpecial(ITEM_OBTAINED,5493);
-            player:delKeyItem(FORGOTTEN_HEXAGUN);
+            player:delKeyItem(dsp.kis.FORGOTTEN_HEXAGUN);
             player:unlockJob(dsp.jobs.COR);
             player:messageSpecial(YOU_CAN_NOW_BECOME_A_CORSAIR);
             player:completeQuest(AHT_URHGAN,LUCK_OF_THE_DRAW);

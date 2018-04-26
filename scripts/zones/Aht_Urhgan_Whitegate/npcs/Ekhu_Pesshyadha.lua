@@ -43,8 +43,8 @@ function onEventFinish(player,csid,option)
     if (csid == 537) then
        player:setVar("gotitallCS",2);
     elseif (csid == 524) then
-       player:addKeyItem(VIAL_OF_LUMINOUS_WATER);
-       player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_LUMINOUS_WATER);
+       player:addKeyItem(dsp.kis.VIAL_OF_LUMINOUS_WATER);
+       player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.VIAL_OF_LUMINOUS_WATER);
        player:setVar("gotitallCS",4);
     end
 end;

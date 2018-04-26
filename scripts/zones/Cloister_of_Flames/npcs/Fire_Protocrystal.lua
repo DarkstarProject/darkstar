@@ -62,9 +62,9 @@ function onEventFinish(player,csid,option)
     --printf("onFinish RESULT: %u",option);
 
     if (csid==2) then
-        player:delKeyItem(DOMINAS_SCARLET_SEAL);
-        player:addKeyItem(SCARLET_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,SCARLET_COUNTERSEAL);
+        player:delKeyItem(dsp.kis.DOMINAS_SCARLET_SEAL);
+        player:addKeyItem(dsp.kis.SCARLET_COUNTERSEAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SCARLET_COUNTERSEAL);
         player:setVar("ASA4_Scarlet","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

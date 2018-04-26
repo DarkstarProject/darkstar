@@ -17,8 +17,8 @@ function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[NW_Apollyon]UniqueID"));
     player:setVar("LimbusID",1290);    
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(RED_CARD);
+    player:delKeyItem(dsp.kis.COSMOCLEANSE);
+    player:delKeyItem(dsp.kis.RED_CARD);
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode

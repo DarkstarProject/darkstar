@@ -29,9 +29,9 @@ function onTrigger(player,npc)
 
     if (basty == THE_SALT_OF_THE_EARTH and soteStat == 2 and not anyPlasmsAlive) then
         SpawnMob(GIGAPLASM):updateClaim(player);
-    elseif (basty == THE_SALT_OF_THE_EARTH and soteStat == 3 and not player:hasKeyItem(MIRACLESALT)) then
-        player:addKeyItem(MIRACLESALT);
-        player:messageSpecial(KEYITEM_OBTAINED, MIRACLESALT);
+    elseif (basty == THE_SALT_OF_THE_EARTH and soteStat == 3 and not player:hasKeyItem(dsp.kis.MIRACLESALT)) then
+        player:addKeyItem(dsp.kis.MIRACLESALT);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.MIRACLESALT);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 
     theDismayedCustomer = player:getQuestStatus(SANDORIA, THE_DISMAYED_CUSTOMER);
     if (theDismayedCustomer == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(GULEMONTS_DOCUMENT) == true) then
+        if (player:hasKeyItem(dsp.kis.GULEMONTS_DOCUMENT) == true) then
             player:startEvent(607);
         else
             player:startEvent(606);
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
         player:setVar("theDismayedCustomer", math.random(1,3));
     elseif (csid == 607) then
-        player:delKeyItem(GULEMONTS_DOCUMENT);
+        player:delKeyItem(dsp.kis.GULEMONTS_DOCUMENT);
         player:addFame(SANDORIA,30);
         player:addTitle(LOST_CHILD_OFFICER);
         player:completeQuest(SANDORIA, THE_DISMAYED_CUSTOMER);

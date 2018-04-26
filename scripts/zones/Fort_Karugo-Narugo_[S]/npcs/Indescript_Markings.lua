@@ -22,10 +22,10 @@ function onTrigger(player,npc)
     player:delStatusEffect(dsp.effects.SNEAK);
 
     -- SCH AF Quest - Boots
-    if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(RAFFLESIA_DREAMSPIT) == false) then
+    if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(dsp.kis.RAFFLESIA_DREAMSPIT) == false) then
 
-        player:addKeyItem(RAFFLESIA_DREAMSPIT);
-        player:messageSpecial(KEYITEM_OBTAINED, RAFFLESIA_DREAMSPIT);
+        player:addKeyItem(dsp.kis.RAFFLESIA_DREAMSPIT);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.RAFFLESIA_DREAMSPIT);
         player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
 
         -- Move the markings around

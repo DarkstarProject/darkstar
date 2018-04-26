@@ -101,9 +101,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(154); -- Standard dialog
         end
-    elseif (player:getVar("BorghertzAlreadyActiveWithJob") >= 1 and player:hasKeyItem(OLD_GAUNTLETS) == false) then
+    elseif (player:getVar("BorghertzAlreadyActiveWithJob") >= 1 and player:hasKeyItem(dsp.kis.OLD_GAUNTLETS) == false) then
         player:startEvent(43); -- During Quest before KI obtained
-    elseif (player:hasKeyItem(OLD_GAUNTLETS) == true) then
+    elseif (player:hasKeyItem(dsp.kis.OLD_GAUNTLETS) == true) then
         player:startEvent(26); -- Dialog with Old Gauntlets KI
 
         if (nbHandsQuestsCompleted(player) == 1) then

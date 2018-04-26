@@ -13,9 +13,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(JUGNER_GATE_CRYSTAL) == false) then
-        player:addKeyItem(JUGNER_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,JUGNER_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.kis.JUGNER_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.kis.JUGNER_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.JUGNER_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end

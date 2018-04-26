@@ -155,16 +155,16 @@ function onEventFinish(player,csid,option)
         player:setVar("gotitallCS",6);
         player:setPos(60,0,-71,38);
     elseif (csid == 3000) then
-        player:addKeyItem(SUPPLIES_PACKAGE);
+        player:addKeyItem(dsp.kis.SUPPLIES_PACKAGE);
         player:completeMission(TOAU,LAND_OF_SACRED_SERPENTS,player);
         player:addMission(TOAU,IMMORTAL_SENTRIES,player);
-        player:messageSpecial(KEYITEM_OBTAINED,SUPPLIES_PACKAGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SUPPLIES_PACKAGE);
     elseif (csid == 3024) then
         player:setVar("AhtUrganStatus",3);
     elseif (csid == 3026) then
         player:setVar("AhtUrganStatus",0);
-        player:addKeyItem(RAILLEFALS_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,RAILLEFALS_LETTER);
+        player:addKeyItem(dsp.kis.RAILLEFALS_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RAILLEFALS_LETTER);
         player:completeMission(TOAU,KNIGHT_OF_GOLD);
         player:addMission(TOAU,CONFESSIONS_OF_ROYALTY);
     elseif (csid == 3027) then
@@ -172,10 +172,10 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:setVar("AhtUrganStatus",1)
-            player:addKeyItem(RAILLEFALS_NOTE);
+            player:addKeyItem(dsp.kis.RAILLEFALS_NOTE);
             player:setTitle(483);
             player:addItem(2185,1);
-            player:messageSpecial(KEYITEM_OBTAINED,RAILLEFALS_NOTE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RAILLEFALS_NOTE);
             player:messageSpecial(ITEM_OBTAINED,2185);
         end
     elseif (csid == 3050) then
@@ -220,13 +220,13 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3136) then
         player:completeMission(TOAU,STIRRINGS_OF_WAR);
         player:setVar("AhtUrganStatus", 0);
-        player:addKeyItem(ALLIED_COUNCIL_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,ALLIED_COUNCIL_SUMMONS);
+        player:addKeyItem(dsp.kis.ALLIED_COUNCIL_SUMMONS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ALLIED_COUNCIL_SUMMONS);
         player:addMission(TOAU,ALLIED_RUMBLINGS);
     elseif (csid == 797) then
         player:setVar("AgainstAllOdds",1); -- Set For Corsair BCNM
         player:addQuest(AHT_URHGAN,AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
-        player:addKeyItem(LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
-        player:messageSpecial(KEYITEM_OBTAINED, LIFE_FLOAT);
+        player:addKeyItem(dsp.kis.LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.LIFE_FLOAT);
     end
 end;

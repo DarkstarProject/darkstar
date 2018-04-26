@@ -31,7 +31,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 102) then
-            player:delKeyItem(BATTLE_RATIONS);
+            player:delKeyItem(dsp.kis.BATTLE_RATIONS);
             player:setVar("THE_FIGHTING_FOURTH",1);
     end
 end;

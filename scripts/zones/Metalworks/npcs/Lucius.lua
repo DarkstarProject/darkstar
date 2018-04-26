@@ -19,8 +19,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.kis.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SMILING_STONE);
         end
     end
 
@@ -47,8 +47,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 322) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+        player:addKeyItem(dsp.kis.LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_TO_THE_AMBASSADOR);
     end
 
 end;

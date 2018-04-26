@@ -24,9 +24,9 @@ function onTrigger(player,npc)
         player:startEvent(22);
 
     -- Curses, Foiled A_Golem!?
-    elseif (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+    elseif (player:hasKeyItem(dsp.kis.SHANTOTTOS_NEW_SPELL)) then
         player:startEvent(14); -- deliver spell
-    elseif (player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
+    elseif (player:hasKeyItem(dsp.kis.SHANTOTTOS_EXSPELL)) then
         player:startEvent(13); -- spell erased, try again!
 
     -- standard dialog
@@ -47,11 +47,11 @@ function onEventFinish(player,csid,option)
     -- Curses, Foiled A_Golem!?
     if (csid == 14) then
         player:setVar("foiledagolemdeliverycomplete",1);
-        player:delKeyItem(SHANTOTTOS_NEW_SPELL); -- remove key item
+        player:delKeyItem(dsp.kis.SHANTOTTOS_NEW_SPELL); -- remove key item
     elseif (csid == 22) then
-        player:addKeyItem(RHINOSTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,RHINOSTERY_RING);
-        if (player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(OPTISTERY_RING)) then
+        player:addKeyItem(dsp.kis.RHINOSTERY_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RHINOSTERY_RING);
+        if (player:hasKeyItem(dsp.kis.AURASTERY_RING) and player:hasKeyItem(dsp.kis.OPTISTERY_RING)) then
             player:setVar("MissionStatus",2)
         end
     end

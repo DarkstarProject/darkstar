@@ -31,13 +31,13 @@ function onTrade(player,npc,trade)
         local zone = player:getZoneID();
         local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
 
-        if (AFHandsActivated == 12 and player:hasKeyItem(OLD_GAUNTLETS) == false) then
+        if (AFHandsActivated == 12 and player:hasKeyItem(dsp.kis.OLD_GAUNTLETS) == false) then
             questItemNeeded = 1;
-        elseif (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and player:hasKeyItem(LARGE_TRICK_BOX) == false) then
+        elseif (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and player:hasKeyItem(dsp.kis.LARGE_TRICK_BOX) == false) then
             questItemNeeded = 2;
         elseif (player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1) then
             questItemNeeded = 3;
-        elseif (player:hasKeyItem(MAP_OF_THE_KUFTAL_TUNNEL) == false) then
+        elseif (player:hasKeyItem(dsp.kis.MAP_OF_THE_KUFTAL_TUNNEL) == false) then
             questItemNeeded = 4;
         end
         --------------------------------------
@@ -59,17 +59,17 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(OLD_GAUNTLETS);
-                    player:messageSpecial(KEYITEM_OBTAINED,OLD_GAUNTLETS); -- Old Gauntlets (KI)
+                    player:addKeyItem(dsp.kis.OLD_GAUNTLETS);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OLD_GAUNTLETS); -- Old Gauntlets (KI)
                 elseif (questItemNeeded == 2) then
-                    player:addKeyItem(LARGE_TRICK_BOX);
-                    player:messageSpecial(KEYITEM_OBTAINED,LARGE_TRICK_BOX); -- Large Trick Box (KI, NIN AF3)
+                    player:addKeyItem(dsp.kis.LARGE_TRICK_BOX);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LARGE_TRICK_BOX); -- Large Trick Box (KI, NIN AF3)
                 elseif (questItemNeeded == 3) then
-                    player:addKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS); -- DRG AF3 (KI)
-                    player:messageSpecial(KEYITEM_OBTAINED,CHALLENGE_TO_THE_ROYAL_KNIGHTS);
+                    player:addKeyItem(dsp.kis.CHALLENGE_TO_THE_ROYAL_KNIGHTS); -- DRG AF3 (KI)
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CHALLENGE_TO_THE_ROYAL_KNIGHTS);
                 elseif (questItemNeeded == 4) then
-                    player:addKeyItem(MAP_OF_THE_KUFTAL_TUNNEL);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_KUFTAL_TUNNEL); -- Map of the Kuftal Tunnel (KI)
+                    player:addKeyItem(dsp.kis.MAP_OF_THE_KUFTAL_TUNNEL);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_KUFTAL_TUNNEL); -- Map of the Kuftal Tunnel (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

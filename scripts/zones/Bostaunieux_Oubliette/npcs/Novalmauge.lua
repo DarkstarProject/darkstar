@@ -103,8 +103,8 @@ function onEventFinish(player,csid,option,npc)
         player:setVar("TheHolyCrest_Event",2);
     elseif (csid == 17) then
         player:tradeComplete();
-        player:addKeyItem(NEUTRALIZER);
-        player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
+        player:addKeyItem(dsp.kis.NEUTRALIZER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.NEUTRALIZER);
         player:setVar("troubleAtTheSluiceVar",0);
         player:setVar("theHolyCrestCheck",0);
     elseif (csid == 13 and option == 1) then

@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
        player:setVar("gotitallCS",1);
     elseif (csid == 525 and option == 0) then
        player:setVar("gotitallCS",5);
-       player:delKeyItem(VIAL_OF_LUMINOUS_WATER);
+       player:delKeyItem(dsp.kis.VIAL_OF_LUMINOUS_WATER);
     elseif (csid == 527) then
        player:setVar("gotitallCS",7);
        player:setVar("Wait1DayForgotitallCS_date", getMidnight());

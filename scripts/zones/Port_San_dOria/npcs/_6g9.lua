@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
     X = player:getXPos();
     if (X <= -14 and X >= -20) then
-        if (player:hasKeyItem(AIRSHIP_PASS) == false) then
+        if (player:hasKeyItem(dsp.kis.AIRSHIP_PASS) == false) then
             player:startEvent(517);
         elseif (player:getGil() < 200 ) then
             player:startEvent(716);

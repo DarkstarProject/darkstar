@@ -26,7 +26,7 @@ function onTrigger(player,npc)
          player:startEvent(8);
     -- Mission San D'Oria 9-1 Breaking Barriers
     elseif (currentMission == BREAKING_BARRIERS and MissionStatus == 4) then
-        if (player:hasKeyItem(FIGURE_OF_TITAN) and player:hasKeyItem(FIGURE_OF_GARUDA) and player:hasKeyItem(FIGURE_OF_LEVIATHAN)) then
+        if (player:hasKeyItem(dsp.kis.FIGURE_OF_TITAN) and player:hasKeyItem(dsp.kis.FIGURE_OF_GARUDA) and player:hasKeyItem(dsp.kis.FIGURE_OF_LEVIATHAN)) then
             player:startEvent(76);
         end
     elseif (currentMission == BREAKING_BARRIERS and MissionStatus == 0) then
@@ -64,8 +64,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 537) then
         player:setVar("MissionStatus",3);
-        player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+        player:addKeyItem(dsp.kis.LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 61) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 87) then

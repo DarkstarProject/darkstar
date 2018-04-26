@@ -29,10 +29,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false) then
+    if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(dsp.kis.STARDUST_PEBBLE) == false) then
         player:startEvent(100);
-        player:addKeyItem(STARDUST_PEBBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,STARDUST_PEBBLE);
+        player:addKeyItem(dsp.kis.STARDUST_PEBBLE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STARDUST_PEBBLE);
     elseif (player:getVar("roadToDivadomCS") == 2) then
         local nextRoadToDivadomCS = 0x006A; -- CSID 106
         player:startEvent(nextRoadToDivadomCS);

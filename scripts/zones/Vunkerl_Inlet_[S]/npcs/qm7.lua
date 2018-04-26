@@ -34,20 +34,20 @@ function onEventFinish(player,csid,option)
 
     if (csid == 105) then
         player:addQuest(CRYSTAL_WAR, BOY_AND_THE_BEAST);
-        player:addKeyItem(VUNKERL_HERB_MEMO);
-        player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB_MEMO);
+        player:addKeyItem(dsp.kis.VUNKERL_HERB_MEMO);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.VUNKERL_HERB_MEMO);
     elseif (csid == 108) then
         if(player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17384); -- Carbon Fishing Rod
         else
             player:completeQuest(CRYSTAL_WAR, BOY_AND_THE_BEAST);
-            player:delKeyItem(VUNKERL_HERB_MEMO);
-            player:delKeyItem(VUNKERL_HERB);
+            player:delKeyItem(dsp.kis.VUNKERL_HERB_MEMO);
+            player:delKeyItem(dsp.kis.VUNKERL_HERB);
             player:addItem(17384);
             player:messageSpecial(ITEM_OBTAINED,17384); --Carbon Fishing Rod
         end
     elseif (csid == 109) then
-        player:delKeyItem(VUNKERL_HERB);
+        player:delKeyItem(dsp.kis.VUNKERL_HERB);
         player:setVar("BoyAndTheBeast",2);
     end
 end;

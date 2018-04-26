@@ -21,7 +21,7 @@ function onTrigger(player,npc)
 
     if (CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
         player:startEvent(100);
-    elseif (CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(LOST_DOCUMENT)) then
+    elseif (CurrentMission == THE_DAVOI_REPORT and player:hasKeyItem(dsp.kis.LOST_DOCUMENT)) then
         player:startEvent(104);
     elseif (CurrentMission == INFILTRATE_DAVOI and infiltrateDavoi and player:getVar("MissionStatus") == 0) then
         player:startEvent(102);
@@ -46,16 +46,16 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
     elseif (csid == 104) then
         player:setVar("MissionStatus",3);
-        player:delKeyItem(LOST_DOCUMENT);
-        player:addKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);
+        player:delKeyItem(dsp.kis.LOST_DOCUMENT);
+        player:addKeyItem(dsp.kis.TEMPLE_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TEMPLE_KNIGHTS_DAVOI_REPORT);
     elseif (csid == 102) then
         player:setVar("MissionStatus",6);
     elseif (csid == 105) then
         player:setVar("MissionStatus",10);
-        player:delKeyItem(EAST_BLOCK_CODE);
-        player:delKeyItem(SOUTH_BLOCK_CODE);
-        player:delKeyItem(NORTH_BLOCK_CODE);
+        player:delKeyItem(dsp.kis.EAST_BLOCK_CODE);
+        player:delKeyItem(dsp.kis.SOUTH_BLOCK_CODE);
+        player:delKeyItem(dsp.kis.NORTH_BLOCK_CODE);
     end
 
 end;

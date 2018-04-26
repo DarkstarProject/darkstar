@@ -25,14 +25,14 @@ end;
 function onTrigger(player,npc)
     local ACPm = player:getCurrentMission(ACP);
     local now = tonumber(os.date("%j"));
-    local SR = player:hasKeyItem(SEEDSPALL_ROSEUM)
-    local SC = player:hasKeyItem(SEEDSPALL_CAERULUM)
-    local SV = player:hasKeyItem(SEEDSPALL_VIRIDIS)
-    local AmberKey = player:hasKeyItem(AMBER_KEY);
+    local SR = player:hasKeyItem(dsp.kis.SEEDSPALL_ROSEUM)
+    local SC = player:hasKeyItem(dsp.kis.SEEDSPALL_CAERULUM)
+    local SV = player:hasKeyItem(dsp.kis.SEEDSPALL_VIRIDIS)
+    local AmberKey = player:hasKeyItem(dsp.kis.AMBER_KEY);
     local LastAmber = player:getVar("LastAmberKey"); -- When last Amber key was obtained
     local LastViridian = player:getVar("LastViridianKey"); -- When last Viridian key was obtained
 
-    if (ENABLE_ACP == 1 and player:hasKeyItem(AMBER_KEY) == false) then
+    if (ENABLE_ACP == 1 and player:hasKeyItem(dsp.kis.AMBER_KEY) == false) then
         if (ACPm == GATHERER_OF_LIGHT_I and SR and SC and SV and now ~= LastViridian) then
             player:startEvent(32);
         elseif (ACPm == GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 0) then
@@ -47,13 +47,13 @@ function onTrigger(player,npc)
             -- This is for repeats to get amber keys.
             -- Spawn Seed mandragora's with dsp.effects.CONFRONTATION for 30 min
         -- elseif (SR and SC and SV and ACPm >= THOSE_WHO_LURK_IN_SHADOWS_I and player:getVar("SEED_MANDY") == 1) then
-            -- player:addKeyItem(AMBER_KEY);
+            -- player:addKeyItem(dsp.kis.AMBER_KEY);
             -- player:setVar("LastAmberKey", os.date("%j"));
-            -- player:messageSpecial(KEYITEM_OBTAINED,AMBER_KEY);
+            -- player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.AMBER_KEY);
             -- player:setVar("SEED_MANDY",0);
-            -- player:delKeyItem(SEEDSPALL_ROSEUM)
-            -- player:delKeyItem(SEEDSPALL_CAERULUM)
-            -- player:delKeyItem(SEEDSPALL_VIRIDIS)
+            -- player:delKeyItem(dsp.kis.SEEDSPALL_ROSEUM)
+            -- player:delKeyItem(dsp.kis.SEEDSPALL_CAERULUM)
+            -- player:delKeyItem(dsp.kis.SEEDSPALL_VIRIDIS)
         else
             -- Todo: find retail message (if any) and text its ID
         end
@@ -76,9 +76,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 32) then
         player:completeMission(ACP,GATHERER_OF_LIGHT_I);
         player:addMission(ACP,GATHERER_OF_LIGHT_II);
-        player:delKeyItem(SEEDSPALL_ROSEUM)
-        player:delKeyItem(SEEDSPALL_CAERULUM)
-        player:delKeyItem(SEEDSPALL_VIRIDIS)
+        player:delKeyItem(dsp.kis.SEEDSPALL_ROSEUM)
+        player:delKeyItem(dsp.kis.SEEDSPALL_CAERULUM)
+        player:delKeyItem(dsp.kis.SEEDSPALL_VIRIDIS)
     elseif (csid == 34) then
         player:completeMission(ACP,GATHERER_OF_LIGHT_II);
         player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_I);

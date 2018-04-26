@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         player:startEvent(22); --COP event
     elseif (player:getVar("BeatAroundTheBushin") == 1) then
         player:startEvent(155); -- Start Quest "Beat around the Bushin"
-    elseif (player:hasKeyItem(TENSHODO_MEMBERS_CARD) == true) then
+    elseif (player:hasKeyItem(dsp.kis.TENSHODO_MEMBERS_CARD) == true) then
         player:startEvent(105); -- Open the door
     else
         player:messageSpecial(ITS_LOCKED);

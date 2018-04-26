@@ -269,14 +269,14 @@ function onEventFinish(player,csid,option)
     elseif (csid == 86) then  -- accept quest 4 HIS_NAME_IS_VALGEIR
         if (option == 80 ) then -- answer yes!
 
-            player:addKeyItem(ARAGONEU_PIZZA); --give pizza to player
-            player:messageSpecial(KEYITEM_OBTAINED,ARAGONEU_PIZZA);
+            player:addKeyItem(dsp.kis.ARAGONEU_PIZZA); --give pizza to player
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ARAGONEU_PIZZA);
             player:addQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);
         end
     elseif (csid == 88) then  -- end quest 4 his name is Valgeir
         player:addFame(WINDURST,120);
-        player:addKeyItem(MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_TORAIMARAI_CANAL);
+        player:addKeyItem(dsp.kis.MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_TORAIMARAI_CANAL);
         player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
         player:setVar("QuestUnendingCCompYear_var",0);
         player:setVar("QuestHNIVCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
@@ -302,8 +302,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 94) then  --accept quest the basics
         if (option == 85 ) then
                         --TODO pay for ferry
-            player:addKeyItem(MHAURAN_COUSCOUS); --MHAURAN_COUSCOUS                = 92;
-            player:messageSpecial(KEYITEM_OBTAINED,MHAURAN_COUSCOUS);
+            player:addKeyItem(dsp.kis.MHAURAN_COUSCOUS); --dsp.kis.MHAURAN_COUSCOUS                = 92;
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MHAURAN_COUSCOUS);
             player:addQuest(OTHER_AREAS,THE_BASICS);
         end
     elseif (csid == 96) then   -- end quest the basics

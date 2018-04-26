@@ -21,10 +21,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(SHIELD_OFFERING)) then
+    if (player:hasKeyItem(dsp.kis.SHIELD_OFFERING)) then
         player:startEvent(42);
     elseif (player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST) then
-        if (player:hasKeyItem(DULL_SWORD)) then
+        if (player:hasKeyItem(dsp.kis.DULL_SWORD)) then
             player:startEvent(40);
         elseif (player:getVar("MissionStatus") == 5) then
             player:startEvent(43);
@@ -47,13 +47,13 @@ function onEventFinish(player,csid,option)
 
     if (csid == 40) then
         player:setVar("MissionStatus",5);
-        player:delKeyItem(DULL_SWORD);
+        player:delKeyItem(dsp.kis.DULL_SWORD);
     elseif (csid == 41) then
         player:tradeComplete();
         player:setVar("MissionStatus",6);
     elseif (csid == 42) then
         player:setVar("MissionStatus",6);
-        player:delKeyItem(SHIELD_OFFERING);
+        player:delKeyItem(dsp.kis.SHIELD_OFFERING);
     end
 end;
 

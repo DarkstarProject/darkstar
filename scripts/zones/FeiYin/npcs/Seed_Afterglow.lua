@@ -23,9 +23,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local HasMark = player:hasKeyItem(MARK_OF_SEED);
-    local HasAzureKey = player:hasKeyItem(AZURE_KEY);
-    local HasIvoryKey = player:hasKeyItem(IVORY_KEY);
+    local HasMark = player:hasKeyItem(dsp.kis.MARK_OF_SEED);
+    local HasAzureKey = player:hasKeyItem(dsp.kis.AZURE_KEY);
+    local HasIvoryKey = player:hasKeyItem(dsp.kis.IVORY_KEY);
     local LastAzure = player:getVar("LastAzureKey");
     local LastIvory = player:getVar("LastIvoryKey");
     local CurrentDay = tonumber(os.date("%j"));
@@ -195,11 +195,11 @@ function onEventFinish(player,csid,option)
     if (csid == 28) then
         if ( option == 100) then
             player:messageSpecial(SCINTILLATING_BURST_OF_LIGHT);
-            player:addKeyItem(MARK_OF_SEED);
-            player:messageSpecial(KEYITEM_OBTAINED,MARK_OF_SEED);
+            player:addKeyItem(dsp.kis.MARK_OF_SEED);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MARK_OF_SEED);
         elseif (option == 200) then
-            player:addKeyItem(AZURE_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,AZURE_KEY);
+            player:addKeyItem(dsp.kis.AZURE_KEY);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.AZURE_KEY);
         end
         player:delStatusEffectSilent(dsp.effects.MARK_OF_SEED);
     end

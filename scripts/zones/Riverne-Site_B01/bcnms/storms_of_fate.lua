@@ -57,8 +57,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2) then
-            player:addKeyItem(WHISPER_OF_THE_WYRMKING);
-            player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_THE_WYRMKING);
+            player:addKeyItem(dsp.kis.WHISPER_OF_THE_WYRMKING);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_THE_WYRMKING);
             player:setVar('StormsOfFate',3);
             player:addTitle(CONQUEROR_OF_FATE);
             if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled

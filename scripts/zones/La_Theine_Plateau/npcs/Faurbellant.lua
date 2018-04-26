@@ -21,13 +21,13 @@ function onTrigger(player,npc)
     if (gates == QUEST_COMPLETED) then
         player:showText(npc, FAURBELLANT_4);
     elseif (gates == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(SCRIPTURE_OF_WIND) == true) then
-            player:showText(npc, FAURBELLANT_2, 0, SCRIPTURE_OF_WIND);
-            player:delKeyItem(SCRIPTURE_OF_WIND);
-            player:addKeyItem(SCRIPTURE_OF_WATER);
-            player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WATER)
+        if (player:hasKeyItem(dsp.kis.SCRIPTURE_OF_WIND) == true) then
+            player:showText(npc, FAURBELLANT_2, 0, dsp.kis.SCRIPTURE_OF_WIND);
+            player:delKeyItem(dsp.kis.SCRIPTURE_OF_WIND);
+            player:addKeyItem(dsp.kis.SCRIPTURE_OF_WATER);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.SCRIPTURE_OF_WATER)
         else
-            player:showText(npc, FAURBELLANT_3, SCRIPTURE_OF_WATER);
+            player:showText(npc, FAURBELLANT_3, dsp.kis.SCRIPTURE_OF_WATER);
         end;
     else
         player:showText(npc, FAURBELLANT_1);

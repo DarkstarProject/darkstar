@@ -45,9 +45,9 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 3) then
             player:startEvent(150,0,16447);
         end
-    elseif (player:hasKeyItem(STAR_CRESTED_SUMMONS)) then
+    elseif (player:hasKeyItem(dsp.kis.STAR_CRESTED_SUMMONS)) then
         player:startEvent(157);
-    elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+    elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.kis.SHADOW_FRAGMENT)) then
         player:startEvent(194); -- her reaction after 5-1.
     else
         player:startEvent(56);
@@ -65,8 +65,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 121) then
-        player:addKeyItem(CHARM_OF_LIGHT);
-        player:messageSpecial(KEYITEM_OBTAINED,CHARM_OF_LIGHT);
+        player:addKeyItem(dsp.kis.CHARM_OF_LIGHT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CHARM_OF_LIGHT);
         player:setVar("MissionStatus",1);
     elseif (csid == 149 or csid == 257) then
         player:setVar("MissionStatus",3);

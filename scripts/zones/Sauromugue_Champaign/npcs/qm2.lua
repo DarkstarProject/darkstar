@@ -60,9 +60,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2) then
         player:setVar("thickAsThievesGrapplingCS",8);
-        player:delKeyItem(FIRST_FORGED_ENVELOPE);
-        player:addKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,FIRST_SIGNED_FORGED_ENVELOPE);
+        player:delKeyItem(dsp.kis.FIRST_FORGED_ENVELOPE);
+        player:addKeyItem(dsp.kis.FIRST_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.FIRST_SIGNED_FORGED_ENVELOPE);
         player:tradeComplete();
     end
 end;

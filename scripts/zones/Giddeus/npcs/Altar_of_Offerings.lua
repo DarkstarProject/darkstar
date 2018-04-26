@@ -34,8 +34,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 53 and option == 1) then
-        player:addKeyItem(39,OFF_OFFERING);
-        player:messageSpecial(KEYITEM_OBTAINED,OFF_OFFERING);
+        player:addKeyItem(39,dsp.kis.OFF_OFFERING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OFF_OFFERING);
         player:setVar("QuestCrisisMaking_var",2);
     end
 end;

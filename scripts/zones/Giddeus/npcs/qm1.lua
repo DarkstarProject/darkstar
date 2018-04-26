@@ -26,8 +26,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("darkLegacyCS") == 5 and not player:hasKeyItem(DARKSTEEL_FORMULA)) then
-        npcUtil.giveKeyItem(player, DARKSTEEL_FORMULA);
+    if (player:getVar("darkLegacyCS") == 5 and not player:hasKeyItem(dsp.kis.DARKSTEEL_FORMULA)) then
+        npcUtil.giveKeyItem(player, dsp.kis.DARKSTEEL_FORMULA);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

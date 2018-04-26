@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(SILVER_SEA_SALT)) then
+    if (player:hasKeyItem(dsp.kis.SILVER_SEA_SALT)) then
         player:startEvent(12);
     else
         player:startEvent(14);
@@ -29,7 +29,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 12 and option == 1) then
-        player:delKeyItem(SILVER_SEA_SALT);
+        player:delKeyItem(dsp.kis.SILVER_SEA_SALT);
     end
 
 end;

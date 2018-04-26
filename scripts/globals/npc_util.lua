@@ -104,9 +104,9 @@ end
     Message is displayed showing key items obtained.
     
     Examples of valid keyitems parameter:
-        ZERUHN_REPORT
-        {PALBOROUGH_MINES_LOGS}
-        {BLUE_ACIDITY_TESTER, RED_ACIDITY_TESTER}
+        dsp.kis.ZERUHN_REPORT
+        {dsp.kis.PALBOROUGH_MINES_LOGS}
+        {dsp.kis.BLUE_ACIDITY_TESTER, dsp.kis.RED_ACIDITY_TESTER}
 ******************************************************************************* --]]
 function npcUtil.giveKeyItem(player, keyitems)
     -- require zone TextIDs
@@ -141,7 +141,7 @@ end
     Example of usage with params (all params are optional):
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
             item = { {640,2}, 641 },    -- see npcUtil.giveItem for formats
-            keyItem = ZERUHN_REPORT,    -- see npcUtil.giveKeyItem for formats
+            keyItem = dsp.kis.ZERUHN_REPORT,    -- see npcUtil.giveKeyItem for formats
             fame = 120,                 -- fame defaults to 30 if not set
             bayld = 500,
             gil = 200,

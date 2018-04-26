@@ -36,12 +36,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 107) then
         if (option == 1) then
-            player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:addKeyItem(dsp.kis.VUNKERL_HERB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",3);
         else
-            player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:addKeyItem(dsp.kis.VUNKERL_HERB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",4);
         end
     end

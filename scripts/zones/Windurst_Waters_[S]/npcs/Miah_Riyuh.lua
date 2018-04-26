@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     local TheFightingFourth = player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
     local SnakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
     local SteamedRams = player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS);
-    local GreenLetter = player:hasKeyItem(GREEN_RECOMMENDATION_LETTER);
+    local GreenLetter = player:hasKeyItem(dsp.kis.GREEN_RECOMMENDATION_LETTER);
 
     if (SteamedRams == QUEST_ACCEPTED or TheFightingFourth == QUEST_ACCEPTED) then
         player:startEvent(122);
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         player:startEvent(105);
     elseif (SnakeOnThePlains == QUEST_ACCEPTED and player:isMaskFull(player:getVar("SEALED_DOORS"),3) == true) then
         player:startEvent(106);
-    elseif (SnakeOnThePlains == QUEST_ACCEPTED and player:hasKeyItem(ZONPAZIPPAS_ALLPURPOSE_PUTTY)) then
+    elseif (SnakeOnThePlains == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.ZONPAZIPPAS_ALLPURPOSE_PUTTY)) then
         local PuttyUsed = 0;
         if (player:getMaskBit(player:getVar("SEALED_DOORS"),0)) then
             PuttyUsed = PuttyUsed +1;
@@ -62,23 +62,23 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 103 and option == 0) then
         player:addQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-        player:addKeyItem(ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:addKeyItem(dsp.kis.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
-        player:delKeyItem(GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:delKeyItem(dsp.kis.GREEN_RECOMMENDATION_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
     elseif (csid == 103 and option == 1) then
         player:setVar("GREEN_R_LETTER_USED",1);
-        player:delKeyItem(GREEN_RECOMMENDATION_LETTER);
+        player:delKeyItem(dsp.kis.GREEN_RECOMMENDATION_LETTER);
     elseif (csid == 104 and option == 1) then
         player:delQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-        player:delKeyItem(ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:delKeyItem(dsp.kis.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("SEALED_DOORS", 0);
     elseif (csid == 105 and option == 0) then
         player:addQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-        player:addKeyItem(ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:addKeyItem(dsp.kis.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
-        player:delKeyItem(GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:delKeyItem(dsp.kis.GREEN_RECOMMENDATION_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
     elseif (csid == 106 and option == 0) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
         if (player:getVar("Campaign_Nation") == 0) then
@@ -86,11 +86,11 @@ function onEventFinish(player,csid,option)
                 player:setCampaignAllegiance(3);
                 player:setVar("GREEN_R_LETTER_USED",0);
                 player:addTitle(COBRA_UNIT_MERCENARY);
-                player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
+                player:addKeyItem(dsp.kis.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
                 player:setVar("SEALED_DOORS", 0);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.BRONZE_RIBBON_OF_SERVICE);
                 player:messageSpecial(ITEM_OBTAINED, 15754);
             else
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);

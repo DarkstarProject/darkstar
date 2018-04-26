@@ -44,8 +44,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,HOIST_THE_JELLY_ROGER);
     elseif (csid == 10001) then
         player:completeQuest(WINDURST,HOIST_THE_JELLY_ROGER);
-        player:addKeyItem(SUPER_SOUP_POT);
-        player:messageSpecial(KEYITEM_OBTAINED,SUPER_SOUP_POT);
+        player:addKeyItem(dsp.kis.SUPER_SOUP_POT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SUPER_SOUP_POT);
         player:addFame(WINDURST,30);
         player:tradeComplete();
     end

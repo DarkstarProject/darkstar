@@ -59,8 +59,8 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        player:delKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:addKeyItem(WHISPER_OF_STORMS);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_STORMS);
+        player:delKeyItem(dsp.kis.TUNING_FORK_OF_LIGHTNING);
+        player:addKeyItem(dsp.kis.WHISPER_OF_STORMS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_STORMS);
     end
 end;    

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(REMNANTS_PERMIT)) then
+    if (player:hasKeyItem(dsp.kis.REMNANTS_PERMIT)) then
         local mask = -2
         if player:getMainLvl() >= 96 then
             mask = -14
@@ -38,7 +38,7 @@ function onEventUpdate(player,csid,option,target)
 
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not v:hasKeyItem(REMNANTS_PERMIT)) then
+            if (not v:hasKeyItem(dsp.kis.REMNANTS_PERMIT)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
@@ -71,7 +71,7 @@ function onInstanceCreated(player,target,instance)
     if (instance) then
         player:setInstance(instance);
         player:instanceEntry(target,4);
-        player:delKeyItem(REMNANTS_PERMIT);
+        player:delKeyItem(dsp.kis.REMNANTS_PERMIT);
 
         local party = player:getParty();
         if (party ~= nil) then
@@ -79,7 +79,7 @@ function onInstanceCreated(player,target,instance)
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
                     v:startEvent(116, 2);
-                    v:delKeyItem(REMNANTS_PERMIT);
+                    v:delKeyItem(dsp.kis.REMNANTS_PERMIT);
                 end
             end
         end

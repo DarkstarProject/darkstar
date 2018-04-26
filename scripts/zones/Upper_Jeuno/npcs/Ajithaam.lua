@@ -83,16 +83,16 @@ function onEventFinish(player,csid,option)
     if (csid == 10088) then
         player:addQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
         player:setVar("WildcatJeuno",0);
-        player:addKeyItem(WHITE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,WHITE_SENTINEL_BADGE);
+        player:addKeyItem(dsp.kis.WHITE_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHITE_SENTINEL_BADGE);
     elseif (csid == 10091) then
         player:completeQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
         player:addFame(JEUNO, 150);
         player:setVar("WildcatJeuno",0);
-        player:delKeyItem(WHITE_SENTINEL_BADGE);
-        player:addKeyItem(WHITE_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,WHITE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,WHITE_INVITATION_CARD);
+        player:delKeyItem(dsp.kis.WHITE_SENTINEL_BADGE);
+        player:addKeyItem(dsp.kis.WHITE_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,dsp.kis.WHITE_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHITE_INVITATION_CARD);
     elseif (csid == 10177) then
         player:tradeComplete();
         toAhtUrhganWhitegate(player);

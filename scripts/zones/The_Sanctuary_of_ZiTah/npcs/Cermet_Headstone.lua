@@ -19,37 +19,37 @@ function onTrigger(player,npc)
 
     -- HEADSTONE PILGRIMAGE
     if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
-        if (player:hasKeyItem(LIGHT_FRAGMENT)) then
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,LIGHT_FRAGMENT);
+        if (player:hasKeyItem(dsp.kis.LIGHT_FRAGMENT)) then
+            player:messageSpecial(ALREADY_OBTAINED_FRAG,dsp.kis.LIGHT_FRAGMENT);
         elseif (os.time() >= npc:getLocalVar("cooldown")) then
             if (not GetMobByID(DOOMED_PILGRIMS):isSpawned()) then
-                player:startEvent(200,LIGHT_FRAGMENT);
+                player:startEvent(200,dsp.kis.LIGHT_FRAGMENT);
             else
                 player:messageSpecial(SOMETHING_BETTER);
             end
         else
-            player:addKeyItem(LIGHT_FRAGMENT);
+            player:addKeyItem(dsp.kis.LIGHT_FRAGMENT);
             if (
-                player:hasKeyItem(ICE_FRAGMENT) and
-                player:hasKeyItem(EARTH_FRAGMENT) and
-                player:hasKeyItem(WATER_FRAGMENT) and
-                player:hasKeyItem(FIRE_FRAGMENT) and
-                player:hasKeyItem(LIGHTNING_FRAGMENT) and
-                player:hasKeyItem(WIND_FRAGMENT)
+                player:hasKeyItem(dsp.kis.ICE_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.EARTH_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.WATER_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.FIRE_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.LIGHTNING_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.WIND_FRAGMENT)
             ) then
-                player:messageSpecial(FOUND_ALL_FRAGS,LIGHT_FRAGMENT);
+                player:messageSpecial(FOUND_ALL_FRAGS,dsp.kis.LIGHT_FRAGMENT);
                 player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
-                player:messageSpecial(KEYITEM_OBTAINED,LIGHT_FRAGMENT);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LIGHT_FRAGMENT);
             end
         end
 
     -- SOUL SEARCHING
     elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and not player:hasCompleteQuest(OUTLANDS,SOUL_SEARCHING)) then
         player:addQuest(OUTLANDS,SOUL_SEARCHING);
-        player:startEvent(202,PRISMATIC_FRAGMENT);
+        player:startEvent(202,dsp.kis.PRISMATIC_FRAGMENT);
 
     -- DEFAULT DIALOGS
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then

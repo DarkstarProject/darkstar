@@ -26,7 +26,7 @@ function onTrigger(player,npc)
 
     ---------------------------------------------------------------------
     -- Carbuncle Debacle
-    if (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 5 and player:hasKeyItem(DAZEBREAKER_CHARM) == true) then
+    if (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 5 and player:hasKeyItem(dsp.kis.DAZEBREAKER_CHARM) == true) then
         player:startEvent(86); -- get the wind pendulum, lets go to Cloister of Gales
     elseif (CarbuncleDebacle == QUEST_ACCEPTED and CarbuncleDebacleProgress == 6) then
         if (player:hasItem(1174) == false) then
@@ -71,11 +71,11 @@ function onEventFinish(player,csid,option)
         end
         player:addQuest(OUTLANDS,TRIAL_BY_WIND);
         player:setVar("TrialByWind_date", 0);
-        player:addKeyItem(TUNING_FORK_OF_WIND);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WIND);
+        player:addKeyItem(dsp.kis.TUNING_FORK_OF_WIND);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_WIND);
     elseif (csid == 107) then
-        player:addKeyItem(TUNING_FORK_OF_WIND);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WIND);
+        player:addKeyItem(dsp.kis.TUNING_FORK_OF_WIND);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_WIND);
     elseif (csid == 69) then
         item = 0;
         if (option == 1) then item = 17627;         -- Garuda's Dagger
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial(ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_WIND);
-            player:delKeyItem(WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
+            player:delKeyItem(dsp.kis.WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
             player:setVar("TrialByWind_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(RABAO,30);
             player:completeQuest(OUTLANDS,TRIAL_BY_WIND);

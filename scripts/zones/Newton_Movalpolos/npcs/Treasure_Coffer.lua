@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 
         -- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
         local zone = player:getZoneID();
-        if (player:hasKeyItem(MAP_OF_NEWTON_MOVALPOLOS) == false) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_NEWTON_MOVALPOLOS) == false) then
             questItemNeeded = 3;
         end
         --------------------------------------
@@ -50,8 +50,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 3) then
-                    player:addKeyItem(MAP_OF_NEWTON_MOVALPOLOS);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_NEWTON_MOVALPOLOS); -- Map of Newton Movalpolos (KI)
+                    player:addKeyItem(dsp.kis.MAP_OF_NEWTON_MOVALPOLOS);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_NEWTON_MOVALPOLOS); -- Map of Newton Movalpolos (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

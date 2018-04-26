@@ -14,10 +14,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(HYDRA_CORPS_EYEGLASS) == false) then
+    if (player:hasKeyItem(dsp.kis.HYDRA_CORPS_EYEGLASS) == false) then
         player:setVar("DynaBastok_Win",1);
-        player:addKeyItem(HYDRA_CORPS_EYEGLASS);
-        player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_EYEGLASS);
+        player:addKeyItem(dsp.kis.HYDRA_CORPS_EYEGLASS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.HYDRA_CORPS_EYEGLASS);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

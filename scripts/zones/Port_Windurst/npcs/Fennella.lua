@@ -13,22 +13,22 @@ require("scripts/zones/Port_Windurst/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = FROG_FISHING,
+        id = dsp.kis.FROG_FISHING,
         rank = 3,
         cost = 30000
     },
     [1] = {
-        id = SERPENT_RUMORS,
+        id = dsp.kis.SERPENT_RUMORS,
         rank = 8,
         cost = 95000
     },
     [2] = {
-        id = MOOCHING,
+        id = dsp.kis.MOOCHING,
         rank = 9,
         cost = 115000
     },
      [3] = {
-        id = ANGLERS_ALMANAC,
+        id = dsp.kis.ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000
     }

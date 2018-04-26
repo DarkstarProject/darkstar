@@ -180,8 +180,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 498) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true);
     elseif (csid == 397) then
-        player:addKeyItem(GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:messageSpecial(KEYITEM_OBTAINED,GLOVE_OF_PERPETUAL_TWILIGHT);
+        player:addKeyItem(dsp.kis.GLOVE_OF_PERPETUAL_TWILIGHT)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.GLOVE_OF_PERPETUAL_TWILIGHT);
         player:setVar("MissionStatus",8)
     elseif (csid == 399) then
         player:setVar("ShantottoCS",0)

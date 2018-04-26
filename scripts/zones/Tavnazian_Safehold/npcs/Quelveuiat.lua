@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
     local CoralCrestKey = trade:hasItemQty(1659,1);
     local Count = trade:getItemCount();
 
-    if (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_COMPLETED and player:hasKeyItem(TEMPLE_KNIGHT_KEY) == false) then
+    if (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_COMPLETED and player:hasKeyItem(dsp.kis.TEMPLE_KNIGHT_KEY) == false) then
     -- Trade Sealion and Coral Crest keys to obtain Temple Knight key (keyitem).
         if (SealionCrestKey and CoralCrestKey and Count == 2) then
-            player:addKeyItem(TEMPLE_KNIGHT_KEY);
+            player:addKeyItem(dsp.kis.TEMPLE_KNIGHT_KEY);
             player:tradeComplete();
             player:messageSpecial(KEYITEM_OBTAINED);
         end

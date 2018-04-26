@@ -58,16 +58,16 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 282) then
         if (option == 1) then
-            player:addKeyItem(LELEROONS_LETTER_GREEN);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_GREEN)
+            player:addKeyItem(dsp.kis.LELEROONS_LETTER_GREEN);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LELEROONS_LETTER_GREEN)
             player:setVar("LeleroonsLetterGreen",1);
         elseif (option == 2) then
-            player:addKeyItem(LELEROONS_LETTER_BLUE);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_BLUE)
+            player:addKeyItem(dsp.kis.LELEROONS_LETTER_BLUE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LELEROONS_LETTER_BLUE)
             player:setVar("LeleroonsLetterBlue",1);
         elseif (option == 3) then
-            player:addKeyItem(LELEROONS_LETTER_RED);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_RED)
+            player:addKeyItem(dsp.kis.LELEROONS_LETTER_RED);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LELEROONS_LETTER_RED)
             player:setVar("LeleroonsLetterRed",1);
         end;
     end;

@@ -41,7 +41,7 @@ function onZoneIn(player,prevZone)
         cs = 23; -- San d'Oria 9-2
     elseif (player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_I) then
         cs = 29;
-    elseif (prevZone == 206 and player:getQuestStatus(BASTOK,THE_FIRST_MEETING) == QUEST_ACCEPTED and player:hasKeyItem(LETTER_FROM_DALZAKK) == false) then
+    elseif (prevZone == 206 and player:getQuestStatus(BASTOK,THE_FIRST_MEETING) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.LETTER_FROM_DALZAKK) == false) then
         cs = 16; -- MNK AF
     elseif (prevZone == 111 and player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:getVar("pieujesDecisionCS") == 0) then
         cs = 0x0013; -- WHM AF
@@ -74,8 +74,8 @@ function onEventFinish(player,csid,option)
     if (csid == 1) then
         player:setVar("MissionStatus",11);
     elseif (csid == 16) then
-        player:addKeyItem(LETTER_FROM_DALZAKK);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_DALZAKK);
+        player:addKeyItem(dsp.kis.LETTER_FROM_DALZAKK);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_FROM_DALZAKK);
     elseif (csid == 23) then
         player:setVar("MissionStatus",3);
     elseif (csid == 29) then

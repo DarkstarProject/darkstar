@@ -5,10 +5,10 @@ require("scripts/globals/keyitems")
 APPOLLYON_SE_NE = 1 -- out 557 -1 441 128
 APPOLLYON_NW_SW = 2 -- out -561 0 443 242
 TEMENOS = 3
--- WHITE_CARD = 349
--- RED_CARD = 350
--- BLACK_CARD = 351
--- COSMOCLEANSE = 734
+-- dsp.kis.WHITE_CARD = 349
+-- dsp.kis.RED_CARD = 350
+-- dsp.kis.BLACK_CARD = 351
+-- dsp.kis.COSMOCLEANSE = 734
 
  --  REGION
 NW_Apollyon = 1

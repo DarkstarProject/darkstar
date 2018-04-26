@@ -57,8 +57,8 @@ function onEventFinish(player,csid,option)
         player:setVar("BeautyAndTheGalkaDenied",1);
     elseif (csid == 3) then
         player:tradeComplete();
-        player:addKeyItem(PALBOROUGH_MINES_LOGS);
-        player:messageSpecial(KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
+        player:addKeyItem(dsp.kis.PALBOROUGH_MINES_LOGS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PALBOROUGH_MINES_LOGS);
     elseif (csid == 90) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
 

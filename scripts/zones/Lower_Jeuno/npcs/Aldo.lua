@@ -19,7 +19,7 @@ function onTrigger(player,npc)
    local ZilartMission = player:getCurrentMission(ZILART);
    local ZilartStatus = player:getVar("ZilartStatus");
 
-    if (player:hasKeyItem(LETTERS_TO_ALDO)) then
+    if (player:hasKeyItem(dsp.kis.LETTERS_TO_ALDO)) then
         player:startEvent(152);
     elseif (player:getCurrentMission(player:getNation()) == 13 and player:getVar("MissionStatus") == 3) then
         player:startEvent(183);
@@ -40,9 +40,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 152) then
-        player:delKeyItem(LETTERS_TO_ALDO);
-        player:addKeyItem(SILVER_BELL);
-        player:messageSpecial(KEYITEM_OBTAINED,SILVER_BELL);
+        player:delKeyItem(dsp.kis.LETTERS_TO_ALDO);
+        player:addKeyItem(dsp.kis.SILVER_BELL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SILVER_BELL);
         player:setVar("MissionStatus",3);
     elseif (csid == 104) then
         player:setVar("ZilartStatus",1);

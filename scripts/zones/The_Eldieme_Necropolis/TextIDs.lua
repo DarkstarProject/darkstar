@@ -31,7 +31,7 @@
        THE_LIGHT_HAS_INTENSIFIED = 7371; -- The light of thehas intensified.
           THE_LIGHT_IS_FULLY_LIT = 7372; -- is fully lit!
 
-SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7409; -- emits a putrid odor and burns up. Your attempt this time has failed...?Prompt?
+dsp.kis.SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7409; -- emits a putrid odor and burns up. Your attempt this time has failed...?Prompt?
 
     SARCOPHAGUS_CANNOT_BE_OPENED = 7426; -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
 

@@ -55,8 +55,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 314) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        player:addKeyItem(PORT_WINDURST_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,PORT_WINDURST_SCOOP);
+        player:addKeyItem(dsp.kis.PORT_WINDURST_SCOOP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PORT_WINDURST_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+2);
     elseif (csid == 592)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);

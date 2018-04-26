@@ -101,8 +101,8 @@ function onEventFinish(player,csid,option)
         player:setVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 198 and option == 0) then
         player:addQuest(JEUNO,RUBBISH_DAY);
-        player:addKeyItem(MAGIC_TRASH);
-        player:messageSpecial(KEYITEM_OBTAINED,MAGIC_TRASH);
+        player:addKeyItem(dsp.kis.MAGIC_TRASH);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAGIC_TRASH);
         player:setVar("RubbishDay_prog",0);
         player:setVar("RubbishDay_day",0);
     elseif (csid == 197) then

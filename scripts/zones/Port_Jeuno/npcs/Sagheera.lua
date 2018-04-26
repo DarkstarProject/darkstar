@@ -70,12 +70,12 @@ function onTrigger(player,npc)
     local CosmoTime = 0;
     local hasCosmoCleanse = 0;
 
-    if (player:hasKeyItem(COSMOCLEANSE)) then
+    if (player:hasKeyItem(dsp.kis.COSMOCLEANSE)) then
         hasCosmoCleanse = 1;
     else
         if (lastCosmoTime <= os.time()) then
             CosmoTime = 2147483649; -- BITMASK for the purchase
-            -- printf("CASE: LESSTHAN | BUY COSMOCLEANSE");
+            -- printf("CASE: LESSTHAN | BUY dsp.kis.COSMOCLEANSE");
         elseif (lastCosmoTime > os.time()) then
             CosmoTime = (lastCosmoTime - 1009843200) - 39600; -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
             -- printf("CASE: GREATERTHAN |  lastCosmoTime:  "..lastCosmoTime.."  |  CosmoTime:  "..CosmoTime);
@@ -157,8 +157,8 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true);
     elseif (csid == 310 and option == 3) then --add keyitem for limbus
         player:setVar("Cosmo_Cleanse_TIME", os.time());
-        player:addKeyItem(COSMOCLEANSE);
-        player:messageSpecial(KEYITEM_OBTAINED, COSMOCLEANSE);
+        player:addKeyItem(dsp.kis.COSMOCLEANSE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.COSMOCLEANSE);
         player:delGil(15000);
     elseif (csid == 310 and  option >10 and option < 21) then  -- ancient beastcoin reward
         if (player:getFreeSlotsCount() == 0 or player:hasItem(ABreward[option-10])) then

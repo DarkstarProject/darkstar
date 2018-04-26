@@ -23,9 +23,9 @@ function onTrigger(player,npc)
     if (AltanaSorrow == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(141); -- Start quest "Altana's Sorrow"
     elseif (AltanaSorrow == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(BUCKET_OF_DIVINE_PAINT) == true) then
+        if (player:hasKeyItem(dsp.kis.BUCKET_OF_DIVINE_PAINT) == true) then
             player:startEvent(143); -- CS with Bucket of Divine Paint KI
-        elseif (player:hasKeyItem(LETTER_FROM_VIRNAGE) == true) then
+        elseif (player:hasKeyItem(dsp.kis.LETTER_FROM_VIRNAGE) == true) then
             --player:showText(npc,VIRNAGE_DIALOG_2);
             player:startEvent(144); -- During quest (after KI)
         else
@@ -50,8 +50,8 @@ function onEventFinish(player,csid,option)
     if (csid == 141 and option == 0) then
         player:addQuest(BASTOK,ALTANA_S_SORROW);
     elseif (csid == 143) then
-        player:delKeyItem(BUCKET_OF_DIVINE_PAINT);
-        player:addKeyItem(LETTER_FROM_VIRNAGE);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_VIRNAGE);
+        player:delKeyItem(dsp.kis.BUCKET_OF_DIVINE_PAINT);
+        player:addKeyItem(dsp.kis.LETTER_FROM_VIRNAGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_FROM_VIRNAGE);
     end
 end;

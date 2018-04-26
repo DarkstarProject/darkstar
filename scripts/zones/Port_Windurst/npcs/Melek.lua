@@ -33,14 +33,14 @@ function onTrigger(player,npc)
                 -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
                 elseif (missionStatus == 6) then
                     player:startEvent(61);
-                elseif (player:hasKeyItem(KINDRED_REPORT)) then
+                elseif (player:hasKeyItem(dsp.kis.KINDRED_REPORT)) then
                     player:startEvent(67);
                 end
             -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
             elseif (currentMission == THE_EMISSARY_WINDURST) then
                 if (missionStatus == 2) then
                     player:startEvent(49);
-                elseif (player:hasKeyItem(SWORD_OFFERING)) then
+                elseif (player:hasKeyItem(dsp.kis.SWORD_OFFERING)) then
                 player:startEvent(53);
                 elseif (missionStatus <= 5) then
                     player:showText(npc,MELEK_DIALOG_B)
@@ -53,7 +53,7 @@ function onTrigger(player,npc)
                     player:startEvent(64);
                 elseif (missionStatus == 8) then
                     player:showText(npc,MELEK_DIALOG_A)
-                elseif (player:hasKeyItem(KINDRED_CREST)) then
+                elseif (player:hasKeyItem(dsp.kis.KINDRED_CREST)) then
                     player:startEvent(66);
                 end
             else
@@ -78,12 +78,12 @@ function onEventFinish(player,csid,option)
     if (csid == 48) then
         player:addMission(BASTOK,THE_EMISSARY_WINDURST);
         player:setVar("MissionStatus",2);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
+        player:delKeyItem(dsp.kis.LETTER_TO_THE_CONSULS_BASTOK);
     elseif (csid == 53) then
-        player:addKeyItem(DULL_SWORD)
-        player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
+        player:addKeyItem(dsp.kis.DULL_SWORD)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DULL_SWORD);
         player:setVar("MissionStatus",4);  --> Gideus next
-        player:delKeyItem(SWORD_OFFERING) -- remove sword offering
+        player:delKeyItem(dsp.kis.SWORD_OFFERING) -- remove sword offering
     elseif (csid == 55) then
         player:addMission(BASTOK,THE_EMISSARY);
         player:setVar("MissionStatus",7); -- to Sandy now
@@ -92,10 +92,10 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",7);
     elseif (csid == 66) then
         player:addMission(BASTOK,THE_EMISSARY);
-        player:addKeyItem(KINDRED_REPORT)
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:addKeyItem(dsp.kis.KINDRED_REPORT)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.KINDRED_REPORT);
         player:setVar("MissionStatus",10);  -- return to Bastok
-        player:delKeyItem(KINDRED_CREST)
+        player:delKeyItem(dsp.kis.KINDRED_CREST)
     end
 
 end;

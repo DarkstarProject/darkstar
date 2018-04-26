@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 5) then
-        if (player:hasKeyItem(PIECE_OF_A_BROKEN_KEY1) and player:hasKeyItem(PIECE_OF_A_BROKEN_KEY2)
-            and player:hasKeyItem(PIECE_OF_A_BROKEN_KEY3) and not GetMobByID(NIO_A):isSpawned()
+        if (player:hasKeyItem(dsp.kis.PIECE_OF_A_BROKEN_KEY1) and player:hasKeyItem(dsp.kis.PIECE_OF_A_BROKEN_KEY2)
+            and player:hasKeyItem(dsp.kis.PIECE_OF_A_BROKEN_KEY3) and not GetMobByID(NIO_A):isSpawned()
             and not GetMobByID(NIO_HUM):isSpawned()) then
             if (player:getVar("Mission8-2Kills") > 0) then
                 player:startEvent(65);

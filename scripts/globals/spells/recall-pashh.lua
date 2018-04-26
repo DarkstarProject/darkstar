@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:hasKeyItem(PASHHOW_GATE_CRYSTAL) == true) then
+    if (target:hasKeyItem(dsp.kis.PASHHOW_GATE_CRYSTAL) == true) then
             target:addStatusEffectEx(dsp.effects.TELEPORT,0,RECALL_PASHH,0,4.7);
         spell:setMsg(msgBasic.MAGIC_TELEPORT);
     else

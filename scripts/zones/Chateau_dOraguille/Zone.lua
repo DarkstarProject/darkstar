@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
         cs = 555;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 1) then
         cs = 10;
-    elseif (prevZone == 231 and player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
+    elseif (prevZone == 231 and player:hasKeyItem(dsp.kis.MESSAGE_TO_JEUNO_SANDORIA)) then
         cs = 509;
     elseif (player:getVar("SecretWeaponStatus") == 1) then
         cs = 0x0000;
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",3);
     elseif (csid == 509) then
         player:setVar("MissionStatus",9);
-        player:delKeyItem(MESSAGE_TO_JEUNO_SANDORIA);
+        player:delKeyItem(dsp.kis.MESSAGE_TO_JEUNO_SANDORIA);
     elseif (csid == 0) then
         player:setVar("SecretWeaponStatus",2)
     elseif (csid == 10) then

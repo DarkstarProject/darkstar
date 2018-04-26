@@ -17,8 +17,8 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-   if (player:hasKeyItem(ZEPHYR_FAN)) then
-        player:delKeyItem(ZEPHYR_FAN);
+   if (player:hasKeyItem(dsp.kis.ZEPHYR_FAN)) then
+        player:delKeyItem(dsp.kis.ZEPHYR_FAN);
     end
 end;
 

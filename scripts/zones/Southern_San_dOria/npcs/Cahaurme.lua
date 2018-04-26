@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_EAST) == false) then
+    if (player:hasKeyItem(dsp.kis.BOOK_OF_TASKS) and player:hasKeyItem(dsp.kis.BOOK_OF_THE_EAST) == false) then
         player:startEvent(633);
     else
         player:showText(npc, 7817); -- nothing to report
@@ -47,8 +47,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 633) then
-        player:addKeyItem(BOOK_OF_THE_EAST);
-        player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_EAST);
+        player:addKeyItem(dsp.kis.BOOK_OF_THE_EAST);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.BOOK_OF_THE_EAST);
     end
 
 end;

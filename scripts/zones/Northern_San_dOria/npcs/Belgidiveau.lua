@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
 
     troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
-    NeutralizerKI = player:hasKeyItem(NEUTRALIZER);
+    NeutralizerKI = player:hasKeyItem(dsp.kis.NEUTRALIZER);
 
     if (troubleAtTheSluice == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
         player:startEvent(57);
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
         else
             player:tradeComplete();
-            player:delKeyItem(NEUTRALIZER);
+            player:delKeyItem(dsp.kis.NEUTRALIZER);
             player:addItem(16706);
             player:messageSpecial(ITEM_OBTAINED,16706); -- Heavy Axe
             player:addFame(SANDORIA,30);

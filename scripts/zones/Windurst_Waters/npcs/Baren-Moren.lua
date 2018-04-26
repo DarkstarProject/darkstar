@@ -104,12 +104,12 @@ function onEventFinish(player,csid,option)
 printf("RESULT: %u",option);
     if (csid == 48 and option == 1) then
         player:addQuest(WINDURST,HAT_IN_HAND);
-        player:addKeyItem(NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
+        player:addKeyItem(dsp.kis.NEW_MODEL_HAT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.NEW_MODEL_HAT);
     elseif (csid == 49 and option == 1) then
         player:setVar("QuestHatInHand_var2",1);
-        player:addKeyItem(NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
+        player:addKeyItem(dsp.kis.NEW_MODEL_HAT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.NEW_MODEL_HAT);
     elseif (csid == 52 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12543);
     elseif (csid == 52 and option >= 1) then
@@ -144,7 +144,7 @@ printf("RESULT: %u",option);
         player:setVar("QuestHatInHand_count",0);
         player:setVar("QuestHatInHand_var",0);
         player:needToZone(true);
-        player:delKeyItem(NEW_MODEL_HAT);
+        player:delKeyItem(dsp.kis.NEW_MODEL_HAT);
         player:setVar("QuestHatInHand_var2",0);
 
 

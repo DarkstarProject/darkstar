@@ -29,8 +29,8 @@ function onTrigger(player,npc)
         player:startEvent(2);
     
     -- SCH AF SIDEQUEST: PANTS
-    elseif (offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(SLUG_MUCUS)) then
-        npcUtil.giveKeyItem(player, SLUG_MUCUS);
+    elseif (offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(dsp.kis.SLUG_MUCUS)) then
+        npcUtil.giveKeyItem(player, dsp.kis.SLUG_MUCUS);
         player:setVar("AF_SCH_PANTS", pantsQuestProgress + 1);
 
         local positions =
@@ -49,8 +49,8 @@ function onTrigger(player,npc)
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
     
     -- SCH AF SIDEQUEST: BODY
-    elseif (offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(PEISTE_DUNG)) then
-        npcUtil.giveKeyItem(player, PEISTE_DUNG);
+    elseif (offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.kis.PEISTE_DUNG)) then
+        npcUtil.giveKeyItem(player, dsp.kis.PEISTE_DUNG);
         player:setVar("AF_SCH_BODY", gownQuestProgress + 1);
 
         local positions =
@@ -81,7 +81,7 @@ end;
 function onEventFinish(player,csid,option)
     -- ON SABBATICAL
     if (csid == 2) then
-        npcUtil.giveKeyItem(player, SCHULTS_SEALED_LETTER);
+        npcUtil.giveKeyItem(player, dsp.kis.SCHULTS_SEALED_LETTER);
         player:setVar("OnSabbatical", 3);
     end
 end;

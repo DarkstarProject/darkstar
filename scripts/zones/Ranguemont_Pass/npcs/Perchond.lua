@@ -43,8 +43,8 @@ function onEventFinish(player,csid,option)
         player:setVar("sinHunting",2);
     elseif (csid == 5) then
         player:tradeComplete();
-        player:addKeyItem(PERCHONDS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
+        player:addKeyItem(dsp.kis.PERCHONDS_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PERCHONDS_ENVELOPE);
         player:setVar("sinHunting",3);
     end
 

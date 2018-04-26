@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1038,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: keyitem -----------
-        if (player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(UN_MOMENT) == false) then
+        if (player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.UN_MOMENT) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -48,8 +48,8 @@ function onTrade(player,npc,trade)
 
                 if (questItemNeeded == 1) then
                     player:setVar("ATestOfTrueLoveProgress",player:getVar("ATestOfTrueLoveProgress")+1);
-                    player:addKeyItem(UN_MOMENT);
-                    player:messageSpecial(KEYITEM_OBTAINED,UN_MOMENT); -- Un moment for A Test Of True Love quest
+                    player:addKeyItem(dsp.kis.UN_MOMENT);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.UN_MOMENT); -- Un moment for A Test Of True Love quest
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

@@ -43,14 +43,14 @@ function onEventFinish(player,csid,option)
 
     if (csid == 225 and option == 0) then
         player:addQuest(BASTOK,STAMP_HUNT);
-        player:addKeyItem(STAMP_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,STAMP_SHEET);
+        player:addKeyItem(dsp.kis.STAMP_SHEET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAMP_SHEET);
     elseif (csid == 226) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addTitle(STAMPEDER);
             player:addItem(13081);
             player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
-            player:delKeyItem(STAMP_SHEET);
+            player:delKeyItem(dsp.kis.STAMP_SHEET);
             player:setVar("StampHunt_Mask",0);
             player:addFame(BASTOK,50);
             player:completeQuest(BASTOK,STAMP_HUNT);

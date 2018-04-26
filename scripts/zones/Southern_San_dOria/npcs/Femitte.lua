@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         player:startEvent(663);
     elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 1) then
         player:startEvent(664);
-    elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 4 and player:hasKeyItem(MYTHRIL_HEARTS)) then
+    elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 4 and player:hasKeyItem(dsp.kis.MYTHRIL_HEARTS)) then
         player:startEvent(665);
     else
         player:startEvent(661);
@@ -53,15 +53,15 @@ function onEventFinish(player,csid,option)
     if (csid == 807) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
-        player:addKeyItem(GOLDSMITHING_ORDER);
-        player:messageSpecial(KEYITEM_OBTAINED,GOLDSMITHING_ORDER);
+        player:addKeyItem(dsp.kis.GOLDSMITHING_ORDER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.GOLDSMITHING_ORDER);
         player:addQuest(SANDORIA,DISTANT_LOYALTIES);
         player:setVar("DistantLoyaltiesProgress",1);
     elseif (csid == 665) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13585);
         else
-            player:delKeyItem(MYTHRIL_HEARTS);
+            player:delKeyItem(dsp.kis.MYTHRIL_HEARTS);
             player:addItem(13585,1);
             player:messageSpecial(ITEM_OBTAINED,13585);
             player:setVar("DistantLoyaltiesProgress",0);

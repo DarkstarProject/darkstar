@@ -14,9 +14,9 @@ function onTrigger(player,npc)
     local missionProgress = player:getVar("COP_Tenzen_s_Path")
     if (player:getCurrentMission(COP) == THREE_PATHS and missionProgress == 5) then
         player:startEvent(0);
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE) == false) then
-        player:addKeyItem(DELKFUTT_RECOGNITION_DEVICE);
-        player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_RECOGNITION_DEVICE);
+    elseif (player:getCurrentMission(COP) == THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(dsp.kis.DELKFUTT_RECOGNITION_DEVICE) == false) then
+        player:addKeyItem(dsp.kis.DELKFUTT_RECOGNITION_DEVICE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DELKFUTT_RECOGNITION_DEVICE);
     end
 
 end;

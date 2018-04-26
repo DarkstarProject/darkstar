@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local haveimperialIDtag;
     local assaultPoints = player:getAssaultPoint(ILRUSI_ASSAULT_POINT);
 
-    if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
+    if (player:hasKeyItem(dsp.kis.IMPERIAL_ARMY_ID_TAG)) then
         haveimperialIDtag = 1;
     else
         haveimperialIDtag = 0;
@@ -46,9 +46,9 @@ function onEventFinish(player,csid,option)
         if (selectiontype == 1) then
             -- taken assault mission
             player:addAssault(bit.rshift(option,4));
-            player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
-            player:addKeyItem(ILRUSI_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,ILRUSI_ASSAULT_ORDERS);
+            player:delKeyItem(dsp.kis.IMPERIAL_ARMY_ID_TAG);
+            player:addKeyItem(dsp.kis.ILRUSI_ASSAULT_ORDERS);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ILRUSI_ASSAULT_ORDERS);
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14);

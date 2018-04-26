@@ -16,7 +16,7 @@ require("scripts/zones/Port_Bastok/TextIDs");
 function onTrade(player,npc,trade)
 
     if (trade:getGil() == 0 and trade:getItemCount() == 1) then
-        if (trade:hasItemQty(4530,1) and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(UNFINISHED_LETTER) == false) then -- Trade Rollanberry
+        if (trade:hasItemQty(4530,1) and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(dsp.kis.UNFINISHED_LETTER) == false) then -- Trade Rollanberry
             player:startEvent(133);
         elseif (trade:hasItemQty(4386,1) and player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_ACCEPTED) then -- Trade King Truffle
             player:startEvent(135);
@@ -27,8 +27,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.kis.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SMILING_STONE);
         end
     end
 
@@ -78,22 +78,22 @@ function onEventFinish(player,csid,option)
 
     if (csid == 133) then
         player:tradeComplete();
-        player:addKeyItem(UNFINISHED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,UNFINISHED_LETTER);
+        player:addKeyItem(dsp.kis.UNFINISHED_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.UNFINISHED_LETTER);
     elseif (csid == 134 and option == 0) then
         if (player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,THE_USUAL);
         end
     elseif (csid == 135) then
         player:tradeComplete();
-        player:addKeyItem(STEAMING_SHEEP_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,STEAMING_SHEEP_INVITATION);
+        player:addKeyItem(dsp.kis.STEAMING_SHEEP_INVITATION);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STEAMING_SHEEP_INVITATION);
     elseif (csid == 136) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
         else
             player:addTitle(STEAMING_SHEEP_REGULAR);
-            player:delKeyItem(STEAMING_SHEEP_INVITATION);
+            player:delKeyItem(dsp.kis.STEAMING_SHEEP_INVITATION);
             player:setVar("TheUsual_Event",0);
             player:addItem(17170);
             player:messageSpecial(ITEM_OBTAINED,17170); -- Speed Bow

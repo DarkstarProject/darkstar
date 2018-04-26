@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
 
         -- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
         local zone = player:getZoneID();
-        if (player:hasKeyItem(MAP_OF_THE_DEN_OF_RANCOR) == false) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_THE_DEN_OF_RANCOR) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -51,8 +51,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(MAP_OF_THE_DEN_OF_RANCOR);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_DEN_OF_RANCOR); -- Map of the Den of Rancor (KI)
+                    player:addKeyItem(dsp.kis.MAP_OF_THE_DEN_OF_RANCOR);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_DEN_OF_RANCOR); -- Map of the Den of Rancor (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

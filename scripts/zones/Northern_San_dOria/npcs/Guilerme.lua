@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
 
     -- "Rosel the Armorer" - turn in reciept to prince
-    if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
+    if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.RECEIPT_FOR_THE_PRINCE)) then
         player:startEvent(507);
     else
         player:showText(npc,GUILERME_DIALOG);
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 
     -- "Rosel the Armorer", give receipt to NPC:Guilerme
     if (csid == 507) then
-        player:delKeyItem(RECEIPT_FOR_THE_PRINCE);
+        player:delKeyItem(dsp.kis.RECEIPT_FOR_THE_PRINCE);
     end;
 
 end;

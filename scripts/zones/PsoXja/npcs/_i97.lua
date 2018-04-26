@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local posZ=player:getZPos();
-    if (player:hasKeyItem(PSOXJA_PASS) == true and posZ >= 25) then
+    if (player:hasKeyItem(dsp.kis.PSOXJA_PASS) == true and posZ >= 25) then
         player:startEvent(14);
     elseif (posZ < 25) then
         player:startEvent(17);

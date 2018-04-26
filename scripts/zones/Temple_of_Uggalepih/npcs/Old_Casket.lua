@@ -15,9 +15,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(OLD_RUSTY_KEY)) then
-        player:startEvent(64,OLD_RUSTY_KEY);
-    elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS)) then
+    if (player:hasKeyItem(dsp.kis.OLD_RUSTY_KEY)) then
+        player:startEvent(64,dsp.kis.OLD_RUSTY_KEY);
+    elseif (player:hasKeyItem(dsp.kis.PAINTBRUSH_OF_SOULS)) then
         player:messageSpecial(NO_REASON_TO_INVESTIGATE);
     else
         player:messageSpecial(THE_BOX_IS_LOCKED);
@@ -35,9 +35,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 64 and option == 1) then
-        player:delKeyItem(OLD_RUSTY_KEY);
-        player:addKeyItem(PAINTBRUSH_OF_SOULS);
-        player:messageSpecial(KEYITEM_OBTAINED,PAINTBRUSH_OF_SOULS);
+        player:delKeyItem(dsp.kis.OLD_RUSTY_KEY);
+        player:addKeyItem(dsp.kis.PAINTBRUSH_OF_SOULS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PAINTBRUSH_OF_SOULS);
     end
 
 end;

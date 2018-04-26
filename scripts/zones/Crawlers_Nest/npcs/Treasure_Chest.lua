@@ -49,8 +49,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(CRAWLER_BLOOD);
-                    player:messageSpecial(KEYITEM_OBTAINED,CRAWLER_BLOOD); -- Crawler Blood (KI)
+                    player:addKeyItem(dsp.kis.CRAWLER_BLOOD);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CRAWLER_BLOOD); -- Crawler Blood (KI)
                     player:setVar("needs_crawler_blood",0);
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));

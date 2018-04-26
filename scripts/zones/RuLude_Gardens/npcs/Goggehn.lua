@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     elseif (currentMission == JEUNO_MISSION and missionStatus == 3) then
         player:startEvent(38);
     elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
-        if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
+        if (player:hasKeyItem(dsp.kis.ARCHDUCAL_AUDIENCE_PERMIT)) then
             player:startEvent(129,1);
         else
             player:startEvent(129); -- Start Mission 4-1 Magicite
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         player:startEvent(135);
     elseif (currentMission == MAGICITE_BASTOK and missionStatus == 6) then
         player:startEvent(35);
-    elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
+    elseif (player:hasKeyItem(dsp.kis.MESSAGE_TO_JEUNO_BASTOK)) then
         player:startEvent(55);
     elseif (pNation == NATION_WINDURST) then
         player:startEvent(4);
@@ -64,12 +64,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 41) then
         player:setVar("MissionStatus",2);
-        player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
+        player:delKeyItem(dsp.kis.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 129 and option == 1) then
         player:setVar("MissionStatus",1);
-        if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
-            player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-            player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+        if (player:hasKeyItem(dsp.kis.ARCHDUCAL_AUDIENCE_PERMIT) == false) then
+            player:addKeyItem(dsp.kis.ARCHDUCAL_AUDIENCE_PERMIT);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ARCHDUCAL_AUDIENCE_PERMIT);
         end
     elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);

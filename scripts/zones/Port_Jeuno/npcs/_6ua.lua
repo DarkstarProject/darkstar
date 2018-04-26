@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then
+    if (player:hasKeyItem(dsp.kis.AIRSHIP_PASS) == true and player:getGil() >= 200) then
         player:startEvent(36);
     else
         player:startEvent(44);

@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Missionstatus",1);
     elseif (csid == 204) then
         player:setVar("Missionstatus",5);
-        player:delKeyItem(OLD_PIECE_OF_WOOD);
+        player:delKeyItem(dsp.kis.OLD_PIECE_OF_WOOD);
         player:setPos(23,0,4);
     end
 end;

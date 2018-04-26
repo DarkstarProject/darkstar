@@ -39,8 +39,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 46) then
         player:setVar("MissionStatus",2);
-        player:addKeyItem(SOUTHEASTERN_STAR_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,SOUTHEASTERN_STAR_CHARM);
+        player:addKeyItem(dsp.kis.SOUTHEASTERN_STAR_CHARM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SOUTHEASTERN_STAR_CHARM);
     end
 
 end;

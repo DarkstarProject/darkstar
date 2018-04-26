@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
+    if (player:hasKeyItem(dsp.kis.TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60431, 1, 23, 7)) then
             player:showText(npc,TSUTSUROON_SHOP_DIALOG);
         end

@@ -53,15 +53,15 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionaryManVar",1);
     elseif (csid == 139) then
         player:setVar("MissionaryManVar",2);
-        player:addKeyItem(RAUTEINOTS_PARCEL);
-        player:messageSpecial(KEYITEM_OBTAINED,RAUTEINOTS_PARCEL);
+        player:addKeyItem(dsp.kis.RAUTEINOTS_PARCEL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RAUTEINOTS_PARCEL);
         player:tradeComplete();
     elseif (csid == 141) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4728);
         else
             player:setVar("MissionaryManVar",0);
-            player:delKeyItem(SUBLIME_STATUE_OF_THE_GODDESS);
+            player:delKeyItem(dsp.kis.SUBLIME_STATUE_OF_THE_GODDESS);
             player:addItem(4728);
             player:messageSpecial(ITEM_OBTAINED,4728);
             player:addFame(WINDURST,30);

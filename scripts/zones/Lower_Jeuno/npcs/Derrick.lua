@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    AirshipKI = player:hasKeyItem(AIRSHIP_PASS);
+    AirshipKI = player:hasKeyItem(dsp.kis.AIRSHIP_PASS);
     saveTheClockTower = player:getQuestStatus(JEUNO,SAVE_THE_CLOCK_TOWER);
     NPCNumber = player:getVar("saveTheClockTowerVar"); -- Quest step & number of npc
     AgreeSignPetition = player:getVar("saveTheClockTowerVar2"); -- Sum of all NPC
@@ -49,7 +49,7 @@ function onEventUpdate(player,csid,option)
 
     if (csid == 230 and option == 10) then
         if (player:delGil(500000)) then
-            player:addKeyItem(AIRSHIP_PASS);
+            player:addKeyItem(dsp.kis.AIRSHIP_PASS);
             player:updateEvent(0, 1);
         else
             player:updateEvent(0, 0);
@@ -63,8 +63,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 230 and option == 10) then
-        if (player:hasKeyItem(AIRSHIP_PASS) == true) then
-            player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS);
+        if (player:hasKeyItem(dsp.kis.AIRSHIP_PASS) == true) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.AIRSHIP_PASS);
         end
     elseif (csid == 230 and option == 20) then
         if (player:getFreeSlotsCount() == 0) then

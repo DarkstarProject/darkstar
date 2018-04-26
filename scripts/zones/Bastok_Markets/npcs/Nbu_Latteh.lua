@@ -26,9 +26,9 @@ function onTrigger(player,npc)
     elseif (pFame < 2 and momTheAdventurer ~= QUEST_ACCEPTED and questStatus == 0) then
         player:startEvent(230);
     elseif (momTheAdventurer >= QUEST_ACCEPTED and questStatus == 2) then
-        if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
+        if (player:seenKeyItem(dsp.kis.LETTER_FROM_ROH_LATTEH)) then
             player:startEvent(234);
-        elseif (player:hasKeyItem(LETTER_FROM_ROH_LATTEH)) then
+        elseif (player:hasKeyItem(dsp.kis.LETTER_FROM_ROH_LATTEH)) then
             player:startEvent(233);
         else
             player:startEvent(231);
@@ -62,13 +62,13 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
         end
     elseif (csid == 233 or csid == 234) then
-        if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
+        if (player:seenKeyItem(dsp.kis.LETTER_FROM_ROH_LATTEH)) then
             gilReward = 100;
         else
             gilReward = 200;
         end
         player:needToZone(true);
-        player:delKeyItem(LETTER_FROM_ROH_LATTEH);
+        player:delKeyItem(dsp.kis.LETTER_FROM_ROH_LATTEH);
         player:addTitle(RINGBEARER);
         player:addGil(GIL_RATE*gilReward);
         player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);

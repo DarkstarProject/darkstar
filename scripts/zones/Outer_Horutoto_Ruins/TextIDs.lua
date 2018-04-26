@@ -27,7 +27,7 @@ SECOND_DARK_ORB_IN_PLACE =    7; -- The second Mana Orb receptacle is ready for 
 FOURTH_DARK_ORB_IN_PLACE =    9; -- Forth Mana Orb Receptacle is ready for use.
  FIFTH_DARK_ORB_IN_PLACE =   10; -- Fifth Mana Orb Receptacle is ready for use.
  SIXTH_DARK_ORB_IN_PLACE =   11; -- Sixth Mana Orb Receptacle is ready for use.
- DARK_MANA_ORB_RECHARGER =   12; -- This appears to be a device that recharges Mana Orbs.
+ dsp.kis.DARK_MANA_ORB_RECHARGER =   12; -- This appears to be a device that recharges Mana Orbs.
 
         DOOR_FIRMLY_SHUT = 7252; -- The door is firmly shut.
     ALL_G_ORBS_ENERGIZED = 7255; -- The six Mana Orbs have been successfully energized with magic!
