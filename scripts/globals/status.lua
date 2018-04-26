@@ -1093,6 +1093,7 @@ MOD_TAME               = 304
 MOD_RECYCLE            = 305
 MOD_ZANSHIN            = 306
 MOD_UTSUSEMI           = 307
+MOD_UTSUSEMI_BONUS     = 900 -- Extra shadows from gear
 MOD_NINJA_TOOL         = 308
 MOD_BLUE_POINTS        = 309
 MOD_DMG_REFLECT        = 316
