@@ -5,7 +5,7 @@
 ---------------------------------------------
 dsp = dsp or {};
 
-dsp.kis =
+dsp.keyitems =
 {
     ZERUHN_REPORT                            = 1,
     PALBOROUGH_MINES_LOGS                    = 2,
@@ -3001,3 +3001,5 @@ dsp.kis =
     REASSEMBLING_TECHNIQUE                   = 3154,
     EMPTY_HOURGLASS                          = 3156,
 };
+
+dsp.kis = dsp.keyitems;
