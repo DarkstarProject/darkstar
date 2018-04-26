@@ -1018,6 +1018,7 @@ MOD_MOVE              = 169
 MOD_FASTCAST          = 170
 MOD_UFASTCAST         = 407
 MOD_CURE_CAST_TIME    = 519
+MOD_ELEMENTAL_CELERITY = 901 -- Quickens Elemental Magic Casting
 MOD_DELAY             = 171
 MOD_RANGED_DELAY      = 172
 MOD_MARTIAL_ARTS      = 173
@@ -1406,6 +1407,7 @@ MOD_ENHANCES_CASTERS_ROLL     = 892 -- Caster's Roll Bonus % chance
 MOD_ENHANCES_BLITZERS_ROLL    = 893 -- Blitzer's Roll Bonus % chance
 MOD_ENHANCES_ALLIES_ROLL      = 894 -- Allies' Roll Bonus % chance
 MOD_ENHANCES_TACTICIANS_ROLL  = 895 -- Tactician's Roll Bonus % chance
+MOD_OCCULT_ACUMEN             = 902 -- Grants bonus TP when dealing damage with elemental or dark magic
 
 -- Automaton mods
 MOD_AUTO_DECISION_DELAY    = 842 -- Reduces the Automaton's global decision delay
@@ -1457,9 +1459,9 @@ MOD_TACTICAL_GUARD          = 899 -- Tp gain increase when guarding
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 900 -- stuff
--- SPARE = 901 -- stuff
--- SPARE = 902 -- stuff
+-- SPARE = 903 -- stuff
+-- SPARE = 904 -- stuff
+-- SPARE = 905 -- stuff
 
 ------------------------------------
 -- Merit Definitions
