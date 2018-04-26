@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+    local TrialByLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
     local WhisperOfStorms = player:hasKeyItem(dsp.kis.WHISPER_OF_STORMS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
@@ -65,10 +65,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 10016 and option == 1) then
-        if (player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then
-            player:delQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+        if (player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then
+            player:delQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         end
-        player:addQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+        player:addQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         player:setVar("TrialByLightning_date", 0);
         player:addKeyItem(dsp.kis.TUNING_FORK_OF_LIGHTNING);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_LIGHTNING);
@@ -99,8 +99,8 @@ function onEventFinish(player,csid,option)
             player:addTitle(HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(dsp.kis.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
             player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(OTHER_AREAS,30);
-            player:completeQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+            player:addFame(MHAURA,30);
+            player:completeQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         end
     elseif (csid == 10022 or csid == 10023) then
         if (player:getFreeSlotsCount() ~= 0) then

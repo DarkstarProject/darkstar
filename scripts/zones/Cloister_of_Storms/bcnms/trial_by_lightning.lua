@@ -38,7 +38,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING)
+    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (trialLightning == QUEST_COMPLETED) then
