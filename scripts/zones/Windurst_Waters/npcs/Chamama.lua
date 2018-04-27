@@ -39,7 +39,6 @@ function onTrade(player,npc,trade)
         local InspectorsGadget = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
 
         if (InspectorsGadget == QUEST_ACCEPTED) then
-            count = trade:getItemCount();
             local SarutaCotton = trade:hasItemQty(834,4);
 
             if (SarutaCotton == true and count == 4) then
@@ -50,7 +49,6 @@ function onTrade(player,npc,trade)
         local ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
 
         if (ThePromise == QUEST_ACCEPTED) then
-            count = trade:getItemCount();
             local ShoalWeed = trade:hasItemQty(1148,1);
 
             if (ShoalWeed == true and count == 1) then
