@@ -64,10 +64,10 @@ function onTrigger(player,npc)
     if (player:hasCompleteQuest(JEUNO,BEAT_AROUND_THE_BUSHIN)) then
         OtherQuests = OtherQuests - 2;      -- Beat Around the Bushin
     end
-    if (player:hasCompleteQuest(OTHER_AREAS,CONFESSIONS_OF_A_BELLMAKER)) then
+    if (player:hasCompleteQuest(OTHER_AREAS_LOG,CONFESSIONS_OF_A_BELLMAKER)) then
         OtherQuests = OtherQuests - 4;      -- Confessions of a Bellmaker
     end
-    if (player:hasCompleteQuest(OTHER_AREAS,PICTURE_PERFECT)) then
+    if (player:hasCompleteQuest(OTHER_AREAS_LOG,PICTURE_PERFECT)) then
         OtherQuests = OtherQuests - 8;      -- Picture Perfect (pt.1)
         OtherQuests = OtherQuests - 16;     -- Picture Perfect (pt.2)
         OtherQuests = OtherQuests - 32;     -- Picture Perfect (pt.3)

@@ -13,7 +13,7 @@ require("scripts/zones/Beadeaux/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRADERS_SACK) == false) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRADERS_SACK) == false) then
         if (trade:hasItemQty(495,1) == true and trade:getItemCount() == 1) then
             player:startEvent(1000);
         end
@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(OTHER_AREAS,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRADERS_SACK) == false) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRADERS_SACK) == false) then
         player:messageSpecial(LOCKED_DOOR_QUADAV_HAS_KEY);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

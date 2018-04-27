@@ -727,7 +727,7 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 202) then -- Cloister of Storms
-        if ((player:hasCompleteQuest(OTHER_AREAS, TRIAL_BY_LIGHTNING)) or (player:hasKeyItem(dsp.kis.WHISPER_OF_STORMS))) then -- Trial by Lightning
+        if ((player:hasCompleteQuest(OTHER_AREAS_LOG, TRIAL_BY_LIGHTNING)) or (player:hasKeyItem(dsp.kis.WHISPER_OF_STORMS))) then -- Trial by Lightning
             skip = 1
         end
     elseif (Zone == 203) then -- Cloister of Frost

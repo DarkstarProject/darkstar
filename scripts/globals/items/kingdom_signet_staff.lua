@@ -16,7 +16,7 @@ function onItemCheck(target, param, caster)
     end
     
     -- If target's current region is not a conquest region or not a nation city involved with conquest
-    if (target:getCurrentRegion() > REGION_JEUNO) then
+    if (target:getCurrentRegion() > dsp.regions.JEUNO) then
         return msgBasic.ITEM_UNABLE_TO_USE
     end
 

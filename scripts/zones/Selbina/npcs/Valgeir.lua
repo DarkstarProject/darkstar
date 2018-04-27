@@ -21,7 +21,7 @@ require("scripts/zones/Selbina/TextIDs");
 
 function onTrade(player,npc,trade)
 
-if (player:getQuestStatus(OTHER_AREAS,EXPERTISE)== QUEST_ACCEPTED) then
+if (player:getQuestStatus(OTHER_AREAS_LOG,EXPERTISE)== QUEST_ACCEPTED) then
     count = trade:getItemCount();
     ScreamFungus  = trade:hasItemQty(4447,1);-- 4447 - scream_fungus 4400 - slice_of_land_crab_meat
     LandCrabMeat  = trade:hasItemQty(4400,1);
@@ -33,9 +33,9 @@ end;
 
 function onTrigger(player,npc)
 
-if (player:getQuestStatus(OTHER_AREAS,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
+if (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
     player:startEvent(100);-- His name is Valgeir quest
-elseif (player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
     if (player:getVar("QUEST_EXPERTISE_STATE_var")==1) then --already asked
         player:startEvent(104);--still not found ingredients quest Expertise
     elseif (player:getVar("QUEST_EXPERTISE_STATE_var")==2) then --have to wait 24 hours
@@ -49,13 +49,13 @@ elseif (player:getQuestStatus(OTHER_AREAS,EXPERTISE)==QUEST_ACCEPTED and player:
     else
         player:startEvent(102,4447,4400); -- cook something for me quest Expertise  4447 - scream_fungus 4400 - slice_of_land_crab_meat
     end;
-elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.MHAURAN_COUSCOUS)) then -- if quest accepted and has dsp.kis.MHAURAN_COUSCOUS
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,THE_BASICS)==QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.MHAURAN_COUSCOUS)) then -- if quest accepted and has dsp.kis.MHAURAN_COUSCOUS
     if (player:getFreeSlotsCount() == 0) then
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4436); --4436 - baked_popoto
     else
         player:startEvent(106);-- involved in back to basics quest
     end;
-elseif (player:getQuestStatus(OTHER_AREAS,THE_BASICS)==QUEST_COMPLETED and     player:getVar("QuestTheBacisCommentary_var")==1) then
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,THE_BASICS)==QUEST_COMPLETED and     player:getVar("QuestTheBacisCommentary_var")==1) then
     player:startEvent(107); -- end commentary the basics quest
 else
     player:startEvent(140);-- i am busy standar dialog
