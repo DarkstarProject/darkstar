@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(dsp.kis.WHISPER_OF_THE_WYRMKING);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_THE_WYRMKING);
             player:setVar('StormsOfFate',3);
-            player:addTitle(CONQUEROR_OF_FATE);
+            player:addTitle(dsp.titles.CONQUEROR_OF_FATE);
             if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
                 player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION, 50, 0, 0);
             end;

@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 300 * BAYLD_RATE);
         player:messageSpecial(BAYLD_OBTAINED, 300 * BAYLD_RATE);
-        player:addTitle(POTATION_PATHFINDER);
+        player:addTitle(dsp.titles.POTATION_PATHFINDER);
         player:addFame(ADOULIN);
     end
 end;

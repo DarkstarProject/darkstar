@@ -160,7 +160,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(PANDEMONIUM_QUELLER);
+    player:addTitle(dsp.titles.PANDEMONIUM_QUELLER);
    
     -- Despawn pets
     for i = 0, 1 do

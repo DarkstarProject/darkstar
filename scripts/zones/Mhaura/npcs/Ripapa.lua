@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
                 player:addItem(item);
                 player:messageSpecial(ITEM_OBTAINED,item); -- Item
             end
-            player:addTitle(HEIR_OF_THE_GREAT_LIGHTNING);
+            player:addTitle(dsp.titles.HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(dsp.kis.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
             player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(MHAURA,30);

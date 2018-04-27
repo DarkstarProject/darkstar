@@ -33,7 +33,7 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(NIDHOGG_SLAYER);
+    player:addTitle(dsp.titles.NIDHOGG_SLAYER);
 end;
 
 function onMobDespawn(mob)

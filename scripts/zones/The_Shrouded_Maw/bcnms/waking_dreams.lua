@@ -40,7 +40,7 @@ function onBcnmLeave(player,instance,leavecode)
             player:addKeyItem(dsp.kis.WHISPER_OF_DREAMS);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_DREAMS);
         end
-        player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
+        player:addTitle(dsp.titles.HEIR_TO_THE_REALM_OF_DREAMS);
         player:startEvent(32002);
     elseif (leavecode == 4) then
         player:startEvent(32002);

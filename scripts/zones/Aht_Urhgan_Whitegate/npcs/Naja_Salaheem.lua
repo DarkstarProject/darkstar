@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,IMMORTAL_SENTRIES);
         player:addMission(TOAU,PRESIDENT_SALAHEEM);
         player:addCurrency("imperial_standing", 150);
-        player:addTitle(PRIVATE_SECOND_CLASS);
+        player:addTitle(dsp.titles.PRIVATE_SECOND_CLASS);
         player:addKeyItem(dsp.kis.PSC_WILDCAT_BADGE);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PSC_WILDCAT_BADGE);
     elseif (csid == 3020) then
@@ -166,7 +166,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,FANGS_OF_THE_LION);
         player:addKeyItem(dsp.kis.MYTHRIL_MIRROR);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MYTHRIL_MIRROR);
-        player:setTitle(NASHMEIRAS_LOYALIST);
+        player:setTitle(dsp.titles.NASHMEIRAS_LOYALIST);
         player:addMission(TOAU,NASHMEIRAS_PLEA);
     elseif (csid == 3139) then
         player:completeMission(TOAU,RAGNAROK);

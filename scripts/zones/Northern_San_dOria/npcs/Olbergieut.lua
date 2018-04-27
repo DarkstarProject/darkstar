@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         else
             player:completeQuest(SANDORIA,GATES_TO_PARADISE);
             player:addFame(SANDORIA,30);
-            player:addTitle(THE_PIOUS_ONE);
+            player:addTitle(dsp.titles.THE_PIOUS_ONE);
             player:delKeyItem(dsp.kis.SCRIPTURE_OF_WATER);
             player:addItem(13584,1);
             player:messageSpecial(ITEM_OBTAINED,13584);

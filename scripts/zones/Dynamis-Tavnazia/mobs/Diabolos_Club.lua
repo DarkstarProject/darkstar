@@ -22,5 +22,5 @@ function onMobDeath(mob, player, isKiller)
         DespawnMob(16949254);
     end
 
-    player:addTitle(NIGHTMARE_AWAKENER);
+    player:addTitle(dsp.titles.NIGHTMARE_AWAKENER);
 end;

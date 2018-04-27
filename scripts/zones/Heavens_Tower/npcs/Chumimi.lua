@@ -86,11 +86,11 @@ function onEventFinish(player,csid,option)
             choosetitle = player:getVar("theThreeMagiSupport");
 
             if (choosetitle == 3) then
-                player:addTitle(PROFESSOR_KORUMORU_SUPPORTER);
+                player:addTitle(dsp.titles.PROFESSOR_KORUMORU_SUPPORTER);
             elseif (choosetitle == 2) then
-                player:addTitle(DOCTOR_SHANTOTTO_SUPPORTER);
+                player:addTitle(dsp.titles.DOCTOR_SHANTOTTO_SUPPORTER);
             else
-                player:addTitle(DOCTOR_YORANORAN_SUPPORTER);
+                player:addTitle(dsp.titles.DOCTOR_YORANORAN_SUPPORTER);
             end
 
             player:tradeComplete();
@@ -130,7 +130,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
             player:addItem(13856);
             player:messageSpecial(ITEM_OBTAINED,13856);
-            player:addTitle(PARAGON_OF_BLACK_MAGE_EXCELLENCE);
+            player:addTitle(dsp.titles.PARAGON_OF_BLACK_MAGE_EXCELLENCE);
             player:delKeyItem(dsp.kis.SLUICE_SURVEYOR_MK_I);
         end
     end

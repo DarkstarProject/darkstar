@@ -15,5 +15,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BLACK_DRAGON_SLAYER);
+    player:addTitle(dsp.titles.BLACK_DRAGON_SLAYER);
 end;

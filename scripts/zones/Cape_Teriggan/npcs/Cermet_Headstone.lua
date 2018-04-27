@@ -49,7 +49,7 @@ function onTrigger(player,npc)
                 player:hasKeyItem(dsp.kis.LIGHT_FRAGMENT)
             ) then
                 player:messageSpecial(FOUND_ALL_FRAGS,dsp.kis.WIND_FRAGMENT);
-                player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+                player:addTitle(dsp.titles.BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(13248); -- Flagellant's Rope
             player:messageSpecial(ITEM_OBTAINED,13248);
-            player:addTitle(BEARER_OF_BONDS_BEYOND_TIME);
+            player:addTitle(dsp.titles.BEARER_OF_BONDS_BEYOND_TIME);
             player:completeQuest(OUTLANDS,WANDERING_SOULS);
         end
     end

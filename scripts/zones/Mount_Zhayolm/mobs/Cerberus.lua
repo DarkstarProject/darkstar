@@ -17,7 +17,7 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(CERBERUS_MUZZLER);
+    player:addTitle(dsp.titles.CERBERUS_MUZZLER);
 end;
 
 function onMobDespawn(mob)

@@ -6,13 +6,13 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES , BUSHIDO_BLADE , BLACK_MARKETEER , CRACKER_OF_THE_SECRET_CODE ,
-                LOOKS_SUBLIME_IN_A_SUBLIGAR , LOOKS_GOOD_IN_LEGGINGS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { APPRENTICE_SOMMELIER , TREASUREHOUSE_RANSACKER , HEIR_OF_THE_GREAT_WATER , PARAGON_OF_SAMURAI_EXCELLENCE ,
-                PARAGON_OF_NINJA_EXCELLENCE , GUIDER_OF_SOULS_TO_THE_SANCTUARY , BEARER_OF_BONDS_BEYOND_TIME , FRIEND_OF_THE_OPOOPOS ,
-                PENTACIDE_PERPETRATOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { BEARER_OF_THE_WISEWOMANS_HOPE , BEARER_OF_THE_EIGHT_PRAYERS , LIGHTWEAVER , DESTROYER_OF_ANTIQUITY , SEALER_OF_THE_PORTAL_OF_THE_GODS ,
-                BURIER_OF_THE_ILLUSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title2 = { dsp.titles.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES , dsp.titles.BUSHIDO_BLADE , dsp.titles.BLACK_MARKETEER , dsp.titles.CRACKER_OF_THE_SECRET_CODE ,
+                dsp.titles.LOOKS_SUBLIME_IN_A_SUBLIGAR , dsp.titles.LOOKS_GOOD_IN_LEGGINGS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.titles.APPRENTICE_SOMMELIER , dsp.titles.TREASUREHOUSE_RANSACKER , dsp.titles.HEIR_OF_THE_GREAT_WATER , dsp.titles.PARAGON_OF_SAMURAI_EXCELLENCE ,
+                dsp.titles.PARAGON_OF_NINJA_EXCELLENCE , dsp.titles.GUIDER_OF_SOULS_TO_THE_SANCTUARY , dsp.titles.BEARER_OF_BONDS_BEYOND_TIME , dsp.titles.FRIEND_OF_THE_OPOOPOS ,
+                dsp.titles.PENTACIDE_PERPETRATOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.titles.BEARER_OF_THE_WISEWOMANS_HOPE , dsp.titles.BEARER_OF_THE_EIGHT_PRAYERS , dsp.titles.LIGHTWEAVER , dsp.titles.DESTROYER_OF_ANTIQUITY , dsp.titles.SEALER_OF_THE_PORTAL_OF_THE_GODS ,
+                dsp.titles.BURIER_OF_THE_ILLUSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title5 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }

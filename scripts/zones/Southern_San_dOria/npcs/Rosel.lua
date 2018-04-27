@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
     -- Rosel the Armorer, finished quest, recieve 200gil
     elseif (csid == 527) then
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
-            title= ENTRANCE_DENIED,
+            title= dsp.titles.ENTRANCE_DENIED,
             gil= 200
             });
     end

@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 1) then
             player:setVar("EleventhsHour",0);
             player:delKeyItem(dsp.kis.OLD_TOOLBOX);
-            player:addTitle(PURSUER_OF_THE_TRUTH);
+            player:addTitle(dsp.titles.PURSUER_OF_THE_TRUTH);
             player:addItem(16629);
             player:messageSpecial(ITEM_OBTAINED,16629);
             player:addFame(BASTOK,30);

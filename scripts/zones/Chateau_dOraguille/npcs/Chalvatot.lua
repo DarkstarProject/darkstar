@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
             player:addItem(12647);
             player:messageSpecial(ITEM_OBTAINED,12647)
             player:completeQuest(JEUNO,THE_CIRCLE_OF_TIME);
-            player:addTitle(PARAGON_OF_BARD_EXCELLENCE);
+            player:addTitle(dsp.titles.PARAGON_OF_BARD_EXCELLENCE);
             player:setVar("circleTime",0);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);

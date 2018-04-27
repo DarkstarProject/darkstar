@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAMP_SHEET);
     elseif (csid == 226) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:addTitle(STAMPEDER);
+            player:addTitle(dsp.titles.STAMPEDER);
             player:addItem(13081);
             player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
             player:delKeyItem(dsp.kis.STAMP_SHEET);

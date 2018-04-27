@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 1) then
-        player:addTitle(LIGHTWEAVER);
+        player:addTitle(dsp.titles.LIGHTWEAVER);
         player:setVar("ZilartStatus",0);
         player:addKeyItem(dsp.kis.PRISMATIC_FRAGMENT);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PRISMATIC_FRAGMENT);

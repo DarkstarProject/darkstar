@@ -70,6 +70,6 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",1);
     elseif (csid == 116) then
         player:setVar("PromathiaStatus",7);
-        player:addTitle(BANISHER_OF_EMPTINESS);
+        player:addTitle(dsp.titles.BANISHER_OF_EMPTINESS);
     end
 end;

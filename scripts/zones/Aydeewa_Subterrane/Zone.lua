@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:setVar("EmptyVesselStone",0);
         player:addKeyItem(dsp.kis.MARK_OF_ZAHAK);
         player:unlockJob(dsp.jobs.BLU);
-        player:addTitle(BEARER_OF_THE_MARK_OF_ZAHAK);
+        player:addTitle(dsp.titles.BEARER_OF_THE_MARK_OF_ZAHAK);
         player:completeQuest(AHT_URHGAN,AN_EMPTY_VESSEL);
         player:setPos(148,-2,0,130,50);
     elseif (csid == 3 and option ~= 13) then -- Make a mistake and get reset

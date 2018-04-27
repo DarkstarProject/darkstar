@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12600); -- Robe
         else
             player:tradeComplete();
-            player:addTitle(GREEN_GROCER);
+            player:addTitle(dsp.titles.GREEN_GROCER);
             player:addItem(12600);
             player:messageSpecial(ITEM_OBTAINED,12600); -- Robe
             player:addFame(SANDORIA,30);
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 613 and option == 0 or csid == 615 and option == 0) then
         player:addQuest(SANDORIA,THE_MEDICINE_WOMAN);
     elseif (csid == 614) then
-        player:addTitle(TRAVELING_MEDICINE_MAN);
+        player:addTitle(dsp.titles.TRAVELING_MEDICINE_MAN);
         player:delKeyItem(dsp.kis.COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);

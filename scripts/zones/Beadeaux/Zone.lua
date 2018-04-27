@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 121) then
         player:unlockJob(dsp.jobs.DRK);
-        player:addTitle(DARK_SIDER);
+        player:addTitle(dsp.titles.DARK_SIDER);
         player:setVar("ZeruhnMines_Zeid_CS", 0);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT);
         player:completeQuest(BASTOK, BLADE_OF_DARKNESS);

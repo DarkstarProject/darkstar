@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13328);
         else
-            player:addTitle(FOOLS_ERRAND_RUNNER);
+            player:addTitle(dsp.titles.FOOLS_ERRAND_RUNNER);
             player:delKeyItem(dsp.kis.WONDER_MAGIC_SET);
             player:addItem(13328);
             player:messageSpecial(ITEM_OBTAINED,13328);
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13596);
         else
-            player:addTitle(BRINGER_OF_BLISS);
+            player:addTitle(dsp.titles.BRINGER_OF_BLISS);
             player:delKeyItem(dsp.kis.TWO_OF_SWORDS);
             player:setVar("theKindCardianVar",0);
             player:addItem(13596);

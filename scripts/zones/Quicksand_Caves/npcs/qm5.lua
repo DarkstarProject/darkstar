@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 
     -- Need to make sure the quest is flagged the player is no further along in the quest
 
-    if (TheMissingPiece == QUEST_ACCEPTED and not(HasAncientTablet or HasAncientFragment or player:getTitle() == ACQUIRER_OF_ANCIENT_ARCANUM)) then
+    if (TheMissingPiece == QUEST_ACCEPTED and not(HasAncientTablet or HasAncientFragment or player:getTitle() == dsp.titles.ACQUIRER_OF_ANCIENT_ARCANUM)) then
         player:addKeyItem(dsp.kis.ANCIENT_TABLET_FRAGMENT);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ANCIENT_TABLET_FRAGMENT);
 

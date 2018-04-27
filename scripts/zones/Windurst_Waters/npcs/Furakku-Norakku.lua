@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OVERDUE_BOOK_NOTIFICATIONS);
     elseif (csid == 400) then
         player:needToZone(true);
-        player:addTitle(SAVIOR_OF_KNOWLEDGE);
+        player:addTitle(dsp.titles.SAVIOR_OF_KNOWLEDGE);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("EARLY_BIRD_TRACK_BOOK",0);
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
         player:addGil(GIL_RATE*2800);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2800);
-        player:addTitle(SAVIOR_OF_KNOWLEDGE);
+        player:addTitle(dsp.titles.SAVIOR_OF_KNOWLEDGE);
         player:delKeyItem(dsp.kis.OVERDUE_BOOK_NOTIFICATION);
         player:delKeyItem(dsp.kis.A_SONG_OF_LOVE);
         player:setVar("CHASING_TALES_TRACK_BOOK",0);

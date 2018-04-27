@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     finishMissionTimeline(player,4,csid,option);
 
     if (csid == 96 and option == 1) then
-        player:addTitle(HEAVENS_TOWER_GATEHOUSE_RECRUIT);
+        player:addTitle(dsp.titles.HEAVENS_TOWER_GATEHOUSE_RECRUIT);
     elseif (csid == 93 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.kis.STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_CRESTED_SUMMONS);

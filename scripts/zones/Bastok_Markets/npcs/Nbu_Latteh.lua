@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
         end
         player:needToZone(true);
         player:delKeyItem(dsp.kis.LETTER_FROM_ROH_LATTEH);
-        player:addTitle(RINGBEARER);
+        player:addTitle(dsp.titles.RINGBEARER);
         player:addGil(GIL_RATE*gilReward);
         player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
         player:setVar("MomTheAdventurer_Event",0);

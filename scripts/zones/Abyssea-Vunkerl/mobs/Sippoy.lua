@@ -26,5 +26,5 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(SIPPOY_CAPTURER);
+    player:addTitle(dsp.titles.SIPPOY_CAPTURER);
 end;

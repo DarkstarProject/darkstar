@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
     if (csid == 124) then
         player:tradeComplete();
         player:completeQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
-        player:addTitle(RAINBOW_WEAVER);
+        player:addTitle(dsp.titles.RAINBOW_WEAVER);
         player:unlockJob(dsp.jobs.SMN);
         player:addSpell(296);
         player:messageSpecial(UNLOCK_SUMMONER);

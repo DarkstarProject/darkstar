@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,WARDING_VAMPIRES);
     elseif (csid == 23) then
         player:tradeComplete();
-        player:addTitle(VAMPIRE_HUNTER_DMINUS);
+        player:addTitle(dsp.titles.VAMPIRE_HUNTER_DMINUS);
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
         if (player:getQuestStatus(SANDORIA,WARDING_VAMPIRES) == QUEST_ACCEPTED) then

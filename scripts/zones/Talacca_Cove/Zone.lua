@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.kis.EPHRAMADIAN_GOLD_COIN);
         player:addKeyItem(dsp.kis.PERCIPIENT_EYE);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PERCIPIENT_EYE);
-        player:setTitle(TREASURE_TROVE_TENDER);
+        player:setTitle(dsp.titles.TREASURE_TROVE_TENDER);
         player:setVar("AhtUrganStatus", 0);
         player:addMission(TOAU,LEGACY_OF_THE_LOST);
     end

@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:setVar("AyameAndKaede_Event", 3);
     elseif (csid == 246) then
         player:delKeyItem(dsp.kis.SEALED_DAGGER);
-        player:addTitle(SHADOW_WALKER);
+        player:addTitle(dsp.titles.SHADOW_WALKER);
         player:unlockJob(dsp.jobs.NIN);
         player:messageSpecial(UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);

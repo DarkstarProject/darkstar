@@ -71,7 +71,7 @@ function onAdditionalEffect(mob, target, damage)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle( KIRIN_CAPTIVATOR );
+    player:addTitle( dsp.titles.KIRIN_CAPTIVATOR );
     player:showText( mob, KIRIN_OFFSET + 1 );
     for i = KIRIN + 1, KIRIN + 4 do
         DespawnMob(i);

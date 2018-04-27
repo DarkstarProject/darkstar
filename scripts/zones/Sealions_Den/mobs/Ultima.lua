@@ -36,5 +36,5 @@ function onAdditionalEffect(mob, player)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(ULTIMA_UNDERTAKER);
+    player:addTitle(dsp.titles.ULTIMA_UNDERTAKER);
 end;

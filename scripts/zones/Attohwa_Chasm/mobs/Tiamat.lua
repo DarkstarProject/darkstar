@@ -63,7 +63,7 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(TIAMAT_TROUNCER);
+    player:addTitle(dsp.titles.TIAMAT_TROUNCER);
 end;
 
 function onMobDespawn(mob)

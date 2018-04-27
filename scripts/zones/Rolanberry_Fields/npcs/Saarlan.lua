@@ -28,19 +28,19 @@ function onTrigger(player,npc)
         MINIMUS = 1;
     end
 
-    if (player:hasTitle(SUBJUGATOR_OF_THE_LOFTY)) then
+    if (player:hasTitle(dsp.titles.SUBJUGATOR_OF_THE_LOFTY)) then
         TITLE = TITLE+1;
     end
-    if (player:hasTitle(SUBJUGATOR_OF_THE_MIRED)) then
+    if (player:hasTitle(dsp.titles.SUBJUGATOR_OF_THE_MIRED)) then
         TITLE = TITLE+2;
     end
-    if (player:hasTitle(SUBJUGATOR_OF_THE_SOARING)) then
+    if (player:hasTitle(dsp.titles.SUBJUGATOR_OF_THE_SOARING)) then
         TITLE = TITLE+4;
     end
-    if (player:hasTitle(SUBJUGATOR_OF_THE_VEILED)) then
+    if (player:hasTitle(dsp.titles.SUBJUGATOR_OF_THE_VEILED)) then
         TITLE = TITLE+8;
     end
-    if (player:hasTitle(LEGENDARY_LEGIONNAIRE)) then
+    if (player:hasTitle(dsp.titles.LEGENDARY_LEGIONNAIRE)) then
         TITLE = TITLE+16;
     end
 

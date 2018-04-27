@@ -139,7 +139,7 @@ function onEventFinish(player,csid,option)
         end
 
         if (reward ~= nil) then
-            player:addTitle(HEIR_OF_THE_NEW_MOON);
+            player:addTitle(dsp.titles.HEIR_OF_THE_NEW_MOON);
             player:delKeyItem(dsp.kis.WHISPER_OF_THE_MOON);
             player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
@@ -175,7 +175,7 @@ function onEventFinish(player,csid,option)
         end
 
         if (reward ~= nil) then
-            player:addTitle(HEIR_OF_THE_NEW_MOON);
+            player:addTitle(dsp.titles.HEIR_OF_THE_NEW_MOON);
             player:delKeyItem(dsp.kis.WHISPER_OF_THE_MOON);
             player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);

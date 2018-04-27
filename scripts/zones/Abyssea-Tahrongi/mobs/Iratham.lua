@@ -28,5 +28,5 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(IRATHAM_CAPTURER);
+    player:addTitle(dsp.titles.IRATHAM_CAPTURER);
 end;

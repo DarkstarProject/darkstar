@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
     if (csid == 665) then
         player:addQuest(WINDURST,MAKING_HEADLINES);
     elseif (csid == 670 or csid == 674) then
-        player:addTitle(EDITORS_HATCHET_MAN);
+        player:addTitle(dsp.titles.EDITORS_HATCHET_MAN);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);
         player:delKeyItem(dsp.kis.WINDURST_WOODS_SCOOP);

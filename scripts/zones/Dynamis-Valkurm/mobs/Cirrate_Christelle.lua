@@ -103,5 +103,5 @@ function onMobDeath(mob, player, isKiller)
        player:addKeyItem(dsp.kis.DYNAMIS_VALKURM_SLIVER);
        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DYNAMIS_VALKURM_SLIVER);
   end
-       player:addTitle(DYNAMISVALKURM_INTERLOPER);
+       player:addTitle(dsp.titles.DYNAMISVALKURM_INTERLOPER);
 end;

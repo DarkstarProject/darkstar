@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
         else
             player:tradeComplete();
-            player:addTitle(FAITH_LIKE_A_CANDLE);
+            player:addTitle(dsp.titles.FAITH_LIKE_A_CANDLE);
             player:addItem(13211);
             player:messageSpecial(ITEM_OBTAINED,13211); -- Friars Rope
             player:addFame(SANDORIA,30);

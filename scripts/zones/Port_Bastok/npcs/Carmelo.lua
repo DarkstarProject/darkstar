@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("LoveAndIceProgress",0);
             player:needToZone(true);
-            player:addTitle(SORROW_DROWNER);
+            player:addTitle(dsp.titles.SORROW_DROWNER);
             player:addItem(17356);
             player:messageSpecial(ITEM_OBTAINED,17356); -- Lamia Harp
             player:addFame(BASTOK,120);

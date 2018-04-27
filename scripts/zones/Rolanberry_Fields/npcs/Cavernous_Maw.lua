@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 501) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
-        player:addTitle(CAIT_SITHS_ASSISTANT);
+        player:addTitle(dsp.titles.CAIT_SITHS_ASSISTANT);
         toMaw(player,3);
     end;
 end;

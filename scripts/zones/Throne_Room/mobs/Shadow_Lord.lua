@@ -77,7 +77,7 @@ function onMobDeath(mob, player, isKiller)
         player:startEvent(32004);
         player:setVar("mobid",mob:getID());
     else
-        player:addTitle(SHADOW_BANISHER);
+        player:addTitle(dsp.titles.SHADOW_BANISHER);
     end
     -- reset everything on death
     mob:AnimationSub(0);

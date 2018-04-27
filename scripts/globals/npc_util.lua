@@ -146,7 +146,7 @@ end
             bayld = 500,
             gil = 200,
             xp = 1000,
-            title = ENTRANCE_DENIED,
+            title = dsp.titles.ENTRANCE_DENIED,
             var = {"foo1", "foo2"}      -- variable(s) to set to 0. string or table
         });
 ******************************************************************************* --]]

@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
         player:addKeyItem(dsp.kis.DYNAMIS_TAVNAZIA_SLIVER);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DYNAMIS_TAVNAZIA_SLIVER);
     end
-    player:addTitle(NIGHTMARE_AWAKENER);
+    player:addTitle(dsp.titles.NIGHTMARE_AWAKENER);
 end;

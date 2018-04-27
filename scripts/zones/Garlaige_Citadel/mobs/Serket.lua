@@ -15,7 +15,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(SERKET_BREAKER);
+    player:addTitle(dsp.titles.SERKET_BREAKER);
 end;
 
 function onMobDespawn(mob)

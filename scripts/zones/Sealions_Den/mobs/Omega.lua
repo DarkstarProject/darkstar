@@ -36,7 +36,7 @@ function onAdditionalEffect(mob, player)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(OMEGA_OSTRACIZER);
+    player:addTitle(dsp.titles.OMEGA_OSTRACIZER);
     player:startEvent(11);
 end;
 

@@ -206,7 +206,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 74) then   -- end quest 1 RYCHARDE_THE_CHEF
         player:tradeComplete();
         player:addFame(WINDURST,120);
-        player:addTitle(PURVEYOR_IN_TRAINING);
+        player:addTitle(dsp.titles.PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("QuestRychardetheChef_var",0);
@@ -222,7 +222,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 80) then  --end quest 2 WAY_OF_THE_COOK
         player:tradeComplete();
         player:addFame(WINDURST,120);
-        player:addTitle(ONESTAR_PURVEYOR);
+        player:addTitle(dsp.titles.ONESTAR_PURVEYOR);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("QuestWayotcHourStarted_var",0);
@@ -235,7 +235,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 81) then  --end quest 2 WAY_OF_THE_COOK
         player:tradeComplete();
         player:addFame(WINDURST,120);
-        player:addTitle(PURVEYOR_IN_TRAINING);
+        player:addTitle(dsp.titles.PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
         player:setVar("QuestWayotcHourStarted_var",0);
@@ -257,7 +257,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 83) then  -- end quest 3 UNENDING_CHASE
         player:tradeComplete();
         player:addFame(WINDURST,120);
-        player:addTitle(TWOSTAR_PURVEYOR);
+        player:addTitle(dsp.titles.TWOSTAR_PURVEYOR);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
         player:setVar("QuestUnendingCAskedAlready_var",0);
@@ -290,7 +290,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 92) then   -- end quest THE CLUE
         player:tradeComplete();
         player:addFame(WINDURST,120);
-        player:addTitle(FOURSTAR_PURVEYOR);
+        player:addTitle(dsp.titles.FOURSTAR_PURVEYOR);
         player:addGil(GIL_RATE*3000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
         player:setVar("QuestTheClueStatus_var",0);
@@ -309,7 +309,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 96) then   -- end quest the basics
         player:tradeComplete();
         player:addFame(WINDURST,120);
-        player:addTitle(FIVESTAR_PURVEYOR);
+        player:addTitle(dsp.titles.FIVESTAR_PURVEYOR);
         if (player:getFreeSlotsCount() <= 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,133);
         else

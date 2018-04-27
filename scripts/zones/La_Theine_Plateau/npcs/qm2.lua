@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,14094);
         player:tradeComplete();
         player:completeQuest(WINDURST, HITTING_THE_MARQUISATE);
-        player:addTitle(PARAGON_OF_THIEF_EXCELLENCE);
+        player:addTitle(dsp.titles.PARAGON_OF_THIEF_EXCELLENCE);
         player:setVar("hittingTheMarquisateNanaaCS",0);
         player:delKeyItem(dsp.kis.CAT_BURGLARS_NOTE);
         end

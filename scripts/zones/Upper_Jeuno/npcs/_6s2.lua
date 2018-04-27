@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
         else
-            player:addTitle(PROFESSIONAL_LOAFER);
+            player:addTitle(dsp.titles.PROFESSIONAL_LOAFER);
             player:delKeyItem(dsp.kis.CLOCK_TOWER_OIL);
             player:addGil(1200);
             player:messageSpecial(GIL_OBTAINED,1200);
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17083);
         else
             player:addQuest(JEUNO,THE_CLOCKMASTER);
-            player:addTitle(TIMEKEEPER);
+            player:addTitle(dsp.titles.TIMEKEEPER);
             player:addGil(1200);
             player:messageSpecial(GIL_OBTAINED,1200);
             player:addItem(17083);

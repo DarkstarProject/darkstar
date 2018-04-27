@@ -66,7 +66,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
+    player:addTitle(dsp.titles.DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
     player:setVar("DynaBeaucedine_Win",1);
 
     if (player:hasKeyItem(dsp.kis.HYDRA_CORPS_INSIGNIA) == false) then

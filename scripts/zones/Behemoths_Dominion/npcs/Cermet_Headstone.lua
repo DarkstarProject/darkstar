@@ -38,7 +38,7 @@ function onTrigger(player,npc)
                 player:hasKeyItem(dsp.kis.LIGHT_FRAGMENT)
             ) then
                 player:messageSpecial(FOUND_ALL_FRAGS,dsp.kis.LIGHTNING_FRAGMENT);
-                player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+                player:addTitle(dsp.titles.BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else

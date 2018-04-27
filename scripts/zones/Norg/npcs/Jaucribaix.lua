@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 27) then
         player:confirmTrade();
         player:setVar("ForgeYourDestiny_timer", os.time() + 10368); -- 3 game days
-    elseif (csid == 29 and npcUtil.completeQuest(player, OUTLANDS, FORGE_YOUR_DESTINY, {item=17809, fame=30, fameArea=NORG, title=BUSHIDO_BLADE, var={"ForgeYourDestiny_timer", "ForgeYourDestiny_Event"}})) then -- Mumeito
+    elseif (csid == 29 and npcUtil.completeQuest(player, OUTLANDS, FORGE_YOUR_DESTINY, {item=17809, fame=30, fameArea=NORG, title=dsp.titles.BUSHIDO_BLADE, var={"ForgeYourDestiny_timer", "ForgeYourDestiny_Event"}})) then -- Mumeito
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_SAMURAI, 17809);
         player:unlockJob(dsp.jobs.SAM);
 
@@ -146,6 +146,6 @@ function onEventFinish(player,csid,option)
         player:setVar("aThiefinNorgCS",9);
         player:needToZone(true);
     elseif (csid == 164) then
-        npcUtil.completeQuest(player, OUTLANDS, A_THIEF_IN_NORG, {item=13868, title=PARAGON_OF_SAMURAI_EXCELLENCE, fame=AF3_FAME, fameArea=NORG, var={"aThiefinNorgCS"}});
+        npcUtil.completeQuest(player, OUTLANDS, A_THIEF_IN_NORG, {item=13868, title=dsp.titles.PARAGON_OF_SAMURAI_EXCELLENCE, fame=AF3_FAME, fameArea=NORG, var={"aThiefinNorgCS"}});
     end
 end;

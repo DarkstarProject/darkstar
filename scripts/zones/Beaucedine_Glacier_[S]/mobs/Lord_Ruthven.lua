@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(RUTHVEN_ENTOMBER);
+    player:addTitle(dsp.titles.RUTHVEN_ENTOMBER);
 end;

@@ -11,5 +11,5 @@ function onMobInitialize(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(THE_VIVISECTOR);
+    player:addTitle(dsp.titles.THE_VIVISECTOR);
 end;

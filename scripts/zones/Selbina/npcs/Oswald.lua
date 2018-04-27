@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13335);
         else
             player:completeQuest(OTHER_AREAS_LOG,UNDER_THE_SEA);
-            player:addTitle(LIL_CUPID);
+            player:addTitle(dsp.titles.LIL_CUPID);
             player:delKeyItem(dsp.kis.ETCHED_RING);
             player:setVar("underTheSeaVar",0);
             player:addItem(13335);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16497);
         else
             player:completeQuest(OTHER_AREAS_LOG,THE_GIFT);
-            player:addTitle(SAVIOR_OF_LOVE);
+            player:addTitle(dsp.titles.SAVIOR_OF_LOVE);
             player:addItem(16497);
             player:messageSpecial(ITEM_OBTAINED,16497); -- Sleep Dagger
             player:addFame(SELBINA,30);
@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17385);
         else
             player:completeQuest(OTHER_AREAS_LOG,THE_REAL_GIFT);
-            player:addTitle(THE_LOVE_DOCTOR);
+            player:addTitle(dsp.titles.THE_LOVE_DOCTOR);
             player:addItem(17385);
             player:messageSpecial(ITEM_OBTAINED,17385); -- Glass Fiber Fishing Rod
             player:addFame(SELBINA,30);
