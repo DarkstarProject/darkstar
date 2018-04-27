@@ -16,8 +16,8 @@ function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[SE_Apollyon]UniqueID"));
     player:setVar("LimbusID",1293);    
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(BLACK_CARD);
+    player:delKeyItem(dsp.kis.COSMOCLEANSE);
+    player:delKeyItem(dsp.kis.BLACK_CARD);
 end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish 

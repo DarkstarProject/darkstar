@@ -65,7 +65,7 @@ function onTrigger(player,npc)
             player:startEvent(139); -- Start Quest "Wings of gold" (Long dialog)
         end
     elseif (wingsOfGold == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(GUIDING_BELL) == false) then
+        if (player:hasKeyItem(dsp.kis.GUIDING_BELL) == false) then
             player:startEvent(136);
         else
             player:startEvent(138); -- Finish Quest "Wings of gold"
@@ -81,7 +81,7 @@ function onTrigger(player,npc)
         end
     elseif (scatIntoShadow == QUEST_ACCEPTED) then
         local scatIntoShadowCS = player:getVar("scatIntoShadowCS");
-        if (player:hasKeyItem(AQUAFLORA1) or player:hasKeyItem(AQUAFLORA2) or player:hasKeyItem(AQUAFLORA3)) then
+        if (player:hasKeyItem(dsp.kis.AQUAFLORA1) or player:hasKeyItem(dsp.kis.AQUAFLORA2) or player:hasKeyItem(dsp.kis.AQUAFLORA3)) then
             player:startEvent(142);
         elseif (scatIntoShadowCS == 0) then
             player:startEvent(144);
@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 70) then
         player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
         player:addTitle(ANIMAL_TRAINER);
-        player:unlockJob(JOBS.BST);
+        player:unlockJob(dsp.jobs.BST);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
         player:addFame(JEUNO, 30);
         player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
@@ -146,7 +146,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16680);
         else
-            player:delKeyItem(GUIDING_BELL);
+            player:delKeyItem(dsp.kis.GUIDING_BELL);
             player:addItem(16680);
             player:messageSpecial(ITEM_OBTAINED,16680); -- Barbaroi Axe
             player:addFame(JEUNO,AF1_FAME);
@@ -155,10 +155,10 @@ function onEventFinish(player,csid,option)
     elseif ((csid == 143 or csid == 141) and option == 1) then
         player:addQuest(JEUNO,SCATTERED_INTO_SHADOW);
         player:setVar("scatIntoShadow_shortCS",0);
-        player:addKeyItem(AQUAFLORA1);
-        player:addKeyItem(AQUAFLORA2);
-        player:addKeyItem(AQUAFLORA3);
-        player:messageSpecial(KEYITEM_OBTAINED,AQUAFLORA1);
+        player:addKeyItem(dsp.kis.AQUAFLORA1);
+        player:addKeyItem(dsp.kis.AQUAFLORA2);
+        player:addKeyItem(dsp.kis.AQUAFLORA3);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.AQUAFLORA1);
     elseif (csid == 144) then
         player:setVar("scatIntoShadowCS",1);
     elseif (csid == 135) then

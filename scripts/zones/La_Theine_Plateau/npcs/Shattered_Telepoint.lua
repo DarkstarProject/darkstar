@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(202,0,0,1); -- first time in promy -> have you made your preparations cs
-    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and (player:hasKeyItem(LIGHT_OF_MEA) or player:hasKeyItem(LIGHT_OF_DEM))) then
+    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and (player:hasKeyItem(dsp.kis.LIGHT_OF_MEA) or player:hasKeyItem(dsp.kis.LIGHT_OF_DEM))) then
         if (player:getVar("cspromy2") == 1) then
             player:startEvent(201);  -- cs you get nearing second promyvion
         else

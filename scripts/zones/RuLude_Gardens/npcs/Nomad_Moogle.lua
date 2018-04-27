@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
+    if (player:hasKeyItem(dsp.kis.LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
         player:startEvent(10045,75,2,10,7,30,302895,4095);
     elseif (player:getMainLvl() == 75 and player:levelCap() == 75 and MAX_LEVEL >= 80 and player:getQuestStatus(JEUNO,NEW_WORLDS_AWAIT) == QUEST_AVAILABLE) then
         player:startEvent(10045,0,1,1,0);
@@ -56,7 +56,7 @@ function onTrigger(player,npc)
         player:startEvent(10045,0,1,4,1);
     elseif (player:getQuestStatus(JEUNO,BEYOND_INFINITY) == QUEST_ACCEPTED) then
         player:startEvent(10045,0,1,5,1); -- player:startEvent(10045,0,1,6,1);
-    elseif (player:hasKeyItem(LIMIT_BREAKER) == true and player:getMainLvl() >= 75) then
+    elseif (player:hasKeyItem(dsp.kis.LIMIT_BREAKER) == true and player:getMainLvl() >= 75) then
         player:startEvent(10045,0,1,0,0);
     else
         player:startEvent(10045,0,2,0,0);
@@ -74,8 +74,8 @@ function onEventFinish(player,csid,option)
     local meritCount = player:getMeritCount();
 
     if (csid == 10045 and option == 4) then
-        player:addKeyItem(LIMIT_BREAKER);
-        player:messageSpecial(KEYITEM_OBTAINED,LIMIT_BREAKER);
+        player:addKeyItem(dsp.kis.LIMIT_BREAKER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LIMIT_BREAKER);
     elseif (csid == 10045) then
         if (option == 5) then
             player:addQuest(JEUNO,NEW_WORLDS_AWAIT);
@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
         player:levelCap(95);
         player:completeQuest(JEUNO,DORMANT_POWERS_DISLODGED);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_95);
-        player:addKeyItem(SOUL_GEM);
-        player:messageSpecial(KEYITEM_OBTAINED,SOUL_GEM);
+        player:addKeyItem(dsp.kis.SOUL_GEM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SOUL_GEM);
     end
 end;

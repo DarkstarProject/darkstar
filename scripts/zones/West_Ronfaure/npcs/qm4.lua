@@ -21,8 +21,8 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1
         and not GetMobByID(MARAUDER_DVOGZOG):isSpawned()) then
         if (player:getVar("Mission7-1MobKilled") == 1 and player:needToZone() == true) then
-            player:addKeyItem(ANCIENT_SANDORIAN_TABLET);
-            player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_TABLET);
+            player:addKeyItem(dsp.kis.ANCIENT_SANDORIAN_TABLET);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ANCIENT_SANDORIAN_TABLET);
             player:setVar("Mission7-1MobKilled",0);
             player:setVar("MissionStatus",2);
         else

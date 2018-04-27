@@ -17,8 +17,8 @@ function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
         if (player:getZPos() < 46) then
-            if (player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(CORUSCANT_ROSARY) and player:hasKeyItem(BLACK_MATINEE_NECKLACE)) then
-                player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
+            if (player:hasKeyItem(dsp.kis.SILVER_BELL) and player:hasKeyItem(dsp.kis.CORUSCANT_ROSARY) and player:hasKeyItem(dsp.kis.BLACK_MATINEE_NECKLACE)) then
+                player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,dsp.kis.SILVER_BELL,dsp.kis.CORUSCANT_ROSARY,dsp.kis.BLACK_MATINEE_NECKLACE);
                 npc:openDoor(20); -- retail timed
             else
                 player:messageSpecial(IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC);

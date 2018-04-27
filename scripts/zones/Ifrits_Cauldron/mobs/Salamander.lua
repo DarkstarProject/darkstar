@@ -2,6 +2,8 @@
 -- Area: Ifrit's Cauldron
 --  MOB: Salamander
 -----------------------------------
+require("scripts/globals/status");
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);

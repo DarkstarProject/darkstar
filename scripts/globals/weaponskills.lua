@@ -145,21 +145,21 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
                 if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
                     local cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
                     finaldmg = dmg * cpdif;
-                    if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
+                    if (isSneakValid and attacker:getMainJob() == dsp.jobs.THF) then -- have to add on DEX bonus if on THF main
                         finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * (1 + attacker:getMod(MOD_SNEAK_ATK_DEX)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
                     end
-                    if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                    if (isTrickValid and attacker:getMainJob() == dsp.jobs.THF) then
                         finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                     end
                 else
                     finaldmg = dmg * pdif;
-                    if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                    if (isTrickValid and attacker:getMainJob() == dsp.jobs.THF) then
                         finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                     end
                 end
             else
                 finaldmg = dmg * pdif;
-                if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                if (isTrickValid and attacker:getMainJob() == dsp.jobs.THF) then
                     finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                 end
             end
@@ -331,7 +331,7 @@ function souleaterBonus(attacker, numhits)
     if attacker:hasStatusEffect(dsp.effects.SOULEATER) then
         local damage = 0;
         local percent = 0.1;
-        if attacker:getMainJob() ~= JOBS.DRK then
+        if attacker:getMainJob() ~= dsp.jobs.DRK then
             percent = percent / 2;
         end
         percent = percent + math.min(0.02, 0.01 * attacker:getMod(MOD_SOULEATER_EFFECT));
@@ -1065,7 +1065,8 @@ end
 
 function addMythicAftermathEffect(player, tp, params)
     local tier = math.floor(tp / 1000);
-    player:addStatusEffectEx(dsp.effects.AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration, 0, tp);
+    local icon = "AFTERMATH_LV"..tier;
+    player:addStatusEffectEx(dsp.effects.AFTERMATH, dsp.effects[icon], tier, 0, params[tier].duration, 0, tp);
     for _,mod in pairs(params[tier].mods) do
         player:addMod(mod.id, mod.power(tp));
     end
@@ -1080,7 +1081,8 @@ end
 
 function addEmpyreanAftermathEffect(player, tp, params)
     local tier = math.floor(tp / 1000);
-    player:addStatusEffectEx(dsp.effects.AFTERMATH, _G["EFFECT_AFTERMATH_LV"..tier], tier, 0, params[tier].duration);
+    local icon = "AFTERMATH_LV"..tier;
+    player:addStatusEffectEx(dsp.effects.AFTERMATH, dsp.effects[icon], tier, 0, params[tier].duration);
     for _,mod in pairs(params[tier].mods) do
         player:addMod(mod.id, mod.power);
     end

@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         if (player:getCurrentMission(BASTOK) == THE_EMISSARY
         and player:getVar("MissionStatus") < 2) then
             player:setVar("MissionStatus",2);
-            player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
+            player:delKeyItem(dsp.kis.LETTER_TO_THE_CONSULS_BASTOK);
         end
     end
 end;

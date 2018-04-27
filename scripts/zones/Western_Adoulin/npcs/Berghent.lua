@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
     local FOOL = player:getQuestStatus(ADOULIN, FLAVORS_OF_OUR_LIVES);
     if (FOOL == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(BLIGHTBERRY)) then
+        if (player:hasKeyItem(dsp.kis.BLIGHTBERRY)) then
             -- Finishes Quest: 'Flavors of Our Lives'
             player:startEvent(87);
         else
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 87) then
         -- Finishing Quest: 'Flavors of Our Lives'
-        player:delKeyItem(BLIGHTBERRY);
+        player:delKeyItem(dsp.kis.BLIGHTBERRY);
         player:completeQuest(ADOULIN, FLAVORS_OF_OUR_LIVES);
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 300 * BAYLD_RATE);

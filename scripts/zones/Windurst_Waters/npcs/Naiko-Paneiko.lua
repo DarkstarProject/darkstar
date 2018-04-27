@@ -21,8 +21,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
-            player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:addKeyItem(dsp.kis.SPIRITED_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SPIRITED_STONE);
         end
     end
 
@@ -84,10 +84,10 @@ function onEventFinish(player,csid,option)
         player:addTitle(EDITORS_HATCHET_MAN);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);
-        player:delKeyItem(WINDURST_WOODS_SCOOP);
-        player:delKeyItem(WINDURST_WALLS_SCOOP);
-        player:delKeyItem(WINDURST_WATERS_SCOOP);
-        player:delKeyItem(PORT_WINDURST_SCOOP);
+        player:delKeyItem(dsp.kis.WINDURST_WOODS_SCOOP);
+        player:delKeyItem(dsp.kis.WINDURST_WALLS_SCOOP);
+        player:delKeyItem(dsp.kis.WINDURST_WATERS_SCOOP);
+        player:delKeyItem(dsp.kis.PORT_WINDURST_SCOOP);
         player:setVar("QuestMakingHeadlines_var",0);
         player:addFame(WINDURST,30);
         player:completeQuest(WINDURST,MAKING_HEADLINES);

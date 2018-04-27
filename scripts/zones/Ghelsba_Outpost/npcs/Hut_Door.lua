@@ -40,7 +40,7 @@ end;
 
 function onTrigger(player,npc)
 
-  if (player:hasKeyItem(ORCISH_HUT_KEY)) then
+  if (player:hasKeyItem(dsp.kis.ORCISH_HUT_KEY)) then
         if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
             player:startEvent(3);
         else
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
    if (csid == 3 or csid == 55) then
-      player:delKeyItem(ORCISH_HUT_KEY);
+      player:delKeyItem(dsp.kis.ORCISH_HUT_KEY);
       player:setVar("MissionStatus",4);
    else
         if (EventFinishBCNM(player,csid,option)) then

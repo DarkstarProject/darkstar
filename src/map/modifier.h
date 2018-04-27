@@ -209,6 +209,9 @@ enum class Mod
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
+    SMITE                     = 898, // Raises attack when using H2H or 2H weapons (256 scale)
+    TACTICAL_GUARD            = 899, // Tp increase when guarding
+
     HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap) Truncate at decimal, do not round.
     HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?) Truncate at decimal, do not round.
     HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 1024 base! (256 cap) Truncate at decimal, do not round.
@@ -326,6 +329,7 @@ enum class Mod
     MUG_EFFECT                = 835, // Mug effect as multiplier
     ACC_COLLAB_EFFECT         = 884, // Increases amount of enmity transferred for Accomplice/Collaborator
     HIDE_DURATION             = 885, // Hide duration increase (percentage based)
+    GILFINDER                 = 897, // Gilfinder, duh
 
     // Paladin
     HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
@@ -396,6 +400,7 @@ enum class Mod
 
     // Ninja
     UTSUSEMI                  = 307, // Everyone's favorite --tracks shadows.
+    UTSUSEMI_BONUS            = 900, // Extra shadows from gear
     NINJA_TOOL                = 308, // Percent chance to not use a tool.
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
 
@@ -710,9 +715,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 897, // stuff
-    // SPARE = 898, // stuff
-    // SPARE = 899, // stuff
+    // SPARE = 901, // stuff
+    // SPARE = 902, // stuff
+    // SPARE = 903, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

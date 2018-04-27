@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     if (cCollector == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >=4) then
         player:startEvent(251); -- Quest Start Dialogue
 
-    elseif (cCollector == QUEST_ACCEPTED and player:hasKeyItem(CURSEPAPER) == true and player:getVar("cCollectSilence") == 1 and player:getVar("cCollectCurse") == 1) then
+    elseif (cCollector == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.CURSEPAPER) == true and player:getVar("cCollectSilence") == 1 and player:getVar("cCollectCurse") == 1) then
         player:startEvent(252);        -- Quest Completion Dialogue
 
     else
@@ -44,12 +44,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 251) then
         player:addQuest(BASTOK,THE_CURSE_COLLECTOR);
-        player:addKeyItem(CURSEPAPER); -- Cursepaper
-        player:messageSpecial(KEYITEM_OBTAINED,CURSEPAPER);
+        player:addKeyItem(dsp.kis.CURSEPAPER); -- Cursepaper
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CURSEPAPER);
 
     elseif (csid == 252) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:delKeyItem(CURSEPAPER);
+            player:delKeyItem(dsp.kis.CURSEPAPER);
             player:setVar("cCollectSilence",0);
             player:setVar("cCollectCurse",0);
             player:addFame(BASTOK,30);

@@ -16,11 +16,11 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 2 and
-        player:hasKeyItem(ALTEPA_MOONPEBBLE) == false) then
+        player:hasKeyItem(dsp.kis.ALTEPA_MOONPEBBLE) == false) then
         if (not GetMobByID(EASTERN_SPHINX):isSpawned() and not GetMobByID(WESTERN_SPHINX):isSpawned()) then
             if (player:getVar("Mission6-1MobKilled") > 0) then
-                player:addKeyItem(ALTEPA_MOONPEBBLE);
-                player:messageSpecial(KEYITEM_OBTAINED,ALTEPA_MOONPEBBLE);
+                player:addKeyItem(dsp.kis.ALTEPA_MOONPEBBLE);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ALTEPA_MOONPEBBLE);
                 player:setVar("Mission6-1MobKilled",0);
                 player:setVar("MissionStatus",3);
             else

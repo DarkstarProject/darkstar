@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(CYAN_DEEP_SALT)) then
+    if (player:hasKeyItem(dsp.kis.CYAN_DEEP_SALT)) then
         player:startEvent(304);
     else
         player:startEvent(306);
@@ -29,7 +29,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 304 and option == 1) then
-        player:delKeyItem(CYAN_DEEP_SALT);
+        player:delKeyItem(dsp.kis.CYAN_DEEP_SALT);
     end
 
 end;

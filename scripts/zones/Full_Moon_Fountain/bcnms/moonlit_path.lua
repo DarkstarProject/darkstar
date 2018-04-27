@@ -59,8 +59,8 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        player:delKeyItem(MOON_BAUBLE);
-        player:addKeyItem(WHISPER_OF_THE_MOON);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_THE_MOON);
+        player:delKeyItem(dsp.kis.MOON_BAUBLE);
+        player:addKeyItem(dsp.kis.WHISPER_OF_THE_MOON);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_THE_MOON);
     end
 end;

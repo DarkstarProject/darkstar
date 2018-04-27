@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local cdate = player:getVar("theCrimsonTrial_date");
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
-    if (player:hasKeyItem(CRAWLER_BLOOD) == true and player:hasKeyItem(OLD_BOOTS) == true) then
+    if (player:hasKeyItem(dsp.kis.CRAWLER_BLOOD) == true and player:hasKeyItem(dsp.kis.OLD_BOOTS) == true) then
         player:startEvent(4);
     elseif (cprog == 1 and cdate == realday) then
         player:messageSpecial(EQUIPMENT_COMPLETELY_PURIFIED);
@@ -43,11 +43,11 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 4 and option == 1) then
-        player:delKeyItem(CRAWLER_BLOOD);
-        player:delKeyItem(OLD_BOOTS);
+        player:delKeyItem(dsp.kis.CRAWLER_BLOOD);
+        player:delKeyItem(dsp.kis.OLD_BOOTS);
         player:setVar("theCrimsonTrial_date", os.date("%j")); -- %M for next minute, %j for next day
         player:setVar("theCrimsonTrial_prog", 1);
-        player:messageSpecial(YOU_BURY_THE,OLD_BOOTS,CRAWLER_BLOOD);
+        player:messageSpecial(YOU_BURY_THE,dsp.kis.OLD_BOOTS,dsp.kis.CRAWLER_BLOOD);
     elseif (csid == 5) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14093); -- Warlock's Boots

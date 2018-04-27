@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
+    if (player:hasKeyItem(dsp.kis.BOOK_OF_TASKS) and player:hasKeyItem(dsp.kis.BOOK_OF_THE_WEST) == false) then
         player:startEvent(634);
     else
         player:showText(npc, 7817)-- nothing to report
@@ -34,8 +34,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 634) then
-        player:addKeyItem(BOOK_OF_THE_WEST);
-        player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_WEST);
+        player:addKeyItem(dsp.kis.BOOK_OF_THE_WEST);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.BOOK_OF_THE_WEST);
     end
 
 end;

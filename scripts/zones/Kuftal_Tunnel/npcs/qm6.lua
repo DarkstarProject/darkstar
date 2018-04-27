@@ -51,6 +51,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 13) then
         player:setVar("MissionStatus",4);
-        npcUtil.giveKeyItem(player, OLD_PIECE_OF_WOOD);
+        npcUtil.giveKeyItem(player, dsp.kis.OLD_PIECE_OF_WOOD);
     end
 end;

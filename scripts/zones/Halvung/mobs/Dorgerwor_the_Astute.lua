@@ -1,17 +1,13 @@
 -----------------------------------
--- Area: FeiYin
---  NM:  Dabotz's Ghost
+-- Area: Halvung
+--  MOB: Dorgerwor the Astute
 -----------------------------------
-require("scripts/globals/keyitems");
+mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", jobSpec.EES_TROLL);
 end;
 
 function onMobDeath(mob, player, isKiller)
-
-    if (player:hasKeyItem(AQUAFLORA3)) then
-        player:setVar("DabotzKilled",1);
-    end
-
 end;

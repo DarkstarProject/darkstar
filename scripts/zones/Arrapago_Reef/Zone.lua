@@ -42,11 +42,11 @@ function afterZoneIn(player)
 end;
 
 function onRegionEnter(player,region)
-    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.kis.EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(8);
     elseif (player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(14);
-    elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN)) then
+    elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(dsp.kis.EPHRAMADIAN_GOLD_COIN)) then
         player:startEvent(15);
     elseif (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_ACCEPTED and player:getVar("AgainstAllOdds") == 1) then
         player:startEvent(237);
@@ -72,8 +72,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 14) then
         player:completeMission(TOAU,PREVALENCE_OF_PIRATES);
         player:setVar("AhtUrganStatus",0);
-        player:addKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+        player:addKeyItem(dsp.kis.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
         player:addMission(TOAU,SHADES_OF_VENGEANCE);
     elseif (csid == 15) then
         player:setVar("AhtUrganStatus",1);

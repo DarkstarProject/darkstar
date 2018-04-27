@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 153) then
         player:completeMission(WOTG, THE_QUEEN_OF_THE_DANCE);
         player:addMission(WOTG, WHILE_THE_CAT_IS_AWAY);
-        player:delKeyItem(MAYAKOV_SHOW_TICKET);
+        player:delKeyItem(dsp.kis.MAYAKOV_SHOW_TICKET);
         player:setVar("QueenOfTheDance",0);
     end
 end;

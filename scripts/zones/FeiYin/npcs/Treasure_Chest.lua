@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1037,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: Sorcery of the North QUEST -----------
-        if (player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then
+        if (player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.FEIYIN_MAGIC_TOME) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -47,8 +47,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(FEIYIN_MAGIC_TOME);
-                    player:messageSpecial(KEYITEM_OBTAINED,FEIYIN_MAGIC_TOME); -- Fei'yin Magic Tome
+                    player:addKeyItem(dsp.kis.FEIYIN_MAGIC_TOME);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.FEIYIN_MAGIC_TOME); -- Fei'yin Magic Tome
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

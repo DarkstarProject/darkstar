@@ -69,7 +69,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(CLAMMING_KIT)) then
+    if (player:hasKeyItem(dsp.kis.CLAMMING_KIT)) then
         player:setLocalVar("ClammingPointID", npc:getID());
 
         if (GetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse") == 1) then

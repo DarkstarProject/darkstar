@@ -46,8 +46,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK, BLADE_OF_DARKNESS);
     elseif (csid == 130) then
         player:addQuest(BASTOK, BLADE_OF_DEATH);
-        player:addKeyItem(LETTER_FROM_ZEID);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ZEID);
+        player:addKeyItem(dsp.kis.LETTER_FROM_ZEID);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_FROM_ZEID);
     elseif (csid == 177) then
         player:setVar("[B7-2]Werei", 1);
     end

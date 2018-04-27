@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     local teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
 
     if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") == 0) then
-        player:startEvent(752,0,STAR_SEEKER);
+        player:startEvent(752,0,dsp.kis.STAR_SEEKER);
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") >= 1) then
         if (player:getVar("MissionStatus") < 4) then
             player:startEvent(753);
@@ -138,15 +138,15 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,8);
         end
     elseif (csid == 182 or csid == 687) and option ~= 1 then -- start
-        player:addKeyItem(CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED,CREATURE_COUNTER_MAGIC_DOLL);
+        player:addKeyItem(dsp.kis.CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",1);
         player:setVar("testingTime_start_day",VanadielDayOfTheYear());
         player:setVar("testingTime_start_hour",VanadielHour());
         player:setVar("testingTime_start_time",os.time());
     elseif (csid == 198 or csid == 0x00C7 or csid == 202 or csid == 208) then -- failed testing time
-        player:delKeyItem(CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED + 1,CREATURE_COUNTER_MAGIC_DOLL);
+        player:delKeyItem(dsp.kis.CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(KEYITEM_OBTAINED + 1,dsp.kis.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",0);
         player:setVar("testingTime_crea_count",0);
         player:setVar("testingTime_start_day",0);
@@ -169,8 +169,8 @@ function onEventFinish(player,csid,option)
         player:setVar("testingTime_start_time",0);
     elseif (csid == 752) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(STAR_SEEKER);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_SEEKER);
+        player:addKeyItem(dsp.kis.STAR_SEEKER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_SEEKER);
         player:addTitle(FUGITIVE_MINISTER_BOUNTY_HUNTER);
 
     elseif (csid == 758) then

@@ -18,7 +18,7 @@ end;
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
-        if (player:hasKeyItem(CRIMSON_ORB)) then
+        if (player:hasKeyItem(dsp.kis.CRIMSON_ORB)) then
             player:startEvent(42);
         else
             player:messageSpecial(CAVE_HAS_BEEN_SEALED_OFF);

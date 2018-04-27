@@ -566,6 +566,12 @@ uint16 CBattleEntity::ATT()
     if (this->objtype & TYPE_PC)
     {
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
+
+        // Smite applies when using 2H or H2H weapons
+        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+        {
+            ATT += static_cast<int32>(ATT * this->getMod(Mod::SMITE) / 256.f); // Divide smite value by 256
+        }
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
@@ -1419,7 +1425,6 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 actionTarget.messageID = 70;
                 actionTarget.reaction = REACTION_PARRY;
                 actionTarget.speceffect = SPECEFFECT_NONE;
-
                 battleutils::HandleTacticalParry(PTarget);
                 battleutils::HandleIssekiganEnmityBonus(PTarget, this);
             }
@@ -1497,6 +1502,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (attack.IsGuarded())
                 {
                     actionTarget.reaction = REACTION_GUARD;
+                    battleutils::HandleTacticalGuard(PTarget);
                 }
 
                 // Apply Feint

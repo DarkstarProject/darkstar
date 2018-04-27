@@ -19,15 +19,15 @@ end;
 function onTrigger(player,npc)
 
     TrialByFire = player:getQuestStatus(OUTLANDS,TRIAL_BY_FIRE);
-    WhisperOfFlames = player:hasKeyItem(WHISPER_OF_FLAMES);
+    WhisperOfFlames = player:hasKeyItem(dsp.kis.WHISPER_OF_FLAMES);
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
 
     if ((TrialByFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 6) or (TrialByFire == QUEST_COMPLETED and realday ~= player:getVar("TrialByFire_date"))) then
-        player:startEvent(270,0,TUNING_FORK_OF_FIRE); -- Start and restart quest "Trial by Fire"
-    elseif (TrialByFire == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_FIRE) == false and WhisperOfFlames == false) then
-        player:startEvent(285,0,TUNING_FORK_OF_FIRE); -- Defeat against Ifrit : Need new Fork
+        player:startEvent(270,0,dsp.kis.TUNING_FORK_OF_FIRE); -- Start and restart quest "Trial by Fire"
+    elseif (TrialByFire == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TUNING_FORK_OF_FIRE) == false and WhisperOfFlames == false) then
+        player:startEvent(285,0,dsp.kis.TUNING_FORK_OF_FIRE); -- Defeat against Ifrit : Need new Fork
     elseif (TrialByFire == QUEST_ACCEPTED and WhisperOfFlames == false) then
-        player:startEvent(271,0,TUNING_FORK_OF_FIRE,0);
+        player:startEvent(271,0,dsp.kis.TUNING_FORK_OF_FIRE,0);
     elseif (TrialByFire == QUEST_ACCEPTED and WhisperOfFlames) then
         numitem = 0;
 
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         if (player:hasItem(1203)) then numitem = numitem + 8; end   -- Egil's Torch
         if (player:hasSpell(298)) then numitem = numitem + 32; end  -- Ability to summon Ifrit
 
-        player:startEvent(273,0,TUNING_FORK_OF_FIRE,0,0,numitem);
+        player:startEvent(273,0,dsp.kis.TUNING_FORK_OF_FIRE,0,0,numitem);
     else
         player:startEvent(274); -- Standard dialog
     end
@@ -59,11 +59,11 @@ function onEventFinish(player,csid,option)
         end
         player:addQuest(OUTLANDS,TRIAL_BY_FIRE);
         player:setVar("TrialByFire_date", 0);
-        player:addKeyItem(TUNING_FORK_OF_FIRE);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_FIRE);
+        player:addKeyItem(dsp.kis.TUNING_FORK_OF_FIRE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_FIRE);
     elseif (csid == 285) then
-        player:addKeyItem(TUNING_FORK_OF_FIRE);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_FIRE);
+        player:addKeyItem(dsp.kis.TUNING_FORK_OF_FIRE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TUNING_FORK_OF_FIRE);
     elseif (csid == 273) then
         item = 0;
         if (option == 1) then item = 17665;         -- Ifrits Blade
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
                 player:messageSpecial(ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_FIRE);
-            player:delKeyItem(WHISPER_OF_FLAMES);
+            player:delKeyItem(dsp.kis.WHISPER_OF_FLAMES);
             player:setVar("TrialByFire_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(KAZHAM,30);
             player:completeQuest(OUTLANDS,TRIAL_BY_FIRE);

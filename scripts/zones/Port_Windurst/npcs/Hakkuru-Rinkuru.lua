@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 1) then
             player:startEvent(91);
         elseif (MissionStatus == 3) then
-            player:startEvent(94,0,CRACKED_MANA_ORBS); -- Finish Mission 1-1
+            player:startEvent(94,0,dsp.kis.CRACKED_MANA_ORBS); -- Finish Mission 1-1
         end
     elseif (player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
         player:startEvent(147);
@@ -182,8 +182,8 @@ function onEventFinish(player,csid,option)
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
     elseif (csid == 456) then
             player:setVar("MissionStatus",1);
-            player:addKeyItem(SOUTHWESTERN_STAR_CHARM);
-            player:messageSpecial(KEYITEM_OBTAINED,SOUTHWESTERN_STAR_CHARM);
+            player:addKeyItem(dsp.kis.SOUTHWESTERN_STAR_CHARM);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SOUTHWESTERN_STAR_CHARM);
     end
 
 end;

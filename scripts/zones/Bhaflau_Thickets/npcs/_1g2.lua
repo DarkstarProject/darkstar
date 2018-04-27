@@ -15,11 +15,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then
+    if (player:hasKeyItem(dsp.kis.MAMOOL_JA_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
-        if (player:hasKeyItem(ASSAULT_ARMBAND)) then
+        if (player:hasKeyItem(dsp.kis.ASSAULT_ARMBAND)) then
             armband = 1;
         end
         player:startEvent(505, assaultid, -4, 0, recommendedLevel, 2, armband);
@@ -51,7 +51,7 @@ function onEventUpdate(player,csid,option,target)
 
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            if (not (v:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+            if (not (v:hasKeyItem(dsp.kis.MAMOOL_JA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
@@ -82,8 +82,8 @@ function onInstanceCreated(player,target,instance)
         player:setVar("AssaultCap", 0);
         player:setInstance(instance);
         player:instanceEntry(target,4);
-        player:delKeyItem(MAMOOL_JA_ASSAULT_ORDERS);
-        player:delKeyItem(ASSAULT_ARMBAND);
+        player:delKeyItem(dsp.kis.MAMOOL_JA_ASSAULT_ORDERS);
+        player:delKeyItem(dsp.kis.ASSAULT_ARMBAND);
 
         local party = player:getParty();
         if (party ~= nil) then
@@ -91,7 +91,7 @@ function onInstanceCreated(player,target,instance)
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
                     v:startEvent(108, 2);
-                    v:delKeyItem(MAMOOL_JA_ASSAULT_ORDERS);
+                    v:delKeyItem(dsp.kis.MAMOOL_JA_ASSAULT_ORDERS);
                 end
             end
         end

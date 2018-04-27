@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
     if (csid == 448) then
         player:addMission(SANDORIA,JOURNEY_TO_WINDURST);
         player:setVar("MissionStatus",3);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
+        player:delKeyItem(dsp.kis.LETTER_TO_THE_CONSULS_SANDORIA);
     elseif (csid == 457) then
         player:setVar("MissionStatus",7);
         player:tradeComplete();
@@ -82,9 +82,9 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",7);
     elseif (csid == 467) then
         player:addMission(SANDORIA,JOURNEY_ABROAD);
-        player:delKeyItem(KINDRED_CREST);
+        player:delKeyItem(dsp.kis.KINDRED_CREST);
         player:setVar("MissionStatus",11);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:addKeyItem(dsp.kis.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.KINDRED_REPORT);
     end
 end;

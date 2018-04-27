@@ -8,36 +8,56 @@ dsp = dsp or {}
 
 
 ------------------------------------
+-- Zone Misc Flags
+------------------------------------
+
+dsp.zoneMisc =
+{
+    NONE       = 0x0000, -- Able to be used in any area
+    ESCAPE     = 0x0001, -- Ability to use Escape Spell
+    FELLOW     = 0x0002, -- Ability to summon Fellow NPC
+    MOUNT      = 0x0004, -- Ability to use Chocobos and mounts
+    MAZURKA    = 0x0008, -- Ability to use Mazurka Spell
+    TRACTOR    = 0x0010, -- Ability to use Tractor Spell
+    MOGMENU    = 0x0020, -- Ability to communicate with Nomad Moogle (menu access mog house)
+    COSTUME    = 0x0040, -- Ability to use a Costumes
+    PET        = 0x0080, -- Ability to summon Pets
+    TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
+    YELL       = 0x0400  -- Send and receive /yell commands
+}
+
+------------------------------------
 -- Job IDs
 ------------------------------------
 
-JOBS =
+dsp.jobs =
 {
-    ["NONE"] = 0,
-    ["WAR"] =  1,
-    ["MNK"] =  2,
-    ["WHM"] =  3,
-    ["BLM"] =  4,
-    ["RDM"] =  5,
-    ["THF"] =  6,
-    ["PLD"] =  7,
-    ["DRK"] =  8,
-    ["BST"] =  9,
-    ["BRD"] = 10,
-    ["RNG"] = 11,
-    ["SAM"] = 12,
-    ["NIN"] = 13,
-    ["DRG"] = 14,
-    ["SMN"] = 15,
-    ["BLU"] = 16,
-    ["COR"] = 17,
-    ["PUP"] = 18,
-    ["DNC"] = 19,
-    ["SCH"] = 20,
-    ["GEO"] = 21,
-    ["RUN"] = 22
+    NONE            =  0,
+    WAR             =  1,
+    MNK             =  2,
+    WHM             =  3,
+    BLM             =  4,
+    RDM             =  5,
+    THF             =  6,
+    PLD             =  7,
+    DRK             =  8,
+    BST             =  9,
+    BRD             = 10,
+    RNG             = 11,
+    SAM             = 12,
+    NIN             = 13,
+    DRG             = 14,
+    SMN             = 15,
+    BLU             = 16,
+    COR             = 17,
+    PUP             = 18,
+    DNC             = 19,
+    SCH             = 20,
+    GEO             = 21,
+    RUN             = 22,
 }
-MAX_JOB_TYPE = 23
+dsp.MAX_JOB_TYPE = 23;
+
 
 ------------------------------------
 -- STATUSES
@@ -1073,6 +1093,7 @@ MOD_TAME               = 304
 MOD_RECYCLE            = 305
 MOD_ZANSHIN            = 306
 MOD_UTSUSEMI           = 307
+MOD_UTSUSEMI_BONUS     = 900 -- Extra shadows from gear
 MOD_NINJA_TOOL         = 308
 MOD_BLUE_POINTS        = 309
 MOD_DMG_REFLECT        = 316
@@ -1219,7 +1240,8 @@ MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
 MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
 MOD_MUG_EFFECT               = 835 -- Mug effect as multiplier
 MOD_ACC_COLLAB_EFFECT        = 884 -- Increases amount of enmity transferred
-MOD_HIDE_DURATION            = 885 -- Hide duration increase (percentage based)
+MOD_HIDE_DURATION            = 885 -- Hide duration increase (percentage based
+MOD_GILFINDER                = 897 -- Gil % increase
 MOD_REVERSE_FLOURISH_EFFECT  = 836 -- Reverse Flourish effect in tenths of squared term multiplier
 MOD_SENTINEL_EFFECT          = 837 -- Sentinel effect in percents
 MOD_REGEN_MULTIPLIER         = 838 -- Regen base multiplier
@@ -1231,7 +1253,7 @@ MOD_SHADOW_BIND_EXT           = 425 -- Extends the time of shadowbind
 MOD_ABSORB_PHYSDMG_TO_MP      = 426 -- Absorbs a percentage of physical damage taken to MP.
 MOD_ENMITY_REDUCTION_PHYSICAL = 427 -- Reduces Enmity decrease when taking physical damage
 MOD_SHIELD_MASTERY_TP         = 485 -- Shield mastery TP bonus when blocking with a shield
-MOD_PERFECT_COUNTER_ATT       = 428 -- Raises weapon damage by 20 when countering while under the Perfect Counter dsp.effects. This also affects Weapon Rank (though not if fighting barehanded).
+MOD_PERFECT_COUNTER_ATT       = 428 -- Raises weapon damage by 20 when countering while under the Perfect Counter effects. This also affects Weapon Rank (though not if fighting barehanded).
 MOD_FOOTWORK_ATT_BONUS        = 429 -- Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
 
 MOD_MINNE_EFFECT        = 433 --
@@ -1429,12 +1451,15 @@ MOD_ANCIENT_CIRCLE_DURATION = 859
 MOD_CURE2MP_PERCENT         = 860 -- Converts % of "Cure" amount to MP
 MOD_SAVETP                  = 880 -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
 
+MOD_SMITE                   = 898 -- Att increase with H2H or 2H weapons
+MOD_TACTICAL_GUARD          = 899 -- Tp gain increase when guarding
+
 
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 -- 570 - 825 used by WS DMG mods these are not spares.
--- SPARE = 897 -- stuff
--- SPARE = 898 -- stuff
--- SPARE = 899 -- stuff
+-- SPARE = 900 -- stuff
+-- SPARE = 901 -- stuff
+-- SPARE = 902 -- stuff
 
 ------------------------------------
 -- Merit Definitions

@@ -36,8 +36,8 @@ function onTrade(player,npc,trade)
         if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 2) then
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.kis.SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SCOWLING_STONE);
         end
     end
 end;
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 736) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:delKeyItem(TORN_OUT_PAGES);
+            player:delKeyItem(dsp.kis.TORN_OUT_PAGES);
             player:addItem(14760,1);
             player:messageSpecial(ITEM_OBTAINED,14760);
             player:addFame(SANDORIA,30);

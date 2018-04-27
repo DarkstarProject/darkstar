@@ -23,7 +23,7 @@ function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[CS_Apollyon]UniqueID"));
     player:setVar("LimbusID",1294);    
-    player:delKeyItem(COSMOCLEANSE);
+    player:delKeyItem(dsp.kis.COSMOCLEANSE);
 end;
 
 -- Leaving the by every mean possible, given by the LeaveCode

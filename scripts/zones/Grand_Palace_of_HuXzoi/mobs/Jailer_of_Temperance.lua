@@ -2,6 +2,8 @@
 -- Area: Grand Palace of Hu'Xzoi
 --  NM:  Jailer of Temperance
 -----------------------------------
+require("scripts/zones/Grand_Palace_of_HuXzoi/globals");
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
 require("scripts/globals/magic");
 -----------------------------------
@@ -10,8 +12,6 @@ function onMobSpawn(mob)
     -- Set AnimationSub to 0, put it in pot form
     -- Change it's damage resists. Pot for take
 
-    -- Give it two hour
-    mob:setMod(MOBMOD_MAIN_2HOUR, 1);
     -- Change animation to pot
     mob:AnimationSub(0);
     -- Set the damage resists
@@ -98,11 +98,10 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    -- Set PH back to normal, then set respawn time
-    local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
+    local ph = mob:getLocalVar("ph");
     DisallowRespawn(mob:getID(), true);
-    DisallowRespawn(PH, false);
-    SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time() + 900); -- 15 mins
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-    SetServerVariable("[SEA]Jailer_of_Temperance_PH", 0);
+    DisallowRespawn(ph, false);
+    GetMobByID(ph):setRespawnTime(GetMobRespawnTime(ph));
+    mob:setLocalVar("pop", os.time() + 900); -- 15 mins
+    GRAND_PALACE_OF_HUXZOI.pickTemperancePH();
 end;

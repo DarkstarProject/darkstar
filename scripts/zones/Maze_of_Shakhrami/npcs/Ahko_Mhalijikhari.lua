@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     --player:startEvent(64);
     if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238) then
 
-        if (player:hasKeyItem(INDIGESTED_MEAT)) then
+        if (player:hasKeyItem(dsp.kis.INDIGESTED_MEAT)) then
             player:startEvent(65); -- After NM's dead
         elseif (player:hasStatusEffect(dsp.effects.LEVEL_RESTRICTION) == false) then
             player:startEvent(62); --

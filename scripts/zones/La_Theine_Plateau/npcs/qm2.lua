@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST, HITTING_THE_MARQUISATE);
         player:addTitle(PARAGON_OF_THIEF_EXCELLENCE);
         player:setVar("hittingTheMarquisateNanaaCS",0);
-        player:delKeyItem(CAT_BURGLARS_NOTE);
+        player:delKeyItem(dsp.kis.CAT_BURGLARS_NOTE);
         end
     end
 end;

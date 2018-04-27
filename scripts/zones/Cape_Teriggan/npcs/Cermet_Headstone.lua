@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 
     -- WANDERING SOULS
     if (trade:hasItemQty(949,1) and trade:getItemCount() == 1) then
-        if (not player:hasCompleteQuest(OUTLANDS,WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(WIND_FRAGMENT))) then
+        if (not player:hasCompleteQuest(OUTLANDS,WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.kis.WIND_FRAGMENT))) then
              player:addQuest(OUTLANDS,WANDERING_SOULS);
              player:startEvent(202,949);
         else
@@ -30,30 +30,30 @@ function onTrigger(player,npc)
 
     -- HEADSTONE PILGRIMAGE
     if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
-        if (player:hasKeyItem(WIND_FRAGMENT)) then
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,WIND_FRAGMENT);
+        if (player:hasKeyItem(dsp.kis.WIND_FRAGMENT)) then
+            player:messageSpecial(ALREADY_OBTAINED_FRAG,dsp.kis.WIND_FRAGMENT);
         elseif (os.time() >= npc:getLocalVar("cooldown")) then
             if (not GetMobByID(AXESARION_THE_WANDERER):isSpawned()) then
-                player:startEvent(200,WIND_FRAGMENT);
+                player:startEvent(200,dsp.kis.WIND_FRAGMENT);
             else
                 player:messageSpecial(SOMETHING_BETTER);
             end
         else
-            player:addKeyItem(WIND_FRAGMENT);
+            player:addKeyItem(dsp.kis.WIND_FRAGMENT);
             if (
-                player:hasKeyItem(ICE_FRAGMENT) and
-                player:hasKeyItem(EARTH_FRAGMENT) and
-                player:hasKeyItem(WATER_FRAGMENT) and
-                player:hasKeyItem(FIRE_FRAGMENT) and
-                player:hasKeyItem(LIGHTNING_FRAGMENT) and
-                player:hasKeyItem(LIGHT_FRAGMENT)
+                player:hasKeyItem(dsp.kis.ICE_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.EARTH_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.WATER_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.FIRE_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.LIGHTNING_FRAGMENT) and
+                player:hasKeyItem(dsp.kis.LIGHT_FRAGMENT)
             ) then
-                player:messageSpecial(FOUND_ALL_FRAGS,WIND_FRAGMENT);
+                player:messageSpecial(FOUND_ALL_FRAGS,dsp.kis.WIND_FRAGMENT);
                 player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
-                player:messageSpecial(KEYITEM_OBTAINED,WIND_FRAGMENT);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WIND_FRAGMENT);
             end
         end
 

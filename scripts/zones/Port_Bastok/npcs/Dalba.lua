@@ -209,7 +209,7 @@ function onEventFinish(player,csid,option)
         elseif (option ==  52) then        -- Ayame and Kaede(pt.5).
             player:startEvent(246);
         -- elseif (option ==  53) then        -- Trial by Earth.
-        --     player:startEvent(250,0,TUNING_FORK_OF_EARTH,1);
+        --     player:startEvent(250,0,dsp.kis.TUNING_FORK_OF_EARTH,1);
         elseif (option ==  54) then        -- The Walls of Your Mind(pt.1).
             player:startEvent(286);
         elseif (option ==  55) then        -- The Walls of Your Mind(pt.2).
@@ -223,7 +223,7 @@ function onEventFinish(player,csid,option)
         -- elseif (option ==  59) then        -- Out of the Depths(pt.2).
         --     player:startEvent(309,0,0,0,601); -- 601 = Old Nametag
         elseif (option ==  65) then        -- The Puppet Master(pt.1).
-            player:startEvent(256,0,TUNING_FORK_OF_EARTH,0,1169,0,0,0,0); -- 1169 = Earth Pendulum
+            player:startEvent(256,0,dsp.kis.TUNING_FORK_OF_EARTH,0,1169,0,0,0,0); -- 1169 = Earth Pendulum
         elseif (option ==  66) then        -- The Puppet Master(pt.2).
             player:startEvent(258);
         elseif (option ==  67) then        -- 20 in Pirate Years(pt.1).

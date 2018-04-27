@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
+    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
     local itemID = trade:getItemId();
     local itemList =
     {
@@ -47,10 +47,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
+    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
 
     if (player:getFameLevel(WINDURST) >= 2) then
-        if (player:hasKeyItem(CHOCOBO_LICENSE)) then
+        if (player:hasKeyItem(dsp.kis.CHOCOBO_LICENSE)) then
             if (QuestStatus ~= QUEST_AVAILABLE) then
                 player:startEvent(103);
             elseif (QuestStatus == QUEST_AVAILABLE) then
@@ -72,17 +72,17 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
+    local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
     local payout = player:getVar("ANTIQUE_PAYOUT");
 
     if (csid == 101) then
-        player:addQuest(OTHER_AREAS, ORLANDO_S_ANTIQUES);
+        player:addQuest(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
     elseif (csid == 102) then
         player:tradeComplete();
         player:addFame(WINDURST,10);
         player:addGil(payout);
         player:messageSpecial(GIL_OBTAINED,payout);
-        player:completeQuest(OTHER_AREAS, ORLANDO_S_ANTIQUES);
+        player:completeQuest(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
         player:setVar("ANTIQUE_PAYOUT", 0);
         player:setLocalVar("OrlandoRepeat", 0);
     elseif (csid == 103) then

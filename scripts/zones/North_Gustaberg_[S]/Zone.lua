@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:addQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
-        player:addKeyItem(CLUMP_OF_ANIMAL_HAIR);
-        player:messageSpecial(KEYITEM_OBTAINED,CLUMP_OF_ANIMAL_HAIR);
+        player:addKeyItem(dsp.kis.CLUMP_OF_ANIMAL_HAIR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CLUMP_OF_ANIMAL_HAIR);
     end
 end;

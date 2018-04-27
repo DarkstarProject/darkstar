@@ -1,10 +1,8 @@
 -----------------------------------
--- Area:
---  MOB: Chigoe
+-- Area: Grauberg [S]
+--   NM: Sarcopsylla
 -----------------------------------
-
---require("scripts/globals/titles");
-mixins = { require("scripts/mixins/families/chigoe") }
+mixins = {require("scripts/mixins/families/chigoe")};
 -----------------------------------
 
 function onMobSpawn(mob)

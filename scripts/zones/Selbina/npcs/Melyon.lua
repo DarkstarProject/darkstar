@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(OTHER_AREAS,ONLY_THE_BEST) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,ONLY_THE_BEST) ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(4366,5) == true and trade:getGil() == 0 and trade:getItemCount() == 5) then
             player:startEvent(62); -- La Theine Cabbage x5
 
@@ -33,8 +33,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
-            player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:addKeyItem(dsp.kis.SOMBER_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SOMBER_STONE);
         end
     end
 
@@ -42,7 +42,7 @@ end;
 
 function onTrigger(player,npc)
 
-    OnlyTheBest = player:getQuestStatus(OTHER_AREAS,ONLY_THE_BEST);
+    OnlyTheBest = player:getQuestStatus(OTHER_AREAS_LOG,ONLY_THE_BEST);
 
     if (OnlyTheBest == QUEST_AVAILABLE) then
         player:startEvent(60,4366,629,919); -- Start quest "Only the Best"
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 60 and option == 10) then
-        player:addQuest(OTHER_AREAS,ONLY_THE_BEST);
+        player:addQuest(OTHER_AREAS_LOG,ONLY_THE_BEST);
     elseif (csid == 62) then
         player:tradeComplete();
         player:addGil(100);
@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:addFame(BASTOK, 10);
         player:addFame(SANDORIA, 10);
         player:addFame(JEUNO, 10);
-        player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
+        player:completeQuest(OTHER_AREAS_LOG,ONLY_THE_BEST);
     elseif (csid == 63) then
         player:tradeComplete();
         player:addGil(120);
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         player:addFame(BASTOK, 20);
         player:addFame(SANDORIA, 20);
         player:addFame(JEUNO, 20);
-        player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
+        player:completeQuest(OTHER_AREAS_LOG,ONLY_THE_BEST);
     elseif (csid == 64) then
         player:tradeComplete();
         player:addGil(600);
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
         player:addFame(BASTOK, 30);
         player:addFame(SANDORIA, 30);
         player:addFame(JEUNO, 30);
-        player:completeQuest(OTHER_AREAS,ONLY_THE_BEST);
+        player:completeQuest(OTHER_AREAS_LOG,ONLY_THE_BEST);
     end
 
 end;

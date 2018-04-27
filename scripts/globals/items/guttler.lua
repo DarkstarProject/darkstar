@@ -60,7 +60,7 @@ function onWeaponskill(user, target, wsid, tp, action)
                 end
             end
             -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("dsp.effects.LOSE", NAME_EFFECT_LOSE, aftermathLost);
+            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
         end
     end
 end

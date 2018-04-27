@@ -23,10 +23,10 @@ function onTrigger(player,npc)
         LEGENDARY = 1;
     end
 
-    if (player:hasKeyItem(LEGION_TOME_PAGE_MAXIMUS)) then
+    if (player:hasKeyItem(dsp.kis.LEGION_TOME_PAGE_MAXIMUS)) then
         CAPACITY = CAPACITY+2; -- Enable 36 combatant option
     end
-    if (player:hasKeyItem(LEGION_TOME_PAGE_MINIMUS)) then
+    if (player:hasKeyItem(dsp.kis.LEGION_TOME_PAGE_MINIMUS)) then
         CAPACITY = CAPACITY+1; -- Enable 18 combatant option
     end
 

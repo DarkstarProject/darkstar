@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
         local zone = player:getZoneID();
         local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
         local listAF = getAFbyZone(zone);
-        if (AFHandsActivated == 10 and player:hasKeyItem(OLD_GAUNTLETS) == false) then
+        if (AFHandsActivated == 10 and player:hasKeyItem(dsp.kis.OLD_GAUNTLETS) == false) then
             questItemNeeded = 1;
         else
             for nb = 1,#listAF,3 do
@@ -61,8 +61,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(OLD_GAUNTLETS);
-                    player:messageSpecial(KEYITEM_OBTAINED,OLD_GAUNTLETS); -- Old Gauntlets (KI)
+                    player:addKeyItem(dsp.kis.OLD_GAUNTLETS);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.OLD_GAUNTLETS); -- Old Gauntlets (KI)
                 elseif (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
@@ -72,8 +72,8 @@ function onTrade(player,npc,trade)
                         end
                     end
                 elseif (player:getVar("UnderOathCS") == 3) then   -- Under Oath - PLD AF3
-                    player:addKeyItem(MIQUES_PAINTBRUSH);
-                    player:messageSpecial(KEYITEM_OBTAINED,MIQUES_PAINTBRUSH);
+                    player:addKeyItem(dsp.kis.MIQUES_PAINTBRUSH);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MIQUES_PAINTBRUSH);
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS)==QUEST_ACCEPTED and player:hasKeyItem(SMALL_STARFRUIT)) then
+    if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS)==QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.SMALL_STARFRUIT)) then
         player:startEvent(129);
     elseif (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_AVAILABLE) then
         if (player:getCurrentMission(WOTG) == CAIT_SITH or player:hasCompletedMission(WOTG, CAIT_SITH)) then
@@ -35,9 +35,9 @@ function onEventFinish(player,csid,option)
     if (csid == 129) then
         player:addItem(4144); -- hi-elixir
         player:messageSpecial(ITEM_OBTAINED, 4144);
-        player:delKeyItem(SMALL_STARFRUIT);
-        player:addKeyItem(BRASS_RIBBON_OF_SERVICE);
-        player:messageSpecial(KEYITEM_OBTAINED, BRASS_RIBBON_OF_SERVICE);
+        player:delKeyItem(dsp.kis.SMALL_STARFRUIT);
+        player:addKeyItem(dsp.kis.BRASS_RIBBON_OF_SERVICE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.BRASS_RIBBON_OF_SERVICE);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STIRS);
     elseif (csid == 151) then
         player:addQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);

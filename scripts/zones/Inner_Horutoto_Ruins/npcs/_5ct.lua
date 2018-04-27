@@ -53,8 +53,8 @@ function onEventFinish(player,csid,option)
     if (csid == 56) then
         player:setVar("MissionStatus",3);
         player:setVar("MissionStatus_rv", 0);
-        player:addKeyItem(CRACKED_MANA_ORBS);
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MANA_ORBS);
+        player:addKeyItem(dsp.kis.CRACKED_MANA_ORBS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CRACKED_MANA_ORBS);
     elseif (csid == 57) then
         -- Opened the wrong one
         player:setVar("MissionStatus_op5", 2);

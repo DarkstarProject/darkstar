@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*400);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
         player:setVar("QuestCrisisMaking_var",0);
-        player:delKeyItem(OFF_OFFERING);
+        player:delKeyItem(dsp.kis.OFF_OFFERING);
         player:addFame(WINDURST,75);
         player:completeQuest(WINDURST,A_CRISIS_IN_THE_MAKING);
         player:needToZone(true);
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*400);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
         player:setVar("QuestCrisisMaking_var",0);
-        player:delKeyItem(OFF_OFFERING);
+        player:delKeyItem(dsp.kis.OFF_OFFERING);
         player:addFame(WINDURST,8);
         player:needToZone(true);
 
@@ -117,8 +117,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 556) then
         player:tradeComplete();
         player:setVar("IASvar",4);
-        player:addKeyItem(RANPIMONPIS_SPECIAL_STEW);
-        player:messageSpecial(KEYITEM_OBTAINED,RANPIMONPIS_SPECIAL_STEW);
+        player:addKeyItem(dsp.kis.RANPIMONPIS_SPECIAL_STEW);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RANPIMONPIS_SPECIAL_STEW);
 
     end
 end;

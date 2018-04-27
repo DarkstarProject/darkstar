@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(YAGUDO_TORCH) == false and player:getVar("YagudoTorchCS") == 0) then
+    if (player:hasKeyItem(dsp.kis.SILVER_BELL) and player:hasKeyItem(dsp.kis.YAGUDO_TORCH) == false and player:getVar("YagudoTorchCS") == 0) then
         player:startEvent(80);
     else
         player:startEvent(79);

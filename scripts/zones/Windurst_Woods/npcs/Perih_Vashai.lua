@@ -50,9 +50,9 @@ function onTrigger(player,npc)
     elseif (TheFangedOne ~= QUEST_COMPLETED) then
         if (TheFangedOne == QUEST_AVAILABLE and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
             player:startEvent(351);
-        elseif (TheFangedOne == QUEST_ACCEPTED and player:hasKeyItem(OLD_TIGERS_FANG) == false) then
+        elseif (TheFangedOne == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.OLD_TIGERS_FANG) == false) then
             player:startEvent(352);
-        elseif (player:hasKeyItem(OLD_TIGERS_FANG) and player:getVar("TheFangedOne_Event") ~= 1) then
+        elseif (player:hasKeyItem(dsp.kis.OLD_TIGERS_FANG) and player:getVar("TheFangedOne_Event") ~= 1) then
             player:startEvent(357);
         elseif (player:getVar("TheFangedOne_Event") == 1) then
             player:startEvent(358);
@@ -107,13 +107,13 @@ function onEventFinish(player,csid,option)
         player:setVar("TheFangedOneCS", 1);
     elseif (csid == 357 or csid == 358) then
         if (player:getFreeSlotsCount(0) >= 1 and player:hasItem(13117) == false) then
-            player:delKeyItem(OLD_TIGERS_FANG);
+            player:delKeyItem(dsp.kis.OLD_TIGERS_FANG);
             player:setVar("TheFangedOne_Event",0);
             player:setVar("TheFangedOneCS",0);
             player:addTitle(THE_FANGED_ONE);
             player:addItem(13117);
             player:messageSpecial(ITEM_OBTAINED,13117);
-            player:unlockJob(JOBS.RNG);
+            player:unlockJob(dsp.jobs.RNG);
             player:messageSpecial(PERIH_VASHAI_DIALOG);
             player:addFame(WINDURST, 30);
             player:completeQuest(WINDURST,THE_FANGED_ONE);
@@ -123,8 +123,8 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 523) then -- start quest RNG AF1
         player:addQuest(WINDURST,SIN_HUNTING);
-        player:addKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);
-        player:messageSpecial(KEYITEM_OBTAINED,CHIEFTAINNESS_TWINSTONE_EARRING);
+        player:addKeyItem(dsp.kis.CHIEFTAINNESS_TWINSTONE_EARRING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CHIEFTAINNESS_TWINSTONE_EARRING);
         player:setVar("sinHunting",1);
     elseif (csid == 527) then -- complete quest RNG AF1
         if (player:getFreeSlotsCount() == 0) then
@@ -133,8 +133,8 @@ function onEventFinish(player,csid,option)
             player:addItem(17188);
             player:messageSpecial(ITEM_OBTAINED,17188);
             player:completeQuest(WINDURST,SIN_HUNTING);
-            player:delKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);
-            player:delKeyItem(PERCHONDS_ENVELOPE);
+            player:delKeyItem(dsp.kis.CHIEFTAINNESS_TWINSTONE_EARRING);
+            player:delKeyItem(dsp.kis.PERCHONDS_ENVELOPE);
             player:setVar("sinHunting",0);
         end
     elseif (csid == 531) then -- start RNG AF2
@@ -162,7 +162,7 @@ function onEventFinish(player,csid,option)
             player:addItem(14099);
             player:messageSpecial(ITEM_OBTAINED,14099);
             player:completeQuest(WINDURST,UNBRIDLED_PASSION);
-            player:delKeyItem(KOHS_LETTER);
+            player:delKeyItem(dsp.kis.KOHS_LETTER);
             player:setVar("unbridledPassion",0);
         end
     elseif (csid == 686) then

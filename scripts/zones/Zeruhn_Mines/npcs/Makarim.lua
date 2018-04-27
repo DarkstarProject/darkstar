@@ -18,7 +18,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(BASTOK) == THE_ZERUHN_REPORT) then
-        if (player:hasKeyItem(ZERUHN_REPORT)) then
+        if (player:hasKeyItem(dsp.kis.ZERUHN_REPORT)) then
             player:messageSpecial(MAKARIM_DIALOG_I);
         else
             player:startEvent(121);
@@ -39,8 +39,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 121) then
-        player:addKeyItem(ZERUHN_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,ZERUHN_REPORT);
+        player:addKeyItem(dsp.kis.ZERUHN_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ZERUHN_REPORT);
     end
 
 end;

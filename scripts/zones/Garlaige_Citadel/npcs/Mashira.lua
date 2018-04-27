@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
 RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
 MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
     if (csid == 11 and option == 1 and RubbishDay == QUEST_ACCEPTED) then
-        player:delKeyItem(MAGIC_TRASH);
+        player:delKeyItem(dsp.kis.MAGIC_TRASH);
         player:setVar("RubbishDayVar",1);
     elseif (csid == 11 and option == 0 and MakingAmens == QUEST_ACCEPTED) then
         player:addKeyItem(128); --Broken Wand

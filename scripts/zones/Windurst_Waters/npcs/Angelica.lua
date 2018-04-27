@@ -25,19 +25,19 @@ function onTrigger(player,npc)
     elseif (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 1) then
         player:setVar("QuestAPoseByOtherName_prog",2);
         mjob = player:getMainJob();
-        if (mjob == JOBS.WAR or mjob == JOBS.PLD or mjob == JOBS.DRK or mjob == JOBS.DRG or mjob == JOBS.COR) then      -- Quest Start: Bronze Harness (War/Pld/Drk/Drg/Crs)
+        if (mjob == dsp.jobs.WAR or mjob == dsp.jobs.PLD or mjob == dsp.jobs.DRK or mjob == dsp.jobs.DRG or mjob == dsp.jobs.COR) then      -- Quest Start: Bronze Harness (War/Pld/Drk/Drg/Crs)
             player:startEvent(92,0,0,0,12576);
             player:setVar("QuestAPoseByOtherName_equip",12576);
-        elseif (mjob == JOBS.MNK or mjob == JOBS.BRD or mjob == JOBS.BLU) then                             -- Quest Start: Robe (Mnk/Brd/Blu)
+        elseif (mjob == dsp.jobs.MNK or mjob == dsp.jobs.BRD or mjob == dsp.jobs.BLU) then                             -- Quest Start: Robe (Mnk/Brd/Blu)
             player:startEvent(92,0,0,0,12600);
             player:setVar("QuestAPoseByOtherName_equip",12600);
-        elseif (mjob == JOBS.THF or mjob == JOBS.BST or mjob == JOBS.RNG or mjob == JOBS.DNC) then             -- Quest Start: Leather Vest (Thf/Bst/Rng/Dnc)
+        elseif (mjob == dsp.jobs.THF or mjob == dsp.jobs.BST or mjob == dsp.jobs.RNG or mjob == dsp.jobs.DNC) then             -- Quest Start: Leather Vest (Thf/Bst/Rng/Dnc)
             player:startEvent(92,0,0,0,12568);
             player:setVar("QuestAPoseByOtherName_equip",12568);
-        elseif (mjob == JOBS.WHM or mjob == JOBS.BLM or mjob == JOBS.SMN or mjob == JOBS.PUP or mjob == JOBS.SCH) then     -- Quest Start: Tunic (Whm/Blm/Rdm/Smn/Pup/Sch)
+        elseif (mjob == dsp.jobs.WHM or mjob == dsp.jobs.BLM or mjob == dsp.jobs.SMN or mjob == dsp.jobs.PUP or mjob == dsp.jobs.SCH) then     -- Quest Start: Tunic (Whm/Blm/Rdm/Smn/Pup/Sch)
             player:startEvent(92,0,0,0,12608);
             player:setVar("QuestAPoseByOtherName_equip",12608);
-        elseif (mjob == JOBS.SAM or mjob == JOBS.NIN) then                                         -- Quest Start: Kenpogi(Sam/Nin)
+        elseif (mjob == dsp.jobs.SAM or mjob == dsp.jobs.NIN) then                                         -- Quest Start: Kenpogi(Sam/Nin)
             player:startEvent(92,0,0,0,12584);
             player:setVar("QuestAPoseByOtherName_equip",12584);
         end
@@ -85,8 +85,8 @@ function onEventFinish(player,csid,option)
             player:addTitle(SUPER_MODEL);
             player:addItem(206);
             player:messageSpecial(ITEM_OBTAINED,206);
-            player:addKeyItem(ANGELICAS_AUTOGRAPH);
-            player:messageSpecial(KEYITEM_OBTAINED,ANGELICAS_AUTOGRAPH);
+            player:addKeyItem(dsp.kis.ANGELICAS_AUTOGRAPH);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ANGELICAS_AUTOGRAPH);
             player:addFame(WINDURST,75);
             player:setVar("QuestAPoseByOtherName_time",0);
             player:setVar("QuestAPoseByOtherName_equip",0);

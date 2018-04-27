@@ -42,7 +42,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
         player:startEvent(504);
-    elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == JOBS.WAR and player:getMainLvl() >= 50) then
+    elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == dsp.jobs.WAR and player:getMainLvl() >= 50) then
         if (theTalekeeperTruthCS == 1) then
             player:startEvent(160);
             player:setVar("theTalekeeperTruthCS",2);
@@ -57,7 +57,7 @@ function onTrigger(player,npc)
         player:startEvent(165); -- Finish Quest "The Talekeeper's Truth"
     elseif (theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == Wait1DayForAF3))) then
         player:startEvent(166); -- New standard dialog after "The Talekeeper's Truth"
-    elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == JOBS.WAR) then
+    elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == dsp.jobs.WAR) then
         player:startEvent(170);
         player:setVar("theTalekeeperGiftCS",1);
         player:setVar("DeidoggWait1DayForAF3",0);

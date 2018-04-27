@@ -94,16 +94,16 @@ function onEventFinish(player,csid,option)
     if (csid == 812) then
         player:addQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:setVar("WildcatSandy",0);
-        player:addKeyItem(RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,RED_SENTINEL_BADGE);
+        player:addKeyItem(dsp.kis.RED_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
         player:completeQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:addFame(SANDORIA,150);
         player:setVar("WildcatSandy",0);
-        player:delKeyItem(RED_SENTINEL_BADGE);
-        player:addKeyItem(RED_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,RED_INVITATION_CARD);
+        player:delKeyItem(dsp.kis.RED_SENTINEL_BADGE);
+        player:addKeyItem(dsp.kis.RED_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,dsp.kis.RED_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RED_INVITATION_CARD);
     elseif (csid == 881) then
         player:tradeComplete();
         toAhtUrhganWhitegate(player);

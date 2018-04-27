@@ -43,10 +43,14 @@ function onUseAbility(player,target,ability,action)
     params.enmityMult = 0.5
 
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
-
-    if not (tpHits + extraHits > 0) then
-        ability:setMsg(msgBasic.JA_MISS_2)
-        action:speceffect(target:getID(), 0)
+    
+    -- Set the message id ourselves
+    if (tpHits + extraHits > 0) then
+        action:messageID(target:getID(), msgBasic.JA_DAMAGE);
+        action:speceffect(target:getID(), 32);
+    else
+        action:messageID(target:getID(), msgBasic.JA_MISS_2);
+        action:speceffect(target:getID(), 0);
     end
 
     return damage;

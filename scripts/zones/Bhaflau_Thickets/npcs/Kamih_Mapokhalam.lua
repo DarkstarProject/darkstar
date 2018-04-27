@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         player:startEvent(121);
     elseif (count == 3 and trade:hasItemQty(2186,3)) then -- Mythril
-        if (player:hasKeyItem(MAP_OF_ALZADAAL_RUINS)) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_ALZADAAL_RUINS)) then
             player:startEvent(147);
         else
             player:startEvent(146);
@@ -47,8 +47,8 @@ function onEventFinish(player,csid,option)
         player:setPos(325.137,-3.999,-619.968,0,72); -- To Alzadaal Undersea Ruins G-8 {R}
     elseif (csid == 146) then
         player:tradeComplete();
-        player:addKeyItem(MAP_OF_ALZADAAL_RUINS);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
+        player:addKeyItem(dsp.kis.MAP_OF_ALZADAAL_RUINS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_ALZADAAL_RUINS);
     end
 
 end;

@@ -26,14 +26,14 @@ function onTrigger(player,npc)
 
         questStatus = player:getVar("AyameAndKaede_Event")
 
-        if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
+        if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(dsp.kis.STRANGELY_SHAPED_CORAL) == false) then
             player:startEvent(242);
-        elseif (questStatus == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == true) then
+        elseif (questStatus == 2 and player:hasKeyItem(dsp.kis.STRANGELY_SHAPED_CORAL) == true) then
             player:startEvent(245);
         elseif (questStatus == 3) then
             player:startEvent(243);
-        elseif (player:hasKeyItem(SEALED_DAGGER)) then
-            player:startEvent(246,SEALED_DAGGER);
+        elseif (player:hasKeyItem(dsp.kis.SEALED_DAGGER)) then
+            player:startEvent(246,dsp.kis.SEALED_DAGGER);
         else
             player:startEvent(27);
         end
@@ -69,9 +69,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 245) then
         player:setVar("AyameAndKaede_Event", 3);
     elseif (csid == 246) then
-        player:delKeyItem(SEALED_DAGGER);
+        player:delKeyItem(dsp.kis.SEALED_DAGGER);
         player:addTitle(SHADOW_WALKER);
-        player:unlockJob(JOBS.NIN);
+        player:unlockJob(dsp.jobs.NIN);
         player:messageSpecial(UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);

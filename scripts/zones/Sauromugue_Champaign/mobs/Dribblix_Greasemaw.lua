@@ -10,8 +10,8 @@ require("scripts/zones/Sauromugue_Champaign/TextIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if (player:hasKeyItem(SEEDSPALL_VIRIDIS) == false and player:hasKeyItem(VIRIDIAN_KEY) == false) then
-        player:addKeyItem(SEEDSPALL_VIRIDIS);
-        player:messageSpecial(KEYITEM_OBTAINED,SEEDSPALL_VIRIDIS);
+    if (player:hasKeyItem(dsp.kis.SEEDSPALL_VIRIDIS) == false and player:hasKeyItem(dsp.kis.VIRIDIAN_KEY) == false) then
+        player:addKeyItem(dsp.kis.SEEDSPALL_VIRIDIS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SEEDSPALL_VIRIDIS);
     end
 end;

@@ -18,7 +18,7 @@ require("scripts/zones/Mhaura/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(OTHER_AREAS,THE_SAND_CHARM) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_SAND_CHARM) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13095,1) and trade:getItemCount() == 1) then
             player:startEvent(127); -- Finish quest "The Sand Charm"
         end
@@ -28,8 +28,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
-            player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:addKeyItem(dsp.kis.SOMBER_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SOMBER_STONE);
         end
     end
 
@@ -60,10 +60,10 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("theSandCharmVar",0);
         player:setVar("SmallDialogByBlandine",1);
-        player:addKeyItem(MAP_OF_BOSTAUNIEUX_OUBLIETTE);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_BOSTAUNIEUX_OUBLIETTE);
-        player:addFame(OTHER_AREAS,30);
-        player:completeQuest(OTHER_AREAS,THE_SAND_CHARM);
+        player:addKeyItem(dsp.kis.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:addFame(MHAURA,30);
+        player:completeQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
     end
 
 end;

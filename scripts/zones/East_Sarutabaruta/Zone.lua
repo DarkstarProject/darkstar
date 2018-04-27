@@ -114,12 +114,12 @@ function onEventFinish( player, csid, option)
     if (csid == 48) then
         player:setVar( "MissionStatus",6);
         -- Remove the glowing orb key items
-        player:delKeyItem(FIRST_GLOWING_MANA_ORB);
-        player:delKeyItem(SECOND_GLOWING_MANA_ORB);
-        player:delKeyItem(THIRD_GLOWING_MANA_ORB);
-        player:delKeyItem(FOURTH_GLOWING_MANA_ORB);
-        player:delKeyItem(FIFTH_GLOWING_MANA_ORB);
-        player:delKeyItem(SIXTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.kis.FIRST_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.kis.SECOND_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.kis.THIRD_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.kis.FOURTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.kis.FIFTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.kis.SIXTH_GLOWING_MANA_ORB);
     elseif (csid == 50) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 71) then

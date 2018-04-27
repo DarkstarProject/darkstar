@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             player:startEvent(235); -- IAS start
         end
 
-    elseif (IASvar == 4 and player:hasKeyItem(RANPIMONPIS_SPECIAL_STEW)) then
+    elseif (IASvar == 4 and player:hasKeyItem(dsp.kis.RANPIMONPIS_SPECIAL_STEW)) then
         player:startEvent(239);    -- IAS turn in
 
     elseif (IAS == QUEST_ACCEPTED) then
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,50);
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
-        player:delKeyItem(RANPIMONPIS_SPECIAL_STEW);
+        player:delKeyItem(dsp.kis.RANPIMONPIS_SPECIAL_STEW);
     elseif (csid == 234 and option == 1) then        -- start repeat
         player:setVar("IASvar",3);
 

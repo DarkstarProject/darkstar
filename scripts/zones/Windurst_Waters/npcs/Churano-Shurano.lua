@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(MAGICKED_ASTROLABE) == false) then
+    if (player:hasKeyItem(dsp.kis.MAGICKED_ASTROLABE) == false) then
         local cost = 10000;
         if (player:getVar("Astrolabe") == 0) then
             player:startEvent(1080, cost);
@@ -34,8 +34,8 @@ function onEventFinish(player,csid,option)
     if (csid == 1080 and option == 1) then
         player:setVar("Astrolabe", 1);
     elseif (csid == 1081 and option == 1 and player:delGil(10000)) then
-        player:messageSpecial(KEYITEM_OBTAINED,MAGICKED_ASTROLABE);
-        player:addKeyItem(MAGICKED_ASTROLABE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAGICKED_ASTROLABE);
+        player:addKeyItem(dsp.kis.MAGICKED_ASTROLABE);
     end
 end;
 

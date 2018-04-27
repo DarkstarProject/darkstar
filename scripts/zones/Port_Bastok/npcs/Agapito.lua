@@ -20,9 +20,9 @@ end;
 function onTrigger(player,npc)
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
 
-    if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(AIRSHIP_PASS) == true) then
+    if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(dsp.kis.AIRSHIP_PASS) == true) then
         player:startEvent(180);
-    elseif (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(CARRIER_PIGEON_LETTER) == true) then
+    elseif (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.CARRIER_PIGEON_LETTER) == true) then
         player:startEvent(181);
     else
         player:startEvent(17);

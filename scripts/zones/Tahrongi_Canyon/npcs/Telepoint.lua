@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(MEA_GATE_CRYSTAL) == false) then
-        player:addKeyItem(MEA_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,MEA_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.kis.MEA_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.kis.MEA_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MEA_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end

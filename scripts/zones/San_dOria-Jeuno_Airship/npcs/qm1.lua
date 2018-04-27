@@ -21,9 +21,9 @@ function onTrigger(player,npc)
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
 
     if (TOTD == TIME_NIGHT and IsMoonFull()) then
-        if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(CARRIER_PIGEON_LETTER) == false) then
-            player:addKeyItem(CARRIER_PIGEON_LETTER);
-            player:messageSpecial(KEYITEM_OBTAINED,CARRIER_PIGEON_LETTER);
+        if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.CARRIER_PIGEON_LETTER) == false) then
+            player:addKeyItem(dsp.kis.CARRIER_PIGEON_LETTER);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CARRIER_PIGEON_LETTER);
         end
     end
 end;

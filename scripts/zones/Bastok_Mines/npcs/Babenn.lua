@@ -20,8 +20,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.kis.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SMILING_STONE);
         end
     end
 
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
 
         if (player:getFreeSlotsCount() > 1) then
             player:setVar("EleventhsHour",0);
-            player:delKeyItem(OLD_TOOLBOX);
+            player:delKeyItem(dsp.kis.OLD_TOOLBOX);
             player:addTitle(PURSUER_OF_THE_TRUTH);
             player:addItem(16629);
             player:messageSpecial(ITEM_OBTAINED,16629);

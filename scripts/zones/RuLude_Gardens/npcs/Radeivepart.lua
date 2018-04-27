@@ -53,9 +53,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 61) then
         player:completeQuest(JEUNO,NORTHWARD);
         player:addTitle(ENVOY_TO_THE_NORTH);
-        if (player:hasKeyItem(MAP_OF_CASTLE_ZVAHL) == false) then
-            player:addKeyItem(MAP_OF_CASTLE_ZVAHL);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_CASTLE_ZVAHL);
+        if (player:hasKeyItem(dsp.kis.MAP_OF_CASTLE_ZVAHL) == false) then
+            player:addKeyItem(dsp.kis.MAP_OF_CASTLE_ZVAHL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_CASTLE_ZVAHL);
         end
         player:addFame(JEUNO, 30);
         player:tradeComplete();

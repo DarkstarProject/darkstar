@@ -27,8 +27,8 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     if (trade:hasItemQty(1057,1) and count == 1 and player:getVar("WildCard") == 2) then
         player:tradeComplete();
-        player:addKeyItem(JOKER_CARD);
-        player:messageSpecial(KEYITEM_OBTAINED,JOKER_CARD);
+        player:addKeyItem(dsp.kis.JOKER_CARD);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.JOKER_CARD);
         player:setVar("WildCard",3);
 
     elseif ((trade:hasItemQty(1057,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and count == 1) then

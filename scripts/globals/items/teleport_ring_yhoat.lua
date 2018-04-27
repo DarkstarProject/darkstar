@@ -11,7 +11,7 @@ require("scripts/globals/teleports");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasKeyItem(YHOATOR_GATE_CRYSTAL) == false) then
+    if (target:hasKeyItem(dsp.kis.YHOATOR_GATE_CRYSTAL) == false) then
         result = 445;
     end
     return result;

@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    -- needs check for TATTERED_TEST_SHEET then sets to var 3
+    -- needs check for dsp.kis.TATTERED_TEST_SHEET then sets to var 3
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
         local prog = player:getVar("QuestMakingTheGrade_prog");
         if (prog == 0) then
@@ -40,6 +40,6 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 460) then
         player:setVar("QuestMakingTheGrade_prog",3);
-        player:delKeyItem(TATTERED_TEST_SHEET);
+        player:delKeyItem(dsp.kis.TATTERED_TEST_SHEET);
     end
 end;

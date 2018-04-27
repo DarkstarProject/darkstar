@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         player:startEvent(231); -- Start Quest "Ghosts of the Past"
     elseif (ghostsOfThePast == QUEST_COMPLETED and player:needToZone() == false and theFirstMeeting == QUEST_AVAILABLE and mJob == 2 and mLvl >= 50) then
         player:startEvent(233); -- Start Quest "The First Meeting"
-    elseif (player:hasKeyItem(LETTER_FROM_DALZAKK) and player:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL)) then
+    elseif (player:hasKeyItem(dsp.kis.LETTER_FROM_DALZAKK) and player:hasKeyItem(dsp.kis.SANDORIAN_MARTIAL_ARTS_SCROLL)) then
         player:startEvent(234); -- Finish Quest "The First Meeting"
     else
         player:startEvent(230); -- Standard Dialog
@@ -70,8 +70,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14090); -- Temple Gaiters
         else
-            player:delKeyItem(LETTER_FROM_DALZAKK);
-            player:delKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
+            player:delKeyItem(dsp.kis.LETTER_FROM_DALZAKK);
+            player:delKeyItem(dsp.kis.SANDORIAN_MARTIAL_ARTS_SCROLL);
             player:addItem(14090);
             player:messageSpecial(ITEM_OBTAINED,14090); -- Temple Gaiters
             player:addFame(BASTOK,AF2_FAME);

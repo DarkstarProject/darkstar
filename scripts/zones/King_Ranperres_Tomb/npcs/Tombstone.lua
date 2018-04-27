@@ -69,8 +69,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
     elseif (csid == 8) then
         player:setVar("MissionStatus",3);
-        player:addKeyItem(ANCIENT_SANDORIAN_BOOK);
-        player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_BOOK);
+        player:addKeyItem(dsp.kis.ANCIENT_SANDORIAN_BOOK);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ANCIENT_SANDORIAN_BOOK);
     end
 
 end;

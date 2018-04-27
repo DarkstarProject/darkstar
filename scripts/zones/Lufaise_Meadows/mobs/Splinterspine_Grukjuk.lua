@@ -14,7 +14,7 @@ function onMobInitialize(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
         player:setVar("SPLINTERSPINE_GRUKJUK",2);
     end
 end;

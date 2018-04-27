@@ -18,9 +18,9 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(OUTLANDS, FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {1152, 1153})) then -- Bomb Steel, Sacred Branch
         player:startEvent(27);
-    elseif (player:getQuestStatus(OUTLANDS, THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasKeyItem(HANDFUL_OF_CRYSTAL_SCALES) and npcUtil.tradeHas(trade, 17809)) then -- Mumeito
+    elseif (player:getQuestStatus(OUTLANDS, THE_SACRED_KATANA) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.HANDFUL_OF_CRYSTAL_SCALES) and npcUtil.tradeHas(trade, 17809)) then -- Mumeito
         player:startEvent(141);
-    elseif (player:getQuestStatus(OUTLANDS, A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:hasKeyItem(CHARRED_HELM) and npcUtil.tradeHas(trade, 823)) then -- Gold Thread
+    elseif (player:getQuestStatus(OUTLANDS, A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.CHARRED_HELM) and npcUtil.tradeHas(trade, 823)) then -- Gold Thread
         player:startEvent(162);
     end
 end;
@@ -50,27 +50,27 @@ function onTrigger(player,npc)
         end
         
     -- THE SACRED KATANA
-    elseif (forgeYourDestiny == QUEST_COMPLETED and theSacredKatana == QUEST_AVAILABLE and mJob == JOBS.SAM and mLvl >= AF1_QUEST_LEVEL) then
+    elseif (forgeYourDestiny == QUEST_COMPLETED and theSacredKatana == QUEST_AVAILABLE and mJob == dsp.jobs.SAM and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(139); -- start quest
     elseif (theSacredKatana == QUEST_ACCEPTED) then
         player:startEvent(player:hasItem(17809) and 140 or 143); -- event with or without Mumeito
         
     -- YOMI OKURI
-    elseif (theSacredKatana == QUEST_COMPLETED and yomiOkuri == QUEST_AVAILABLE and mJob == JOBS.SAM and mLvl >= AF2_QUEST_LEVEL) then
+    elseif (theSacredKatana == QUEST_COMPLETED and yomiOkuri == QUEST_AVAILABLE and mJob == dsp.jobs.SAM and mLvl >= AF2_QUEST_LEVEL) then
         player:startEvent(player:needToZone() and 142 or 146); -- event with or without needing to zone
     elseif (yomiOkuri == QUEST_ACCEPTED) then
         if (yomiOkuriCS <= 3) then
-            player:startEvent(player:hasKeyItem(YOMOTSU_FEATHER) and 152 or 147); -- accept feather or remind objective
+            player:startEvent(player:hasKeyItem(dsp.kis.YOMOTSU_FEATHER) and 152 or 147); -- accept feather or remind objective
         elseif (yomiOkuriCS == 4) then
             player:startEvent(player:needToZone() and 153 or 154); -- event with or without needing to zone
-        elseif (player:hasKeyItem(YOMOTSU_HIRASAKA)) then
+        elseif (player:hasKeyItem(dsp.kis.YOMOTSU_HIRASAKA)) then
             player:startEvent(155);
-        elseif (player:hasKeyItem(FADED_YOMOTSU_HIRASAKA)) then
+        elseif (player:hasKeyItem(dsp.kis.FADED_YOMOTSU_HIRASAKA)) then
             player:startEvent(156);
         end
         
     -- A THIEF IN NORG
-    elseif (yomiOkuri == QUEST_COMPLETED and aThiefinNorg == QUEST_AVAILABLE and mJob == JOBS.SAM and mLvl >= AF3_QUEST_LEVEL) then
+    elseif (yomiOkuri == QUEST_COMPLETED and aThiefinNorg == QUEST_AVAILABLE and mJob == dsp.jobs.SAM and mLvl >= AF3_QUEST_LEVEL) then
         player:startEvent(player:needToZone() and 157 or 158) -- even with or without needing to zone
     elseif (aThiefinNorg == QUEST_ACCEPTED) then
         if (aThiefinNorgCS < 5) then
@@ -107,14 +107,14 @@ function onEventFinish(player,csid,option)
         player:setVar("ForgeYourDestiny_timer", os.time() + 10368); -- 3 game days
     elseif (csid == 29 and npcUtil.completeQuest(player, OUTLANDS, FORGE_YOUR_DESTINY, {item=17809, fame=30, fameArea=NORG, title=BUSHIDO_BLADE, var={"ForgeYourDestiny_timer", "ForgeYourDestiny_Event"}})) then -- Mumeito
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_SAMURAI, 17809);
-        player:unlockJob(JOBS.SAM);
+        player:unlockJob(dsp.jobs.SAM);
 
     -- THE SACRED KATANA
     elseif (csid == 139 and option == 1) then
         player:addQuest(OUTLANDS, THE_SACRED_KATANA);
     elseif (csid == 141 and npcUtil.completeQuest(player, OUTLANDS, THE_SACRED_KATANA, {item=17812, fame=AF1_FAME, fameArea=NORG})) then -- Magoroku
         player:confirmTrade();
-        player:delKeyItem(HANDFUL_OF_CRYSTAL_SCALES);
+        player:delKeyItem(dsp.kis.HANDFUL_OF_CRYSTAL_SCALES);
         player:needToZone(true);
         
     -- YOMI OKURI
@@ -122,14 +122,14 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,YOMI_OKURI);
         player:setVar("yomiOkuriCS",1);
     elseif (csid == 152) then
-        player:delKeyItem(YOMOTSU_FEATHER);
+        player:delKeyItem(dsp.kis.YOMOTSU_FEATHER);
         player:setVar("yomiOkuriCS",4);
         player:needToZone(true);
     elseif (csid == 154) then
         player:setVar("yomiOkuriCS",5);
-        npcUtil.giveKeyItem(player, YOMOTSU_HIRASAKA);
+        npcUtil.giveKeyItem(player, dsp.kis.YOMOTSU_HIRASAKA);
     elseif (csid == 156 and npcUtil.completeQuest(player, OUTLANDS, YOMI_OKURI, {item=14100, fame=AF2_FAME, fameArea=NORG, var="yomiOkuriCS"})) then -- Myochin Sune-Ate
-        player:delKeyItem(FADED_YOMOTSU_HIRASAKA);
+        player:delKeyItem(dsp.kis.FADED_YOMOTSU_HIRASAKA);
         player:needToZone(true);
         
     -- A THIEF IN NORG
@@ -142,7 +142,7 @@ function onEventFinish(player,csid,option)
         player:setVar("aThiefinNorgCS",8);
     elseif (csid == 162) then
         player:confirmTrade();
-        player:delKeyItem(CHARRED_HELM);
+        player:delKeyItem(dsp.kis.CHARRED_HELM);
         player:setVar("aThiefinNorgCS",9);
         player:needToZone(true);
     elseif (csid == 164) then

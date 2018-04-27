@@ -21,15 +21,15 @@ function onTrigger(player,npc)
 
     if (CurrentMission == A_NEW_JOURNEY and MissionStatus == 0) then
         player:startEvent(153);
-    elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+    elseif (player:hasKeyItem(dsp.kis.MESSAGE_TO_JEUNO_WINDURST)) then
         player:startEvent(166);
     elseif (player:getRank() == 5 and CurrentMission == 255 and player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false) then
         player:startEvent(190);
-    elseif (player:hasKeyItem(BURNT_SEAL)) then
+    elseif (player:hasKeyItem(dsp.kis.BURNT_SEAL)) then
         player:startEvent(192);
     elseif (CurrentMission == THE_SHADOW_AWAITS and MissionStatus == 0) then
         player:startEvent(214);
-    elseif (CurrentMission == THE_SHADOW_AWAITS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+    elseif (CurrentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.kis.SHADOW_FRAGMENT)) then
         player:startEvent(216);
     elseif (CurrentMission == SAINTLY_INVITATION and MissionStatus == 0) then
         player:startEvent(310);
@@ -56,26 +56,26 @@ function onEventFinish(player,csid,option)
 
     if (csid == 153) then
         player:setVar("MissionStatus",1);
-        player:delKeyItem(STAR_CRESTED_SUMMONS);
-        player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+        player:delKeyItem(dsp.kis.STAR_CRESTED_SUMMONS);
+        player:addKeyItem(dsp.kis.LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 166 or csid == 190) then
         if (option == 0) then
             player:addMission(WINDURST,THE_FINAL_SEAL);
-            player:addKeyItem(NEW_FEIYIN_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
+            player:addKeyItem(dsp.kis.NEW_FEIYIN_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.NEW_FEIYIN_SEAL);
             player:setVar("MissionStatus",10);
         end
-        player:delKeyItem(MESSAGE_TO_JEUNO_WINDURST);
+        player:delKeyItem(dsp.kis.MESSAGE_TO_JEUNO_WINDURST);
     elseif (csid == 214) then
         player:setVar("MissionStatus",2);
-        player:delKeyItem(STAR_CRESTED_SUMMONS);
+        player:delKeyItem(dsp.kis.STAR_CRESTED_SUMMONS);
         player:addTitle(STARORDAINED_WARRIOR);
     elseif (csid == 310) then
         player:setVar("MissionStatus",1);
         player:addTitle(HERO_ON_BEHALF_OF_WINDURST);
-        player:addKeyItem(HOLY_ONES_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_INVITATION);
+        player:addKeyItem(dsp.kis.HOLY_ONES_INVITATION);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.HOLY_ONES_INVITATION);
     elseif (csid == 312) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 192 or csid == 216) then

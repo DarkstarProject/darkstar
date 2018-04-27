@@ -19,7 +19,7 @@ function onTrigger(player,npc)
 
     -- Check if we are on Windurst Mission 1-3 and haven't already delivered both offerings.
     if (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE and MissionStatus < 3) then
-        if (player:hasKeyItem(FOOD_OFFERINGS) == false and player:hasKeyItem(DRINK_OFFERINGS) == false) then
+        if (player:hasKeyItem(dsp.kis.FOOD_OFFERINGS) == false and player:hasKeyItem(dsp.kis.DRINK_OFFERINGS) == false) then
             player:startEvent(140);
         elseif (MissionStatus >= 1) then
             player:startEvent(142); -- Keep displaying the instructions
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         player:startEvent(735);
     elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
         player:startEvent(739);
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(BOOK_OF_THE_GODS)) then
+    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(dsp.kis.BOOK_OF_THE_GODS)) then
         player:startEvent(742);
     ---------------------------
     elseif (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
@@ -46,16 +46,16 @@ function onTrigger(player,npc)
 
         player:startEvent(842,0,1125);
     elseif (moonlitPath == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(MOON_BAUBLE)) then -- Default text after acquiring moon bauble and before fighting Fenrir
+        if (player:hasKeyItem(dsp.kis.MOON_BAUBLE)) then -- Default text after acquiring moon bauble and before fighting Fenrir
             player:startEvent(845,0,1125,334);
-        elseif (player:hasKeyItem(WHISPER_OF_THE_MOON)) then -- First turn-in
+        elseif (player:hasKeyItem(dsp.kis.WHISPER_OF_THE_MOON)) then -- First turn-in
             player:startEvent(846,0,13399,1208,1125,0,18165,13572);
-        elseif (player:hasKeyItem(WHISPER_OF_FLAMES) and
-            player:hasKeyItem(WHISPER_OF_TREMORS) and
-            player:hasKeyItem(WHISPER_OF_TIDES) and
-            player:hasKeyItem(WHISPER_OF_GALES) and
-            player:hasKeyItem(WHISPER_OF_FROST) and
-            player:hasKeyItem(WHISPER_OF_STORMS)) then
+        elseif (player:hasKeyItem(dsp.kis.WHISPER_OF_FLAMES) and
+            player:hasKeyItem(dsp.kis.WHISPER_OF_TREMORS) and
+            player:hasKeyItem(dsp.kis.WHISPER_OF_TIDES) and
+            player:hasKeyItem(dsp.kis.WHISPER_OF_GALES) and
+            player:hasKeyItem(dsp.kis.WHISPER_OF_FROST) and
+            player:hasKeyItem(dsp.kis.WHISPER_OF_STORMS)) then
 
             -- Collected the whispers
             player:startEvent(844,0,1125,334);
@@ -63,9 +63,9 @@ function onTrigger(player,npc)
             player:startEvent(843,0,1125);
         end
     elseif (moonlitPath == QUEST_COMPLETED) then
-        if (player:hasKeyItem(MOON_BAUBLE)) then -- Default text after acquiring moon bauble and before fighting Fenrir
+        if (player:hasKeyItem(dsp.kis.MOON_BAUBLE)) then -- Default text after acquiring moon bauble and before fighting Fenrir
             player:startEvent(845,0,1125,334);
-        elseif (player:hasKeyItem(WHISPER_OF_THE_MOON)) then -- Repeat turn-in
+        elseif (player:hasKeyItem(dsp.kis.WHISPER_OF_THE_MOON)) then -- Repeat turn-in
             local availRewards = 0
             if (player:hasItem(18165)) then availRewards = availRewards + 1; end -- Fenrir's Stone
             if (player:hasItem(13572)) then availRewards = availRewards + 2; end -- Fenrir's Cape
@@ -98,29 +98,29 @@ function onEventFinish(player,csid,option)
     if (csid == 140) then
         player:setVar("MissionStatus",1);
         player:setVar("ohbiru_dohbiru_talk",0);
-        player:addKeyItem(FOOD_OFFERINGS);
-        player:messageSpecial(KEYITEM_OBTAINED,FOOD_OFFERINGS);
-        player:addKeyItem(DRINK_OFFERINGS);
-        player:messageSpecial(KEYITEM_OBTAINED,DRINK_OFFERINGS);
+        player:addKeyItem(dsp.kis.FOOD_OFFERINGS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.FOOD_OFFERINGS);
+        player:addKeyItem(dsp.kis.DRINK_OFFERINGS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DRINK_OFFERINGS);
 
     -- Moonlit Path and Other Fenrir Stuff
     elseif (csid == 842 and option == 2) then
         player:addQuest(WINDURST,THE_MOONLIT_PATH);
     elseif (csid == 844) then
-        player:addKeyItem(MOON_BAUBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,MOON_BAUBLE);
-        player:delKeyItem(WHISPER_OF_FLAMES);
-        player:delKeyItem(WHISPER_OF_TREMORS);
-        player:delKeyItem(WHISPER_OF_TIDES);
-        player:delKeyItem(WHISPER_OF_GALES);
-        player:delKeyItem(WHISPER_OF_FROST);
-        player:delKeyItem(WHISPER_OF_STORMS);
+        player:addKeyItem(dsp.kis.MOON_BAUBLE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MOON_BAUBLE);
+        player:delKeyItem(dsp.kis.WHISPER_OF_FLAMES);
+        player:delKeyItem(dsp.kis.WHISPER_OF_TREMORS);
+        player:delKeyItem(dsp.kis.WHISPER_OF_TIDES);
+        player:delKeyItem(dsp.kis.WHISPER_OF_GALES);
+        player:delKeyItem(dsp.kis.WHISPER_OF_FROST);
+        player:delKeyItem(dsp.kis.WHISPER_OF_STORMS);
         player:delQuest(OUTLANDS,TRIAL_BY_FIRE);
         player:delQuest(BASTOK,TRIAL_BY_EARTH);
         player:delQuest(OUTLANDS,TRIAL_BY_WATER);
         player:delQuest(OUTLANDS,TRIAL_BY_WIND);
         player:delQuest(SANDORIA,TRIAL_BY_ICE);
-        player:delQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+        player:delQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
     elseif (csid == 846) then -- Turn-in event
         local reward = 0;
         if (option == 1) then reward = 18165; -- Fenrir's Stone
@@ -140,7 +140,7 @@ function onEventFinish(player,csid,option)
 
         if (reward ~= nil) then
             player:addTitle(HEIR_OF_THE_NEW_MOON);
-            player:delKeyItem(WHISPER_OF_THE_MOON);
+            player:delKeyItem(dsp.kis.WHISPER_OF_THE_MOON);
             player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,THE_MOONLIT_PATH);
@@ -154,8 +154,8 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getNation() == NATION_WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
-            player:addKeyItem(DARK_MANA_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_MANA_ORB);
+            player:addKeyItem(dsp.kis.DARK_MANA_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DARK_MANA_ORB);
         end
     elseif (csid == 850) then -- Repeat turn-in event
         local reward = 0;
@@ -176,7 +176,7 @@ function onEventFinish(player,csid,option)
 
         if (reward ~= nil) then
             player:addTitle(HEIR_OF_THE_NEW_MOON);
-            player:delKeyItem(WHISPER_OF_THE_MOON);
+            player:delKeyItem(dsp.kis.WHISPER_OF_THE_MOON);
             player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
         end
@@ -189,12 +189,12 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getNation() == NATION_WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
-            player:addKeyItem(DARK_MANA_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_MANA_ORB);
+            player:addKeyItem(dsp.kis.DARK_MANA_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DARK_MANA_ORB);
         end
     elseif (csid == 848) then
-        player:addKeyItem(MOON_BAUBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,MOON_BAUBLE);
+        player:addKeyItem(dsp.kis.MOON_BAUBLE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MOON_BAUBLE);
     elseif (csid == 734) then
         player:setVar("MissionStatus",1);
     elseif (csid == 742) then

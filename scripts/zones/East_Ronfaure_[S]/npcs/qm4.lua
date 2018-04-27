@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(PIECE_OF_SHATTERED_LUMBER)) then
+        if (player:hasKeyItem(dsp.kis.PIECE_OF_SHATTERED_LUMBER)) then
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         else
             player:startEvent(2);
@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
     if (csid == 2) then
-        player:addKeyItem(PIECE_OF_SHATTERED_LUMBER);
-        player:messageSpecial(KEYITEM_OBTAINED,PIECE_OF_SHATTERED_LUMBER);
+        player:addKeyItem(dsp.kis.PIECE_OF_SHATTERED_LUMBER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.PIECE_OF_SHATTERED_LUMBER);
     end
 end;

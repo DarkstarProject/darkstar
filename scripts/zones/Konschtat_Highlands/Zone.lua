@@ -6,40 +6,41 @@
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Konschtat_Highlands/TextIDs");
+require("scripts/zones/Konschtat_Highlands/MobIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
-
-local itemMap =
-{
-    -- itemid, abundance, requirement
-    { 847, 13, DIGREQ_NONE },
-    { 880, 165, DIGREQ_NONE },
-    { 690, 68, DIGREQ_NONE },
-    { 864, 80, DIGREQ_NONE },
-    { 768, 90, DIGREQ_NONE },
-    { 869, 63, DIGREQ_NONE },
-    { 749, 14, DIGREQ_NONE },
-    { 17296, 214, DIGREQ_NONE },
-    { 844, 14, DIGREQ_NONE },
-    { 868, 45, DIGREQ_NONE },
-    { 642, 71, DIGREQ_NONE },
-    { 4096, 100, DIGREQ_NONE },  -- all crystals
-    { 845, 28, DIGREQ_BORE },
-    { 842, 27, DIGREQ_BORE },
-    { 843, 23, DIGREQ_BORE },
-    { 1845, 22, DIGREQ_BORE },
-    { 838, 19, DIGREQ_BORE },
-    { 4570, 10, DIGREQ_MODIFIER },
-    { 4487, 11, DIGREQ_MODIFIER },
-    { 4409, 12, DIGREQ_MODIFIER },
-    { 1188, 10, DIGREQ_MODIFIER },
-    { 4532, 12, DIGREQ_MODIFIER },
-};
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+-----------------------------------
 
 function onChocoboDig(player, precheck)
+    local itemMap =
+    {
+        -- itemid, abundance, requirement
+        { 847, 13, DIGREQ_NONE },
+        { 880, 165, DIGREQ_NONE },
+        { 690, 68, DIGREQ_NONE },
+        { 864, 80, DIGREQ_NONE },
+        { 768, 90, DIGREQ_NONE },
+        { 869, 63, DIGREQ_NONE },
+        { 749, 14, DIGREQ_NONE },
+        { 17296, 214, DIGREQ_NONE },
+        { 844, 14, DIGREQ_NONE },
+        { 868, 45, DIGREQ_NONE },
+        { 642, 71, DIGREQ_NONE },
+        { 4096, 100, DIGREQ_NONE },  -- all crystals
+        { 845, 28, DIGREQ_BORE },
+        { 842, 27, DIGREQ_BORE },
+        { 843, 23, DIGREQ_BORE },
+        { 1845, 22, DIGREQ_BORE },
+        { 838, 19, DIGREQ_BORE },
+        { 4570, 10, DIGREQ_MODIFIER },
+        { 4487, 11, DIGREQ_MODIFIER },
+        { 4409, 12, DIGREQ_MODIFIER },
+        { 1188, 10, DIGREQ_MODIFIER },
+        { 4532, 12, DIGREQ_MODIFIER },
+    };
+    local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
@@ -64,7 +65,6 @@ end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -88,5 +88,21 @@ end;
 function onEventFinish( player, csid, option)
     if (csid == 104) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
+    end
+end;
+
+function onGameHour(zone)
+    local hour = VanadielHour();
+    if (hour < 5 or hour >= 17) then
+        local phase = VanadielMoonPhase();
+        local haty = GetMobByID(HATY);
+        local vran = GetMobByID(BENDIGEIT_VRAN);
+        local time = os.time();
+        
+        if (phase >= 90 and not haty:isSpawned() and time > haty:getLocalVar("cooldown")) then
+            SpawnMob(HATY);
+        elseif (phase <= 10 and not vran:isSpawned() and time > vran:getLocalVar("cooldown")) then
+            SpawnMob(BENDIGEIT_VRAN);
+        end
     end
 end;

@@ -617,6 +617,7 @@ INSERT INTO `mob_pets` VALUES (17428662, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428664, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428673, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428675, 1, 15);
+INSERT INTO `mob_pets` VALUES (17428677, 1, 15); -- Tonberry Kinq
 INSERT INTO `mob_pets` VALUES (17428680, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428683, 1, 15);
 INSERT INTO `mob_pets` VALUES (17428691, 1, 15);
@@ -1336,6 +1337,8 @@ INSERT INTO `mob_pets` VALUES (17183019, 1, 15); -- Yagudo_s_Elemental
 INSERT INTO `mob_pets` VALUES (17183021, 1, 15); -- Yagudo_s_Elemental
 
 INSERT INTO `mob_pets` VALUES (16986197, 1, 9); -- Percipient_Zoraal_Ja
+
+
 
 /*!40000 ALTER TABLE `mob_pets` ENABLE KEYS */;
 UNLOCK TABLES;

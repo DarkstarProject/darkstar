@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     local VVC = player:getQuestStatus(ADOULIN, VEGETABLE_VEGETABLE_CRISIS);
 
     -- DO NOT GO INTO THE LIGHT
-    if (DNGITL == QUEST_ACCEPTED and player:hasKeyItem(INVENTORS_COALITION_PICKAXE)) then
+    if (DNGITL == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.INVENTORS_COALITION_PICKAXE)) then
         player:startEvent(5077);
 
     -- VEGETABLE VEGETABLE CRISIS
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- DO NOT GO INTO THE LIGHT
     if (csid == 5076) then
         player:confirmTrade();
-        npcUtil.giveKeyItem(player, INVENTORS_COALITION_PICKAXE);
+        npcUtil.giveKeyItem(player, dsp.kis.INVENTORS_COALITION_PICKAXE);
         player:setVar("DNGITL_Status", 0);
 
     -- VEGETABLE VEGETABLE CRISIS   

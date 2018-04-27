@@ -68,8 +68,8 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 325) then
-        player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE1);
-        player:addKeyItem(TRAVERSER_STONE1)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE1);
+        player:addKeyItem(dsp.kis.TRAVERSER_STONE1)
         player:completeQuest(ABYSSEA, A_JOURNEY_BEGINS);
         player:addQuest(ABYSSEA, THE_TRUTH_BECKONS);
     elseif (csid == 327) then
@@ -79,23 +79,23 @@ function onEventFinish(player,csid,option)
     elseif (csid == 328 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE6);
-            player:addKeyItem(TRAVERSER_STONE6)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE6);
+            player:addKeyItem(dsp.kis.TRAVERSER_STONE6)
         elseif (StonesKI == 4) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE5);
-            player:addKeyItem(TRAVERSER_STONE5)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE5);
+            player:addKeyItem(dsp.kis.TRAVERSER_STONE5)
         elseif (StonesKI == 3) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE4)
-            player:addKeyItem(TRAVERSER_STONE4);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE4)
+            player:addKeyItem(dsp.kis.TRAVERSER_STONE4);
         elseif (StonesKI == 2) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE3);
-            player:addKeyItem(TRAVERSER_STONE3)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE3);
+            player:addKeyItem(dsp.kis.TRAVERSER_STONE3)
         elseif (StonesKI == 1) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE2);
-            player:addKeyItem(TRAVERSER_STONE2)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE2);
+            player:addKeyItem(dsp.kis.TRAVERSER_STONE2)
         elseif (StonesKI == 0) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE1);
-            player:addKeyItem(TRAVERSER_STONE1)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TRAVERSER_STONE1);
+            player:addKeyItem(dsp.kis.TRAVERSER_STONE1)
         end
     end
 end;

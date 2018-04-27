@@ -15,14 +15,14 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)) then
+    if (player:hasKeyItem(dsp.kis.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)) then
         player:setVar("ShadesOfVengeance",1);
         player:startEvent(143,79,-6,0,99,3,0);
-    elseif (player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then
+    elseif (player:hasKeyItem(dsp.kis.PERIQIA_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
-        if (player:hasKeyItem(ASSAULT_ARMBAND)) then
+        if (player:hasKeyItem(dsp.kis.ASSAULT_ARMBAND)) then
             armband = 1;
         end
         player:startEvent(143, assaultid, -4, 0, recommendedLevel, 3, armband);
@@ -55,7 +55,7 @@ function onEventUpdate(player,csid,option,target)
     if(player:getVar("ShadesOfVengeance") == 1) then
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if (not (v:hasKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT))) then
+                if (not (v:hasKeyItem(dsp.kis.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT))) then
                     player:messageText(target,MEMBER_NO_REQS, false);
                     player:instanceEntry(target,1);
                 elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
@@ -70,7 +70,7 @@ function onEventUpdate(player,csid,option,target)
     else
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if (not (v:hasKeyItem(PERIQIA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+                if (not (v:hasKeyItem(dsp.kis.PERIQIA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                     player:messageText(target,MEMBER_NO_REQS, false);
                     player:instanceEntry(target,1);
                     return;
@@ -102,7 +102,7 @@ function onInstanceCreated(player,target,instance)
         player:instanceEntry(target,4);
 
         player:setVar("ShadesOfVengeance", 0);
-        player:delKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+        player:delKeyItem(dsp.kis.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
 
         local party = player:getParty();
         if (party ~= nil) then
@@ -110,7 +110,7 @@ function onInstanceCreated(player,target,instance)
                 if (v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID()) then
                     v:setInstance(instance);
                     v:startEvent(133);
-                    v:delKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+                    v:delKeyItem(dsp.kis.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
                 end
             end
         end
@@ -119,8 +119,8 @@ function onInstanceCreated(player,target,instance)
         player:setVar("AssaultCap", 0);
         player:setInstance(instance);
         player:instanceEntry(target,4);
-        player:delKeyItem(PERIQIA_ASSAULT_ORDERS);
-        player:delKeyItem(ASSAULT_ARMBAND);
+        player:delKeyItem(dsp.kis.PERIQIA_ASSAULT_ORDERS);
+        player:delKeyItem(dsp.kis.ASSAULT_ARMBAND);
 
         local party = player:getParty();
         if (party ~= nil) then
@@ -128,7 +128,7 @@ function onInstanceCreated(player,target,instance)
                 if (v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID()) then
                     v:setInstance(instance);
                     v:startEvent(133, 3);
-                    v:delKeyItem(PERIQIA_ASSAULT_ORDERS);
+                    v:delKeyItem(dsp.kis.PERIQIA_ASSAULT_ORDERS);
                 end
             end
         end

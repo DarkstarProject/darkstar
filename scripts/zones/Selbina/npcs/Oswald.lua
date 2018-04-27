@@ -13,11 +13,11 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS,THE_GIFT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_GIFT) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4375,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
             player:startEvent(72,0,4375); -- Finish quest "The gift"
         end
-    elseif (player:getQuestStatus(OTHER_AREAS,THE_REAL_GIFT) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(OTHER_AREAS_LOG,THE_REAL_GIFT) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4484,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
             player:startEvent(75); -- Finish quest "The real gift"
         end
@@ -25,14 +25,14 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    UnderTheSea = player:getQuestStatus(OTHER_AREAS,UNDER_THE_SEA);
-    TheSandCharm = player:getQuestStatus(OTHER_AREAS,THE_SAND_CHARM);
-    TheGift = player:getQuestStatus(OTHER_AREAS,THE_GIFT);
-    TheRealGift = player:getQuestStatus(OTHER_AREAS,THE_REAL_GIFT);
+    UnderTheSea = player:getQuestStatus(OTHER_AREAS_LOG,UNDER_THE_SEA);
+    TheSandCharm = player:getQuestStatus(OTHER_AREAS_LOG,THE_SAND_CHARM);
+    TheGift = player:getQuestStatus(OTHER_AREAS_LOG,THE_GIFT);
+    TheRealGift = player:getQuestStatus(OTHER_AREAS_LOG,THE_REAL_GIFT);
 
     if (player:getVar("underTheSeaVar") == 1) then
         player:startEvent(32); -- During quest "Under the sea" - 1st dialog
-    elseif (player:hasKeyItem(ETCHED_RING) == true) then
+    elseif (player:hasKeyItem(dsp.kis.ETCHED_RING) == true) then
         player:startEvent(37); -- Finish quest "Under the sea"
     elseif (UnderTheSea == QUEST_COMPLETED and TheSandCharm == QUEST_AVAILABLE) then
         player:startEvent(38); -- New dialog after "Under the sea"
@@ -68,38 +68,38 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13335);
         else
-            player:completeQuest(OTHER_AREAS,UNDER_THE_SEA);
+            player:completeQuest(OTHER_AREAS_LOG,UNDER_THE_SEA);
             player:addTitle(LIL_CUPID);
-            player:delKeyItem(ETCHED_RING);
+            player:delKeyItem(dsp.kis.ETCHED_RING);
             player:setVar("underTheSeaVar",0);
             player:addItem(13335);
             player:messageSpecial(ITEM_OBTAINED,13335); -- Amber Earring
-            player:addFame(OTHER_AREAS,30);
+            player:addFame(SELBINA,30);
         end
     elseif (csid == 70 and option == 50) then
-        player:addQuest(OTHER_AREAS,THE_GIFT);
+        player:addQuest(OTHER_AREAS_LOG,THE_GIFT);
     elseif (csid == 72) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16497);
         else
-            player:completeQuest(OTHER_AREAS,THE_GIFT);
+            player:completeQuest(OTHER_AREAS_LOG,THE_GIFT);
             player:addTitle(SAVIOR_OF_LOVE);
             player:addItem(16497);
             player:messageSpecial(ITEM_OBTAINED,16497); -- Sleep Dagger
-            player:addFame(OTHER_AREAS,30);
+            player:addFame(SELBINA,30);
             player:tradeComplete();
         end
     elseif (csid == 73 and option == 50) then
-        player:addQuest(OTHER_AREAS,THE_REAL_GIFT);
+        player:addQuest(OTHER_AREAS_LOG,THE_REAL_GIFT);
     elseif (csid == 75) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17385);
         else
-            player:completeQuest(OTHER_AREAS,THE_REAL_GIFT);
+            player:completeQuest(OTHER_AREAS_LOG,THE_REAL_GIFT);
             player:addTitle(THE_LOVE_DOCTOR);
             player:addItem(17385);
             player:messageSpecial(ITEM_OBTAINED,17385); -- Glass Fiber Fishing Rod
-            player:addFame(OTHER_AREAS,30);
+            player:addFame(SELBINA,30);
             player:tradeComplete();
         end
     end

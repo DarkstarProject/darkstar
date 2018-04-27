@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,CHILD_S_PLAY);
     elseif (csid == 1) then
         player:addTitle(TRADER_OF_MYSTERIES);
-        player:addKeyItem(WONDER_MAGIC_SET);
-        player:messageSpecial(KEYITEM_OBTAINED,WONDER_MAGIC_SET);
+        player:addKeyItem(dsp.kis.WONDER_MAGIC_SET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WONDER_MAGIC_SET);
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,CHILD_S_PLAY);

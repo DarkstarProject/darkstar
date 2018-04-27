@@ -17,7 +17,7 @@ function onUseAbility(player,target,ability,action)
     local thfLevel;
     local gil = 0;
 
-    if (player:getMainJob() == JOBS.THF) then
+    if (player:getMainJob() == dsp.jobs.THF) then
         thfLevel = player:getMainLvl();
     else
         thfLevel = player:getSubLvl();

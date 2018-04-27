@@ -33,7 +33,7 @@ function onTrigger(player,npc)
 
         local prog = player:getVar("QuestMakingHeadlines_var");
         if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
-            player:messageSpecial(7208,1,WINDURST_WOODS_SCOOP); -- Confirm Story
+            player:messageSpecial(7208,1,dsp.kis.WINDURST_WOODS_SCOOP); -- Confirm Story
             player:setVar("QuestMakingHeadlines_var",prog+16);
         else
             player:startEvent(44); -- "The door is firmly shut"

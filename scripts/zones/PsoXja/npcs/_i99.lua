@@ -40,8 +40,8 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,THE_ENDURING_TUMULT_OF_WAR);
         player:addMission(COP,DESIRES_OF_EMPTINESS);
-        player:addKeyItem(LIGHT_OF_VAHZL);
-        player:messageSpecial(LIGHT_OF_VAHZL);
+        player:addKeyItem(dsp.kis.LIGHT_OF_VAHZL);
+        player:messageSpecial(dsp.kis.LIGHT_OF_VAHZL);
         player:setPos(-14.744,0.036,-119.736,1,22); -- To Floor 1 {R}
     elseif (csid == 50 and option == 1) then
         player:setPos(-14.744,0.036,-119.736,1,22); -- To Floor 1 {R}

@@ -21,7 +21,7 @@ function onZoneIn(player,prevZone)
         player:setPos(position,-2.100,3.250,64);
     end
     
-    if (player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0 and not GetMobByID(ENAGAKURE):isSpawned()) then
+    if (player:hasKeyItem(dsp.kis.SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0 and not GetMobByID(ENAGAKURE):isSpawned()) then
         SpawnMob(ENAGAKURE);
     end
     

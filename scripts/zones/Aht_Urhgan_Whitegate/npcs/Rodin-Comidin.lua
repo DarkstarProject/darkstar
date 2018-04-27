@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(NYZUL_ISLE_ROUTE) == false) then
+    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(dsp.kis.NYZUL_ISLE_ROUTE) == false) then
         player:startEvent(3141,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == LIGHT_OF_JUDGMENT) then
         player:startEvent(3137,0,0,0,0,0,0,0,0,0);
@@ -40,8 +40,8 @@ function onEventFinish(player,csid,option)
     end
 
     if (csid == 3137 or csid == 3141) then
-        player:addKeyItem(NYZUL_ISLE_ROUTE);
-        player:messageSpecial(KEYITEM_OBTAINED,NYZUL_ISLE_ROUTE);
+        player:addKeyItem(dsp.kis.NYZUL_ISLE_ROUTE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.NYZUL_ISLE_ROUTE);
     end
 
 end;

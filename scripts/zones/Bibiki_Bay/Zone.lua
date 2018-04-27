@@ -121,21 +121,21 @@ function onTransportEvent(player,transport)
     local bibiki=player:getVar("bibiki");
 
     if (bibiki == 1) then
-        if (player:hasKeyItem(MANACLIPPER_TICKET)) then
-            player:delKeyItem(MANACLIPPER_TICKET);
+        if (player:hasKeyItem(dsp.kis.MANACLIPPER_TICKET)) then
+            player:delKeyItem(dsp.kis.MANACLIPPER_TICKET);
             player:startEvent(14);
-        elseif (player:hasKeyItem(MANACLIPPER_MULTITICKET)) then
+        elseif (player:hasKeyItem(dsp.kis.MANACLIPPER_MULTITICKET)) then
             local remainingticket=player:getVar("Manaclipper_Ticket");
             player:setVar("Manaclipper_Ticket",(remainingticket - 1));
                 if ( (remainingticket - 1) > 0) then
-                    player:messageSpecial(LEFT_BILLET,0,MANACLIPPER_MULTITICKET,(remainingticket - 1));
+                    player:messageSpecial(LEFT_BILLET,0,dsp.kis.MANACLIPPER_MULTITICKET,(remainingticket - 1));
                 else
-                    player:messageSpecial(END_BILLET,0,MANACLIPPER_MULTITICKET);
-                    player:delKeyItem(MANACLIPPER_MULTITICKET);
+                    player:messageSpecial(END_BILLET,0,dsp.kis.MANACLIPPER_MULTITICKET);
+                    player:delKeyItem(dsp.kis.MANACLIPPER_MULTITICKET);
                 end
             player:startEvent(14);
         else
-            player:messageSpecial(NO_BILLET,MANACLIPPER_TICKET);
+            player:messageSpecial(NO_BILLET,dsp.kis.MANACLIPPER_TICKET);
             player:setVar("bibiki",0);
             player:setPos(489,-3,713,200);
         end

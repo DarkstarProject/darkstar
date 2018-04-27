@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
         local mJob = player:getMainJob();
         local zone = player:getZoneID();
         local listAF = getAFbyZone(zone);
-        if (player:hasKeyItem(MAP_OF_THE_VELUGANNON_PALACE) == false) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_THE_VELUGANNON_PALACE) == false) then
             questItemNeeded = 3;
         end
         --------------------------------------
@@ -52,8 +52,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 3) then
-                    player:addKeyItem(MAP_OF_THE_VELUGANNON_PALACE);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_VELUGANNON_PALACE); -- Map of the Ve'Lugannon Palace (KI)
+                    player:addKeyItem(dsp.kis.MAP_OF_THE_VELUGANNON_PALACE);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_VELUGANNON_PALACE); -- Map of the Ve'Lugannon Palace (KI)
                 elseif (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then

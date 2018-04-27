@@ -339,6 +339,10 @@ INSERT INTO `zone_settings` VALUES (290,0,'127.0.0.1',54230,'Desuetia_Empyreal_P
 INSERT INTO `zone_settings` VALUES (291,0,'127.0.0.1',54230,'Reisenjima',79,79,79,79,0,0.00,128);
 INSERT INTO `zone_settings` VALUES (292,0,'127.0.0.1',54230,'Reisenjima_Henge',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (293,0,'127.0.0.1',54230,'Reisenjima_Sanctorium',0,0,0,0,0,0.00,128);
+INSERT INTO `zone_settings` VALUES (294,5,'127.0.0.1',54230,'Dynamis-San_dOria_[D]',88,88,88,88,0,0.00,400);
+INSERT INTO `zone_settings` VALUES (295,5,'127.0.0.1',54230,'Dynamis-Bastok_[D]',88,88,88,88,0,0.00,400);
+INSERT INTO `zone_settings` VALUES (296,5,'127.0.0.1',54230,'Dynamis-Windurst_[D]',88,88,88,88,0,0.00,400);
+INSERT INTO `zone_settings` VALUES (297,5,'127.0.0.1',54230,'Dynamis-Jeuno_[D]',88,88,88,88,0,0.00,400);
 /*!40000 ALTER TABLE `zone_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

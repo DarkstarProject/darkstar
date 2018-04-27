@@ -204,6 +204,7 @@ namespace battleutils
     int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage);
     int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
     void                HandleTacticalParry(CBattleEntity* PEntity);
+    void                HandleTacticalGuard(CBattleEntity* PEntity);
 
     // Handles everything related to breaking Bind
     void                BindBreakCheck(CBattleEntity* PAttacker, CBattleEntity* PDefender);

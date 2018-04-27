@@ -103,7 +103,7 @@ function onRegionEnter(player,region)
         totalWeight = totalWeight + getWeight(player);
         plate:setLocalVar("weight", totalWeight);
 
-        if (player:hasKeyItem(LOADSTONE) or totalWeight >= 3) then
+        if (player:hasKeyItem(dsp.kis.LOADSTONE) or totalWeight >= 3) then
             door:openDoor(15); -- open door with a 15 second time delay.
             plate:setAnimation(ANIMATION_OPEN_DOOR); -- this is supposed to light up the platform but it's not working. Tried other values too.
         end

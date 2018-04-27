@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     local currentday = tonumber(os.date("%j"));
 
     local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET);
-    local LetterKeyItem = player:hasKeyItem(UNFINISHED_LETTER);
+    local LetterKeyItem = player:hasKeyItem(dsp.kis.UNFINISHED_LETTER);
     local currentMission = player:getCurrentMission(BASTOK);
     local currentCOPMission = player:getCurrentMission(COP);
     local UlmiaPath = player:getVar("COP_Ulmia_s_Path");
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
     local TreePathAv=0;
     if (currentCOPMission == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day")~=currentday and player:getVar("COP_tenzen_story")== 0 ) then
            player:startEvent(897); -- COP event
-    elseif (currentCOPMission == CALM_BEFORE_THE_STORM and player:hasKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2) then
+    elseif (currentCOPMission == CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.kis.LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2) then
             player:startEvent(892); -- COP event
     elseif (currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=VanadielDayOfTheYear()) then
             player:startEvent(890); -- COP event
@@ -90,17 +90,17 @@ function onTrigger(player,npc)
             player:startEvent(845); -- COP event
     elseif (currentCOPMission == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
             player:startEvent(847); -- COP event 3.3
-    elseif (player:getMainJob() == JOBS.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and
+    elseif (player:getMainJob() == dsp.jobs.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and
        player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
         player:startEvent(760); -- Start Quest "Dark Puppet"
     elseif (currentMission == GEOLOGICAL_SURVEY) then
-        if (player:hasKeyItem(RED_ACIDITY_TESTER)) then
+        if (player:hasKeyItem(dsp.kis.RED_ACIDITY_TESTER)) then
             player:startEvent(504);
-        elseif (player:hasKeyItem(BLUE_ACIDITY_TESTER) == false) then
+        elseif (player:hasKeyItem(dsp.kis.BLUE_ACIDITY_TESTER) == false) then
             player:startEvent(503);
         end
     elseif (currentMission == THE_CRYSTAL_LINE) then
-        if (player:hasKeyItem(C_L_REPORTS)) then
+        if (player:hasKeyItem(dsp.kis.C_L_REPORTS)) then
             player:showText(npc,MISSION_DIALOG_CID_TO_AYAME);
         else
             player:startEvent(505);
@@ -144,8 +144,8 @@ function onEventFinish(player,csid,option)
     if (csid == 897) then
             player:setVar("COP_tenzen_story",1);
     elseif (csid == 892) then
-            player:addKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE);
-            player:messageSpecial(KEYITEM_OBTAINED,LETTERS_FROM_ULMIA_AND_PRISHE);
+            player:addKeyItem(dsp.kis.LETTERS_FROM_ULMIA_AND_PRISHE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTERS_FROM_ULMIA_AND_PRISHE);
     elseif (csid == 890) then
             player:setVar("PromathiaStatus",0);
             player:setVar("Promathia_CID_timer",0);
@@ -188,8 +188,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,DARK_PUPPET);
         player:setVar("darkPuppetCS",1);
     elseif (csid == 503) then
-        player:addKeyItem(BLUE_ACIDITY_TESTER);
-        player:messageSpecial(KEYITEM_OBTAINED, BLUE_ACIDITY_TESTER);
+        player:addKeyItem(dsp.kis.BLUE_ACIDITY_TESTER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.BLUE_ACIDITY_TESTER);
     elseif (csid == 504 or csid == 764) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 505 and option == 0) then
@@ -205,15 +205,15 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 506 and option == 0) then
         player:tradeComplete();
-        player:addKeyItem(C_L_REPORTS);
-        player:messageSpecial(KEYITEM_OBTAINED, C_L_REPORTS);
+        player:addKeyItem(dsp.kis.C_L_REPORTS);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.C_L_REPORTS);
     elseif (csid == 763) then
         player:setVar("MissionStatus",1);
     elseif (csid == 507) then
         player:addQuest(BASTOK,CID_S_SECRET);
     elseif (csid == 509) then
             if (player:getFreeSlotsCount(0) >= 1) then
-                player:delKeyItem(UNFINISHED_LETTER);
+                player:delKeyItem(dsp.kis.UNFINISHED_LETTER);
                 player:setVar("CidsSecret_Event",0);
                 player:addItem(13570);
                 player:messageSpecial(ITEM_OBTAINED,13570); -- Ram Mantle

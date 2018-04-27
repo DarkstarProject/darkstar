@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         player:setVar("LuckOfTheDraw",0);
     elseif (player:getQuestStatus(AHT_URHGAN,LUCK_OF_THE_DRAW) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_COMPLETED) then
         player:setVar("EquipedforAllOccasions",0);
-    elseif (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_ACCEPTED and not player:hasKeyItem(LIFE_FLOAT)) then
+    elseif (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.kis.LIFE_FLOAT)) then
         player:startEvent(604); -- reacquire life float
     else
         player:startEvent(603);    -- standard dialog
@@ -64,8 +64,8 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,AFgun);
         end
     elseif (csid == 604) then
-        player:addKeyItem(LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
-        player:messageSpecial(KEYITEM_OBTAINED, LIFE_FLOAT);
+        player:addKeyItem(dsp.kis.LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.LIFE_FLOAT);
     end
 end;
 

@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     elseif (aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 2) then
         player:startEvent(118); -- Start short cs quest with option "a clock most delicate"
     elseif (aClockMostdelicate == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(CLOCK_TOWER_OIL) == true) then
+        if (player:hasKeyItem(dsp.kis.CLOCK_TOWER_OIL) == true) then
             player:startEvent(202); -- Ending quest "a clock most delicate"
         else
             player:startEvent(117); -- During quest "a clock most delicate"
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
         else
             player:addTitle(PROFESSIONAL_LOAFER);
-            player:delKeyItem(CLOCK_TOWER_OIL);
+            player:delKeyItem(dsp.kis.CLOCK_TOWER_OIL);
             player:addGil(1200);
             player:messageSpecial(GIL_OBTAINED,1200);
             player:addItem(12727);

@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local HasPainting = player:hasKeyItem(PAINTING_OF_A_WINDMILL);
+    local HasPainting = player:hasKeyItem(dsp.kis.PAINTING_OF_A_WINDMILL);
 
     if (player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_ACCEPTED and HasPainting == true) then
         player:startEvent(96);
@@ -44,8 +44,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 95) then
-        player:addKeyItem(LETTER_FROM_ROH_LATTEH);
-        player:messageSpecial(KEYITEM_OBTAINED, LETTER_FROM_ROH_LATTEH);
+        player:addKeyItem(dsp.kis.LETTER_FROM_ROH_LATTEH);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.LETTER_FROM_ROH_LATTEH);
         player:setVar("MomTheAdventurer_Event",2);
         player:tradeComplete();
     elseif (csid == 96) then
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
 
         if (freeInventory > 0) then
             player:completeQuest(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
-            player:delKeyItem(PAINTING_OF_A_WINDMILL);
+            player:delKeyItem(dsp.kis.PAINTING_OF_A_WINDMILL);
             player:addTitle(TREASURE_SCAVENGER);
             player:addFame(BASTOK,50);
             player:addItem(12601);

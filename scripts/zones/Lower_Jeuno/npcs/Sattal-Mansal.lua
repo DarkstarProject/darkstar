@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_AVAILABLE and player:hasKeyItem(SILVER_BELL)) then --Magicite Mission active (receive this KI after the first CS with aldo)
+    if (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_AVAILABLE and player:hasKeyItem(dsp.kis.SILVER_BELL)) then --Magicite Mission active (receive this KI after the first CS with aldo)
         player:startEvent(89); -- Start quests
     else
         player:startEvent(96); -- Standard dialog
@@ -42,14 +42,14 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
     elseif (csid == 91) then
-        player:addKeyItem(CORUSCANT_ROSARY);
-        player:messageSpecial(KEYITEM_OBTAINED,CORUSCANT_ROSARY);
+        player:addKeyItem(dsp.kis.CORUSCANT_ROSARY);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CORUSCANT_ROSARY);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
     elseif (csid == 92) then
-        player:addKeyItem(BLACK_MATINEE_NECKLACE);
-        player:messageSpecial(KEYITEM_OBTAINED,BLACK_MATINEE_NECKLACE);
+        player:addKeyItem(dsp.kis.BLACK_MATINEE_NECKLACE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.BLACK_MATINEE_NECKLACE);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);

@@ -88,11 +88,11 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Tenzen_s_Path",5);
     elseif (csid == 74) then
         player:setVar("COP_Tenzen_s_Path",3);
-        player:addKeyItem(ENVELOPE_FROM_MONBERAUX);
-        player:messageSpecial(KEYITEM_OBTAINED,ENVELOPE_FROM_MONBERAUX);
+        player:addKeyItem(dsp.kis.ENVELOPE_FROM_MONBERAUX);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ENVELOPE_FROM_MONBERAUX);
     elseif (csid == 10) then
         player:setVar("PromathiaStatus",0);
-        player:addKeyItem(MYSTERIOUS_AMULET_DRAINED);
+        player:addKeyItem(dsp.kis.MYSTERIOUS_AMULET_DRAINED);
         player:completeMission(COP,THE_RITES_OF_LIFE);
         player:addMission(COP,BELOW_THE_ARKS); -- start the mission 1-2
         player:startEvent(206); -- 206
@@ -112,8 +112,8 @@ function onEventFinish(player,csid,option)
         player:setVar("theLostCardianVar",0);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
-        player:addKeyItem(TWO_OF_SWORDS);
-        player:messageSpecial(KEYITEM_OBTAINED,TWO_OF_SWORDS); -- Two of Swords (Key Item)
+        player:addKeyItem(dsp.kis.TWO_OF_SWORDS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TWO_OF_SWORDS); -- Two of Swords (Key Item)
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,THE_LOST_CARDIAN);
         player:addQuest(JEUNO,THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"

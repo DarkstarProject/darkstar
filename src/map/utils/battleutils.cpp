@@ -2692,11 +2692,13 @@ namespace battleutils
         //utsus always overwrites blink, so if utsus>0 then we know theres no blink.
         uint16 Shadow = PDefender->getMod(Mod::UTSUSEMI);
         Mod modShadow = Mod::UTSUSEMI;
-        if (Shadow == 0) {
+        if (Shadow == 0)
+        {
             Shadow = PDefender->getMod(Mod::BLINK);
             modShadow = Mod::BLINK;
             //random chance, assume 80% proc
-            if (dsprand::GetRandomNumber(100) < 20) {
+            if (dsprand::GetRandomNumber(100) < 20)
+            {
                 return false;
             }
         }
@@ -2707,7 +2709,8 @@ namespace battleutils
 
             if (Shadow == 0)
             {
-                switch (modShadow) {
+                switch (modShadow)
+                {
                     case Mod::UTSUSEMI:
                         PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
                         break;
@@ -2722,12 +2725,12 @@ namespace battleutils
             {
                 if (PDefender->objtype == TYPE_PC)
                 {
-                    CStatusEffect* PStatusEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_COPY_IMAGE, 0);
+                    CStatusEffect* PStatusEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_COPY_IMAGE);
 
                     if (PStatusEffect != nullptr)
                     {
                         uint16 icon = EFFECT_COPY_IMAGE_3;
-                        switch (PDefender->getMod(Mod::UTSUSEMI))
+                        switch (Shadow)
                         {
                             case 1: icon = EFFECT_COPY_IMAGE_1; break;
                             case 2: icon = EFFECT_COPY_IMAGE_2; break;
@@ -4294,15 +4297,26 @@ namespace battleutils
         }
     }
 
-    void HandleTacticalParry(CBattleEntity* PEntity) {
-        for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+    void HandleTacticalParry(CBattleEntity* PEntity)
+    {
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity))
         {
-            CTrait* PExistingTrait = PEntity->TraitList.at(j);
+            if (charutils::hasTrait(PChar, TRAIT_TACTICAL_PARRY))
+            {
+                int16 tpBonus = PChar->getMod(Mod::TACTICAL_PARRY);
+                PChar->addTP(tpBonus);
+            }
+        }
+    }
 
-            if (PExistingTrait->getID() == TRAIT_TACTICAL_PARRY) {
-                int16 tpBonus = PEntity->getMod(Mod::TACTICAL_PARRY);
-                //ShowDebug(CL_CYAN"HandleTacticalParry: Tactical Parry Tp Bonus = %d\n" CL_RESET, tpBonus);
-                PEntity->addTP(tpBonus);
+    void HandleTacticalGuard(CBattleEntity* PEntity)
+    {
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity))
+        {
+            if (charutils::hasTrait(PChar, TRAIT_TACTICAL_GUARD))
+            {
+                int16 tpBonus = PChar->getMod(Mod::TACTICAL_GUARD);
+                PChar->addTP(tpBonus);
             }
         }
     }

@@ -75,8 +75,8 @@ function onEventFinish(player,csid,option)
             player:addItem(17386);
             player:messageSpecial(ITEM_OBTAINED, 17386);
             player:addTitle(CARP_DIEM);
-            player:addKeyItem(TESTIMONIAL);
-            player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
+            player:addKeyItem(dsp.kis.TESTIMONIAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.TESTIMONIAL);
             player:setVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,THE_COMPETITION);
         end

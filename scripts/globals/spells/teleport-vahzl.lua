@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:hasKeyItem(VAHZL_GATE_CRYSTAL) == true) then
+    if (target:hasKeyItem(dsp.kis.VAHZL_GATE_CRYSTAL) == true) then
             target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_VAHZL,0,4.7);
         spell:setMsg(msgBasic.MAGIC_TELEPORT);
     else

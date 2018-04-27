@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(BASTOK_WELCOMING_COMMITTEE);
             player:addItem(12300);
             player:messageSpecial(ITEM_OBTAINED,12300); -- Targe
-            player:delKeyItem(LETTERS_FROM_DOMIEN);
+            player:delKeyItem(dsp.kis.LETTERS_FROM_DOMIEN);
             player:setVar("GuestofHauteur_Event",0);
             player:addFame(BASTOK,80);
             player:completeQuest(BASTOK,GUEST_OF_HAUTEUR);

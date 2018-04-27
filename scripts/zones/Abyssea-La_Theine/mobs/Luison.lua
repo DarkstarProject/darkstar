@@ -4,7 +4,7 @@
 -----------------------------------
 
 function onMobSpawn(mob)
-    setLocalVar("transformTime", os.time())
+    mob:setLocalVar("transformTime", os.time())
 end;
 
 function onMobRoam(mob)

@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         
     -- DISTANT LOYALTIES
     elseif (distantLoyalties == QUEST_ACCEPTED and distantLoyaltiesProgress >= 1 and distantLoyaltiesProgress <= 3) then
-        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(GOLDSMITHING_ORDER)) then
+        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(dsp.kis.GOLDSMITHING_ORDER)) then
             player:startEvent(315);
         elseif (distantLoyaltiesProgress == 2) then
             player:startEvent(316);
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
 
     -- DISTANT LOYALTIES
     elseif (csid == 315) then
-        player:delKeyItem(GOLDSMITHING_ORDER);
+        player:delKeyItem(dsp.kis.GOLDSMITHING_ORDER);
         player:setVar("DistantLoyaltiesProgress",2);
     elseif (csid == 317) then
         player:confirmTrade();
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 318) then
         player:setVar("DistantLoyaltiesProgress",4);
-        npcUtil.giveKeyItem(player, MYTHRIL_HEARTS);
+        npcUtil.giveKeyItem(player, dsp.kis.MYTHRIL_HEARTS);
         
     -- FATHER FIGURE
     elseif (csid == 240) then

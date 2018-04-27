@@ -77,7 +77,7 @@ function onTrigger(player,npc)
         player:startEvent(469);
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6) then
         player:startEvent(470,0,587,0,586);
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(MIMEO_FEATHER) == true) then
+    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(dsp.kis.MIMEO_FEATHER) == true) then
         player:startEvent(471);
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 ) then
         player:startEvent(472);
@@ -120,11 +120,11 @@ function onEventFinish(player,csid,option)
       player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
     elseif (csid == 470) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
-        player:delKeyItem(CRACKED_MIMEO_MIRROR);
+        player:delKeyItem(dsp.kis.CRACKED_MIMEO_MIRROR);
     elseif (csid == 471) then
-        player:delKeyItem(MIMEO_FEATHER);
-         player:delKeyItem(SECOND_MIMEO_FEATHER);
-        player:delKeyItem(THIRD_MIMEO_FEATHER);
+        player:delKeyItem(dsp.kis.MIMEO_FEATHER);
+         player:delKeyItem(dsp.kis.SECOND_MIMEO_FEATHER);
+        player:delKeyItem(dsp.kis.THIRD_MIMEO_FEATHER);
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
     elseif (csid == 472) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",12);    --end 3-3B: Windurst Route: "Memories of a Maiden"

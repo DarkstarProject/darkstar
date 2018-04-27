@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     if (player:getFameLevel(JEUNO) >= 4 and aCandlelightVigil == QUEST_AVAILABLE) then
         player:startEvent(192); --Start quest : Ilumida asks you to obtain a candle ...
     elseif (aCandlelightVigil == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(HOLY_CANDLE) == true) then
+        if (player:hasKeyItem(dsp.kis.HOLY_CANDLE) == true) then
             player:startEvent(194); --Finish quest : CS NOT FOUND.
         else
             player:startEvent(191); --quest accepted dialog
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
         player:startEvent(201); --asks player again, SearchingForTheRightWords accept/deny
 
     elseif (SearchingForWords == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(MOONDROP) == true) then
+        if (player:hasKeyItem(dsp.kis.MOONDROP) == true) then
             player:startEvent(198);
         else
             player:startEvent(199); -- SearchingForTheRightWords quest accepted dialog
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13094);
         else
             player:addTitle(ACTIVIST_FOR_KINDNESS);
-            player:delKeyItem(HOLY_CANDLE);
+            player:delKeyItem(dsp.kis.HOLY_CANDLE);
             player:addItem(13094);
             player:messageSpecial(ITEM_OBTAINED,13094);
             player:needToZone(true);
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4882);
         else
-            player:delKeyItem(MOONDROP);
+            player:delKeyItem(dsp.kis.MOONDROP);
             player:messageSpecial(GIL_OBTAINED, GIL_RATE*3000)
             player:addItem(4882);
             player:messageSpecial(ITEM_OBTAINED,4882);

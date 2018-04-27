@@ -63,9 +63,9 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 32001) then
-        player:delKeyItem(TUNING_FORK_OF_EARTH);
-        player:addKeyItem(WHISPER_OF_TREMORS);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_TREMORS);
+        player:delKeyItem(dsp.kis.TUNING_FORK_OF_EARTH);
+        player:addKeyItem(dsp.kis.WHISPER_OF_TREMORS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_TREMORS);
     end
 
 end;

@@ -16,8 +16,8 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1103,1) and trade:getItemCount() == 1) then
             player:tradeComplete();
-            player:addKeyItem(ORCISH_DRIED_FOOD);
-            player:messageSpecial(KEYITEM_OBTAINED,ORCISH_DRIED_FOOD);
+            player:addKeyItem(dsp.kis.ORCISH_DRIED_FOOD);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ORCISH_DRIED_FOOD);
         end
     end
 

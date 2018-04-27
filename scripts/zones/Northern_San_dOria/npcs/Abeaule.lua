@@ -46,7 +46,7 @@ function onTrigger(player,npc)
             player:startEvent(613);
             player:setVar("medicineWomanCS",1);
         end
-    elseif (player:hasKeyItem(COLD_MEDICINE)) then
+    elseif (player:hasKeyItem(dsp.kis.COLD_MEDICINE)) then
         player:startEvent(614);
     end
 
@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,THE_MEDICINE_WOMAN);
     elseif (csid == 614) then
         player:addTitle(TRAVELING_MEDICINE_MAN);
-        player:delKeyItem(COLD_MEDICINE);
+        player:delKeyItem(dsp.kis.COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(SANDORIA,30);

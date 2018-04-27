@@ -21,10 +21,10 @@ function onTrigger(player,npc)
     local LP = player:getCurrency("legion_point");
     local MINIMUS = 0;
 
-    if (player:hasKeyItem(LEGION_TOME_PAGE_MAXIMUS)) then
+    if (player:hasKeyItem(dsp.kis.LEGION_TOME_PAGE_MAXIMUS)) then
         MAXIMUS = 1;
     end
-    if (player:hasKeyItem(LEGION_TOME_PAGE_MINIMUS)) then
+    if (player:hasKeyItem(dsp.kis.LEGION_TOME_PAGE_MINIMUS)) then
         MINIMUS = 1;
     end
 
@@ -69,17 +69,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 8005) then
         if (option == 0x0001000A) then
             if (GIL >= 360000) then
-                player:addKeyItem(LEGION_TOME_PAGE_MAXIMUS);
+                player:addKeyItem(dsp.kis.LEGION_TOME_PAGE_MAXIMUS);
                 player:delGil(360000);
-                player:messageSpecial(KEYITEM_OBTAINED, LEGION_TOME_PAGE_MAXIMUS)
+                player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.LEGION_TOME_PAGE_MAXIMUS)
             else
                 player:messageSpecial(NOT_ENOUGH_GIL);
             end
         elseif (option == 0x0001000B) then
             if (GIL >= 180000) then
-                player:addKeyItem(LEGION_TOME_PAGE_MINIMUS);
+                player:addKeyItem(dsp.kis.LEGION_TOME_PAGE_MINIMUS);
                 player:delGil(180000);
-                player:messageSpecial(KEYITEM_OBTAINED, LEGION_TOME_PAGE_MINIMUS)
+                player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.LEGION_TOME_PAGE_MINIMUS)
             else
                 player:messageSpecial(NOT_ENOUGH_GIL);
             end

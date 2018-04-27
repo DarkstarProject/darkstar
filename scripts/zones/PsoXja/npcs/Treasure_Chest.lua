@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1064,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: Map -----------
-        if (player:hasKeyItem(MAP_OF_PSOXJA) == false) then
+        if (player:hasKeyItem(dsp.kis.MAP_OF_PSOXJA) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -46,8 +46,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(MAP_OF_PSOXJA);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_PSOXJA); -- Map of Pso'Xja
+                    player:addKeyItem(dsp.kis.MAP_OF_PSOXJA);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_PSOXJA); -- Map of Pso'Xja
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 

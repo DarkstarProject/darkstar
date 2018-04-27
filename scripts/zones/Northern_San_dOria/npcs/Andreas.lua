@@ -13,27 +13,27 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = WOOD_PURIFICATION,
+        id = dsp.kis.WOOD_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = WOOD_ENSORCELLMENT,
+        id = dsp.kis.WOOD_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = LUMBERJACK,
+        id = dsp.kis.LUMBERJACK,
         rank = 3,
         cost = 10000
     },
      [3] = {
-        id = BOLTMAKER,
+        id = dsp.kis.BOLTMAKER,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = WAY_OF_THE_CARPENTER,
+        id = dsp.kis.WAY_OF_THE_CARPENTER,
         rank = 9,
         cost = 20000
     }

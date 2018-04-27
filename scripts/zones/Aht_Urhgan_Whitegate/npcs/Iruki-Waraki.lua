@@ -50,7 +50,7 @@ function onTrigger(player,npc)
         player:startEvent(261); -- reminder to get an automaton
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 6) then
         player:startEvent(266); -- you bring him the automaton
-    elseif (Job == JOBS.PUP and LvL < AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED) then
+    elseif (Job == dsp.jobs.PUP and LvL < AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED) then
         player:startEvent(267); -- asking you how are you doing with your automaton
     -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
         player:unlockAttachment(8224); --Harlequin Frame
@@ -59,22 +59,22 @@ function onTrigger(player,npc)
         player:startEvent(259); -- Leave him alone
 
     --Quest: The Wayward Automation
-    elseif (Job == JOBS.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
+    elseif (Job == dsp.jobs.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
         player:startEvent(774); -- he tells you to help find his auto
     elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1) then
         player:startEvent(775); -- reminder about to head to Nashmau
     elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then
         player:startEvent(776); -- tell him you found automation
-    elseif (Job == JOBS.PUP and LvL < AF2_QUEST_LEVEL and TheWaywardAutomation == QUEST_COMPLETED) then
+    elseif (Job == dsp.jobs.PUP and LvL < AF2_QUEST_LEVEL and TheWaywardAutomation == QUEST_COMPLETED) then
         player:startEvent(777);
-    elseif (Job ~= JOBS.PUP and TheWaywardAutomation == QUEST_COMPLETED) then
+    elseif (Job ~= dsp.jobs.PUP and TheWaywardAutomation == QUEST_COMPLETED) then
         player:startEvent(777);
-    elseif (Job ~= JOBS.PUP and NoStringsAttached == QUEST_COMPLETED) then
+    elseif (Job ~= dsp.jobs.PUP and NoStringsAttached == QUEST_COMPLETED) then
         player:startEvent(267); -- asking you how are you doing with your automaton
 
         
     --Quest: Operation teatime
-    elseif (Job == JOBS.PUP and LvL >= AF2_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_COMPLETED and OperationTeatime == QUEST_AVAILABLE) then
+    elseif (Job == dsp.jobs.PUP and LvL >= AF2_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_COMPLETED and OperationTeatime == QUEST_AVAILABLE) then
         player:startEvent(778);
     elseif (OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 1) then
         player:startEvent(779); -- Reminds you to get items
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:completeQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
             player:addTitle(PROUD_AUTOMATON_OWNER);
-            player:unlockJob(JOBS.PUP);
+            player:unlockJob(dsp.jobs.PUP);
             player:addItem(17859);
             player:messageSpecial(ITEM_OBTAINED,17859); -- animator
             player:messageSpecial(YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster."

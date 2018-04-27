@@ -9,7 +9,7 @@ require("scripts/globals/zone");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getContinentID() == THE_SHADOWREIGN_ERA) then
+    if (mob:getContinentID() == dsp.continents.THE_SHADOWREIGN_ERA) then
         return 0;
     else
         return 1;

@@ -240,7 +240,7 @@ function CharCreate(player)
             if ((race == 3) or (race == 4))
                 then player:addItem(0x34B7);
             end;
-            player:addKeyItem(MAP_OF_THE_SAN_DORIA_AREA);
+            player:addKeyItem(dsp.kis.MAP_OF_THE_SAN_DORIA_AREA);
         end,
 
         -- BASTOK CITIZEN
@@ -248,7 +248,7 @@ function CharCreate(player)
             if (((race == 1) or (race == 2) or (race == 8)))
                 then player:addItem(0x34B9);
             end;
-            player:addKeyItem(MAP_OF_THE_BASTOK_AREA);
+            player:addKeyItem(dsp.kis.MAP_OF_THE_BASTOK_AREA);
         end,
 
         -- WINDY CITIZEN
@@ -256,7 +256,7 @@ function CharCreate(player)
             if (((race == 5) or (race == 6) or (race == 7)))
                 then player:addItem(0x34B8);
             end;
-            player:addKeyItem(MAP_OF_THE_WINDURST_AREA);
+            player:addKeyItem(dsp.kis.MAP_OF_THE_WINDURST_AREA);
         end,
 
         default = function (x) end,

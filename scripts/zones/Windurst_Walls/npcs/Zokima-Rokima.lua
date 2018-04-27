@@ -38,11 +38,11 @@ function onTrigger(player,npc)
             player:startEvent(106);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
             player:startEvent(111);
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+        elseif (player:hasKeyItem(dsp.kis.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(150);
         else
             flagMission, repeatMission = getMissionMask(player);
-            player:startEvent(93,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
+            player:startEvent(93,flagMission,0,0,0,dsp.kis.STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
 
@@ -62,8 +62,8 @@ function onEventFinish(player,csid,option)
     if (csid == 96 and option == 1) then
         player:addTitle(HEAVENS_TOWER_GATEHOUSE_RECRUIT);
     elseif (csid == 93 and (option == 12 or option == 15)) then
-        player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:addKeyItem(dsp.kis.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_CRESTED_SUMMONS);
     end
 
 end;

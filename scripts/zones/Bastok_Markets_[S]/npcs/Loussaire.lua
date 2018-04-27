@@ -35,24 +35,24 @@ function onTrigger(player,npc)
              loafersQuestProgress == 2 or pantsQuestProgress == 2 or gownQuestProgress == 2) and AFProgress > 0) then
 
             local itemid   = 14580; -- Scholar's Gown
-            local FristKI  = PEISTE_DUNG;
-            local SecondKI = SAMPLE_OF_GRAUBERG_CHERT;
+            local FristKI  = dsp.kis.PEISTE_DUNG;
+            local SecondKI = dsp.kis.SAMPLE_OF_GRAUBERG_CHERT;
 
             if (loafersQuestProgress == 1 or loafersQuestProgress == 2) then
                 itemid   = 15748; -- Scholar's Loafers
-                FristKI  = RAFFLESIA_DREAMSPIT;
-                SecondKI = DROGAROGAN_BONEMEAL;
+                FristKI  = dsp.kis.RAFFLESIA_DREAMSPIT;
+                SecondKI = dsp.kis.DROGAROGAN_BONEMEAL;
 
             elseif (pantsQuestProgress == 1 or pantsQuestProgress == 2) then
                 itemid   = 16311; -- Scholar's Pants
-                FristKI  = SLUG_MUCUS;
-                SecondKI = DJINN_EMBER;
+                FristKI  = dsp.kis.SLUG_MUCUS;
+                SecondKI = dsp.kis.DJINN_EMBER;
             end
 
             player:startEvent(50, itemid, FristKI, SecondKI);
 
         -- Nothing in progress and meet the starting requirements.
-        elseif (downwardHelix == QUEST_COMPLETED and mJob == JOBS.SCH and mLvl >= AF2_QUEST_LEVEL) then
+        elseif (downwardHelix == QUEST_COMPLETED and mJob == dsp.jobs.SCH and mLvl >= AF2_QUEST_LEVEL) then
 
              -- If a player has completed any of the paths, it will be a different cutscene.
             local counter = 0;
@@ -75,23 +75,23 @@ function onTrigger(player,npc)
             end;
 
             -- Check Key Items and give them their dynamic event.
-            if (player:hasKeyItem(RAFFLESIA_DREAMSPIT) and player:hasKeyItem(DROGAROGAN_BONEMEAL) and loafersQuestProgress == 3) then -- Scholar's Loafers
+            if (player:hasKeyItem(dsp.kis.RAFFLESIA_DREAMSPIT) and player:hasKeyItem(dsp.kis.DROGAROGAN_BONEMEAL) and loafersQuestProgress == 3) then -- Scholar's Loafers
                 player:startEvent(cutsceneID, 15748);
                 player:setLocalVar("item", 15748);
-                player:setLocalVar("firstKI", RAFFLESIA_DREAMSPIT);
-                player:setLocalVar("secondKI", DROGAROGAN_BONEMEAL);
+                player:setLocalVar("firstKI", dsp.kis.RAFFLESIA_DREAMSPIT);
+                player:setLocalVar("secondKI", dsp.kis.DROGAROGAN_BONEMEAL);
 
-            elseif (player:hasKeyItem(SLUG_MUCUS) and player:hasKeyItem(DJINN_EMBER) and pantsQuestProgress == 3) then -- Scholar's Pants
+            elseif (player:hasKeyItem(dsp.kis.SLUG_MUCUS) and player:hasKeyItem(dsp.kis.DJINN_EMBER) and pantsQuestProgress == 3) then -- Scholar's Pants
                 player:startEvent(cutsceneID, 16311);
                 player:setLocalVar("item", 16311);
-                player:setLocalVar("firstKI", SLUG_MUCUS);
-                player:setLocalVar("secondKI", DJINN_EMBER);
+                player:setLocalVar("firstKI", dsp.kis.SLUG_MUCUS);
+                player:setLocalVar("secondKI", dsp.kis.DJINN_EMBER);
 
-            elseif (player:hasKeyItem(PEISTE_DUNG) and player:hasKeyItem(SAMPLE_OF_GRAUBERG_CHERT) and gownQuestProgress == 3) then -- Scholar's Gown
+            elseif (player:hasKeyItem(dsp.kis.PEISTE_DUNG) and player:hasKeyItem(dsp.kis.SAMPLE_OF_GRAUBERG_CHERT) and gownQuestProgress == 3) then -- Scholar's Gown
                 player:startEvent(cutsceneID, 14580);
                 player:setLocalVar("item", 14580);
-                player:setLocalVar("firstKI", PEISTE_DUNG);
-                player:setLocalVar("secondKI", SAMPLE_OF_GRAUBERG_CHERT);
+                player:setLocalVar("firstKI", dsp.kis.PEISTE_DUNG);
+                player:setLocalVar("secondKI", dsp.kis.SAMPLE_OF_GRAUBERG_CHERT);
 
             -- Show them the normal Menu to select from.
             else
@@ -135,15 +135,15 @@ function onEventUpdate(player,csid,option)
     if (csid == 49 or csid == 53) then
         -- Display Loafers
         if (option == 2) then
-            player:updateEvent(option,RAFFLESIA_DREAMSPIT,DROGAROGAN_BONEMEAL,0,0,0,0,0);
+            player:updateEvent(option,dsp.kis.RAFFLESIA_DREAMSPIT,dsp.kis.DROGAROGAN_BONEMEAL,0,0,0,0,0);
 
         -- Display Pants
         elseif (option == 4) then
-            player:updateEvent(option,SLUG_MUCUS,DJINN_EMBER,0,0,0,0,0);
+            player:updateEvent(option,dsp.kis.SLUG_MUCUS,dsp.kis.DJINN_EMBER,0,0,0,0,0);
 
         -- Display Gown
         elseif (option == 6) then
-            player:updateEvent(option,PEISTE_DUNG,SAMPLE_OF_GRAUBERG_CHERT,0,0,0,0,0);
+            player:updateEvent(option,dsp.kis.PEISTE_DUNG,dsp.kis.SAMPLE_OF_GRAUBERG_CHERT,0,0,0,0,0);
 
         -- Confirm Loafers
         elseif (option == 1) then

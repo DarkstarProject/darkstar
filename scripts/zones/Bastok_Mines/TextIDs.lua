@@ -25,13 +25,14 @@
 
 -- Mission Dialogs
         YOU_ACCEPT_THE_MISSION =  6506; -- You have accepted the mission.
-       ORIGINAL_MISSION_OFFSET =  6511; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
+       ORIGINAL_MISSION_OFFSET =  6511; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
        EXTENDED_MISSION_OFFSET = 11612; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS = 11723; -- You cannot enter Dynamis
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 11725; -- Players who have not reached levelare prohibited from entering Dynamis.
    UNUSUAL_ARRANGEMENT_PEBBLES = 11736; -- There is an unusual arrangement of pebbles here.
+       TEAR_IN_FABRIC_OF_SPACE = 16546; -- There appears to be a tear in the fabric of space...
 
 -- Dialog Texts
                HEMEWMEW_DIALOG =  7058; -- I have been appointed by the Guildworkers' Union to manage the trading of manufactured crafts and the exchange of guild points.

@@ -33,8 +33,8 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,GAZE_OF_THE_SABOTEUR);
         player:setVar("AhtUrganStatus",0);
         player:setTitle(EMISSARY_OF_THE_EMPRESS);
-        player:addKeyItem(LUMINIAN_DAGGER);
-        player:messageSpecial(KEYITEM_OBTAINED,LUMINIAN_DAGGER);
+        player:addKeyItem(dsp.kis.LUMINIAN_DAGGER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LUMINIAN_DAGGER);
         player:addMission(TOAU,PATH_OF_BLOOD);
     end
 
