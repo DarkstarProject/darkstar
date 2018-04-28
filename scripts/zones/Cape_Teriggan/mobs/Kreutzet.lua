@@ -31,7 +31,7 @@ function onMobDespawn(mob)
 end;
 
 function onMobDisengage(mob, weather)
-    if (weather ~= WEATHER_WIND and weather ~= WEATHER_GALE) then
+    if (weather ~= dsp.weather.WIND and weather ~= WEATHER_GALE) then
         DespawnMob(mob:getID());
     end
 end;

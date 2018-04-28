@@ -25,7 +25,7 @@ end;
 function onZoneWeatherChange(weather)
     npc = GetNPCByID(FORT_KN_INDESCRIPT_MARKINGS);
     if (npc ~= nil) then
-        if (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM) then
+        if (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM) then
             npc:setStatus(STATUS_DISAPPEAR);
         else
             npc:setStatus(STATUS_NORMAL);

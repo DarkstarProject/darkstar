@@ -77,7 +77,7 @@ function onGameHour(zone)
 end;
 
 function onZoneWeatherChange(weather)
-    if (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
+    if (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE) then
         GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_NORMAL);
     else
         GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_DISAPPEAR);

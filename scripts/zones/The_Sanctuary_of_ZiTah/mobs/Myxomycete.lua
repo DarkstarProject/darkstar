@@ -9,7 +9,7 @@ require("scripts/globals/weather");
 
 function onMobRoam(mob)
     local weather = mob:getWeather();
-    if (weather == WEATHER_RAIN or weather == WEATHER_SQUALL) then
+    if (weather == dsp.weather.RAIN or weather == dsp.weather.SQUALL) then
         if (phOnDespawn(mob,NOBLE_MOLD_PH,100,math.random(43200, 57600),true)) then -- 12 to 16 hours
             local p = mob:getPos();
             GetMobByID(NOBLE_MOLD):setSpawn(p.x,p.y,p.z,p.rot);

@@ -3,6 +3,7 @@
 -- Item: Custodes
 -- Additional Effect: Paralysis
 -----------------------------------------
+require("scripts/globals/weather");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
@@ -17,7 +18,7 @@ function onAdditionalEffect(player,target,damage)
 
     if (player:getWeather() == WEATHER_ICE) then
         chance = chance+4;
-    elseif (player:getWeather() == WEATHER_BLIZZARDS) then
+    elseif (player:getWeather() == dsp.weather.BLIZZARDS) then
         chance = chance+6;
     end
 
