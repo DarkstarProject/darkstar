@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     isEnfeeble = true;
     typeEffect = dsp.effect.NAME;
-    statmod = MOD_INT;
+    statmod = dsp.mod.INT;
 
     resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod);
     if (resist > 0.2) then

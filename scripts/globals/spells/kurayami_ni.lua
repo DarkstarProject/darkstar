@@ -13,11 +13,11 @@ end;
 function onSpellCast(caster,target,spell)
 
     -- Base Stats
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     --Duration Calculation
     local duration = 300;
     local params = {};
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = NINJUTSU_SKILL;
     params.bonus = 0;
     duration = duration * applyResistance(caster, target, spell, params);
@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local power = 30;
 
     --Calculates resist chanve from Reist Blind
-    if (math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
+    if (math.random(0,100) >= target:getMod(dsp.mod.BLINDRES)) then
         if (duration >= 150) then
 
             if (target:addStatusEffect(dsp.effect.BLINDNESS,power,0,duration)) then

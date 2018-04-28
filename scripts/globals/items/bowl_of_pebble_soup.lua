@@ -21,9 +21,9 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_HPHEAL, 2);
+    target:addMod(dsp.mod.HPHEAL, 2);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HPHEAL, 2);
+    target:delMod(dsp.mod.HPHEAL, 2);
 end;

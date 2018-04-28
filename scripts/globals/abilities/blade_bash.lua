@@ -28,9 +28,9 @@ function onUseAbility(player,target,ability)
     local darkKnightLvl = 0;
     local damage = 0;
     if (player:getMainJob() == dsp.job.DRK) then
-        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
+        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH));
     elseif (player:getSubJob() == dsp.job.DRK) then
-        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
+        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH));
     end
 
     -- Calculating and applying Blade Bash damage

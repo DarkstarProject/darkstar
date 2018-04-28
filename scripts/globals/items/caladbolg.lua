@@ -21,21 +21,21 @@ aftermathTable[19459] =
         duration = 30,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = 30 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 30 }
         }
     },
     { -- Tier 2
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = 40 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 40 }
         }
     },
     { -- Tier 3
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = 50 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 50 }
         }
     }
 };
@@ -53,21 +53,21 @@ aftermathTable[21684] =
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = 30 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 30 }
         }
     },
     { -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = 40 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 40 }
         }
     },
     { -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = 50 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 50 }
         }
     }
 };

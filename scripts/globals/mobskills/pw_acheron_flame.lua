@@ -26,7 +26,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.BURN;
-    local statmod = MOD_INT;
+    local statmod = dsp.mod.INT;
     local element = mob:getStatusEffectElement(typeEffect);
     local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
 

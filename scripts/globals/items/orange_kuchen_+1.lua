@@ -26,13 +26,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_MPP, 13);
-    target:addMod(MOD_FOOD_MP_CAP, 80);
-    target:addMod(MOD_MPHEAL, 1);
+    target:addMod(dsp.mod.FOOD_MPP, 13);
+    target:addMod(dsp.mod.FOOD_MP_CAP, 80);
+    target:addMod(dsp.mod.MPHEAL, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_MPP, 13);
-    target:delMod(MOD_FOOD_MP_CAP, 80);
-    target:delMod(MOD_MPHEAL, 1);
+    target:delMod(dsp.mod.FOOD_MPP, 13);
+    target:delMod(dsp.mod.FOOD_MP_CAP, 80);
+    target:delMod(dsp.mod.MPHEAL, 1);
 end;

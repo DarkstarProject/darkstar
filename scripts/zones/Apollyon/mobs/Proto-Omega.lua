@@ -18,9 +18,9 @@ end;
 
 function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
-    mob:setMod(MOD_UDMGPHYS, -75);
-    mob:setMod(MOD_UDMGRANGE, -75);
-    mob:setMod(MOD_UDMGMAGIC, 0);
+    mob:setMod(dsp.mod.UDMGPHYS, -75);
+    mob:setMod(dsp.mod.UDMGRANGE, -75);
+    mob:setMod(dsp.mod.UDMGMAGIC, 0);
 end;
 
 function onMobFight(mob,target)
@@ -34,9 +34,9 @@ function onMobFight(mob,target)
         mob:setLocalVar("form", currentForm)
         mob:AnimationSub(2);
         formTime = os.time() + 60;
-        mob:setMod(MOD_UDMGPHYS, 0);
-        mob:setMod(MOD_UDMGRANGE, 0);
-        mob:setMod(MOD_UDMGMAGIC, -75);
+        mob:setMod(dsp.mod.UDMGPHYS, 0);
+        mob:setMod(dsp.mod.UDMGRANGE, 0);
+        mob:setMod(dsp.mod.UDMGMAGIC, -75);
     end
 
     if (currentForm == 1) then
@@ -51,9 +51,9 @@ function onMobFight(mob,target)
 
         if (lifePercent < 30) then
             mob:AnimationSub(2);
-            mob:setMod(MOD_UDMGPHYS, -50);
-            mob:setMod(MOD_UDMGRANGE, -50);
-            mob:setMod(MOD_UDMGMAGIC, -50);
+            mob:setMod(dsp.mod.UDMGPHYS, -50);
+            mob:setMod(dsp.mod.UDMGRANGE, -50);
+            mob:setMod(dsp.mod.UDMGMAGIC, -50);
             mob:addStatusEffect(dsp.effect.REGAIN,7,3,0); -- The final form has Regain,
             mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
             currentForm = 2;

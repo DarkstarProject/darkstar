@@ -33,29 +33,29 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 40);
-    target:addMod(MOD_STR, 7);
-    target:addMod(MOD_DEX, 7);
-    target:addMod(MOD_INT, -3);
-    target:addMod(MOD_FOOD_ATTP, 23);
-    target:addMod(MOD_FOOD_ATT_CAP, 160);
-    target:addMod(MOD_FOOD_RATTP, 23);
-    target:addMod(MOD_FOOD_RATT_CAP, 160);
-    target:addMod(MOD_TRIPLE_ATTACK, 1);
-    target:addMod(MOD_LIZARD_KILLER, 4);
-    target:addMod(MOD_HPHEAL, 4);
+    target:addMod(dsp.mod.HP, 40);
+    target:addMod(dsp.mod.STR, 7);
+    target:addMod(dsp.mod.DEX, 7);
+    target:addMod(dsp.mod.INT, -3);
+    target:addMod(dsp.mod.FOOD_ATTP, 23);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 160);
+    target:addMod(dsp.mod.FOOD_RATTP, 23);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 160);
+    target:addMod(dsp.mod.TRIPLE_ATTACK, 1);
+    target:addMod(dsp.mod.LIZARD_KILLER, 4);
+    target:addMod(dsp.mod.HPHEAL, 4);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 40);
-    target:delMod(MOD_STR, 7);
-    target:delMod(MOD_DEX, 7);
-    target:delMod(MOD_INT, -3);
-    target:delMod(MOD_FOOD_ATTP, 23);
-    target:delMod(MOD_FOOD_ATT_CAP, 160);
-    target:delMod(MOD_FOOD_RATTP, 23);
-    target:delMod(MOD_FOOD_RATT_CAP, 160);
-    target:delMod(MOD_TRIPLE_ATTACK, 1);
-    target:delMod(MOD_LIZARD_KILLER, 4);
-    target:delMod(MOD_HPHEAL, 4);
+    target:delMod(dsp.mod.HP, 40);
+    target:delMod(dsp.mod.STR, 7);
+    target:delMod(dsp.mod.DEX, 7);
+    target:delMod(dsp.mod.INT, -3);
+    target:delMod(dsp.mod.FOOD_ATTP, 23);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 160);
+    target:delMod(dsp.mod.FOOD_RATTP, 23);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 160);
+    target:delMod(dsp.mod.TRIPLE_ATTACK, 1);
+    target:delMod(dsp.mod.LIZARD_KILLER, 4);
+    target:delMod(dsp.mod.HPHEAL, 4);
 end;

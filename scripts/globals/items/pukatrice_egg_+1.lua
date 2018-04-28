@@ -31,25 +31,25 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 20);
-    target:addMod(MOD_MP, 20);
-    target:addMod(MOD_STR, 3);
-    target:addMod(MOD_FIRERES, 21);
-    target:addMod(MOD_FOOD_ATTP, 21);
-    target:addMod(MOD_FOOD_ATT_CAP, 90);
-    target:addMod(MOD_FOOD_RATTP, 21);
-    target:addMod(MOD_FOOD_RATT_CAP, 90);
-    target:addMod(MOD_SUBTLE_BLOW, 9);
+    target:addMod(dsp.mod.HP, 20);
+    target:addMod(dsp.mod.MP, 20);
+    target:addMod(dsp.mod.STR, 3);
+    target:addMod(dsp.mod.FIRERES, 21);
+    target:addMod(dsp.mod.FOOD_ATTP, 21);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 90);
+    target:addMod(dsp.mod.FOOD_RATTP, 21);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 90);
+    target:addMod(dsp.mod.SUBTLE_BLOW, 9);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 20);
-    target:delMod(MOD_MP, 20);
-    target:delMod(MOD_STR, 3);
-    target:delMod(MOD_FIRERES, 21);
-    target:delMod(MOD_FOOD_ATTP, 21);
-    target:delMod(MOD_FOOD_ATT_CAP, 90);
-    target:delMod(MOD_FOOD_RATTP, 21);
-    target:delMod(MOD_FOOD_RATT_CAP, 90);
-    target:delMod(MOD_SUBTLE_BLOW, 9);
+    target:delMod(dsp.mod.HP, 20);
+    target:delMod(dsp.mod.MP, 20);
+    target:delMod(dsp.mod.STR, 3);
+    target:delMod(dsp.mod.FIRERES, 21);
+    target:delMod(dsp.mod.FOOD_ATTP, 21);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 90);
+    target:delMod(dsp.mod.FOOD_RATTP, 21);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 90);
+    target:delMod(dsp.mod.SUBTLE_BLOW, 9);
 end;

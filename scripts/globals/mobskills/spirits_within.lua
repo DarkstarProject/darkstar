@@ -45,7 +45,7 @@ function onMobWeaponSkill(target, mob, skill)
     dmg = target:breathDmgTaken(dmg);
 
     -- Handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;

@@ -16,7 +16,7 @@ end;
 function onUseAbility(player,target,ability)
     local modAcc = player:getMerit(MERIT_FERAL_HOWL);
     --printf("modAcc : %u",modAcc);
-    local feralHowlMod = player:getMod(MOD_FERAL_HOWL_DURATION);
+    local feralHowlMod = player:getMod(dsp.mod.FERAL_HOWL_DURATION);
     --printf("feralHowlMod : %u",feralHowlMod);
         local duration = 10;
     --printf("Duration : %u",duration);

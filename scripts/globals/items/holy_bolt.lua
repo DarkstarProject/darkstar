@@ -18,7 +18,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local dmg = player:getStat(MOD_MND) - target:getStat(MOD_MND);
+        local dmg = player:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);
         if (dmg > 40) then
             dmg = dmg+(dmg-40)/2;
         end

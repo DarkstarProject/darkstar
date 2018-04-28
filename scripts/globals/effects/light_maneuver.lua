@@ -11,7 +11,7 @@
 function onEffectGain(target,effect)
     local pet = target:getPet()
     if (pet) then
-        pet:addMod(MOD_CHR, effect:getPower())
+        pet:addMod(dsp.mod.CHR, effect:getPower())
     end
 end;
 
@@ -29,6 +29,6 @@ end;
 function onEffectLose(target,effect)
     local pet = target:getPet()
     if (pet) then
-        pet:delMod(MOD_CHR, effect:getPower())
+        pet:delMod(dsp.mod.CHR, effect:getPower())
     end
 end;

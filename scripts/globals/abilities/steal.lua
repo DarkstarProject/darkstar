@@ -49,7 +49,7 @@ function onUseAbility(player,target,ability,action)
         thfLevel = player:getSubLvl();
     end
 
-    local stealMod = player:getMod(MOD_STEAL);
+    local stealMod = player:getMod(dsp.mod.STEAL);
 
     local stealChance = 50 + stealMod * 2 + thfLevel - target:getMainLvl();
 
@@ -84,7 +84,7 @@ function onUseAbility(player,target,ability,action)
             end
 
             -- Try for a second effect if we have the augment
-            if ((effect ~= dsp.effect.NONE or stolen ~= 0) and player:getMod(MOD_AUGMENTS_AURA_STEAL) > 0) then
+            if ((effect ~= dsp.effect.NONE or stolen ~= 0) and player:getMod(dsp.mod.AUGMENTS_AURA_STEAL) > 0) then
                 if (math.random(100) < auraStealChance) then
                     if (stolenEffect2 ~= nil and math.random(100) < auraStealChance) then
                         player:stealStatusEffect(target);

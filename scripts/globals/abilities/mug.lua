@@ -42,7 +42,7 @@ function onUseAbility(player,target,ability,action)
         if (gil <= 0) then
             ability:setMsg(dsp.msg.basic.MUG_FAIL);
         else
-            gil = gil * (1 + player:getMod(MOD_MUG_EFFECT));
+            gil = gil * (1 + player:getMod(dsp.mod.MUG_EFFECT));
             player:addGil(gil);
             target:setMobMod(dsp.mobMod.MUG_GIL, target:getMobMod(dsp.mobMod.MUG_GIL) - gil);
             ability:setMsg(dsp.msg.basic.MUG_SUCCESS);

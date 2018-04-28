@@ -23,15 +23,15 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_DEX, 3);
-    target:addMod(MOD_MND, -1);
-    target:addMod(MOD_RATTP, 14);
-    target:addMod(MOD_RATT_CAP, 50);
+    target:addMod(dsp.mod.DEX, 3);
+    target:addMod(dsp.mod.MND, -1);
+    target:addMod(dsp.mod.RATTP, 14);
+    target:addMod(dsp.mod.RATT_CAP, 50);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, 3);
-    target:delMod(MOD_MND, -1);
-    target:delMod(MOD_RATTP, 14);
-    target:delMod(MOD_RATT_CAP, 50);
+    target:delMod(dsp.mod.DEX, 3);
+    target:delMod(dsp.mod.MND, -1);
+    target:delMod(dsp.mod.RATTP, 14);
+    target:delMod(dsp.mod.RATT_CAP, 50);
 end;

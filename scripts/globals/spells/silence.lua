@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     end
 
     --Pull base stats.
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
 
     --Duration, including resistance.  May need more research.
     local duration = 120;
@@ -32,7 +32,7 @@ function onSpellCast(caster,target,spell)
     --Resist
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = 0;
     params.effect = dsp.effect.SILENCE;

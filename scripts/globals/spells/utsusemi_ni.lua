@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     local icon = dsp.effect.COPY_IMAGE_3;
     
     if (caster:getMainJob() == dsp.job.NIN) then
-        numShadows = 4 + target:getMod(MOD_UTSUSEMI_BONUS);
+        numShadows = 4 + target:getMod(dsp.mod.UTSUSEMI_BONUS);
         icon = dsp.effect.COPY_IMAGE_4;
     end
     

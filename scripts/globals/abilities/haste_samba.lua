@@ -28,8 +28,8 @@ function onUseAbility(player,target,ability)
         player:delTP(350);
     end;
 
-    local duration = 120 + player:getMod(MOD_SAMBA_DURATION);
-    duration = duration * (100 + player:getMod(MOD_SAMBA_PDURATION))/100;
+    local duration = 120 + player:getMod(dsp.mod.SAMBA_DURATION);
+    duration = duration * (100 + player:getMod(dsp.mod.SAMBA_PDURATION))/100;
     player:delStatusEffect(dsp.effect.DRAIN_SAMBA);
     player:delStatusEffect(dsp.effect.ASPIR_SAMBA);
     player:addStatusEffect(dsp.effect.HASTE_SAMBA,player:getMerit(MERIT_HASTE_SAMBA_EFFECT)+52,0,duration);

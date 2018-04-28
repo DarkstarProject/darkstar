@@ -30,19 +30,19 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MP, 20);
-    target:addMod(MOD_DEX, 3);
-    target:addMod(MOD_INT, 4);
-    target:addMod(MOD_MND, -3);
-    target:addMod(MOD_MPHEAL, 2);
-    target:addMod(MOD_EVA, 5);
+    target:addMod(dsp.mod.MP, 20);
+    target:addMod(dsp.mod.DEX, 3);
+    target:addMod(dsp.mod.INT, 4);
+    target:addMod(dsp.mod.MND, -3);
+    target:addMod(dsp.mod.MPHEAL, 2);
+    target:addMod(dsp.mod.EVA, 5);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MP, 20);
-    target:delMod(MOD_DEX, 3);
-    target:delMod(MOD_INT, 4);
-    target:delMod(MOD_MND, -3);
-    target:delMod(MOD_MPHEAL, 2);
-    target:delMod(MOD_EVA, 5);
+    target:delMod(dsp.mod.MP, 20);
+    target:delMod(dsp.mod.DEX, 3);
+    target:delMod(dsp.mod.INT, 4);
+    target:delMod(dsp.mod.MND, -3);
+    target:delMod(dsp.mod.MPHEAL, 2);
+    target:delMod(dsp.mod.EVA, 5);
 end;

@@ -19,7 +19,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, master)
-    local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = math.floor(pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     
     local level = pet:getMainLvl()
     local damage = 48 + (level * 8);

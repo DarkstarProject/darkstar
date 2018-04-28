@@ -15,7 +15,7 @@ function onItemCheck(target)
     if (target:getRace() ~= 7) then
         result = 247;
     end
-    if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
+    if (target:getMod(dsp.mod.EAT_RAW_FISH) == 1) then
         result = 0;
     end
     if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
@@ -29,15 +29,15 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_DEX, -3);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_FOOD_DEFP, 13);
-    target:addMod(MOD_FOOD_DEF_CAP,50);
+    target:addMod(dsp.mod.DEX, -3);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.FOOD_DEFP, 13);
+    target:addMod(dsp.mod.FOOD_DEF_CAP,50);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, -3);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_FOOD_DEFP, 13);
-    target:delMod(MOD_FOOD_DEF_CAP,50);
+    target:delMod(dsp.mod.DEX, -3);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.FOOD_DEFP, 13);
+    target:delMod(dsp.mod.FOOD_DEF_CAP,50);
 end;

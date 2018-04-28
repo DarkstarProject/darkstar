@@ -22,11 +22,11 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_HP, 3);
-    target:addMod(MOD_MP, 3);
+    target:addMod(dsp.mod.HP, 3);
+    target:addMod(dsp.mod.MP, 3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 3);
-    target:delMod(MOD_MP, 3);
+    target:delMod(dsp.mod.HP, 3);
+    target:delMod(dsp.mod.MP, 3);
 end;

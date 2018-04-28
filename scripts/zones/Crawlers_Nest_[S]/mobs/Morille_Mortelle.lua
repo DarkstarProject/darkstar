@@ -8,8 +8,8 @@ require("scripts/globals/magic");
 require("scripts/globals/msg");
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_DOUBLE_ATTACK, 20);
-    mob:setMod(MOD_STORETP, 10);
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 20);
+    mob:setMod(dsp.mod.STORETP, 10);
 end;
 
 function onAdditionalEffect(mob, player)

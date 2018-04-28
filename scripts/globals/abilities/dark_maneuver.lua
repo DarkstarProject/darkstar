@@ -29,7 +29,7 @@ function onUseAbility(player,target,ability)
     local overload = target:addBurden(ELE_DARK-1, burden);
 
     if (overload ~= 0 and
-        (player:getMod(MOD_PREVENT_OVERLOAD) > 0 or player:getPet():getMod(MOD_PREVENT_OVERLOAD) > 0) and
+        (player:getMod(dsp.mod.PREVENT_OVERLOAD) > 0 or player:getPet():getMod(dsp.mod.PREVENT_OVERLOAD) > 0) and
         player:delStatusEffectSilent(dsp.effect.WATER_MANEUVER)) then
         overload = 0;
     end

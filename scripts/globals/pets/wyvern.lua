@@ -38,7 +38,7 @@ local wyvernTypes = {
 
 function onMobSpawn(mob)
     local master = mob:getMaster()
-    mob:addMod(MOD_DMG, -40);
+    mob:addMod(dsp.mod.DMG, -40);
     local wyvernType = wyvernTypes[master:getSubJob()]
     local healingbreath = 624
     if mob:getMainLvl() >= 80 then healingbreath = 623
@@ -70,7 +70,7 @@ function onMobSpawn(mob)
             master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
                 -- check master first!
                 local threshold = 33;
-                if (player:getMod(MOD_WYVERN_EFFECTIVE_BREATH) > 0) then
+                if (player:getMod(dsp.mod.WYVERN_EFFECTIVE_BREATH) > 0) then
                     threshold = 50;
                 end
                 doHealingBreath(player, threshold, healingbreath)
@@ -80,16 +80,16 @@ function onMobSpawn(mob)
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
             local weaknessTargetChance = 75
             local breaths = {};
-            if (player:getMod(MOD_WYVERN_EFFECTIVE_BREATH) > 0) then
+            if (player:getMod(dsp.mod.WYVERN_EFFECTIVE_BREATH) > 0) then
                 weaknessTargetChance = 100;
             end
             if (math.random(100) <= weaknessTargetChance) then
                 local weakness = 0
                 for mod = 0, 5 do
-                    if target:getMod(MOD_FIREDEF + mod) < target:getMod(MOD_FIREDEF + weakness) then
+                    if target:getMod(dsp.mod.FIREDEF + mod) < target:getMod(dsp.mod.FIREDEF + weakness) then
                         breaths = {}
                         table.insert(breaths, 630 + mod)
-                    elseif target:getMod(MOD_FIREDEF + mod) == target:getMod(MOD_FIREDEF + weakness) then
+                    elseif target:getMod(dsp.mod.FIREDEF + mod) == target:getMod(dsp.mod.FIREDEF + weakness) then
                         table.insert(breaths, 630 + mod)
                     end
                 end
@@ -103,7 +103,7 @@ function onMobSpawn(mob)
         master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
             -- check master first!
             local threshold = 25;
-            if (player:getMod(MOD_WYVERN_EFFECTIVE_BREATH) > 0) then
+            if (player:getMod(dsp.mod.WYVERN_EFFECTIVE_BREATH) > 0) then
                 threshold = 33;
             end
             doHealingBreath(player, threshold, healingbreath)
@@ -133,9 +133,9 @@ function onMobSpawn(mob)
             local diff = math.floor((prev_exp + currentExp)/200) - math.floor(prev_exp/200)
             if diff ~= 0 then
                 -- wyvern levelled up (diff is the number of level ups)
-                pet:addMod(MOD_ACC,2*diff)
-                pet:addMod(MOD_HPP,5*diff)
-                pet:addMod(MOD_ATTP,5*diff)
+                pet:addMod(dsp.mod.ACC,2*diff)
+                pet:addMod(dsp.mod.HPP,5*diff)
+                pet:addMod(dsp.mod.ATTP,5*diff)
                 pet:setHP(pet:getMaxHP())
                 player:messageBasic(dsp.msg.basic.STATUS_INCREASED, 0, 0, pet);
             end

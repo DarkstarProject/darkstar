@@ -24,17 +24,17 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_FOOD_HPP, 25);
-    target:addMod(MOD_FOOD_HP_CAP, 105);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_STORETP, 6);
-    target:addMod(MOD_SLEEPRES, 10);
+    target:addMod(dsp.mod.FOOD_HPP, 25);
+    target:addMod(dsp.mod.FOOD_HP_CAP, 105);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.STORETP, 6);
+    target:addMod(dsp.mod.SLEEPRES, 10);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_HPP, 25);
-    target:delMod(MOD_FOOD_HP_CAP, 105);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_STORETP, 6);
-    target:delMod(MOD_SLEEPRES, 10);
+    target:delMod(dsp.mod.FOOD_HPP, 25);
+    target:delMod(dsp.mod.FOOD_HP_CAP, 105);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.STORETP, 6);
+    target:delMod(dsp.mod.SLEEPRES, 10);
 end;

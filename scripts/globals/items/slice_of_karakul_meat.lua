@@ -14,7 +14,7 @@ function onItemCheck(target)
     if (target:getRace() ~= 8) then
         result = 247;
     end
-    if (target:getMod(MOD_EAT_RAW_MEAT) == 1) then
+    if (target:getMod(dsp.mod.EAT_RAW_MEAT) == 1) then
         result = 0;
     end
     if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, 2);
-    target:addMod(MOD_INT, -4);
+    target:addMod(dsp.mod.STR, 2);
+    target:addMod(dsp.mod.INT, -4);
 end;
 
 -----------------------------------------
@@ -41,6 +41,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_STR, 2);
-    target:delMod(MOD_INT, -4);
+    target:delMod(dsp.mod.STR, 2);
+    target:delMod(dsp.mod.INT, -4);
 end;

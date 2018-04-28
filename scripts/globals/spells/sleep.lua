@@ -17,12 +17,12 @@ function onSpellCast(caster,target,spell)
     end
     caster:delStatusEffect(dsp.effect.SABOTEUR);
 
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
+    local pINT = caster:getStat(dsp.mod.INT);
+    local mINT = target:getStat(dsp.mod.INT);
     local dINT = (pINT - mINT);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
     params.bonus = 0;
     params.effect = dsp.effect.SLEEP_I;

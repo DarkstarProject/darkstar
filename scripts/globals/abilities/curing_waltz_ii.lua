@@ -22,7 +22,7 @@ function onAbilityCheck(player,target,ability)
     else
         --[[ Apply "Waltz Ability Delay" reduction
             1 modifier = 1 second]]
-        local recastMod = player:getMod(MOD_WALTZ_DELAY);
+        local recastMod = player:getMod(dsp.mod.WALTZ_DELAY);
         if (recastMod ~= 0) then
             local newRecast = ability:getRecast() +recastMod;
             ability:setRecast(utils.clamp(newRecast,0,newRecast));
@@ -46,8 +46,8 @@ function onUseAbility(player,target,ability)
     end;
 
     --Grabbing variables.
-    local vit = target:getStat(MOD_VIT);
-    local chr = player:getStat(MOD_CHR);
+    local vit = target:getStat(dsp.mod.VIT);
+    local chr = player:getStat(dsp.mod.CHR);
     local mjob = player:getMainJob(); --19 for DNC main.
     local sjob = player:getSubJob();
     local cure = 0;
@@ -64,7 +64,7 @@ function onUseAbility(player,target,ability)
     end
 
     -- apply waltz modifiers
-    cure = math.floor(cure * (1.0 + (player:getMod(MOD_WALTZ_POTENTCY)/100)));
+    cure = math.floor(cure * (1.0 + (player:getMod(dsp.mod.WALTZ_POTENTCY)/100)));
 
     --Reducing TP.
 

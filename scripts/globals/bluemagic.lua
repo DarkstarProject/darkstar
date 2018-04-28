@@ -90,7 +90,7 @@ function BluePhysicalSpell(caster, target, spell, params)
 
     -- print("D val is ".. D);
 
-    local fStr = BluefSTR(caster:getStat(MOD_STR) - target:getStat(MOD_VIT));
+    local fStr = BluefSTR(caster:getStat(dsp.mod.STR) - target:getStat(dsp.mod.VIT));
     if (fStr > 22) then
         fStr = 22; -- TODO: Smite of Rage doesn't have this cap applied.
     end
@@ -124,10 +124,10 @@ function BluePhysicalSpell(caster, target, spell, params)
     -- Get the possible pDIF range and hit rate --
     ----------------------------------------------
     if (params.offcratiomod == nil) then -- default to attack. Pretty much every physical spell will use this, Cannonball being the exception.
-        params.offcratiomod = caster:getStat(MOD_ATT)
+        params.offcratiomod = caster:getStat(dsp.mod.ATT)
     end;
     -- print(params.offcratiomod)
-    local cratio = BluecRatio(params.offcratiomod / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
+    local cratio = BluecRatio(params.offcratiomod / target:getStat(dsp.mod.DEF), caster:getMainLvl(), target:getMainLvl());
     local hitrate = BlueGetHitRate(caster,target,true);
 
     -- print("Hit rate "..hitrate);
@@ -201,13 +201,13 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     local statBonus = 0;
     local dStat = 0; -- Please make sure to add an additional stat check if there is to be a spell that uses neither INT, MND, or CHR. None currently exist.
     if (statMod == INT_BASED) then -- Stat mod is INT
-        dStat = caster:getStat(MOD_INT) - target:getStat(MOD_INT)
+        dStat = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
         statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == CHR_BASED) then -- Stat mod is CHR
-        dStat = caster:getStat(MOD_CHR) - target:getStat(MOD_CHR)
+        dStat = caster:getStat(dsp.mod.CHR) - target:getStat(dsp.mod.CHR)
         statBonus = (dStat)* params.tMultiplier;
     elseif (statMod == MND_BASED) then -- Stat mod is MND
-        dStat = caster:getStat(MOD_MND) - target:getStat(MOD_MND)
+        dStat = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
         statBonus = (dStat)* params.tMultiplier;
     end
 
@@ -238,7 +238,7 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
 
     dmg = dmg * BLUE_POWER;
 
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
     if (dmg < 0) then
         dmg = 0;
     end
@@ -258,10 +258,10 @@ end;
 ------------------------------
 
 function BlueGetWsc(attacker, params)
-    wsc = (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
-         attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
-         attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
-         attacker:getStat(MOD_CHR) * params.chr_wsc) * BlueGetAlpha(attacker:getMainLvl());
+    wsc = (attacker:getStat(dsp.mod.STR) * params.str_wsc + attacker:getStat(dsp.mod.DEX) * params.dex_wsc +
+         attacker:getStat(dsp.mod.VIT) * params.vit_wsc + attacker:getStat(dsp.mod.AGI) * params.agi_wsc +
+         attacker:getStat(dsp.mod.INT) * params.int_wsc + attacker:getStat(dsp.mod.MND) * params.mnd_wsc +
+         attacker:getStat(dsp.mod.CHR) * params.chr_wsc) * BlueGetAlpha(attacker:getMainLvl());
     return wsc;
 end;
 

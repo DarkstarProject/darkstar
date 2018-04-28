@@ -186,7 +186,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                 boreAbility = 1;
             end
 
-            local Mod = player:getMod(MOD_EGGHELM);
+            local Mod = player:getMod(dsp.mod.EGGHELM);
 
             ItemID = getChocoboDiggingItem(itemMap, Chance, burrowAbility, boreAbility, Mod, VanadielTOTD());
 

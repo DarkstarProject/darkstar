@@ -23,7 +23,7 @@ aftermathTable[18270] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=5 }
+        { id=dsp.mod.CRITHITRATE, power=5 }
     }
 };
 aftermathTable[18271] = aftermathTable[18270]; -- Mandau (80)
@@ -42,8 +42,8 @@ aftermathTable[20583] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=5 },
-        { id=MOD_CRIT_DMG_INCREASE, power=5 }
+        { id=dsp.mod.CRITHITRATE, power=5 },
+        { id=dsp.mod.CRIT_DMG_INCREASE, power=5 }
     }
 };
 

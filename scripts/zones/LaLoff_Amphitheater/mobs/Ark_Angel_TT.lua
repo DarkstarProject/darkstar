@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_UFASTCAST, 30);
+    mob:addMod(dsp.mod.UFASTCAST, 30);
     mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
     mob:setMobMod(dsp.mobMod.SUB_2HOUR, 1);
 end;

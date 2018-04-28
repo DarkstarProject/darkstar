@@ -29,15 +29,15 @@ function onTrigger(player)
         player:addStatusEffect(dsp.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the player..
-        player:addMod(MOD_RACC,2500);
-        player:addMod(MOD_RATT,2500);
-        player:addMod(MOD_ACC,2500);
-        player:addMod(MOD_ATT,2500);
-        player:addMod(MOD_MATT,2500);
-        player:addMod(MOD_MACC,2500);
-        player:addMod(MOD_RDEF,2500);
-        player:addMod(MOD_DEF,2500);
-        player:addMod(MOD_MDEF,2500);
+        player:addMod(dsp.mod.RACC,2500);
+        player:addMod(dsp.mod.RATT,2500);
+        player:addMod(dsp.mod.ACC,2500);
+        player:addMod(dsp.mod.ATT,2500);
+        player:addMod(dsp.mod.MATT,2500);
+        player:addMod(dsp.mod.MACC,2500);
+        player:addMod(dsp.mod.RDEF,2500);
+        player:addMod(dsp.mod.DEF,2500);
+        player:addMod(dsp.mod.MDEF,2500);
 
         -- Heal the player from the new buffs..
         player:addHP( 50000 );
@@ -61,14 +61,14 @@ function onTrigger(player)
         player:delStatusEffect(dsp.effect.REGEN);
 
         -- Remove bonus mods..
-        player:delMod(MOD_RACC,2500);
-        player:delMod(MOD_RATT,2500);
-        player:delMod(MOD_ACC,2500);
-        player:delMod(MOD_ATT,2500);
-        player:delMod(MOD_MATT,2500);
-        player:delMod(MOD_MACC,2500);
-        player:delMod(MOD_RDEF,2500);
-        player:delMod(MOD_DEF,2500);
-        player:delMod(MOD_MDEF,2500);
+        player:delMod(dsp.mod.RACC,2500);
+        player:delMod(dsp.mod.RATT,2500);
+        player:delMod(dsp.mod.ACC,2500);
+        player:delMod(dsp.mod.ATT,2500);
+        player:delMod(dsp.mod.MATT,2500);
+        player:delMod(dsp.mod.MACC,2500);
+        player:delMod(dsp.mod.RDEF,2500);
+        player:delMod(dsp.mod.DEF,2500);
+        player:delMod(dsp.mod.MDEF,2500);
     end
 end

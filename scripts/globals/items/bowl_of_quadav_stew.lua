@@ -24,15 +24,15 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_AGI, -4);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_FOOD_DEFP, 17);
-    target:addMod(MOD_FOOD_DEF_CAP, 60);
+    target:addMod(dsp.mod.AGI, -4);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.FOOD_DEFP, 17);
+    target:addMod(dsp.mod.FOOD_DEF_CAP, 60);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_AGI, -4);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_FOOD_DEFP, 17);
-    target:delMod(MOD_FOOD_DEF_CAP, 60);
+    target:delMod(dsp.mod.AGI, -4);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.FOOD_DEFP, 17);
+    target:delMod(dsp.mod.FOOD_DEF_CAP, 60);
 end;

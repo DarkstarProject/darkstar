@@ -28,8 +28,8 @@ function onUseAbility(player,target,ability)
     player:delStatusEffect(dsp.effect.EQUANIMITY);
     player:delStatusEffect(dsp.effect.IMMANENCE);
 
-    local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
-    local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
+    local skillbonus = player:getMod(dsp.mod.LIGHT_ARTS_SKILL);
+    local effectbonus = player:getMod(dsp.mod.LIGHT_ARTS_EFFECT);
     local regenbonus = 0;
     if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);

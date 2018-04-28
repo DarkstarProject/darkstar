@@ -10,8 +10,8 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 50);
-    mob:addMod(MOD_UFASTCAST,50);
+    mob:addMod(dsp.mod.REGAIN, 50);
+    mob:addMod(dsp.mod.UFASTCAST,50);
 end;
 
 function onMobEngaged(mob,target)

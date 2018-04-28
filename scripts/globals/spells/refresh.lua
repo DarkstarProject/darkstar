@@ -15,7 +15,7 @@ function onSpellCast(caster,target,spell)
     local mp = 3;
     local duration = 150;
 
-    mp = mp + caster:getMod(MOD_ENHANCES_REFRESH);
+    mp = mp + caster:getMod(dsp.mod.ENHANCES_REFRESH);
 
     if (caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID()) then
         duration = duration * 3;

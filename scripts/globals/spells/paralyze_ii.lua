@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     local merits = caster:getMerit(MERIT_PARALYZE_II);
 
     -- Pull base stats
-    local dMND = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
+    local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);
 
     -- Base potency
     local potency = math.floor(dMND / 4) + 20;
@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
     local duration = 120;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = merits*2;
     params.effect = dsp.effect.PARALYSIS;

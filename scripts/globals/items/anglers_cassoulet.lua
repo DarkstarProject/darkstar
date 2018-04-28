@@ -33,18 +33,18 @@ end;
 -- onEffectGain
 ----------------------------------------
 function onEffectGain(target,effect)
-    target:addMod(MOD_REGEN, 1);
-    target:addMod(MOD_VIT, -1);
-    target:addMod(MOD_AGI, 5);
-    target:addMod(MOD_RACC, 5);
+    target:addMod(dsp.mod.REGEN, 1);
+    target:addMod(dsp.mod.VIT, -1);
+    target:addMod(dsp.mod.AGI, 5);
+    target:addMod(dsp.mod.RACC, 5);
 end
 
 -----------------------------------------
 -- onEffectLose Action
 -----------------------------------------
 function onEffectLose(target,effect)
-    target:delMod(MOD_REGEN, 1);
-    target:delMod(MOD_VIT, -1);
-    target:delMod(MOD_AGI, 5);
-    target:delMod(MOD_RACC, 5);
+    target:delMod(dsp.mod.REGEN, 1);
+    target:delMod(dsp.mod.VIT, -1);
+    target:delMod(dsp.mod.AGI, 5);
+    target:delMod(dsp.mod.RACC, 5);
 end;

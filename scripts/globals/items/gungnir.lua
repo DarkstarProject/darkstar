@@ -23,8 +23,8 @@ aftermathTable[18300] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_SPIKES, power=SUBEFFECT_SHOCK_SPIKES },
-        { id=MOD_SPIKES_DMG, power=10 }
+        { id=dsp.mod.SPIKES, power=SUBEFFECT_SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES_DMG, power=10 }
     }
 };
 aftermathTable[18301] = aftermathTable[18300]; -- Gungnir (80)
@@ -43,10 +43,10 @@ aftermathTable[21857] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_SPIKES, power=SUBEFFECT_SHOCK_SPIKES },
-        { id=MOD_SPIKES_DMG, power=10 },
-        { id=MOD_ATTP, power=5 },
-        { id=MOD_DOUBLE_ATTACK, power=5 }
+        { id=dsp.mod.SPIKES, power=SUBEFFECT_SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES_DMG, power=10 },
+        { id=dsp.mod.ATTP, power=5 },
+        { id=dsp.mod.DOUBLE_ATTACK, power=5 }
     }
 };
 

@@ -10,7 +10,7 @@ mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_DOUBLE_ATTACK, 20);
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 20);
     mob:setMobMod(dsp.mobMod.DRAW_IN, 2);
 end;
 

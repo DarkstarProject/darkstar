@@ -26,7 +26,7 @@ function onAdditionalEffect(mob,target,damage)
 end;
 
 function onSpikesDamage(mob,target,damage)
-    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
     if (INT_diff > 20) then
         INT_diff = 20 + ((INT_diff - 20)*0.5); -- INT above 20 is half as effective.

@@ -22,14 +22,14 @@ end;
 function onUseAbility(player,target,ability)
 
     local burden = 15;
-    if (target:getStat(MOD_CHR) < target:getPet():getStat(MOD_CHR)) then
+    if (target:getStat(dsp.mod.CHR) < target:getPet():getStat(dsp.mod.CHR)) then
         burden = 20;
     end
 
     local overload = target:addBurden(ELE_LIGHT-1, burden);
 
     if (overload ~= 0 and
-        (player:getMod(MOD_PREVENT_OVERLOAD) > 0 or player:getPet():getMod(MOD_PREVENT_OVERLOAD) > 0) and
+        (player:getMod(dsp.mod.PREVENT_OVERLOAD) > 0 or player:getPet():getMod(dsp.mod.PREVENT_OVERLOAD) > 0) and
         player:delStatusEffectSilent(dsp.effect.WATER_MANEUVER)) then
         overload = 0;
     end
@@ -45,7 +45,7 @@ function onUseAbility(player,target,ability)
             level = target:getSubLvl()
         end
 
-        local bonus = 1 + (level/15) + target:getMod(MOD_MANEUVER_BONUS);
+        local bonus = 1 + (level/15) + target:getMod(dsp.mod.MANEUVER_BONUS);
 
         if (target:getActiveManeuvers() == 3) then
             target:removeOldestManeuver();

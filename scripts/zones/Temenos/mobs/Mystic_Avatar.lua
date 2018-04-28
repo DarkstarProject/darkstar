@@ -25,43 +25,43 @@ function onMobEngaged(mob,target)
         GetMobByID(16929032):updateEnmity(target);
         GetMobByID(16929031):updateEnmity(target);
         if (IsMobDead(16929033)==true and IsMobDead(16929039)==true) then
-            mob:setMod(MOD_FIREDEF,-128);    
+            mob:setMod(dsp.mod.FIREDEF,-128);    
         else
-            mob:setMod(MOD_FIREDEF,256);
+            mob:setMod(dsp.mod.FIREDEF,256);
         end
     
         if (IsMobDead(16929034)==true and IsMobDead(16929040)==true) then
-            mob:setMod(MOD_ICEDEF,-128);
+            mob:setMod(dsp.mod.ICEDEF,-128);
         else    
-            mob:setMod(MOD_ICEDEF,256);
+            mob:setMod(dsp.mod.ICEDEF,256);
         end
 
         if (IsMobDead(16929035)==true and IsMobDead(16929041)==true) then
-            mob:setMod(MOD_WINDDEF,-128);
+            mob:setMod(dsp.mod.WINDDEF,-128);
         else
-            mob:setMod(MOD_WINDDEF,256);
+            mob:setMod(dsp.mod.WINDDEF,256);
         end
 
         if (IsMobDead(16929036)==true and IsMobDead(16929042)==true) then
-            mob:setMod(MOD_EARTHDEF,-128);    
+            mob:setMod(dsp.mod.EARTHDEF,-128);    
         else
-            mob:setMod(MOD_EARTHDEF,256);
+            mob:setMod(dsp.mod.EARTHDEF,256);
         end
 
         if (IsMobDead(16929037)==true and IsMobDead(16929043)==true) then
-            mob:setMod(MOD_THUNDERDEF,-128);
+            mob:setMod(dsp.mod.THUNDERDEF,-128);
         else    
-            mob:setMod(MOD_THUNDERDEF,256);
+            mob:setMod(dsp.mod.THUNDERDEF,256);
         end
 
         if (IsMobDead(16929038)==true and IsMobDead(16929044)==true) then
-            mob:setMod(MOD_WATERDEF,-128);
+            mob:setMod(dsp.mod.WATERDEF,-128);
         else
-            mob:setMod(MOD_WATERDEF,256);    
+            mob:setMod(dsp.mod.WATERDEF,256);    
         end        
 
-        mob:setMod(MOD_LIGHTDEF,256);
-        mob:setMod(MOD_DARKDEF,-128);    
+        mob:setMod(dsp.mod.LIGHTDEF,256);
+        mob:setMod(dsp.mod.DARKDEF,-128);    
     end
 end;
 

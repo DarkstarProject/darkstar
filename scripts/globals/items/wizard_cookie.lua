@@ -27,13 +27,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MPHEAL, 7);
-    target:addMod(MOD_PLANTOID_KILLER, 12);
-    target:addMod(MOD_SLOWRES, 12);
+    target:addMod(dsp.mod.MPHEAL, 7);
+    target:addMod(dsp.mod.PLANTOID_KILLER, 12);
+    target:addMod(dsp.mod.SLOWRES, 12);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MPHEAL, 7);
-    target:delMod(MOD_PLANTOID_KILLER, 12);
-    target:delMod(MOD_SLOWRES, 12);
+    target:delMod(dsp.mod.MPHEAL, 7);
+    target:delMod(dsp.mod.PLANTOID_KILLER, 12);
+    target:delMod(dsp.mod.SLOWRES, 12);
 end;

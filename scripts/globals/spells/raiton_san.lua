@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
     params.mabBonus = bonusMab;
 
     dmg = doNinjutsuNuke(caster, target, spell, params);
-    handleNinjutsuDebuff(caster,target,spell,30,duration,MOD_EARTHRES);
+    handleNinjutsuDebuff(caster,target,spell,30,duration,dsp.mod.EARTHRES);
 
     return dmg;
 end;

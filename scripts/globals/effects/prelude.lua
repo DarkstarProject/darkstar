@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_RACC, effect:getPower());
+    target:addMod(dsp.mod.RACC, effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_RACC, effect:getPower());
+    target:delMod(dsp.mod.RACC, effect:getPower());
 end;

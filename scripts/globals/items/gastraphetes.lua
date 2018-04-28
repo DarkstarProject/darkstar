@@ -21,21 +21,21 @@ aftermathTable[19001] =
         duration = 60,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 100); end }
+            { id = dsp.mod.RACC, power = function(tp) return math.floor(tp / 100); end }
         }
     },
     {   -- Tier 2
         duration = 90,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
+            { id = dsp.mod.RATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
         }
     },
     {   -- Tier 3
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end }
         }
     }
 };
@@ -47,21 +47,21 @@ aftermathTable[19070] =
         duration = 90,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 50); end }
+            { id = dsp.mod.RACC, power = function(tp) return math.floor(tp / 50); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
+            { id = dsp.mod.RATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 60; end }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 60; end }
         }
     }
 };
@@ -75,22 +75,22 @@ aftermathTable[19720] =
         duration = 90,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 50 + 10); end }
+            { id = dsp.mod.RACC, power = function(tp) return math.floor(tp / 50 + 10); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
+            { id = dsp.mod.RATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end },
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = function(tp) return 20; end }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end },
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG_RANGED, power = function(tp) return 20; end }
         }
     }
 };

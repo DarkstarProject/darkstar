@@ -79,7 +79,7 @@ function onUseAbility(player,target,ability)
         return false
     end
 
-    local toremove = player:getMod(MOD_REPAIR_EFFECT);
+    local toremove = player:getMod(dsp.mod.REPAIR_EFFECT);
 
     --[[if (feet == 28240) then -- This item isn't implemented so im leaving this here for reference
         toremove = 1
@@ -94,7 +94,7 @@ function onUseAbility(player,target,ability)
 
     totalHealing = totalHealing * bonus
 
-    bonus = bonus + player:getMod(MOD_REPAIR_POTENCY)/100
+    bonus = bonus + player:getMod(dsp.mod.REPAIR_POTENCY)/100
 
     regenAmount = regenAmount * bonus
 

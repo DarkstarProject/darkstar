@@ -27,13 +27,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPHEAL, 6);
-    target:addMod(MOD_UNDEAD_KILLER, 10);
-    target:addMod(MOD_BLINDRES, 10);
+    target:addMod(dsp.mod.HPHEAL, 6);
+    target:addMod(dsp.mod.UNDEAD_KILLER, 10);
+    target:addMod(dsp.mod.BLINDRES, 10);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HPHEAL, 6);
-    target:delMod(MOD_UNDEAD_KILLER, 10);
-    target:delMod(MOD_BLINDRES, 10);
+    target:delMod(dsp.mod.HPHEAL, 6);
+    target:delMod(dsp.mod.UNDEAD_KILLER, 10);
+    target:delMod(dsp.mod.BLINDRES, 10);
 end;

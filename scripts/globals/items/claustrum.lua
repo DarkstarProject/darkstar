@@ -22,7 +22,7 @@ aftermathTable[18330] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=8 }
+        { id=dsp.mod.REFRESH, power=8 }
     }
 };
 aftermathTable[18331] = aftermathTable[18330]; -- Claustrum (80)
@@ -41,8 +41,8 @@ aftermathTable[22060] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=15 },
-        { id=MOD_DMG, power=-20 }
+        { id=dsp.mod.REFRESH, power=15 },
+        { id=dsp.mod.DMG, power=-20 }
     }
 };
 

@@ -21,7 +21,7 @@ aftermathTable[18336] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_ENMITY, power=-20 }
+        { id=dsp.mod.ENMITY, power=-20 }
     }
 };
 aftermathTable[18337] = aftermathTable[18336]; -- Annihilator (80)
@@ -40,8 +40,8 @@ aftermathTable[21267] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_ENMITY, power=-25},
-        { id=MOD_RATTP, power=10 }
+        { id=dsp.mod.ENMITY, power=-25},
+        { id=dsp.mod.RATTP, power=10 }
     }
 };
 

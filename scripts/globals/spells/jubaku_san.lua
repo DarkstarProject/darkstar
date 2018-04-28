@@ -15,11 +15,11 @@ end;
 function onSpellCast(caster,target,spell)
     local effect = dsp.effect.PARALYSIS;
     -- Base Stats
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     --Duration Calculation
     local duration = 420;
     local params = {};
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = NINJUTSU_SKILL;
     params.bonus = 0;
     duration = duration * applyResistance(caster, target, spell, params);
@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
     local power = 35;
 
     --Calculates resist chanve from Reist Blind
-    if (math.random(0,100) >= target:getMod(MOD_PARALYZERES)) then
+    if (math.random(0,100) >= target:getMod(dsp.mod.PARALYZERES)) then
         if (duration >= 210) then
             -- Erases a weaker blind and applies the stronger one
             local paralysis = target:getStatusEffect(effect);

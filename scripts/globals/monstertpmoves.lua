@@ -91,7 +91,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local returninfo = {};
 
     --get dstr (bias to monsters, so no fSTR)
-    local dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
+    local dstr = mob:getStat(dsp.mod.STR) - target:getStat(dsp.mod.VIT);
     if (dstr < -10) then
         dstr = -10;
     end
@@ -116,10 +116,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
     --work out and cap ratio
     if (offcratiomod == nil) then -- default to attack. Pretty much every physical mobskill will use this, Cannonball being the exception.
-        offcratiomod = mob:getStat(MOD_ATT);
+        offcratiomod = mob:getStat(dsp.mod.ATT);
         -- print ("Nothing passed, defaulting to attack");
     end;
-    local ratio = offcratiomod/target:getStat(MOD_DEF);
+    local ratio = offcratiomod/target:getStat(dsp.mod.DEF);
 
     local lvldiff = lvluser - lvltarget;
     if lvldiff < 0 then
@@ -275,7 +275,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
         mdefBarBonus = target:getStatusEffect(barSpells[element]):getSubPower();
     end
     -- plus 100 forces it to be a number
-    mab = (100 + mob:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus);
+    mab = (100 + mob:getMod(dsp.mod.MATT)) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus);
 
     if (mab > 1.3) then
         mab = 1.3;
@@ -301,7 +301,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
             avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), dsp.job.SMN, SUMMONING_SKILL), 0, 200);
         end
     end
-    resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),avatarAccBonus,element);
+    resist = applyPlayerResistance(mob,nil,target,mob:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),avatarAccBonus,element);
 
     local magicDefense = getElementalDamageReduction(target, element);
 
@@ -315,7 +315,7 @@ end
 
 -- mob version
 -- effect = dsp.effect.WHATEVER if enfeeble
--- statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
+-- statmod = the stat to account for resist (INT,MND,etc) e.g. dsp.mod.INT
 -- This determines how much the monsters ability resists on the player.
 function applyPlayerResistance(mob,effect,target,diff,bonus,element)
     local percentBonus = 0;
@@ -394,11 +394,11 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     if (ele > 0 and ele <= 6 and target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
         mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
     end
-    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus) ;
+    mab = (100 + caster:getMod(dsp.mod.MATT)) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus) ;
 
     dmg = math.floor(dmg * mab);
 
-    magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+    magicDmgMod = (256 + target:getMod(dsp.mod.DMGMAGIC)) / 256;
 
     dmg = math.floor(dmg * magicDmgMod);
 
@@ -459,7 +459,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
     -- elemental resistence
     if (element ~= nil and element > 0) then
         -- no skill available, pass nil
-        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
+        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),0,element);
 
         -- get elemental damage reduction
         local defense = getElementalDamageReduction(target, element)
@@ -540,7 +540,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;
@@ -680,7 +680,7 @@ end;
 function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 
     if (target:canGainStatusEffect(typeEffect, power)) then
-        local statmod = MOD_INT;
+        local statmod = dsp.mod.INT;
         local element = mob:getStatusEffectElement(typeEffect);
 
         local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);

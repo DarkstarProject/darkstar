@@ -13,8 +13,8 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_REGEN, math.floor(mob:getMaxHP()*.004));
-    mob:addMod(MOD_BINDRES, 40);
+    mob:addMod(dsp.mod.REGEN, math.floor(mob:getMaxHP()*.004));
+    mob:addMod(dsp.mod.BINDRES, 40);
     mob:SetAutoAttackEnabled(false);
 end;
 

@@ -28,15 +28,15 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, 4);
-    target:addMod(MOD_MND, -2);
-    target:addMod(MOD_FOOD_ATTP, 18);
-    target:addMod(MOD_FOOD_ATT_CAP, 65);
+    target:addMod(dsp.mod.STR, 4);
+    target:addMod(dsp.mod.MND, -2);
+    target:addMod(dsp.mod.FOOD_ATTP, 18);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 65);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_STR, 4);
-    target:delMod(MOD_MND, -2);
-    target:delMod(MOD_FOOD_ATTP, 18);
-    target:delMod(MOD_FOOD_ATT_CAP, 65);
+    target:delMod(dsp.mod.STR, 4);
+    target:delMod(dsp.mod.MND, -2);
+    target:delMod(dsp.mod.FOOD_ATTP, 18);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 65);
 end;

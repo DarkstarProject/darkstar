@@ -10,7 +10,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_INHIBIT_TP, effect:getPower());
+    target:addMod(dsp.mod.INHIBIT_TP, effect:getPower());
 end;
 
 -----------------------------------
@@ -25,5 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_INHIBIT_TP, effect:getPower());
+    target:delMod(dsp.mod.INHIBIT_TP, effect:getPower());
 end;

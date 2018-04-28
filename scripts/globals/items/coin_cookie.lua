@@ -27,13 +27,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MPHEAL, 6);
-    target:addMod(MOD_VERMIN_KILLER, 12);
-    target:addMod(MOD_POISONRES, 12);
+    target:addMod(dsp.mod.MPHEAL, 6);
+    target:addMod(dsp.mod.VERMIN_KILLER, 12);
+    target:addMod(dsp.mod.POISONRES, 12);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MPHEAL, 6);
-    target:delMod(MOD_VERMIN_KILLER, 12);
-    target:delMod(MOD_POISONRES, 12);
+    target:delMod(dsp.mod.MPHEAL, 6);
+    target:delMod(dsp.mod.VERMIN_KILLER, 12);
+    target:delMod(dsp.mod.POISONRES, 12);
 end;

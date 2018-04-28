@@ -20,21 +20,21 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-    local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = 37;
     params.bonus = 0;
     params.effect = nil;
     local resist = applyResistance(caster, target, spell, params);
-    local STR_Loss = ((target:getStat(MOD_STR) / 100) * 20); -- Should be 20%
-    local DEX_Loss = ((target:getStat(MOD_DEX) / 100) * 20);
-    local VIT_Loss = ((target:getStat(MOD_VIT) / 100) * 20);
-    local AGI_Loss = ((target:getStat(MOD_AGI) / 100) * 20);
-    local INT_Loss = ((target:getStat(MOD_INT) / 100) * 20);
-    local MND_Loss = ((target:getStat(MOD_MND) / 100) * 20);
-    local CHR_Loss = ((target:getStat(MOD_CHR) / 100) * 20);
+    local STR_Loss = ((target:getStat(dsp.mod.STR) / 100) * 20); -- Should be 20%
+    local DEX_Loss = ((target:getStat(dsp.mod.DEX) / 100) * 20);
+    local VIT_Loss = ((target:getStat(dsp.mod.VIT) / 100) * 20);
+    local AGI_Loss = ((target:getStat(dsp.mod.AGI) / 100) * 20);
+    local INT_Loss = ((target:getStat(dsp.mod.INT) / 100) * 20);
+    local MND_Loss = ((target:getStat(dsp.mod.MND) / 100) * 20);
+    local CHR_Loss = ((target:getStat(dsp.mod.CHR) / 100) * 20);
     local duration = 180 * resist; -- BG wiki suggests only duration gets effected by resist.
 
     if (target:hasStatusEffect(dsp.effect.STR_DOWN) == false) then
@@ -74,14 +74,14 @@ local params = {};params.dmg = 939;params.multiplier = 2.335;params.hasMultipleT
     params.dmg = 939;
     params.multiplier = 2.335;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);

@@ -11,8 +11,8 @@ end;
 function onMobSpawn(mob)
     local dynaLord = GetMobByID(17330177);
     if (dynaLord:getLocalVar("physImmune") < 2) then -- both dragons have not been killed initially
-        dynaLord:addMod(MOD_UDMGPHYS, 100);
-        dynaLord:addMod(MOD_UDMGRANGE, 100);
+        dynaLord:addMod(dsp.mod.UDMGPHYS, 100);
+        dynaLord:addMod(dsp.mod.UDMGRANGE, 100);
         dynaLord:setLocalVar("physImmune", 0);
         mob:setSpawn(-364,-35.974,24.254); -- Reset Yang's spawn point to initial spot.
     else
@@ -39,8 +39,8 @@ function onMobDespawn(mob)
     -- localVars clear on death, so setting it on its partner
     Ying:setLocalVar("YangToD", os.time());
     if (dynaLord:getLocalVar("physImmune") == 0) then
-        dynaLord:delMod(MOD_UDMGPHYS, 100);
-        dynaLord:delMod(MOD_UDMGRANGE, 100);
+        dynaLord:delMod(dsp.mod.UDMGPHYS, 100);
+        dynaLord:delMod(dsp.mod.UDMGRANGE, 100);
         if (dynaLord:getLocalVar("magImmune") == 1) then -- other dragon is also dead
             dynaLord:setLocalVar("physImmune", 2);
             dynaLord:setLocalVar("magImmune", 2);

@@ -19,5 +19,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:transferEnmity(player, 25 + player:getMod(MOD_ACC_COLLAB_EFFECT), 20.6)
+    target:transferEnmity(player, 25 + player:getMod(dsp.mod.ACC_COLLAB_EFFECT), 20.6)
 end;

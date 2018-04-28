@@ -18,11 +18,11 @@ function onMobInitialize( mob )
 end
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_WINDRES, -64);
-    mob:setMod(MOD_SILENCERES, 35);
-    mob:setMod(MOD_STUNRES, 35);
-    mob:setMod(MOD_BINDRES, 35);
-    mob:setMod(MOD_GRAVITYRES, 35);
+    mob:setMod(dsp.mod.WINDRES, -64);
+    mob:setMod(dsp.mod.SILENCERES, 35);
+    mob:setMod(dsp.mod.STUNRES, 35);
+    mob:setMod(dsp.mod.BINDRES, 35);
+    mob:setMod(dsp.mod.GRAVITYRES, 35);
     mob:addStatusEffect(dsp.effect.REGEN,50,3,0);
     mob:setLocalVar("numAdds", 1);
 end

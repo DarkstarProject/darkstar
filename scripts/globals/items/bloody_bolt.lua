@@ -16,7 +16,7 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or target:isUndead()) then
         return 0,0,0;
     else
-        local diff = player:getStat(MOD_INT) - target:getStat(MOD_INT);
+        local diff = player:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
         if (diff > 20) then
             diff = 20 + (diff - 20) / 2;
         end

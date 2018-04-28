@@ -12,7 +12,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, summoner)
-    local duration = 180 + summoner:getMod(MOD_SUMMONING);
+    local duration = 180 + summoner:getMod(dsp.mod.SUMMONING);
     if duration > 350 then
         duration = 350;
     end;

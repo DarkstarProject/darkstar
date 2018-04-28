@@ -14,7 +14,7 @@ function onItemUse(target)
     local curse = target:getStatusEffect(dsp.effect.CURSE_I);
     local curse2 = target:getStatusEffect(dsp.effect.CURSE_II);
     local bane = target:getStatusEffect(dsp.effect.BANE);
-    local power = 33 + target:getMod(MOD_ENHANCES_HOLYWATER);
+    local power = 33 + target:getMod(dsp.mod.ENHANCES_HOLYWATER);
 
     if (target:hasStatusEffect(dsp.effect.DOOM) and power > math.random(1, 100)) then
         target:delStatusEffect(dsp.effect.DOOM);

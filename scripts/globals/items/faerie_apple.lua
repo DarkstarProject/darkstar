@@ -26,11 +26,11 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AGI, -4);
-    target:addMod(MOD_INT, 2);
+    target:addMod(dsp.mod.AGI, -4);
+    target:addMod(dsp.mod.INT, 2);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_AGI, -4);
-    target:delMod(MOD_INT, 2);
+    target:delMod(dsp.mod.AGI, -4);
+    target:delMod(dsp.mod.INT, 2);
 end;

@@ -30,15 +30,15 @@ function onTrigger(player)
         pet:addStatusEffect(dsp.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the pet..
-        pet:addMod(MOD_RACC,2500);
-        pet:addMod(MOD_RATT,2500);
-        pet:addMod(MOD_ACC,2500);
-        pet:addMod(MOD_ATT,2500);
-        pet:addMod(MOD_MATT,2500);
-        pet:addMod(MOD_MACC,2500);
-        pet:addMod(MOD_RDEF,2500);
-        pet:addMod(MOD_DEF,2500);
-        pet:addMod(MOD_MDEF,2500);
+        pet:addMod(dsp.mod.RACC,2500);
+        pet:addMod(dsp.mod.RATT,2500);
+        pet:addMod(dsp.mod.ACC,2500);
+        pet:addMod(dsp.mod.ATT,2500);
+        pet:addMod(dsp.mod.MATT,2500);
+        pet:addMod(dsp.mod.MACC,2500);
+        pet:addMod(dsp.mod.RDEF,2500);
+        pet:addMod(dsp.mod.DEF,2500);
+        pet:addMod(dsp.mod.MDEF,2500);
 
         -- Heal the pet from the new buffs..
         pet:addHP( 50000 );
@@ -62,14 +62,14 @@ function onTrigger(player)
         pet:delStatusEffect(dsp.effect.REGEN);
 
         -- Remove bonus mods..
-        pet:delMod(MOD_RACC,2500);
-        pet:delMod(MOD_RATT,2500);
-        pet:delMod(MOD_ACC,2500);
-        pet:delMod(MOD_ATT,2500);
-        pet:delMod(MOD_MATT,2500);
-        pet:delMod(MOD_MACC,2500);
-        pet:delMod(MOD_RDEF,2500);
-        pet:delMod(MOD_DEF,2500);
-        pet:delMod(MOD_MDEF,2500);
+        pet:delMod(dsp.mod.RACC,2500);
+        pet:delMod(dsp.mod.RATT,2500);
+        pet:delMod(dsp.mod.ACC,2500);
+        pet:delMod(dsp.mod.ATT,2500);
+        pet:delMod(dsp.mod.MATT,2500);
+        pet:delMod(dsp.mod.MACC,2500);
+        pet:delMod(dsp.mod.RDEF,2500);
+        pet:delMod(dsp.mod.DEF,2500);
+        pet:delMod(dsp.mod.MDEF,2500);
     end
 end

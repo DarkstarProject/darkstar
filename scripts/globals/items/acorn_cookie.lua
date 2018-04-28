@@ -27,13 +27,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AQUAN_KILLER, 10);
-    target:addMod(MOD_SILENCERES, 10);
-    target:addMod(MOD_MPHEAL, 3);
+    target:addMod(dsp.mod.AQUAN_KILLER, 10);
+    target:addMod(dsp.mod.SILENCERES, 10);
+    target:addMod(dsp.mod.MPHEAL, 3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_AQUAN_KILLER, 10);
-    target:delMod(MOD_SILENCERES, 10);
-    target:delMod(MOD_MPHEAL, 3);
+    target:delMod(dsp.mod.AQUAN_KILLER, 10);
+    target:delMod(dsp.mod.SILENCERES, 10);
+    target:delMod(dsp.mod.MPHEAL, 3);
 end;

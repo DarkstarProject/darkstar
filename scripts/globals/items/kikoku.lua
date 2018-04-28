@@ -23,7 +23,7 @@ aftermathTable[18312] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_SUBTLE_BLOW, power=10 }
+        { id=dsp.mod.SUBTLE_BLOW, power=10 }
     }
 };
 aftermathTable[18313] = aftermathTable[18312]; -- Kikoku (80)
@@ -42,8 +42,8 @@ aftermathTable[21906] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_SUBTLE_BLOW, power=10 },
-        { id=MOD_ATTP, power=10 }
+        { id=dsp.mod.SUBTLE_BLOW, power=10 },
+        { id=dsp.mod.ATTP, power=10 }
     }
 };
 

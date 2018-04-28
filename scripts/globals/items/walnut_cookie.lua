@@ -28,15 +28,15 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPHEAL, 3);
-    target:addMod(MOD_MPHEAL, 6);
-    target:addMod(MOD_BIRD_KILLER, 10);
-    target:addMod(MOD_PARALYZERES, 10);
+    target:addMod(dsp.mod.HPHEAL, 3);
+    target:addMod(dsp.mod.MPHEAL, 6);
+    target:addMod(dsp.mod.BIRD_KILLER, 10);
+    target:addMod(dsp.mod.PARALYZERES, 10);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HPHEAL, 3);
-    target:delMod(MOD_MPHEAL, 6);
-    target:delMod(MOD_BIRD_KILLER, 10);
-    target:delMod(MOD_PARALYZERES, 10);
+    target:delMod(dsp.mod.HPHEAL, 3);
+    target:delMod(dsp.mod.MPHEAL, 6);
+    target:delMod(dsp.mod.BIRD_KILLER, 10);
+    target:delMod(dsp.mod.PARALYZERES, 10);
 end;

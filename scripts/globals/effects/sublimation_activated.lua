@@ -25,20 +25,20 @@ function onEffectTick(target,effect)
         level = target:getSubLvl();
     end
     local basemp = math.floor((level - 15)/10);
-    local bonus = target:getMod(MOD_SUBLIMATION_BONUS);
+    local bonus = target:getMod(dsp.mod.SUBLIMATION_BONUS);
     
     local dmg = 2 + bonus;
     
     local store = effect:getPower() + basemp + bonus;
     
-    local limit = math.floor((target:getBaseHP() + target:getMod(MOD_HP) + target:getMerit(MERIT_MAX_HP)) / 4) +
+    local limit = math.floor((target:getBaseHP() + target:getMod(dsp.mod.HP) + target:getMerit(MERIT_MAX_HP)) / 4) +
         target:getMerit(MERIT_MAX_SUBLIMATION);
     
     if not (target:getHPP() < 51 ) then
         if (target:hasStatusEffect(dsp.effect.STONESKIN)) then
-            local skin = target:getMod(MOD_STONESKIN);
+            local skin = target:getMod(dsp.mod.STONESKIN);
             if (skin >= dmg) then --absorb all damage
-                target:delMod(MOD_STONESKIN,dmg);
+                target:delMod(dsp.mod.STONESKIN,dmg);
             else
                 target:delStatusEffect(dsp.effect.STONESKIN);
                 target:delHP(dmg - skin);

@@ -24,10 +24,10 @@ end;
 
 function onSpellCast(caster,target,spell)
     local typeEffect = dsp.effect.BLINDNESS;
-    local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
+    local dINT = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
     params.effect = typeEffect;

@@ -15,12 +15,12 @@ function onSpellCast(caster,target,spell)
     local duration = 143;
     local power = 6;
 
-    local pCHR = caster:getStat(MOD_CHR);
-    local mCHR = target:getStat(MOD_CHR);
+    local pCHR = caster:getStat(dsp.mod.CHR);
+    local mCHR = target:getStat(dsp.mod.CHR);
     local dCHR = (pCHR - mCHR);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_CHR;
+    params.attribute = dsp.mod.CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = 0;
     params.effect = nil;
@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
         power = power + 1;
     end
 
-    local iBoost = caster:getMod(MOD_REQUIEM_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(dsp.mod.REQUIEM_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
     power = power + iBoost;
 
     if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
     end
     caster:delStatusEffect(dsp.effect.MARCATO);
 
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1);
 
     if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         duration = duration * 2;

@@ -24,7 +24,7 @@ function onUseAbility(player,target,ability)
     end
 
     power = power * 100;
-    duration = duration + player:getMod(MOD_WARCRY_DURATION);
+    duration = duration + player:getMod(dsp.mod.WARCRY_DURATION);
 
 
     target:addStatusEffect(dsp.effect.WARCRY,power,0,duration,0,merit);

@@ -21,7 +21,7 @@ aftermathTable[18348] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_RACC, power=20 }
+        { id=dsp.mod.RACC, power=20 }
     }
 };
 aftermathTable[18349] = aftermathTable[18348]; -- Yoichinoyumi (80)
@@ -40,8 +40,8 @@ aftermathTable[22115] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_RACC, power=30 },
-        { id=MOD_SNAP_SHOT, power=5 }
+        { id=dsp.mod.RACC, power=30 },
+        { id=dsp.mod.SNAP_SHOT, power=5 }
     }
 };
 

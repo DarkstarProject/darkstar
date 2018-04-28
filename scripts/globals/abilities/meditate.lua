@@ -17,6 +17,6 @@ function onUseAbility(player,target,ability)
     if (player:getMainJob() == dsp.job.SAM) then
         amount = 20;
     end
-    local duration = 15 + player:getMod(MOD_MEDITATE_DURATION);
+    local duration = 15 + player:getMod(dsp.mod.MEDITATE_DURATION);
     player:addStatusEffectEx(dsp.effect.MEDITATE,0,amount,3,duration);
 end;

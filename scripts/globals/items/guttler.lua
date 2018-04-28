@@ -23,7 +23,7 @@ aftermathTable[18288] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_ATTP, power=10 }
+        { id=dsp.mod.ATTP, power=10 }
     }
 };
 aftermathTable[18289] = aftermathTable[18288]; -- Guttler (80)
@@ -42,7 +42,7 @@ aftermathTable[21750] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_ATTP, power=10 },
+        { id=dsp.mod.ATTP, power=10 },
     }
 };
 

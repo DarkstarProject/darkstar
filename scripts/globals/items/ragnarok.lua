@@ -21,7 +21,7 @@ aftermathTable[18282] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=5 }
+        { id=dsp.mod.CRITHITRATE, power=5 }
     }
 };
 aftermathTable[18283] = aftermathTable[18282]; -- Ragnarok (80)
@@ -40,8 +40,8 @@ aftermathTable[21683] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=10 },
-        { id=MOD_ACC, power=15 }
+        { id=dsp.mod.CRITHITRATE, power=10 },
+        { id=dsp.mod.ACC, power=15 }
     }
 };
 

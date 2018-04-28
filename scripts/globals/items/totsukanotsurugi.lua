@@ -21,7 +21,7 @@ aftermathTable[18317] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_STORETP, power=7 }
+        { id=dsp.mod.STORETP, power=7 }
     }
 };
 

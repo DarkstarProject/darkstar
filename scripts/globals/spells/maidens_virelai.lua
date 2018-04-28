@@ -23,11 +23,11 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
+    local dCHR = (caster:getStat(dsp.mod.CHR) - target:getStat(dsp.mod.CHR));
     local bonus = 0; -- No idea what value, but seems likely to need this edited later to get retail resist rates.
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_CHR;
+    params.attribute = dsp.mod.CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = bonus;
     params.effect = dsp.effect.CHARM_I;

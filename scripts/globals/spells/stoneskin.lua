@@ -14,9 +14,9 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
+    local pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(dsp.mod.MND);
     local pAbs = 0;
-    local pEquipMods = (caster:getMod(MOD_STONESKIN_BONUS_HP));
+    local pEquipMods = (caster:getMod(dsp.mod.STONESKIN_BONUS_HP));
     local duration = 300;
     if (pMod < 80) then
         pAbs = pMod;

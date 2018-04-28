@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     -- tests that quantify the relationship so I'm using 5 minutes for now.
 
     local duration = 300;
-    local power = AQUAVEIL_COUNTER + caster:getMod(MOD_AQUAVEIL_COUNT);
+    local power = AQUAVEIL_COUNTER + caster:getMod(dsp.mod.AQUAVEIL_COUNT);
     if (caster:getSkillLevel(ENHANCING_MAGIC_SKILL) >= 200) then -- cutoff point is estimated. https://www.bg-wiki.com/bg/Aquaveil
         power = power + 1;
     end

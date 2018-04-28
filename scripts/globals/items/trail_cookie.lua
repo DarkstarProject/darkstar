@@ -23,13 +23,13 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_MPHEAL, 5);
-    target:addMod(MOD_AQUAN_KILLER, 12);
-    target:addMod(MOD_SLEEPRES, 10);
+    target:addMod(dsp.mod.MPHEAL, 5);
+    target:addMod(dsp.mod.AQUAN_KILLER, 12);
+    target:addMod(dsp.mod.SLEEPRES, 10);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MPHEAL, 5);
-    target:delMod(MOD_AQUAN_KILLER, 12);
-    target:delMod(MOD_SLEEPRES, 10);
+    target:delMod(dsp.mod.MPHEAL, 5);
+    target:delMod(dsp.mod.AQUAN_KILLER, 12);
+    target:delMod(dsp.mod.SLEEPRES, 10);
 end;

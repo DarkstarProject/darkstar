@@ -29,7 +29,7 @@ end
 
 function onUseAbility(player, target, ability, action)
     local level = player:getMainLvl(); -- Can only reach THF77 as main job
-    local despoilMod = player:getMod(MOD_DESPOIL);
+    local despoilMod = player:getMod(dsp.mod.DESPOIL);
     local despoilChance = 50 + despoilMod * 2 + level - target:getMainLvl(); -- Same math as Steal
     
     local stolen = target:getDespoilItem();
@@ -74,7 +74,7 @@ function processDebuff(player, target, ability, debuff)
         power = 20;
     elseif (debuff == dsp.effect.SLOW) then
         ability:setMsg(dsp.msg.basic.DESPOIL_SLOW);
-        local dMND = player:getStat(MOD_MND) - target:getStat(MOD_MND);
+        local dMND = player:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);
         if (dMND >= 0) then
             power = 2 * dMND + 150;
         else

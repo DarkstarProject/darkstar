@@ -17,10 +17,10 @@ function onSpellCast(caster,target,spell)
     if (target:getStatusEffect(dsp.effect.DROWN) ~= nil) then
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     else
-        local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+        local dINT = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
         local params = {};
         params.diff = nil;
-        params.attribute = MOD_INT;
+        params.attribute = dsp.mod.INT;
         params.skillType = 36;
         params.bonus = 0;
         params.effect = nil;
@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
             if (target:getStatusEffect(dsp.effect.FROST) ~= nil) then
                 target:delStatusEffect(dsp.effect.FROST);
             end;
-            local sINT = caster:getStat(MOD_INT);
+            local sINT = caster:getStat(dsp.mod.INT);
             local DOT = getElementalDebuffDOT(sINT);
             local effect = target:getStatusEffect(dsp.effect.BURN);
             local noeffect = false;

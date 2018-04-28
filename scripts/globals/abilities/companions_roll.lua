@@ -32,7 +32,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     local effectID = dsp.effect.COMPANIONS_ROLL
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
@@ -51,7 +51,7 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0}
     local effectpower = effectpowers[total];
 -- Apply Additional Phantom Roll+ Buff

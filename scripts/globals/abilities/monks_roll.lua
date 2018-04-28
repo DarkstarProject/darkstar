@@ -30,7 +30,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     local effectID = dsp.effect.MONKS_ROLL
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
@@ -49,7 +49,7 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {8, 10, 32, 12, 14, 16, 4, 20, 22, 24, 40, 11}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
@@ -64,7 +64,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.MONKS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_SUBTLE_BLOW) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.MONKS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.SUBTLE_BLOW) == false) then
         ability:setMsg(dsp.msg.basic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(dsp.msg.basic.DOUBLEUP_BUST);

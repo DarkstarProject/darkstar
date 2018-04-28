@@ -11,9 +11,9 @@ function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
     mob:setMobMod(dsp.mobMod.GA_CHANCE,50);
     mob:setMobMod(dsp.mobMod.MUG_GIL,10000);
-    mob:addMod(MOD_FASTCAST,10);
-    mob:addMod(MOD_BINDRES,40);
-    mob:addMod(MOD_SILENCERES,40);
+    mob:addMod(dsp.mod.FASTCAST,10);
+    mob:addMod(dsp.mod.BINDRES,40);
+    mob:addMod(dsp.mod.SILENCERES,40);
 end;
 
 function onMobSpawn(mob)

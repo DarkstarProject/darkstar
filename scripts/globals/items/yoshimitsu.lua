@@ -21,7 +21,7 @@ aftermathTable[18311] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_SUBTLE_BLOW, power=10 }
+        { id=dsp.mod.SUBTLE_BLOW, power=10 }
     }
 };
 

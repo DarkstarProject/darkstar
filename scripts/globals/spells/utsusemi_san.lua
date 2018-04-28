@@ -13,7 +13,7 @@ function onSpellCast(caster,target,spell)
     local effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
     
     -- Get extras shadows
-    local numShadows = 5 + target:getMod(MOD_UTSUSEMI_BONUS);
+    local numShadows = 5 + target:getMod(dsp.mod.UTSUSEMI_BONUS);
     
     if (effect == nil or effect:getPower() <= 3) then
         target:addStatusEffectEx(dsp.effect.COPY_IMAGE, dsp.effect.COPY_IMAGE_4, numShadows, 0, 900, 0, numShadows);

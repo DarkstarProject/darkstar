@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
         -- Calculate duration.
         local duration = 120;
 
-        local dMND = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
+        local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);
 
         -- Calculate potency.
         local potency = math.floor(dMND / 4) + 15;
@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
         --printf("Potency : %u",potency);
         local params = {};
         params.diff = nil;
-        params.attribute = MOD_MND;
+        params.attribute = dsp.mod.MND;
         params.skillType = 35;
         params.bonus = 0;
         params.effect = dsp.effect.PARALYSIS;

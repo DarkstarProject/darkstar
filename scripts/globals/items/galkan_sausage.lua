@@ -39,32 +39,32 @@ end;
 
 function onEffectGain(target,effect)
     if (target:getRace() ~= 8) then
-        target:addMod(MOD_STR, 3);
-        target:addMod(MOD_INT, -4);
-        target:addMod(MOD_ATT, 9);
-        target:addMod(MOD_RATT, 9);
+        target:addMod(dsp.mod.STR, 3);
+        target:addMod(dsp.mod.INT, -4);
+        target:addMod(dsp.mod.ATT, 9);
+        target:addMod(dsp.mod.RATT, 9);
     else
-        target:addMod(MOD_STR, 3);
-        target:addMod(MOD_INT, -1);
-        target:addMod(MOD_FOOD_ATTP, 25);
-        target:addMod(MOD_FOOD_ATT_CAP, 30);
-        target:addMod(MOD_FOOD_RATTP, 25);
-        target:addMod(MOD_FOOD_RATT_CAP, 30);
+        target:addMod(dsp.mod.STR, 3);
+        target:addMod(dsp.mod.INT, -1);
+        target:addMod(dsp.mod.FOOD_ATTP, 25);
+        target:addMod(dsp.mod.FOOD_ATT_CAP, 30);
+        target:addMod(dsp.mod.FOOD_RATTP, 25);
+        target:addMod(dsp.mod.FOOD_RATT_CAP, 30);
     end
 end;
 
 function onEffectLose(target, effect)
     if (target:getRace() ~= 8) then
-        target:delMod(MOD_STR, 3);
-        target:delMod(MOD_INT, -4);
-        target:delMod(MOD_ATT, 9);
-        target:delMod(MOD_RATT, 9);
+        target:delMod(dsp.mod.STR, 3);
+        target:delMod(dsp.mod.INT, -4);
+        target:delMod(dsp.mod.ATT, 9);
+        target:delMod(dsp.mod.RATT, 9);
     else
-        target:delMod(MOD_STR, 3);
-        target:delMod(MOD_INT, -1);
-        target:delMod(MOD_FOOD_ATTP, 25);
-        target:delMod(MOD_FOOD_ATT_CAP, 30);
-        target:delMod(MOD_FOOD_RATTP, 25);
-        target:delMod(MOD_FOOD_RATT_CAP, 30);
+        target:delMod(dsp.mod.STR, 3);
+        target:delMod(dsp.mod.INT, -1);
+        target:delMod(dsp.mod.FOOD_ATTP, 25);
+        target:delMod(dsp.mod.FOOD_ATT_CAP, 30);
+        target:delMod(dsp.mod.FOOD_RATTP, 25);
+        target:delMod(dsp.mod.FOOD_RATT_CAP, 30);
     end
 end;

@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
         if (player:delGil(price)) then
             updateChocoboPrice(player, price);
 
-            local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
+            local duration = 1800 + (player:getMod(dsp.mod.CHOCOBO_RIDING_TIME) * 60)
 
             player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true);
 

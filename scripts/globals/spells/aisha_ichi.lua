@@ -13,11 +13,11 @@ end;
 function onSpellCast(caster,target,spell)
     local effect = dsp.effect.ATTACK_DOWN;
     -- Base Stats
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     --Duration Calculation
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = NINJUTSU_SKILL;
     params.bonus = 0;
     params.effect = nil;

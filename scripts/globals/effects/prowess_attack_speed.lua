@@ -11,7 +11,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HASTE_ABILITY, effect:getPower());
+    target:addMod(dsp.mod.HASTE_ABILITY, effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HASTE_ABILITY, effect:getPower());
+    target:delMod(dsp.mod.HASTE_ABILITY, effect:getPower());
 end;

@@ -24,9 +24,9 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ACC, 3);
+    target:addMod(dsp.mod.ACC, 3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_ACC, 3);
+    target:delMod(dsp.mod.ACC, 3);
 end;

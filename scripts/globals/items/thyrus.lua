@@ -22,7 +22,7 @@ aftermathTable[18329] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=8 }
+        { id=dsp.mod.REFRESH, power=8 }
     }
 };
 

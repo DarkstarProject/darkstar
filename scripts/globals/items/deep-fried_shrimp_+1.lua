@@ -29,21 +29,21 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_VIT, 4);
-    target:addMod(MOD_FIRERES, 21);
-    target:addMod(MOD_FOOD_ACCP, 21);
-    target:addMod(MOD_FOOD_ACC_CAP, 75);
-    target:addMod(MOD_FOOD_RACCP, 21);
-    target:addMod(MOD_FOOD_RACC_CAP, 75);
-    target:addMod(MOD_SUBTLE_BLOW, 9);
+    target:addMod(dsp.mod.VIT, 4);
+    target:addMod(dsp.mod.FIRERES, 21);
+    target:addMod(dsp.mod.FOOD_ACCP, 21);
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 75);
+    target:addMod(dsp.mod.FOOD_RACCP, 21);
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 75);
+    target:addMod(dsp.mod.SUBTLE_BLOW, 9);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_VIT, 4);
-    target:delMod(MOD_FIRERES, 21);
-    target:delMod(MOD_FOOD_ACCP, 21);
-    target:delMod(MOD_FOOD_ACC_CAP, 75);
-    target:delMod(MOD_FOOD_RACCP, 21);
-    target:delMod(MOD_FOOD_RACC_CAP, 75);
-    target:delMod(MOD_SUBTLE_BLOW, 9);
+    target:delMod(dsp.mod.VIT, 4);
+    target:delMod(dsp.mod.FIRERES, 21);
+    target:delMod(dsp.mod.FOOD_ACCP, 21);
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 75);
+    target:delMod(dsp.mod.FOOD_RACCP, 21);
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 75);
+    target:delMod(dsp.mod.SUBTLE_BLOW, 9);
 end;

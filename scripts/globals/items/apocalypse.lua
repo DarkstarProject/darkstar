@@ -23,7 +23,7 @@ aftermathTable[18306] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_HASTE_GEAR, power=10 }
+        { id=dsp.mod.HASTE_GEAR, power=10 }
     }
 };
 aftermathTable[18307] = aftermathTable[18306]; -- Apocalypse (80)
@@ -42,8 +42,8 @@ aftermathTable[21808] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_HASTE_GEAR, power=10 },
-        { id=MOD_ACC, power=15 }
+        { id=dsp.mod.HASTE_GEAR, power=10 },
+        { id=dsp.mod.ACC, power=15 }
     }
 };
 

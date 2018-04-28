@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
 
     --get resist multiplier (1x if no resist)
     local params = {};
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = DARK_MAGIC_SKILL;
     local resist = applyResistance(caster, target, spell, params);
 
@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(dsp.msg.basic.MSGIC_ABSORB_TP);
 
-        dmg = dmg * ((100 + caster:getMod(MOD_AUGMENTS_ABSORB)) / 100)
+        dmg = dmg * ((100 + caster:getMod(dsp.mod.AUGMENTS_ABSORB)) / 100)
 
         if ((target:getTP()) < dmg) then
             dmg = target:getTP();

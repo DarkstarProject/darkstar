@@ -36,8 +36,8 @@ function onSpellCast(caster,target,spell)
     local dmg = utils.clamp(5 + 0.375 * caster:getSkillLevel(BLUE_SKILL),0,165);
     -- get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);

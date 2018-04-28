@@ -45,7 +45,7 @@ end;
 function onUseAbility(player,target,ability,action)
     local hit = 4;
     --get fstr
-    local fstr = fSTR(player:getStat(MOD_STR),target:getStat(MOD_VIT),player:getWeaponDmgRank());
+    local fstr = fSTR(player:getStat(dsp.mod.STR),target:getStat(dsp.mod.VIT),player:getWeaponDmgRank());
 
     local params = {};
     params.atkmulti = 1;
@@ -77,7 +77,7 @@ function onUseAbility(player,target,ability,action)
         local params = {};
         params.diff = 0;
         params.skillType = player:getWeaponSkillType(SLOT_MAIN);
-        params.bonus = 50 - target:getMod(MOD_STUNRES) + player:getMod(MOD_VFLOURISH_MACC);
+        params.bonus = 50 - target:getMod(dsp.mod.STUNRES) + player:getMod(dsp.mod.VFLOURISH_MACC);
         local resist = applyResistance(player, target, spell, params);
 
         if resist > 0.25 then

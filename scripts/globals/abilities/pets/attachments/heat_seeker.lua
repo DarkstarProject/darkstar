@@ -22,7 +22,7 @@ function onEquip(pet)
                     amount = 30 - prevamount
                 end
                 if amount ~= 0 then
-                    pet:addMod(MOD_ACC, amount)
+                    pet:addMod(dsp.mod.ACC, amount)
                 end
             else
                 amount = -1 * dt
@@ -30,7 +30,7 @@ function onEquip(pet)
                     amount = -prevamount
                 end
                 if amount ~= 0 then
-                    pet:delMod(MOD_ACC, -amount)
+                    pet:delMod(dsp.mod.ACC, -amount)
                 end
             end
             if amount ~= 0 then
@@ -41,7 +41,7 @@ function onEquip(pet)
     end)
     pet:addListener("DISENGAGE", "AUTO_HEAT_SEEKER_DISENGAGE", function(pet)
         if pet:getLocalVar("heatseeker") > 0 then
-            pet:delMod(MOD_ACC, pet:getLocalVar("heatseeker"))
+            pet:delMod(dsp.mod.ACC, pet:getLocalVar("heatseeker"))
             pet:setLocalVar("heatseeker", 0)
         end
         pet:setLocalVar("heatseekertick", 0)

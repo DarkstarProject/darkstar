@@ -34,8 +34,8 @@ function onUseAbility(player,target,ability,action)
 
     local minimumHealing = 0;
     local totalHealing = 0;
-    local playerMnd = player:getStat(MOD_MND);
-    local rewardHealingMod = player:getMod(MOD_REWARD_HP_BONUS);
+    local playerMnd = player:getStat(dsp.mod.MND);
+    local rewardHealingMod = player:getMod(dsp.mod.REWARD_HP_BONUS);
     local regenAmount = 1; -- 1 is the minimum.
     local regenTime = 180; -- 3 minutes
 

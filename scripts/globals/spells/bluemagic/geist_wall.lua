@@ -24,7 +24,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local params = {};
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     local resist = applyResistance(caster, target, spell, params);
     local effect = dsp.effect.NONE;

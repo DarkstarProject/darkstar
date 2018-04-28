@@ -36,7 +36,7 @@ function onEquip(pet)
         else
             return
         end
-        pet:addMod(MOD_WEAPONSKILL_DAMAGE_BASE, amount)
+        pet:addMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE, amount)
         pet:setLocalVar("flameholder", amount)
     end)
     pet:addListener("WEAPONSKILL_STATE_EXIT", "AUTO_FLAME_HOLDER_END", function(pet, skill)
@@ -46,7 +46,7 @@ function onEquip(pet)
         for i = 1, toremove do
             master:delStatusEffectSilent(dsp.effect.FIRE_MANEUVER)
         end
-        pet:delMod(MOD_WEAPONSKILL_DAMAGE_BASE, pet:getLocalVar("flameholder"))
+        pet:delMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE, pet:getLocalVar("flameholder"))
         pet:setLocalVar("flameholder", 0)
         pet:setLocalVar("flameholdermaneuvers", 0)
     end)

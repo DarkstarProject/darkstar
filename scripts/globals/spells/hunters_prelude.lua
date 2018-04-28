@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
         power = 30;
     end
 
-    local iBoost = caster:getMod(MOD_PRELUDE_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(dsp.mod.PRELUDE_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
     if (iBoost > 0) then
         power = power + 1 + (iBoost-1)*3;
     end
@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
     caster:delStatusEffect(dsp.effect.MARCATO);
 
     local duration = 120;
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1);
 
     if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         duration = duration * 2;

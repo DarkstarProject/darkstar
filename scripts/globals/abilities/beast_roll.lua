@@ -30,7 +30,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     local effectID = dsp.effect.BEAST_ROLL
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
@@ -49,7 +49,7 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {4, 5, 7, 19, 8, 9, 11, 2, 13, 14, 23, 7}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then

@@ -28,14 +28,14 @@ end;
 function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then
-        skin = target:getMod(MOD_STONESKIN);
+        skin = target:getMod(dsp.mod.STONESKIN);
         if (skin > 0) then
             if (skin > dmg) then --absorb all damage
-                target:delMod(MOD_STONESKIN,dmg);
+                target:delMod(dsp.mod.STONESKIN,dmg);
                 return 0;
             else --absorbs some damage then wear
                 target:delStatusEffect(dsp.effect.STONESKIN);
-                target:setMod(MOD_STONESKIN, 0);
+                target:setMod(dsp.mod.STONESKIN, 0);
                 return dmg - skin;
             end
         end
@@ -49,12 +49,12 @@ function utils.takeShadows(target, dmg, shadowbehav)
         shadowbehav = 1;
     end
 
-    local targShadows = target:getMod(MOD_UTSUSEMI);
-    local shadowType = MOD_UTSUSEMI;
+    local targShadows = target:getMod(dsp.mod.UTSUSEMI);
+    local shadowType = dsp.mod.UTSUSEMI;
 
     if (targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
-        targShadows = target:getMod(MOD_BLINK);
-        shadowType = MOD_BLINK;
+        targShadows = target:getMod(dsp.mod.BLINK);
+        shadowType = dsp.mod.BLINK;
     end
 
     if (targShadows > 0) then
@@ -66,7 +66,7 @@ function utils.takeShadows(target, dmg, shadowbehav)
 
             target:setMod(shadowType, shadowsLeft);
 
-            if (shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
+            if (shadowsLeft > 0 and shadowType == dsp.mod.UTSUSEMI) then --update icon
                 effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
                 if (effect ~= nil) then
                     if (shadowsLeft == 1) then

@@ -23,7 +23,7 @@ aftermathTable[18294] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_DMG, power=-20 }
+        { id=dsp.mod.DMG, power=-20 }
     }
 };
 aftermathTable[18295] = aftermathTable[18294]; -- Bravura (80)
@@ -42,8 +42,8 @@ aftermathTable[21756] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_DMG, power=-20 },
-        { id=MOD_REGEN, power=15 }
+        { id=dsp.mod.DMG, power=-20 },
+        { id=dsp.mod.REGEN, power=15 }
     }
 };
 

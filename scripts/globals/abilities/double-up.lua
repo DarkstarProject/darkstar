@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (not player:hasStatusEffect(dsp.effect.DOUBLE_UP_CHANCE)) then
         return dsp.msg.basic.NO_ELIGIBLE_ROLL,0;
     else

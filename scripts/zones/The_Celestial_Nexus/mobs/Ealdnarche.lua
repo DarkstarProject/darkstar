@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 
 function onMobInitialize(mob)
     --50% fast cast, no standback
-    mob:addMod(MOD_UFASTCAST, 50);
+    mob:addMod(dsp.mod.UFASTCAST, 50);
     mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1);
 end;
 

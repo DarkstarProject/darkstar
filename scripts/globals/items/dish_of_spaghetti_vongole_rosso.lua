@@ -27,21 +27,21 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_FOOD_HPP, 20);
-    target:addMod(MOD_FOOD_HP_CAP, 90);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_MND, -1);
-    target:addMod(MOD_FOOD_DEFP, 25);
-    target:addMod(MOD_FOOD_DEF_CAP, 30);
-    target:addMod(MOD_STORETP, 6);
+    target:addMod(dsp.mod.FOOD_HPP, 20);
+    target:addMod(dsp.mod.FOOD_HP_CAP, 90);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.MND, -1);
+    target:addMod(dsp.mod.FOOD_DEFP, 25);
+    target:addMod(dsp.mod.FOOD_DEF_CAP, 30);
+    target:addMod(dsp.mod.STORETP, 6);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_HPP, 20);
-    target:delMod(MOD_FOOD_HP_CAP, 90);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_MND, -1);
-    target:delMod(MOD_FOOD_DEFP, 25);
-    target:delMod(MOD_FOOD_DEF_CAP, 30);
-    target:delMod(MOD_STORETP, 6);
+    target:delMod(dsp.mod.FOOD_HPP, 20);
+    target:delMod(dsp.mod.FOOD_HP_CAP, 90);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.MND, -1);
+    target:delMod(dsp.mod.FOOD_DEFP, 25);
+    target:delMod(dsp.mod.FOOD_DEF_CAP, 30);
+    target:delMod(dsp.mod.STORETP, 6);
 end;

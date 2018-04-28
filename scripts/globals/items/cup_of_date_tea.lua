@@ -25,17 +25,17 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_HP, 20);
-    target:addMod(MOD_MP, 30);
-    target:addMod(MOD_VIT, -1);
-    target:addMod(MOD_CHR, 5);
-    target:addMod(MOD_INT, 3);
+    target:addMod(dsp.mod.HP, 20);
+    target:addMod(dsp.mod.MP, 30);
+    target:addMod(dsp.mod.VIT, -1);
+    target:addMod(dsp.mod.CHR, 5);
+    target:addMod(dsp.mod.INT, 3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 20);
-    target:delMod(MOD_MP, 30);
-    target:delMod(MOD_VIT, -1);
-    target:delMod(MOD_CHR, 5);
-    target:delMod(MOD_INT, 3);
+    target:delMod(dsp.mod.HP, 20);
+    target:delMod(dsp.mod.MP, 30);
+    target:delMod(dsp.mod.VIT, -1);
+    target:delMod(dsp.mod.CHR, 5);
+    target:delMod(dsp.mod.INT, 3);
 end;

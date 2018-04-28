@@ -21,7 +21,7 @@ aftermathTable[18347] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_RACC, power=20 }
+        { id=dsp.mod.RACC, power=20 }
     }
 };
 

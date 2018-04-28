@@ -26,8 +26,8 @@ function onSpellCast(caster,target,spell)
     local typeEffectOne = dsp.effect.BLINDNESS;
     local typeEffectTwo = dsp.effect.BIND;
     local params = {};
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);

@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
     params.dmg = basedmg;
     params.multiplier = 5;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
@@ -33,8 +33,8 @@ function onSpellCast(caster,target,spell)
 
     -- get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
@@ -49,7 +49,7 @@ function onSpellCast(caster,target,spell)
 
     -- Calculate duration and bonus
     local duration = caster:getMerit(MERIT_DIA_III);
-    local dotBonus = caster:getMod(MOD_DIA_DOT);  -- Dia Wand
+    local dotBonus = caster:getMod(dsp.mod.DIA_DOT);  -- Dia Wand
 
     if (duration == 0) then -- if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150;

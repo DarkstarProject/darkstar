@@ -32,23 +32,23 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MP, 17);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_INT, 3);
-    target:addMod(MOD_MND, 1);
-    target:addMod(MOD_HPHEAL, 2);
-    target:addMod(MOD_MPHEAL, 2);
-    target:addMod(MOD_EVA, 5);
-    target:addMod(MOD_SILENCERES, 4);
+    target:addMod(dsp.mod.MP, 17);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.INT, 3);
+    target:addMod(dsp.mod.MND, 1);
+    target:addMod(dsp.mod.HPHEAL, 2);
+    target:addMod(dsp.mod.MPHEAL, 2);
+    target:addMod(dsp.mod.EVA, 5);
+    target:addMod(dsp.mod.SILENCERES, 4);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MP, 17);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_INT, 3);
-    target:delMod(MOD_MND, 1);
-    target:delMod(MOD_HPHEAL, 2);
-    target:delMod(MOD_MPHEAL, 2);
-    target:delMod(MOD_EVA, 5);
-    target:delMod(MOD_SILENCERES, 4);
+    target:delMod(dsp.mod.MP, 17);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.INT, 3);
+    target:delMod(dsp.mod.MND, 1);
+    target:delMod(dsp.mod.HPHEAL, 2);
+    target:delMod(dsp.mod.MPHEAL, 2);
+    target:delMod(dsp.mod.EVA, 5);
+    target:delMod(dsp.mod.SILENCERES, 4);
 end;

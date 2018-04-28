@@ -22,7 +22,7 @@ aftermathTable[18276] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_REGEN, power=10 }
+        { id=dsp.mod.REGEN, power=10 }
     }
 };
 aftermathTable[18277] = aftermathTable[18276]; -- Excalibur (80)
@@ -41,8 +41,8 @@ aftermathTable[20685] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_REGEN, power=30 },
-        { id=MOD_REFRESH, power=3 }
+        { id=dsp.mod.REGEN, power=30 },
+        { id=dsp.mod.REFRESH, power=3 }
     }
 };
 
@@ -92,10 +92,10 @@ function onAdditionalEffect(player,target,damage)
     else
         local finalDMG = math.floor(player.getHP(player)/4);
         if (finalDMG > 0) then
-            local physicalResist = target:getMod(MOD_SLASHRES)/1000;
+            local physicalResist = target:getMod(dsp.mod.SLASHRES)/1000;
             finalDMG = finalDMG*physicalResist;
             finalDMG = target:physicalDmgTaken(finalDMG);
-            finalDMG = finalDMG - target:getMod(MOD_PHALANX);
+            finalDMG = finalDMG - target:getMod(dsp.mod.PHALANX);
             finalDMG = utils.clamp(finalDMG, 0, 99999);
             finalDMG = utils.stoneskin(target, finalDMG);
             target:delHP(finalDMG);

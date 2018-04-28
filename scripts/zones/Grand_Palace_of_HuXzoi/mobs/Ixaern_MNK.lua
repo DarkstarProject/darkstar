@@ -37,8 +37,8 @@ function onMobFight(mob,target)
             -- Go into bracer mode
             mob:setLocalVar("BracerMode", 1);
             mob:AnimationSub(2);
-            mob:addMod(MOD_ATT, 200);
-            mob:addMod(MOD_HASTE_ABILITY, 150);
+            mob:addMod(dsp.mod.ATT, 200);
+            mob:addMod(dsp.mod.HASTE_ABILITY, 150);
             mob:useMobAbility(3411); -- Hundred Fists
 
             -- Force minions to 2hour

@@ -24,9 +24,9 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SUBTLE_BLOW, 20);
+    target:addMod(dsp.mod.SUBTLE_BLOW, 20);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SUBTLE_BLOW, 20);
+    target:delMod(dsp.mod.SUBTLE_BLOW, 20);
 end;

@@ -26,9 +26,9 @@ local avatarSkins =     {   22,    23,    19,    18,    20,    21,    17,    16}
 
 function onMobSpawn(mob)
 
-    mob:setMod(MOD_DEF, 450);
-    mob:setMod(MOD_MEVA, 380);
-    mob:setMod(MOD_MDEF, 50);
+    mob:setMod(dsp.mod.DEF, 450);
+    mob:setMod(dsp.mod.MEVA, 380);
+    mob:setMod(dsp.mod.MDEF, 50);
     -- Make sure model is reset back to start
     mob:setModelId(1840);
    -- Prevent death and hide HP until final phase

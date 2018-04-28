@@ -13,11 +13,11 @@ end;
 function onSpellCast(caster,target,spell)
     local effect = dsp.effect.POISON;
     -- Base Stats
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     --Duration Calculation
     local duration = 120;
     local params = {};
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = NINJUTSU_SKILL;
     params.bonus = 0;
     duration = duration * applyResistance(caster, target, spell, params);
@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
         return effect;
     end
 
-    if (math.random(0,100) >= target:getMod(MOD_POISONRES)) then
+    if (math.random(0,100) >= target:getMod(dsp.mod.POISONRES)) then
         if (duration >= 60) then
             if (target:addStatusEffect(effect,power,3,duration)) then
                 spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);

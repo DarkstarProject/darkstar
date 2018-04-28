@@ -24,7 +24,7 @@ function onUseAbility(player, target, ability)
     local damage = 0;
 
     local chance = 90;
-    damage = player:getMod(MOD_SHIELD_BASH);
+    damage = player:getMod(dsp.mod.SHIELD_BASH);
 
     if (shieldSize == 1 or shieldSize == 5) then
         damage = 25 + damage;
@@ -50,7 +50,7 @@ function onUseAbility(player, target, ability)
     end
 
     -- randomize damage
-    local ratio = player:getStat(MOD_ATT)/target:getStat(MOD_DEF);
+    local ratio = player:getStat(dsp.mod.ATT)/target:getStat(dsp.mod.DEF);
     if (ratio > 1.3) then
         ratio = 1.3;
     end

@@ -22,7 +22,7 @@ aftermathTable[18324] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_ACC, power=20 }
+        { id=dsp.mod.ACC, power=20 }
     }
 };
 aftermathTable[18325] = aftermathTable[18324]; -- Mjollnir (80)
@@ -41,9 +41,9 @@ aftermathTable[21077] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_ACC, power=20 },
-        { id=MOD_MACC, power=20 },
-        { id=MOD_REFRESH, power=5 }
+        { id=dsp.mod.ACC, power=20 },
+        { id=dsp.mod.MACC, power=20 },
+        { id=dsp.mod.REFRESH, power=5 }
     }
 };
 

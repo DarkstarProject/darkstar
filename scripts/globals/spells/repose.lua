@@ -11,10 +11,10 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = DIVINE_MAGIC_SKILL;
     params.bonus = 0;
     params.effect = dsp.effect.SLEEP_II;

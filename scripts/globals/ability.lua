@@ -479,7 +479,7 @@ end
 
 function checkForJobBonus(caster, job)
     local jobBonus = 0
-    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
+    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(dsp.mod.JOB_BONUS_CHANCE)) then
         jobBonus = 1;
     end
     caster:setLocalVar("corsairRollBonus", jobBonus);
@@ -501,8 +501,8 @@ function checkForElevenRoll(caster)
     return false
 end
 
-function phantombuffMultiple(caster) -- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
-    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+function phantombuffMultiple(caster) -- Check for dsp.mod.PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(dsp.mod.PHANTOM_ROLL);
     local phantombuffValue = 0;
     if (phantomValue == 3) then
         phantombuffMultiplier = 3;
@@ -569,7 +569,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;

@@ -23,8 +23,8 @@ function onSpellCast(caster,target,spell)
 
     --get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);

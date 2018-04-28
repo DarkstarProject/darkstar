@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
     local merits = caster:getMerit(MERIT_SLOW_II);
 
     local potency = 244 + math.floor(dMND * 116/75);
@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
     local duration = 180;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = merits*2;
     params.effect = dsp.effect.SLOW;

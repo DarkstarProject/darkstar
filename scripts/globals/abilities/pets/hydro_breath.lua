@@ -25,7 +25,7 @@ function onUseAbility(pet, target, skill, action)
         pet:delStatusEffect(dsp.effect.MAGIC_ATK_BOOST);
     end
 
-    local gear = master:getMod(MOD_WYVERN_BREATH)/256; -- Master gear that enhances breath
+    local gear = master:getMod(dsp.mod.WYVERN_BREATH)/256; -- Master gear that enhances breath
 
     local dmgmod = MobBreathMove(pet, target, 0.185, pet:getMainLvl()*15, ELE_WATER); -- Works out to (hp/6) + 15, as desired
     dmgmod = (dmgmod * (1+gear))*deep;

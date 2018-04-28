@@ -35,29 +35,29 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, 5);
-    target:addMod(MOD_AGI, 2);
-    target:addMod(MOD_INT, -4);
-    target:addMod(MOD_HPHEAL, 2);
-    target:addMod(MOD_MPHEAL, 1);
-    target:addMod(MOD_FOOD_ATTP, 21);
-    target:addMod(MOD_FOOD_ATT_CAP, 75);
-    target:addMod(MOD_FOOD_RATTP, 21);
-    target:addMod(MOD_FOOD_RATT_CAP, 75);
-    target:addMod(MOD_SLEEPRES, 3);
-    target:addMod(MOD_STUNRES, 4);
+    target:addMod(dsp.mod.STR, 5);
+    target:addMod(dsp.mod.AGI, 2);
+    target:addMod(dsp.mod.INT, -4);
+    target:addMod(dsp.mod.HPHEAL, 2);
+    target:addMod(dsp.mod.MPHEAL, 1);
+    target:addMod(dsp.mod.FOOD_ATTP, 21);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 75);
+    target:addMod(dsp.mod.FOOD_RATTP, 21);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 75);
+    target:addMod(dsp.mod.SLEEPRES, 3);
+    target:addMod(dsp.mod.STUNRES, 4);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_STR, 5);
-    target:delMod(MOD_AGI, 2);
-    target:delMod(MOD_INT, -4);
-    target:delMod(MOD_HPHEAL, 2);
-    target:delMod(MOD_MPHEAL, 1);
-    target:delMod(MOD_FOOD_ATTP, 21);
-    target:delMod(MOD_FOOD_ATT_CAP, 75);
-    target:delMod(MOD_FOOD_RATTP, 21);
-    target:delMod(MOD_FOOD_RATT_CAP, 75);
-    target:delMod(MOD_SLEEPRES, 3);
-    target:delMod(MOD_STUNRES, 4);
+    target:delMod(dsp.mod.STR, 5);
+    target:delMod(dsp.mod.AGI, 2);
+    target:delMod(dsp.mod.INT, -4);
+    target:delMod(dsp.mod.HPHEAL, 2);
+    target:delMod(dsp.mod.MPHEAL, 1);
+    target:delMod(dsp.mod.FOOD_ATTP, 21);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 75);
+    target:delMod(dsp.mod.FOOD_RATTP, 21);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 75);
+    target:delMod(dsp.mod.SLEEPRES, 3);
+    target:delMod(dsp.mod.STUNRES, 4);
 end;

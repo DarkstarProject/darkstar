@@ -32,7 +32,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     local effectID = dsp.effect.COURSERS_ROLL
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
@@ -51,11 +51,11 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {2, 3, 11, 4, 5, 6, 7, 8, 1, 10, 12, -5}
     local effectpower = effectpowers[total];
 -- Apply Buffs from Courser's Roll Enhancing Gear if present
-    if (math.random(0, 99) < caster:getMod(MOD_ENHANCES_COURSERS_ROLL)) then
+    if (math.random(0, 99) < caster:getMod(dsp.mod.ENHANCES_COURSERS_ROLL)) then
         effectpower = effectpower + 3
     end
 -- Apply Additional Phantom Roll+ Buff

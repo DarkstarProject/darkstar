@@ -8,8 +8,8 @@ require("scripts/globals/msg");
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
-    mob:setMod(MOD_DOUBLE_ATTACK, 10);
-    mob:setMod(MOD_FASTCAST, 15);
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 10);
+    mob:setMod(dsp.mod.FASTCAST, 15);
 end;
 
 function onAdditionalEffect(mob, target, damage)

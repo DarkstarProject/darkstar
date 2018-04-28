@@ -13,7 +13,7 @@ function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 
     -- Hits especially hard for his level, even by NM standards.
-    mob:addMod(MOD_ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
+    mob:addMod(dsp.mod.ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
 end;
 
 function onMobSpawn(mob)
@@ -21,8 +21,8 @@ end;
 
 function onMobRoam(mob)
     -- Fairly sure he shouldn't be storing up max TP while idle.
-    if (mob:getMod(MOD_REGAIN) ~= 0) then
-        mob:setMod(MOD_REGAIN,0);
+    if (mob:getMod(dsp.mod.REGAIN) ~= 0) then
+        mob:setMod(dsp.mod.REGAIN,0);
     end
 end;
 
@@ -30,8 +30,8 @@ function onMobFight(mob,target)
     -- Guesstimating the regain scales from 1-100,
     -- nobody has the excact values but it scales with HP.
     local TP = ((100 - mob:getHPP())*0.5)
-    if (mob:getMod(MOD_REGAIN) ~= utils.clamp(TP,1,100)) then
-        mob:setMod(MOD_REGAIN,utils.clamp(TP,1,100));
+    if (mob:getMod(dsp.mod.REGAIN) ~= utils.clamp(TP,1,100)) then
+        mob:setMod(dsp.mod.REGAIN,utils.clamp(TP,1,100));
     end
 end;
 

@@ -30,7 +30,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     local effectID = dsp.effect.MISERS_ROLL
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
@@ -49,7 +49,7 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(MOD_PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {30, 50, 70, 90, 200, 110, 20, 130, 150, 170, 250, 0}
     local effectpower = effectpowers[total];
 -- Apply Additional Phantom Roll+ Buff
@@ -61,7 +61,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.MISERS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_SAVETP) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.MISERS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.SAVETP) == false) then
         ability:setMsg(dsp.msg.basic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(dsp.msg.basic.DOUBLEUP_BUST);

@@ -28,7 +28,7 @@ function onUseAbility(pet, target, skill, action)
       pet:delStatusEffect(dsp.effect.MAGIC_ATK_BOOST);
    end
 
-    local gear = master:getMod(MOD_WYVERN_BREATH); -- Master gear that enhances breath
+    local gear = master:getMod(dsp.mod.WYVERN_BREATH); -- Master gear that enhances breath
 
     local tp = math.floor(pet:getTP()/200)/1.165; -- HP only increases for every 20% TP
    pet:setTP(0)

@@ -22,7 +22,7 @@ end;
 function onUseAbility(player,target,ability)
 
     local burden = 15;
-    if (target:getStat(MOD_MND) < target:getPet():getStat(MOD_MND)) then
+    if (target:getStat(dsp.mod.MND) < target:getPet():getStat(dsp.mod.MND)) then
         burden = 20;
     end
 
@@ -39,7 +39,7 @@ function onUseAbility(player,target,ability)
             level = target:getSubLvl()
         end
 
-        local bonus = 1 + (level/15) + target:getMod(MOD_MANEUVER_BONUS);
+        local bonus = 1 + (level/15) + target:getMod(dsp.mod.MANEUVER_BONUS);
 
         if (target:getActiveManeuvers() == 3) then
             target:removeOldestManeuver();

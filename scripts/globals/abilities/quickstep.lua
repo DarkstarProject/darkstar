@@ -35,7 +35,7 @@ function onUseAbility(player,target,ability,action)
     local hit = 1;
     local effect = 1;
 
-    if math.random() <= getHitRate(player,target,true,player:getMod(MOD_STEP_ACCURACY)) then
+    if math.random() <= getHitRate(player,target,true,player:getMod(dsp.mod.STEP_ACCURACY)) then
         hit = 5;
         local mjob = player:getMainJob();
         local daze = 1;

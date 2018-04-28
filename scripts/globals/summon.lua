@@ -9,8 +9,8 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     returninfo = {};
 
     -- Damage = (D+fSTR) * dmgmod * PDIF
-    -- printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
-    fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
+    -- printf("str: %f, vit: %f", avatar:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT));
+    fstr = avatarFSTR(avatar:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT));
 
     lvluser = avatar:getMainLvl();
     lvltarget = target:getMainLvl();
@@ -20,7 +20,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     eva = target:getEVA();
 
     local base = avatar:getWeaponDmg() + fstr;
-    local ratio = avatar:getStat(MOD_ATT)/target:getStat(MOD_DEF);
+    local ratio = avatar:getStat(dsp.mod.ATT)/target:getStat(dsp.mod.DEF);
 
     lvldiff = lvluser - lvltarget;
 
@@ -73,8 +73,8 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     hitsdone = 1; hitslanded = 0;
 
     -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-    nativecrit = (avatar:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
-    nativecrit = nativecrit + (avatar:getMod(MOD_CRITHITRATE)/100);
+    nativecrit = (avatar:getStat(dsp.mod.DEX) - target:getStat(dsp.mod.AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+    nativecrit = nativecrit + (avatar:getMod(dsp.mod.CRITHITRATE)/100);
 
     if (nativecrit > 0.2) then --caps!
         nativecrit = 0.2;
@@ -173,11 +173,11 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
-        targShadows = target:getMod(MOD_UTSUSEMI);
-        shadowType = MOD_UTSUSEMI;
+        targShadows = target:getMod(dsp.mod.UTSUSEMI);
+        shadowType = dsp.mod.UTSUSEMI;
         if (targShadows==0) then --try blink, as utsusemi always overwrites blink this is okay
-            targShadows = target:getMod(MOD_BLINK);
-            shadowType = MOD_BLINK;
+            targShadows = target:getMod(dsp.mod.BLINK);
+            shadowType = dsp.mod.BLINK;
         end
 
         if (targShadows>0) then
@@ -185,7 +185,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
             if (targShadows >= shadowbehav) then --no damage, just suck the shadows
                 skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
                 target:setMod(shadowType,(targShadows-shadowbehav));
-                if (shadowType == MOD_UTSUSEMI) then --update icon
+                if (shadowType == dsp.mod.UTSUSEMI) then --update icon
                     effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
                     if (effect ~= nil) then
                         if ((targShadows-shadowbehav) == 0) then
@@ -203,15 +203,15 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
                 return shadowbehav;
             else -- less shadows than this move will take, remove all and factor damage down
                 dmg = dmg * ((shadowbehav-targShadows)/shadowbehav);
-                target:setMod(MOD_UTSUSEMI,0);
-                target:setMod(MOD_BLINK,0);
+                target:setMod(dsp.mod.UTSUSEMI,0);
+                target:setMod(dsp.mod.BLINK,0);
                 target:delStatusEffect(dsp.effect.COPY_IMAGE);
                 target:delStatusEffect(dsp.effect.BLINK);
             end
         end
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:setMod(MOD_UTSUSEMI,0);
-        target:setMod(MOD_BLINK,0);
+        target:setMod(dsp.mod.UTSUSEMI,0);
+        target:setMod(dsp.mod.BLINK,0);
         target:delStatusEffect(dsp.effect.COPY_IMAGE);
         target:delStatusEffect(dsp.effect.BLINK);
     end
@@ -259,7 +259,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     end
 
     -- handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
     if (dmg<0) then
         return 0;
     end
@@ -275,16 +275,16 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     end
 
     -- handling stoneskin
-    skin = target:getMod(MOD_STONESKIN);
+    skin = target:getMod(dsp.mod.STONESKIN);
     if (skin>0) then
         if (skin >= dmg) then --absorb all damage
-            target:delMod(MOD_STONESKIN,dmg);
-            if (target:getMod(MOD_STONESKIN)==0) then
+            target:delMod(dsp.mod.STONESKIN,dmg);
+            if (target:getMod(dsp.mod.STONESKIN)==0) then
                 target:delStatusEffect(dsp.effect.STONESKIN);
             end
             return 0;
         else -- absorbs some damage then wear
-            target:delMod(MOD_STONESKIN,skin);
+            target:delMod(dsp.mod.STONESKIN,skin);
             target:delStatusEffect(dsp.effect.STONESKIN);
             return dmg - skin;
         end

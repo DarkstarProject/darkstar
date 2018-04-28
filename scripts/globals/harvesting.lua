@@ -75,7 +75,7 @@ function sickleBreak(player,trade)
     local broke = 0;
     local sicklebreak = math.random();
 
-    sicklebreak = sicklebreak + (player:getMod(MOD_HARVESTING_RESULT) / 1000);
+    sicklebreak = sicklebreak + (player:getMod(dsp.mod.HARVESTING_RESULT) / 1000);
 
     if (sicklebreak < HARVESTING_BREAK_CHANCE) then
         broke = 1;

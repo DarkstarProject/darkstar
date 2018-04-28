@@ -51,8 +51,8 @@ function onSpellCast(caster,target,spell)
 
     --TODO: Knockback? Where does that get handled? How much knockback does it have?
     local params = {};
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);

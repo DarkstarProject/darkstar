@@ -22,11 +22,11 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_SYNTH_SUCCESS, 3);
-    target:addMod(MOD_SYNTH_SKILL_GAIN, 3);
+    target:addMod(dsp.mod.SYNTH_SUCCESS, 3);
+    target:addMod(dsp.mod.SYNTH_SKILL_GAIN, 3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SYNTH_SUCCESS, 3);
-    target:delMod(MOD_SYNTH_SKILL_GAIN, 3);
+    target:delMod(dsp.mod.SYNTH_SUCCESS, 3);
+    target:delMod(dsp.mod.SYNTH_SKILL_GAIN, 3);
 end;

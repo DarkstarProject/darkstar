@@ -15,13 +15,13 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local hp = math.ceil(20 * (1 + 0.01 * caster:getMod(MOD_REGEN_MULTIPLIER))); -- spell base times gear multipliers
+    local hp = math.ceil(20 * (1 + 0.01 * caster:getMod(dsp.mod.REGEN_MULTIPLIER))); -- spell base times gear multipliers
     hp = hp + caster:getMerit(MERIT_REGEN_EFFECT); -- bonus hp from merits
-    hp = hp + caster:getMod(MOD_LIGHT_ARTS_REGEN); -- bonus hp from light arts
+    hp = hp + caster:getMod(dsp.mod.LIGHT_ARTS_REGEN); -- bonus hp from light arts
 
     local duration = 60;
 
-    duration = duration + caster:getMod(MOD_REGEN_DURATION);
+    duration = duration + caster:getMod(dsp.mod.REGEN_DURATION);
 
     duration = calculateDurationForLvl(duration, 66, target:getMainLvl());
 

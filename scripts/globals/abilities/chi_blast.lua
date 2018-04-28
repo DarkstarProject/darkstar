@@ -20,7 +20,7 @@ function onUseAbility(player,target,ability)
         multiplier = (boost:getPower()/100) * 4; --power is the raw % atk boost
     end
     
-    local dmg = math.floor(player:getStat(MOD_MND)*(0.5+(math.random()/2))) * multiplier;
+    local dmg = math.floor(player:getStat(dsp.mod.MND)*(0.5+(math.random()/2))) * multiplier;
 
     dmg = utils.stoneskin(target, dmg);
     

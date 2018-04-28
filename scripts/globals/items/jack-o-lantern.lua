@@ -26,19 +26,19 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_CHR, -10);
-    target:addMod(MOD_ACC, 10);
-    target:addMod(MOD_RACC, 10);
-    target:addMod(MOD_EVA, 10);
-    target:addMod(MOD_ARCANA_KILLER, 4);
-    target:addMod(MOD_DARKRES, 25);
+    target:addMod(dsp.mod.CHR, -10);
+    target:addMod(dsp.mod.ACC, 10);
+    target:addMod(dsp.mod.RACC, 10);
+    target:addMod(dsp.mod.EVA, 10);
+    target:addMod(dsp.mod.ARCANA_KILLER, 4);
+    target:addMod(dsp.mod.DARKRES, 25);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_CHR, -10);
-    target:delMod(MOD_ACC, 10);
-    target:delMod(MOD_RACC, 10);
-    target:delMod(MOD_EVA, 10);
-    target:delMod(MOD_ARCANA_KILLER, 4);
-    target:delMod(MOD_DARKRES, 25);
+    target:delMod(dsp.mod.CHR, -10);
+    target:delMod(dsp.mod.ACC, 10);
+    target:delMod(dsp.mod.RACC, 10);
+    target:delMod(dsp.mod.EVA, 10);
+    target:delMod(dsp.mod.ARCANA_KILLER, 4);
+    target:delMod(dsp.mod.DARKRES, 25);
 end;

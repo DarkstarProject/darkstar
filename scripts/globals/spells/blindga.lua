@@ -13,7 +13,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_MND)); --blind uses caster INT vs target MND
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND)); --blind uses caster INT vs target MND
 
     -- Base power.  May need more research.
     local power = math.floor(dINT * 9/40) + 23;
@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
     local duration = 180;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = 35;
     params.bonus = 0;
     params.effect = dsp.effect.BLINDNESS;

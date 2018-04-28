@@ -10,9 +10,9 @@ end;
 
 function onMobFight(mob, target)
     if (mob:getHPP() > 25) then
-        mob:setMod(MOD_REGAIN, 10)
+        mob:setMod(dsp.mod.REGAIN, 10)
     else
-        mob:setMod(MOD_REGAIN, 70)
+        mob:setMod(dsp.mod.REGAIN, 70)
     end
 end;
 

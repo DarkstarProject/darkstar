@@ -7,8 +7,8 @@
 
 function onMobSpawn(mob)
     mob:setLocalVar("HpTrigger", math.random(5,65));
-    mob:setMod(MOD_TRIPLE_ATTACK, 25);
-    mob:addMod(MOD_GRAVITYRES, 50);
+    mob:setMod(dsp.mod.TRIPLE_ATTACK, 25);
+    mob:addMod(dsp.mod.GRAVITYRES, 50);
 end;
 
 function onMobFight( mob, target )

@@ -52,9 +52,9 @@ function onSpellCast(caster,target,spell)
 
     local params = {};
 
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
 
     params.skillType = BLUE_SKILL;
 

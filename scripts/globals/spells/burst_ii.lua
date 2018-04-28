@@ -32,7 +32,7 @@ function onSpellCast(caster, target, spell)
     end
 
     -- no point in making a separate function for this if the only thing they won't have in common is the name
-    handleNinjutsuDebuff(caster,target,spell,30,10,MOD_EARTHRES);
+    handleNinjutsuDebuff(caster,target,spell,30,10,dsp.mod.EARTHRES);
 
     return doElementalNuke(caster, spell, target, spellParams);
 end;

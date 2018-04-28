@@ -12,12 +12,12 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = 60;
-    local pCHR = caster:getStat(MOD_CHR);
-    local mCHR = target:getStat(MOD_CHR);
+    local pCHR = caster:getStat(dsp.mod.CHR);
+    local mCHR = target:getStat(dsp.mod.CHR);
     local dCHR = (pCHR - mCHR);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_CHR;
+    params.attribute = dsp.mod.CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = 0;
     params.effect = dsp.effect.LULLABY;
@@ -26,9 +26,9 @@ function onSpellCast(caster,target,spell)
     if (resm < 0.5) then
         spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
     else
-        local iBoost = caster:getMod(MOD_LULLABY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+        local iBoost = caster:getMod(dsp.mod.LULLABY_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
 
-        duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+        duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1);
 
         if (target:addStatusEffect(dsp.effect.LULLABY,1,0,duration)) then
             spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);

@@ -26,23 +26,23 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_STR, 3);
-    target:addMod(MOD_AGI, 3);
-    target:addMod(MOD_INT, -3);
-    target:addMod(MOD_FOOD_RATTP, 15);
-    target:addMod(MOD_FOOD_RATT_CAP, 60);
-    target:addMod(MOD_FOOD_RACCP, 10);
-    target:addMod(MOD_FOOD_RACC_CAP, 50);
-    target:addMod(MOD_ENMITY, -3);
+    target:addMod(dsp.mod.STR, 3);
+    target:addMod(dsp.mod.AGI, 3);
+    target:addMod(dsp.mod.INT, -3);
+    target:addMod(dsp.mod.FOOD_RATTP, 15);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 60);
+    target:addMod(dsp.mod.FOOD_RACCP, 10);
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 50);
+    target:addMod(dsp.mod.ENMITY, -3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_STR, 3);
-    target:delMod(MOD_AGI, 3);
-    target:delMod(MOD_INT, -3);
-    target:delMod(MOD_FOOD_RATTP, 15);
-    target:delMod(MOD_FOOD_RATT_CAP, 60);
-    target:delMod(MOD_FOOD_RACCP, 10);
-    target:delMod(MOD_FOOD_RACC_CAP, 50);
-    target:delMod(MOD_ENMITY, -3);
+    target:delMod(dsp.mod.STR, 3);
+    target:delMod(dsp.mod.AGI, 3);
+    target:delMod(dsp.mod.INT, -3);
+    target:delMod(dsp.mod.FOOD_RATTP, 15);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 60);
+    target:delMod(dsp.mod.FOOD_RACCP, 10);
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 50);
+    target:delMod(dsp.mod.ENMITY, -3);
 end;

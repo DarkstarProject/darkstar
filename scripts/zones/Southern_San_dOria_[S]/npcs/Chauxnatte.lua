@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
             updateChocoboPrice(player, price);
 
             if (player:getMainLvl() >= 20) then
-                local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
+                local duration = 1800 + (player:getMod(dsp.mod.CHOCOBO_RIDING_TIME) * 60)
 
                 player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true);
             else

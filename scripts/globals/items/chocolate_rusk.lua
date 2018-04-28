@@ -26,11 +26,11 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SYNTH_HQ_RATE, 2);
-    target:addMod(MOD_SYNTH_FAIL_RATE, -4);
+    target:addMod(dsp.mod.SYNTH_HQ_RATE, 2);
+    target:addMod(dsp.mod.SYNTH_FAIL_RATE, -4);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SYNTH_HQ_RATE, 2);
-    target:delMod(MOD_SYNTH_FAIL_RATE, -4);
+    target:delMod(dsp.mod.SYNTH_HQ_RATE, 2);
+    target:delMod(dsp.mod.SYNTH_FAIL_RATE, -4);
 end;

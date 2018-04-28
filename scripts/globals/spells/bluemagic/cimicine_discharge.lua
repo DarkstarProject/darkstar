@@ -24,12 +24,12 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = math.random(60,180);
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
+    local pINT = caster:getStat(dsp.mod.INT);
+    local mINT = target:getStat(dsp.mod.INT);
     local dINT = (pINT - mINT);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
     params.effect = nil;

@@ -13,10 +13,10 @@ end;
 
 function onSpellCast(caster,target,spell)
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = 35;
     params.bonus = 0;
     params.effect = dsp.effect.PETRIFICATION;

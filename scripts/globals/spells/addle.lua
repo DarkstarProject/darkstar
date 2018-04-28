@@ -16,7 +16,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
 
     -- Power: Cast Time Modifier
     local power = 30;
@@ -26,14 +26,14 @@ function onSpellCast(caster,target,spell)
     end
 
     -- Sub Power: Magic Accuracy Modifier
-    local targetMagicAccuracy = target:getMod(MOD_MACC);
+    local targetMagicAccuracy = target:getMod(dsp.mod.MACC);
     local subPower = math.floor( targetMagicAccuracy * (power / 100) );
 
     --Duration, including resistance.
     local duration = 180;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = 0;
     params.effect = dsp.effect.ADDLE;

@@ -29,7 +29,7 @@ function onSpellCast(caster,target,spell)
     local merit = caster:getMerit(MERIT_STORMSURGE);
     local power = 0;
     if merit > 0 then
-        power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;
+        power = merit + caster:getMod(dsp.mod.STORMSURGE_EFFECT) + 2;
     end
     target:addStatusEffect(dsp.effect.VOIDSTORM,power,0,180);
     return dsp.effect.VOIDSTORM;

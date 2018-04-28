@@ -16,7 +16,7 @@ function onEffectGain(target,effect)
     target:delStatusEffect(dsp.effect.ASPIR_SAMBA);
     target:delStatusEffect(dsp.effect.DRAIN_SAMBA);
     target:delStatusEffect(dsp.effect.SABER_DANCE);
-    target:addMod(MOD_ENMITY, 15);
+    target:addMod(dsp.mod.ENMITY, 15);
 end;
 
 -----------------------------------
@@ -31,5 +31,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ENMITY, 15);
+    target:delMod(dsp.mod.ENMITY, 15);
 end;

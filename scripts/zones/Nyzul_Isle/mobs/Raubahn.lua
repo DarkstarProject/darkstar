@@ -70,13 +70,13 @@ function onMobSpawn(mob)
                 -- 2nd reraise should use NyzulIsle.text.NOW_UNDERSTAND instead
                 if (phys >= magic and phys >= ranged) then
                     mob:showText(mob,NyzulIsle.text.RESIST_MELEE);
-                    mob:setMod(MOD_UDMGPHYS, -100);
+                    mob:setMod(dsp.mod.UDMGPHYS, -100);
                 elseif (magic >= phys and magic >= ranged) then
                     mob:showText(mob,NyzulIsle.text.RESIST_MAGIC);
-                    mob:addMod(MOD_UDMGMAGIC, -100);
+                    mob:addMod(dsp.mod.UDMGMAGIC, -100);
                 else
                     mob:showText(mob,NyzulIsle.text.RESIST_RANGE);
-                    mob:addMod(MOD_UDMGRANGE, -100);
+                    mob:addMod(dsp.mod.UDMGRANGE, -100);
                 end
             end
         else

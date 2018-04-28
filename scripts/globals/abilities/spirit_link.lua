@@ -30,7 +30,7 @@ function onUseAbility(player,target,ability)
     end
 
     if (player:hasStatusEffect(dsp.effect.STONESKIN)) then
-        local skin = player:getMod(MOD_STONESKIN);
+        local skin = player:getMod(dsp.mod.STONESKIN);
 
         if (skin >= drainamount) then
             if (skin == drainamount) then
@@ -38,7 +38,7 @@ function onUseAbility(player,target,ability)
             else
                 local effect = player:getStatusEffect(dsp.effect.STONESKIN);
                 effect:setPower(effect:getPower() - drainamount); -- fixes the status effeect so when it ends it uses the new power instead of old
-                player:delMod(MOD_STONESKIN,drainamount); --removes the amount from the mod
+                player:delMod(dsp.mod.STONESKIN,drainamount); --removes the amount from the mod
 
             end
         else

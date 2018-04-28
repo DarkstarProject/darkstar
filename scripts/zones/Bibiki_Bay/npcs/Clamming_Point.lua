@@ -49,7 +49,7 @@ local clammingItems = { 1311,  6, 0.001, 0.003, -- Oxblood
 
 local function giveImprovedResults(player)
 
-    if (player:getMod(MOD_CLAMMING_IMPROVED_RESULTS) > 0) then
+    if (player:getMod(dsp.mod.CLAMMING_IMPROVED_RESULTS) > 0) then
         return 1;
     end
 
@@ -58,7 +58,7 @@ end;
 
 local function giveReducedIncidents(player)
 
-    if (player:getMod(MOD_CLAMMING_REDUCED_INCIDENTS) > 0) then
+    if (player:getMod(dsp.mod.CLAMMING_REDUCED_INCIDENTS) > 0) then
         return 0.05;
     end
 

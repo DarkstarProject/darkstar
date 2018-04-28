@@ -23,7 +23,7 @@ aftermathTable[18318] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_STORETP, power=7 }
+        { id=dsp.mod.STORETP, power=7 }
     }
 };
 aftermathTable[18319] = aftermathTable[18318]; -- Amanomurakumo (80)
@@ -42,8 +42,8 @@ aftermathTable[21954] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_STORETP, power=10 },
-        { id=MOD_ZANSHIN, power=10 }
+        { id=dsp.mod.STORETP, power=10 },
+        { id=dsp.mod.ZANSHIN, power=10 }
     }
 };
 

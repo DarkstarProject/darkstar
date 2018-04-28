@@ -57,7 +57,7 @@ function onUseAbility(player,target,ability,action)
         local params = {};
         params.diff = 0;
         params.skillType = player:getWeaponSkillType(SLOT_MAIN);
-        params.bonus = 50 - target:getMod(MOD_STUNRES);
+        params.bonus = 50 - target:getMod(dsp.mod.STUNRES);
         local resist = applyResistance(player, target, spell, params)
 
         if resist > 0.25 then

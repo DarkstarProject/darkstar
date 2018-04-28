@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     params.dmg = basedmg;
     params.multiplier = 1;
     params.skillType = ENFEEBLING_MAGIC_SKILL;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
     dmg = utils.clamp(dmg, 1, 12);
 
     -- get resist multiplier (1x if no resist)
-    local params = {};params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);params.attribute = MOD_INT;params.skillType = ENFEEBLING_MAGIC_SKILL;params.bonus = 1.0;resist = applyResistance(caster, target, spell, params);
+    local params = {};params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);params.attribute = dsp.mod.INT;params.skillType = ENFEEBLING_MAGIC_SKILL;params.bonus = 1.0;resist = applyResistance(caster, target, spell, params);
     -- get the resisted damage
     dmg = dmg*resist;
     -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
 
     -- Calculate duration.
     local duration = 60;
-    local dotBonus = caster:getMod(MOD_DIA_DOT);  -- Dia Wand
+    local dotBonus = caster:getMod(dsp.mod.DIA_DOT);  -- Dia Wand
 
     if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         duration = duration * 2;

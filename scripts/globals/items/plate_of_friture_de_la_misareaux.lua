@@ -30,19 +30,19 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, 3);
-    target:addMod(MOD_VIT, 3);
-    target:addMod(MOD_MND, -3);
-    target:addMod(MOD_DEF, 5);
-    target:addMod(MOD_FOOD_RATTP, 7);
-    target:addMod(MOD_FOOD_RATT_CAP, 15);
+    target:addMod(dsp.mod.DEX, 3);
+    target:addMod(dsp.mod.VIT, 3);
+    target:addMod(dsp.mod.MND, -3);
+    target:addMod(dsp.mod.DEF, 5);
+    target:addMod(dsp.mod.FOOD_RATTP, 7);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 15);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, 3);
-    target:delMod(MOD_VIT, 3);
-    target:delMod(MOD_MND, -3);
-    target:delMod(MOD_DEF, 5);
-    target:delMod(MOD_FOOD_RATTP, 7);
-    target:delMod(MOD_FOOD_RATT_CAP, 15);
+    target:delMod(dsp.mod.DEX, 3);
+    target:delMod(dsp.mod.VIT, 3);
+    target:delMod(dsp.mod.MND, -3);
+    target:delMod(dsp.mod.DEF, 5);
+    target:delMod(dsp.mod.FOOD_RATTP, 7);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 15);
 end;

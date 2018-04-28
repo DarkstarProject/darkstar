@@ -24,15 +24,15 @@ function onUseAbility(player,target,ability,action)
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
 
-    local duration = 30 + player:getMod(MOD_SHADOW_BIND_EXT);
-    local recycleChance = player:getMod(MOD_RECYCLE) + player:getMerit(MERIT_RECYCLE);
+    local duration = 30 + player:getMod(dsp.mod.SHADOW_BIND_EXT);
+    local recycleChance = player:getMod(dsp.mod.RECYCLE) + player:getMerit(MERIT_RECYCLE);
     if (player:hasStatusEffect(dsp.effect.UNLIMITED_SHOT)) then
         player:delStatusEffect(dsp.effect.UNLIMITED_SHOT);
         recycleChance = 100;
     end
 
      -- TODO: Acc penalty for /RNG, acc vs. mob level?
-    if (math.random(0, 99) >= target:getMod(MOD_BINDRES) and target:hasStatusEffect(dsp.effect.BIND) == false) then
+    if (math.random(0, 99) >= target:getMod(dsp.mod.BINDRES) and target:hasStatusEffect(dsp.effect.BIND) == false) then
         target:addStatusEffect(dsp.effect.BIND, 0, 0, duration);
         ability:setMsg(dsp.msg.basic.IS_EFFECT); -- Target is bound.
     else

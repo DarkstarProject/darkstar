@@ -24,10 +24,10 @@ end;
 
 function onSpellCast(caster,target,spell)
     local typeEffect = dsp.effect.FROST;
-    local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+    local dINT = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = BLUE_SKILL;
     params.bonus = 0;
     params.effect = nil;
@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
         if (target:getStatusEffect(dsp.effect.CHOKE) ~= nil) then
             target:delStatusEffect(dsp.effect.CHOKE);
         end;
-        local sINT = caster:getStat(MOD_INT);
+        local sINT = caster:getStat(dsp.mod.INT);
         local DOT = getElementalDebuffDOT(sINT);
         local effect = target:getStatusEffect(typeEffect);
         local noeffect = false;

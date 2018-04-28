@@ -15,7 +15,7 @@ end;
 function onUseAbility(player,target,ability)
    -- Whether feet have to be equipped before using ability, or if they can be swapped in
    -- is disputed.  Source used: http://wiki.bluegartr.com/bg/Sentinel
-    local power = 90 + player:getMod(MOD_SENTINEL_EFFECT);
+    local power = 90 + player:getMod(dsp.mod.SENTINEL_EFFECT);
 
     local guardian = player:getMerit(MERIT_GUARDIAN);
 

@@ -29,19 +29,19 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 35);
-    target:addMod(MOD_VIT, 3);
-    target:addMod(MOD_FIRERES, 21);
-    target:addMod(MOD_FOOD_DEFP, 21);
-    target:addMod(MOD_FOOD_DEF_CAP, 150);
-    target:addMod(MOD_SUBTLE_BLOW, 9);
+    target:addMod(dsp.mod.HP, 35);
+    target:addMod(dsp.mod.VIT, 3);
+    target:addMod(dsp.mod.FIRERES, 21);
+    target:addMod(dsp.mod.FOOD_DEFP, 21);
+    target:addMod(dsp.mod.FOOD_DEF_CAP, 150);
+    target:addMod(dsp.mod.SUBTLE_BLOW, 9);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 35);
-    target:delMod(MOD_VIT, 3);
-    target:delMod(MOD_FIRERES, 21);
-    target:delMod(MOD_FOOD_DEFP, 21);
-    target:delMod(MOD_FOOD_DEF_CAP, 150);
-    target:delMod(MOD_SUBTLE_BLOW, 9);
+    target:delMod(dsp.mod.HP, 35);
+    target:delMod(dsp.mod.VIT, 3);
+    target:delMod(dsp.mod.FIRERES, 21);
+    target:delMod(dsp.mod.FOOD_DEFP, 21);
+    target:delMod(dsp.mod.FOOD_DEF_CAP, 150);
+    target:delMod(dsp.mod.SUBTLE_BLOW, 9);
 end;
