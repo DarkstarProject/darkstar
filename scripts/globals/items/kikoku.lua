@@ -92,6 +92,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.PARALYSIS, 17, 0, 30); -- Power needs verification/adjustment.
-        return dsp.sub.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
+        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
     end
 end;

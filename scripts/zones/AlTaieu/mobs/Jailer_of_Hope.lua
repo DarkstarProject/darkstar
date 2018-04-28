@@ -35,7 +35,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(4,8);
         target:addStatusEffect(dsp.effect.STUN,5,0,duration);
-        return dsp.sub.STUN,0,dsp.effect.STUN;
+        return dsp.subEffect.STUN,0,dsp.effect.STUN;
     end
 end;
 

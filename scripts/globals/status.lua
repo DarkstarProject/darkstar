@@ -78,7 +78,7 @@ dsp.status =
 -- additional effects animations from battleentity.h
 ------------------------------------
 
-dsp.subEffects =
+dsp.subEffect =
 {
     -- ATTACKS
     FIRE_DAMAGE         = 1,   -- 110000        3
@@ -145,7 +145,6 @@ dsp.subEffects =
     DETONATION          = 13,
     IMPACTION           = 14,
 };
-dsp.sub = dsp.subEffects;
 
 ------------------------------------
 -- These codes represent the actual status effects.

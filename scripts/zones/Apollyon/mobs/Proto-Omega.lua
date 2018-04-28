@@ -72,7 +72,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(dsp.effect.STUN) == false) then
             player:addStatusEffect(dsp.effect.STUN, 0, 0, duration);
         end
-        return dsp.sub.STUN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.STUN;
+        return dsp.subEffect.STUN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.STUN;
     end
 end;
 

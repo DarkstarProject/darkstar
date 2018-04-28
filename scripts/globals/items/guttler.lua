@@ -105,6 +105,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.CHOKE, 17, 0, 60);
-        return dsp.sub.CHOKE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CHOKE;
+        return dsp.subEffect.CHOKE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CHOKE;
     end
 end;

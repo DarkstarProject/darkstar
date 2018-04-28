@@ -29,6 +29,6 @@ function onAdditionalEffect(player,target,damage)
             player:addHP(power)
         end
 
-        return dsp.sub.HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, power;
+        return dsp.subEffect.HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, power;
     end
 end;

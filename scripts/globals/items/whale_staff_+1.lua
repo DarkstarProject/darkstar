@@ -28,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
             message = dsp.msg.basic.ADD_EFFECT_HEAL;
         end
 
-        return dsp.sub.WATER_DAMAGE,message,dmg;
+        return dsp.subEffect.WATER_DAMAGE,message,dmg;
     end
 end;

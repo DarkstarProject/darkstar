@@ -20,7 +20,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(5,15);
         target:addStatusEffect(dsp.effect.STUN,5,0,duration);
-        return dsp.sub.STUN,0,dsp.effect.STUN;
+        return dsp.subEffect.STUN,0,dsp.effect.STUN;
     end
 
 end;
@@ -45,7 +45,7 @@ function onSpikesDamage(mob,target,damage)
         dmg = 0;
     end
 
-    return dsp.sub.SHOCK_SPIKES,44,dmg;
+    return dsp.subEffect.SHOCK_SPIKES,44,dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

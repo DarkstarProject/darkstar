@@ -23,7 +23,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(3,5);
         target:addStatusEffect(dsp.effect.TERROR,1,0,duration);
-        return dsp.sub.NONE,0,dsp.effect.TERROR;
+        return dsp.subEffect.NONE,0,dsp.effect.TERROR;
     end
 end;
 

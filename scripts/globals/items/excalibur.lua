@@ -99,7 +99,7 @@ function onAdditionalEffect(player,target,damage)
             finalDMG = utils.clamp(finalDMG, 0, 99999);
             finalDMG = utils.stoneskin(target, finalDMG);
             target:delHP(finalDMG);
-            return dsp.sub.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG;
+            return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG;
         end
     end
 end;

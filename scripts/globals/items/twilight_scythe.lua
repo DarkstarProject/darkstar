@@ -19,10 +19,10 @@ function onAdditionalEffect(player,target,damage)
             return 0,0,0;
         else
             target:setHP(0)
-            return dsp.sub.DEATH, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.KO;
+            return dsp.subEffect.DEATH, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.KO;
         end
     else
         target:setHP(0)
-        return dsp.sub.DEATH, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.KO;
+        return dsp.subEffect.DEATH, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.KO;
     end
 end;

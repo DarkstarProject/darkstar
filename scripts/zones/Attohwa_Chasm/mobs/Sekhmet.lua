@@ -27,7 +27,7 @@ function onAdditionalEffect(mob, target, damage)
         else
             target:delMP(mp);
             mob:addMP(mp);
-            return dsp.sub.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, mp;
+            return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, mp;
         end
     end
 end;

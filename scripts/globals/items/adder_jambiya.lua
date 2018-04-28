@@ -16,6 +16,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(dsp.effect.EVASION_BOOST);
         target:addStatusEffect(dsp.effect.EVASION_DOWN, 10, 0, 60);
-        return dsp.sub.EVASION_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.EVASION_DOWN;
+        return dsp.subEffect.EVASION_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.EVASION_DOWN;
     end
 end;

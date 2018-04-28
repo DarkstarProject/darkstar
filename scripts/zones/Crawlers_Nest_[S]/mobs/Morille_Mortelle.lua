@@ -27,7 +27,7 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(dsp.effect.PLAGUE)) then
             player:addStatusEffect(dsp.effect.PLAGUE, 1, 0, duration);
         end
-        return dsp.sub.PLAGUE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PLAGUE;
+        return dsp.subEffect.PLAGUE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PLAGUE;
     end
 end;
 

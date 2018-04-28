@@ -91,7 +91,7 @@ function onAdditionalEffect(player,target,damage)
         if (dispel == dsp.effect.NONE) then
             return 0,0,0;
         else
-            return dsp.sub.DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, dispel;
+            return dsp.subEffect.DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, dispel;
         end
     else
         return 0,0,0;

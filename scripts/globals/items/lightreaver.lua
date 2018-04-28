@@ -24,6 +24,6 @@ function onAdditionalEffect(player,target,damage)
     else
         -- It's clobberin time!
         target:setHP(0)
-        return dsp.sub.DEATH, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.KO;
+        return dsp.subEffect.DEATH, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.KO;
     end
 end;

@@ -31,7 +31,7 @@ function onAdditionalEffect(mob,target,damage)
         message = dsp.msg.basic.ADD_EFFECT_HEAL;
     end
 
-    return dsp.sub.ICE_DAMAGE, message, power;
+    return dsp.subEffect.ICE_DAMAGE, message, power;
 end;
 
 function onMobDeath(mob, player, isKiller)

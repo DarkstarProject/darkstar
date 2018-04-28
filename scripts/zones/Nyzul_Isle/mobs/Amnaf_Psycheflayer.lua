@@ -43,7 +43,7 @@ function onSpikesDamage(mob,target,damage)
         -- Estimated from https://youtu.be/7jsXnwkqMM4?t=5m42s
         -- And yes it does overwrite itself
         target:addStatusEffect(dsp.effect.CURSE_I, 10, 0, 10);
-        return dsp.sub.CURSE_SPIKES, dsp.msg.basic.STATUS_SPIKES, dsp.effect.CURSE_I;
+        return dsp.subEffect.CURSE_SPIKES, dsp.msg.basic.STATUS_SPIKES, dsp.effect.CURSE_I;
     end
 end;
 ]]

@@ -23,7 +23,7 @@ aftermathTable[18300] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=dsp.mod.SPIKES, power=dsp.sub.SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES, power=dsp.subEffect.SHOCK_SPIKES },
         { id=dsp.mod.SPIKES_DMG, power=10 }
     }
 };
@@ -43,7 +43,7 @@ aftermathTable[21857] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=dsp.mod.SPIKES, power=dsp.sub.SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES, power=dsp.subEffect.SHOCK_SPIKES },
         { id=dsp.mod.SPIKES_DMG, power=10 },
         { id=dsp.mod.ATTP, power=5 },
         { id=dsp.mod.DOUBLE_ATTACK, power=5 }
@@ -96,6 +96,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(dsp.effect.DEFENSE_BOOST)
         target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 17, 0, 60); -- Power and duration needs verification
-        return dsp.sub.DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.DEFENSE_DOWN;
+        return dsp.subEffect.DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.DEFENSE_DOWN;
     end
 end;

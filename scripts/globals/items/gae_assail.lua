@@ -21,7 +21,7 @@ aftermathTable[18299] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=dsp.mod.SPIKES, power=dsp.sub.SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES, power=dsp.subEffect.SHOCK_SPIKES },
         { id=dsp.mod.SPIKES_DMG, power=10 }
     }
 };
