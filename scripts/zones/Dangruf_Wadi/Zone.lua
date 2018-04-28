@@ -78,8 +78,8 @@ end;
 
 function onZoneWeatherChange(weather)
     if (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE) then
-        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_NORMAL);
+        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(dsp.status.NORMAL);
     else
-        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(dsp.status.DISAPPEAR);
     end
 end;

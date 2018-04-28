@@ -37,5 +37,5 @@ function onMobDespawn(mob)
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
     GetNPCByID(16932864+111):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+111):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+111):setStatus(dsp.status.NORMAL);
 end;

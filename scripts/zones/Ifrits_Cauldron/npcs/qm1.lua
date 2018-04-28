@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
     if (npcUtil.tradeHas(trade, 1189) and not GetMobByID(TARASQUE):isSpawned()) then -- Rattling Egg
         player:confirmTrade();
         SpawnMob(TARASQUE):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

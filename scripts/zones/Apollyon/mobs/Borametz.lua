@@ -24,9 +24,9 @@ function onMobDeath(mob, player, isKiller)
 
  if (mobID ==16933048) then -- time T1
        GetNPCByID(16932864+118):setPos(452,-1,30);
-    GetNPCByID(16932864+118):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+118):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16933052) then -- recover
        GetNPCByID(16932864+120):setPos(470,-1,30);
-    GetNPCByID(16932864+120):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+120):setStatus(dsp.status.NORMAL);
  end
 end;

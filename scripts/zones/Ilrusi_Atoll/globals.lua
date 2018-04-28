@@ -20,10 +20,10 @@ ILRUSI_ATOLL = {
     respawnChests = function()
         for i = ILRUSI_CURSED_CHEST_OFFSET, ILRUSI_CURSED_CHEST_OFFSET + 11 do
             local npc = GetNPCByID(i);
-            npc:setStatus(STATUS_NORMAL);
+            npc:setStatus(dsp.status.NORMAL);
             npc:setAnimation(90);
         end
-        GetNPCByID(ILRUSI_ANCIENT_LOCKBOX):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(ILRUSI_ANCIENT_LOCKBOX):setStatus(dsp.status.DISAPPEAR);
     end,
 
     --[[..............................................................................................

@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(17433005) == 0 and trade:hasItemQty(1298,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
         SpawnMob(17433005):updateClaim(player); -- Hakutaku
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

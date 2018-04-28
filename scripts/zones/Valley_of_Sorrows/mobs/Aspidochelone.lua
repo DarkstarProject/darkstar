@@ -12,7 +12,7 @@ end;
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(ADAMANTOISE_QM):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

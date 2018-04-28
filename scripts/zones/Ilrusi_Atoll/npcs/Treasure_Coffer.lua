@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         if (player:getCurrentMission(ASSAULT) == GOLDEN_SALVAGE) then
             player:completeMission(ASSAULT, GOLDEN_SALVAGE);
         end
-        GetNPCByID(ILRUSI_ANCIENT_LOCKBOX):setStatus(STATUS_NORMAL);
+        GetNPCByID(ILRUSI_ANCIENT_LOCKBOX):setStatus(dsp.status.NORMAL);
         ILRUSI_ATOLL.despawnMimics();
     else
         SpawnMob(npcID);

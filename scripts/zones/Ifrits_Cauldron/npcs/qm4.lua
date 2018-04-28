@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
         player:confirmTrade();
         SpawnMob(PIRATES_COVE_NMS):lookAt(player:getPos()); -- Salamander
         SpawnMob(PIRATES_COVE_NMS + 1):updateClaim(player); -- Magma
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

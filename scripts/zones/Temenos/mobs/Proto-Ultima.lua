@@ -33,6 +33,6 @@ end;
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.titles.TEMENOS_LIBERATOR);
     GetNPCByID(16928768+79):setPos(-559,5,-357);
-    GetNPCByID(16928768+79):setStatus(STATUS_NORMAL);
-    GetNPCByID(16928768+474):setStatus(STATUS_NORMAL);
+    GetNPCByID(16928768+79):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928768+474):setStatus(dsp.status.NORMAL);
 end;

@@ -36,10 +36,10 @@ function onTrigger(player, npcId, noDepop)
 
     if (player:getZoneID() == targ:getZoneID()) then
         targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
-        targ:setStatus(STATUS_NORMAL);
+        targ:setStatus(dsp.status.NORMAL);
     else
         if (noDepop == nil or noDepop == 0) then
-            targ:setStatus(STATUS_DISAPPEAR);
+            targ:setStatus(dsp.status.DISAPPEAR);
             player:PrintToPlayer("Despawned the NPC because of an error.");
         end
         player:PrintToPlayer("NPC could not be moved to current pos - you are probably in the wrong zone.");
