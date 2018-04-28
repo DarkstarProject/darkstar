@@ -46,7 +46,7 @@ aftermathTable[20509] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_FINAL_HEAVEN) then -- Final Heaven onry
+    if (wsid == dsp.ws.FINAL_HEAVEN) then -- Final Heaven onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

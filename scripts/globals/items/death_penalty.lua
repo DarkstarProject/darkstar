@@ -101,7 +101,7 @@ aftermathTable[21263] = aftermathTable[19726]; -- Death Penalty (119/II)
 aftermathTable[21268] = aftermathTable[19726]; -- Death Penalty (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_LEADEN_SALUTE) then -- Leaden Salute onry
+    if (wsid == dsp.ws.LEADEN_SALUTE) then -- Leaden Salute onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_RANGED);
             if (aftermathTable[itemId]) then

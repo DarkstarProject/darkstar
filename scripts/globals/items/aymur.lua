@@ -101,7 +101,7 @@ aftermathTable[20793] = aftermathTable[19718]; -- Aymur (119/II)
 aftermathTable[21751] = aftermathTable[19718]; -- Aymur (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_PRIMAL_REND) then -- Primal Rend onry
+    if (wsid == dsp.ws.PRIMAL_REND) then -- Primal Rend onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

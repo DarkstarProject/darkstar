@@ -101,7 +101,7 @@ aftermathTable[20928] = aftermathTable[19723]; -- Ryunohige (119/II)
 aftermathTable[21858] = aftermathTable[19723]; -- Ryunohige (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_DRAKESBANE) then -- Drakesbane onry
+    if (wsid == dsp.ws.DRAKESBANE) then -- Drakesbane onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

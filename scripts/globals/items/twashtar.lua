@@ -73,7 +73,7 @@ aftermathTable[20587] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_RUDRAS_STORM) then -- Rudra's Storm onry
+    if (wsid == dsp.ws.RUDRAS_STORM) then -- Rudra's Storm onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

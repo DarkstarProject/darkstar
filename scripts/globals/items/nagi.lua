@@ -101,7 +101,7 @@ aftermathTable[20973] = aftermathTable[19722]; -- Nagi (119/II)
 aftermathTable[21907] = aftermathTable[19722]; -- Nagi (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_BLADE_KAMU) then -- Blade: Kamu onry
+    if (wsid == dsp.ws.BLADE_KAMU) then -- Blade: Kamu onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

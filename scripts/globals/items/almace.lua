@@ -73,7 +73,7 @@ aftermathTable[20689] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_CHANT_DU_CYGNE) then -- Chant du Cygne onry
+    if (wsid == dsp.ws.CHANT_DU_CYGNE) then -- Chant du Cygne onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

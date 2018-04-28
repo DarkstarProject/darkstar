@@ -27,7 +27,7 @@ aftermathTable[18305] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_CATASTROPHE) then -- Catastrophe onry
+    if (wsid == dsp.ws.CATASTROPHE) then -- Catastrophe onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

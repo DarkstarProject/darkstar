@@ -101,7 +101,7 @@ aftermathTable[21063] = aftermathTable[19712]; -- Yagrush (119/II)
 aftermathTable[21078] = aftermathTable[19712]; -- Yagrush (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MYSTIC_BOON) then -- Mystic Boon onry
+    if (wsid == dsp.ws.MYSTIC_BOON) then -- Mystic Boon onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

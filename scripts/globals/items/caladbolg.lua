@@ -73,7 +73,7 @@ aftermathTable[21684] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TORCLEAVER) then -- Torcleaver onry
+    if (wsid == dsp.ws.TORCLEAVER) then -- Torcleaver onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

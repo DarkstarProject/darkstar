@@ -46,7 +46,7 @@ aftermathTable[21683] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_SCOURGE) then -- Scourge onry
+    if (wsid == dsp.ws.SCOURGE) then -- Scourge onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

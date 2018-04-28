@@ -47,7 +47,7 @@ aftermathTable[22060] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_GATE_OF_TARTARUS) then -- Gate Of Tartarus onry
+    if (wsid == dsp.ws.GATE_OF_TARTARUS) then -- Gate Of Tartarus onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

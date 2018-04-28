@@ -73,7 +73,7 @@ aftermathTable[22064] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MYRKR) then -- Myrkr onry
+    if (wsid == dsp.ws.MYRKR) then -- Myrkr onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

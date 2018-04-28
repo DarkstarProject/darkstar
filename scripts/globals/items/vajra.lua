@@ -101,7 +101,7 @@ aftermathTable[20560] = aftermathTable[19715]; -- Vajra (119/II)
 aftermathTable[20585] = aftermathTable[19715]; -- Vajra (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MANDALIC_STAB) then -- Mandalic Stab onry
+    if (wsid == dsp.ws.MANDALIC_STAB) then -- Mandalic Stab onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

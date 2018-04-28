@@ -101,7 +101,7 @@ aftermathTable[20558] = aftermathTable[19728]; -- Terpsichore (119/II)
 aftermathTable[20584] = aftermathTable[19728]; -- Terpsichore (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_PYRRHIC_KLEOS) then -- Pyrrhic Kleos onry
+    if (wsid == dsp.ws.PYRRHIC_KLEOS) then -- Pyrrhic Kleos onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

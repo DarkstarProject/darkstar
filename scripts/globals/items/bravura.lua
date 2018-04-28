@@ -48,7 +48,7 @@ aftermathTable[21756] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_METATRON_TORMENT) then -- Metatron Torment onry
+    if (wsid == dsp.ws.METATRON_TORMENT) then -- Metatron Torment onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

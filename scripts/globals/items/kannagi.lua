@@ -73,7 +73,7 @@ aftermathTable[21908] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_BLADE_HI) then -- Blade: Hi onry
+    if (wsid == dsp.ws.BLADE_HI) then -- Blade: Hi onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

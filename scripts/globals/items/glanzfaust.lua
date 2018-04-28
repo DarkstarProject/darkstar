@@ -101,7 +101,7 @@ aftermathTable[20483] = aftermathTable[19711]; -- Glanzfaust (119/II)
 aftermathTable[20510] = aftermathTable[19711]; -- Glanzfaust (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_ASCETICS_FURY) then -- Ascetic's Fury onry
+    if (wsid == dsp.ws.ASCETICS_FURY) then -- Ascetic's Fury onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

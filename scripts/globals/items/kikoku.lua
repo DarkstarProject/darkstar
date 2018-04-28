@@ -48,7 +48,7 @@ aftermathTable[21906] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_BLADE_METSU) then -- Blade: Metsu onry
+    if (wsid == dsp.ws.BLADE_METSU) then -- Blade: Metsu onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

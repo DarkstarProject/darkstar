@@ -26,7 +26,7 @@ aftermathTable[18317] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TACHI_KAITEN) then -- Tachi: Kaiten onry
+    if (wsid == dsp.ws.TACHI_KAITEN) then -- Tachi: Kaiten onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

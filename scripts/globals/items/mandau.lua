@@ -48,7 +48,7 @@ aftermathTable[20583] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MERCY_STROKE) then -- Mercy Stroke onry
+    if (wsid == dsp.ws.MERCY_STROKE) then -- Mercy Stroke onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

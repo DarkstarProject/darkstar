@@ -101,7 +101,7 @@ aftermathTable[21138] = aftermathTable[19729]; -- Tupsimati (119/II)
 aftermathTable[22061] = aftermathTable[19729]; -- Tupsimati (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_OMNISCIENCE) then -- Omniscience onry
+    if (wsid == dsp.ws.OMNISCIENCE) then -- Omniscience onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

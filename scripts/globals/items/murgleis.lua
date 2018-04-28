@@ -101,7 +101,7 @@ aftermathTable[20648] = aftermathTable[19714]; -- Murgleis (119/II)
 aftermathTable[20686] = aftermathTable[19714]; -- Murgleis (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_DEATH_BLOSSOM) then -- Death Blossom onry
+    if (wsid == dsp.ws.DEATH_BLOSSOM) then -- Death Blossom onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then
