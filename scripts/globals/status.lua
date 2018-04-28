@@ -1892,7 +1892,29 @@ dsp.merit =
 };
 
 ------------------------------------
--- Slot Definitions
+-- Inventory locations
+------------------------------------
+
+dsp.inventoryLocation =
+{
+    INVENTORY       = 0,
+    MOGSAFE         = 1,
+    STORAGE         = 2,
+    TEMPITEMS       = 3,
+    MOGLOCKER       = 4,
+    MOGSATCHEL      = 5,
+    MOGSACK         = 6,
+    MOGCASE         = 7,
+    WARDROBE        = 8,
+    MOGSAFE2        = 9,
+    WARDROBE2       = 10,
+    WARDROBE3       = 11,
+    WARDROBE4       = 12,
+};
+dsp.inv = dsp.inventoryLocation;
+
+------------------------------------
+-- Equipment Slots
 ------------------------------------
 
 dsp.slot =
@@ -1944,24 +1966,6 @@ ALLEGIANCE_PLAYER    = 1
 ALLEGIANCE_SAN_DORIA = 2
 ALLEGIANCE_BASTOK    = 3
 ALLEGIANCE_WINDURST  = 4
-
-------------------------------------
--- Inventory enum
-------------------------------------
-
-LOC_INVENTORY       = 0
-LOC_MOGSAFE         = 1
-LOC_STORAGE         = 2
-LOC_TEMPITEMS       = 3
-LOC_MOGLOCKER       = 4
-LOC_MOGSATCHEL      = 5
-LOC_MOGSACK         = 6
-LOC_MOGCASE         = 7
-LOC_WARDROBE        = 8
-LOC_MOGSAFE2        = 9
-LOC_WARDROBE2       = 10
-LOC_WARDROBE3       = 11
-LOC_WARDROBE4       = 12
 
 ------------------------------------
 -- Spell Groups
