@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     params.effect = nil;
     resm = applyResistance(caster, target, spell, params);
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
         return 1;
     end
 
@@ -50,9 +50,9 @@ function onSpellCast(caster,target,spell)
         -- overwrite them
         target:delStatusEffect(effect);
         target:addStatusEffect(effect,power,3,duration);
-        spell:setMsg(msgBasic.MAGIC_ENFEEB);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     end
 
     return effect;

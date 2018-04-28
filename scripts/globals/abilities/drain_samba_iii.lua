@@ -14,11 +14,11 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:hasStatusEffect(dsp.effect.FAN_DANCE)) then
-        return msgBasic.UNABLE_TO_USE_JA2, 0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(dsp.effect.TRANCE)) then
         return 0,0;
     elseif (player:getTP() < 400) then
-        return msgBasic.NOT_ENOUGH_TP,0;
+        return dsp.msg.basic.NOT_ENOUGH_TP,0;
     else
         return 0,0;
     end;

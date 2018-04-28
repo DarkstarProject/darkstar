@@ -14,7 +14,7 @@ end
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(RECAST_ABILITY, skill:getID(), 90)
     local maneuvers = master:countEffect(dsp.effect.FIRE_MANEUVER)
-    skill:setMsg(msgBasic.TP_INCREASE)
+    skill:setMsg(dsp.msg.basic.TP_INCREASE)
 
     target:addTP(400 * maneuvers)
 

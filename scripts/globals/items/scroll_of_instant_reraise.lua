@@ -17,7 +17,7 @@ function onItemUse(target)
         local effect = target:getStatusEffect(dsp.effect.RERAISE);
         local oPower = effect:getPower();
         if (oPower > power) then
-            target:messageBasic(msgBasic.NO_EFFECT);
+            target:messageBasic(dsp.msg.basic.NO_EFFECT);
         else
             target:delStatusEffect(dsp.effect.RERAISE);
             target:addStatusEffect(dsp.effect.RERAISE,power,0,duration);

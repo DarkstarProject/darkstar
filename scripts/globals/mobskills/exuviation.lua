@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
         dispel = mob:eraseStatusEffect();
     end;
 
-    skill:setMsg(msgBasic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL);
     return MobHealMove(mob, statusHeal * effectCount + baseHeal);
 end;

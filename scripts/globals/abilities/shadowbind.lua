@@ -34,9 +34,9 @@ function onUseAbility(player,target,ability,action)
      -- TODO: Acc penalty for /RNG, acc vs. mob level?
     if (math.random(0, 99) >= target:getMod(MOD_BINDRES) and target:hasStatusEffect(dsp.effect.BIND) == false) then
         target:addStatusEffect(dsp.effect.BIND, 0, 0, duration);
-        ability:setMsg(msgBasic.IS_EFFECT); -- Target is bound.
+        ability:setMsg(dsp.msg.basic.IS_EFFECT); -- Target is bound.
     else
-        ability:setMsg(msgBasic.JA_MISS); -- Player uses Shadowbind, but misses.
+        ability:setMsg(dsp.msg.basic.JA_MISS); -- Player uses Shadowbind, but misses.
     end
 
     if (math.random(0, 99) >= recycleChance) then

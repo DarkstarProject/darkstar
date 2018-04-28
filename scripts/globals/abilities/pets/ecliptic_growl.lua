@@ -47,6 +47,6 @@ function onPetAbility(target, pet, skill, summoner)
     target:addStatusEffect(dsp.effect.INT_BOOST,8-buffvalue,0,duration);
     target:addStatusEffect(dsp.effect.MND_BOOST,8-buffvalue,0,duration);
     target:addStatusEffect(dsp.effect.CHR_BOOST,8-buffvalue,0,duration);
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

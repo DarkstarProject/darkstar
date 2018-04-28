@@ -13,9 +13,9 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     if not target:getZone():canUseMisc(dsp.zoneMisc.MOUNT) then
-        return msgBasic.CANT_BE_USED_IN_AREA
+        return dsp.msg.basic.CANT_BE_USED_IN_AREA
     elseif not target:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) then
-        return msgBasic.ITEM_UNABLE_TO_USE -- Todo: Verify/correct message, order of message priority.
+        return dsp.msg.basic.ITEM_UNABLE_TO_USE -- Todo: Verify/correct message, order of message priority.
     end
     return 0
 end

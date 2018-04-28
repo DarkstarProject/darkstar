@@ -18,7 +18,7 @@ function onAbilityCheck(player,target,ability)
     if (pet >= 0 and pet <= 7) then -- spirits
         return 0,0;
     else
-        return msgBasic.UNABLE_TO_USE_JA,0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA,0;
     end
 end;
 

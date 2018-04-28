@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
     end
 
     target:addStatusEffect(dsp.effect.AQUAVEIL,power,0,duration);
-    spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+    spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
 
     return dsp.effect.AQUAVEIL;
 end;

@@ -30,7 +30,7 @@ function onUseAbility(player,target,ability)
         end
         player:addMP(mp);
         player:delStatusEffectSilent(dsp.effect.SUBLIMATION_COMPLETE);
-        ability:setMsg(msgBasic.JA_RECOVERS_MP);
+        ability:setMsg(dsp.msg.basic.JA_RECOVERS_MP);
     elseif sublimationCharging ~= nil then
         mp = sublimationCharging:getPower();
         local maxmp = player:getMaxMP();
@@ -40,14 +40,14 @@ function onUseAbility(player,target,ability)
         end
         player:addMP(mp);
         player:delStatusEffectSilent(dsp.effect.SUBLIMATION_ACTIVATED);
-        ability:setMsg(msgBasic.JA_RECOVERS_MP);
+        ability:setMsg(dsp.msg.basic.JA_RECOVERS_MP);
     else
         local refresh = player:getStatusEffect(dsp.effect.REFRESH);
         if refresh == nil or refresh:getSubPower() < 3 then
             player:delStatusEffect(dsp.effect.REFRESH);
             player:addStatusEffect(dsp.effect.SUBLIMATION_ACTIVATED,0,3,7200);
         else
-            ability:setMsg(msgBasic.JA_NO_EFFECT_2);
+            ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2);
         end
     end
     return mp;

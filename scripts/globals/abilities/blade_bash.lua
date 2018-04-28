@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (not player:isWeaponTwoHanded()) then
-        return msgBasic.NEEDS_2H_WEAPON,0;
+        return dsp.msg.basic.NEEDS_2H_WEAPON,0;
     else
         return 0,0;
     end
@@ -42,7 +42,7 @@ function onUseAbility(player,target,ability)
         target:addStatusEffect(dsp.effect.PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
     end
 
-    ability:setMsg(msgBasic.JA_DAMAGE)
+    ability:setMsg(dsp.msg.basic.JA_DAMAGE)
 
     return damage;
 end;

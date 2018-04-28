@@ -13,7 +13,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (not player:isWeaponTwoHanded()) then
-        return msgBasic.NEEDS_2H_WEAPON,0;
+        return dsp.msg.basic.NEEDS_2H_WEAPON,0;
     else
         return 0,0;
     end

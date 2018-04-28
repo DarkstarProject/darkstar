@@ -14,7 +14,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     if (target:hasStatusEffect(dsp.effect.PARALYSIS)) then --effect already on, do nothing
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     else
         -- Calculate duration.
         local duration = 120;
@@ -42,14 +42,14 @@ function onSpellCast(caster,target,spell)
 
         if (resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
             if (target:addStatusEffect(dsp.effect.PARALYSIS,potency,0,duration*resist)) then
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
             else
                 -- no effect
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
             end
         else
             -- resist
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         end
     end
 

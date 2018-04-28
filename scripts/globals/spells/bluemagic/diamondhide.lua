@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
     local duration = 300;
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

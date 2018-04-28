@@ -12,8 +12,8 @@ end;
 
 function onItemUse(target)
     if (target:addStatusEffect(dsp.effect.STONESKIN, 104, 0, 300)) then
-        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, dsp.effect.STONESKIN);
+        target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.STONESKIN);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

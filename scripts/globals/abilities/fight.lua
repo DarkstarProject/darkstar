@@ -12,10 +12,10 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return msgBasic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0;
     else
         if (target:getID() == player:getPet():getID() or (target:getMaster() ~= nil and target:getMaster():isPC())) then
-            return msgBasic.CANNOT_ATTACK_TARGET,0;
+            return dsp.msg.basic.CANNOT_ATTACK_TARGET,0;
         else
             return 0,0;
         end

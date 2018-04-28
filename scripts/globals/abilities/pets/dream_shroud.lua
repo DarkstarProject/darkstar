@@ -22,6 +22,6 @@ function onPetAbility(target, pet, skill, summoner)
     target:delStatusEffect(dsp.effect.MAGIC_DEF_BOOST);
     target:addStatusEffect(dsp.effect.MAGIC_ATK_BOOST,buffvalue,0,duration);
     target:addStatusEffect(dsp.effect.MAGIC_DEF_BOOST,14 - buffvalue,0,duration);
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

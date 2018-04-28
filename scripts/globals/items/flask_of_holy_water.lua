@@ -18,7 +18,7 @@ function onItemUse(target)
 
     if (target:hasStatusEffect(dsp.effect.DOOM) and power > math.random(1, 100)) then
         target:delStatusEffect(dsp.effect.DOOM);
-        target:messageBasic(msgBasic.NARROWLY_ESCAPE);
+        target:messageBasic(dsp.msg.basic.NARROWLY_ESCAPE);
     elseif (curse ~= nil and curse2 ~= nil and bane ~= nil) then
         target:delStatusEffect(dsp.effect.CURSE_I);
         target:delStatusEffect(dsp.effect.CURSE_II);
@@ -36,6 +36,6 @@ function onItemUse(target)
     elseif (bane ~= nil) then
         target:delStatusEffect(dsp.effect.BANE);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

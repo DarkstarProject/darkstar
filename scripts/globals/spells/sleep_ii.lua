@@ -29,16 +29,16 @@ function onSpellCast(caster,target,spell)
     params.effect = typeEffect;
     resm = applyResistanceEffect(caster, target, spell, params);
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
         return typeEffect;
     end
 
     duration = duration * resm;
 
     if (target:addStatusEffect(typeEffect,2,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return typeEffect;

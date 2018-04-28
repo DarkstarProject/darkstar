@@ -14,7 +14,7 @@ require("scripts/globals/msg");
 function onAbilityCheck(player,target,ability)
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (not player:hasStatusEffect(dsp.effect.DOUBLE_UP_CHANCE)) then
-        return msgBasic.NO_ELIGIBLE_ROLL,0;
+        return dsp.msg.basic.NO_ELIGIBLE_ROLL,0;
     else
         return 0,0;
     end
@@ -58,9 +58,9 @@ function onUseAbility(caster,target,ability,action)
         local total = applyRoll(caster,target,ability,action,total)
         local msg = ability:getMsg()
         if msg == 420 then
-            ability:setMsg(msgBasic.DOUBLEUP)
+            ability:setMsg(dsp.msg.basic.DOUBLEUP)
         elseif msg == 422 then
-            ability:setMsg(msgBasic.DOUBLEUP_FAIL)
+            ability:setMsg(dsp.msg.basic.DOUBLEUP_FAIL)
         end
         return total;
     end

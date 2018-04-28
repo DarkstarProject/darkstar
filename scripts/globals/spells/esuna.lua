@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
     local statusDelMis = caster:getLocalVar("esunaDelEffMis")
 
     if (statusDel == 0) then -- this gets set to 0 if there's no status to delete.
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     elseif (statusDelMis ~= 0) then -- no need to check for statusDelMis because it can't be 0 if this isn't
         target:delStatusEffect(statusDel);
         target:delStatusEffect(statusDelMis);

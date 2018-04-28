@@ -20,14 +20,14 @@ function onSpellCast(caster,target,spell)
     params.effect = dsp.effect.SLEEP_II;
     local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- Resist
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- Resist
         return dsp.effect.SLEEP_II;
     end
 
     if (target:addStatusEffect(dsp.effect.SLEEP_II,2,0,90*resist)) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
     end
 
     return dsp.effect.SLEEP_II;

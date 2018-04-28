@@ -34,7 +34,7 @@ function onMobWeaponSkill(target, mob, skill)
     if target:isPC() and ((target:getRace() == 7) and not target:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
     end
 
     return typeEffect;

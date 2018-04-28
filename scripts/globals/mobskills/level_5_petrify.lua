@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, power));
 
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
     end
 
     return typeEffect;

@@ -3,7 +3,7 @@
 --     TITLES IDs
 --
 -----------------------------------
-dsp = dsp or {}
+dsp = dsp or {};
 
 dsp.title =
 {

@@ -28,12 +28,12 @@ function onSpellCast(caster,target,spell)
 
     if (duration >= 30) then --Do it!
         if (target:addStatusEffect(dsp.effect.WEIGHT,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2);
     end
 
     return dsp.effect.WEIGHT;

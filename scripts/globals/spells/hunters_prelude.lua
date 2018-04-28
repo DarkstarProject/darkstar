@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if not (target:addBardSong(caster,dsp.effect.PRELUDE,power,0,duration,caster:getID(), 0, 1)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return dsp.effect.PRELUDE;

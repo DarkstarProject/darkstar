@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     local power = 150; -- 150/1024
 
     if (target:addStatusEffect(dsp.effect.HASTE,power,0,duration) == false) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return dsp.effect.HASTE;

@@ -15,7 +15,7 @@ function onItemCheck(target)
     local region = target:getCurrentRegion();
 
     if (hasOutpost(target, target:getCurrentRegion()) == dsp.region.UNKNOWN or GetRegionOwner(region) ~= target:getNation()) then
-        result = msgBasic.CANT_BE_USED_IN_AREA;
+        result = dsp.msg.basic.CANT_BE_USED_IN_AREA;
     end
 
     return result;

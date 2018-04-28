@@ -13,9 +13,9 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
-        return msgBasic.REQUIRES_A_PET, 0
+        return dsp.msg.basic.REQUIRES_A_PET, 0
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
-        return msgBasic.NO_EFFECT_ON_PET, 0
+        return dsp.msg.basic.NO_EFFECT_ON_PET, 0
     else
         return 0, 0
     end

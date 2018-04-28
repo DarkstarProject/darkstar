@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     resm = applyResistanceEffect(caster, target, spell, params);
 
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
     else
         local iBoost = caster:getMod(MOD_ELEGY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
         power = power + iBoost*10;
@@ -46,9 +46,9 @@ function onSpellCast(caster,target,spell)
 
         -- Try to overwrite weaker elegy
         if (target:addStatusEffect(dsp.effect.ELEGY,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         end
 
     end

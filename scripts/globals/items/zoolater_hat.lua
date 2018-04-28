@@ -15,6 +15,6 @@ function onItemUse(target)
     if (pet) then
         pet:addStatusEffect(dsp.effect.REGAIN, 15, 3, 15);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

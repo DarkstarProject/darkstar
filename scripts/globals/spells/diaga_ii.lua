@@ -57,9 +57,9 @@ function onSpellCast(caster,target,spell)
 
     -- Do it!
     if (target:addStatusEffect(dsp.effect.DIA,2+dotBonus,3,duration,FLAG_ERASABLE,10,2)) then
-        spell:setMsg(msgBasic.MAGIC_DMG);
+        spell:setMsg(dsp.msg.basic.MAGIC_DMG);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     -- Try to kill same tier Bio

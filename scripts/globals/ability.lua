@@ -527,13 +527,13 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     --handle pd
     if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
             and skilltype == MOBSKILL_PHYSICAL) then
-        skill:setMsg(msgBasic.JA_MISS_2);
+        skill:setMsg(dsp.msg.basic.JA_MISS_2);
         return 0;
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(msgBasic.USES_JA_TAKE_DAMAGE);
+    skill:setMsg(dsp.msg.basic.USES_JA_TAKE_DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -542,7 +542,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(msgBasic.SHADOW_ABSORB);
+            skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
             return shadowbehav;
         end
 
@@ -554,7 +554,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
     --handle Third Eye using shadowbehav as a guide
     if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(msgBasic.ANTICIPATE);
+        skill:setMsg(dsp.msg.basic.ANTICIPATE);
         return 0;
     end
 
@@ -595,11 +595,11 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, slot, 
             end
         else
             -- TODO: ability absorb messages (if there are any)
-            -- action:messageID(defender:getID(), msgBasic.WHATEVER)
+            -- action:messageID(defender:getID(), dsp.msg.basic.WHATEVER)
         end
         action:param(defender:getID(), finaldmg)
     elseif shadowsAbsorbed > 0 then
-        action:messageID(defender:getID(), msgBasic.SHADOW_ABSORB)
+        action:messageID(defender:getID(), dsp.msg.basic.SHADOW_ABSORB)
         action:param(defender:getID(), shadowsAbsorbed)
     else
         -- no abilities that use ability message can miss (the rest use ws messages)

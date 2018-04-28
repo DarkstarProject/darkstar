@@ -93,6 +93,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(dsp.effect.ATTACK_BOOST);
         target:addStatusEffect(dsp.effect.ATTACK_DOWN, 10, 0, 60); -- Power needs verification/correction
-        return SUBEFFECT_ATTACK_DOWN, msgBasic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN;
+        return SUBEFFECT_ATTACK_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN;
     end
 end;

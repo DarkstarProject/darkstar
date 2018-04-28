@@ -35,19 +35,19 @@ function onSpellCast(caster,target,spell)
                 if (paralysis:getPower() < power) then
                     target:delStatusEffect(effect);
                     target:addStatusEffect(effect,power,0,duration);
-                    spell:setMsg(msgBasic.MAGIC_ENFEEB);
+                    spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
                 else
-                    spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+                    spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
                 end
             else
                 target:addStatusEffect(effect,power,0,duration);
-                spell:setMsg(msgBasic.MAGIC_ENFEEB);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
             end
         else
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2);
     end
     return effect;
 end;

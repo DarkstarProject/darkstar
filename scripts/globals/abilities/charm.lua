@@ -21,9 +21,9 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() ~= nil) then
-        return msgBasic.ALREADY_HAS_A_PET,0;
+        return dsp.msg.basic.ALREADY_HAS_A_PET,0;
     elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
-        return msgBasic.THAT_SOMEONES_PET,0;
+        return dsp.msg.basic.THAT_SOMEONES_PET,0;
     else
         return 0,0;
     end

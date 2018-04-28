@@ -26,9 +26,9 @@ function onAdditionalEffect(mob,target,damage)
     power = adjustForTarget(target, power, ELE_ICE);
     power = finalMagicNonSpellAdjustments(mob, target, ELE_ICE, power);
 
-    local message = msgBasic.ADD_EFFECT_DMG;
+    local message = dsp.msg.basic.ADD_EFFECT_DMG;
     if (power < 0) then
-        message = msgBasic.ADD_EFFECT_HEAL;
+        message = dsp.msg.basic.ADD_EFFECT_HEAL;
     end
 
     return SUBEFFECT_ICE_DAMAGE, message, power;

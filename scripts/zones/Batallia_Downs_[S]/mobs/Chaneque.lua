@@ -27,7 +27,7 @@ function onAdditionalEffect(mob,target,damage)
         if (power < 0) then
             power = 0
         end
-        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, mob:addHP(power);
+        return SUBEFFECT_HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, mob:addHP(power);
     end
 end;
 

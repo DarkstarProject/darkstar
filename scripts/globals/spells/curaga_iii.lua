@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
     target:wakeUp();
     caster:updateEnmityFromCure(target,final);
 
-    spell:setMsg(msgBasic.AOE_HP_RECOVERY);
+    spell:setMsg(dsp.msg.basic.AOE_HP_RECOVERY);
 
     local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
     if (mpBonusPercent > 0) then

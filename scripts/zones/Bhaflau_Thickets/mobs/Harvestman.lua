@@ -17,7 +17,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(6,9); -- 2-3 Tick's
         target:addStatusEffect(dsp.effect.POISON,100,3,duration);
-        return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,dsp.effect.POISON;
+        return SUBEFFECT_POISON,dsp.msg.basic.ADD_EFFECT_STATUS,dsp.effect.POISON;
     end
 end;
 

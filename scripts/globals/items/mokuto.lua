@@ -15,6 +15,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.SILENCE, 5, 0, 30);
-        return SUBEFFECT_SILENCE, msgBasic.ADD_EFFECT_STATUS, dsp.effect.SILENCE;
+        return SUBEFFECT_SILENCE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SILENCE;
     end
 end;

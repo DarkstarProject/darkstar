@@ -28,10 +28,10 @@ function onSpellCast(caster,target,spell)
         if (target:getEquipID(SLOT_BACK) == 13692) then -- skulker's cape
             duration = duration * 1.5;
         end
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
         target:addStatusEffect(dsp.effect.SNEAK, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no dsp.effect.
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no dsp.effect.
     end
 
     return dsp.effect.SNEAK;

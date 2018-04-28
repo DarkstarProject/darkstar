@@ -37,6 +37,6 @@ function onMobWeaponSkill(target, mob, skill)
         end;
     end;
 
-    skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+    skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
     return 0;
 end;

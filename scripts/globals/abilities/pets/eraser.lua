@@ -14,7 +14,7 @@ end
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(RECAST_ABILITY, skill:getID(), 30)
     local maneuvers = master:countEffect(dsp.effect.LIGHT_MANEUVER)
-    skill:setMsg(msgBasic.USES)
+    skill:setMsg(dsp.msg.basic.USES)
 
     local function removeStatus()
         if target:delStatusEffect(dsp.effect.PETRIFICATION) then return true end

@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local message = msgBasic.SKILL_MISS;
+    local message = dsp.msg.basic.SKILL_MISS;
     local typeEffect = dsp.effect.MAX_MP_DOWN;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 42, 0, 120));

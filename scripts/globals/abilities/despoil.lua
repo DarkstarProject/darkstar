@@ -21,7 +21,7 @@ local despoilDebuffs =
 
 function onAbilityCheck(player, target, ability)
     if (player:getFreeSlotsCount() == 0) then
-        return msgBasic.FULL_INVENTORY, 0;
+        return dsp.msg.basic.FULL_INVENTORY, 0;
     end
     
     return 0, 0;
@@ -47,7 +47,7 @@ function onUseAbility(player, target, ability, action)
         target:addStatusEffect(debuff, power, 0, 90);
     else
         action:animation(target:getID(), 182);
-        ability:setMsg(msgBasic.STEAL_FAIL); -- Failed
+        ability:setMsg(dsp.msg.basic.STEAL_FAIL); -- Failed
     end
     
     return stolen;
@@ -56,24 +56,24 @@ end
 function processDebuff(player, target, ability, debuff)
     local power = 10;
     if (debuff == dsp.effect.ATTACK_DOWN) then
-        ability:setMsg(msgBasic.DESPOIL_ATT_DOWN);
+        ability:setMsg(dsp.msg.basic.DESPOIL_ATT_DOWN);
         power = 20;
     elseif (debuff == dsp.effect.DEFENSE_DOWN) then
-        ability:setMsg(msgBasic.DESPOIL_DEF_DOWN);
+        ability:setMsg(dsp.msg.basic.DESPOIL_DEF_DOWN);
         power = 30;
     elseif (debuff == dsp.effect.MAGIC_ATK_DOWN) then
-        ability:setMsg(msgBasic.DESPOIL_MATT_DOWN);
+        ability:setMsg(dsp.msg.basic.DESPOIL_MATT_DOWN);
     elseif (debuff == dsp.effect.MAGIC_DEF_DOWN) then
-        ability:setMsg(msgBasic.DESPOIL_MDEF_DOWN);
+        ability:setMsg(dsp.msg.basic.DESPOIL_MDEF_DOWN);
         power = 20;
     elseif (debuff == dsp.effect.EVASION_DOWN) then
-        ability:setMsg(msgBasic.DESPOIL_EVA_DOWN);
+        ability:setMsg(dsp.msg.basic.DESPOIL_EVA_DOWN);
         power = 30;
     elseif (debuff == dsp.effect.ACCURACY_DOWN) then
-        ability:setMsg(msgBasic.DESPOIL_ACC_DOWN);
+        ability:setMsg(dsp.msg.basic.DESPOIL_ACC_DOWN);
         power = 20;
     elseif (debuff == dsp.effect.SLOW) then
-        ability:setMsg(msgBasic.DESPOIL_SLOW);
+        ability:setMsg(dsp.msg.basic.DESPOIL_SLOW);
         local dMND = player:getStat(MOD_MND) - target:getStat(MOD_MND);
         if (dMND >= 0) then
             power = 2 * dMND + 150;

@@ -27,7 +27,7 @@ function onUseAbility(player,target,ability)
     local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
 
     if (resist < 0.25) then
-        ability:setMsg(msgBasic.JA_MISS_2); -- resist message
+        ability:setMsg(dsp.msg.basic.JA_MISS_2); -- resist message
         return 0;
     end
 
@@ -69,11 +69,11 @@ function onUseAbility(player,target,ability)
         newEffect:setStartTime(startTime);
     end
 
-    ability:setMsg(msgBasic.JA_REMOVE_EFFECT_2);
+    ability:setMsg(dsp.msg.basic.JA_REMOVE_EFFECT_2);
     local dispelledEffect = target:dispelStatusEffect();
     if (dispelledEffect == dsp.effect.NONE) then
         -- no effect
-        ability:setMsg(msgBasic.JA_NO_EFFECT_2);
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2);
     end
 
     local del = player:delItem(2183, 1) or player:delItem(2974, 1)

@@ -89,7 +89,7 @@ function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
     -- if (target:hasImmunity(64)) then
-        -- spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        -- spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     -- This does nothing, as this is not a spell, and it doesn't get used in the return.
     -- That should be handled in the resist check in the global anyways.
 
@@ -97,6 +97,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.BLINDNESS, 15, 0, 30);
-        return SUBEFFECT_BLIND, msgBasic.ADD_EFFECT_STATUS, dsp.effect.BLINDNESS;
+        return SUBEFFECT_BLIND, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.BLINDNESS;
     end
 end;

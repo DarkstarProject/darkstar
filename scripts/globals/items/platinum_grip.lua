@@ -15,6 +15,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.STUN, 1, 0, 3);
-        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, dsp.effect.STUN;
+        return SUBEFFECT_STUN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.STUN;
     end
 end;

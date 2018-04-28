@@ -135,9 +135,9 @@ function doBoostGain(caster,target,spell,effect)
     end
 
     if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 end;
 
@@ -161,9 +161,9 @@ function doEnspell(caster,target,spell,effect)
     end
 
     if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 end;
 
@@ -610,7 +610,7 @@ end;
         -- dmg = utils.takeShadows(target, dmg, 1);
 
         -- if (dmg == 0) then
-            -- spell:setMsg(msgBasic.SHADOW_ABSORB);
+            -- spell:setMsg(dsp.msg.basic.SHADOW_ABSORB);
             -- return 1;
         -- end
     end
@@ -639,7 +639,7 @@ end;
 
     if (dmg < 0) then
         dmg = target:addHP(-dmg);
-        spell:setMsg(msgBasic.MAGIC_RECOVERS_HP);
+        spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP);
     else
         target:delHP(dmg);
         target:handleAfflatusMiseryDamage(dmg);
@@ -1031,7 +1031,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
 
     if (resm < 0.5) then
         -- print("resm resist");
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         return dsp.effect.THRENODY;
     end
 

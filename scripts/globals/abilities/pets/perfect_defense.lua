@@ -23,7 +23,7 @@ function onPetAbility(target, pet, skill, master)
     end
     target:delStatusEffect(dsp.effect.PERFECT_DEFENSE);
     target:addStatusEffect(dsp.effect.PERFECT_DEFENSE,power,3,duration);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
     master:setMP(0);
     return dsp.effect.PERFECT_DEFENSE;
 end

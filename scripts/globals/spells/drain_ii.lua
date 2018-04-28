@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:isUndead()) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
         return dmg;
     end
 
@@ -58,6 +58,6 @@ function onSpellCast(caster,target,spell)
     end
 
     caster:addHP(dmg);
-    spell:setMsg(msgBasic.MAGIC_DRAIN_HP); --change msg to 'xxx hp drained from the yyyy.'
+    spell:setMsg(dsp.msg.basic.MAGIC_DRAIN_HP); --change msg to 'xxx hp drained from the yyyy.'
     return dmg;
 end;

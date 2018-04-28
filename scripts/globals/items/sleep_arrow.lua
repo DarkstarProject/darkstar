@@ -28,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(dsp.effect.SLEEP_I)) then
             target:addStatusEffect(dsp.effect.SLEEP_I, 1, 0, duration);
         end
-        return SUBEFFECT_SLEEP, msgBasic.ADD_EFFECT_STATUS, dsp.effect.SLEEP_I;
+        return SUBEFFECT_SLEEP, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SLEEP_I;
     end
 end;

@@ -15,9 +15,9 @@ function onSpellCast(caster,target,spell)
     local effect = target:eraseStatusEffect();
 
     if (effect == dsp.effect.NONE) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     else
-        spell:setMsg(msgBasic.MAGIC_ERASE);
+        spell:setMsg(dsp.msg.basic.MAGIC_ERASE);
     end
 
     return effect;

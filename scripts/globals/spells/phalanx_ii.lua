@@ -26,9 +26,9 @@ function onSpellCast(caster,target,spell)
     final = (enhskill / 25) + merits + 1;
 
     if (target:addStatusEffect(dsp.effect.PHALANX,final,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return dsp.effect.PHALANX;

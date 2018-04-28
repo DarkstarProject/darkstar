@@ -9,7 +9,7 @@ require("scripts/globals/msg");
 
 function onItemCheck(target)
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        return msgBasic.IS_FULL;
+        return dsp.msg.basic.IS_FULL;
     end
     return 0;
 end;
@@ -19,6 +19,6 @@ function onItemUse(target)
     if (not target:hasStatusEffect(dsp.effect.POISON)) then
         target:addStatusEffect(dsp.effect.POISON,10,3,600);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

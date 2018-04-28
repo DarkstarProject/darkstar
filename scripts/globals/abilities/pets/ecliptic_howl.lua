@@ -37,6 +37,6 @@ function onPetAbility(target, pet, skill, summoner)
     target:delStatusEffect(dsp.effect.EVASION_BOOST);
     target:addStatusEffect(dsp.effect.ACCURACY_BOOST,buffvalue,0,duration);
     target:addStatusEffect(dsp.effect.EVASION_BOOST,25-buffvalue,0,duration);
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

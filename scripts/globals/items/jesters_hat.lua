@@ -17,5 +17,5 @@ function onItemUse(target)
     end
     target:addHP(hpHeal);
     target:updateEnmityFromCure(target,hpHeal);
-    target:messageBasic(msgBasic.RECOVERS_HP,0,hpHeal);
+    target:messageBasic(dsp.msg.basic.RECOVERS_HP,0,hpHeal);
 end;

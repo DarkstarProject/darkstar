@@ -17,7 +17,7 @@ function onMobWeaponSkill(target, mob, skill)
     local erase = mob:eraseStatusEffect();
 
     if (erase ~= dsp.effect.NONE) then
-        skill:setMsg(msgBasic.SKILL_ERASE);
+        skill:setMsg(dsp.msg.basic.SKILL_ERASE);
         return erase;
     else
         skill:setMsg(MobBuffMove(mob, dsp.effect.REGAIN, 10, 3, 60));

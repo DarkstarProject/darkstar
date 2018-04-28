@@ -89,7 +89,7 @@ function onSpellCast(caster,target,spell)
         caster:updateEnmityFromCure(target,final);
     else
         if (target:isUndead()) then
-            spell:setMsg(msgBasic.MAGIC_DMG);
+            spell:setMsg(dsp.msg.basic.MAGIC_DMG);
             local params = {};
             params.dmg = minCure;
             params.multiplier = 1;
@@ -112,7 +112,7 @@ function onSpellCast(caster,target,spell)
             target:delHP(final);
             target:updateEnmityFromDamage(caster,final);
         elseif (caster:getObjType() == TYPE_PC) then
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         else
             -- e.g. monsters healing themselves.
             if (USE_OLD_CURE_FORMULA == true) then

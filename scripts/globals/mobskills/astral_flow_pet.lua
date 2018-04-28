@@ -42,7 +42,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.ASTRAL_FLOW;
-    skill:setMsg(msgBasic.USES);
+    skill:setMsg(dsp.msg.basic.USES);
 
     -- Find proper pet skill
     local pet = mob:getPet();

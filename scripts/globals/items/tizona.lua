@@ -164,6 +164,6 @@ function onAdditionalEffect(player,target,damage)
         local drain = math.floor(damage * (math.random(100,200)/1000));
         player:addMP(drain);
 
-        return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, drain;
+        return SUBEFFECT_MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain;
     end
 end;

@@ -14,6 +14,6 @@ function onItemUse(target)
     if (not target:hasStatusEffect(dsp.effect.REGEN)) then
         target:addStatusEffect(dsp.effect.REGEN,3,3,300);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

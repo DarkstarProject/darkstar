@@ -35,16 +35,16 @@ function onSpellCast(caster,target,spell)
     end
 
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- Resist
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- Resist
         return dsp.effect.SLEEP_I;
     end
 
     duration = duration * resm;
 
     if (target:addStatusEffect(dsp.effect.SLEEP_I,1,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
     end
 
     return dsp.effect.SLEEP_I;

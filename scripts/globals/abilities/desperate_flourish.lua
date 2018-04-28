@@ -15,7 +15,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
-        return msgBasic.REQUIRES_COMBAT,0;
+        return dsp.msg.basic.REQUIRES_COMBAT,0;
     else
         if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
             player:delStatusEffect(dsp.effect.FINISHING_MOVE_1);
@@ -37,7 +37,7 @@ function onAbilityCheck(player,target,ability)
             player:addStatusEffect(dsp.effect.FINISHING_MOVE_4,1,0,7200);
             return 0,0;
         else
-            return msgBasic.NO_FINISHINGMOVES,0;
+            return dsp.msg.basic.NO_FINISHINGMOVES,0;
         end
     end
 end;
@@ -64,14 +64,14 @@ function onUseAbility(player,target,ability,action)
             target:delStatusEffectSilent(dsp.effect.WEIGHT);
             target:addStatusEffect(dsp.effect.WEIGHT, 50, 0, 60 * resist);
         else
-            ability:setMsg(msgBasic.JA_DAMAGE);
+            ability:setMsg(dsp.msg.basic.JA_DAMAGE);
         end
-        ability:setMsg(msgBasic.JA_ENFEEB_IS);
+        ability:setMsg(dsp.msg.basic.JA_ENFEEB_IS);
         action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
         action:speceffect(target:getID(), 2)
         return dsp.effect.WEIGHT
     else
-        ability:setMsg(msgBasic.JA_MISS);
+        ability:setMsg(dsp.msg.basic.JA_MISS);
         return 0;
     end
 end;

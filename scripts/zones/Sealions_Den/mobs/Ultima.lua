@@ -31,7 +31,7 @@ function onAdditionalEffect(mob, player)
         if (player:hasStatusEffect(dsp.effect.PARALYSIS) == false) then
             player:addStatusEffect(dsp.effect.PARALYSIS, power, 0, duration);
         end
-        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
+        return SUBEFFECT_PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
     end
 end;
 

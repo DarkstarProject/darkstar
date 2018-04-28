@@ -12,13 +12,13 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
-        return msgBasic.CANNOT_ON_THAT_TARG,0;
+        return dsp.msg.basic.CANNOT_ON_THAT_TARG,0;
     elseif (player:hasStatusEffect(dsp.effect.SABER_DANCE)) then
-        return msgBasic.UNABLE_TO_USE_JA2, 0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(dsp.effect.TRANCE)) then
         return 0,0;
     elseif (player:getTP() < 200) then
-        return msgBasic.NOT_ENOUGH_TP,0;
+        return dsp.msg.basic.NOT_ENOUGH_TP,0;
     else
         --[[ Apply "Waltz Ability Delay" reduction
             1 modifier = 1 second]]
@@ -48,9 +48,9 @@ function onUseAbility(player,target,ability)
     local effect = target:healingWaltz();
 
     if (effect == dsp.effect.NONE) then
-        ability:setMsg(msgBasic.NO_EFFECT); -- no effect
+        ability:setMsg(dsp.msg.basic.NO_EFFECT); -- no effect
     else
-        ability:setMsg(msgBasic.JA_REMOVE_EFFECT);
+        ability:setMsg(dsp.msg.basic.JA_REMOVE_EFFECT);
     end
 
     return effect;

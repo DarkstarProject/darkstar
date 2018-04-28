@@ -23,18 +23,18 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistanceEffect(caster, target, spell, params);
     if (resist <= (1/16)) then
         -- resisted!
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         return 0;
     end
 
     if (target:hasStatusEffect(dsp.effect.STUN)) then
         -- no effect
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     else
         if (target:addStatusEffect(dsp.effect.STUN,1,0,duration*resist)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     end
 

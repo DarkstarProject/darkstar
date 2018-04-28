@@ -14,9 +14,9 @@ end;
 function onSpellCast(caster,target,spell)
     if (target:hasStatusEffect(dsp.effect.INVISIBLE) == false) then
         target:addStatusEffect(dsp.effect.INVISIBLE,0,10,420);
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no dsp.effect.
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no dsp.effect.
     end
     return dsp.effect.INVISIBLE;
 end;

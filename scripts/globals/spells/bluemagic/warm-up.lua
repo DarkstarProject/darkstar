@@ -41,15 +41,15 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (target:addStatusEffect(typeEffectOne,power,0,duration) == false and target:addStatusEffect(typeEffectTwo,power,0,duration) == false) then -- both statuses fail to apply
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     elseif (target:addStatusEffect(typeEffectOne,power,0,duration) == false) then -- the first status fails to apply
         target:addStatusEffect(typeEffectTwo,power,0,duration)
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
         returnEffect = typeEffectTwo;
     else
         target:addStatusEffect(typeEffectOne,power,0,duration)
         target:addStatusEffect(typeEffectTwo,power,0,duration)
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     end;
 
     return returnEffect;

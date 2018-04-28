@@ -18,12 +18,12 @@ function onPetAbility(target, automaton, skill, master, action)
     local shadows = 1 + maneuvers -- math.floor(maneuvers * 3.5) currently on retail
 
     if target:addStatusEffect(dsp.effect.BLINK, shadows, 0, duration) then
-        skill:setMsg(msgBasic.SKILL_GAIN_EFFECT)
+        skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
         for i = 1, maneuvers do
             master:delStatusEffectSilent(dsp.effect.WIND_MANEUVER)
         end
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT)
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
     end
 
     return dsp.effect.BLINK

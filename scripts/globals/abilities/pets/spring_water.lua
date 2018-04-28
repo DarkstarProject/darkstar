@@ -32,7 +32,7 @@ function onPetAbility(target, pet, skill)
     if math.random() > 0.5 then
         target:delStatusEffect(dsp.effect.SLOW);
     end
-    skill:setMsg(msgBasic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL);
     target:addHP(base);
     return base;
 end

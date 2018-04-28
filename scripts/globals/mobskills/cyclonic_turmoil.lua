@@ -35,7 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
     if (total == 0) then
         return dmg;
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
         return total;
     end
 end;

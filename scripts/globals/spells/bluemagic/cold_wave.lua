@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistance(caster, target, spell, params);
 
     if (target:getStatusEffect(dsp.effect.BURN) ~= nil) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     elseif (resist > 0.5) then
         if (target:getStatusEffect(dsp.effect.CHOKE) ~= nil) then
             target:delStatusEffect(dsp.effect.CHOKE);
@@ -49,17 +49,17 @@ function onSpellCast(caster,target,spell)
             end;
         end;
         if (noeffect) then
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         else
             if (effect ~= nil) then
                 target:delStatusEffect(typeEffect);
             end;
-                spell:setMsg(msgBasic.MAGIC_ENFEEB);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
             local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
             target:addStatusEffect(typeEffect,DOT,3,ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
         end;
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end;
 
     return typeEffect;

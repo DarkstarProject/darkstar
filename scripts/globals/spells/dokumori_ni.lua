@@ -25,22 +25,22 @@ function onSpellCast(caster,target,spell)
 
     --Calculates resist chanve from Reist Blind
     if (target:hasStatusEffect(effect)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         return effect;
     end
 
     if (math.random(0,100) >= target:getMod(MOD_POISONRES)) then
         if (duration >= 60) then
             if (target:addStatusEffect(effect,power,3,duration)) then
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
             end
         else
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2);
     end
     return effect;
 end;

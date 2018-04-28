@@ -25,11 +25,11 @@ function onMobDeath(mob, player, isKiller)
     -- HP Bonus: 052
     elseif (mobID == 17330533) then
         player:restoreHP(2000);
-        player:messageBasic(msgBasic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
+        player:messageBasic(dsp.msg.basic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
     -- HP Bonus: 073
     elseif (mobID == 17330843) then
         player:restoreMP(2000);
-        player:messageBasic(msgBasic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
+        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
     end
 
 end;

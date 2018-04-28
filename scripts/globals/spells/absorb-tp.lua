@@ -33,10 +33,10 @@ function onSpellCast(caster,target,spell)
 
     --add in final adjustments
     if (resist <= 0.125) then
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         dmg = 0
     else
-        spell:setMsg(msgBasic.MSGIC_ABSORB_TP);
+        spell:setMsg(dsp.msg.basic.MSGIC_ABSORB_TP);
 
         dmg = dmg * ((100 + caster:getMod(MOD_AUGMENTS_ABSORB)) / 100)
 

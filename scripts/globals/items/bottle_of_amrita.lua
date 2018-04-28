@@ -21,6 +21,6 @@ function onItemUse(target)
         worked = true;
     end
     if (not worked) then
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

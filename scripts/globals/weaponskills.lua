@@ -977,9 +977,9 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
             if primary then
-                action:messageID(defender:getID(), msgBasic.DAMAGE)
+                action:messageID(defender:getID(), dsp.msg.basic.DAMAGE)
             else
-                action:messageID(defender:getID(), msgBasic.DAMAGE_SECONDARY)
+                action:messageID(defender:getID(), dsp.msg.basic.DAMAGE_SECONDARY)
             end
 
             if finaldmg > 0 then
@@ -988,20 +988,20 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
             end
         else
             if primary then
-                action:messageID(defender:getID(), msgBasic.SELF_HEAL)
+                action:messageID(defender:getID(), dsp.msg.basic.SELF_HEAL)
             else
-                action:messageID(defender:getID(), msgBasic.SELF_HEAL_SECONDARY)
+                action:messageID(defender:getID(), dsp.msg.basic.SELF_HEAL_SECONDARY)
             end
         end
         action:param(defender:getID(), finaldmg)
     elseif shadowsAbsorbed > 0 then
-        action:messageID(defender:getID(), msgBasic.SHADOW_ABSORB)
+        action:messageID(defender:getID(), dsp.msg.basic.SHADOW_ABSORB)
         action:param(defender:getID(), shadowsAbsorbed)
     else
         if primary then
-            action:messageID(defender:getID(), msgBasic.SKILL_MISS)
+            action:messageID(defender:getID(), dsp.msg.basic.SKILL_MISS)
         else
-            action:messageID(defender:getID(), msgBasic.EVADES)
+            action:messageID(defender:getID(), dsp.msg.basic.EVADES)
         end
         action:reaction(defender:getID(), dsp.reaction.EVADE)
     end

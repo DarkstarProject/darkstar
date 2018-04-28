@@ -12,7 +12,7 @@ end;
 
 function onItemUse(target)
     if (target:hasStatusEffect(dsp.effect.REGAIN)) then
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     else
         target:addStatusEffect(dsp.effect.REGAIN, 5, 3, 30);
     end

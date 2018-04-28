@@ -34,9 +34,9 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:addStatusEffect(dsp.effect.REGEN,hp,3,duration,0,0,0)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     end
 
     return dsp.effect.REGEN;

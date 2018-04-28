@@ -11,10 +11,10 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return msgBasic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0;
     else
         if (player:getPet():getHP() == player:getPet():getMaxHP() and player:getMerit(MERIT_EMPATHY) == 0) then
-            return msgBasic.UNABLE_TO_USE_JA,0;
+            return dsp.msg.basic.UNABLE_TO_USE_JA,0;
         else
             return 0,0;
         end

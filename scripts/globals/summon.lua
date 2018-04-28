@@ -118,7 +118,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     if (hitslanded == 0 or finaldmg == 0) then
         finaldmg = 0;
         hitslanded = 0;
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end
 
     if finaldmg > 0 then
@@ -169,7 +169,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(msgBasic.DAMAGE);
+    skill:setMsg(dsp.msg.basic.DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -183,7 +183,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
         if (targShadows>0) then
         -- Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
             if (targShadows >= shadowbehav) then --no damage, just suck the shadows
-                skill:setMsg(msgBasic.SHADOW_ABSORB);
+                skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
                 target:setMod(shadowType,(targShadows-shadowbehav));
                 if (shadowType == MOD_UTSUSEMI) then --update icon
                     effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
@@ -228,13 +228,13 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
             if (prevAnt == 0) then
                 --100% proc
                 teye:setPower(1);
-                skill:setMsg(msgBasic.ANTICIPATE);
+                skill:setMsg(dsp.msg.basic.ANTICIPATE);
                 return 0;
             end
             if ( (math.random()*100) < (80-(prevAnt*10)) ) then
                 --anticipated!
                 teye:setPower(prevAnt+1);
-                skill:setMsg(msgBasic.ANTICIPATE);
+                skill:setMsg(dsp.msg.basic.ANTICIPATE);
                 return 0;
             end
             target:delStatusEffect(dsp.effect.THIRD_EYE);
@@ -297,7 +297,7 @@ end;
 -- used to stop tp move status effects
 function AvatarPhysicalHit(skill, dmg)
     -- if message is not the default. Then there was a miss, shadow taken etc
-    return skill:getMsg() == msgBasic.DAMAGE;
+    return skill:getMsg() == dsp.msg.basic.DAMAGE;
 end;
 
 function avatarFTP(tp,ftp1,ftp2,ftp3)

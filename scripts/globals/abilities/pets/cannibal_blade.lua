@@ -61,7 +61,7 @@ function onPetAbility(target, automaton, skill, master, action)
     if damage > 0 then
         if not target:isUndead() then
             automaton:addHP(damage)
-            skill:setMsg(msgBasic.SKILL_DRAIN_HP)
+            skill:setMsg(dsp.msg.basic.SKILL_DRAIN_HP)
         end
     end
 

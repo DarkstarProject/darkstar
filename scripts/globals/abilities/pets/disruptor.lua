@@ -15,9 +15,9 @@ function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(RECAST_ABILITY, skill:getID(), 60)
     local effect = target:dispelStatusEffect()
     if effect ~= dsp.effect.NONE then
-        skill:setMsg(msgBasic.SKILL_ERASE)
+        skill:setMsg(dsp.msg.basic.SKILL_ERASE)
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT)
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
     end
 
     return effect

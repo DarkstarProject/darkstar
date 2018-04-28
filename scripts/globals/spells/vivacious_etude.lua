@@ -50,7 +50,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if not (target:addBardSong(caster,dsp.effect.ETUDE,power,0,duration,caster:getID(),MOD_VIT,1)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return dsp.effect.ETUDE;

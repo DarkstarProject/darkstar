@@ -14,7 +14,7 @@ function onSpellCast(caster,target,spell)
     local effectType = dsp.effect.SILENCE;
 
     if (target:hasStatusEffect(effectType)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         return effectType;
     end
 
@@ -35,12 +35,12 @@ function onSpellCast(caster,target,spell)
 
     if (resist >= 0.5) then --Do it!
         if (target:addStatusEffect(effectType,1,0,duration * resist)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
     return effectType;

@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getShieldSize() == 0) then
-        return msgBasic.REQUIRES_SHIELD,0;
+        return dsp.msg.basic.REQUIRES_SHIELD,0;
     else
         return 0,0;
     end
@@ -67,7 +67,7 @@ function onUseAbility(player, target, ability)
     target:delHP(damage);
     target:updateEnmityFromDamage(player,damage);
 
-    ability:setMsg(msgBasic.JA_DAMAGE);
+    ability:setMsg(dsp.msg.basic.JA_DAMAGE);
 
     return damage;
 end;

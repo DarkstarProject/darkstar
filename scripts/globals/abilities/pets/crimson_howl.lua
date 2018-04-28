@@ -17,6 +17,6 @@ function onPetAbility(target, pet, skill, summoner)
     local duration = 60 + bonusTime;
 
     target:addStatusEffect(dsp.effect.WARCRY,9,0,duration);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
     return dsp.effect.WARCRY;
 end

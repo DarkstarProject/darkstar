@@ -93,7 +93,7 @@ function onAdditionalEffect(player,target,damage)
     else
         local mp = math.random(4,16);
         player:addMP(mp);
-        player:messageBasic(msgBasic.RECOVERS_MP, 0, mp);
+        player:messageBasic(dsp.msg.basic.RECOVERS_MP, 0, mp);
         return 0,0,0; -- Function REQUIRES a return or will error!
     end
 end;

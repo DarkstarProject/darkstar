@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobGazeMove(mob, target, dsp.effect.BIND, 1, 0, 30);
 
-    skill:setMsg(msgBasic.TP_REDUCED);
+    skill:setMsg(dsp.msg.basic.TP_REDUCED);
 
     return tpReduced;
 end;

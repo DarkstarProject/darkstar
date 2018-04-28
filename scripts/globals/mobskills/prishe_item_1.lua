@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     if (mob:getTarget() and mob:getTarget():getFamily() == 478) then
         -- using Ambrosia!
         target:addStatusEffect(dsp.effect.FOOD,0,0,14400,4511);

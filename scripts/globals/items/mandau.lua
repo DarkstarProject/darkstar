@@ -92,7 +92,7 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.POISON, 10, 3, 30); -- Power and Duration needs verified.
-        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, dsp.effect.POISON;
+        return SUBEFFECT_POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
     
     return 0;

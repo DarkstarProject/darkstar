@@ -14,6 +14,6 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     target:addStatusEffectEx(dsp.effect.SUPER_BUFF, 0, 50, 0, 30);
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end;

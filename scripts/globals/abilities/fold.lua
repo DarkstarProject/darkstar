@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
     if (target:hasCorsairEffect()) then
         return 0,0;
     else
-        return msgBasic.CANNOT_PERFORM,0;
+        return dsp.msg.basic.CANNOT_PERFORM,0;
     end
 end;
 

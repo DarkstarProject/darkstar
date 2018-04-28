@@ -13,9 +13,9 @@ end;
 function onSpellCast(caster,target,spell)
 
     if target:addStatusEffect(dsp.effect.FLURRY, 15, 0, 180) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end;
 
     return dsp.effect.FLURRY;

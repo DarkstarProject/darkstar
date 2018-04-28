@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (target == nil or target:getID() == player:getID() or not target:isPC()) then
-        return msgBasic.CANNOT_ON_THAT_TARG, 0;
+        return dsp.msg.basic.CANNOT_ON_THAT_TARG, 0;
     else
         return 0, 0;
     end

@@ -19,14 +19,14 @@ function onSpellCast(caster,target,spell)
     local effect = dsp.effect.NONE;
 
     if (resist > 0.0625) then
-        spell:setMsg(msgBasic.MAGIC_ERASE);
+        spell:setMsg(dsp.msg.basic.MAGIC_ERASE);
         effect = target:dispelStatusEffect();
         if (effect == dsp.effect.NONE) then
             -- no effect
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
     return effect;

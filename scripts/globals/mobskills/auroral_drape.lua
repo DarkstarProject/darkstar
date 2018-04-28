@@ -23,15 +23,15 @@ function onMobWeaponSkill(target, mob, skill)
 
     blinded = MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 60, 0, 60);
 
-    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
+    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS);
 
     -- display silenced first, else blind
-    if (silenced == msgBasic.SKILL_ENFEEB_IS) then
+    if (silenced == dsp.msg.basic.SKILL_ENFEEB_IS) then
         typeEffect = dsp.effect.SILENCE;
-    elseif (blinded == msgBasic.SKILL_ENFEEB_IS) then
+    elseif (blinded == dsp.msg.basic.SKILL_ENFEEB_IS) then
         typeEffect = dsp.effect.BLINDNESS;
     else
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end
 
     return typeEffect;

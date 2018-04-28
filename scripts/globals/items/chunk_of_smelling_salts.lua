@@ -10,9 +10,9 @@ require("scripts/globals/msg");
 function onItemCheck(target)
     pet = target:getPet();
     if (pet == nil) then
-        return msgBasic.REQUIRES_A_PET;
+        return dsp.msg.basic.REQUIRES_A_PET;
     elseif (pet:hasStatusEffect(dsp.effect.MEDICINE)) then
-        return msgBasic.ITEM_NO_USE_MEDICATED;
+        return dsp.msg.basic.ITEM_NO_USE_MEDICATED;
     end
     return 0;
 end;
@@ -24,7 +24,7 @@ function onItemUse(target)
         pet:delStatusEffect(dsp.effect.SLEEP_II);
         pet:delStatusEffect(dsp.effect.LULLABY);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;
 

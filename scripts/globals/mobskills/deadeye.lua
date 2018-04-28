@@ -24,15 +24,15 @@ function onMobWeaponSkill(target, mob, skill)
     defDown = MobStatusEffectMove(mob, target, dsp.effect.DEFENSE_DOWN, 50, 0, 120);
     mDefDown = MobStatusEffectMove(mob, target, dsp.effect.MAGIC_DEF_DOWN, 50, 0, 120);
 
-    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
+    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS);
 
     -- display defense down first, else magic defense down
-    if (defDown == msgBasic.SKILL_ENFEEB_IS) then
+    if (defDown == dsp.msg.basic.SKILL_ENFEEB_IS) then
         typeEffect = dsp.effect.DEFENSE_DOWN;
-    elseif (mDefDown == msgBasic.NFEEB_IS) then
+    elseif (mDefDown == dsp.msg.basic.NFEEB_IS) then
         typeEffect = dsp.effect.MAGIC_DEF_DOWN;
     else
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end;
 
     return typeEffect;

@@ -24,16 +24,16 @@ function onSpellCast(caster,target,spell)
     resm = applyResistanceEffect(caster, target, spell, params);
 
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
     else
         local iBoost = caster:getMod(MOD_LULLABY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
 
         duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
         if (target:addStatusEffect(dsp.effect.LULLABY,1,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     end
 

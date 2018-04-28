@@ -14,6 +14,6 @@ function onItemUse(target)
     if (not target:hasStatusEffect(dsp.effect.POISON)) then
         target:addStatusEffect(dsp.effect.POISON,5,3,180);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

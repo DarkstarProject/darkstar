@@ -47,9 +47,9 @@ function onPetAbility(target, automaton, skill, master, action)
     amount = amount + math.floor(bonus)
 
     if target:addStatusEffect(dsp.effect.STONESKIN, amount, 0, duration) then
-        skill:setMsg(msgBasic.SKILL_GAIN_EFFECT)
+        skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT)
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
     end
 
     return dsp.effect.STONESKIN

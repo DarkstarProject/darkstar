@@ -31,9 +31,9 @@ function onAbilityCheck(player,target,ability)
     local effectID = dsp.effect.SAMURAI_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
-        return msgBasic.ROLL_ALREADY_ACTIVE,0;
+        return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
-        return msgBasic.CANNOT_PERFORM,0;
+        return dsp.msg.basic.CANNOT_PERFORM,0;
     else
         return 0,0;
     end
@@ -64,9 +64,9 @@ function applyRoll(caster,target,ability,action,total)
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.SAMURAI_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_STORETP) == false) then
-        ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
+        ability:setMsg(dsp.msg.basic.ROLL_MAIN_FAIL);
     elseif total > 11 then
-        ability:setMsg(msgBasic.DOUBLEUP_BUST);
+        ability:setMsg(dsp.msg.basic.DOUBLEUP_BUST);
     end
     return total;
 end

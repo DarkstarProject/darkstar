@@ -15,7 +15,7 @@ function onAdditionalEffect(player,target,damage)
         chance = utils.clamp(chance, 5, 95);
     end
     if (target:hasImmunity(256)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
         return 0,0,0;
     else
@@ -23,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(dsp.effect.POISON)) then
             target:addStatusEffect(dsp.effect.POISON, 4, 3, 30);
         end
-        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, dsp.effect.POISON;
+        return SUBEFFECT_POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
 end;

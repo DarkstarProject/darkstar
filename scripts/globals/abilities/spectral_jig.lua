@@ -24,9 +24,9 @@ function onUseAbility(player,target,ability)
     if (player:hasStatusEffect(dsp.effect.SNEAK) == false) then
         player:addStatusEffect(dsp.effect.SNEAK,0,10,finalDuration);
         player:addStatusEffect(dsp.effect.INVISIBLE,0,10,finalDuration);
-        ability:setMsg(msgBasic.SPECTRAL_JIG); -- Gains the effect of sneak and invisible
+        ability:setMsg(dsp.msg.basic.SPECTRAL_JIG); -- Gains the effect of sneak and invisible
     else
-        ability:setMsg(msgBasic.NO_EFFECT); -- no effect on player.
+        ability:setMsg(dsp.msg.basic.NO_EFFECT); -- no effect on player.
     end
 
     return 1;

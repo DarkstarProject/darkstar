@@ -13,12 +13,12 @@ end;
 
 function onSpellCast(caster,target,spell)
     if (target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(MOD_DEATHRES)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         return 0;
     end
 
     -- falls to the ground
-    spell:setMsg(msgBasic.FALL_TO_GROUND);
+    spell:setMsg(dsp.msg.basic.FALL_TO_GROUND);
     target:setHP(0);
 
     return 0;

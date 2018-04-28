@@ -14,6 +14,6 @@ function onItemUse(target)
     if (not target:hasStatusEffect(dsp.effect.REFRESH)) then
         target:addStatusEffect(dsp.effect.REFRESH,2,3,300);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

@@ -24,6 +24,6 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     MobBuffMove(mob, dsp.effect.PERFECT_DEFENSE, 1, 0, skill:getParam());
 
-    skill:setMsg(msgBasic.USES);
+    skill:setMsg(dsp.msg.basic.USES);
     return dsp.effect.PERFECT_DEFENSE;
 end;

@@ -35,12 +35,12 @@ function onSpellCast(caster,target,spell)
     if (resist >= 0.5) then --Do it!
         --Try to erase a weaker bind.
         if (target:addStatusEffect(dsp.effect.BIND,target:speed(),0,duration*resist)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
     return dsp.effect.BIND;

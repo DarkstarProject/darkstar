@@ -338,7 +338,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
                 return;
             else
                 player:delCurrency("valor_point", 50);
@@ -348,7 +348,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
@@ -357,7 +357,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_HARD_COOKIE) then -- - Hard Cookie: INT+4, MaxMP+30
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
@@ -366,7 +366,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
@@ -375,7 +375,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_DRIED_AGARICUS) then -- Dried Agaricus: MND+4
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 5, 0, 1800);
@@ -384,7 +384,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_INSTANT_RICE) then -- Instant Rice: CHR+6
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
                 player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 6, 0, 1800);
@@ -473,7 +473,7 @@ function checkGoVregime(player,mob,rid,index)
 
             if (killed < needed) then -- Increment killed number and save.
                 killed = killed+1;
-                player:messageBasic(msgBasic.FOV_DEFEATED_TARGET,killed,needed);
+                player:messageBasic(dsp.msg.basic.FOV_DEFEATED_TARGET,killed,needed);
                 player:setVar("fov_numkilled"..index,killed);
 
                 if (killed == needed) then
@@ -485,7 +485,7 @@ function checkGoVregime(player,mob,rid,index)
 
                     if (k1 == fov_info[1] and k2 == fov_info[2] and k3 == fov_info[3] and k4 == fov_info[4]) then
                         -- Complete regime
-                        player:messageBasic(msgBasic.FOV_COMPLETED_REGIME);
+                        player:messageBasic(dsp.msg.basic.FOV_COMPLETED_REGIME);
                         local reward = getGoVregimeReward(rid);
 
                         -- adjust reward down if regime is higher than mob level cap
@@ -564,10 +564,10 @@ function checkGoVregime(player,mob,rid,index)
                             if (tabs + player:getCurrency("valor_point") > CAP) then
                                 tabs = utils.clamp(CAP - player:getCurrency("valor_point"),0,CAP);
                             end
-                            player:messageBasic(msgBasic.FOV_OBTAINS_GIL,reward);
+                            player:messageBasic(dsp.msg.basic.FOV_OBTAINS_GIL,reward);
                             player:addGil(reward);
                             player:addCurrency("valor_point", tabs);
-                            player:messageBasic(msgBasic.FOV_OBTAINS_TABS,tabs,player:getCurrency("valor_point")); -- Careful about order.
+                            player:messageBasic(dsp.msg.basic.FOV_OBTAINS_TABS,tabs,player:getCurrency("valor_point")); -- Careful about order.
                             if (REGIME_WAIT == 1) then
                                 player:setVar("fov_LastReward",VanadielEpoch);
                             end
@@ -596,7 +596,7 @@ function checkGoVregime(player,mob,rid,index)
                             player:setVar("fov_numneeded3",0);
                             player:setVar("fov_numneeded4",0);
                         else
-                            player:messageBasic(msgBasic.FOV_REGIME_BEGINS_ANEW);
+                            player:messageBasic(dsp.msg.basic.FOV_REGIME_BEGINS_ANEW);
                         end
                     end
                 end

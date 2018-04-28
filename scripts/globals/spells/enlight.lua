@@ -24,9 +24,9 @@ function onSpellCast(caster,target,spell)
     local potency = (magicskill / 8) + 12.5;
 
     if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
     return effect;
 end;

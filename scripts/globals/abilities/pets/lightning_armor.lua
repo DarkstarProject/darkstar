@@ -18,6 +18,6 @@ function onPetAbility(target, pet, skill, summoner)
 
     target:delStatusEffect(dsp.effect.SHOCK_SPIKES);
     target:addStatusEffect(dsp.effect.SHOCK_SPIKES,15,0,duration);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
     return dsp.effect.SHOCK_SPIKES;
 end

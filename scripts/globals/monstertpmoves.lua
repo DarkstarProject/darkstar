@@ -234,7 +234,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     if (hitslanded == 0 or finaldmg == 0) then
         finaldmg = 0;
         hitslanded = 0;
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end
 
     returninfo.dmg = finaldmg;
@@ -482,13 +482,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     --handle pd
     if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
         return 0;
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(msgBasic.DAMAGE);
+    skill:setMsg(dsp.msg.basic.DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -501,7 +501,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(msgBasic.SHADOW_ABSORB);
+            skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
             return shadowbehav;
         end
 
@@ -517,7 +517,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
     --handle Third Eye using shadowbehav as a guide
     if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(msgBasic.ANTICIPATE);
+        skill:setMsg(dsp.msg.basic.ANTICIPATE);
         return 0;
     end
 
@@ -588,7 +588,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delMP(drain);
             mob:addMP(drain);
 
-            return msgBasic.SKILL_DRAIN_MP;
+            return dsp.msg.basic.SKILL_DRAIN_MP;
         elseif (drainType == MOBDRAIN_TP) then
             -- can't go over limited tp
             if (target:getTP() < drain) then
@@ -598,7 +598,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delTP(drain);
             mob:addTP(drain);
 
-            return msgBasic.SKILL_DRAIN_TP;
+            return dsp.msg.basic.SKILL_DRAIN_TP;
         elseif (drainType == MOBDRAIN_HP) then
             -- can't go over limited hp
             if (target:getHP() < drain) then
@@ -608,7 +608,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delHP(drain);
             mob:addHP(drain);
 
-            return msgBasic.SKILL_DRAIN_HP;
+            return dsp.msg.basic.SKILL_DRAIN_HP;
         end
     else
         -- it's undead so just deal damage
@@ -618,10 +618,10 @@ function MobDrainMove(mob, target, drainType, drain)
         end
 
         target:delHP(drain);
-        return msgBasic.DAMAGE;
+        return dsp.msg.basic.DAMAGE;
     end
 
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobPhysicalDrainMove(mob, target, skill, drainType, drain)
@@ -629,7 +629,7 @@ function MobPhysicalDrainMove(mob, target, skill, drainType, drain)
         return MobDrainMove(mob, target, drainType, drain);
     end
 
-    return msgBasic.SKILL_MISS;
+    return dsp.msg.basic.SKILL_MISS;
 end;
 
 function MobDrainAttribute(mob, target, typeEffect, power, tick, duration)
@@ -653,16 +653,16 @@ function MobDrainAttribute(mob, target, typeEffect, power, tick, duration)
     if (positive ~= nil) then
         local results = MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
 
-        if (results == msgBasic.SKILL_ENFEEB_IS) then
+        if (results == dsp.msg.basic.SKILL_ENFEEB_IS) then
             mob:addStatusEffect(positive, power, tick, duration);
 
-            return msgBasic.ATTR_DRAINED;
+            return dsp.msg.basic.ATTR_DRAINED;
         end
 
-        return msgBasic.SKILL_MISS;
+        return dsp.msg.basic.SKILL_MISS;
     end
 
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobDrainStatusEffectMove(mob, target)
@@ -670,10 +670,10 @@ function MobDrainStatusEffectMove(mob, target)
     local effect = mob:stealStatusEffect(target);
 
     if (effect ~= 0) then
-        return msgBasic.EFFECT_DRAINED;
+        return dsp.msg.basic.EFFECT_DRAINED;
     end
 
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 -- Adds a status effect to a target
@@ -690,12 +690,12 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
             local totalDuration = utils.clamp(duration * resist, 1);
             target:addStatusEffect(typeEffect, power, tick, totalDuration);
 
-            return msgBasic.SKILL_ENFEEB_IS;
+            return dsp.msg.basic.SKILL_ENFEEB_IS;
         end
 
-        return msgBasic.SKILL_MISS; -- resist !
+        return dsp.msg.basic.SKILL_MISS; -- resist !
     end
-    return msgBasic.SKILL_NO_EFFECT; -- no effect
+    return dsp.msg.basic.SKILL_NO_EFFECT; -- no effect
 end;
 
 -- similar to status effect move except, this will not land if the attack missed
@@ -705,7 +705,7 @@ function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick
         return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
 
-    return msgBasic.SKILL_MISS;
+    return dsp.msg.basic.SKILL_MISS;
 end;
 
 -- similar to statuseffect move except it will only take effect if facing
@@ -713,15 +713,15 @@ function MobGazeMove(mob, target, typeEffect, power, tick, duration)
     if (target:isFacing(mob)) then
         return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobBuffMove(mob, typeEffect, power, tick, duration)
 
     if (mob:addStatusEffect(typeEffect,power,tick,duration)) then
-        return msgBasic.SKILL_GAIN_EFFECT;
+        return dsp.msg.basic.SKILL_GAIN_EFFECT;
     end
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobHealMove(target, heal)

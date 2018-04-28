@@ -13,7 +13,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4006) then
-        mob:messageBasic(msgBasic.READIES_WS, 0, 35);
+        mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 35);
     end
     return 0;
 end;

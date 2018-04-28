@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     mob:addStatusEffect(dsp.effect.PHYSICAL_SHIELD, 0, 0, 0);
     mob:AnimationSub(1);
 
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
     return dsp.effect.PHYSICAL_SHIELD;
 end;

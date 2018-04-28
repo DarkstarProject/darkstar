@@ -17,7 +17,7 @@ function onMagicCastingCheck(caster,target,spell)
     elseif (caster:hasStatusEffect(dsp.effect.ELEMENTAL_SEAL) == true) then
         return 0;
     else
-        return msgBasic.STATUS_PREVENTS;
+        return dsp.msg.basic.STATUS_PREVENTS;
     end
 end;
 

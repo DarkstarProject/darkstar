@@ -32,6 +32,6 @@ function onPetAbility(target, pet, skill)
     end
 
     target:addStatusEffect(effectid,math.random(12,14),0,90);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
     return effectid;
 end

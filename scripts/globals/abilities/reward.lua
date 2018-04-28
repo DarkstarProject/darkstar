@@ -14,15 +14,15 @@ require("scripts/globals/msg");
 function onAbilityCheck(player,target,ability)
     local pet = player:getPet();
     if not pet then
-        return msgBasic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0;
     elseif not player:isJugPet() and pet:getObjType() ~= TYPE_MOB then
-        return msgBasic.NO_EFFECT_ON_PET,0;
+        return dsp.msg.basic.NO_EFFECT_ON_PET,0;
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 17016 and id <= 17023) then
             return 0,0;
         else
-            return msgBasic.MUST_HAVE_FOOD,0;
+            return dsp.msg.basic.MUST_HAVE_FOOD,0;
         end
     end
 end;

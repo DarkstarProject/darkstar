@@ -24,10 +24,10 @@ function onSpellCast(caster,target,spell)
             duration = duration * 3;
         end
 
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
         target:addStatusEffect(dsp.effect.DEODORIZE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no dsp.effect.
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no dsp.effect.
     end
 
     return dsp.effect.DEODORIZE;

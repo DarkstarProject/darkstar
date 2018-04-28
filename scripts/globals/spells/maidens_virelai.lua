@@ -10,9 +10,9 @@ require("scripts/globals/msg");
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:getPet() ~= nil) then
-        return msgBasic.ALREADY_HAS_A_PET;
+        return dsp.msg.basic.ALREADY_HAS_A_PET;
     elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
-        return msgBasic.THAT_SOMEONES_PET;
+        return dsp.msg.basic.THAT_SOMEONES_PET;
     end
 
     -- Per wiki, Virelai wipes all shadows even if it resists or the target is immune to charm
@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local resist = applyResistanceEffect(caster, target, spell, params);
     -- print(resist);
     if (resist >= 0.25 and caster:getCharmChance(target, false) > 0) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         if (caster:isMob()) then
             target:addStatusEffect(dsp.effect.CHARM_I, 0, 0, 30*resist);
             caster:charm(target);
@@ -43,7 +43,7 @@ function onSpellCast(caster,target,spell)
         end
     else
         -- Resist
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
     return dsp.effect.CHARM_I;

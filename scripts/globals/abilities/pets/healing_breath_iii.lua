@@ -43,7 +43,7 @@ function onUseAbility(pet, target, skill, action)
    if (target:getHP()+base > target:getMaxHP()) then
       base = target:getMaxHP() - target:getHP(); --cap it
    end
-   skill:setMsg(msgBasic.JA_RECOVERS_HP);
+   skill:setMsg(dsp.msg.basic.JA_RECOVERS_HP);
    target:addHP(base);
    return base;
 end

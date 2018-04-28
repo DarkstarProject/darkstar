@@ -14,6 +14,6 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     mob:useMobAbility(mob:getMobMod(dsp.mobMod.TELEPORT_END));
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end;

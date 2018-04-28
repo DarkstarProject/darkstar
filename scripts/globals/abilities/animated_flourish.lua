@@ -27,7 +27,7 @@ function onAbilityCheck(player,target,ability)
     elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_5)) then
         return 0,0;
     else
-        return msgBasic.NO_FINISHINGMOVES,0;
+        return dsp.msg.basic.NO_FINISHINGMOVES,0;
     end;
 end;
 

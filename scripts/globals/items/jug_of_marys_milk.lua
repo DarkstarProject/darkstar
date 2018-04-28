@@ -14,6 +14,6 @@ function onItemUse(target)
     if (not hasSleepEffects(target)) then
         target:addStatusEffect(dsp.effect.SLEEP_I,1,0,60);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

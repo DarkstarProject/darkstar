@@ -18,6 +18,6 @@ function onPetAbility(target, pet, skill, summoner)
 
     target:delStatusEffect(dsp.effect.SHINING_RUBY);
     target:addStatusEffect(dsp.effect.SHINING_RUBY,1,0,duration);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
     return dsp.effect.SHINING_RUBY;
 end

@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 function onAbilityCheck(player,target,ability)
     -- The wyvern must be present in order to use Spirit Surge
     if (target:getPet() == nil) then
-        return msgBasic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0;
     else
         return 0,0;
     end

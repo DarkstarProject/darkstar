@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 
 function onItemCheck(target)
     if (target:hasStatusEffect(dsp.effect.MEDICINE)) then
-        return msgBasic.ITEM_NO_USE_MEDICATED;
+        return dsp.msg.basic.ITEM_NO_USE_MEDICATED;
     end
     return 0;
 end;

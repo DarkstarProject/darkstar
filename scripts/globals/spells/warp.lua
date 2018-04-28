@@ -13,6 +13,6 @@ end;
 
 function onSpellCast(caster,target,spell)
     target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_WARP,0,4);
-    spell:setMsg(msgBasic.MAGIC_TELEPORT);
+    spell:setMsg(dsp.msg.basic.MAGIC_TELEPORT);
     return 0;
 end;

@@ -22,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     if (mob:hasStatusEffect(dsp.effect.PLAGUE) or mob:hasStatusEffect(dsp.effect.CURSE_I) or mob:hasStatusEffect(dsp.effect.MUTE)) then
         -- use Remedy!
         mob:messageText(mob, PRISHE_TEXT + 12, false);

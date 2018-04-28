@@ -27,7 +27,7 @@ function onUseAbility(player,target,ability)
     local resist = applyResistanceAbility(player,target,ELE_LIGHT,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
 
     if (resist < 0.5) then
-        ability:setMsg(msgBasic.JA_MISS_2); -- resist message
+        ability:setMsg(dsp.msg.basic.JA_MISS_2); -- resist message
         return dsp.effect.SLEEP_I;
     end
 
@@ -65,9 +65,9 @@ function onUseAbility(player,target,ability)
     end
 
     if (target:addStatusEffect(dsp.effect.SLEEP_I,1,0,duration)) then
-        ability:setMsg(msgBasic.JA_ENFEEB_IS);
+        ability:setMsg(dsp.msg.basic.JA_ENFEEB_IS);
     else
-        ability:setMsg(msgBasic.JA_NO_EFFECT_2);
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2);
     end
 
     local del = player:delItem(2182, 1) or player:delItem(2974, 1)

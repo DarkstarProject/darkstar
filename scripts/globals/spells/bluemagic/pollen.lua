@@ -54,7 +54,7 @@ function onSpellCast(caster,target,spell)
     if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
         caster:updateEnmityFromCure(target,final);
     end
-    spell:setMsg(msgBasic.MAGIC_RECOVERS_HP);
+    spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP);
 
     return final;
 end;

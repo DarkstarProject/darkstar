@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
     if (effect == nil or effect:getPower() <= 2) then
         target:addStatusEffectEx(dsp.effect.COPY_IMAGE, icon, 2, 0, 900, 0, numShadows);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return dsp.effect.COPY_IMAGE;

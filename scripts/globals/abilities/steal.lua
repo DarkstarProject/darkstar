@@ -33,7 +33,7 @@ validThfQuestMobs =
 
 function onAbilityCheck(player,target,ability)
     if (player:getFreeSlotsCount() == 0) then
-        return msgBasic.FULL_INVENTORY,0;
+        return dsp.msg.basic.FULL_INVENTORY,0;
     else
         return 0,0;
     end
@@ -61,9 +61,9 @@ function onUseAbility(player,target,ability,action)
 
         player:addItem(stolen);
         target:itemStolen();
-        ability:setMsg(msgBasic.STEAL_SUCCESS); -- Item stolen successfully
+        ability:setMsg(dsp.msg.basic.STEAL_SUCCESS); -- Item stolen successfully
     else
-        ability:setMsg(msgBasic.STEAL_FAIL); -- Failed to steal
+        ability:setMsg(dsp.msg.basic.STEAL_FAIL); -- Failed to steal
         action:animation(target:getID(), 182);
     end
 
@@ -77,7 +77,7 @@ function onUseAbility(player,target,ability,action)
             if (math.random(100) < auraStealChance) then
                 stolen = player:stealStatusEffect(target);
                 if (stolen ~= 0) then
-                    ability:setMsg(msgBasic.STEAL_EFFECT);
+                    ability:setMsg(dsp.msg.basic.STEAL_EFFECT);
                 end
             else
                 effect = target:dispelStatusEffect();

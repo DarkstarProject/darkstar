@@ -33,7 +33,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:addStatusEffect(dsp.effect.ACCURACY_DOWN,buffvalue,0,180);
     target:addStatusEffect(dsp.effect.EVASION_DOWN,32-buffvalue,0,180);
-    skill:setMsg(msgBasic.SKILL_ENFEEB_2);
+    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_2);
     return 0;
 
 end;

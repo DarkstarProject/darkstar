@@ -35,9 +35,9 @@ function onMobWeaponSkill(target, mob, skill)
     end
 
     if (num == 0) then
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
     end
 
     return num;

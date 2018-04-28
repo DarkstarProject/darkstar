@@ -20,9 +20,9 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:addStatusEffect(typeEffect, power, 0, duration, 0, drainAmount, 1)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return typeEffect;

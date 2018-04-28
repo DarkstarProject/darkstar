@@ -12,13 +12,13 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
-        return msgBasic.CANNOT_ON_THAT_TARG,0;
+        return dsp.msg.basic.CANNOT_ON_THAT_TARG,0;
     elseif (player:hasStatusEffect(dsp.effect.SABER_DANCE)) then
-        return msgBasic.UNABLE_TO_USE_JA2, 0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(dsp.effect.TRANCE)) then
         return 0,0;
     elseif (player:getTP() < 800) then
-        return msgBasic.NOT_ENOUGH_TP,0;
+        return dsp.msg.basic.NOT_ENOUGH_TP,0;
     else
         --[[ Apply "Waltz Ability Delay" reduction
             1 modifier = 1 second]]

@@ -38,23 +38,23 @@ function onSpellCast(caster,target,spell)
     if (resist >= 0.5) then
         if (target:isFacing(caster)) then
             if (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo) and target:getTP() == 0) then
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
             elseif (target:hasStatusEffect(typeEffectOne) and target:hasStatusEffect(typeEffectTwo)) then
                 target:delTP(power);
-                spell:setMsg(msgBasic.MAGIC_TP_REDUCE);
+                spell:setMsg(dsp.msg.basic.MAGIC_TP_REDUCE);
             elseif (target:hasStatusEffect(typeEffectOne)) then
                 target:addStatusEffect(typeEffectTwo,1,0,duration);
                 target:delTP(power);
                 returnEffect = typeEffectTwo; -- make it return bind message if blind can't be inflicted
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
             else
                 target:addStatusEffect(typeEffectOne,50,0,duration);
                 target:addStatusEffect(typeEffectTwo,1,0,duration);
                 target:delTP(power);
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
             end;
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end;
     end;
 

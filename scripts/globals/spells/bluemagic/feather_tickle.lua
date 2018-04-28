@@ -30,10 +30,10 @@ function onSpellCast(caster,target,spell)
     local power = 3000 * resist;
 
     if (target:getTP() == 0) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     else
         target:delTP(power);
-        spell:setMsg(msgBasic.MAGIC_TP_REDUCE);
+        spell:setMsg(dsp.msg.basic.MAGIC_TP_REDUCE);
     end
 
     return tp;
