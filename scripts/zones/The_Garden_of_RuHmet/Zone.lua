@@ -107,7 +107,7 @@ function onGameHour(zone)
     end
 
     -- Ix'DRK spawn randomiser
-    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= STATUS_DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
+    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= dsp.status.DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
         qm2:hideNPC(30);
         local qm2position = math.random(1,4);
         qm2:setLocalVar("position",qm2position);

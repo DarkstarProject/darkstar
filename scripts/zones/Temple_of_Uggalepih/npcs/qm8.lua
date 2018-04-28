@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
         else
             SpawnMob(HABETROT + 1):updateClaim(player); -- Spawn Rumble Crawler
         end
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

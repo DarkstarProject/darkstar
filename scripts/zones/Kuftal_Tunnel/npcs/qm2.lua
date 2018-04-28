@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
             player:confirmTrade();
             local mobId = (math.random(1,100) <= 7) and CANCER or CANCER + 1; -- Cancer has 7% chance to spawn, else Robber Crab.
             SpawnMob(mobId);
-            npc:setStatus(STATUS_DISAPPEAR);
+            npc:setStatus(dsp.status.DISAPPEAR);
         end
     end
 end;

@@ -37,7 +37,7 @@ function onTrigger(player,npc)
                 SpawnMob(MOKKURKALFI_II):lookAt(player:getPos());
 
                 local newPosition = npcUtil.pickNewPosition(BASTOK_7_1_QM, BASTOK_7_1_QM_POS, true);
-                npc:setStatus(STATUS_DISAPPEAR);
+                npc:setStatus(dsp.status.DISAPPEAR);
                 GetNPCByID(BASTOK_7_1_QM):setPos(newPosition.x, newPosition.y, newPosition.z);
             end
         end

@@ -12,7 +12,7 @@ end;
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(17408033):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(17408033):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

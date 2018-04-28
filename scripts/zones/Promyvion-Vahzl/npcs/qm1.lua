@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
         player:confirmTrade();
         player:messageSpecial(ON_NM_SPAWN);
         SpawnMob(DEVIATOR):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

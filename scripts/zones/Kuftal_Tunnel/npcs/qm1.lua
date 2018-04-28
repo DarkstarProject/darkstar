@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
         local x = npc:getXPos();
         local y = npc:getYPos();
         local z = npc:getZPos();
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
         player:confirmTrade();
         SpawnMob(PHANTOM_WORM):updateClaim(player);
         GetMobByID(PHANTOM_WORM):setPos(x+1,y,z+1);

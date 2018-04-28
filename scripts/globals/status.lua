@@ -4,8 +4,7 @@
 --
 -- Contains variable-ized definitions of things like core enums for use in lua scripts.
 ------------------------------------
-dsp = dsp or {}
-
+dsp = dsp or {};
 
 ------------------------------------
 -- Zone Misc Flags
@@ -24,7 +23,7 @@ dsp.zoneMisc =
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
     YELL       = 0x0400  -- Send and receive /yell commands
-}
+};
 
 ------------------------------------
 -- Job IDs
@@ -55,22 +54,24 @@ dsp.jobs =
     SCH             = 20,
     GEO             = 21,
     RUN             = 22,
-}
+};
 dsp.MAX_JOB_TYPE = 23;
-
 
 ------------------------------------
 -- STATUSES
 ------------------------------------
 
-STATUS_NORMAL        = 0;
-STATUS_UPDATE        = 1;
-STATUS_DISAPPEAR     = 2;
-STATUS_3             = 3;
-STATUS_4             = 4;
-STATUS_CUTSCENE_ONLY = 6;
-STATUS_18            = 18;
-STATUS_SHUTDOWN      = 20;
+dsp.status =
+{
+    NORMAL          = 0,
+    UPDATE          = 1,
+    DISAPPEAR       = 2,
+    STATUS_3        = 3,
+    STATUS_4        = 4,
+    CUTSCENE_ONLY   = 6,
+    STATUS_18       = 18,
+    SHUTDOWN        = 20,
+};
 
 ------------------------------------
 -- These codes represent the subeffects for

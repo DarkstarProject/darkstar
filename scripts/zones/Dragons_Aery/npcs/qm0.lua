@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onSpawn(npc)
     if (LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1) then
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
@@ -28,14 +28,14 @@ function onTrade(player,npc,trade)
             if (LandKingSystem_NQ ~= 0) then
                 player:tradeComplete();
                 SpawnMob(17408018):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
+                npc:setStatus(dsp.status.DISAPPEAR);
             end
         -- Trade Cup of Sweet Tea
         elseif (trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then
             if (LandKingSystem_HQ ~= 0) then
                 player:tradeComplete();
                 SpawnMob(17408019):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
+                npc:setStatus(dsp.status.DISAPPEAR);
             end
         end
     end

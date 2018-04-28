@@ -77,30 +77,30 @@ function onMobDeath(mob, player, isKiller)
 
     if (mobID==16928844) then --Ifrit
         GetNPCByID(16928768+40):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+40):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+40):setStatus(dsp.status.NORMAL);
     elseif (mobID==16928853) then --Shiva
         GetNPCByID(16928768+45):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+45):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+45):setStatus(dsp.status.NORMAL);
     elseif (mobID==16928862) then --Garuda
         GetNPCByID(16928768+46):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+46):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+46):setStatus(dsp.status.NORMAL);
     elseif (mobID==16928871) then --Titan
         GetNPCByID(16928768+47):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+47):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+47):setStatus(dsp.status.NORMAL);
     elseif (mobID==16928880) then --Ramuh
         GetNPCByID(16928768+68):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+68):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+68):setStatus(dsp.status.NORMAL);
     elseif (mobID==16928889) then --Leviathan
         GetNPCByID(16928768+69):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+69):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+69):setStatus(dsp.status.NORMAL);
     elseif (mobID==16928894) then --Fenrir
         GetNPCByID(16928768+70):setPos(mobX,mobY,mobZ);
-        GetNPCByID(16928768+70):setStatus(STATUS_NORMAL);
+        GetNPCByID(16928768+70):setStatus(dsp.status.NORMAL);
     elseif (mobID==16929030) then --Carbuncle (Central Temenos 2nd Floor)
         if (IsMobDead(16929031)==true and IsMobDead(16929032)==true ) then
             GetNPCByID(16928768+77):setPos(0.5,-6,-459);
-            GetNPCByID(16928768+77):setStatus(STATUS_NORMAL);
-            GetNPCByID(16928768+472):setStatus(STATUS_NORMAL);
+            GetNPCByID(16928768+77):setStatus(dsp.status.NORMAL);
+            GetNPCByID(16928768+472):setStatus(dsp.status.NORMAL);
         end
     end
 end;

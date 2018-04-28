@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1 and not GetMobByID():isSpawned(DEATH_FROM_ABOVE)) then
         player:tradeComplete();
         SpawnMob(DEATH_FROM_ABOVE):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
     if (trade:hasItemQty(2387,1) and trade:getItemCount() == 1 and not GetMobByID(SOZU_ROGBERRY):isSpawned()) then
         player:tradeComplete();
         SpawnMob(SOZU_ROGBERRY):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

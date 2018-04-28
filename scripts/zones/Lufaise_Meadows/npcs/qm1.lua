@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     if (npcUtil.tradeHas(trade, 15066) and not GetMobByID(AMALTHEIA):isSpawned()) then -- Relic Shield
         player:confirmTrade();
         SpawnMob(AMALTHEIA):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
