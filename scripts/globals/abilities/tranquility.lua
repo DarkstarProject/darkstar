@@ -26,7 +26,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.TRANQUILITY,player:getMerit(MERIT_TRANQUILITY),0,60);
+    player:addStatusEffect(dsp.effect.TRANQUILITY,player:getMerit(dsp.merit.TRANQUILITY),0,60);
 
     return dsp.effect.TRANQUILITY;
 end;

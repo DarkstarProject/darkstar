@@ -17,7 +17,7 @@ function onUseAbility(player,target,ability)
    -- is disputed.  Source used: http://wiki.bluegartr.com/bg/Sentinel
     local power = 90 + player:getMod(dsp.mod.SENTINEL_EFFECT);
 
-    local guardian = player:getMerit(MERIT_GUARDIAN);
+    local guardian = player:getMerit(dsp.merit.GUARDIAN);
 
    -- Sent as positive power because UINTs, man.
    player:addStatusEffect(dsp.effect.SENTINEL,power,3,30,0,guardian);

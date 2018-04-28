@@ -18,7 +18,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     -- get helix acc/att merits
-    local merit = caster:getMerit(MERIT_HELIX_MAGIC_ACC_ATT);
+    local merit = caster:getMerit(dsp.merit.HELIX_MAGIC_ACC_ATT);
 
     -- calculate raw damage
     local params = {};

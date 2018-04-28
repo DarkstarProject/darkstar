@@ -12,7 +12,7 @@ end;
 
 function onItemUse(target)
     if (not target:hasStatusEffect(dsp.effect.REGEN)) then
-        if (target:getEquipID(SLOT_BODY) == 14520) then -- Dream Robe +1
+        if (target:getEquipID(dsp.slot.BODY) == 14520) then -- Dream Robe +1
             target:addStatusEffect(dsp.effect.REGEN,1,3,150);
         else
             target:addStatusEffect(dsp.effect.REGEN,1,3,120);

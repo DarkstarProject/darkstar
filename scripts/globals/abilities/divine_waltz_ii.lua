@@ -29,7 +29,7 @@ function onAbilityCheck(player,target,ability)
         end
         -- Apply "Fan Dance" Waltz recast reduction
         if (player:hasStatusEffect(dsp.effect.FAN_DANCE)) then
-            local fanDanceMerits = target:getMerit(MERIT_FAN_DANCE);
+            local fanDanceMerits = target:getMerit(dsp.merit.FAN_DANCE);
             -- Every tier beyond the 1st is -5% recast time
             if (fanDanceMerits > 5) then
                 ability:setRecast(ability:getRecast() * ((fanDanceMerits -5)/100));

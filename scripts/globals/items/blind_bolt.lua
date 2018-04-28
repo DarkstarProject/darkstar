@@ -23,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(dsp.effect.BLINDNESS)) then
             target:addStatusEffect(dsp.effect.BLINDNESS, 10, 0, 30);
         end
-        return SUBEFFECT_BLIND, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.BLINDNESS;
+        return dsp.sub.BLIND, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.BLINDNESS;
     end
 end;

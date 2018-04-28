@@ -20,7 +20,7 @@ function onAdditionalEffect(mob,target,damage)
     else
         local duration = math.random(5,15);
         target:addStatusEffect(dsp.effect.STUN,5,0,duration);
-        return SUBEFFECT_STUN,0,dsp.effect.STUN; -- Todo: confirm retail message. Unsure if says "is stunned" on proc.
+        return dsp.sub.STUN,0,dsp.effect.STUN; -- Todo: confirm retail message. Unsure if says "is stunned" on proc.
     end
 end;
 

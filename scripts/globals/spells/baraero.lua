@@ -16,7 +16,7 @@ function onSpellCast(caster,target,spell)
 
     local enhanceSkill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
     local power = calculateBarspellPower(caster,enhanceSkill);
-    local mdefBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT) + caster:getMod(dsp.mod.BARSPELL_MDEF_BONUS);
+    local mdefBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT) + caster:getMod(dsp.mod.BARSPELL_MDEF_BONUS);
     local duration = 150;
 
     if (enhanceSkill > 180) then

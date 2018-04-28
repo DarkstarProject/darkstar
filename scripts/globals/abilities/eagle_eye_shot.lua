@@ -12,8 +12,8 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local ranged = player:getStorageItem(0, 0, SLOT_RANGED);
-    local ammo = player:getStorageItem(0, 0, SLOT_AMMO);
+    local ranged = player:getStorageItem(0, 0, dsp.slot.RANGED);
+    local ammo = player:getStorageItem(0, 0, dsp.slot.AMMO);
 
     if ranged and ranged:isType(ITEM_WEAPON) then
         local skilltype = ranged:getSkillType();
@@ -28,7 +28,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability,action)
-    if (player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) == SKILL_MRK) then
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
     local params = {};

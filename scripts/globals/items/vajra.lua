@@ -103,7 +103,7 @@ aftermathTable[20585] = aftermathTable[19715]; -- Vajra (119/III)
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.MANDALIC_STAB) then -- Mandalic Stab onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_MAIN);
+            local itemId = user:getEquipID(dsp.slot.MAIN);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -116,7 +116,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);

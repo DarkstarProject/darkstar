@@ -47,11 +47,11 @@ end;
 function onTrigger(player,npc)
     local BrygidTheStylist = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST);
     local BrygidReturns = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST_RETURNS);
-    local head = player:getEquipID(SLOT_HEAD);
-    local body = player:getEquipID(SLOT_BODY);
-    local hands = player:getEquipID(SLOT_HANDS);
-    local legs = player:getEquipID(SLOT_LEGS);
-    local feet = player:getEquipID(SLOT_FEET);
+    local head = player:getEquipID(dsp.slot.HEAD);
+    local body = player:getEquipID(dsp.slot.BODY);
+    local hands = player:getEquipID(dsp.slot.HANDS);
+    local legs = player:getEquipID(dsp.slot.LEGS);
+    local feet = player:getEquipID(dsp.slot.FEET);
 
     local getBody = player:getVar("BrygidGetBody");
     local getLegs = player:getVar("BrygidGetLegs");

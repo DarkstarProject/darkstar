@@ -67,7 +67,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_EARTH);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_EARTH,dmg);
 
-    return SUBEFFECT_EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
+    return dsp.sub.EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

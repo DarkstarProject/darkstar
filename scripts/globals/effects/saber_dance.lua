@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    local saberDanceMerits = target:getMerit(MERIT_SABER_DANCE);
+    local saberDanceMerits = target:getMerit(dsp.merit.SABER_DANCE);
     if (saberDanceMerits>5) then
         target:addMod(dsp.mod.SAMBA_PDURATION, (saberDanceMerits -5));
     end
@@ -45,7 +45,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    local saberDanceMerits = target:getMerit(MERIT_SABER_DANCE);
+    local saberDanceMerits = target:getMerit(dsp.merit.SABER_DANCE);
     if (saberDanceMerits>1) then
         target:delMod(dsp.mod.SAMBA_PDURATION, (saberDanceMerits -5));
     end

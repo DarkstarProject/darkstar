@@ -21,7 +21,7 @@ function onUseAbility(pet, target, skill, action)
     -- TODO: 0.1 per merit for augmented AF2 (10663 *w/ augment*)
     local deep = 1;
     if (pet:hasStatusEffect(dsp.effect.MAGIC_ATK_BOOST) == true) then
-        deep = deep + 1 + (master:getMerit(MERIT_DEEP_BREATHING)-1)*0.25;
+        deep = deep + 1 + (master:getMerit(dsp.merit.DEEP_BREATHING)-1)*0.25;
         pet:delStatusEffect(dsp.effect.MAGIC_ATK_BOOST);
     end
 

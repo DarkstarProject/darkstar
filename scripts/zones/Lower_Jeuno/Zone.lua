@@ -74,7 +74,7 @@ function onGameHour(zone)
     if (VanadielHour == 7) then
         for i=0,11 do
             local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
-            lamp:setAnimation(ANIMATION_CLOSE_DOOR);
+            lamp:setAnimation(dsp.anim.CLOSE_DOOR);
         end
 
     -- 8PM: make quest available

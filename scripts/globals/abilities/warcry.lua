@@ -13,7 +13,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local merit = player:getMerit(MERIT_SAVAGERY);
+    local merit = player:getMerit(dsp.merit.SAVAGERY);
     local power = 0;
     local duration = 30;
 

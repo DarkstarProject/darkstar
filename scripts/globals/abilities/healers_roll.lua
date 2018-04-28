@@ -51,7 +51,7 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(dsp.merit.WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {3, 4, 12, 5, 6, 7, 1, 8, 9, 10, 16, 4}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
@@ -66,7 +66,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.HEALERS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.CURE_POTENCY_RCVD) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(dsp.merit.BUST_DURATION), dsp.effect.HEALERS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.CURE_POTENCY_RCVD) == false) then
         ability:setMsg(dsp.msg.basic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(dsp.msg.basic.DOUBLEUP_BUST);

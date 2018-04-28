@@ -76,7 +76,7 @@ function onUseAbility(player,target,ability,action)
         local spell = getSpell(252);
         local params = {};
         params.diff = 0;
-        params.skillType = player:getWeaponSkillType(SLOT_MAIN);
+        params.skillType = player:getWeaponSkillType(dsp.slot.MAIN);
         params.bonus = 50 - target:getMod(dsp.mod.STUNRES) + player:getMod(dsp.mod.VFLOURISH_MACC);
         local resist = applyResistance(player, target, spell, params);
 
@@ -91,7 +91,7 @@ function onUseAbility(player,target,ability,action)
         target:delHP(dmg);
         target:updateEnmityFromDamage(player,dmg);
 
-        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))
         action:speceffect(target:getID(), hit)
         return dmg
     else

@@ -37,7 +37,7 @@ function onUseAbility(player,target,ability)
     local TPGain = 0;
     local STM = 0.5 + (0.1 * player:getMod(dsp.mod.REVERSE_FLOURISH_EFFECT));
 
-    local Merits = player:getMerit(MERIT_REVERSE_FLOURISH_EFFECT);
+    local Merits = player:getMerit(dsp.merit.REVERSE_FLOURISH_EFFECT);
 
     if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
         TPGain = 9.5 * 1 + STM * 1 ^ 2 + Merits;

@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         if (Z <-5) then -- SE picture
             player:messageSpecial(PAINTBRUSH_OFFSET + 12); -- It is a painting of a beautiful landscape.
         elseif (Z > -5 and Z < 5) then
-            if (GetNPCByID(UGGALEPIH_DOOR_TO_RANCOR):getAnimation() == ANIMATION_OPEN_DOOR) then
+            if (GetNPCByID(UGGALEPIH_DOOR_TO_RANCOR):getAnimation() == dsp.anim.OPEN_DOOR) then
                 player:messageSpecial(PAINTBRUSH_OFFSET + 23,dsp.ki.PAINTBRUSH_OF_SOULS); -- The <KEY_ITEM> begins to twitch. The canvas is graced with the image from your soul.
             elseif (player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS) and X >= -53.2 and Z <= 0.1 and Z >= -0.1) then -- has paintbrush of souls + close enough
                 player:messageSpecial(PAINTBRUSH_OFFSET + 17,dsp.ki.PAINTBRUSH_OF_SOULS);

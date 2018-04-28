@@ -25,7 +25,7 @@ function onUseAbility(player,target,ability,action)
     else
         ability:setMsg(dsp.msg.basic.JA_NO_EFFECT);
     end
-    local skill = player:getWeaponSkillType(SLOT_MAIN);
+    local skill = player:getWeaponSkillType(dsp.slot.MAIN);
     local anim = 36;
     if skill <= 1 then
         anim = 37;

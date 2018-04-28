@@ -103,7 +103,7 @@ aftermathTable[21268] = aftermathTable[19726]; -- Death Penalty (119/III)
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.LEADEN_SALUTE) then -- Leaden Salute onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_RANGED);
+            local itemId = user:getEquipID(dsp.slot.RANGED);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -116,7 +116,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_RANGED);
+        local itemId = target:getEquipID(dsp.slot.RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);

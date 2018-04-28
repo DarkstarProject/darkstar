@@ -16,7 +16,7 @@ function onBcnmRegister(player,instance)
     local inst = player:getBattlefieldID();
     local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
-        GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
+        GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
     end
 end;
 

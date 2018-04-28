@@ -26,7 +26,7 @@ function onUseAbility(player,target,ability)
             return 0;
         else
             -- Double power and halve remaining time
-            local mvMerits = player:getMerit(MERIT_MODUS_VERITAS_DURATION);
+            local mvMerits = player:getMerit(dsp.merit.MODUS_VERITAS_DURATION);
             local durationMultiplier = 0.5 + (0.05 * mvMerits);
             mvPower = mvPower +1;
             local helixPower = helix:getPower() * 2;

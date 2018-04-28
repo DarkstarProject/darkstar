@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MobBuffMove(mob, typeEffectOne, 1000, 0, 300));
     MobBuffMove(mob, typeEffectTwo, randy, 0, 180);
     local effect1 = mob:getStatusEffect(typeEffectOne);
-    effect1:unsetFlag(EFFECTFLAG_DISPELABLE);
+    effect1:unsetFlag(dsp.effectFlag.DISPELABLE);
 
     return typeEffectOne;
 end;

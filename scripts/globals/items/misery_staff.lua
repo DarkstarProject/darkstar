@@ -15,6 +15,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.CURSE_I, 5, 0, 30);
-        return SUBEFFECT_CURSE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CURSE_I;
+        return dsp.sub.CURSE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CURSE_I;
     end
 end;

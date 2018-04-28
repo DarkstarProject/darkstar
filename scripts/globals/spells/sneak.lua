@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
             duration = duration * 3;
         end
 
-        if (target:getEquipID(SLOT_BACK) == 13692) then -- skulker's cape
+        if (target:getEquipID(dsp.slot.BACK) == 13692) then -- skulker's cape
             duration = duration * 1.5;
         end
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);

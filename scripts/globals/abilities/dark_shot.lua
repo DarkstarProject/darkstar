@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 function onAbilityCheck(player,target,ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= SKILL_MRK or player:getWeaponSkillType(dsp.slot.AMMO) ~= SKILL_MRK) then
         return 216,0;
     end
     if (player:hasItem(2183, 0) or player:hasItem(2974, 0)) then
@@ -24,7 +24,7 @@ end;
 function onUseAbility(player,target,ability)
 
     local duration = 60;
-    local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
 
     if (resist < 0.25) then
         ability:setMsg(dsp.msg.basic.JA_MISS_2); -- resist message

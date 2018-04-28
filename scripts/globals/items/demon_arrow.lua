@@ -21,6 +21,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(dsp.effect.ATTACK_DOWN)) then
             target:addStatusEffect(dsp.effect.ATTACK_DOWN, 12, 0, 60);
         end
-        return SUBEFFECT_DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN;
+        return dsp.sub.DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN;
     end
 end;

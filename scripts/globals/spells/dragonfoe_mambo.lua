@@ -12,7 +12,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
-    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
+    local iLvl = caster:getWeaponSkillLevel(dsp.slot.RANGED);
 
     -- Since nobody knows the evasion values for mambo, I'll just make shit up! (aka - same as madrigal)
     local power = 9;

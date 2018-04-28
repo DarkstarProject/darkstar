@@ -26,7 +26,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.FOCALIZATION,player:getMerit(MERIT_FOCALIZATION),0,60);
+    player:addStatusEffect(dsp.effect.FOCALIZATION,player:getMerit(dsp.merit.FOCALIZATION),0,60);
 
     return dsp.effect.FOCALIZATION;
 end;

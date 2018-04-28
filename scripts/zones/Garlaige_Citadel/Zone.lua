@@ -64,12 +64,12 @@ function onRegionEnter(player,region)
     local gateId = BANISHING_GATE_OFFSET + (9 * leverSet);  -- the ID of the related gate
 
     -- if all levers are down, open gate for 30 seconds
-    GetNPCByID(BANISHING_GATE_OFFSET + regionId):setAnimation(ANIMATION_OPEN_DOOR);
+    GetNPCByID(BANISHING_GATE_OFFSET + regionId):setAnimation(dsp.anim.OPEN_DOOR);
     if (
-        GetNPCByID(gateId + 1):getAnimation() == ANIMATION_OPEN_DOOR and
-        GetNPCByID(gateId + 2):getAnimation() == ANIMATION_OPEN_DOOR and
-        GetNPCByID(gateId + 3):getAnimation() == ANIMATION_OPEN_DOOR and
-        GetNPCByID(gateId + 4):getAnimation() == ANIMATION_OPEN_DOOR
+        GetNPCByID(gateId + 1):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 2):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 3):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 4):getAnimation() == dsp.anim.OPEN_DOOR
     ) then
         player:messageSpecial(BANISHING_GATES + leverSet);
         GetNPCByID(gateId):openDoor(30);
@@ -78,7 +78,7 @@ function onRegionEnter(player,region)
 end;
 
 function onRegionLeave(player,region)
-    GetNPCByID(BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(ANIMATION_CLOSE_DOOR);
+    GetNPCByID(BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(dsp.anim.CLOSE_DOOR);
 end;
 
 function onEventUpdate(player,csid,option)

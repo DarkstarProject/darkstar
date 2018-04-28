@@ -104,7 +104,7 @@ aftermathTable[20688] = aftermathTable[19725]; -- Nirvana (119/III)
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.EXPIACION) then -- Expiacion onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_MAIN);
+            local itemId = user:getEquipID(dsp.slot.MAIN);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -117,7 +117,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);
@@ -145,16 +145,16 @@ function onAdditionalEffect(player,target,damage)
 
     local chance = 0;
 
-    if ( player:getEquipID(SLOT_MAIN) == 19006 ) then -- Tizona 75
+    if ( player:getEquipID(dsp.slot.MAIN) == 19006 ) then -- Tizona 75
         chance = 10;
-    elseif ( player:getEquipID(SLOT_MAIN) == 19075 ) then -- Tizona 80
+    elseif ( player:getEquipID(dsp.slot.MAIN) == 19075 ) then -- Tizona 80
         chance = 15;
-    elseif ( player:getEquipID(SLOT_MAIN) == 19095 ) then -- Tizona 85
+    elseif ( player:getEquipID(dsp.slot.MAIN) == 19095 ) then -- Tizona 85
         chance = 20;
-    elseif ( ( player:getEquipID(SLOT_MAIN) == 19627 ) or ( player:getEquipID(SLOT_MAIN) == 19725 ) ) then -- Tizona 90 or Tizona 95
+    elseif ( ( player:getEquipID(dsp.slot.MAIN) == 19627 ) or ( player:getEquipID(dsp.slot.MAIN) == 19725 ) ) then -- Tizona 90 or Tizona 95
         chance = 25;
-    elseif ( ( player:getEquipID(SLOT_MAIN) == 19963 ) or ( player:getEquipID(SLOT_MAIN) == 20651 ) or ( player:getEquipID(SLOT_MAIN) == 20652 )
-                or ( player:getEquipID(SLOT_MAIN) == 20688 ) or ( player:getEquipID(SLOT_MAIN) == 19834 ) ) then -- Tizona 99
+    elseif ( ( player:getEquipID(dsp.slot.MAIN) == 19963 ) or ( player:getEquipID(dsp.slot.MAIN) == 20651 ) or ( player:getEquipID(dsp.slot.MAIN) == 20652 )
+                or ( player:getEquipID(dsp.slot.MAIN) == 20688 ) or ( player:getEquipID(dsp.slot.MAIN) == 19834 ) ) then -- Tizona 99
         chance = 30;
     end
 
@@ -164,6 +164,6 @@ function onAdditionalEffect(player,target,damage)
         local drain = math.floor(damage * (math.random(100,200)/1000));
         player:addMP(drain);
 
-        return SUBEFFECT_MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain;
+        return dsp.sub.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain;
     end
 end;

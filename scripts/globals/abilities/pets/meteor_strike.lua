@@ -19,7 +19,7 @@ function onPetAbility(target, pet, skill)
     local master = pet:getMaster();
     local merits = 0;
     if (master ~= nil and master:isPC()) then
-        merits = master:getMerit(MERIT_METEOR_STRIKE);
+        merits = master:getMerit(dsp.merit.METEOR_STRIKE);
     end
     
     tp = tp + (merits - 40);

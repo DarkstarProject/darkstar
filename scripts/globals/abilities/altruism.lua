@@ -26,7 +26,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.ALTRUISM,player:getMerit(MERIT_ALTRUISM),0,60);
+    player:addStatusEffect(dsp.effect.ALTRUISM,player:getMerit(dsp.merit.ALTRUISM),0,60);
 
     return dsp.effect.ALTRUISM;
 end;

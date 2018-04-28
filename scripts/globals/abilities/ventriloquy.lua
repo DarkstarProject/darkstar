@@ -35,7 +35,7 @@ function onUseAbility(player,target,ability)
         end
 
         if playerfound and petfound then
-            local bonus = (player:getMerit(MERIT_VENTRILOQUY)-5)/100
+            local bonus = (player:getMerit(dsp.merit.VENTRILOQUY)-5)/100
 
             local playerCE = target:getCE(player)
             local playerVE = target:getVE(player)

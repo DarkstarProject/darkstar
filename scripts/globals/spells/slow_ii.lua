@@ -15,7 +15,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
-    local merits = caster:getMerit(MERIT_SLOW_II);
+    local merits = caster:getMerit(dsp.merit.SLOW_II);
 
     local potency = 244 + math.floor(dMND * 116/75);
 

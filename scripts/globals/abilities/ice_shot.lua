@@ -13,7 +13,7 @@ require("scripts/globals/ability");
 function onAbilityCheck(player,target,ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= SKILL_MRK or player:getWeaponSkillType(dsp.slot.AMMO) ~= SKILL_MRK) then
         return 216,0;
     end
     if (player:hasItem(2177, 0) or player:hasItem(2974, 0)) then
@@ -28,7 +28,7 @@ function onUseAbility(player,target,ability,action)
     params.includemab = true;
     local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
     dmg  = addBonusesAbility(player, ELE_ICE, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_ICE,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    dmg = dmg * applyResistanceAbility(player,target,ELE_ICE,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_ICE);
 
     local shadowsAbsorbed = 0
@@ -36,7 +36,7 @@ function onUseAbility(player,target,ability,action)
         shadowsAbsorbed = 1
     end
 
-    dmg = takeAbilityDamage(target, player, {}, true, dmg, SLOT_RANGED, 1, shadowsAbsorbed, 0, 0, action, nil);
+    dmg = takeAbilityDamage(target, player, {}, true, dmg, dsp.slot.RANGED, 1, shadowsAbsorbed, 0, 0, action, nil);
 
     if shadowsAbsorbed == 0 then
     

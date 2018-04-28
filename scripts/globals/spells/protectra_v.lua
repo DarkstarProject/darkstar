@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local meritBonus = caster:getMerit(MERIT_PROTECTRA_V);
+    local meritBonus = caster:getMerit(dsp.merit.PROTECTRA_V);
     local duration = 1800;
 
     local power = 175 + meritBonus;

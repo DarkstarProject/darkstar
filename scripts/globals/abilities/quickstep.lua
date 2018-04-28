@@ -173,7 +173,7 @@ function onUseAbility(player,target,ability,action)
         ability:setMsg(dsp.msg.basic.JA_MISS);
     end
 
-    action:animation(target:getID(), getStepAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+    action:animation(target:getID(), getStepAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))
     action:speceffect(target:getID(), hit)
     return effect
 

@@ -23,5 +23,5 @@ function onAdditionalEffect(player,target,damage)
         message = dsp.msg.basic.ADD_EFFECT_HEAL;
     end
 
-    return SUBEFFECT_WIND_DAMAGE,message,dmg;
+    return dsp.sub.WIND_DAMAGE,message,dmg;
 end;

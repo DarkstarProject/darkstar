@@ -46,7 +46,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_FIRE);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_FIRE,dmg);
 
-    return SUBEFFECT_FIRE_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
+    return dsp.sub.FIRE_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

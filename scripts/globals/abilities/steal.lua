@@ -73,7 +73,7 @@ function onUseAbility(player,target,ability,action)
         local resist = applyResistanceAbility(player, target, ELE_NONE, 0, 0);
         local effectStealSuccess = false;
         if (resist > 0.0625) then
-            local auraStealChance = math.min(player:getMerit(MERIT_AURA_STEAL), 95);
+            local auraStealChance = math.min(player:getMerit(dsp.merit.AURA_STEAL), 95);
             if (math.random(100) < auraStealChance) then
                 stolen = player:stealStatusEffect(target);
                 if (stolen ~= 0) then

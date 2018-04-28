@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     elseif (posestatus == QUEST_ACCEPTED) then
         starttime = player:getVar("QuestAPoseByOtherName_time");
         if ((starttime + 600) >= os.time()) then
-            if (player:getEquipID(SLOT_BODY) == player:getVar("QuestAPoseByOtherName_equip")) then
+            if (player:getEquipID(dsp.slot.BODY) == player:getVar("QuestAPoseByOtherName_equip")) then
                 player:startEvent(96);     ------------------------------------------  QUEST FINISH
             else
                 player:startEvent(93,0,0,0,player:getVar("QuestAPoseByOtherName_equip"));-- QUEST REMINDER

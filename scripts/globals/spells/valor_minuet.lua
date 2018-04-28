@@ -12,7 +12,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
-    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
+    local iLvl = caster:getWeaponSkillLevel(dsp.slot.RANGED);
 
     local power = 5 + math.floor((sLvl+iLvl) / 8);
 
@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
         power = power + 1 + (iBoost-1)*4;
     end
 
-    power =  power + caster:getMerit(MERIT_MINUET_EFFECT);
+    power =  power + caster:getMerit(dsp.merit.MINUET_EFFECT);
 
     if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
         power = power * 2;

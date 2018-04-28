@@ -14,7 +14,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local id = player:getEquipID(SLOT_AMMO);
+    local id = player:getEquipID(dsp.slot.AMMO);
     if (id == 18259) then
         return 0,0;
     else
@@ -24,7 +24,7 @@ end;
 
 function onUseAbility(player,target,ability)
     local typeEffect = dsp.effect.DEFENSE_DOWN;
-    local duration = 15 + player:getMerit(MERIT_ANGON); -- This will return 30 sec at one investment because merit power is 15.
+    local duration = 15 + player:getMerit(dsp.merit.ANGON); -- This will return 30 sec at one investment because merit power is 15.
 
     if (target:addStatusEffect(typeEffect,20,0,duration) == false) then
         ability:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);

@@ -49,7 +49,7 @@ function onUseAbility(caster,target,ability,action)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
+    local duration = 300 + caster:getMerit(dsp.merit.WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {10, 10, 10, 10, 30, 10, 10, 0, 20, 20, 40, -10}
     local effectpower = effectpowers[total];
 -- Apply Buffs from Tactician's Roll Enhancing Gear if present
@@ -65,7 +65,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.TACTICIANS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.REGAIN) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(dsp.merit.BUST_DURATION), dsp.effect.TACTICIANS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.REGAIN) == false) then
         ability:setMsg(dsp.msg.basic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(dsp.msg.basic.DOUBLEUP_BUST);

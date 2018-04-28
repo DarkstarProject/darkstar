@@ -21,6 +21,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(dsp.effect.PARALYSIS)) then
             target:addStatusEffect(dsp.effect.PARALYSIS, 20, 0, 30);
         end
-        return SUBEFFECT_PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
+        return dsp.sub.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
     end
 end;

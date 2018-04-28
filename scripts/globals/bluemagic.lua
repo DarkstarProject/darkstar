@@ -107,7 +107,7 @@ function BluePhysicalSpell(caster, target, spell, params)
     local chainAffinity = caster:getStatusEffect(dsp.effect.CHAIN_AFFINITY);
     if chainAffinity ~= nil then
         -- Calculate the total TP available for the fTP multiplier.
-        local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
+        local tp = caster:getTP() + caster:getMerit(dsp.merit.ENCHAINMENT);
         if tp > 3000 then
             tp = 3000;
         end;

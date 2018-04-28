@@ -56,7 +56,7 @@ function onUseAbility(player,target,ability,action)
         local spell = getSpell(216);
         local params = {};
         params.diff = 0;
-        params.skillType = player:getWeaponSkillType(SLOT_MAIN);
+        params.skillType = player:getWeaponSkillType(dsp.slot.MAIN);
         params.bonus = 50 - target:getMod(dsp.mod.STUNRES);
         local resist = applyResistance(player, target, spell, params)
 
@@ -67,7 +67,7 @@ function onUseAbility(player,target,ability,action)
             ability:setMsg(dsp.msg.basic.JA_DAMAGE);
         end
         ability:setMsg(dsp.msg.basic.JA_ENFEEB_IS);
-        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))
         action:speceffect(target:getID(), 2)
         return dsp.effect.WEIGHT
     else
