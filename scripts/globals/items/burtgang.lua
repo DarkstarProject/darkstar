@@ -101,7 +101,7 @@ aftermathTable[20650] = aftermathTable[19716]; -- Burtgang (119/II)
 aftermathTable[20687] = aftermathTable[19716]; -- Burtgang (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_ATONEMENT) then -- Atonement onry
+    if (wsid == dsp.ws.ATONEMENT) then -- Atonement onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

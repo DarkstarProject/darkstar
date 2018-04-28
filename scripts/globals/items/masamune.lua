@@ -73,7 +73,7 @@ aftermathTable[21956] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TACHI_FUDO) then -- Tachi: Fudo onry
+    if (wsid == dsp.ws.TACHI_FUDO) then -- Tachi: Fudo onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

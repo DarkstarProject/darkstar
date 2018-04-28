@@ -101,7 +101,7 @@ aftermathTable[21018] = aftermathTable[19721]; -- Kogarasumaru (119/II)
 aftermathTable[21955] = aftermathTable[19721]; -- Kogarasumaru (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TACHI_RANA) then -- Tachi: Rana onry
+    if (wsid == dsp.ws.TACHI_RANA) then -- Tachi: Rana onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

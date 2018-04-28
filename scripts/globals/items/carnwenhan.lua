@@ -101,7 +101,7 @@ aftermathTable[20562] = aftermathTable[19719]; -- Carnwenhan (119/II)
 aftermathTable[20586] = aftermathTable[19719]; -- Carnwenhan (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MORDANT_RIME) then -- Mordant Rime onry
+    if (wsid == dsp.ws.MORDANT_RIME) then -- Mordant Rime onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

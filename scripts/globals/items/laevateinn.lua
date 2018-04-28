@@ -101,7 +101,7 @@ aftermathTable[21140] = aftermathTable[19713]; -- Laevateinn (119/II)
 aftermathTable[22062] = aftermathTable[19713]; -- Laevateinn (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_VIDOHUNIR) then -- Vidohunir onry
+    if (wsid == dsp.ws.VIDOHUNIR) then -- Vidohunir onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

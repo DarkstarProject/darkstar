@@ -73,7 +73,7 @@ aftermathTable[20512] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_VICTORY_SMITE) then -- Victory Smite onry
+    if (wsid == dsp.ws.VICTORY_SMITE) then -- Victory Smite onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

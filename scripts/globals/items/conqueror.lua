@@ -101,7 +101,7 @@ aftermathTable[20838] = aftermathTable[19710]; -- Conqueror (119/II)
 aftermathTable[21757] = aftermathTable[19710]; -- Conqueror (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_KINGS_JUSTICE) then -- King's Justice onry
+    if (wsid == dsp.ws.KINGS_JUSTICE) then -- King's Justice onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

@@ -73,7 +73,7 @@ aftermathTable[21859] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_CAMLANNS_TORMENT) then -- Camlann's Torment onry
+    if (wsid == dsp.ws.CAMLANNS_TORMENT) then -- Camlann's Torment onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

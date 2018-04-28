@@ -46,7 +46,7 @@ aftermathTable[22115] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_NAMAS_ARROW) then -- Namas Arrow onry
+    if (wsid == dsp.ws.NAMAS_ARROW) then -- Namas Arrow onry
         local itemId = user:getEquipID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

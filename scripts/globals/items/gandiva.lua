@@ -73,7 +73,7 @@ aftermathTable[22116] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_JISHNUS_RADIANCE) then -- Jishnu's Radiance onry
+    if (wsid == dsp.ws.JISHNUS_RADIANCE) then -- Jishnu's Radiance onry
         local itemId = user:getEquipID(SLOT_RANGED);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

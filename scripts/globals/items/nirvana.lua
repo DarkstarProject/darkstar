@@ -101,7 +101,7 @@ aftermathTable[21142] = aftermathTable[19724]; -- Nirvana (119/II)
 aftermathTable[22063] = aftermathTable[19724]; -- Nirvana (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_GARLAND_OF_BLISS) then -- Garland of Bliss onry
+    if (wsid == dsp.ws.GARLAND_OF_BLISS) then -- Garland of Bliss onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

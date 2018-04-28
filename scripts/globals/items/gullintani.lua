@@ -26,7 +26,7 @@ aftermathTable[18323] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_RANDGRITH) then -- Randgrith onry
+    if (wsid == dsp.ws.RANDGRITH) then -- Randgrith onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

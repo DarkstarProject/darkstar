@@ -101,7 +101,7 @@ aftermathTable[20485] = aftermathTable[19727]; -- Kenkonken (119/II)
 aftermathTable[20511] = aftermathTable[19727]; -- Kenkonken (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_STRINGING_PUMMEL) then -- Stringing Pummel onry
+    if (wsid == dsp.ws.STRINGING_PUMMEL) then -- Stringing Pummel onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

@@ -46,7 +46,7 @@ aftermathTable[21267] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_CORONACH) then -- Coronach onry
+    if (wsid == dsp.ws.CORONACH) then -- Coronach onry
         local itemId = user:getEquipID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods

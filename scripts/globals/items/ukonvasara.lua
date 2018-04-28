@@ -73,7 +73,7 @@ aftermathTable[21758] =
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_UKKOS_FURY) then -- Ukko's Fury onry
+    if (wsid == dsp.ws.UKKOS_FURY) then -- Ukko's Fury onry
         local itemId = user:getEquipID(SLOT_MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then

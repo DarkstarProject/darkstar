@@ -101,7 +101,7 @@ aftermathTable[21247] = aftermathTable[19720]; -- Gastraphetes (119/II)
 aftermathTable[21266] = aftermathTable[19720]; -- Gastraphetes (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TRUEFLIGHT) then -- Trueflight onry
+    if (wsid == dsp.ws.TRUEFLIGHT) then -- Trueflight onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_RANGED);
             if (aftermathTable[itemId]) then

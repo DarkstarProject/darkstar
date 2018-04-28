@@ -101,7 +101,7 @@ aftermathTable[20883] = aftermathTable[19717]; -- Liberator (119/II)
 aftermathTable[21809] = aftermathTable[19717]; -- Liberator (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_INSURGENCY) then -- Insurgency onry
+    if (wsid == dsp.ws.INSURGENCY) then -- Insurgency onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then

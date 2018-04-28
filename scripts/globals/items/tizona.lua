@@ -102,7 +102,7 @@ aftermathTable[20652] = aftermathTable[19725]; -- Nirvana (119/II)
 aftermathTable[20688] = aftermathTable[19725]; -- Nirvana (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_EXPIACION) then -- Expiacion onry
+    if (wsid == dsp.ws.EXPIACION) then -- Expiacion onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then
