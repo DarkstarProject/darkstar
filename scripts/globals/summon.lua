@@ -15,7 +15,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     lvluser = avatar:getMainLvl();
     lvltarget = target:getMainLvl();
     local master = avatar:getMaster();
-    local bonusacc = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, SUMMONING_SKILL), 0, 200);
+    local bonusacc = utils.clamp(master:getSkillLevel(dsp.skill.SUM) - master:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, SUMMONING_SKILL), 0, 200);
     acc = avatar:getACC() + bonusacc;
     eva = target:getEVA();
 

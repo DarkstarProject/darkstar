@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,8);
-    local SkillLevel = player:getSkillLevel(SKILL_SMITHING);
-    local Cost = getAdvImageSupportCost(player,SKILL_SMITHING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.SMITHING);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.SMITHING);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.SMITHING_IMAGERY) == false) then
@@ -38,7 +38,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    local Cost = getAdvImageSupportCost(player,SKILL_SMITHING);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.SMITHING);
 
     if (csid == 103 and option == 1) then
         player:delGil(Cost);

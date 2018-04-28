@@ -2167,66 +2167,69 @@ dsp.jsa = dsp.jobSpecialAbility;
 -- Skills
 ------------------------------------
 
--- Combat Skills
-SKILL_NON = 0
-SKILL_H2H = 1
-SKILL_DAG = 2
-SKILL_SWD = 3
-SKILL_GSD = 4
-SKILL_AXE = 5
-SKILL_GAX = 6
-SKILL_SYH = 7
-SKILL_POL = 8
-SKILL_KAT = 9
-SKILL_GKT = 10
-SKILL_CLB = 11
-SKILL_STF = 12
--- 13~21 unused
--- 22~24 pup's Automaton skills
-SKILL_ARC = 25
-SKILL_MRK = 26
-SKILL_THR = 27
+dsp.skill =
+{
+    -- Combat Skills
+    NON = 0,
+    H2H = 1,
+    DAG = 2,
+    SWD = 3,
+    GSD = 4,
+    AXE = 5,
+    GAX = 6,
+    SYH = 7,
+    POL = 8,
+    KAT = 9,
+    GKT = 10,
+    CLB = 11,
+    STF = 12,
+    -- 13~21 unused
+    -- 22~24 pup's Automaton skills
+    ARC = 25,
+    MRK = 26,
+    THR = 27,
 
--- Defensive Skills
-SKILL_GRD = 28
-SKILL_EVA = 29
-SKILL_SHL = 30
-SKILL_PAR = 31
+    -- Defensive Skills
+    GRD = 28,
+    EVA = 29,
+    SHL = 30,
+    PAR = 31,
 
--- Magic Skills
-SKILL_DIV = 32
-SKILL_HEA = 33
-SKILL_ENH = 34
-SKILL_ENF = 35
-SKILL_ELE = 36
-SKILL_DRK = 37
-SKILL_SUM = 38
-SKILL_NIN = 39
-SKILL_SNG = 40
-SKILL_STR = 41
-SKILL_WND = 42
-SKILL_BLU = 43
-SKILL_GEO = 44
-
--- 45~47 unused
-
--- Crafting Skills
-SKILL_FISHING      = 48
-SKILL_WOODWORKING  = 49
-SKILL_SMITHING     = 50
-SKILL_GOLDSMITHING = 51
-SKILL_CLOTHCRAFT   = 52
-SKILL_LEATHERCRAFT = 53
-SKILL_BONECRAFT    = 54
-SKILL_ALCHEMY      = 55
-SKILL_COOKING      = 56
-SKILL_SYNERGY      = 57
-
--- Other Skills
-SKILL_RID          = 58
-SKILL_DIG          = 59
--- 60~63 unused
--- MAX_SKILLTYPE = 64
+    -- Magic Skills
+    DIV = 32,
+    HEA = 33,
+    ENH = 34,
+    ENF = 35,
+    ELE = 36,
+    DRK = 37,
+    SUM = 38,
+    NIN = 39,
+    SNG = 40,
+    STR = 41,
+    WND = 42,
+    BLU = 43,
+    GEO = 44,
+    
+    -- 45~47 unused
+    
+    -- Crafting Skills
+    FISHING      = 48,
+    WOODWORKING  = 49,
+    SMITHING     = 50,
+    GOLDSMITHING = 51,
+    CLOTHCRAFT   = 52,
+    LEATHERCRAFT = 53,
+    BONECRAFT    = 54,
+    ALCHEMY      = 55,
+    COOKING      = 56,
+    SYNERGY      = 57,
+    
+    -- Other Skills
+    RID          = 58,
+    DIG          = 59,
+    -- 60~63 unused
+    -- MAX_SKILLTYPE = 64
+};
 
 ------------------------------------
 -- Recast IDs
@@ -2330,7 +2333,7 @@ SPELLFLAG_HIT_ALL       = 0x01; -- Hit all targets in range regardless of party
 SPELLFLAG_WIPE_SHADOWS  = 0x02; -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 
 ------------------------------------
--- Behaviour bits
+-- Behavior bits
 ------------------------------------
 
 dsp.behavior =

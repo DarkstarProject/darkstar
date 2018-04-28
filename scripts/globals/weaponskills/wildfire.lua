@@ -26,7 +26,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.agi_wsc = 0.6; params.int_wsc = 0.0; params.mnd_wsc = 0.0;
     params.chr_wsc = 0.0;
     params.ele = ELE_FIRE;
-    params.skill = SKILL_MRK;
+    params.skill = dsp.skill.MRK;
     params.includemab = true;
 
     -- TODO: needs to give enmity down at varying tp percent's that is treated separately than the gear cap of -50% enmity http://www.bg-wiki.com/bg/Wildfire

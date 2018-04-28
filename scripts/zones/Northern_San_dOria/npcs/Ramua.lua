@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,9);
-    local SkillCap = getCraftSkillCap(player,SKILL_WOODWORKING);
-    local SkillLevel = player:getSkillLevel(SKILL_WOODWORKING);
+    local SkillCap = getCraftSkillCap(player,dsp.skill.WOODWORKING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.WOODWORKING);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.WOODWORKING_IMAGERY) == false) then

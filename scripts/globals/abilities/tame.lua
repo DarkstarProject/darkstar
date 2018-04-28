@@ -22,7 +22,7 @@ function onUseAbility(player,target,ability)
         ability:setMsg(dsp.msg.basic.JA_NO_EFFECT)
         return 0
     end
-    local resist = applyResistanceAbility(player, target, ELE_NONE, SKILL_NON, player:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local resist = applyResistanceAbility(player, target, ELE_NONE, dsp.skill.NON, player:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
     if resist <= 0.25 then
         ability:setMsg(dsp.msg.basic.JA_MISS_2)
         return 0

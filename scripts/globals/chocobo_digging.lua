@@ -22,7 +22,7 @@ local function canDig(player)
     local ZoneInTime = player:getLocalVar('ZoneInTime');
     local CurrentTime = os.time();
 
-    local SkillRank = player:getSkillRank(SKILL_DIG);
+    local SkillRank = player:getSkillRank(dsp.skill.DIG);
 
     -- base delay -5 for each rank
     local DigDelay = 16 - (SkillRank * 5);
@@ -51,9 +51,9 @@ end;
 
 local function calculateSkillUp(player)
 
-    local SkillRank = player:getSkillRank(SKILL_DIG);
+    local SkillRank = player:getSkillRank(dsp.skill.DIG);
     local MaxSkill = (SkillRank + 1) * 100;
-    local RealSkill = player:getCharSkillLevel(SKILL_DIG);
+    local RealSkill = player:getCharSkillLevel(dsp.skill.DIG);
 
     if (MaxSkill > 1000) then
         MaxSkill = 1000;
@@ -73,12 +73,12 @@ local function calculateSkillUp(player)
             end
 
             -- skill up!
-            player:setSkillLevel(SKILL_DIG, RealSkill + SkillIncrement);
+            player:setSkillLevel(dsp.skill.DIG, RealSkill + SkillIncrement);
 
             -- update the skill rank
             -- Digging does not have test items, so increment rank once player hits 10.0, 20.0, .. 100.0
             if ((RealSkill + SkillIncrement) >= ((SkillRank * 100) + 100)) then
-                player:setSkillRank(SKILL_DIG, SkillRank + 1);
+                player:setSkillRank(dsp.skill.DIG, SkillRank + 1);
             end
         end
     end
@@ -172,7 +172,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             -- item and DIG_ABUNDANCE_BONUS 3 digits, dont wanna get left out
             Chance = Chance * 10;
 
-            local SkillRank = player:getSkillRank(SKILL_DIG);
+            local SkillRank = player:getSkillRank(dsp.skill.DIG);
 
             -- todo: learn abilities from chocobo raising
             local burrowAbility = 0;

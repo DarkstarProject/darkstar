@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,5);
-    local SkillLevel = player:getSkillLevel(SKILL_FISHING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.FISHING);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.FISHING_IMAGERY) == false) then

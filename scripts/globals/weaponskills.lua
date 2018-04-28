@@ -36,7 +36,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local weaponDamage = attacker:getWeaponDmg();
     local weaponType = attacker:getWeaponSkillType(0);
 
-    if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
+    if (weaponType == dsp.skill.H2H or weaponType == dsp.skill.NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 
         if (params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK)) then
@@ -156,7 +156,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     if not multiHitfTP then dmg = base end
 
-    if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
+    if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==dsp.skill.H2H)) then
 
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100 or isSneakValid)
@@ -241,11 +241,11 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = target:physicalDmgTaken(finaldmg);
 
     -- Check for reductions from phys resistances
-    if (weaponType == SKILL_H2H) then
+    if (weaponType == dsp.skill.H2H) then
         finaldmg = finaldmg * target:getMod(dsp.mod.HTHRES) / 1000;
-    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+    elseif (weaponType == dsp.skill.DAG or weaponType == dsp.skill.POL) then
         finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000;
-    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+    elseif (weaponType == dsp.skill.CLB or weaponType == dsp.skill.STF) then
         finaldmg = finaldmg * target:getMod(dsp.mod.IMPACTRES) / 1000;
     else
         finaldmg = finaldmg * target:getMod(dsp.mod.SLASHRES) / 1000;
@@ -258,7 +258,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 end;
 
 -- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
---         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
+--         ele (ELE_FIRE), skill (dsp.skill.STF), includemab = true
 
 function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     local bonusTP = 0;
@@ -880,7 +880,7 @@ function getMultiAttacks(attacker, target, numHits)
     end
 
     -- QA/TA/DA can only proc on the first hit of each weapon or each fist
-    if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(dsp.slot.MAIN) == SKILL_H2H) then
+    if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(dsp.slot.MAIN) == dsp.skill.H2H) then
         multiChances = 2;
     end
 

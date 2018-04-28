@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,1);
-    local SkillLevel = player:getSkillLevel(SKILL_ALCHEMY);
+    local SkillLevel = player:getSkillLevel(dsp.skill.ALCHEMY);
 
     if (guildMember == 1) then
         player:startEvent(636,2,SkillLevel,0,511,0,0,7,2184);

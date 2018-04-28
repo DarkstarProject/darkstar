@@ -21,7 +21,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local weaponDamage = params.weaponDamage or attacker:getWeaponDmg();
     local weaponType = params.weaponType or attacker:getWeaponSkillType(0);
 
-    if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
+    if (weaponType == dsp.skill.H2H or weaponType == dsp.skill.NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 
         if (params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK)) then
@@ -193,11 +193,11 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     finaldmg = target:physicalDmgTaken(finaldmg);
 
     -- Check for reductions from phys resistances
-    if (weaponType == SKILL_H2H) then
+    if (weaponType == dsp.skill.H2H) then
         finaldmg = finaldmg * target:getMod(dsp.mod.HTHRES) / 1000;
-    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+    elseif (weaponType == dsp.skill.DAG or weaponType == dsp.skill.POL) then
         finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000;
-    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+    elseif (weaponType == dsp.skill.CLB or weaponType == dsp.skill.STF) then
         finaldmg = finaldmg * target:getMod(dsp.mod.IMPACTRES) / 1000;
     else
         finaldmg = finaldmg * target:getMod(dsp.mod.SLASHRES) / 1000;
