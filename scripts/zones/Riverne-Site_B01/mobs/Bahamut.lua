@@ -71,8 +71,8 @@ function onMobFight(mob,target)
                     target:showText(mob,BAHAMUT_TAUNT + 1);
                 end;
                 if (mob:checkDistance(target) <= 15) then -- without this check if the target is out of range it will keep attemping and failing to use Megaflare. Both Megaflare and Gigaflare have range 15.
-                    if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- default behaviour
-                        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+                    if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) > 0) then -- default behaviour
+                        mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
                     end;
                     mob:useMobAbility(1551);
                 end;
@@ -82,8 +82,8 @@ function onMobFight(mob,target)
                 target:showText(mob,BAHAMUT_TAUNT + 2);
                 mob:setLocalVar("tauntShown", 3); -- again, taunt won't show again until the move is successfully used.
             end;
-            if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- default behaviour
-                mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+            if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) > 0) then -- default behaviour
+                mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
             end;
             mob:useMobAbility(1552);
         end;

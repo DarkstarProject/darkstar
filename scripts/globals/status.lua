@@ -2329,12 +2329,15 @@ SPELLFLAG_WIPE_SHADOWS  = 0x02; -- Wipe shadows even if single target and miss/r
 -- Behaviour bits
 ------------------------------------
 
-BEHAVIOUR_NONE         = 0x000;
-BEHAVIOUR_NO_DESPAWN   = 0x001; -- mob does not despawn on death
-BEHAVIOUR_STANDBACK    = 0x002; -- mob will standback forever
-BEHAVIOUR_RAISABLE     = 0x004; -- mob can be raised via Raise spells
-BEHAVIOUR_AGGRO_AMBUSH = 0x200; -- mob aggroes by ambush
-BEHAVIOUR_NO_TURN      = 0x400; -- mob does not turn to face target
+dsp.behavior =
+{
+    NONE         = 0x000,
+    NO_DESPAWN   = 0x001, -- mob does not despawn on death
+    STANDBACK    = 0x002, -- mob will standback forever
+    RAISABLE     = 0x004, -- mob can be raised via Raise spells
+    AGGRO_AMBUSH = 0x200, -- mob aggroes by ambush
+    NO_TURN      = 0x400, -- mob does not turn to face target
+};
 
 ------------------------------------
 -- Elevator IDs
