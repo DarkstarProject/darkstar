@@ -26,7 +26,7 @@ function onMobFight(mob,target)
     local tauntShown = mob:getLocalVar("tauntShown");
     local mobHPP = mob:getHPP();
     local isBusy = false;
-    if (GetMobAction(mob:getID()) == ACTION_MOBABILITY_START or GetMobAction(mob:getID()) == ACTION_MOBABILITY_USING or GetMobAction(mob:getID()) == ACTION_MOBABILITY_FINISH or GetMobAction(mob:getID()) == ACTION_MAGIC_START or GetMobAction(mob:getID()) == ACTION_MAGIC_CASTING or GetMobAction(mob:getID()) == ACTION_MAGIC_START) then
+    if (GetMobAction(mob:getID()) == dsp.act.MOBABILITY_START or GetMobAction(mob:getID()) == dsp.act.MOBABILITY_USING or GetMobAction(mob:getID()) == dsp.act.MOBABILITY_FINISH or GetMobAction(mob:getID()) == dsp.act.MAGIC_START or GetMobAction(mob:getID()) == dsp.act.MAGIC_CASTING or GetMobAction(mob:getID()) == dsp.act.MAGIC_START) then
         isBusy = true; -- is set to true if Bahamut is in any stage of using a mobskill or casting a spell
     end;
 

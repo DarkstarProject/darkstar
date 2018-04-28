@@ -20,7 +20,7 @@ function onMobRoam(mob)
     local ready = mob:getLocalVar("ready");
     if (ready == 0 and wait > 240) then
         local baseID = 16924673 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
-        if (GetMobAction(baseID) ~= ACTION_NONE) then
+        if (GetMobAction(baseID) ~= dsp.act.NONE) then
             mob:entityAnimationPacket("prov");
             mob:messageText(mob, PRISHE_TEXT);
         else

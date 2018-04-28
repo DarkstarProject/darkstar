@@ -50,7 +50,7 @@ function onMobFight( mob, target )
     -- ensure all spawned pets are doing stuff
     for i = KIRIN + 1, KIRIN + 4 do
         local god = GetMobByID(i);
-        if (god:getCurrentAction() == ACTION_ROAMING) then
+        if (god:getCurrentAction() == dsp.act.ROAMING) then
             god:updateEnmity(target);
         end
     end

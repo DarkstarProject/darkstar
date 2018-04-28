@@ -84,17 +84,17 @@ function onMobFight(mob, target)
             mob:setLocalVar("pop_pets", os.time());
             mob:setLocalVar("SPAWNS", 8);
         elseif (SPAWNS >= 8) then -- switch to ONLY popping phuabo (still up to 3 at a time)
-            if (phuabo1 == ACTION_NONE or phuabo1 == ACTION_SPAWN) then
+            if (phuabo1 == dsp.act.NONE or phuabo1 == dsp.act.SPAWN) then
                 SpawnMob(16912849):updateEnmity(target);
                 SpawnMob(16912850):updateEnmity(target);
                 SpawnMob(16912851):updateEnmity(target);
                 mob:setLocalVar("pop_pets", os.time());
-            elseif (phuabo2 == ACTION_NONE or phuabo2 == ACTION_SPAWN) then
+            elseif (phuabo2 == dsp.act.NONE or phuabo2 == dsp.act.SPAWN) then
                 SpawnMob(16912852):updateEnmity(target);
                 SpawnMob(16912853):updateEnmity(target);
                 SpawnMob(16912854):updateEnmity(target);
                 mob:setLocalVar("pop_pets", os.time());
-            elseif (phuabo3 == ACTION_NONE or phuabo3 == ACTION_SPAWN) then
+            elseif (phuabo3 == dsp.act.NONE or phuabo3 == dsp.act.SPAWN) then
                 SpawnMob(16912855):updateEnmity(target);
                 SpawnMob(16912856):updateEnmity(target);
                 SpawnMob(16912857):updateEnmity(target);

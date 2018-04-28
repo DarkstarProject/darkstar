@@ -12,7 +12,7 @@ require("scripts/globals/status");
 function onTrade(player,npc,trade)
     local mobID = 16990473;
     if (trade:hasItemQty(2578,1) and trade:getItemCount() == 1) then -- Trade Oily Blood
-        if (GetMobAction(mobID) == ACTION_NONE) then
+        if (GetMobAction(mobID) == dsp.act.NONE) then
             player:tradeComplete();
             SpawnMob(mobID):updateClaim(player);
         end

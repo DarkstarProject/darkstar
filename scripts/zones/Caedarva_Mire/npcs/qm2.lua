@@ -12,7 +12,7 @@ require("scripts/globals/status");
 function onTrade(player,npc,trade)
     local mobID = 17101205;
     if (trade:hasItemQty(2595,1) and trade:getItemCount() == 1) then -- Trade Myrrh
-        if (GetMobAction(mobID) == ACTION_NONE) then
+        if (GetMobAction(mobID) == dsp.act.NONE) then
             player:tradeComplete();
             SpawnMob(mobID):updateClaim(player);
         end

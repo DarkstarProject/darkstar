@@ -27,7 +27,7 @@ function onMobFight(mob,target)
 
     -- queue curaga II on any sleeping ally
     for i = instOffset + 3, instOffset + 12 do
-        if (GetMobByID(i):getCurrentAction() == ACTION_SLEEP) then
+        if (GetMobByID(i):getCurrentAction() == dsp.act.SLEEP) then
             if (mob:actionQueueEmpty()) then
                 if (mob:getLocalVar("cooldown") == 0) then
                     mob:castSpell(8, GetMobByID(i));
