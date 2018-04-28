@@ -15,9 +15,9 @@ function onAdditionalEffect(player,target,damage)
         chance = chance+6;
     end
 
-    if (player:getWeather() == WEATHER_WIND) then
+    if (player:getWeather() == dsp.weather.WIND) then
         chance = chance+4;
-    elseif (player:getWeather() == WEATHER_GALES) then
+    elseif (player:getWeather() == dsp.weather.GALES) then
         chance = chance+6;
     end
 

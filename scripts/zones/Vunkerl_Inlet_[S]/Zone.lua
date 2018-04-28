@@ -24,7 +24,7 @@ end;
 function onZoneWeatherChange(weather)
     local npc = GetNPCByID(VUNKERL_INDESCRIPT_MARKINGS); -- Indescript Markings
     if (npc ~= nil) then
-        if (weather == WEATHER_FOG or weather == WEATHER_THUNDER) then
+        if (weather == dsp.weather.FOG or weather == dsp.weather.THUNDER) then
             npc:setStatus(STATUS_DISAPPEAR);
         elseif (VanadielHour() >= 16 or VanadielHour() <= 6) then
             npc:setStatus(STATUS_NORMAL);

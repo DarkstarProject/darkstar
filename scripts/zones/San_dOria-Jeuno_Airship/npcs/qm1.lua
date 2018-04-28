@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local TOTD = VanadielTOTD();
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
 
-    if (TOTD == TIME_NIGHT and IsMoonFull()) then
+    if (TOTD == dsp.time.NIGHT and IsMoonFull()) then
         if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.CARRIER_PIGEON_LETTER) == false) then
             player:addKeyItem(dsp.kis.CARRIER_PIGEON_LETTER);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CARRIER_PIGEON_LETTER);

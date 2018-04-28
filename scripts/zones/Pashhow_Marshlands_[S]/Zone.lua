@@ -29,7 +29,7 @@ function onZoneWeatherChange(weather)
 
     local npc = GetNPCByID(PASHHOW_S_MARKINGS_OFFSET + 1); -- Indescript Markings (BOOTS)
     if (npc ~= nil) then
-        if (weather == WEATHER_RAIN or weather == WEATHER_THUNDER) then
+        if (weather == dsp.weather.RAIN or weather == dsp.weather.THUNDER) then
             npc:setStatus(STATUS_DISAPPEAR);
         else
             npc:setStatus(STATUS_NORMAL);
@@ -38,7 +38,7 @@ function onZoneWeatherChange(weather)
 
     npc = GetNPCByID(PASHHOW_S_MARKINGS_OFFSET + 2); -- Indescript Markings (BODY)
     if (npc ~= nil) then
-        if (weather == WEATHER_RAIN) then
+        if (weather == dsp.weather.RAIN) then
             npc:setStatus(STATUS_DISAPPEAR);
         else
             npc:setStatus(STATUS_NORMAL);
