@@ -10,8 +10,8 @@ require("scripts/globals/magic");
 
 function onMobSpawn(mob)
     -- Give it two hour
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
+    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
+    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
     -- Change animation to humanoid w/ prismatic core
     mob:AnimationSub(1);
     mob:setModelId(1169);

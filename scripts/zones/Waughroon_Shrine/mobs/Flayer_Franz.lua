@@ -5,7 +5,7 @@
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
 function onMobDeath(mob, player, isKiller)

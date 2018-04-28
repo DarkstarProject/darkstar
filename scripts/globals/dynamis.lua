@@ -1,5 +1,5 @@
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 dynamis = {};
 
@@ -877,7 +877,7 @@ function dynamis.spawnGroup(mob, spawnList, mobTypeList)
     local Z = mob:getZPos();
 
     -- Ensure my members superlink with me
-    mob:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, superLinkId);
 
     if (mob:getStatPoppedMobs() == false) then
         mob:setStatPoppedMobs(true);
@@ -912,7 +912,7 @@ end;
 function dynamis.spawnMob(mobId, superLinkId, x, y, z)
     -- Spawn Mob
     local mob = SpawnMob(mobId);
-    mob:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, superLinkId);
     mob:setPos(x,y,z);
     mob:setSpawn(x,y,z);
 
@@ -937,7 +937,7 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
 
             local pet = mob:getPet();
 
-            pet:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+            pet:setMobMod(dsp.mobMod.SUPERLINK, superLinkId);
         end
     end
 end;

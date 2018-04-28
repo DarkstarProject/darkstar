@@ -6,7 +6,7 @@ require("scripts/zones/QuBia_Arena/MobIDs");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_HP_STANDBACK, 60);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK, 60);
 end;
 
 function allHeirMobsDead(player)

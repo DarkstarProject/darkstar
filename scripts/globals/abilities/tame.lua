@@ -18,7 +18,7 @@ function onUseAbility(player,target,ability)
         ability:setMsg(msgBasic.JA_NO_EFFECT)
         return 0
     end
-    if target:getMobMod(MOBMOD_CHARMABLE) == 0 then
+    if target:getMobMod(dsp.mobMod.CHARMABLE) == 0 then
         ability:setMsg(msgBasic.JA_NO_EFFECT)
         return 0
     end

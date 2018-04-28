@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    -- mob:setMobMod(MOBMOD_AUTO_SPIKES, 1);
+    -- mob:setMobMod(dsp.mobMod.AUTO_SPIKES, 1);
 end;
 
 function onMobSpawn(mob)

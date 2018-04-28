@@ -7,7 +7,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT,mob:getShortID());
 end;
 
 function onMobSpawn(mob)

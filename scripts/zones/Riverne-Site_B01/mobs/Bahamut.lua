@@ -7,7 +7,7 @@ require("scripts/globals/status");
 
 
 function onMobInitialise(mob)
-    mob:setMobMod(MOBMOD_HP_STANDBACK,-1);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1);
 end;
 
 function onMobSpawn(mob)

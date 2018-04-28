@@ -10,7 +10,7 @@ require("scripts/zones/Apollyon/TextIDs");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 60);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 60);
 end;
 
 function onMobSpawn(mob)

@@ -13,11 +13,11 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
     mob:setMod(MOD_UDMGPHYS, -75);
     mob:setMod(MOD_UDMGRANGE, -75);
     mob:setMod(MOD_UDMGMAGIC, 0);

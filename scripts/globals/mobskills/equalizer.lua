@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 727 = Proto-Omega
     -- skillList 728 = Ultima
     -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
+    local skillList = mob:getMobMod(dsp.mobMod.SKILL_LIST);
     local mobhp = mob:getHPP();
     local phase = mob:getLocalVar("battlePhase");
 

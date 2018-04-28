@@ -10,11 +10,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_GIL_MIN, 12000);
-    mob:setMobMod(MOBMOD_GIL_MAX, 30000);
-    mob:setMobMod(MOBMOD_MUG_GIL, 8000);
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
+    mob:setMobMod(dsp.mobMod.GIL_MIN, 12000);
+    mob:setMobMod(dsp.mobMod.GIL_MAX, 30000);
+    mob:setMobMod(dsp.mobMod.MUG_GIL, 8000);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
     mob:setMod(MOD_UDMGBREATH, 0); -- immune to breath damage
 
 end;

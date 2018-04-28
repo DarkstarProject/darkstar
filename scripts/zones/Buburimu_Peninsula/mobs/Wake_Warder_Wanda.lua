@@ -6,7 +6,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 50); -- just one spell to spam
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 50); -- just one spell to spam
     mob:addMod(MOD_SILENCERES,20);
     mob:addMod(MOD_BINDRES,20);
 end;
