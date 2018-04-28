@@ -9,7 +9,7 @@ require("scripts/globals/settings");
 
 function onMobInitialize(mob)
     if (mob:getID() == CANCER + 1) then
-        mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+        mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
     end
 end;
 

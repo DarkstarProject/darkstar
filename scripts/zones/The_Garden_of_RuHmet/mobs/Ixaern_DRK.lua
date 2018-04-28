@@ -22,7 +22,7 @@ function onMobInitialize(mob)
             if target then
                 targetid = target:getShortID();
             end;
-            mob:setMobMod(MOBMOD_NO_DROPS, 1);
+            mob:setMobMod(dsp.mobMod.NO_DROPS, 1);
             mob:timer(9000, function(mob)
                 mob:setHP(mob:getMaxHP());
                 mob:AnimationSub(3);
@@ -37,7 +37,7 @@ function onMobInitialize(mob)
             end)
         else
             -- death
-            mob:setMobMod(MOBMOD_NO_DROPS, 0);
+            mob:setMobMod(dsp.mobMod.NO_DROPS, 0);
             DespawnMob(QnAernA);
             DespawnMob(QnAernB);
         end
@@ -54,7 +54,7 @@ end;
 
 function onMobSpawn(mob)
     mob:AnimationSub(1);
-    mob:setMobMod(MOBMOD_SCRIPTED_2HOUR,1);
+    mob:setMobMod(dsp.mobMod.SCRIPTED_2HOUR,1);
 
     -- drops either vice or deed
     if (math.random(0,100) <= 25) then

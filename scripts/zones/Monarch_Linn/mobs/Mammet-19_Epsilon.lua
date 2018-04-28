@@ -46,7 +46,7 @@ function changeForm(mob)
         mob:setDelay(3250);
         mob:setDamage(75);
     elseif (newform == 3) then -- Staff Form, ~4s delay, ~10 seconds between spell ends and next cast
-        mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
+        mob:setMobMod(dsp.mobMod.MAGIC_COOL, 10);
         mob:SetMagicCastingEnabled(true);
         mob:setDelay(3700);
         mob:setDamage(40);

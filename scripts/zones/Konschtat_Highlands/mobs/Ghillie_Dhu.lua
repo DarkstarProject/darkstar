@@ -10,7 +10,7 @@ require("scripts/globals/msg");
 
 function onMobInitialize(mob)
     -- For its TP drain melee.
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 
     -- Hits especially hard for his level, even by NM standards.
     mob:addMod(MOD_ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql

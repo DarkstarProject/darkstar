@@ -44,7 +44,7 @@ end;
 function onMobDisengage(mob)
     -- Make sure model is reset back to start
     mob:setModelId(1840);
-    mob:setMobMod(MOBMOD_SKILL_LIST, 316);
+    mob:setMobMod(dsp.mobMod.SKILL_LIST, 316);
   
     -- Prevent death and hide HP until final phase
     mob:setUnkillable(true);
@@ -100,14 +100,14 @@ function onMobFight(mob,target)
         mob:setTP(0);
         mob:setModelId(mobModelID[phase]);
         mob:setHP(mobHP[phase]);
-        mob:setMobMod(MOBMOD_SKILL_LIST,skillID[phase]);
+        mob:setMobMod(dsp.mobMod.SKILL_LIST,skillID[phase]);
 
         -- Handle pets
         for i = 1, 8 do
             local oldPet = pets[phase % 2][i];
             local newPet = pets[(phase - 1) % 2][i];
             newPet:updateEnmity(target);
-            newPet:setMobMod(MOBMOD_MAGIC_DELAY,4);
+            newPet:setMobMod(dsp.mobMod.MAGIC_DELAY,4);
             handlePet(mob, newPet, oldPet, target, petModelID[phase]);
         end
        

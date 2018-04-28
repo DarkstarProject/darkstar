@@ -81,12 +81,12 @@ function onMobSpawn(mob)
             end
         else
             -- We're out of raises, so we can go away now
-            mob:setMobMod(MOBMOD_BEHAVIOR, 0);
+            mob:setMobMod(dsp.mobMod.BEHAVIOR, 0);
         end
     end)
 
     -- We're able to be raised initially and shouldn't despawn
-    mob:setMobMod(MOBMOD_BEHAVIOR, 5);
+    mob:setMobMod(dsp.mobMod.BEHAVIOR, 5);
 end;
 
 function onMobEngaged(mob,target)
@@ -121,7 +121,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     -- If he's out of reraises, display text
-    if (isKiller and mob:getMobMod(MOBMOD_BEHAVIOR) == 0) then
+    if (isKiller and mob:getMobMod(dsp.mobMod.BEHAVIOR) == 0) then
         mob:showText(mob,NyzulIsle.text.MIRACLE);
     end
 end;

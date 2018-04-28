@@ -6,7 +6,7 @@
 require("scripts/globals/status");
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 4);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 4);
 end;
 
 function onMobFight (mob,target)

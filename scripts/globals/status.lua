@@ -1965,73 +1965,77 @@ SPELLGROUP_WHITE     = 6
 ------------------------------------
 -- MOBMODs
 ------------------------------------
-MOBMOD_NONE           = 0
-MOBMOD_GIL_MIN        = 1
-MOBMOD_GIL_MAX        = 2
-MOBMOD_MP_BASE        = 3
-MOBMOD_SIGHT_RANGE    = 4
-MOBMOD_SOUND_RANGE    = 5
-MOBMOD_BUFF_CHANCE    = 6
-MOBMOD_GA_CHANCE      = 7
-MOBMOD_HEAL_CHANCE    = 8
-MOBMOD_HP_HEAL_CHANCE = 9
-MOBMOD_SUBLINK        = 10
-MOBMOD_LINK_RADIUS    = 11
-MOBMOD_DRAW_IN        = 12
-MOBMOD_RAGE           = 13
-MOBMOD_SKILL_LIST     = 14
-MOBMOD_MUG_GIL        = 15
-MOBMOD_MAIN_2HOUR     = 16
-MOBMOD_NO_DESPAWN     = 17
-MOBMOD_VAR            = 18
-MOBMOD_SUB_2HOUR      = 19
-MOBMOD_TP_USE_CHANCE  = 20
-MOBMOD_PET_SPELL_LIST = 21
-MOBMOD_NA_CHANCE      = 22
-MOBMOD_IMMUNITY       = 23
-MOBMOD_GRADUAL_RAGE   = 24
-MOBMOD_BUILD_RESIST   = 25
-MOBMOD_SUPERLINK      = 26
-MOBMOD_SPELL_LIST     = 27
-MOBMOD_EXP_BONUS      = 28
-MOBMOD_ASSIST         = 29
-MOBMOD_SPECIAL_SKILL  = 30
-MOBMOD_ROAM_DISTANCE  = 31
-MOBMOD_2HOUR_MULTI    = 32
-MOBMOD_SPECIAL_COOL   = 33
-MOBMOD_MAGIC_COOL     = 34
-MOBMOD_STANDBACK_COOL = 35
-MOBMOD_ROAM_COOL      = 36
-MOBMOD_ALWAYS_AGGRO   = 37
-MOBMOD_NO_DROPS       = 38
-MOBMOD_SHARE_POS      = 39
-MOBMOD_TELEPORT_CD    = 40
-MOBMOD_TELEPORT_START = 41
-MOBMOD_TELEPORT_END   = 42
-MOBMOD_TELEPORT_TYPE  = 43
-MOBMOD_DUAL_WIELD     = 44
-MOBMOD_ADD_EFFECT     = 45
-MOBMOD_AUTO_SPIKES    = 46
-MOBMOD_SPAWN_LEASH    = 47
-MOBMOD_SHARE_TARGET   = 48
-MOBMOD_SCRIPTED_2HOUR = 49
-MOBMOD_2HOUR_PROC     = 50
-MOBMOD_ROAM_TURNS     = 51
-MOBMOD_ROAM_RATE      = 52
-MOBMOD_BEHAVIOR       = 53
-MOBMOD_GIL_BONUS      = 54
-MOBMOD_IDLE_DESPAWN   = 55
-MOBMOD_HP_STANDBACK   = 56
-MOBMOD_MAGIC_DELAY    = 57
-MOBMOD_SPECIAL_DELAY  = 58
-MOBMOD_WEAPON_BONUS   = 59
-MOBMOD_SPAWN_ANIMATIONSUB = 60
-MOBMOD_HP_SCALE       = 61
-MOBMOD_NO_STANDBACK   = 62
-MOBMOD_ATTACK_SKILL_LIST = 63
-MOBMOD_CHARMABLE      = 64
-MOBMOD_NO_MOVE        = 65
-MOBMOD_MULTI_HIT      = 66
+
+dsp.mobMod =
+{
+    NONE                = 0,
+    GIL_MIN             = 1,
+    GIL_MAX             = 2,
+    MP_BASE             = 3,
+    SIGHT_RANGE         = 4,
+    SOUND_RANGE         = 5,
+    BUFF_CHANCE         = 6,
+    GA_CHANCE           = 7,
+    HEAL_CHANCE         = 8,
+    HP_HEAL_CHANCE      = 9,
+    SUBLINK             = 10,
+    LINK_RADIUS         = 11,
+    DRAW_IN             = 12,
+    RAGE                = 13,
+    SKILL_LIST          = 14,
+    MUG_GIL             = 15,
+    MAIN_2HOUR          = 16,
+    NO_DESPAWN          = 17,
+    VAR                 = 18,
+    SUB_2HOUR           = 19,
+    TP_USE_CHANCE       = 20,
+    PET_SPELL_LIST      = 21,
+    NA_CHANCE           = 22,
+    IMMUNITY            = 23,
+    GRADUAL_RAGE        = 24,
+    BUILD_RESIST        = 25,
+    SUPERLINK           = 26,
+    SPELL_LIST          = 27,
+    EXP_BONUS           = 28,
+    ASSIST              = 29,
+    SPECIAL_SKILL       = 30,
+    ROAM_DISTANCE       = 31,
+    MULTI_2HOUR         = 32,
+    SPECIAL_COOL        = 33,
+    MAGIC_COOL          = 34,
+    STANDBACK_COOL      = 35,
+    ROAM_COOL           = 36,
+    ALWAYS_AGGRO        = 37,
+    NO_DROPS            = 38,
+    SHARE_POS           = 39,
+    TELEPORT_CD         = 40,
+    TELEPORT_START      = 41,
+    TELEPORT_END        = 42,
+    TELEPORT_TYPE       = 43,
+    DUAL_WIELD          = 44,
+    ADD_EFFECT          = 45,
+    AUTO_SPIKES         = 46,
+    SPAWN_LEASH         = 47,
+    SHARE_TARGET        = 48,
+    SCRIPTED_2HOUR      = 49,
+    PROC_2HOUR          = 50,
+    ROAM_TURNS          = 51,
+    ROAM_RATE           = 52,
+    BEHAVIOR            = 53,
+    GIL_BONUS           = 54,
+    IDLE_DESPAWN        = 55,
+    HP_STANDBACK        = 56,
+    MAGIC_DELAY         = 57,
+    SPECIAL_DELAY       = 58,
+    WEAPON_BONUS        = 59,
+    SPAWN_ANIMATIONSUB  = 60,
+    HP_SCALE            = 61,
+    NO_STANDBACK        = 62,
+    ATTACK_SKILL_LIST   = 63,
+    CHARMABLE           = 64,
+    NO_MOVE             = 65,
+    MULTI_HIT           = 66,
+};
 
 ------------------------------------
 -- Job Specials (1hr / 2hr moves)
@@ -2380,7 +2384,8 @@ ANIMATION_MOUNT                    = 85;
 ------------------------------------
 -- Mount IDs
 ------------------------------------
-MOUNTS =
+
+dsp.mounts =
 {
     CHOCOBO        = 0,
     QUEST_RAPTOR   = 1,
@@ -2403,7 +2408,7 @@ MOUNTS =
     SPECTRAL_CHAIR = 18,
     SPHEROID       = 19,
     OMEGA          = 20,
-}
+};
 
 ------------------------------------
 -- Item Check Params

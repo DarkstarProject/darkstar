@@ -13,8 +13,8 @@ require("scripts/globals/status");
 require("scripts/globals/titles");
 
 function onMobInitialize( mob )
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end
 
 function onMobSpawn(mob)

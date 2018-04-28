@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_2HOUR_MULTI,1);
+    mob:setMobMod(dsp.mobMod.MULTI_2HOUR,1); -- not currently implemented
 end;
 
 function onMobSpawn(mob)

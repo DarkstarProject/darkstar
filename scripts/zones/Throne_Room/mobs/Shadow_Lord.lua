@@ -31,7 +31,7 @@ function onMobFight(mob,target)
                 mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(false);
                 mob:SetMagicCastingEnabled(true);
-                mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
+                mob:setMobMod(dsp.mobMod.MAGIC_COOL, 2);
                 --and record the time and HP this immunity was started
                 mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
@@ -43,7 +43,7 @@ function onMobFight(mob,target)
                 mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(false);
                 mob:SetMagicCastingEnabled(true);
-                mob:setMobMod(MOBMOD_MAGIC_COOL, 2);
+                mob:setMobMod(dsp.mobMod.MAGIC_COOL, 2);
                 mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
             -- subanimation 1 is magic mode, so check if he should change into physical mode
@@ -56,7 +56,7 @@ function onMobFight(mob,target)
                 mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
                 mob:SetAutoAttackEnabled(true);
                 mob:SetMagicCastingEnabled(false);
-                mob:setMobMod(MOBMOD_MAGIC_COOL, 10);
+                mob:setMobMod(dsp.mobMod.MAGIC_COOL, 10);
                 mob:setLocalVar("changeTime", mob:getBattleTime());
                 mob:setLocalVar("changeHP", mob:getHP());
             end

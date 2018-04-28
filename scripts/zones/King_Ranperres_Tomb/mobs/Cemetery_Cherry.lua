@@ -17,8 +17,8 @@ function spawnSaplings()
 end;
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 
     local saplingsRespawn = math.random(1800,3600); -- 30 to 60 minutes
     mob:timer(saplingsRespawn * 1000, function(mob) spawnSaplings(); end);

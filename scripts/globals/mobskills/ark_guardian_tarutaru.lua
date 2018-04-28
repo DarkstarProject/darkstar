@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    mob:useMobAbility(mob:getMobMod(MOBMOD_TELEPORT_END));
+    mob:useMobAbility(mob:getMobMod(dsp.mobMod.TELEPORT_END));
     skill:setMsg(msgBasic.NONE);
     return 0;
 end;

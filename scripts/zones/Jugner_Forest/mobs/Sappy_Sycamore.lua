@@ -7,7 +7,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
     mob:addMod(MOD_SLEEPRES,20);
     mob:addMod(MOD_BINDRES,20);
 end;

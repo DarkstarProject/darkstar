@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
@@ -20,7 +20,7 @@ function onMobSpawn(mob)
     end
 
     -- 20 minute rage timer
-    mob:setMobMod(MOBMOD_RAGE, 1200);
+    mob:setMobMod(dsp.mobMod.RAGE, 1200);
 end;
 
 function onAdditionalEffect(mob,target,damage)

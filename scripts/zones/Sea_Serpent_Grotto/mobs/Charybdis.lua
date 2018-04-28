@@ -5,7 +5,7 @@
 
 function onMobInitialize(mob)
 
-    mob:setMobMod(MOBMOD_MULTI_HIT, 5);
+    mob:setMobMod(dsp.mobMod.MULTI_HIT, 5);
 
 end;
 

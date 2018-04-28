@@ -13,11 +13,11 @@ function onMobInitialize(mob)
     mob:addMod(MOD_UFASTCAST, 60);
     mob:addMod(MOD_UDMGPHYS, -75);
     mob:addMod(MOD_REGAIN, 100);
-    mob:setMobMod(MOBMOD_HP_STANDBACK,-1);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1);
 end;
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_GA_CHANCE,25);
+    mob:setMobMod(dsp.mobMod.GA_CHANCE,25);
 end;
 
 function onMobFight(mob, target)

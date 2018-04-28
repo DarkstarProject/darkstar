@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(MOBMOD_VAR) == 1) then
+    if (mob:getMobMod(dsp.mobMod.VAR) == 1) then
         return 0;
     end
     return 1;
@@ -21,7 +21,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    mob:setMobMod(MOBMOD_VAR, 2);
+    mob:setMobMod(dsp.mobMod.VAR, 2);
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 2;

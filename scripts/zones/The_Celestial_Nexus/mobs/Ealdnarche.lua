@@ -11,12 +11,12 @@ require("scripts/globals/magic");
 function onMobInitialize(mob)
     --50% fast cast, no standback
     mob:addMod(MOD_UFASTCAST, 50);
-    mob:setMobMod(MOBMOD_HP_STANDBACK,-1);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1);
 end;
 
 function onMobSpawn(mob)
     mob:SetAutoAttackEnabled(false);
-    mob:setMobMod(MOBMOD_GA_CHANCE,25);
+    mob:setMobMod(dsp.mobMod.GA_CHANCE,25);
     mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
     mob:addStatusEffectEx(dsp.effects.ARROW_SHIELD, 0, 1, 0, 0);
     mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);

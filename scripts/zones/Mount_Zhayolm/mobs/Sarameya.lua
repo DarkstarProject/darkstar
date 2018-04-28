@@ -12,8 +12,8 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_GA_CHANCE, 50);
-    mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.GA_CHANCE, 50);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, mob:getShortID());
 end;
 
 function onMobSpawn(mob)
@@ -22,7 +22,7 @@ function onMobSpawn(mob)
     mob:addMod(MOD_SILENCERES, 20);
     mob:addMod(MOD_GRAVITYRES, 20);
     mob:addMod(MOD_LULLABYRES, 30);
-    mob:setMobMod(MOBMOD_RAGE, 3600); -- 60 minute rage timer
+    mob:setMobMod(dsp.mobMod.RAGE, 3600); -- 60 minute rage timer
 end;
 
 function onMobRoam(mob)
@@ -51,7 +51,7 @@ function onMobFight(mob, target)
 
     if (useChainspell == true) then
         mob:useMobAbility(692); -- Chainspell
-        mob:setMobMod(MOBMOD_GA_CHANCE, 100);
+        mob:setMobMod(dsp.mobMod.GA_CHANCE, 100);
 
     end
 
@@ -59,8 +59,8 @@ function onMobFight(mob, target)
     if (mob:hasStatusEffect(dsp.effects.CHAINSPELL) == true) then
         mob:setTP(2000);
     else
-        if (mob:getMobMod(MOBMOD_GA_CHANCE) == 100) then
-            mob:setMobMod(MOBMOD_GA_CHANCE, 50);
+        if (mob:getMobMod(dsp.mobMod.GA_CHANCE) == 100) then
+            mob:setMobMod(dsp.mobMod.GA_CHANCE, 50);
         end
     end;
 
