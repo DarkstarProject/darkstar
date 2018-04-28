@@ -122,7 +122,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 64) then
         player:addKeyItem(dsp.kis.CHOCOBO_LICENSE);
         player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.CHOCOBO_LICENSE);
-        player:addTitle(CHOCOBO_TRAINER);
+        player:addTitle(dsp.titles.CHOCOBO_TRAINER);
         player:setVar("ChocobosWounds_Event", 0);
         player:setVar("ChocobosWounds_Min", 0);
         player:addFame(JEUNO,30);

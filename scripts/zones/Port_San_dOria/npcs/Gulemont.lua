@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 607) then
         player:delKeyItem(dsp.kis.GULEMONTS_DOCUMENT);
         player:addFame(SANDORIA,30);
-        player:addTitle(LOST_CHILD_OFFICER);
+        player:addTitle(dsp.titles.LOST_CHILD_OFFICER);
         player:completeQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
         player:addGil(560*GIL_RATE);
         player:messageSpecial(GIL_OBTAINED,560*GIL_RATE);

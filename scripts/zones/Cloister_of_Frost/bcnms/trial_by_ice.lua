@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.kis.TUNING_FORK_OF_ICE);
         player:addKeyItem(dsp.kis.WHISPER_OF_FROST);
-        player:addTitle(HEIR_OF_THE_GREAT_ICE);
+        player:addTitle(dsp.titles.HEIR_OF_THE_GREAT_ICE);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.WHISPER_OF_FROST);
     end
 

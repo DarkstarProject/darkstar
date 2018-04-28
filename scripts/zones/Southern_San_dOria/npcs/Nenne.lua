@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
     if (csid == 538) then
         player:setVar("toCureaCough",1);
     elseif (csid == 647) then
-        player:addTitle(A_MOSS_KIND_PERSON);
+        player:addTitle(dsp.titles.A_MOSS_KIND_PERSON);
         player:setVar("toCureaCough",0);
         player:setVar("DiaryPage",0);
         player:delKeyItem(dsp.kis.COUGH_MEDICINE);

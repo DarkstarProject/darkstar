@@ -171,7 +171,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         player:addKeyItem(dsp.kis.STAR_SEEKER);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_SEEKER);
-        player:addTitle(FUGITIVE_MINISTER_BOUNTY_HUNTER);
+        player:addTitle(dsp.titles.FUGITIVE_MINISTER_BOUNTY_HUNTER);
 
     elseif (csid == 758) then
         finishMissionTimeline(player,3,csid,option);

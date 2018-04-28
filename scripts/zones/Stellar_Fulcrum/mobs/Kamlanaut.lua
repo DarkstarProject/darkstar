@@ -38,5 +38,5 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(DESTROYER_OF_ANTIQUITY);
+    player:addTitle(dsp.titles.DESTROYER_OF_ANTIQUITY);
 end;

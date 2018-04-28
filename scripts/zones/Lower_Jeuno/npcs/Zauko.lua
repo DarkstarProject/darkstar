@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 
     -- COMMUNITY SERVICE
     elseif (csid == 117) then
-        local params = {title = TORCHBEARER, var = "currCommService"};
+        local params = {title = dsp.titles.TORCHBEARER, var = "currCommService"};
         if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
             -- first victory
             params.fame = 30;

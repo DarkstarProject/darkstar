@@ -6,20 +6,20 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { CORDON_BLEU_FISHER , ECOLOGIST , LIL_CUPID , ACE_ANGLER , GOLD_HOOK , MYTHRIL_HOOK , SILVER_HOOK , COPPER_HOOK ,
+local title2 = { dsp.titles.CORDON_BLEU_FISHER , dsp.titles.ECOLOGIST , dsp.titles.LIL_CUPID , dsp.titles.ACE_ANGLER , dsp.titles.GOLD_HOOK , dsp.titles.MYTHRIL_HOOK , dsp.titles.SILVER_HOOK , dsp.titles.COPPER_HOOK ,
                 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { SAVIOR_OF_LOVE , HONORARY_CITIZEN_OF_SELBINA , THE_LOVE_DOCTOR , LU_SHANGLIKE_FISHER_KING , ORCISH_SERJEANT , BRONZE_QUADAV ,
-                YAGUDO_INITIATE , MOBLIN_KINSMAN , TEAM_PLAYER , DYNAMISVALKURM_INTERLOPER , DISTURBER_OF_SLUMBER , INTERRUPTER_OF_DREAMS ,
+local title3 = { dsp.titles.SAVIOR_OF_LOVE , dsp.titles.HONORARY_CITIZEN_OF_SELBINA , dsp.titles.THE_LOVE_DOCTOR , dsp.titles.LU_SHANGLIKE_FISHER_KING , dsp.titles.ORCISH_SERJEANT , dsp.titles.BRONZE_QUADAV ,
+                dsp.titles.YAGUDO_INITIATE , dsp.titles.MOBLIN_KINSMAN , dsp.titles.TEAM_PLAYER , dsp.titles.DYNAMISVALKURM_INTERLOPER , dsp.titles.DISTURBER_OF_SLUMBER , dsp.titles.INTERRUPTER_OF_DREAMS ,
                 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { FODDERCHIEF_FLAYER , WARCHIEF_WRECKER , DREAD_DRAGON_SLAYER , OVERLORD_EXECUTIONER , DARK_DRAGON_SLAYER ,
-                ADAMANTKING_KILLER , BLACK_DRAGON_SLAYER , MANIFEST_MAULER , BEHEMOTHS_BANE , ARCHMAGE_ASSASSIN , HELLSBANE , GIANT_KILLER ,
-                LICH_BANISHER , JELLYBANE , BOGEYDOWNER , BEAKBENDER , SKULLCRUSHER , MORBOLBANE , GOLIATH_KILLER , MARYS_GUIDE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title5 = { SIMURGH_POACHER , ROC_STAR , SERKET_BREAKER , CASSIENOVA , THE_HORNSPLITTER , TORTOISE_TORTURER , MON_CHERRY ,
-                BEHEMOTH_DETHRONER , THE_VIVISECTOR , DRAGON_ASHER , EXPEDITIONARY_TROOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { ADAMANTKING_USURPER , OVERLORD_OVERTHROWER , DEITY_DEBUNKER , FAFNIR_SLAYER , ASPIDOCHELONE_SINKER , NIDHOGG_SLAYER ,
-                MAAT_MASHER , KIRIN_CAPTIVATOR , CACTROT_DESACELERADOR , LIFTER_OF_SHADOWS , TIAMAT_TROUNCER , VRTRA_VANQUISHER , WORLD_SERPENT_SLAYER ,
-                XOLOTL_XTRAPOLATOR , BOROKA_BELEAGUERER , OURYU_OVERWHELMER , VINEGAR_EVAPORATOR , VIRTUOUS_SAINT , BYEBYE_TAISAI , TEMENOS_LIBERATOR ,
-                APOLLYON_RAVAGER , WYRM_ASTONISHER , NIGHTMARE_AWAKENER , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.titles.FODDERCHIEF_FLAYER , dsp.titles.WARCHIEF_WRECKER , dsp.titles.DREAD_DRAGON_SLAYER , dsp.titles.OVERLORD_EXECUTIONER , dsp.titles.DARK_DRAGON_SLAYER ,
+                dsp.titles.ADAMANTKING_KILLER , dsp.titles.BLACK_DRAGON_SLAYER , dsp.titles.MANIFEST_MAULER , dsp.titles.BEHEMOTHS_BANE , dsp.titles.ARCHMAGE_ASSASSIN , dsp.titles.HELLSBANE , dsp.titles.GIANT_KILLER ,
+                dsp.titles.LICH_BANISHER , dsp.titles.JELLYBANE , dsp.titles.BOGEYDOWNER , dsp.titles.BEAKBENDER , dsp.titles.SKULLCRUSHER , dsp.titles.MORBOLBANE , dsp.titles.GOLIATH_KILLER , dsp.titles.MARYS_GUIDE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title5 = { dsp.titles.SIMURGH_POACHER , dsp.titles.ROC_STAR , dsp.titles.SERKET_BREAKER , dsp.titles.CASSIENOVA , dsp.titles.THE_HORNSPLITTER , dsp.titles.TORTOISE_TORTURER , dsp.titles.MON_CHERRY ,
+                dsp.titles.BEHEMOTH_DETHRONER , dsp.titles.THE_VIVISECTOR , dsp.titles.DRAGON_ASHER , dsp.titles.EXPEDITIONARY_TROOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { dsp.titles.ADAMANTKING_USURPER , dsp.titles.OVERLORD_OVERTHROWER , dsp.titles.DEITY_DEBUNKER , dsp.titles.FAFNIR_SLAYER , dsp.titles.ASPIDOCHELONE_SINKER , dsp.titles.NIDHOGG_SLAYER ,
+                dsp.titles.MAAT_MASHER , dsp.titles.KIRIN_CAPTIVATOR , dsp.titles.CACTROT_DESACELERADOR , dsp.titles.LIFTER_OF_SHADOWS , dsp.titles.TIAMAT_TROUNCER , dsp.titles.VRTRA_VANQUISHER , dsp.titles.WORLD_SERPENT_SLAYER ,
+                dsp.titles.XOLOTL_XTRAPOLATOR , dsp.titles.BOROKA_BELEAGUERER , dsp.titles.OURYU_OVERWHELMER , dsp.titles.VINEGAR_EVAPORATOR , dsp.titles.VIRTUOUS_SAINT , dsp.titles.BYEBYE_TAISAI , dsp.titles.TEMENOS_LIBERATOR ,
+                dsp.titles.APOLLYON_RAVAGER , dsp.titles.WYRM_ASTONISHER , dsp.titles.NIGHTMARE_AWAKENER , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)

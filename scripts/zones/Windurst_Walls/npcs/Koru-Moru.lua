@@ -168,7 +168,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
         player:addItem(17030);
         player:messageSpecial(ITEM_OBTAINED,17030);
-        player:addTitle(FOSSILIZED_SEA_FARER);
+        player:addTitle(dsp.titles.FOSSILIZED_SEA_FARER);
         player:addFame(WINDURST,30);
         player:needToZone(true);
     elseif (csid == 404) then
@@ -211,7 +211,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12520); -- Evoker's Horn
             player:messageSpecial(ITEM_OBTAINED,12520);
-            player:addTitle(PARAGON_OF_SUMMONER_EXCELLENCE);
+            player:addTitle(dsp.titles.PARAGON_OF_SUMMONER_EXCELLENCE);
             player:completeQuest(WINDURST,CARBUNCLE_DEBACLE);
             player:addFame(WINDURST,AF3_FAME);
             player:setVar("CarbuncleDebacleProgress",0);

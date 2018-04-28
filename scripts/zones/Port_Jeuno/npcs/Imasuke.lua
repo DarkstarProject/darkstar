@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
     if (csid == 13 and option == 1) then
         player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
     elseif (csid == 15) then
-        player:addTitle(TRADER_OF_ANTIQUITIES);
+        player:addTitle(dsp.titles.TRADER_OF_ANTIQUITIES);
         if (player:hasKeyItem(dsp.kis.MAP_OF_DELKFUTTS_TOWER) == false) then
             player:addKeyItem(dsp.kis.MAP_OF_DELKFUTTS_TOWER);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_DELKFUTTS_TOWER);

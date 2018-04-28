@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.kis.SEA_SERPENT_STATUE);
             player:addItem(4946); -- Scroll of Utsusemi: Ichi
             player:messageSpecial(ITEM_OBTAINED, 4946);
-            player:addTitle(TREASUREHOUSE_RANSACKER);
+            player:addTitle(dsp.titles.TREASUREHOUSE_RANSACKER);
             player:addFame(NORG,75);
             player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
         end

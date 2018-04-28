@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     local LEGENDARY = 0;
     local CAPACITY = 0;
 
-    if (player:hasTitle(LEGENDARY_LEGIONNAIRE)) then
+    if (player:hasTitle(dsp.titles.LEGENDARY_LEGIONNAIRE)) then
         LEGENDARY = 1;
     end
 

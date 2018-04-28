@@ -12,7 +12,7 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(SIMURGH_POACHER);
+    player:addTitle(dsp.titles.SIMURGH_POACHER);
 end;
 
 function onMobDespawn(mob)

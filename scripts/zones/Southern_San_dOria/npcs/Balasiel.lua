@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 617) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
-            player:addTitle(KNIGHT_IN_TRAINING);
+            player:addTitle(dsp.titles.KNIGHT_IN_TRAINING);
             player:addItem(16565);
             player:messageSpecial(ITEM_OBTAINED, 16565); -- Spatha
             player:addFame(SANDORIA,30);
@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
     elseif (csid == 626) then
         player:tradeComplete();
-        player:addTitle(SPELUNKER);
+        player:addTitle(dsp.titles.SPELUNKER);
         player:delKeyItem(dsp.kis.STALACTITE_DEW);
         player:addKeyItem(dsp.kis.SQUIRE_CERTIFICATE);
         player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.SQUIRE_CERTIFICATE);
@@ -134,7 +134,7 @@ function onEventFinish(player,csid,option)
         player:setVar("KnightsTest_Event",0);
     elseif (csid == 628) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:addTitle(TRIED_AND_TESTED_KNIGHT);
+            player:addTitle(dsp.titles.TRIED_AND_TESTED_KNIGHT);
             player:delKeyItem(dsp.kis.KNIGHTS_SOUL);
             player:delKeyItem(dsp.kis.BOOK_OF_TASKS);
             player:delKeyItem(dsp.kis.BOOK_OF_THE_WEST);

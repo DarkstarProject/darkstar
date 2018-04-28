@@ -6,22 +6,22 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { BROWN_MAGE_GUINEA_PIG , BROWN_MAGIC_BYPRODUCT , RESEARCHER_OF_CLASSICS , TORCHBEARER , FORTUNETELLER_IN_TRAINING ,
-                CHOCOBO_TRAINER , CLOCK_TOWER_PRESERVATIONIST , LIFE_SAVER , CARD_COLLECTOR , TWOS_COMPANY , TRADER_OF_ANTIQUITIES , GOBLINS_EXCLUSIVE_FASHION_MANNEQUIN ,
-                TENSHODO_MEMBER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { ACTIVIST_FOR_KINDNESS , ENVOY_TO_THE_NORTH , EXORCIST_IN_TRAINING , FOOLS_ERRAND_RUNNER , STREET_SWEEPER ,
-                MERCY_ERRAND_RUNNER , BELIEVER_OF_ALTANA , TRADER_OF_MYSTERIES , WANDERING_MINSTREL , ANIMAL_TRAINER , HAVE_WINGS_WILL_FLY ,
-                ROD_RETRIEVER , DESTINED_FELLOW , TROUPE_BRILIOTH_DANCER , PROMISING_DANCER , STARDUST_DANCER ,
+local title2 = { dsp.titles.BROWN_MAGE_GUINEA_PIG , dsp.titles.BROWN_MAGIC_BYPRODUCT , dsp.titles.RESEARCHER_OF_CLASSICS , dsp.titles.TORCHBEARER , dsp.titles.FORTUNETELLER_IN_TRAINING ,
+                dsp.titles.CHOCOBO_TRAINER , dsp.titles.CLOCK_TOWER_PRESERVATIONIST , dsp.titles.LIFE_SAVER , dsp.titles.CARD_COLLECTOR , dsp.titles.TWOS_COMPANY , dsp.titles.TRADER_OF_ANTIQUITIES , dsp.titles.GOBLINS_EXCLUSIVE_FASHION_MANNEQUIN ,
+                dsp.titles.TENSHODO_MEMBER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.titles.ACTIVIST_FOR_KINDNESS , dsp.titles.ENVOY_TO_THE_NORTH , dsp.titles.EXORCIST_IN_TRAINING , dsp.titles.FOOLS_ERRAND_RUNNER , dsp.titles.STREET_SWEEPER ,
+                dsp.titles.MERCY_ERRAND_RUNNER , dsp.titles.BELIEVER_OF_ALTANA , dsp.titles.TRADER_OF_MYSTERIES , dsp.titles.WANDERING_MINSTREL , dsp.titles.ANIMAL_TRAINER , dsp.titles.HAVE_WINGS_WILL_FLY ,
+                dsp.titles.ROD_RETRIEVER , dsp.titles.DESTINED_FELLOW , dsp.titles.TROUPE_BRILIOTH_DANCER , dsp.titles.PROMISING_DANCER , dsp.titles.STARDUST_DANCER ,
                 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { TIMEKEEPER , BRINGER_OF_BLISS , PROFESSIONAL_LOAFER , TRADER_OF_RENOWN , HORIZON_BREAKER , SUMMIT_BREAKER ,
-                BROWN_BELT , DUCAL_DUPE , CHOCOBO_LOVE_GURU , PICKUP_ARTIST , WORTHY_OF_TRUST , A_FRIEND_INDEED , CHOCOROOKIE , CRYSTAL_STAKES_CUPHOLDER ,
-                WINNING_OWNER , VICTORIOUS_OWNER , TRIUMPHANT_OWNER , HIGH_ROLLER , FORTUNES_FAVORITE , CHOCOCHAMPION ,
+local title4 = { dsp.titles.TIMEKEEPER , dsp.titles.BRINGER_OF_BLISS , dsp.titles.PROFESSIONAL_LOAFER , dsp.titles.TRADER_OF_RENOWN , dsp.titles.HORIZON_BREAKER , dsp.titles.SUMMIT_BREAKER ,
+                dsp.titles.BROWN_BELT , dsp.titles.DUCAL_DUPE , dsp.titles.CHOCOBO_LOVE_GURU , dsp.titles.PICKUP_ARTIST , dsp.titles.WORTHY_OF_TRUST , dsp.titles.A_FRIEND_INDEED , dsp.titles.CHOCOROOKIE , dsp.titles.CRYSTAL_STAKES_CUPHOLDER ,
+                dsp.titles.WINNING_OWNER , dsp.titles.VICTORIOUS_OWNER , dsp.titles.TRIUMPHANT_OWNER , dsp.titles.HIGH_ROLLER , dsp.titles.FORTUNES_FAVORITE , dsp.titles.CHOCOCHAMPION ,
                 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title5 = { PARAGON_OF_BEASTMASTER_EXCELLENCE , PARAGON_OF_BARD_EXCELLENCE , SKY_BREAKER , BLACK_BELT , GREEDALOX , CLOUD_BREAKER ,
-                STAR_BREAKER , ULTIMATE_CHAMPION_OF_THE_WORLD , DYNAMISJEUNO_INTERLOPER , DYNAMISBEAUCEDINE_INTERLOPER , DYNAMISXARCABARD_INTERLOPER ,
-                DYNAMISQUFIM_INTERLOPER , CONQUEROR_OF_FATE , SUPERHERO , SUPERHEROINE , ELEGANT_DANCER , DAZZLING_DANCE_DIVA , GRIMOIRE_BEARER ,
-                FELLOW_FORTIFIER , BUSHIN_ASPIRANT , BUSHIN_RYU_INHERITOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { GRAND_GREEDALOX , SILENCER_OF_THE_ECHO , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title5 = { dsp.titles.PARAGON_OF_BEASTMASTER_EXCELLENCE , dsp.titles.PARAGON_OF_BARD_EXCELLENCE , dsp.titles.SKY_BREAKER , dsp.titles.BLACK_BELT , dsp.titles.GREEDALOX , dsp.titles.CLOUD_BREAKER ,
+                dsp.titles.STAR_BREAKER , dsp.titles.ULTIMATE_CHAMPION_OF_THE_WORLD , dsp.titles.DYNAMISJEUNO_INTERLOPER , dsp.titles.DYNAMISBEAUCEDINE_INTERLOPER , dsp.titles.DYNAMISXARCABARD_INTERLOPER ,
+                dsp.titles.DYNAMISQUFIM_INTERLOPER , dsp.titles.CONQUEROR_OF_FATE , dsp.titles.SUPERHERO , dsp.titles.SUPERHEROINE , dsp.titles.ELEGANT_DANCER , dsp.titles.DAZZLING_DANCE_DIVA , dsp.titles.GRIMOIRE_BEARER ,
+                dsp.titles.FELLOW_FORTIFIER , dsp.titles.BUSHIN_ASPIRANT , dsp.titles.BUSHIN_RYU_INHERITOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { dsp.titles.GRAND_GREEDALOX , dsp.titles.SILENCER_OF_THE_ECHO , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)

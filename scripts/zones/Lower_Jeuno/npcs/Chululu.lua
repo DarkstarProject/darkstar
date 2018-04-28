@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,card);
         end
     elseif (csid == 200) then
-        player:addTitle(CARD_COLLECTOR);
+        player:addTitle(dsp.titles.CARD_COLLECTOR);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);

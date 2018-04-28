@@ -6,22 +6,22 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { NEW_ADVENTURER , BASTOK_WELCOMING_COMMITTEE , BUCKET_FISHER , PURSUER_OF_THE_PAST , MOMMYS_HELPER , HOT_DOG ,
-                STAMPEDER , RINGBEARER , ZERUHN_SWEEPER , TEARJERKER , CRAB_CRUSHER , BRYGIDAPPROVED , GUSTABERG_TOURIST , MOGS_MASTER , CERULEAN_SOLDIER ,
-                DISCERNING_INDIVIDUAL , VERY_DISCERNING_INDIVIDUAL , EXTREMELY_DISCERNING_INDIVIDUAL , APOSTATE_FOR_HIRE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { SHELL_OUTER , PURSUER_OF_THE_TRUTH , QIJIS_FRIEND , TREASURE_SCAVENGER , SAND_BLASTER , DRACHENFALL_ASCETIC ,
-                ASSASSIN_REJECT , CERTIFIED_ADVENTURER , QIJIS_RIVAL , CONTEST_RIGGER , KULATZ_BRIDGE_COMPANION , AVENGER , AIRSHIP_DENOUNCER ,
-                STAR_OF_IFRIT , PURPLE_BELT , MOGS_KIND_MASTER , TRASH_COLLECTOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { BEADEAUX_SURVEYOR , PILGRIM_TO_DEM , BLACK_DEATH , DARK_SIDER , SHADOW_WALKER , SORROW_DROWNER , STEAMING_SHEEP_REGULAR ,
-                SHADOW_BANISHER , MOGS_EXCEPTIONALLY_KIND_MASTER , HYPER_ULTRA_SONIC_ADVENTURER , GOBLIN_IN_DISGUISE , BASTOKS_SECOND_BEST_DRESSED ,
+local title2 = { dsp.titles.NEW_ADVENTURER , dsp.titles.BASTOK_WELCOMING_COMMITTEE , dsp.titles.BUCKET_FISHER , dsp.titles.PURSUER_OF_THE_PAST , dsp.titles.MOMMYS_HELPER , dsp.titles.HOT_DOG ,
+                dsp.titles.STAMPEDER , dsp.titles.RINGBEARER , dsp.titles.ZERUHN_SWEEPER , dsp.titles.TEARJERKER , dsp.titles.CRAB_CRUSHER , dsp.titles.BRYGIDAPPROVED , dsp.titles.GUSTABERG_TOURIST , dsp.titles.MOGS_MASTER , dsp.titles.CERULEAN_SOLDIER ,
+                dsp.titles.DISCERNING_INDIVIDUAL , dsp.titles.VERY_DISCERNING_INDIVIDUAL , dsp.titles.EXTREMELY_DISCERNING_INDIVIDUAL , dsp.titles.APOSTATE_FOR_HIRE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.titles.SHELL_OUTER , dsp.titles.PURSUER_OF_THE_TRUTH , dsp.titles.QIJIS_FRIEND , dsp.titles.TREASURE_SCAVENGER , dsp.titles.SAND_BLASTER , dsp.titles.DRACHENFALL_ASCETIC ,
+                dsp.titles.ASSASSIN_REJECT , dsp.titles.CERTIFIED_ADVENTURER , dsp.titles.QIJIS_RIVAL , dsp.titles.CONTEST_RIGGER , dsp.titles.KULATZ_BRIDGE_COMPANION , dsp.titles.AVENGER , dsp.titles.AIRSHIP_DENOUNCER ,
+                dsp.titles.STAR_OF_IFRIT , dsp.titles.PURPLE_BELT , dsp.titles.MOGS_KIND_MASTER , dsp.titles.TRASH_COLLECTOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.titles.BEADEAUX_SURVEYOR , dsp.titles.PILGRIM_TO_DEM , dsp.titles.BLACK_DEATH , dsp.titles.DARK_SIDER , dsp.titles.SHADOW_WALKER , dsp.titles.SORROW_DROWNER , dsp.titles.STEAMING_SHEEP_REGULAR ,
+                dsp.titles.SHADOW_BANISHER , dsp.titles.MOGS_EXCEPTIONALLY_KIND_MASTER , dsp.titles.HYPER_ULTRA_SONIC_ADVENTURER , dsp.titles.GOBLIN_IN_DISGUISE , dsp.titles.BASTOKS_SECOND_BEST_DRESSED ,
                 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title5 = { PARAGON_OF_WARRIOR_EXCELLENCE , PARAGON_OF_MONK_EXCELLENCE , PARAGON_OF_DARK_KNIGHT_EXCELLENCE , HEIR_OF_THE_GREAT_EARTH ,
-                MOGS_LOVING_MASTER , HERO_AMONG_HEROES , DYNAMISBASTOK_INTERLOPER , MASTER_OF_MANIPULATION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { LEGIONNAIRE , DECURION , CENTURION , JUNIOR_MUSKETEER , SENIOR_MUSKETEER , MUSKETEER_COMMANDER , GOLD_MUSKETEER ,
-                PRAEFECTUS , SENIOR_GOLD_MUSKETEER , PRAEFECTUS_CASTRORUM , ANVIL_ADVOCATE , FORGE_FANATIC , ACCOMPLISHED_BLACKSMITH , ARMORY_OWNER , TRINKET_TURNER ,
-                SILVER_SMELTER , ACCOMPLISHED_GOLDSMITH , JEWELRY_STORE_OWNER , FORMULA_FIDDLER , POTION_POTENTATE , ACCOMPLISHED_ALCHEMIST , APOTHECARY_OWNER ,
+local title5 = { dsp.titles.PARAGON_OF_WARRIOR_EXCELLENCE , dsp.titles.PARAGON_OF_MONK_EXCELLENCE , dsp.titles.PARAGON_OF_DARK_KNIGHT_EXCELLENCE , dsp.titles.HEIR_OF_THE_GREAT_EARTH ,
+                dsp.titles.MOGS_LOVING_MASTER , dsp.titles.HERO_AMONG_HEROES , dsp.titles.DYNAMISBASTOK_INTERLOPER , dsp.titles.MASTER_OF_MANIPULATION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { dsp.titles.LEGIONNAIRE , dsp.titles.DECURION , dsp.titles.CENTURION , dsp.titles.JUNIOR_MUSKETEER , dsp.titles.SENIOR_MUSKETEER , dsp.titles.MUSKETEER_COMMANDER , dsp.titles.GOLD_MUSKETEER ,
+                dsp.titles.PRAEFECTUS , dsp.titles.SENIOR_GOLD_MUSKETEER , dsp.titles.PRAEFECTUS_CASTRORUM , dsp.titles.ANVIL_ADVOCATE , dsp.titles.FORGE_FANATIC , dsp.titles.ACCOMPLISHED_BLACKSMITH , dsp.titles.ARMORY_OWNER , dsp.titles.TRINKET_TURNER ,
+                dsp.titles.SILVER_SMELTER , dsp.titles.ACCOMPLISHED_GOLDSMITH , dsp.titles.JEWELRY_STORE_OWNER , dsp.titles.FORMULA_FIDDLER , dsp.titles.POTION_POTENTATE , dsp.titles.ACCOMPLISHED_ALCHEMIST , dsp.titles.APOTHECARY_OWNER ,
                 0 , 0 , 0 , 0 , 0 , 0 }
-local title7 = { MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title7 = { dsp.titles.MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)
 end;

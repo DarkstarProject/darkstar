@@ -77,7 +77,7 @@ function onAdditionalEffect(mob, player)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(APOLLYON_RAVAGER);
+    player:addTitle(dsp.titles.APOLLYON_RAVAGER);
 end;
 
 function onMobDespawn(mob)

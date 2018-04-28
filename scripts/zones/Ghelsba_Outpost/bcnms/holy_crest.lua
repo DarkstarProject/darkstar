@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid: "..csid.."and option: "..option);
 
     if (csid == 32001 and option ~= 0 and player:hasKeyItem(dsp.kis.DRAGON_CURSE_REMEDY) == true) then
-        player:addTitle(HEIR_TO_THE_HOLY_CREST);
+        player:addTitle(dsp.titles.HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(dsp.kis.DRAGON_CURSE_REMEDY);
         player:unlockJob(dsp.jobs.DRG);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);

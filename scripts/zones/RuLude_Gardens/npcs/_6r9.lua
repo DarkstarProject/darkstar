@@ -58,11 +58,11 @@ function onEventFinish(player,csid,option)
         if (player:hasKeyItem(dsp.kis.AIRSHIP_PASS)) then
             player:addGil(GIL_RATE*20000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*20000);
-            player:addTitle(CONQUEROR_OF_FATE);
+            player:addTitle(dsp.titles.CONQUEROR_OF_FATE);
         else
             player:addKeyItem(dsp.kis.AIRSHIP_PASS);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.AIRSHIP_PASS);
-            player:addTitle(HAVE_WINGS_WILL_FLY);
+            player:addTitle(dsp.titles.HAVE_WINGS_WILL_FLY);
         end
         player:setVar("MissionStatus",6); -- all that's left is to go back to the embassy
     elseif (csid == 10050) then

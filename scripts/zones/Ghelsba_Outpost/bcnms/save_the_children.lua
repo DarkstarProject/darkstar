@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
 
     if (csid == 32001 and option == 0 and player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") == 2) then
-        player:setTitle(FODDERCHIEF_FLAYER);
+        player:setTitle(dsp.titles.FODDERCHIEF_FLAYER);
         player:addKeyItem(dsp.kis.ORCISH_HUT_KEY);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ORCISH_HUT_KEY);
         player:setVar("MissionStatus",3);

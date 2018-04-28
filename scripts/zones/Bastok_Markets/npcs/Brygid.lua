@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
         else
-            player:addTitle(BRYGIDAPPROVED);
+            player:addTitle(dsp.titles.BRYGIDAPPROVED);
             player:addItem(12720);
             player:messageSpecial(ITEM_OBTAINED,12720);
             player:addFame(BASTOK,30);
@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
         player:setVar("BrygidGetBody",0);
         player:setVar("BrygidGetLegs",0);
         player:setVar("BrygidWantsSubligar",0);
-        player:addTitle(BASTOKS_SECOND_BEST_DRESSED);
+        player:addTitle(dsp.titles.BASTOKS_SECOND_BEST_DRESSED);
         player:addItem(14400+wantsSubligar);
         player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
         player:addFame(BASTOK,30);

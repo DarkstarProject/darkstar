@@ -30,5 +30,5 @@ function onMobDeath(mob, player, isKiller)
         player:addKeyItem(dsp.kis.DYNAMIS_BUBURIMU_SLIVER);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DYNAMIS_BUBURIMU_SLIVER);
     end
-    player:addTitle(DYNAMISBUBURIMU_INTERLOPER);
+    player:addTitle(dsp.titles.DYNAMISBUBURIMU_INTERLOPER);
 end;

@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(TORTOISE_TORTURER);
+    player:addTitle(dsp.titles.TORTOISE_TORTURER);
 end;
 
 function onMobDespawn(mob)

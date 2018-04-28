@@ -41,7 +41,7 @@ function onEventFinish(player,csid,option)
     if (csid == 202) then
         player:setVar("PromathiaStatus",2);
     elseif (120 and option ~=0) then -- Hume
-        player:addTitle(WARRIOR_OF_THE_CRYSTAL);
+        player:addTitle(dsp.titles.WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);
         player:addKeyItem(dsp.kis.LIGHT_OF_VAHZL);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LIGHT_OF_VAHZL);

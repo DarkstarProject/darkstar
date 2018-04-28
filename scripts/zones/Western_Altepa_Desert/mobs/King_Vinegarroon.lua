@@ -29,7 +29,7 @@ function onMobDisengage(mob, weather)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(VINEGAR_EVAPORATOR);
+    player:addTitle(dsp.titles.VINEGAR_EVAPORATOR);
 end;
 
 function onMobDespawn(mob)

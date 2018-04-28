@@ -28,5 +28,5 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(RANI_DECROWNER);
+    player:addTitle(dsp.titles.RANI_DECROWNER);
 end;

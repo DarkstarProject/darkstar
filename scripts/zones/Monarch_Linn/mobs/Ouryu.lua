@@ -54,6 +54,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(MIST_MELTER);
+    player:addTitle(dsp.titles.MIST_MELTER);
 
 end;

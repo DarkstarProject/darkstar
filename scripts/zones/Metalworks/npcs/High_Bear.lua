@@ -45,6 +45,6 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(QUEST_COMPLETED);
             player:messageSpecial(ITEM_OBTAINED,17284);
             player:completeQuest(BASTOK,BEADEAUX_SMOG);
-            player:setTitle(BEADEAUX_SURVEYOR);
+            player:setTitle(dsp.titles.BEADEAUX_SURVEYOR);
     end
 end;

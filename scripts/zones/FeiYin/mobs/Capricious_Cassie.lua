@@ -9,7 +9,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(CASSIENOVA);
+    player:addTitle(dsp.titles.CASSIENOVA);
 end;
 
 function onMobDespawn(mob)

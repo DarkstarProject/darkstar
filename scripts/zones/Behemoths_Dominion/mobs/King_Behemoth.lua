@@ -37,7 +37,7 @@ function onSpellPrecast(mob, spell)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BEHEMOTH_DETHRONER);
+    player:addTitle(dsp.titles.BEHEMOTH_DETHRONER);
 end;
 
 function onMobDespawn(mob)

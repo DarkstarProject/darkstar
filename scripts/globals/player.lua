@@ -323,7 +323,7 @@ function CharCreate(player)
     player:addItem(0x218);
 
     --SET TITLE
-    player:addTitle(NEW_ADVENTURER);
+    player:addTitle(dsp.titles.NEW_ADVENTURER);
 
     -- Needs Moghouse Intro
     player:setVar("MoghouseExplication",1);

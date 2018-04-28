@@ -170,13 +170,13 @@ function onEventFinish(player,csid,option)
     elseif (csid == 88) then
         player:tradeComplete();
         player:addGil(GIL_RATE*200);
-        player:addTitle(CAT_BURGLAR_GROUPIE);
+        player:addTitle(dsp.titles.CAT_BURGLAR_GROUPIE);
         player:needToZone(true);
         player:addFame(NORG,60);
         player:completeQuest(WINDURST,MIHGO_S_AMIGO);
     elseif (csid == 494) then
         player:tradeComplete();
-        player:addTitle(CAT_BURGLAR_GROUPIE);
+        player:addTitle(dsp.titles.CAT_BURGLAR_GROUPIE);
         player:addGil(GIL_RATE*200);
         player:addFame(NORG,30);
     elseif (csid == 496) then

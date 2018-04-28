@@ -49,5 +49,5 @@ function onMobDeath(mob, player, isKiller)
         player:addKeyItem(dsp.kis.DYNAMIS_QUFIM_SLIVER);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.DYNAMIS_QUFIM_SLIVER);
     end
-    player:addTitle(DYNAMISQUFIM_INTERLOPER);
+    player:addTitle(dsp.titles.DYNAMISQUFIM_INTERLOPER);
 end;

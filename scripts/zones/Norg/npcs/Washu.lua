@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 21 and option == 1) then
         player:addQuest(OUTLANDS,STOP_YOUR_WHINING);
         npcUtil.giveKeyItem(player, dsp.kis.EMPTY_BARREL);
-    elseif (csid == 23 and npcUtil.completeQuest(player, OUTLANDS, STOP_YOUR_WHINING, {item=4952, fame=75, fameArea=NORG, title=APPRENTICE_SOMMELIER})) then -- Scroll of Hojo: Ichi
+    elseif (csid == 23 and npcUtil.completeQuest(player, OUTLANDS, STOP_YOUR_WHINING, {item=4952, fame=75, fameArea=NORG, title=dsp.titles.APPRENTICE_SOMMELIER})) then -- Scroll of Hojo: Ichi
         player:delKeyItem(dsp.kis.BARREL_OF_OPOOPO_BREW);
     end
 end;

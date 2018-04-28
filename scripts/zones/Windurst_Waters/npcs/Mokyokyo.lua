@@ -60,7 +60,7 @@ printf("RESULT: %u",option);
     finishMissionTimeline(player,2,csid,option);
 
     if (csid == 118 and option == 1) then
-        player:addTitle(FRESH_NORTH_WINDS_RECRUIT);
+        player:addTitle(dsp.titles.FRESH_NORTH_WINDS_RECRUIT);
     elseif (csid == 111 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.kis.STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_CRESTED_SUMMONS);

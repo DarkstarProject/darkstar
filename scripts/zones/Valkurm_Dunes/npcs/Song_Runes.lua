@@ -35,7 +35,7 @@ function onEventFinish(player,csid,option)
     if (csid == 2) then
         player:addGil(GIL_RATE*3000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
-        player:addTitle(WANDERING_MINSTREL);
+        player:addTitle(dsp.titles.WANDERING_MINSTREL);
         player:unlockJob(dsp.jobs.BRD); -- Bard
         player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
         player:setVar("PathOfTheBard_Event",0);

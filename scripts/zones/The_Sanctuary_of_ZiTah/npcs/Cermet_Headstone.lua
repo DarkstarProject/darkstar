@@ -38,7 +38,7 @@ function onTrigger(player,npc)
                 player:hasKeyItem(dsp.kis.WIND_FRAGMENT)
             ) then
                 player:messageSpecial(FOUND_ALL_FRAGS,dsp.kis.LIGHT_FRAGMENT);
-                player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+                player:addTitle(dsp.titles.BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13416); -- Bat Earring
             player:messageSpecial(ITEM_OBTAINED,13416);
             player:completeQuest(OUTLANDS,SOUL_SEARCHING);
-            player:addTitle(GUIDER_OF_SOULS_TO_THE_SANCTUARY);
+            player:addTitle(dsp.titles.GUIDER_OF_SOULS_TO_THE_SANCTUARY);
         end
     end
 end;

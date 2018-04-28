@@ -186,7 +186,7 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,TEAHOUSE_TUMULT);
     elseif (csid == 3093) then
         player:completeMission(TOAU,FINDERS_KEEPERS);
-        player:setTitle(KARABABAS_BODYGUARD);
+        player:setTitle(dsp.titles.KARABABAS_BODYGUARD);
         player:addMission(TOAU,SHIELD_OF_DIPLOMACY);
     elseif (csid == 3095) then
         player:completeMission(TOAU,SOCIAL_GRACES);
@@ -195,7 +195,7 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,FOILED_AMBITION);
     elseif (csid == 3097) then
         player:completeMission(TOAU,FOILED_AMBITION);
-        player:setTitle(KARABABAS_SECRET_AGENT);
+        player:setTitle(dsp.titles.KARABABAS_SECRET_AGENT);
         player:addItem(2187,5);
         player:setVar("TOAUM23_STARTDAY", 0);
         player:needToZone(true);
@@ -207,7 +207,7 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,SEAL_OF_THE_SERPENT);
     elseif (csid == 3112) then
         player:completeMission(TOAU,BASTION_OF_KNOWLEDGE);
-        player:setTitle(APHMAUS_MERCENARY);
+        player:setTitle(dsp.titles.APHMAUS_MERCENARY);
         player:addMission(TOAU,PUPPET_IN_PERIL);
     elseif (csid == 3131) then
         player:completeMission(TOAU,PATH_OF_BLOOD);

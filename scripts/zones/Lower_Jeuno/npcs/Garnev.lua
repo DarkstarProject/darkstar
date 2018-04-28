@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
     if (csid == 167) then
         player:addQuest(JEUNO,DEAL_WITH_TENSHODO);
     elseif (csid == 166) then
-        player:addTitle(TRADER_OF_RENOWN);
+        player:addTitle(dsp.titles.TRADER_OF_RENOWN);
         player:addKeyItem(dsp.kis.CLOCK_TOWER_OIL);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.CLOCK_TOWER_OIL);
         player:addFame(JEUNO,30);

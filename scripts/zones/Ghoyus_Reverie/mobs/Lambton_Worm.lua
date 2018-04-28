@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(LAMBTON_WORM_DESEGMENTER);
+    player:addTitle(dsp.titles.LAMBTON_WORM_DESEGMENTER);
 end;

@@ -64,7 +64,7 @@ function onMobWeaponSkill(target, mob, skill)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(WORLD_SERPENT_SLAYER);
+    player:addTitle(dsp.titles.WORLD_SERPENT_SLAYER);
 end;
 
 function onMobDespawn(mob)

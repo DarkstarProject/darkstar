@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:addTitle(DYNAMISXARCABARD_INTERLOPER); -- Add title
+    player:addTitle(dsp.titles.DYNAMISXARCABARD_INTERLOPER); -- Add title
 
     if (player:hasKeyItem(dsp.kis.HYDRA_CORPS_BATTLE_STANDARD) == false) then
         player:setVar("DynaXarcabard_Win",1);

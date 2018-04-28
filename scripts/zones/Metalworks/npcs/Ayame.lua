@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14215); -- Temple Hose
         else
             player:tradeComplete();
-            player:addTitle(PARAGON_OF_MONK_EXCELLENCE);
+            player:addTitle(dsp.titles.PARAGON_OF_MONK_EXCELLENCE);
             player:addItem(14215);
             player:messageSpecial(ITEM_OBTAINED,14215); -- Temple Hose
             player:addFame(BASTOK,AF3_FAME);

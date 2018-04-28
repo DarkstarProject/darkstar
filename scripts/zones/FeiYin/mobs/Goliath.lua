@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(GOLIATH_KILLER);
+    player:addTitle(dsp.titles.GOLIATH_KILLER);
 end;

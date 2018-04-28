@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED,GIL_RATE * 5000);
             player:addItem(4198);
             player:messageSpecial(ITEM_OBTAINED,4198);
-            player:addTitle(EMERALD_EXTERMINATOR);
+            player:addTitle(dsp.titles.EMERALD_EXTERMINATOR);
             player:addFame(WINDURST, 80);
             player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setVar("ECO_WARRIOR_ACTIVE",0);

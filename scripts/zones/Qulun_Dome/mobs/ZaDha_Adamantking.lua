@@ -43,7 +43,7 @@ function onAdditionalEffect(mob, player)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(ADAMANTKING_USURPER);
+    player:addTitle(dsp.titles.ADAMANTKING_USURPER);
     if (isKiller) then
         mob:showText(mob,QUADAV_KING_DEATH);
     end

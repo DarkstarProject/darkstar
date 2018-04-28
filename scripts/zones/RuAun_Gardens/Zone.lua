@@ -51,7 +51,7 @@ function onRegionEnter(player,region)
             player:startEvent(42);
         else
             title = player:getTitle();
-            if (title == WARRIOR_OF_THE_CRYSTAL) then
+            if (title == dsp.titles.WARRIOR_OF_THE_CRYSTAL) then
                 player:startEvent(41,title);
             else
                 player:startEvent(43,title);

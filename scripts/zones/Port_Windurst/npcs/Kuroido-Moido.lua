@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 284) then
         player:needToZone(true);
         player:delKeyItem(dsp.kis.BROKEN_WAND);
-        player:addTitle(HAKKURURINKURUS_BENEFACTOR);
+        player:addTitle(dsp.titles.HAKKURURINKURUS_BENEFACTOR);
         player:addGil(GIL_RATE*6000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
         player:addFame(WINDURST,150);

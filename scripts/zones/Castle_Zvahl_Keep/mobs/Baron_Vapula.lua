@@ -6,7 +6,7 @@ require("scripts/globals/titles");
 
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(HELLSBANE);
+    player:addTitle(dsp.titles.HELLSBANE);
 end;
 
 function onMobDespawn(mob)

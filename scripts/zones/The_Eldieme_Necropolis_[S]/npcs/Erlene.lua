@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 14) then
         player:addKeyItem(dsp.kis.GRIMOIRE);
         player:unlockJob(dsp.jobs.SCH);
-        player:addTitle(SCHULTZ_SCHOLAR);
+        player:addTitle(dsp.titles.SCHULTZ_SCHOLAR);
         player:setVar("ALittleKnowledge", 0);
         player:setVar("SheetsofVellum", 0);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_SCHOLAR);

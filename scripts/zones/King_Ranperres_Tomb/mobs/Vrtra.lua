@@ -54,7 +54,7 @@ function onMobDisengage(mob, weather)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(VRTRA_VANQUISHER);
+    player:addTitle(dsp.titles.VRTRA_VANQUISHER);
 end;
 
 function onMobDespawn(mob)

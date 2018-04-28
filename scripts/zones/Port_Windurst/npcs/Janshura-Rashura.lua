@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     finishMissionTimeline(player,3,csid,option);
 
     if (csid == 118 and option == 1) then
-        player:addTitle(NEW_BEST_OF_THE_WEST_RECRUIT);
+        player:addTitle(dsp.titles.NEW_BEST_OF_THE_WEST_RECRUIT);
     elseif (csid == 78 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.kis.STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.STAR_CRESTED_SUMMONS);
