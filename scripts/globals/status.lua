@@ -2289,28 +2289,32 @@ dsp.act = dsp.action;
 -- ECOSYSTEM IDs
 ------------------------------------
 
-SYSTEM_ERROR          = 0;
-SYSTEM_AMORPH         = 1;
-SYSTEM_AQUAN          = 2;
-SYSTEM_ARCANA         = 3;
-SYSTEM_ARCHAICMACHINE = 4;
-SYSTEM_AVATAR         = 5;
-SYSTEM_BEAST          = 6;
-SYSTEM_BEASTMEN       = 7;
-SYSTEM_BIRD           = 8;
-SYSTEM_DEMON          = 9;
-SYSTEM_DRAGON         = 10;
-SYSTEM_ELEMENTAL      = 11;
-SYSTEM_EMPTY          = 12;
-SYSTEM_HUMANOID       = 13;
-SYSTEM_LIZARD         = 14;
-SYSTEM_LUMORIAN       = 15;
-SYSTEM_LUMINION       = 16;
-SYSTEM_PLANTOID       = 17;
-SYSTEM_UNCLASSIFIED   = 18;
-SYSTEM_UNDEAD         = 19;
-SYSTEM_VERMIN         = 20;
-SYSTEM_VORAGEAN       = 21;
+dsp.ecosystem =
+{
+    ERROR          = 0,
+    AMORPH         = 1,
+    AQUAN          = 2,
+    ARCANA         = 3,
+    ARCHAICMACHINE = 4,
+    AVATAR         = 5,
+    BEAST          = 6,
+    BEASTMEN       = 7,
+    BIRD           = 8,
+    DEMON          = 9,
+    DRAGON         = 10,
+    ELEMENTAL      = 11,
+    EMPTY          = 12,
+    HUMANOID       = 13,
+    LIZARD         = 14,
+    LUMORIAN       = 15,
+    LUMINION       = 16,
+    PLANTOID       = 17,
+    UNCLASSIFIED   = 18,
+    UNDEAD         = 19,
+    VERMIN         = 20,
+    VORAGEAN       = 21,
+};
+dsp.eco = dsp.ecosystem;
 
 ------------------------------------
 -- Spell AOE IDs
