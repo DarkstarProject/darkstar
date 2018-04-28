@@ -26,9 +26,9 @@ end;
 function onUseAbility(player,target,ability,action)
     local params = {};
     params.includemab = true;
-    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;
+    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
     dmg  = addBonusesAbility(player, ELE_ICE, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_ICE,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    dmg = dmg * applyResistanceAbility(player,target,ELE_ICE,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_ICE);
 
     local shadowsAbsorbed = 0
@@ -42,17 +42,17 @@ function onUseAbility(player,target,ability,action)
     
         local effects = {};
         local counter = 1;
-        local frost = target:getStatusEffect(dsp.effects.FROST);
+        local frost = target:getStatusEffect(dsp.effect.FROST);
         if (frost ~= nil) then
             effects[counter] = frost;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
-        if (threnody ~= nil and threnody:getSubPower() == MOD_WINDRES) then
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
+        if (threnody ~= nil and threnody:getSubPower() == dsp.mod.WINDRES) then
             effects[counter] = threnody;
             counter = counter + 1;
         end
-        local paralyze = target:getStatusEffect(dsp.effects.PARALYSIS);
+        local paralyze = target:getStatusEffect(dsp.effect.PARALYSIS);
         if (paralyze ~= nil) then
             effects[counter] = paralyze;
             counter = counter + 1;

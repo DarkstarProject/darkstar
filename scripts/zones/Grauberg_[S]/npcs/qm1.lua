@@ -31,8 +31,8 @@ function onEventFinish(player,csid,option)
     if (csid==12) then
         player:setVar("QuestStatus_DNC_AF1", 3);
     elseif (csid==13) then
-        player:addKeyItem(dsp.kis.THE_ESSENCE_OF_DANCE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.THE_ESSENCE_OF_DANCE);
+        player:addKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.THE_ESSENCE_OF_DANCE);
         player:setVar("QuestStatus_DNC_AF1", 5);
     end
 end;

@@ -15,10 +15,10 @@ function onMobSpawn(mob)
     -- Change animation to pot
     mob:AnimationSub(0);
     -- Set the damage resists
-    mob:setMod(MOD_HTHRES,1000);
-    mob:setMod(MOD_SLASHRES,0);
-    mob:setMod(MOD_PIERCERES,0);
-    mob:setMod(MOD_IMPACTRES,1000);
+    mob:setMod(dsp.mod.HTHRES,1000);
+    mob:setMod(dsp.mod.SLASHRES,0);
+    mob:setMod(dsp.mod.PIERCERES,0);
+    mob:setMod(dsp.mod.IMPACTRES,1000);
     -- Set the magic resists. It always takes no damage from direct magic
     for n =1,#resistMod,1 do
         mob:setMod(resistMod[n],0);
@@ -40,16 +40,16 @@ function onMobFight(mob)
 
         -- We changed to Poles. Make it only take piercing.
         if (aniChange == 2) then
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,1000);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,1000);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         else -- We changed to Rings. Make it only take slashing.
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,1000);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,1000);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     -- We're in poles, but changing
@@ -59,17 +59,17 @@ function onMobFight(mob)
         -- Changing to Pot, only take Blunt damage
         if (aniChange == 0) then
             mob:AnimationSub(0);
-            mob:setMod(MOD_HTHRES,1000);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,1000);
+            mob:setMod(dsp.mod.HTHRES,1000);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,1000);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         else -- Going to Rings, only take slashing
             mob:AnimationSub(3);
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,1000);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,1000);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     -- We're in rings, but going to change to pot or poles
@@ -79,16 +79,16 @@ function onMobFight(mob)
 
         -- We're changing to pot form, only take blunt damage.
         if (aniChange == 0 or aniChange == 1) then
-            mob:setMod(MOD_HTHRES,1000);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,1000);
+            mob:setMod(dsp.mod.HTHRES,1000);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,1000);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         else -- Changing to poles, only take piercing
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,1000);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,1000);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     end

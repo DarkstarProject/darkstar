@@ -25,15 +25,15 @@ function onSpellCast(caster,target,spell)
     params.dmg = 35;
     params.multiplier = 1;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
-    dmg = dmg + caster:getMod(MOD_HELIX_EFFECT);
+    dmg = dmg + caster:getMod(dsp.mod.HELIX_EFFECT);
     -- get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
     -- bonus accuracy from merit
     params.bonus = merit*3;
@@ -52,12 +52,12 @@ function onSpellCast(caster,target,spell)
     -- calculate Damage over time
     dot = target:magicDmgTaken(dot);
 
-    local duration = getHelixDuration(caster) + caster:getMod(MOD_HELIX_DURATION);
+    local duration = getHelixDuration(caster) + caster:getMod(dsp.mod.HELIX_DURATION);
 
     duration = duration * (resist/2);
 
     if (dot > 0) then
-        target:addStatusEffect(dsp.effects.HELIX,dot,3,duration);
+        target:addStatusEffect(dsp.effect.HELIX,dot,3,duration);
     end;
 
     return dmg;

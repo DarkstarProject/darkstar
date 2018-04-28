@@ -6,7 +6,7 @@
 ------------------------------------
 dsp = dsp or {};
 
-dsp.zoneTypes =
+dsp.zoneType =
 {
     NONE           = 0,
     CITY           = 1,
@@ -17,7 +17,7 @@ dsp.zoneTypes =
     INSTANCED      = 6,
 };
 
-dsp.continents =
+dsp.continent =
 {
     THE_MIDDLE_LANDS        = 1,
     THE_ARADJIAH_CONTINENT  = 2,
@@ -25,7 +25,7 @@ dsp.continents =
     OTHER_AREAS             = 4,
 };
 
-dsp.regions =
+dsp.region =
 {
     RONFAURE         = 0,
     ZULKHEIM         = 1,

@@ -13,27 +13,27 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = dsp.kis.RAW_FISH_HANDLING,
+        id = dsp.ki.RAW_FISH_HANDLING,
         rank = 3,
         cost = 30000
     },
     [1] = {
-        id = dsp.kis.NOODLE_KNEADING,
+        id = dsp.ki.NOODLE_KNEADING,
         rank = 3,
         cost = 30000
     },
     [2] = {
-        id = dsp.kis.PATISSIER,
+        id = dsp.ki.PATISSIER,
         rank = 3,
         cost = 8000
     },
     [3] = {
-        id = dsp.kis.STEWPOT_MASTERY,
+        id = dsp.ki.STEWPOT_MASTERY,
         rank = 3,
         cost = 30000
     },
     [4] = {
-        id = dsp.kis.WAY_OF_THE_CULINARIAN,
+        id = dsp.ki.WAY_OF_THE_CULINARIAN,
         rank = 9,
         cost = 20000
     }

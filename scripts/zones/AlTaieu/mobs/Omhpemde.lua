@@ -15,7 +15,7 @@ function onMobSpawn(mob)
     mob:AnimationSub(5);
     mob:SetAutoAttackEnabled(false);
     mob:SetMobAbilityEnabled(false);
-    mob:setMod(MOD_REGEN, 10);
+    mob:setMod(dsp.mod.REGEN, 10);
     mob:wait(2000);
 end;
 
@@ -34,7 +34,7 @@ function onMobDisengage(mob)
     mob:AnimationSub(5);
     mob:SetAutoAttackEnabled(false);
     mob:SetMobAbilityEnabled(false);
-    mob:setMod(MOD_REGEN, 10);
+    mob:setMod(dsp.mod.REGEN, 10);
 end;
 
 function onMobRoam(mob)
@@ -59,17 +59,17 @@ function onMobFight(mob, target)
         if (mob:AnimationSub() == 6 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(3); -- Mouth Open
             mob:wait(2000);
-            mob:addMod(MOD_ATTP, 100);
-            mob:addMod(MOD_DEFP, -50);
-            mob:addMod(MOD_DMGMAGIC, -50);
+            mob:addMod(dsp.mod.ATTP, 100);
+            mob:addMod(dsp.mod.DEFP, -50);
+            mob:addMod(dsp.mod.DMGMAGIC, -50);
             mob:setLocalVar("changeTime", mob:getBattleTime());
 
         elseif (mob:AnimationSub() == 3 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(6); -- Mouth Closed
             mob:wait(2000);
-            mob:addMod(MOD_ATTP, -100);
-            mob:addMod(MOD_DEFP, 50);
-            mob:addMod(MOD_DMGMAGIC, 50);
+            mob:addMod(dsp.mod.ATTP, -100);
+            mob:addMod(dsp.mod.DEFP, 50);
+            mob:addMod(dsp.mod.DMGMAGIC, 50);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     end

@@ -33,20 +33,20 @@ function onPetAbility(target, pet, skill, summoner)
     else
         buffvalue = 1;
     end
-    target:delStatusEffect(dsp.effects.STR_BOOST);
-    target:delStatusEffect(dsp.effects.DEX_BOOST);
-    target:delStatusEffect(dsp.effects.VIT_BOOST);
-    target:delStatusEffect(dsp.effects.AGI_BOOST);
-    target:delStatusEffect(dsp.effects.MND_BOOST);
-    target:delStatusEffect(dsp.effects.CHR_BOOST);
+    target:delStatusEffect(dsp.effect.STR_BOOST);
+    target:delStatusEffect(dsp.effect.DEX_BOOST);
+    target:delStatusEffect(dsp.effect.VIT_BOOST);
+    target:delStatusEffect(dsp.effect.AGI_BOOST);
+    target:delStatusEffect(dsp.effect.MND_BOOST);
+    target:delStatusEffect(dsp.effect.CHR_BOOST);
 
-    target:addStatusEffect(dsp.effects.STR_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(dsp.effects.DEX_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(dsp.effects.VIT_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(dsp.effects.AGI_BOOST,8-buffvalue,0,duration);
-    target:addStatusEffect(dsp.effects.INT_BOOST,8-buffvalue,0,duration);
-    target:addStatusEffect(dsp.effects.MND_BOOST,8-buffvalue,0,duration);
-    target:addStatusEffect(dsp.effects.CHR_BOOST,8-buffvalue,0,duration);
-    skill:setMsg(msgBasic.NONE);
+    target:addStatusEffect(dsp.effect.STR_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.DEX_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.VIT_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.AGI_BOOST,8-buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.INT_BOOST,8-buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.MND_BOOST,8-buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.CHR_BOOST,8-buffvalue,0,duration);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

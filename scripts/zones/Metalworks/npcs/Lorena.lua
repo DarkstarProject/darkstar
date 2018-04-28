@@ -13,27 +13,27 @@ require("scripts/globals/crafting");
 
 local keyitems = {
     [0] = {
-        id = dsp.kis.METAL_PURIFICATION,
+        id = dsp.ki.METAL_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = dsp.kis.METAL_ENSORCELLMENT,
+        id = dsp.ki.METAL_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = dsp.kis.CHAINWORK,
+        id = dsp.ki.CHAINWORK,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = dsp.kis.SHEETING,
+        id = dsp.ki.SHEETING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = dsp.kis.WAY_OF_THE_BLACKSMITH,
+        id = dsp.ki.WAY_OF_THE_BLACKSMITH,
         rank = 9,
         cost = 20000
     }

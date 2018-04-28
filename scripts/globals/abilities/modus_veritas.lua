@@ -16,13 +16,13 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local helix = target:getStatusEffect(dsp.effects.HELIX);
+    local helix = target:getStatusEffect(dsp.effect.HELIX);
     if (helix ~= nil) then
         local mvPower = helix:getSubPower();
         local resist = applyResistanceAbility(player,target,ELE_NONE,SKILL_ELE,0); -- seems reasonable...
         -- Doesn't work against NMs apparently
         if (mvPower > 0) or (resist < 0.25) or (target:isNM()) then -- Don't let Modus Veritas stack to prevent abuse
-            ability:setMsg(msgBasic.JA_MISS); --Miss
+            ability:setMsg(dsp.msg.basic.JA_MISS); --Miss
             return 0;
         else
             -- Double power and halve remaining time
@@ -38,6 +38,6 @@ function onUseAbility(player,target,ability)
             helix:setDuration(duration);
         end
     else
-        ability:setMsg(msgBasic.JA_NO_EFFECT_2); -- No effect
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2); -- No effect
     end
 end;

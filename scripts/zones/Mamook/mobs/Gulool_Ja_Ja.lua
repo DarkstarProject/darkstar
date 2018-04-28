@@ -10,7 +10,7 @@ mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_DOUBLE_ATTACK, 20);
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 20);
     mob:setMobMod(dsp.mobMod.DRAW_IN, 2);
 end;
 
@@ -50,7 +50,7 @@ function onMobDisengage(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.SHINING_SCALE_RIFLER);
+    player:addTitle(dsp.title.SHINING_SCALE_RIFLER);
     for i = 1,4 do DespawnMob(GULOOL_JA_JA + i) end
 end;
 

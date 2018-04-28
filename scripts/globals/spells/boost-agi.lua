@@ -16,7 +16,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effects.AGI_BOOST;
+    local effect = dsp.effect.AGI_BOOST;
     doBoostGain(caster,target,spell,effect);
     return effect;
 end;

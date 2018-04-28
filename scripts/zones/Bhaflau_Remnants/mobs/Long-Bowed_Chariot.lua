@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.COMET_CHARIOTEER);
+    player:addTitle(dsp.title.COMET_CHARIOTEER);
 end;

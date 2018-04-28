@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MEVA, -20);
+    target:addMod(dsp.mod.MEVA, -20);
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MEVA, -20);
+    target:delMod(dsp.mod.MEVA, -20);
 end;

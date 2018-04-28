@@ -27,6 +27,6 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effects.PENNANT);
+        target:getPet():delStatusEffect(dsp.effect.PENNANT);
     end
 end;

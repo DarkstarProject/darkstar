@@ -30,7 +30,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("wasKilled", 1);
-    player:addTitle(dsp.titles.MON_CHERRY);
+    player:addTitle(dsp.title.MON_CHERRY);
 end;
 
 function onMobDespawn(mob)

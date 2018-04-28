@@ -19,7 +19,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    target:addStatusEffect(dsp.effects.KLIMAFORM,1,0,180);
+    target:addStatusEffect(dsp.effect.KLIMAFORM,1,0,180);
 
-    return dsp.effects.KLIMAFORM;
+    return dsp.effect.KLIMAFORM;
 end;

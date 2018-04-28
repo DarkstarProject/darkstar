@@ -9,8 +9,8 @@ mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_SLEEPRES, 50);
-    mob:addMod(MOD_LULLABYRES, 50);
+    mob:addMod(dsp.mod.SLEEPRES, 50);
+    mob:addMod(dsp.mod.LULLABYRES, 50);
     mob:setLocalVar("everyonesRancorHPP", math.random(20,30));
 end;
 

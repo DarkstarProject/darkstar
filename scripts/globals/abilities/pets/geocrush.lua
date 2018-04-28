@@ -14,7 +14,7 @@ end;
 
 function onPetAbility(target, pet, skill)
 
-    local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = math.floor(pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     local tp = skill:getTP() / 10;
     local master = pet:getMaster();
     local merits = 0;
@@ -37,8 +37,8 @@ function onPetAbility(target, pet, skill)
     target:delHP(damage);
     target:updateEnmityFromDamage(pet,damage);
 
-    if (target:hasStatusEffect(dsp.effects.STUN) == false) then
-        target:addStatusEffect(dsp.effects.STUN,3,3,3);
+    if (target:hasStatusEffect(dsp.effect.STUN) == false) then
+        target:addStatusEffect(dsp.effect.STUN,3,3,3);
     end
 
     return damage;

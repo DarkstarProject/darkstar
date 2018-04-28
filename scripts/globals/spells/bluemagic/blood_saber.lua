@@ -26,8 +26,8 @@ end;
 function onSpellCast(caster,target,spell)
     local dmg = 1 + (0.709 * caster:getSkillLevel(BLUE_SKILL));
     local params = {};
-    params.diff = caster:getStat(MOD_MND)-target:getStat(MOD_MND);
-    params.attribute = MOD_MND;
+    params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND);
+    params.attribute = dsp.mod.MND;
     params.skillType = BLUE_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
@@ -43,7 +43,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:isUndead()) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         return dmg;
     end
 

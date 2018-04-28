@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.PROWESS : Increased crystal yield
+-- dsp.effect.PROWESS : Increased crystal yield
 --
 -----------------------------------
 

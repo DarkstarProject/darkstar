@@ -17,21 +17,21 @@ end;
 
 function onSpellCast(caster,target,spell)
     
-    target:delStatusEffectSilent(dsp.effects.FIRESTORM);
-    target:delStatusEffectSilent(dsp.effects.SANDSTORM);
-    target:delStatusEffectSilent(dsp.effects.RAINSTORM);
-    target:delStatusEffectSilent(dsp.effects.WINDSTORM);
-    target:delStatusEffectSilent(dsp.effects.HAILSTORM);
-    target:delStatusEffectSilent(dsp.effects.THUNDERSTORM);
-    target:delStatusEffectSilent(dsp.effects.AURORASTORM);
-    target:delStatusEffectSilent(dsp.effects.VOIDSTORM);
+    target:delStatusEffectSilent(dsp.effect.FIRESTORM);
+    target:delStatusEffectSilent(dsp.effect.SANDSTORM);
+    target:delStatusEffectSilent(dsp.effect.RAINSTORM);
+    target:delStatusEffectSilent(dsp.effect.WINDSTORM);
+    target:delStatusEffectSilent(dsp.effect.HAILSTORM);
+    target:delStatusEffectSilent(dsp.effect.THUNDERSTORM);
+    target:delStatusEffectSilent(dsp.effect.AURORASTORM);
+    target:delStatusEffectSilent(dsp.effect.VOIDSTORM);
 
     local merit = caster:getMerit(MERIT_STORMSURGE);
     local power = 0;
     if merit > 0 then
-        power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;
+        power = merit + caster:getMod(dsp.mod.STORMSURGE_EFFECT) + 2;
     end
-    target:addStatusEffect(dsp.effects.FIRESTORM,power,0,180);
+    target:addStatusEffect(dsp.effect.FIRESTORM,power,0,180);
     
-    return dsp.effects.FIRESTORM;
+    return dsp.effect.FIRESTORM;
 end;

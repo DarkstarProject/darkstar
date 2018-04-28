@@ -18,16 +18,16 @@ function onAbilityCheck(player,target,ability)
     if (id == 18259) then
         return 0,0;
     else
-        return msgBasic.UNABLE_TO_USE_JA,0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA,0;
     end
 end;
 
 function onUseAbility(player,target,ability)
-    local typeEffect = dsp.effects.DEFENSE_DOWN;
+    local typeEffect = dsp.effect.DEFENSE_DOWN;
     local duration = 15 + player:getMerit(MERIT_ANGON); -- This will return 30 sec at one investment because merit power is 15.
 
     if (target:addStatusEffect(typeEffect,20,0,duration) == false) then
-        ability:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        ability:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     target:updateClaim(player);

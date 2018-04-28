@@ -23,9 +23,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_EARTH);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_EARTH,dmg);
 
-        local message = msgBasic.ADD_EFFECT_DMG;
+        local message = dsp.msg.basic.ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = msgBasic.ADD_EFFECT_HEAL;
+            message = dsp.msg.basic.ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_EARTH_DAMAGE,message,dmg;

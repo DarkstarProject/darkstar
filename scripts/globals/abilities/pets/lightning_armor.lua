@@ -16,8 +16,8 @@ function onPetAbility(target, pet, skill, summoner)
     local bonusTime = utils.clamp(summoner:getSkillLevel(SKILL_SUM) - 300, 0, 200);
     local duration = 180 + bonusTime;
 
-    target:delStatusEffect(dsp.effects.SHOCK_SPIKES);
-    target:addStatusEffect(dsp.effects.SHOCK_SPIKES,15,0,duration);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
-    return dsp.effects.SHOCK_SPIKES;
+    target:delStatusEffect(dsp.effect.SHOCK_SPIKES);
+    target:addStatusEffect(dsp.effect.SHOCK_SPIKES,15,0,duration);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
+    return dsp.effect.SHOCK_SPIKES;
 end

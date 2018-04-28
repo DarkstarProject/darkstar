@@ -16,5 +16,5 @@ end;
 function onUseAbility(player,target,ability)
     local power = player:getMerit(MERIT_FEALTY);
 
-    player:addStatusEffect(dsp.effects.FEALTY,power,0,60 + (power * 5));
+    player:addStatusEffect(dsp.effect.FEALTY,power,0,60 + (power * 5));
 end;

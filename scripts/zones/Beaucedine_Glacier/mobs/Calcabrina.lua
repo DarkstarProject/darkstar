@@ -24,7 +24,7 @@ function onAdditionalEffect(mob,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+        local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
         if (INT_diff > 20) then
             INT_diff = 20 + (INT_diff - 20) / 2;
@@ -45,7 +45,7 @@ function onAdditionalEffect(mob,target,damage)
             mob:addHP(drain);
         end
 
-        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, drain;
+        return SUBEFFECT_HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, drain;
     end
 
 end;

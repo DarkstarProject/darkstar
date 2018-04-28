@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 
 dsp = dsp or {};
 
-dsp.jobAbilities =
+dsp.jobAbility =
 {
     MIGHTY_STRIKES     = 0,
     HUNDRED_FISTS      = 1,
@@ -428,7 +428,7 @@ dsp.jobAbilities =
     THUNDERSTORM       = 615,
     JUDGMENT_BOLT      = 616,
 };
-dsp.ja = dsp.jobAbilities;
+dsp.ja = dsp.jobAbility;
 
 dsp.reaction =
 {
@@ -453,9 +453,9 @@ dsp.specEffect =
 
 function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
-    caster:delStatusEffectSilent(dsp.effects.DOUBLE_UP_CHANCE);
-    caster:addStatusEffectEx(dsp.effects.DOUBLE_UP_CHANCE,
-                             dsp.effects.DOUBLE_UP_CHANCE,
+    caster:delStatusEffectSilent(dsp.effect.DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(dsp.effect.DOUBLE_UP_CHANCE,
+                             dsp.effect.DOUBLE_UP_CHANCE,
                              roll,
                              0,
                              45,
@@ -474,12 +474,12 @@ end
 
 function atMaxCorsairBusts(caster)
     local numBusts = caster:numBustEffects();
-    return (numBusts >= 2 and caster:getMainJob() == dsp.jobs.COR) or (numBusts >= 1 and caster:getMainJob() ~= dsp.jobs.COR);
+    return (numBusts >= 2 and caster:getMainJob() == dsp.job.COR) or (numBusts >= 1 and caster:getMainJob() ~= dsp.job.COR);
 end
 
 function checkForJobBonus(caster, job)
     local jobBonus = 0
-    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
+    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(dsp.mod.JOB_BONUS_CHANCE)) then
         jobBonus = 1;
     end
     caster:setLocalVar("corsairRollBonus", jobBonus);
@@ -488,12 +488,12 @@ end
 function checkForElevenRoll(caster)
     local effects = caster:getStatusEffects()
     for _,effect in ipairs(effects) do
-        if (effect:getType() >= dsp.effects.FIGHTERS_ROLL and
-            effect:getType() <= dsp.effects.NATURALISTS_ROLL and
+        if (effect:getType() >= dsp.effect.FIGHTERS_ROLL and
+            effect:getType() <= dsp.effect.NATURALISTS_ROLL and
             effect:getSubPower() == 11) then
             return true
         end
-        if (effect:getType() == dsp.effects.RUNEISTS_ROLL and
+        if (effect:getType() == dsp.effect.RUNEISTS_ROLL and
                 effect:getSubPower() == 11) then
             return true 
         end
@@ -501,8 +501,8 @@ function checkForElevenRoll(caster)
     return false
 end
 
-function phantombuffMultiple(caster) -- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
-    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+function phantombuffMultiple(caster) -- Check for dsp.mod.PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(dsp.mod.PHANTOM_ROLL);
     local phantombuffValue = 0;
     if (phantomValue == 3) then
         phantombuffMultiplier = 3;
@@ -525,15 +525,15 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
             and skilltype == MOBSKILL_PHYSICAL) then
-        skill:setMsg(msgBasic.JA_MISS_2);
+        skill:setMsg(dsp.msg.basic.JA_MISS_2);
         return 0;
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(msgBasic.USES_JA_TAKE_DAMAGE);
+    skill:setMsg(dsp.msg.basic.USES_JA_TAKE_DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -542,19 +542,19 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(msgBasic.SHADOW_ABSORB);
+            skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
             return shadowbehav;
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(dsp.effects.COPY_IMAGE);
-        target:delStatusEffect(dsp.effects.BLINK);
-        target:delStatusEffect(dsp.effects.THIRD_EYE);
+        target:delStatusEffect(dsp.effect.COPY_IMAGE);
+        target:delStatusEffect(dsp.effect.BLINK);
+        target:delStatusEffect(dsp.effect.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide
     if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(msgBasic.ANTICIPATE);
+        skill:setMsg(dsp.msg.basic.ANTICIPATE);
         return 0;
     end
 
@@ -569,7 +569,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;
@@ -595,11 +595,11 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, slot, 
             end
         else
             -- TODO: ability absorb messages (if there are any)
-            -- action:messageID(defender:getID(), msgBasic.WHATEVER)
+            -- action:messageID(defender:getID(), dsp.msg.basic.WHATEVER)
         end
         action:param(defender:getID(), finaldmg)
     elseif shadowsAbsorbed > 0 then
-        action:messageID(defender:getID(), msgBasic.SHADOW_ABSORB)
+        action:messageID(defender:getID(), dsp.msg.basic.SHADOW_ABSORB)
         action:param(defender:getID(), shadowsAbsorbed)
     else
         -- no abilities that use ability message can miss (the rest use ws messages)

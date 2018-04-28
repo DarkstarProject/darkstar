@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SPIKES,2);
-    target:addMod(MOD_SPIKES_DMG, effect:getPower());
+    target:addMod(dsp.mod.SPIKES,2);
+    target:addMod(dsp.mod.SPIKES_DMG, effect:getPower());
 end;
 
 -----------------------------------
@@ -27,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SPIKES,2);
-    target:delMod(MOD_SPIKES_DMG, effect:getPower());
+    target:delMod(dsp.mod.SPIKES,2);
+    target:delMod(dsp.mod.SPIKES_DMG, effect:getPower());
 end;

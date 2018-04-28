@@ -12,14 +12,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,3600,4588);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,4588);
 end;
 
 -----------------------------------------
@@ -27,13 +27,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, 4);
-    target:addMod(MOD_MND, -3);
-    target:addMod(MOD_EVA, 5);
+    target:addMod(dsp.mod.DEX, 4);
+    target:addMod(dsp.mod.MND, -3);
+    target:addMod(dsp.mod.EVA, 5);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, 4);
-    target:delMod(MOD_MND, -3);
-    target:delMod(MOD_EVA, 5);
+    target:delMod(dsp.mod.DEX, 4);
+    target:delMod(dsp.mod.MND, -3);
+    target:delMod(dsp.mod.EVA, 5);
 end;

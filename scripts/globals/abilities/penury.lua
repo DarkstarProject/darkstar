@@ -19,14 +19,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effects.PENURY) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effect.PENURY) then
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effects.PENURY,1,0,60);
+    player:addStatusEffect(dsp.effect.PENURY,1,0,60);
 
-    return dsp.effects.PENURY;
+    return dsp.effect.PENURY;
 end;

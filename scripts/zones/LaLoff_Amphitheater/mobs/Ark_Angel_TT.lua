@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_UFASTCAST, 30);
+    mob:addMod(dsp.mod.UFASTCAST, 30);
     mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
     mob:setMobMod(dsp.mobMod.SUB_2HOUR, 1);
 end;
@@ -29,13 +29,13 @@ end;
 
 function onMobFight(mob,target)
 
-    if (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
+    if (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) > 0) then
         mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_STANDBACK)))
         mob:setMobMod(dsp.mobMod.TELEPORT_TYPE,0);
         mob:setMobMod(dsp.mobMod.SPAWN_LEASH,0);
         mob:setSpellList(0);
     end
-    if (not mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) == 0) then
+    if (not mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON) and bit.band(mob:getBehaviour(),BEHAVIOUR_STANDBACK) == 0) then
         mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_STANDBACK))
         mob:setMobMod(dsp.mobMod.TELEPORT_TYPE,1);
         mob:setMobMod(dsp.mobMod.SPAWN_LEASH,22);

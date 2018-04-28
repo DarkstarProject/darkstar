@@ -13,15 +13,15 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
-        return msgBasic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0;
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
-        return msgBasic.NO_EFFECT_ON_PET,0;
+        return dsp.msg.basic.NO_EFFECT_ON_PET,0;
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 18731 and id <= 18733 or id == 19185) then
             return 0,0;
         else
-            return msgBasic.UNABLE_TO_USE_JA,0;
+            return dsp.msg.basic.UNABLE_TO_USE_JA,0;
         end
     end
 end;
@@ -64,22 +64,22 @@ function onUseAbility(player,target,ability)
     }
 
     local function removeStatus()
-        --if pet:delStatusEffect(dsp.effects.DOOM) then return true end
-        if pet:delStatusEffect(dsp.effects.PETRIFICATION) then return true end
-        if pet:delStatusEffect(dsp.effects.SILENCE) then return true end
-        if pet:delStatusEffect(dsp.effects.BANE) then return true end
-        if pet:delStatusEffect(dsp.effects.CURSE_II) then return true end
-        if pet:delStatusEffect(dsp.effects.CURSE) then return true end
-        if pet:delStatusEffect(dsp.effects.PARALYSIS) then return true end
-        if pet:delStatusEffect(dsp.effects.PLAGUE) then return true end
-        if pet:delStatusEffect(dsp.effects.POISON) then return true end
-        if pet:delStatusEffect(dsp.effects.DISEASE) then return true end
-        if pet:delStatusEffect(dsp.effects.BLINDNESS) then return true end
+        --if pet:delStatusEffect(dsp.effect.DOOM) then return true end
+        if pet:delStatusEffect(dsp.effect.PETRIFICATION) then return true end
+        if pet:delStatusEffect(dsp.effect.SILENCE) then return true end
+        if pet:delStatusEffect(dsp.effect.BANE) then return true end
+        if pet:delStatusEffect(dsp.effect.CURSE_II) then return true end
+        if pet:delStatusEffect(dsp.effect.CURSE) then return true end
+        if pet:delStatusEffect(dsp.effect.PARALYSIS) then return true end
+        if pet:delStatusEffect(dsp.effect.PLAGUE) then return true end
+        if pet:delStatusEffect(dsp.effect.POISON) then return true end
+        if pet:delStatusEffect(dsp.effect.DISEASE) then return true end
+        if pet:delStatusEffect(dsp.effect.BLINDNESS) then return true end
         if pet:eraseStatusEffect() ~= 255 then return true end
         return false
     end
 
-    local toremove = player:getMod(MOD_REPAIR_EFFECT);
+    local toremove = player:getMod(dsp.mod.REPAIR_EFFECT);
 
     --[[if (feet == 28240) then -- This item isn't implemented so im leaving this here for reference
         toremove = 1
@@ -94,7 +94,7 @@ function onUseAbility(player,target,ability)
 
     totalHealing = totalHealing * bonus
 
-    bonus = bonus + player:getMod(MOD_REPAIR_POTENCY)/100
+    bonus = bonus + player:getMod(dsp.mod.REPAIR_POTENCY)/100
 
     regenAmount = regenAmount * bonus
 
@@ -107,10 +107,10 @@ function onUseAbility(player,target,ability)
     pet:addHP(totalHealing);
     pet:wakeUp();
 
-    -- Apply regen dsp.effects.
+    -- Apply regen dsp.effect.
 
-    pet:delStatusEffect(dsp.effects.REGEN);
-    pet:addStatusEffect(dsp.effects.REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
+    pet:delStatusEffect(dsp.effect.REGEN);
+    pet:addStatusEffect(dsp.effect.REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
     player:removeAmmo();
 
     return totalHealing;

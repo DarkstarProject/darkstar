@@ -835,34 +835,34 @@ end;
 
 function getDynamisMapList(player)
     local bitmask = 0;
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_SANDORIA) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_SANDORIA) == true) then
         bitmask = bitmask + 2;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_BASTOK) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_BASTOK) == true) then
         bitmask = bitmask + 4;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_WINDURST) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_WINDURST) == true) then
         bitmask = bitmask + 8;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_JEUNO) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_JEUNO) == true) then
         bitmask = bitmask + 16;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_BEAUCEDINE) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_BEAUCEDINE) == true) then
         bitmask = bitmask + 32;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_XARCABARD) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_XARCABARD) == true) then
         bitmask = bitmask + 64;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_VALKURM) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_VALKURM) == true) then
         bitmask = bitmask + 128;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_BUBURIMU) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_BUBURIMU) == true) then
         bitmask = bitmask + 256;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_QUFIM) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_QUFIM) == true) then
         bitmask = bitmask + 512;
     end
-    if (player:hasKeyItem(dsp.kis.MAP_OF_DYNAMIS_TAVNAZIA) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_TAVNAZIA) == true) then
         bitmask = bitmask + 1024;
     end
 
@@ -919,12 +919,12 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
     local mJob = mob:getMainJob();
 
     -- Spawn Pet for BST, and SMN
-    if (mJob == dsp.jobs.BST or mJob == dsp.jobs.SMN) then
+    if (mJob == dsp.job.BST or mJob == dsp.job.SMN) then
         if(mob:getPet() ~= nil) then
             local petId = nil;
 
             -- randomize pet for SMN
-            if (mJob == dsp.jobs.SMN) then
+            if (mJob == dsp.job.SMN) then
                 petId = math.random(8, 14);
 
                 -- switch pet to Ramuh if pet is Fenrir

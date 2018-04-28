@@ -18,7 +18,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
     if (mobID ==16941457) then
-        player:messageBasic(msgBasic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
+        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
         player:restoreMP(3000);
     end
 end;

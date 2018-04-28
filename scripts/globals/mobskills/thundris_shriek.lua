@@ -38,7 +38,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.TERROR;
+    local typeEffect = dsp.effect.TERROR;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 15);
 

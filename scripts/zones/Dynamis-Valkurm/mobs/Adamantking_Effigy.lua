@@ -17,7 +17,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
     if ( mobID == 16937233) then --hp
-        player:messageBasic(msgBasic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
+        player:messageBasic(dsp.msg.basic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
         player:restoreHP(3000);
     end
 end;

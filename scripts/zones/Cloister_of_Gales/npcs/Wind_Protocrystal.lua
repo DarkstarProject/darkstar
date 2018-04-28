@@ -62,9 +62,9 @@ function onEventFinish(player,csid,option)
     --printf("onFinish RESULT: %u",option);
     
     if (csid==2) then
-        player:delKeyItem(dsp.kis.DOMINAS_EMERALD_SEAL);
-        player:addKeyItem(dsp.kis.EMERALD_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.EMERALD_COUNTERSEAL);
+        player:delKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL);
+        player:addKeyItem(dsp.ki.EMERALD_COUNTERSEAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.EMERALD_COUNTERSEAL);
         player:setVar("ASA4_Emerald","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

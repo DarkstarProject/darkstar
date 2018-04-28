@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 
 function onAbilityCheck(player,target,ability)
     if (player:getWeaponSubSkillType(SLOT_RANGED) == 10 and
-        not player:hasStatusEffect(dsp.effects.OVERLOAD) and
+        not player:hasStatusEffect(dsp.effect.OVERLOAD) and
         player:getPet()) then
         return 0,0;
     else
@@ -29,21 +29,21 @@ function onUseAbility(player,target,ability)
     local overload = target:addBurden(ELE_DARK-1, burden);
 
     if (overload ~= 0 and
-        (player:getMod(MOD_PREVENT_OVERLOAD) > 0 or player:getPet():getMod(MOD_PREVENT_OVERLOAD) > 0) and
-        player:delStatusEffectSilent(dsp.effects.WATER_MANEUVER)) then
+        (player:getMod(dsp.mod.PREVENT_OVERLOAD) > 0 or player:getPet():getMod(dsp.mod.PREVENT_OVERLOAD) > 0) and
+        player:delStatusEffectSilent(dsp.effect.WATER_MANEUVER)) then
         overload = 0;
     end
 
     if (overload ~= 0) then
         target:removeAllManeuvers();
-        target:addStatusEffect(dsp.effects.OVERLOAD, 0, 0, overload);
+        target:addStatusEffect(dsp.effect.OVERLOAD, 0, 0, overload);
     else
         if (target:getActiveManeuvers() == 3) then
             target:removeOldestManeuver();
         end
 
-        target:addStatusEffect(dsp.effects.DARK_MANEUVER, 0, 0, 60);
+        target:addStatusEffect(dsp.effect.DARK_MANEUVER, 0, 0, 60);
     end
 
-    return dsp.effects.DARK_MANEUVER;
+    return dsp.effect.DARK_MANEUVER;
 end;

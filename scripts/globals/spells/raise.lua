@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
             target:setLocalVar("Raise", 1);
         end
     end
-    spell:setMsg(msgBasic.MAGIC_CASTS_ON);
+    spell:setMsg(dsp.msg.basic.MAGIC_CASTS_ON);
 
     return 1;
 end;

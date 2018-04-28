@@ -5,7 +5,7 @@
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:addStatusEffect(dsp.effects.REGAIN,100,1,0);
+    mob:addStatusEffect(dsp.effect.REGAIN,100,1,0);
 end;
 
 

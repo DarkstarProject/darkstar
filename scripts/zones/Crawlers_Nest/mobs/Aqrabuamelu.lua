@@ -8,12 +8,12 @@ require("scripts/globals/magic");
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.AUTO_SPIKES,mob:getShortID());
-    mob:addStatusEffect(dsp.effects.ICE_SPIKES,45,0,0);
-    mob:getStatusEffect(dsp.effects.ICE_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effect.ICE_SPIKES,45,0,0);
+    mob:getStatusEffect(dsp.effect.ICE_SPIKES):setFlag(32);
 end;
 
 function onSpikesDamage(mob,target,damage)
-    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
     if (INT_diff > 20) then
         INT_diff = 20 + ((INT_diff - 20)*0.5); -- INT above 20 is half as effective.

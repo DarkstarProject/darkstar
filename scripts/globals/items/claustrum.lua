@@ -22,7 +22,7 @@ aftermathTable[18330] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=8 }
+        { id=dsp.mod.REFRESH, power=8 }
     }
 };
 aftermathTable[18331] = aftermathTable[18330]; -- Claustrum (80)
@@ -41,8 +41,8 @@ aftermathTable[22060] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=15 },
-        { id=MOD_DMG, power=-20 }
+        { id=dsp.mod.REFRESH, power=15 },
+        { id=dsp.mod.DMG, power=-20 }
     }
 };
 
@@ -59,7 +59,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -75,8 +75,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -88,10 +88,10 @@ function onAdditionalEffect(player,target,damage)
     local chance = 15;
     if (chance > math.random(0,99)) then
         local dispel = target:dispelStatusEffect();
-        if (dispel == dsp.effects.NONE) then
+        if (dispel == dsp.effect.NONE) then
             return 0,0,0;
         else
-            return SUBEFFECT_DISPEL, msgBasic.ADD_EFFECT_DISPEL, dispel;
+            return SUBEFFECT_DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, dispel;
         end
     else
         return 0,0,0;

@@ -19,7 +19,7 @@ function onMobSpawn(mob)
 end;
 
 function onMonsterMagicPrepare(mob,target)
-    if (not mob:hasStatusEffect(dsp.effects.HUNDRED_FISTS,0)) then
+    if (not mob:hasStatusEffect(dsp.effect.HUNDRED_FISTS,0)) then
         local rnd = math.random();
         if (rnd < 0.5) then
             return 186; -- aeroga 3
@@ -45,7 +45,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_WIND);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
 
-    return SUBEFFECT_WIND_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+    return SUBEFFECT_WIND_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

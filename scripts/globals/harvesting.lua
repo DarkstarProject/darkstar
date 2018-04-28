@@ -58,9 +58,9 @@ function startHarvesting(player,zone,npc,trade,csid)
         if (GetServerVariable("[HARVESTING]Zone "..zone) >= 3) then
             getNewHarvestingPositionNPC(player,npc,zone);
         end
-        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
-           player:addKeyItem(dsp.kis.RAINBOW_BERRY);
-           player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.RAINBOW_BERRY);
+        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
+           player:addKeyItem(dsp.ki.RAINBOW_BERRY);
+           player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAINBOW_BERRY);
         end
     else
         player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
@@ -75,7 +75,7 @@ function sickleBreak(player,trade)
     local broke = 0;
     local sicklebreak = math.random();
 
-    sicklebreak = sicklebreak + (player:getMod(MOD_HARVESTING_RESULT) / 1000);
+    sicklebreak = sicklebreak + (player:getMod(dsp.mod.HARVESTING_RESULT) / 1000);
 
     if (sicklebreak < HARVESTING_BREAK_CHANCE) then
         broke = 1;

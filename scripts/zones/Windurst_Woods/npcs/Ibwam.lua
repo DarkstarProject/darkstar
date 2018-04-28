@@ -85,16 +85,16 @@ function onEventFinish(player,csid,option)
     if (csid == 736) then
         player:addQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
         player:setVar("WildcatWindurst",0);
-        player:addKeyItem(dsp.kis.GREEN_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.GREEN_SENTINEL_BADGE);
+        player:addKeyItem(dsp.ki.GREEN_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GREEN_SENTINEL_BADGE);
     elseif (csid == 739) then
         player:completeQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
         player:addFame(WINDURST,150);
         player:setVar("WildcatWindurst",0);
-        player:delKeyItem(dsp.kis.GREEN_SENTINEL_BADGE);
-        player:addKeyItem(dsp.kis.GREEN_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,dsp.kis.GREEN_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.GREEN_INVITATION_CARD);
+        player:delKeyItem(dsp.ki.GREEN_SENTINEL_BADGE);
+        player:addKeyItem(dsp.ki.GREEN_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,dsp.ki.GREEN_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GREEN_INVITATION_CARD);
     elseif (csid == 794) then
         player:tradeComplete();
         toAhtUrhganWhitegate(player);

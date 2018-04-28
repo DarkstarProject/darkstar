@@ -21,21 +21,21 @@ aftermathTable[19468] =
         duration = 30,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = 30 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = 30 }
         }
     },
     { -- Tier 2
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = 40 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = 40 }
         }
     },
     { -- Tier 3
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = 50 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = 50 }
         }
     }
 };
@@ -53,21 +53,21 @@ aftermathTable[22116] =
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = 30 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG_RANGED, power = 30 }
         }
     },
     { -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = 40 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG_RANGED, power = 40 }
         }
     },
     { -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = 50 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG_RANGED, power = 50 }
         }
     }
 };
@@ -87,7 +87,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -103,8 +103,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

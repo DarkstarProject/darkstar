@@ -12,7 +12,7 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_STUNRES, 50);
+    mob:addMod(dsp.mod.STUNRES, 50);
 end;
 
 function onMobFight(mob,target)

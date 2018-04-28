@@ -5,7 +5,7 @@
 ------------------------------------
 dsp = dsp or {};
 
-dsp.weaponskills =
+dsp.weaponskill =
 {
     ------------------------------------
     -- H2H
@@ -268,5 +268,4 @@ dsp.weaponskills =
     WILDFIRE            = 220,
     LAST_STAND          = 221,
 };
-
-dsp.ws = dsp.weaponskills;
+dsp.ws = dsp.weaponskill;

@@ -13,16 +13,16 @@ require("scripts/globals/msg")
 
 function onItemCheck(target)
     if not target:getZone():canUseMisc(dsp.zoneMisc.MOUNT) then
-        return msgBasic.CANT_BE_USED_IN_AREA
-    elseif not target:hasKeyItem(dsp.kis.CHOCOBO_LICENSE) then
-        return msgBasic.ITEM_UNABLE_TO_USE -- Todo: Verify/correct message, order of message priority.
+        return dsp.msg.basic.CANT_BE_USED_IN_AREA
+    elseif not target:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) then
+        return dsp.msg.basic.ITEM_UNABLE_TO_USE -- Todo: Verify/correct message, order of message priority.
     end
     return 0
 end
 
 function onItemUse(target)
     -- Base duration 30 min, in seconds.
-    local duration = 1800 + (target:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
+    local duration = 1800 + (target:getMod(dsp.mod.CHOCOBO_RIDING_TIME) * 60)
 
-    target:addStatusEffectEx(dsp.effects.MOUNTED,dsp.effects.MOUNTED,0,0,duration,true)
+    target:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true)
 end

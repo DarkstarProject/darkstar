@@ -30,11 +30,11 @@ function onPetAbility(target, pet, skill, master)
     else
         local chance = (100 * power) / skill:getTotalTargets();
         if math.random(0,99) < chance and target:getAnimation() ~= 33 then
-            skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
+            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS);
             target:delHP(target:getHP());
-            return dsp.effects.KO;
+            return dsp.effect.KO;
         else
-            skill:setMsg(msgBasic.EVADES);
+            skill:setMsg(dsp.msg.basic.EVADES);
             return 0;
         end
     end

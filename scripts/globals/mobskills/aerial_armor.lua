@@ -10,7 +10,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = dsp.effects.BLINK;
+    local typeEffect = dsp.effect.BLINK;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 3, 0, 180));
 

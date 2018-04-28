@@ -10,10 +10,10 @@ function onMobInitialize(mob)
 end;
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_SILENCERES, 35);
-    mob:addMod(MOD_SLEEPRES, 50);
-    mob:addMod(MOD_LULLABYRES, 50);
-    mob:addMod(MOD_SPELLINTERRUPT, 25);
+    mob:addMod(dsp.mod.SILENCERES, 35);
+    mob:addMod(dsp.mod.SLEEPRES, 50);
+    mob:addMod(dsp.mod.LULLABYRES, 50);
+    mob:addMod(dsp.mod.SPELLINTERRUPT, 25);
 end;
 
 function onMobDeath(mob, player, isKiller)

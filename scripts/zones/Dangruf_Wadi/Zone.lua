@@ -52,9 +52,9 @@ function onRegionEnter(player,region)
             SendEntityVisualPacket(DANGRUF_GEYSER_OFFSET + 2, "kkj3");
         end,
     }
-    if (player:hasKeyItem(dsp.kis.BLUE_ACIDITY_TESTER)) then
-        player:delKeyItem(dsp.kis.BLUE_ACIDITY_TESTER);
-        player:addKeyItem(dsp.kis.RED_ACIDITY_TESTER);
+    if (player:hasKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)) then
+        player:delKeyItem(dsp.ki.BLUE_ACIDITY_TESTER);
+        player:addKeyItem(dsp.ki.RED_ACIDITY_TESTER);
     end
 end;
 

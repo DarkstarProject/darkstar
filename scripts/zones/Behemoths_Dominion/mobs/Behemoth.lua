@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.BEHEMOTHS_BANE);
+    player:addTitle(dsp.title.BEHEMOTHS_BANE);
 end;
 
 function onMobDespawn(mob)

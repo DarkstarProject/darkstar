@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 103) then
         player:tradeComplete();
         player:setVar("BetterPartOfValProg",4)
-        player:addKeyItem(dsp.kis.XHIFHUT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.XHIFHUT);
+        player:addKeyItem(dsp.ki.XHIFHUT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.XHIFHUT);
     end
 end;

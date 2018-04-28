@@ -27,14 +27,14 @@ function onPetAbility(target, automaton, skill, master, action)
     local duration = 12 * resist
 
     if resist > 0.0625 then
-        if target:addStatusEffect(dsp.effects.FLASH, 200, 0, duration) then
-            skill:setMsg(msgBasic.SKILL_ENFEEB)
+        if target:addStatusEffect(dsp.effect.FLASH, 200, 0, duration) then
+            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB)
         else
-            skill:setMsg(msgBasic.SKILL_NO_EFFECT)
+            skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
         end
     else
-        skill:setMsg(msgBasic.RESIST)
+        skill:setMsg(dsp.msg.basic.RESIST)
     end
 
-    return dsp.effects.FLASH
+    return dsp.effect.FLASH
 end

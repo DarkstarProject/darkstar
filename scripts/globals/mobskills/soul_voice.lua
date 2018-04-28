@@ -17,13 +17,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.SOUL_VOICE;
+    local typeEffect = dsp.effect.SOUL_VOICE;
     local duration = 180;
     if (skill:getParam() ~= 0 and mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         duration = skill:getParam();
     end
     MobBuffMove(mob, typeEffect, 1, 0, duration);
 
-    skill:setMsg(msgBasic.USES);
+    skill:setMsg(dsp.msg.basic.USES);
     return typeEffect;
 end;

@@ -21,6 +21,6 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
-    skill:setMsg(msgBasic.HIT_DMG);
+    skill:setMsg(dsp.msg.basic.HIT_DMG);
     return dmg;
 end;

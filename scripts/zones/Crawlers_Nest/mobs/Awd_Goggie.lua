@@ -14,5 +14,5 @@ function onMobDespawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.BOGEYDOWNER);
+    player:addTitle(dsp.title.BOGEYDOWNER);
 end;

@@ -38,8 +38,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 57 and GuestofHauteur == 1) then
         player:setVar("GuestofHauteur_Event",1)
-        player:addKeyItem(dsp.kis.LETTERS_FROM_DOMIEN);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LETTERS_FROM_DOMIEN);
+        player:addKeyItem(dsp.ki.LETTERS_FROM_DOMIEN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_DOMIEN);
     end
 
 end;

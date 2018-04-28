@@ -21,7 +21,7 @@ aftermathTable[18336] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_ENMITY, power=-20 }
+        { id=dsp.mod.ENMITY, power=-20 }
     }
 };
 aftermathTable[18337] = aftermathTable[18336]; -- Annihilator (80)
@@ -40,8 +40,8 @@ aftermathTable[21267] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_ENMITY, power=-25},
-        { id=MOD_RATTP, power=10 }
+        { id=dsp.mod.ENMITY, power=-25},
+        { id=dsp.mod.RATTP, power=10 }
     }
 };
 
@@ -58,7 +58,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -74,8 +74,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

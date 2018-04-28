@@ -24,24 +24,24 @@ function onUseAbility(player,target,ability,action)
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
 
-    local duration = 30 + player:getMod(MOD_SHADOW_BIND_EXT);
-    local recycleChance = player:getMod(MOD_RECYCLE) + player:getMerit(MERIT_RECYCLE);
-    if (player:hasStatusEffect(dsp.effects.UNLIMITED_SHOT)) then
-        player:delStatusEffect(dsp.effects.UNLIMITED_SHOT);
+    local duration = 30 + player:getMod(dsp.mod.SHADOW_BIND_EXT);
+    local recycleChance = player:getMod(dsp.mod.RECYCLE) + player:getMerit(MERIT_RECYCLE);
+    if (player:hasStatusEffect(dsp.effect.UNLIMITED_SHOT)) then
+        player:delStatusEffect(dsp.effect.UNLIMITED_SHOT);
         recycleChance = 100;
     end
 
      -- TODO: Acc penalty for /RNG, acc vs. mob level?
-    if (math.random(0, 99) >= target:getMod(MOD_BINDRES) and target:hasStatusEffect(dsp.effects.BIND) == false) then
-        target:addStatusEffect(dsp.effects.BIND, 0, 0, duration);
-        ability:setMsg(msgBasic.IS_EFFECT); -- Target is bound.
+    if (math.random(0, 99) >= target:getMod(dsp.mod.BINDRES) and target:hasStatusEffect(dsp.effect.BIND) == false) then
+        target:addStatusEffect(dsp.effect.BIND, 0, 0, duration);
+        ability:setMsg(dsp.msg.basic.IS_EFFECT); -- Target is bound.
     else
-        ability:setMsg(msgBasic.JA_MISS); -- Player uses Shadowbind, but misses.
+        ability:setMsg(dsp.msg.basic.JA_MISS); -- Player uses Shadowbind, but misses.
     end
 
     if (math.random(0, 99) >= recycleChance) then
         player:removeAmmo(); -- Shadowbind depletes one round of ammo.
     end
 
-    return dsp.effects.BIND;
+    return dsp.effect.BIND;
 end;

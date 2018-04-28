@@ -21,7 +21,7 @@ aftermathTable[18348] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_RACC, power=20 }
+        { id=dsp.mod.RACC, power=20 }
     }
 };
 aftermathTable[18349] = aftermathTable[18348]; -- Yoichinoyumi (80)
@@ -40,8 +40,8 @@ aftermathTable[22115] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_RACC, power=30 },
-        { id=MOD_SNAP_SHOT, power=5 }
+        { id=dsp.mod.RACC, power=30 },
+        { id=dsp.mod.SNAP_SHOT, power=5 }
     }
 };
 
@@ -58,7 +58,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -74,8 +74,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

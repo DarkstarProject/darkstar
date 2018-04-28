@@ -12,8 +12,8 @@ end;
 
 function onItemUse(target)
     local duration = math.random(60, 180);
-    if (target:hasStatusEffect(dsp.effects.INVISIBLE)) then
-        target:delStatusEffect(dsp.effects.INVISIBLE);
+    if (target:hasStatusEffect(dsp.effect.INVISIBLE)) then
+        target:delStatusEffect(dsp.effect.INVISIBLE);
     end
-    target:addStatusEffect(dsp.effects.INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
+    target:addStatusEffect(dsp.effect.INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
 end;

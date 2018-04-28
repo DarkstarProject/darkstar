@@ -14,7 +14,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4249) then
-        mob:messageBasic(msgBasic.READIES_WS, 0, 39);
+        mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 39);
     end
 
     return 0;
@@ -45,7 +45,7 @@ function onMobWeaponSkill(target, mob, skill)
     dmg = target:breathDmgTaken(dmg);
 
     -- Handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;

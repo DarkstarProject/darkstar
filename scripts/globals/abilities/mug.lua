@@ -17,7 +17,7 @@ function onUseAbility(player,target,ability,action)
     local thfLevel;
     local gil = 0;
 
-    if (player:getMainJob() == dsp.jobs.THF) then
+    if (player:getMainJob() == dsp.job.THF) then
         thfLevel = player:getMainLvl();
     else
         thfLevel = player:getSubLvl();
@@ -40,15 +40,15 @@ function onUseAbility(player,target,ability,action)
         end
 
         if (gil <= 0) then
-            ability:setMsg(msgBasic.MUG_FAIL);
+            ability:setMsg(dsp.msg.basic.MUG_FAIL);
         else
-            gil = gil * (1 + player:getMod(MOD_MUG_EFFECT));
+            gil = gil * (1 + player:getMod(dsp.mod.MUG_EFFECT));
             player:addGil(gil);
             target:setMobMod(dsp.mobMod.MUG_GIL, target:getMobMod(dsp.mobMod.MUG_GIL) - gil);
-            ability:setMsg(msgBasic.MUG_SUCCESS);
+            ability:setMsg(dsp.msg.basic.MUG_SUCCESS);
         end
     else
-        ability:setMsg(msgBasic.MUG_FAIL);
+        ability:setMsg(dsp.msg.basic.MUG_FAIL);
         action:animation(target:getID(), 184);
     end
 

@@ -26,9 +26,9 @@ end;
 function onUseAbility(player,target,ability,action)
     local params = {};
     params.includemab = true;
-    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;
+    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
     dmg  = addBonusesAbility(player, ELE_EARTH, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_EARTH,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    dmg = dmg * applyResistanceAbility(player,target,ELE_EARTH,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_EARTH);
 
     local shadowsAbsorbed = 0;
@@ -43,17 +43,17 @@ function onUseAbility(player,target,ability,action)
     
         local effects = {};
         local counter = 1;
-        local rasp = target:getStatusEffect(dsp.effects.RASP);
+        local rasp = target:getStatusEffect(dsp.effect.RASP);
         if (rasp ~= nil) then
             effects[counter] = rasp;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
-        if (threnody ~= nil and threnody:getSubPower() == MOD_THUNDERRES) then
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
+        if (threnody ~= nil and threnody:getSubPower() == dsp.mod.THUNDERRES) then
             effects[counter] = threnody;
             counter = counter + 1;
         end
-        local slow = target:getStatusEffect(dsp.effects.SLOW);
+        local slow = target:getStatusEffect(dsp.effect.SLOW);
         if (slow ~= nil) then
             effects[counter] = slow;
             counter = counter + 1;

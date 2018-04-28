@@ -13,9 +13,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.kis.MERIPHATAUD_GATE_CRYSTAL) == false) then
-        player:addKeyItem(dsp.kis.MERIPHATAUD_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MERIPHATAUD_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.ki.MERIPHATAUD_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.ki.MERIPHATAUD_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MERIPHATAUD_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end

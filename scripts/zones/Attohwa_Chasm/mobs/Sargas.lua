@@ -9,24 +9,24 @@ require("scripts/globals/magic");
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
     mob:setMobMod(dsp.mobMod.AUTO_SPIKES,mob:getShortID());
-    mob:addStatusEffect(dsp.effects.SHOCK_SPIKES,50,0,0);
-    mob:getStatusEffect(dsp.effects.SHOCK_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effect.SHOCK_SPIKES,50,0,0);
+    mob:getStatusEffect(dsp.effect.SHOCK_SPIKES):setFlag(32);
 end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guestimating 2 in 3 chance to stun on melee.
-    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(dsp.effects.STUN) == true)) then
+    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(dsp.effect.STUN) == true)) then
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(dsp.effects.STUN,5,0,duration);
-        return SUBEFFECT_STUN,0,dsp.effects.STUN;
+        target:addStatusEffect(dsp.effect.STUN,5,0,duration);
+        return SUBEFFECT_STUN,0,dsp.effect.STUN;
     end
 
 end;
 
 function onSpikesDamage(mob,target,damage)
-    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
     if (INT_diff > 20) then
         INT_diff = 20 + ((INT_diff - 20)*0.5); -- INT above 20 is half as effective.
