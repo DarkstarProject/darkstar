@@ -9,26 +9,11 @@
 -- applications of damage mods ('Damage varies with TP.')
 -- performance of the actual WS (rand numbers, etc)
 require("scripts/globals/magicburst");
+require("scripts/globals/ability");
 require("scripts/globals/status");
-require("scripts/globals/utils");
 require("scripts/globals/magic");
+require("scripts/globals/utils");
 require("scripts/globals/msg");
-
-REACTION_NONE = 0x00
-REACTION_MISS = 0x01
-REACTION_PARRY = 0x03
-REACTION_BLOCK = 0x04
-REACTION_HIT = 0x08
-REACTION_EVADE = 0x09
-REACTION_GUARD = 0x14
-
-SPECEFFECT_NONE = 0x00
-SPECEFFECT_BLOOD = 0x02
-SPECEFFECT_HIT = 0x10
-SPECEFFECT_RAISE = 0x11
-SPECEFFECT_RECOIL = 0x20
-SPECEFFECT_CRITICAL_HIT = 0x22
-
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
@@ -998,8 +983,8 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
             end
 
             if finaldmg > 0 then
-                action:reaction(defender:getID(), REACTION_HIT)
-                action:speceffect(defender:getID(), SPECEFFECT_RECOIL)
+                action:reaction(defender:getID(), dsp.reaction.HIT)
+                action:speceffect(defender:getID(), dsp.specEffect.RECOIL)
             end
         else
             if primary then
@@ -1018,7 +1003,7 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
         else
             action:messageID(defender:getID(), msgBasic.EVADES)
         end
-        action:reaction(defender:getID(), REACTION_EVADE)
+        action:reaction(defender:getID(), dsp.reaction.EVADE)
     end
     local targetTPMult = params.targetTPMult or 1
     finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
