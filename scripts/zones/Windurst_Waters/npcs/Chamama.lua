@@ -66,7 +66,7 @@ function onTrigger(player,npc)
     local NeedToZone = player:needToZone();
 
     if (ThePromise == QUEST_ACCEPTED) then
-        InvisibleManSticker = player:hasKeyItem(dsp.kis.INVISIBLE_MAN_STICKER);
+        local InvisibleManSticker = player:hasKeyItem(dsp.kis.INVISIBLE_MAN_STICKER);
 
         if (InvisibleManSticker == true) then
             player:startEvent(800);
