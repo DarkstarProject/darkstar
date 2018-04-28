@@ -106,7 +106,7 @@ function onMobFight(mob,target)
         if (mob:getHPP() <= hpTrigger and usedAzure == 0) then
             mob:setLocalVar("usedAzureLore", 1);
             mob:setLocalVar("AzureLoreHP", math.random(20,50); -- Re-rolling the % for next "life"
-            mob:useMobAbility(jobSpec.AZURE_LORE);
+            mob:useMobAbility(dsp.jsa.AZURE_LORE);
         end
     end
     ]]

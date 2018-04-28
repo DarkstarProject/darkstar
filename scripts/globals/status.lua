@@ -2041,7 +2041,7 @@ dsp.mobMod =
 -- Job Specials (1hr / 2hr moves)
 ------------------------------------
 
-jobSpec =
+dsp.jobSpecialAbility =
 {
     MIGHTY_STRIKES      = 688,
     MIGHTY_STRIKES_MAAT = 1008,
@@ -2144,6 +2144,7 @@ jobSpec =
     -- ELEMENTAL_SFORZO     = 3479,
     -- BOLSTER              = 3482,
 };
+dsp.jsa = dsp.jobSpecialAbility;
 
 ------------------------------------
 -- Skills

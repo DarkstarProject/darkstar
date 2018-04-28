@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", jobSpec.EES_LAMIA);
+    mob:setLocalVar("mainSpec", dsp.jsa.EES_LAMIA);
     mob:setLocalVar("useSpecAtHpMin", 5);
     mob:setLocalVar("useSpecAtHpMax", 99);
     mob:setLocalVar("useMainSpecAtHPP", math.random(5,99));
