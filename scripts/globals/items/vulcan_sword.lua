@@ -33,6 +33,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    local effect = dsp.effects.ENFIRE;
+    local effect = dsp.effect.ENFIRE;
     doEnspell(target,target,nil,effect);
 end;

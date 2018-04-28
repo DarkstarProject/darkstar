@@ -104,7 +104,7 @@ function BluePhysicalSpell(caster, target, spell, params)
     local multiplier = params.multiplier;
 
     -- If under CA, replace multiplier with fTP(multiplier, tp150, tp300)
-    local chainAffinity = caster:getStatusEffect(dsp.effects.CHAIN_AFFINITY);
+    local chainAffinity = caster:getStatusEffect(dsp.effect.CHAIN_AFFINITY);
     if chainAffinity ~= nil then
         -- Calculate the total TP available for the fTP multiplier.
         local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
@@ -181,13 +181,13 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
 
     local ST = BlueGetWsc(caster, params); -- According to Wiki ST is the same as WSC, essentially Blue mage spells that are magical use the dmg formula of Magical type Weapon skills
 
-    if (caster:hasStatusEffect(dsp.effects.BURST_AFFINITY)) then
+    if (caster:hasStatusEffect(dsp.effect.BURST_AFFINITY)) then
         ST = ST * 2;
     end
 
     local convergenceBonus = 1.0;
-    if (caster:hasStatusEffect(dsp.effects.CONVERGENCE)) then
-        convergenceEffect = getStatusEffect(dsp.effects.CONVERGENCE);
+    if (caster:hasStatusEffect(dsp.effect.CONVERGENCE)) then
+        convergenceEffect = getStatusEffect(dsp.effect.CONVERGENCE);
         local convLvl = convergenceEffect:getPower();
         if (convLvl == 1) then
             convergenceBonus = 1.05;
@@ -226,7 +226,7 @@ function BlueMagicalSpell(caster, target, spell, params, statMod)
     
     dmg = math.floor(addBonuses(caster, spell, target, magicAttack));
 
-    caster:delStatusEffectSilent(dsp.effects.BURST_AFFINITY);
+    caster:delStatusEffectSilent(dsp.effect.BURST_AFFINITY);
 
     return dmg;
 end;
@@ -398,20 +398,20 @@ function getBlueEffectDuration(caster,resist,effect)
         resist = 4;
     end
 
-    if (effect == dsp.effects.BIND) then
+    if (effect == dsp.effect.BIND) then
         duration = math.random(0,5) + resist * 5;
-    elseif (effect == dsp.effects.STUN) then
+    elseif (effect == dsp.effect.STUN) then
         duration = math.random(2,3) + resist;
         -- printf("Duration of stun is %i",duration);
-    elseif (effect == dsp.effects.WEIGHT) then
+    elseif (effect == dsp.effect.WEIGHT) then
         duration = math.random(20,24) + resist * 9; -- 20-24
-    elseif (effect == dsp.effects.PARALYSIS) then
+    elseif (effect == dsp.effect.PARALYSIS) then
         duration = math.random(50,60) + resist * 15; -- 50- 60
-    elseif (effect == dsp.effects.SLOW) then
+    elseif (effect == dsp.effect.SLOW) then
         duration = math.random(60,120) + resist * 15; -- 60- 120 -- Needs confirmation but capped max duration based on White Magic Spell Slow
-    elseif (effect == dsp.effects.SILENCE) then
+    elseif (effect == dsp.effect.SILENCE) then
         duration = math.random(60,180) + resist * 15; -- 60- 180 -- Needs confirmation but capped max duration based on White Magic Spell Silence
-    elseif (effect == dsp.effects.POISON) then
+    elseif (effect == dsp.effect.POISON) then
         duration = math.random(20,30) + resist * 9; -- 20-30 -- based on magic spell poison
     end
 

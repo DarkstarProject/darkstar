@@ -6,13 +6,13 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { dsp.titles.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES , dsp.titles.BUSHIDO_BLADE , dsp.titles.BLACK_MARKETEER , dsp.titles.CRACKER_OF_THE_SECRET_CODE ,
-                dsp.titles.LOOKS_SUBLIME_IN_A_SUBLIGAR , dsp.titles.LOOKS_GOOD_IN_LEGGINGS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { dsp.titles.APPRENTICE_SOMMELIER , dsp.titles.TREASUREHOUSE_RANSACKER , dsp.titles.HEIR_OF_THE_GREAT_WATER , dsp.titles.PARAGON_OF_SAMURAI_EXCELLENCE ,
-                dsp.titles.PARAGON_OF_NINJA_EXCELLENCE , dsp.titles.GUIDER_OF_SOULS_TO_THE_SANCTUARY , dsp.titles.BEARER_OF_BONDS_BEYOND_TIME , dsp.titles.FRIEND_OF_THE_OPOOPOS ,
-                dsp.titles.PENTACIDE_PERPETRATOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { dsp.titles.BEARER_OF_THE_WISEWOMANS_HOPE , dsp.titles.BEARER_OF_THE_EIGHT_PRAYERS , dsp.titles.LIGHTWEAVER , dsp.titles.DESTROYER_OF_ANTIQUITY , dsp.titles.SEALER_OF_THE_PORTAL_OF_THE_GODS ,
-                dsp.titles.BURIER_OF_THE_ILLUSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title2 = { dsp.title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES , dsp.title.BUSHIDO_BLADE , dsp.title.BLACK_MARKETEER , dsp.title.CRACKER_OF_THE_SECRET_CODE ,
+                dsp.title.LOOKS_SUBLIME_IN_A_SUBLIGAR , dsp.title.LOOKS_GOOD_IN_LEGGINGS , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.title.APPRENTICE_SOMMELIER , dsp.title.TREASUREHOUSE_RANSACKER , dsp.title.HEIR_OF_THE_GREAT_WATER , dsp.title.PARAGON_OF_SAMURAI_EXCELLENCE ,
+                dsp.title.PARAGON_OF_NINJA_EXCELLENCE , dsp.title.GUIDER_OF_SOULS_TO_THE_SANCTUARY , dsp.title.BEARER_OF_BONDS_BEYOND_TIME , dsp.title.FRIEND_OF_THE_OPOOPOS ,
+                dsp.title.PENTACIDE_PERPETRATOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.title.BEARER_OF_THE_WISEWOMANS_HOPE , dsp.title.BEARER_OF_THE_EIGHT_PRAYERS , dsp.title.LIGHTWEAVER , dsp.title.DESTROYER_OF_ANTIQUITY , dsp.title.SEALER_OF_THE_PORTAL_OF_THE_GODS ,
+                dsp.title.BURIER_OF_THE_ILLUSION , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title5 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }

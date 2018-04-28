@@ -35,9 +35,9 @@ function onUseAbility(player,target,ability,action)
 
     if (tpHits + extraHits > 0) then
         -- Under Spirit Surge, Jump also decreases target defense by 20% for 60 seconds
-        if (player:hasStatusEffect(dsp.effects.SPIRIT_SURGE) == true) then
-            if (target:hasStatusEffect(dsp.effects.DEFENSE_DOWN) == false) then
-                target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 20, 0, 60);
+        if (player:hasStatusEffect(dsp.effect.SPIRIT_SURGE) == true) then
+            if (target:hasStatusEffect(dsp.effect.DEFENSE_DOWN) == false) then
+                target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 20, 0, 60);
             end
         end
         if (criticalHit) then

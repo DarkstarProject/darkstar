@@ -47,16 +47,16 @@ function onSpellCast(caster,target,spell)
     local duration = 120;
     local dotBonus = caster:getMod(MOD_DIA_DOT);  -- Dia Wand
 
-    if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
+    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         duration = duration * 2;
-        caster:delStatusEffect(dsp.effects.SABOTEUR);
+        caster:delStatusEffect(dsp.effect.SABOTEUR);
     end
 
     -- Check for Bio.
-    local bio = target:getStatusEffect(dsp.effects.BIO);
+    local bio = target:getStatusEffect(dsp.effect.BIO);
 
     -- Do it!
-    if (target:addStatusEffect(dsp.effects.DIA,3+dotBonus,3,duration,FLAG_ERASABLE,15,3)) then
+    if (target:addStatusEffect(dsp.effect.DIA,3+dotBonus,3,duration,FLAG_ERASABLE,15,3)) then
         spell:setMsg(msgBasic.MAGIC_DMG);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -65,7 +65,7 @@ function onSpellCast(caster,target,spell)
     -- Try to kill same tier Bio
     if (BIO_OVERWRITE == 1 and bio ~= nil) then
         if (bio:getPower() <= 3) then
-            target:delStatusEffect(dsp.effects.BIO);
+            target:delStatusEffect(dsp.effect.BIO);
         end
     end
 

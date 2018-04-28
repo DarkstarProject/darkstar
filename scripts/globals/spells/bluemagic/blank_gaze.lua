@@ -29,13 +29,13 @@ function onSpellCast(caster,target,spell)
     params.skillType = BLUE_SKILL;
 
     local resist = applyResistance(caster, target, spell, params);
-    local effect = dsp.effects.NONE;
+    local effect = dsp.effect.NONE;
 
     if (resist > 0.0625) then
         if (target:isFacing(caster)) then
             spell:setMsg(msgBasic.MAGIC_ERASE);
             effect = target:dispelStatusEffect();
-            if (effect == dsp.effects.NONE) then
+            if (effect == dsp.effect.NONE) then
                 spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
             end;
         else

@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 
 function onAbilityCheck(player,target,ability)
     if (player:getWeaponSubSkillType(SLOT_RANGED) == 10 and
-        not player:hasStatusEffect(dsp.effects.OVERLOAD) and
+        not player:hasStatusEffect(dsp.effect.OVERLOAD) and
         player:getPet()) then
         return 0,0;
     else
@@ -30,16 +30,16 @@ function onUseAbility(player,target,ability)
 
     if (overload ~= 0 and
         (player:getMod(MOD_PREVENT_OVERLOAD) > 0 or player:getPet():getMod(MOD_PREVENT_OVERLOAD) > 0) and
-        player:delStatusEffectSilent(dsp.effects.WATER_MANEUVER)) then
+        player:delStatusEffectSilent(dsp.effect.WATER_MANEUVER)) then
         overload = 0;
     end
 
     if (overload ~= 0) then
         target:removeAllManeuvers();
-        target:addStatusEffect(dsp.effects.OVERLOAD, 0, 0, overload);
+        target:addStatusEffect(dsp.effect.OVERLOAD, 0, 0, overload);
     else
         local level;
-        if (target:getMainJob() == dsp.jobs.PUP) then
+        if (target:getMainJob() == dsp.job.PUP) then
             level = target:getMainLvl()
         else
             level = target:getSubLvl()
@@ -51,8 +51,8 @@ function onUseAbility(player,target,ability)
             target:removeOldestManeuver();
         end
 
-        target:addStatusEffect(dsp.effects.EARTH_MANEUVER, bonus, 0, 60);
+        target:addStatusEffect(dsp.effect.EARTH_MANEUVER, bonus, 0, 60);
     end
 
-    return dsp.effects.EARTH_MANEUVER;
+    return dsp.effect.EARTH_MANEUVER;
 end;

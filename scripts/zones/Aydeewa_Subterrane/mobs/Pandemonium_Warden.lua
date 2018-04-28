@@ -70,7 +70,7 @@ function onMobEngaged(mob,target)
         local pet = GetMobByID(petIDs[1][i]);
         pet:setModelId(1841);
         pet:spawn();
-		pet:updateEnmity(target);
+        pet:updateEnmity(target);
     end
 end;
 
@@ -160,7 +160,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(dsp.titles.PANDEMONIUM_QUELLER);
+    player:addTitle(dsp.title.PANDEMONIUM_QUELLER);
    
     -- Despawn pets
     for i = 0, 1 do

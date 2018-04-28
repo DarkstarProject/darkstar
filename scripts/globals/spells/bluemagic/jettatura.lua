@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
-    params.effect = dsp.effects.TERROR;
+    params.effect = dsp.effect.TERROR;
     local resist = applyResistance(caster, target, spell, params);
     local duration = 5 * resist;
 

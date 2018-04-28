@@ -13,5 +13,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effects.SABER_DANCE,50,3,300);
+    player:addStatusEffect(dsp.effect.SABER_DANCE,50,3,300);
 end;

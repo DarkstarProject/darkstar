@@ -22,14 +22,14 @@ dsp.zoneMisc =
     COSTUME    = 0x0040, -- Ability to use a Costumes
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
-    YELL       = 0x0400  -- Send and receive /yell commands
+    YELL       = 0x0400, -- Send and receive /yell commands
 };
 
 ------------------------------------
 -- Job IDs
 ------------------------------------
 
-dsp.jobs =
+dsp.job =
 {
     NONE            =  0,
     WAR             =  1,
@@ -63,12 +63,12 @@ dsp.MAX_JOB_TYPE = 23;
 
 dsp.status =
 {
-    NORMAL          = 0,
-    UPDATE          = 1,
-    DISAPPEAR       = 2,
-    STATUS_3        = 3,
-    STATUS_4        = 4,
-    CUTSCENE_ONLY   = 6,
+    NORMAL          =  0,
+    UPDATE          =  1,
+    DISAPPEAR       =  2,
+    STATUS_3        =  3,
+    STATUS_4        =  4,
+    CUTSCENE_ONLY   =  6,
     STATUS_18       = 18,
     SHUTDOWN        = 20,
 };
@@ -147,7 +147,7 @@ SUBEFFECT_IMPACTION     = 14;
 -- These codes represent the actual status effects.
 -- They are simply for convenience.
 ------------------------------------
-dsp.effects =
+dsp.effect =
 {
     KO                       = 0,
     WEAKNESS                 = 1,
@@ -790,11 +790,11 @@ dsp.effects =
     CHAINBOUND               = 798,
     SKILLCHAIN               = 799,
     DYNAMIS                  = 800,
-    MEDITATE                 = 801 -- Dummy effect for SAM Meditate JA
+    MEDITATE                 = 801, -- Dummy effect for SAM Meditate JA
     -- PLACEHOLDER              = 802, -- Description
     -- 802-1022
     -- PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
-    }
+};
 
 ----------------------------------
 -- SC masks
@@ -840,15 +840,15 @@ EFFECTFLAG_NO_CANCEL       = 0x800000
 ------------------------------------
 
 function removeSleepEffects(target)
-    target:delStatusEffect(dsp.effects.SLEEP_I);
-    target:delStatusEffect(dsp.effects.SLEEP_II);
-    target:delStatusEffect(dsp.effects.LULLABY);
+    target:delStatusEffect(dsp.effect.SLEEP_I);
+    target:delStatusEffect(dsp.effect.SLEEP_II);
+    target:delStatusEffect(dsp.effect.LULLABY);
 end;
 
 function hasSleepEffects(target)
-    if (target:hasStatusEffect(dsp.effects.SLEEP_I) or
-        target:hasStatusEffect(dsp.effects.SLEEP_II) or
-        target:hasStatusEffect(dsp.effects.LULLABY)) then
+    if (target:hasStatusEffect(dsp.effect.SLEEP_I) or
+        target:hasStatusEffect(dsp.effect.SLEEP_II) or
+        target:hasStatusEffect(dsp.effect.LULLABY)) then
         return true;
     end
     return false;
@@ -2385,7 +2385,7 @@ ANIMATION_MOUNT                    = 85;
 -- Mount IDs
 ------------------------------------
 
-dsp.mounts =
+dsp.mount =
 {
     CHOCOBO        = 0,
     QUEST_RAPTOR   = 1,

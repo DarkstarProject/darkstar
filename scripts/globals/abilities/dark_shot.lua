@@ -35,17 +35,17 @@ function onUseAbility(player,target,ability)
 
     local effects = {};
     local counter = 1;
-    local bio = target:getStatusEffect(dsp.effects.BIO);
+    local bio = target:getStatusEffect(dsp.effect.BIO);
     if (bio ~= nil) then
         effects[counter] = bio;
         counter = counter + 1;
     end
-    local blind = target:getStatusEffect(dsp.effects.BLINDNESS);
+    local blind = target:getStatusEffect(dsp.effect.BLINDNESS);
     if (blind ~= nil) then
         effects[counter] = blind;
         counter = counter + 1;
     end
-    local threnody = target:getStatusEffect(dsp.effects.THRENODY);
+    local threnody = target:getStatusEffect(dsp.effect.THRENODY);
     if (threnody ~= nil and threnody:getSubPower() == MOD_LIGHTRES) then
         effects[counter] = threnody;
         counter = counter + 1;
@@ -71,7 +71,7 @@ function onUseAbility(player,target,ability)
 
     ability:setMsg(msgBasic.JA_REMOVE_EFFECT_2);
     local dispelledEffect = target:dispelStatusEffect();
-    if (dispelledEffect == dsp.effects.NONE) then
+    if (dispelledEffect == dsp.effect.NONE) then
         -- no effect
         ability:setMsg(msgBasic.JA_NO_EFFECT_2);
     end

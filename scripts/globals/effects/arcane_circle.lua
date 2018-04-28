@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.ARCANE_CIRCLE
+--     dsp.effect.ARCANE_CIRCLE
 --
 -----------------------------------
 

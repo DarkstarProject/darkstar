@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.BURN;
+    local typeEffect = dsp.effect.BURN;
     local power = math.random(10,30);
 
 

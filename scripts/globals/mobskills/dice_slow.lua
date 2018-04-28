@@ -20,14 +20,14 @@ function onMobWeaponSkill(target, mob, skill)
     local slowed = false;
     local sleeped = false;
 
-    slowed = MobStatusEffectMove(mob, target, dsp.effects.SLOW, 128, 0, 120);
-    sleeped = MobStatusEffectMove(mob, target, dsp.effects.SLEEP_I, 1, 0, 30);
+    slowed = MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, 120);
+    sleeped = MobStatusEffectMove(mob, target, dsp.effect.SLEEP_I, 1, 0, 30);
 
     skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
     if (sleeped) then
-        return dsp.effects.SLEEP_I;
+        return dsp.effect.SLEEP_I;
     elseif (slowed) then
-        return dsp.effects.SLOW;
+        return dsp.effect.SLOW;
     else
         skill:setMsg(msgBasic.SKILL_MISS); -- no effect
     end

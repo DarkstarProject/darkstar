@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = 0;
-    params.effect = dsp.effects.LULLABY;
+    params.effect = dsp.effect.LULLABY;
     resm = applyResistanceEffect(caster, target, spell, params);
 
     if (resm < 0.5) then
@@ -30,12 +30,12 @@ function onSpellCast(caster,target,spell)
 
         duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-        if (target:addStatusEffect(dsp.effects.LULLABY,1,0,duration)) then
+        if (target:addStatusEffect(dsp.effect.LULLABY,1,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
     end
 
-    return dsp.effects.LULLABY;
+    return dsp.effect.LULLABY;
 end;

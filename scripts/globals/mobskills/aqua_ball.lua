@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.STR_DOWN;
+    local typeEffect = dsp.effect.STR_DOWN;
     local power = 20;
     local tick = 3;
     local duration = power * tick;

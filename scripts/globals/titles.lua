@@ -5,7 +5,7 @@
 -----------------------------------
 dsp = dsp or {}
 
-dsp.titles =
+dsp.title =
 {
     FODDERCHIEF_FLAYER                        = 1,
     WARCHIEF_WRECKER                          = 2,

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.MAGIC_DEF_BOOST
+-- dsp.effect.MAGIC_DEF_BOOST
 --
 -----------------------------------
 

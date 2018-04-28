@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.FAFNIR_SLAYER);
+    player:addTitle(dsp.title.FAFNIR_SLAYER);
 end;
 
 function onMobDespawn(mob)

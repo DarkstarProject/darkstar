@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     local level = player:getMainLvl();
     local gil = player:getGil();
 
-    if (player:hasKeyItem(dsp.kis.CHOCOBO_LICENSE) and level >= 20) then
+    if (player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) and level >= 20) then
         local price = getChocoboPrice(player);
         player:setLocalVar("chocoboPriceOffer",price);
 
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
 
             local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
 
-            player:addStatusEffectEx(dsp.effects.MOUNTED,dsp.effects.MOUNTED,0,0,duration,true);
+            player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true);
 
             player:setPos(-240,0,528,0x40,0x7B);
         end

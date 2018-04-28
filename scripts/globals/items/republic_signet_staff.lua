@@ -16,7 +16,7 @@ function onItemCheck(target, param, caster)
     end
     
     -- If target's current region is not a conquest region or not a nation city involved with conquest
-    if (target:getCurrentRegion() > dsp.regions.JEUNO) then
+    if (target:getCurrentRegion() > dsp.region.JEUNO) then
         return msgBasic.ITEM_UNABLE_TO_USE
     end
 
@@ -35,9 +35,9 @@ end;
 
 function onItemUse(target)
 
-    target:delStatusEffect(dsp.effects.SIGIL);
-    target:delStatusEffect(dsp.effects.SANCTION);
-    target:delStatusEffect(dsp.effects.SIGNET);
-    target:addStatusEffect(dsp.effects.SIGNET,0,0,18000);
+    target:delStatusEffect(dsp.effect.SIGIL);
+    target:delStatusEffect(dsp.effect.SANCTION);
+    target:delStatusEffect(dsp.effect.SIGNET);
+    target:addStatusEffect(dsp.effect.SIGNET,0,0,18000);
     
 end;

@@ -18,7 +18,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     for i,effect in ipairs(effects) do
         -- check mask bit for EFFECTFLAG_DISPELABLE
-        if (target:getMaskBit(effect:getFlag(),0) == true and effect:getType() ~= dsp.effects.RERAISE and num < 10) then
+        if (target:getMaskBit(effect:getFlag(),0) == true and effect:getType() ~= dsp.effect.RERAISE and num < 10) then
             target:delStatusEffect(effect:getType());
             num = num + 1;
         end

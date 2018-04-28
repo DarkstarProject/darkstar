@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local effectCount = 0;
     local dispel = mob:eraseStatusEffect();
 
-    while (dispel ~= dsp.effects.NONE)
+    while (dispel ~= dsp.effect.NONE)
     do
         effectCount = effectCount + 1;
         dispel = mob:eraseStatusEffect();

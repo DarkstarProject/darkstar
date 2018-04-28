@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.MIGHTY_STRIKES
+--     dsp.effect.MIGHTY_STRIKES
 --     
 -----------------------------------
 

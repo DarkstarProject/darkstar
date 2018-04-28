@@ -9,7 +9,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.DRAGON_ASHER);
+    player:addTitle(dsp.title.DRAGON_ASHER);
 end;
 
 function onMobDespawn(mob)

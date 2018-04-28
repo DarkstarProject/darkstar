@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.VERTHANDI_ENSNARER);
+    player:addTitle(dsp.title.VERTHANDI_ENSNARER);
 end;

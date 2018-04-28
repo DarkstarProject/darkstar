@@ -28,19 +28,19 @@ function onMobWeaponSkill(target, mob, skill)
         After checking retail this mobskill appeared to grant only
         1 of the 2 effects unlike the blue magic version
     ]]
-    if (mob:hasStatusEffect(dsp.effects.ACCURACY_BOOST)) then
-        skill:setMsg(MobBuffMove(mob, dsp.effects.EVASION_BOOST, power, 0, 180));
-        EFFECT = dsp.effects.EVASION_BOOST;
-    elseif (mob:hasStatusEffect(dsp.effects.ACCURACY_BOOST)) then
-        skill:setMsg(MobBuffMove(mob, dsp.effects.ACCURACY_BOOST, power, 0, 180));
-        EFFECT = dsp.effects.ACCURACY_BOOST;
+    if (mob:hasStatusEffect(dsp.effect.ACCURACY_BOOST)) then
+        skill:setMsg(MobBuffMove(mob, dsp.effect.EVASION_BOOST, power, 0, 180));
+        EFFECT = dsp.effect.EVASION_BOOST;
+    elseif (mob:hasStatusEffect(dsp.effect.ACCURACY_BOOST)) then
+        skill:setMsg(MobBuffMove(mob, dsp.effect.ACCURACY_BOOST, power, 0, 180));
+        EFFECT = dsp.effect.ACCURACY_BOOST;
     else
         if (rand < 0.5) then
-            skill:setMsg(MobBuffMove(mob, dsp.effects.EVASION_BOOST, power, 0, 180));
-            EFFECT = dsp.effects.EVASION_BOOST;
+            skill:setMsg(MobBuffMove(mob, dsp.effect.EVASION_BOOST, power, 0, 180));
+            EFFECT = dsp.effect.EVASION_BOOST;
         else
-            skill:setMsg(MobBuffMove(mob, dsp.effects.ACCURACY_BOOST, power, 0, 180));
-            EFFECT = dsp.effects.ACCURACY_BOOST;
+            skill:setMsg(MobBuffMove(mob, dsp.effect.ACCURACY_BOOST, power, 0, 180));
+            EFFECT = dsp.effect.ACCURACY_BOOST;
         end
     end
 

@@ -15,9 +15,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.kis.KNIGHTS_SOUL) == false and player:hasKeyItem(dsp.kis.BOOK_OF_TASKS) and player:hasKeyItem(dsp.kis.BOOK_OF_THE_WEST) and player:hasKeyItem(dsp.kis.BOOK_OF_THE_EAST)) then
-        player:addKeyItem(dsp.kis.KNIGHTS_SOUL);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.KNIGHTS_SOUL);
+    if (player:hasKeyItem(dsp.ki.KNIGHTS_SOUL) == false and player:hasKeyItem(dsp.ki.BOOK_OF_TASKS) and player:hasKeyItem(dsp.ki.BOOK_OF_THE_WEST) and player:hasKeyItem(dsp.ki.BOOK_OF_THE_EAST)) then
+        player:addKeyItem(dsp.ki.KNIGHTS_SOUL);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.KNIGHTS_SOUL);
     else
         player:messageSpecial(A_WELL);
     end

@@ -10,26 +10,26 @@ require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
-local title2 = { dsp.titles.NEW_ADVENTURER , dsp.titles.BEAN_CUISINE_SALTER , dsp.titles.DAYBREAK_GAMBLER , dsp.titles.ENTRANCE_DENIED , dsp.titles.RABBITER , dsp.titles.ROYAL_GRAVE_KEEPER ,
-                dsp.titles.COURIER_EXTRAORDINAIRE , dsp.titles.RONFAURIAN_RESCUER , dsp.titles.PICKPOCKET_PINCHER , dsp.titles.THE_PURE_ONE , dsp.titles.LOST_CHILD_OFFICER , dsp.titles.SILENCER_OF_THE_LAMBS ,
-                dsp.titles.LOST_AMP_FOUND_OFFICER , dsp.titles.GREEN_GROCER , dsp.titles.THE_BENEVOLENT_ONE , dsp.titles.KNIGHT_IN_TRAINING , dsp.titles.ADVERTISING_EXECUTIVE , dsp.titles.FAMILY_COUNSELOR ,
-                dsp.titles.MOGS_MASTER , dsp.titles.VERMILLION_VENTURER , dsp.titles.DISCERNING_INDIVIDUAL , dsp.titles.VERY_DISCERNING_INDIVIDUAL , dsp.titles.EXTREMELY_DISCERNING_INDIVIDUAL ,
+local title2 = { dsp.title.NEW_ADVENTURER , dsp.title.BEAN_CUISINE_SALTER , dsp.title.DAYBREAK_GAMBLER , dsp.title.ENTRANCE_DENIED , dsp.title.RABBITER , dsp.title.ROYAL_GRAVE_KEEPER ,
+                dsp.title.COURIER_EXTRAORDINAIRE , dsp.title.RONFAURIAN_RESCUER , dsp.title.PICKPOCKET_PINCHER , dsp.title.THE_PURE_ONE , dsp.title.LOST_CHILD_OFFICER , dsp.title.SILENCER_OF_THE_LAMBS ,
+                dsp.title.LOST_AMP_FOUND_OFFICER , dsp.title.GREEN_GROCER , dsp.title.THE_BENEVOLENT_ONE , dsp.title.KNIGHT_IN_TRAINING , dsp.title.ADVERTISING_EXECUTIVE , dsp.title.FAMILY_COUNSELOR ,
+                dsp.title.MOGS_MASTER , dsp.title.VERMILLION_VENTURER , dsp.title.DISCERNING_INDIVIDUAL , dsp.title.VERY_DISCERNING_INDIVIDUAL , dsp.title.EXTREMELY_DISCERNING_INDIVIDUAL ,
                 0 , 0 , 0 , 0 , 0 }
-local title3 = { dsp.titles.SHEEPS_MILK_DELIVERER , dsp.titles.THE_PIOUS_ONE , dsp.titles.APIARIST , dsp.titles.FAITH_LIKE_A_CANDLE , dsp.titles.LIZARD_SKINNER , dsp.titles.BUG_CATCHER ,
-                dsp.titles.SPELUNKER , dsp.titles.ARMS_TRADER , dsp.titles.THIRDRATE_ORGANIZER , dsp.titles.ROYAL_WEDDING_PLANNER , dsp.titles.CONSORT_CANDIDATE , dsp.titles.CERTIFIED_ADVENTURER , dsp.titles.VAMPIRE_HUNTER_DMINUS ,
-                dsp.titles.A_MOSS_KIND_PERSON , dsp.titles.FANG_FINDER , dsp.titles.TRAVELING_MEDICINE_MAN , dsp.titles.CAT_SKINNER , dsp.titles.CARP_DIEM , dsp.titles.SECONDRATE_ORGANIZER , dsp.titles.MOGS_KIND_MASTER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { dsp.titles.FIRSTRATE_ORGANIZER , dsp.titles.PILGRIM_TO_HOLLA , dsp.titles.TRIED_AND_TESTED_KNIGHT , dsp.titles.HEIR_TO_THE_HOLY_CREST , dsp.titles.OBSIDIAN_STORM ,
-                dsp.titles.TALKS_WITH_TONBERRIES , dsp.titles.SHADOW_BANISHER , dsp.titles.MOGS_EXCEPTIONALLY_KIND_MASTER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title5 = { dsp.titles.SEARING_STAR , dsp.titles.STRIKING_STAR , dsp.titles.SOOTHING_STAR , dsp.titles.SABLE_STAR , dsp.titles.SCARLET_STAR , dsp.titles.SONIC_STAR , dsp.titles.SAINTLY_STAR , dsp.titles.SHADOWY_STAR ,
-                dsp.titles.SAVAGE_STAR , dsp.titles.SINGING_STAR , dsp.titles.SNIPING_STAR , dsp.titles.SLICING_STAR , dsp.titles.SNEAKING_STAR , dsp.titles.SPEARING_STAR , dsp.titles.SUMMONING_STAR , dsp.titles.SAPPHIRE_STAR ,
-                dsp.titles.SURGING_STAR , dsp.titles.SWAYING_STAR , dsp.titles.SPRIGHTLY_STAR , dsp.titles.SAGACIOUS_STAR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { dsp.titles.ROOK_BUSTER , dsp.titles.BANNERET , dsp.titles.GOLD_BALLI_STAR , dsp.titles.MYTHRIL_BALLI_STAR , dsp.titles.SILVER_BALLI_STAR , dsp.titles.BRONZE_BALLI_STAR , dsp.titles.BALLISTAGER ,
-                dsp.titles.FINAL_BALLI_STAR , dsp.titles.BALLI_STAR_ROYALE , dsp.titles.PARAGON_OF_RED_MAGE_EXCELLENCE , dsp.titles.PARAGON_OF_WHITE_MAGE_EXCELLENCE , dsp.titles.PARAGON_OF_PALADIN_EXCELLENCE ,
-                dsp.titles.PARAGON_OF_DRAGOON_EXCELLENCE , dsp.titles.HEIR_OF_THE_GREAT_ICE , dsp.titles.MOGS_LOVING_MASTER , dsp.titles.SAN_DORIAN_ROYAL_HEIR , dsp.titles.DYNAMISSAN_DORIA_INTERLOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title7 = { dsp.titles.ROYAL_ARCHER , dsp.titles.ROYAL_SPEARMAN , dsp.titles.ROYAL_SQUIRE , dsp.titles.ROYAL_SWORDSMAN , dsp.titles.ROYAL_CAVALIER , dsp.titles.ROYAL_GUARD , dsp.titles.GRAND_KNIGHT_OF_THE_REALM ,
-                dsp.titles.GRAND_TEMPLE_KNIGHT , dsp.titles.RESERVE_KNIGHT_CAPTAIN , dsp.titles.ELITE_ROYAL_GUARD , dsp.titles.WOOD_WORSHIPER , dsp.titles.LUMBER_LATHER , dsp.titles.ACCOMPLISHED_CARPENTER ,
-                dsp.titles.ANVIL_ADVOCATE , dsp.titles.FORGE_FANATIC , dsp.titles.ACCOMPLISHED_BLACKSMITH , dsp.titles.ARMORY_OWNER , dsp.titles.HIDE_HANDLER , dsp.titles.LEATHER_LAUDER , dsp.titles.ACCOMPLISHED_TANNER ,
-                dsp.titles.SHOESHOP_OWNER , dsp.titles.MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.title.SHEEPS_MILK_DELIVERER , dsp.title.THE_PIOUS_ONE , dsp.title.APIARIST , dsp.title.FAITH_LIKE_A_CANDLE , dsp.title.LIZARD_SKINNER , dsp.title.BUG_CATCHER ,
+                dsp.title.SPELUNKER , dsp.title.ARMS_TRADER , dsp.title.THIRDRATE_ORGANIZER , dsp.title.ROYAL_WEDDING_PLANNER , dsp.title.CONSORT_CANDIDATE , dsp.title.CERTIFIED_ADVENTURER , dsp.title.VAMPIRE_HUNTER_DMINUS ,
+                dsp.title.A_MOSS_KIND_PERSON , dsp.title.FANG_FINDER , dsp.title.TRAVELING_MEDICINE_MAN , dsp.title.CAT_SKINNER , dsp.title.CARP_DIEM , dsp.title.SECONDRATE_ORGANIZER , dsp.title.MOGS_KIND_MASTER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.title.FIRSTRATE_ORGANIZER , dsp.title.PILGRIM_TO_HOLLA , dsp.title.TRIED_AND_TESTED_KNIGHT , dsp.title.HEIR_TO_THE_HOLY_CREST , dsp.title.OBSIDIAN_STORM ,
+                dsp.title.TALKS_WITH_TONBERRIES , dsp.title.SHADOW_BANISHER , dsp.title.MOGS_EXCEPTIONALLY_KIND_MASTER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title5 = { dsp.title.SEARING_STAR , dsp.title.STRIKING_STAR , dsp.title.SOOTHING_STAR , dsp.title.SABLE_STAR , dsp.title.SCARLET_STAR , dsp.title.SONIC_STAR , dsp.title.SAINTLY_STAR , dsp.title.SHADOWY_STAR ,
+                dsp.title.SAVAGE_STAR , dsp.title.SINGING_STAR , dsp.title.SNIPING_STAR , dsp.title.SLICING_STAR , dsp.title.SNEAKING_STAR , dsp.title.SPEARING_STAR , dsp.title.SUMMONING_STAR , dsp.title.SAPPHIRE_STAR ,
+                dsp.title.SURGING_STAR , dsp.title.SWAYING_STAR , dsp.title.SPRIGHTLY_STAR , dsp.title.SAGACIOUS_STAR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { dsp.title.ROOK_BUSTER , dsp.title.BANNERET , dsp.title.GOLD_BALLI_STAR , dsp.title.MYTHRIL_BALLI_STAR , dsp.title.SILVER_BALLI_STAR , dsp.title.BRONZE_BALLI_STAR , dsp.title.BALLISTAGER ,
+                dsp.title.FINAL_BALLI_STAR , dsp.title.BALLI_STAR_ROYALE , dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE , dsp.title.PARAGON_OF_WHITE_MAGE_EXCELLENCE , dsp.title.PARAGON_OF_PALADIN_EXCELLENCE ,
+                dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE , dsp.title.HEIR_OF_THE_GREAT_ICE , dsp.title.MOGS_LOVING_MASTER , dsp.title.SAN_DORIAN_ROYAL_HEIR , dsp.title.DYNAMISSAN_DORIA_INTERLOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title7 = { dsp.title.ROYAL_ARCHER , dsp.title.ROYAL_SPEARMAN , dsp.title.ROYAL_SQUIRE , dsp.title.ROYAL_SWORDSMAN , dsp.title.ROYAL_CAVALIER , dsp.title.ROYAL_GUARD , dsp.title.GRAND_KNIGHT_OF_THE_REALM ,
+                dsp.title.GRAND_TEMPLE_KNIGHT , dsp.title.RESERVE_KNIGHT_CAPTAIN , dsp.title.ELITE_ROYAL_GUARD , dsp.title.WOOD_WORSHIPER , dsp.title.LUMBER_LATHER , dsp.title.ACCOMPLISHED_CARPENTER ,
+                dsp.title.ANVIL_ADVOCATE , dsp.title.FORGE_FANATIC , dsp.title.ACCOMPLISHED_BLACKSMITH , dsp.title.ARMORY_OWNER , dsp.title.HIDE_HANDLER , dsp.title.LEATHER_LAUDER , dsp.title.ACCOMPLISHED_TANNER ,
+                dsp.title.SHOESHOP_OWNER , dsp.title.MOG_HOUSE_HANDYPERSON , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script

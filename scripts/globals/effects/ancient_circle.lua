@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.ANCIENT_CIRCLE
+--     dsp.effect.ANCIENT_CIRCLE
 --
 -----------------------------------
 

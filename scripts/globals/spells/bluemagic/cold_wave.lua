@@ -23,7 +23,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effects.FROST;
+    local typeEffect = dsp.effect.FROST;
     local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
     local params = {};
     params.diff = nil;
@@ -33,11 +33,11 @@ function onSpellCast(caster,target,spell)
     params.effect = nil;
     local resist = applyResistance(caster, target, spell, params);
 
-    if (target:getStatusEffect(dsp.effects.BURN) ~= nil) then
+    if (target:getStatusEffect(dsp.effect.BURN) ~= nil) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     elseif (resist > 0.5) then
-        if (target:getStatusEffect(dsp.effects.CHOKE) ~= nil) then
-            target:delStatusEffect(dsp.effects.CHOKE);
+        if (target:getStatusEffect(dsp.effect.CHOKE) ~= nil) then
+            target:delStatusEffect(dsp.effect.CHOKE);
         end;
         local sINT = caster:getStat(MOD_INT);
         local DOT = getElementalDebuffDOT(sINT);

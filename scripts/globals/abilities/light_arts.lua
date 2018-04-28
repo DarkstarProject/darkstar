@@ -11,31 +11,31 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effects.LIGHT_ARTS) or player:hasStatusEffect(dsp.effects.ADDENDUM_WHITE) then
+    if player:hasStatusEffect(dsp.effect.LIGHT_ARTS) or player:hasStatusEffect(dsp.effect.ADDENDUM_WHITE) then
         return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(dsp.effects.DARK_ARTS);
-    player:delStatusEffect(dsp.effects.ADDENDUM_BLACK);
-    player:delStatusEffect(dsp.effects.PARSIMONY);
-    player:delStatusEffect(dsp.effects.ALACRITY);
-    player:delStatusEffect(dsp.effects.MANIFESTATION);
-    player:delStatusEffect(dsp.effects.EBULLIENCE);
-    player:delStatusEffect(dsp.effects.FOCALIZATION);
-    player:delStatusEffect(dsp.effects.EQUANIMITY);
-    player:delStatusEffect(dsp.effects.IMMANENCE);
+    player:delStatusEffectSilent(dsp.effect.DARK_ARTS);
+    player:delStatusEffect(dsp.effect.ADDENDUM_BLACK);
+    player:delStatusEffect(dsp.effect.PARSIMONY);
+    player:delStatusEffect(dsp.effect.ALACRITY);
+    player:delStatusEffect(dsp.effect.MANIFESTATION);
+    player:delStatusEffect(dsp.effect.EBULLIENCE);
+    player:delStatusEffect(dsp.effect.FOCALIZATION);
+    player:delStatusEffect(dsp.effect.EQUANIMITY);
+    player:delStatusEffect(dsp.effect.IMMANENCE);
 
     local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
     local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
     local regenbonus = 0;
-    if (player:getMainJob() == dsp.jobs.SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
     end
 
-    player:addStatusEffect(dsp.effects.LIGHT_ARTS,effectbonus,0,7200,0,regenbonus);
+    player:addStatusEffect(dsp.effect.LIGHT_ARTS,effectbonus,0,7200,0,regenbonus);
 
-    return dsp.effects.LIGHT_ARTS;
+    return dsp.effect.LIGHT_ARTS;
 end;

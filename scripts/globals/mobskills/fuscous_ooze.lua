@@ -18,7 +18,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     -- TODO: Encumberance seems to do nothing?
-    local typeEffect = dsp.effects.WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT;
     local duration = 45;
 
     MobStatusEffectMove(mob, target, typeEffect, 50, 0, duration);

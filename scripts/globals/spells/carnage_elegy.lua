@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = 0;
-    params.effect = dsp.effects.ELEGY;
+    params.effect = dsp.effect.ELEGY;
     resm = applyResistanceEffect(caster, target, spell, params);
 
     if (resm < 0.5) then
@@ -31,21 +31,21 @@ function onSpellCast(caster,target,spell)
         local iBoost = caster:getMod(MOD_ELEGY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
         power = power + iBoost*10;
 
-        if (caster:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
+        if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
             power = power * 2;
-        elseif (caster:hasStatusEffect(dsp.effects.MARCATO)) then
+        elseif (caster:hasStatusEffect(dsp.effect.MARCATO)) then
             power = power * 1.5;
         end
-        caster:delStatusEffect(dsp.effects.MARCATO);
+        caster:delStatusEffect(dsp.effect.MARCATO);
 
         duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-        if (caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
+        if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
             duration = duration * 2;
         end
 
         -- Try to overwrite weaker elegy
-        if (target:addStatusEffect(dsp.effects.ELEGY,power,0,duration)) then
+        if (target:addStatusEffect(dsp.effect.ELEGY,power,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
@@ -53,5 +53,5 @@ function onSpellCast(caster,target,spell)
 
     end
 
-    return dsp.effects.ELEGY;
+    return dsp.effect.ELEGY;
 end;

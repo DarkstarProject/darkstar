@@ -28,13 +28,13 @@ function onEventFinish(player,csid,option)
 
         local points = 1000;
         if (player:hasCompletedMission(ASSAULT, GOLDEN_SALVAGE)) then
-            if (player:hasKeyItem(dsp.kis.ASSAULT_ARMBAND)) then
-                player:delKeyItem(dsp.kis.ASSAULT_ARMBAND);
+            if (player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND)) then
+                player:delKeyItem(dsp.ki.ASSAULT_ARMBAND);
                 points = 1100;
             end
             player:addAssaultPoint(ILRUSI_ASSAULT_POINT, points);
             player:delMission(ASSAULT, GOLDEN_SALVAGE);
-            player:delKeyItem(dsp.kis.ILRUSI_ASSAULT_ORDERS);
+            player:delKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS);
         end
 
         player:setPos(28,-7,620,138,54);

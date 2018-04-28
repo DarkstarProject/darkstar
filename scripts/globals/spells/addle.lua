@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
     -- Power: Cast Time Modifier
     local power = 30;
 
-    if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
+    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         power = 50;
     end
 
@@ -36,16 +36,16 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_MND;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = dsp.effects.ADDLE;
+    params.effect = dsp.effect.ADDLE;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then -- Do it!
-        if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
+        if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
             duration = duration * 2;
-            caster:delStatusEffect(dsp.effects.SABOTEUR);
+            caster:delStatusEffect(dsp.effect.SABOTEUR);
         end
 
-        if (target:addStatusEffect(dsp.effects.ADDLE, power, 0, duration, 0, subPower)) then
+        if (target:addStatusEffect(dsp.effect.ADDLE, power, 0, duration, 0, subPower)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -54,5 +54,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
 
-    return dsp.effects.ADDLE;
+    return dsp.effect.ADDLE;
 end;

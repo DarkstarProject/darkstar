@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effects.SLOW, 128, 0, 180));
+    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, 180));
 
-    return dsp.effects.SLOW;
+    return dsp.effect.SLOW;
 end;

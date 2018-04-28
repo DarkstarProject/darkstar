@@ -25,15 +25,15 @@ function onSpellCast(caster,target,spell)
 
     duration = calculateDurationForLvl(duration, 86, target:getMainLvl());
 
-    if (target:hasStatusEffect(dsp.effects.REGEN) and target:getStatusEffect(dsp.effects.REGEN):getTier() == 1) then
-        target:delStatusEffect(dsp.effects.REGEN);
+    if (target:hasStatusEffect(dsp.effect.REGEN) and target:getStatusEffect(dsp.effect.REGEN):getTier() == 1) then
+        target:delStatusEffect(dsp.effect.REGEN);
     end
 
-    if (target:addStatusEffect(dsp.effects.REGEN,hp,3,duration,0,0,0)) then
+    if (target:addStatusEffect(dsp.effect.REGEN,hp,3,duration,0,0,0)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     end
 
-    return dsp.effects.REGEN;
+    return dsp.effect.REGEN;
 end;

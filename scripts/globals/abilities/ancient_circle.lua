@@ -15,5 +15,5 @@ end;
 
 function onUseAbility(player,target,ability)
     local duration = 180 + player:getMod(MOD_ANCIENT_CIRCLE_DURATION);
-    target:addStatusEffect(dsp.effects.ANCIENT_CIRCLE,15,0,duration);
+    target:addStatusEffect(dsp.effect.ANCIENT_CIRCLE,15,0,duration);
 end;

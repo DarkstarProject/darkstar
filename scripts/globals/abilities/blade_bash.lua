@@ -21,15 +21,15 @@ end;
 function onUseAbility(player,target,ability)
     -- Stun rate
     if (math.random(1,100) < 99) then
-        target:addStatusEffect(dsp.effects.STUN,1,0,6);
+        target:addStatusEffect(dsp.effect.STUN,1,0,6);
     end
 
     -- Yes, even Blade Bash deals damage dependant of Dark Knight level
     local darkKnightLvl = 0;
     local damage = 0;
-    if (player:getMainJob() == dsp.jobs.DRK) then
+    if (player:getMainJob() == dsp.job.DRK) then
         damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
-    elseif (player:getSubJob() == dsp.jobs.DRK) then
+    elseif (player:getSubJob() == dsp.job.DRK) then
         damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
     end
 
@@ -39,7 +39,7 @@ function onUseAbility(player,target,ability)
 
     -- Applying Plague based on merit level.
     if (math.random(1,100) < 65) then
-        target:addStatusEffect(dsp.effects.PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
+        target:addStatusEffect(dsp.effect.PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
     end
 
     ability:setMsg(msgBasic.JA_DAMAGE)

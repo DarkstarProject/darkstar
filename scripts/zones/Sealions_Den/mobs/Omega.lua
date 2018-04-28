@@ -14,29 +14,29 @@ end;
 
 function onMobFight(mob,target)
     -- Gains regain at under 25% HP
-    if (mob:getHPP() < 25 and not mob:hasStatusEffect(dsp.effects.REGAIN)) then
-        mob:addStatusEffect(dsp.effects.REGAIN,5,3,0);
-        mob:getStatusEffect(dsp.effects.REGAIN):setFlag(32);
+    if (mob:getHPP() < 25 and not mob:hasStatusEffect(dsp.effect.REGAIN)) then
+        mob:addStatusEffect(dsp.effect.REGAIN,5,3,0);
+        mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
     end
 end;
 
 function onAdditionalEffect(mob, player)
     local chance = 20;
-    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,dsp.effects.STUN);
+    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,dsp.effect.STUN);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
         local duration = 5;
         duration = duration * resist;
-        if (not player:hasStatusEffect(dsp.effects.STUN)) then
-            player:addStatusEffect(dsp.effects.STUN, 0, 0, duration);
+        if (not player:hasStatusEffect(dsp.effect.STUN)) then
+            player:addStatusEffect(dsp.effect.STUN, 0, 0, duration);
         end
-        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.STUN;
+        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, dsp.effect.STUN;
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.OMEGA_OSTRACIZER);
+    player:addTitle(dsp.title.OMEGA_OSTRACIZER);
     player:startEvent(11);
 end;
 

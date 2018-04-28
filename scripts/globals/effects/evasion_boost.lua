@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.EVASION_BOOST
+-- dsp.effect.EVASION_BOOST
 --
 -----------------------------------
 

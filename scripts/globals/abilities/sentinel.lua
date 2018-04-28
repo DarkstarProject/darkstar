@@ -20,6 +20,6 @@ function onUseAbility(player,target,ability)
     local guardian = player:getMerit(MERIT_GUARDIAN);
 
    -- Sent as positive power because UINTs, man.
-   player:addStatusEffect(dsp.effects.SENTINEL,power,3,30,0,guardian);
+   player:addStatusEffect(dsp.effect.SENTINEL,power,3,30,0,guardian);
 
 end;

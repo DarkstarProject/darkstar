@@ -37,33 +37,33 @@ function onSpellCast(caster,target,spell)
     local CHR_Loss = ((target:getStat(MOD_CHR) / 100) * 20);
     local duration = 180 * resist; -- BG wiki suggests only duration gets effected by resist.
 
-    if (target:hasStatusEffect(dsp.effects.STR_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.STR_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "STR: '%s' ", STR_Loss ) );
-        target:addStatusEffect(dsp.effects.STR_DOWN,STR_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.STR_DOWN,STR_Loss,0,duration);
     end
-    if (target:hasStatusEffect(dsp.effects.DEX_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.DEX_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "DEX: '%s' ", DEX_Loss ) );
-        target:addStatusEffect(dsp.effects.DEX_DOWN,DEX_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.DEX_DOWN,DEX_Loss,0,duration);
     end
-    if (target:hasStatusEffect(dsp.effects.VIT_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.VIT_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "VIT: '%s' ", VIT_Loss ) );
-        target:addStatusEffect(dsp.effects.VIT_DOWN,VIT_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.VIT_DOWN,VIT_Loss,0,duration);
     end
-    if (target:hasStatusEffect(dsp.effects.AGI_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.AGI_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "AGI: '%s' ", AGI_Loss ) );
-        target:addStatusEffect(dsp.effects.AGI_DOWN,AGI_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.AGI_DOWN,AGI_Loss,0,duration);
     end
-    if (target:hasStatusEffect(dsp.effects.INT_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.INT_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "INT: '%s' ", INT_Loss ) );
-        target:addStatusEffect(dsp.effects.INT_DOWN,INT_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.INT_DOWN,INT_Loss,0,duration);
     end
-    if (target:hasStatusEffect(dsp.effects.MND_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.MND_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "MND: '%s' ", MND_Loss ) );
-        target:addStatusEffect(dsp.effects.MND_DOWN,MND_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.MND_DOWN,MND_Loss,0,duration);
     end
-    if (target:hasStatusEffect(dsp.effects.CHR_DOWN) == false) then
+    if (target:hasStatusEffect(dsp.effect.CHR_DOWN) == false) then
         -- caster:PrintToPlayer( string.format( "CHR: '%s' ", CHR_Loss ) );
-        target:addStatusEffect(dsp.effects.CHR_DOWN,CHR_Loss,0,duration);
+        target:addStatusEffect(dsp.effect.CHR_DOWN,CHR_Loss,0,duration);
     end
 
     --diverting use of doElementalNuke till spellParams is implemented for this spell

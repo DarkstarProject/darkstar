@@ -14,7 +14,7 @@ end;
 
 function onAdditionalEffect(mob, target, damage)
     local chance = 100;
-    local resist = applyResistanceAddEffect(mob,target,ELE_DARK,dsp.effects.ENASPIR);
+    local resist = applyResistanceAddEffect(mob,target,ELE_DARK,dsp.effect.ENASPIR);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else

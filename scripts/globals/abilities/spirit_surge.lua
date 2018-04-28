@@ -29,7 +29,7 @@ function onUseAbility(player,target,ability)
     pet:delTP(petTP); -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0;
-    if (target:getMainJob() == dsp.jobs.DRG) then
+    if (target:getMainJob() == dsp.job.DRG) then
         strBoost = (1 + target:getMainLvl()/5); -- Use Mainjob Lvl
     else
         strBoost = (1 + target:getSubLvl()/5);  -- Use Subjob Lvl
@@ -43,5 +43,5 @@ function onUseAbility(player,target,ability)
     target:resetRecast(RECAST_ABILITY,159); -- High Jump
     target:resetRecast(RECAST_ABILITY,160); -- Super Jump
 
-    target:addStatusEffect(dsp.effects.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
+    target:addStatusEffect(dsp.effect.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
 end;

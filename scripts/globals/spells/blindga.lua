@@ -34,12 +34,12 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = dsp.effects.BLINDNESS;
+    params.effect = dsp.effect.BLINDNESS;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then --Do it!
 
-        if (target:addStatusEffect(dsp.effects.BLINDNESS,power,0,duration)) then
+        if (target:addStatusEffect(dsp.effect.BLINDNESS,power,0,duration)) then
             spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
         else
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -47,5 +47,5 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(msgBasic.MAGIC_RESIST);
     end
-    return dsp.effects.BLINDNESS;
+    return dsp.effect.BLINDNESS;
 end;

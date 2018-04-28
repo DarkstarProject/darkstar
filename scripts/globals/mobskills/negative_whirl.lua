@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.SLOW;
+    local typeEffect = dsp.effect.SLOW;
 
     MobStatusEffectMove(mob, target, typeEffect, 128, 0, 120);
 

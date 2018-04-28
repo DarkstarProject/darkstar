@@ -21,8 +21,8 @@ function onPetAbility(target, automaton, skill, master, action)
 
     target:addMP(difference) -- To prevent possible loss of MP from flooring the refresh
     target:setHP(math.floor(hp/2))
-    target:delStatusEffect(dsp.effects.REFRESH)
-    target:addStatusEffect(dsp.effects.REFRESH, amount, 3, duration)
+    target:delStatusEffect(dsp.effect.REFRESH)
+    target:addStatusEffect(dsp.effect.REFRESH, amount, 3, duration)
 
-    return dsp.effects.REFRESH
+    return dsp.effect.REFRESH
 end

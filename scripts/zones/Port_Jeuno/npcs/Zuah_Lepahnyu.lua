@@ -6,22 +6,22 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { dsp.titles.VISITOR_TO_ABYSSEA , dsp.titles.FRIEND_OF_ABYSSEA , dsp.titles.WARRIOR_OF_ABYSSEA , dsp.titles.STORMER_OF_ABYSSEA , dsp.titles.DEVASTATOR_OF_ABYSSEA ,
-                dsp.titles.HERO_OF_ABYSSEA , dsp.titles.CHAMPION_OF_ABYSSEA , dsp.titles.CONQUEROR_OF_ABYSSEA , dsp.titles.SAVIOR_OF_ABYSSEA , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { dsp.titles.GOLDWING_SQUASHER , dsp.titles.SILAGILITH_DETONATOR , dsp.titles.SURTR_SMOTHERER , dsp.titles.DREYRUK_PREDOMINATOR , dsp.titles.SAMURSK_VITIATOR ,
+local title2 = { dsp.title.VISITOR_TO_ABYSSEA , dsp.title.FRIEND_OF_ABYSSEA , dsp.title.WARRIOR_OF_ABYSSEA , dsp.title.STORMER_OF_ABYSSEA , dsp.title.DEVASTATOR_OF_ABYSSEA ,
+                dsp.title.HERO_OF_ABYSSEA , dsp.title.CHAMPION_OF_ABYSSEA , dsp.title.CONQUEROR_OF_ABYSSEA , dsp.title.SAVIOR_OF_ABYSSEA , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.title.GOLDWING_SQUASHER , dsp.title.SILAGILITH_DETONATOR , dsp.title.SURTR_SMOTHERER , dsp.title.DREYRUK_PREDOMINATOR , dsp.title.SAMURSK_VITIATOR ,
                 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { dsp.titles.YAANEI_CRASHER , dsp.titles.KUTHAREI_UNHORSER , dsp.titles.SIPPOY_CAPTURER , dsp.titles.RANI_DECROWNER , dsp.titles.ORTHRUS_DECAPITATOR , dsp.titles.DRAGUA_SLAYER ,
-                dsp.titles.BENNU_DEPLUMER , dsp.titles.HEDJEDJET_DESTINGER , dsp.titles.CUIJATENDER_DESICCATOR , dsp.titles.BRULO_EXTINGUISHER , dsp.titles.PANTOKRATOR_DISPROVER , dsp.titles.APADEMAK_ANNIHILATOR ,
-                dsp.titles.ISGEBIND_DEFROSTER , dsp.titles.RESHEPH_ERADICATOR , dsp.titles.EMPOUSA_EXPURGATOR , dsp.titles.INDRIK_IMMOLATOR , dsp.titles.OGOPOGO_OVERTURNER , dsp.titles.RAJA_REGICIDE , dsp.titles.ALFARD_DETOXIFIER ,
-                dsp.titles.AZDAJA_ABOLISHER , dsp.titles.AMPHITRITE_SHUCKER , dsp.titles.FUATH_PURIFIER , dsp.titles.KILLAKRIQ_EXCORIATOR , dsp.titles.MAERE_BESTIRRER , dsp.titles.WYRM_GOD_DEFIER , 0 , 0 , 0 }
-local title5 = { dsp.titles.TITLACAUAN_DISMEMBERER , dsp.titles.SMOK_DEFOGGER , dsp.titles.AMHULUK_INUNDATER , dsp.titles.PULVERIZER_DISMANTLER , dsp.titles.DURINN_DECEIVER , dsp.titles.KARKADANN_EXOCULATOR ,
-                0 , 0 , 0 , 0 , 0 , dsp.titles.TEMENOS_EMANCIPATOR , dsp.titles.APOLLYON_RAZER , dsp.titles.UMAGRHK_MANEMANGLER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { dsp.titles.KARKINOS_CLAWCRUSHER , dsp.titles.CARABOSSE_QUASHER , dsp.titles.OVNI_OBLITERATOR , dsp.titles.RUMINATOR_CONFOUNDER , dsp.titles.FISTULE_DRAINER , dsp.titles.TURUL_GROUNDER ,
-                dsp.titles.BLOODEYE_BANISHER , dsp.titles.SATIATOR_DEPRIVER , dsp.titles.CHLORIS_UPROOTER , dsp.titles.MYRMECOLEON_TAMER , dsp.titles.GLAVOID_STAMPEDER , dsp.titles.USURPER_DEPOSER , dsp.titles.ULHUADSHI_DESICCATOR ,
-                dsp.titles.ITZPAPALOTL_DECLAWER , dsp.titles.SOBEK_MUMMIFIER , dsp.titles.CIREINCROIN_HARPOONER , dsp.titles.BUKHIS_TETHERER , dsp.titles.SEDNA_TUSKBREAKER , dsp.titles.CLEAVER_DISMANTLER ,
-                dsp.titles.EXECUTIONER_DISMANTLER , dsp.titles.SEVERER_DISMANTLER , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title7 = { dsp.titles.HADHAYOSH_HALTERER , dsp.titles.BRIAREUS_FELLER , dsp.titles.ECCENTRICITY_EXPUNGER , dsp.titles.KUKULKAN_DEFANGER , dsp.titles.IRATHAM_CAPTURER , dsp.titles.LACOVIE_CAPSIZER ,
-                dsp.titles.LUSCA_DEBUNKER , dsp.titles.TRISTITIA_DELIVERER , dsp.titles.KETEA_BEACHER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.title.YAANEI_CRASHER , dsp.title.KUTHAREI_UNHORSER , dsp.title.SIPPOY_CAPTURER , dsp.title.RANI_DECROWNER , dsp.title.ORTHRUS_DECAPITATOR , dsp.title.DRAGUA_SLAYER ,
+                dsp.title.BENNU_DEPLUMER , dsp.title.HEDJEDJET_DESTINGER , dsp.title.CUIJATENDER_DESICCATOR , dsp.title.BRULO_EXTINGUISHER , dsp.title.PANTOKRATOR_DISPROVER , dsp.title.APADEMAK_ANNIHILATOR ,
+                dsp.title.ISGEBIND_DEFROSTER , dsp.title.RESHEPH_ERADICATOR , dsp.title.EMPOUSA_EXPURGATOR , dsp.title.INDRIK_IMMOLATOR , dsp.title.OGOPOGO_OVERTURNER , dsp.title.RAJA_REGICIDE , dsp.title.ALFARD_DETOXIFIER ,
+                dsp.title.AZDAJA_ABOLISHER , dsp.title.AMPHITRITE_SHUCKER , dsp.title.FUATH_PURIFIER , dsp.title.KILLAKRIQ_EXCORIATOR , dsp.title.MAERE_BESTIRRER , dsp.title.WYRM_GOD_DEFIER , 0 , 0 , 0 }
+local title5 = { dsp.title.TITLACAUAN_DISMEMBERER , dsp.title.SMOK_DEFOGGER , dsp.title.AMHULUK_INUNDATER , dsp.title.PULVERIZER_DISMANTLER , dsp.title.DURINN_DECEIVER , dsp.title.KARKADANN_EXOCULATOR ,
+                0 , 0 , 0 , 0 , 0 , dsp.title.TEMENOS_EMANCIPATOR , dsp.title.APOLLYON_RAZER , dsp.title.UMAGRHK_MANEMANGLER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { dsp.title.KARKINOS_CLAWCRUSHER , dsp.title.CARABOSSE_QUASHER , dsp.title.OVNI_OBLITERATOR , dsp.title.RUMINATOR_CONFOUNDER , dsp.title.FISTULE_DRAINER , dsp.title.TURUL_GROUNDER ,
+                dsp.title.BLOODEYE_BANISHER , dsp.title.SATIATOR_DEPRIVER , dsp.title.CHLORIS_UPROOTER , dsp.title.MYRMECOLEON_TAMER , dsp.title.GLAVOID_STAMPEDER , dsp.title.USURPER_DEPOSER , dsp.title.ULHUADSHI_DESICCATOR ,
+                dsp.title.ITZPAPALOTL_DECLAWER , dsp.title.SOBEK_MUMMIFIER , dsp.title.CIREINCROIN_HARPOONER , dsp.title.BUKHIS_TETHERER , dsp.title.SEDNA_TUSKBREAKER , dsp.title.CLEAVER_DISMANTLER ,
+                dsp.title.EXECUTIONER_DISMANTLER , dsp.title.SEVERER_DISMANTLER , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title7 = { dsp.title.HADHAYOSH_HALTERER , dsp.title.BRIAREUS_FELLER , dsp.title.ECCENTRICITY_EXPUNGER , dsp.title.KUKULKAN_DEFANGER , dsp.title.IRATHAM_CAPTURER , dsp.title.LACOVIE_CAPSIZER ,
+                dsp.title.LUSCA_DEBUNKER , dsp.title.TRISTITIA_DELIVERER , dsp.title.KETEA_BEACHER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)
 end;

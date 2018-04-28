@@ -1,6 +1,6 @@
 -----------------------------------
 --
---    dsp.effects.VELOCITY_SHOT
+--    dsp.effect.VELOCITY_SHOT
 --
 -----------------------------------
 

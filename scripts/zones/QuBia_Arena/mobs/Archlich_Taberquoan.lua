@@ -29,5 +29,5 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.ARCHMAGE_ASSASSIN);
+    player:addTitle(dsp.title.ARCHMAGE_ASSASSIN);
 end;

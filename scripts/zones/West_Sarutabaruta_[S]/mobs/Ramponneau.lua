@@ -8,8 +8,8 @@ require("scripts/globals/msg");
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, mob:getShortID());
-    mob:addStatusEffect(dsp.effects.SHOCK_SPIKES, 10, 0, 0);
-    mob:getStatusEffect(dsp.effects.SHOCK_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effect.SHOCK_SPIKES, 10, 0, 0);
+    mob:getStatusEffect(dsp.effect.SHOCK_SPIKES):setFlag(32);
 end;
 
 function onMobFight(mob,target)

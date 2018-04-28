@@ -12,8 +12,8 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effects.PARALYSIS)) then
-        target:addStatusEffect(dsp.effects.PARALYSIS,20,0,600);
+    if (not target:hasStatusEffect(dsp.effect.PARALYSIS)) then
+        target:addStatusEffect(dsp.effect.PARALYSIS,20,0,600);
     else
         target:messageBasic(msgBasic.NO_EFFECT);
     end

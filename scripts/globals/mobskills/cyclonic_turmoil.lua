@@ -22,11 +22,11 @@ function onMobWeaponSkill(target, mob, skill)
     local dispel2 = target:dispelStatusEffect();
     local total = 0;
 
-    if (dispel1 ~= dsp.effects.NONE) then
+    if (dispel1 ~= dsp.effect.NONE) then
         total = total+1;
     end
 
-    if (dispel2 ~= dsp.effects.NONE) then
+    if (dispel2 ~= dsp.effect.NONE) then
         total = total+1;
     end
 

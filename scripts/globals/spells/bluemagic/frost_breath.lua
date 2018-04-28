@@ -53,12 +53,12 @@ function onSpellCast(caster,target,spell)
     damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
     
-    if (caster:hasStatusEffect(dsp.effects.AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 0.50;
     end
 
     if (damage > 0 and resist > 0.3) then
-        local typeEffect = dsp.effects.PARALYSIS;
+        local typeEffect = dsp.effect.PARALYSIS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end

@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    target:addStatusEffectEx(dsp.effects.SUPER_BUFF, 0, 50, 0, 30);
+    target:addStatusEffectEx(dsp.effect.SUPER_BUFF, 0, 50, 0, 30);
     skill:setMsg(msgBasic.NONE);
     return 0;
 end;

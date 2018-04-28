@@ -12,8 +12,8 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:hasKeyItem(dsp.kis.ALTEPA_GATE_CRYSTAL) == true) then
-        target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_ALTEP,0,4.7);
+    if (target:hasKeyItem(dsp.ki.ALTEPA_GATE_CRYSTAL) == true) then
+        target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_ALTEP,0,4.7);
         spell:setMsg(msgBasic.MAGIC_TELEPORT);
     else
         spell:setMsg(msgBasic.NO_EFFECT);

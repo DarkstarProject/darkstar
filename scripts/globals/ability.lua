@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 
 dsp = dsp or {};
 
-dsp.jobAbilities =
+dsp.jobAbility =
 {
     MIGHTY_STRIKES     = 0,
     HUNDRED_FISTS      = 1,
@@ -428,7 +428,7 @@ dsp.jobAbilities =
     THUNDERSTORM       = 615,
     JUDGMENT_BOLT      = 616,
 };
-dsp.ja = dsp.jobAbilities;
+dsp.ja = dsp.jobAbility;
 
 dsp.reaction =
 {
@@ -453,9 +453,9 @@ dsp.specEffect =
 
 function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
-    caster:delStatusEffectSilent(dsp.effects.DOUBLE_UP_CHANCE);
-    caster:addStatusEffectEx(dsp.effects.DOUBLE_UP_CHANCE,
-                             dsp.effects.DOUBLE_UP_CHANCE,
+    caster:delStatusEffectSilent(dsp.effect.DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(dsp.effect.DOUBLE_UP_CHANCE,
+                             dsp.effect.DOUBLE_UP_CHANCE,
                              roll,
                              0,
                              45,
@@ -474,7 +474,7 @@ end
 
 function atMaxCorsairBusts(caster)
     local numBusts = caster:numBustEffects();
-    return (numBusts >= 2 and caster:getMainJob() == dsp.jobs.COR) or (numBusts >= 1 and caster:getMainJob() ~= dsp.jobs.COR);
+    return (numBusts >= 2 and caster:getMainJob() == dsp.job.COR) or (numBusts >= 1 and caster:getMainJob() ~= dsp.job.COR);
 end
 
 function checkForJobBonus(caster, job)
@@ -488,12 +488,12 @@ end
 function checkForElevenRoll(caster)
     local effects = caster:getStatusEffects()
     for _,effect in ipairs(effects) do
-        if (effect:getType() >= dsp.effects.FIGHTERS_ROLL and
-            effect:getType() <= dsp.effects.NATURALISTS_ROLL and
+        if (effect:getType() >= dsp.effect.FIGHTERS_ROLL and
+            effect:getType() <= dsp.effect.NATURALISTS_ROLL and
             effect:getSubPower() == 11) then
             return true
         end
-        if (effect:getType() == dsp.effects.RUNEISTS_ROLL and
+        if (effect:getType() == dsp.effect.RUNEISTS_ROLL and
                 effect:getSubPower() == 11) then
             return true 
         end
@@ -525,7 +525,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
             and skilltype == MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.JA_MISS_2);
         return 0;
@@ -547,9 +547,9 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(dsp.effects.COPY_IMAGE);
-        target:delStatusEffect(dsp.effects.BLINK);
-        target:delStatusEffect(dsp.effects.THIRD_EYE);
+        target:delStatusEffect(dsp.effect.COPY_IMAGE);
+        target:delStatusEffect(dsp.effect.BLINK);
+        target:delStatusEffect(dsp.effect.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide

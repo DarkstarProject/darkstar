@@ -8,8 +8,8 @@ require("scripts/globals/magic");
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.AUTO_SPIKES,mob:getShortID());
-    mob:addStatusEffect(dsp.effects.ICE_SPIKES,45,0,0);
-    mob:getStatusEffect(dsp.effects.ICE_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effect.ICE_SPIKES,45,0,0);
+    mob:getStatusEffect(dsp.effect.ICE_SPIKES):setFlag(32);
 end;
 
 function onSpikesDamage(mob,target,damage)

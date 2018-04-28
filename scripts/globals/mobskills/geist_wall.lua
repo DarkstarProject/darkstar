@@ -20,7 +20,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local dispel = target:dispelStatusEffect();
 
-    if (dispel == dsp.effects.NONE) then
+    if (dispel == dsp.effect.NONE) then
         -- no effect
         skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
     else

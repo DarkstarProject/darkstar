@@ -12,9 +12,9 @@ end;
 
 function onMobSpawn(mob)
     local mJob = mob:getMainJob();
-    if (mJob == dsp.jobs.RDM) then
+    if (mJob == dsp.job.RDM) then
         mob:setMod(MOD_FASTCAST,15);
-    elseif (mJob == dsp.jobs.WHM) then
+    elseif (mJob == dsp.job.WHM) then
         mob:setMod(MOD_REGEN, 3);
     end
 end;

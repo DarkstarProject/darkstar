@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.WARDING_CIRCLE
+--     dsp.effect.WARDING_CIRCLE
 --
 -----------------------------------
 

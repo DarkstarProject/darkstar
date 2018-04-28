@@ -13,8 +13,8 @@ function onSpellCast(caster,target,spell)
     local duration = 60;
     local maxReflectedDamage = target:getMaxHP() * 2;
     local reflectedPercent = 33;
-  local typeEffect = dsp.effects.REPRISAL;
-    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
+  local typeEffect = dsp.effect.REPRISAL;
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 

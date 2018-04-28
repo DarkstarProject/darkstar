@@ -14,7 +14,7 @@ require("scripts/zones/Selbina/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS_LOG,UNDER_THE_SEA) == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.ETCHED_RING) == false) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,UNDER_THE_SEA) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ETCHED_RING) == false) then
         if (trade:hasItemQty(4501,1) == true and trade:getItemCount() == 1) then
             rand = math.random(1,5);
             if (rand == 3) then
@@ -496,12 +496,12 @@ function onEventFinish(player,csid,option)
     elseif (csid == 36) then
         player:tradeComplete();
     elseif (csid == 35) then
-        player:addKeyItem(dsp.kis.ETCHED_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ETCHED_RING);
+        player:addKeyItem(dsp.ki.ETCHED_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ETCHED_RING);
         player:tradeComplete();
     elseif (csid == 85) then
-        player:addKeyItem(dsp.kis.KNIGHTS_BOOTS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.KNIGHTS_BOOTS);
+        player:addKeyItem(dsp.ki.KNIGHTS_BOOTS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KNIGHTS_BOOTS);
         player:setVar("aBoysDreamCS",6);
         player:tradeComplete();
 --------------------- Inside the Belly -----------------------------------------------------------------------------
@@ -637,7 +637,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,17076);
             player:addGil(GIL_RATE*50);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
-            player:addTitle(dsp.titles.CORDON_BLEU_FISHER);
+            player:addTitle(dsp.title.CORDON_BLEU_FISHER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
@@ -821,7 +821,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,13480);
             player:addGil(GIL_RATE*16);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*16);
-            player:addTitle(dsp.titles.CORDON_BLEU_FISHER);
+            player:addTitle(dsp.title.CORDON_BLEU_FISHER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
@@ -902,7 +902,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,16837);
             player:addGil(GIL_RATE*250);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*250);
-            player:addTitle(dsp.titles.ACE_ANGLER);
+            player:addTitle(dsp.title.ACE_ANGLER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
@@ -944,7 +944,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,16533);
             player:addGil(GIL_RATE*350);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
-            player:addTitle(dsp.titles.LU_SHANGLIKE_FISHER_KING);
+            player:addTitle(dsp.title.LU_SHANGLIKE_FISHER_KING);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
@@ -1152,7 +1152,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*50);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
             player:setVar("ItB_Var",0);
-            player:addTitle(dsp.titles.CORDON_BLEU_FISHER);
+            player:addTitle(dsp.title.CORDON_BLEU_FISHER);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
             end
@@ -1288,7 +1288,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addGil(GIL_RATE*16);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*16);
-            player:addTitle(dsp.titles.CORDON_BLEU_FISHER);
+            player:addTitle(dsp.title.CORDON_BLEU_FISHER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
@@ -1345,7 +1345,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addGil(GIL_RATE*250);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*250);
-            player:addTitle(dsp.titles.ACE_ANGLER);
+            player:addTitle(dsp.title.ACE_ANGLER);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
@@ -1378,7 +1378,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addGil(GIL_RATE*350);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
-            player:addTitle(dsp.titles.LU_SHANGLIKE_FISHER_KING);
+            player:addTitle(dsp.title.LU_SHANGLIKE_FISHER_KING);
             player:setVar("ItB_Var",0);
             if (player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS_LOG,INSIDE_THE_BELLY);

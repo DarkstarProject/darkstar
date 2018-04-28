@@ -12,32 +12,32 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = dsp.kis.GOLD_PURIFICATION,
+        id = dsp.ki.GOLD_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = dsp.kis.GOLD_ENSORCELLMENT,
+        id = dsp.ki.GOLD_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = dsp.kis.CHAINWORK,
+        id = dsp.ki.CHAINWORK,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = dsp.kis.SHEETING,
+        id = dsp.ki.SHEETING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = dsp.kis.CLOCKMAKING,
+        id = dsp.ki.CLOCKMAKING,
         rank = 3,
         cost = 10000
     },
     [5] = {
-        id = dsp.kis.WAY_OF_THE_GOLDSMITH,
+        id = dsp.ki.WAY_OF_THE_GOLDSMITH,
         rank = 9,
         cost = 20000
     }

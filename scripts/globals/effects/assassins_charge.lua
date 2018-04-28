@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.ASSASSINS_CHARGE
+-- dsp.effect.ASSASSINS_CHARGE
 --
 -----------------------------------
 require("scripts/globals/status");

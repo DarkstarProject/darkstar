@@ -57,7 +57,7 @@ require("scripts/globals/msg");
     nullMod = {MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL};
     blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
     rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
-    barSpells = {dsp.effects.BARFIRE, dsp.effects.BARSTONE, dsp.effects.BARWATER, dsp.effects.BARAERO, dsp.effects.BARBLIZZARD, dsp.effects.BARTHUNDER};
+    barSpells = {dsp.effect.BARFIRE, dsp.effect.BARSTONE, dsp.effect.BARWATER, dsp.effect.BARAERO, dsp.effect.BARBLIZZARD, dsp.effect.BARTHUNDER};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -88,7 +88,7 @@ function calculateMagicDamage(caster, target, spell, params)
         dmg = dmg + (dINT * params.multiplier);
     elseif (dINT > 0 and dINT > SOFT_CAP and dINT < HARD_CAP) then --After SOFT_CAP, INT is only half effective
         dmg = dmg + SOFT_CAP * params.multiplier + ((dINT - SOFT_CAP) * params.multiplier) / 2;
-    elseif (dINT > 0 and dINT > SOFT_CAP and dINT >= HARD_CAP) then --After HARD_CAP, INT has no dsp.effects.
+    elseif (dINT > 0 and dINT > SOFT_CAP and dINT >= HARD_CAP) then --After HARD_CAP, INT has no dsp.effect.
         dmg = dmg + HARD_CAP * params.multiplier;
     end
 
@@ -106,7 +106,7 @@ end;
 
 function doBoostGain(caster,target,spell,effect)
     local duration = 300;
-    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
@@ -143,13 +143,13 @@ end;
 
 function doEnspell(caster,target,spell,effect)
 
-    if (effect==dsp.effects.BLOOD_WEAPON) then
-        target:addStatusEffect(dsp.effects.BLOOD_WEAPON,1,0,30);
+    if (effect==dsp.effect.BLOOD_WEAPON) then
+        target:addStatusEffect(dsp.effect.BLOOD_WEAPON,1,0,30);
         return;
     end
 
     local duration = 180;
-    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
     --calculate potency
@@ -205,15 +205,15 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
     end
 
     local dSeal = 1;
-    if (caster:hasStatusEffect(dsp.effects.DIVINE_SEAL)) then
+    if (caster:hasStatusEffect(dsp.effect.DIVINE_SEAL)) then
         dSeal = 2;
     end
 
     local rapture = 1;
     if (isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
-        if (caster:hasStatusEffect(dsp.effects.RAPTURE)) then
+        if (caster:hasStatusEffect(dsp.effect.RAPTURE)) then
             rapture = 1.5 + caster:getMod(MOD_RAPTURE_AMOUNT)/100;
-            caster:delStatusEffectSilent(dsp.effects.RAPTURE);
+            caster:delStatusEffectSilent(dsp.effect.RAPTURE);
         end
     end
 
@@ -324,13 +324,13 @@ function applyResistanceEffect(caster, target, spell, params)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
-        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(dsp.effects.STYMIE) and target:canGainStatusEffect(effect)) then
-            caster:delStatusEffect(dsp.effects.STYMIE);
+        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(dsp.effect.STYMIE) and target:canGainStatusEffect(effect)) then
+            caster:delStatusEffect(dsp.effect.STYMIE);
             return 1;
         end
     end
 
-    if (skill == SINGING_SKILL and caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
+    if (skill == SINGING_SKILL and caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         if (math.random(0,99) < caster:getMerit(MERIT_TROUBADOUR)-25) then
             return 1.0;
         end
@@ -376,7 +376,7 @@ end;
 
 function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
     -- resist everything if magic shield is active
-    if (target:hasStatusEffect(dsp.effects.MAGIC_SHIELD, 0)) then
+    if (target:hasStatusEffect(dsp.effect.MAGIC_SHIELD, 0)) then
         return 0;
     end
 
@@ -472,35 +472,35 @@ end
 -- target has to the given effect (stun, sleep, etc..)
 function getEffectResistance(target, effect)
     local effectres = 0;
-    if (effect == dsp.effects.SLEEP_I or effect == dsp.effects.SLEEP_II) then
+    if (effect == dsp.effect.SLEEP_I or effect == dsp.effect.SLEEP_II) then
         effectres = MOD_SLEEPRES;
-    elseif (effect == dsp.effects.LULLABY) then
+    elseif (effect == dsp.effect.LULLABY) then
         effectres = MOD_LULLABYRES;
-    elseif (effect == dsp.effects.POISON) then
+    elseif (effect == dsp.effect.POISON) then
         effectres = MOD_POISONRES;
-    elseif (effect == dsp.effects.PARALYSIS) then
+    elseif (effect == dsp.effect.PARALYSIS) then
         effectres = MOD_PARALYZERES;
-    elseif (effect == dsp.effects.BLINDNESS) then
+    elseif (effect == dsp.effect.BLINDNESS) then
         effectres = MOD_BLINDRES
-    elseif (effect == dsp.effects.SILENCE) then
+    elseif (effect == dsp.effect.SILENCE) then
         effectres = MOD_SILENCERES;
-    elseif (effect == dsp.effects.PLAGUE or effect == dsp.effects.DISEASE) then
+    elseif (effect == dsp.effect.PLAGUE or effect == dsp.effect.DISEASE) then
         effectres = MOD_VIRUSRES;
-    elseif (effect == dsp.effects.PETRIFICATION) then
+    elseif (effect == dsp.effect.PETRIFICATION) then
         effectres = MOD_PETRIFYRES;
-    elseif (effect == dsp.effects.BIND) then
+    elseif (effect == dsp.effect.BIND) then
         effectres = MOD_BINDRES;
-    elseif (effect == dsp.effects.CURSE_I or effect == dsp.effects.CURSE_II or effect == dsp.effects.BANE) then
+    elseif (effect == dsp.effect.CURSE_I or effect == dsp.effect.CURSE_II or effect == dsp.effect.BANE) then
         effectres = MOD_CURSERES;
-    elseif (effect == dsp.effects.WEIGHT) then
+    elseif (effect == dsp.effect.WEIGHT) then
         effectres = MOD_GRAVITYRES;
-    elseif (effect == dsp.effects.SLOW or effect == dsp.effects.ELEGY) then
+    elseif (effect == dsp.effect.SLOW or effect == dsp.effect.ELEGY) then
         effectres = MOD_SLOWRES;
-    elseif (effect == dsp.effects.STUN) then
+    elseif (effect == dsp.effect.STUN) then
         effectres = MOD_STUNRES;
-    elseif (effect == dsp.effects.CHARM) then
+    elseif (effect == dsp.effect.CHARM) then
         effectres = MOD_CHARMRES;
-    elseif (effect == dsp.effects.AMNESIA) then
+    elseif (effect == dsp.effect.AMNESIA) then
         effectres = MOD_AMNESIARES;
     end
 
@@ -521,12 +521,12 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     params.AMIIaccBonus = params.AMIIaccBonus or 0
 
-    if caster:hasStatusEffect(dsp.effects.ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effects.ALTRUISM):getPower();
+    if caster:hasStatusEffect(dsp.effect.ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
+      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.ALTRUISM):getPower();
     end
 
-    if caster:hasStatusEffect(dsp.effects.FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effects.FOCALIZATION):getPower();
+    if caster:hasStatusEffect(dsp.effect.FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
+      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.FOCALIZATION):getPower();
     end
 
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
@@ -541,13 +541,13 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     --Add acc for klimaform
     if element > 0 then
-        if caster:hasStatusEffect(dsp.effects.KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
+        if caster:hasStatusEffect(dsp.effect.KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
             magicAccBonus = magicAccBonus + 15
         end
     end
 
     --Add acc for dark seal
-    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(dsp.effects.DARK_SEAL)) then
+    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(dsp.effect.DARK_SEAL)) then
         magicAccBonus = magicAccBonus + 256;
     end
 
@@ -565,7 +565,7 @@ function getSpellBonusAcc(caster, target, spell, params)
 end;
 
 function handleAfflatusMisery(caster, spell, dmg)
-    if (caster:hasStatusEffect(dsp.effects.AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then
         local misery = caster:getMod(MOD_AFFLATUS_MISERY);
         local miseryMax = caster:getMaxHP() / 4;
 
@@ -603,8 +603,8 @@ end;
         end
 
         -- kill shadows
-        -- target:delStatusEffect(dsp.effects.COPY_IMAGE);
-        -- target:delStatusEffect(dsp.effects.BLINK);
+        -- target:delStatusEffect(dsp.effect.COPY_IMAGE);
+        -- target:delStatusEffect(dsp.effect.BLINK);
     else
         -- this logic will eventually be moved here
         -- dmg = utils.takeShadows(target, dmg, 1);
@@ -698,7 +698,7 @@ function calculateMagicBurst(caster, spell, target, params)
     local skillchainburst = 1.0;
     local modburst = 1.0;
 
-    if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(dsp.effects.BURST_AFFINITY)) then
+    if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(dsp.effect.BURST_AFFINITY)) then
         return burst;
     end
 
@@ -840,9 +840,9 @@ function addBonuses(caster, spell, target, dmg, params)
 
     dmg = math.floor(dmg * mabbonus);
 
-    if (caster:hasStatusEffect(dsp.effects.EBULLIENCE)) then
+    if (caster:hasStatusEffect(dsp.effect.EBULLIENCE)) then
         dmg = dmg * (1.2 + caster:getMod(MOD_EBULLIENCE_AMOUNT)/100);
-        caster:delStatusEffectSilent(dsp.effects.EBULLIENCE);
+        caster:delStatusEffectSilent(dsp.effect.EBULLIENCE);
     end
 
     dmg = math.floor(dmg);
@@ -1032,40 +1032,40 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     if (resm < 0.5) then
         -- print("resm resist");
         spell:setMsg(msgBasic.MAGIC_RESIST);
-        return dsp.effects.THRENODY;
+        return dsp.effect.THRENODY;
     end
 
     -- Remove previous Threnody
-    target:delStatusEffect(dsp.effects.THRENODY);
+    target:delStatusEffect(dsp.effect.THRENODY);
 
     local iBoost = caster:getMod(MOD_THRENODY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     local power = basePower + iBoost*5;
     local duration = baseDuration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
+    if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
         power = power * 2;
-    elseif (caster:hasStatusEffect(dsp.effects.MARCATO)) then
+    elseif (caster:hasStatusEffect(dsp.effect.MARCATO)) then
         power = power * 1.5;
     end
 
-    if (caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
+    if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         duration = duration * 2;
     end
 
     -- Set spell message and apply status effect
-    target:addStatusEffect(dsp.effects.THRENODY, power, 0, duration, 0, modifier, 0);
+    target:addStatusEffect(dsp.effect.THRENODY, power, 0, duration, 0, modifier, 0);
 
-    return dsp.effects.THRENODY;
+    return dsp.effect.THRENODY;
 end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
     -- Add new
-    target:addStatusEffectEx(dsp.effects.NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
-    return dsp.effects.NINJUTSU_ELE_DEBUFF;
+    target:addStatusEffectEx(dsp.effect.NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
+    return dsp.effect.NINJUTSU_ELE_DEBUFF;
 end;
 
 -- Returns true if you can overwrite the effect
--- Example: canOverwrite(target, dsp.effects.SLOW, 25)
+-- Example: canOverwrite(target, dsp.effect.SLOW, 25)
 function canOverwrite(target, effect, power, mod)
     mod = mod or 1;
 
@@ -1164,8 +1164,8 @@ function doNinjutsuNuke(caster, target, spell, params)
     mabBonus = mabBonus or 0;
 
     mabBonus = mabBonus + caster:getMod(MOD_NIN_NUKE_BONUS); -- "enhances ninjutsu damage" bonus
-    if (caster:hasStatusEffect(dsp.effects.INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
-        mabBonus = mabBonus + caster:getStatusEffect(dsp.effects.INNIN):getPower();
+    if (caster:hasStatusEffect(dsp.effect.INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
+        mabBonus = mabBonus + caster:getStatusEffect(dsp.effect.INNIN):getPower();
     end
     params.skillType = NINJUTSU_SKILL;
     params.attribute = MOD_INT;
@@ -1182,7 +1182,7 @@ function doNuke(caster, target, spell, params)
     --get the resisted damage
     dmg = dmg*resist;
     if (skill == NINJUTSU_SKILL) then
-        if (caster:getMainJob() == dsp.jobs.NIN) then -- NIN main gets a bonus to their ninjutsu nukes
+        if (caster:getMainJob() == dsp.job.NIN) then -- NIN main gets a bonus to their ninjutsu nukes
             local ninSkillBonus = 100;
             if (spell:getID() % 3 == 2) then -- ichi nuke spell ids are 320, 323, 326, 329, 332, and 335
                 ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)
@@ -1195,9 +1195,9 @@ function doNuke(caster, target, spell, params)
             dmg = dmg * ninSkillBonus/100;
         end
         -- boost with Futae
-        if (caster:hasStatusEffect(dsp.effects.FUTAE)) then
+        if (caster:hasStatusEffect(dsp.effect.FUTAE)) then
             dmg = math.floor(dmg * 1.50);
-            caster:delStatusEffect(dsp.effects.FUTAE);
+            caster:delStatusEffect(dsp.effect.FUTAE);
         end
     end
 

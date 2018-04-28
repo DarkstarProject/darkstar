@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.MEIKYO_SHISUI
+--     dsp.effect.MEIKYO_SHISUI
 --     
 -----------------------------------
 

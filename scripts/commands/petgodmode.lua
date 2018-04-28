@@ -16,18 +16,18 @@ function onTrigger(player)
         pet:setLocalVar("GodMode", 1);
 
         -- Add bonus effects to the pet..
-        pet:addStatusEffect(dsp.effects.MAX_HP_BOOST,1000,0,0);
-        pet:addStatusEffect(dsp.effects.MAX_MP_BOOST,1000,0,0);
-        pet:addStatusEffect(dsp.effects.SENTINEL,100,0,0);
-        pet:addStatusEffect(dsp.effects.MIGHTY_STRIKES,1,0,0);
-        pet:addStatusEffect(dsp.effects.HUNDRED_FISTS,1,0,0);
-        pet:addStatusEffect(dsp.effects.CHAINSPELL,1,0,0);
-        pet:addStatusEffect(dsp.effects.PERFECT_DODGE,1,0,0);
-        pet:addStatusEffect(dsp.effects.INVINCIBLE,1,0,0);
-        pet:addStatusEffect(dsp.effects.MANAFONT,1,0,0);
-        pet:addStatusEffect(dsp.effects.REGAIN,150,1,0);
-        pet:addStatusEffect(dsp.effects.REFRESH,99,0,0);
-        pet:addStatusEffect(dsp.effects.REGEN,99,0,0);
+        pet:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0);
+        pet:addStatusEffect(dsp.effect.MAX_MP_BOOST,1000,0,0);
+        pet:addStatusEffect(dsp.effect.SENTINEL,100,0,0);
+        pet:addStatusEffect(dsp.effect.MIGHTY_STRIKES,1,0,0);
+        pet:addStatusEffect(dsp.effect.HUNDRED_FISTS,1,0,0);
+        pet:addStatusEffect(dsp.effect.CHAINSPELL,1,0,0);
+        pet:addStatusEffect(dsp.effect.PERFECT_DODGE,1,0,0);
+        pet:addStatusEffect(dsp.effect.INVINCIBLE,1,0,0);
+        pet:addStatusEffect(dsp.effect.MANAFONT,1,0,0);
+        pet:addStatusEffect(dsp.effect.REGAIN,150,1,0);
+        pet:addStatusEffect(dsp.effect.REFRESH,99,0,0);
+        pet:addStatusEffect(dsp.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the pet..
         pet:addMod(MOD_RACC,2500);
@@ -48,18 +48,18 @@ function onTrigger(player)
         pet:setLocalVar("GodMode", 0);
 
         -- Remove bonus effects..
-        pet:delStatusEffect(dsp.effects.MAX_HP_BOOST);
-        pet:delStatusEffect(dsp.effects.MAX_MP_BOOST);
-        pet:delStatusEffect(dsp.effects.SENTINEL);
-        pet:delStatusEffect(dsp.effects.MIGHTY_STRIKES);
-        pet:delStatusEffect(dsp.effects.HUNDRED_FISTS);
-        pet:delStatusEffect(dsp.effects.CHAINSPELL);
-        pet:delStatusEffect(dsp.effects.PERFECT_DODGE);
-        pet:delStatusEffect(dsp.effects.INVINCIBLE);
-        pet:delStatusEffect(dsp.effects.MANAFONT);
-        pet:delStatusEffect(dsp.effects.REGAIN);
-        pet:delStatusEffect(dsp.effects.REFRESH);
-        pet:delStatusEffect(dsp.effects.REGEN);
+        pet:delStatusEffect(dsp.effect.MAX_HP_BOOST);
+        pet:delStatusEffect(dsp.effect.MAX_MP_BOOST);
+        pet:delStatusEffect(dsp.effect.SENTINEL);
+        pet:delStatusEffect(dsp.effect.MIGHTY_STRIKES);
+        pet:delStatusEffect(dsp.effect.HUNDRED_FISTS);
+        pet:delStatusEffect(dsp.effect.CHAINSPELL);
+        pet:delStatusEffect(dsp.effect.PERFECT_DODGE);
+        pet:delStatusEffect(dsp.effect.INVINCIBLE);
+        pet:delStatusEffect(dsp.effect.MANAFONT);
+        pet:delStatusEffect(dsp.effect.REGAIN);
+        pet:delStatusEffect(dsp.effect.REFRESH);
+        pet:delStatusEffect(dsp.effect.REGEN);
 
         -- Remove bonus mods..
         pet:delMod(MOD_RACC,2500);

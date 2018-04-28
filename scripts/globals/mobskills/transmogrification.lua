@@ -19,7 +19,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    MobBuffMove(mob, dsp.effects.PHYSICAL_SHIELD, 2, 0, 30);
+    MobBuffMove(mob, dsp.effect.PHYSICAL_SHIELD, 2, 0, 30);
     skill:setMsg(msgBasic.NONE);
 
     return 0;

@@ -14,7 +14,7 @@ function onItemCheck(target)
     local result = 0;
     local region = target:getCurrentRegion();
 
-    if (hasOutpost(target, target:getCurrentRegion()) == dsp.regions.UNKNOWN or GetRegionOwner(region) ~= target:getNation()) then
+    if (hasOutpost(target, target:getCurrentRegion()) == dsp.region.UNKNOWN or GetRegionOwner(region) ~= target:getNation()) then
         result = msgBasic.CANT_BE_USED_IN_AREA;
     end
 
@@ -22,5 +22,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_HOMING,0,1);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_HOMING,0,1);
 end;

@@ -19,14 +19,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effects.ALACRITY) then
+    if player:hasStatusEffect(dsp.effect.ALACRITY) then
         return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effects.ALACRITY,1,0,60);
+    player:addStatusEffect(dsp.effect.ALACRITY,1,0,60);
 
-    return dsp.effects.ALACRITY;
+    return dsp.effect.ALACRITY;
 end;

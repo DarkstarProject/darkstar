@@ -44,10 +44,10 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
-    if (target:hasStatusEffect(dsp.effects.SLOW)) then
+    if (target:hasStatusEffect(dsp.effect.SLOW)) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
     else
-        target:addStatusEffect(dsp.effects.SLOW,15,0,20);
+        target:addStatusEffect(dsp.effect.SLOW,15,0,20);
     end
 
     return damage;

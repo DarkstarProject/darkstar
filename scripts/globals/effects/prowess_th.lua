@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.PROWESS : Treasure Hunter bonus
+-- dsp.effect.PROWESS : Treasure Hunter bonus
 --
 -----------------------------------
 

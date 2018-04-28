@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.IXION_HORNBREAKER);
+    player:addTitle(dsp.title.IXION_HORNBREAKER);
 end;

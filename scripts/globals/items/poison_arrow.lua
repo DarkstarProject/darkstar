@@ -19,10 +19,10 @@ function onAdditionalEffect(player,target,damage)
     elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(dsp.effects.POISON)
-        if (not target:hasStatusEffect(dsp.effects.POISON)) then
-            target:addStatusEffect(dsp.effects.POISON, 4, 3, 30);
+        target:delStatusEffect(dsp.effect.POISON)
+        if (not target:hasStatusEffect(dsp.effect.POISON)) then
+            target:addStatusEffect(dsp.effect.POISON, 4, 3, 30);
         end
-        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, dsp.effects.POISON;
+        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
 end;

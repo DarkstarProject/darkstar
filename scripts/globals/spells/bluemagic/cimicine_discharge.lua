@@ -37,14 +37,14 @@ function onSpellCast(caster,target,spell)
 
     if (resist < 0.5) then
         spell:setMsg(msgBasic.MAGIC_RESIST); --resist message
-        return dsp.effects.SLOW;
+        return dsp.effect.SLOW;
     end
 
-    if (target:addStatusEffect(dsp.effects.SLOW,200,0,getBlueEffectDuration(caster,resist,dsp.effects.SLOW))) then
+    if (target:addStatusEffect(dsp.effect.SLOW,200,0,getBlueEffectDuration(caster,resist,dsp.effect.SLOW))) then
         spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
-    return dsp.effects.SLOW;
+    return dsp.effect.SLOW;
 end;

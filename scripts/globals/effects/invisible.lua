@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.INVISIBLE
+--     dsp.effect.INVISIBLE
 --     
 -----------------------------------
 require("scripts/globals/msg")

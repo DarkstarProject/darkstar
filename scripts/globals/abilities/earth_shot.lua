@@ -43,17 +43,17 @@ function onUseAbility(player,target,ability,action)
     
         local effects = {};
         local counter = 1;
-        local rasp = target:getStatusEffect(dsp.effects.RASP);
+        local rasp = target:getStatusEffect(dsp.effect.RASP);
         if (rasp ~= nil) then
             effects[counter] = rasp;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
         if (threnody ~= nil and threnody:getSubPower() == MOD_THUNDERRES) then
             effects[counter] = threnody;
             counter = counter + 1;
         end
-        local slow = target:getStatusEffect(dsp.effects.SLOW);
+        local slow = target:getStatusEffect(dsp.effect.SLOW);
         if (slow ~= nil) then
             effects[counter] = slow;
             counter = counter + 1;

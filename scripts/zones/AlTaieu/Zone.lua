@@ -49,9 +49,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:setVar("PromathiaStatus",1);
-        player:addKeyItem(dsp.kis.LIGHT_OF_ALTAIEU);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.LIGHT_OF_ALTAIEU);
-        player:addTitle(dsp.titles.SEEKER_OF_THE_LIGHT);
+        player:addKeyItem(dsp.ki.LIGHT_OF_ALTAIEU);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_ALTAIEU);
+        player:addTitle(dsp.title.SEEKER_OF_THE_LIGHT);
     elseif (csid == 167) then
         player:setVar("PromathiaStatus",1);
     end

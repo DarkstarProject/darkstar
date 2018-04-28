@@ -21,9 +21,9 @@ function onTrigger(player,npc)
 
     if (TheRescue == QUEST_AVAILABLE and SelbiFame >= 1) then
         player:startEvent(80); -- Start quest "The rescue"
-    elseif (TheRescue == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRADERS_SACK) == false) then
+    elseif (TheRescue == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TRADERS_SACK) == false) then
         player:startEvent(83); -- During quest "The rescue"
-    elseif (TheRescue == QUEST_ACCEPTED and player:hasKeyItem(dsp.kis.TRADERS_SACK) == true) then
+    elseif (TheRescue == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TRADERS_SACK) == true) then
         player:startEvent(81); -- Finish quest "The rescue"
     elseif (TheRescue == QUEST_COMPLETED) then
         player:startEvent(82); -- New standard dialog
@@ -44,11 +44,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(OTHER_AREAS_LOG,THE_RESCUE);
     elseif (csid == 81) then
         player:completeQuest(OTHER_AREAS_LOG,THE_RESCUE);
-        player:addTitle(dsp.titles.HONORARY_CITIZEN_OF_SELBINA);
-        player:delKeyItem(dsp.kis.TRADERS_SACK);
-        if (player:hasKeyItem(dsp.kis.MAP_OF_THE_RANGUEMONT_PASS) == false) then
-            player:addKeyItem(dsp.kis.MAP_OF_THE_RANGUEMONT_PASS);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_RANGUEMONT_PASS);
+        player:addTitle(dsp.title.HONORARY_CITIZEN_OF_SELBINA);
+        player:delKeyItem(dsp.ki.TRADERS_SACK);
+        if (player:hasKeyItem(dsp.ki.MAP_OF_THE_RANGUEMONT_PASS) == false) then
+            player:addKeyItem(dsp.ki.MAP_OF_THE_RANGUEMONT_PASS);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_RANGUEMONT_PASS);
         end
         player:addGil(3000);
         player:messageSpecial(GIL_OBTAINED,3000);

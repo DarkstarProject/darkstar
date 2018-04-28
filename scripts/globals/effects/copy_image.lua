@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.COPY_IMAGE
+--     dsp.effect.COPY_IMAGE
 --
 -----------------------------------
 require("scripts/globals/status");

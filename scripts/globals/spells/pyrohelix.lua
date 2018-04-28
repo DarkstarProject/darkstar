@@ -57,7 +57,7 @@ function onSpellCast(caster,target,spell)
     duration = duration * (resist/2);
 
     if (dot > 0) then
-        target:addStatusEffect(dsp.effects.HELIX,dot,3,duration);
+        target:addStatusEffect(dsp.effect.HELIX,dot,3,duration);
     end;
 
     return dmg;

@@ -1,6 +1,6 @@
 -----------------------------------
 --
---    dsp.effects.MADRIGAL
+--    dsp.effect.MADRIGAL
 -- getPower returns the TIER (e.g. 1,2,3,4)
 -----------------------------------
 require("scripts/globals/status");

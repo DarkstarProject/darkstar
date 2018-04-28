@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.kis.ALTEPA_GATE_CRYSTAL) == false) then
-        player:addKeyItem(dsp.kis.ALTEPA_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.ALTEPA_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.ki.ALTEPA_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.ki.ALTEPA_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ALTEPA_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end

@@ -26,8 +26,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(dsp.kis.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SMILING_STONE);
+            player:addKeyItem(dsp.ki.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
         if (wantsSubligar==13) then
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
         else
-            player:addTitle(dsp.titles.BRYGIDAPPROVED);
+            player:addTitle(dsp.title.BRYGIDAPPROVED);
             player:addItem(12720);
             player:messageSpecial(ITEM_OBTAINED,12720);
             player:addFame(BASTOK,30);
@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
         player:setVar("BrygidGetBody",0);
         player:setVar("BrygidGetLegs",0);
         player:setVar("BrygidWantsSubligar",0);
-        player:addTitle(dsp.titles.BASTOKS_SECOND_BEST_DRESSED);
+        player:addTitle(dsp.title.BASTOKS_SECOND_BEST_DRESSED);
         player:addItem(14400+wantsSubligar);
         player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
         player:addFame(BASTOK,30);

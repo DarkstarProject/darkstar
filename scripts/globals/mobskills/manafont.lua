@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.MANAFONT;
+    local typeEffect = dsp.effect.MANAFONT;
     local duration = 60;
     if (skill:getParam() ~= 0 and mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         duration = skill:getParam();

@@ -41,12 +41,12 @@ function onUseAbility(player,target,ability,action)
     if shadowsAbsorbed == 0 then
         local effects = {};
         local counter = 1;
-        local shock = target:getStatusEffect(dsp.effects.SHOCK);
+        local shock = target:getStatusEffect(dsp.effect.SHOCK);
         if (shock ~= nil) then
             effects[counter] = shock;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
         if (threnody ~= nil and threnody:getSubPower() == MOD_WATERRES) then
             effects[counter] = threnody;
             counter = counter + 1;

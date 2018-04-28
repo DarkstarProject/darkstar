@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.DAMAGE_SPIKES
+-- dsp.effect.DAMAGE_SPIKES
 --
 -----------------------------------
 

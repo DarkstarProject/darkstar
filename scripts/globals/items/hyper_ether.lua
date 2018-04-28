@@ -10,7 +10,7 @@ require("scripts/globals/msg");
 function onItemCheck(target)
     if (target:getMP() == target:getMaxMP()) then
         return msgBasic.ITEM_UNABLE_TO_USE;
-    elseif (target:hasStatusEffect(dsp.effects.MEDICINE)) then
+    elseif (target:hasStatusEffect(dsp.effect.MEDICINE)) then
         return msgBasic.ITEM_NO_USE_MEDICATED;
     end
     return 0;
@@ -18,5 +18,5 @@ end;
 
 function onItemUse(target)
     target:messageBasic(msgBasic.RECOVERS_MP,0,target:addMP(125*ITEM_POWER));
-    target:addStatusEffect(dsp.effects.MEDICINE,0,0,300);
+    target:addStatusEffect(dsp.effect.MEDICINE,0,0,300);
 end;

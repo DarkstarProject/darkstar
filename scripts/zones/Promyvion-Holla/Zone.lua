@@ -30,12 +30,12 @@ function onZoneIn(player,prevZone)
         player:addMission(COP,THE_MOTHERCRYSTALS); -- start mission 1.3
         player:setVar("PromathiaStatus",0);
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
-        if (player:hasKeyItem(dsp.kis.LIGHT_OF_DEM) and player:hasKeyItem(dsp.kis.LIGHT_OF_MEA)) then
+        if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA)) then
             if (player:getVar("cslastpromy") == 1) then
                 player:setVar("cslastpromy",0)
                 cs = 52;
             end
-        elseif (player:hasKeyItem(dsp.kis.LIGHT_OF_DEM) or player:hasKeyItem(dsp.kis.LIGHT_OF_MEA)) then
+        elseif (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA)) then
             if (player:getVar("cs2ndpromy") == 1) then
                 player:setVar("cs2ndpromy",0)
                 cs = 51;
@@ -52,7 +52,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION,30,0,0); -- LV30 cap
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,30,0,0); -- LV30 cap
     end
 end;
 

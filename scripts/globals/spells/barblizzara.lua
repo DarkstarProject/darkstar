@@ -23,11 +23,11 @@ function onSpellCast(caster,target,spell)
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
-    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(dsp.effects.BARBLIZZARD,power,0,duration,0,mdefBonus);
+    target:addStatusEffect(dsp.effect.BARBLIZZARD,power,0,duration,0,mdefBonus);
 
-    return dsp.effects.BARBLIZZARD;
+    return dsp.effect.BARBLIZZARD;
 end;

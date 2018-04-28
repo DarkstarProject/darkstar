@@ -60,7 +60,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -76,8 +76,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -91,8 +91,8 @@ function onAdditionalEffect(player,target,damage)
     if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(dsp.effects.EVASION_BOOST)
-        target:addStatusEffect(dsp.effects.EVASION_DOWN, 15, 0, 60);
-        return SUBEFFECT_EVASION_DOWN, msgBasic.ADD_EFFECT_STATUS, dsp.effects.EVASION_DOWN;
+        target:delStatusEffect(dsp.effect.EVASION_BOOST)
+        target:addStatusEffect(dsp.effect.EVASION_DOWN, 15, 0, 60);
+        return SUBEFFECT_EVASION_DOWN, msgBasic.ADD_EFFECT_STATUS, dsp.effect.EVASION_DOWN;
     end
 end;

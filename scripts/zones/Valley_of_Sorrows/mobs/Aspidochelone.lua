@@ -17,7 +17,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.ASPIDOCHELONE_SINKER);
+    player:addTitle(dsp.title.ASPIDOCHELONE_SINKER);
 end;
 
 function onMobDespawn(mob)

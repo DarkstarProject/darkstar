@@ -59,7 +59,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -75,8 +75,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -88,7 +88,7 @@ function onAdditionalEffect(player,target,damage)
     local chance = 15;
     if (chance > math.random(0,99)) then
         local dispel = target:dispelStatusEffect();
-        if (dispel == dsp.effects.NONE) then
+        if (dispel == dsp.effect.NONE) then
             return 0,0,0;
         else
             return SUBEFFECT_DISPEL, msgBasic.ADD_EFFECT_DISPEL, dispel;

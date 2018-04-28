@@ -1,6 +1,6 @@
 -----------------------------------
 --
---    dsp.effects.DIA
+--    dsp.effect.DIA
 --
 ----------------------------------   
 -- Quick Explanation of Algorithm:

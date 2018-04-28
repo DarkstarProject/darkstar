@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     totaldamage = MobFinalAdjustments(damage.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
 
     if (damage.hitslanded > 0) then
-        target:addStatusEffect(dsp.effects.PARALYSIS, 50, 0, 90);
+        target:addStatusEffect(dsp.effect.PARALYSIS, 50, 0, 90);
     end;
 
     target:delHP(totaldamage);

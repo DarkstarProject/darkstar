@@ -50,7 +50,7 @@ function onMobDisengage(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.SHINING_SCALE_RIFLER);
+    player:addTitle(dsp.title.SHINING_SCALE_RIFLER);
     for i = 1,4 do DespawnMob(GULOOL_JA_JA + i) end
 end;
 

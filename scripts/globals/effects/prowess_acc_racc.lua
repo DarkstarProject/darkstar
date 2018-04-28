@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.PROWESS : Enhanced accuracy and ranged accuracy
+-- dsp.effect.PROWESS : Enhanced accuracy and ranged accuracy
 --
 -----------------------------------
 

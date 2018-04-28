@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.DEFENSE_BOOST
+-- dsp.effect.DEFENSE_BOOST
 --
 -----------------------------------
 

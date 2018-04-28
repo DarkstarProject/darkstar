@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = dsp.effects.PLAGUE;
+    local effect = dsp.effect.PLAGUE;
 
     local duration = 60;
 

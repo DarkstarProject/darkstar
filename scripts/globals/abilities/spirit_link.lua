@@ -29,20 +29,20 @@ function onUseAbility(player,target,ability)
         drainamount = 0; -- Prevents player HP lose if wyvern is at full HP
     end
 
-    if (player:hasStatusEffect(dsp.effects.STONESKIN)) then
+    if (player:hasStatusEffect(dsp.effect.STONESKIN)) then
         local skin = player:getMod(MOD_STONESKIN);
 
         if (skin >= drainamount) then
             if (skin == drainamount) then
-                player:delStatusEffect(dsp.effects.STONESKIN);
+                player:delStatusEffect(dsp.effect.STONESKIN);
             else
-                local effect = player:getStatusEffect(dsp.effects.STONESKIN);
+                local effect = player:getStatusEffect(dsp.effect.STONESKIN);
                 effect:setPower(effect:getPower() - drainamount); -- fixes the status effeect so when it ends it uses the new power instead of old
                 player:delMod(MOD_STONESKIN,drainamount); --removes the amount from the mod
 
             end
         else
-            player:delStatusEffect(dsp.effects.STONESKIN);
+            player:delStatusEffect(dsp.effect.STONESKIN);
             player:delHP((drainamount-skin));
         end
 
@@ -59,19 +59,19 @@ function onUseAbility(player,target,ability)
         healPet = healPet + 15;
     end
 
-    pet:delStatusEffect(dsp.effects.POISON);
-    pet:delStatusEffect(dsp.effects.BLINDNESS);
-    pet:delStatusEffect(dsp.effects.PARALYSIS);
+    pet:delStatusEffect(dsp.effect.POISON);
+    pet:delStatusEffect(dsp.effect.BLINDNESS);
+    pet:delStatusEffect(dsp.effect.PARALYSIS);
 
     if (math.random(1,2) == 1) then
-        pet:delStatusEffect(dsp.effects.DOOM);
+        pet:delStatusEffect(dsp.effect.DOOM);
     end
     if (pet:getHP() < pet:getMaxHP()) then -- sleep is only removed if it heals the wyvern
         removeSleepEffects(pet);
     end
 
     pet:addHP(healPet); --add the hp to pet
-    pet:addStatusEffect(dsp.effects.REGEN,regenAmount,3,90,0,0,0); -- 90 seconds of regen
+    pet:addStatusEffect(dsp.effect.REGEN,regenAmount,3,90,0,0,0); -- 90 seconds of regen
     player:addTP(petTP/2); --add half pet tp to you
     pet:delTP(petTP/2); -- remove half tp from pet
 end;

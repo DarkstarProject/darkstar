@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.CHOKE;
+    local typeEffect = dsp.effect.CHOKE;
     local power = mob:getMainLvl()/4*.6 + 4;
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);

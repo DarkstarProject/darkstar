@@ -24,7 +24,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effects.FLASH;
+    local typeEffect = dsp.effect.FLASH;
     local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
     local params = {};
     params.diff = nil;

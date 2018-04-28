@@ -15,20 +15,20 @@ g_mixins.job_special = function(mob)
     
     mob:addListener("COMBAT_TICK", "JOB_SPECIAL_CTICK", function(mob)
         local defaultAbility = {
-            [dsp.jobs.WAR] = jobSpec.MIGHTY_STRIKES,
-            [dsp.jobs.MNK] = jobSpec.HUNDRED_FISTS,
-            [dsp.jobs.WHM] = jobSpec.BENEDICTION,
-            [dsp.jobs.BLM] = jobSpec.MANAFONT,
-            [dsp.jobs.RDM] = jobSpec.CHAINSPELL,
-            [dsp.jobs.THF] = jobSpec.PERFECT_DODGE,
-            [dsp.jobs.PLD] = jobSpec.INVINCIBLE,
-            [dsp.jobs.DRK] = jobSpec.BLOOD_WEAPON,
-            [dsp.jobs.BST] = jobSpec.FAMILIAR,
-            [dsp.jobs.BRD] = jobSpec.SOUL_VOICE,
-            [dsp.jobs.SAM] = jobSpec.MEIKYO_SHISUI,
-            [dsp.jobs.NIN] = jobSpec.MIJIN_GAKURE,
-            [dsp.jobs.DRG] = jobSpec.CALL_WYVERN,
-            [dsp.jobs.SMN] = jobSpec.ASTRAL_FLOW,
+            [dsp.job.WAR] = jobSpec.MIGHTY_STRIKES,
+            [dsp.job.MNK] = jobSpec.HUNDRED_FISTS,
+            [dsp.job.WHM] = jobSpec.BENEDICTION,
+            [dsp.job.BLM] = jobSpec.MANAFONT,
+            [dsp.job.RDM] = jobSpec.CHAINSPELL,
+            [dsp.job.THF] = jobSpec.PERFECT_DODGE,
+            [dsp.job.PLD] = jobSpec.INVINCIBLE,
+            [dsp.job.DRK] = jobSpec.BLOOD_WEAPON,
+            [dsp.job.BST] = jobSpec.FAMILIAR,
+            [dsp.job.BRD] = jobSpec.SOUL_VOICE,
+            [dsp.job.SAM] = jobSpec.MEIKYO_SHISUI,
+            [dsp.job.NIN] = jobSpec.MIJIN_GAKURE,
+            [dsp.job.DRG] = jobSpec.CALL_WYVERN,
+            [dsp.job.SMN] = jobSpec.ASTRAL_FLOW,
         };
 
         if (mob:getLocalVar("usedMainSpec") == 0 and mob:getHPP() < mob:getLocalVar("useMainSpecAtHPP")) then

@@ -21,7 +21,7 @@ function onMobDeath(mob, player, isKiller)
 
         player:addTimeToDynamis(30); -- Add + 30min
 
-        player:addTitle(dsp.titles.DYNAMISBASTOK_INTERLOPER); -- Add title
+        player:addTitle(dsp.title.DYNAMISBASTOK_INTERLOPER); -- Add title
 
         local npc = GetNPCByID(17539323); -- Spawn ???
         npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());

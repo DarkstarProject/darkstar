@@ -26,8 +26,8 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet();
 
     if (player:checkDistance(pet) <= 25) then
-        if (pet:hasStatusEffect(dsp.effects.HEALING)) then
-            pet:delStatusEffect(dsp.effects.HEALING)
+        if (pet:hasStatusEffect(dsp.effect.HEALING)) then
+            pet:delStatusEffect(dsp.effect.HEALING)
         end
 
         player:petAttack(target);

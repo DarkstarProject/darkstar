@@ -9,6 +9,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:delStatusEffect(dsp.effects.FLEE);
-    target:addStatusEffect(dsp.effects.FLEE,100,0,30);
+    target:delStatusEffect(dsp.effect.FLEE);
+    target:addStatusEffect(dsp.effect.FLEE,100,0,30);
 end;

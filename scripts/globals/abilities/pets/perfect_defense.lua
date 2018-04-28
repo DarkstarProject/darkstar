@@ -21,9 +21,9 @@ function onPetAbility(target, pet, skill, master)
         end
         duration = 30 + summoningSkill / 20;
     end
-    target:delStatusEffect(dsp.effects.PERFECT_DEFENSE);
-    target:addStatusEffect(dsp.effects.PERFECT_DEFENSE,power,3,duration);
+    target:delStatusEffect(dsp.effect.PERFECT_DEFENSE);
+    target:addStatusEffect(dsp.effect.PERFECT_DEFENSE,power,3,duration);
     skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
     master:setMP(0);
-    return dsp.effects.PERFECT_DEFENSE;
+    return dsp.effect.PERFECT_DEFENSE;
 end

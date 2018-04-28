@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.PROWESS : Increased HP and MP
+-- dsp.effect.PROWESS : Increased HP and MP
 --
 -----------------------------------
 

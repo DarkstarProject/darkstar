@@ -56,5 +56,5 @@ function onMobDespawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.VIRTUOUS_SAINT);
+    player:addTitle(dsp.title.VIRTUOUS_SAINT);
 end;

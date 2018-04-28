@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.ACCURACY_DOWN
+-- dsp.effect.ACCURACY_DOWN
 --
 -----------------------------------
 

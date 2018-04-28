@@ -109,36 +109,36 @@ function onUseAbility(player,target,ability,action)
         [12646] = function (x) -- beast jackcoat
             -- This will remove Paralyze, Poison and Blind from the pet.
             -- printf("Beast jackcoat detected.");
-            pet:delStatusEffect(dsp.effects.PARALYSIS);
-            pet:delStatusEffect(dsp.effects.POISON);
-            pet:delStatusEffect(dsp.effects.BLINDNESS);
+            pet:delStatusEffect(dsp.effect.PARALYSIS);
+            pet:delStatusEffect(dsp.effect.POISON);
+            pet:delStatusEffect(dsp.effect.BLINDNESS);
             end,
         [14481] = function (x) -- beast jackcoat +1
             -- This will remove Paralyze, Poison, Blind, Weight, Slow and Silence from the pet.
             -- printf("Beast jackcoat +1 detected.");
-            pet:delStatusEffect(dsp.effects.PARALYSIS);
-            pet:delStatusEffect(dsp.effects.POISON);
-            pet:delStatusEffect(dsp.effects.BLINDNESS);
-            pet:delStatusEffect(dsp.effects.WEIGHT);
-            pet:delStatusEffect(dsp.effects.SLOW);
-            pet:delStatusEffect(dsp.effects.SILENCE);
+            pet:delStatusEffect(dsp.effect.PARALYSIS);
+            pet:delStatusEffect(dsp.effect.POISON);
+            pet:delStatusEffect(dsp.effect.BLINDNESS);
+            pet:delStatusEffect(dsp.effect.WEIGHT);
+            pet:delStatusEffect(dsp.effect.SLOW);
+            pet:delStatusEffect(dsp.effect.SILENCE);
             end,
         [15095] = function (x) -- monster jackcoat
             -- This will remove Weight, Slow and Silence from the pet.
             -- printf("Monster jackcoat detected.");
-            pet:delStatusEffect(dsp.effects.WEIGHT);
-            pet:delStatusEffect(dsp.effects.SLOW);
-            pet:delStatusEffect(dsp.effects.SILENCE);
+            pet:delStatusEffect(dsp.effect.WEIGHT);
+            pet:delStatusEffect(dsp.effect.SLOW);
+            pet:delStatusEffect(dsp.effect.SILENCE);
             end,
         [14481] = function (x) -- monster jackcoat +1
             -- This will remove Paralyze, Poison, Blind, Weight, Slow and Silence from the pet.
             -- printf("Monster jackcoat +1 detected.");
-            pet:delStatusEffect(dsp.effects.PARALYSIS);
-            pet:delStatusEffect(dsp.effects.POISON);
-            pet:delStatusEffect(dsp.effects.BLINDNESS);
-            pet:delStatusEffect(dsp.effects.WEIGHT);
-            pet:delStatusEffect(dsp.effects.SLOW);
-            pet:delStatusEffect(dsp.effects.SILENCE);
+            pet:delStatusEffect(dsp.effect.PARALYSIS);
+            pet:delStatusEffect(dsp.effect.POISON);
+            pet:delStatusEffect(dsp.effect.BLINDNESS);
+            pet:delStatusEffect(dsp.effect.WEIGHT);
+            pet:delStatusEffect(dsp.effect.SLOW);
+            pet:delStatusEffect(dsp.effect.SILENCE);
             end,
     }
 
@@ -157,10 +157,10 @@ function onUseAbility(player,target,ability,action)
     pet:addHP(totalHealing);
     pet:wakeUp();
 
-    -- Apply regen dsp.effects.
+    -- Apply regen dsp.effect.
 
-    pet:delStatusEffect(dsp.effects.REGEN);
-    pet:addStatusEffect(dsp.effects.REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
+    pet:delStatusEffect(dsp.effect.REGEN);
+    pet:addStatusEffect(dsp.effect.REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
     player:removeAmmo();
 
     pet:updateEnmityFromCure(pet, totalHealing);

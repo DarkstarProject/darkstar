@@ -29,5 +29,5 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     player:showText(mob, MEDUSA_DEATH);
-    player:addTitle(dsp.titles.GORGONSTONE_SUNDERER);
+    player:addTitle(dsp.title.GORGONSTONE_SUNDERER);
 end;

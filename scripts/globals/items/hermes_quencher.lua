@@ -7,15 +7,15 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
+    if (target:hasStatusEffect(dsp.effect.MEDICINE)) then
         return msgBasic.ITEM_NO_USE_MEDICATED;
     end
     return 0;
 end;
 
 function onItemUse(target)
-    target:delStatusEffect(dsp.effects.FLEE);
-    target:addStatusEffect(dsp.effects.FLEE, 100, 0, 30);
-    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, dsp.effects.FLEE);
-    target:addStatusEffect(dsp.effects.MEDICINE,0,0,900);
+    target:delStatusEffect(dsp.effect.FLEE);
+    target:addStatusEffect(dsp.effect.FLEE, 100, 0, 30);
+    target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, dsp.effect.FLEE);
+    target:addStatusEffect(dsp.effect.MEDICINE,0,0,900);
 end;

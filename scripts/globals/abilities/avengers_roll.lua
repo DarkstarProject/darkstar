@@ -32,7 +32,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = dsp.effects.AVENGERS_ROLL
+    local effectID = dsp.effect.AVENGERS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
         return msgBasic.ROLL_ALREADY_ACTIVE,0;
@@ -45,7 +45,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, dsp.effects.AVENGERS_ROLL, dsp.jobs.COR);
+        corsairSetup(caster, ability, action, dsp.effect.AVENGERS_ROLL, dsp.job.COR);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
@@ -59,12 +59,12 @@ function applyRoll(caster,target,ability,action,total)
     local phantomBase = 1; -- Base increment buff
     local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
 -- Check if COR Main or Sub
-    if (caster:getMainJob() == dsp.jobs.COR and caster:getMainLvl() < target:getMainLvl()) then
+    if (caster:getMainJob() == dsp.job.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
-    elseif (caster:getSubJob() == dsp.jobs.COR and caster:getSubLvl() < target:getMainLvl()) then
+    elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effects.AVENGERS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_COUNTER) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), dsp.effect.AVENGERS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_COUNTER) == false) then
         ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
     elseif total > 11 then
         ability:setMsg(msgBasic.DOUBLEUP_BUST);

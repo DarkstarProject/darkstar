@@ -22,12 +22,12 @@ function onMobSkillCheck(target,mob,skill)
     end
 
     -- pet needs to be active
-    if (pet:hasStatusEffect(dsp.effects.LULLABY) or
-        pet:hasStatusEffect(dsp.effects.STUN) or
-        pet:hasStatusEffect(dsp.effects.PETRIFICATION) or
-        pet:hasStatusEffect(dsp.effects.SLEEP_II) or
-        pet:hasStatusEffect(dsp.effects.SLEEP_I) or
-        pet:hasStatusEffect(dsp.effects.TERROR)) then
+    if (pet:hasStatusEffect(dsp.effect.LULLABY) or
+        pet:hasStatusEffect(dsp.effect.STUN) or
+        pet:hasStatusEffect(dsp.effect.PETRIFICATION) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_II) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_I) or
+        pet:hasStatusEffect(dsp.effect.TERROR)) then
         return 1;
     end
 
@@ -41,7 +41,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.ASTRAL_FLOW;
+    local typeEffect = dsp.effect.ASTRAL_FLOW;
     skill:setMsg(msgBasic.USES);
 
     -- Find proper pet skill
@@ -79,12 +79,12 @@ function onMobWeaponSkill(target, mob, skill)
     end
 
     -- Astral flow has no effect if pet is inactive
-    if (pet:hasStatusEffect(dsp.effects.LULLABY) or
-        pet:hasStatusEffect(dsp.effects.STUN) or
-        pet:hasStatusEffect(dsp.effects.PETRIFICATION) or
-        pet:hasStatusEffect(dsp.effects.SLEEP_II) or
-        pet:hasStatusEffect(dsp.effects.SLEEP_I) or
-        pet:hasStatusEffect(dsp.effects.TERROR)) then
+    if (pet:hasStatusEffect(dsp.effect.LULLABY) or
+        pet:hasStatusEffect(dsp.effect.STUN) or
+        pet:hasStatusEffect(dsp.effect.PETRIFICATION) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_II) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_I) or
+        pet:hasStatusEffect(dsp.effect.TERROR)) then
         return typeEffect;
     end
 

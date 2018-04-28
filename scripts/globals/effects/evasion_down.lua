@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.EVASION_DOWN
+-- dsp.effect.EVASION_DOWN
 --
 -----------------------------------
 require("scripts/globals/status");

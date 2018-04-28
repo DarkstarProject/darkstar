@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.MAGIC_ATK_BOOST
+-- dsp.effect.MAGIC_ATK_BOOST
 --
 -----------------------------------
 

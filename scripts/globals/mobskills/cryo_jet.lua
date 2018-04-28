@@ -27,7 +27,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 3, 60);
 
     local dmgmod = 2;

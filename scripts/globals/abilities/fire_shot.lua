@@ -41,12 +41,12 @@ function onUseAbility(player,target,ability,action)
     if shadowsAbsorbed == 0 then
         local effects = {};
         local counter = 1;
-        local burn = target:getStatusEffect(dsp.effects.BURN);
+        local burn = target:getStatusEffect(dsp.effect.BURN);
         if (burn ~= nil) then
             effects[counter] = burn;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
         if (threnody ~= nil and threnody:getSubPower() == MOD_ICERES) then
             effects[counter] = threnody;
             counter = counter + 1;

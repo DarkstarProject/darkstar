@@ -24,7 +24,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effects.SLOW);
+    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effect.SLOW);
     if (resist <= 0.5) then
         return 0,0,0;
     else
@@ -35,15 +35,15 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,45);
         duration = duration * resist;
-        if (not player:hasStatusEffect(dsp.effects.SLOW)) then
-            player:addStatusEffect(dsp.effects.SLOW, power, 0, duration);
+        if (not player:hasStatusEffect(dsp.effect.SLOW)) then
+            player:addStatusEffect(dsp.effect.SLOW, power, 0, duration);
         end
-        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, dsp.effects.SLOW;
+        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, dsp.effect.SLOW;
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.titles.ADAMANTKING_USURPER);
+    player:addTitle(dsp.title.ADAMANTKING_USURPER);
     if (isKiller) then
         mob:showText(mob,QUADAV_KING_DEATH);
     end

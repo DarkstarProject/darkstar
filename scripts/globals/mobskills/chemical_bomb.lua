@@ -25,8 +25,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffectOne = dsp.effects.ELEGY;
-    local typeEffectTwo = dsp.effects.SLOW;
+    local typeEffectOne = dsp.effect.ELEGY;
+    local typeEffectTwo = dsp.effect.SLOW;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffectOne, 512, 0, 120));
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffectTwo, 512, 0, 120));

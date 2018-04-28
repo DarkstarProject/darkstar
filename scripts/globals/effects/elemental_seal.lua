@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.ELEMENTAL_SEAL
+--     dsp.effect.ELEMENTAL_SEAL
 --
 -----------------------------------
 

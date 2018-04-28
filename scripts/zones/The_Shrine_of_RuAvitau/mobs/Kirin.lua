@@ -23,7 +23,7 @@ function onMobSpawn(mob)
     mob:setMod(MOD_STUNRES, 35);
     mob:setMod(MOD_BINDRES, 35);
     mob:setMod(MOD_GRAVITYRES, 35);
-    mob:addStatusEffect(dsp.effects.REGEN,50,3,0);
+    mob:addStatusEffect(dsp.effect.REGEN,50,3,0);
     mob:setLocalVar("numAdds", 1);
 end
 
@@ -71,7 +71,7 @@ function onAdditionalEffect(mob, target, damage)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle( dsp.titles.KIRIN_CAPTIVATOR );
+    player:addTitle( dsp.title.KIRIN_CAPTIVATOR );
     player:showText( mob, KIRIN_OFFSET + 1 );
     for i = KIRIN + 1, KIRIN + 4 do
         DespawnMob(i);

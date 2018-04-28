@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.FIELD_SUPPORT_FOOD
+-- dsp.effect.FIELD_SUPPORT_FOOD
 -- From FoV and GoV
 -----------------------------------
 

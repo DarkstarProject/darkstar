@@ -41,7 +41,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local npc = GetNPCByID(17330781); -- ID of the '???' target.
-    player:addTitle(dsp.titles.LIFTER_OF_SHADOWS);
+    player:addTitle(dsp.title.LIFTER_OF_SHADOWS);
     npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
     npc:setStatus(0); -- Spawn the '???'
     DespawnMob(17330183); -- despawn dragons

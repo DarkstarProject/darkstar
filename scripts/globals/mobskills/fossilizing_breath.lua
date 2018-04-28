@@ -25,7 +25,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.PETRIFICATION;
+    local typeEffect = dsp.effect.PETRIFICATION;
     local power = 1;
 
     local duration = 60;

@@ -30,16 +30,16 @@ function onSpellCast(caster,target,spell)
     -- pAbs = utils.clamp(1, STONESKIN_CAP); This just always sets it to 350, let's use the actual value, shall we?
     pAbs = utils.clamp(pAbs, 1, STONESKIN_CAP);
 
-    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
     local final = pAbs + pEquipMods;
-    if (target:addStatusEffect(dsp.effects.STONESKIN,final,0,duration)) then
+    if (target:addStatusEffect(dsp.effect.STONESKIN,final,0,duration)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 
-    return dsp.effects.STONESKIN;
+    return dsp.effect.STONESKIN;
 end;

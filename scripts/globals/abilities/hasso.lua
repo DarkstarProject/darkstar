@@ -24,8 +24,8 @@ function onUseAbility(player,target,ability)
         strboost = target:getSubLvl()/7;
     end
     if (target:isWeaponTwoHanded()) then
-        target:delStatusEffect(dsp.effects.HASSO);
-        target:delStatusEffect(dsp.effects.SEIGAN);
-        target:addStatusEffect(dsp.effects.HASSO,strboost,0,300);
+        target:delStatusEffect(dsp.effect.HASSO);
+        target:delStatusEffect(dsp.effect.SEIGAN);
+        target:addStatusEffect(dsp.effect.HASSO,strboost,0,300);
     end
 end;

@@ -13,7 +13,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if (target:hasStatusEffect(dsp.effects.PARALYSIS)) then --effect already on, do nothing
+    if (target:hasStatusEffect(dsp.effect.PARALYSIS)) then --effect already on, do nothing
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
         -- Calculate duration.
@@ -37,11 +37,11 @@ function onSpellCast(caster,target,spell)
         params.attribute = MOD_MND;
         params.skillType = 35;
         params.bonus = 0;
-        params.effect = dsp.effects.PARALYSIS;
+        params.effect = dsp.effect.PARALYSIS;
         local resist = applyResistanceEffect(caster, target, spell, params);
 
         if (resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
-            if (target:addStatusEffect(dsp.effects.PARALYSIS,potency,0,duration*resist)) then
+            if (target:addStatusEffect(dsp.effect.PARALYSIS,potency,0,duration*resist)) then
                 spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
             else
                 -- no effect
@@ -53,5 +53,5 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    return dsp.effects.PARALYSIS;
+    return dsp.effect.PARALYSIS;
 end;
